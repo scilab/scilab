@@ -24,11 +24,12 @@
  extern void  C2F(initgraphicXfig)();
  extern void  C2F(initgraphicfromscreenXfig)();
  extern void  C2F(drawpolylineXfig)();
- void C2F(drawClippedPolylineXfig)();
+ extern void  C2F(drawClippedPolylineXfig)();
  extern void  C2F(drawpolylinesXfig)();
  extern void  C2F(fillpolylinesXfig)();
  extern void  C2F(fillpolylineXfig)();
  extern void  C2F(drawpolymarkXfig)();
+ extern void  C2F(getFontMaxSizeXfig)();
  extern void  C2F(displaynumbersXfig)();
  extern void  C2F(drawrectangleXfig)();
  extern void  C2F(drawrectanglesXfig)();

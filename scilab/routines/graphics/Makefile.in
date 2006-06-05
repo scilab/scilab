@@ -12,7 +12,8 @@ OBJSC = @PERIFILE@ periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
 	Plo2d1.o Plo2d2.o Plo2d3.o Plo2d4.o Plo2dEch.o Rec.o Gray.o \
 	Alloc.o FeC.o RecLoad.o RecSave.o Tests.o Actions.o Events.o\
 	gsort.o qsort.o nues1.o Format.o w_rottext.o\
-	dr1Call.o sciCall.o Plo2dn.o Plo3dn.o clipping.o
+	dr1Call.o sciCall.o Plo2dn.o Plo3dn.o clipping.o StringMatrix.o\
+	sciMatrix.o Vect2Matrix.o
 
 OBJSF = 
 
@@ -48,7 +49,8 @@ Champ.o: Champ.c Math.h ../machine.h Graphics.h PloEch.h GetProperty.h \
 	../stack-c.h ../graphics/Math.h ../stack-def.h ../interf/stack1.h \
 	../interf/stack2.h ../interf/stack3.h
 Contour.o: Contour.c Math.h ../machine.h Graphics.h PloEch.h GetProperty.h
-GetProperty.o: GetProperty.c GetProperty.h PloEch.h bcg.h BuildObjects.h SetProperty.h
+GetProperty.o: GetProperty.c GetProperty.h PloEch.h bcg.h BuildObjects.h SetProperty.h\
+	StringMatrix.h
 BuildObjects.o: BuildObjects.c BuildObjects.h GetProperty.h \
 	InitObjects.h DestroyObjects.h bcg.h BuildObjects.h SetProperty.h
 CloneObjects.o: CloneObjects.c CloneObjects.h GetProperty.h SetProperty.h \
@@ -56,9 +58,9 @@ CloneObjects.o: CloneObjects.c CloneObjects.h GetProperty.h SetProperty.h \
 DestroyObjects.o: DestroyObjects.c DestroyObjects.h GetProperty.h SetProperty.h \
 	DrawObjects.h Interaction.h
 DrawObjects.o: DrawObjects.c DrawObjects.h GetProperty.h SetProperty.h \
-	bcg.h BuildObjects.h DestroyObjects.h
+	bcg.h BuildObjects.h DestroyObjects.h sciMatrix.h
 SetProperty.o: SetProperty.c SetProperty.h GetProperty.h InitObjects.h \
-	bcg.h DrawObjects.h BuildObjects.h
+	bcg.h DrawObjects.h BuildObjects.h StringMatrix.h
 HandleManagement.o: HandleManagement.c HandleManagement.h GetProperty.h bcg.h
 InitObjects.o: InitObjects.c InitObjects.h GetProperty.h SetProperty.h \
 	bcg.h PloEch.h
@@ -138,3 +140,6 @@ sciCall.o: sciCall.c ../stack-c.h ../graphics/Math.h \
 	../interf/stack2.h ../interf/stack3.h PloEch.h
 w_rottext.o: w_rottext.h resources.h
 clipping.o: clipping.c clipping.h
+StringMatrix.o: StringMatrix.c StringMatrix.h
+sciMatrix.o: sciMatrix.c sciMatrix.h
+Vect2Matrix.o: Vect2Matrix.c Vect2Matrix.h sciMatrix.h

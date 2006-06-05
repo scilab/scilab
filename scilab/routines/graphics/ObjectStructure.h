@@ -24,7 +24,8 @@
 
 /*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h
   sauf pour les callback (il faudrait creer une fonction et l'appeler) */
-#include "../stack-c.h" 
+#include "../stack-c.h"
+#include "StringMatrix.h"
 
 
 #ifndef _MSC_VER
@@ -101,8 +102,6 @@ typedef struct tagPOINT2D
   double y;
 }
 POINT2D;
-
-
 
 typedef struct tagPOINT3D
 {/** */
@@ -481,9 +480,10 @@ typedef struct
 }/** */
 sciFigure;  
 
+typedef enum { ALIGN_NONE, ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT } sciTextAlignment ;
 
 /**@name Text
- * Structure used to specify Texte 
+ * Structure used to specify Text
  */
 typedef struct
 {
@@ -492,12 +492,21 @@ typedef struct
   /** */
   sciFont fontcontext;
   sciGraphicContext graphiccontext; /* the only properties used by Text are foreground and background */
-  /** */
-  char *ptextstring;
+  /** the displayed text */
+  StringMatrix * pStrings ;
+
   /** position in scilab window (not pixel) */
   double x;			    
   /** position in scilab window (not pixel) */
   double y;
+
+  BOOL auto_size ; /* to know wether the size of the displayed array is specified by user or */
+                   /* automatically computed. */
+
+  double user_size[2] ; /* the width and height of the displayed string array defined by user */
+  
+  sciTextAlignment stringsAlign ; /* the alignment of the strings inside the array */
+  
   /***/
   double wh[2];
   /* used by text_box_mode : -1 <=> off, 0 <=> centered, 1 <=> filled */
@@ -507,7 +516,6 @@ typedef struct
   BOOL isfilled ; /* switch the transparency of the box */
   /** */
   double z; /**DJ.Abdemouche 2003**/
-  unsigned int textlen;
   /** specifies the text scilab code for the callback associated with this entity */
   char *callback; 
   /** the length of the callback code */
@@ -684,7 +692,7 @@ typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXIS, BT_BACK_HALF } EAxe
 typedef struct 
 {  
   double  xlim[4];  /* [xmin,xmax,ar,nint]           */ /* F.Leray 21.09.04 : NOUVEAU sens pour xlim,ylim,zlim: NON! Comme avant valeurs en tight limits on/off */ /* F.Leray 07.10.04 */
-  double  ylim[4];  /* [ymin,ymax,ar,nint]           */ /* pour afficher les graduations automatiques on a calculé des xyzgrads provenant de TheTicks */
+  double  ylim[4];  /* [ymin,ymax,ar,nint]           */ /* pour afficher les graduations automatiques on a calcule des xyzgrads provenant de TheTicks */
   double  zlim[4];  /* [zmin,zmax,ar,nint]         */ 
 
   /* tics data from algo */

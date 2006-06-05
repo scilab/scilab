@@ -75,8 +75,8 @@
 /* How to use the hash table by jb Silvy 04/2006 */
 /* The hash table (asso_values array) has been created using the gperf software. */
 /* Normally, each a new function is added in Xcall, gperf shoud be run to obtain a new hastable */
-/* But here I present a way to avoid using gperf ( :) ). */
-/* When dr is called, the programm will compute the hash value of the called function (xset,
+/* But here I present a way to avoid using gperf :). */
+/* When dr is called, the programm will compute the hash value of the called function (xset, */
 /* xarc,...). The function hash compute this. The obtained number will then give the function to */
 /* call in the driver. This number is the index of the function to be called in the wordlist array. */
 /* As you can see, there are empty baskets. They can be used to add new functions (that's the point :) )*/
@@ -124,7 +124,7 @@ hash (str, len)
       87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
       87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
       87, 87, 87, 87, 87, 87, 87, 87, 87, 87,
-      87, 87, 87, 87, 87, 87, 87,  5, 87,  0,
+      87, 87, 87, 87, 87, 87, 87,  5, 87,  0, /* 99 */
       15,  5, 45, 15, 25,  0, 87, 45, 25, 15,
       20,  0, 10, 87,  0,  0,  5, 20, 87, 55,
       25, 10, 87, 87, 87, 87, 87, 87, 87, 87,
@@ -156,7 +156,7 @@ xcall_in_word_set (str, len)
 {
   static const struct funreplace wordlist[] =
     {
-      {""}, 
+      {""}, /* index 0 */
       {""}, 
       {""}, 
       {""}, 
@@ -166,7 +166,7 @@ xcall_in_word_set (str, len)
       {""}, 
       {""},
       {"xarc",    {C2F(drawarc),C2F(drawarcPos),C2F(drawarcXfig),C2F(drawarcGif)}},
-      {"xarcs",    {C2F(drawarcs),C2F(drawarcsPos),C2F(drawarcsXfig),C2F(drawarcsGif)}},
+      {"xarcs",    {C2F(drawarcs),C2F(drawarcsPos),C2F(drawarcsXfig),C2F(drawarcsGif)}}, /* 10 */
       {"xrects",    {C2F(drawrectangles),C2F(drawrectanglesPos),C2F(drawrectanglesXfig),C2F(drawrectanglesGif)}},
       {""}, 
       {""}, 
@@ -176,7 +176,7 @@ xcall_in_word_set (str, len)
       {""}, 
       {""},
       {"xset",    {C2F(MissileGCset),C2F(scilabgcsetPos),C2F(scilabgcsetXfig),C2F(scilabgcsetGif)}},
-      {"xarea",    {C2F(fillpolyline),C2F(fillpolylinePos),C2F(fillpolylineXfig),C2F(fillpolylineGif)}},
+      {"xarea",    {C2F(fillpolyline),C2F(fillpolylinePos),C2F(fillpolylineXfig),C2F(fillpolylineGif)}}, /* 20 */
       {"xstart",    {CleanPlots,CleanPlots,CleanPlots,CleanPlots}},
       {""}, 
       {""},
@@ -186,7 +186,7 @@ xcall_in_word_set (str, len)
       {"xstring",    {C2F(displaystring),C2F(displaystringPos),C2F(displaystringXfig),C2F(displaystringGif)}},
       {""},
       {"xreplayna",    {Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle}},
-      {"xinit",    {C2F(initgraphic),C2F(initgraphicPos),C2F(initgraphicXfig),C2F(initgraphicGif)}},
+      {"xinit",    {C2F(initgraphic),C2F(initgraphicPos),C2F(initgraphicXfig),C2F(initgraphicGif)}}, /* 30 */
       {"xgetdr",    {GetDriver1,GetDriver1,GetDriver1,GetDriver1}},
       {"xreplay",    {Tape_Replay,Tape_Replay,Tape_Replay,Tape_Replay}},
       {""},
@@ -196,7 +196,7 @@ xcall_in_word_set (str, len)
       {""},
       {"xstringl",    {C2F(boundingbox),C2F(boundingboxPos),C2F(boundingboxXfig),C2F(boundingboxGif),}},
       {"xgetmouse",    {C2F(xgetmouse),C2F(xgetmousePos),C2F(xgetmouseXfig),C2F(xgetmouseGif)}},
-      {"xclea",    {C2F(cleararea),C2F(clearareaPos),C2F(clearareaXfig),C2F(clearareaGif)}},
+      {"xclea",    {C2F(cleararea),C2F(clearareaPos),C2F(clearareaXfig),C2F(clearareaGif)}}, /* 40 */
       {"xpolys",    {C2F(drawpolylines),C2F(drawpolylinesPos),C2F(drawpolylinesXfig),C2F(drawpolylinesGif)}},
       {"xselect",    {C2F(xselgraphic),C2F(xselgraphicPos),C2F(xselgraphicXfig),C2F(xselgraphicGif)}},
       {""},
@@ -206,7 +206,7 @@ xcall_in_word_set (str, len)
       {""}, 
       {""},
       {"xreplaysh",    {Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show}},
-      {"xname",    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}},
+      {"xname",    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}}, /* 50 */
       {"xlines",    {C2F(drawClippedPolyline),C2F(drawpolylinePos),C2F(drawClippedPolylineXfig),C2F(drawpolylineGif)}},
       {"xliness",    {C2F(fillpolylines),C2F(fillpolylinesPos),C2F(fillpolylinesXfig),C2F(fillpolylinesGif)}},
       {"xuclines",    {C2F(drawpolyline),C2F(drawpolylinePos),C2F(drawpolylineXfig),C2F(drawpolylineGif)}}, 
@@ -216,7 +216,7 @@ xcall_in_word_set (str, len)
       {""}, 
       {""},
       {"xend",    {C2F(xend),C2F(xendPos),C2F(xendXfig),C2F(xendGif)}},
-      {""},
+      {""}, /* 60 */
       {"xfrect",    {C2F(fillrectangle),C2F(fillrectanglePos),C2F(fillrectangleXfig),C2F(fillrectangleGif)}},
       {""}, 
       {""}, 
@@ -226,23 +226,23 @@ xcall_in_word_set (str, len)
       {""}, 
       {""}, 
       {""},
-      {"xinfo",    {C2F(xinfo),C2F(vide),C2F(vide),C2F(vide)}},
+      {"xinfo",    {C2F(xinfo),C2F(vide),C2F(vide),C2F(vide)}}, /* 70 */
       {"xgfont",    {C2F(queryfamily),C2F(queryfamilyPos),C2F(queryfamilyXfig),C2F(queryfamilyGif)}},
       {""}, 
-      {""},
+      {"xfontmxs", {C2F(getFontMaxSize),C2F(getFontMaxSizePos),C2F(getFontMaxSizeXfig),C2F(getFontMaxSizeGif)}},
       {"xnum",    {C2F(displaynumbers),C2F(displaynumbersPos),C2F(displaynumbersXfig),C2F(displaynumbersGif)}},
       {""},
       {"xclick",    {C2F(xclick),C2F(xclickPos),C2F(xclickXfig),C2F(xclickGif)}},
       {""}, 
       {""}, 
       {""},
-      {""},
+      {""}, /* 80 */
       {"xlfont",    {C2F(loadfamily),C2F(loadfamilyPos),C2F(loadfamilyXfig),C2F(loadfamilyGif)}},
       {""}, 
       {""}, 
       {""}, 
       {""},
-      {"xinit2",    {C2F(initgraphic),C2F(initgraphicfromscreenPos),C2F(initgraphicfromscreenXfig),C2F(initgraphicfromscreenGif)}}
+      {"xinit2",    {C2F(initgraphic),C2F(initgraphicfromscreenPos),C2F(initgraphicfromscreenXfig),C2F(initgraphicfromscreenGif)}} /* 86 */
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)

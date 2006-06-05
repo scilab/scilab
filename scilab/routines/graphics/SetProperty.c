@@ -58,7 +58,7 @@ int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha )
   sciSubWindow * ppSubWin = pSUBWIN_FEATURE (psubwin) ;
   if ((alpha == 0.0) && (theta == 270.0))
   {
-    ppSubWin->is3d = FALSE; 
+    ppSubWin->is3d = FALSE;
     return 0;
   }
   
@@ -1826,50 +1826,128 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
   
 }
 
+int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
+{
+  switch (sciGetEntityType (pObjDest))
+    {
+    case SCI_TEXT:
+      deleteMatrix( pTEXT_FEATURE (pObjDest)->pStrings ) ;
+      pTEXT_FEATURE (pObjDest)->pStrings = copyStringMatrix( pStrings ) ;
+      if ( pTEXT_FEATURE (pObjDest)->pStrings == NULL )
+      {
+        return -1 ;
+      }
+      break;
+    case SCI_TITLE:
+      deleteMatrix( pTITLE_FEATURE (pObjDest)->text.pStrings ) ;
+      pTITLE_FEATURE (pObjDest)->text.pStrings = copyStringMatrix( pStrings ) ;
+      if ( pTITLE_FEATURE (pObjDest)->text.pStrings == NULL )
+      {
+        return -1 ;
+      }
+      break;
+    case SCI_LEGEND:
+      deleteMatrix( pLEGEND_FEATURE (pObjDest)->text.pStrings ) ;
+      pLEGEND_FEATURE (pObjDest)->text.pStrings = copyStringMatrix( pStrings ) ;
+      if ( pLEGEND_FEATURE (pObjDest)->text.pStrings == NULL )
+      {
+        return -1 ;
+      }
+      break;
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+      deleteMatrix( pLABEL_FEATURE (pObjDest)->text.pStrings ) ;
+      pLABEL_FEATURE (pObjDest)->text.pStrings = copyStringMatrix( pStrings ) ;
+      if ( pLABEL_FEATURE (pObjDest)->text.pStrings == NULL )
+      {
+        return -1 ;
+      }
+      break;
+    case SCI_UIMENU:
+      deleteMatrix( pUIMENU_FEATURE (pObjDest)->label.pStrings ) ;
+      pUIMENU_FEATURE (pObjDest)->label.pStrings = copyStringMatrix( pStrings ) ;
+      if ( pUIMENU_FEATURE (pObjDest)->label.pStrings == NULL )
+      {
+        return -1 ;
+      }
+      break;
+    case SCI_FIGURE:
+    case SCI_SUBWIN:
+    case SCI_ARC:
+    case SCI_SEGS: 
+    case SCI_FEC:
+    case SCI_GRAYPLOT: 
+    case SCI_POLYLINE:
+    case SCI_RECTANGLE:
+    case SCI_SURFACE:
+    case SCI_LIGHT:
+    case SCI_AXES:
+    case SCI_PANNER:
+    case SCI_SBH:
+    case SCI_SBV:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_AGREG:
+    default:
+      sciprint ("This object has no text !\n");
+      return -1;
+      break;
+    }
+  return 0;
+}
+
 /**sciSetText
  * @memo Sets the Text in TEXT, TITLE or LEGEND
  * @param sciPointObj * pobj: the pointer to the entity
- * @param  char *text : the text which has to be put
- * @param  int n
+ * @param char *text[] : the text which has to be put
+ * @param int nbRow : the number of row of the text matrix
+ * @param int nbCol : the number of col of the text matrix
  * @return  0 if OK, -1 if not
  */
 int
-sciSetText (sciPointObj * pobj, char text[], int n)
+sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
 {
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      FREE(pTEXT_FEATURE (pobj)->ptextstring);
-      if ((pTEXT_FEATURE (pobj)->ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
-	return -1;
-      strncpy (pTEXT_FEATURE (pobj)->ptextstring, text, n);
-      pTEXT_FEATURE (pobj)->textlen = n;
+      deleteMatrix( pTEXT_FEATURE (pobj)->pStrings ) ;
+      pTEXT_FEATURE (pobj)->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+      if ( pTEXT_FEATURE (pobj)->pStrings == NULL )
+      {
+        return -1 ;
+      }
       break;
     case SCI_TITLE:
-      FREE(pTITLE_FEATURE (pobj)->text.ptextstring);
-      if ((pTITLE_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
-	return -1;
-      strncpy (pTITLE_FEATURE (pobj)->text.ptextstring, text, n);
-      pTITLE_FEATURE (pobj)->text.textlen = n;
+      deleteMatrix( pTITLE_FEATURE (pobj)->text.pStrings ) ;
+      pTITLE_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+      if ( pTITLE_FEATURE (pobj)->text.pStrings == NULL )
+      {
+        return -1 ;
+      }
       break;
     case SCI_LEGEND:
-      FREE(pLEGEND_FEATURE (pobj)->text.ptextstring);
-      if ((pLEGEND_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
-	return -1;
-      strncpy (pLEGEND_FEATURE (pobj)->text.ptextstring, text, n);
-      pLEGEND_FEATURE (pobj)->text.textlen = n;
+      deleteMatrix( pLEGEND_FEATURE (pobj)->text.pStrings ) ;
+      pLEGEND_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+      if ( pLEGEND_FEATURE (pobj)->text.pStrings == NULL )
+      {
+        return -1 ;
+      }
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      FREE(pLABEL_FEATURE (pobj)->text.ptextstring);
-      if ((pLABEL_FEATURE (pobj)->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL) return -1;
-      strncpy (pLABEL_FEATURE (pobj)->text.ptextstring, text, n);
-      pLABEL_FEATURE (pobj)->text.textlen = n;
+      deleteMatrix( pLABEL_FEATURE (pobj)->text.pStrings ) ;
+      pLABEL_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+      if ( pLABEL_FEATURE (pobj)->text.pStrings == NULL )
+      {
+        return -1 ;
+      }
       break;
     case SCI_UIMENU:
-      FREE(pUIMENU_FEATURE(pobj)->label.ptextstring);
-      if ((pUIMENU_FEATURE(pobj)->label.ptextstring = CALLOC (n+1, sizeof (char))) == NULL) return -1;
-      strncpy (pUIMENU_FEATURE(pobj)->label.ptextstring, text, n);
-      pUIMENU_FEATURE(pobj)->label.textlen = n;
+      deleteMatrix( pUIMENU_FEATURE (pobj)->label.pStrings ) ;
+      pUIMENU_FEATURE (pobj)->label.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+      if ( pUIMENU_FEATURE (pobj)->label.pStrings == NULL )
+      {
+        return -1 ;
+      }
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -3731,27 +3809,35 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_RECTANGLE:
+    {
+      int widthIndex = 2 ;
       if ((*numrow * *numcol != 5)&&(*numrow * *numcol != 4))
-	{
-	  sciprint("The number of element must be 4 (5 if z coordinate )\n");
-	  return -1;
-	}
-
-      pRECTANGLE_FEATURE (pthis)->x          = tab[0];
-      pRECTANGLE_FEATURE (pthis)->y          = tab[1];
+      {
+        sciprint("The number of element must be 4 (5 if z coordinate )\n");
+        return -1;
+      }
+      
+      pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
+      pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
+      
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	{
-	  pRECTANGLE_FEATURE (pthis)->z          = tab[2];
-	  pRECTANGLE_FEATURE (pthis)->width      = tab[3];
-	  pRECTANGLE_FEATURE (pthis)->height     = tab[4];
-	}
-      else
-	{
-	  pRECTANGLE_FEATURE (pthis)->width      = tab[2];
-	  pRECTANGLE_FEATURE (pthis)->height     = tab[3];
-	}
+      {
+        pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
+        widthIndex = 3 ;
+      }
+      
+      /* check that the height and width are positive */
+      if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
+      {
+        Scierror(999,"Width and height must be positive.\n") ;
+        return -1 ;
+      }
+      pRECTANGLE_FEATURE (pthis)->width  = tab[widthIndex    ] ;
+      pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
+      
       return 0;
-      break;
+    }
+    break;
     case SCI_ARC:
       if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
 	{
@@ -4551,7 +4637,7 @@ int sciSetAutoPosition ( sciPointObj * pObj, BOOL value )
     /* nothing to do */
     return 1 ;
   }
-  return sciInitAutoPosition( pObj, value) ;
+  return sciInitAutoPosition( pObj, value ) ;
   
 }
 
@@ -4588,5 +4674,81 @@ int checkPercent( char * string )
   }
   return -1 ;
 }
-
 /*---------------------------------------------------------------------------*/
+int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize )
+{
+  switch ( sciGetEntityType (pObj) )
+  {
+  case SCI_TEXT:
+    pTEXT_FEATURE(pObj)->auto_size = autoSize ;
+    return 0 ;
+  default:
+    sciprint ("This object hasn't any automoatic size\n");
+    return -1 ;
+    break;
+  }
+  return -1 ;
+}
+/*---------------------------------------------------------------------------*/
+int sciSetAutoSize( sciPointObj * pObj, BOOL autoSize )
+{
+  if ( sciGetAutoSize( pObj ) == autoSize )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitAutoSize( pObj, autoSize ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align )
+{
+  switch (sciGetEntityType (pObj))
+  {
+  case SCI_TEXT:
+    pTEXT_FEATURE(pObj)->stringsAlign = align ;
+    return 0 ;
+  default:
+    sciprint ("This object has no Text Alignment\n");
+    return -1 ;
+  }
+  return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciSetAlignment( sciPointObj * pObj, sciTextAlignment align )
+{
+  if ( sciGetAlignment( pObj ) == align )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitAlignment( pObj, align ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitUserSize( sciPointObj * pObj, double width, double height )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_TEXT:
+    pTEXT_FEATURE(pObj)->user_size[0] = width ;
+    pTEXT_FEATURE(pObj)->user_size[1] = height ;
+    return 0 ;
+  default:
+    sciprint ("This object has no Specified Size\n");
+    return -1 ;
+  }
+  return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciSetUserSize( sciPointObj * pObj, double width, double height )
+{
+  double curWidth  ;
+  double curHeight ;
+  sciGetUserSize( pObj, &curWidth, &curHeight ) ;
+  if ( curWidth == width && curHeight == height )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitUserSize( pObj, width, height ) ;
+}
+/*--------------------------------------------------------------------------------------------*/

@@ -746,9 +746,9 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
       psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
       ppsubwin = pSUBWIN_FEATURE (psubwin);
 
-      legx = sciGetText(ppsubwin->mon_x_label);
-      legy = sciGetText(ppsubwin->mon_y_label);
-      legz = sciGetText(ppsubwin->mon_z_label);
+      legx = getStrMatElement( sciGetText(ppsubwin->mon_x_label), 0, 0 ) ;
+      legy = getStrMatElement( sciGetText(ppsubwin->mon_y_label), 0, 0 ) ;
+      legz = getStrMatElement( sciGetText(ppsubwin->mon_z_label), 0, 0 ) ;
                   
       if ((legends = MALLOC ((strlen(legx)+
 			      strlen(legy)+

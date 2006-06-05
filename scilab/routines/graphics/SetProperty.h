@@ -91,7 +91,8 @@ extern int sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth); /* SET *
 extern int sciInitFontOrientation(sciPointObj * pobj, int textorientation); /* SET */
 extern int sciSetFontOrientation (sciPointObj * pobj, int textorientation); /* SET */
 
-extern int sciSetText (sciPointObj * pobj, char text[], int n); /* SET */
+extern int sciSetStrings( sciPointObj * pobj, const StringMatrix * pStrings ) ; /* SET */
+extern int sciSetText (   sciPointObj * pobj, char ** text, int nbRow, int nbCol ) ; /* SET */
 
 extern int sciInitFontBackground(sciPointObj * pobj, int color);
 extern int sciSetFontBackground (sciPointObj * pobj, int color); /* SET */
@@ -205,6 +206,14 @@ extern int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
 extern int sciInitAutoPosition( sciPointObj * pObj, BOOL value ) ;
 extern int sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
 
+extern int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize ) ;
+extern int sciSetAutoSize( sciPointObj * pObj, BOOL autoSize ) ;
+
+extern int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align ) ;
+extern int sciSetAlignment( sciPointObj * pObj, sciTextAlignment align ) ;
+
+extern int sciInitUserSize( sciPointObj * pObj, double width, double height ) ;
+extern int sciSetUserSize( sciPointObj * pObj, double width, double height ) ;
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

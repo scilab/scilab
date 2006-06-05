@@ -31,6 +31,7 @@
  extern void  C2F(fillpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer *fillvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(drawpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer *drawvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(drawpolymarkGif)(char *str, integer *n, integer *vx, integer *vy, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+ extern void  C2F(getFontMaxSizeGif)(char *str, integer *sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4) ;
  extern void  C2F(displaynumbersGif)(char *str, integer *x, integer *y, integer *v1, integer *v2, integer *n, integer *flag, double *z, double *alpha, double *dx3, double *dx4);
  extern void  C2F(drawrectangleGif)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(drawrectanglesGif)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);

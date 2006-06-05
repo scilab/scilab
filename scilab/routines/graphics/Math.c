@@ -52,9 +52,7 @@ double Maxi(vect, n)
 /* perform the rotation of point from to point dest  */
 void rotate2D( double from[2], double center[2], double angle, double dest[2] )
 {
-  double cosAngle = cos( angle ) ;
-  double sinAngle = sin( angle ) ;
-  rotate2Dim( from, center, cosAngle, sinAngle, dest ) ;
+  rotate2Dim( from, center, cos( angle ), sin( angle ), dest ) ;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -75,6 +73,48 @@ void rotate2Dim( double from[2]   ,
   /* turn and translate back */
   dest[0] = diff[0] * cosAngle - diff[1] * sinAngle + center[0] ;
   dest[1] = diff[0] * sinAngle + diff[1] * cosAngle + center[1] ;
+}
+/*----------------------------------------------------------------------------*/
+/* perform the rotation of point from to point dest given in int with angle in radian  */
+void iRotate2D( int from[2], int center[2], double angle, int dest[2] )
+{
+  iRotate2Dim( from, center, cos( angle ), sin( angle ), dest ) ;
+}
+
+/*----------------------------------------------------------------------------*/
+/* perform the rotation of point from to point to. */
+/* the angle is directly given with its sine and cosine for speed */
+void iRotate2Dim( int    from[2]   ,
+                  int    center[2] ,
+                  double cosAngle  ,
+                  double sinAngle  ,
+                  int    dest[2]    )
+{
+  int diff[2] ;
+
+  /* put the center to (0,0) */
+  diff[0] = from[0] - center[0] ;
+  diff[1] = from[1] - center[1] ;
+
+  /* turn and translate back */
+  dest[0] = round( diff[0] * cosAngle - diff[1] * sinAngle + center[0] ) ;
+  dest[1] = round( diff[0] * sinAngle + diff[1] * cosAngle + center[1] ) ;
+}
+/*----------------------------------------------------------------------------*/
+/* perform an homethety point from to point dest. The 2 factors stand for the ration */
+/* along the 2 coordinates */
+void homothety2D( double from[2], double center[2], double factors[2], double dest[2] )
+{
+  dest[0] = center[0] + factors[0] * ( from[0] - center[0] ) ;
+  dest[1] = center[1] + factors[1] * ( from[1] - center[1] ) ;
+}
+/*----------------------------------------------------------------------------*/
+/* perform an homethety point from to point dest given in pixels. */
+/* The 2 factors stand for the ration along the 2 coordinates */
+void iHomothety2D( int from[2], int center[2], double factors[2], int dest[2] )
+{
+  dest[0] = round( center[0] + factors[0] * ( from[0] - center[0] ) ) ;
+  dest[1] = round( center[1] + factors[1] * ( from[1] - center[1] ) ) ;
 }
 
 /*----------------------------------------------------------------------------*/

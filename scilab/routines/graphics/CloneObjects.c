@@ -69,6 +69,8 @@ CloneText (sciPointObj * pthis)
   sciText     * ppCopyText  ;
   int foreground = sciGetForeground(pthis);
   int background = sciGetBackground(pthis);
+  int nbRow ;
+  int nbCol ;
  
   subwinparent = pthis;
 
@@ -78,11 +80,13 @@ CloneText (sciPointObj * pthis)
   {
     return (sciPointObj *)NULL;
   }
+  
+  sciGetTextSize( pthis, &nbRow, &nbCol ) ;
 
-  if (!(pobj = ConstructText (subwinparent, sciGetText(pthis), sciGetTextLength(pthis), 
+  if (!(pobj = ConstructText (subwinparent, getStrMatData( sciGetText(pthis) ), nbRow, nbCol, 
 			      sciGetTextPosX(pthis), sciGetTextPosY(pthis),pTEXT_FEATURE(pthis)->wh,pTEXT_FEATURE(pthis)->fill,
 			      &foreground,&background,pTEXT_FEATURE(pthis)->isboxed,
-			      sciGetIsLine(pthis), sciGetIsFilled(pthis))))
+			      sciGetIsLine(pthis), sciGetIsFilled(pthis), sciGetAlignment(pthis))))
   {
     return (sciPointObj *)NULL;
   }

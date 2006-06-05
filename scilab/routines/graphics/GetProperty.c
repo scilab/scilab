@@ -1713,27 +1713,26 @@ sciGetFontOrientation (sciPointObj * pobj)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  point to char[] if OK or NULL if not 
  */
-char *
-sciGetText (sciPointObj * pobj)
+StringMatrix * sciGetText( sciPointObj * pobj )
 {
 
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      return pTEXT_FEATURE (pobj)->ptextstring;
+      return pTEXT_FEATURE (pobj)->pStrings;
       break;
     case SCI_TITLE:
-      return pTITLE_FEATURE (pobj)->text.ptextstring;
+      return pTITLE_FEATURE (pobj)->text.pStrings;
       break;
     case SCI_LEGEND:
-      return pLEGEND_FEATURE (pobj)->text.ptextstring;
+      return pLEGEND_FEATURE (pobj)->text.pStrings;
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      return pLABEL_FEATURE (pobj)->text.ptextstring;
+      return pLABEL_FEATURE (pobj)->text.pStrings;
       break;
-	case SCI_UIMENU:
-	  return pUIMENU_FEATURE (pobj)->label.ptextstring;
-	  break;
+    case SCI_UIMENU:
+      return pUIMENU_FEATURE (pobj)->label.pStrings;
+      break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
@@ -1753,64 +1752,30 @@ sciGetText (sciPointObj * pobj)
     case SCI_STATUSB:
     case SCI_AGREG:
     default:
-      return (char *) NULL;
+      return  NULL;
       break;
     }
 }
 
-
-
-
-/**sciGetTextLength
- * @memo Sets size of Text in TEXT, TITLE or LEGEND
- * @param sciPointObj * pobj: the pointer to the entity
- * @return  int 0 if not OK, over 0 if ok
+/**
+ * @memo Get the size of the string matrix of a text object
+ * @param nbRow, number of row of the text conatianed in pobj
+ *        If an error occures, the value is negative.
+ * @param nbCol, same as nbRow for columns.
  */
-unsigned int
-sciGetTextLength (sciPointObj * pobj)
+void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
 {
-
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_TEXT:
-      return pTEXT_FEATURE (pobj)->textlen;
-      break;
-    case SCI_TITLE:
-      return pTITLE_FEATURE (pobj)->text.textlen;
-      break;
-    case SCI_LEGEND:
-      return pLEGEND_FEATURE (pobj)->text.textlen;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      return pLABEL_FEATURE (pobj)->text.textlen;
-      break;
-	case SCI_UIMENU:
-	  return pUIMENU_FEATURE (pobj)->label.textlen;
-	  break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    default:
-      sciprint ("This object has no text !\n");
-      return 0;
-      break;
-    }
-  return -1;
+  StringMatrix * text = sciGetText( pobj ) ;
+  if ( text == NULL )
+  {
+    *nbRow = -1 ;
+    *nbCol = -1 ;
+  }
+  else
+  {
+    *nbRow = getMatNbRow( text ) ;
+    *nbCol = getMatNbCol( text ) ;
+  }
 }
 
 
@@ -4475,92 +4440,95 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"font_color") == 0)   {return 1;} /* F.Leray 09.04.04 : Adding to support font_color user interface */
   else if (strcmp(marker,"font_style") == 0) {return 1;}	      
   else if (strcmp(marker,"font_name") == 0)   {return 10;}
-  else if (strcmp(marker,"textcolor") == 0)   {return 1;}
-  else if (strcmp(marker,"labels_font_size") == 0)   {return 1;}
-  else if (strcmp(marker,"labels_font_color") == 0)   {return 1;}
-  else if (strcmp(marker,"text") == 0)        {return 10;}	 
-  else if (strcmp(marker,"text_box") == 0)     {return 1;}	
-  else if (strcmp(marker,"text_box_mode") == 0){return 10;}	
-  else if (strcmp(marker,"old_style") == 0)   {return 10;}
-  else if (strcmp(marker,"figure_style") == 0)   {return 10;}        
-  else if (strcmp(marker,"visible") == 0)     {return 10;} 
-  else if (strcmp(marker,"auto_resize") == 0){return 10;}
-  else if (strcmp(marker,"pixel_drawing_mode") == 0) {return 10;}    
-  else if (strcmp(marker,"default_values"    ) == 0) {return 1 ;} 
-  else if (strcmp(marker,"color_map"         ) == 0) {return 1 ;}    
-  else if (strcmp(marker,"x_location"        ) == 0) {return 10;} 
-  else if (strcmp(marker,"y_location"        ) == 0) {return 10;}   
-  else if (strcmp(marker,"tics_direction"    ) == 0) {return 10;}   
-  else if (strcmp(marker,"tight_limits"      ) == 0) {return 10;} 
-  else if (strcmp(marker,"box"               ) == 0) {return 10;}
-  else if (strcmp(marker,"tics_color"        ) == 0) {return 1 ;}	 
-  else if (strcmp(marker,"tics_textcolor"    ) == 0) {return 1 ;}	  
-  else if (strcmp(marker,"tics_textsize"     ) == 0) {return 1 ;}
-  else if (strcmp(marker,"xtics_coord"       ) == 0) {return 1 ;}	
-  else if (strcmp(marker,"ytics_coord"       ) == 0) {return 1 ;}	 
-  else if (strcmp(marker,"grid"              ) == 0) {return 1 ;}   
-  else if (strcmp(marker,"tics_segment"      ) == 0) {return 10;} 
-  else if (strcmp(marker,"tics_style"        ) == 0) {return 10;} 
-  else if (strcmp(marker,"format_n"          ) == 0) {return 10;}    
-  else if (strcmp(marker,"tics_labels"       ) == 0) {return 10;}  
-  else if (strcmp(marker,"sub_tics"          ) == 0) {return 1 ;}
-  else if (strcmp(marker,"sub_ticks"         ) == 0) {return 1 ;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
-  else if (strcmp(marker,"zoom_box"          ) == 0) {return 1 ;}	
-  else if (strcmp(marker,"zoom_state"        ) == 0) {return 10;}  
-  else if (strcmp(marker,"clip_box"          ) == 0) {return 1 ;}	
-  else if (strcmp(marker,"clip_state"        ) == 0) {return 10;} 
-  else if (strcmp(marker,"auto_clear"        ) == 0) {return 10;}		
-  else if (strcmp(marker,"auto_scale"        ) == 0) {return 10;}		  	 
-  else if (strcmp(marker,"arrow_size"        ) == 0) {return 1 ;}
-  else if (strcmp(marker,"segs_color"        ) == 0) {return 1 ;}
-  else if (strcmp(marker,"colored"           ) == 0) {return 10;}
-  else if (strcmp(marker,"data"              ) == 0)
+  else if (strcmp(marker,"textcolor"          ) == 0) {return 1;}
+  else if (strcmp(marker,"labels_font_size"   ) == 0) {return 1;}
+  else if (strcmp(marker,"labels_font_color"  ) == 0) {return 1;}
+  else if (strcmp(marker,"text"               ) == 0) {return 10;}	 
+  else if (strcmp(marker,"text_box"           ) == 0) {return 1;}	
+  else if (strcmp(marker,"text_box_mode"      ) == 0) {return 10;}	
+  else if (strcmp(marker,"old_style"          ) == 0) {return 10;}
+  else if (strcmp(marker,"figure_style"       ) == 0) {return 10;}        
+  else if (strcmp(marker,"visible"            ) == 0) {return 10;} 
+  else if (strcmp(marker,"auto_resize"        ) == 0) {return 10;}
+  else if (strcmp(marker,"pixel_drawing_mode" ) == 0) {return 10;}    
+  else if (strcmp(marker,"default_values"     ) == 0) {return 1 ;} 
+  else if (strcmp(marker,"color_map"          ) == 0) {return 1 ;}    
+  else if (strcmp(marker,"x_location"         ) == 0) {return 10;} 
+  else if (strcmp(marker,"y_location"         ) == 0) {return 10;}   
+  else if (strcmp(marker,"tics_direction"     ) == 0) {return 10;}   
+  else if (strcmp(marker,"tight_limits"       ) == 0) {return 10;} 
+  else if (strcmp(marker,"box"                ) == 0) {return 10;}
+  else if (strcmp(marker,"tics_color"         ) == 0) {return 1 ;}	 
+  else if (strcmp(marker,"tics_textcolor"     ) == 0) {return 1 ;}	  
+  else if (strcmp(marker,"tics_textsize"      ) == 0) {return 1 ;}
+  else if (strcmp(marker,"xtics_coord"        ) == 0) {return 1 ;}	
+  else if (strcmp(marker,"ytics_coord"        ) == 0) {return 1 ;}	 
+  else if (strcmp(marker,"grid"               ) == 0) {return 1 ;}   
+  else if (strcmp(marker,"tics_segment"       ) == 0) {return 10;} 
+  else if (strcmp(marker,"tics_style"         ) == 0) {return 10;} 
+  else if (strcmp(marker,"format_n"           ) == 0) {return 10;}    
+  else if (strcmp(marker,"tics_labels"        ) == 0) {return 10;}  
+  else if (strcmp(marker,"sub_tics"           ) == 0) {return 1 ;}
+  else if (strcmp(marker,"sub_ticks"          ) == 0) {return 1 ;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
+  else if (strcmp(marker,"zoom_box"           ) == 0) {return 1 ;}	
+  else if (strcmp(marker,"zoom_state"         ) == 0) {return 10;}  
+  else if (strcmp(marker,"clip_box"           ) == 0) {return 1 ;}	
+  else if (strcmp(marker,"clip_state"         ) == 0) {return 10;} 
+  else if (strcmp(marker,"auto_clear"         ) == 0) {return 10;}		
+  else if (strcmp(marker,"auto_scale"         ) == 0) {return 10;}		  	 
+  else if (strcmp(marker,"arrow_size"         ) == 0) {return 1 ;}
+  else if (strcmp(marker,"segs_color"         ) == 0) {return 1 ;}
+  else if (strcmp(marker,"colored"            ) == 0) {return 10;}
+  else if (strcmp(marker,"data"               ) == 0)
     if((sciGetEntityType(pobj) == SCI_SURFACE) || 
        (sciGetEntityType(pobj) == SCI_SEGS     && pSEGS_FEATURE(pobj)->ptype == 1) || /* a champ */
        (sciGetEntityType(pobj) == SCI_GRAYPLOT && pGRAYPLOT_FEATURE(pobj)->type == 0))    /* a grayplot (case == 0) */
       return 16;
     else
       return 1;
-  else if (strcmp(marker,"hdl"               ) == 0) {return 1 ;}		
-  else if (strcmp(marker,"callbackmevent"    ) == 0) {return 1 ;}
-  else if (strcmp(marker,"callback"          ) == 0) {return 10;} 	
-  else if (strcmp(marker,"log_flags"         ) == 0) {return 10;}
-  else if (strcmp(marker,"data_mapping"      ) == 0) {return 10;}
-  else if (strcmp(marker,"surface_color"     ) == 0) {return 1 ;}
-  else if (strcmp(marker,"rotation_angles"   ) == 0) {return 1 ;}
-  else if (strcmp(marker,"color_mode"        ) == 0) {return 1 ;}/*DJ.A merge*/ 
-  else if (strcmp(marker,"color_flag"        ) == 0) {return 1 ;}
-  else if (strcmp(marker,"cdata_mapping"     ) == 0) {return 10;}
-  else if (strcmp(marker,"axes_bounds"       ) == 0) {return 1 ;}
-  else if (strcmp(marker,"data_bounds"       ) == 0) {return 1 ;}
-  else if (strcmp(marker,"margins"           ) == 0) {return 1 ;}
-  else if (strcmp(marker,"surface_color"     ) == 0) {return 1 ;}
-  else if (strcmp(marker,"rotation_style"    ) == 0) {return 10;}
-  else if (strcmp(marker,"triangles"         ) == 0) {return 1 ;}
-  else if (strcmp(marker,"z_bounds"          ) == 0) {return 1 ;}
-  else if (strcmp(marker,"current_axes"      ) == 0) {return 9 ;}
-  else if (strcmp(marker,"current_figure"    ) == 0) {return 9 ;}
-  else if (strcmp(marker,"current_obj"       ) == 0) {return 9 ;}
-  else if (strcmp(marker,"current_entity"    ) == 0) {return 9 ;}
-  else if (strcmp(marker,"default_axes"      ) == 0) {return 9 ;}/* DJ.A 08/01/04 */
-  else if (strcmp(marker,"default_figure"    ) == 0) {return 9 ;}/* DJ.A 08/01/04 */
-  else if (strcmp(marker,"children"          ) == 0) {return 9 ;}
-  else if (strcmp(marker,"cube_scaling"      ) == 0) {return 10;} /* F.Leray 22.04.04 */
-  else if (strcmp(marker,"x_label"           ) == 0) {return 9 ;}  /* F.Leray 27.05.04 */
-  else if (strcmp(marker,"y_label"           ) == 0) {return 9 ;} 
-  else if (strcmp(marker,"z_label"           ) == 0) {return 9 ;}
-  else if (strcmp(marker,"title"             ) == 0) {return 9 ;} 
-  else if (strcmp(marker,"x_ticks"           ) == 0) {return 16;} 
-  else if (strcmp(marker,"y_ticks"           ) == 0) {return 16;} 
-  else if (strcmp(marker,"z_ticks"           ) == 0) {return 16;} 
-  else if (strcmp(marker,"auto_ticks"        ) == 0) {return 10;}
-  else if (strcmp(marker,"axes_reverse"      ) == 0) {return 10;}
-  else if (strcmp(marker,"immediate_drawing" ) == 0) {return 10;}
-  else if (strcmp(marker,"handle_visible"    ) == 0) {return 10;}
-  else if (strcmp(marker,"menu_enable"       ) == 0) {return 10;}
-  else if (strcmp(marker,"callback_type"     ) == 0) {return 10;}
-  else if (strcmp(marker,"bounding_rect"     ) == 0) {return 1 ;} /*JBS 16/11/05 */
-  else if (strcmp(marker,"hidden_axis_color" ) == 0) {return 1 ;} /*       03/06 */
+  else if (strcmp(marker,"hdl"                ) == 0) {return 1 ;}		
+  else if (strcmp(marker,"callbackmevent"     ) == 0) {return 1 ;}
+  else if (strcmp(marker,"callback"           ) == 0) {return 10;} 	
+  else if (strcmp(marker,"log_flags"          ) == 0) {return 10;}
+  else if (strcmp(marker,"data_mapping"       ) == 0) {return 10;}
+  else if (strcmp(marker,"surface_color"      ) == 0) {return 1 ;}
+  else if (strcmp(marker,"rotation_angles"    ) == 0) {return 1 ;}
+  else if (strcmp(marker,"color_mode"         ) == 0) {return 1 ;}/*DJ.A merge*/ 
+  else if (strcmp(marker,"color_flag"         ) == 0) {return 1 ;}
+  else if (strcmp(marker,"cdata_mapping"      ) == 0) {return 10;}
+  else if (strcmp(marker,"axes_bounds"        ) == 0) {return 1 ;}
+  else if (strcmp(marker,"data_bounds"        ) == 0) {return 1 ;}
+  else if (strcmp(marker,"margins"            ) == 0) {return 1 ;}
+  else if (strcmp(marker,"surface_color"      ) == 0) {return 1 ;}
+  else if (strcmp(marker,"rotation_style"     ) == 0) {return 10;}
+  else if (strcmp(marker,"triangles"          ) == 0) {return 1 ;}
+  else if (strcmp(marker,"z_bounds"           ) == 0) {return 1 ;}
+  else if (strcmp(marker,"current_axes"       ) == 0) {return 9 ;}
+  else if (strcmp(marker,"current_figure"     ) == 0) {return 9 ;}
+  else if (strcmp(marker,"current_obj"        ) == 0) {return 9 ;}
+  else if (strcmp(marker,"current_entity"     ) == 0) {return 9 ;}
+  else if (strcmp(marker,"default_axes"       ) == 0) {return 9 ;}/* DJ.A 08/01/04 */
+  else if (strcmp(marker,"default_figure"     ) == 0) {return 9 ;}/* DJ.A 08/01/04 */
+  else if (strcmp(marker,"children"           ) == 0) {return 9 ;}
+  else if (strcmp(marker,"cube_scaling"       ) == 0) {return 10;} /* F.Leray 22.04.04 */
+  else if (strcmp(marker,"x_label"            ) == 0) {return 9 ;}  /* F.Leray 27.05.04 */
+  else if (strcmp(marker,"y_label"            ) == 0) {return 9 ;} 
+  else if (strcmp(marker,"z_label"            ) == 0) {return 9 ;}
+  else if (strcmp(marker,"title"              ) == 0) {return 9 ;} 
+  else if (strcmp(marker,"x_ticks"            ) == 0) {return 16;} 
+  else if (strcmp(marker,"y_ticks"            ) == 0) {return 16;} 
+  else if (strcmp(marker,"z_ticks"            ) == 0) {return 16;} 
+  else if (strcmp(marker,"auto_ticks"         ) == 0) {return 10;}
+  else if (strcmp(marker,"axes_reverse"       ) == 0) {return 10;}
+  else if (strcmp(marker,"immediate_drawing"  ) == 0) {return 10;}
+  else if (strcmp(marker,"handle_visible"     ) == 0) {return 10;}
+  else if (strcmp(marker,"menu_enable"        ) == 0) {return 10;}
+  else if (strcmp(marker,"callback_type"      ) == 0) {return 10;}
+  else if (strcmp(marker,"bounding_rect"      ) == 0) {return 1 ;} /*JBS 16/11/05 */
+  else if (strcmp(marker,"hidden_axis_color"  ) == 0) {return 1 ;} /*       03/06 */
+  else if (strcmp(marker,"auto_dimensionning" ) == 0) {return 10;} /*       05/06 */
+  else if (strcmp(marker,"drawing_size"       ) == 0) {return 1 ;} /*       05/06 */
+  else if (strcmp(marker,"alignment"          ) == 0) {return 10;} /*       05/06 */
   else {return -1;}
 }
 
@@ -4997,20 +4965,75 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
   sciSubWindow * ppSubWin ;
+  int xlNbRow ;
+  int xlNbCol ;
+  int ylNbRow ;
+  int ylNbCol ;
+  int zlNbRow ;
+  int zlNbCol ;
+
   if ( pObj == NULL )
   {
     return FALSE ;
   }
+
   ppSubWin = pSUBWIN_FEATURE( pObj ) ;
-  if (    sciGetTextLength( ppSubWin->mon_x_label) == 0
-       && sciGetTextLength( ppSubWin->mon_y_label) == 0
-       && sciGetTextLength( ppSubWin->mon_z_label) == 0 )
+
+  /* get the text size of labels */
+  sciGetTextSize( ppSubWin->mon_x_label, &xlNbRow, &xlNbCol ) ;
+  sciGetTextSize( ppSubWin->mon_y_label, &ylNbRow, &ylNbCol ) ;
+  sciGetTextSize( ppSubWin->mon_z_label, &zlNbRow, &zlNbCol ) ;
+
+  
+  if ( xlNbRow <= 0 || ylNbRow <= 0 || zlNbRow <= 0 )
   {
     return FALSE ;
   }
   else
   {
     return TRUE ;
+  }
+}
+/*--------------------------------------------------------------------------------------------*/
+BOOL sciGetAutoSize( sciPointObj * pObj )
+{
+  switch (sciGetEntityType (pObj))
+  {
+  case SCI_TEXT:
+    return pTEXT_FEATURE(pObj)->auto_size ;
+    break;
+  default:
+    return FALSE;
+    break;
+  }
+  return FALSE;
+}
+/*--------------------------------------------------------------------------------------------*/
+sciTextAlignment sciGetAlignment( sciPointObj * pObj )
+{
+  switch (sciGetEntityType (pObj))
+  {
+  case SCI_TEXT:
+    return pTEXT_FEATURE(pObj)->stringsAlign ;
+    break;
+  default:
+    sciprint ("This object has no Text Alignment\n");
+    return ALIGN_NONE ;
+  }
+  return ALIGN_NONE ;
+}
+/*--------------------------------------------------------------------------------------------*/
+void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_TEXT:
+    *width  = pTEXT_FEATURE(pObj)->user_size[0] ;
+    *height = pTEXT_FEATURE(pObj)->user_size[1] ;
+    break ;
+  default:
+    sciprint ("This object has no Specified Size\n");
+    break ;
   }
 }
 /*--------------------------------------------------------------------------------------------*/

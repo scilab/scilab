@@ -12,6 +12,7 @@
 
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
+#include "StringMatrix.h"
 
 #ifndef __SCI_GET_PROPERTY__
 #define __SCI_GET_PROPERTY__
@@ -49,7 +50,8 @@ extern int sciGetFillStyle (sciPointObj * pobj); /* GET */
 extern sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
 extern int sciGetFontDeciWidth (sciPointObj * pobj); /* GET */
 extern int sciGetFontOrientation (sciPointObj * pobj); /* GET */
-extern char *sciGetText (sciPointObj * pobj); /* GET */
+extern StringMatrix * sciGetText (sciPointObj * pobj); /* GET */
+extern void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol ) ; /* GET */
 extern unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
 extern int sciGetFontBackground (sciPointObj * pobj); /* GET */
@@ -166,5 +168,9 @@ extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
  * @param pObj the subwindow.
  */
 extern BOOL sciGetLegendDefined( sciPointObj * pObj ) ;
+
+extern BOOL sciGetAutoSize( sciPointObj * pObj ) ;
+extern sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;
+extern void sciGetUserSize( sciPointObj * pObj, double * width, double * height ) ;
 
 #endif /* __SCI_GET_PROPERTY__ */

@@ -108,7 +108,7 @@ static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive D
 
 
 /**sciGetDC
- * @memo Returns the HDC of the figure window (not the parent)
+ * Returns the HDC of the figure window (not the parent)
  */
 #ifdef _MSC_VER
 HDC        /* BCG Type priWin !! decommente par SS ???? */ 
@@ -247,7 +247,148 @@ void sciXdraw()
 }
 
 
+/* update the scale and retrieve the bounding box of the axis */
+void updateScale3d( sciPointObj * pobj    ,
+                    double        dbox[6] ,
+                    double        xbox[6] ,
+                    double        ybox[6] ,
+                    double        zbox[6]  )
+{
+  int    flag     ;
+  int    ib       ;
+  double FRect[4] ;
+  double WRect[4] ; 
+  double ARect[4] ;
+  double xmmin    ;
+  double xmmax    ;
+  double ymmin    ;
+  double ymmax    ;
+  double wmax     ;
+  double hmax     ;
+  char   logf[2]  ;
+  integer aaint[] = {2,10,2,10} ;
+  sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
 
+  sci_update_frame_bounds_3d( pobj ) ;
+       
+  dbox[0] =  ppsubwin->FRect[0] ; /*xmin*/
+  dbox[1] =  ppsubwin->FRect[2] ; /*xmax*/
+  dbox[2] =  ppsubwin->FRect[1] ; /*ymin*/
+  dbox[3] =  ppsubwin->FRect[3] ; /*ymax*/
+  dbox[4] =  ppsubwin->FRect[4] ; /*zmin*/
+  dbox[5] =  ppsubwin->FRect[5] ; /*zmax*/
+
+  if( ppsubwin->cube_scaling )
+  {
+    dbox[0] =  0.; 
+    dbox[1] =  1.;
+    dbox[2] =  0.;
+    dbox[3] =  1.;
+    dbox[4] =  0.;
+    dbox[5] =  1.;
+  }
+
+
+  /** changement de coordonnees 3d */
+  flag = ( ppsubwin->axes.flag[1] + 1 ) / 2 ; /* F.Leray Adding HERE 19.04.04 */
+
+  Cscale.alpha = ppsubwin->alpha ;
+  Cscale.theta = ppsubwin->theta ;
+      
+  /* update Cscale.m from the new viewing angles */
+  sciUpdateScaleAngles( ppsubwin->theta, ppsubwin->alpha ) ;
+      
+  for ( ib = 0 ; ib < 6 ; ib++ ) 
+  { 
+    if ( flag == 0 )
+    { 
+      dbox[ib] = Cscale.bbox1[ib];
+    }
+    else
+    { 
+      Cscale.bbox1[ib] = dbox[ib];
+    }
+  }
+
+  /* get the vertices of the axes box */
+  sciGetAxisBox( dbox, xbox, ybox, zbox ) ;
+      
+  /** Calcul des echelles en fonction de la taille du dessin **/
+  if ( flag == 1 || flag == 3 ) /* ALL the expanded cases : flag[1] = 1 or 2 or 5 or 6 */
+  {
+    xmmin=  (double) Mini(xbox,8L);
+    xmmax= (double) Maxi(xbox,8L); /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
+    ymmax=  (double) - Mini(ybox,8L); /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
+    ymmin=  (double) - Maxi(ybox,8L);
+  }
+  if ( flag == 2 || flag == 3 ) /* ALL the isometric cases : flag[1] = 3 or 4 or 5 or 6 */
+  {
+    int verbose = 0 ;
+    int narg        ;
+    int wdim[2]     ;
+    /* get current window size */
+    C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    getscale2d(WRect,FRect,logf,ARect);
+    wmax=linint((double)wdim[0] * WRect[2]);
+    hmax=linint((double)wdim[1] * WRect[3]); 
+  }
+  if ( flag == 2 ) /* the "NON expanded isometric" cases : flag[1] = 3 or 4 */
+  {
+    double R  ;
+    double xo ;
+    double yo ;
+    double zo ;
+    double dx ;
+    double dy ;
+    double dz ;
+    
+    /* radius and center of the sphere circumscribing the box */
+    dx = dbox[1]-dbox[0];
+    dy = dbox[3]-dbox[2];
+    dz = dbox[5]-dbox[4];
+    
+    R  = (double) sqrt(dx*dx + dy*dy + dz*dz)/2;
+    xo = (double) (xbox[0]+xbox[6])/2 ;
+    yo = (double) (ybox[0]+ybox[6])/2 ;
+    zo = (double) (zbox[0]+zbox[6])/2 ;
+    
+    xmmin=  (double)  xo - R ;
+    xmmax=  (double)  xo + R ;
+    ymmax=  (double) -yo + R ;
+    ymmin=  (double) -yo - R ;
+  }
+  if (flag==2 || flag==3)
+  {
+    double hx ;
+    double hy  ;
+    hx=xmmax-xmmin;
+    hy=ymmax-ymmin;
+    if ( hx/(double)wmax  < hy/(double)hmax ) 
+    {
+      double hx1 ;
+      hx1=wmax*hy/hmax;
+      xmmin=xmmin-(hx1-hx)/2.0;
+      xmmax=xmmax+(hx1-hx)/2.0;
+    }
+    else 
+    {
+      double hy1 ;
+      hy1=hmax*hx/wmax;
+      ymmin=ymmin-(hy1-hy)/2.0;
+      ymmax=ymmax+(hy1-hy)/2.0;
+    }
+  }
+  if (flag != 0 ) /* != using current 3D scale */
+  {
+    /* FRect = [Xmin,Ymin,Xmax,Ymax] */
+    FRect[0] =  xmmin ;
+    FRect[1] = -ymmax ;
+    FRect[2] =  xmmax ;
+    FRect[3] = -ymmin ; /* 2) ... (why - (minus) ? )*/
+    set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
+    Cscale.metric3d=flag; 
+  }
+}
 
 /**axis_3ddraw 10/2003
  * @author Djalel Abdemouche
@@ -256,127 +397,24 @@ void sciXdraw()
 void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD) 
 {
   double dbox[6];
-  char logf[2];
-  integer flag,ib,i,p,n,pat,hiddencolor, x[5]; /* F. Leray : redimmensionnment (+1) du tableau x[4];*/
+  integer flag,i,p,n,pat,hiddencolor, x[5]; /* F. Leray : redimmensionnment (+1) du tableau x[4];*/
   static double Alpha, Teta;
-  double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
-  static integer aaint[]={2,10,2,10};
-  int verbose=0,wdim[2],narg;
-  double R,xo,yo,zo,dx,dy,dz,hx,hy,hx1,hy1 ;
-  integer wmax,hmax ;
+  int verbose=0,narg;
   integer ixbox[8],iybox[8],xind[8],dash[6];
   integer background,zero=0, color_old; /* Adding color_old 04.03.04*/
   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
   EAxesBoxType subWinBoxType = sciGetBoxType( pobj ) ;
-  
-  BOOL cube_scaling; 
 
   /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
   for(i=0;i<5;i++) x[i] = -1000;
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
     {  
-      sci_update_frame_bounds_3d(pobj);
-       
-      dbox[0] =  ppsubwin->FRect[0]; /*xmin*/
-      dbox[1] =  ppsubwin->FRect[2]; /*xmax*/
-      dbox[2] =  ppsubwin->FRect[1]; /*ymin*/
-      dbox[3] =  ppsubwin->FRect[3]; /*ymax*/
-      dbox[4] =  ppsubwin->FRect[4]; /*zmin*/
-      dbox[5] =  ppsubwin->FRect[5]; /*zmax*/
-
-      cube_scaling =  ppsubwin->cube_scaling;
-
-      if( cube_scaling )
-      {
-        dbox[0] =  0.; 
-        dbox[1] =  1.;
-        dbox[2] =  0.;
-        dbox[3] =  1.;
-        dbox[4] =  0.;
-        dbox[5] =  1.;
-      }
-
-
-      /** changement de coordonnees 3d */
-      flag = ( ppsubwin->axes.flag[1] + 1 ) / 2 ; /* F.Leray Adding HERE 19.04.04 */
-
-      Cscale.alpha = Alpha = ppsubwin->alpha ;
-      Cscale.theta = Teta  = ppsubwin->theta ;
       
-      /* update Cscale.m from the new viewing angles */
-      sciUpdateScaleAngles( Teta, Alpha ) ;
-      
-      for ( ib = 0 ; ib < 6 ; ib++ ) 
-      { 
-        if ( flag == 0 )
-        { 
-          dbox[ib]=Cscale.bbox1[ib];
-        }
-        else
-        { 
-          Cscale.bbox1[ib]=dbox[ib];
-	}
-      }
-
-      /* get the vertices of the axes box */
-      sciGetAxisBox( dbox, xbox, ybox, zbox ) ;
-      
-      /** Calcul des echelles en fonction de la taille du dessin **/
-      if ( flag == 1 || flag == 3 ) /* ALL the expanded cases : flag[1] = 1 or 2 or 5 or 6 */
-	{
-	  xmmin=  (double) Mini(xbox,8L);xmmax= (double) Maxi(xbox,8L); /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
-	  ymmax=  (double) - Mini(ybox,8L); /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
-	  ymmin=  (double) - Maxi(ybox,8L);
-	}
-      if ( flag == 2 || flag == 3 ) /* ALL the isometric cases : flag[1] = 3 or 4 or 5 or 6 */
-	{
-	  /* get current window size */
-	  C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  getscale2d(WRect,FRect,logf,ARect);
-	  wmax=linint((double)wdim[0] * WRect[2]);
-	  hmax=linint((double)wdim[1] * WRect[3]); 
-	}
-      if ( flag == 2 ) /* the "NON expanded isometric" cases : flag[1] = 3 or 4 */
-	{
-	  /* radius and center of the sphere circumscribing the box */
-	  dx=dbox[1]-dbox[0]; dy=dbox[3]-dbox[2]; dz=dbox[5]-dbox[4];
-	  R= (double) sqrt(dx*dx + dy*dy + dz*dz)/2;
-	  xo= (double) (xbox[0]+xbox[6])/2 ;
-	  yo= (double) (ybox[0]+ybox[6])/2 ;
-	  zo= (double) (zbox[0]+zbox[6])/2 ;
-	  xmmin=  (double) xo - R ;
-	  xmmax=  (double) xo + R ;
-	  ymmax=  (double) -yo + R ;
-	  ymmin=  (double) -yo - R ;
-	}
-      if (flag==2 || flag==3)
-	{
-	  hx=xmmax-xmmin;
-	  hy=ymmax-ymmin;
-	  if ( hx/(double)wmax  < hy/(double)hmax ) 
-	    {
-	      hx1=wmax*hy/hmax;
-	      xmmin=xmmin-(hx1-hx)/2.0;
-	      xmmax=xmmax+(hx1-hx)/2.0;
-	    }
-	  else 
-	    {
-	      hy1=hmax*hx/wmax;
-	      ymmin=ymmin-(hy1-hy)/2.0;
-	      ymmax=ymmax+(hy1-hy)/2.0;
-	    }
-	}
-      if (flag !=0 ) /* != using current 3D scale */
-	{
-          /* FRect = [Xmin,Ymin,Xmax,Ymax] */
-	  FRect[0]=xmmin;FRect[1]= -ymmax;FRect[2]=xmmax;FRect[3]= -ymmin; /* 2) ... (why - (minus) ? )*/
-	  set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
-	  Cscale.metric3d=flag; 
-	}
-           
+      updateScale3d( pobj, dbox, xbox, ybox, zbox ) ;
       /* Until here we have computed + reset the 3d scale*/
-	  
+      Teta  = ppsubwin->theta  ;
+      Alpha =  ppsubwin->alpha ;
       if( Abs( Teta ) < 0.1 )
       {
 	/* to avoid bug at limit when theta == 0 */
@@ -600,10 +638,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   ppsubwin = pSUBWIN_FEATURE (psubwin);
 
-  title= sciGetText(ppsubwin->mon_title);
-  legx = sciGetText(ppsubwin->mon_x_label);
-  legy = sciGetText(ppsubwin->mon_y_label);
-  legz = sciGetText(ppsubwin->mon_z_label);
+  /* TODO : modify this */
+  title= getStrMatElement( sciGetText( ppsubwin->mon_title   ), 0, 0 ) ;
+  legx = getStrMatElement( sciGetText( ppsubwin->mon_x_label ), 0, 0 ) ;
+  legy = getStrMatElement( sciGetText( ppsubwin->mon_y_label ), 0, 0 ) ;
+  legz = getStrMatElement( sciGetText( ppsubwin->mon_z_label ), 0, 0 ) ;
 
 /*   /\* compute bounding of "10"  string used for log scale ON and auto_ticks ON *\/ */
 /*   C2F(dr)("xstringl","10",&XX,&YY,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 */
@@ -679,6 +718,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     int    v  = 0     ;
     double dv = 0.0   ;
     int    n  = 4     ;
+    char * titleText = getStrMatElement(sciGetText(ppsubwin->mon_title),0,0) ;
 
     /* get the pointer on the title */
     sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_title ) ;
@@ -707,8 +747,8 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     
     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
     
-    xstringb_bbox (sciGetText(ppsubwin->mon_title), rect[0], rect[1], rect[2], rect[3],
-                   0, bboxtitle);
+    xstringb_bbox ( titleText, rect[0], rect[1], rect[2], rect[3],
+                    0, bboxtitle);
      
     if ( ppLabel->auto_position )
     {
@@ -766,7 +806,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     
     /* displayed the turned string */
-    xstringb_angle(sciGetText(ppsubwin->mon_title),xm4[0],ym4[0],bboxtitle[2],bboxtitle[3],font_angle);
+    xstringb_angle(titleText,xm4[0],ym4[0],bboxtitle[2],bboxtitle[3],font_angle);
   }
   
   textcolor = textcolor_old;
@@ -4241,12 +4281,31 @@ int GradLog( double   _min   ,
   return 0;
 }
 
+/**
+ * get the exponent used for log axis from given data bounds
+ * @return 0 if OK, -1 if negative bounds.
+ */
+int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax )
+{
+  if ( minBound > 0 )
+  {
+    *expMin = floor( log10( minBound ) ) ;
+    *expMax = ceil(  log10( maxBound ) ) ;
+    return 0 ;
+  }
+  *expMax = 1.0 ;
+  *expMin = 0.0 ;
+  return -1 ;
+}
+
 /* get the displayed bounds of an axis */
 void sciGetDisplayedBounds( sciPointObj * pSubWin,
                             double      * xmin   ,
                             double      * xmax   ,
                             double      * ymin   ,
-                            double      * ymax    )
+                            double      * ymax   ,
+                            double      * zmin   ,
+                            double      * zmax    )
 {
   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE ( pSubWin ) ;
     /*****************************************************************
@@ -4254,17 +4313,21 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    *****************************************************************/
   if( sciGetZooming( pSubWin ) )
   {
-    *xmin= ppsubwin->ZRect[0]; 
-    *ymin= ppsubwin->ZRect[1]; 
-    *xmax= ppsubwin->ZRect[2];
-    *ymax= ppsubwin->ZRect[3];
+    *xmin = ppsubwin->ZRect[0] ; 
+    *ymin = ppsubwin->ZRect[1] ; 
+    *xmax = ppsubwin->ZRect[2] ;
+    *ymax = ppsubwin->ZRect[3] ;
+    *zmin = ppsubwin->ZRect[4] ;
+    *zmax = ppsubwin->ZRect[5] ;
   }
   else
   {
-    *xmin = ppsubwin->SRect[0];
-    *ymin = ppsubwin->SRect[2];
-    *xmax = ppsubwin->SRect[1];
-    *ymax = ppsubwin->SRect[3];
+    *xmin = ppsubwin->SRect[0] ;
+    *ymin = ppsubwin->SRect[2] ;
+    *xmax = ppsubwin->SRect[1] ;
+    *ymax = ppsubwin->SRect[3] ;
+    *zmin = ppsubwin->SRect[4] ;
+    *zmax = ppsubwin->SRect[5] ;
   }
   
   
@@ -4274,16 +4337,9 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    *****************************************************************/
   if ( ppsubwin->logflags[0] == 'l' )
   {
-    if ( *xmin >  0)
+    if ( sciGetLogExponent( *xmin, *xmax, xmin, xmax ) != 0 )
     {
-      *xmax = ceil(log10(*xmax));
-      *xmin = floor(log10(*xmin));
-    }
-    else
-    {
-      Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
-      *xmax = 1;
-      *xmin = 0;
+      Scistring("Warning: Can't use Log on X-axis xmin is negative. \n");
     }
   }
 
@@ -4292,18 +4348,23 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
    *****************************************************************/
   if ( ppsubwin->logflags[1] == 'l' )
   {
-    if ( *ymin > 0 )
+    if ( sciGetLogExponent( *ymin, *ymax, ymin, ymax ) != 0 )
     {
-      *ymax = ceil(log10(*ymax));
-      *ymin = floor(log10(*ymin));
-    }
-    else
-    {
-      Scistring(" Can't use Log on Y-axis ymin is negative \n");
-      *ymax = 1;
-      *ymin = 0;
+      Scistring("Warning: Can't use Log on Y-axis ymin is negative. \n");
     }
   }
+
+  /*****************************************************************
+   * modify  bounds and aaint  if using log scaling Z axis
+   *****************************************************************/
+  if ( ppsubwin->logflags[2] == 'l' )
+  {
+    if ( sciGetLogExponent( *zmin, *zmax, zmin, zmax ) != 0 )
+    {
+      Scistring("Warning: Can't use Log on Z-axis zmin is negative. \n");
+    }
+  }
+
 }
 
 /* F.Leray au 13.10.04 completly review for new axes graduations */
@@ -4312,7 +4373,7 @@ void sciGetDisplayedBounds( sciPointObj * pSubWin,
 /* Copy on update_frame_bounds */
 BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
 {
-  double xmax, xmin, ymin, ymax;
+  double xmax, xmin, ymin, ymax, zmin, zmax ;
   double hx,hy,hx1,hy1;
   int i;
   
@@ -4338,7 +4399,7 @@ BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
   /*   ppsubwin->axes.nzgrads = 0; */
   
 
-  sciGetDisplayedBounds( pobj, &xmin, &xmax, &ymin, &ymax ) ;
+  sciGetDisplayedBounds( pobj, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax ) ;
 
 
   /* _grad Init. to 0. */
@@ -4506,72 +4567,72 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
    * get initial bounds
    *****************************************************************/
 
-  if(sciGetZooming(pobj) == TRUE) { /* a revoir */
-    xmin= ppsubwin->ZRect[0]; 
-    ymin= ppsubwin->ZRect[1]; 
-    xmax= ppsubwin->ZRect[2];
-    ymax= ppsubwin->ZRect[3];
-    zmin= ppsubwin->ZRect[4];
-    zmax= ppsubwin->ZRect[5];
-  }
-  else {
-    xmin=ppsubwin->SRect[0];
-    xmax=ppsubwin->SRect[1];
-    ymin=ppsubwin->SRect[2];
-    ymax=ppsubwin->SRect[3];
-    zmin=ppsubwin->SRect[4];
-    zmax=ppsubwin->SRect[5];
-  }
+ /*  if(sciGetZooming(pobj) == TRUE) { /\* a revoir *\/ */
+/*     xmin= ppsubwin->ZRect[0];  */
+/*     ymin= ppsubwin->ZRect[1];  */
+/*     xmax= ppsubwin->ZRect[2]; */
+/*     ymax= ppsubwin->ZRect[3]; */
+/*     zmin= ppsubwin->ZRect[4]; */
+/*     zmax= ppsubwin->ZRect[5]; */
+/*   } */
+/*   else { */
+/*     xmin=ppsubwin->SRect[0]; */
+/*     xmax=ppsubwin->SRect[1]; */
+/*     ymin=ppsubwin->SRect[2]; */
+/*     ymax=ppsubwin->SRect[3]; */
+/*     zmin=ppsubwin->SRect[4]; */
+/*     zmax=ppsubwin->SRect[5]; */
+/*   } */
 
-  ppsubwin->axes.limits[1]=xmin; /* set a quoi?? au final ca saute normalement...*/
-  ppsubwin->axes.limits[3]=xmax; /* F.Leray 19.10.04 */
-  ppsubwin->axes.limits[2]=ymin;
-  ppsubwin->axes.limits[4]=ymax;
-  ppsubwin->axes.limits[5]=zmin;
-  ppsubwin->axes.limits[6]=zmax;
-
-
+ /*  ppsubwin->axes.limits[1]=xmin; /\* set a quoi?? au final ca saute normalement...*\/ */
+/*   ppsubwin->axes.limits[3]=xmax; /\* F.Leray 19.10.04 *\/ */
+/*   ppsubwin->axes.limits[2]=ymin; */
+/*   ppsubwin->axes.limits[4]=ymax; */
+/*   ppsubwin->axes.limits[5]=zmin; */
+/*   ppsubwin->axes.limits[6]=zmax; */
 
 
-  /*****************************************************************
-   * modify  bounds and aaint  if using log scaling X axis
-   *****************************************************************/
-  if ( ppsubwin->logflags[0]=='l') {
-    if ( xmin >  0) {
-      xmax=ceil(log10(xmax));  xmin=floor(log10(xmin));
-    }
-    else {
-      Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
-      xmax= 1; xmin= 0;
-    }
-  }
+  sciGetDisplayedBounds( pobj, &xmin, &xmax, &ymin, &ymax, &zmin, &zmax ) ;
+
+  /* /\***************************************************************** */
+/*    * modify  bounds and aaint  if using log scaling X axis */
+/*    *****************************************************************\/ */
+/*   if ( ppsubwin->logflags[0]=='l') { */
+/*     if ( xmin >  0) { */
+/*       xmax=ceil(log10(xmax));  xmin=floor(log10(xmin)); */
+/*     } */
+/*     else { */
+/*       Scistring("Warning: Can't use Log on X-axis xmin is negative \n"); */
+/*       xmax= 1; xmin= 0; */
+/*     } */
+/*   } */
   
-  /*****************************************************************
-   * modify  bounds and aaint  if using log scaling Y axis
-   *****************************************************************/
-  if ( ppsubwin->logflags[1]=='l') {
-    if ( ymin > 0 ) {
-      ymax= ceil(log10(ymax)); ymin= floor(log10(ymin));
-    }
-    else {
-      Scistring(" Can't use Log on Y-axis ymin is negative \n");
-      ymax= 1; ymin= 0;
-    }
-  }
+/*   /\***************************************************************** */
+/*    * modify  bounds and aaint  if using log scaling Y axis */
+/*    *****************************************************************\/ */
+/*   if ( ppsubwin->logflags[1]=='l') { */
+/*     if ( ymin > 0 ) { */
+/*       ymax= ceil(log10(ymax)); ymin= floor(log10(ymin)); */
+/*     } */
+/*     else { */
+/*       Scistring(" Can't use Log on Y-axis ymin is negative \n"); */
+/*       ymax= 1; ymin= 0; */
+/*     } */
+/*   } */
   
 
-  /*****************************************************************
-   * modify  bounds and aaint  if using log scaling Y axis
-   *****************************************************************/
-  if ( ppsubwin->logflags[2]=='l') {
-    if ( zmin > 0 ) {
-      zmax= ceil(log10(zmax)); zmin= floor(log10(zmin));
-    }
-    else {
-      Scistring(" Can't use Log on Z-axis zmin is negative \n");
-      zmax= 1; zmin= 0;
-    }
-  }
+/*   /\***************************************************************** */
+/*    * modify  bounds and aaint  if using log scaling Y axis */
+/*    *****************************************************************\/ */
+/*   if ( ppsubwin->logflags[2]=='l') { */
+/*     if ( zmin > 0 ) { */
+/*       zmax= ceil(log10(zmax)); zmin= floor(log10(zmin)); */
+/*     } */
+/*     else { */
+/*       Scistring(" Can't use Log on Z-axis zmin is negative \n"); */
+/*       zmax= 1; zmin= 0; */
+/*     } */
+/*   } */
   
 
   /* _grad Init. to 0. */
@@ -4641,6 +4702,7 @@ BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
   ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
   ppsubwin->axes.zlim[3] = ppsubwin->axes.nzgrads;
    
+  set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
      
   /*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/ */
   /*   ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
@@ -4803,11 +4865,13 @@ int labels2D_draw(sciPointObj * psubwin)
   rect1[2]= Cscale.WIRect1[2];
   rect1[3]= Cscale.WIRect1[3]/6;
   
-  if(sciGetVisibility(ppsubwin->mon_title) == TRUE)
+
+  if( sciGetVisibility(ppsubwin->mon_title) )
   {
     int    bboxtitle[4] ;
     double cosAngle ;
     double sinAngle ;
+    char * titleText = getStrMatElement( sciGetText(ppsubwin->mon_title), 0, 0 ) ;
 
     /* get the pointer on the title */
     sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_title ) ;
@@ -4836,10 +4900,10 @@ int labels2D_draw(sciPointObj * psubwin)
     
     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
     
-    xstringb_bbox (sciGetText(ppsubwin->mon_title), rect1[0], rect1[1], rect1[2], rect1[3],
-                   0, bboxtitle);
-      /*C2F(dr)("xstringl",sciGetText(ppsubwin->mon_title),
-        &rect1[0],&rect1[1],bboxtitle,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_x_la));*/
+    xstringb_bbox ( titleText, rect1[0], rect1[1], rect1[2], rect1[3],
+                    0, bboxtitle);
+    /*C2F(dr)("xstringl",sciGetText(ppsubwin->mon_title),
+      &rect1[0],&rect1[1],bboxtitle,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_x_la));*/
     
     
     /* store the value in the position field of the title */
@@ -4901,7 +4965,7 @@ int labels2D_draw(sciPointObj * psubwin)
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     
     /*xstringb_angle(sciGetText(ppsubwin->mon_title),rect1[0],rect1[1],rect1[2],rect1[3],font_angle);*/
-    xstringb_angle(sciGetText(ppsubwin->mon_title),xm[0],ym[0],bboxtitle[2],bboxtitle[3],font_angle);
+    xstringb_angle( titleText,xm[0],ym[0],bboxtitle[2],bboxtitle[3],font_angle);
   }
   
   /* x label */
@@ -4909,14 +4973,16 @@ int labels2D_draw(sciPointObj * psubwin)
   /* F.Leray 02.09.05 */
   /* New implementation */
   
-  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE){
-
+  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+  {
+    char * xLabelText = getStrMatElement( sciGetText(ppsubwin->mon_x_label), 0, 0 ) ;
     x[0] = sciGetFontForeground (ppsubwin->mon_x_label);
     x[2] = sciGetFontDeciWidth (ppsubwin->mon_x_label)/100;
     x[3] = 0;
     x[4] = sciGetFontStyle(ppsubwin->mon_x_label);
     
-    if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation == TRUE){
+    if( pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation )
+    {
       font_angle =  0.;
       sciSetFontOrientation(ppsubwin->mon_x_label,(int)font_angle);
     }
@@ -4932,8 +4998,8 @@ int labels2D_draw(sciPointObj * psubwin)
 
     if(pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position == TRUE)
     {
-      C2F(dr)("xstringl",sciGetText(ppsubwin->mon_x_label),
-              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_x_label));
+      C2F(dr)("xstringl", xLabelText,
+              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L);
       
       cosangle = cos((360-font_angle)*M_PI/180);
       sinangle = sin((360-font_angle)*M_PI/180);
@@ -5039,8 +5105,8 @@ int labels2D_draw(sciPointObj * psubwin)
       x1  = XDouble2Pixel(tmp[0]);
       yy1 = YDouble2Pixel(tmp[1]);
 	
-      C2F(dr)("xstringl",sciGetText(ppsubwin->mon_x_label),
-              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_x_label));
+      C2F(dr)("xstringl",xLabelText,
+              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L);
 	
       cosangle = cos((360-font_angle)*M_PI/180);
       sinangle = sin((360-font_angle)*M_PI/180);
@@ -5057,7 +5123,8 @@ int labels2D_draw(sciPointObj * psubwin)
  	
     }
 
-    if(sciGetIsFilled(ppsubwin->mon_x_label) == TRUE){
+    if( sciGetIsFilled(ppsubwin->mon_x_label) )
+    {
       x[0] = sciGetBackground(ppsubwin->mon_x_label);
       
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
@@ -5078,7 +5145,7 @@ int labels2D_draw(sciPointObj * psubwin)
     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     
-    xstringb_angle(sciGetText(ppsubwin->mon_x_label),xm[0],ym[0],rect1[2],rect1[3],font_angle);
+    xstringb_angle(xLabelText,xm[0],ym[0],rect1[2],rect1[3],font_angle);
   }
   
 	
@@ -5090,29 +5157,33 @@ int labels2D_draw(sciPointObj * psubwin)
   /* New implementation */
   
 
-  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE){
-
+  if( sciGetVisibility(ppsubwin->mon_y_label) )
+  {
+    char * yLabelText = getStrMatElement( sciGetText(ppsubwin->mon_y_label), 0, 0 ) ;
     x[0] = sciGetFontForeground (ppsubwin->mon_y_label);
     x[2] = sciGetFontDeciWidth (ppsubwin->mon_y_label)/100;
     x[3] = 0;
     x[4] = sciGetFontStyle(ppsubwin->mon_y_label);
 
-    if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation == TRUE){
+    if( pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation )
+    {
       font_angle =  270.;
       sciInitFontOrientation(ppsubwin->mon_y_label,(int)(font_angle*10));
     }
-    else 
-      font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10.;
+    else
+    { 
+      font_angle = sciGetFontOrientation(ppsubwin->mon_y_label)/10. ;
+    }
     
     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
     
     
-    if(pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position == TRUE)
+    if ( pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position )
     {
-      C2F(dr)("xstringl",sciGetText(ppsubwin->mon_y_label),
-              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_y_label));
+      C2F(dr)("xstringl",yLabelText,
+              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L);
 	
       cosangle = cos((360-font_angle)*M_PI/180);
       sinangle = sin((360-font_angle)*M_PI/180);
@@ -5132,7 +5203,8 @@ int labels2D_draw(sciPointObj * psubwin)
       largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
       hauteur = Max(abs(ym[3] - ym[1]),abs(ym[2] - ym[0]));
     
-      if(ppsubwin->axes.ydir != 'r'){
+      if(ppsubwin->axes.ydir != 'r')
+      {
         /* the y axis is on the left or centered on 0 (grads are also on the left in this case...) */
         x1 = round(ppsubwin->YGradMostOnLeft - (Cscale.WIRect1[3]/50.0));
 
@@ -5140,7 +5212,8 @@ int labels2D_draw(sciPointObj * psubwin)
         if((font_angle>=0 && font_angle <= 90)  || (font_angle>270 && font_angle <= 360)){
           x1 = x1 - largeur;
         }
-        else if(font_angle>=180 && font_angle <= 360){
+        else if(font_angle>=180 && font_angle <= 360)
+        {
           int xm[4], ym[4];
           double cosangle, sinangle;
           cosangle = cos((360-179)*M_PI/180);
@@ -5158,7 +5231,8 @@ int labels2D_draw(sciPointObj * psubwin)
     
           largeur = Max(abs(xm[3] - xm[1]),abs(xm[2] - xm[0]));
         }
-        else if(font_angle>90 && font_angle < 180){
+        else if( font_angle>90 && font_angle < 180 )
+        {
           int xm[4], ym[4];
           double cosangle, sinangle;
           cosangle = cos((360-89)*M_PI/180);
@@ -5256,8 +5330,8 @@ int labels2D_draw(sciPointObj * psubwin)
       x1  = XDouble2Pixel(tmp[0]);
       yy1 = YDouble2Pixel(tmp[1]);
 	
-      C2F(dr)("xstringl",sciGetText(ppsubwin->mon_y_label),
-              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,sciGetTextLength(ppsubwin->mon_y_label));
+      C2F(dr)("xstringl",yLabelText,
+              &zero,&zero,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L);
 	
       cosangle = cos((360-font_angle)*M_PI/180);
       sinangle = sin((360-font_angle)*M_PI/180);
@@ -5296,7 +5370,7 @@ int labels2D_draw(sciPointObj * psubwin)
     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     
-    xstringb_angle(sciGetText(ppsubwin->mon_y_label),xm[0],ym[0],rect1[2],rect1[3],font_angle);
+    xstringb_angle(yLabelText,xm[0],ym[0],rect1[2],rect1[3],font_angle);
   }
   
   C2F (dr) ("xset", "dashes", &old_foreground, &old_foreground, x+4, x+4, x+4, &v, &dv,
@@ -5761,7 +5835,7 @@ int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, doub
 
 
 /**DrawAxesIfRequired
- * @memo Draws Axes (only the basic  graphicobject under subwindows) in its SubWindow or figure
+ * Draws Axes (only the basic  graphicobject under subwindows) in its SubWindow or figure
  * if and only if pFIGURE_FEATURE(pobj)->auto_redraw == TRUE !!
  * Only used inside High Level functions calls (sucha as plot2d, plot3d...)
  * @param sciPointObj * pobj: the pointer to the entity
@@ -5887,7 +5961,7 @@ void UpdateSubwinScale(sciPointObj * pobj)
 
 
 /**sciClip
- * @memo Set the clipping rectangle 
+ * Set the clipping rectangle 
  * @author Djalel ABDEMOUCHE
  * 29/11/2002
  */
@@ -5960,7 +6034,7 @@ sciClip (sciPointObj *pobj)
 }
 
 /**sciClip
- * @memo Clear the clipping rectangle 
+ * Clear the clipping rectangle 
  * @author Djalel ABDEMOUCHE
  * 29/11/2002
  */
@@ -7039,7 +7113,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  }
 	}
 	else if(sciGetEntityType (pobj)==SCI_RECTANGLE) { /* RECTANGLE case here ! */
-	  if(sciGetIsFilled(pobj) == TRUE)
+	  if( sciGetIsFilled(pobj) )
 	    {
 	      integer v;
 	      double dv=0;
@@ -7191,7 +7265,7 @@ int sciRefreshObj( sciPointObj * pobj )
 
 
 /**sciDrawObjIfRequired
- * @memo Draws Object (only the basic  graphicobject under subwindows) in its SubWindow or figure
+ * Draws Object (only the basic  graphicobject under subwindows) in its SubWindow or figure
  * if and only if pFIGURE_FEATURE(pobj)->auto_redraw == TRUE !!
  * Only used inside High Level functions calls (sucha as plot2d, plot3d...)
  * @param sciPointObj * pobj: the pointer to the entity
@@ -7211,7 +7285,7 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 }
 
 /**sciDrawObj
- * @memo Draws Object (only the basic  graphicobject under subwindows) in its SubWindow or figure
+ * Draws Object (only the basic  graphicobject under subwindows) in its SubWindow or figure
  * @param sciPointObj * pobj: the pointer to the entity
  * @return  int 0 if OK, -1 if not
  */
@@ -7225,8 +7299,7 @@ sciDrawObj (sciPointObj * pobj)
   integer *zm = NULL;
   integer n2 = 1, xtmp[4], ytmp[4], *pstyle = NULL/*,rect1[4]*/;
   integer closeflag = 0,ias,ias1;
-  integer width, height;
-  double anglestr,w2,h2,as;
+  double w2,h2,as;
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
   integer nn1,nn2, arsize,lstyle,iflag;
@@ -7363,7 +7436,7 @@ sciDrawObj (sciPointObj * pobj)
 
       sciSetSelectedSubWin(pobj); 
      
-      set_scale ("tttftt", ppsubwin->WRect, pSUBWIN_FEATURE (pobj)->FRect,
+      set_scale ("tttftt", ppsubwin->WRect, ppsubwin->FRect,
 		 NULL, ppsubwin->logflags, 
 		 ppsubwin->ARect); 
 
@@ -7552,7 +7625,7 @@ sciDrawObj (sciPointObj * pobj)
           }
       	}
       	/*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
-      	Legends( ppLegend->pstyle, &(ppLegend->nblegends), sciGetText(pobj));
+      	Legends( ppLegend->pstyle, &(ppLegend->nblegends), getStrMatElement(sciGetText(pobj),0,0));
        
           
       	/* restore the graphic context */
@@ -9054,30 +9127,15 @@ sciDrawObj (sciPointObj * pobj)
 #endif
       break;
     case SCI_RECTANGLE:
+    {
+      sciRectangle * ppRect = pRECTANGLE_FEATURE (pobj) ;
+      /* store the size of the rectangle */
+      double ulPoint[3]  = { ppRect->x, ppRect->y, ppRect->z } ;
+      double rectSize[2] = { ppRect->width, ppRect->height }   ;
+      int rectEdgesX[4] ;
+      int rectEdgesY[4] ;
       if (!sciGetVisibility(pobj)) break;
-     
-      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
       n = 1;
- /*      if (sciGetFillStyle(pobj) != 0) */
-/* 	{       */
-/* 	  x[0] = 64;	/\*la dash est de la meme couleur que le foreground*\/ */
-/* 	  x[1] = 1; */
-/* 	  x[2] = 0; */
-/* 	  x[3] = 0; */
-/* 	  x[4] = 0; */
-/* 	  x[5] = sciGetFillColor(pobj); */
-/* #ifdef _MSC_VER  */
-/* 	  flag_DO = MaybeSetWinhdc (); */
-/* #endif */
-	 
-/* 	  C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv, */
-/* 		     &dv, &dv, &dv, 5L, 4096); */
-/* #ifdef _MSC_VER  */
-/* 	  if ( flag_DO == 1) ReleaseWinHdc (); */
-/* #endif */
-/* 	} */
-      
-      /* load some line properties */
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -9096,369 +9154,176 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef _MSC_VER 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
+
+      /* get the 4 vertices of the rectangle in pixels */
+      rectangleDouble2Pixel( sciGetParentSubwin(pobj),
+                             ulPoint                 ,
+                             rectSize                ,
+                             rectEdgesX              ,
+                             rectEdgesY                ) ;
+
       /**DJ.Abdemouche 2003**/
-      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
-	{
-	  sciSubWindow * ppsubwin = (pSUBWIN_FEATURE (sciGetParentSubwin(pobj)));
-	  double tmpx = pRECTANGLE_FEATURE (pobj)->x;
-	  double tmpy = pRECTANGLE_FEATURE (pobj)->y;
-	  
-	  double tmpwidth = pRECTANGLE_FEATURE (pobj)->width;
-	  double tmpheight= pRECTANGLE_FEATURE (pobj)->height;
-
-	  if((ppsubwin->axes.reverse[0] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
-	    tmpx= tmpx + tmpwidth;
-	  }
-	  
-	  if((ppsubwin->axes.reverse[1] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
-	    tmpy = tmpy - tmpheight;
-	  }
-	  
-	  x1  = XDouble2Pixel(tmpx); 
-	  yy1 = YDouble2Pixel(tmpy);
-	    
-	  /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
-	  width = WDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x,pRECTANGLE_FEATURE (pobj)->width); 
-	  height = HDouble2Pixel(pRECTANGLE_FEATURE (pobj)->y,pRECTANGLE_FEATURE (pobj)->height);
-	  
-	  if (pRECTANGLE_FEATURE (pobj)->strwidth==0)
-	    {
-	      pRECTANGLE_FEATURE (pobj)->strwidth=width;
-	      pRECTANGLE_FEATURE (pobj)->strheight=height;
-	      
-	    }
-	  wstr=pRECTANGLE_FEATURE (pobj)->strwidth;
-	  hstr=pRECTANGLE_FEATURE (pobj)->strheight;
-	  
-	  
-#ifdef _MSC_VER 
-	  flag_DO = MaybeSetWinhdc ();
-#endif
-	  sciClip(pobj);
-
-	  if(sciGetIsFilled(pobj) == TRUE){
-	    x[0] = sciGetBackground(pobj);
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
-		      &dv, &dv, &dv, &dv, 5L, 6L);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
-		      &dv, &dv, &dv, &dv, 5L, 10L );
-	    C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  }
-	  
-	  if(sciGetIsMark(pobj))
-	    {
-	      x[0] = sciGetMarkForeground(pobj);
-	       
-	      markidsizenew[0] =  sciGetMarkStyle(pobj);
-	      markidsizenew[1] =  sciGetMarkSize(pobj);
-	      
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	     
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
-	     
-	      n = 4;
-	      xtmp[0] = x1;
-	      xtmp[1] = x1+width;
-	      xtmp[2] = x1+width;
-	      xtmp[3] = x1;
-	      ytmp[0] = yy1;
-	      ytmp[1] = yy1;
-	      ytmp[2] = yy1+height;
-	      ytmp[3] = yy1+height;
-	     
-	      DrawNewMarks(pobj,n,xtmp,ytmp,DPI);
-	    }
-
-	  if (sciGetIsLine(pobj))
-	    {
-	      x[0] = sciGetForeground(pobj);
-
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
-	      
-
-	      if (pRECTANGLE_FEATURE (pobj)->str == 1){
-		yy1 -= hstr;
-		C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	      else
-		C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	  
-	  sciUnClip(pobj);
-#ifdef _MSC_VER
-	  if ( flag_DO == 1)  ReleaseWinHdc ();
-#endif
-	}
-      else /* Rect. in 3D */
-	{ 
-	  double rectx[4],recty[4],rectz[4];
-	  int close=1;
-	  n=4;
-	  xm = graphic_alloc(0,4,sizeof(int));
-	  ym = graphic_alloc(1,4,sizeof(int));
-	  rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
-	  rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
-	  recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
-	  recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
-	  rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
-
-	  ReverseDataFor3D(sciGetParentSubwin(pobj), rectx, recty, rectz, n);
-
-	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
-#ifdef _MSC_VER 
-	  flag_DO = MaybeSetWinhdc ();
-#endif
-	  sciClip(pobj);
-
-	  
-	  if(sciGetIsFilled(pobj) == TRUE){
-	    x[0] = sciGetBackground(pobj);
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
-		      &dv, &dv, &dv, &dv, 5L, 6L);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
-		      &dv, &dv, &dv, &dv, 5L, 10L );
-	    C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-	  }
-	  
-	  if (sciGetIsMark(pobj)) 
-	    {
-	      x[0] = sciGetMarkForeground(pobj);
-		 
-	      markidsizenew[0] =  sciGetMarkStyle(pobj);
-	      markidsizenew[1] =  sciGetMarkSize(pobj);
-
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	     
-	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			PD0, PD0, 0L, 0L);
-	     
-	      n=4;
-	     
-	      DrawNewMarks(pobj,n,xm,ym,DPI);
-	    }
-
-	  if (sciGetIsLine(pobj)) 
-	    {
-	      x[0] = sciGetForeground(pobj);
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-			&dv, &dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
-	      
-	      C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	    }
-	  
-	  sciUnClip(pobj);
-#ifdef _MSC_VER 
-	  if ( flag_DO == 1)  ReleaseWinHdc ();
-#endif
-	}
-      break;
-    case SCI_TEXT:
-      if (!sciGetVisibility(pobj))
+      if ( !(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d) )
       {
-        break;
-      }
-      else
-      {
-        sciText * ppText =  pTEXT_FEATURE( pobj ) ;
+        int rectPixPosX   ;
+        int rectPixPosY   ;
+        int rectPixWidth  ;
+        int rectPixHeight ;
         
-        /*drawText( pobj ) ;*/
-        n = 1;
- 
-        v = 0;
-        dv = 0;
+        /* retrieve x,y,w,h */
+        rectPixPosX   = rectEdgesX[0] ;
+        rectPixPosY   = rectEdgesY[0] ;
+        rectPixWidth  = rectEdgesX[2] - rectEdgesX[0] ;
+        rectPixHeight = rectEdgesY[2] - rectEdgesY[0] ;
 
-        flagx = 0;
+        if ( ppRect->strwidth == 0 )
+        {
+          ppRect->strwidth  = rectPixWidth  ;
+          ppRect->strheight = rectPixHeight ;
+          
+        }
+        wstr=ppRect->strwidth;
+        hstr=ppRect->strheight;
+	  
+	  
 #ifdef _MSC_VER 
         flag_DO = MaybeSetWinhdc ();
 #endif
-        if ( ppText->isclip )
+        sciClip(pobj);
+
+        if( sciGetIsFilled(pobj) )
         {
-          sciClip(pobj);
+          x[0] = sciGetBackground(pobj);
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+                    &dv, &dv, &dv, &dv, 5L, 6L);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+                    &dv, &dv, &dv, &dv, 5L, 10L );
+          C2F(dr)("xfrect",str,&rectPixPosX,&rectPixPosY,&rectPixWidth,&rectPixHeight,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        }
+	  
+        if( sciGetIsMark(pobj) )
+        {
+          x[0] = sciGetMarkForeground(pobj);
+	       
+          markidsizenew[0] =  sciGetMarkStyle(pobj);
+          markidsizenew[1] =  sciGetMarkSize(pobj);
+	      
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
+	     
+          C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+                    PD0, PD0, 0L, 0L);
+	     
+          n = 4;
+          xtmp[0] = rectPixPosX ;
+          xtmp[1] = rectPixPosX + rectPixWidth ;
+          xtmp[2] = rectPixPosX + rectPixWidth ;
+          xtmp[3] = rectPixPosX ;
+          ytmp[0] = rectPixPosY ;
+          ytmp[1] = rectPixPosY ;
+          ytmp[2] = rectPixPosY + rectPixHeight ;
+          ytmp[3] = rectPixPosY + rectPixHeight ;
+	     
+          DrawNewMarks(pobj,n,xtmp,ytmp,DPI);
         }
 
-        if ( ppText->fill == -1 ) 
+        if (sciGetIsLine(pobj))
         {
-          if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+          x[0] = sciGetForeground(pobj);
+
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);    
+          C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);
+	      
+
+          if (ppRect->str == 1)
           {
-          
-            double xvect;
-            double yvect;
-            double zvect;
-          
-            xvect = ppText->x;
-            yvect = ppText->y;
-            zvect = ppText->z;
-          
-            ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,n);
-          
-            trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&xvect,&yvect,&zvect);
+            rectPixPosY -= hstr;
+            C2F(dr)("xrect",str,&rectPixPosX,&rectPixPosY,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           }
-          else 
+          else
           {
-            x1  = XDouble2Pixel (ppText->x);
-            yy1 = YDouble2Pixel (ppText->y);
+            C2F(dr)("xrect",str,&rectPixPosX,&rectPixPosY,&rectPixWidth,&rectPixHeight,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           }
-          anglestr = (sciGetFontOrientation (pobj)/10); 	
-          /* *10 parce que l'angle est conserve en 1/10eme de degre*/
-          
-          /* wether or not we draw and/or fill the box */
-          /* no need to compute anything if both line_mode */
-          /* and fill mode are false */
-          if(    sciGetIsBoxed (pobj)
-              && ( sciGetIsFilled( pobj ) || sciGetIsLine( pobj ) ) )
-          {   
-            int font_[2], cur_font_[2];
-            int rect1[4], verb=0;
-            int xm[4], ym[4],n=4;
-            double cosangle = cos((360-anglestr)*M_PI/180);
-            double sinangle = sin((360-anglestr)*M_PI/180);
-            int close=1;
-
-            
-            C2F(dr1)("xget","font",&verb,font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
-            
-            cur_font_[0] = font_[0];
-            cur_font_[1] = font_[1];
-            
-            font_[0] = sciGetFontStyle (pobj);
-            font_[1] = sciGetFontDeciWidth (pobj)/100;
-            
-            C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    
-            C2F(dr)("xstringl",ppText->ptextstring,
-                    &x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,pTEXT_FEATURE (pobj)->textlen);
-	    
-/* 	    if(sciGetIsFilled(pobj)) */
-/* 	      { */
-/* 		x[0] = sciGetBackground(pobj); */
-            
-/* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
-/* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
-		
-/* 		C2F(dr)("xfrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3], */
-/* 			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 	      } */
-	    
-/* 	    if(sciGetIsLine(pobj)) */
-/* 	      { */
-/* 		x[0] = sciGetForeground(pobj); */
-		
-/* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
-/* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
-		
-/* 		C2F(dr)("xrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3], */
-/* 			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 	      } */
-	    	  
-          /* F.Leray 04.08.05 */
-          /* For the text object, the box is inked to the IsLine functions (get/set) */
-          /* and the box is painted inside AND on the contour at the same time */
-	    
-	    
-            
-/* 	    char str[2] = "xv"/\*,locstr*\/; */
-            
-            
-            xm[0] = x1;
-            xm[1] = round(x1 + cosangle*rect1[2]);
-            xm[2] = round(x1 + cosangle*rect1[2] + sinangle*(-rect1[3]));
-            xm[3] = round(x1 + sinangle*(-rect1[3]));
-            
-            ym[0] = yy1;
-            ym[1] = round(yy1 - sinangle*rect1[2]);
-            ym[2] = round(yy1 - sinangle*rect1[2] + cosangle*(-rect1[3]));
-            ym[3] = round(yy1 + cosangle*(-rect1[3]));
-            
-            
-            /* draw the background */
-            if ( sciGetIsFilled( pobj ) )
-            {
-              x[0] = sciGetBackground(pobj);
-              C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-              C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-              
-              C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-            }
-
-            /* draw the line around the box */
-            if ( sciGetIsLine( pobj ) )
-            {
-              /* draw a rectangle around the text */
-              x[0] = sciGetForeground(pobj);
-              
-              C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-              C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-              
-              C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-            }
-	    
-            C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-          }
-          
-#ifdef _MSC_VER 
-          flag_DO = MaybeSetWinhdc ();
-#endif
-          /* load the object foreground and dashes color */
-          x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
-          x[2] = sciGetFontDeciWidth (pobj)/100;
-          x[3] = 0;
-          x[4] = sciGetFontStyle(pobj);
-          
-          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-          C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-          
-#ifdef _MSC_VER 
-          if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-          C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
         }
-        else { /* SS for xstringb should be improved*/
-          integer w1, h1;
-          w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
-          h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
-          x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
-          x[2] = sciGetFontDeciWidth (pobj)/100;
-          x[3] = 0;
-          x[4] = sciGetFontStyle(pobj);
-          
-          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-          C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
-
-          C2F(dr1)("xstringb",sciGetText (pobj),&(ppText->fill),&v,&v,&v,&v,&v,
-                   &(ppText->x),&(ppText->y),
-                   &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
-        }
-        if ( ppText->isclip )
-        {
-          sciUnClip(pobj);
-        }
-        
-#ifdef _MSC_VER 
-        if ( flag_DO == 1) ReleaseWinHdc ();
+	  
+        sciUnClip(pobj);
+#ifdef _MSC_VER
+        if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
       }
+      else /* Rect. in 3D */
+      { 
+        int close=1;
+        n=4;
+                
+#ifdef _MSC_VER
+        flag_DO = MaybeSetWinhdc ();
+#endif
+        sciClip(pobj);
+
+	  
+        if( sciGetIsFilled(pobj) )
+        {
+          x[0] = sciGetBackground(pobj);
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, 
+                    &dv, &dv, &dv, &dv, 5L, 6L);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4,&v, 
+                    &dv, &dv, &dv, &dv, 5L, 10L );
+          C2F (dr) ("xarea", str, &n, rectEdgesX, rectEdgesY, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+        }
+	  
+        if (sciGetIsMark(pobj)) 
+        {
+          x[0] = sciGetMarkForeground(pobj);
+		 
+          markidsizenew[0] =  sciGetMarkStyle(pobj);
+          markidsizenew[1] =  sciGetMarkSize(pobj);
+
+          C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
+	     
+          C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+                    PD0, PD0, 0L, 0L);
+	     
+          n=4;
+	     
+          DrawNewMarks(pobj,n,rectEdgesX,rectEdgesY,DPI);
+        }
+
+        if (sciGetIsLine(pobj)) 
+        {
+          x[0] = sciGetForeground(pobj);
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+                    &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+                    &dv, &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);    
+          C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+                    PD0, PD0, PD0, 0L, 0L);
+	      
+          C2F (dr) ("xlines", "xv", &n, rectEdgesX, rectEdgesY, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+        }
+
+        sciUnClip(pobj);
+#ifdef _MSC_VER 
+        if ( flag_DO == 1)  ReleaseWinHdc ();
+#endif
+      }
+    }
+    break;
+    case SCI_TEXT:
+      drawText( pobj ) ;
       break;
       
     case SCI_AXES:
@@ -11884,5 +11749,848 @@ void sciAxesVerticesIndices( integer insideU[4],
 }
 
 /*-------------------------------------------------------------------------------------*/
+/* getStringBox                                                                        */
+/* compute the four corners of a text                                                  */
+void getStringBox( char   ** text         ,
+                   double    textPos[2]   ,
+                   int       textDim[2]   ,
+                   BOOL      autoSize     ,
+                   double    userSize[2]  ,
+                   double    angle        ,
+                   int       fontId       , 
+                   int       fontSize     , 
+                   double    corners[4][2] )
+{
+  int pos[2] ;
+  int textSize[2] ;
+  int corn[4][2] ;
+  StringMatrix * strings = newCompleteMatrix( (void **) text, textDim[0], textSize[1] ) ;
+
+  /* take coordinates in pixels */
+  pos[0] = XDouble2Pixel( textPos[0] ) ;
+  pos[1] = YDouble2Pixel( textPos[1] ) ;
+
+  textSize[0] = WDouble2Pixel( textPos[0], userSize[0] ) ;
+  textSize[1] = HDouble2Pixel( textPos[1], userSize[1] ) ;
+
+  /* NULL because we don't need the position of each string */
+  getStringsPositions( strings, &fontId, &fontSize, pos, autoSize, textSize, angle, NULL, corn ) ;
+
+  /* take everything back to user coordinates */
+  /* to retrieve exactly the first corner as in stringl we take the input */
+  corners[0][0] = textPos[0] ; /* XDPixel2Double( corn[0][0] ) ; */
+  corners[0][1] = textPos[1] ; /* YDPixel2Double( corn[0][1] ) ; */
+  
+  corners[1][0] = XDPixel2Double( corn[1][0] ) ;
+  corners[1][1] = YDPixel2Double( corn[1][1] ) ;
+  
+  corners[2][0] = XDPixel2Double( corn[2][0] ) ;
+  corners[2][1] = YDPixel2Double( corn[2][1] ) ;
+  
+  corners[3][0] = XDPixel2Double( corn[3][0] ) ;
+  corners[3][1] = YDPixel2Double( corn[3][1] ) ;
+
+  /* we don't need the matrix anymore, but the text is needed */
+  desallocateMatrix( strings ) ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * return the bounding rectangle of a string.
+ * @param string bounded string
+ * @param center Position where the string ought to be displayed.
+ * @param rect   vector containing the upper left point and the width and height of the
+ *               bounding box : [x,y,w,h].
+ */
+void getStringBbox( char * string, int center[2], int rect[4] )
+{
+  C2F(dr)("xstringl",string,&(center[0]),&(center[1]),rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,9L,bsiz);
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * returns the minimal space between too consecutive strings horizontally.
+ */
+int getStringHorizontalSpace( void )
+{
+  int rect[4] ;
+  int pos[2] = {0,0} ;
+  /* return the width of a space */
+  getStringBbox( " ", pos, rect ) ;
+  return rect[2] ;
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * returns the minimal space between too consecutive strings vertically.
+ */
+int getStringVerticalSpace( void )
+{
+  int rect[4] ;
+  int pos[2] = {0,0} ;
+  getStringBbox( " ", pos, rect ) ;
+  return rect[3] ;
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Compute an array of cells in which a set of strings can be displayed. The size of the
+ * array is automatically computed using the current font.
+ * This routine does not compute any rotation.
+ * @param strMat Set of strings.
+ * @param textPos Position of the upper left point of the string array.
+ * @param stringPosition matrix containing the corners of the cells. Element (i,j) of this
+ *                       matrix correspond to the upper-left point of the string (i,j).
+ *                       It size must be equal to the size of strMat plus one in each
+ *                       dimension. If NULL, not computed.
+ * @param boundingBox position of the four corners of the bounding box surrounding the
+ *                    array of cells.
+ */
+void getStringsRect( StringMatrix  * strMat            ,
+                     int             textPos[2]        ,
+                     Vect2iMatrix  * stringPosition    ,
+                     int             boundingBox[4][2]  )
+{
+  /* the space size between two consecutive strings in a row */
+  int hSpace = getStringHorizontalSpace() ;
+  int vSpace = getStringVerticalSpace()   ;
+  int * rowHeight ; /* vectors containing height and width of column of the array*/
+  int * colWidth  ;
+
+  int i ;
+  int j ;
+  int nbRow = getMatNbRow( strMat ) ;
+  int nbCol = getMatNbCol( strMat ) ;
+  int rect[4] ;
+  int curHeight = 0 ; /* height in pixels of the current row */
+  int curWidth  = 0 ; /* lenght of the longest row in pixels */
+
+
+  /* initialize arrays */
+  rowHeight = CALLOC( nbRow + 1, sizeof( int ) ) ;
+  colWidth  = CALLOC( nbCol + 1, sizeof( int ) ) ;
+
+  /* the tricky part */
+
+  /* we first compute the width of each row  of the array */
+  /* The width is given by the tallest string of each row */
+
+  rowHeight[0] = textPos[1] ;
+
+  for ( i = 0 ; i < nbRow ; i++ )
+  {
+    for ( j = 0 ; j < nbCol ; j++ )
+    {
+      getStringBbox( getStrMatElement( strMat, i, j ), textPos, rect ) ;
+      curHeight = Max( curHeight, rect[3] ) ;
+    }
+    /* the height of the current column is curHeight + vSpace */
+    rowHeight[i+1] = rowHeight[i] - curHeight - vSpace ;
+  }
+
+  /* same for columns */
+
+  colWidth[0] = textPos[0] ;
+
+  for ( j = 0 ; j < nbCol ; j++ )
+  {
+    for ( i = 0 ; i < nbRow ; i++ )
+    {
+      getStringBbox( getStrMatElement( strMat, i, j ), textPos, rect ) ;
+      curWidth = Max( curWidth, rect[2] ) ;
+    }
+    colWidth[j+1] = colWidth[j] + curWidth + hSpace ;
+  }
+
+  /* now fill the matrix */
+  if ( stringPosition != NULL )
+  {
+    for ( i = 0 ; i <= nbRow ; i++ )
+    {
+      for ( j = 0 ; j <= nbCol ; j++ )
+      {
+        int intersect[2] = { colWidth[j], rowHeight[i] } ;
+        copyVect2iMatElement( stringPosition, i, j, intersect ) ;
+      }
+    }
+  }
+  
+  /* get the bounding box */
+  boundingBox[0][0] = textPos[0] ;
+  boundingBox[0][1] = textPos[1] ;
+  
+  boundingBox[1][0] = boundingBox[0][0] ;
+  boundingBox[1][1] = rowHeight[nbRow] ;
+  
+  boundingBox[2][0] = colWidth[nbCol] ;
+  boundingBox[2][1] = boundingBox[1][1] ;
+
+  boundingBox[3][0] = boundingBox[2][0] ;
+  boundingBox[3][1] = boundingBox[0][1] ;
+
+  FREE( rowHeight ) ;
+  FREE( colWidth  ) ;
+  
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Check if a string can be displayed in a cell with a certain width anf height.
+ */
+BOOL isFittingInCell( char * string, int cellWidth, int cellHeight )
+{
+  int rect[4] ;
+  int pos[2] = {0,0} ;
+
+  /* get the size of the string */
+  getStringBbox( string, pos, rect ) ;
+
+  if ( rect[2] < cellWidth && rect[3] < cellHeight )
+  {
+    return TRUE ;
+  }
+  return FALSE ;
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * get the largest font which can be used to fit the strings in the array.
+ * @param strMat Set of strings which try to fit in stringPosition.
+ * @param position of the cells in which the strings need to fit.
+ */
+int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition )
+{
+  int nbRow = getMatNbRow( strMat ) ;
+  int nbCol = getMatNbCol( strMat ) ;
+  int largestFont  ;
+  int smallestFont ;
+  int i ;
+  int j ; 
+  integer curFont[2]  ;
+  integer verbose = 0 ;
+  integer v ;
+
+   C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L) ;
+  
+  /* the largest font is the minimum of all largest font which can be used for each cells */
+  /* initializeit with the largest font the driver can display */
+  C2F(dr)( "xfontmxs","", &smallestFont, &largestFont, PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L ) ;
+
+  /* set the largest font */
+  C2F(dr)("xset","font",&(curFont[0]),&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  for ( i = 0 ; i < nbRow ; i++ )
+  {
+    for ( j = 0 ; j < nbCol ; j++ )
+    {
+      int  * blCorner = getVect2iMatElement( stringPosition, i    , j     ) ;
+      int  * urCorner = getVect2iMatElement( stringPosition, i + 1, j + 1 ) ;
+      char * string   = getStrMatElement( strMat, i, j ) ;
+      int width  = urCorner[0] - blCorner[0] ;
+      int height = blCorner[1] - urCorner[1] ;
+      while ( !isFittingInCell( string, width, height ) )
+      {
+        largestFont-- ;
+        if ( largestFont == smallestFont )
+        {
+          /* we reach the minimum size, no need to continue */
+          C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ; 
+          return smallestFont ;
+        }
+        /* set the new font */
+        C2F(dr)("xset","font",&(curFont[0]),&largestFont,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
+    }
+  }
+  
+  /* return to the previous font */
+  C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  return largestFont ;
+
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Compute an array of cells in which a set of strings can be displayed when the size
+ * (width and height) of the array are specified by user. This routine does not compute
+ * any rotation.
+ * @param strMat Set of strings.
+ * @param textPos Position of the upper left point of the string array.
+ * @param stringPosition matrix containing the corners of the cells. Element (i,j) of this
+ *                       matrix correspond to the upper-left point of the string (i,j).
+ *                       It size must be equal to the size of strMat plus one in each
+ *                       dimension. If NULL, not computed.
+ * @param boundingBox position of the four corners of the bounding box surrounding the
+ *                    array of cells.
+ * @param userSize width and height of the array of cells.
+ * @param newFontSize font size which would fit the array best using the strings in strMat.
+ */
+void getStringsRectSized( StringMatrix  * strMat           ,
+                          int             textPos[2]       ,
+                          Vect2iMatrix  * stringPosition   ,
+                          int             boundingBox[4][2],
+                          int             userSize[2]      ,
+                          int           * newFontSize       )
+{
+  integer curFont[2]  ;
+  integer verbose = 0 ;
+  integer v           ;
+  integer fontSizeOne = 1 ;
+  double homothFactors[2] ;
+  
+  /* first get the automatic array with font 1 */
+
+  /* get the current font */
+  /* we need to change the defaut font before using xstringl */
+  C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L);
+
+  /* set the new font */
+  C2F(dr)("xset","font",&(curFont[0]),&fontSizeOne,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  /* get the displaying array */
+  getStringsRect( strMat, textPos, stringPosition, boundingBox ) ;
+
+  /* get the homothety factors */
+  /* horizontal : userWidth / bbWidth */
+  homothFactors[0] = ((double) userSize[0]) / ( boundingBox[2][0] - boundingBox[0][0] ) ;
+  homothFactors[1] = ((double) userSize[1]) / ( boundingBox[0][1] - boundingBox[2][1] ) ;
+
+  /* apply homothety on the matrix and boundingbox */
+  iHomothety2D( boundingBox[1], boundingBox[0], homothFactors, boundingBox[1] ) ;
+  iHomothety2D( boundingBox[2], boundingBox[0], homothFactors, boundingBox[2] ) ;
+  iHomothety2D( boundingBox[3], boundingBox[0], homothFactors, boundingBox[3] ) ;
+
+  /* we must tkae the min from both direction to avoid strings to go over the lines. */
+  if ( stringPosition != NULL )
+  {
+    homothVect2iMatrix( stringPosition, boundingBox[0], homothFactors ) ;
+    *newFontSize = computeSuitableFont( strMat, stringPosition ) ;
+  }
+  
+  /* return to the previous font */
+  C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Rotate four points around the first one.
+ * @param boundingBox the four 2D points.
+ * @param angle rotation angle in radian.
+ */
+void rotateBoundingBox( int boundingBox[4][2], double angle )
+{
+  if ( Abs( angle ) > EPSILON )
+  {
+    double cosAngle = cos( angle ) ;
+    double sinAngle = sin( angle ) ;
+    /* no need to turn the center.*/
+    iRotate2Dim( boundingBox[1], boundingBox[0], cosAngle, sinAngle, boundingBox[1] ) ;
+    iRotate2Dim( boundingBox[2], boundingBox[0], cosAngle, sinAngle, boundingBox[2] ) ;
+    iRotate2Dim( boundingBox[3], boundingBox[0], cosAngle, sinAngle, boundingBox[3] ) ;
+  }
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Compute an array of cells in which each string will fit. The bounding box of the
+ * finally displayed string is also computed. The generated array of cells can the be used
+ * for the display with the drawStringsInPosition routine.
+ * @param strMat   Set of string.
+ * @param fontId   specify the fontId of the strings.
+ * @param fontSize if autoSize is on then specify the size of the strings. Otherwise,
+ *                 this returns the size which should be used to display the strings in
+ *                 the cell array.
+ * @param textPos  Position of the upper left point of the string array and center
+ *                 of rotation.
+ * @param angle    Angle for the rotation of the strings.
+ * @param stringPosition matrix containing the corners of the cells. Element (i,j) of this
+ *                       matrix correspond to the upper-left point of the string (i,j).
+ *                       It size must be equal to the size of strMat plus one in each
+ *                       dimension. If NULL, not computed.
+ * @param boundingBox position of the four corners of the bounding box surrounding the
+ *                    array of cells.
+ */
+void getStringsPositions( StringMatrix  * strMat        ,
+                          int           * fontId        ,
+                          int           * fontSize      ,
+                          int             textPos[2]    ,
+                          BOOL            autoSize      ,
+                          int             textSize[2]   ,
+                          double          angle         ,
+                          Vect2iMatrix  * stringPosition,
+                          int             boundingBox[4][2] )
+{
+  integer curFont[2]  ;
+  integer verbose = 0 ;
+  integer v           ;
+
+
+  if ( autoSize )
+  {
+    /* get the current font */
+    /* we need to change the defaut font before using xstringl */
+    C2F(dr)("xget","font",&verbose,curFont,&v,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,5L);
+
+    /* set the new font */
+    C2F(dr)("xset","font",fontId,fontSize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+    /* compute the stringPosition and bounding box in pixels without rotation */
+    getStringsRect( strMat, textPos, stringPosition, boundingBox ) ;
+
+    /* return to the previous font */
+    C2F(dr)("xset","font",&curFont[0],&curFont[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+  else
+  {
+    getStringsRectSized( strMat, textPos, stringPosition, boundingBox, textSize, fontSize ) ;
+  }
+
+  /* then turn everything, we need to turn them in pixels because of logarithmic scale */
+  if ( Abs( angle ) > EPSILON )
+  {
+    if ( stringPosition != NULL )
+    {
+      rotateVect2iMatrix( stringPosition, textPos, angle ) ;
+    }
+    rotateBoundingBox( boundingBox, angle ) ;
+  }
+
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Inside a cell, return the margin to be used for the display of a string inside a cell.
+ * @param stringSize width and height of the string wich will be displayed.
+ * @param blCorner   the bottom left corner of the cell. The cell must not be turned
+ *                   (ie axes aligned).
+ * @param urCorner   the upper right corner of the cell.
+ * @param align      specify the position of the string inside the cell.
+ * @param lMargin    left margin margin (horizontal).
+ * @param bMargin    bottom mergin (vertical).
+ */
+void getStringMargins( int                stringSize[2],
+                       int                blCorner[2]  ,
+                       int                urCorner[2]  ,
+                       sciTextAlignment   align        ,
+                       int              * lMargin      ,
+                       int              * bMargin       )
+{
+  int cellWidth  = urCorner[0] - blCorner[0] ;
+  int cellHeight = blCorner[1] - urCorner[1] ;
+
+  switch( align )
+  {
+  case ALIGN_LEFT:
+    *lMargin = 0 ;
+    break ;
+  case ALIGN_RIGHT:
+    *lMargin = cellWidth - stringSize[0] ;
+    break ;
+  case ALIGN_CENTER:
+    /* same margin for each side */
+    *lMargin = ( cellWidth - stringSize[0] ) / 2 ;
+    break ;
+  default:
+    sciprint("error unhandle alignment\n");
+    *lMargin = -1 ;
+    *bMargin = -1 ;
+    break ;
+  }
+  *bMargin = ( cellHeight - stringSize[1] ) / 2 ;
+  
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Draw a string inside a box. The box can be rotated.
+ * @param string displayed string
+ * @param blCorner  Bottom left corner of the string.
+ * @param urCorner  Upper right corner of the string.
+ * @param rotCenter Rotation center.
+ * @param angle     Rotation angle in radian.
+ * @param align     Position of the string inside the box.
+ */
+void drawStringInCell( char             * string      ,
+                       int                blCorner[2] ,
+                       int                urCorner[2] ,
+                       int                rotCenter[2],
+                       double             angle       ,
+                       sciTextAlignment   align        )
+{
+  int rect[4] ;
+  int leftMargin ;
+  int bottomMargin ;
+  int pos[2] ;
+  int flag = 0 ;
+  double angleStr = RAD2DEG( angle ) ;
+  /* get the size of the string */
+  getStringBbox( string, blCorner, rect ) ;
+  
+  getStringMargins( &(rect[2]), blCorner, urCorner, align, &leftMargin, &bottomMargin ) ;
+
+  /* get the position unturned */
+  pos[0] = blCorner[0] + leftMargin   ;
+  pos[1] = blCorner[1] - bottomMargin ;
+
+  /* then turn it around the center */
+  if ( Abs( angle ) > EPSILON )
+  {
+    iRotate2D( pos, rotCenter, angle, pos ) ;
+  }
+  /* then display it */
+  C2F(dr)("xstring",string,&(pos[0]),&(pos[1]),PI0,&flag,PI0,PI0,&angleStr, PD0,PD0,PD0,0L,0L);
+}                       
+
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Given a matrix of strings and an array of cells positions, draw each strings in
+ * the corresponding cell. The array of cells must not been turned, this function
+ * manage the rotation itself. The alignment is also respected.
+ * @param strings    set of strings to display.
+ * @param cellsArray position of the cells in which the strings are dispalyed.
+ * @param angle      rotation angle in radian of the displayed matrix around its
+ *                   lower left point.
+ * @param align      position of strings inside their cells.
+ */
+void drawStringsInPosition( StringMatrix     * strings   ,
+                            Vect2iMatrix     * cellsArray,
+                            double             angle     ,
+                            sciTextAlignment   align      )
+{
+  int nbRow = getMatNbRow( strings ) ;
+  int nbCol = getMatNbCol( strings ) ;
+  int * center ; /* rotation center */
+  int i ;
+  int j ;
+
+  center = getVect2iMatElement( cellsArray, 0, 0 ) ;
+  
+  for ( i = 0 ; i < nbRow ; i++ )
+  {
+    for ( j = 0 ; j < nbCol ; j++ )
+    {
+      /* get the two extreme corners of the cell in which the text will be drawn */
+      int  * blCorner = getVect2iMatElement( cellsArray, i    , j     ) ;
+      int  * urCorner = getVect2iMatElement( cellsArray, i + 1, j + 1 ) ;
+      char * string   = getStrMatElement( strings, i, j ) ;
+      drawStringInCell( string, blCorner, urCorner, center, angle, align ) ;
+    }
+  }
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Convert a length from user coord. to pixels in 2D. This function is similar to
+ *         WDouble2Pixel, but also use the logmode in 3D.
+ * @param parentSubWin Axes in which the length is computed.
+ * @param posX         X coordinate of where the distance is transformed
+ *                     (only used in log mode).
+ * @param height       converted width in user coord.
+ * @return the corresponding length in pixels.
+ */
+int PixelWidth2d( sciPointObj * parentSubWin, double posX, double width )
+{
+  if ( pSUBWIN_FEATURE( parentSubWin )->logflags[0] == 'l' )
+  {
+    return WLogScale( posX, width ) ;
+  }
+
+  return WScale( width ) ;
+  
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Convert a length from user coord. to pixels in 2D. This function is similar to
+ *         HDouble2Pixel, but also use the logmode in 3D.
+ * @param parentSubWin Axes in which the length is computed.
+ * @param posY         Y coordinate of where the distance is transformed
+ *                     (only used in log mode).
+ * @param height       converted height in user coord.
+ * @return the corresponding length in pixels.
+ */
+int PixelHeight2d( sciPointObj * parentSubWin, double posY, double height )
+{
+  if ( pSUBWIN_FEATURE( parentSubWin )->logflags[1] == 'l' )
+  {
+    return HLogScale( posY, height ) ;
+  }
+
+  return HScale( height ) ;
+  
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Routine which draw a text object
+ * @param pObj the pointer on the text object
+ */
+void drawText( sciPointObj * pObj )
+{
+  int    v  = 0  ;
+  double dv = 0. ;
+  double anglestr = 0. ;
+  int posX  ;
+  int posY ;
+  int textProperties[4] ;
+  int verb=0;
+  
+  if (!sciGetVisibility(pObj))
+  {
+    return ;
+  }
+  
+  sciText * ppText =  pTEXT_FEATURE( pObj ) ;
+  sciPointObj * parentSW = sciGetParentSubwin(pObj) ;
+  
+#ifdef _MSC_VER
+  flag_DO = MaybeSetWinhdc ();
+#endif
+  if ( ppText->isclip )
+  {
+    sciClip(pObj);
+  }
+
+  if ( ppText->fill == -1 ) 
+  {
+    int font_[2], cur_font_[2] ;
+    int position[2] ;
+    int textDim[2] ;
+    double userSize[2] ;
+    int    textSize[2] ;
+    Vect2iMatrix * bboxes ;
+    int globalBbox[4][2] ;
+    
+    
+    sciGetUserSize( pObj, &(userSize[0]), &(userSize[1]) ) ;
+    
+    /* we don't take the axes reverse into account. This has obviously no meaning for text.*/
+    if (pSUBWIN_FEATURE (sciGetParentSubwin(pObj))->is3d)
+    {
+      double xvect;
+      double yvect;
+      double zvect;
+      int n = 1 ;
+      
+      xvect = ppText->x;
+      yvect = ppText->y;
+      zvect = ppText->z;
+      
+      ReverseDataFor3D(sciGetParentSubwin(pObj),&xvect,&yvect,&zvect,n);
+      
+      trans3d(sciGetParentSubwin(pObj),n,&posX,&posY,&xvect,&yvect,&zvect);
+    }
+    else 
+    {
+      posX = XDouble2Pixel( ppText->x ) ;
+      posY = YDouble2Pixel( ppText->y ) ;
+    }
+    
+    /* We take the size in 2d. */
+    textSize[0] = PixelWidth2d(  parentSW, ppText->x, userSize[0] ) ;
+    textSize[1] = PixelHeight2d( parentSW, ppText->y, userSize[1] ) ;
+       
+    /* *10 parce que l'angle est conserve en 1/10eme de degre*/
+    /* si c'est pas nimp tout ca.... */
+    anglestr = (sciGetFontOrientation (pObj)/10); 	
+    
+    /* set the font */
+    C2F(dr1)("xget","font",&verb,cur_font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+            
+    font_[0] = sciGetFontStyle (pObj);
+    font_[1] = sciGetFontDeciWidth (pObj)/100;
+    
+    C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+    position[0] = posX ;
+    position[1] = posY ;
+
+    /* get the bounding box of the text matrix */
+    /* the matrix with the bounding box of each strings in the text object */
+    sciGetTextSize( pObj, &(textDim[0]), &(textDim[1]) ) ;
+    bboxes = newMatrix( textDim[0] + 1, textDim[1] + 1 ) ;
+
+
+    /* we get the array not turned because the display will turn everything by itself */
+    /* However, the bounding box needs to be turned after */
+    getStringsPositions( sciGetText( pObj )    ,
+                         &font_[0]             ,
+                         &font_[1]             ,
+                         position              ,
+                         sciGetAutoSize( pObj ),
+                         textSize              ,
+                         0.0                   ,
+                         bboxes                ,
+                         globalBbox             ) ;
+    
+    /* font might have changed */
+    C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    /* wether or not we draw and/or fill the box */
+    /* no need to compute anything if both line_mode */
+    /* and fill mode are false */
+    /* Of course, the background should be drawn first */
+    if(    sciGetIsBoxed (pObj)
+           && ( sciGetIsFilled( pObj ) || sciGetIsLine( pObj ) ) )
+    {
+      int xm[4], ym[4],n=4;
+      int close=1;
+      
+      /* we need to rotate the bounding box */
+      rotateBoundingBox( globalBbox,  DEG2RAD(anglestr) ) ;
+
+      xm[0] = globalBbox[0][0] ;
+      xm[1] = globalBbox[1][0] ;
+      xm[2] = globalBbox[2][0] ;
+      xm[3] = globalBbox[3][0] ;
+
+      ym[0] = globalBbox[0][1] ;
+      ym[1] = globalBbox[1][1] ;
+      ym[2] = globalBbox[2][1] ;
+      ym[3] = globalBbox[3][1] ;
+
+      
+            
+      /* draw the background */
+      if ( sciGetIsFilled( pObj ) )
+      {
+        textProperties[0] = sciGetBackground( pObj ) ;
+        C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+        C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+              
+        C2F (dr) ("xarea", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen("xv"));
+      }
+
+      /* draw the line around the box */
+      if ( sciGetIsLine( pObj ) )
+      {
+        textProperties[0] = sciGetForeground( pObj ) ;
+        /* draw a rectangle around the text */
+        C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+        C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+              
+        C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+      }
+    }
+          
+#ifdef _MSC_VER
+    flag_DO = MaybeSetWinhdc ();
+#endif
+    /* load the object foreground and dashes color */
+    textProperties[0] = sciGetFontForeground (pObj);/*la dash est de la meme couleur que le foreground*/
+    textProperties[2] = sciGetFontDeciWidth (pObj)/100;
+    textProperties[3] = 0;
+    textProperties[4] = sciGetFontStyle(pObj);
+          
+    C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+    C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+    /* C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); */
+          
+#ifdef _MSC_VER
+    if ( flag_DO == 1) ReleaseWinHdc ();
+#endif
+    
+    drawStringsInPosition( sciGetText( pObj ), bboxes, DEG2RAD(anglestr), sciGetAlignment( pObj ) ) ;
+    /* C2F(dr)("xstring",getStrMatElement(sciGetText(pObj),0,0),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L); */
+
+    C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    deleteMatrix( bboxes ) ;
+  }
+  else { /* SS for xstringb should be improved*/
+    integer w1, h1;
+    w1  = XDouble2Pixel (pTEXT_FEATURE (pObj)->wh[0]);
+    h1 = YDouble2Pixel (pTEXT_FEATURE (pObj)->wh[1]);
+    textProperties[0] = sciGetFontForeground (pObj);/*la dash est de la meme couleur que le foreground*/
+    textProperties[2] = sciGetFontDeciWidth (pObj)/100;
+    textProperties[3] = 0;
+    textProperties[4] = sciGetFontStyle(pObj);
+          
+    C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+    C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+    C2F(dr)("xset","font",textProperties+4,textProperties+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+
+    C2F(dr1)("xstringb",getStrMatElement(sciGetText(pObj),0,0),&(ppText->fill),&v,&v,&v,&v,&v,
+             &(ppText->x),&(ppText->y),
+             &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
+  }
+  if ( ppText->isclip )
+  {
+    sciUnClip(pObj);
+  }
+        
+#ifdef _MSC_VER
+  if ( flag_DO == 1) ReleaseWinHdc ();
+#endif
+
+}
+/*------------------------------------------------------------------------------------------*/
+/**
+ * Give the position of the 4 corners of a rectangle in pixels given the position of its
+ * upper left point in user coordiantes and its size. It works in every axes mode
+ * (2D/3D, log, reverse).
+ * @param parentSubWin Subwindow in which the rectangle is drawn.
+ * @param ulPoint      Coordinates of the upper left point of the rectangle in user coord.
+ * @param userSize     Width and height of the rectangle in user coord.
+ * @param edgesX       X coordinates of the resulting positions.
+ * @param edgesY       Y coordinates of the resulting positions.
+ */
+void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
+                            double        ulPoint[3]   ,
+                            double        userSize[2]  ,
+                            int           edgesX[4]    ,
+                            int           edgesY[4]     )
+{
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( parentSubWin  ) ;
+
+  if ( ppSubWin->is3d )
+  {
+    double rectx[4],recty[4],rectz[4];
+    int n = 4 ;
+    rectx[0] = rectx[3] = ulPoint[0] ;
+    rectx[1] = rectx[2] = ulPoint[0] + userSize[0] ;   
+    recty[0] = recty[1] = ulPoint[1] ;
+    recty[2] = recty[3] = ulPoint[1] - userSize[1];
+    rectz[0] = rectz[1] = rectz[2]= rectz[3] = ulPoint[2] ;
+    
+    ReverseDataFor3D( parentSubWin, rectx, recty, rectz, n);
+    
+    trans3d( parentSubWin,n,edgesX,edgesY,rectx,recty,rectz) ;
+  }
+  else
+  {
+    /* 2D mode */
+    /* position of the upper left point of the rectangle with reverse axes. */
+    double realPoint[2] ;
+    int ulPointPix[2] ;
+    int sizePix[2] ;
+    
+    if ( ppSubWin->axes.reverse[0] )
+    {
+      realPoint[0] = ulPoint[0] + userSize[0] ;
+    }
+    else
+    {
+      realPoint[0] = ulPoint[0] ;
+    }
+    
+    if ( ppSubWin->axes.reverse[1] )
+    {
+      realPoint[1] = ulPoint[1] - userSize[1] ;
+    }
+    else
+    {
+      realPoint[1] = ulPoint[1] ;
+    }
+	  
+    ulPointPix[0] = XDouble2Pixel( realPoint[0] ) ; 
+    ulPointPix[1] = YDouble2Pixel( realPoint[1] ) ;
+	
+    /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
+    sizePix[0] = WDouble2Pixel( ulPoint[0], userSize[0] ) ;
+    /* for y we take the length from the bottom left corner */
+    sizePix[1] = HDouble2Pixel( ulPoint[1] - userSize[1], userSize[1] ) ;
+
+    edgesX[0] = ulPointPix[0] ;
+    edgesX[1] = ulPointPix[0] + sizePix[0]  ;
+    edgesX[2] = ulPointPix[0] + sizePix[0]  ;
+    edgesX[3] = ulPointPix[0] ;
+
+    edgesY[0] = ulPointPix[1] ;
+    edgesY[1] = ulPointPix[1] ;
+    edgesY[2] = ulPointPix[1] + sizePix[1]  ;
+    edgesY[3] = ulPointPix[1] + sizePix[1]  ;
+
+  }
+}
+/*------------------------------------------------------------------------------------------*/
 
 #undef round

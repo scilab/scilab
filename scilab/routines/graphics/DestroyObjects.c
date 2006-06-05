@@ -24,6 +24,7 @@
 #include "DrawObjects.h"
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
+#include "StringMatrix.h"
 #ifdef WITH_TK
 #include "../tclsci/GedManagement.h"
 #endif
@@ -358,7 +359,7 @@ DestroyScrollH (sciPointObj * pthis)
 int
 DestroyText (sciPointObj * pthis)
 {
-  FREE (pTEXT_FEATURE (pthis)->ptextstring);
+  deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
   FREE (pTEXT_FEATURE (pthis)->user_data);
   pTEXT_FEATURE (pthis)->size_of_user_data = 0;
   
@@ -382,7 +383,7 @@ DestroyText (sciPointObj * pthis)
 int
 DestroyTitle (sciPointObj * pthis)
 {
-  FREE (pTITLE_FEATURE (pthis)->text.ptextstring);
+  deleteMatrix( pTITLE_FEATURE (pthis)->text.pStrings ) ;
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -406,7 +407,7 @@ DestroyLegend (sciPointObj * pthis)
   sciLegend * ppLegend = pLEGEND_FEATURE (pthis) ;
   FREE ( ppLegend->pptabofpointobj );
   /*FREE ( ppLegend->pstyle ) ;*/
-  FREE ( ppLegend->text.ptextstring);
+  deleteMatrix( ppLegend->text.pStrings ) ;
   FREE ( ppLegend->user_data);
   /*FREE ( ppLegend->associatedentity ) ;*/
   ppLegend->size_of_user_data = 0;
@@ -761,7 +762,7 @@ int DestroyLabel (sciPointObj * pthis)
   sciLabel * ppLabel = pLABEL_FEATURE (pthis);
   FREE (ppLabel->user_data); 
   ppLabel->size_of_user_data = 0;
-  FREE (ppLabel->text.ptextstring);
+  deleteMatrix( ppLabel->text.pStrings ) ;
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -774,7 +775,7 @@ int DestroyLabel (sciPointObj * pthis)
 
 int DestroyUimenu (sciPointObj * pthis)
 {
-  FREE (pUIMENU_FEATURE (pthis)->label.ptextstring);
+  deleteMatrix( pUIMENU_FEATURE (pthis)->label.pStrings ) ;
   FREE (pUIMENU_FEATURE (pthis)->label.callback);
 
   sciDelThisToItsParent (pthis, sciGetParent (pthis));

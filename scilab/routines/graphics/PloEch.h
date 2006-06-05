@@ -55,7 +55,6 @@ extern int XLogScale(double x);
 extern int YScale(double y);
 extern int YLogScale(double y);
 
-
 /* #define XScale(x)    inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647)) */
 /* #define XLogScale(x) inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1) */
 /* #define YScale(y)    inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647)) */
@@ -67,10 +66,10 @@ extern int YLogScale(double y);
 /*
  * geometric transformation "for length"
  */
-#define WScale(w)   inint (Cscale.Wscx1 * w)
-#define WLogScale(x,w) inint (Cscale.Wscx1 * (log10 ((x + w) / x)))
-#define HScale(h)   inint (Cscale.Wscy1 * h) 
-#define HLogScale(y,h) inint (Cscale.Wscy1 * (log10 (y / y - h)))
+#define WScale(w)   inint (Cscale.Wscx1 * (w))
+#define WLogScale(x,w) inint (Cscale.Wscx1 * (log10 (((x) + (w)) / (x))))
+#define HScale(h)   inint (Cscale.Wscy1 * (h)) 
+#define HLogScale(y,h) inint (Cscale.Wscy1 * (log10 ( ((y) + (h)) / (y) ) )) /* modif jb Silvy 05/2006 */
 #define WDouble2Pixel(x,w) ((Cscale.logflag[0] == 'n') ? ( WScale(w)) : ( WLogScale(x,w)))
 #define HDouble2Pixel(y,h) ((Cscale.logflag[1] == 'n') ? ( HScale(h)) : ( HLogScale(y,h)))
 /* NG end */

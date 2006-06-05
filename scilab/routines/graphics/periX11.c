@@ -4077,6 +4077,17 @@ void C2F(drawaxis)(char *str, integer *alpha, integer *nsteps, integer *v2, inte
  XFlush(dpy);
 }
 
+/*------------------------------------------------------------------------------------------*/
+/**
+ * get the minimal and maximal font size the driver can display
+ */
+void C2F(getFontMaxSize)(char *str, integer * sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4)
+{
+  *sizeMin = 0 ;
+  *sizeMax = FONTMAXSIZE ;
+}
+/*------------------------------------------------------------------------------------------*/
+
 /*-----------------------------------------------------
  * Display numbers z[i] at location (x[i],y[i])
  *   with a slope alpha[i] (see displaystring), if flag==1
@@ -4676,6 +4687,8 @@ int CheckScilabXgc(void)
 {
   return( ScilabXgc != (struct BCG *) 0);
 }
+
+
 
 #undef MAXTAB
 #undef DASH_TAB_SIZE

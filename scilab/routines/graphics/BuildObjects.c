@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE,  INRIA 2001-2002
+ *    Djalel ABDEMOUCHE,  INRIA 2002-2004
+ *    Fabrice Leray,      INRIA 2004-2006
+ *    Jean-Baptiste Silvy INIRA 2006-xxxx
  *    Comment:
  *    This file contains all functions used to BUILD new objects : 
  - allocating memory
@@ -12,7 +13,7 @@
  - binding the newly created object tyo the entire existing hierarchy
  --------------------------------------------------------------------------*/
 
-#include <stdio.h> 
+#include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
@@ -31,6 +32,7 @@
 #include "BuildObjects.h"
 #include "SetProperty.h"
 #include "CloneObjects.h"
+#include "StringMatrix.h"
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -281,8 +283,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
-      /*if (sciInitChildWin (pparentfigure, pwinname) == -1)
-	return NULL;*/
+      
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
 	return NULL;
       sciSetEntityType (pobj, SCI_SUBWIN);
@@ -297,7 +298,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /*sciSetParent (pobj, pparentfigure);*/
+      
       if (!(sciAddThisToItsParent (pobj, pparentfigure)))
 	{
 	  sciDelHandle (pobj);
@@ -310,13 +311,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       ppsubwin->vertices_list = (Vertices*) NULL;
 
-      /*      ppsubwin->value_xm = (int *) NULL; */
-      /*       ppsubwin->value_ym = (int *) NULL; */
-      /*       ppsubwin->value_x = (double *) NULL; */
-      /*       ppsubwin->value_y = (double *) NULL; */
-      /*       ppsubwin->value_z = (double *) NULL; */
-  
-      /*       ppsubwin->nb_vertices_in_merge = 0; */
+      
       ppsubwin->user_data = (int *) NULL; /* adding 27.06.05 */
       ppsubwin->size_of_user_data = 0;
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
@@ -346,7 +341,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       /* F.Leray 08.04.04 */
       if (sciInitFontContext (pobj) == -1)
 	{
-	  /* sciDelThisToItsParent (pobj, sciGetParent (pobj));*/
+          sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pobj->pfeatures);	  
 	  FREE(pobj);
@@ -486,14 +481,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       ppsubwin->isselected = ppaxesmdl->isselected;  
       ppsubwin->visible = ppaxesmdl->visible;
-      /*       /\*       ppsubwin->drawlater = ppaxesmdl->drawlater; *\/ */
-      /*       ppsubwin->drawlater = sciGetDrawLater(sciGetParentFigure(pobj)); */
-      
+            
       ppsubwin->clip_region_set = 0 ;
       sciInitIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
       sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
-      /*ppsubwin->isclip = ppaxesmdl->isclip;
-        ppsubwin->clip_region_set = ppaxesmdl->clip_region_set ;*/
             
       ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
       
@@ -522,10 +513,11 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
-      
-      sciSetText(ppsubwin->mon_title, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.ptextstring,  
-		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.textlen);
-      
+
+      sciSetStrings( ppsubwin->mon_title,
+                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.pStrings ) ;
+
+            
       /*------------------------------------*/
       if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
 	DestroyLabel(ppsubwin->mon_title);
@@ -535,9 +527,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
+
+      sciSetStrings( ppsubwin->mon_x_label,
+                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.pStrings ) ;
       
-      sciSetText(ppsubwin->mon_x_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.ptextstring,  
-		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.textlen);
 
       /*------------------------------------*/
       if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
@@ -549,10 +542,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
-  
-      sciSetText(ppsubwin->mon_y_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.ptextstring,  
-		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.textlen);
-
+      sciSetStrings( ppsubwin->mon_y_label,
+                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.pStrings ) ;
+     
       /*------------------------------------*/
       if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
 	DestroyLabel(ppsubwin->mon_title);
@@ -564,10 +556,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
-
-      sciSetText(ppsubwin->mon_z_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.ptextstring,  
-		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.textlen);
-      
+      sciSetStrings( ppsubwin->mon_z_label,
+                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.pStrings ) ;
+           
       /* labels auto_position modes */
       pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position = 
 	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_position;
@@ -616,7 +607,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
 
 /**ConstructScrollV
- * @memo This function creates the scroll bar erticall
+ * This function creates the scroll bar erticall
  */
 sciPointObj *
 ConstructScrollV (sciPointObj * pparentfigure)
@@ -664,7 +655,7 @@ ConstructScrollV (sciPointObj * pparentfigure)
 
 
 /**ConstructScrollH
- * @memo This function creates horizontal scroll bar 
+ * This function creates horizontal scroll bar 
  */
 sciPointObj *
 ConstructScrollH (sciPointObj * pparentfigure)
@@ -712,19 +703,20 @@ ConstructScrollH (sciPointObj * pparentfigure)
 
 
 /**ConstructText
- * @memo This function creates the parents window (manager) and the elementaries structures
+ * This function creates the parents window (manager) and the elementaries structures
  * @param  sciPointObj *pparentsubwin :
- * @param  char text[] : intial text string.
- * @param  int n : the number of element in text
+ * @param  char * text[] : intial text matrix string.
+ * @param  int nbCol : the number column of the text
+ * @param  int nbRow : the number of row of the text
  * @return  : pointer sciPointObj if ok , NULL if not
  */
 sciPointObj *
-ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
+ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
 	       double y, double *wh, int fill, int *foreground, int *background, 
-	       BOOL isboxed, BOOL isline, BOOL isfilled)
+	       BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align )
 {
   sciPointObj * pobj   = (sciPointObj *) NULL;
-  sciText     * ppText ; 
+  sciText     * ppText ;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN) 
     {
@@ -772,14 +764,15 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       ppText->visible = sciGetVisibility(sciGetParentSubwin (pobj));
       
       ppText->clip_region_set = 0;
-      /*ppText->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+      
       sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj) ) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
       /*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
 
-      if ((ppText->ptextstring = CALLOC (n+1, sizeof (char))) ==
-	  NULL)
+      /* allocate the matrix */
+      ppText->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+      if ( ppText->pStrings == NULL )
       {
         sciprint("No more place to allocates text string, try a shorter string");
         sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -789,46 +782,51 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
         return (sciPointObj *) NULL;
       }
       
-      /* initialize text */
-      strncpy (ppText->ptextstring, text, n);
-      ppText->textlen = n;
-
       /* initialize position */
       ppText->x = x;
       ppText->y = y;
       ppText->z = 0.0; /**DJ.Abdemouche 2003**/
       
       
-      if (wh != (double *)NULL){
+      if (wh != (double *)NULL)
+      {
 	ppText->wh[0] = wh[0];
 	ppText->wh[1] = wh[1];
       }
-      else {
+      else
+      {
 	ppText->wh[0] = 0.0;
 	ppText->wh[1] = 0.0;
       }
 
-      if (sciInitFontContext (pobj) == -1)
-	{
-	  FREE(pTEXT_FEATURE (pobj)->ptextstring);	  
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);	  
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      if ( sciInitFontContext (pobj) == -1 )
+      {
+        deleteMatrix( ppText->pStrings ) ;        
+        sciDelThisToItsParent (pobj, sciGetParent (pobj));
+        sciDelHandle (pobj);
+        FREE(pobj->pfeatures);	  
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+      }
       
-      if (sciInitGraphicContext (pobj) == -1)
+      if ( sciInitGraphicContext(pobj) == -1 )
 	{
+          deleteMatrix( ppText->pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(ppText);
+	  FREE(ppText)
 	  FREE(pobj);
 	  sciprint("pas de context");
 	  return (sciPointObj *) NULL;
 	}
       
       ppText->fill=fill; /* to distinguish between xstring and xstringb */
+
+      ppText->auto_size    = TRUE ;
+      ppText->user_size[0] = 0.   ;
+      ppText->user_size[1] = 0.   ;
+
+      ppText->stringsAlign = ALIGN_LEFT ;
 
       sciInitIsBoxed(pobj,isboxed);
       sciInitIsLine(pobj,isline);
@@ -852,7 +850,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
 
 
 /**ConstructTitle
- * @memo This function creates Title structure
+ * This function creates Title structure
  * @param  sciPointObj *pparentsubwin
  * @param  char text[] : intial text string.
  * @param  int n the number of element in text
@@ -902,34 +900,35 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
       ppTitle->visible = sciGetVisibility(sciGetParentSubwin(pobj));
       ppTitle->text.isboxed = FALSE ;
       ppTitle->text.isline  = TRUE  ;
+
+      ppTitle->text.pStrings = newFullStringMatrix( &text, 1, 1 ) ;
      
-      if ((ppTitle->text.ptextstring =CALLOC (strlen(text)+1, sizeof (char))) == NULL)
-	{
-	  sciprint("No more place to allocates text string, try a shorter string");
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppTitle);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      if ( ppTitle->text.pStrings == NULL )
+      {
+        sciprint("No more place to allocates text string, try a shorter string");
+        sciDelThisToItsParent (pobj, sciGetParent (pobj));
+        sciDelHandle (pobj);
+        FREE(ppTitle);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+      }
       /* on copie le texte du titre dans le champs specifique de l'objet */
-      strncpy (ppTitle->text.ptextstring, text, strlen(text));
-      ppTitle->text.textlen = strlen(text);
+      
       ppTitle->ptype = type;
 
       ppTitle->text.fontcontext.textorientation = 0;
 
       ppTitle->titleplace = SCI_TITLE_IN_TOP;
       ppTitle->isselected = TRUE;
-      if (sciInitFontContext (pobj) == -1)
-	{
-	  FREE(ppTitle->text.ptextstring);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppTitle);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      if (sciInitFontContext (pobj) == -1 )
+      {
+        deleteMatrix(ppTitle->text.pStrings);
+        sciDelThisToItsParent (pobj, sciGetParent (pobj));
+        sciDelHandle (pobj);
+        FREE(ppTitle);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+      }
       return (sciPointObj *) pobj;
     }
   else
@@ -942,7 +941,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
 
 
 /**constructLegend
- * @memo This function creates  Legend structure
+ * This function creates  Legend structure
  */
 sciPointObj *
 ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends, int *pstyle
@@ -1010,25 +1009,26 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       
       ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
+      ppLegend->text.pStrings = newFullStringMatrix( &text, 1, 1 ) ;
+
       /* Allocation de la structure sciText */
-      if ((ppLegend->text.ptextstring = CALLOC (n+1, sizeof (char))) == NULL)
-	{
-	  sciprint("\nNo more place to allocates text string, try a shorter string\n");
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+      if ( ppLegend->text.pStrings == NULL)
+      {
+        sciprint("\nNo more place to allocates text string, try a shorter string\n");
+        sciDelThisToItsParent (pobj, sciGetParent (pobj));
+        sciDelHandle (pobj);
+        FREE(ppLegend);
+        FREE(pobj);
+        return (sciPointObj *) NULL;
+      }
       /* on copie le texte du titre dans le champs specifique de l'objet */
-      strncpy (ppLegend->text.ptextstring, text, n);
       ppLegend->nblegends = nblegends;
 
       if ((ppLegend->pptabofpointobj = 
 	   MALLOC(nblegends*sizeof(sciPointObj*))) == NULL)
 	{
 	  sciprint("No more memory for legend\n");
-	  FREE(ppLegend->text.ptextstring);
+	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(ppLegend);
@@ -1048,7 +1048,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 	{		  
 	  sciprint("\nNo more place to allocates style\n");
 	  FREE(ppLegend->pptabofpointobj);
-	  FREE(ppLegend->text.ptextstring);
+	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(ppLegend);
@@ -1058,7 +1058,6 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 
 
 
-      ppLegend->text.textlen = n;
       ppLegend->text.fontcontext.textorientation = 0;
       ppLegend->pos.x = 0;
       ppLegend->pos.y = 0;
@@ -1081,7 +1080,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 	{
 	  sciprint("Problem with sciInitFontContext\n");
 	  FREE(ppLegend->pptabofpointobj);
-	  FREE(ppLegend->text.ptextstring);
+	  deleteMatrix( ppLegend->text.pStrings ) ;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(ppLegend);
@@ -1101,7 +1100,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
 
 
 /**ConstructPolyline
- * @memo This function creates  Polyline 2d structure
+ * This function creates  Polyline 2d structure
  */
 sciPointObj *
 ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
@@ -1392,7 +1391,13 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 		    double vertcurvature,  int *foreground, int *background,
 		    int isfilled, int isline, int str, BOOL flagstring)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL; 
+  sciPointObj *pobj = (sciPointObj *) NULL;
+
+  if ( height < 0.0 || width < 0.0 )
+  {
+    Scierror(999,"Width and height must be positive.\n");
+    return NULL ;
+  }
  
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
@@ -2764,7 +2769,9 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     ppLabel->text.callbacklen = 0; 
     ppLabel->visible = sciGetVisibility(sciGetParentSubwin(pobj));
     
-    if ((ppLabel->text.ptextstring =CALLOC (strlen(text)+1, sizeof (char))) == NULL)
+
+    ppLabel->text.pStrings = newFullStringMatrix( &text, 1, 1) ; /* only one string for now */
+    if ( ppLabel->text.pStrings == NULL)
     {
       sciprint("No more place to allocates text string, try a shorter string");
       sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -2774,10 +2781,6 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       return (sciPointObj *) NULL;
     }
 
-    /* on copie le texte du label dans le champs specifique de l'objet */
-    strcpy (ppLabel->text.ptextstring, text);
-    
-    ppLabel->text.textlen = strlen(text);
     ppLabel->ptype = type;
     
     ppLabel->text.fontcontext.textorientation = 0; 
@@ -2786,7 +2789,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     ppLabel->isselected = TRUE;
     if (sciInitFontContext (pobj) == -1)
     {
-      FREE(ppLabel->text.ptextstring);
+      deleteMatrix( ppLabel->text.pStrings ) ;
       sciDelThisToItsParent (pobj, sciGetParent (pobj));
       sciDelHandle (pobj);
       FREE(ppLabel);
@@ -3089,7 +3092,9 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 
       pUIMENU_FEATURE (pobj)->visible = TRUE; /* A changer */ 
 
-      if ((pUIMENU_FEATURE (pobj)->label.ptextstring =CALLOC (strlen(label)+1, sizeof (char))) == NULL)
+      pUIMENU_FEATURE (pobj)->label.pStrings = newFullStringMatrix( &label, 1 , 1 ) ;
+
+      if ( pUIMENU_FEATURE (pobj)->label.pStrings == NULL)
 	{
 	  sciprint("No more place to allocates label string, try a shorter string");
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -3098,14 +3103,11 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /* on copie le texte du label dans le champs specifique de l'objet */
-      strcpy (pUIMENU_FEATURE (pobj)->label.ptextstring, label);
-
-      pUIMENU_FEATURE (pobj)->label.textlen = strlen(label);
-	  pUIMENU_FEATURE (pobj)->handle_visible=handle_visible;
-	  pUIMENU_FEATURE (pobj)->MenuPosition=0;
-	  pUIMENU_FEATURE (pobj)->CallbackType=0;
-	  pUIMENU_FEATURE (pobj)->Enable=TRUE;
+      
+      pUIMENU_FEATURE (pobj)->handle_visible=handle_visible;
+      pUIMENU_FEATURE (pobj)->MenuPosition=0;
+      pUIMENU_FEATURE (pobj)->CallbackType=0;
+      pUIMENU_FEATURE (pobj)->Enable=TRUE;
 
       return (sciPointObj *) pobj;
     }

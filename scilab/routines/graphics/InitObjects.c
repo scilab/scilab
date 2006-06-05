@@ -50,7 +50,8 @@ int C2F(graphicsmodels) ()
   sciPointObj * pobj = NULL;
   sciSubWindow * ppobj = NULL;
   double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
-  sciSubWindow * ppaxesmdl = NULL;
+  sciSubWindow * ppaxesmdl = NULL ;
+  
   /*  sciSubWindow * ppaxesmdl = NULL; */
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -384,313 +385,47 @@ int C2F(graphicsmodels) ()
   
   /******************************  title *************************/
   
-  if ((ppobj->mon_title = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_title, SCI_LABEL);
-  if (((ppobj->mon_title)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
+  ppobj->mon_title = initLabel( paxesmdl ) ;
+
+  if ( ppobj->mon_title == NULL )
   {
-    FREE((ppobj->mon_title));
-    return -1;
+    return -1 ;
   }
   
+  pLABEL_FEATURE(ppobj->mon_title)->ptype = 1;
   
-  if (sciAddNewHandle ((ppobj->mon_title)) == -1)
-  {
-    FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-  }
-  
-  if (!(sciAddThisToItsParent ((ppobj->mon_title), paxesmdl)))
-  {
-    sciDelHandle ((ppobj->mon_title));
-    FREE(pLABEL_FEATURE((ppobj->mon_title)));
-    FREE((ppobj->mon_title));
-    return -1;
-  }
-      
-  sciSetCurrentSon ((ppobj->mon_title), (sciPointObj *) NULL);
-  
-  pLABEL_FEATURE ((ppobj->mon_title))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_title))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_title))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_title))->text.callbacklen = 0;
-  /*   pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title))); */
-  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_title)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_title)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_title)->position[1] = 0;
-  
-  if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_title), sciGetParent ((ppobj->mon_title)));
-      sciDelHandle ((ppobj->mon_title));
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
-  /* init a "" pour le chanmp title */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_title))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_title))->ptype = 1; /* type = 1 <=> title, 2 <=> x_label...*/
-   
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_title ) ;
-   
-  pLABEL_FEATURE ((ppobj->mon_title))->text.fontcontext.textorientation = 0;
-
-  /*   pLABEL_FEATURE ((ppobj->mon_title))->titleplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_title))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_title)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_title))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_title), sciGetParent ((ppobj->mon_title)));
-      sciDelHandle ((ppobj->mon_title));
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
-
-
-      
   /******************************  x_label *************************/
   
-  if ((ppobj->mon_x_label = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_x_label, SCI_LABEL);
-  if (((ppobj->mon_x_label)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
+  ppobj->mon_x_label = initLabel( paxesmdl ) ;
   
+  if ( ppobj->mon_x_label == NULL )
+  {
+    return -1 ;
+  }
   
-  if (sciAddNewHandle ((ppobj->mon_x_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-    
-  if (!(sciAddThisToItsParent ((ppobj->mon_x_label), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_x_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-      
-  sciSetCurrentSon ((ppobj->mon_x_label), (sciPointObj *) NULL);
-  
-  pLABEL_FEATURE ((ppobj->mon_x_label))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.callbacklen = 0;
-  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label))); */
-  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_x_label)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_x_label)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_x_label)->position[1] = 0;
-
-  if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_x_label), sciGetParent ((ppobj->mon_x_label)));
-      sciDelHandle ((ppobj->mon_x_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-  /* init a "" pour le chanmp x_label */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->ptype = 2; /* type = 1 <=> x_label, 2 <=> x_label...*/
-      
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_x_label ) ;
-
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.fontcontext.textorientation = 0;
-
-  /*   pLABEL_FEATURE ((ppobj->mon_x_label))->x_labelplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_x_label))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_x_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_x_label), sciGetParent ((ppobj->mon_x_label)));
-      sciDelHandle ((ppobj->mon_x_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-
-
+  pLABEL_FEATURE( ppobj->mon_x_label )->ptype = 2 ;
   
   /******************************  y_label *************************/
   
-  if ((ppobj->mon_y_label = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_y_label, SCI_LABEL);
-  if (((ppobj->mon_y_label)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
+  ppobj->mon_y_label = initLabel( paxesmdl ) ;
   
+  if ( ppobj->mon_y_label == NULL )
+  {
+    return -1 ;
+  }
   
-  if (sciAddNewHandle ((ppobj->mon_y_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-    
-  if (!(sciAddThisToItsParent ((ppobj->mon_y_label), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_y_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-      
-  sciSetCurrentSon ((ppobj->mon_y_label), (sciPointObj *) NULL);
-
-  pLABEL_FEATURE ((ppobj->mon_y_label))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->size_of_user_data = 0;
- 
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.callbacklen = 0;
-  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label))); */
-  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_y_label)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_y_label)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_y_label)->position[1] = 0;
-
-  if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_y_label), sciGetParent ((ppobj->mon_y_label)));
-      sciDelHandle ((ppobj->mon_y_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-  /* init a "" pour le chanmp y_label */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->ptype = 3; /* type = 1 <=> y_label, 2 <=> y_label...*/
-  
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_y_label ) ;
-    
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.fontcontext.textorientation = 0;
-
-  /*   pLABEL_FEATURE ((ppobj->mon_y_label))->y_labelplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_y_label))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_y_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_y_label), sciGetParent ((ppobj->mon_y_label)));
-      sciDelHandle ((ppobj->mon_y_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-
+  pLABEL_FEATURE( ppobj->mon_y_label )->ptype = 3 ;
   
   /******************************  z_label *************************/
   
-  if ((ppobj->mon_z_label = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_z_label, SCI_LABEL);
-  if (((ppobj->mon_z_label)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
+  ppobj->mon_z_label = initLabel( paxesmdl ) ;
   
+  if ( ppobj->mon_z_label == NULL )
+  {
+    return -1 ;
+  }
   
-  if (sciAddNewHandle ((ppobj->mon_z_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-    
-  if (!(sciAddThisToItsParent ((ppobj->mon_z_label), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_z_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-      
-  sciSetCurrentSon ((ppobj->mon_z_label), (sciPointObj *) NULL);
-
-  pLABEL_FEATURE ((ppobj->mon_z_label))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0;
-  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label))); */
-  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_z_label)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_z_label)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_z_label)->position[1] = 0;
-  
-  if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_z_label), sciGetParent ((ppobj->mon_z_label)));
-      sciDelHandle ((ppobj->mon_z_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-  /* init a "" pour le chanmp z_label */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->ptype = 4; /* type = 1 <=> z_label, 2 <=> z_label...*/
-  
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_z_label ) ;
-
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.fontcontext.textorientation = 0;
-
-  /*   pLABEL_FEATURE ((ppobj->mon_z_label))->z_labelplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_z_label))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_z_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_z_label), sciGetParent ((ppobj->mon_z_label)));
-      sciDelHandle ((ppobj->mon_z_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-
+  pLABEL_FEATURE( ppobj->mon_z_label )->ptype = 4 ;
   
   return 1;
 }
@@ -1144,7 +879,6 @@ int InitAxesModel()
   sciSubWindow * ppobj = NULL;
   sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
 
-
   sciInitGraphicContext (paxesmdl);
   sciInitGraphicMode (paxesmdl);
   sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
@@ -1273,315 +1007,50 @@ int InitAxesModel()
   pobj = paxesmdl;
   ppobj = pSUBWIN_FEATURE(paxesmdl);
   
-  /******************************  title *************************/
+   /******************************  title *************************/
   
-  if ((ppobj->mon_title = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_title, SCI_LABEL);
-  if (((ppobj->mon_title)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_title));
-      return -1;
-    }
+  ppobj->mon_title = initLabel( paxesmdl ) ;
+
+  if ( ppobj->mon_title == NULL )
+  {
+    return -1 ;
+  }
   
+  pLABEL_FEATURE(ppobj->mon_title)->ptype = 1;
   
-  if (sciAddNewHandle ((ppobj->mon_title)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
-  
-  if (!(sciAddThisToItsParent ((ppobj->mon_title), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_title));
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
-      
-  sciSetCurrentSon ((ppobj->mon_title), (sciPointObj *) NULL);
-  
-  pLABEL_FEATURE ((ppobj->mon_title))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_title))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_title))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_title))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_title))->text.callbacklen = 0; 
-  /*  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_title)));  */
-  pLABEL_FEATURE ((ppobj->mon_title))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_title)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_title)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_title)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_title)->position[1] = 0;
-
-  if ((pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_title), sciGetParent ((ppobj->mon_title)));
-      sciDelHandle ((ppobj->mon_title));
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
-  /* init a "" pour le chanmp title */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_title))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_title))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_title))->ptype = 1; /* type = 1 <=> title, 2 <=> x_label...*/
-      
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_title ) ;
-
-  pLABEL_FEATURE ((ppobj->mon_title))->text.fontcontext.textorientation = 0; 
-
-  /*   pLABEL_FEATURE ((ppobj->mon_title))->titleplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_title))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_title)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_title))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_title), sciGetParent ((ppobj->mon_title)));
-      sciDelHandle ((ppobj->mon_title));
-      FREE(pLABEL_FEATURE((ppobj->mon_title)));
-      FREE((ppobj->mon_title));
-      return -1;
-    }
-
-
-      
   /******************************  x_label *************************/
   
-  if ((ppobj->mon_x_label = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_x_label, SCI_LABEL);
-  if (((ppobj->mon_x_label)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
+  ppobj->mon_x_label = initLabel( paxesmdl ) ;
   
+  if ( ppobj->mon_x_label == NULL )
+  {
+    return -1 ;
+  }
   
-  if (sciAddNewHandle ((ppobj->mon_x_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-    
-  if (!(sciAddThisToItsParent ((ppobj->mon_x_label), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_x_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-      
-  sciSetCurrentSon ((ppobj->mon_x_label), (sciPointObj *) NULL);
-  
-  pLABEL_FEATURE ((ppobj->mon_x_label))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.callbacklen = 0; 
-  /*  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_x_label)));  */
-  pLABEL_FEATURE ((ppobj->mon_x_label))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_x_label)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_x_label)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_x_label)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_x_label)->position[1] = 0;
-
-  if ((pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_x_label), sciGetParent ((ppobj->mon_x_label)));
-      sciDelHandle ((ppobj->mon_x_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-  /* init a "" pour le chanmp x_label */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_x_label))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_x_label))->ptype = 2; /* type = 1 <=> x_label, 2 <=> x_label...*/
-      
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_x_label ) ;
-
-  pLABEL_FEATURE ((ppobj->mon_x_label))->text.fontcontext.textorientation = 0; 
-
-  /*   pLABEL_FEATURE ((ppobj->mon_x_label))->x_labelplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_x_label))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_x_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_x_label), sciGetParent ((ppobj->mon_x_label)));
-      sciDelHandle ((ppobj->mon_x_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_x_label)));
-      FREE((ppobj->mon_x_label));
-      return -1;
-    }
-
-
+  pLABEL_FEATURE( ppobj->mon_x_label )->ptype = 2 ;
   
   /******************************  y_label *************************/
   
-  if ((ppobj->mon_y_label = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_y_label, SCI_LABEL);
-  if (((ppobj->mon_y_label)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
+  ppobj->mon_y_label = initLabel( paxesmdl ) ;
   
+  if ( ppobj->mon_y_label == NULL )
+  {
+    return -1 ;
+  }
   
-  if (sciAddNewHandle ((ppobj->mon_y_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-    
-  if (!(sciAddThisToItsParent ((ppobj->mon_y_label), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_y_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-      
-  sciSetCurrentSon ((ppobj->mon_y_label), (sciPointObj *) NULL);
-  
-  pLABEL_FEATURE ((ppobj->mon_y_label))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.callbacklen = 0; 
-  /*  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_y_label)));  */
-  pLABEL_FEATURE ((ppobj->mon_y_label))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_y_label)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_y_label)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_y_label)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_y_label)->position[1] = 0;
-  
-  if ((pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_y_label), sciGetParent ((ppobj->mon_y_label)));
-      sciDelHandle ((ppobj->mon_y_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-  /* init a "" pour le chanmp y_label */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_y_label))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_y_label))->ptype = 3; /* type = 1 <=> y_label, 2 <=> y_label...*/
-      
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_y_label ) ;
-  
-  pLABEL_FEATURE ((ppobj->mon_y_label))->text.fontcontext.textorientation = 0; 
-
-  /*   pLABEL_FEATURE ((ppobj->mon_y_label))->y_labelplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_y_label))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_y_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_y_label), sciGetParent ((ppobj->mon_y_label)));
-      sciDelHandle ((ppobj->mon_y_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_y_label)));
-      FREE((ppobj->mon_y_label));
-      return -1;
-    }
-
+  pLABEL_FEATURE( ppobj->mon_y_label )->ptype = 3 ;
   
   /******************************  z_label *************************/
   
-  if ((ppobj->mon_z_label = MALLOC (sizeof (sciPointObj))) == NULL)
-    return -1;
-  sciSetEntityType (ppobj->mon_z_label, SCI_LABEL);
-  if (((ppobj->mon_z_label)->pfeatures = MALLOC ((sizeof (sciLabel)))) == NULL)
-    {
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
+  ppobj->mon_z_label = initLabel( paxesmdl ) ;
   
+  if ( ppobj->mon_z_label == NULL )
+  {
+    return -1 ;
+  }
   
-  if (sciAddNewHandle ((ppobj->mon_z_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-    
-  if (!(sciAddThisToItsParent ((ppobj->mon_z_label), paxesmdl)))
-    {
-      sciDelHandle ((ppobj->mon_z_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
+  pLABEL_FEATURE( ppobj->mon_z_label )->ptype = 4 ;
   
-  sciSetCurrentSon ((ppobj->mon_z_label), (sciPointObj *) NULL);
-  
-  pLABEL_FEATURE ((ppobj->mon_z_label))->user_data = (int *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->size_of_user_data = 0;
-  
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.psons = (sciSons *) NULL;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.relationship.plastsons = (sciSons *) NULL;
-
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.callback = (char *)NULL;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.callbacklen = 0; 
-  /*  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(sciGetParentFigure((ppobj->mon_z_label)));  */
-  pLABEL_FEATURE ((ppobj->mon_z_label))->visible = sciGetVisibility(paxesmdl);
-  pLABEL_FEATURE (ppobj->mon_z_label)->auto_position = TRUE;
-  pLABEL_FEATURE (ppobj->mon_z_label)->auto_rotation = TRUE;
-  pLABEL_FEATURE (ppobj->mon_z_label)->position[0] = 0;
-  pLABEL_FEATURE (ppobj->mon_z_label)->position[1] = 0;
-
-  if ((pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring =CALLOC (1, sizeof (char))) == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent ((ppobj->mon_z_label), sciGetParent ((ppobj->mon_z_label)));
-      sciDelHandle ((ppobj->mon_z_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-  /* init a "" pour le chanmp z_label */
-  strcpy (pLABEL_FEATURE ((ppobj->mon_z_label))->text.ptextstring, "");
-      
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.textlen = 0;
-  pLABEL_FEATURE ((ppobj->mon_z_label))->ptype = 4; /* type = 1 <=> z_label, 2 <=> z_label...*/
-      
-  /* graphic context */
-  sciInitGraphicContext( ppobj->mon_z_label ) ;
-
-  pLABEL_FEATURE ((ppobj->mon_z_label))->text.fontcontext.textorientation = 0; 
-
-  /*   pLABEL_FEATURE ((ppobj->mon_z_label))->z_labelplace = SCI_LABEL_IN_TOP; */
-  pLABEL_FEATURE ((ppobj->mon_z_label))->isselected = TRUE;
-  if (sciInitFontContext ((ppobj->mon_z_label)) == -1)
-    {
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label))->text.ptextstring);
-      sciDelThisToItsParent ((ppobj->mon_z_label), sciGetParent ((ppobj->mon_z_label)));
-      sciDelHandle ((ppobj->mon_z_label));
-      FREE(pLABEL_FEATURE((ppobj->mon_z_label)));
-      FREE((ppobj->mon_z_label));
-      return -1;
-    }
-
   return 1; 
 }
 
@@ -1770,3 +1239,95 @@ sciInitGraphicMode (sciPointObj * pobj)
     }
   return 0;
 }
+
+/*------------------------------------------------------------------------------------------*/
+/* allocate and set a new label to default values */
+sciPointObj * initLabel( sciPointObj * pParentObj )
+{
+  sciPointObj * newLabel = MALLOC (sizeof (sciPointObj)) ;
+  sciLabel    * ppLabel ;
+  if ( newLabel == NULL )
+  {
+    return NULL ;
+  }
+
+  sciSetEntityType( newLabel, SCI_LABEL ) ;
+
+  newLabel->pfeatures = MALLOC ( sizeof (sciLabel) ) ;
+  if ( newLabel->pfeatures == NULL)
+  {
+    FREE( newLabel );
+    return NULL ;
+  }
+  
+  ppLabel = pLABEL_FEATURE( newLabel ) ;
+  
+  if ( sciAddNewHandle ( newLabel ) == -1 )
+  {
+    FREE( ppLabel ) ;
+    FREE( newLabel ) ;
+    return NULL ;
+  }
+  
+  if ( !sciAddThisToItsParent( newLabel, pParentObj ) )
+  {
+    sciDelHandle (newLabel);
+    FREE( ppLabel ) ;
+    FREE( newLabel  );
+    return NULL ;
+  }
+
+  sciSetCurrentSon( newLabel, NULL ) ;
+  
+  ppLabel->user_data = (int *) NULL;
+  ppLabel->size_of_user_data = 0;
+  
+  ppLabel->text.relationship.psons = (sciSons *) NULL;
+  ppLabel->text.relationship.plastsons = (sciSons *) NULL;
+  
+  ppLabel->text.callback = (char *)NULL;
+  ppLabel->text.callbacklen = 0;
+  
+  ppLabel->visible = sciGetVisibility( pParentObj ) ;
+  ppLabel->auto_position = TRUE;
+  ppLabel->auto_rotation = TRUE;
+  ppLabel->position[0] = 0;
+  ppLabel->position[1] = 0;
+  
+  /* init a "" pour le chanmp title */
+  ppLabel->text.pStrings = newMatrix( 1, 1 ) ;
+  copyStrMatElement( ppLabel->text.pStrings, 0, 0, "" ) ;
+  
+  if ( ppLabel->text.pStrings == NULL )
+  {
+    sciprint("No more place to allocates text string, try a shorter string");
+    sciDelThisToItsParent( newLabel, pParentObj ) ;
+    sciDelHandle ( newLabel ) ;
+    FREE(ppLabel);
+    FREE(newLabel);
+    return NULL ;
+  }
+
+  /* graphic context */
+  sciInitGraphicContext( newLabel ) ;
+   
+  ppLabel->text.fontcontext.textorientation = 0;
+
+  /*   pLABEL_FEATURE ((ppobj->mon_title))->titleplace = SCI_LABEL_IN_TOP; */
+  ppLabel->isselected = TRUE;
+
+  ppLabel->ptype = 0 ; /* must be changed : 1 for title, 2 x_label, 3 y_label, 4 z_label */
+  
+  if ( sciInitFontContext( newLabel ) == -1 )
+  {
+    deleteMatrix( ppLabel->text.pStrings ) ;
+    sciDelThisToItsParent (newLabel, pParentObj);
+    sciDelHandle ( newLabel);
+    FREE( ppLabel );
+    FREE( newLabel ) ;
+    return NULL ;
+  }
+  return newLabel ;
+}
+
+/*------------------------------------------------------------------------------------------*/

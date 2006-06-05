@@ -3172,9 +3172,11 @@ void updateXaxesTics( sciPointObj * psubwin  ,
     double xMax ;
     double yMin ;
     double yMax ;
+    double zMin ;
+    double zMax ;
     int    ticksStatus = 0 ;
     
-    sciGetDisplayedBounds( psubwin, &xMin, &xMax, &yMin, &yMax ) ;
+    sciGetDisplayedBounds( psubwin, &xMin, &xMax, &yMin, &yMax, &zMin, &zMax ) ;
     
     ppSubWin->axes.nxgrads = ( ppSubWin->axes.nxgrads + 1 ) / 2 ;
     
@@ -3232,9 +3234,11 @@ void updateYaxesTics( sciPointObj * psubwin  ,
     double xMax ;
     double yMin ;
     double yMax ;
+    double zMin ;
+    double zMax ;
     int    ticksStatus = 0 ;
     
-    sciGetDisplayedBounds( psubwin, &xMin, &xMax, &yMin, &yMax ) ;
+    sciGetDisplayedBounds( psubwin, &xMin, &xMax, &yMin, &yMax, &zMin, &zMax ) ;
     
     ppSubWin->axes.nygrads = ( ppSubWin->axes.nygrads + 1 ) / 2 ;
     

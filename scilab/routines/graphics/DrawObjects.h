@@ -25,7 +25,9 @@
 #endif
 
 #include "bcg.h"
-#include "PloEch.h" 
+#include "PloEch.h"
+#include "Vect2Matrix.h"
+#include "StringMatrix.h"
 
 void wininfo  __PARAMS((char *fmt,...));
 
@@ -89,7 +91,14 @@ extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
                                    double      * xmin   ,
                                    double      * xmax   ,
                                    double      * ymin   ,
-                                   double      * ymax    ) ;
+                                   double      * ymax   ,
+                                   double      * zmin   ,
+                                   double      * zmax    ) ;
+extern void updateScale3d( sciPointObj * pobj    ,
+                           double        dbox[6] ,
+                           double        xbox[6] ,
+                           double        ybox[6] ,
+                           double        zbox[6]  ) ;
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
@@ -187,4 +196,35 @@ extern void sciAxesVerticesIndices( integer insideU[4],
                                     double  xbox[8]   ,
                                     double  ybox[8]   ,
                                     integer xind[8]    ) ;
+
+extern void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest ) ;
+extern void stringBoundingRect( char ** textMatrix, int textSize[2], int textPos[2], int rect[4] ) ;
+extern void getStringBox( char   ** text         ,
+                          double    textPos[2]   ,
+                          int       textSize[2]  ,
+                          BOOL      autoSize     ,
+                          double    userSize[2]  ,
+                          double    angle        ,
+                          int       fontId       , 
+                          int       fontSize     , 
+                          double    corners[4][2] ) ;
+
+extern void getStringsPositions( StringMatrix  * strMat        ,
+                                 int           * fontId        ,
+                                 int           * fontSize      ,
+                                 int             textPos[2]    ,
+                                 BOOL            autoSize      ,
+                                 int             textSize[2]   ,
+                                 double          angle         ,
+                                 Vect2iMatrix  * stringPosition,
+                                 int             boundingBox[4][2] ) ;
+
+extern void drawText( sciPointObj * pObj ) ;
+
+extern void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
+                                   double        ulPoint[3]   ,
+                                   double        userSize[2]  ,
+                                   int           edgesX[4]    ,
+                                   int           edgesY[4]     ) ;
+
 #endif /* __SCI_DRAWINGS__ */

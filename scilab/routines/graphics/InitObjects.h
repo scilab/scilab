@@ -22,6 +22,8 @@ extern int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
 extern int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
 extern int sciInitGraphicMode (sciPointObj * pobj);
 
+extern sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
+
 extern void initsubwin(); /* INITOBJECT */
 extern void reinitSubwin( void ) ;
 

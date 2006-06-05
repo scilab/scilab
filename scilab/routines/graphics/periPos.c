@@ -2192,7 +2192,6 @@ void C2F(drawaxisPos)(char *str, integer *alpha, integer *nsteps, integer *v2, i
 	  (int)initpoint[0],(int)initpoint[1]));
 }
 
-
 /*-----------------------------------------------------
 \encadre{Display numbers z[i] at location (x[i],y[i])
   with a slope alpha[i] (see displaystring_), if flag==1
@@ -2471,7 +2470,16 @@ static void C2F(displaysymbolsPos)(char *str, integer *n, integer *vx, integer *
   FPRINTF((file,"\n/absolu true def"));
 }
 
-
+/*------------------------------------------------------------------------------------------*/
+/**
+ * @memo get the minimal and maximal font size
+ */
+void C2F(getFontMaxSizePos)(char *str, integer *sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4)
+{
+  *sizeMin = 0 ;
+  *sizeMax = FONTMAXSIZE ;
+}
+/*------------------------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------
 \encadre{Check if a specified family of font exist in 

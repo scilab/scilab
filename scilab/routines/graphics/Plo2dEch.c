@@ -1926,8 +1926,3 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
 #endif
 }
 
-
-
-
-
-

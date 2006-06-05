@@ -41,7 +41,8 @@ void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flags
      int n;
      long *hdl;
      BOOL flagstring;
-{ 
+{
+  sciPointObj * newObj = NULL ;
   BOOL redraw = FALSE ;
   sciPointObj *psubwin;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
@@ -49,11 +50,18 @@ void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flags
   /* check if the auto_clear property is on and then erase everything */
   redraw = checkRedrawing() ;
 
-  sciSetCurrentObj (ConstructRectangle
-		    (psubwin ,*x,*y,*height, *width, 0, 0,
-		     foreground, background, isfilled, isline, n, flagstring));
-  
-  *hdl=sciGetHandle(sciGetCurrentObj ()); 
+  newObj = ConstructRectangle(psubwin ,*x,*y,*height, *width, 0, 0,
+                              foreground, background, isfilled, isline, n, flagstring) ;
+    
+  if ( newObj == NULL )
+  {
+    /* an error occured */
+    *hdl = -1 ;
+    return ;
+  }
+
+  sciSetCurrentObj( newObj ) ; 
+  *hdl=sciGetHandle( newObj ) ; 
 
   /* if the window has been cleared we must redraw everything */
   if ( redraw )
@@ -228,36 +236,47 @@ void Objsegs (style,flag,n1,x,y,arsize)
  *-----------------------------------------------------------*/
 
 /* box is an OUTPUT re-used inside matdes.c in scixstring */
-void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,background,isboxed,isline,isfilled)
-     char *fname;
-     unsigned long fname_len; 
-     integer str;
-     double x,y,*angle,*box,*wh;
+void Objstring(fname,nbRow,nbCol,x,y,angle,box,wh,hdl,fill,foreground,background,isboxed,isline,isfilled, alignment)
+     char ** fname;
+     int nbRow ;
+     int nbCol ;
+     double x,y,*angle,*wh;
+     double box[4] ;
      int fill;
      long *hdl;
      int *foreground, *background;
      BOOL isboxed,isline,isfilled;
+     sciTextAlignment alignment ;
 {
   BOOL redraw = FALSE ;
   integer v;
   double dv;
   integer x1,yy1,n=1,rect1[4];
   sciPointObj *psubwin, *pobj;
+  
    
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   redraw = checkRedrawing() ;
 
-  sciSetCurrentObj (ConstructText
-			(psubwin, fname,
-			 strlen (fname), x, y,wh, fill,foreground,background,isboxed,isline,isfilled));
+  sciSetCurrentObj( ConstructText( psubwin   ,
+                                   fname     ,
+                                   nbRow     ,
+                                   nbCol     ,
+                                   x         ,
+                                   y         ,
+                                   wh        ,
+                                   fill      ,
+                                   foreground,
+                                   background,
+                                   isboxed   ,
+                                   isline    ,
+                                   isfilled  ,
+                                   alignment  ) ) ;
   pobj=sciGetCurrentObj ();
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 
 
-/*   sciSetForeground (pobj, sciGetForeground (psubwin)); */
-/*   sciSetFontStyle(pobj, sciGetFontStyle (psubwin)); */
-/*   sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin)); */
   if ( redraw )
   {
     sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
@@ -265,11 +284,14 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,backgrou
   else
   {
     sciDrawObjIfRequired(pobj);
-  }   
+  }
 
   x1 = XDouble2Pixel(x);
   yy1 = YDouble2Pixel(y);
-  C2F(dr)("xstringl",fname,&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,fname_len);
+  C2F(dr)("xstringl",fname[0],&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,0L);
+  /* TODO: a modifier */
+  
+  /*stringBoundingRect( fname, font, position, rect1 ) ;*/
   C2F(echelle2d)(box,box+1,rect1,rect1+1,&n,&n,"i2f",3L);
   C2F(echelle2dl)(box+2,box+3,rect1+2,rect1+3,&n,&n,"i2f");
  
@@ -420,21 +442,21 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   
     if (legx != NULL)
     {
-      sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
+      sciSetText( ppsubwin->mon_x_label, &legx , 1, 1 ) ;
     }
    
     /*   legy=strtok_r((char *)0,"@",&buff); */
     legy=strtok((char *)NULL,"@"); /* NULL to begin at the last read character */
     if ( legy != NULL )
     {
-      sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
+      sciSetText( ppsubwin->mon_y_label, &legy , 1, 1 ) ;
     }
  
     /*   legz=strtok_r((char *)0,"@",&buff); */
     legz=strtok((char *)NULL,"@");
     if ( legz != NULL )
     {
-      sciSetText(ppsubwin->mon_z_label, legz , strlen(legz));
+      sciSetText( ppsubwin->mon_z_label, &legz , 1, 1 ) ;
     }
   }
    

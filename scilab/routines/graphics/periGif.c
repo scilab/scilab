@@ -2202,7 +2202,6 @@ void C2F(drawaxisGif)(char *str, integer *alpha, integer *nsteps, integer *v2, i
               GifLineColor(),Max(1,ScilabGCGif.CurLineWidth));
 }
 
-
 /*-----------------------------------------------------
 \encadre{Display numbers z[i] at location (x[i],y[i])
   with a slope alpha[i] (see displaystring_), if flag==1
@@ -2351,6 +2350,18 @@ static void C2F(displaysymbolsGif)(char *str, integer *n, integer *vx, integer *
 		    gdImageChar(GifIm, GifFont, vx[i], vy[i]-sz, c,GifLineColor());*/
   }
 }
+
+/*------------------------------------------------------------------------------------------*/
+/**
+ * @memo get the minimal and maximal font size
+ */
+void C2F(getFontMaxSizeGif)(char *str, integer *sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4)
+{
+  *sizeMin = 0 ;
+  *sizeMax = FONTMAXSIZE ;
+}
+/*------------------------------------------------------------------------------------------*/
+
 
 /*-------------------------------------------------------
 \encadre{Check if a specified family of font exist in GIF }
