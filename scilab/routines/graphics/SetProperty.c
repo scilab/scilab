@@ -3303,27 +3303,34 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_RECTANGLE:
+    {
+      int widthIndex = 2 ;
       if ((*numrow * *numcol != 5)&&(*numrow * *numcol != 4))
-	{
-	  sciprint("The number of element must be 4 (5 if z coordinate )\n");
-	  return -1;
-	}
-
-      pRECTANGLE_FEATURE (pthis)->x          = tab[0];
-      pRECTANGLE_FEATURE (pthis)->y          = tab[1];
+      {
+        sciprint("The number of element must be 4 (5 if z coordinate )\n");
+        return -1;
+      }
+      
+      pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
+      pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
+      
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	{
-	  pRECTANGLE_FEATURE (pthis)->z          = tab[2];
-	  pRECTANGLE_FEATURE (pthis)->width      = tab[3];
-	  pRECTANGLE_FEATURE (pthis)->height     = tab[4];
-	}
-      else
-	{
-	  pRECTANGLE_FEATURE (pthis)->width      = tab[2];
-	  pRECTANGLE_FEATURE (pthis)->height     = tab[3];
-	}
+      {
+        pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
+        widthIndex = 3 ;
+      }
+      
+      /* check that the height and width are positive */
+      if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
+      {
+        Scierror(999,"Width and height must be positive.\n") ;
+        return -1 ;
+      }
+      pRECTANGLE_FEATURE (pthis)->width  = tab[widthIndex    ] ;
+      pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
+      
       return 0;
-      break;
+    }
     case SCI_ARC:
       if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
 	{

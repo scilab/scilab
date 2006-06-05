@@ -4781,6 +4781,11 @@ int scirect(char *fname,unsigned long fname_len)
 		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
 	}
 
+        if ( hdl < 0 )
+        {
+          return -1 ;
+        }
+
 	if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
 	  Merge3d(psubwin); /* an addtomerge function should be much more efficient */
 	  sciDrawObj(sciGetCurrentFigure ());}
@@ -4807,6 +4812,12 @@ int scirect(char *fname,unsigned long fname_len)
 	  Objrect (stk(l1),stk(l2),stk(l3),stk(l4),
 		   NULL,&foreground,TRUE,FALSE,0,&hdl,FALSE);
 	}
+
+        if ( hdl < 0 )
+        {
+          return -1 ;
+        }
+
 	if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
 	  Merge3d(psubwin); /* an addtomerge function should be much more efficient */
 	  sciDrawObj(sciGetCurrentFigure ());}

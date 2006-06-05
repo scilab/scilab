@@ -1377,6 +1377,12 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 {
   sciPointObj *pobj = (sciPointObj *) NULL; 
  
+  if ( height < 0.0 || width < 0.0 )
+  {
+    Scierror(999,"Width and height must be positive.\n");
+    return NULL ;
+  }
+
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)

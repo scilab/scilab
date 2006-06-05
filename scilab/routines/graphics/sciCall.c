@@ -42,11 +42,19 @@ void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flags
      BOOL flagstring;
 { 
   sciPointObj *psubwin;
+  sciPointObj * newObj = NULL ;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   
-  sciSetCurrentObj (ConstructRectangle
-		    (psubwin ,*x,*y,*height, *width, 0, 0,
-		     foreground, background, isfilled, isline, n, flagstring));
+  newObj = ConstructRectangle( psubwin ,*x,*y,*height, *width, 0, 0,
+                               foreground, background, isfilled, isline, n, flagstring ) ;
+  
+  if ( newObj == NULL )
+  {
+    /* an error occured */
+    *hdl = -1 ;
+    return ;
+  }
+  sciSetCurrentObj( newObj ) ;
   
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
 }
@@ -670,8 +678,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   /* =================================================
    * Redraw Figure
    * ================================================= */
-
-  sciDrawObj(sciGetCurrentFigure ());
+  {
+    sciPointObj * pfig = sciGetCurrentFigure () ;
+    sciDrawObj( pfig ) ;
+  }
   /*   EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ())); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
