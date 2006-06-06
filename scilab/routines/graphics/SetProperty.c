@@ -3811,7 +3811,8 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_RECTANGLE:
     {
       int widthIndex = 2 ;
-      if ((*numrow * *numcol != 5)&&(*numrow * *numcol != 4))
+      int size = *numrow * *numcol ;
+      if ( size != 5 && size != 4 )
       {
         sciprint("The number of element must be 4 (5 if z coordinate )\n");
         return -1;
@@ -3820,7 +3821,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
       pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
       
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+      if ( size == 5 )
       {
         pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
         widthIndex = 3 ;
