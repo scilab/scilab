@@ -16,10 +16,6 @@ if argn(2)<=2
   end
 end
 
-if with_gtk()
-    _result=x_choose(_items,_title,_button);
-    return
-end
 
 // Create the namespace
 

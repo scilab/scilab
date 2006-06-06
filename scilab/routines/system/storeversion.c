@@ -24,7 +24,6 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     static char *Str[12];
     char tk[]="tk";
     char pvm[]="pvm";
-    char gtk[]="gtk";
     char ocaml[]="ocaml";
     char javasci[]="javasci";
     char atlas[]="atlas";
@@ -42,8 +41,6 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     n1=0;
     C2F(getcomp)( C2F(cha1).buf,&nbuf,128);
     Str[n1]=C2F(cha1).buf;n1++;
-    C2F(withgtk)(&irep);
-    if (irep) {Str[n1]=gtk;n1++;}
     C2F(withpvm)(&irep);
     if (irep) {Str[n1]=pvm;n1++;}
     C2F(withtk)(&irep);

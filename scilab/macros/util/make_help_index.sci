@@ -17,17 +17,10 @@ function path=make_help_index()
   		"<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
  		"</body></html>"]
   	else
-  		if %browsehelp == "help widget" then 
-  			// Gtk browser
-  			i_lines=[i_lines;
-  			"<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
- 			"</body></html>"]
-  		else
   			// Default Internet Browser IE,Mozilla, Opera,Nautilus
   			i_lines=[i_lines;
 			"<BR><A HREF=""file:///"+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
 			"</body></html>"]
-		end
   	end
   clear %browsehelp	
   mputl(i_lines,path)

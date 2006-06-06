@@ -117,9 +117,6 @@ periFig.o: periFig.c Math.h ../machine.h Graphics.h periFig.h color.h \
 periGif.o: periGif.c Math.h ../machine.h Graphics.h periGif.h color.h \
 	../gd/gd.h bcg.h ../stack-c.h ../graphics/Math.h \
 	../stack-def.h ../interf/stack1.h ../interf/stack2.h ../interf/stack3.h
-periGtk.o: periGtk.c Math.h ../machine.h Graphics.h bcg.h \
-	../stack-c.h ../graphics/Math.h ../stack-def.h ../interf/stack1.h \
-	../interf/stack2.h ../interf/stack3.h ../version.h color.h
 periPos.o: periPos.c Math.h ../machine.h Graphics.h periPos.h color.h \
 	bcg.h ../stack-c.h ../graphics/Math.h ../stack-def.h \
 	../interf/stack1.h ../interf/stack2.h ../interf/stack3.h

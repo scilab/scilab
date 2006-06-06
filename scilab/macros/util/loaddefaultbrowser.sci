@@ -1,10 +1,6 @@
 function DefaultBrowser=loaddefaultbrowser()
 // Allan CORNET
 // INRIA 2005
-  if with_gtk() then
-      DefaultBrowser="help widget";
-      return
-  end
   if MSDOS then
     FileBrowser=SCIHOME+"\Browser.ini";
   else

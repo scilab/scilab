@@ -26,8 +26,6 @@ TERMCAPLIB = -lreadline -lncurses
 # and for linking: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS)
 ###########
 CC = cc
-#CC_OPTIONS = -O -Dlinux -fwritable-strings -DNARROWPROTO `gtk-config --cflags` `gnome-config --cflags gnome`
-#CC_OPTIONS = -g -Dlinux -fwritable-strings -DNARROWPROTO `pkg-config --cflags gtk+-2.0`
 CC_OPTIONS = -O -Dlinux -fwritable-strings -DNARROWPROTO `gnome-config --cflags gnome`
 CC_LDFLAGS = -lieee 
 CC_PICFLAGS = -fPIC

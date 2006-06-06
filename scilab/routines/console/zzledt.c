@@ -12,14 +12,8 @@
 
 static char Sci_Prompt[10];
 
-#ifdef WITH_GTK
-#ifdef WITH_READLINE 
-/* this file is unused */ 
-#define WITHOUT_STD_ZZLEDT
-#endif 
-#endif 
 
-#ifndef WITHOUT_STD_ZZLEDT /* the gtk readline version is in gtk */ 
+#ifndef WITHOUT_STD_ZZLEDT 
 #ifndef _MSC_VER /** The win32 version is defined in the wsci directory **/
 #include <string.h>
 #include <signal.h> /* for SIGINT */
@@ -186,10 +180,10 @@ extern int XClearScreenConsole(char *fname);
 
 /*end history functions*/
 
-#ifndef WITH_GTK
+
 extern int  XEvorgetchar(int interrupt);  
 extern void Xputchar(int c);  
-#endif
+
 extern int  Xorgetchar(int interrupt);
 /* --- End extern functions ---  */
 
@@ -249,11 +243,9 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   int keystroke;
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
-#ifndef WITH_GTK
+
   modeX=*modex;
-#else
-  modeX=0;
-#endif
+
   if(!modeX) {
     if(init_flag) {
       init_io();
@@ -847,14 +839,10 @@ static int CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max)
 
 void PutChar(int c)
 {
-#ifdef WITH_GTK
-  putchar(c);
-#else
   if(modeX)
     Xputchar(c);
   else
     putchar(c);
-#endif
 }
 
 /************************************************************************
@@ -863,48 +851,12 @@ void PutChar(int c)
 
 int GetCharOrEvent(int interrupt)
 {
-#ifdef WITH_GTK
-  return Xorgetchar(interrupt);
-#else
   if(modeX)
     return XEvorgetchar(interrupt);
   else
     return Xorgetchar(interrupt);
-#endif
 }
 
-/************************************************************************
- * get_one_char : pour xscimore (gtk uniquement)
- ***********************************************************************/
-#ifdef WITH_GTK
-int get_one_char(char *prompt) {
-  static char lp[24];
-  char buffer[2];
-  int buf_size=2, len_line, eof;
-  int menusflag=0,modex=0;
-  strcpy(lp,Sci_Prompt);
-  strcpy(Sci_Prompt,prompt); 
-  C2F(zzledt)(buffer,&buf_size,&len_line,&eof,&menusflag,&modex,2);
-  strcpy(Sci_Prompt,lp);
-  return buffer[0];
-  return Xorgetchar(1);
-}
-#endif
-
-/* ---------------procedures specific to console mode--------------- */
-
-#ifdef WITH_GTK
-void sci_get_screen_size (int *rows,int *cols)
-{
-  struct winsize window_size;
-  if (ioctl (fd, TIOCGWINSZ, &window_size) == 0)
-    {
-      *cols = (int) window_size.ws_col;
-      *rows = (int) window_size.ws_row;
-    }
-}
-
-#endif
  
 /************************************************************************
  * set CBREAK mode and switch off echo and disable CR action!
@@ -1097,4 +1049,4 @@ void GetCurrentPrompt(char *CurrentPrompt)
 	}
 }
 
-#endif /* the gtk readline version is in gtk */ 
+#endif

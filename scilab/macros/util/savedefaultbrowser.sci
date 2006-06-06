@@ -11,11 +11,7 @@ function savedefaultbrowser(browser)
   else
   	FileBrowser=SCIHOME+"/Browser.ini";
   	if ~or(DefaultBrowser==['Scilab Browser','Old Scilab Browser','nautilus','mozilla/netscape (gnome-moz-remote)','opera','quanta (kde)']) then
-  		if with_gtk() then
-  		  DefaultBrowser="help widget";
-      else
-        DefaultBrowser="Scilab Browser";
-	    end
+    DefaultBrowser="Scilab Browser";
     end
 	
   end

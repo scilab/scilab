@@ -26,7 +26,7 @@ extern int xinitxend_flag;
  ********************************************************/
 extern int sciSwitchWindow  __PARAMS((int *winnum));/* NG */
 extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
-#if !defined(_MSC_VER) && !defined(WITH_GTK)
+#if !defined(_MSC_VER)
 extern int WithBackingStore();
 #endif
 static int scig_buzy = 0;
@@ -68,7 +68,7 @@ void scig_replay(integer win_num)
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 
-#if defined(_MSC_VER) || defined(WITH_GTK)
+#if defined(_MSC_VER)
   backing = 0;
 #else
   backing = WithBackingStore();
@@ -119,7 +119,7 @@ void scig_expose(integer win_num)
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 
-#if defined(_MSC_VER) || defined(WITH_GTK)
+#if defined(_MSC_VER)
   backing = 0;
 #else
   backing = WithBackingStore();
@@ -174,7 +174,7 @@ void scig_resize(integer win_num)
   C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
   CPixmapResize1();
   C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-#if defined(_MSC_VER) || defined(WITH_GTK)
+#if defined(_MSC_VER)
   backing = 0;
 #else
   backing = WithBackingStore();

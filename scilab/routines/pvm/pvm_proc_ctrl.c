@@ -425,7 +425,6 @@ void C2F(scipvmspawn)(char *task,  int *l1,
 #if (defined _MSC_VER)
   strcpy(cmd, "scilex.exe");
 #else
-  /* I really need scilab here for gtk -version */
   strcpy(cmd, "scilab");
 #endif 
 #if (defined _MSC_VER)

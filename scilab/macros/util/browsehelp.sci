@@ -11,8 +11,7 @@ function browsehelp(path,key)
     key="index"
   end
   if or(sciargs()=="-nw") then // the no window case
-    if  with_gtk ()| ..
-	  (with_tk()& or(%browsehelp==['Scilab Browser','Old Scilab Browser'])) | ..
+    if  (with_tk()& or(%browsehelp==['Scilab Browser','Old Scilab Browser'])) | ..
 	  or(%browsehelp==['firefox','nautilus','mozilla/netscape (gnome-moz-remote)','opera','quanta (kde)']) then
       run_help(path,key);
     else
@@ -38,10 +37,6 @@ function  browsehelp_configure(job)
       browse_modes=[browse_modes;
 		    'Scilab Browser'
 		    'Old Scilab Browser'];
-    end
-    
-    if with_gtk() then 
-      browse_modes=['help widget';browse_modes];
     end
     
     if %browsehelp<>[] then //help mode already selected
@@ -82,15 +77,13 @@ endfunction
 
 function run_help(path,key)
 // the  help browser
-// browse_modes=['help widget';'nautilus';'tcltk'];
+// browse_modes=['nautilus';'tcltk'];
   [lhs,rhs]=argn(0);
   global LANGUAGE INDEX
   global %browsehelp
   key1=strsubst(key,' ','_') //for temp file and widget name
 
   select %browsehelp
-  case 'help widget' then
-    help_gtk(SCI+"/man/",LANGUAGE,path);
   case 'firefox' then
     // we must check if a firefox is opened or not
     exec_str = 'if firefox -remote ""ping()"" 2> /dev/null ; then ..

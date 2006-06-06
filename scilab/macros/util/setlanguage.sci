@@ -10,7 +10,7 @@ if (language=='fr' | language=='eng') & ~(LANGUAGE==language) then
 	global %helps
 	%helps=initial_help_chapters(LANGUAGE);
 	clear initial_help_chapters
-	if with_tk()& ~with_gtk() then 
+	if with_tk() then 
 		RescanSciGUIHelp();
 		winclose(winlist());
     		end

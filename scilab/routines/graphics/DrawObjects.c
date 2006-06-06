@@ -9688,9 +9688,7 @@ void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym, int *DPI)
 /* i.e.in X11 (same thing using Win32 driver), with x2=x1+1 and y1=y2, we have : */
 /*   XDrawLine(x1,y1,x1,y1)  does nothing (no pixel lit) */
 /*   XDrawLine(x1,y1,x2,y2)  ONE pixel lit */
-/* BUT the corresponding function with driver Gtk, Gif (and others?) give us: */
-/*   GTKDrawLine(x1,y1,x1,y1)  ONE pixel lit */
-/*   GTKDrawLine(x1,y1,x2,y2)  TWO pixels lit */
+/* BUT the corresponding function with driver Gif (and others?) give us: */
 /* for now (and only for marks), I make a trick using a pixel_offset set to 0 or 1 */
 /* depending on the driver. */
 
@@ -10184,7 +10182,6 @@ int GetDPIFromDriver(int * DPI)
 	   {
         succeed = GetScreenDPI(&ixres,&iyres);
         if(succeed == -1){
-	    /* gtk version <2 enabled */
 	     ixres = (int)72.; /* default value*/
 	     iyres = (int)72.; /* default value*/
         }
@@ -10208,7 +10205,6 @@ int GetDPIFromDriver(int * DPI)
     default:
       succeed = GetScreenDPI(&ixres,&iyres);
       if(succeed == -1){
-	/* gtk version <2 enabled */
 	ixres = (int)72.; /* default value*/	
 	iyres = (int)72.; /* default value*/
       }

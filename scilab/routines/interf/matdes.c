@@ -3827,9 +3827,6 @@ int int_gtkhelp(char *fname,unsigned long fname_len)
   GetRhsVar(1,"c",&m1,&n1,&l1);
   GetRhsVar(2,"c",&m2,&n2,&l2);
   GetRhsVar(3,"c",&m3,&n3,&l3);
-#ifdef WITH_GTK 
-  Sci_Help(cstk(l1),cstk(l2),cstk(l3));
-#endif 
   LhsVar(1)=0;
   return 0;
 }

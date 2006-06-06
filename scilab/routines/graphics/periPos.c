@@ -1297,10 +1297,6 @@ void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer
  around the string.}
 -----------------------------------------------------*/
 
-#ifdef WITH_GTK
-extern char *sci_convert_from_utf8(char *str, int *alloc,char *code);
-#endif 
-
 void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 {     
   integer i,rect[4] ;
@@ -1311,11 +1307,6 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
     return;
   }
   
-#ifdef WITH_GTK
-  int alloc;
-  /* we expect iso-latin1 in postscript */
-  string = sci_convert_from_utf8(string, &alloc,NULL);
-#endif 
   C2F(boundingboxPos)(string,x,&yn,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   FPRINTF((file,"\n("));
   for ( i=0; i < (int)strlen(string);i++)
@@ -1334,9 +1325,6 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 	   (int)*x,def_height*prec_fact - yn, 
 	   fontsizePos ()/2,
 	   string));
-#ifdef WITH_GTK
-  if ( alloc == 1 ) FREE(string);
-#endif
  }
 
 /*** ajouts q&d en attendant mieux.... Bruno (le 24 Nov 2002) ***/

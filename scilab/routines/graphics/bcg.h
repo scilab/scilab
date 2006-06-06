@@ -9,12 +9,8 @@
 #include "../machine.h" /* to be sure that WITH_XXX are defined */
 
 #ifndef _MSC_VER
-#ifdef WITH_GTK
-#include <gtk/gtk.h>
-#else
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
-#endif 
 #endif 
 
 #ifndef CoordModePrevious 
@@ -125,32 +121,6 @@ typedef struct BCG
   HMENU hMenuRoot;
   int IDM_Count;
 #else 
-#ifdef __G_LIB_H__
-/** GTK specific objects **/
-  gint bg;				/* Background */
-  gint fg;                              /* Foreground */
-  GtkWidget *window;			/* Graphics frame */
-  GtkWidget *drawing;                   /* Drawable window */
-  GtkWidget *scrolled;                  /* scrolled window */
-  GtkWidget *CinfoW ;                   /* info widget */
-  GtkWidget *vbox;                      /* vbox */
-  GtkWidget *menubar;
-  GtkItemFactory *item_factory;
-  menu_entry * menu_entries;            /* */
-  GdkPixmap *pixmap;                    /* Backing store */
-  GdkDrawable *Cdrawable;               /* set to drawing->window or to a pixmap 
-					 * when using animation mode 
-					 * See CurPixmapStatus */
-  GdkGC *wgc;
-  GdkGC *stdgc;
-  GdkColor gcol_bg; 
-  GdkColor gcol_fg; 
-  GdkRectangle clip;
-  GdkCursor *gcursor;                   /* xclick cursor */ 
-  GdkCursor *ccursor;                   /* standard cursor */
-  GdkFont *font;
-  int resize;				/* Window resized */
-#else 
   /** Xwindow specific objects **/
   Drawable Cdrawable ; /** The drawable = CWindow or a Pixmap */
   int  Cdrawable_flag ; /** Cdrawable is not synchronized with graphics when == 1  */
@@ -166,7 +136,6 @@ typedef struct BCG
   Pixel *Colors; /* vector of colors 
 		    Note that there are 2 colors more than Numcolors,
 		    ie black and white at the end of this vector */
-#endif
 #endif
 } BCG ;
 
