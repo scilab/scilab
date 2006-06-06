@@ -115,7 +115,7 @@ extern void settexmacs();
 int  sci_show_banner=1;
 static int  no_window = 0;
 /*----------------------------------------------------------------------------------*/
-void C2F(realmain)()
+void C2F(mainscic)()
 {
   int ierr, argc,i;
   int  no_startup_flag=0;
