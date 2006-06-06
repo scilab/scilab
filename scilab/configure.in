@@ -48,12 +48,6 @@ AC_ARG_WITH(pvm,
 AC_ARG_WITH(tk,
     [  --without-tk            do not compile with TCL/TK ])
 
-AC_ARG_WITH(gtk,
-    [  --with-gtk              use Gtk widgets ])
-
-AC_ARG_WITH(gtk2,
-    [  --with-gtk2             use Gtk widgets ])
-
 AC_ARG_WITH(addedf2c,
     [  --with-addedf2c         build a local f2c (routines/f2c)])
 
@@ -157,7 +151,6 @@ fi
 #   different for MIPS Ultrix
 SCILAB_GS=sh
 # scilab script file in script directory: default is "scilab.g" for UNIX
-#   for gcwin32 use "scilab-gcwin32.g"
 SCILABSCRIPT=scilab.g
 # Fortran program in routines/os_specific: default is "fgetarg.f" 
 #   for HPUX use "fgetarg-hpux.f"
@@ -169,19 +162,13 @@ HPPA_OLD=
 # Scilab main file: default is "mainsci.o" for UNIX
 MAIN='mainsci.o'
 # for graphics: default is X11
-#   different for Win32
 PERIFILE=periX11.o
 # specific scilab dirs for graphics: default is "xsci" for X11
-#   different for Win32
 GUILIB=xsci 
-# specific for gnome/gtk version 
-GZVT=
 # specific scilab dirs for xdr:  default is void for X11
-#   xdr for Win32
 XDRLIB=
 XDRLIBNAME=
 # objects files in routines/menusX: default is XOBJS for UNIX
-#   for Win32 use WOBJS
 MENUSOBJS=XOBJS
 # use other malloc (in "routines/os_specific" directory) for some 64 bits machines
 MALLOC=
@@ -193,8 +180,6 @@ if test "$with_addedf2c" = yes; then
 else
   F2C_SUBDIR=
 fi
-# on windows target generating scripts for 
-# printing is useless 
 BLPR_SCRIPTS='$(BPROGRAMS)'
 EXAMPLES_TESTS='$(SUBDIRS1) $(SUBDIRS2)'
 IMPPREF=S
@@ -1460,16 +1445,6 @@ fi
 ##########################################
 ## test for X11 and Xaw3d  Athena widgets
 ##########################################
-
-# do not want to check for X11 when using gtk or gtk2
-if test "$with_gtk" = yes; then	
-   PERIFILE=periGtk.o  
-fi 
-
-if test "$with_gtk2" = yes; then	
-   PERIFILE=periGtk.o  
-fi 
-
 if test "$PERIFILE" = periX11.o; then 
   ac_save_LDFLAGS="$LDFLAGS"
   if test -n "$x_libraries"; then
@@ -1798,204 +1773,6 @@ if test "$with_tk" != no; then
 fi
 
 #################
-## GTK
-#################
-
-ZZLEDT=
-GTKPLUGBUG=
-
-if test "$with_gtk" = yes; then
-  AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
-  if test "$GTK_CONFIG" = no; then
-    AC_MSG_WARN([gtk-config not found: I will not use -with-gtk])
-    with_gtk="no"
-  fi
-  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
-  if test "$GNOME_CONFIG" = no; then
-    AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
-    with_gtk="no"
-  fi
-  if test "$with_gtk" = yes; then
-    AC_MSG_CHECKING([if gtk is version 1.2 or later])
-    GTK_VER=`gtk-config --version`
-    case $GTK_VER in
-      0.* )
-        AC_MSG_ERROR([you need at least version 1.2 of gtk])
-        ;;
-      1.1* )
-        AC_MSG_ERROR([you need at least version 1.2 of gtk])
-        ;;
-      * )
-      # we have cheched above that gtk-config is in the 
-      # path, then we don't want to generate a full path 
-      # for gtk-config or to directly generate the 
-      # result of `gtk-config --cflags`. Idem for gnome
-      AC_MSG_RESULT([$GTK_VER])
-      GTKCFLAGS='`gtk-config --cflags`'
-      GTKLIBS='`gtk-config --libs` `gnome-config --libs  gtkxmhtml`'
-      GNOMECFLAGS='`gnome-config --cflags gnome`'
-      ;;
-    esac    
-    AC_DEFINE(WITH_GTK)
-    GUILIB='gtksci'
-    GZVT='gzvt'
-    SCILABSCRIPT=scilab-gtk.g
-    MENUSOBJS=GOBJS
-    PERIFILE=periGtk.o
-    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
-    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
-    HTMLFLAGS='`gnome-config --cflags gnome`'
-  fi
-  # try to use readline with the gtk version 
-  ac_save_LIBS="$LIBS"
-  LIBS="$TERMCAPLIB  $LIBS"
-  AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
-  LIBS=$ac_save_LIBS
-  TERMCAPLIB="$READLINE $TERMCAPLIB"
-  if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl.o"
-     AC_DEFINE(WITH_READLINE)
-  fi
-  # we remove the X libs they were just used above during tcl/tk check 
-  if test "$with_gtk" = yes; then
-    XAWLIB=
-    XMULIB=
-    XAW_LOCAL_SUBDIR=
-    XAW_LOCAL_LIB=
-    X_CFLAGS=
-    XAW_LOCAL_INCLUDES=
-    X_EXTRA_LIBS=
-    XXTXEXT=
-    XX11=
-    X_LIBS= 
-    X_PRE_LIBS=
-    if test "$TK_INC_PATH" = '-I/usr/include' ; then
-        TK_INC_PATH=
-    fi
-    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
-        TCL_INC_PATH=
-    fi
-  fi
-fi
-
-
-#################
-## GTK2 
-#################
-
-TERM_NAME=vte
-TERM_LDFLAGS=VTE_LDFLAGS
-
-if test "$with_gtk2" = yes; then
-  AC_PATH_PROG(PKG_CONFIG,pkg-config)
-  if test "x$PKG_CONFIG" = x; then
-    # @*%&$ Ximian programmers renamed this application
-    AC_PATH_PROG(PKG_CONFIG,pkgconfig,yes,no)
-    if test "x$PKG_CONFIG" = x; then
-    	AC_MSG_ERROR([Could not find the pkg-config (or pkgconfig) program.],)
-	with_gtk2="no"
-    fi
-  fi
-  #  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
-  #if test "$GNOME_CONFIG" = no; then
-  #  AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
-  #  with_gtk2="no"
-  # fi
-  if test "$with_gtk2" = yes; then
-    AC_MSG_CHECKING([if gtk is version 2.1 or later])
-    GTK_VER=`$PKG_CONFIG --modversion gtk+-2.0`
-    case $GTK_VER in
-      2.2.* | 2.3.0 | 2.3.1| 2.3.2| 2.3.4 )
-        GTKPLUGBUG=gtkmenu.o
-	;;
-    esac    
-    AC_MSG_RESULT([$GTK_VER])
-    # we have cheched above that gtk-config is in the 
-    # path, then we don't want to generate a full path 
-    # for gtk-config or to directly generate the 
-    # result of `gtk-config --cflags`. Idem for gnome
-    GTKCFLAGS='`pkg-config gtk+-2.0 --cflags`'
-    GTKLIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
-    GNOMECFLAGS='`pkg-config gtk+-2.0 --cflags`'
-    AC_DEFINE(WITH_GTK)
-    GUILIB='gtksci'
-    # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
-    # gzvt2 works again with a gtk patch 
-    GZVT='gzvt2'
-    # we need a patched version 
-    SCILABSCRIPT=scilab-gtk.g
-    MENUSOBJS=GOBJS
-    PERIFILE=periGtk.o
-    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
-    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
-    HTMLFLAGS='`pkg-config libgtkhtml-2.0 --cflags`'
-    # check for libgtkhtml-2.0
-    ac_save_LIBS="$LIBS"
-    LIBS=`pkg-config libgtkhtml-2.0 --cflags --libs`
-    GTKHTML=no
-    AC_CHECK_LIB(gtkhtml-2,html_document_open_stream,[GTKHTML=yes])
-    if test "$GTKHTML" = no; then
-    	AC_MSG_ERROR([Could not find the libgtkhtml-2.0 package.],)
-    fi
-    LIBS=$ac_save_LIBS
-    # check first for vte 
-    ac_save_LIBS="$LIBS"
-    LIBS=`pkg-config vte --cflags --libs` 
-    VTE=no 
-    AC_CHECK_LIB(vte,vte_terminal_new,[VTE=yes])
-    if test "$VTE" = no; then
-       AC_MSG_WARN([Could not find the vte library. I will try libzvt-2.0 ],)
-       AC_MSG_WARN([you should install vte and vte-devel ],)
-       # check for zzledt 
-       LIBS=`pkg-config libzvt-2.0 --cflags --libs` 
-       GZVT2=no
-       AC_CHECK_LIB(zvt-2.0, zvt_term_new_with_size,[GZVT2=yes])
-       if test "$GZVT2" = no; then
-	  AC_MSG_ERROR([Could not find vte library or libzvt-2.0 library.],)
-       else 
-         TERM_NAME=zterm
-         TERM_LDFLAGS=ZTERM_LDFLAGS
-       fi
-    else 
-	 TERM_NAME=vte
-	 TERM_LDFLAGS=VTE_LDFLAGS
-    fi
-    LIBS=$ac_save_LIBS
-  fi
-  # try to use readline with the gtk version 
-  ac_save_LIBS="$LIBS"
-  LIBS="$TERMCAPLIB  $LIBS"
-  AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
-  LIBS=$ac_save_LIBS
-  TERMCAPLIB="$READLINE $TERMCAPLIB"
-  if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl.o"
-     AC_DEFINE(WITH_READLINE)
-  fi
-  # we remove the X libs they were just used above during tcl/tk check 
-  if test "$with_gtk2" = yes; then
-    XAWLIB=
-    XMULIB=
-    XAW_LOCAL_SUBDIR=
-    XAW_LOCAL_LIB=
-    X_CFLAGS=
-    XAW_LOCAL_INCLUDES=
-    X_EXTRA_LIBS=
-    XXTXEXT=
-    XX11=
-    X_LIBS= 
-    X_PRE_LIBS=
-    if test "$TK_INC_PATH" = '-I/usr/include' ; then
-        TK_INC_PATH=
-    fi
-    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
-        TCL_INC_PATH=
-    fi
-  fi
-fi
-
-
-#################
 ## atlas 
 #################
 
@@ -2123,15 +1900,10 @@ AC_SUBST(XMULIB)
 AC_SUBST(XAW_LOCAL_SUBDIR)
 AC_SUBST(XAW_LOCAL_INCLUDES)
 AC_SUBST(XAW_LOCAL_LIB)
-AC_SUBST(GTKCFLAGS)
-AC_SUBST(GTKLIBS)
-AC_SUBST(GNOMECFLAGS)
 AC_SUBST(TERMCAPLIB)
 AC_SUBST(MAIN)
 AC_SUBST(MAKEFILE_TARGET)
 AC_SUBST(PERIFILE)
-AC_SUBST(GUILIB)
-AC_SUBST(GZVT)
 AC_SUBST(XDRLIB)
 AC_SUBST(XDRLIBNAME)
 AC_SUBST(WINXFLAGS)
@@ -2202,7 +1974,6 @@ AC_SUBST(IMPENV)
 AC_SUBST(ZZLEDT)
 AC_SUBST(STRIP)
 AC_SUBST(HTMLFLAGS)
-AC_SUBST(GTKPLUGBUG)
 AC_SUBST(XXTXEXT)
 AC_SUBST(XX11)
 AC_SUBST(PERIX11NOPT)
@@ -2213,5 +1984,5 @@ AC_SUBST(TERM_LDFLAGS)
 AC_SUBST(JAVASCITARGET)
 AC_SUBST(JAVA_INCL)
 AC_SUBST(GCCFIX)
-AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile $MAN_FR $MAN_ENG)
+AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g  examples/Makefile routines/version.h imp/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci macros/util/xmlfiletohtml.sci routines/Javasci/Makefile $MAN_FR $MAN_ENG)
 
