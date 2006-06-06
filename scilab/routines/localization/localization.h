@@ -12,7 +12,7 @@
 #include "../hashtable/hashtable.h"
 /*-----------------------------------------------------------------------------------*/ 
 /*load the xmlfile into the hashtable*/
-int AppendXmlFile(const char *filename, GHashTable *table, char* encoding) ;
+int AppendXmlFile(const char *filename, GHashTable *table);
 
 /*return pointer on HashTable Scilab Errors*/
 GHashTable *GetHashTableScilabErrors(void);
