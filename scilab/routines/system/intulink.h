@@ -11,7 +11,7 @@
 #include "../stack-c.h"
 #include "../version.h"
 
-int C2F(intulink) _PARAMS((char *fname));
+int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len));
 
 #endif /*__INTULINK__*/
 /*-----------------------------------------------------------------------------------*/ 

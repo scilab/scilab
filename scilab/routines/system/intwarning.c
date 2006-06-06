@@ -14,7 +14,7 @@
 #define TRUE  1
 #define FALSE 0
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(intwarning) _PARAMS((char *fname))
+int C2F(intwarning) __PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
 
