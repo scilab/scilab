@@ -180,12 +180,12 @@ void System_contents( int x)
     AddHistory();
     C2F(xerbla)();
     C2F(intfromjava)();
-	C2F(intgetmemory)();
-	C2F(intwhat)();
-	C2F(intfromc)();
-	C2F(intgetmd5)();
-	C2F(intulink);
-	C2F(intwarning);
+    C2F(intgetmemory)();
+    C2F(intwhat)();
+    C2F(intfromc)();
+    C2F(intgetmd5)();
+    C2F(intulink)();
+    C2F(intwarning)();
     }
 } 
 
