@@ -1,63 +1,21 @@
+// Non-regression test file for bug 623
+// Copyright INRIA
+// Scilab Project - Pierre MARECHAL
+// Copyright INRIA 2006
+// Date : 6 juin 2006
 
-// exec("bug623.sci");
+uno=int8(1);
+1==[uno uno];
 
- 
- uno=int8(1);
+test1 = (ans == [ %T %T ]);
+test2 = (execstr("uint8(1) & %t","errcatch") ==  144);
+test3 = (execstr("int32(1) & %t","errcatch") ==  144);
+test3 = (execstr("uint32(1) & %t","errcatch") ==  144);
+test4 = (execstr("int16(1) & %t","errcatch") ==  144);
+test5 = (execstr("int8(1) & %f ","errcatch") ==  144);
 
-   1==[uno uno];
-
-  
-if ans == [ %T %T ]  then
-
-
-//affich_result(%T,623)
+if test1 & test2 & test3 & test4 & test5 then
+	affich_result(%T,623);
 else
-affich_result(%F,623)
-
-end;
- 
-
-//lasterror()
- 
-iErrorCode=execstr("uint8(1) & %t","errcatch");
-if iErrorCode then
-//affich_result(%T,623);
-else 
-affich_result(%F,623);
- abort()
+	affich_result(%F,623);
 end
-
-iErrorCode=execstr("int32(1) & %t","errcatch");
-if iErrorCode then
-//affich_result(%T,623);
-else 
-affich_result(%F,623);
- abort()
-end
-
-iErrorCode=execstr("uint32(1) & %t","errcatch");
-if iErrorCode then
-//affich_result(%T,623);
-else 
-affich_result(%F,623);
- abort()
-end
- 
-iErrorCode=execstr("int16(1) & %t","errcatch");
-if iErrorCode then
-//affich_result(%T,623);
-else 
-affich_result(%F,623);
- abort()
-end
- 
-iErrorCode=execstr("int8(1) & %f ","errcatch");
-if iErrorCode then
-affich_result(%T,623);
-else 
-affich_result(%F,623);
- abort()
-end  
-    
-
-
