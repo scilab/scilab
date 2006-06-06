@@ -91,8 +91,8 @@ extern void
 	  C2F(intwhat)(),
 	  C2F(intfromc)(),
 	  C2F(intgetmd5)(),
-	  C2F(intulink),
-	  C2F(intwarning);
+	  C2F(intulink)(),
+	  C2F(intwarning)();
 
 
 void System_contents( int x)
