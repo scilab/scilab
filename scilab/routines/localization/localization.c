@@ -77,12 +77,58 @@ void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding)
 		}
 	}
 }
-/*-----------------------------------------------------------------------------------*/ 
-int AppendXmlFile(const char *filename, GHashTable *table, char* encoding)
+/*-----------------------------------------------------------------------------------*/
+char *GetXmlFileEncoding(const char *filename)
+{
+	FILE *stream;
+	char *encoding;
+	encoding=(char *)malloc(sizeof(char)*32);
+	
+	if( (stream  = fopen(filename, "r" )) != NULL ) // C4996
+	{
+		char FirstLine[256];
+		if( fgets( FirstLine, 256, stream ) == NULL)
+		{
+	        printf( "fgets error\n" );
+			return NULL;
+		}
+	    else
+		{
+			char *pEncodingStart;
+			char *pQuotationStart;
+			char *pQuotationEnd;
+			char *pTemp;
+			size_t length;
+
+			pEncodingStart=strstr(FirstLine, "encoding");
+			pQuotationStart=strchr(pEncodingStart,'"');
+			pTemp=pQuotationStart+1;
+			pQuotationEnd=strchr(pTemp,'"');
+			length=pQuotationEnd-pTemp;
+			strncpy(encoding, pTemp, length);
+			strcpy(encoding+length,"\0");
+		}
+		fclose( stream );
+	}
+	else
+	{
+		printf( "ERROR:xmlfile %s was not opened or xmlfile %s doesn't exist\n", filename, filename);//what to add to exit the whole program???
+	}
+
+	if(encoding==NULL)
+	{
+		strcpy(encoding,"utf-8");
+	}
+	return encoding;
+
+}
+/*-----------------------------------------------------------------------------------*/
+int AppendXmlFile(const char *filename, GHashTable *table)
 {
 	int bOK=0;
     xmlTextReaderPtr reader;
     int ret;
+	char *encoding=GetXmlFileEncoding(filename);
 
 	reader = xmlReaderForFile(filename, encoding, 0);
 
@@ -136,7 +182,7 @@ int InitializeHashTableScilabErrors(char* SCIPATH)
 	strcpy(FileLanguage,SCIPATH);
 	strcat(FileLanguage,"/localization/errors.xml");
 
-	AppendXmlFile(FileLanguage, Table_Scilab_Errors,"UTF-8");
+	AppendXmlFile(FileLanguage, Table_Scilab_Errors);
 
 	free(FileLanguage);
 	
