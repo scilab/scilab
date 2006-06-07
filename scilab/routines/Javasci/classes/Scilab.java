@@ -42,6 +42,12 @@ public class Scilab
   /* Get Last Error Code */
   /* 0 no error */
   
+  public static boolean ExecuteScilabScript(String scriptfilename)
+  /* Execute a scilab script .sce*/
+  {
+		return Exec("exec(''"+scriptfilename+"'');");
+  }
+  
   public static native boolean Finish();
   /* When you finish to use Scilab Call scilab.quit, clean memory, ... */
 
