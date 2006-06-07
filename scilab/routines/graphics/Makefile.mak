@@ -15,6 +15,7 @@ OBJSC = periWin.obj periPos.obj periFig.obj periGif.obj Xcall.obj Xcall1.obj \
 	GetProperty.obj BuildObjects.obj CloneObjects.obj DestroyObjects.obj \
 	DrawObjects.obj SetProperty.obj HandleManagement.obj InitObjects.obj \
 	Interaction.obj Interaction.obj SetProperty.obj clipping.obj \
+        StringMatrix.obj sciMatrix.obj Vect2Matrix.obj
 
 OBJSF = 
 
