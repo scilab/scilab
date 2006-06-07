@@ -28,6 +28,8 @@
     <P><VERB>public static native int TypeVar(String VarName) </VERB>: return  Scilab type of VarName. See <LINK>type</LINK></P>
     
 		<P><VERB>public static native int GetLastErrorCode() </VERB>: return  last Error code. See <LINK>lasterror</LINK></P>
+		
+		<P><VERB>public static boolean ExecuteScilabScript(String scilabscriptfilename) </VERB>: Execute a scilab script (.sce) return true if there is no error.</P>
     
     <P><VERB>public static native boolean Finish() </VERB>: terminate scilab (call scilab.quit , close a scilab object)</P>
     
