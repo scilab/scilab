@@ -249,8 +249,8 @@ static void realmain(int nos,char *initial_script,int initial_script_type,int lp
 	#endif
 
 	/* cleaning */ /* Allan CORNET 18/01/2004 */
-	WinExit();
 	C2F(sciquit)(); 
+	WinExit();
 	C2F(tmpdirc)();
 }
 /*-----------------------------------------------------------------------------------*/
