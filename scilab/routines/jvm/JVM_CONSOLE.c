@@ -68,7 +68,7 @@ int Create_JVM_Thread_CONSOLE(void)
 		}
 	#else
 		int thr_id=0;
-		thr_id=pthread_create(&tid, NULL,Thread_JVM_CONSOLE, NULL);
+		thr_id=pthread_create(&tid, NULL,(void*)Thread_JVM_CONSOLE, NULL);
 		if (thr_id)
 		{
 			bOK=TRUE;
