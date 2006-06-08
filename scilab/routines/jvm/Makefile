@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/libjvm.a
 
-OBJSC = jvms.o JVM_CONSOLE.o JVM_UNIX.o
+OBJSC = jvms.o JVM_CONSOLE.o JVM_Unix.o
         
 OBJSF =
 
