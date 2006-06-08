@@ -26,6 +26,9 @@ extern LPTW GetTextWinScilab(void);
 /*-----------------------------------------------------------------------------------*/
 int MyPutCh (int ch)
 {
+	char Str[1];
+	Str[0]=ch;
+	//PutString(Str);
 	return TextPutCh (&textwin, (BYTE) ch);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -63,6 +66,8 @@ int MyFPutS (char *str, FILE * file)
 	if (isterm (file))
 	{
 		TextPutS (&textwin, str);
+		PutString(str);
+		
 		TextMessage ();
 		return (*str);		/* different from Borland library */
 	}
@@ -79,6 +84,8 @@ void Scistring (char *str)
 	else
 	{
 		TextPutS (&textwin, str);
+		PutString(str);
+		PutString("\n");
 		MyPutCh ('\n');
 	}
 }
@@ -220,11 +227,14 @@ size_t MyFRead (void *ptr, size_t size, size_t n, FILE * file)
 void Xputchar (char c)
 {
 	MyPutCh ((int) c);
+
 }
 /*-----------------------------------------------------------------------------------*/
 void Xputstring (char *str,int n)
 {
 	int i;
+	
+	PutString(str);
 	for (i = 0; i < n; i++)	Xputchar (str[i]);
 }
 /*-----------------------------------------------------------------------------------*/
