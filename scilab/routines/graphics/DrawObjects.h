@@ -215,6 +215,7 @@ extern void getStringsPositions( StringMatrix  * strMat        ,
                                  int             textPos[2]    ,
                                  BOOL            autoSize      ,
                                  int             textSize[2]   ,
+                                 BOOL            centerPos     ,
                                  double          angle         ,
                                  Vect2iMatrix  * stringPosition,
                                  int             boundingBox[4][2] ) ;

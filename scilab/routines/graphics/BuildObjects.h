@@ -27,9 +27,9 @@ extern sciPointObj *ConstructSubWin (sciPointObj * pparentfigure,
 extern sciPointObj *ConstructScrollV (sciPointObj * pparentfigure); /* BUILD */
 extern sciPointObj *ConstructScrollH (sciPointObj * pparentfigure); /* BUILD */
 
-extern sciPointObj * ConstructText ( sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
-	                             double y, double *wh, int fill, int *foreground, int *background, 
-	                             BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align ) ;
+extern sciPointObj * ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
+                                    double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background, 
+                                    BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align ) ;
      
 extern sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
 				    int type); /* BUILD */

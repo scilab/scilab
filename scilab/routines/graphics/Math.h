@@ -143,6 +143,9 @@ void iHomothety2D( int from[2], int center[2], double factors[2], int dest[2] ) 
 
 /* perform the translation of point from to point dest with vector trans */
 void translate2D( double from[2], double trans[2], double dest[2] ) ;
+
+/* perform the translation of point from to point dest with vector trans given in pixels.*/
+void iTranslate2D( int from[2], int trans[2], int dest[2] ) ;
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/

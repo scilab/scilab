@@ -197,8 +197,8 @@ extern int set_version_flag (int flag) ; /* SET */
 
 extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 
-extern int sciInitPosition(sciPointObj * pobj, double x, double y);
-extern int sciSetPosition (sciPointObj * pobj, double x, double y); /* SET */
+extern int sciInitPosition( sciPointObj * pobj, double x, double y);
+extern int sciSetPosition(  sciPointObj * pobj, double x, double y); /* SET */
 
 extern int sciInitAutoRotation( sciPointObj * pObj, BOOL value ) ;
 extern int sciSetAutoRotation ( sciPointObj * pObj, BOOL value ) ;
@@ -207,13 +207,16 @@ extern int sciInitAutoPosition( sciPointObj * pObj, BOOL value ) ;
 extern int sciSetAutoPosition ( sciPointObj * pObj, BOOL value ) ;
 
 extern int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize ) ;
-extern int sciSetAutoSize( sciPointObj * pObj, BOOL autoSize ) ;
+extern int sciSetAutoSize(  sciPointObj * pObj, BOOL autoSize ) ;
 
 extern int sciInitAlignment( sciPointObj * pObj, sciTextAlignment align ) ;
-extern int sciSetAlignment( sciPointObj * pObj, sciTextAlignment align ) ;
+extern int sciSetAlignment(  sciPointObj * pObj, sciTextAlignment align ) ;
 
 extern int sciInitUserSize( sciPointObj * pObj, double width, double height ) ;
-extern int sciSetUserSize( sciPointObj * pObj, double width, double height ) ;
+extern int sciSetUserSize(  sciPointObj * pObj, double width, double height ) ;
+
+extern int sciInitCenterPos( sciPointObj * pObj, BOOL newCP ) ;
+extern int sciSetCenterPos(  sciPointObj * pObj, BOOL newCP ) ;
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

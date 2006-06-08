@@ -500,17 +500,15 @@ typedef struct
   /** position in scilab window (not pixel) */
   double y;
 
-  BOOL auto_size ; /* to know wether the size of the displayed array is specified by user or */
+  BOOL autoSize ; /* to know wether the size of the displayed array is specified by user or */
                    /* automatically computed. */
 
-  double user_size[2] ; /* the width and height of the displayed string array defined by user */
+  double userSize[2] ; /* the width and height of the displayed string array defined by user */
   
   sciTextAlignment stringsAlign ; /* the alignment of the strings inside the array */
   
-  /***/
-  double wh[2];
-  /* used by text_box_mode : -1 <=> off, 0 <=> centered, 1 <=> filled */
-  BOOL fill; /* to distinguish between xstring and xstringb */
+  BOOL centeredPos ; /**< to know wether the (x,y) position is the point in the middle of the
+                        string or the lower-left point */
   BOOL isboxed  ;
   BOOL isline   ; /* switch the contour of the box */
   BOOL isfilled ; /* switch the transparency of the box */

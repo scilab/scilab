@@ -948,23 +948,29 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strcmp(marker,"text_box_mode") == 0)
     {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
-	numrow = 1;
-	if (pTEXT_FEATURE (pobj)->fill == -1) {
-	  numcol = 3;
-	  CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	  strncpy(cstk(outindex),"off", numcol);}
-	else if (pTEXT_FEATURE (pobj)->fill == 0) {
-	  numcol = 8;
-	  CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	  strncpy(cstk(outindex),"centered", numcol);}
-	else {
-	  numcol = 6;
-	  CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	  strncpy(cstk(outindex),"filled", numcol);}
+      if (sciGetEntityType (pobj) == SCI_TEXT) 
+      {
+        if ( sciGetAutoSize( pobj ) )
+        {
+          if ( sciGetCenterPos( pobj ) )
+          {
+            sciReturnString( "centered" ) ;
+          }
+          else
+          {
+            sciReturnString( "off" ) ;
+          }
+        }
+        else
+        {
+          sciReturnString( "filled" ) ;
+        }
       }
       else
-	{strcpy(error_message,"text_box_mode property does not exist for this handle");return -1;}
+      {
+        strcpy(error_message,"text_box_mode property does not exist for this handle");
+        return -1;
+      }
     }
   else if ( strcmp(marker,"auto_dimensionning") == 0 )
   {
@@ -982,19 +988,6 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
     {
       strcpy(error_message,"auto_dimensionning property does not exist for this handle");return -1;
-    }
-  }
-  else if ( strcmp(marker,"drawing_size") == 0 )
-  {
-    if ( sciGetEntityType( pobj ) == SCI_TEXT )
-    {
-      double size[2] ;
-      sciGetUserSize( pobj, &(size[0]), &(size[1]) ) ;
-      sciReturnRowVector( size, 2 ) ;
-    }
-    else
-    {
-      strcpy(error_message,"drawing_size property does not exist for this handle");return -1;
     }
   }
   else if ( strcmp(marker,"alignment") == 0 )
@@ -1025,15 +1018,17 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   else if (strcmp(marker,"text_box") == 0)
     {
-      if (sciGetEntityType (pobj) == SCI_TEXT) {
-	numrow = 1;
-	numcol = 2;
-	CreateVar(Rhs+1,"d", &numrow, &numcol, &outindex);
-	*stk(outindex)= pTEXT_FEATURE (pobj)->wh[0];
-	*stk(outindex+1)= pTEXT_FEATURE (pobj)->wh[1];
+      if (sciGetEntityType (pobj) == SCI_TEXT) 
+      {
+	double size[2] ;
+        sciGetUserSize( pobj, &(size[0]), &(size[1]) ) ;
+        sciReturnRowVector( size, 2 ) ;
       }
       else
-	{strcpy(error_message,"text_box property does not exist for this handle");return -1;}
+      {
+        strcpy(error_message,"text_box property does not exist for this handle");
+        return -1;
+      }
     }
   else if (strcmp(marker,"text") == 0)
     {

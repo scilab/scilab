@@ -162,6 +162,8 @@ extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
 extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
+BOOL sciGetCenterPos( sciPointObj * pObj ) ;
+
 /**
  * @memo for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.

@@ -66,8 +66,8 @@ extern void unzoom_one_axes(sciPointObj *psousfen);
 extern void Xrects  _PARAMS((char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2));
 extern void Xstring  _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box));
 extern void Xtitle  _PARAMS((char *str,int n));
-extern void Objstring _PARAMS((char ** fname,unsigned long fname_len,integer str,double x,double y,
-			       double *angle,double *box,double* wh, long *hdl, int fill,
+extern void Objstring _PARAMS((char ** fname,int nbRow,int nbCol,double x,double y,
+			       double *angle,double *box, BOOL autoSize, double* userSize, long *hdl, BOOL centerPos,
 			       int *foreground,int *background,BOOL isboxed,BOOL isline,
                                BOOL isfilled, sciTextAlignment alignment));
 extern void Xpoly  _PARAMS((char *fname,unsigned long fname_len,int n,int close,double *x,double *y));
@@ -2038,7 +2038,7 @@ int scixstring(char *fname,unsigned long fname_len)
 /*     } /\* end for(i) *\/ */
     
     /* create the object */
-    Objstring ( Str,m3,n3,x,y,&angle,rect,(double *)0,&hdlstr,-1,NULL,NULL,isboxed,TRUE,FALSE, ALIGN_LEFT ) ;
+    Objstring ( Str,m3,n3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed,TRUE,FALSE, ALIGN_LEFT ) ;
     
     /* if (m3 > 1) sciSetCurrentObj ( ConstructCompoundSeq (m3)); */
 
@@ -2204,10 +2204,10 @@ int scixtitle(char *fname,unsigned long fname_len)
 int scixstringb(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
-  integer fill =0, v; 
+  BOOL autoSize = TRUE ;
   double x,y,w,hx;
   char **Str;
-  double wh[2],rect[4],angle=0;
+  double rect[4],angle=0;
   long hdlstr;
 
   SciWin();
@@ -2223,32 +2223,28 @@ int scixstringb(char *fname,unsigned long fname_len)
 
   if (Rhs == 6) {
     GetRhsVar(6,"c",&m6,&n6,&l6);
-    if ( m6*n6 !=0 && strcmp(cstk(l6),"fill") == 0) 
-      fill =1;
-    else {
+    if ( m6*n6 !=0 && strcmp(cstk(l6),"fill") == 0)
+    {
+      autoSize = FALSE ;
+    } 
+    else
+    {
       Scierror(999,"%s: optional argument has a wrong value 'fill' expected\r\n",
 	       fname);
-      return 0;   }
+      return 0;
+    }
   }
-  /* ib = 0; */
-/*   for (i = 0 ; i < m3 ; ++i) { */
-/*     for (j = 0 ; j < n3; ++j)  */
-/*       { */
-/* 	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]); */
-/* 	ib += strlen(Str[i+ m3*j]); */
-/* 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;} */
-/*       } */
-/*     C2F(cha1).buf[ib]= '\n'; ib++; */
-/*   } */
-/*   C2F(cha1).buf[ib-1]='\0'; */
 
   if ( version_flag() == 0 )
   {
-    wh[0]=w;wh[1]=hx;
-    Objstring (Str,bsiz,0,x,y,&angle,rect,wh,&hdlstr,fill,NULL,NULL,FALSE,TRUE,FALSE, ALIGN_LEFT );
+    double userSize[2] = { w, hx } ;
+    Objstring (Str,m3,n3,x,y,&angle,rect,autoSize,userSize,&hdlstr,TRUE,NULL,NULL,FALSE,TRUE,FALSE,ALIGN_CENTER);
   }
-  else { /* NG end */
-    C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
+  else 
+  { /* NG end */
+    /* does not work any more. */
+    Scierror(1234,"xstringb does not exists in old style. Please update your code to the new style.\r\n",fname ) ;
+    /* C2F(dr1)("xstringb",C2F(cha1).buf,&autoSize,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz); */
   }
   FreeRhsSVar(Str); /* we must free Str2 memory */ 
   LhsVar(1)=0;

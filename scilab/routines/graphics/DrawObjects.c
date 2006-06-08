@@ -11773,7 +11773,7 @@ void getStringBox( char   ** text         ,
   }
 
   /* NULL because we don't need the position of each string */
-  getStringsPositions( strings, &fontId, &fontSize, pos, autoSize, textSize, angle, NULL, corn ) ;
+  getStringsPositions( strings, &fontId, &fontSize, pos, autoSize, textSize, FALSE, angle, NULL, corn ) ;
 
   /* take everything back to user coordinates */
   /* to retrieve exactly the first corner as in stringl we take the input */
@@ -11871,31 +11871,33 @@ void getStringsRect( StringMatrix  * strMat            ,
   /* we first compute the width of each row  of the array */
   /* The width is given by the tallest string of each row */
 
-  rowHeight[0] = textPos[1] ;
+  rowHeight[nbRow] = textPos[1] ;
 
-  for ( i = 0 ; i < nbRow ; i++ )
+  /* begin with the lower left string which is at position textPos */
+  for ( i = nbRow - 1 ; i >= 0 ; i-- )
   {
     for ( j = 0 ; j < nbCol ; j++ )
     {
       getStringBbox( getStrMatElement( strMat, i, j ), textPos, rect ) ;
       curHeight = Max( curHeight, rect[3] ) ;
     }
-    /* the height of the current column is curHeight + vSpace */
-    rowHeight[i+1] = rowHeight[i] - curHeight - vSpace ;
+    /* the height of the current column is the max of the height its tallest string + vSpace */
+    rowHeight[i] = rowHeight[i+1] - curHeight - vSpace ;
+    curHeight = 0 ;
   }
 
   /* same for columns */
-
   colWidth[0] = textPos[0] ;
 
   for ( j = 0 ; j < nbCol ; j++ )
   {
-    for ( i = 0 ; i < nbRow ; i++ )
+    for ( i = nbRow - 1 ; i >= 0 ; i-- )
     {
       getStringBbox( getStrMatElement( strMat, i, j ), textPos, rect ) ;
       curWidth = Max( curWidth, rect[2] ) ;
     }
     colWidth[j+1] = colWidth[j] + curWidth + hSpace ;
+    curWidth = 0 ;
   }
 
   /* now fill the matrix */
@@ -11916,7 +11918,7 @@ void getStringsRect( StringMatrix  * strMat            ,
   boundingBox[0][1] = textPos[1] ;
   
   boundingBox[1][0] = boundingBox[0][0] ;
-  boundingBox[1][1] = rowHeight[nbRow] ;
+  boundingBox[1][1] = rowHeight[0] ;
   
   boundingBox[2][0] = colWidth[nbCol] ;
   boundingBox[2][1] = boundingBox[1][1] ;
@@ -11981,7 +11983,7 @@ int computeSuitableFont( StringMatrix  * strMat, Vect2iMatrix  * stringPosition 
       int  * urCorner = getVect2iMatElement( stringPosition, i + 1, j + 1 ) ;
       char * string   = getStrMatElement( strMat, i, j ) ;
       int width  = urCorner[0] - blCorner[0] ;
-      int height = blCorner[1] - urCorner[1] ;
+      int height = urCorner[1] - blCorner[1] ;
       while ( !isFittingInCell( string, width, height ) )
       {
         largestFont-- ;
@@ -12070,16 +12072,44 @@ void getStringsRectSized( StringMatrix  * strMat           ,
  * @param boundingBox the four 2D points.
  * @param angle rotation angle in radian.
  */
-void rotateBoundingBox( int boundingBox[4][2], double angle )
+void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle )
 {
   if ( Abs( angle ) > EPSILON )
   {
     double cosAngle = cos( angle ) ;
     double sinAngle = sin( angle ) ;
-    /* no need to turn the center.*/
-    iRotate2Dim( boundingBox[1], boundingBox[0], cosAngle, sinAngle, boundingBox[1] ) ;
-    iRotate2Dim( boundingBox[2], boundingBox[0], cosAngle, sinAngle, boundingBox[2] ) ;
-    iRotate2Dim( boundingBox[3], boundingBox[0], cosAngle, sinAngle, boundingBox[3] ) ;
+    iRotate2Dim( boundingBox[0], center, cosAngle, sinAngle, boundingBox[0] ) ;
+    iRotate2Dim( boundingBox[1], center, cosAngle, sinAngle, boundingBox[1] ) ;
+    iRotate2Dim( boundingBox[2], center, cosAngle, sinAngle, boundingBox[2] ) ;
+    iRotate2Dim( boundingBox[3], center, cosAngle, sinAngle, boundingBox[3] ) ;
+  }
+}
+/*-------------------------------------------------------------------------------------*/
+/**
+ * Translae four points around the first one.
+ * @param boundingBox the four 2D points.
+ * @param angle rotation angle in radian.
+ */
+void translateBoundingBox( int boundingBox[4][2], int trans[2] )
+{
+  iTranslate2D( boundingBox[0], trans, boundingBox[0] ) ;
+  iTranslate2D( boundingBox[1], trans, boundingBox[1] ) ;
+  iTranslate2D( boundingBox[2], trans, boundingBox[2] ) ;
+  iTranslate2D( boundingBox[3], trans, boundingBox[3] ) ;
+    
+}
+/*-------------------------------------------------------------------------------------*/
+void getStringPositionTranslation( BOOL centeredPos, int textSize[2], int bbox[4][2], int trans[2] )
+{
+  if ( centeredPos )
+  {
+    trans[0] = ( textSize[0] + bbox[0][0] - bbox[2][0] ) / 2 ;
+    trans[1] = ( -textSize[1] + bbox[0][1] - bbox[2][1] ) / 2 ;
+  }
+  else
+  {
+    trans[0] = 0 ;
+    trans[1] = 0 ;
   }
 }
 /*-------------------------------------------------------------------------------------*/
@@ -12087,20 +12117,22 @@ void rotateBoundingBox( int boundingBox[4][2], double angle )
  * Compute an array of cells in which each string will fit. The bounding box of the
  * finally displayed string is also computed. The generated array of cells can the be used
  * for the display with the drawStringsInPosition routine.
- * @param strMat   Set of string.
- * @param fontId   specify the fontId of the strings.
- * @param fontSize if autoSize is on then specify the size of the strings. Otherwise,
- *                 this returns the size which should be used to display the strings in
- *                 the cell array.
- * @param textPos  Position of the upper left point of the string array and center
- *                 of rotation.
- * @param angle    Angle for the rotation of the strings.
+ * @param strMat    Set of string.
+ * @param fontId    specify the fontId of the strings.
+ * @param fontSize  if autoSize is on then specify the size of the strings. Otherwise,
+ *                  this returns the size which should be used to display the strings in
+ *                  the cell array.
+ * @param textPos   Position of the upper left point of the string array and center
+ *                  of rotation.
+ * @param angle     Angle for the rotation of the strings.
+ * @param centerPos Specify where is the rotation center of the string. If TRUE in the middle
+ *                  of the array, otherwise in the bottom-left.
  * @param stringPosition matrix containing the corners of the cells. Element (i,j) of this
  *                       matrix correspond to the upper-left point of the string (i,j).
  *                       It size must be equal to the size of strMat plus one in each
  *                       dimension. If NULL, not computed.
  * @param boundingBox position of the four corners of the bounding box surrounding the
- *                    array of cells.
+ *                    array of cells. The points are given clockwise.
  */
 void getStringsPositions( StringMatrix  * strMat        ,
                           int           * fontId        ,
@@ -12108,6 +12140,7 @@ void getStringsPositions( StringMatrix  * strMat        ,
                           int             textPos[2]    ,
                           BOOL            autoSize      ,
                           int             textSize[2]   ,
+                          BOOL            centerPos     ,
                           double          angle         ,
                           Vect2iMatrix  * stringPosition,
                           int             boundingBox[4][2] )
@@ -12115,7 +12148,7 @@ void getStringsPositions( StringMatrix  * strMat        ,
   integer curFont[2]  ;
   integer verbose = 0 ;
   integer v           ;
-
+  int trans[2] ;
 
   if ( autoSize )
   {
@@ -12137,6 +12170,16 @@ void getStringsPositions( StringMatrix  * strMat        ,
     getStringsRectSized( strMat, textPos, stringPosition, boundingBox, textSize, fontSize ) ;
   }
 
+  /* for now we have computes the matrix as if the center was its lower-left vertice */
+  /* we must now translate the points depending on where is really the center relatively */
+  /* to the array. */
+  getStringPositionTranslation( centerPos, textSize, boundingBox, trans ) ;
+  if ( stringPosition != NULL )
+  {
+    translateVect2iMatrix( stringPosition, trans ) ;
+  }
+  translateBoundingBox( boundingBox, trans ) ;
+
   /* then turn everything, we need to turn them in pixels because of logarithmic scale */
   if ( Abs( angle ) > EPSILON )
   {
@@ -12144,7 +12187,7 @@ void getStringsPositions( StringMatrix  * strMat        ,
     {
       rotateVect2iMatrix( stringPosition, textPos, angle ) ;
     }
-    rotateBoundingBox( boundingBox, angle ) ;
+    rotateBoundingBox( boundingBox, textPos, angle ) ;
   }
 
 }
@@ -12167,7 +12210,7 @@ void getStringMargins( int                stringSize[2],
                        int              * bMargin       )
 {
   int cellWidth  = urCorner[0] - blCorner[0] ;
-  int cellHeight = blCorner[1] - urCorner[1] ;
+  int cellHeight = urCorner[1] - blCorner[1] ;
 
   switch( align )
   {
@@ -12182,7 +12225,7 @@ void getStringMargins( int                stringSize[2],
     *lMargin = ( cellWidth - stringSize[0] ) / 2 ;
     break ;
   default:
-    sciprint("error unhandle alignment\n");
+    sciprint("error unhandled alignment\n");
     *lMargin = -1 ;
     *bMargin = -1 ;
     break ;
@@ -12220,7 +12263,7 @@ void drawStringInCell( char             * string      ,
 
   /* get the position unturned */
   pos[0] = blCorner[0] + leftMargin   ;
-  pos[1] = blCorner[1] - bottomMargin ;
+  pos[1] = blCorner[1] + bottomMargin + rect[3] ;
 
   /* then turn it around the center */
   if ( Abs( angle ) > EPSILON )
@@ -12236,24 +12279,24 @@ void drawStringInCell( char             * string      ,
  * Given a matrix of strings and an array of cells positions, draw each strings in
  * the corresponding cell. The array of cells must not been turned, this function
  * manage the rotation itself. The alignment is also respected.
- * @param strings    set of strings to display.
- * @param cellsArray position of the cells in which the strings are dispalyed.
- * @param angle      rotation angle in radian of the displayed matrix around its
- *                   lower left point.
- * @param align      position of strings inside their cells.
+ * @param strings     set of strings to display.
+ * @param cellsArray  position of the cells in which the strings are dispalyed.
+ * @param center      position of the center of the string array around which the rotation
+ *                    is done.
+ * @param angle       rotation angle in radian of the displayed matrix around its
+ *                    lower left point.
+ * @param align       position of strings inside their cells.
  */
-void drawStringsInPosition( StringMatrix     * strings   ,
-                            Vect2iMatrix     * cellsArray,
-                            double             angle     ,
-                            sciTextAlignment   align      )
+void drawStringsInPosition( StringMatrix     * strings    ,
+                            Vect2iMatrix     * cellsArray ,
+                            int                center[2]  ,
+                            double             angle      ,
+                            sciTextAlignment   align       )
 {
   int nbRow = getMatNbRow( strings ) ;
   int nbCol = getMatNbCol( strings ) ;
-  int * center ; /* rotation center */
   int i ;
   int j ;
-
-  center = getVect2iMatElement( cellsArray, 0, 0 ) ;
   
   for ( i = 0 ; i < nbRow ; i++ )
   {
@@ -12317,10 +12360,15 @@ void drawText( sciPointObj * pObj )
   int    v  = 0  ;
   double dv = 0. ;
   double anglestr = 0. ;
-  int posX  ;
-  int posY ;
   int textProperties[4] ;
   int verb=0;
+  int font_[2], cur_font_[2] ;
+  int position[2] ;
+  int textDim[2] ;
+  double userSize[2] ;
+  int    textSize[2] ;
+  Vect2iMatrix * bboxes ;
+  int globalBbox[4][2] ;
   sciText * ppText =  pTEXT_FEATURE( pObj ) ;
   sciPointObj * parentSW = sciGetParentSubwin(pObj) ;
   
@@ -12339,21 +12387,11 @@ void drawText( sciPointObj * pObj )
     sciClip(pObj);
   }
 
-  if ( ppText->fill == -1 ) 
-  {
-    int font_[2], cur_font_[2] ;
-    int position[2] ;
-    int textDim[2] ;
-    double userSize[2] ;
-    int    textSize[2] ;
-    Vect2iMatrix * bboxes ;
-    int globalBbox[4][2] ;
-    
     
     sciGetUserSize( pObj, &(userSize[0]), &(userSize[1]) ) ;
     
     /* we don't take the axes reverse into account. This has obviously no meaning for text.*/
-    if (pSUBWIN_FEATURE (sciGetParentSubwin(pObj))->is3d)
+    if (pSUBWIN_FEATURE (parentSW)->is3d)
     {
       double xvect;
       double yvect;
@@ -12364,14 +12402,14 @@ void drawText( sciPointObj * pObj )
       yvect = ppText->y;
       zvect = ppText->z;
       
-      ReverseDataFor3D(sciGetParentSubwin(pObj),&xvect,&yvect,&zvect,n);
+      ReverseDataFor3D(parentSW,&xvect,&yvect,&zvect,n);
       
-      trans3d(sciGetParentSubwin(pObj),n,&posX,&posY,&xvect,&yvect,&zvect);
+      trans3d(parentSW,n,&(position[0]),&(position[1]),&xvect,&yvect,&zvect);
     }
     else 
     {
-      posX = XDouble2Pixel( ppText->x ) ;
-      posY = YDouble2Pixel( ppText->y ) ;
+      position[0] = XDouble2Pixel( ppText->x ) ;
+      position[1] = YDouble2Pixel( ppText->y ) ;
     }
     
     /* We take the size in 2d. */
@@ -12383,15 +12421,12 @@ void drawText( sciPointObj * pObj )
     anglestr = (sciGetFontOrientation (pObj)/10); 	
     
     /* set the font */
-    C2F(dr1)("xget","font",&verb,cur_font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+    C2F(dr)("xget","font",&verb,cur_font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
             
     font_[0] = sciGetFontStyle (pObj);
     font_[1] = sciGetFontDeciWidth (pObj)/100;
     
-    C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  
-    position[0] = posX ;
-    position[1] = posY ;
+    C2F(dr)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
     /* get the bounding box of the text matrix */
     /* the matrix with the bounding box of each strings in the text object */
@@ -12401,18 +12436,19 @@ void drawText( sciPointObj * pObj )
 
     /* we get the array not turned because the display will turn everything by itself */
     /* However, the bounding box needs to be turned after */
-    getStringsPositions( sciGetText( pObj )    ,
-                         &font_[0]             ,
-                         &font_[1]             ,
-                         position              ,
-                         sciGetAutoSize( pObj ),
-                         textSize              ,
-                         0.0                   ,
-                         bboxes                ,
-                         globalBbox             ) ;
+    getStringsPositions( sciGetText( pObj )     ,
+                         &font_[0]              ,
+                         &font_[1]              ,
+                         position               ,
+                         sciGetAutoSize( pObj ) ,
+                         textSize               ,
+                         sciGetCenterPos( pObj ),
+                         0.0                    ,
+                         bboxes                 ,
+                         globalBbox              ) ;
     
     /* font might have changed */
-    C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     
     /* wether or not we draw and/or fill the box */
     /* no need to compute anything if both line_mode */
@@ -12425,7 +12461,7 @@ void drawText( sciPointObj * pObj )
       int close=1;
       
       /* we need to rotate the bounding box */
-      rotateBoundingBox( globalBbox,  DEG2RAD(anglestr) ) ;
+      rotateBoundingBox( globalBbox, position,  DEG2RAD(anglestr) ) ;
 
       xm[0] = globalBbox[0][0] ;
       xm[1] = globalBbox[1][0] ;
@@ -12478,30 +12514,13 @@ void drawText( sciPointObj * pObj )
     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
     
-    drawStringsInPosition( sciGetText( pObj ), bboxes, DEG2RAD(anglestr), sciGetAlignment( pObj ) ) ;
+    drawStringsInPosition( sciGetText( pObj ), bboxes,position, DEG2RAD(anglestr), sciGetAlignment( pObj ) ) ;
     /* C2F(dr)("xstring",getStrMatElement(sciGetText(pObj),0,0),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L); */
 
-    C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     
     deleteMatrix( bboxes ) ;
-  }
-  else { /* SS for xstringb should be improved*/
-    integer w1, h1;
-    w1  = XDouble2Pixel (pTEXT_FEATURE (pObj)->wh[0]);
-    h1 = YDouble2Pixel (pTEXT_FEATURE (pObj)->wh[1]);
-    textProperties[0] = sciGetFontForeground (pObj);/*la dash est de la meme couleur que le foreground*/
-    textProperties[2] = sciGetFontDeciWidth (pObj)/100;
-    textProperties[3] = 0;
-    textProperties[4] = sciGetFontStyle(pObj);
-          
-    C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-    C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-    C2F(dr)("xset","font",textProperties+4,textProperties+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
 
-    C2F(dr1)("xstringb",getStrMatElement(sciGetText(pObj),0,0),&(ppText->fill),&v,&v,&v,&v,&v,
-             &(ppText->x),&(ppText->y),
-             &(ppText->wh[0]),&(ppText->wh[1]),9L,0L);
-  }
   if ( ppText->isclip )
   {
     sciUnClip(pObj);

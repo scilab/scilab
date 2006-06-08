@@ -712,7 +712,7 @@ ConstructScrollH (sciPointObj * pparentfigure)
  */
 sciPointObj *
 ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, double x,
-	       double y, double *wh, int fill, int *foreground, int *background, 
+	       double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background, 
 	       BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align )
 {
   sciPointObj * pobj   = (sciPointObj *) NULL;
@@ -788,17 +788,6 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
       ppText->z = 0.0; /**DJ.Abdemouche 2003**/
       
       
-      if (wh != (double *)NULL)
-      {
-	ppText->wh[0] = wh[0];
-	ppText->wh[1] = wh[1];
-      }
-      else
-      {
-	ppText->wh[0] = 0.0;
-	ppText->wh[1] = 0.0;
-      }
-
       if ( sciInitFontContext (pobj) == -1 )
       {
         deleteMatrix( ppText->pStrings ) ;        
@@ -820,13 +809,24 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 	  return (sciPointObj *) NULL;
 	}
       
-      ppText->fill=fill; /* to distinguish between xstring and xstringb */
+      ppText->centeredPos = centerPos ; /* to distinguish between xstring and xstringb */
+      ppText->autoSize = autoSize ;
 
-      ppText->auto_size    = TRUE ;
-      ppText->user_size[0] = 0.   ;
-      ppText->user_size[1] = 0.   ;
+      /* userSize must be specified if the size is given by the user */
+      /* or the user specified a rectangle */
 
-      ppText->stringsAlign = ALIGN_LEFT ;
+      if ( !autoSize || centerPos )
+      {
+        ppText->userSize[0] = userSize[0] ;
+        ppText->userSize[1] = userSize[1] ;
+      }
+      else
+      {
+        ppText->userSize[0] = 0.0 ;
+        ppText->userSize[1] = 0.0 ;
+      }
+      
+      ppText->stringsAlign = align ;
 
       sciInitIsBoxed(pobj,isboxed);
       sciInitIsLine(pobj,isline);

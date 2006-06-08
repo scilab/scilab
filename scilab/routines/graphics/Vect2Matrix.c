@@ -39,6 +39,20 @@ void rotateVect2iMatrix( Vect2iMatrix * mat, int center[2], double angle )
   }
 }
 /*-------------------------------------------------------------------------------------------*/
+void translateVect2iMatrix( Vect2iMatrix * mat, int trans[2] )
+{
+  int i ;
+  int j ;
+  for ( i = 0 ; i < mat->nbRow ; i++ )
+  {
+    for ( j = 0 ; j < mat->nbCol ; j++ )
+    {
+      int * curElement = getVect2iMatElement( mat, i, j ) ;
+      iTranslate2D( curElement, trans, curElement ) ;
+    }
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
 void homothVect2iMatrix( Vect2iMatrix * mat, int center[2], double factors[2] )
 {
   int i ;
@@ -78,6 +92,20 @@ void rotateVect2dMatrix( Vect2dMatrix * mat, double center[2], double angle )
     {
       double * curElement = getVect2dMatElement( mat, i, j ) ;
       rotate2Dim( curElement, center, cosAngle, sinAngle, curElement ) ;
+    }
+  }
+}
+/*-------------------------------------------------------------------------------------------*/
+void translateVect2dMatrix( Vect2dMatrix * mat, double trans[2] )
+{
+  int i ;
+  int j ;
+  for ( i = 0 ; i < mat->nbRow ; i++ )
+  {
+    for ( j = 0 ; j < mat->nbCol ; j++ )
+    {
+      double * curElement = getVect2dMatElement( mat, i, j ) ;
+      translate2D( curElement, trans, curElement ) ;
     }
   }
 }

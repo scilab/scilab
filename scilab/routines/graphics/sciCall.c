@@ -236,16 +236,18 @@ void Objsegs (style,flag,n1,x,y,arsize)
  *-----------------------------------------------------------*/
 
 /* box is an OUTPUT re-used inside matdes.c in scixstring */
-void Objstring(fname,nbRow,nbCol,x,y,angle,box,wh,hdl,fill,foreground,background,isboxed,isline,isfilled, alignment)
+void Objstring(fname,nbRow,nbCol,x,y,angle,box,autoSize, userSize,hdl,centerPos,foreground,background,isboxed,isline,isfilled, alignment)
      char ** fname;
      int nbRow ;
      int nbCol ;
-     double x,y,*angle,*wh;
+     double x,y,*angle ;
+     double userSize[2] ;
      double box[4] ;
-     int fill;
      long *hdl;
      int *foreground, *background;
      BOOL isboxed,isline,isfilled;
+     BOOL centerPos ;
+     BOOL autoSize ;
      sciTextAlignment alignment ;
 {
   BOOL redraw = FALSE ;
@@ -265,8 +267,9 @@ void Objstring(fname,nbRow,nbCol,x,y,angle,box,wh,hdl,fill,foreground,background
                                    nbCol     ,
                                    x         ,
                                    y         ,
-                                   wh        ,
-                                   fill      ,
+                                   autoSize  ,
+                                   userSize  ,
+                                   centerPos ,
                                    foreground,
                                    background,
                                    isboxed   ,

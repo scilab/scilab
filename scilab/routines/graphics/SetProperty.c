@@ -4681,7 +4681,7 @@ int sciInitAutoSize( sciPointObj * pObj, BOOL autoSize )
   switch ( sciGetEntityType (pObj) )
   {
   case SCI_TEXT:
-    pTEXT_FEATURE(pObj)->auto_size = autoSize ;
+    pTEXT_FEATURE(pObj)->autoSize = autoSize ;
     return 0 ;
   default:
     sciprint ("This object hasn't any automoatic size\n");
@@ -4730,8 +4730,8 @@ int sciInitUserSize( sciPointObj * pObj, double width, double height )
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_TEXT:
-    pTEXT_FEATURE(pObj)->user_size[0] = width ;
-    pTEXT_FEATURE(pObj)->user_size[1] = height ;
+    pTEXT_FEATURE(pObj)->userSize[0] = width ;
+    pTEXT_FEATURE(pObj)->userSize[1] = height ;
     return 0 ;
   default:
     sciprint ("This object has no Specified Size\n");
@@ -4751,5 +4751,29 @@ int sciSetUserSize( sciPointObj * pObj, double width, double height )
     return 1 ;
   }
   return sciInitUserSize( pObj, width, height ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitCenterPos( sciPointObj * pObj, BOOL newCP )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_TEXT:
+    pTEXT_FEATURE(pObj)->centeredPos = newCP ;
+    return 0 ;
+  default:
+    sciprint ("This object has no centered position.\n");
+    return -1 ;
+  }
+  return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciSetCenterPos( sciPointObj * pObj, BOOL newCP )
+{
+  if ( sciGetCenterPos( pObj ) == newCP )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitCenterPos( pObj, newCP ) ;
 }
 /*--------------------------------------------------------------------------------------------*/

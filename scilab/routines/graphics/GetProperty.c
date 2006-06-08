@@ -4526,8 +4526,6 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"callback_type"      ) == 0) {return 10;}
   else if (strcmp(marker,"bounding_rect"      ) == 0) {return 1 ;} /*JBS 16/11/05 */
   else if (strcmp(marker,"hidden_axis_color"  ) == 0) {return 1 ;} /*       03/06 */
-  else if (strcmp(marker,"auto_dimensionning" ) == 0) {return 10;} /*       05/06 */
-  else if (strcmp(marker,"drawing_size"       ) == 0) {return 1 ;} /*       05/06 */
   else if (strcmp(marker,"alignment"          ) == 0) {return 10;} /*       05/06 */
   else {return -1;}
 }
@@ -5000,7 +4998,7 @@ BOOL sciGetAutoSize( sciPointObj * pObj )
   switch (sciGetEntityType (pObj))
   {
   case SCI_TEXT:
-    return pTEXT_FEATURE(pObj)->auto_size ;
+    return pTEXT_FEATURE(pObj)->autoSize ;
     break;
   default:
     return FALSE;
@@ -5028,12 +5026,30 @@ void sciGetUserSize( sciPointObj * pObj, double * width, double * height )
   switch( sciGetEntityType( pObj ) )
   {
   case SCI_TEXT:
-    *width  = pTEXT_FEATURE(pObj)->user_size[0] ;
-    *height = pTEXT_FEATURE(pObj)->user_size[1] ;
+    *width  = pTEXT_FEATURE(pObj)->userSize[0] ;
+    *height = pTEXT_FEATURE(pObj)->userSize[1] ;
     break ;
   default:
     sciprint ("This object has no Specified Size\n");
     break ;
+  }
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * get how is displayed the text around its position.
+ * If TRUE, the position is the middle of the displayed string.
+ * If FALSE, it is the lower right corner.
+ */
+BOOL sciGetCenterPos( sciPointObj * pObj )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_TEXT:
+    return pTEXT_FEATURE(pObj)->centeredPos ;
+    break ;
+  default:
+    sciprint ("This object has no centered position.\n");
+    return FALSE ;
   }
 }
 /*--------------------------------------------------------------------------------------------*/
