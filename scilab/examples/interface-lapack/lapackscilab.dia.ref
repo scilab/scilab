@@ -11,7 +11,7 @@ A=[1/2^10,1/2^10;2^10,2^10];
  
 [SCALE, ILOW, IHI]=xxdgebal('S', A);
  
-if norm(SCALD-[0.001;1]) > %eps then bugmes();quit;end
+if norm(SCALD-[0.001953125;1]) > %eps then bugmes();quit;end
  
 [W,TAU]=dgeqrf(A);
  

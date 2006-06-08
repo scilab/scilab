@@ -4,7 +4,7 @@ C1=dgemm(Alfa,A,B,Beta,C);
 if norm(C1-(Alfa*A*B+Beta*C)) > %eps then pause,end
 A=[1/2^10,1/2^10;2^10,2^10];
 [SCALE, ILOW, IHI]=xxdgebal('S', A);
-if norm(SCALE-[0.001;1]) > %eps then pause,end
+if norm(SCALE-[0.001953125;1]) > %eps then pause,end
 [W,TAU]=dgeqrf(A);
 m=2;V=[];for i=1:2;w(1:i-1)=0;w(i)=1;w(i+1:m)=W(i+1:m,i);V=[V,w];end;
 Q=(eye()-TAU(2)*V(:,2)*V(:,2)')*(eye()-TAU(1)*V(:,1)*V(:,1)');
