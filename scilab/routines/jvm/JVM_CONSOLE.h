@@ -25,6 +25,8 @@
 int StartJVM_CONSOLE(char *SCILAB_PATH);
 int TerminateJVM_CONSOLE(void);
 IMPORT_EXPORT_LIBJVM_DLL JavaVM *Get_jvm_CONSOLE(void);
+IMPORT_EXPORT_LIBJVM_DLL jobject Get_SciGUIConsole_Object(void);
+IMPORT_EXPORT_LIBJVM_DLL int PutString(char *Str);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __JVM_CONSOLE__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -110,6 +110,7 @@ void sciprint (char *fmt,...)
 	{
 		/*count = vsprintf(buf,fmt,args); SS */
 		TextPutS (&textwin, buf);
+		PutString(buf);
 	}
 	if (getdiary()) diary_nnl(buf,&lstr);
 
@@ -145,6 +146,7 @@ void sciprint_nd (char *fmt,...)
 	{
 		/*count = vsprintf(buf,fmt,args); SS */
 		TextPutS (&textwin, buf);
+		PutString(buf);
 	}
 	va_end (args);
 	/** return count; **/
@@ -179,6 +181,7 @@ int sciprint2 (int iv, char *fmt,...)
 	{
 		/* count = vsprintf (s_buf, fmt, ap); SS */
 		TextPutS (&textwin, s_buf);
+		PutString(s_buf);
 	}
 	if (getdiary()) diary_nnl(s_buf,&lstr);
 

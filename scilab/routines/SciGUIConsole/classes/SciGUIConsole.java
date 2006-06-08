@@ -9,37 +9,56 @@ import org.eclipse.swt.widgets.*;
 
 class SciGUIConsole
 {  
-
-	
-  public static void main(String[] args) 
+	Display d;
+  Shell s;
+  Text text1;
+/*---------------------------------------------------------------------------------------------*/    
+	SciGUIConsole()
+	{
+	}
+/*---------------------------------------------------------------------------------------------*/    
+  public void Initialize()
   {
- 	 Display d;
-   Shell s;
-
-  	
-    d = new Display( );
-    s = new Shell(d);
-    s.setSize(250,250);
-    s.setText("Scilab 5.0");
-    final Text text1 = new Text(s, SWT.MULTI | SWT.V_SCROLL |   SWT.H_SCROLL | SWT.WRAP | SWT.BORDER);
-    text1.setBounds(10,10,200,200);
-
-//
-//	text1.addKeyListener(new KeyListener() {
-//      String selectedItem = "";
-//
-//      public void keyPressed(KeyEvent e) 
-//      {
-//      }
-//    });	
-
-    
-
-    s.open( );
+   d = new Display( );
+   s = new Shell(d);
+   s.setSize(640,400);
+   s.setText("Scilab 5.0");
+   text1 = new Text(s, SWT.MULTI | SWT.V_SCROLL |   SWT.H_SCROLL | SWT.WRAP | SWT.BORDER);
+   text1.setBounds(10,10,600,350);
+	 text1.append("Input 1");
+	 DispString("RunGUI");
+  }
+/*---------------------------------------------------------------------------------------------*/  
+  public void EventsLoop()
+  {
+  	 s.open( );
+  	DispString(" Start LoopGUI");
     while(!s.isDisposed( ))
     {
      if(!d.readAndDispatch( )) d.sleep( );
     }
     d.dispose( );
+    DispString(" Exit LoopGUI");
   }
+/*---------------------------------------------------------------------------------------------*/
+  public void PutString(String[] args)
+  {
+  	final String line=args[0];
+  	
+  	d.asyncExec (new Runnable () 
+  	{
+      public void run ()
+      {
+      	text1.append(line);
+      }
+    }); 
+  	 System.out.println(args[0]);
+  }
+/*---------------------------------------------------------------------------------------------*/
+     
+  public static void DispString(String InputStr)
+  {
+  	System.out.println(InputStr);
+  }
+ /*---------------------------------------------------------------------------------------------*/      
 }
