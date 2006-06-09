@@ -1,7 +1,7 @@
       subroutine i_logic(op)
       include '../stack.h'
       integer less,great,equal
-      integer op,is1
+      integer op,is1(2)
       external memused
       integer memused
       integer iadr,sadr
