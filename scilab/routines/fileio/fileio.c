@@ -303,10 +303,15 @@ int int_objsprintf(char *fname,unsigned long fname_len)
       while (*str != '\0') {
 	if (strncmp(str,"\\n",2) ==0) {
 	  k=(int)(str-str1);
-	  if (! cat_to_last) { /*add a new line */
-	    if (n==nmax) {
+	  if (! cat_to_last) 
+	  { 
+		/*add a new line */
+	    if (n==nmax) 
+		{
 	      nmax+=blk;
-	      if ( (strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) goto mem;
+		  if (strs) strs = (char **) REALLOC(strs,nmax*sizeof(char **));
+		  else strs = (char **) MALLOC(nmax*sizeof(char **));
+	      if ( strs == NULL) goto mem;
 	    }
 	    if ((strs[n]=MALLOC((k+1))) == NULL) goto mem;
 	    strncpy(strs[n],str1, k);
