@@ -21,14 +21,19 @@ function res=determ(W,k)
 	
 	n1=size(W,1)
 	
+	// small cases
+	
 	if n1==1 then
 		res=W;
+		return;
+	elseif n1==2 then
+		res = W(1,1)*W(2,2) - W(1,2)*W(2,1);
 		return;
 	end
 	
 	//upper bound of the determinant degree
 	
-	maj=n1*maxi(degree(W))+1;
+	maj = n1*maxi(degree(W))+1;
 	
 	if argn(2)==1 then 
 		k=1;
@@ -82,10 +87,12 @@ function res=determ(W,k)
 			Temp2(i) = 0;
 		end
 		res = Temp1 - poly(Temp2,varn(W),"coeff");
+		return;
 	
 	else
 		// Cas où k n'est pas défini dans les paramètres d'entrée
-		res = Temp1
+		res = Temp1;
+		return;
 	end
 	
 endfunction
