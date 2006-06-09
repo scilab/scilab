@@ -11863,8 +11863,8 @@ void getStringsRect( StringMatrix  * strMat            ,
 
 
   /* initialize arrays */
-  rowHeight = CALLOC( nbRow + 1, sizeof( int ) ) ;
-  colWidth  = CALLOC( nbCol + 1, sizeof( int ) ) ;
+  rowHeight = MALLOC( (nbRow + 1) * sizeof( int ) ) ;
+  colWidth  = MALLOC( (nbCol + 1) * sizeof( int ) ) ;
 
   /* the tricky part */
 
@@ -12360,7 +12360,7 @@ void drawText( sciPointObj * pObj )
   int    v  = 0  ;
   double dv = 0. ;
   double anglestr = 0. ;
-  int textProperties[4] ;
+  int textProperties[6] ;
   int verb=0;
   int font_[2], cur_font_[2] ;
   int position[2] ;
@@ -12503,9 +12503,10 @@ void drawText( sciPointObj * pObj )
     /* load the object foreground and dashes color */
     textProperties[0] = sciGetFontForeground (pObj);/*la dash est de la meme couleur que le foreground*/
     textProperties[2] = sciGetFontDeciWidth (pObj)/100;
-    textProperties[3] = 0;
+    textProperties[3] = 0 ;
     textProperties[4] = sciGetFontStyle(pObj);
-          
+    textProperties[5] = 0 ;
+
     C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
     C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
     /* C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); */
