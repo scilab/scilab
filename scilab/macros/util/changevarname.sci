@@ -1,4 +1,4 @@
-function old2newfun(fun,oldname,newname)
+function changevarname(fun,oldname,newname)
 // This function replaces the variable (named oldname) of a file by a new name (which is newname). It uses the old2newinstr function
 // INPUTS:
 // -fun: a string, the name (with the whole path) of the modifed file
@@ -49,5 +49,4 @@ txt=tree2code(tree,%T);
 
 // Replace the old code by the new code (which is txt) in the file  
 //mputl(txt,fun);
-
 endfunction
