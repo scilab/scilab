@@ -32,7 +32,8 @@
   <DESCRIPTION>
   <P>
     <VERB>res=determ(W [,k])</VERB> renvoie le déterminant d&apos;une
-    matrice réelle de polynômes (calculs fait par FFT).
+    matrice réelle de polynômes (calculs fait par FFT si la taille de W
+    est supérieure à 2*2).
   </P>
   <P>
     <VERB>k</VERB> est un entier plus grand que le degré effectif du
@@ -43,7 +44,7 @@
     puissance de 2 plus grande que <VERB>n*maxi(degree(W))</VERB>.
   </P>
   <P>
-    Méthode : évaluation du déterminant de <VERB>W</VERB> aux
+    Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <VERB>W</VERB> aux
     fréquences de Fourier et FFT inverse appliquée aux coefficients du
     déterminant.
   </P>

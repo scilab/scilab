@@ -28,14 +28,14 @@
   <DESCRIPTION>
     <P>
     returns the determinant of a real polynomial matrix 
-    (computation made by FFT).</P>
+    (computation made by FFT if W size is greater than 2*2).</P>
     <P><VERB>res=determ(W [,k])</VERB><VERB>k</VERB> is an integer larger than the actual degree of the determinant
     of <VERB>W</VERB>.</P>
     <P>
     The default value of <VERB>k</VERB> is the smallest power of 2 which is larger
     than <VERB>n*maxi(degree(W))</VERB>.</P>
     <P>
-    Method: evaluate the determinant of <VERB>W</VERB> for the Fourier frequencies
+    Method (Only if W size is greater than 2*2) : evaluate the determinant of <VERB>W</VERB> for the Fourier frequencies
     and apply inverse FFT to the coefficients of the determinant.</P>
   </DESCRIPTION>
   <EXAMPLE>
