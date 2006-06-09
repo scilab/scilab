@@ -1,37 +1,51 @@
-#ifndef _Included_javasci_Scilab
-#define _Included_javasci_Scilab
-/********************************************************************************************************/
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2006 */
 /* Allan CORNET */
-/* INRIA 2005 */
-/********************************************************************************************************/
-#include "javasci_globals.h"
-#ifdef __cplusplus
-extern "C" {
+/*-----------------------------------------------------------------------------------*/ 
+#ifndef __SCIGUICONSOLE__
+#define __SCIGUICONSOLE__
+
+#ifdef _MSC_VER
+  #include <windows.h>
 #endif
 
-/* public static native void Events(); */
-JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this);
-  
-/* public static native boolean HaveAGraph(); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject obj_this);
+#include "jni.h"
 
-/* public static native boolean Exec(String job); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring job);
+#include <stdio.h>
+#include "../machine.h"
+#include "../stack-c.h"
+#include "../version.h"
 
-/* public static native boolean ExistVar(String VarName); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring job);
-
-/* public static native int TypeVar(String VarName); */
-JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring job);
-
-/* public static native int GetLastErrorCode(); */
-JNIEXPORT jint JNICALL Java_javasci_Scilab_GetLastErrorCode (JNIEnv *env , jobject obj_this);
-
-/* public static native boolean Finish(); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj_this);
-
-#ifdef __cplusplus
-}
+#ifdef _MSC_VER
+	#ifdef EXPORT_SCIGUICONSOLE_DLL
+		#define IMPORT_EXPORT_SCIGUICONSOLE_DLL __declspec(dllexport)
+	#else
+		#define IMPORT_EXPORT_SCIGUICONSOLE_DLL __declspec(dllimport)
+	#endif
+#else
+	#define IMPORT_EXPORT_SCIGUICONSOLE_DLL   extern
 #endif
+
+#ifdef _MSC_VER
+	#define IMPORT_DLL __declspec(dllimport)
+#else
+	#define IMPORT_DLL   extern
 #endif
-/********************************************************************************************************/
+
+#ifndef NULL
+  #define NULL 0
+#endif
+
+#define TRUE  1
+#define FALSE 0
+
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int JVM_Create_SciGUIConsole_Object(JNIEnv *env);
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env);
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int Events_Loop_SciGUIConsole(JNIEnv *env);
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int IsEnabled_SciGUIConsole(JNIEnv *env);
+IMPORT_EXPORT_SCIGUICONSOLE_DLL jobject Get_SciGUIConsole_Object(void);
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int PutString(char *Str);
+
+
+#endif /* __SCIGUICONSOLE__ */
+/*-----------------------------------------------------------------------------------*/ 

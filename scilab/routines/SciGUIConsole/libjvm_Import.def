@@ -1,0 +1,6 @@
+LIBRARY    libjvm.dll
+
+
+EXPORTS
+
+Get_jvm_CONSOLE

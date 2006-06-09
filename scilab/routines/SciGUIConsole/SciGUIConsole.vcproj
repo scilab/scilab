@@ -43,8 +43,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../Java/jdk1.5.0_06/include;../../Java/jdk1.5.0_06/include/win32;&quot;../glib-2.0&quot;"
-				PreprocessorDefinitions="STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_SciGUIConsole_DLL"
+				AdditionalIncludeDirectories="../../Java/jdk1.5.0_06/include;../../Java/jdk1.5.0_06/include/win32"
+				PreprocessorDefinitions="EXPORT_SCIGUICONSOLE_DLL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -67,12 +67,13 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description=""
-				CommandLine=""
+				Description="Creation .Lib External Functions"
+				CommandLine="lib /DEF:$(InputDir)libjvm_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)libjvm_Import.lib 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\Java\bin\SciGUIConsole.dll"
+				AdditionalDependencies="libjvm_Import.lib"
+				OutputFile="..\..\bin\SciGUIConsole.dll"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				ImportLibrary="..\..\Java\bin\SciGUIConsole.lib"
@@ -101,7 +102,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Building Class"
-				CommandLine="cd $(InputDir)\classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd .."
+				CommandLine="cd $(InputDir)\classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -134,8 +135,8 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../Java/jdk1.5.0_06/include;../../Java/jdk1.5.0_06/include/win32;&quot;../glib-2.0&quot;"
-				PreprocessorDefinitions="STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_SciGUIConsole_DLL"
+				AdditionalIncludeDirectories="../../Java/jdk1.5.0_06/include;../../Java/jdk1.5.0_06/include/win32"
+				PreprocessorDefinitions="EXPORT_SCIGUICONSOLE_DLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -159,12 +160,13 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description=""
-				CommandLine=""
+				Description="Creation .Lib External Functions"
+				CommandLine="lib /DEF:$(InputDir)libjvm_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)libjvm_Import.lib 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\Java\bin\SciGUIConsole.dll"
+				AdditionalDependencies="libjvm_Import.lib"
+				OutputFile="..\..\bin\SciGUIConsole.dll"
 				ModuleDefinitionFile=""
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
@@ -194,7 +196,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Building Class"
-				CommandLine="cd $(InputDir)\classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd .."
+				CommandLine="cd $(InputDir)\classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -209,11 +211,19 @@
 				RelativePath=".\DllmainSciGUIConsole.c"
 				>
 			</File>
+			<File
+				RelativePath=".\SciGUIConsole.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\SciGUIConsole.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

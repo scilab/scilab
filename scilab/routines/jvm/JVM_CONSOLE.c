@@ -11,85 +11,18 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_CONSOLE=NULL;
-static jobject SciGUIConsoleObject;
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 static HANDLE hThreadJVM_CONSOLE=NULL;
 #else
 static pthread_t tid;
 #endif
+
 /*-----------------------------------------------------------------------------------*/ 
-int JVM_Create_SciGUIConsole_Object(JNIEnv *env);
-int Initialize_SciGUIConsole_Object(JNIEnv *env);
-int Events_Loop_SciGUIConsole(JNIEnv *env);
-int PutString_SciGUIConsole(JNIEnv *env,char *Str);
-/*-----------------------------------------------------------------------------------*/ 
-int JVM_Create_SciGUIConsole_Object(JNIEnv *env)
-{
-	jclass cls=NULL;
-	jmethodID mid=NULL;
-	
-
-	cls = (*env)->FindClass(env, "SciGUIConsole");
-	mid = (*env)->GetMethodID(env,cls,"<init>","()V"); 
-	SciGUIConsoleObject = (*env)->NewObject(env,cls,mid); 
-
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int Initialize_SciGUIConsole_Object(JNIEnv *env)
-{
-	jclass cls=NULL;
-	jmethodID mid=NULL;
-	cls = (*env)->FindClass(env, "SciGUIConsole");
-	mid = (*env)->GetMethodID(env, cls, "Initialize","()V");
-   (*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,NULL);
-   return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int Events_Loop_SciGUIConsole(JNIEnv *env)
-{
-	jclass cls=NULL;
-	jmethodID mid=NULL;
-	cls = (*env)->FindClass(env, "SciGUIConsole");
-	mid = (*env)->GetMethodID(env, cls, "EventsLoop",  "()V");
-   (*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,NULL);
-   return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-int PutString_SciGUIConsole(JNIEnv *env,char *Str)
-{
-	jclass cls=NULL;
-	jmethodID mid=NULL;
-	jstring jstr;
-jclass stringClass;
-     jobjectArray args;
-
-
-
-
-
-	cls = (*env)->FindClass(env, "SciGUIConsole");
-	mid = (*env)->GetMethodID(env, cls, "PutString",  "([Ljava/lang/String;)V");
-
-
-   jstr = (*env)->NewStringUTF(env, Str);
-   stringClass = (*env)->FindClass(env, "java/lang/String");
-   args = (*env)->NewObjectArray(env, 1, stringClass, jstr);
-   (*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,args );
-
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LIBJVM_DLL int PutString(char *Str)
-{
-
-	JNIEnv *env=NULL;	
-
-	(*jvm_CONSOLE)->GetEnv(jvm_CONSOLE, (void **)&env, JNI_VERSION_1_4);
-	PutString_SciGUIConsole(env,Str);
-	return 0;
-}
+IMPORT_DLL int JVM_Create_SciGUIConsole_Object(JNIEnv *env);
+IMPORT_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env);
+IMPORT_DLL int Events_Loop_SciGUIConsole(JNIEnv *env);
+IMPORT_DLL int IsEnabled_SciGUIConsole(JNIEnv *env);
 /*-----------------------------------------------------------------------------------*/ 
 void Thread_JVM_CONSOLE(void *arg)
 {
@@ -104,7 +37,6 @@ void Thread_JVM_CONSOLE(void *arg)
 
 	Events_Loop_SciGUIConsole(env);
 
-
 	res = (*jvm_CONSOLE)->DetachCurrentThread(jvm_CONSOLE);
 
 }
@@ -112,11 +44,6 @@ void Thread_JVM_CONSOLE(void *arg)
 IMPORT_EXPORT_LIBJVM_DLL JavaVM *Get_jvm_CONSOLE(void)
 {
 	return jvm_CONSOLE;
-}
-/*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LIBJVM_DLL jobject Get_SciGUIConsole_Object(void)
-{
-	return (jobject)SciGUIConsoleObject;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int Create_JVM_Thread_CONSOLE(void)
@@ -212,7 +139,11 @@ int Terminate_JVM_Thread_CONSOLE(void)
 	if (JAVALIBRARYPATH) {free(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
 		
 	Create_JVM_Thread_CONSOLE();
-	Sleep(2000);
+
+	while (! IsEnabled_SciGUIConsole(env))
+	{
+	}
+
 	
 	return status;
 }

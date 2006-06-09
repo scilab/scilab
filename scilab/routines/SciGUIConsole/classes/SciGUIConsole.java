@@ -12,9 +12,11 @@ class SciGUIConsole
 	Display d;
   Shell s;
   Text text1;
+  int init;
 /*---------------------------------------------------------------------------------------------*/    
 	SciGUIConsole()
 	{
+		init=0;
 	}
 /*---------------------------------------------------------------------------------------------*/    
   public void Initialize()
@@ -25,21 +27,29 @@ class SciGUIConsole
    s.setText("Scilab 5.0");
    text1 = new Text(s, SWT.MULTI | SWT.V_SCROLL |   SWT.H_SCROLL | SWT.WRAP | SWT.BORDER);
    text1.setBounds(10,10,600,350);
-	 text1.append("Input 1");
+	 s.open( );
+	 init=1;
 	 DispString("RunGUI");
   }
 /*---------------------------------------------------------------------------------------------*/  
   public void EventsLoop()
   {
-  	 s.open( );
   	DispString(" Start LoopGUI");
+  	System.out.println("IsEnable : "+s.isEnabled());
     while(!s.isDisposed( ))
     {
      if(!d.readAndDispatch( )) d.sleep( );
     }
     d.dispose( );
     DispString(" Exit LoopGUI");
+    
   }
+/*---------------------------------------------------------------------------------------------*/
+public int Test()
+{
+	System.out.println("Test");
+	return init;
+}
 /*---------------------------------------------------------------------------------------------*/
   public void PutString(String[] args)
   {
@@ -55,10 +65,10 @@ class SciGUIConsole
   	 System.out.println(args[0]);
   }
 /*---------------------------------------------------------------------------------------------*/
-     
   public static void DispString(String InputStr)
   {
   	System.out.println(InputStr);
   }
+  
  /*---------------------------------------------------------------------------------------------*/      
 }

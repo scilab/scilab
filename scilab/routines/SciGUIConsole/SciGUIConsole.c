@@ -1,152 +1,143 @@
-#include "javasci_Scilab.h"
-/********************************************************************************************************/
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2006 */
 /* Allan CORNET */
-/* INRIA */
-/********************************************************************************************************/
-/* public static native void Events(); */
-JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this)
-/********************************************************************************************************/
+/*-----------------------------------------------------------------------------------*/ 
+#include "SciGUIConsole.h"
+/*-----------------------------------------------------------------------------------*/ 
+static jobject SciGUIConsoleObject;
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_DLL JavaVM *Get_jvm_CONSOLE(void);
+/*-----------------------------------------------------------------------------------*/ 
+int PutString_SciGUIConsole(JNIEnv *env,char *Str);
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL jobject Get_SciGUIConsole_Object(void)
 {
-	ScilabDoOneEvent();
+	return (jobject)SciGUIConsoleObject;
 }
-/********************************************************************************************************/
-/* public static native boolean HaveAGraph(); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject obj_this)
-/********************************************************************************************************/
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int JVM_Create_SciGUIConsole_Object(JNIEnv *env)
 {
-	integer iflag =0,ids,num;
-	jboolean bOK=0;
+	jclass cls=NULL;
+	jmethodID mid=NULL;
+	int bOK=FALSE;
 
-	if (version_flag() == 0)
+	cls = (*env)->FindClass(env, "SciGUIConsole");
+	if (cls)
 	{
-		sciGetIdFigure (&ids,&num,&iflag);
-		if (num > 0) bOK=1;
-		
-	}/* NG end*/
-	else
-	{
-		C2F(getwins)(&num,&ids ,&iflag);
-		if (num > 0) bOK=1;
-  } 
- 
+		mid = (*env)->GetMethodID(env,cls,"<init>","()V");
+		if (mid)
+		{
+			SciGUIConsoleObject = (*env)->NewObject(env,cls,mid); 
+			if (SciGUIConsoleObject)
+			{
+				bOK=TRUE;
+			}
+		}
+	}
+
 	return bOK;
 }
-/********************************************************************************************************/
-/* public static native boolean Exec(String job); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring job)
-/********************************************************************************************************/
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env)
 {
-  jboolean bOK=0;
-  const char *cjob;
+	int bOK=FALSE;
+	jclass cls=NULL;
+	jmethodID mid=NULL;
 
-  cjob = (*env)->GetStringUTFChars(env, job, NULL);
-
-  if (strlen(cjob) >= MAX_STR)
-  {
-	  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine (line too long).\n");
-	  bOK=0;
-  }
-  else
-  {
-	  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
-	  if ( send_scilab_job((char *)cjob) != 0) 
-	  {
-		  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
-		  bOK=0;
-	  }
-	  else bOK=1;
-  }
-
-  (*env)->ReleaseStringUTFChars(env, job , cjob);
-
-  return bOK;
-}
-/********************************************************************************************************/
-/* public static native boolean Finish(); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj_this)
-{
-	jboolean bOK=0;
-	bOK=TerminateScilab(NULL);
+	cls = (*env)->FindClass(env, "SciGUIConsole");
+	if (cls)
+	{
+		mid = (*env)->GetMethodID(env, cls, "Initialize","()V");
+		if (mid)
+		{
+			(*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,NULL);
+			bOK=TRUE;
+		}
+	}
 	return bOK;
 }
-/********************************************************************************************************/
-/* public static native boolean ExistVar(String VarName); */
-JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring VarName)
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int Events_Loop_SciGUIConsole(JNIEnv *env)
 {
-  jboolean bOK=0;
-  const char *cVarName;
+	int bOK=FALSE;
+	jclass cls=NULL;
+	jmethodID mid=NULL;
 
-  cVarName = (*env)->GetStringUTFChars(env, VarName, NULL);
-
-  if (strlen(cVarName) >= MAX_STR)
-  {
-	  fprintf(stderr,"Error in Java_javasci_Scilab_ExistVar routine (line too long).\n");
-	  bOK=0;
-  }
-  else
-  {
-	  int lw; int fin;
-	  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
-	  if (C2F(objptr)((char*)cVarName,&lw,&fin,(unsigned long)strlen(cVarName)))
-	  {
-		  bOK=1;
-	  }
-	  else
-	  {
-		  bOK=0;
-	  }
-  }
-
-  (*env)->ReleaseStringUTFChars(env, VarName , cVarName);
-
-  return bOK;
+	cls = (*env)->FindClass(env, "SciGUIConsole");
+	if (cls)
+	{
+		mid = (*env)->GetMethodID(env, cls, "EventsLoop",  "()V");
+		if (mid)
+		{
+			(*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,NULL);
+			bOK=TRUE;
+		}
+	}
+	return bOK;
 }
-/********************************************************************************************************/
-/* public static native int TypeVar(String VarName); */
-JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring VarName)
+/*-----------------------------------------------------------------------------------*/ 
+int PutString_SciGUIConsole(JNIEnv *env,char *Str)
 {
-  jint type=-1;
-  const char *cVarName;
+	int bOK=FALSE;
+	jclass cls=NULL;
+	jmethodID mid=NULL;
+	jstring jstr;
+	jclass stringClass;
+    jobjectArray args;
 
-  cVarName = (*env)->GetStringUTFChars(env, VarName, NULL);
-
-  if (strlen(cVarName) >= MAX_STR)
-  {
-	  fprintf(stderr,"Error in Java_javasci_Scilab_ExistVar routine (line too long).\n");
-	  type=-1;
-  }
-  else
-  {
-	  int lw; int fin;
-	  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
-	  if (C2F(objptr)((char*)cVarName,&lw,&fin,(unsigned long)strlen(cVarName)))
-	  {
-		  int *header=NULL; 
-		  header = (int *)GetDataFromName((char *)cVarName);
-		  type = header[0];
-	  }
-	  else
-	  {
-		  type =-1;
-		  
-	  }
-  }
-
-  (*env)->ReleaseStringUTFChars(env, VarName , cVarName);
-
-  return type;
+	cls = (*env)->FindClass(env, "SciGUIConsole");
+	if (cls)
+	{
+		mid = (*env)->GetMethodID(env, cls, "PutString",  "([Ljava/lang/String;)V");
+		if (mid)
+		{
+			jstr = (*env)->NewStringUTF(env, Str);
+			stringClass = (*env)->FindClass(env, "java/lang/String");
+			args = (*env)->NewObjectArray(env, 1, stringClass, jstr);
+			(*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,args );
+			bOK=TRUE;
+		}
+	}
+	return bOK;
 }
-/********************************************************************************************************/
-/* public static native int GetLastErrorCode(); */
-JNIEXPORT jint JNICALL Java_javasci_Scilab_GetLastErrorCode (JNIEnv *env , jobject obj_this)
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int PutString(char *Str)
 {
-	jint ErrorCode=0;
+	int bOK=FALSE;
+	JavaVM *jvm_CONSOLE=NULL;
+	JNIEnv *env=NULL;	
 
-	ErrorCode=GetLastErrorCode();
-
-	return ErrorCode;
+	jvm_CONSOLE=Get_jvm_CONSOLE();
+	if (jvm_CONSOLE)
+	{
+		(*jvm_CONSOLE)->GetEnv(jvm_CONSOLE, (void **)&env, JNI_VERSION_1_4);
+		if (env)
+		{
+			PutString_SciGUIConsole(env,Str);
+			bOK=TRUE;
+		}
+	}
+	return bOK;
 }
-/********************************************************************************************************/
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int IsEnabled_SciGUIConsole(JNIEnv *env)
+{
+	int bOK=FALSE;
+	jclass cls=NULL;
+	jmethodID mid=NULL;
+
+	if (SciGUIConsoleObject)
+	{
+		cls = (*env)->FindClass(env, "SciGUIConsole");
+		if (cls)
+		{
+			mid = (*env)->GetMethodID(env, cls, "Test",  "()I");
+			if (mid)
+			{
+				bOK=(*env)->CallIntMethod(env,SciGUIConsoleObject,mid);
+			}
+		}
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
