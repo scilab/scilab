@@ -23,18 +23,17 @@ int main (int argc, char **argv)
 	int i=0;
 	int FindNW=0;
 
-	if (!DetectFrameWorkNET2())
-	{
-		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
-		return -1;
-	}
-
 	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
 	{
 		MessageBox(NULL,"Scilab requires Windows 2000 or more.","Warning",MB_ICONWARNING);
 		return -1;
 	}
 
+	if (!DetectFrameWorkNET2())
+	{
+		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
+		return -1;
+	}
 
 	for (i=0;i<argc;i++)
 	{

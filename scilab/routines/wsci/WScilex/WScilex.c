@@ -13,18 +13,18 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 	MYPROC Windows_Main; 
 	BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
 
+	if (!DetectFrameWorkNET2())
+	{
+		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
+		return -1;
+	}
+
 	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
 	{
 		MessageBox(NULL,"Scilab requires Windows 2000 or more.","Warning",MB_ICONWARNING);
 		return -1;
 	}
 
-	if (!DetectFrameWorkNET2())
-	{
-		MessageBox(NULL,"The .NET Framework 2.0 is not installed","Warning",MB_ICONWARNING);
-		return -1;
-	}
-	
 	hinstLib = LoadLibrary(TEXT("Libscilab")); 	
 	if (hinstLib != NULL) 
 	{ 
