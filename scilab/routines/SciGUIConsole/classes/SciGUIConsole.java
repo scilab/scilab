@@ -1,74 +1,84 @@
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.*;
 
 
 class SciGUIConsole
 {  
-	Display d;
-  Shell s;
-  Text text1;
-  int init;
+	private Display display;
+  private Shell shell;
+  private Text textouput;
+  private Text textinput;
+  private boolean IsEnabled;
 /*---------------------------------------------------------------------------------------------*/    
 	SciGUIConsole()
 	{
-		init=0;
+		IsEnabled=false;
 	}
 /*---------------------------------------------------------------------------------------------*/    
-  public void Initialize()
-  {
-   d = new Display( );
-   s = new Shell(d);
-   s.setSize(640,400);
-   s.setText("Scilab 5.0");
-   text1 = new Text(s, SWT.MULTI | SWT.V_SCROLL |   SWT.H_SCROLL | SWT.WRAP | SWT.BORDER);
-   text1.setBounds(10,10,600,350);
-	 s.open( );
-	 init=1;
-	 DispString("RunGUI");
-  }
-/*---------------------------------------------------------------------------------------------*/  
-  public void EventsLoop()
-  {
-  	DispString(" Start LoopGUI");
-  	System.out.println("IsEnable : "+s.isEnabled());
-    while(!s.isDisposed( ))
-    {
-     if(!d.readAndDispatch( )) d.sleep( );
-    }
-    d.dispose( );
-    DispString(" Exit LoopGUI");
-    
-  }
-/*---------------------------------------------------------------------------------------------*/
-public int Test()
+public void Initialize()
 {
-	System.out.println("Test");
-	return init;
+	display = new Display( );
+  shell = new Shell(display);
+  shell.pack ();
+  shell.setSize(620,520);
+  shell.setText("Scilab 5.0");
+  
+  textouput = new Text(shell, SWT.MULTI | SWT.V_SCROLL |   SWT.H_SCROLL | SWT.BORDER | SWT.WRAP |SWT.READ_ONLY);
+  textouput.setBounds(10,10,600,230);
+  
+  textinput = new Text(shell, SWT.MULTI | SWT.V_SCROLL |   SWT.H_SCROLL | SWT.BORDER);
+  textinput.setBounds(10,275,600,200);
+  
+  textinput.addTraverseListener(new TraverseListener() {
+		public void keyTraversed(TraverseEvent e) {
+			if (e.detail == SWT.TRAVERSE_RETURN ) 
+			{
+				System.out.println (textinput.getText());
+				textinput.setText("");
+				System.out.println ("number lines: "+textinput.getLineCount());
+				
+			}
+		}
+	});
+  
+	shell.open( );
+	IsEnabled=true;
+		
+
+	
+}
+/*---------------------------------------------------------------------------------------------*/  
+public void EventsLoop()
+{
+	while(!shell.isDisposed( ))
+  {
+  	if(!display.readAndDispatch( )) display.sleep( );
+  }
+  dispose();
 }
 /*---------------------------------------------------------------------------------------------*/
-  public void PutString(String[] args)
-  {
-  	final String line=args[0];
-  	
-  	d.asyncExec (new Runnable () 
-  	{
-      public void run ()
-      {
-      	text1.append(line);
-      }
-    }); 
-  	 System.out.println(args[0]);
-  }
+public void dispose()
+{
+	display.dispose( );
+}
 /*---------------------------------------------------------------------------------------------*/
-  public static void DispString(String InputStr)
-  {
-  	System.out.println(InputStr);
-  }
-  
- /*---------------------------------------------------------------------------------------------*/      
+public boolean IsEnabled()
+{
+	return IsEnabled;
+}
+/*---------------------------------------------------------------------------------------------*/
+public void PutString(final String Str)
+{
+	display.syncExec (new Runnable () 
+	{
+		public void run ()
+		{
+			textouput.append(Str);
+		}
+	}); 
+}
+/*---------------------------------------------------------------------------------------------*/
+
 }

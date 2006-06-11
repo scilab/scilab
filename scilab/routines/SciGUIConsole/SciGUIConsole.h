@@ -43,6 +43,7 @@ IMPORT_EXPORT_SCIGUICONSOLE_DLL int JVM_Create_SciGUIConsole_Object(JNIEnv *env)
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int Events_Loop_SciGUIConsole(JNIEnv *env);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int IsEnabled_SciGUIConsole(JNIEnv *env);
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int Dispose_SciGUIConsole(JNIEnv *env);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL jobject Get_SciGUIConsole_Object(void);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int PutString(char *Str);
 

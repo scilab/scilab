@@ -82,19 +82,15 @@ int PutString_SciGUIConsole(JNIEnv *env,char *Str)
 	jclass cls=NULL;
 	jmethodID mid=NULL;
 	jstring jstr;
-	jclass stringClass;
-    jobjectArray args;
 
 	cls = (*env)->FindClass(env, "SciGUIConsole");
 	if (cls)
 	{
-		mid = (*env)->GetMethodID(env, cls, "PutString",  "([Ljava/lang/String;)V");
+		mid = (*env)->GetMethodID(env, cls, "PutString",  "(Ljava/lang/String;)V");
 		if (mid)
 		{
 			jstr = (*env)->NewStringUTF(env, Str);
-			stringClass = (*env)->FindClass(env, "java/lang/String");
-			args = (*env)->NewObjectArray(env, 1, stringClass, jstr);
-			(*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,args );
+			(*env)->CallObjectMethod(env,(jobject)SciGUIConsoleObject, mid,jstr );
 			bOK=TRUE;
 		}
 	}
@@ -131,10 +127,32 @@ IMPORT_EXPORT_SCIGUICONSOLE_DLL int IsEnabled_SciGUIConsole(JNIEnv *env)
 		cls = (*env)->FindClass(env, "SciGUIConsole");
 		if (cls)
 		{
-			mid = (*env)->GetMethodID(env, cls, "Test",  "()I");
+			mid = (*env)->GetMethodID(env, cls, "IsEnabled",  "()Z");
 			if (mid)
 			{
-				bOK=(*env)->CallIntMethod(env,SciGUIConsoleObject,mid);
+				bOK=(*env)->CallBooleanMethod(env,SciGUIConsoleObject,mid);
+			}
+		}
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_SCIGUICONSOLE_DLL int Dispose_SciGUIConsole(JNIEnv *env)
+{
+	int bOK=FALSE;
+	jclass cls=NULL;
+	jmethodID mid=NULL;
+
+	if (SciGUIConsoleObject)
+	{
+		cls = (*env)->FindClass(env, "SciGUIConsole");
+		if (cls)
+		{
+			mid = (*env)->GetMethodID(env, cls, "dispose",  "()V");
+			if (mid)
+			{
+				(*env)->CallVoidMethod(env,SciGUIConsoleObject,mid);
+				bOK=TRUE;
 			}
 		}
 	}
