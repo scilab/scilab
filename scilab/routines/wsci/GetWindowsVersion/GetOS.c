@@ -1,23 +1,5 @@
 #include "GetOS.h"
 /*-----------------------------------------------------------------------------------*/
-static int SciPlatformId;
-/*-----------------------------------------------------------------------------------*/
-/*
-SciPlatformId :
-	VER_PLATFORM_WIN32s		Win32s on Windows 3.1.
-	VER_PLATFORM_WIN32_WINDOWS	Win32 on Windows 95.
-	VER_PLATFORM_WIN32_NT	Win32 on Windows NT
-*/
-int SciWinGetPlatformId ()
-{
-	OSVERSIONINFO os;
-	os.dwOSVersionInfoSize = sizeof (os);
-	GetVersionEx (&os);
-	SciPlatformId = os.dwPlatformId;
-
-	return SciPlatformId;
-}
-/*-----------------------------------------------------------------------------------*/
 int GetOSVersion(void)
 {
 	OSVERSIONINFOEX osvi;
