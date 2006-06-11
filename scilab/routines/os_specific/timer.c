@@ -3,7 +3,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 
-#if ~defined(THINK_C) && ~defined(__MWERKS__)
+#if ~defined(THINK_C)
 	#if !(defined _MSC_VER)
 		#include <sys/time.h>
 	#else 
@@ -15,7 +15,7 @@
 #include <time.h>
 #include "../machine.h"
 
-#if defined(THINK_C) || defined(__MWERKS__)
+#if defined(THINK_C)
 	#include <Threads.h> 
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -30,10 +30,6 @@
 #if _MSC_VER
 	static __int64 i64UserTick1;
 	static LARGE_INTEGER   Tick1;
-	typedef enum
-  {
-    WINNT,	WIN2K_XP, WIN9X, UNKNOWN
-  }PLATFORM;
 #else
 	static clock_t t1;
 #endif
@@ -41,34 +37,14 @@
 static int init_clock = 1;
 
 #if _MSC_VER
-	PLATFORM GetPlatform(void);
 	static long stimerwin(void);
-#endif
-/*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-PLATFORM GetPlatform()
-{
-  OSVERSIONINFO osvi;
-  osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-  if (!GetVersionEx(&osvi)) return UNKNOWN;
-  switch (osvi.dwPlatformId)
-  {
-    case VER_PLATFORM_WIN32_WINDOWS: return WIN9X;
-    case VER_PLATFORM_WIN32_NT: 
-			if (osvi.dwMajorVersion == 4)
-				return WINNT;
-      else
-				return WIN2K_XP;
-  }
-  return UNKNOWN;
-}
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* define X_GETTIMEOFDAY macro, a portable gettimeofday() */
 #if  defined(VMS)
 	#define X_GETTIMEOFDAY(t) gettimeofday(t)
 #else
-	#if defined(THINK_C) || defined(__MWERKS__)
+	#if defined(THINK_C)
 		#define X_GETTIMEOFDAY(t) 0 
 	#else
 		#if defined(_MSC_VER)
@@ -83,7 +59,7 @@ PLATFORM GetPlatform()
 /*-----------------------------------------------------------------------------------*/
 static long int scilab_stimer_deprecated(void)
 {
-#if defined(THINK_C)||defined(__MWERKS__) 
+#if defined(THINK_C)
         YieldToAnyThread();
         return(0);
 #else 
@@ -95,7 +71,7 @@ static long int scilab_stimer_deprecated(void)
 #else 
   return(stimerwin());
 #endif /* !(defined _MSC_VER */ 
-#endif /* defined(THINK_C)||defined(__MWERKS__) */
+#endif /* defined(THINK_C) */
 }
 /*-----------------------------------------------------------------------------------*/
 /* stimer */

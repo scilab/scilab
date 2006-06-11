@@ -35,7 +35,7 @@ char * UsageStr[]={
 
 char file1[256],file2[256];
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 extern void SciEnv(void);
 #endif 
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 {
   double xs=1.0,ys=1.0;
   char orientation='p';
-#ifdef WIN32 
+#ifdef _MSC_VER
   SciEnv();
 #endif 
   if (argc >= 6 || argc <= 3 )

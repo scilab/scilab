@@ -5,7 +5,6 @@
 #include<stdio.h>
 #ifdef _MSC_VER
 #include <windows.h>
-#include "../wsci/GetOS.h"
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
@@ -27,29 +26,15 @@ int C2F(systemc)(char *command, integer *stat)
 {
 #if _MSC_VER
 	{
-		int OS=GetOSVersion();
-		if ( (OS==OS_WIN32_WINDOWS_NT_3_51) ||
-			(OS==OS_WIN32_WINDOWS_NT_4_0) ||
-			(OS==OS_WIN32_WINDOWS_95) ||
-			(OS==OS_WIN32_WINDOWS_98) ||
-			(OS==OS_WIN32_WINDOWS_Me) )
+		BOOL Status=FALSE;
+		Status=CallWindowsShell(command,FALSE);
+		if (Status)
 		{
-				int status;
-				status=system(command);
-				*stat=(integer)status;
+			*stat=(integer)0;
 		}
 		else
-		{	
-			BOOL Status=FALSE;
-			Status=CallWindowsShell(command,FALSE);
-			if (Status)
-			{
-				*stat=(integer)0;
-			}
-			else
-			{
-				*stat=(integer)1;
-			}
+		{
+			*stat=(integer)1;
 		}
 	}
 #else

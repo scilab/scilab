@@ -7,6 +7,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <windows.h>
 #include <windowsx.h>
+#include <shlwapi.h>
 #include "wgnuplib.h"
 #include "resource.h"
 #include "Messages.h"

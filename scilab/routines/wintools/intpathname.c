@@ -10,11 +10,6 @@
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-typedef  DWORD (WINAPI * GetLongPathNamePROC) (LPCSTR,LPSTR,DWORD); 
-DWORD _GetLongPathName(LPCSTR lpszPath, OUT LPSTR lpszLongPath, int nSize);
-#endif
-/*-----------------------------------------------------------------------------------*/
 int C2F(intgetlongpathname) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
@@ -34,7 +29,7 @@ int C2F(intgetlongpathname) _PARAMS((char *fname))
 		LongName=(char*)MALLOC(MAX_PATH_LONG*sizeof(char));
 
 		#ifdef _MSC_VER
-		  if (_GetLongPathName(ShortName,LongName,MAX_PATH_LONG))
+		  if (GetLongPathName(ShortName,LongName,MAX_PATH_LONG))
 		  {
 			  bOK=TRUE;
 		  }
@@ -137,32 +132,4 @@ int C2F(intgetshortpathname) _PARAMS((char *fname))
 	return 0;
 	
 }
-/*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-DWORD _GetLongPathName(LPCSTR lpszPath, OUT LPSTR lpszLongPath, int nSize) 
-{ 
-	DWORD sz=0;
-	HINSTANCE Kernel32Dll = LoadLibrary ("kernel32"); 
-
-	if ( Kernel32Dll ) 
-	{ 
-        GetLongPathNamePROC myGetLongPathName = (GetLongPathNamePROC) GetProcAddress(Kernel32Dll,"GetLongPathNameA"); 
-
-        if ( myGetLongPathName ) 
-        { 
-			sz = (myGetLongPathName)( (LPCTSTR)  lpszPath, (LPTSTR) lpszLongPath,  nSize ); 
-            lpszLongPath[MAX_PATH] = '\0'; // trust no one 
-        } 
-        else 
-        { 
-                // not found in dll 
-                // NT 4 Scilab ne supporte plus NT4
-        } 
-	}
-
-    FreeLibrary( Kernel32Dll ); 
-	return sz;
-
-} 
-#endif
 /*-----------------------------------------------------------------------------------*/

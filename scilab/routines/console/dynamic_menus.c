@@ -6,6 +6,7 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #include <stdio.h>
+#include "../wsci/GetWindowsVersion/GetWindowsVersion.h"
 #else
 #include <sys/utsname.h>
 #endif
@@ -47,7 +48,6 @@
  *---------------------------------------------------------------------*/
 
 #ifdef _MSC_VER
-extern int GetOSVersion(void);
 extern BOOL IsToThePrompt(void);
 #endif /*_MSC_VER*/
 
@@ -306,47 +306,60 @@ int C2F(intgetos) _PARAMS((char *fname))
 
 #if _MSC_VER
 	
-	#define OS_ERROR                       -1
-	#define OS_WIN32_WINDOWS_NT_3_51        0
-	#define OS_WIN32_WINDOWS_NT_4_0         1
-	#define OS_WIN32_WINDOWS_95			    2
-	#define OS_WIN32_WINDOWS_98				3
-	#define OS_WIN32_WINDOWS_Me				4
-	#define OS_WIN32_WINDOWS_2000			5
-	#define OS_WIN32_WINDOWS_XP				6
-	#define OS_WIN32_WINDOWS_SERVER_2003_FAMILY 7
 
 	sprintf(OperatinSystem,"%s","Windows");
 
-	switch (GetOSVersion())
+	switch (GetWindowsVersion())
 	{
 		case OS_ERROR : default :
 			sprintf(Release,"%s","Unknow");
 			break;
-		case OS_WIN32_WINDOWS_NT_3_51:
+		case OS_WIN32_WINDOWS_NT_3_51 :
 			sprintf(Release,"%s","NT 3.51");
 			break;
-		case OS_WIN32_WINDOWS_NT_4_0:
-			sprintf(Release,"%s","NT 4.00");
+		case OS_WIN32_WINDOWS_NT_4_0 :
+			sprintf(Release,"%s","NT 4.0");
 			break;
-		case OS_WIN32_WINDOWS_95:
+		case OS_WIN32_WINDOWS_95 :
 			sprintf(Release,"%s","95");
 			break;
-		case OS_WIN32_WINDOWS_98:
+		case OS_WIN32_WINDOWS_98 :
 			sprintf(Release,"%s","98");
 			break;
-		case OS_WIN32_WINDOWS_Me:
+		case OS_WIN32_WINDOWS_Me :
 			sprintf(Release,"%s","ME");
 			break;
-		case OS_WIN32_WINDOWS_2000:
+		case OS_WIN32_WINDOWS_2000 :
 			sprintf(Release,"%s","2000");
 			break;
-		case OS_WIN32_WINDOWS_XP:
+		case OS_WIN32_WINDOWS_XP :
 			sprintf(Release,"%s","XP");
 			break;
-		case OS_WIN32_WINDOWS_SERVER_2003_FAMILY:
-			sprintf(Release,"%s","2003");
+		case OS_WIN32_WINDOWS_XP_64 :
+			sprintf(Release,"%s","XP x64");
 			break;
+		case OS_WIN32_WINDOWS_SERVER_2003 :
+			sprintf(Release,"%s","Server 2003");
+			break;
+		case OS_WIN32_WINDOWS_SERVER_2003_R2 :
+			sprintf(Release,"%s","Server 2003 R2");
+			break;
+		case OS_WIN32_WINDOWS_SERVER_2003_64 :
+			sprintf(Release,"%s","Server 2003 x64");
+			break;
+		case OS_WIN32_WINDOWS_VISTA :
+			sprintf(Release,"%s","Vista");
+			break;
+		case OS_WIN32_WINDOWS_VISTA_64 :
+			sprintf(Release,"%s","Vista x64");
+			break;
+		case OS_WIN32_WINDOWS_LONGHORN :
+			sprintf(Release,"%s","Longhorn");
+			break;
+		case OS_WIN32_WINDOWS_LONGHORN_64 :
+			sprintf(Release,"%s","Longhorn x64");
+			break;
+
 	}
 #else
 	uname(&uname_pointer);

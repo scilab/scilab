@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 
-#if ~defined(THINK_C) && ~defined(__MWERKS__)
+#if ~defined(THINK_C)
 	#if !(defined _MSC_VER)
 		#include <sys/time.h>
 	#else 
@@ -16,7 +16,7 @@
 #include <time.h>
 #include "../machine.h"
 
-#if defined(THINK_C) || defined(__MWERKS__)
+#if defined(THINK_C)
 	#include <Threads.h> 
 #endif
 

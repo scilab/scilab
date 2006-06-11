@@ -1,10 +1,10 @@
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 #include <windows.h>
 #include <stdio.h>
 #endif 
 
-#if WIN32
+#if _MSC_VER
   #define __STDC__
 #endif
 
@@ -23,7 +23,7 @@ static int icre=1;     /* incremental counter for variable creation */
 static int indent = 0; /* incremental counter for code indentation */
 static int pass = 0 ;  /* flag for couting pass on code generation */
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 static void SciEnv ();
 #define putenv _putenv
 #endif 
@@ -33,7 +33,7 @@ int main(argc,argv)
      char **argv;
 { 
   int InterFace = 0 ;
-#ifdef WIN32 
+#ifdef _MSC_VER
   SciEnv();
 #endif 
   switch (argc) {
@@ -3378,7 +3378,7 @@ void  FCprintf(va_alist) va_dcl
  * necessary for SCIDIR 
  ********************************/
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 static void SciEnv ()
 {
   char *p,*p1;
@@ -3398,21 +3398,8 @@ static void SciEnv ()
 	{
 	  if (*p == '\\') *p = '/';
 	}
-#ifdef __CYGWIN32__ 
-      if ( modname[2] == ':' ) 
-	{
-	  modname[2] = modname[1];
-	  modname[0] = '/';
-	  modname[1] = '/';
-	  p = modname;
-	}
-      else 
-	{
-	  p = modname + 1;
-	}
-#else 
-      p = modname + 1;
-#endif 
+    p = modname + 1;
+
       if ( ( p1 = getenv("SCI"))  == (char *) 0 )
 	{  
 	  sprintf(env,"SCI=%s",p); 
@@ -3420,4 +3407,4 @@ static void SciEnv ()
 	}
     }
 }
-#endif /** WIN32 **/
+#endif /** _MSC_VER **/

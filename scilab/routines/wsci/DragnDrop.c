@@ -7,7 +7,6 @@
 extern void GetCurrentPrompt(char *CurrentPrompt);
 extern int StoreCommand( char *command);
 extern BOOL IsToThePrompt(void);
-extern LPTSTR ScilabPathFindExtension(LPCTSTR pPath);
 /*-----------------------------------------------------------------------------------*/
 BOOL LaunchFilebyExtension(char *File);
 /*-----------------------------------------------------------------------------------*/
@@ -35,7 +34,7 @@ BOOL LaunchFilebyExtension(char *File)
 	char *CommandLine=NULL;
 	char *ExtensionFilename=NULL;
 
-	ExtensionFilename=ScilabPathFindExtension(File);
+	ExtensionFilename=PathFindExtension(File);
 	GetCurrentPrompt(save_prompt);
 	
 	if ( (_stricmp(ExtensionFilename,".bin")==0) ||	(_stricmp(ExtensionFilename,".sav")==0) )

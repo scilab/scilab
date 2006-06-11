@@ -432,7 +432,7 @@ extern char *malloc(), *calloc(), *realloc();
 #endif
 
 */
-#if defined(THINK_C) || defined (__MWERKS__)  
+#if defined(THINK_C)
 #include <types.h>
 #else
 #include <sys/types.h> /* pour le malloc.h de dbmalloc */

@@ -3,6 +3,7 @@
 /***********************************************************************/
 #include <Windows.h>
 #include "../DetectFramework2/DetectFramework.h"
+#include "../GetWindowsVersion/GetWindowsVersion.h"
 /***********************************************************************/
 typedef int (*MYPROC) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
 /***********************************************************************/
@@ -11,6 +12,12 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 	HINSTANCE hinstLib; 
 	MYPROC Windows_Main; 
 	BOOL fFreeResult, fRunTimeLinkSuccess = FALSE; 
+
+	if (GetWindowsVersion()<OS_WIN32_WINDOWS_2000)
+	{
+		MessageBox(NULL,"Scilab requires Windows 2000 or more.","Warning",MB_ICONWARNING);
+		return -1;
+	}
 
 	if (!DetectFrameWorkNET2())
 	{

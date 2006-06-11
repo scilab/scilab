@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#if (defined _MSC_VER) || defined(__MINGW32__) 
+#if (defined _MSC_VER) 
 #undef putenv
 #define putenv(x) _putenv(x)
 #endif
@@ -33,21 +33,7 @@ void SciEnv ()
 	{
 	  if (*p == '\\') *p = '/';
 	}
-#ifdef __CYGWIN32__ 
-      if ( modname[2] == ':' ) 
-	{
-	  modname[2] = modname[1];
-	  modname[0] = '/';
-	  modname[1] = '/';
-	  p = modname;
-	}
-      else 
-	{
-	  p = modname + 1;
-	}
-#else 
-      p = modname + 1;
-#endif 
+    p = modname + 1;
     if ( ( p1 = getenv("SCI"))  == (char *) 0 )
 	{
 		sprintf(env,"SCI=%s",p);

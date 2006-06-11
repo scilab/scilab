@@ -3,6 +3,8 @@
 #ifndef __WINCONSOLE_H__
 #define __WINCONSOLE_H__
 
+#define  _WIN32_WINNT 0x0500 
+
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,6 +34,4 @@ void ShowScilex(void);
 void SwitchConsole(void);
 int GetConsoleState(void); /* Show 1 or Hide 0 */
 void SetConsoleState(int state);
-HWND ScilabGetConsoleWindow(void);
-UINT ScilabGetWindowModuleFileName(HWND hwnd,LPTSTR lpszFileName,UINT cchFileNameMax);
 #endif /* __WINCONSOLE_H__ */

@@ -83,6 +83,9 @@ void Callback_NEWSCILAB(void)
 	SECURITY_ATTRIBUTES sec_attrs;
 	PROCESS_INFORMATION child;
 	char ScilexName[MAX_PATH];
+	/* Windows NT */
+	char *VarEnvironmnt=NULL;
+	extern char ScilexWindowName[MAX_PATH];
 	    		
 	GetModuleFileName (NULL,ScilexName, MAX_PATH);
 
@@ -94,39 +97,22 @@ void Callback_NEWSCILAB(void)
 	sec_attrs.lpSecurityDescriptor = NULL;
 	sec_attrs.bInheritHandle = FALSE;
 
-	if ( GetVersion() < 0x80000000 )
-	{
-		/* Windows NT */
-		char *VarEnvironmnt=NULL;
-		extern char ScilexWindowName[MAX_PATH];
 
-		VarEnvironmnt=(char*)MALLOC((strlen("SCILAB_CREATOR=")+strlen(ScilexWindowName)+1)*sizeof(char));
-		wsprintf(VarEnvironmnt,"SCILAB_CREATOR=%s",ScilexWindowName);
-		putenv(VarEnvironmnt);
-		if (VarEnvironmnt) 
-		{
-			FREE(VarEnvironmnt);
-			VarEnvironmnt=NULL;
-		}
+	VarEnvironmnt=(char*)MALLOC((strlen("SCILAB_CREATOR=")+strlen(ScilexWindowName)+1)*sizeof(char));
+	wsprintf(VarEnvironmnt,"SCILAB_CREATOR=%s",ScilexWindowName);
+	putenv(VarEnvironmnt);
+	if (VarEnvironmnt) 
+	{
+		FREE(VarEnvironmnt);
+		VarEnvironmnt=NULL;
+	}
 		
-		if (CreateProcess (ScilexName,"",&sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,NULL, NULL, &start, &child))
-		{
-			CloseHandle (child.hThread);
-			CloseHandle (child.hProcess);
-		}
-		else MessageBox(NULL,MSG_WARNING23,MSG_WARNING22,MB_ICONWARNING);
-
-	}
-	else
+	if (CreateProcess (ScilexName,"",&sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,NULL, NULL, &start, &child))
 	{
-		/* Win32s, Win95,Win98,WinME */
-		if (CreateProcess (NULL,ScilexName, &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
-		{
-			CloseHandle (child.hThread);
-			CloseHandle (child.hProcess);
-		}
-		else MessageBox(NULL,MSG_WARNING23,MSG_WARNING22,MB_ICONWARNING);
+		CloseHandle (child.hThread);
+		CloseHandle (child.hProcess);
 	}
+	else MessageBox(NULL,MSG_WARNING23,MSG_WARNING22,MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_OPEN(void)

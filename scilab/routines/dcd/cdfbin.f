@@ -119,9 +119,6 @@ C     ..
 C     .. Executable Statements ..
 C
 C     Check arguments
-C     jpc : changed the next line which was strangeley 
-c     not working at run time on win32 gcc with optimize option !!!
-C      IF (.NOT ((which.LT.1).AND. (which.GT.4))) GO TO 30
       IF ((which.GE.1).AND. (which.LE.4)) GO TO 30
       IF (.NOT. (which.LT.1)) GO TO 10
       bound = 1.0D0

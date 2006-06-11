@@ -451,23 +451,14 @@ BOOL IsTheGoodShell(void)
 	char dir[_MAX_DIR];
 	char fname[_MAX_FNAME];
 	char ext[_MAX_EXT];
-	int OS=-1;
 
 	strcpy(shellCmd,"");
 	strcpy(fname,"");
 	GetEnvironmentVariable("ComSpec", shellCmd, _MAX_PATH);
 	_splitpath(shellCmd,drive,dir,fname,ext);
 
-	OS=GetOSVersion();
-
-	if ( (OS==OS_WIN32_WINDOWS_95) || (OS==OS_WIN32_WINDOWS_98) || (OS==OS_WIN32_WINDOWS_Me) )
-	{
-		if (_stricmp(fname,"command")==0) bOK=TRUE;
-	}
-	else
-	{
-		if (_stricmp(fname,"cmd")==0) bOK=TRUE;
-	}
+	if (_stricmp(fname,"cmd")==0) bOK=TRUE;
+	
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -476,21 +467,10 @@ BOOL Set_Shell(void)
 	BOOL bOK=FALSE;
 	char env[_MAX_DRIVE+_MAX_DIR+_MAX_FNAME+_MAX_EXT+10];
 	char *WINDIRPATH=NULL;
-  int OS=-1;
 
-	OS=GetOSVersion();
-
-	if ( (OS==OS_WIN32_WINDOWS_95) || (OS==OS_WIN32_WINDOWS_98) || (OS==OS_WIN32_WINDOWS_Me) )
-	{
-		WINDIRPATH=getenv ("windir");
-		sprintf(env,"ComSpec=%s\\command.com",WINDIRPATH);
-	}
-	else
-	{
-		WINDIRPATH=getenv ("SystemRoot");
-		sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
-	}
-
+	WINDIRPATH=getenv ("SystemRoot");
+	sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
+	
 	if (_putenv (env))
 	{
 		bOK=FALSE;		

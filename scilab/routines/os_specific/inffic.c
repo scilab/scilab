@@ -1,7 +1,7 @@
 /* Copyright INRIA/ENPC */
 #include <string.h>
 
-#if defined(THINK_C)||defined(__MWERKS__)
+#if defined(THINK_C)
 #include "::graphics:Math.h"
 #else
 #include "../graphics/Math.h"

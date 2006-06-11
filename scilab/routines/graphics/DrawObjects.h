@@ -18,7 +18,7 @@
 #define __SCI_DRAWINGS__
 
 #define spINSIDE_SPARSE /* F.Leray to have LARGEST_REAL*/
-#if defined(THINK_C) || defined (__MWERKS__)
+#if defined(THINK_C)
 #include "::sparse:spConfig.h" 
 #else
 #include "../sparse/spConfig.h"

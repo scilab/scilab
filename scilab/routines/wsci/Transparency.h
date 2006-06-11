@@ -5,6 +5,8 @@
 #ifndef __TRANSPARENCY__
 #define  __TRANSPARENCY__
 /*-----------------------------------------------------------------------------------*/
+#define  _WIN32_WINNT 0x0500
+/*-----------------------------------------------------------------------------------*/
 #include <windows.h>
 #include <windowsx.h>
 #include "wgnuplib.h"
@@ -13,7 +15,6 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "../version.h"
-#include "GetOS.h"
 #include "../os_specific/win_mem_alloc.h"
 
 /*-----------------------------------------------------------------------------------*/

@@ -1,12 +1,12 @@
 #include <stdlib.h>
-#ifdef WIN32
+#ifdef _MSC_VER
 #include <windows.h>
 #endif
 #include "intersci-n.h"
 #include "getrhs.h" 
 #include "crerhs.h" 
 
-#if WIN32
+#if _MSC_VER
   #define __STDC__
 #endif
 
@@ -632,7 +632,7 @@ void WriteFortranCall(f)
 	      /* a new variable is created on the stack for each 
 		 Fortran argument */
 	      (*(CRERHSTAB[variables[ivar-1]->type].fonc))(f,variables[ivar-1]);
-		#ifdef WIN32
+		#ifdef _MSC_VER
 		  _try
 		  {
 	      if (target == 'C' && variables[ivar-1]->C_name[0] != NULL) 

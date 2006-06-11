@@ -19,7 +19,7 @@
 
 #include "util.h" 
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 extern void SciEnv(void);
 #endif 
 
@@ -166,7 +166,7 @@ int main(int argc, char **argv)
 #if defined(freebsd) || defined(netbsd)
   fpsetmask(0);
 #endif
-#ifdef WIN32 
+#ifdef _MSC_VER
   SciEnv();
 #endif 
   if (argc !=4 ) { int i=0;

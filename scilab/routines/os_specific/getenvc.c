@@ -10,7 +10,7 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
   char *getenv(const char *),*local;
   *ierr=0;
-#if defined(THINK_C)||defined(__MWERKS__)
+#if defined(THINK_C)
   *buf=0;
 #else
   if ( (local=getenv(var)) == 0)

@@ -13,7 +13,7 @@
  */
 
 #define spINSIDE_SPARSE
-#if defined(THINK_C) || defined (__MWERKS__)
+#if defined(THINK_C)
 #include "::sparse:spConfig.h" 
 #else
 #include "../sparse/spConfig.h"

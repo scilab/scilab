@@ -13,7 +13,6 @@ char ScilexConsoleName[MAX_PATH];
 static BOOL WindowMode;
 static int Windows_Console_State;/* 0 Hide 1 Show */
 /*-----------------------------------------------------------------------------------*/
-typedef  HWND (WINAPI * GetConsoleWindowPROC) (void);
 typedef  UINT (WINAPI * GetWindowModuleFileNamePROC) (HWND,LPTSTR,UINT);
 /*-----------------------------------------------------------------------------------*/
 void RenameConsole(void)
@@ -33,7 +32,7 @@ void RenameConsole(void)
 	}
 
 	// Desactive croix dans la console
-	hmenuConsole=GetSystemMenu(ScilabGetConsoleWindow(), FALSE);
+	hmenuConsole=GetSystemMenu(GetConsoleWindow(), FALSE);
 	DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
 
 }
@@ -71,7 +70,7 @@ void CreateScilabConsole(int ShowBanner)
 	}
 
 	// Desactive croix dans la console
-	hmenuConsole=GetSystemMenu(ScilabGetConsoleWindow(), FALSE);
+	hmenuConsole=GetSystemMenu(GetConsoleWindow(), FALSE);
 	DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
 
 	HideScilex(); /* Cache la fenetre Console */
@@ -146,7 +145,7 @@ int FindFreeScilexNumber(void)
 		char FileName[MAX_PATH+1];
 		strcpy(FileName,"");
 
-		NbChar=ScilabGetWindowModuleFileName(hScilexN,FileName,MAX_PATH);
+		NbChar=GetWindowModuleFileName(hScilexN,FileName,MAX_PATH);
 		
 		if (NbChar>0)
 		{
@@ -167,7 +166,7 @@ int FindFreeScilexNumber(void)
 void HideScilex(void)
 {
 	HWND hScilex=NULL;
-	hScilex=ScilabGetConsoleWindow();
+	hScilex=GetConsoleWindow();
 	if (hScilex)
 	{
 		ShowWindow(hScilex,SW_HIDE);	
@@ -178,7 +177,7 @@ void HideScilex(void)
 void ShowScilex(void)
 {
   HWND hScilex=NULL;
-  hScilex=ScilabGetConsoleWindow();
+  hScilex=GetConsoleWindow();
   if (hScilex)
   {
   	ShowWindow(hScilex,SW_SHOWNOACTIVATE);
@@ -221,63 +220,5 @@ int GetConsoleState(void)
 void SetConsoleState(int state)
 {
 	Windows_Console_State=state;
-}
-/*-----------------------------------------------------------------------------------*/
-HWND ScilabGetConsoleWindow(void)
-{
-	HWND hWndReturn=NULL;
-	HINSTANCE Kernel32Dll = LoadLibrary ("kernel32"); 
-
-	if ( Kernel32Dll ) 
-		{ 
-			GetConsoleWindowPROC myGetConsoleWindow = (GetConsoleWindowPROC) GetProcAddress(Kernel32Dll,"GetConsoleWindow"); 
-
-			if ( myGetConsoleWindow ) 
-			{ 
-				// 2k AND more
-				hWndReturn = (myGetConsoleWindow)(); 
-			} 
-			else 
-			{ 
-				// 98
-				hWndReturn = FindWindow(NULL,ScilexConsoleName);
-			} 
-		}
-	else
-	{
-		hWndReturn = FindWindow(NULL,ScilexConsoleName);
-	}
-
-	FreeLibrary( Kernel32Dll ); 
-
-	return hWndReturn;
-}
-/*-----------------------------------------------------------------------------------*/
-UINT ScilabGetWindowModuleFileName(HWND hwnd,LPTSTR lpszFileName,UINT cchFileNameMax)
-{
-	UINT UintReturn=0;
-	HINSTANCE User32Dll = LoadLibrary ("user32"); 
-
-	if ( User32Dll ) 
-	{ 
-		GetWindowModuleFileNamePROC myGetWindowModuleFileName = (GetWindowModuleFileNamePROC) GetProcAddress(User32Dll,"GetWindowModuleFileName"); 
-
-		if ( myGetWindowModuleFileName ) 
-		{ 
-			UintReturn=myGetWindowModuleFileName(hwnd,lpszFileName,cchFileNameMax);
-		} 
-		else 
-		{ 
-			UintReturn=-1;
-		} 
-	}
-	else
-	{
-		UintReturn=-1;
-	}
-
-	FreeLibrary( User32Dll ); 
-
-	return UintReturn;
 }
 /*-----------------------------------------------------------------------------------*/

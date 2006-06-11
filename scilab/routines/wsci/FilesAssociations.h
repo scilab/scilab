@@ -9,6 +9,8 @@
 #include <stdarg.h>
 #include <windows.h>
 #include <Winuser.h>
+#include <shlwapi.h>
+
 #include "..\version.h"
 
 #include "wcommon.h"
@@ -32,7 +34,6 @@ BOOL IsAScicosFileCOSF(char *chainefichier);
 
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
 void ExtensionFileIntoLowerCase(char *fichier);
-LPTSTR ScilabPathFindExtension(LPCTSTR pPath);
 
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __FILEASSOCIATION_H__ */

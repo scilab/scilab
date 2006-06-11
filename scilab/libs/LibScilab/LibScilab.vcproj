@@ -72,7 +72,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib $(NOINHERIT)"
+				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -173,7 +173,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib $(NOINHERIT)"
+				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
@@ -372,11 +372,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\routines\wsci\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico"
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File

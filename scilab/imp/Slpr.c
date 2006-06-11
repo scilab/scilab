@@ -21,7 +21,7 @@
 static void Sed (char *,char *,char *,char *,char *,char *,char *);
 static void ComputeSize (int num,int i,double *,double *,double *,double *);
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 extern void SciEnv(void);
 #endif 
 
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 		     }
 		   exit(0);
 		 }
-#ifdef WIN32 
+#ifdef _MSC_VER
   SciEnv();
 #endif 
   env = getenv("SCI");

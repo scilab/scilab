@@ -57,7 +57,6 @@ extern "C" {
 #define Int /* int */
 #else
   extern void f_init(void), sig_die(char*, int);
-  extern int MAIN__(void);
 #define Int int
 #endif
 

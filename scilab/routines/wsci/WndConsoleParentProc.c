@@ -15,7 +15,6 @@ extern void SendCTRLandAKey(int code);
 extern void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
 extern void InitIhmDefaultColor(void);
 extern BOOL SetIhmSystemDefaultTextBackgroundColor(void);
-extern void Kill_Scilex_Win98(void);
 extern BOOL ReceiveFromAnotherScilab(HWND hWndSend,PCOPYDATASTRUCT MyCopyDataStruct);
 extern BOOL GetCommandFromAnotherScilab(char *TitleWindowSend,char *CommandLine);
 extern BOOL ActivateTransparencyMode(HWND hWnd);
@@ -106,9 +105,6 @@ BOOL ON_WND_CONSOLE_WM_DESTROY(HWND hwnd)
 	DeleteFont (lptw->hfont);
 	lptw->hfont = 0;
 
-	
-	/* Tue le Process Scilex si OS est Windows 9x */
-	Kill_Scilex_Win98();
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

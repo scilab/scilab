@@ -250,10 +250,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GetOS.c"
-				>
-			</File>
-			<File
 				RelativePath=".\GraphWindows.c"
 				>
 			</File>
@@ -733,10 +729,6 @@
 			</File>
 			<File
 				RelativePath=".\FindScilab.h"
-				>
-			</File>
-			<File
-				RelativePath=".\GetOS.h"
 				>
 			</File>
 			<File

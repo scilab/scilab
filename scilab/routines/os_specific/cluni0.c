@@ -43,7 +43,7 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
       }
   /*strncpy(out_name,in_name,lout); */
   *out_n = strlen(out_name);
-#if defined(THINK_C)||defined(__MWERKS__)
+#if defined(THINK_C)
   for (k=0 ; k < *out_n ;k++) if ( out_name[k]=='/') out_name[k]=':';
 #else
 #if defined(_MSC_VER)

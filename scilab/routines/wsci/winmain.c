@@ -57,13 +57,6 @@ extern int ExitScilab(void);
 /*-----------------------------------------------------------------------------------*/
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
-int MAIN__ ()
-{
-	HANDLE x = GetModuleHandleA (0);
-	Windows_Main  (x, 0, GetCommandLineA (), 1);
-	return (0);
-}
-/*-----------------------------------------------------------------------------------*/
 int Console_Main(int argc, char **argv)
 {
   int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
@@ -463,8 +456,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
 	
 	CloseScilabConsole();
-	/* Tue ce process pour fermeture correcte sous Windows 98 */
-	Kill_Scilex_Win98();
 
 	ExitScilab();
 
@@ -555,24 +546,6 @@ int C2F(showlogo) ()
 	return show_logo;
 }
 /*-----------------------------------------------------------------------------------*/
-/* Modification Correction Bug Win 9x Winoldap */
-/* Allan CORNET le 16/07/03 */
-void Kill_Scilex_Win98(void)
-{
-	/* Detection de la version de Windows */
-	if ( GetVersion() < 0x80000000 )
-	{
-		/* Windows NT */
-		/* Sortie Normale */
-
-	}
-	else
-	{
-		/* Win32s, Win95,Win98,WinME */
-		Kill_Scilex();
-	}
-}
-/*-----------------------------------------------------------------------------------*/
 void Kill_Scilex(void)
 {
 	HANDLE hProcess;
@@ -591,18 +564,10 @@ void Kill_Scilex(void)
 BOOL ForbiddenToUseScilab(void)
 {
 	BOOL bOK=FALSE;
-	int WinVer=GetOSVersion();
 	HDC hdc=GetDC(NULL);
 	int BitsByPixel = GetDeviceCaps(hdc, BITSPIXEL);
 
     ReleaseDC (NULL, hdc);
-
-	if ( (WinVer == OS_WIN32_WINDOWS_NT_3_51) || (WinVer == OS_WIN32_WINDOWS_NT_4_0) )
-	{
-		MessageBox(NULL,MSG_WARNING22,MSG_ERROR41,MB_ICONSTOP);
-		exit(1);
-		return bOK;
-	}
 
 	if ( BitsByPixel < 8 )
 	{

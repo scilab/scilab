@@ -9,7 +9,7 @@
 #include "../graphics/Graphics.h"
 #include "../os_specific/men_Sutils.h"
 
-#if defined(__MWERKS__)||defined(THINK_C)
+#if defined(THINK_C)
 #define Widget int
 #ifndef TRUE
  #define TRUE 1

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "util.h" 
 
-#ifdef WIN32 
+#ifdef _MSC_VER
 extern void SciEnv(void);
 #endif 
 
@@ -229,7 +229,7 @@ int main(int argc, char **argv)
   int i ;
   FILE *fd;
   FILE *fdo;
-#ifdef WIN32 
+#ifdef _MSC_VER
   SciEnv();
 #endif 
 

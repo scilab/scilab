@@ -41,7 +41,7 @@
 #include <malloc.h>
 extern  char  *getenv();
 #endif
-#if defined(THINK_C) || defined (__MWERKS__)|| defined(_MSC_VER)
+#if defined(THINK_C) || defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 #define GXclear 0
@@ -64,7 +64,7 @@ extern  char  *getenv();
 
 #define COLORMAP_WARNING "Warning: with GIF and PPM drivers, the size of colormaps should be less than %d. The resulting output may be inaccurate.\n"
 
-#if WIN32
+#if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */

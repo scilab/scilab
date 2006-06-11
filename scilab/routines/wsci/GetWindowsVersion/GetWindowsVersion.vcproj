@@ -20,7 +20,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-			CharacterSet="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GETWINDOWSVERSION_EXPORTS"
+				PreprocessorDefinitions="EXPORT_GETWINDOWSVERSION_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -60,6 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -95,7 +96,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
-			CharacterSet="1"
+			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -115,7 +116,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GETWINDOWSVERSION_EXPORTS"
+				PreprocessorDefinitions="EXPORT_GETWINDOWSVERSION_DLL"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -133,6 +134,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="..\..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -174,12 +176,20 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\GetWindowsVersion.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\GetWindowsVersion.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
