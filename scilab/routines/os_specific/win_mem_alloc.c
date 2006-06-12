@@ -7,12 +7,12 @@
 /*-----------------------------------------------------------------------------------*/
 #define MEMDISPO (MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN)
 /*-----------------------------------------------------------------------------------*/
-extern int IsFromC(void);
+IMPORT_DLL int IsFromC(void);
 /* When you call scilab dynamically (LoadLibrary,FreeLibrary) (DLL) don't use HeapAlloc or VirtualAlloc
   problem with process caller
 */
 /*-----------------------------------------------------------------------------------*/
-LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
 
  LPVOID NewPointer=NULL;
@@ -35,7 +35,6 @@ LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 		char MsgError[1024];
 		wsprintf(MsgError,"REALLOC (1) Error File %s Line %d ",fichier,ligne);
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-		//exit(1);
 	#endif
 		if ( IsFromC() )
 		{
@@ -52,15 +51,13 @@ LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 			char MsgError[1024];
 			wsprintf(MsgError,"REALLOC (2) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			//exit(1);
 		#endif
 	}
  }
- //printf("MyHeapReAlloc %d %s %d\n",NewPointer,fichier,ligne);
  return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 {
 	LPVOID NewPointer=NULL;
 
@@ -81,7 +78,6 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 			char MsgError[1024];
 			wsprintf(MsgError,"MALLOC (1) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			//exit(1);
 			#endif
 		}
 	}
@@ -91,7 +87,6 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 				char MsgError[1024];
 				wsprintf(MsgError,"MALLOC (2) Error File %s Line %d ",fichier,ligne);
 				MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-				//exit(1);
 			#endif
 				if ( IsFromC() )
 				{
@@ -102,11 +97,10 @@ LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne)
 					NewPointer=HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,dwSize);
 				}
 	}
-    //printf("MyHeapAlloc %d %s %d\n",NewPointer,fichier,ligne);
 	return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
 {
 	if ( IsFromC() )
 	{
@@ -116,10 +110,9 @@ void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
 	{
 		HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
 	}
-	 //printf("MyHeapFree %d %s %d\n",lpAddress,fichier,ligne);
 }
 /*-----------------------------------------------------------------------------------*/
-LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 {
 	LPVOID NewPointer=NULL;
 
@@ -140,7 +133,6 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 			char MsgError[1024];
 			wsprintf(MsgError,"MALLOC (VirtualAlloc 1) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-			//exit(1);
 			#endif
 		}
 	}
@@ -150,7 +142,6 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 		char MsgError[1024];
 		wsprintf(MsgError,"MALLOC (VirtualAlloc 2) Error File %s Line %d ",fichier,ligne);
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
-		//exit(1);
 		#endif
 
 		if ( IsFromC() )
@@ -163,12 +154,11 @@ LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
 		}
 	}
 
-	//printf("MyVirtualAlloc %d %s %d\n",NewPointer,fichier,ligne);
 	return NewPointer;
 
 }
 /*-----------------------------------------------------------------------------------*/
-void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
 {
 	if ( IsFromC() )
 	{
@@ -178,6 +168,5 @@ void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
 	{
 		VirtualFree(lpAddress,0,MEM_RELEASE);
 	}
-	//printf("MyVirtualFree %d %s %d\n",lpAddress,fichier,ligne);
 }
 /*-----------------------------------------------------------------------------------*/

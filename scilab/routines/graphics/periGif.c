@@ -38,9 +38,24 @@
 #ifdef __STDC__
 #include <stdlib.h>
 #else
-#include <malloc.h>
+	#ifndef _MSC_VER
+		#include <malloc.h>
+	#endif
 extern  char  *getenv();
 #endif
+
+#include "Math.h"
+#include "periGif.h"
+#include "color.h"
+#include "../gd/gd.h"
+#include "bcg.h" /* NG */
+#if _MSC_VER
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+
+
 #if defined(THINK_C) || defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
@@ -64,11 +79,6 @@ extern  char  *getenv();
 
 #define COLORMAP_WARNING "Warning: with GIF and PPM drivers, the size of colormaps should be less than %d. The resulting output may be inaccurate.\n"
 
-#if _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
 
 #define Char2Int(x)   ( x & 0x000000ff )
 #if defined(__GNUC__) || defined(_MSC_VER)|| defined(__EDG__)
@@ -79,11 +89,7 @@ static FILE *file= (FILE *) 0;
 static FILE *file= stdout ;
 #endif
 
-#include "Math.h"
-#include "periGif.h"
-#include "color.h"
-#include "../gd/gd.h"
-#include "bcg.h" /* NG */
+
 
 
 void C2F(WriteGeneric1Gif)();

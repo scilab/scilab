@@ -2,13 +2,6 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sciquit.h"
-#ifdef _MSC_VER
-	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-
 #ifdef sun 
 	#ifndef SYSV
 	#include <sys/ieeefp.h>
@@ -18,6 +11,13 @@
 #ifdef _MSC_VER
 #include "../wsci/wtext.h"
 #endif
+
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
+#include "sciquit.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define TRUE  1
 #define FALSE 0

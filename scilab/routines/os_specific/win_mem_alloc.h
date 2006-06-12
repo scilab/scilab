@@ -3,11 +3,30 @@
 #ifndef __WIN_MEM_ALLOC__
 #define __WIN_MEM_ALLOC__
 
-#ifdef Top
-#undef Top
+#ifdef EXPORT_MALLOC_DLL
+	#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllexport)
+#else
+	#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllimport)
+#endif
+
+#ifdef _MSC_VER
+	#define IMPORT_DLL __declspec(dllimport)
+#else
+	#define IMPORT_DLL   extern
 #endif
 
 #include <Windows.h>
+
+IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne);
+IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne);
+IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne);
+
+IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne);
+IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne);
+
+#ifndef EXPORT_MALLOC_DLL
+	#undef Top
+#endif
 
 #ifdef MALLOC
 #undef MALLOC
@@ -40,15 +59,8 @@
 #endif
 #define SCISTACKFREE(x) if (x  != NULL) MyVirtualFree((char *) x,__FILE__,__LINE__);
 
-
-LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne);
-LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne);
-void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne);
-
-LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne);
-void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne);
-
-
-#define Top C2F(vstk).top
+#ifndef EXPORT_MALLOC_DLL
+	#define Top C2F(vstk).top
+#endif
 
 #endif /* __WIN_MEM_ALLOC__ */

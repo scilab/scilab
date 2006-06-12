@@ -4,7 +4,7 @@
 #define __SCI_MEM_ALLOC__
 
 #if _MSC_VER
-#include <stdlib.h>
+	#include <stdlib.h>
 #endif
 
 #ifdef MALLOC
@@ -23,10 +23,20 @@
 #undef REALLOC
 #endif
 
- extern void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
- extern void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);
- extern void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);
- extern void  MyFree(void *x, char *fichier,int ligne);
+#if _MSC_VER
+	#ifdef EXPORT_MALLOC_DLL
+		#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllexport)
+	#else
+		#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllimport)
+	#endif
+#else
+	#define IMPORT_EXPORT_MALLOC_DLL extern 
+#endif
+
+IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
+IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);
+IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);
+IMPORT_EXPORT_MALLOC_DLL void  MyFree(void *x, char *fichier,int ligne);
 
 #ifndef _MSC_VER
  

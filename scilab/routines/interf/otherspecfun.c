@@ -15,7 +15,6 @@
 #include <string.h> /*pour strcmp */
 #include <math.h>
 #include <setjmp.h>
-#include "../stack-c.h"
 
 #if _MSC_VER
 	#include "../os_specific/win_mem_alloc.h"
@@ -23,6 +22,8 @@
 	#undef min
 	#undef max
 #endif
+
+#include "../stack-c.h"
 
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define max(a,b) ((a) < (b) ? (b) : (a))

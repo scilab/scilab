@@ -22,14 +22,15 @@
 #include <ctype.h>  /* isdigit */
 #include "../graphics/Math.h"
 
-#include "../stack-c.h"
-#include "../os_specific/Os_specific.h"
 
 #ifdef _MSC_VER
 	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+
+#include "../stack-c.h"
+#include "../os_specific/Os_specific.h"
 /*-----------------------------------------------------------------------------------*/
 typedef union {
   char * c;

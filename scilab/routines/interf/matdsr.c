@@ -1,15 +1,17 @@
 #include <string.h> 
 
 
-#include "../stack-c.h"
-#include "../graphics/Math.h" /* Abs */ 
-
-#include "matdsr.h"
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+
+#include "../stack-c.h"
+#include "../graphics/Math.h" /* Abs */ 
+
+#include "matdsr.h"
+
 
 static integer cx1 = 1;
 static integer cx0 = 0;

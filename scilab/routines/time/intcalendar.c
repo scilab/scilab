@@ -8,6 +8,7 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+#include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 int IsAScalar(int RhsNumber);
 static int isBissextile (unsigned annee);

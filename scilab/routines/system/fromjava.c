@@ -8,6 +8,7 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+#include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define TRUE  1
 #define FALSE 0

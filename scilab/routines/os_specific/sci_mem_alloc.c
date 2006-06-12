@@ -11,7 +11,7 @@
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
 {
   void * NewPointer=NULL;
  
@@ -24,11 +24,10 @@ void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
       fflush(NULL);
 	#endif
     }
-  /*printf("MyRealloc %d %s %d\n",lpAddress,fichier,ligne);*/
   return NewPointer;
 }
 /*-----------------------------------------------------------------------------------*/
-void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
 {
   void * NewPointer=NULL;
 
@@ -52,13 +51,12 @@ void * MyAlloc(unsigned int dwSize,char *fichier,int ligne)
 			fflush(NULL);
 		#endif
     }
-  /*printf("MyAlloc %d %s %d\n",NewPointer,fichier,ligne);*/
   return NewPointer;
   
 }
 
 /*-----------------------------------------------------------------------------------*/
-void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
 {
   void * NewPointer=NULL;
 
@@ -82,14 +80,12 @@ void * MyCalloc(unsigned int x, unsigned int y, char *fichier,int ligne)
 			fflush(NULL);
 		#endif
     }
-  /*printf("MyCalloc %d %s %d\n",NewPointer,fichier,ligne);*/
   return NewPointer;
 
 }
 /*-----------------------------------------------------------------------------------*/
-void MyFree(void *x, char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void MyFree(void *x, char *fichier,int ligne)
 {
 	free((void*)x);
-	/*printf("MyFree %d %s %d\n",x,fichier,ligne);*/
 }
 /*-----------------------------------------------------------------------------------*/

@@ -14,15 +14,13 @@
 #include <ctype.h> 
 #include <string.h>
 #include <stdio.h>
-
-#include "../stack-c.h"
-
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#include "../stack-c.h"
 
 static integer cx1 = 1;
 

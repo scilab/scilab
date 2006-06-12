@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "../machine.h"
-#include "../stack-c.h"
 #include "../version.h"
 
 int C2F(intcalendar) _PARAMS((char *fname,unsigned long fname_len));

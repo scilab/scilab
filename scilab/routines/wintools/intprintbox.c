@@ -3,6 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intprintbox.h"
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 	extern BOOL ConfigurePrinterDialogBox(void);

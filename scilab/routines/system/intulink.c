@@ -2,12 +2,12 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "intulink.h"
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+#include "intulink.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern void ulinkall(void);
 extern void C2F(isciulink)(integer *i) ;

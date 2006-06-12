@@ -6,8 +6,12 @@
  * scilab command  x_mdialog ( Windows part )
  * see also men_mdialog.c 
  */
-
 #include "wmen_scilab.h"
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#endif
+
+
 
 /* Function prototypes */
 static void FillInPropertyPage( PROPSHEETPAGE* , int, LPSTR, DLGPROC);

@@ -2,12 +2,12 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "fromc.h"
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+#include "fromc.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define TRUE  1
 #define FALSE 0

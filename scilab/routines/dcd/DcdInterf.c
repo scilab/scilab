@@ -1,13 +1,13 @@
 /* Copyright Jean-Philippe Chancelier 
    ENPC */
 #include <string.h>
-#include "../../routines/stack-c.h"
+
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
-
+#include "../../routines/stack-c.h"
 
 /** external functions to be called through this interface **/
 #ifdef __STDC__

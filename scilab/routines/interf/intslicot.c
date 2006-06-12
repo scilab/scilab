@@ -1,12 +1,14 @@
 #include <math.h>
 #include <string.h>
 
-#include "../stack-c.h"
+
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+
+#include "../stack-c.h"
 
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 #define MIN(x,y)	(((x)<(y))?(x):(y))

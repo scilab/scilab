@@ -1,12 +1,12 @@
-#include "../stack-c.h"
+
 #include <string.h>
 #include <stdio.h>
-
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+#include "../stack-c.h"
 
 #define SCI_DOUBLE 1
 #define STRING  10

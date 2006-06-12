@@ -11,9 +11,9 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #include "wcommon.h"
 #include "wtext.h"
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 char save_prompt[10];
 /* Fonction Récuperant la ligne à executer par Scilab */
