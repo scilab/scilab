@@ -69,9 +69,12 @@ distclean::
 	@cd ocaml; echo "making distclean in ocaml..."; \
 	$(MAKE) $(MFLAGS) super_distclean;
 
-
 distclean::
 	@cd maple; echo "making distclean in maple..."; \
+	$(MAKE) $(MFLAGS) distclean;
+
+distclean::
+	@cd routines/Javasci; echo "making distclean in routines/Javasci..."; \
 	$(MAKE) $(MFLAGS) distclean;
 
 clean::
