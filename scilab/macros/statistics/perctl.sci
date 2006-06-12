@@ -18,7 +18,8 @@ function [p]=perctl(x,y)
 //
 //date: 1999-04-14
 //fixed: 2004-03-28
-//
+//fixed: 2006-06-12 ( Pierre MARECHAL, Scilab Team )
+
   [lhs,rhs]=argn(0)
   if rhs<>2 then
     error('perctl requires two arguments exactly');end
@@ -37,10 +38,21 @@ function [p]=perctl(x,y)
     ly=length(y)
     y=sort((matrix(y,ly,1)/100)*(lx+1))
     y=y(ly-[0:ly-1])
+    
+    // Now we test if there is enough sample for each asked fractions.
+    
+    test1 = find(max(floor(y),1) == 1);
+    y(test1) = 1;
+    
+    test2 = find(min(ceil(y),lx) == lx);
+    y(test2) = lx;
+    
     p=x1(floor(y),:)
+    
     w=find(ceil(y)-floor(y)<>0)
-    if w<>[]
-      p(w,1)=((x1(ceil(y),1)-x1(floor(y),1)).*(y-floor(y))+x1(floor(y),1))
-    end
-endfunction
 
+    if w<>[]
+      p(w,1) = ((x1(ceil(y(w)),1)-x1(floor(y(w)),1)).*(y(w)-floor(y(w)))+x1(floor(y(w)),1));
+    end
+
+endfunction
