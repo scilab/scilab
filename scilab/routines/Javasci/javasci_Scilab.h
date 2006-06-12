@@ -9,6 +9,9 @@
 extern "C" {
 #endif
 
+/* private static native void Initialize(); */
+JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl);
+
 /* public static native void Events(); */
 JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this);
   

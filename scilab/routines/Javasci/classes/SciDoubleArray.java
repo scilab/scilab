@@ -13,7 +13,10 @@ public class SciDoubleArray implements java.io.Serializable
   /* n number of colons */
   
   private String name; 
-/********************************************************************************************************/  
+/********************************************************************************************************/
+  private static native void Initialize();
+  /* Initialize Scilab interface*/
+    
   public native boolean Job(String job);
   /* Execute a command in Scilab */
   
@@ -35,6 +38,7 @@ public class SciDoubleArray implements java.io.Serializable
   static 
   {
     System.loadLibrary("javasci");
+    Initialize();
   }
 /********************************************************************************************************/  
   public SciDoubleArray(String name,SciDoubleArray Obj) 

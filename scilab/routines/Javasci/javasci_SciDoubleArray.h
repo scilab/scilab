@@ -9,6 +9,9 @@
 extern "C" {
 #endif
 
+/* private static native void Initialize(); */
+JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Initialize (JNIEnv *env, jclass cl);
+
 /* public native boolean Job(String job); */
 JNIEXPORT jboolean JNICALL Java_javasci_SciDoubleArray_Job (JNIEnv *, jobject, jstring);
 

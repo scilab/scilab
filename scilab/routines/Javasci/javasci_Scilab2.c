@@ -24,8 +24,6 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
   jint jnbRow = (*env)->GetIntField(env, objMatrix, id_nbRow);
   jint jnbCol = (*env)->GetIntField(env, objMatrix, id_nbCol);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  
   nbRow = jnbRow;
   nbCol = jnbCol;
 
@@ -60,8 +58,6 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
   jint jnbRow = (*env)->GetIntField(env, objMatrix, id_nbRow);
   jint jnbCol = (*env)->GetIntField(env, objMatrix, id_nbCol);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  
   nbRow = jnbRow;
   nbCol = jnbCol;
 
@@ -96,8 +92,6 @@ jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint 
   jmethodID consID = (*env)->GetMethodID(env, clMatrix, "<init>", "(Ljava/lang/String;II)V"); 
   jobject objMatrix =  (*env)->NewObject(env, clMatrix, consID, name, nbRow, nbCol);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  
   Java_javasci_Scilab_receiveDoubleMatrix(env, cl, objMatrix);
   return objMatrix;
 }
@@ -123,8 +117,6 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
   jint jnbRow = (*env)->GetIntField(env, objMatrix, id_nbRow);
   jint jnbCol = (*env)->GetIntField(env, objMatrix, id_nbCol);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  
   nbRow = jnbRow;
   nbCol = jnbCol;
 
@@ -170,8 +162,6 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
   jint jnbRow = (*env)->GetIntField(env, objMatrix, id_nbRow);
   jint jnbCol = (*env)->GetIntField(env, objMatrix, id_nbCol);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  
   nbRow = jnbRow;
   nbCol = jnbCol;
 
@@ -207,8 +197,6 @@ jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint 
   jmethodID consID = (*env)->GetMethodID(env, clMatrix, "<init>", "(Ljava/lang/String;II)V"); 
   jobject objMatrix =  (*env)->NewObject(env, clMatrix, consID, name, nbRow, nbCol);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  
   Java_javasci_Scilab_receiveStringMatrix(env, cl, objMatrix);
   return objMatrix;
 }
@@ -219,8 +207,6 @@ JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jc
   int *header=NULL; 
   int type = 0;
   jobject obj=NULL;
-
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 
   cname = (*env)->GetStringUTFChars(env, name, NULL); 
 

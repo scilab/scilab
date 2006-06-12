@@ -6,6 +6,9 @@ package javasci ;
 public class Scilab
 {
 /********************************************************************************************************/
+  private static native void Initialize();
+  /* Initialize Scilab interface*/
+  
   public static native void Events();  
   /* do a Scilab event */
   /* See SCI/examples/callsci/callsciJava/others/ExempleEvent.java */
@@ -57,6 +60,7 @@ public class Scilab
   static 
   {
     System.loadLibrary("javasci");
+    Initialize();
   }
 /********************************************************************************************************/
 }
