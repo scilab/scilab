@@ -204,6 +204,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\javasci_Scilab2.c"
+				>
+			</File>
+			<File
 				RelativePath=".\javasci_SciStringArray.c"
 				>
 			</File>
@@ -223,6 +227,10 @@
 			</File>
 			<File
 				RelativePath=".\javasci_Scilab.h"
+				>
+			</File>
+			<File
+				RelativePath=".\javasci_Scilab2.h"
 				>
 			</File>
 			<File
