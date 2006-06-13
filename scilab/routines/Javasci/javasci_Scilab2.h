@@ -32,3 +32,4 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
 #endif
 #endif /* _Included_javasci_Scilab2 */
 /********************************************************************************************************/
+
