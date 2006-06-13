@@ -20727,14 +20727,16 @@ fi
 		GCC=yes
 		CC=gcc
 		# CC_PLAT_OPTIONS is optional, and is used to add CPU specific code generation tuning for Athlon64 presumably Opteron could benefit too but these are not optimized for the Opteron
-		CC_PLAT_OPTIONS='-march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 '
-		CC_OPTIONS="-O2 -DNDEBUG -Dlinux  -DNARROWPROTO $CC_PLAT_OPTIONS"
+		CC_PLAT_OPTIONS='-march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64'
+
+		CC_PICFLAGS='-fPIC'
+		FC_PICFLAGS='-fPIC'
+
+		CC_OPTIONS="-O2 -DNDEBUG -Dlinux  -DNARROWPROTO $CC_PLAT_OPTIONS $CC_PICFLAGS "
 		CC_LDFLAGS=$LIEEELIB
-		CC_PICFLAGS=-fPIC
+
 		if test "$enable_debug" = yes; then
-			# CC_PLAT_OPTIONS is optional, and is used to add CPU specific code generation tuning for Athlon64 presumably Opteron could benefit too but these are not optimized for the Opteron
-			CC_PLAT_OPTIONS='-march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 '
-			CC_OPTIONS="-g -Wall -Dlinux -DNARROWPROTO $CC_PLAT_OPTIONS"
+			CC_OPTIONS="-g -Wall -Dlinux -DNARROWPROTO $CC_PLAT_OPTIONS $CC_PICFLAGS "
 		fi
 		# find Fortran compiler
 		# g77 already asked and found: good
@@ -20742,22 +20744,21 @@ fi
 			FC=g77
 			FC_PICFLAGS=-fPIC
 			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g $CC_PLAT_OPTIONS"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-g $CC_PLAT_OPTIONS $FC_PICFLAGS"
+				FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 			else
-				FC_OPTIONS="-O $CC_PLAT_OPTIONS"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-O $CC_PLAT_OPTIONS $FC_PICFLAGS"
+				FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 			fi
 		elif test "$WITH_GFORTRAN" = yes;then
 			FC=gfortran
 			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g -ff2c $CC_PLAT_OPTIONS"
-				FC_OPTIONS_O0="-ff2c"
+				FC_OPTIONS="-g -ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
+				FC_OPTIONS_O0="-ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
 			else
-				FC_OPTIONS="-O -ff2c $CC_PLAT_OPTIONS"
-				FC_OPTIONS_O0="-ff2c"
+				FC_OPTIONS="-O -ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
+				FC_OPTIONS_O0="-ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
 			fi
-			FC_PICFLAGS=-fPIC
 			cat >>confdefs.h <<\_ACEOF
 #define G95_FORTRAN 1
 _ACEOF
@@ -20808,11 +20809,11 @@ echo "$as_me: error: Unable to configure: f2c compiler not found" >&2;}
 			# script shell f77 have bugs, get ours
 			FC='${SCIDIR}/bin/f77-linux'
 			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g $CC_PLAT_OPTIONS"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-g $CC_PLAT_OPTIONS $FC_PICFLAGS"
+				FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 			else
-				FC_OPTIONS="-O $CC_PLAT_OPTIONS"
-				FC_OPTIONS_O0=""
+				FC_OPTIONS="-O $CC_PLAT_OPTIONS $FC_PICFLAGS"
+				FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 			fi
 		else
 			# first find g77
@@ -20857,10 +20858,10 @@ fi
 				FC_PICFLAGS=-fPIC
 				if test "$enable_debug" = yes; then
 					FC_OPTIONS="-g $CC_PLAT_OPTIONS"
-					FC_OPTIONS_O0=""
+					FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 				else
 					FC_OPTIONS="-O $CC_PLAT_OPTIONS"
-					FC_OPTIONS_O0=""
+					FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 				fi
 			else
 				# Extract the first word of "gfortran", so it can be a program name with args.
@@ -20907,11 +20908,11 @@ fi
 _ACEOF
 
 					if test "$enable_debug" = yes; then
-						FC_OPTIONS="-g -ff2c $CC_PLAT_OPTIONS"
-						FC_OPTIONS_O0="-ff2c"
+						FC_OPTIONS="-g -ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
+						FC_OPTIONS_O0="-ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
 					else
-						FC_OPTIONS="-O -ff2c $CC_PLAT_OPTIONS"
-						FC_OPTIONS_O0="-ff2c"
+						FC_OPTIONS="-O -ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
+						FC_OPTIONS_O0="-ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
 					fi
 				else
 					# Extract the first word of "f95", so it can be a program name with args.
@@ -20958,11 +20959,11 @@ fi
 _ACEOF
 
 						if test "$enable_debug" = yes; then
-							FC_OPTIONS="-g $CC_PLAT_OPTIONS"
-							FC_OPTIONS_O0=""
+							FC_OPTIONS="-g $CC_PLAT_OPTIONS $FC_PICFLAGS"
+							FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 						else
-							FC_OPTIONS="-O $CC_PLAT_OPTIONS"
-							FC_OPTIONS_O0=""
+							FC_OPTIONS="-O $CC_PLAT_OPTIONS $FC_PICFLAGS"
+							FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS "
 						fi
 					else
 						# otherwise find f2c
@@ -21006,11 +21007,11 @@ fi
 							# script shell f77 have bugs, get ours
 							FC='${SCIDIR}/bin/f77-linux'
 							if test "$enable_debug" = yes; then
-								FC_OPTIONS="-g $CC_PLAT_OPTIONS"
-								FC_OPTIONS_O0=""
+								FC_OPTIONS="-g $CC_PLAT_OPTIONS $FC_PICFLAGS"
+								FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 							else
-								FC_OPTIONS="-O $CC_PLAT_OPTIONS"
-								FC_OPTIONS_O0=""
+								FC_OPTIONS="-O $CC_PLAT_OPTIONS $FC_PICFLAGS"
+								FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 							fi
 						else
 							{ { echo "$as_me:$LINENO: error: Unable to configure: no Fortran compiler found" >&5
@@ -21023,9 +21024,9 @@ echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
 		fi
 		FC_LDFLAGS="$LIEEELIB -ldl -rdynamic -Wl,-relax "
 		LD=ld
-		LD_LDFLAGS="$LIEEELIB  -Wl,-relax "
+		LD_LDFLAGS="$LIEEELIB -Wl,-relax "
 	fi
-	MAKEFILE_TARGET=Makefile.linux
+	MAKEFILE_TARGET=Makefile.linux64
 	;;
 # Linux ELF: all standard distributions
 i*86-*-linux-gnu | *-pc-linux-gnu )
@@ -22391,7 +22392,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_verb"
-(eval echo $as_me:22394: \"$ac_link\") >&5
+(eval echo $as_me:22395: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -22469,7 +22470,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_cv_prog_f77_v"
-(eval echo $as_me:22472: \"$ac_link\") >&5
+(eval echo $as_me:22473: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -23679,7 +23680,7 @@ fi
 
 
 # Provide some information about the compiler.
-echo "$as_me:23682:" \
+echo "$as_me:23683:" \
      "checking for Fortran 77 compiler version" >&5
 ac_compiler=`set X $ac_compile; echo $2`
 { (eval echo "$as_me:$LINENO: \"$ac_compiler --version </dev/null >&5\"") >&5
@@ -23874,7 +23875,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_verb"
-(eval echo $as_me:23877: \"$ac_link\") >&5
+(eval echo $as_me:23878: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -23952,7 +23953,7 @@ _ACEOF
 # flags.
 ac_save_FFLAGS=$FFLAGS
 FFLAGS="$FFLAGS $ac_cv_prog_f77_v"
-(eval echo $as_me:23955: \"$ac_link\") >&5
+(eval echo $as_me:23956: \"$ac_link\") >&5
 ac_f77_v_output=`eval $ac_link 5>&1 2>&1 | grep -v 'Driving:'`
 echo "$ac_f77_v_output" >&5
 FFLAGS=$ac_save_FFLAGS
@@ -27683,7 +27684,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 27686 "configure"
+#line 27687 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -28001,7 +28002,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 28004 "configure"
+#line 28005 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
