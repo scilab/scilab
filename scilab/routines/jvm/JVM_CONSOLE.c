@@ -9,6 +9,11 @@
 #ifndef _MSC_VER
 	#include <pthread.h>
 #endif
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 static JavaVM *jvm_CONSOLE=NULL;
 /*-----------------------------------------------------------------------------------*/ 
@@ -105,10 +110,10 @@ int Terminate_JVM_Thread_CONSOLE(void)
 	JavaVMInitArgs vm_args;
 	JavaVMOption options[3];
 	
-	JAVACLASSPATH=(char*)malloc( (strlen("-Djava.class.path=%s/bin;.")+strlen(SCILAB_PATH)+strlen(SCILAB_PATH)+strlen("/Java/SWT/SWT.jar")+strlen(SCILAB_PATH)+strlen("/Java/bin")+10)*sizeof(char) );
+	JAVACLASSPATH=(char*)MALLOC( (strlen("-Djava.class.path=%s/bin;.")+strlen(SCILAB_PATH)+strlen(SCILAB_PATH)+strlen("/Java/SWT/SWT.jar")+strlen(SCILAB_PATH)+strlen("/Java/bin")+10)*sizeof(char) );
 	sprintf(JAVACLASSPATH,"-Djava.class.path=%s/bin%c%s%s%c%s%s%c%s",SCILAB_PATH,PATH_SEPARATOR,SCILAB_PATH,"/Java/SWT/SWT.jar",PATH_SEPARATOR,SCILAB_PATH,"/Java/bin",PATH_SEPARATOR,USER_CLASSPATH);
 
-	JAVALIBRARYPATH=(char*)malloc( (strlen("-Djava.library.path=%s/lib")+strlen(JRE_PATH)+strlen(SCILAB_PATH)+strlen("/Java/SWT")+10)*sizeof(char) );
+	JAVALIBRARYPATH=(char*)MALLOC( (strlen("-Djava.library.path=%s/lib")+strlen(JRE_PATH)+strlen(SCILAB_PATH)+strlen("/Java/SWT")+10)*sizeof(char) );
 	sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s/lib%c%s%s",JRE_PATH,PATH_SEPARATOR,SCILAB_PATH,"/Java/SWT");
 
 	options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
@@ -135,8 +140,8 @@ int Terminate_JVM_Thread_CONSOLE(void)
 		bOK=TRUE;
 	}
 
-	if (JAVACLASSPATH) {free(JAVACLASSPATH);JAVACLASSPATH=NULL;};
-	if (JAVALIBRARYPATH) {free(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
+	if (JAVACLASSPATH) {FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;};
+	if (JAVALIBRARYPATH) {FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
 		
 	Create_JVM_Thread_CONSOLE();
 

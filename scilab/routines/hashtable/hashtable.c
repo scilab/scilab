@@ -3,6 +3,11 @@
 /* HUANG Xu */
 /*-----------------------------------------------------------------------------------*/ 
 #include "hashtable.h"
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 void key_destroy_func(gpointer key)
 {
@@ -33,8 +38,19 @@ void DestroyHashtable(GHashTable *table)
 }
 /*-----------------------------------------------------------------------------------*/ 
 char *SearchHash(GHashTable *hash_table, const char* key)
+/* return a copy of the element in hashtable */
 {
-	return (char *)g_hash_table_lookup(hash_table, key);
+	char *RetElem=NULL;
+	char *ElemHash=NULL;
+
+	ElemHash=g_hash_table_lookup(hash_table, key);
+
+	if (ElemHash)
+	{
+		RetElem=(char*) MALLOC (sizeof(ElemHash));
+		strcpy(RetElem,ElemHash);
+	}
+	return RetElem;
 }
 /*-----------------------------------------------------------------------------------*/ 
 

@@ -4,6 +4,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "localization.h"
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 #define LENGTH_OUTPUT 1024
 static int count=0;//count the number of the #text and type==3 node 
@@ -14,7 +19,7 @@ static char strBufOut[LENGTH_OUTPUT];
 
 static GHashTable *Table_Scilab_Errors=NULL;
 
-char *Replace(char *s1, char *s2, char *s3);
+static char *Replace(char *s1, char *s2, char *s3);
 /*-----------------------------------------------------------------------------------*/ 
 char* ConvertEncoding(char *encodingFrom, char *encodingTo, const char* inputStr)
 {
@@ -62,17 +67,17 @@ void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding)
 		
 		if((count%2)!=0)//odd, tag
 		{
-			tag=(gchar *)malloc(strlen(node_value)+1);
+			tag=(gchar *)MALLOC(strlen(node_value)+1);
 			strcpy(tag,node_value);
 		}
 		else//even, string
 		{
 	
-			string=(gchar *)malloc(strlen(node_value)+1);
+			string=(gchar *)MALLOC(strlen(node_value)+1);
 			strcpy(string,node_value);
 			g_hash_table_replace(table, g_strdup(tag), g_strdup(string));
-			free(tag); tag=NULL;
-			free(string); string=NULL;
+			FREE(tag); tag=NULL;
+			FREE(string); string=NULL;
 
 		}
 	}
@@ -82,7 +87,7 @@ char *GetXmlFileEncoding(const char *filename)
 {
 	FILE *stream;
 	char *encoding;
-	encoding=(char *)malloc(sizeof(char)*32);
+	encoding=(char *)MALLOC(sizeof(char)*32);
 	
 	if( (stream  = fopen(filename, "r" )) != NULL ) // C4996
 	{
@@ -123,7 +128,7 @@ char *GetXmlFileEncoding(const char *filename)
 
 }
 /*-----------------------------------------------------------------------------------*/
-int AppendXmlFile(const char *filename, GHashTable *table)
+IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, GHashTable *table)
 {
 	int bOK=0;
     xmlTextReaderPtr reader;
@@ -168,28 +173,28 @@ int AppendXmlFile(const char *filename, GHashTable *table)
 	
 }
 /*-----------------------------------------------------------------------------------*/ 
-GHashTable *GetHashTableScilabErrors(void)
+IMPORT_EXPORT_LOCALIZATION_DLL GHashTable *GetHashTableScilabErrors(void)
 {
 	return Table_Scilab_Errors;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int InitializeHashTableScilabErrors(char* SCIPATH)
+IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH)
 {
 	char *FileLanguage=NULL;
 	Table_Scilab_Errors=CreateHashtable();
 
-	FileLanguage=(char*)malloc( (strlen(SCIPATH)+strlen("/localization/errors.xml")+1)*sizeof(char));
+	FileLanguage=(char*)MALLOC( (strlen(SCIPATH)+strlen("/localization/errors.xml")+1)*sizeof(char));
 	strcpy(FileLanguage,SCIPATH);
 	strcat(FileLanguage,"/localization/errors.xml");
 
 	AppendXmlFile(FileLanguage, Table_Scilab_Errors);
 
-	free(FileLanguage);
+	FREE(FileLanguage);
 	
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-char *QueryStringError(char *Tag)
+IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 {	
 	char oldpiece[8];
 	char newpiece[8];
@@ -200,10 +205,9 @@ char *QueryStringError(char *Tag)
 	strcpy(oldpiece,"\r\n");
 	strcpy(newpiece,"\\r\\n");
 	StringWithoutSomeChars=Replace( Tag,oldpiece,newpiece);
-	
 
 	StringError=SearchHash(Table_Scilab_Errors,StringWithoutSomeChars);//show the string we need
-	free(StringWithoutSomeChars);
+	FREE(StringWithoutSomeChars);
 	
 	if (StringError)
 	{
@@ -211,52 +215,46 @@ char *QueryStringError(char *Tag)
 		strcpy(oldpiece,"\\r\\n");
 		strcpy(newpiece,"\r\n");
 		StringWithoutSomeChars=Replace(StringError,oldpiece,newpiece);
-		
+		FREE(StringError);
 		StringError=StringWithoutSomeChars;
 	}
 
 	return StringError;
 }
 /*-----------------------------------------------------------------------------------*/ 
-char *Replace(char *s1, char *s2, char *s3) 
+static char *Replace(char *S1, char *S2, char *S3) 
 { 
-  char *retour=NULL; 
-  
-  if(s1 && s2 && s3)
-  {
-	char *tmp=NULL; 
-	int i=0; 
-	int j=0; 
-	int lenS2=strlen(s2);
-	int lenS3=strlen(s3);
+   int str_index, newstr_index, oldpiece_index, end,new_len, old_len, cpy_len; 
+   char *c=NULL; 
+   char *newstring=(char*)MALLOC((strlen(S1)*2)*sizeof(char));
 
-	if (!(tmp = strstr(s1, s2))) return (s1); 
-	
-	retour = malloc(1); 
-	while ((tmp = strstr(s1 + i, s2)) != 0) 
-    { 
-      if (!(strcmp(s1 + i, tmp))) 
-        { 
-          retour = realloc(retour, strlen(retour) + lenS3); 
-          strcpy(retour + j, s3); 
-          i += lenS2; 
-          j += lenS3; 
-        } 
-      else 
-        { 
-          retour = realloc(retour, strlen(retour) + 1); 
-          retour[j++] = s1[i++]; 
-        } 
-    } 
-	while (s1[i]) 
-    { 
-      retour = realloc(retour, strlen(retour) + 1); 
-      retour[j++] = s1[i++]; 
-    } 
-	retour[j] = 0; 
-  }
-  else retour=NULL;
+   if ((c = (char *) strstr(S1, S2)) == NULL) return S1; 
 
-  return (retour); 
-} 
+   new_len        = strlen(S3);
+   old_len        = strlen(S2);
+   end            = strlen(S1)   - old_len;
+   oldpiece_index = c - S1;
+
+   newstr_index = 0; 
+   str_index = 0; 
+   while(str_index <= end && c != NULL) 
+   { 
+      /* Copy characters from the left of matched pattern occurence */
+      cpy_len = oldpiece_index-str_index;
+      strncpy(newstring+newstr_index, S1+str_index, cpy_len);
+      newstr_index += cpy_len;
+      str_index    += cpy_len;
+
+      /* Copy replacement characters instead of matched pattern */
+      strcpy(newstring+newstr_index, S3);
+      newstr_index += new_len;
+      str_index    += old_len;
+
+      /* Check for another pattern match */
+      if((c = (char *) strstr(S1+str_index, S2)) != NULL) oldpiece_index = c - string;
+   } 
+   /* Copy remaining characters from the right of last matched pattern */   
+   strcpy(newstring+newstr_index, S1+str_index); 
+   return newstring; 
+}
 /*-----------------------------------------------------------------------------------*/ 

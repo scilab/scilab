@@ -5,14 +5,10 @@
 #define JRE_PATH "/Java/jre1.5.0_06"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
-  #ifndef __MAKEFILEVC__
 	#ifdef EXPORT_LIBJVM_DLL
 		#define IMPORT_EXPORT_LIBJVM_DLL __declspec(dllexport)
 	#else
 		#define IMPORT_EXPORT_LIBJVM_DLL __declspec(dllimport)
-	#endif
-	#else
-	#define IMPORT_EXPORT_LIBJVM_DLL   extern
 	#endif
 #else
 	#define IMPORT_EXPORT_LIBJVM_DLL   extern

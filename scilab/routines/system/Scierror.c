@@ -7,7 +7,13 @@
 	#include <stdarg.h>
 #else
 	#include <varargs.h>
-#endif  
+#endif
+
+#ifdef _MSC_VER
+	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
 	#define vsnprintf _vsnprintf
@@ -60,6 +66,7 @@ static int Scierror_internal __PARAMS((integer *n,char *buffer));
 		if (LocalizedString)
 		{
 			retval= vsnprintf(s_buf,bsiz-1, LocalizedString, ap );
+			if (LocalizedString) {FREE(LocalizedString);LocalizedString=NULL;}
 		}
 		else
 		{

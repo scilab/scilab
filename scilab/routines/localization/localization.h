@@ -11,13 +11,22 @@
 #include <iconv.h>
 #include "../hashtable/hashtable.h"
 /*-----------------------------------------------------------------------------------*/ 
+#if _MSC_VER
+	#ifdef EXPORT_LOCALIZATION_DLL
+		#define IMPORT_EXPORT_LOCALIZATION_DLL __declspec(dllexport)
+	#else
+		#define IMPORT_EXPORT_LOCALIZATION_DLL __declspec(dllimport)
+	#endif
+#else
+	#define IMPORT_EXPORT_LOCALIZATION_DLL extern 
+#endif
+/*-----------------------------------------------------------------------------------*/ 
 /*load the xmlfile into the hashtable*/
-int AppendXmlFile(const char *filename, GHashTable *table);
-
+IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, GHashTable *table);
 /*return pointer on HashTable Scilab Errors*/
-GHashTable *GetHashTableScilabErrors(void);
-int InitializeHashTableScilabErrors(char* SCIPATH);
-char *QueryStringError(char *Tag);
+IMPORT_EXPORT_LOCALIZATION_DLL GHashTable *GetHashTableScilabErrors(void);
+IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH);
+IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __LOCALIZATION_H__ */
 /*-----------------------------------------------------------------------------------*/ 
