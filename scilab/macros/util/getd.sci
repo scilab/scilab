@@ -20,7 +20,13 @@ function getd(path)
   nold=size(who('get'),'*')
   prot=funcprot();funcprot(0)
 
-  for k=1:size(lst,'*'); if fileparts(lst(k),"extension")==".sci" then getf(lst(k));end;  end
+  for k=1:size(lst,'*'); 
+    if fileparts(lst(k),"extension")==".sci" then
+      if execstr("getf(lst(k))","errcatch")<>0 then
+        warning("incorrect function in file "+lst(k))
+      end
+    end
+  end
 
   funcprot(prot)
   new=who('get')
@@ -29,4 +35,3 @@ function getd(path)
     execstr('['+strcat(new,',')+']=resume('+strcat(new,',')+')')
   end
 endfunction
-
