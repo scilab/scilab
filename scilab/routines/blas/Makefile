@@ -15,7 +15,7 @@ OBJSF = dasum.o daxpy.o dcopy.o ddot.o dgbmv.o dgemm.o dgemv.o\
 	zgemv.o zgerc.o zgeru.o zhbmv.o zhemm.o zhemv.o zher.o \
 	zher2.o zher2k.o zherk.o zhpmv.o zhpr.o zhpr2.o zrotg.o \
 	zscal.o zswap.o zsymm.o zsyr2k.o zsyrk.o ztbmv.o ztbsv.o \
-	ztpmv.o ztpsv.o ztrmm.o ztrmv.o ztrsm.o ztrsv.o izamax.o
+	ztpmv.o ztpsv.o ztrmm.o ztrmv.o ztrsm.o ztrsv.o izamax.o lsame.o dcabs1.o
 
 include ../../Makefile.incl
 

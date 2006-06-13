@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="blas_f2c"
+	Name="atlas_f2c_DLL"
 	ProjectGUID="{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}"
+	RootNamespace="blas_f2c"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -18,13 +19,13 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(InputDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,11 +64,15 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/bals_f2c.lib"
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/atlas.dll"
+				ModuleDefinitionFile="Atlas_for_Scilab.def"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -79,21 +84,27 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def blas_f2ctmp.def &gt;nul&#x0D;&#x0A;copy blas_f2ctmp.def ..\..\..\libs\blas_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(InputDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +121,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -131,11 +142,15 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../libs/blas_f2c.lib"
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/atlas.dll"
+				ModuleDefinitionFile="Atlas_for_Scilab.def"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -147,8 +162,14 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def blas_f2ctmp.def &gt;nul&#x0D;&#x0A;copy blas_f2ctmp.def ..\..\..\..\libs\blas_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
@@ -160,279 +181,291 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			>
 			<File
-				RelativePath=".\dasum.c"
+				RelativePath="..\dasum.c"
 				>
 			</File>
 			<File
-				RelativePath=".\daxpy.c"
+				RelativePath="..\daxpy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dcopy.c"
+				RelativePath="..\dcabs1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ddot.c"
+				RelativePath="..\dcopy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgbmv.c"
+				RelativePath="..\ddot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgemm.c"
+				RelativePath="..\dgbmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgemv.c"
+				RelativePath="..\dgemm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dger.c"
+				RelativePath="..\dgemv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dnrm2.c"
+				RelativePath="..\dger.c"
 				>
 			</File>
 			<File
-				RelativePath=".\drot.c"
+				RelativePath="..\dnrm2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\drotg.c"
+				RelativePath="..\drot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsbmv.c"
+				RelativePath="..\drotg.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dscal.c"
+				RelativePath="..\dsbmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dspmv.c"
+				RelativePath="..\dscal.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dspr.c"
+				RelativePath="..\dspmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dspr2.c"
+				RelativePath="..\dspr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dswap.c"
+				RelativePath="..\dspr2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsymm.c"
+				RelativePath="..\dswap.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsymv.c"
+				RelativePath="..\dsymm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsyr.c"
+				RelativePath="..\dsymv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsyr2.c"
+				RelativePath="..\dsyr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsyr2k.c"
+				RelativePath="..\dsyr2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsyrk.c"
+				RelativePath="..\dsyr2k.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtbmv.c"
+				RelativePath="..\dsyrk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtbsv.c"
+				RelativePath="..\dtbmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtpmv.c"
+				RelativePath="..\dtbsv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtpsv.c"
+				RelativePath="..\dtpmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtrmm.c"
+				RelativePath="..\dtpsv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtrmv.c"
+				RelativePath="..\dtrmm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtrsm.c"
+				RelativePath="..\dtrmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dtrsv.c"
+				RelativePath="..\dtrsm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dzasum.c"
+				RelativePath="..\dtrsv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dznrm2.c"
+				RelativePath="..\dzasum.c"
 				>
 			</File>
 			<File
-				RelativePath=".\idamax.c"
+				RelativePath="..\dznrm2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\izamax.c"
+				RelativePath="..\idamax.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zaxpy.c"
+				RelativePath="..\izamax.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zcopy.c"
+				RelativePath="..\lsame.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zdotc.c"
+				RelativePath="..\xerbla.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zdotu.c"
+				RelativePath="..\zaxpy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zdscal.c"
+				RelativePath="..\zcopy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zgbmv.c"
+				RelativePath="..\zdotc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zgemm.c"
+				RelativePath="..\zdotu.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zgemv.c"
+				RelativePath="..\zdscal.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zgerc.c"
+				RelativePath="..\zgbmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zgeru.c"
+				RelativePath="..\zgemm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zhbmv.c"
+				RelativePath="..\zgemv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zhemm.c"
+				RelativePath="..\zgerc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zhemv.c"
+				RelativePath="..\zgeru.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zher.c"
+				RelativePath="..\zhbmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zher2.c"
+				RelativePath="..\zhemm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zher2k.c"
+				RelativePath="..\zhemv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zherk.c"
+				RelativePath="..\zher.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zhpmv.c"
+				RelativePath="..\zher2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zhpr.c"
+				RelativePath="..\zher2k.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zhpr2.c"
+				RelativePath="..\zherk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zrotg.c"
+				RelativePath="..\zhpmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zscal.c"
+				RelativePath="..\zhpr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zswap.c"
+				RelativePath="..\zhpr2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zsymm.c"
+				RelativePath="..\zrotg.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zsyr2k.c"
+				RelativePath="..\zscal.c"
 				>
 			</File>
 			<File
-				RelativePath=".\zsyrk.c"
+				RelativePath="..\zswap.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztbmv.c"
+				RelativePath="..\zsymm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztbsv.c"
+				RelativePath="..\zsyr2k.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztpmv.c"
+				RelativePath="..\zsyrk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztpsv.c"
+				RelativePath="..\ztbmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztrmm.c"
+				RelativePath="..\ztbsv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztrmv.c"
+				RelativePath="..\ztpmv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztrsm.c"
+				RelativePath="..\ztpsv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ztrsv.c"
+				RelativePath="..\ztrmm.c"
+				>
+			</File>
+			<File
+				RelativePath="..\ztrmv.c"
+				>
+			</File>
+			<File
+				RelativePath="..\ztrsm.c"
+				>
+			</File>
+			<File
+				RelativePath="..\ztrsv.c"
 				>
 			</File>
 		</Filter>
