@@ -139,23 +139,23 @@
       70000  0   6500  55  0   0   0   0   11    100];
  
   [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
-  mprintf("      fail=%d, iter=%d, errrel=%e\n",flag,iter,err)
+  mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
    //sparse matrix
    A=sparse(A);
    [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",flag,iter,err)
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
    //using a function
    function y=Atimesx(x,A),y=A*x, endfunction
 
    //A passed by the calling context
    [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",flag,iter,err)
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
    // A passed as an argument
    [x, fail, err, iter, res]=pcg(list(Atimesx,A),b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",flag,iter,err)
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  ]]>
   </EXAMPLE>
   
