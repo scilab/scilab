@@ -340,10 +340,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dcabs1.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dcsevl.c"
 				>
 			</File>
