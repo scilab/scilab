@@ -63,7 +63,5 @@ matc.obj: ../stack.h
 matz.obj: ../stack.h
 matzs.obj: ../stack.h
 namstr.obj: ../stack.h
-rwstack.obj: ../stack.h
 tradsl.obj: ../stack.h
-
 intmacr2tree.obj: ../stack-c.h

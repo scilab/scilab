@@ -60,7 +60,6 @@ matc.o: ../stack.h
 matz.o: ../stack.h
 matzs.o: ../stack.h
 namstr.o: ../stack.h
-rwstack.o: ../stack.h
 tradsl.o: ../stack.h
 
 intmacr2tree.o: ../stack-c.h
