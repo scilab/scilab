@@ -155,7 +155,7 @@
 
    // A passed as an argument
    [x, fail, err, iter, res]=pcg(list(Atimesx,A),b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",flag,iter,err)
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  ]]>
   </EXAMPLE>
   
