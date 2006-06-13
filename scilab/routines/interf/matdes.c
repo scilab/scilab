@@ -2243,8 +2243,22 @@ int scixstringb(char *fname,unsigned long fname_len)
   else 
   { /* NG end */
     /* does not work any more. */
-    Scierror(1234,"xstringb does not exists in old style. Please update your code to the new style.\r\n",fname ) ;
-    /* C2F(dr1)("xstringb",C2F(cha1).buf,&autoSize,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz); */
+    /* Scierror(1234,"xstringb does not exists in old style. Please update your code to the new style.\r\n",fname ) ; */
+    int v ;
+    int i ;
+    int j ;
+    int ib = 0;
+    for (i = 0 ; i < m3 ; ++i) {
+      for (j = 0 ; j < n3; ++j) 
+      {
+	strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
+	ib += strlen(Str[i+ m3*j]);
+	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
+      }
+      C2F(cha1).buf[ib]= '\n'; ib++;
+    }
+    C2F(cha1).buf[ib-1]='\0';
+    C2F(dr1)("xstringb",C2F(cha1).buf,&autoSize,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
   }
   FreeRhsSVar(Str); /* we must free Str2 memory */ 
   LhsVar(1)=0;
