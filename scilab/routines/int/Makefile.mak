@@ -37,7 +37,6 @@ include ../Make.lib.mak
 bitops.obj: ../stack.h
 convert.obj: ../stack.h
 creimat.obj: ../stack.h
-getimat.obj: ../stack.h
 i_a_i.obj: ../stack.h
 i_abs.obj: ../stack.h
 i_c_i.obj: ../stack.h
