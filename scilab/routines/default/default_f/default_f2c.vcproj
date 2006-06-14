@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="randlib_f2c"
-	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
+	Name="default_f2c"
+	ProjectGUID="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
+	RootNamespace="default_f2c"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -24,7 +25,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/randlib_f2c.lib"
+				OutputFile="../../../libs/default_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -80,7 +81,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib_f2ctmp.def &gt;nul&#x0D;&#x0A;copy randlib_f2ctmp.def ..\..\..\libs\randlib_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def default_f2ctmp.def &gt;nul&#x0D;&#x0A;copy default_f2ctmp.def ..\..\..\..\libs\default_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -93,7 +94,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +111,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -132,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/randlib_f2c.lib"
+				OutputFile="../../../libs/default_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -148,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib_f2ctmp.def &gt;nul&#x0D;&#x0A;copy randlib_f2ctmp.def ..\..\..\..\libs\randlib_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def default_f2ctmp.def &gt;nul&#x0D;&#x0A;copy default_f2ctmp.def ..\..\..\..\libs\default_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -160,95 +161,95 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			>
 			<File
-				RelativePath=".\genbet.c"
+				RelativePath="..\Ex-colnew.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genchi.c"
+				RelativePath="..\Ex-corr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genexp.c"
+				RelativePath="..\Ex-dasrt.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genf.c"
+				RelativePath="..\Ex-dassl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gengam.c"
+				RelativePath="..\Ex-fbutn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genmn.c"
+				RelativePath="..\Ex-feval.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genmul.c"
+				RelativePath="..\Ex-fort.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gennch.c"
+				RelativePath="..\Ex-fsolve.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gennf.c"
+				RelativePath="..\Ex-impl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gennor.c"
+				RelativePath="..\Ex-int2d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genprm.c"
+				RelativePath="..\Ex-int3d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\genunf.c"
+				RelativePath="..\Ex-intg.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ignbin.c"
+				RelativePath="..\Ex-lsqrsolve.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ignnbn.c"
+				RelativePath="..\Ex-ode-more.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ignpoi.c"
+				RelativePath="..\Ex-ode.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lennob.c"
+				RelativePath="..\Ex-odedc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\phrtsd.c"
+				RelativePath="..\Ex-optim.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sdot.c"
+				RelativePath="..\Ex-schur.c"
 				>
 			</File>
 			<File
-				RelativePath=".\setgmn.c"
+				RelativePath="..\mainwin95.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sexpo.c"
+				RelativePath="..\matus2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sgamma.c"
+				RelativePath="..\matusr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\snorm.c"
+				RelativePath="..\msgstxt.c"
 				>
 			</File>
 			<File
-				RelativePath=".\spofa.c"
+				RelativePath="..\userf2.c"
 				>
 			</File>
 		</Filter>

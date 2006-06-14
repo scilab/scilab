@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="optim_f2c"
-	ProjectGUID="{1D219098-007C-4F76-9AE6-271ABBB7D393}"
+	Name="slicot_f2c"
+	ProjectGUID="{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
+	RootNamespace="slicot_f2c"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -24,7 +25,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/optim_f2c.lib"
+				OutputFile="../../../libs/slicot_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -80,7 +81,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def optim_f2ctmp.def &gt;nul&#x0D;&#x0A;copy optim_f2ctmp.def ..\..\..\libs\optim_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def slicot_f2ctmp.def &gt;nul&#x0D;&#x0A;copy slicot_f2ctmp.def ..\..\..\..\libs\slicot_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul"
 			/>
 		</Configuration>
 		<Configuration
@@ -93,7 +94,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +111,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -132,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/optim_f2c.lib"
+				OutputFile="../../../libs/slicot_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -148,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def optim_f2ctmp.def &gt;nul&#x0D;&#x0A;copy optim_f2ctmp.def ..\..\..\..\libs\optim_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def slicot_f2ctmp.def &gt;nul&#x0D;&#x0A;copy slicot_f2ctmp.def ..\..\..\..\libs\slicot_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul"
 			/>
 		</Configuration>
 	</Configurations>
@@ -160,415 +161,395 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			>
 			<File
-				RelativePath=".\ajour.c"
+				RelativePath="..\ab01nd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anfm01.c"
+				RelativePath="..\ab01od.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anfm02.c"
+				RelativePath="..\ab13md.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anfm03.c"
+				RelativePath="..\ib01ad.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anfm04.c"
+				RelativePath="..\ib01bd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anfm05.c"
+				RelativePath="..\ib01cd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anfm06.c"
+				RelativePath="..\ib01md.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anrs01.c"
+				RelativePath="..\ib01my.c"
 				>
 			</File>
 			<File
-				RelativePath=".\anrs02.c"
+				RelativePath="..\ib01nd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\aux003.c"
+				RelativePath="..\ib01od.c"
 				>
 			</File>
 			<File
-				RelativePath=".\auxo01.c"
+				RelativePath="..\ib01oy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bfgsd.c"
+				RelativePath="..\ib01pd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\calbx.c"
+				RelativePath="..\ib01px.c"
 				>
 			</File>
 			<File
-				RelativePath=".\calmaj.c"
+				RelativePath="..\ib01py.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ctcab.c"
+				RelativePath="..\ib01qd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ctonb.c"
+				RelativePath="..\ib01rd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dcube.c"
+				RelativePath="..\ma02ad.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ddd2.c"
+				RelativePath="..\ma02ed.c"
 				>
 			</File>
 			<File
-				RelativePath=".\desr03.c"
+				RelativePath="..\ma02fd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dimp03.c"
+				RelativePath="..\mb01pd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dipvtf.c"
+				RelativePath="..\mb01qd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dnrm0.c"
+				RelativePath="..\mb01rd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dogleg.c"
+				RelativePath="..\mb01ru.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dpmpar.c"
+				RelativePath="..\mb01rx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\enorm.c"
+				RelativePath="..\mb01ry.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fajc1.c"
+				RelativePath="..\mb01sd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fcomp1.c"
+				RelativePath="..\mb01td.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fcube.c"
+				RelativePath="..\mb01ud.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac1.c"
+				RelativePath="..\mb01vd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fdjac2.c"
+				RelativePath="..\mb02pd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ffinf1.c"
+				RelativePath="..\mb02qy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmani1.c"
+				RelativePath="..\mb02ud.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmc11a.c"
+				RelativePath="..\mb03od.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmc11b.c"
+				RelativePath="..\mb03oy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmc11e.c"
+				RelativePath="..\mb03ud.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmc11z.c"
+				RelativePath="..\mb04id.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmlag1.c"
+				RelativePath="..\mb04iy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmulb1.c"
+				RelativePath="..\mb04kd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmuls1.c"
+				RelativePath="..\mb04nd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fpq2.c"
+				RelativePath="..\mb04ny.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fprf2.c"
+				RelativePath="..\mb04od.c"
 				>
 			</File>
 			<File
-				RelativePath=".\frdf1.c"
+				RelativePath="..\mb04oy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fremf1.c"
+				RelativePath="..\sb02mr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fremf2.c"
+				RelativePath="..\sb02ms.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fretc1.c"
+				RelativePath="..\sb02mt.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fuclid.c"
+				RelativePath="..\sb02nd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gcbd.c"
+				RelativePath="..\sb02od.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gcp.c"
+				RelativePath="..\sb02ou.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd.c"
+				RelativePath="..\sb02ov.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrd1.c"
+				RelativePath="..\sb02oy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj.c"
+				RelativePath="..\sb02qd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hybrj1.c"
+				RelativePath="..\sb02rd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icscof.c"
+				RelativePath="..\sb02ru.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icse.c"
+				RelativePath="..\sb02sd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icse0.c"
+				RelativePath="..\sb03md.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icse1.c"
+				RelativePath="..\sb03mv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icse2.c"
+				RelativePath="..\sb03mw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icsec2.c"
+				RelativePath="..\sb03mx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\icsei.c"
+				RelativePath="..\sb03my.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmder.c"
+				RelativePath="..\sb03od.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmdif.c"
+				RelativePath="..\sb03or.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lmpar.c"
+				RelativePath="..\sb03ot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\majour.c"
+				RelativePath="..\sb03ou.c"
 				>
 			</File>
 			<File
-				RelativePath=".\majysa.c"
+				RelativePath="..\sb03ov.c"
 				>
 			</File>
 			<File
-				RelativePath=".\majz.c"
+				RelativePath="..\sb03oy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1fc1.c"
+				RelativePath="..\sb03qx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1fc1a.c"
+				RelativePath="..\sb03qy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1fc1o.c"
+				RelativePath="..\sb03sx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1gc2.c"
+				RelativePath="..\sb03sy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1gc2a.c"
+				RelativePath="..\sb04md.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1gc2b.c"
+				RelativePath="..\sb04mr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1qn1.c"
+				RelativePath="..\sb04mu.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1qn1a.c"
+				RelativePath="..\sb04mw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1qn2.c"
+				RelativePath="..\sb04my.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1qn2a.c"
+				RelativePath="..\sb04nd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1qn3.c"
+				RelativePath="..\sb04nv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\n1qn3a.c"
+				RelativePath="..\sb04nw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\nlis0.c"
+				RelativePath="..\sb04nx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\nlis2.c"
+				RelativePath="..\sb04ny.c"
 				>
 			</File>
 			<File
-				RelativePath=".\nvkt03.c"
+				RelativePath="..\sb04pd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\optr01.c"
+				RelativePath="..\sb04px.c"
 				>
 			</File>
 			<File
-				RelativePath=".\optr03.c"
+				RelativePath="..\sb04py.c"
 				>
 			</File>
 			<File
-				RelativePath=".\opvf03.c"
+				RelativePath="..\sb04qd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\pasr03.c"
+				RelativePath="..\sb04qr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\plcbas.c"
+				RelativePath="..\sb04qu.c"
 				>
 			</File>
 			<File
-				RelativePath=".\proj.c"
+				RelativePath="..\sb04qy.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qform.c"
+				RelativePath="..\sb04rd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ql0001.c"
+				RelativePath="..\sb04rv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qnbd.c"
+				RelativePath="..\sb04rw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qrfac.c"
+				RelativePath="..\sb04rx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qrsolv.c"
+				RelativePath="..\sb04ry.c"
 				>
 			</File>
 			<File
-				RelativePath=".\r1mpyq.c"
+				RelativePath="..\sb10dd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\r1updt.c"
+				RelativePath="..\sb10fd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\rednor.c"
+				RelativePath="..\sb10pd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\relvar.c"
+				RelativePath="..\sb10qd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\rlbd.c"
+				RelativePath="..\sb10rd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\satur.c"
+				RelativePath="..\select.c"
 				>
 			</File>
 			<File
-				RelativePath=".\shanph.c"
-				>
-			</File>
-			<File
-				RelativePath=".\strang.c"
-				>
-			</File>
-			<File
-				RelativePath=".\tol03.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zgcbd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zqnbd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zthz.c"
+				RelativePath="..\tb01wd.c"
 				>
 			</File>
 		</Filter>

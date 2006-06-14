@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="system2_f2c"
-	ProjectGUID="{89630A5F-60FB-424E-AD60-330607086D56}"
+	Name="dcd_f2c"
+	ProjectGUID="{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
+	RootNamespace="dcd_f2c"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -24,7 +25,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/system2_f2c.lib"
+				OutputFile="../../../libs/dcd_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -80,7 +81,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def system2_f2ctmp.def &gt;nul&#x0D;&#x0A;copy system2_f2ctmp.def ..\..\..\libs\system2_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def dcd_f2ctmp.def &gt;nul&#x0D;&#x0A;copy dcd_f2ctmp.def ..\..\..\..\libs\dcd_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -93,7 +94,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +111,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -132,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/system2_f2c.lib"
+				OutputFile="../../../libs/dcd_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -148,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def system2_f2ctmp.def &gt;nul&#x0D;&#x0A;copy system2_f2ctmp.def ..\..\..\..\libs\system2_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def dcd_f2ctmp.def &gt;nul&#x0D;&#x0A;copy dcd_f2ctmp.def ..\..\..\..\libs\dcd_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -160,191 +161,283 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			>
 			<File
-				RelativePath=".\atome.c"
+				RelativePath="..\algdiv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\badd.c"
+				RelativePath="..\alngam.c"
 				>
 			</File>
 			<File
-				RelativePath=".\basnms.c"
+				RelativePath="..\alnrel.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bcol.c"
+				RelativePath="..\apser.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bfeval.c"
+				RelativePath="..\basym.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bgetx.c"
+				RelativePath="..\bcorr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bgety.c"
+				RelativePath="..\betaln.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bint2d.c"
+				RelativePath="..\bfrac.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bint3d.c"
+				RelativePath="..\bgrat.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bintg.c"
+				RelativePath="..\bpser.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bj2.c"
+				RelativePath="..\bratio.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bjac.c"
+				RelativePath="..\brcmp1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bjacd.c"
+				RelativePath="..\brcomp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bjlsqrsolv.c"
+				RelativePath="..\bup.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bjsolv.c"
+				RelativePath="..\cdfbet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\blsqrsolv.c"
+				RelativePath="..\cdfbin.c"
 				>
 			</File>
 			<File
-				RelativePath=".\boptim.c"
+				RelativePath="..\cdfchi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bresd.c"
+				RelativePath="..\cdfchn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bresid.c"
+				RelativePath="..\cdff.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bschur.c"
+				RelativePath="..\cdffnc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bsolv.c"
+				RelativePath="..\cdfgam.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bsurf.c"
+				RelativePath="..\cdfnbn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bsurfd.c"
+				RelativePath="..\cdfnor.c"
 				>
 			</File>
 			<File
-				RelativePath=".\btof.c"
+				RelativePath="..\cdfpoi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\btofm.c"
+				RelativePath="..\cdft.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bydot.c"
+				RelativePath="..\cumbet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bydot2.c"
+				RelativePath="..\cumbin.c"
 				>
 			</File>
 			<File
-				RelativePath=".\chkvar.c"
+				RelativePath="..\cumchi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cmplxt.c"
+				RelativePath="..\cumchn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cvdm.c"
+				RelativePath="..\cumf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cvwm.c"
+				RelativePath="..\cumfnc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dldsp.c"
+				RelativePath="..\cumgam.c"
 				>
 			</File>
 			<File
-				RelativePath=".\expsum.c"
+				RelativePath="..\cumnbn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\extlarg.c"
+				RelativePath="..\cumnor.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fmttyp.c"
+				RelativePath="..\cumpoi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ftob.c"
+				RelativePath="..\cumt.c"
 				>
 			</File>
 			<File
-				RelativePath=".\getfun.c"
+				RelativePath="..\dbetrm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intstr.c"
+				RelativePath="..\devlpl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\iseye.c"
+				RelativePath="..\dexpm1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\isnum.c"
+				RelativePath="..\dinvnr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\istrue.c"
+				RelativePath="..\dinvr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\matc.c"
+				RelativePath="..\dlanor.c"
 				>
 			</File>
 			<File
-				RelativePath=".\matz.c"
+				RelativePath="..\dln1mx.c"
 				>
 			</File>
 			<File
-				RelativePath=".\matzs.c"
+				RelativePath="..\dln1px.c"
 				>
 			</File>
 			<File
-				RelativePath=".\namstr.c"
+				RelativePath="..\dlnbet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\termf.c"
+				RelativePath="..\dlngam.c"
 				>
 			</File>
 			<File
-				RelativePath=".\tradsl.c"
+				RelativePath="..\dstrem.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dt1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\dzror.c"
+				>
+			</File>
+			<File
+				RelativePath="..\erf.c"
+				>
+			</File>
+			<File
+				RelativePath="..\erfc1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\esum.c"
+				>
+			</File>
+			<File
+				RelativePath="..\exparg.c"
+				>
+			</File>
+			<File
+				RelativePath="..\fpser.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gam1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gaminv.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gamln.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gamln1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gamma.c"
+				>
+			</File>
+			<File
+				RelativePath="..\grat1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gratio.c"
+				>
+			</File>
+			<File
+				RelativePath="..\gsumln.c"
+				>
+			</File>
+			<File
+				RelativePath="..\ipmpar.c"
+				>
+			</File>
+			<File
+				RelativePath="..\psi.c"
+				>
+			</File>
+			<File
+				RelativePath="..\rcomp.c"
+				>
+			</File>
+			<File
+				RelativePath="..\rexp.c"
+				>
+			</File>
+			<File
+				RelativePath="..\rlog.c"
+				>
+			</File>
+			<File
+				RelativePath="..\rlog1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\spmpar.c"
+				>
+			</File>
+			<File
+				RelativePath="..\stvaln.c"
 				>
 			</File>
 		</Filter>

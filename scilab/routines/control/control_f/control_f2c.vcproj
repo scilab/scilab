@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="control_f2c"
 	ProjectGUID="{19342CBB-EEB1-425C-A91D-EABAD8A115AF}"
+	RootNamespace="control_f2c"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -24,7 +25,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/control_f2c.lib"
+				OutputFile="../../../libs/control_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -80,7 +81,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def control_f2ctmp.def &gt;nul&#x0D;&#x0A;copy control_f2ctmp.def ..\..\..\libs\control_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def control_f2ctmp.def &gt;nul&#x0D;&#x0A;copy control_f2ctmp.def ..\..\..\..\libs\control_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -93,7 +94,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +111,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -132,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/control_f2c.lib"
+				OutputFile="../../../libs/control_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -148,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def control_f2ctmp.def &gt;nul&#x0D;&#x0A;copy control_f2ctmp.def ..\..\..\..\libs\control_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def control_f2ctmp.def &gt;nul&#x0D;&#x0A;copy control_f2ctmp.def ..\..\..\..\libs\control_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -160,511 +161,511 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			>
 			<File
-				RelativePath=".\arl2.c"
+				RelativePath="..\arl2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\arl2a.c"
+				RelativePath="..\arl2a.c"
 				>
 			</File>
 			<File
-				RelativePath=".\balanc.c"
+				RelativePath="..\balanc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\balbak.c"
+				RelativePath="..\balbak.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bdiag.c"
+				RelativePath="..\bdiag.c"
 				>
 			</File>
 			<File
-				RelativePath=".\bezous.c"
+				RelativePath="..\bezous.c"
 				>
 			</File>
 			<File
-				RelativePath=".\calcsc.c"
+				RelativePath="..\calcsc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\calsca.c"
+				RelativePath="..\calsca.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cbal.c"
+				RelativePath="..\cbal.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cerr.c"
+				RelativePath="..\cerr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\coef.c"
+				RelativePath="..\coef.c"
 				>
 			</File>
 			<File
-				RelativePath=".\comqr3.c"
+				RelativePath="..\comqr3.c"
 				>
 			</File>
 			<File
-				RelativePath=".\corth.c"
+				RelativePath="..\corth.c"
 				>
 			</File>
 			<File
-				RelativePath=".\cortr.c"
+				RelativePath="..\cortr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dclmat.c"
+				RelativePath="..\dclmat.c"
 				>
 			</File>
 			<File
-				RelativePath=".\deg1l2.c"
+				RelativePath="..\deg1l2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\degl2.c"
+				RelativePath="..\degl2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dexpm1.c"
+				RelativePath="..\dexpm1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dfrmg.c"
+				RelativePath="..\dfrmg.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgbfa.c"
+				RelativePath="..\dgbfa.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgbsl.c"
+				RelativePath="..\dgbsl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgeco.c"
+				RelativePath="..\dgeco.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgedi.c"
+				RelativePath="..\dgedi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgefa.c"
+				RelativePath="..\dgefa.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dgesl.c"
+				RelativePath="..\dgesl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dhetr.c"
+				RelativePath="..\dhetr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dlslv.c"
+				RelativePath="..\dlslv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\domout.c"
+				RelativePath="..\domout.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dpofa.c"
+				RelativePath="..\dpofa.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dqrdc.c"
+				RelativePath="..\dqrdc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dqrsl.c"
+				RelativePath="..\dqrsl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dqrsm.c"
+				RelativePath="..\dqrsm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\drref.c"
+				RelativePath="..\drref.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsubsp.c"
+				RelativePath="..\dsubsp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dsvdc.c"
+				RelativePath="..\dsvdc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dzdivq.c"
+				RelativePath="..\dzdivq.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ereduc.c"
+				RelativePath="..\ereduc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\exch.c"
+				RelativePath="..\exch.c"
 				>
 			</File>
 			<File
-				RelativePath=".\exchqz.c"
+				RelativePath="..\exchqz.c"
 				>
 			</File>
 			<File
-				RelativePath=".\expan.c"
+				RelativePath="..\expan.c"
 				>
 			</File>
 			<File
-				RelativePath=".\feq.c"
+				RelativePath="..\feq.c"
 				>
 			</File>
 			<File
-				RelativePath=".\find.c"
+				RelativePath="..\find.c"
 				>
 			</File>
 			<File
-				RelativePath=".\folhp.c"
+				RelativePath="..\folhp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fout.c"
+				RelativePath="..\fout.c"
 				>
 			</File>
 			<File
-				RelativePath=".\front.c"
+				RelativePath="..\front.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fstair.c"
+				RelativePath="..\fstair.c"
 				>
 			</File>
 			<File
-				RelativePath=".\fxshfr.c"
+				RelativePath="..\fxshfr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\giv.c"
+				RelativePath="..\giv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hessl2.c"
+				RelativePath="..\hessl2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hhdml.c"
+				RelativePath="..\hhdml.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hqror2.c"
+				RelativePath="..\hqror2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\htribk.c"
+				RelativePath="..\htribk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\htridi.c"
+				RelativePath="..\htridi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\imtql3.c"
+				RelativePath="..\imtql3.c"
 				>
 			</File>
 			<File
-				RelativePath=".\inva.c"
+				RelativePath="..\inva.c"
 				>
 			</File>
 			<File
-				RelativePath=".\invtpl.c"
+				RelativePath="..\invtpl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\irow1.c"
+				RelativePath="..\irow1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\irow2.c"
+				RelativePath="..\irow2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\jacl2.c"
+				RelativePath="..\jacl2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lq.c"
+				RelativePath="..\lq.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lrow2.c"
+				RelativePath="..\lrow2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lybad.c"
+				RelativePath="..\lybad.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lybsc.c"
+				RelativePath="..\lybsc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\lydsr.c"
+				RelativePath="..\lydsr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\modul.c"
+				RelativePath="..\modul.c"
 				>
 			</File>
 			<File
-				RelativePath=".\mzdivq.c"
+				RelativePath="..\mzdivq.c"
 				>
 			</File>
 			<File
-				RelativePath=".\newest.c"
+				RelativePath="..\newest.c"
 				>
 			</File>
 			<File
-				RelativePath=".\nextk.c"
+				RelativePath="..\nextk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\onface.c"
+				RelativePath="..\onface.c"
 				>
 			</File>
 			<File
-				RelativePath=".\optml2.c"
+				RelativePath="..\optml2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\orthes.c"
+				RelativePath="..\orthes.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ortran.c"
+				RelativePath="..\ortran.c"
 				>
 			</File>
 			<File
-				RelativePath=".\outl2.c"
+				RelativePath="..\outl2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\pade.c"
+				RelativePath="..\pade.c"
 				>
 			</File>
 			<File
-				RelativePath=".\phi.c"
+				RelativePath="..\phi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\polmc.c"
+				RelativePath="..\polmc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\proj2.c"
+				RelativePath="..\proj2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qhesz.c"
+				RelativePath="..\qhesz.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qitz.c"
+				RelativePath="..\qitz.c"
 				>
 			</File>
 			<File
-				RelativePath=".\quad.c"
+				RelativePath="..\quad.c"
 				>
 			</File>
 			<File
-				RelativePath=".\quadit.c"
+				RelativePath="..\quadit.c"
 				>
 			</File>
 			<File
-				RelativePath=".\quadsd.c"
+				RelativePath="..\quadsd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qvalz.c"
+				RelativePath="..\qvalz.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qvecz.c"
+				RelativePath="..\qvecz.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qzk.c"
+				RelativePath="..\qzk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\realit.c"
+				RelativePath="..\realit.c"
 				>
 			</File>
 			<File
-				RelativePath=".\reduc2.c"
+				RelativePath="..\reduc2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\riccpack.c"
+				RelativePath="..\riccpack.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ricd.c"
+				RelativePath="..\ricd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\rilac.c"
+				RelativePath="..\rilac.c"
 				>
 			</File>
 			<File
-				RelativePath=".\rootgp.c"
+				RelativePath="..\rootgp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\rpoly.c"
+				RelativePath="..\rpoly.c"
 				>
 			</File>
 			<File
-				RelativePath=".\rtitr.c"
+				RelativePath="..\rtitr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\scaleg.c"
+				RelativePath="..\scaleg.c"
 				>
 			</File>
 			<File
-				RelativePath=".\scapol.c"
+				RelativePath="..\scapol.c"
 				>
 			</File>
 			<File
-				RelativePath=".\shrslv.c"
+				RelativePath="..\shrslv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\split.c"
+				RelativePath="..\split.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ssxmc.c"
+				RelativePath="..\ssxmc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sszer.c"
+				RelativePath="..\sszer.c"
 				>
 			</File>
 			<File
-				RelativePath=".\storl2.c"
+				RelativePath="..\storl2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sybad.c"
+				RelativePath="..\sybad.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sydsr.c"
+				RelativePath="..\sydsr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\syhsc.c"
+				RelativePath="..\syhsc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\tild.c"
+				RelativePath="..\tild.c"
 				>
 			</File>
 			<File
-				RelativePath=".\tql2.c"
+				RelativePath="..\tql2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\tred2.c"
+				RelativePath="..\tred2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\watfac.c"
+				RelativePath="..\watfac.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wbalin.c"
+				RelativePath="..\wbalin.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wbdiag.c"
+				RelativePath="..\wbdiag.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wcerr.c"
+				RelativePath="..\wcerr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wclmat.c"
+				RelativePath="..\wclmat.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wdegre.c"
+				RelativePath="..\wdegre.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wesidu.c"
+				RelativePath="..\wesidu.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wexchn.c"
+				RelativePath="..\wexchn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wexpm1.c"
+				RelativePath="..\wexpm1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wgeco.c"
+				RelativePath="..\wgeco.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wgedi.c"
+				RelativePath="..\wgedi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wgefa.c"
+				RelativePath="..\wgefa.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wgesl.c"
+				RelativePath="..\wgesl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wlslv.c"
+				RelativePath="..\wlslv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wpade.c"
+				RelativePath="..\wpade.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wpofa.c"
+				RelativePath="..\wpofa.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wqrdc.c"
+				RelativePath="..\wqrdc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wqrsl.c"
+				RelativePath="..\wqrsl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wrref.c"
+				RelativePath="..\wrref.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wshrsl.c"
+				RelativePath="..\wshrsl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wsvdc.c"
+				RelativePath="..\wsvdc.c"
 				>
 			</File>
 		</Filter>

@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="int_f2c"
-	ProjectGUID="{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}"
+	Name="randlib_f2c"
+	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
+	RootNamespace="randlib_f2c"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -24,7 +25,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -41,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/int_f2c.lib"
+				OutputFile="../../../libs/randlib_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -80,7 +81,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def int_f2ctmp.def &gt;nul&#x0D;&#x0A;copy int_f2ctmp.def ..\..\..\libs\int_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib_f2ctmp.def &gt;nul&#x0D;&#x0A;copy randlib_f2ctmp.def ..\..\..\..\libs\randlib_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -93,7 +94,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="for %%f in (*.f) do ..\..\bin\f2c.exe %%f"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -110,7 +111,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableEnhancedInstructionSet="1"
@@ -132,7 +133,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/int_f2c.lib"
+				OutputFile="../../../libs/randlib_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -148,7 +149,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def int_f2ctmp.def &gt;nul&#x0D;&#x0A;copy int_f2ctmp.def ..\..\..\..\libs\int_f2c.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib_f2ctmp.def &gt;nul&#x0D;&#x0A;copy randlib_f2ctmp.def ..\..\..\..\libs\randlib_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -160,179 +161,95 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			>
 			<File
-				RelativePath=".\bitops.c"
+				RelativePath="..\genbet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\convert.c"
+				RelativePath="..\genchi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\creimat.c"
+				RelativePath="..\genexp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\getimat.c"
+				RelativePath="..\genf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_a_i.c"
+				RelativePath="..\gengam.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_abs.c"
+				RelativePath="..\genmn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_b_i.c"
+				RelativePath="..\genmul.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_c_i.c"
+				RelativePath="..\gennch.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_convert.c"
+				RelativePath="..\gennf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_cumprod.c"
+				RelativePath="..\gennor.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_cumsum.c"
+				RelativePath="..\genprm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_d_i.c"
+				RelativePath="..\genunf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_diag.c"
+				RelativePath="..\ignbin.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_e.c"
+				RelativePath="..\ignnbn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_f_i.c"
+				RelativePath="..\ignpoi.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_i_i.c"
+				RelativePath="..\lennob.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_kron.c"
+				RelativePath="..\phrtsd.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_l_i.c"
+				RelativePath="..\sdot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_logic.c"
+				RelativePath="..\setgmn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_m_i.c"
+				RelativePath="..\sexpo.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_matrix.c"
+				RelativePath="..\sgamma.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_maxi.c"
+				RelativePath="..\snorm.c"
 				>
 			</File>
 			<File
-				RelativePath=".\i_mget.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_mini.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_mput.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_p.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_prod.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_q_i.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_r_i.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_s_i.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_sum.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_t.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_tril.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_triu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\i_x_i.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intelm.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intinttype.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intops.c"
-				>
-			</File>
-			<File
-				RelativePath=".\iread.c"
-				>
-			</File>
-			<File
-				RelativePath=".\memused.c"
-				>
-			</File>
-			<File
-				RelativePath=".\readgif.c"
-				>
-			</File>
-			<File
-				RelativePath=".\readxbm.c"
-				>
-			</File>
-			<File
-				RelativePath=".\unarybit.c"
-				>
-			</File>
-			<File
-				RelativePath=".\uppertype.c"
+				RelativePath="..\spofa.c"
 				>
 			</File>
 		</Filter>
