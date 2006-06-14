@@ -232,10 +232,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mainsci.c"
-				>
-			</File>
-			<File
 				RelativePath=".\mainwin95.c"
 				>
 			</File>
