@@ -4,16 +4,18 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <windows.h> 
 /*-----------------------------------------------------------------------------------*/ 
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\ifconsol.lib")
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifport.lib")
-#if _DEBUG
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcoremdd.lib")
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libmmdd.lib")
-#else
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcoremd.lib")
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libmmd.lib")
+#ifndef USE_F2C
+	#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\ifconsol.lib")
+	#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifport.lib")
+	#if _DEBUG
+		#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcoremdd.lib")
+		#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libmmdd.lib")
+	#else
+		#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifcoremd.lib")
+		#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libmmd.lib")
+	#endif
+	#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libirc.lib")
 #endif
-#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libirc.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #if WITH_TK
 #pragma comment(lib,"../../bin/tcl84.lib")
@@ -30,6 +32,7 @@
 #pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
 /*-----------------------------------------------------------------------------------*/ 
+#ifndef USE_F2C
 #pragma comment(lib,"../../libs/calelm_f.lib")
 #pragma comment(lib,"../../libs/control_f.lib")
 #pragma comment(lib,"../../libs/dcd_f.lib")
@@ -38,7 +41,6 @@
 #pragma comment(lib,"../../libs/interf_f.lib")
 #pragma comment(lib,"../../libs/intersci_f.lib")
 #pragma comment(lib,"../../libs/int_f.lib")
-
 #pragma comment(lib,"../../libs/metanet_f.lib")
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/os_specific_f.lib")
@@ -50,6 +52,7 @@
 #pragma comment(lib,"../../libs/sparse_f.lib")
 #pragma comment(lib,"../../libs/system2_f.lib")
 #pragma comment(lib,"../../libs/system_f.lib")
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

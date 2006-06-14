@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8,00"
+	Name="LibScilab_f2c"
+	ProjectGUID="{64BC155E-292F-484F-9404-76EE6AE67A43}"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				PreprocessorDefinitions="_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;STRICT;WITH_TK;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul&#x0D;&#x0A;copy ..\*.def ..\LibScilab.def &gt;nul&#x0D;&#x0A;copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="0"
+				SuppressStartupBanner="true"
+				IgnoreAllDefaultLibraries="false"
+				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="1"
+				TypeLibraryName="$(ConfigurationName)/LibScilab.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				PreprocessorDefinitions="NDEBUG;_USRDLL;LIBSCILAB_EXPORTS;STRICT;WITH_TK;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				EnableEnhancedInstructionSet="1"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation="$(ConfigurationName)/"
+				ObjectFile="$(ConfigurationName)/"
+				ProgramDataBaseFileName="$(ConfigurationName)/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul&#x0D;&#x0A;copy ..\*.def ..\LibScilab.def &gt;nul&#x0D;&#x0A;copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="0"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
+				SubSystem="2"
+				OptimizeForWindows98="1"
+				SupportUnloadOfDelayLoadedDLL="true"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCWebDeploymentTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			>
+			<File
+				RelativePath=".\DllmainLibscilab.c"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+			>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\3DROT.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\ARROW.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Bin.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\CHDIR.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\CIRCLE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\CONSOLE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\COPY.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Cos.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Cosf.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Dem.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\DOUBLEARROW.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\exit24.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\fonts.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\GED.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Graph.ICO"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\HELP.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\LINE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\metanet24.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\NEW.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\OPEN.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\PASTE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\POLYLINE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\PRINT.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\RECTANGLE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Rscilab.rc"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Sav.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\SAVE.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Sce.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Sci.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Scicos.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\scilab.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\scilab_logo.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Text.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Tst.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\UNZOOM.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\Vide.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\routines\wsci\Icones Scilab\ZOOM.ico"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl"
+			>
+			<File
+				RelativePath="..\..\routines\wsci\resource.h"
+				>
+			</File>
+		</Filter>
+		<File
+			RelativePath="..\LibScilab.def"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
