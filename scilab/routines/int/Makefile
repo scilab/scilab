@@ -33,7 +33,6 @@ include ../Make.lib
 
 bitops.o: ../stack.h
 convert.o: ../stack.h
-creimat.o: ../stack.h
 i_a_i.o: ../stack.h
 i_abs.o: ../stack.h
 i_c_i.o: ../stack.h
