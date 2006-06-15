@@ -11,23 +11,7 @@ MAKE=nmake /f Makefile.mak
 #----------------------------------------------
 # To compile with TCL/TK interface, uncomment the following lines and give
 # the good pathnames for TKLIBS and TCL_INCLUDES.
-# compiler flags: -MT or -MD  only needed if tcl/tk is used
-
-!IF "$(DTK)" == ""
-DTK=
-!ELSE
-DTK=-DWITH_TK
-!ENDIF
-
-!IF "$(DVC8EXP)" == ""
-DVC8EXP=
-!ELSE
-DVC8EXP=-DVC8EXP
-!ENDIF
-
-
 !IF "$(DTK)" == "-DWITH_TK"
-# -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
 USE_MT=-MT 
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
@@ -38,58 +22,6 @@ TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
-
-#----------------------------------------------
-# Scilab pvm library
-#----------------------------------------------
-# To compile with PVM interface, uncomment the following lines and give
-# the good pathname for PVM_ROOT.
-#
-
-!IF "$(DPVM)"==""
-DPVM=
-!ELSE
-DPVM=-DWITH_PVM
-!ENDIF 
-
-!IF "$(DPVM)" == "-DWITH_PVM"
-# compiler flags: -MT should be removed for pvm 
-USE_MT=
-PVM=libs/pvm.lib 
-# SCIDIR1 is set to . in Makefile.mak for compilation 
-# and to scilab full path when used after compilation 
-# for dynamic linking
-
-!IF "$(DPVM)"==""
-PVM_ROOT=$(SCIDIR1)\pvm3
-!ELSE
-#modify this path to compile scilab with PVM
-PVM_ROOT=D:\scilab\pvm3
-!ENDIF
-
-PVM_ARCH=WIN32
-PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 
-PVM_CINCLUDE="."
-PVM_INCLUDES=-I"$(PVM_ROOT)\include" -I"$(PVM_ROOT)\src"
-PVM_CCOMPILER=VISUALC++
-!ENDIF 
-
-#
-# YES if we compile the PVM given with Scilab else NO
-# If you use DLPVM=YES you will have to edit and customize
-# pvm3/conf/WIN32.def 
-!IF "$(DPVM)"==""
-DLPVM=NO
-!ELSE
-DLPVM=YES
-!ENDIF
-
-
-#----------------------------------------------
-# to generate blas symbols compatible with 
-# intel blas library 
-#----------------------------------------------
-#DMKL=-DMKL
 #----------------------------------------------
 # C compiler
 # typically, for compiling use: CFLAGS = $(CC_OPTIONS)
@@ -110,20 +42,11 @@ INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES)
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
 
-!IF "$(DVC8EXP)" == ""
-# standard option for C compiler
-CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -G5 -Gd
-
-# debug option for C compiler
-#CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -GB -Gd
-
-!ELSE
-# standard option for C compiler for VC 2005 Express
+# standard option for C compiler for VC 2005
 CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -Gd
 
-# debug option for C compiler  for VC 2005 Express
+# debug option for C compiler  for VC 2005
 #CC_OPTIONS = $(CC_COMMON) -Zi -W3 -Od -Gd
-!ENDIF
 
 CC_LDFLAGS = 
 #----------------------------------------------
@@ -148,8 +71,6 @@ RCVARS=-r -DWIN32
 GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 
-!IF "$(DVC8EXP)" == ""
-
 !IF "$(USE_MT)" == "-MT"
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
 !ELSEIF "$(USE_MT)" == "-MD"
@@ -158,16 +79,11 @@ GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrt.lib
 GUILIBS=-NODEFAULTLIB:libcmt.lib $(GUI) libc.lib msvcrt.lib
 !ENDIF
 
-!ELSE
-GUIFLAGS=-SUBSYSTEM:console
-GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
-GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrtd.lib
-!ENDIF
 
 # XLIBS is used for linking Scilab
-XLIBS=$(TKLIBS) $(PVMLIB) $(GUILIBS)
+XLIBS=$(TKLIBS) $(GUILIBS)
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
+#XLIBSBIN=$(TKLIBSBIN) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
 .c.obj	:
 	@echo ------------- Compile file $< --------------
 	$(CC) $(CFLAGS) $< 
@@ -189,17 +105,10 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1
 	@echo -----------Compile file $*.f  (using $(FC)) -------------
 	@$(FC) $(FFLAGS) $<
 !ENDIF 
-
-#----------------------------------------------
-# RM only exists if gcwin32 is installed 
-#----------------------------------------------
-
-RM = del
-
 #----------------------------------------------
 # clean 
+RM = del
 #----------------------------------------------
-
 clean::
 	-del *.bak 
   -del *.obj
