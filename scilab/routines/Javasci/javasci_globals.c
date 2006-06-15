@@ -28,7 +28,7 @@ void Initialize()
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
-  #if WIN32
+  #if _MSC_VER
     static char JavaSciInterf[]="javasci";
     static char nw[]="-nw";
     static char nb[]="-nb";
@@ -38,13 +38,13 @@ void Initialize()
   char *p1 = (char*)getenv ("SCI");
   
   
-  #if WIN32
+  #if _MSC_VER
   /* Supprime le mode windows et la baniere */
     add_sci_argv(JavaSciInterf);
     add_sci_argv(nb);
   #endif
   
-  #if WIN32 
+  #if _MSC_VER 
     if ( p1== NULL )
     {
 		/* Detection Scilab path */
@@ -78,12 +78,11 @@ void Initialize()
    {
    	fprintf(stderr,"Please define SCI environment variable\n");
    	sprintf (env, "%s=%s", "SCI",SCI);
-	putenv (env);
+		putenv (env);
    }
   #endif
 
   /* Scilab Initialization */
-  initTCLTK(); /* TCLTK Init. */
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
     {
@@ -94,9 +93,8 @@ void Initialize()
   C2F(settmpdir)();
 
   /* Initialisation fenetre graphique */
-  #if WIN32
+  #if _MSC_VER
     InitWindowGraphDll();
-    start_sci_gtk() ;
   #endif
 
   /* pour initialisation de la primitive scilab : fromjava() */
@@ -112,8 +110,10 @@ int send_scilab_job(char *job)
   return (int) SendScilabJob(job); 
 }
 /********************************************************************************************************/
+#ifndef _MSC_VER
 int MAIN__() 
 {
 	return 0;
 }
+#endif
 /********************************************************************************************************/

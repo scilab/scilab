@@ -9,6 +9,9 @@
 extern "C" {
 #endif
 
+/* private static native void Initialize(); */
+JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jclass cl);
+
 /* public native void Job(String job); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job (JNIEnv *, jobject, jstring);
 

@@ -9,7 +9,9 @@ public class SciString implements java.io.Serializable
   private SciStringArray pObjSciString;
   private String[] pTmpStringArray;
 /********************************************************************************************************/  
-/* See SCI/examples/callsci/callsciJava/others for some simple examples */
+/**
+* See SCI/examples/callsci/callsciJava/others for some simple examples
+*/
 /********************************************************************************************************/  
   public SciString(String name,SciString Obj) 
   {

@@ -3,7 +3,11 @@
 /* Allan CORNET */
 /* INRIA 2006 */
 /********************************************************************************************************/
-
+/* private static native void Initialize(); */
+JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jclass cl)
+{
+	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+}
 /********************************************************************************************************/
 /* public native void Job(String job); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job(JNIEnv *env , jobject obj_this, jstring job)
@@ -16,8 +20,6 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job(JNIEnv *env , jobject obj
 
 	/* get the field value */
 	cjob = (*env)->GetStringUTFChars(env, job, NULL);
-
-	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 
 	if (send_scilab_job((char*)cjob))
 	{
@@ -36,7 +38,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
   int cm,cn;
   const char *cname; 
   int indx, indy, nlr;
-  char *tmpStr=malloc(sizeof(char)*DefaultMaxlenString);
+  char *tmpStr=MALLOC(sizeof(char)*DefaultMaxlenString);
   
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -55,8 +57,6 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
   
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-  	
   cm=jm;
   cn=jn;
   
@@ -74,7 +74,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 
   StrReturn=(*env)->NewStringUTF(env, tmpStr);
 
-  free(tmpStr);
+  FREE(tmpStr);
 
   return StrReturn;
 }
@@ -98,8 +98,6 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 
 	cname = (*env)->GetStringUTFChars(env, jname, NULL);
 	cstr = (*env)->GetStringUTFChars(env, strarg, NULL);
-
-	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 
 	sprintf(Job,"%s(%d,%d)=\"\"%s\"\";",cname,indxarg+1,indyarg+1,cstr);
 	if (send_scilab_job(Job))

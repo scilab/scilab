@@ -13,28 +13,44 @@ public class SciDoubleArray implements java.io.Serializable
   /* n number of colons */
   
   private String name; 
-/********************************************************************************************************/  
+/********************************************************************************************************/
+  private static native void Initialize();
+  /**
+  * Initialize Scilab interface
+  */
+    
   public native boolean Job(String job);
-  /* Execute a command in Scilab */
+  /**
+  * Execute a command in Scilab 
+  */
   
   public native void Get();
-  /* Get Matrix from Scilab*/
+  /**
+  * Get Matrix from Scilab
+  */
   
   public native void Send();
-  /* Send Matrix to Scilab */
+  /**
+  * Send Matrix to Scilab 
+  */
   
   public native double GetElement(int indr, int indc);
-  /* Get only ONE element from Scilab Matrix */
-  /* indr AND indc are indices in scilab */
-  /* in Scilab A=[1,2;3,4];
-  /* A(1,1)=1 */
-  /* A(2,2)=4 */
+  /**
+  * Get only ONE element from Scilab Matrix 
+  * indr AND indc are indices in scilab 
+  * in Scilab A=[1,2;3,4];
+  * A(1,1)=1 
+  * A(2,2)=4 
+  */
   
-  /* See SCI/examples/callsci/callsciJava/others for some simple examples */
+  /**
+  * See SCI/examples/callsci/callsciJava/others for some simple examples 
+  */
 /********************************************************************************************************/  
   static 
   {
     System.loadLibrary("javasci");
+    Initialize();
   }
 /********************************************************************************************************/  
   public SciDoubleArray(String name,SciDoubleArray Obj) 

@@ -458,6 +458,9 @@ cd ..
 				RelativePath=".\javasci_Scilab.c">
 			</File>
 			<File
+				RelativePath=".\javasci_Scilab2.c">
+			</File>
+			<File
 				RelativePath=".\javasci_SciStringArray.c">
 			</File>
 		</Filter>
@@ -473,6 +476,9 @@ cd ..
 			</File>
 			<File
 				RelativePath=".\javasci_Scilab.h">
+			</File>
+			<File
+				RelativePath=".\javasci_Scilab2.h">
 			</File>
 			<File
 				RelativePath=".\javasci_SciStringArray.h">

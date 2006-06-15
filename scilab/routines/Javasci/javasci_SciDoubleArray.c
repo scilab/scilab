@@ -3,7 +3,11 @@
 /* Allan CORNET */
 /* INRIA 2005 */
 /********************************************************************************************************/
-
+/* private static native void Initialize(); */
+JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Initialize (JNIEnv *env, jclass cl)
+{
+	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+}
 /********************************************************************************************************/
 /* public native boolean Job(String job); */
 JNIEXPORT jboolean JNICALL Java_javasci_SciDoubleArray_Job(JNIEnv *env , jobject obj_this, jstring job)
@@ -25,8 +29,6 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciDoubleArray_Job(JNIEnv *env , jobject
 	}
 	else
 	{
-		if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
 		if (send_scilab_job((char*)cjob))
 		{
 			fprintf(stderr,"Error in Java_javasci_SciDoubleArray_Job routine.\n");
@@ -66,7 +68,6 @@ JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Get(JNIEnv *env , jobject obj
   double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
   cm=jm;cn=jn;
   
   if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp,(unsigned long)strlen(cname))) 
@@ -110,7 +111,6 @@ JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Send(JNIEnv *env , jobject ob
   double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
   cm=jm;cn=jn;
   if (!C2F(cwritemat)((char *)cname,&cm,&cn,cx,(unsigned long)strlen(cname))) 
   {
@@ -145,8 +145,6 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
   jint jn = (*env)->GetIntField(env, obj_this, id_n);
   double *cx = (*env)->GetDoubleArrayElements(env,jx,NULL);
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
-
-  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 
   cm=jm;cn=jn;
 

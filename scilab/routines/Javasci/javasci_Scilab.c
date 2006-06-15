@@ -3,6 +3,11 @@
 /* Allan CORNET */
 /* INRIA */
 /********************************************************************************************************/
+JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl)
+{
+	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+}
+/********************************************************************************************************/
 /* public static native void Events(); */
 JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this)
 /********************************************************************************************************/
@@ -48,8 +53,6 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
   }
   else
   {
-	  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
 	  if ( send_scilab_job((char *)cjob) != 0) 
 	  {
 		  fprintf(stderr,"Error in Java_javasci_Scilab_Exec routine.\n");
@@ -87,8 +90,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl,
   else
   {
 	  int lw; int fin;
-	  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
+	  
 	  if (C2F(objptr)((char*)cVarName,&lw,&fin,(unsigned long)strlen(cVarName)))
 	  {
 		  bOK=1;
@@ -120,8 +122,7 @@ JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstr
   else
   {
 	  int lw; int fin;
-	  if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
-
+	  
 	  if (C2F(objptr)((char*)cVarName,&lw,&fin,(unsigned long)strlen(cVarName)))
 	  {
 		  int *header=NULL; 

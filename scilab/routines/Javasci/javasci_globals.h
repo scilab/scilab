@@ -14,10 +14,20 @@
 #include "jni.h"
 #include "../machine.h"
 #include "../stack-c.h"
+
+#ifdef _MSC_VER
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
+#else
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#endif
 /********************************************************************************************************/
 #ifndef SCI 
   #define SCI ".."
 #endif 
+
+#ifndef NULL
+	#define NULL 0
+#endif
 /********************************************************************************************************/
 #define MAX_STR 512
 /********************************************************************************************************/

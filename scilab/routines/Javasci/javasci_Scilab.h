@@ -9,25 +9,44 @@
 extern "C" {
 #endif
 
-/* public static native void Events(); */
+/**
+* private static native void Initialize();
+*/
+JNIEXPORT void JNICALL Java_javasci_Scilab_Initialize (JNIEnv *env, jclass cl);
+
+/**
+* public static native void Events(); 
+*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_Events(JNIEnv *env , jobject obj_this);
   
-/* public static native boolean HaveAGraph(); */
+/** 
+* public static native boolean HaveAGraph(); 
+*/
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject obj_this);
 
-/* public static native boolean Exec(String job); */
+/** 
+* public static native boolean Exec(String job); 
+*/
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jstring job);
 
-/* public static native boolean ExistVar(String VarName); */
+/** 
+public static native boolean ExistVar(String VarName); 
+*/
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_ExistVar(JNIEnv *env , jclass cl, jstring job);
 
-/* public static native int TypeVar(String VarName); */
+/**
+* public static native int TypeVar(String VarName); 
+*/
 JNIEXPORT jint JNICALL Java_javasci_Scilab_TypeVar(JNIEnv *env , jclass cl, jstring job);
 
-/* public static native int GetLastErrorCode(); */
+/** 
+* public static native int GetLastErrorCode(); 
+*/
 JNIEXPORT jint JNICALL Java_javasci_Scilab_GetLastErrorCode (JNIEnv *env , jobject obj_this);
 
-/* public static native boolean Finish(); */
+/** 
+* public static native boolean Finish(); 
+*/
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj_this);
 
 #ifdef __cplusplus
