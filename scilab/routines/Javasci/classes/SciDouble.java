@@ -9,7 +9,9 @@ public class SciDouble implements java.io.Serializable
   private SciDoubleArray pObjSciDouble;
   private double[] pTmpDoubleArray;
 /********************************************************************************************************/  
-/* See SCI/examples/callsci/callsciJava/others for some simple examples */
+/**
+* See SCI/examples/callsci/callsciJava/others for some simple examples 
+*/
 /********************************************************************************************************/  
   
 /********************************************************************************************************/  

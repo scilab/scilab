@@ -12,19 +12,33 @@ extern "C"
 {
 #endif
 
-/* public static native SciData receiveDataByName(String id); */
+/**
+* private static native void initialize(); 
+*/
+JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl);
+
+/**
+* public static native SciData receiveDataByName(String id); */
 JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jclass cl, jstring name);
 
-/* public static native void receiveStringMatrix(SciStringMatrix matrix); */
+/**
+public static native void receiveStringMatrix(SciStringMatrix matrix); 
+*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jclass cl, jobject objMatrix);
 
-/* public static native void sendStringMatrix(SciStringMatrix matrix); */
+/**
+* public static native void sendStringMatrix(SciStringMatrix matrix); 
+*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass cl, jobject objMatrix);
 
-/* public static native void receiveDoubleMatrix(SciDoubleMatrix matrix); */
+/**
+* public static native void receiveDoubleMatrix(SciDoubleMatrix matrix); 
+*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix);
 
-/* public static native void sendDoubleMatrix(SciDoubleMatrix matrix); */
+/**
+* public static native void sendDoubleMatrix(SciDoubleMatrix matrix); 
+*/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix);
 
 #ifdef __cplusplus

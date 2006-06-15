@@ -38,7 +38,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
   int cm,cn;
   const char *cname; 
   int indx, indy, nlr;
-  char *tmpStr=malloc(sizeof(char)*DefaultMaxlenString);
+  char *tmpStr=MALLOC(sizeof(char)*DefaultMaxlenString);
   
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -74,7 +74,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 
   StrReturn=(*env)->NewStringUTF(env, tmpStr);
 
-  free(tmpStr);
+  FREE(tmpStr);
 
   return StrReturn;
 }

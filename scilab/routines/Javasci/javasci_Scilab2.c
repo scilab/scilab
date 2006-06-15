@@ -4,9 +4,16 @@
 /********************************************************************************************************/
 #include "javasci_Scilab2.h"
 /********************************************************************************************************/
-/* Add on  : Javasci for Pro-Active */
+/**
+* Add on  : Javasci for Pro-Active 
+*/
 /********************************************************************************************************/
 #define MAX_String 1024
+/********************************************************************************************************/
+JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl)
+{
+	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
+}
 /********************************************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
@@ -34,7 +41,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
   
   if (! C2F(cwritemat)((char *)cname, &nbRow , &nbCol, matrix, (unsigned long)strlen(cname)))
   {
-    //throws exceptions 
+    /* throws exceptions */
   }
   									
   (*env)->ReleaseStringUTFChars(env, jname , cname);
@@ -66,10 +73,10 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
   cname = (*env)->GetStringUTFChars(env, jname, NULL); 
   matrix = (*env)->GetDoubleArrayElements(env, jmatrix, NULL);
   
-  tmp = (double * ) malloc(nbRow * nbCol * sizeof(double));
+  tmp = (double * ) MALLOC(nbRow * nbCol * sizeof(double));
   if (! C2F(creadmat)((char *)cname, &nbRow , &nbCol, tmp, (unsigned long)strlen(cname) ))
   {
-     // throws exceptions
+     /* throws exceptions */
   }
 
   for(i=0; i<nbRow; i++)
@@ -80,7 +87,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
     }
   }
 							
-  free(tmp);
+  FREE(tmp);
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   (*env)->ReleaseDoubleArrayElements(env, jmatrix, matrix, 0);
 }
@@ -123,20 +130,19 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass
 
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
    
-  for(i=0; i<nbRow; i++){
-    for(j=0; j<nbCol; j++){
+  for(i=0; i<nbRow; i++)
+  {
+    for(j=0; j<nbCol; j++)
+	{
       jelement = (jstring)(*env)->GetObjectArrayElement(env, jmatrix, i*nbCol + j);
       element = (*env)->GetStringUTFChars(env, jelement, NULL);
       
       sprintf(job,"%s(%d,%d)=\"\"%s\"\";",cname,i+1,j+1,element);
       
-      if (send_scilab_job(job)){
-	// throws exceptions
+      if (send_scilab_job(job))
+	  {
+		/* throws exceptions */
       }
-      
-      //if (!C2F(cwritechains)((char *)cname, &i, &j, &nlr, element, (unsigned long)strlen(cname), (unsigned long)strlen(element))){
-      // throws exceptions
-      //}
       
       (*env)->ReleaseStringUTFChars(env, jelement,  element);
     }
@@ -150,7 +156,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
   const char *cname;
   int nbRow, nbCol;
   int i, j,  r, c, l, max=MAX_String;
-  char *element = (char *) malloc(sizeof(char) * max);
+  char *element = (char *) MALLOC(sizeof(char) * max);
   
   jclass clMatrix = (*env)->GetObjectClass(env, objMatrix);
   
@@ -171,15 +177,17 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
    
-  for(i=0; i<nbRow; i++){
-    for(j=0; j<nbCol; j++){
-      
+  for(i=0; i<nbRow; i++)
+  {
+    for(j=0; j<nbCol; j++)
+	{
       r = i+1;
       c = j+1;
       l = max;
       
-      if (!C2F(creadchains)((char *)cname, &r, &c, &l, element, (unsigned long)strlen(cname), (unsigned long)strlen(element))){
-	//throws exceptions
+      if (!C2F(creadchains)((char *)cname, &r, &c, &l, element, (unsigned long)strlen(cname), (unsigned long)strlen(element)))
+	  {
+		/* throws exceptions */
       }
 
       jelement = (*env)->NewStringUTF(env, element);
@@ -187,7 +195,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
     }
   }
   
-  free(element);
+  FREE(element);
   (*env)->ReleaseStringUTFChars(env, jname , cname);
 }
 /********************************************************************************************************/
@@ -210,13 +218,14 @@ JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jc
 
   cname = (*env)->GetStringUTFChars(env, name, NULL); 
 
-  if((header = (int *)GetDataFromName((char *)cname)) == NULL){
-    // throws exception
+  if((header = (int *)GetDataFromName((char *)cname)) == NULL)
+  {
+    /* throws exception */
   }
 
   (*env)->ReleaseStringUTFChars(env, name , cname);
   
-  type = header[0]; //give type 
+  type = header[0]; /* give type */
 
   switch(type)
   {

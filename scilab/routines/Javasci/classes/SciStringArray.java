@@ -12,15 +12,21 @@ public class SciStringArray implements java.io.Serializable
 /********************************************************************************************************/  
 
   private static native void Initialize();
-  /* Initialize Scilab interface*/
+  /**
+  * Initialize Scilab interface
+  */
   
   public native boolean Job(String job);
-  /* Execute a command in Scilab */
+  /**
+  * Execute a command in Scilab
+  */
   
   public native String GetElement(int indr, int indc);
   private native void SendString(String str,int indr, int indc);
   
-  /* See SCI/examples/callsci/callsciJava/others for some simple examples */
+  /**
+  * See SCI/examples/callsci/callsciJava/others for some simple examples
+  */
 /********************************************************************************************************/  
   static 
   {
