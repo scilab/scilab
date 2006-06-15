@@ -12,7 +12,7 @@ CPPFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 !include $(SCIDIR)/Makefile.incl.mak 
 
 
-OBJSC=$(SCIDIR)/routines/f2c/libf2c/main.obj myprog.obj my_ode.obj
+OBJSC= myprog.obj my_ode.obj
 
 all:: $(OBJSC) $(SCIDIR)/bin/prog.exe 
 
@@ -26,10 +26,6 @@ distclean:: clean
 
 
 RESOURCES= $(SCIDIR)/routines/wsci/Rscilab.res 
-
-$(SCIDIR)/routines/f2c/libf2c/main.obj :
-	$(CC) /c ../../../routines/f2c/libf2c/main.c 
-	@copy main.obj ..\..\..\routines\f2c\libf2c\main.obj 
 
 $(SCIDIR)/bin/prog.exe : $(OBJSC)
 	@echo "Linking" 

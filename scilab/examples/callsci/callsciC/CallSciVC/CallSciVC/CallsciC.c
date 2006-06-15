@@ -3,6 +3,7 @@
 /* Only For Windows */
 /*-----------------------------------------------------------------------------------*/
 #pragma comment(lib, "../../../../../bin/libScilab.lib")
+#pragma comment(lib, "../../../../../bin/MALLOC.lib")
 /*-----------------------------------------------------------------------------------*/
 
 #include <windows.h>
@@ -22,7 +23,6 @@ extern int TerminateScilab(char *ScilabQuit);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);
 extern int ScilabHaveAGraph(void);
-extern void C2F(tmpdirc)(void);
 /*-----------------------------------------------------------------------------------*/
 
 static int example1(void)
@@ -96,10 +96,6 @@ int main(void)
 	example2();
 	printf("\n\n");
 	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
-
-	// Clean TMP DIRECTORY of scilab
-	C2F(tmpdirc)();
-
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

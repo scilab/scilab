@@ -29,7 +29,6 @@
 extern int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 extern int TerminateScilab(char *ScilabQuit);
 extern int SendScilabJob(char *job);
-extern void C2F(tmpdirc)(void); 
 /*------------------------------------------------------------*/
 static int premier_exemple()
 {
@@ -98,7 +97,11 @@ int troisieme_exemple()
   return 0;
 }
 /*------------------------------------------------------------*/
-int MAIN__(void) 
+#ifndef _MSC_VER
+int MAIN__(void)
+#else
+int main(void)
+#endif 
 {
 #ifdef WIN32
 	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab \n");
@@ -116,9 +119,6 @@ int MAIN__(void)
 	printf("\n\n");  
   
 	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab \n");
-
-	/* Clean TMPDIR of scilab */
-	C2F(tmpdirc)();
 	return 0;
 }
 /*------------------------------------------------------------*/
