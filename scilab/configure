@@ -464,7 +464,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 WITH_GFORTRAN ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS WITH_F95 X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS WITH_JAVAC _ACJNI_JAVAC with_ocamlc with_ocamlopt with_ocamldep WITH_XSLTPROC WITH_SABCMD RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINST1 PVMINCLUDE PVMHOSTERFILES PVMHOSTER PVMHELP TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TCLSCILIB TCLSCIDIR TCLTKHELP TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION SONAME FC_SUBDIR BLPR_SCRIPTS F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS XXTXEXT XX11 PERIX11NOPT GETLIBTK MANGENERATOR TERM_NAME TERM_LDFLAGS JAVASCITARGET JAVA_INCL GCCFIX LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 WITH_GFORTRAN ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS WITH_F95 X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS WITH_JAVAC _ACJNI_JAVAC with_ocamlc with_ocamlopt with_ocamldep WITH_XSLTPROC WITH_SABCMD RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMTARGET_DISTCLEAN PVMROOT PVMROOTR PVMINST PVMINST1 PVMINCLUDE PVMHOSTERFILES PVMHOSTER PVMHELP TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TCLSCILIB TCLSCIDIR TCLTKHELP TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET OCAMLTARGET_DISTCLEAN WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION SONAME FC_SUBDIR BLPR_SCRIPTS F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS XXTXEXT XX11 PERIX11NOPT GETLIBTK MANGENERATOR TERM_NAME TERM_LDFLAGS JAVASCITARGET JAVASCITARGET_DISTCLEAN JAVA_INCL GCCFIX LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -26048,7 +26048,9 @@ XX11="-lX11"
 ## test for JAVA compiler
 ###########################
 
-JAVASCITARGET=javasci-bidon
+JAVASCITARGET=javasci_disabled
+JAVASCITARGET_DISTCLEAN=javasci_disabled
+
 if test "$with_java" != no; then
 	# Extract the first word of "javac", so it can be a program name with args.
 set dummy javac; ac_word=$2
@@ -26088,6 +26090,7 @@ fi
 
 	if test "$WITH_JAVAC" = yes; then
 		JAVASCITARGET=scilex-lib
+		JAVASCITARGET_DISTCLEAN=distclean
 		JAVAC=javac
 		JAVA_INCL=
 
@@ -26224,6 +26227,8 @@ echo "${ECHO_T}$JNI_INCLUDE_DIRS" >&6
 	else
 		{ echo "$as_me:$LINENO: WARNING: javac not found: I will not build the java interface" >&5
 echo "$as_me: WARNING: javac not found: I will not build the java interface" >&2;}
+		JAVASCITARGET=javasci_disabled
+		JAVASCITARGET_DISTCLEAN=javasci_disabled
 	fi
 fi
 
@@ -27451,12 +27456,14 @@ fi
 ## PVM
 #################
 
+PVMTARGET=pvm_disabled
+PVMTARGET_DISTCLEAN=pvm_disabled
+
 PVMARCH=
 PVMLIB=
 PVMGLIB=
 PVMSCIDIR=
 PVMSCILIB=
-PVMTARGET=pvm-bidon
 PVMROOT=
 PVMHELP=
 # need an non empty default value for scilab script
@@ -27478,13 +27485,15 @@ if test "$with_pvm" != no; then
 	if test -x $PVM_ROOT/lib/pvmgetarch ; then
 		PVMROOT=$PVM_ROOT
 		PVMROOTR=$PVM_ROOT
-		PVMTARGET=pvm-bidon
+		PVMTARGET=pvm_disabled
+		PVMTARGET_DISTCLEAN=pvm_disabled
 	else
 		PVMROOT="$SCIDIR/pvm3"
 		PVMROOTR='$SCI/pvm3'
-		PVMTARGET=scilex-lib
 		PVMINST='$(PVMBINDISTFILES) $(PVMBINDISTFILES1)'
 		PVMINST1='$(INSTPVMBINDISTFILES) $(INSTPVMBINDISTFILES1)'
+		PVMTARGET=scilex-lib
+		PVMTARGET_DISTCLEAN=distclean
 	fi
 
 	PVMINCLUDE=$PVMROOT/include
@@ -27512,9 +27521,10 @@ echo "${ECHO_T}$ac_cv_PVM_arch" >&6
 	if test "$ac_cv_PVM_arch" = UNKNOWN; then
 		{ echo "$as_me:$LINENO: WARNING: PVM unable to find architecture: I will not use PVM" >&5
 echo "$as_me: WARNING: PVM unable to find architecture: I will not use PVM" >&2;}
-		PVMTARGET=pvm-bidon
 		PVMINST='$(PVMBINDISTFILES)'
 		PVMINST1='$(INSTPVMBINDISTFILES)'
+		PVMTARGET=pvm_disabled
+		PVMTARGET_DISTCLEAN=pvm_disabled
 	else
 		cat >>confdefs.h <<\_ACEOF
 #define WITH_PVM 1
@@ -27535,7 +27545,6 @@ fi;
 		PVMLIB="$PVMLIBDIR/libpvm3.a"
 		PVMSCIDIR=pvm
 		PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
-
 	fi
 fi
 
@@ -27684,7 +27693,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 27687 "configure"
+#line 27696 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -28002,7 +28011,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 28005 "configure"
+#line 28014 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -28334,7 +28343,6 @@ echo "$as_me: error: TCL/TK not found. Use --without-tk or specify the librairie
 
 	TKBASE=
 
-
 	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
 
 	case "$host" in
@@ -28378,9 +28386,12 @@ fi
 #################
 ## ocaml
 #################
-OCAMLTARGET=ocaml-bidon
+
+OCAMLTARGET=ocaml_disabled
+OCAMLTARGET_DISTCLEAN=ocaml_disabled
+
 if test "$with_ocaml" != no; then
- # Extract the first word of "ocamlc", so it can be a program name with args.
+	# Extract the first word of "ocamlc", so it can be a program name with args.
 set dummy ocamlc; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -28416,12 +28427,13 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
- if test "$with_ocamlc" = no; then
-    { echo "$as_me:$LINENO: WARNING: ocamlc not found: I will not build Modelica compiler" >&5
+	if test "$with_ocamlc" = no; then
+		{ echo "$as_me:$LINENO: WARNING: ocamlc not found: I will not build Modelica compiler" >&5
 echo "$as_me: WARNING: ocamlc not found: I will not build Modelica compiler" >&2;}
-    OCAMLTARGET=ocaml-bidon
- else
-    # Extract the first word of "ocamlopt", so it can be a program name with args.
+		OCAMLTARGET=ocaml_disabled
+		OCAMLTARGET_DISTCLEAN=ocaml_disabled
+	else
+		# Extract the first word of "ocamlopt", so it can be a program name with args.
 set dummy ocamlopt; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -28457,12 +28469,13 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-    if test "$with_ocamlopt" = no; then
-       { echo "$as_me:$LINENO: WARNING: ocamlopt not found: I will not build Modelica compiler" >&5
+		if test "$with_ocamlopt" = no; then
+			{ echo "$as_me:$LINENO: WARNING: ocamlopt not found: I will not build Modelica compiler" >&5
 echo "$as_me: WARNING: ocamlopt not found: I will not build Modelica compiler" >&2;}
-       OCAMLTARGET=ocaml-bidon
-    else
-       # Extract the first word of "ocamldep", so it can be a program name with args.
+			OCAMLTARGET=ocaml_disabled
+			OCAMLTARGET_DISTCLEAN=ocaml_disabled
+		else
+			# Extract the first word of "ocamldep", so it can be a program name with args.
 set dummy ocamldep; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
@@ -28498,19 +28511,21 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-       if test "$with_ocamldep" = no; then
-          { echo "$as_me:$LINENO: WARNING: ocamldep not found: I will not build Modelica compiler" >&5
+			if test "$with_ocamldep" = no; then
+				{ echo "$as_me:$LINENO: WARNING: ocamldep not found: I will not build Modelica compiler" >&5
 echo "$as_me: WARNING: ocamldep not found: I will not build Modelica compiler" >&2;}
-          OCAMLTARGET=ocaml-bidon
-       else
-          cat >>confdefs.h <<\_ACEOF
+				OCAMLTARGET=ocaml_disabled
+				OCAMLTARGET_DISTCLEAN=ocaml_disabled
+			else
+				cat >>confdefs.h <<\_ACEOF
 #define WITH_OCAML 1
 _ACEOF
 
-          OCAMLTARGET=scilex-lib
-       fi
-    fi
- fi
+				OCAMLTARGET=scilex-lib
+				OCAMLTARGET_DISTCLEAN=distclean
+			fi
+		fi
+	fi
 fi
 
 #################
@@ -28748,6 +28763,8 @@ fi
 
 
 
+
+
 # for Makemex
 
 
@@ -28771,6 +28788,7 @@ fi
 #AC_SUBST(CC)
 
 #AC_SUBST(FC_USE_CDEC)
+
 
 
 
@@ -29526,6 +29544,7 @@ s,@PVMSCIDIR@,$PVMSCIDIR,;t t
 s,@PVMSCILIB@,$PVMSCILIB,;t t
 s,@PVMGLIB@,$PVMGLIB,;t t
 s,@PVMTARGET@,$PVMTARGET,;t t
+s,@PVMTARGET_DISTCLEAN@,$PVMTARGET_DISTCLEAN,;t t
 s,@PVMROOT@,$PVMROOT,;t t
 s,@PVMROOTR@,$PVMROOTR,;t t
 s,@PVMINST@,$PVMINST,;t t
@@ -29548,6 +29567,7 @@ s,@WHICH_BLAS@,$WHICH_BLAS,;t t
 s,@ATLAS_DIR@,$ATLAS_DIR,;t t
 s,@IN_ATLAS@,$IN_ATLAS,;t t
 s,@OCAMLTARGET@,$OCAMLTARGET,;t t
+s,@OCAMLTARGET_DISTCLEAN@,$OCAMLTARGET_DISTCLEAN,;t t
 s,@WITH_OCAML@,$WITH_OCAML,;t t
 s,@MANTARGET@,$MANTARGET,;t t
 s,@DLLTOOL@,$DLLTOOL,;t t
@@ -29575,6 +29595,7 @@ s,@MANGENERATOR@,$MANGENERATOR,;t t
 s,@TERM_NAME@,$TERM_NAME,;t t
 s,@TERM_LDFLAGS@,$TERM_LDFLAGS,;t t
 s,@JAVASCITARGET@,$JAVASCITARGET,;t t
+s,@JAVASCITARGET_DISTCLEAN@,$JAVASCITARGET_DISTCLEAN,;t t
 s,@JAVA_INCL@,$JAVA_INCL,;t t
 s,@GCCFIX@,$GCCFIX,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t

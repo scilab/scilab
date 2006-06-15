@@ -1512,11 +1512,14 @@ XX11="-lX11"
 ## test for JAVA compiler
 ###########################
 
-JAVASCITARGET=javasci-bidon 
+JAVASCITARGET=javasci_disabled
+JAVASCITARGET_DISTCLEAN=javasci_disabled
+
 if test "$with_java" != no; then
 	AC_CHECK_PROG(WITH_JAVAC,javac,yes,no)
 	if test "$WITH_JAVAC" = yes; then
 		JAVASCITARGET=scilex-lib
+		JAVASCITARGET_DISTCLEAN=distclean
 		JAVAC=javac
 		JAVA_INCL=
 		AC_JNI_INCLUDE_DIR
@@ -1526,6 +1529,8 @@ if test "$with_java" != no; then
 		done
 	else
 		AC_MSG_WARN([javac not found: I will not build the java interface])
+		JAVASCITARGET=javasci_disabled
+		JAVASCITARGET_DISTCLEAN=javasci_disabled
 	fi
 fi
 
@@ -1633,12 +1638,14 @@ fi
 ## PVM
 #################
 
+PVMTARGET=pvm_disabled
+PVMTARGET_DISTCLEAN=pvm_disabled
+
 PVMARCH=
 PVMLIB=
 PVMGLIB=
 PVMSCIDIR=
 PVMSCILIB=
-PVMTARGET=pvm-bidon
 PVMROOT=
 PVMHELP=
 # need an non empty default value for scilab script 
@@ -1660,13 +1667,15 @@ if test "$with_pvm" != no; then
 	if test -x $PVM_ROOT/lib/pvmgetarch ; then
 		PVMROOT=$PVM_ROOT
 		PVMROOTR=$PVM_ROOT
-		PVMTARGET=pvm-bidon
+		PVMTARGET=pvm_disabled
+		PVMTARGET_DISTCLEAN=pvm_disabled
 	else
 		PVMROOT="$SCIDIR/pvm3"
 		PVMROOTR='$SCI/pvm3'
-		PVMTARGET=scilex-lib
 		PVMINST='$(PVMBINDISTFILES) $(PVMBINDISTFILES1)'
 		PVMINST1='$(INSTPVMBINDISTFILES) $(INSTPVMBINDISTFILES1)'
+		PVMTARGET=scilex-lib
+		PVMTARGET_DISTCLEAN=distclean
 	fi
 	
 	PVMINCLUDE=$PVMROOT/include
@@ -1683,9 +1692,10 @@ if test "$with_pvm" != no; then
 
 	if test "$ac_cv_PVM_arch" = UNKNOWN; then
 		AC_MSG_WARN([PVM unable to find architecture: I will not use PVM])
-		PVMTARGET=pvm-bidon
 		PVMINST='$(PVMBINDISTFILES)'
 		PVMINST1='$(INSTPVMBINDISTFILES)'
+		PVMTARGET=pvm_disabled
+		PVMTARGET_DISTCLEAN=pvm_disabled
 	else
 		AC_DEFINE(WITH_PVM)
 		PVMARCH="$ac_cv_PVM_arch"
@@ -1700,7 +1710,6 @@ if test "$with_pvm" != no; then
 		PVMLIB="$PVMLIBDIR/libpvm3.a"
 		PVMSCIDIR=pvm
 		PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
-				
 	fi
 fi
 
@@ -1718,7 +1727,7 @@ TCLTKHELP=
 if test "$with_tk" != no; then
 
 	TCLTKHELP=tksci
-
+	
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
@@ -1762,7 +1771,6 @@ if test "$with_tk" != no; then
 	
 	TKBASE=
 	
-	
 	GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
 	
 	case "$host" in
@@ -1801,28 +1809,35 @@ fi
 #################
 ## ocaml 
 #################
-OCAMLTARGET=ocaml-bidon 
+
+OCAMLTARGET=ocaml_disabled
+OCAMLTARGET_DISTCLEAN=ocaml_disabled
+
 if test "$with_ocaml" != no; then
- AC_CHECK_PROG(with_ocamlc,ocamlc,yes,no)
- if test "$with_ocamlc" = no; then
-    AC_MSG_WARN([ocamlc not found: I will not build Modelica compiler])
-    OCAMLTARGET=ocaml-bidon   
- else
-    AC_CHECK_PROG(with_ocamlopt,ocamlopt,yes,no)
-    if test "$with_ocamlopt" = no; then
-       AC_MSG_WARN([ocamlopt not found: I will not build Modelica compiler])
-       OCAMLTARGET=ocaml-bidon   
-    else
-       AC_CHECK_PROG(with_ocamldep,ocamldep,yes,no)
-       if test "$with_ocamldep" = no; then
-          AC_MSG_WARN([ocamldep not found: I will not build Modelica compiler])
-          OCAMLTARGET=ocaml-bidon   
-       else
-          AC_DEFINE(WITH_OCAML)
-          OCAMLTARGET=scilex-lib
-       fi
-    fi
- fi
+	AC_CHECK_PROG(with_ocamlc,ocamlc,yes,no)
+	if test "$with_ocamlc" = no; then
+		AC_MSG_WARN([ocamlc not found: I will not build Modelica compiler])
+		OCAMLTARGET=ocaml_disabled
+		OCAMLTARGET_DISTCLEAN=ocaml_disabled
+	else
+		AC_CHECK_PROG(with_ocamlopt,ocamlopt,yes,no)
+		if test "$with_ocamlopt" = no; then
+			AC_MSG_WARN([ocamlopt not found: I will not build Modelica compiler])
+			OCAMLTARGET=ocaml_disabled
+			OCAMLTARGET_DISTCLEAN=ocaml_disabled 
+		else
+			AC_CHECK_PROG(with_ocamldep,ocamldep,yes,no)
+			if test "$with_ocamldep" = no; then
+				AC_MSG_WARN([ocamldep not found: I will not build Modelica compiler])
+				OCAMLTARGET=ocaml_disabled
+				OCAMLTARGET_DISTCLEAN=ocaml_disabled
+			else
+				AC_DEFINE(WITH_OCAML)
+				OCAMLTARGET=scilex-lib
+				OCAMLTARGET_DISTCLEAN=distclean
+			fi
+		fi
+	fi
 fi
 
 #################
@@ -1916,6 +1931,7 @@ AC_SUBST(PVMSCIDIR)
 AC_SUBST(PVMSCILIB)
 AC_SUBST(PVMGLIB)
 AC_SUBST(PVMTARGET)
+AC_SUBST(PVMTARGET_DISTCLEAN)
 AC_SUBST(PVMROOT)
 AC_SUBST(PVMROOTR)
 AC_SUBST(PVMINST)
@@ -1941,6 +1957,7 @@ AC_SUBST(WHICH_BLAS)
 AC_SUBST(ATLAS_DIR)
 AC_SUBST(IN_ATLAS)
 AC_SUBST(OCAMLTARGET)
+AC_SUBST(OCAMLTARGET_DISTCLEAN)
 AC_SUBST(WITH_OCAML)
 AC_SUBST(MANTARGET)
 # for Makemex
@@ -1983,6 +2000,7 @@ AC_SUBST(MANGENERATOR)
 AC_SUBST(TERM_NAME)
 AC_SUBST(TERM_LDFLAGS)
 AC_SUBST(JAVASCITARGET)
+AC_SUBST(JAVASCITARGET_DISTCLEAN)
 AC_SUBST(JAVA_INCL)
 AC_SUBST(GCCFIX)
 AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g  examples/Makefile routines/version.h imp/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci macros/util/xmlfiletohtml.sci routines/Javasci/Makefile $MAN_FR $MAN_ENG)

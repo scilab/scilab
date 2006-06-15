@@ -61,11 +61,11 @@ distclean::
 			$(MAKE) $(MFLAGS)  distclean); \
 	done
 
-distclean::
+@PVMTARGET_DISTCLEAN@::
 	@cd pvm3; echo "making distclean in pvm3..."; \
 	$(MAKE) $(MFLAGS) super_distclean;
 
-distclean::
+@OCAMLTARGET_DISTCLEAN@::
 	@cd ocaml; echo "making distclean in ocaml..."; \
 	$(MAKE) $(MFLAGS) super_distclean;
 
@@ -73,7 +73,7 @@ distclean::
 	@cd maple; echo "making distclean in maple..."; \
 	$(MAKE) $(MFLAGS) distclean;
 
-distclean::
+@JAVASCITARGET_DISTCLEAN@::
 	@cd routines/Javasci; echo "making distclean in routines/Javasci..."; \
 	$(MAKE) $(MFLAGS) distclean;
 
