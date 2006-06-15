@@ -45,13 +45,8 @@ end
 // pow=[4 3 0 -1
 //      4 2 1 0];
 while find(x>0)<>[]
-	//pow1(x>0)=floor(log2(x(x>0)))
-	//pow1(x<=0)=-1
-	//pow(:,$+1)=pow1
-	
-	pow(x>0,$+1)=floor(log2(x(x>0)))
+	pow(x>0,$+1)=floor(log2(double(x(x>0))))
 	pow(x<=0,$)=-1
-	//x(x>0)=floor(x(x>0)-2^pow1(x>0))
 	x(x>0)=floor(x(x>0)-2^pow(x>0,$))
 end
 pow=pow+1
