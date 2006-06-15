@@ -28,5 +28,5 @@ distclean:: clean
 $(SCIDIR)/bin/prog.exe : $(OBJSC)
 	@echo "Linking" 
 	$(LINKER) $(LINKER_FLAGS) -OUT:"$*.exe"  \
-	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(TKLIBS) $(PVMLIB) -NODEFAULTLIB:libcmt.lib $(GUI) libc.lib  -NODEFAULTLIB:msvcrt.lib 
+	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(TKLIBS) $(PVMLIB) $(GUI)  -NODEFAULTLIB:msvcrt.lib 
 	@echo "done " $(SCIDIR)/bin/prog.exe 
