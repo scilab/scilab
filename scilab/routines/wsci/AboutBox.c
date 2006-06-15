@@ -7,6 +7,7 @@
 extern LPTW GetTextWinScilab(void);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern BOOL IsWindowInterface(void);
+extern BOOL BuildWithVS8ExpressF2C(void);
 /*-----------------------------------------------------------------------------------*/
 EXPORT void WINAPI AboutBox (HWND hwnd);
 EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM lParam);
@@ -56,31 +57,36 @@ BOOL ON_ABOUT_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 	SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
 	wsprintf(buffer,"%s %s",__DATE__,__TIME__);
 	SetDlgItemText(hDlg,IDC_BUILD,buffer);
-#if __MAKEFILEVC__
-	strcpy(buffer,MSG_SCIMSG58);
-#else
-#if _DEBUG
-	strcpy(buffer,MSG_SCIMSG60);
-	strcat(buffer,MSG_SCIMSG61);
-#else
-	strcpy(buffer,MSG_SCIMSG62);
-	switch(cpubuild)
+
+	if (BuildWithVS8ExpressF2C())
 	{
-		case 500: // Pentium
-			strcat(buffer,MSG_SCIMSG63);
-			break;
-		case 600: // Pentium Pro
-			strcat(buffer,MSG_SCIMSG64);
-			break;
-		case 400: // 486
-			strcat(buffer,MSG_SCIMSG65);
-			break;
-		case 300: // 386
-			strcat(buffer,MSG_SCIMSG66);
-			break;
+		strcpy(buffer,MSG_SCIMSG58);
 	}
-#endif
-#endif
+	else
+	{
+		#if _DEBUG
+			strcpy(buffer,MSG_SCIMSG60);
+			strcat(buffer,MSG_SCIMSG61);
+		#else
+		strcpy(buffer,MSG_SCIMSG62);
+		switch(cpubuild)
+		{
+			case 500: // Pentium
+				strcat(buffer,MSG_SCIMSG63);
+				break;
+			case 600: // Pentium Pro
+				strcat(buffer,MSG_SCIMSG64);
+				break;
+			case 400: // 486
+				strcat(buffer,MSG_SCIMSG65);
+				break;
+			case 300: // 386
+				strcat(buffer,MSG_SCIMSG66);
+				break;
+		}
+		#endif
+	}
+
 	SetDlgItemText(hDlg,IDC_COMPILMODE,buffer);
 
 	return TRUE;

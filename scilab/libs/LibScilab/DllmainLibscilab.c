@@ -70,5 +70,13 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
   return 1;
 }
 /*-----------------------------------------------------------------------------------*/ 
-
+BOOL BuildWithVS8ExpressF2C(void)
+{
+	#if USE_F2C
+		return TRUE;
+	#else
+		return FALSE;
+	#endif
+}
+/*-----------------------------------------------------------------------------------*/ 
 

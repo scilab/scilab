@@ -186,26 +186,6 @@
 				RelativePath=".\WScilex.c"
 				>
 			</File>
-			<File
-				RelativePath=".\WScilex_f2c.c"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					ExcludedFromBuild="true"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-					/>
-				</FileConfiguration>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -213,11 +193,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\resource.h"
+				RelativePath="..\resource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\resource.h"
+				RelativePath=".\resource.h"
 				>
 			</File>
 		</Filter>
@@ -355,11 +335,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\Icones Scilab\scilab.ico"
+				RelativePath="..\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\scilab.ico"
+				RelativePath="..\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
