@@ -57,12 +57,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Creation .Lib External Functions"
-				CommandLine="lib /DEF:$(InputDir)LibScilab_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)LibScilab_Import.lib 1&gt;NUL 2&gt;NUL"
+				Description=""
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab_Import.lib"
 				OutputFile="..\..\..\bin\$(ProjectName).dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
@@ -134,12 +133,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Creation .Lib External Functions"
-				CommandLine="lib /DEF:$(InputDir)LibScilab_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)LibScilab_Import.lib 1&gt;NUL 2&gt;NUL"
+				Description=""
+				CommandLine=""
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab_Import.lib"
 				OutputFile="..\..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
