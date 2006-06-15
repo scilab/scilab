@@ -20,16 +20,14 @@ I - TO RUN SCILAB (BINARY VERSION)
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
  
-    3 - Scilab has been compiled with Visual C++ .NET 2005
+    3 - Scilab has been compiled with Visual C++ .NET 2005 Pro
 	      (Intel C 9.1 & Fortran 9.1, see III below).
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
     4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.0
-        download and install "Windows® Server 2003 SP1 Platform SDK"
-        at http://www.microsoft.com/downloads
-        and download and install "Microsoft Visual C++ 2005 Express"
-        at http://msdn.microsoft.com/vstudio/express/visualc/
+        download and install "Microsoft Plateform SDK R2"
+        http://msdn.microsoft.com/vstudio/express/visualc/usingpsdk/
  
     5 - If you want use LCC-Win32 (C compiler) with Scilab 4.0
         See Readme_LCC.txt in lcc directory.
@@ -57,8 +55,7 @@ III - TO COMPILE SCILAB FROM A SOURCE VERSION
     We have compiled this distribution with Visual Studio 2005 (Intel C 9.1 &
     Fortran 9.1). 
 
-    1 - To compile with Visual C++ .NET 2005 & Intel Fortran 9.1,
-        see Readme_visual.txt 
+    1 - To compile with Visual C++ .NET 2005,  see Readme_visual.txt 
   
  
 ******************************************************************************
@@ -94,9 +91,10 @@ V - SOME IMPORTANT FILES AND DIRECTORIES
  
  Makefile.incl.mak: file included by all Makefile's.
  
- Makefile.mak: the main Makefile to make Scilab.
+ Scilab.sln : Visual Studio 2005 Scilab Solution with Intel Fortran.
  
- config/Makefile.mak  : directory used by the main Makefile
+ Scilab_f2c.sln : Visual Studio 2005 Scilab Solution without Intel Fortran.
+  
  
  demos/    : demos directory. Some of the demos can be executed by clicking
              on the "demos" button.
