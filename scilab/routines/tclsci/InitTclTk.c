@@ -18,7 +18,6 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
-extern int IsFromC(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef _MSC_VER
