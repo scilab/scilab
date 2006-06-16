@@ -10,91 +10,68 @@ function [corners] = stringbox( varargin )
 // the call is stringBox(handle) or stringBox(text,posX,posY,[angle,[fontId,[fontSize]]]) ;
 
 [lhs,rhs] = argn(0) ;
-
-// initialize values ;
-text     = '' ;
-angle    = 0  ;
-posX     = 0  ;
-posY     = 0  ;
-font     = xget('font') ;
-fontId   = font( 1 )    ;
-fontSize = font( 2 )    ;
-
 ListArg = varargin ;
 
-select rhs,
-  
-case 1 then
+if ( rhs == 1 ) then
   textHandle = ListArg(1) ;
-  
-  // works only on text handles
-  if type(textHandle) ~= 9 then
-    error("If only a single argument is specified, it must be a handle.");
-    return ;
-  end
-  
-  // works with text handle and label handle (axes label and titles)
-  if (textHandle.type == "Text" ) then
-    // get the properties
-    text     = textHandle.text       ;
-    posX     = textHandle.data( 1 )  ;
-    posY     = textHandle.data( 2 )  ;
-    angle    = textHandle.font_angle ;
-    fontId   = textHandle.font_style ;
-    fontSize = textHandle.font_size  ;
-  elseif (textHandle.type == "Label" ) then
-    // get the properties
-    // they use jpc syntax which must be converted to normal syntax
-    text     = arobasestring2strings( textHandle.text ) ;
-    posX     = textHandle.position( 1 ) ;
-    posY     = textHandle.position( 2 ) ;
-    angle    = textHandle.font_angle    ;
-    fontId   = textHandle.font_style    ;
-    fontSize = textHandle.font_size  ;
-  else
-    error("Handle should be a Text or Label handle.") ;
-    return ;
-  end
-  
-  
-  
-case 3 then
-  text = ListArg( 1 ) ;
-  posX = ListArg( 2 ) ;
-  posY = ListArg( 3 ) ;
-    
-case 4 then
-  text  = ListArg( 1 ) ;
-  posX  = ListArg( 2 ) ;
-  posY  = ListArg( 3 ) ;
-  angle = ListArg( 4 ) ;
-  
-case 5 then
-  text   = ListArg( 1 ) ;
-  posX   = ListArg( 2 ) ;
-  posY   = ListArg( 3 ) ;
-  angle  = ListArg( 4 ) ;
-  fontId = ListArg( 5 ) ;
-  
-case 6 then
-  text     = ListArg( 1 ) ;
-  posX     = ListArg( 2 ) ;
-  posY     = ListArg( 3 ) ;
-  angle    = ListArg( 4 ) ;
-  fontId   = ListArg( 5 ) ; 
-  fontSize = ListArg( 6 ) ;
-  
+  corners = StringBox( textHandle ) ;
 else
-  error(39);
-  return ;
-end
+  
+  
+  oldHandle = gce() ;
+  axes = gca()  ;
+  // initialize values ;
+  text     = '' ;
+  angle    = 0  ;
+  posX     = 0  ;
+  posY     = 0  ;
+  fontId   = axes.font_style ;
+  fontSize = axes.font_size  ;
 
-// check the type of inputs
-if type( text ) ~= 10 | type( posX ) ~= 1 | type( posY ) ~= 1 | type( angle ) ~= 1 | type( fontId ) ~= 1 | type( fontSize ) ~= 1 then
-  error(246) ;
-  return ;
-end
+  select rhs,
+    
+  case 3 then
+    text = ListArg( 1 ) ;
+    posX = ListArg( 2 ) ;
+    posY = ListArg( 3 ) ;
+    
+  case 4 then
+    text  = ListArg( 1 ) ;
+    posX  = ListArg( 2 ) ;
+    posY  = ListArg( 3 ) ;
+    angle = ListArg( 4 ) ;
+    
+  case 5 then
+    text   = ListArg( 1 ) ;
+    posX   = ListArg( 2 ) ;
+    posY   = ListArg( 3 ) ;
+    angle  = ListArg( 4 ) ;
+    fontId = ListArg( 5 ) ;
+    
+  case 6 then
+    text     = ListArg( 1 ) ;
+    posX     = ListArg( 2 ) ;
+    posY     = ListArg( 3 ) ;
+    angle    = ListArg( 4 ) ;
+    fontId   = ListArg( 5 ) ; 
+    fontSize = ListArg( 6 ) ;
+    
+  else
+    error(39);
+    return ;
+  end
+    
+  // create an object get is bb and then destroy it
+  xstring( posX, posY, text, angle ) ;
+  textHandle = gce() ;
+  textHandle.font_style = fontId ;
+  textHandle.font_size = fontSize ;
 
-corners = StringBox( text, posX, posY, angle, fontId, fontSize ) ;
+  corners = StringBox( textHandle ) ;
+  
+  delete( textHandle ) ;
+  set( 'current_entity', oldHandle ) ;
+  
 
+end;
 endfunction

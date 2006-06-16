@@ -162,9 +162,9 @@ extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
 extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
-BOOL sciGetCenterPos( sciPointObj * pObj ) ;
+extern BOOL sciGetCenterPos( sciPointObj * pObj ) ;
 
-BOOL sciGetIs3d( sciPointObj * pObj ) ;
+extern BOOL sciGetIs3d( sciPointObj * pObj ) ;
 
 /**
  * for a subwindow object, return if the its labels (x,y,z) are all

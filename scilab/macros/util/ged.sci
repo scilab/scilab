@@ -2337,7 +2337,7 @@ function ged_move_entity()
   case 'Text' then
     while rep(3)==-1 do
       rep=xgetmouse(0,[%t %t])
-      r.data= r.data+(rep(1:2)-pos)
+      r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
       show_pixmap()
     end 

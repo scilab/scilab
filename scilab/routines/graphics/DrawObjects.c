@@ -11550,6 +11550,19 @@ void translateBoundingBox( int boundingBox[4][2], int trans[2] )
     
 }
 /*-------------------------------------------------------------------------------------*/
+/**
+ * Get the translation which should be applied to the text depending on the meaning of
+ * its position.
+ * @param centeredPos specify the meaning of the position of the text. If FALSE, the
+ *                    position corresponds to the position of the lower left point. So
+ *                    nothing needs to be changed. If TRUE, the center is the position
+ *                    corresponds to the center of the text bounding box and then a
+ *                    translation must be performed.
+ * @param textSize width and height wanted for the text.
+ * @param bbox The four corners of the computed boundign box of the text. The first corner
+ *             should correspond to the position of the text.
+ * @param trans Translation to apply to the text.
+ */
 void getStringPositionTranslation( BOOL centeredPos, int textSize[2], int bbox[4][2], int trans[2] )
 {
   if ( centeredPos )
@@ -11625,7 +11638,8 @@ void getStringsPositions( StringMatrix  * strMat        ,
     getStringsRectSized( strMat, textPos, stringPosition, boundingBox, textSize, fontSize ) ;
   }
 
-  /* for now we have computes the matrix as if the center was its lower-left vertice */
+  /* for now we have computes the matrix as if its position was corresponding to its */
+  /* lower-left vertice. */
   /* we must now translate the points depending on where is really the center relatively */
   /* to the array. */
   getStringPositionTranslation( centerPos, textSize, boundingBox, trans ) ;
@@ -11919,7 +11933,7 @@ void drawText( sciPointObj * pObj )
   textProperties[3] = 0 ;
   textProperties[4] = sciGetFontStyle(pObj);
   textProperties[5] = 0 ;
-
+          
   C2F (dr) ("xset", "dashes", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
   C2F (dr) ("xset", "foreground", textProperties, textProperties, textProperties+3, textProperties+3, textProperties+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
   /* C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); */
@@ -11930,6 +11944,7 @@ void drawText( sciPointObj * pObj )
     
   drawStringsInPosition( sciGetText( pObj ), bboxes,position, DEG2RAD(anglestr), sciGetAlignment( pObj ) ) ;
   /* C2F(dr)("xstring",getStrMatElement(sciGetText(pObj),0,0),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L); */
+
 
   C2F(dr)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     
@@ -12043,7 +12058,6 @@ void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
 void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2], int offsets[2] )
 {
   /* computation are done in double to avoid loss of data */
-  double axisDir[2]    ; /* direction of the axis */
   double centerDir[2]  ; /* give the direction of the line on which is the center. */
                          /* it is orthogonal with the axis direction */
   double axisMiddle[2] ; /* middle of the axis = ( axisStart + axisEnd ) / 2 */

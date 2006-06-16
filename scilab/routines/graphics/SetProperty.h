@@ -220,8 +220,8 @@ extern int sciSetUserSize(  sciPointObj * pObj, double width, double height ) ;
 extern int sciInitCenterPos( sciPointObj * pObj, BOOL newCP ) ;
 extern int sciSetCenterPos(  sciPointObj * pObj, BOOL newCP ) ;
 
-int sciInitIs3d( sciPointObj * pObj, BOOL is3d ) ;
-int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
+extern int sciInitIs3d( sciPointObj * pObj, BOOL is3d ) ;
+extern int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

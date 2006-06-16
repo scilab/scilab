@@ -2309,7 +2309,7 @@ int scixstringl(char *fname,unsigned long fname_len)
 	}
       C2F(dr1)("xstringl",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&x,&y,rect,&dv,9L,bsiz);
       wc = Max(wc,rect[2]);
-      if (i != 0 ) 
+     if (i != 0 ) 
 	y += rect[3] * 1.2;
       else 
 	y += rect[3];
@@ -2334,50 +2334,53 @@ int sciStringBox( char * fname, unsigned long fname_len )
 {
   integer    two   = 2     ;
   integer    four  = 4     ;
-  char    ** text          ;
-  double     angle         ;
-  integer    fontSize      ;
-  double     textPos[2]    ;
-  int        textSize[2]   ;
-  integer    fontId        ;
   integer    m,n           ;
   integer    stackPointer  ;
   double     corners[4][2] ; /* the four edges of the boundingRect */
+  sciPointObj * pText = NULL ;
 
-
-  /* The function should be called with stringbox(text,posX,posY,angle,fontSize,fontId) */
-  CheckRhs( 6, 6 ) ;
-  CheckLhs( 0, 1 ) ;  
+  /* The function should be called with stringbox( handle ) */
+  CheckRhs( 1, 1 ) ;
+  CheckLhs( 0, 1 ) ;
   
-  /* get the string which is boxed */
-  GetRhsVar( 1, "S", &textSize[0], &textSize[1], &text ) ;
-  
-  /* get the position of the text */
-  GetRhsVar( 2, "d", &m, &n, &stackPointer ) ;
-  textPos[0] = *stk( stackPointer ) ;
-  GetRhsVar( 3, "d", &m, &n, &stackPointer ) ;
-  textPos[1] = *stk( stackPointer ) ;
+  if ( VarType(1) != 9 )
+  {
+    Scierror(999,"Function StringBox works with only one text handle.\n") ;
+    return 0 ;
+  }
 
-  /* get the angle in radian in clockwise direction */
-  GetRhsVar( 4, "d", &m, &n, &stackPointer ) ;
-  angle = *stk( stackPointer ) ;
-  angle = DEG2RAD( angle ) ;
+  /* get the handle */
+  GetRhsVar( 1, "h", &m, &n, &stackPointer ) ;
 
-  /* get the font size */
-  GetRhsVar( 5, "i", &m, &n, &stackPointer ) ;
-  fontId = *istk( stackPointer ) ;
-  
-  /* get the font id */
-  GetRhsVar( 6, "i", &m, &n, &stackPointer ) ;
-  fontSize = *istk( stackPointer ) ;
+  if ( m * n != 1 )
+  {
+    Scierror(999,"Function StringBox works with only one text handle.\n" ) ;
+    return 0 ;
+  }
+
+  pText = sciGetPointerFromHandle( (unsigned long) *hstk( stackPointer ) ) ;
+
+  if ( pText == NULL )
+  {
+    Scierror(999,"%s : The handle is not valid.\r\n",fname);
+    return 0 ;
+  }
+
+  if ( sciGetEntityType( pText ) == SCI_LABEL )
+  {
+    pText = pLABEL_FEATURE( pText )->text ;
+  }
+  else if ( sciGetEntityType( pText ) != SCI_TEXT )
+  {
+    Scierror(999,"Function StringBox works with only one text handle.\n") ;
+    return 0 ;
+  }
 
   /* create a window if needed to initialize the X11 graphic context  */
   SciWin() ;
 
   /* get the string box */
-  getStringBox( text, textPos, textSize, TRUE, NULL, angle, fontId, fontSize, corners ) ;
-
-  FreeRhsSVar( text ) ;
+  getTextBoundingBox( pText, NULL, corners ) ;
 
   /* copy everything into the lhs */
   CreateVar( Rhs + 1, "d", &two, &four, &stackPointer ) ;
