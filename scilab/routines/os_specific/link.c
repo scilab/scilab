@@ -26,6 +26,9 @@
 #include <malloc.h>
 #endif
 
+#include "../machine.h"
+#include "../stack-c.h"
+
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));
 int LinkStatus __PARAMS((void)) ;
@@ -62,6 +65,48 @@ static Hd  hd[ENTRYMAX]; /* shared libs handler */
 static int Nshared  = 0   ;
 static Epoints EP[ENTRYMAX];  /* entryPoints */
 static int NEpoints = 0   ;        /* Number of Linked names */
+
+/*-----------------------------------------------------------------------------------*/
+int C2F(scilinknorhs)()
+{
+	int i=0;
+	int m1,n1;
+	char **ReturnArrayString=NULL;
+	int j=0;
+	m1=NEpoints;
+	n1=1;
+
+	ReturnArrayString = (char **) MALLOC(NEpoints*sizeof(char **));
+
+	for ( i = NEpoints-1 ; i >=0 ; i--) 
+	{
+		char *EntryName=(char *)MALLOC(strlen(EP[i].name)*sizeof(char));
+		if ( hd[i].ok == OK) 
+		{
+			sprintf(EntryName,"%s",EP[i].name);
+			ReturnArrayString[j]=EntryName;
+			j++;
+		}
+	}
+
+	CreateVarFromPtr(Rhs+1, "S", &n1, &m1, ReturnArrayString);
+
+	LhsVar(1)=Rhs+1;
+	C2F(putlhsvar)();
+
+	for (i=0;i<NEpoints;i++)
+	{
+		if (ReturnArrayString[i])
+		{
+			FREE(ReturnArrayString[i]);
+			ReturnArrayString[i]=NULL;
+		}
+	}
+	FREE(ReturnArrayString);
+
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
 
 /** for debug info **/
 /** #define DEBUG  **/

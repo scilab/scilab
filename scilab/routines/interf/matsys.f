@@ -309,8 +309,13 @@ cc    implicit undefined (a-z)
 
       call ref2val
       strf='f'//char(0)
+      rhs = max(0,rhs)
+      if (rhs.eq.0) then
+        call scilinknorhs
+        return
+      else
       if (.not.checkrhs(fname,1,3)) return
-      topk=top
+      topk=top  
 C     third argument if present is a char 
       if (rhs.ge.3) then
          if(.not.getsmat(fname,topk,top,m3,n3,1,1,lr3,nlr3))return
@@ -375,6 +380,9 @@ C     first argument
          return
       endif
       return
+
+      endif
+      
       end
 
 
