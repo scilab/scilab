@@ -46,12 +46,15 @@ global curgedindex
 global curgedobject
 
 global curvis
-global curfontforeground ncolors curfontstyle curfontsize curfontangle curtextbox1 curtextbox2
+global curfontforeground ncolors curfontstyle curfontsize curfontangle
 global curtextboxmode curtext
 global RED BLUE GREEN
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
 global curboxmode curlinemode curlfillmode curforeground curbackground
+global curtext
+global textBoxWidth textBoxHeight
+global curAlignment
 
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
@@ -340,20 +343,29 @@ frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
 
-#x label
-frame $w.frame.lbx -borderwidth 0
-pack $w.frame.lbx  -in $w.frame -side top -fill x -pady 0
+### Text data ###
+set mycurtext $curtext
 
-label $w.frame.xlabel -text "Text:" -font $gedFont -anchor e -width $largeur 
-entry $w.frame.xlabel1 -relief sunken  -textvariable curtext -font $gedFont
-pack $w.frame.xlabel -in  $w.frame.lbx -side left
-pack $w.frame.xlabel1  -in  $w.frame.lbx -fill x -side left -pady 0 -padx $mediumPad
-bind  $w.frame.xlabel1 <Return> {setText} 
-bind  $w.frame.xlabel1 <KP_Enter> {setText} 
-bind  $w.frame.xlabel1 <FocusOut> {setText} 
+frame $w.frame.textframe  -borderwidth 0
+pack $w.frame.textframe  -in $w.frame  -side top  -fill x
+
+label $w.frame.textlabel  -height 0 -text "Text:" -width 0  -font $gedFont  -anchor e -width $largeur
+combobox $w.frame.text \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curtext \
+    -editable true \
+    -command [list SelectData ] -font $gedFont
+eval $w.frame.text list insert end [list $mycurtext "----" "Edit data..."]
+pack $w.frame.textlabel -in $w.frame.textframe  -side left
+pack $w.frame.text   -in $w.frame.textframe  -expand 1 -fill x -pady $smallPad -padx $mediumPad
 
 
-#Text box mode
+
+
+### Text box mode ###
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x -pady 0
 
@@ -369,7 +381,60 @@ combobox $w.frame.style \
 eval $w.frame.style list insert end [list "off" "centered" "filled"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst  -side left -pady 0 -padx $mediumPad
+pack $w.frame.style -in $w.frame.fontsst  -side left -pady $smallPad -padx $mediumPad
+
+#### Text box ###
+frame $w.frame.textBoxFrame  -borderwidth 0
+pack $w.frame.textBoxFrame  -in $w.frame -side top -fill x -pady 0
+
+#display label
+label $w.frame.labelTextBox -text "Text Box: Width and Height:" -font $gedFont
+pack $w.frame.labelTextBox -in $w.frame.textBoxFrame -side left
+
+#create the 2 entity boxes
+frame $w.frame.textBoxWidth -borderwidth 0
+pack $w.frame.textBoxWidth -in $w.frame -side top -fill x
+
+label $w.frame.labelTbWidth -text  "Width:" -font $gedFont  -anchor e -width $largeur
+entry $w.frame.tbWidthEntry -relief sunken -textvariable textBoxWidth -width 10 -font $gedFont
+
+pack $w.frame.labelTbWidth -in $w.frame.textBoxWidth -side left
+pack $w.frame.tbWidthEntry -in $w.frame.textBoxWidth -side left -fill x -pady $smallPad -padx $mediumPad
+
+bind $w.frame.tbWidthEntry <Return>   { setTextBox }
+bind $w.frame.tbWidthEntry <KP_Enter> { setTextBox }
+
+frame $w.frame.textBoxHeight -borderwidth 0
+pack $w.frame.textBoxHeight -in $w.frame -side top -fill x
+
+label $w.frame.labelTbHeight -text  "Height:" -font $gedFont -anchor e -width $largeur
+entry $w.frame.tbHeightEntry -relief sunken -textvariable textBoxHeight -width 10 -font $gedFont
+
+pack $w.frame.labelTbHeight -in $w.frame.textBoxHeight -side left
+pack $w.frame.tbHeightEntry -in $w.frame.textBoxHeight -side left -padx $mediumPad
+
+bind $w.frame.tbHeightEntry <Return>   {setTextBox}
+bind $w.frame.tbHeightEntry <KP_Enter> {setTextBox}
+
+
+### alignment ###
+frame $w.frame.alignment  -borderwidth 0
+pack $w.frame.alignment  -in $w.frame -side top -fill x -pady 0
+
+label $w.frame.alignLabel  -height 0 -text "Alignment:" -width 0  -font $gedFont -anchor e -width $largeur
+combobox $w.frame.alignMenu \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 13 \
+    -textvariable curAlignment \
+    -editable false \
+    -command [list setTextAlignment] -font $gedFont
+eval $w.frame.alignMenu list insert end [list "left" "center" "right"]
+
+pack $w.frame.alignLabel -in $w.frame.alignment   -side left
+pack $w.frame.alignMenu -in $w.frame.alignment  -side left -pady $smallPad -padx $mediumPad
+
 
 
 #sep bar
@@ -764,3 +829,63 @@ proc DestroyGlobals { } {
     SavePreferences
 }
 
+
+proc sciCommandData {} {
+    global scicomint_text
+
+    set longueur [expr [string length $scicomint_text]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.data=$scicomint_text;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
+}
+
+proc GUIEditData  {} {
+    ScilabEval "global ged_handle;EditData(ged_handle.text,\"ged_handle.text\")" "seq"
+}
+
+proc SelectData  {w args} {
+    global curtext scicomint_text
+    set finddbarray -1
+    set dbarray "string array"
+    set finddbarray [expr [string first $dbarray $curtext]]
+#    puts "finddbarray = $finddbarray"
+
+
+    if { ($curtext == "----") || ($finddbarray != -1) } {
+#	puts "nothing to do"
+    } else {
+	if { $curtext ==  "Edit data..." } {
+	    GUIEditData
+	} else {
+	    #enter a variable
+	    set scicomint_text $curtext
+	    sciCommandData
+	}
+    }
+}
+
+proc setTextBox {} {
+    global textBoxWidth
+    global textBoxHeight
+        
+    if { ($textBoxWidth == "") || ($textBoxHeight == "") } {
+	tk_messageBox -icon error -type ok -title "Text Box error" -message "You must fill in the 2 fields."
+	return
+    }
+    ScilabEval "global ged_handle;ged_handle.text_box=\[$textBoxWidth $textBoxHeight \]"
+}
+
+proc setTextAlignment {w args} {
+    global curAlignment
+    if { ($curAlignment == "" ) } {
+        tk_messageBox -icon error -type ok -title "Alignment error" -message "You must fill in the field."
+	return
+    }
+    ScilabEval "global ged_handle;ged_handle.alignment = \"$curAlignment\" "  
+}

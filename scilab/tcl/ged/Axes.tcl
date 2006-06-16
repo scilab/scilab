@@ -1,6 +1,7 @@
 #Copyright INRIA
 #2004
-#Author: F.Leray
+#Authors: F.Leray
+#         JB Silvy
 
 set pwd [pwd]
 cd [file dirname [info script]]
@@ -1107,17 +1108,24 @@ frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 #end adding
 
-#title label
+#title text
 frame $w.frame.lbtitle -borderwidth 0
 pack $w.frame.lbtitle  -in $w.frame -side top   -fill x -pady 0
 
-label $w.frame.titlelabel -text "Label:" -font $gedFont -anchor e -width $largeur
-entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel  -font $gedFont
-pack $w.frame.titlelabel -in  $w.frame.lbtitle -side left
-pack $w.frame.titlelabel1  -in  $w.frame.lbtitle  -expand 1 -fill x -pady 0 -padx $mediumPad
-bind  $w.frame.titlelabel1 <Return> {setTitleLabel} 
-bind  $w.frame.titlelabel1 <KP_Enter> {setTitleLabel} 
-bind  $w.frame.titlelabel1 <FocusOut> {setTitleLabel} 
+set mycurtext $tlabel
+
+label $w.frame.textlabel  -height 0 -text "Text:" -width 0  -font $gedFont  -anchor e -width $largeur
+combobox $w.frame.text \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable tlabel \
+    -editable true \
+    -command [list SelectTextTitle ] -font $gedFont
+eval $w.frame.text list insert end [list $mycurtext "----" "Edit data..."]
+pack $w.frame.textlabel -in $w.frame.lbtitle  -side left
+pack $w.frame.text   -in $w.frame.lbtitle  -expand 1 -fill x -pady 0 -padx $mediumPad
 
 #visibility for title
 frame $w.frame.vislab -borderwidth 0
@@ -4448,6 +4456,45 @@ proc toggleAutoRotationtitle { frame } {
     ScilabEval "global ged_handle;ged_handle.title.auto_rotation='$titleauto_rotation'"
 
     OnOffForeground $frame $titleauto_rotation
+}
+
+
+proc sciCommandTextTitle {} {
+    global scicomint_textTitle
+
+    set longueur [expr [string length $scicomint_textTitle]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.title.text=$scicomint_textTitle;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
+}
+
+proc GUIEditTextTitle  {} {
+    ScilabEval "global ged_handle;EditData(ged_handle.title.text,\"ged_handle.title.text\")" "seq"
+}
+
+proc SelectTextTitle  {w args} {
+    global tlabel scicomint_textTitle
+    set finddbarray -1
+    set dbarray "string array"
+    set finddbarray [expr [string first $dbarray $tlabel]]
+
+    if { ($tlabel == "----") || ($finddbarray != -1) } {
+#	puts "nothing to do"
+    } else {
+	if { $tlabel ==  "Edit data..." } {
+            GUIEditTextTitle
+	} else {
+	    #enter a variable
+	    set scicomint_textTitle $tlabel
+	    sciCommandTextTitle
+	}
+    }
 }
 
 
