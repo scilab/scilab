@@ -9,19 +9,15 @@ MAKE=nmake /f Makefile.mak
 #----------------------------------------------
 # Scilab tclsci library 
 #----------------------------------------------
-# To compile with TCL/TK interface, uncomment the following lines and give
-# the good pathnames for TKLIBS and TCL_INCLUDES.
-!IF "$(DTK)" == "-DWITH_TK"
-USE_MT=-MT 
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
+USE_MT=-MT 
 TCLTK=$(SCIDIR1)\tcl
 TCLSCI=libs/tclsci.lib 
 TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
-!ENDIF
 #----------------------------------------------
 # C compiler
 # typically, for compiling use: CFLAGS = $(CC_OPTIONS)
@@ -70,20 +66,11 @@ RCVARS=-r -DWIN32
 #----------------------------------------------
 GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
-
-!IF "$(USE_MT)" == "-MT"
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
-!ELSEIF "$(USE_MT)" == "-MD"
-GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrt.lib
-!ELSE 
-GUILIBS=-NODEFAULTLIB:libcmt.lib $(GUI) libc.lib msvcrt.lib
-!ENDIF
-
-
 # XLIBS is used for linking Scilab
-XLIBS=$(TKLIBS) $(GUILIBS)
+XLIBS=$(TKLIBS) $(PVMLIB) $(GUILIBS)
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-#XLIBSBIN=$(TKLIBSBIN) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
+XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
 .c.obj	:
 	@echo ------------- Compile file $< --------------
 	$(CC) $(CFLAGS) $< 
