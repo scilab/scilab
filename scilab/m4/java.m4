@@ -1,6 +1,6 @@
 dnl ===============================================================
 dnl Available from the GNU Autoconf Macro Archive at:
-dnl http://www.gnu.org/software/ac-archive/htmldoc/ac_jni_include_dirs.html
+dnl http://autoconf-archive.cryp.to/ac_jni_include_dir.html
 dnl 
 dnl Some other macros about java environment detection can be found at :
 dnl http://tcljava.sourceforge.net/docs/website/index.html
