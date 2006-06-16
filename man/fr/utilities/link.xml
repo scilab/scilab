@@ -12,6 +12,7 @@
 
     <CALLING_SEQUENCE_ITEM>ulink(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>lst=link('show')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>lst=link()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   
   <PARAM>
@@ -57,6 +58,8 @@
       Linked routines can also be used as &quot;external&quot; for e.g. 
       non linear problem solvers (<VERB>ode</VERB>, <VERB>optim</VERB>, <VERB>intg</VERB>, 
       <VERB>dassl</VERB>...). 
+    </P>
+    <P><VERB>link()</VERB> returns a string matrix with linked functions. 
     </P>
 
     <P>a call to <VERB>link</VERB> returns an integer which gives the
