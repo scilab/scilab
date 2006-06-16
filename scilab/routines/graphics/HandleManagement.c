@@ -366,7 +366,7 @@ sciGetRelationship (sciPointObj * pobj)
       return  &(pMERGE_FEATURE (pobj)->relationship);
       break;
     case SCI_LABEL: /* F.Leray 27.05.04 */
-      return  &(pLABEL_FEATURE (pobj)->text.relationship);
+      return  sciGetRelationship( pLABEL_FEATURE (pobj)->text ) ;
       break;
     case SCI_UIMENU: 
       tmp=&(pUIMENU_FEATURE (pobj)->label.relationship);
@@ -507,13 +507,13 @@ sciGetParent (sciPointObj * pobj)
     case SCI_MERGE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
+      return sciGetRelationship (pobj)->pparent;
       break; 
 	
     default:
       break;
     }
-  return (sciPointObj *) NULL;
+  return NULL;
 }
 
 

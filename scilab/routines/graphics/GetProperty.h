@@ -164,8 +164,10 @@ extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
 BOOL sciGetCenterPos( sciPointObj * pObj ) ;
 
+BOOL sciGetIs3d( sciPointObj * pObj ) ;
+
 /**
- * @memo for a subwindow object, return if the its labels (x,y,z) are all
+ * for a subwindow object, return if the its labels (x,y,z) are all
  *       empty or not.
  * @param pObj the subwindow.
  */

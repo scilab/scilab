@@ -1554,13 +1554,21 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       return sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
     }
   else if (strcmp(marker,"fill_mode") == 0)
-    { 
-      if (strcmp(cstk(*value),"on")==0 )
-	return sciSetIsFilled((sciPointObj *)pobj,TRUE);
-      else if (strcmp(cstk(*value),"off")==0 )
-	return sciSetIsFilled((sciPointObj *)pobj,FALSE);
-      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
-    }  
+  { 
+    if ( strcmp(cstk(*value),"on") == 0 )
+    {
+      return sciSetIsFilled( pobj, TRUE ) ;
+    }
+    else if (strcmp(cstk(*value),"off")==0 )
+    {
+      return sciSetIsFilled( pobj, FALSE ) ;
+    }
+    else
+    {
+      strcpy(error_message,"Nothing to do (value must be 'on/off')");
+      return -1;
+    }
+  }  
   else if (strcmp(marker,"thickness") == 0) 
   {
     return sciSetLineWidth( pobj, (int) *stk(*value) ) ;
@@ -2236,39 +2244,30 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
 
   else if (strcmp(marker,"view") == 0) 
-    { 
-      /* DJ.A 2003 */
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {                  
-	if ((strcmp(cstk(*value),"2d") == 0)) 
-	  {  
-	    if(pSUBWIN_FEATURE (pobj)->is3d == FALSE) return 0;  /* Adding F.Leray 18.0604 */
-	    if (sciGetSurface(pobj) == (sciPointObj *) NULL)
-	      {
-		pSUBWIN_FEATURE (pobj)->is3d = FALSE;
-		pSUBWIN_FEATURE (pobj)->project[2]= 0;
-	      }
-	    pSUBWIN_FEATURE (pobj)->theta_kp=pSUBWIN_FEATURE (pobj)->theta;
-	    pSUBWIN_FEATURE (pobj)->alpha_kp=pSUBWIN_FEATURE (pobj)->alpha;  
-	    pSUBWIN_FEATURE (pobj)->alpha  = 0.0;
-	    pSUBWIN_FEATURE (pobj)->theta  = 270.0;
-	    if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
-	      UpdateSubwinScale(pobj);
-	    /* 	    sciRedrawFigure(); /\* F.Leray 10.06.04 Adding 2 lines here... *\/ */
-	    pSUBWIN_FEATURE (pobj)->is3d = FALSE; /*...and here */
-	  } 
-	else if ((strcmp(cstk(*value),"3d") == 0)){
-	  if(pSUBWIN_FEATURE (pobj)->is3d == TRUE) return 0; /* Adding F.Leray 18.0604 */
-	  pSUBWIN_FEATURE (pobj)->is3d = TRUE;
-	  Obj_RedrawNewAngle(pobj,pSUBWIN_FEATURE (pobj)->theta_kp,pSUBWIN_FEATURE (pobj)->alpha_kp);
-	  wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha_kp,pSUBWIN_FEATURE (pobj)->theta_kp);
-	}            
-	else
-	  {strcpy(error_message,"Second argument must be '2d' or '3d'");return -1;}
+  { 
+    /* DJ.A 2003 */
+    if (sciGetEntityType (pobj) == SCI_SUBWIN) {                  
+      if ( strcmp(cstk(*value),"2d") == 0 )
+      { 
+        return sciSetIs3d( pobj, FALSE ) ;
       }
-      else
-	{strcpy(error_message,"view property does not exist for this handle");return -1;}
-
-    } 
+      else if ( strcmp(cstk(*value),"3d") == 0 )
+      {
+        return sciSetIs3d( pobj, TRUE ) ;
+      }            
+	else
+        {
+          strcpy(error_message,"Second argument must be '2d' or '3d'");
+          return -1;
+        }
+      }
+    else
+    {
+      strcpy(error_message,"view property does not exist for this handle");
+      return -1;
+    }
+    
+  } 
   else if (strcmp(marker,"axes_bounds") == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       if (*numrow * *numcol != 4) 

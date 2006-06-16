@@ -163,26 +163,31 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
   double *cmap;
   int succeed = 0;
 
-  if(n != 3){
+  if(n != 3)
+  {
     sciprint("colormap : number of colums must be 3\n");
     return 0;
   }
   
-  if(SCI_FIGURE != sciGetEntityType(pobj)){
+  if(SCI_FIGURE != sciGetEntityType(pobj))
+  {
     sciprint("sciSetColormap Error: Object must be a SCI_FIGURE\n");
     return 0;
   }
 
   old_m = sciGetNumColors(pobj);
   m1=m;
-  if (pobj != pfiguremdl) {
+  if ( pobj != pfiguremdl )
+  {
+    int verbose = 0 ;
     pcurwin=sciGetCurrentFigure ();
     sciSetCurrentFigure ( pobj);
     /*It should be impossible to set the colormap because of restriction on max 
       number of colors. In this case the old one is kept*/
     C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xget","cmap_size", &verbose, &m1, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L ) ;
+    sciSetNumColors( pobj, m1 ) ;
     sciSetCurrentFigure (pcurwin);
-    m1=sciGetNumColors(pobj); /* if m1!=m  old colormap has been  kept*/
   }
   
   if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
@@ -209,8 +214,11 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
     FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
     pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap=cmap;
   }
-  for (k=0;k<m1*n;k++) pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
-  pFIGURE_FEATURE ((sciPointObj *) pobj)->numcolors = m1;
+  for (k=0;k<m1*n;k++)
+  {
+    pFIGURE_FEATURE(pobj)->pcolormap[k] = rgbmat[k];
+  }
+  pFIGURE_FEATURE (pobj)->numcolors = m1;
   
   if (pobj != pfiguremdl) sciRecursiveUpdateBaW(pobj,old_m, m); /* missing line F.Leray */
 
@@ -500,15 +508,21 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 
 int sciInitNumColors( sciPointObj * pobj, int numcolors)
 {
-  if ( (pobj == pfiguremdl) || (pobj == paxesmdl)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_title)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label) ) /* Addings F.Leray 10.06.04 */
-    pFIGURE_FEATURE (pfiguremdl)->numcolors = numcolors;
-  else
-    sciGetScilabXgc (pobj)->Numcolors = numcolors;
-  return 0;
+
+  /* modified jb Silvy 06/2006 */
+  switch (sciGetEntityType (pobj))
+  {
+  case SCI_FIGURE:
+    if ( sciGetScilabXgc( pobj ) != NULL )
+    {
+      sciGetScilabXgc( pobj )->Numcolors = numcolors ;
+    }
+    pFIGURE_FEATURE(pobj)->numcolors = numcolors ;
+    return 0 ;
+  default:
+    return sciSetNumColors( sciGetParentFigure( pobj ), numcolors ) ;
+  }
+  return -1 ;
 }
 
 /**sciSetNumColors
@@ -545,6 +559,29 @@ int sciSetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or 
     return colorindex;
 }
 
+/**
+ * This function must be used to set the background of model objects.
+ */
+int sciInitMdlBackground( sciPointObj * pobj, int colorIndex )
+{
+  int m = sciGetNumColors(pobj); 
+  int goodIndex ;
+  if(colorIndex < -2 || colorIndex > m+2) return 0;
+
+  goodIndex = sciSetGoodIndex(pobj,colorIndex);
+
+  
+  /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
+  if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
+  {
+    /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
+    sciGetScilabXgc (pobj)->NumBackground =
+      Max (0, Min (goodIndex - 1, m + 1));
+    C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
+            PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  }
+  return  sciInitBackground( pobj, colorIndex ) ;
+}
 
 int sciInitBackground( sciPointObj * pobj, int colorindex )
 {
@@ -553,24 +590,6 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 
   colorindex = sciSetGoodIndex(pobj,colorindex);
 
-  if ( (pobj != pfiguremdl) && (pobj != paxesmdl)
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ) /* Addings F.Leray 10.06.04 */
-  {
-    /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
-    if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
-    {
-      /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
-      sciGetScilabXgc (pobj)->NumBackground =
-        Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      /* F.Leray 02.04.04: WARNING: What follows is wrong because it forces the background for the all figure, not the object!! IT HAS TO BE REMOVE!!!!*/
-      /*	  C2F(dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L); */ /* DJ.A 07/01/2004 */ 
-      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
-              PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-    }
-  }
   switch (sciGetEntityType (pobj))
   {
   case SCI_FIGURE:
@@ -616,7 +635,7 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
     (sciGetGraphicContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     break; 
   case SCI_LABEL: /* F.Leray 28.05.04 */
-    (sciGetFontContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
+    (sciGetGraphicContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
     break;
   case SCI_SEGS: 
   case SCI_FEC: 
@@ -649,6 +668,27 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
     
 }
 
+/**
+ * This function must be used to set the foreground of model objects.
+ */
+int sciInitMdlForeground( sciPointObj * pObj, int colorIndex )
+{
+  int m = sciGetNumColors(pObj);
+  int goodIndex ;
+  if(colorIndex < -2 || colorIndex > m+2) return 0;
+  
+  goodIndex = sciSetGoodIndex(pObj,colorIndex);
+  
+  if (sciGetScilabXgc (pObj)->CurColorStatus == 1)
+  { 
+    sciGetScilabXgc (pObj)->NumForeground =
+      Max (0, Min (goodIndex - 1, m + 1));
+    C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pObj)->CurDrawFunction),
+            PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
+  }
+  return sciInitForeground( pObj, colorIndex ) ;
+}
+
 int sciInitForeground( sciPointObj * pobj, int colorindex )
 {
   int m = sciGetNumColors(pobj); 
@@ -656,22 +696,6 @@ int sciInitForeground( sciPointObj * pobj, int colorindex )
   
   colorindex = sciSetGoodIndex(pobj,colorindex);
 
-  /*pour le moment les couleur pris en compte sont les memes pour tout le monde */
-  if ( (pobj != pfiguremdl) && (pobj != paxesmdl) 
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ) /* Addings F.Leray 10.06.04 */
-  {
-    if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
-    {
-	  
-      sciGetScilabXgc (pobj)->NumForeground =
-        Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
-              PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
-    }
-  }
   switch (sciGetEntityType (pobj))
   {
   case SCI_FIGURE:
@@ -1855,12 +1879,7 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
       }
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      deleteMatrix( pLABEL_FEATURE (pObjDest)->text.pStrings ) ;
-      pLABEL_FEATURE (pObjDest)->text.pStrings = copyStringMatrix( pStrings ) ;
-      if ( pLABEL_FEATURE (pObjDest)->text.pStrings == NULL )
-      {
-        return -1 ;
-      }
+      return sciSetStrings( pLABEL_FEATURE(pObjDest)->text, pStrings ) ;
       break;
     case SCI_UIMENU:
       deleteMatrix( pUIMENU_FEATURE (pObjDest)->label.pStrings ) ;
@@ -1934,12 +1953,7 @@ sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol )
       }
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      deleteMatrix( pLABEL_FEATURE (pobj)->text.pStrings ) ;
-      pLABEL_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pLABEL_FEATURE (pobj)->text.pStrings == NULL )
-      {
-        return -1 ;
-      }
+      return sciSetText( pLABEL_FEATURE(pobj)->text, text, nbRow, nbCol ) ;
       break;
     case SCI_UIMENU:
       deleteMatrix( pUIMENU_FEATURE (pobj)->label.pStrings ) ;
@@ -2680,7 +2694,7 @@ sciSetClipping (sciPointObj * pobj, double pclip[4] )
       /*       for(i=0;i<4;i++) pGRAYPLOT_FEATURE (pobj)->clip_region[i] = pclip[i]; /\* not used for now 04.04.2005 *\/ */
       /*       break; */
     case SCI_LABEL:
-      for(i=0;i<4;i++) pLABEL_FEATURE (pobj)->clip_region[i] = pclip[i];
+      return sciSetClipping( pLABEL_FEATURE (pobj)->text, pclip ) ;
       break;
     case SCI_SURFACE:
     case SCI_LEGEND: 
@@ -3165,10 +3179,7 @@ int sciInitVisibility( sciPointObj * pobj, BOOL value )
       /* 	}   */
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-		if (pLABEL_FEATURE (pobj)->visible != value)
-			{
-			pLABEL_FEATURE (pobj)->visible = value;
-			}
+      return sciInitVisibility( pLABEL_FEATURE(pobj)->text, value ) ;
       break;
     case SCI_UIMENU:
 		if (pUIMENU_FEATURE(pobj)->visible != value)
@@ -4293,50 +4304,51 @@ int set_version_flag(int flag)
 int sciInitIsFilled( sciPointObj * pobj, BOOL isfilled )
 {
   switch (sciGetEntityType (pobj))
-    {
-    case SCI_POLYLINE:
-      pPOLYLINE_FEATURE(pobj)->isfilled = isfilled;
-      return 0;
-      break;
-    case SCI_RECTANGLE:
-      pRECTANGLE_FEATURE(pobj)->fillflag = isfilled;
-      return 0;
-      break;
-    case SCI_ARC:
-      pARC_FEATURE(pobj)->fill = isfilled;
-      return 0;
-      break;
-    case SCI_LABEL:
-      pLABEL_FEATURE(pobj)->isfilled = isfilled;
-      return 0;
-      break;
-    case SCI_TEXT:
-      pTEXT_FEATURE(pobj)->isfilled = isfilled ;
-      return 0 ;
-      break ;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_LEGEND:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_LIGHT:
-    case SCI_AGREG:
-    case SCI_PANNER:
-    case SCI_SBH:
-    case SCI_SBV:
-    case SCI_TITLE:
-    case SCI_UIMENU:
-    default:
-      sciprint ("This object has no isfilled \n");
-      return -1;
-      break;
-    }
+  {
+  case SCI_POLYLINE:
+    pPOLYLINE_FEATURE(pobj)->isfilled = isfilled;
+    return 0;
+    break;
+  case SCI_RECTANGLE:
+    pRECTANGLE_FEATURE(pobj)->fillflag = isfilled;
+    return 0;
+    break;
+  case SCI_ARC:
+    pARC_FEATURE(pobj)->fill = isfilled;
+    return 0;
+    break;
+  case SCI_LABEL:
+    /* isfilled correspond to several properties in text object */
+    sciInitIsBoxed(  pLABEL_FEATURE(pobj)->text, isfilled ) ;
+    sciInitIsLine(   pLABEL_FEATURE(pobj)->text, isfilled ) ;
+    return sciInitIsFilled( pLABEL_FEATURE(pobj)->text, isfilled ) ;
+  case SCI_TEXT:
+    pTEXT_FEATURE(pobj)->isfilled = isfilled ;
+    return 0 ;
+    break ;
+  case SCI_FIGURE:
+  case SCI_SUBWIN:
+  case SCI_SURFACE:
+  case SCI_AXES:
+  case SCI_LEGEND:
+  case SCI_SEGS:
+  case SCI_FEC:
+  case SCI_GRAYPLOT:
+  case SCI_MENU:
+  case SCI_MENUCONTEXT:
+  case SCI_STATUSB:
+  case SCI_LIGHT:
+  case SCI_AGREG:
+  case SCI_PANNER:
+  case SCI_SBH:
+  case SCI_SBV:
+  case SCI_TITLE:
+  case SCI_UIMENU:
+  default:
+    sciprint ("This object has no isfilled \n");
+    return -1;
+    break;
+  }
   return 0;
 }
 
@@ -4489,9 +4501,8 @@ int sciInitPosition( sciPointObj * pobj, double x, double y )
   switch (sciGetEntityType (pobj))
     {
     case SCI_LABEL:
-      pLABEL_FEATURE(pobj)->position[0] = x;
-      pLABEL_FEATURE(pobj)->position[1] = y;
-      return 0;
+      sciInitTextPosX( pLABEL_FEATURE(pobj)->text, x ) ;
+      return sciInitTextPosY( pLABEL_FEATURE(pobj)->text, y ) ;
       break;
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
@@ -4775,5 +4786,65 @@ int sciSetCenterPos( sciPointObj * pObj, BOOL newCP )
     return 1 ;
   }
   return sciInitCenterPos( pObj, newCP ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
+{
+   switch( sciGetEntityType( pObj ) )
+   {
+   case SCI_SUBWIN:
+     if ( is3d )
+     {
+       pSUBWIN_FEATURE (pObj)->is3d = TRUE ;
+       Obj_RedrawNewAngle( pObj,
+                           pSUBWIN_FEATURE (pObj)->theta_kp,
+                           pSUBWIN_FEATURE (pObj)->alpha_kp ) ;
+       wininfo("alpha=%.1f,theta=%.1f",
+               pSUBWIN_FEATURE (pObj)->alpha_kp,
+               pSUBWIN_FEATURE (pObj)->theta_kp ) ;
+     }
+     else
+     {
+       /* switch to 2d */
+       if ( sciGetSurface(pObj) == NULL)
+       {
+         pSUBWIN_FEATURE (pObj)->is3d = FALSE;
+         pSUBWIN_FEATURE (pObj)->project[2]= 0;
+       }
+       pSUBWIN_FEATURE (pObj)->theta_kp=pSUBWIN_FEATURE (pObj)->theta;
+       pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;  
+       pSUBWIN_FEATURE (pObj)->alpha  = 0.0;
+       pSUBWIN_FEATURE (pObj)->theta  = 270.0;
+       if(sciGetCurrentScilabXgc () !=  NULL)
+       {
+         UpdateSubwinScale(pObj);
+       }
+       pSUBWIN_FEATURE(pObj)->is3d = FALSE; /*...and here */
+       return 0 ;
+     }
+     return 0 ;
+   case SCI_TEXT:
+     pTEXT_FEATURE( pObj )->is3d = is3d ;
+     return 0 ;
+   case SCI_LABEL:
+     return sciInitIs3d( pLABEL_FEATURE( pObj )->text, is3d ) ;
+   default:
+     sciprint ("This object has no 3d mode.\n");
+     return -1 ;
+   }
+   return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Force an object to be displayed in 2d or 3d mode.
+ */
+int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
+{
+  if ( sciGetIs3d( pObj ) == is3d )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitIs3d( pObj, is3d ) ;
 }
 /*--------------------------------------------------------------------------------------------*/

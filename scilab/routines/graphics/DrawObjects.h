@@ -227,5 +227,16 @@ extern void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
                                    double        userSize[2]  ,
                                    int           edgesX[4]    ,
                                    int           edgesY[4]     ) ;
+extern void getTextBoundingBox( sciPointObj * pText        ,
+                                int           cornPix[4][2],
+                                double        corners[4][2] ) ;
+
+extern void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle ) ;
+
+extern void getTextAabb( sciPointObj * pText     ,
+                         int           rectPix[4],
+                         int           cornPix[4][2] ) ;
+
+void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2], int offsets[2] ) ;
 
 #endif /* __SCI_DRAWINGS__ */

@@ -25,6 +25,7 @@
 #include "Axes.h"
 #include "DestroyObjects.h"
 #include "CloneObjects.h"
+#include "BuildObjects.h"
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -605,7 +606,6 @@ sciInitGraphicContext (sciPointObj * pobj)
 int
 sciInitFontContext (sciPointObj * pobj)
 {
-  /*   int aa[5]; */ /* for debug purpose only F.Leray 13.01.05 */
 
   /* 
    * initialisation du contexte font par defaut 
@@ -617,177 +617,177 @@ sciInitFontContext (sciPointObj * pobj)
 
   /* unknown function initfontname "Win-stand"!! */
   /* static TCHAR inifontname[] = TEXT ("Times New Roman");*/  
-
-  /*  sciPointObj * psubwin = NULL;*/
   
 
   switch (sciGetEntityType (pobj))
+  {
+  case SCI_TEXT:
+  case SCI_TITLE:
+  case SCI_LEGEND:
+  case SCI_AXES:
+  case SCI_MENU:
+  case SCI_MENUCONTEXT:
+  case SCI_STATUSB:
+  {
+    sciPointObj * parentObject = sciGetParent (pobj) ;
+    (sciGetFontContext(pobj))->backgroundcolor =  sciGetFontBackground( parentObject  ) - 1 ;
+    (sciGetFontContext(pobj))->foregroundcolor =  sciGetFontForeground( parentObject  ) - 1;
+    (sciGetFontContext(pobj))->fonttype        =  sciGetFontContext( parentObject )->fonttype; 
+    (sciGetFontContext(pobj))->fontdeciwidth   =  sciGetFontContext( parentObject )->fontdeciwidth;
+    (sciGetFontContext(pobj))->textorientation =  sciGetFontContext( parentObject )->textorientation;
+    (sciGetFontContext(pobj))->fontnamelen     =  sciGetFontContext( parentObject )->fontnamelen; 
+    if (((sciGetFontContext(pobj))->pfontname =
+         CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                 sizeof (char))) == NULL)
     {
-    case SCI_TEXT:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-      
-      (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ =  sciGetFontBackground (sciGetParent (pobj)) -1;
-      (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ =  sciGetFontForeground (sciGetParent (pobj)) -1;
-      (sciGetFontContext(pobj))->fonttype       /*  = aa[2] */ =  (sciGetFontContext(sciGetParent(pobj)))->fonttype; 
-      (sciGetFontContext(pobj))->fontdeciwidth  /*  = aa[3] */ =  (sciGetFontContext(sciGetParent(pobj)))->fontdeciwidth;
-      (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =  (sciGetFontContext(sciGetParent(pobj)))->textorientation;
-      (sciGetFontContext(pobj))->fontnamelen    /*  = aa[5] */ =  (sciGetFontContext(sciGetParent(pobj)))->fontnamelen; 
-      if (((sciGetFontContext(pobj))->pfontname =
-	   CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-		   sizeof (char))) == NULL)
-	{
-	  sciprint ("No more Memory for fontname\n"); 
-	  return 0;
-	}
-      break;
-    case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
-      if(sciGetParent(pobj) == paxesmdl)
-	{
-	  /* init plabelmdl that could be models for title, x_label, y_label or z_label */
-          (sciGetFontContext(pobj))->fonttype        = 6 ; /* set helvetica font */
-	  (sciGetFontContext(pobj))->backgroundcolor = -3;
-	  (sciGetFontContext(pobj))->foregroundcolor = -2; 
-	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
-	  (sciGetFontContext(pobj))->textorientation = 0;
-	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-	  (sciGetFontContext(pobj))->textorientation = 0;
-
-	  if (((sciGetFontContext(pobj))->pfontname =
-	       CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-		       sizeof (char))) == NULL)
-	    {
-	      sciprint ("No more Memory for fontname\n"); 
-	      return 0;
-	    }
-	}
-      else
-	{
-	  sciPointObj * plabelmdl = NULL;
-	  
-	  if(pLABEL_FEATURE(pobj)->ptype == 1) /* title */
-	    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
-	  else if(pLABEL_FEATURE(pobj)->ptype == 2) /* x_label */
-	    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
-	  else if(pLABEL_FEATURE(pobj)->ptype == 3) /* y_label */
-	    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
-	  else if(pLABEL_FEATURE(pobj)->ptype == 4) /* z_label */
-	    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
-	  
-	  (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ = (sciGetFontContext(plabelmdl))->backgroundcolor;
-	  (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(plabelmdl))->foregroundcolor;
-	  (sciGetFontContext(pobj))->fonttype  /*=        aa[2] */ = (sciGetFontContext(plabelmdl))->fonttype;
- 	  (sciGetFontContext(pobj))->fontdeciwidth  /*=   aa[3] */ = (sciGetFontContext(plabelmdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->fontnamelen  /*=     aa[5] */ = (sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
-	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ = (sciGetFontContext(plabelmdl))->textorientation;
-	  
-	  if (
-	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-							      sizeof (char))) == NULL)
-	    {
-	      sciprint ("No more Memory for fontname\n");
-	      return 0;
-	    }
-	}
-      break;
-    case SCI_SUBWIN: 
-      if (pobj == paxesmdl)
-	{
-          sciInitFontStyle (pobj, 6); /* set helvetica font */
-          (sciGetFontContext(pobj))->backgroundcolor = -3;
-	  (sciGetFontContext(pobj))->foregroundcolor = -2; 
-	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
-	  (sciGetFontContext(pobj))->textorientation = 0;
-	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-	  
-	  if (
-	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-							      sizeof (char))) == NULL)
-	    {
-	      sciprint ("No more Memory for fontname\n");
-	      return 0;
-	    }
-	}
-      else
-	{
-	  (sciGetFontContext(pobj))->backgroundcolor /* = aa[0] */ = (sciGetFontContext(paxesmdl))->backgroundcolor;
-	  (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(paxesmdl))->foregroundcolor;
-	  (sciGetFontContext(pobj))->fonttype /* =        aa[2] */ = (sciGetFontContext(paxesmdl))->fonttype;
- 	  (sciGetFontContext(pobj))->fontdeciwidth /* =   aa[3] */ =(sciGetFontContext(paxesmdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =(sciGetFontContext(paxesmdl))->textorientation;
-	  (sciGetFontContext(pobj))->fontnamelen /* =     aa[5] */ =(sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
-	  
-	  if (
-	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-							      sizeof (char))) == NULL)
-	    {
-	      sciprint ("No more Memory for fontname\n");
-	      return 0;
-	    }
-	  /* END ADDING F.Leray 08.04.04*/ 
-	} 
-      break;
-    case SCI_FIGURE:
-      if (pobj == pfiguremdl)
-	{
-          sciInitFontStyle (pobj, 6); /* set helvetica font */
-          (sciGetFontContext(pobj))->backgroundcolor = -3;
-	  (sciGetFontContext(pobj))->foregroundcolor = -2;
-	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
-	  (sciGetFontContext(pobj))->textorientation = 0;
-	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-	  
-	  if (
-	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-							      sizeof (char))) == NULL)
-	    {
-	      sciprint ("No more Memory for fontname\n");
-	      return 0;
-	    }
-	  /* END ADDING F.Leray 08.04.04*/ 
-	}
-      else
-	{
-	  /* START ADDING F.Leray 08.04.04*/ 
-	  /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
-	  (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(pfiguremdl))->backgroundcolor;	
-	  (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(pfiguremdl))->foregroundcolor;
-	  (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(pfiguremdl))->fonttype;
-  	  (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(pfiguremdl))->textorientation;
-	  (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
-	  
-	  if (
-	      ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-							      sizeof (char))) == NULL)
-	    {
-	      sciprint ("No more Memory for fontname\n");
-	      return 0;
-	    }
-	  /* END ADDING F.Leray 08.04.04*/  
-	}
-      break;
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AGREG:
-    case SCI_UIMENU:
-    default:
-      return -1;
-      break;
+      sciprint ("No more Memory for fontname\n"); 
+      return 0;
     }
+  }
+  break;
+  case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
+    if(sciGetParent(pobj) == paxesmdl)
+    {
+      /* init plabelmdl that could be models for title, x_label, y_label or z_label */
+      (sciGetFontContext(pobj))->fonttype        = 6 ; /* set helvetica font */
+      (sciGetFontContext(pobj))->backgroundcolor = -3;
+      (sciGetFontContext(pobj))->foregroundcolor = -2; 
+      (sciGetFontContext(pobj))->fontdeciwidth = 100;
+      (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+      (sciGetFontContext(pobj))->textorientation = 0;
+
+      if (((sciGetFontContext(pobj))->pfontname =
+           CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                   sizeof (char))) == NULL)
+      {
+        sciprint ("No more Memory for fontname\n"); 
+        return 0;
+      }
+    }
+    else
+    {
+      sciPointObj * plabelmdl = NULL;
+	  
+      if(pLABEL_FEATURE(pobj)->ptype == 1) /* title */
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
+      else if(pLABEL_FEATURE(pobj)->ptype == 2) /* x_label */
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
+      else if(pLABEL_FEATURE(pobj)->ptype == 3) /* y_label */
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
+      else if(pLABEL_FEATURE(pobj)->ptype == 4) /* z_label */
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+	  
+      (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ = (sciGetFontContext(plabelmdl))->backgroundcolor;
+      (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(plabelmdl))->foregroundcolor;
+      (sciGetFontContext(pobj))->fonttype  /*=        aa[2] */ = (sciGetFontContext(plabelmdl))->fonttype;
+      (sciGetFontContext(pobj))->fontdeciwidth  /*=   aa[3] */ = (sciGetFontContext(plabelmdl))->fontdeciwidth;
+      (sciGetFontContext(pobj))->fontnamelen  /*=     aa[5] */ = (sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
+      (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ = (sciGetFontContext(plabelmdl))->textorientation;
+	  
+      if (
+        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                                                        sizeof (char))) == NULL)
+      {
+        sciprint ("No more Memory for fontname\n");
+        return 0;
+      }
+    }
+    break;
+  case SCI_SUBWIN: 
+    if (pobj == paxesmdl)
+    {
+      sciInitFontStyle (pobj, 6); /* set helvetica font */
+      (sciGetFontContext(pobj))->backgroundcolor = -3;
+      (sciGetFontContext(pobj))->foregroundcolor = -2; 
+      (sciGetFontContext(pobj))->fontdeciwidth = 100;
+      (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+	  
+      if (
+        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                                                        sizeof (char))) == NULL)
+      {
+        sciprint ("No more Memory for fontname\n");
+        return 0;
+      }
+    }
+    else
+    {
+      (sciGetFontContext(pobj))->backgroundcolor /* = aa[0] */ = (sciGetFontContext(paxesmdl))->backgroundcolor;
+      (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(paxesmdl))->foregroundcolor;
+      (sciGetFontContext(pobj))->fonttype /* =        aa[2] */ = (sciGetFontContext(paxesmdl))->fonttype;
+      (sciGetFontContext(pobj))->fontdeciwidth /* =   aa[3] */ =(sciGetFontContext(paxesmdl))->fontdeciwidth;
+      (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =(sciGetFontContext(paxesmdl))->textorientation;
+      (sciGetFontContext(pobj))->fontnamelen /* =     aa[5] */ =(sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
+	  
+      if (
+        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                                                        sizeof (char))) == NULL)
+      {
+        sciprint ("No more Memory for fontname\n");
+        return 0;
+      }
+      /* END ADDING F.Leray 08.04.04*/ 
+    } 
+    break;
+  case SCI_FIGURE:
+    if (pobj == pfiguremdl)
+    {
+      sciInitFontStyle (pobj, 6); /* set helvetica font */
+      (sciGetFontContext(pobj))->backgroundcolor = -3;
+      (sciGetFontContext(pobj))->foregroundcolor = -2;
+      (sciGetFontContext(pobj))->fontdeciwidth = 100;
+      (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+	  
+      if (
+        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                                                        sizeof (char))) == NULL)
+      {
+        sciprint ("No more Memory for fontname\n");
+        return 0;
+      }
+      /* END ADDING F.Leray 08.04.04*/ 
+    }
+    else
+    {
+      /* START ADDING F.Leray 08.04.04*/ 
+      /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
+      (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(pfiguremdl))->backgroundcolor;	
+      (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(pfiguremdl))->foregroundcolor;
+      (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(pfiguremdl))->fonttype;
+      (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
+      (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(pfiguremdl))->textorientation;
+      (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
+	  
+      if (
+        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
+                                                        sizeof (char))) == NULL)
+      {
+        sciprint ("No more Memory for fontname\n");
+        return 0;
+      }
+      /* END ADDING F.Leray 08.04.04*/  
+    }
+    break;
+  case SCI_PANNER:		/* pas de context graphics */
+  case SCI_SBH:		/* pas de context graphics */
+  case SCI_SBV:		/* pas de context graphics */
+  case SCI_ARC:
+  case SCI_SEGS: 
+  case SCI_FEC: 
+  case SCI_GRAYPLOT: 
+  case SCI_POLYLINE:
+  case SCI_RECTANGLE:
+  case SCI_SURFACE:
+  case SCI_LIGHT:
+  case SCI_AGREG:
+  case SCI_UIMENU:
+  default:
+    return -1;
+    break;
+  }
   return 0;
 }
 
@@ -1246,6 +1246,8 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
 {
   sciPointObj * newLabel = MALLOC (sizeof (sciPointObj)) ;
   sciLabel    * ppLabel ;
+  char        * emptyString = "" ;
+
   if ( newLabel == NULL )
   {
     return NULL ;
@@ -1262,6 +1264,19 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
   
   ppLabel = pLABEL_FEATURE( newLabel ) ;
   
+  /* we must first construct the text object inside the label */
+  ppLabel->text = allocateText( pParentObj, &emptyString, 1, 1,
+                                0.0, 0.0, TRUE, NULL, FALSE, NULL, NULL,
+                                FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+  
+  if ( ppLabel->text == NULL )
+  {
+    desallocateText( ppLabel->text ) ;
+    FREE( ppLabel ) ;
+    FREE( newLabel  );
+    return NULL ;
+  }
+
   if ( sciAddNewHandle ( newLabel ) == -1 )
   {
     FREE( ppLabel ) ;
@@ -1278,53 +1293,25 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
   }
 
   sciSetCurrentSon( newLabel, NULL ) ;
-  
-  ppLabel->user_data = (int *) NULL;
-  ppLabel->size_of_user_data = 0;
-  
-  ppLabel->text.relationship.psons = (sciSons *) NULL;
-  ppLabel->text.relationship.plastsons = (sciSons *) NULL;
-  
-  ppLabel->text.callback = (char *)NULL;
-  ppLabel->text.callbacklen = 0;
-  
-  ppLabel->visible = sciGetVisibility( pParentObj ) ;
+
   ppLabel->auto_position = TRUE;
   ppLabel->auto_rotation = TRUE;
-  ppLabel->position[0] = 0;
-  ppLabel->position[1] = 0;
-  
-  /* init a "" pour le chanmp title */
-  ppLabel->text.pStrings = newMatrix( 1, 1 ) ;
-  copyStrMatElement( ppLabel->text.pStrings, 0, 0, "" ) ;
-  
-  if ( ppLabel->text.pStrings == NULL )
-  {
-    sciprint("No more place to allocates text string, try a shorter string");
-    sciDelThisToItsParent( newLabel, pParentObj ) ;
-    sciDelHandle ( newLabel ) ;
-    FREE(ppLabel);
-    FREE(newLabel);
-    return NULL ;
-  }
 
-  /* graphic context */
-  sciInitGraphicContext( newLabel ) ;
-   
-  ppLabel->text.fontcontext.textorientation = 0;
-
-  /*   pLABEL_FEATURE ((ppobj->mon_title))->titleplace = SCI_LABEL_IN_TOP; */
   ppLabel->isselected = TRUE;
 
   ppLabel->ptype = 0 ; /* must be changed : 1 for title, 2 x_label, 3 y_label, 4 z_label */
-  
+ 
+  sciInitIs3d( newLabel, FALSE ) ;
+
+  if ( sciInitGraphicContext( newLabel ) == -1 )
+  {
+    DestroyLabel( newLabel ) ;
+    return NULL ;
+  }
+ 
   if ( sciInitFontContext( newLabel ) == -1 )
   {
-    deleteMatrix( ppLabel->text.pStrings ) ;
-    sciDelThisToItsParent (newLabel, pParentObj);
-    sciDelHandle ( newLabel);
-    FREE( ppLabel );
-    FREE( newLabel ) ;
+    DestroyLabel( newLabel ) ;
     return NULL ;
   }
   return newLabel ;

@@ -1496,7 +1496,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	numrow   = 1;numcol   = 2;
 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if (pSUBWIN_FEATURE (pobj)->is3d)
+	if ( sciGetIs3d( pobj ) )
 	  strncpy(cstk(outindex),"3d", numrow*numcol); 
 	else 
 	  strncpy(cstk(outindex),"2d", numrow*numcol);      

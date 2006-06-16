@@ -27,6 +27,7 @@ extern int DestroyStatusBar (sciPointObj * pthis); /* DESTROY */
 extern int DestroySubWin (sciPointObj * pthis); /* DESTROY */
 extern int DestroyScrollV (sciPointObj * pthis); /* DESTROY */
 extern int DestroyScrollH (sciPointObj * pthis); /* DESTROY */
+extern int desallocateText( sciPointObj * pthis ) ;
 extern int DestroyText (sciPointObj * pthis); /* DESTROY */
 extern int DestroyTitle (sciPointObj * pthis); /* DESTROY */
 extern int DestroyLegend (sciPointObj * pthis); /* DESTROY */

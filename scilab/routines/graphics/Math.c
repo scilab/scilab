@@ -116,7 +116,6 @@ void iHomothety2D( int from[2], int center[2], double factors[2], int dest[2] )
   dest[0] = round( center[0] + factors[0] * ( from[0] - center[0] ) ) ;
   dest[1] = round( center[1] + factors[1] * ( from[1] - center[1] ) ) ;
 }
-
 /*----------------------------------------------------------------------------*/
 /* perform the translation of point from to point to with vector trans */
 void translate2D( double from[2], double trans[2], double dest[2] )
@@ -130,14 +129,25 @@ void iTranslate2D( int from[2], int trans[2], int dest[2] )
   dest[0] = from[0] + trans[0] ;
   dest[1] = from[1] + trans[1] ;
 }
-
 /*----------------------------------------------------------------------------*/
-
+void normalize2d( double vect[2] )
+{
+  double norm = sqrt( vect[0] * vect[0] + vect[1] * vect[1] ) ;
+  vect[0] /= norm ;
+  vect[1] /= norm ;
+}
+/*----------------------------------------------------------------------------*/
+void iNormalize2d( int vect[2] )
+{
+  double norm = sqrt( vect[0] * vect[0] + vect[1] * vect[1] ) ;
+  vect[0] = round( vect[0] / norm ) ;
+  vect[1] = round( vect[1] / norm ) ;
+}
+/*----------------------------------------------------------------------------*/
 /* check if two values can be considered equal given an accurracy */
 int safeEqual( double val1, double val2, double accuracy )
 {
   /* the val1 == val2 is put to avoid division by 0 */
   return ( val1 == val2 ) || ( Abs( val1 - val2 ) < accuracy * Max( Abs(val1), Abs(val2 ) ) ) ;
 }
-
 /*----------------------------------------------------------------------------*/

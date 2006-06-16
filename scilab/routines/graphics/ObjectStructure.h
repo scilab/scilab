@@ -492,20 +492,25 @@ typedef struct
   /** */
   sciFont fontcontext;
   sciGraphicContext graphiccontext; /* the only properties used by Text are foreground and background */
+  
   /** the displayed text */
   StringMatrix * pStrings ;
 
-  /** position in scilab window (not pixel) */
-  double x;			    
-  /** position in scilab window (not pixel) */
-  double y;
+  /** position inside the axes (not pixel) */
+  double x ;
+  /** position inside the axes (not pixel) */
+  double y ;
+  double z ;
+
+  BOOL is3d ; /**< If FALSE the text will be displayed using the 2d scale even if its parent
+               *   subwindow is in 3d mode. */
 
   BOOL autoSize ; /* to know wether the size of the displayed array is specified by user or */
                    /* automatically computed. */
 
-  double userSize[2] ; /* the width and height of the displayed string array defined by user */
+  double userSize[2] ; /**< Width and height of the displayed string array defined by user */
   
-  sciTextAlignment stringsAlign ; /* the alignment of the strings inside the array */
+  sciTextAlignment stringsAlign ; /**< Alignment of the strings inside the array */
   
   BOOL centeredPos ; /**< to know wether the (x,y) position is the point in the middle of the
                         string or the lower-left point */
@@ -513,7 +518,6 @@ typedef struct
   BOOL isline   ; /* switch the contour of the box */
   BOOL isfilled ; /* switch the transparency of the box */
   /** */
-  double z; /**DJ.Abdemouche 2003**/
   /** specifies the text scilab code for the callback associated with this entity */
   char *callback; 
   /** the length of the callback code */
@@ -637,30 +641,29 @@ sciTitle;
 typedef struct
 {
   /* sciRelationShip relationship; */
-  /** */
-  sciText text;
+  /** contains the data to display the label */
+ /*  sciText text; */
+  sciPointObj * text ;
   /** absolut position in subindow*/
-  POINT2D pos;	
-  int ptype;
-  /** up, down */
-  /*sciTitlePlace titleplace; */
+  /* POINT2D pos; */
+  int ptype ; /**< to distinguish between title, x_label,.... */
+
   /** */
   BOOL isselected;
-  /** specifies if this object is visble             */
-  BOOL visible;
-  int isclip;
-  double clip_region[4];
-  int clip_region_set;
-  int * user_data; /* adding 27.06.05 */
-  int size_of_user_data;
-  BOOL isfilled; /* to know if a label has a colored frame as background */
+  /** specifies if this object is visible  */
+  /* BOOL visible; */
+  /* int isclip; */
+/*   double clip_region[4]; */
+/*   int clip_region_set; */
+/*   int * user_data; /\* adding 27.06.05 *\/ */
+/*   int size_of_user_data; */
+  /*BOOL isfilled;*/ /* to know if a label has a colored frame as background */
   BOOL auto_position; /* automatic or manual position selection for label */
   BOOL auto_rotation; /* automatic or manual rotation selection for label (depends on the current view mode 2d or 3d mainly for y and z labels) */
                       /* not implemented for titles */
-  double position[2]; /* the (x,y) coord. of the label's position */
 
 }
-sciLabel;
+sciLabel ;
 
 typedef struct
 {

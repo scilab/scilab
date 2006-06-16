@@ -146,6 +146,22 @@ void translate2D( double from[2], double trans[2], double dest[2] ) ;
 
 /* perform the translation of point from to point dest with vector trans given in pixels.*/
 void iTranslate2D( int from[2], int trans[2], int dest[2] ) ;
+
+/**
+ * Normalize a 2d vector.
+ */
+void normalize2d( double vect[2] ) ;
+
+/**
+ * Normalize a 2d vector in pixels coordinates.
+ */
+void iNormalize2d( int vect[2] ) ;
+
+/**
+ * return the scalar product of two 2d vectors.
+ */
+#define DOT_PROD_2D(v1,v2) ( ((v1)[0]) * ((v2)[0]) + ((v1)[1]) * ((v2)[1]) )
+
 /*----------------------------------------------------------------------------*/
 
 /*----------------------------------------------------------------------------*/

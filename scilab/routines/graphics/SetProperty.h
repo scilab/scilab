@@ -38,9 +38,11 @@ extern int sciSetGoodIndex(sciPointObj * pobj, int colorindex);  /* SET */
 extern void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);  /* SET */
 extern int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ; /* SET */
 
+extern int sciInitMdlBackground( sciPointObj * pobj, int colorIndex ) ;
 extern int sciInitBackground( sciPointObj * pobj, int colorindex ) ;
 extern int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
+extern int sciInitMdlForeground( sciPointObj * pObj, int colorIndex ) ;
 extern int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
 extern int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
@@ -217,6 +219,9 @@ extern int sciSetUserSize(  sciPointObj * pObj, double width, double height ) ;
 
 extern int sciInitCenterPos( sciPointObj * pObj, BOOL newCP ) ;
 extern int sciSetCenterPos(  sciPointObj * pObj, BOOL newCP ) ;
+
+int sciInitIs3d( sciPointObj * pObj, BOOL is3d ) ;
+int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */

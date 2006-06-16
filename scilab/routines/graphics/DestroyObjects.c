@@ -351,9 +351,24 @@ DestroyScrollH (sciPointObj * pthis)
   return 0;
 }
 
+/**
+ * free the structure used by the text object but does not remove the relationship links.
+ */
+int desallocateText( sciPointObj * pthis )
+{
+  deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
+  FREE (pTEXT_FEATURE (pthis)->user_data);
+  pTEXT_FEATURE (pthis)->size_of_user_data = 0;
+
+  FREE (sciGetFontContext(pthis)->pfontname);
+  FREE (sciGetPointerToFeature (pthis));
+  FREE (pthis);
+
+  return 0;
+}
 
 /**DestroyText
- * @memo This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
+ * This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int
@@ -760,16 +775,18 @@ sciUnCompound (sciPointObj * pobj)
 int DestroyLabel (sciPointObj * pthis)
 {
   sciLabel * ppLabel = pLABEL_FEATURE (pthis);
-  FREE (ppLabel->user_data); 
-  ppLabel->size_of_user_data = 0;
-  deleteMatrix( ppLabel->text.pStrings ) ;
+  int textStatus = -1 ;
+ 
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE ((sciGetFontContext(pthis))->pfontname);
+  if (sciDelHandle (pthis) == -1) { return -1 ; }
+  textStatus = desallocateText( ppLabel->text ) ;
+  if ( textStatus != 0 )
+  {
+    return textStatus ;
+  }
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
-  /* on peut alors destroyer le parent */
+  
   return 0;
 }
 

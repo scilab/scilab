@@ -2686,17 +2686,23 @@ void XGradPosition(sciPointObj * psubwin, int yy, int rect3)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   
-  if(ppsubwin->firsttime_x == TRUE)
-    {
-      ppsubwin->XGradMostOnTop = yy;
-      ppsubwin->XGradMostOnBottom = yy + rect3;
-      ppsubwin->firsttime_x = FALSE;
-    }
+  if( ppsubwin->firsttime_x )
+  {
+    ppsubwin->XGradMostOnTop = yy - rect3 ;
+    ppsubwin->XGradMostOnBottom = yy ;
+    ppsubwin->firsttime_x = FALSE;
+  }
   else
+  {
+    if(yy > ppsubwin->XGradMostOnBottom)
     {
-      if(yy < ppsubwin->XGradMostOnBottom) ppsubwin->XGradMostOnBottom  = yy;
-      if(yy + rect3 > ppsubwin->XGradMostOnTop) ppsubwin->XGradMostOnTop = yy + rect3;
+      ppsubwin->XGradMostOnBottom  = yy ;
     }
+    if( yy - rect3 < ppsubwin->XGradMostOnTop)
+    {
+      ppsubwin->XGradMostOnTop = yy - rect3 ;
+    }
+  }
 }
 
 /*--------------------------------------------------------------------------------*/

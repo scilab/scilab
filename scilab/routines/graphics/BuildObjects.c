@@ -515,7 +515,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       }
 
       sciSetStrings( ppsubwin->mon_title,
-                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.pStrings ) ;
+                     sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_title) ) ;
 
             
       /*------------------------------------*/
@@ -529,7 +529,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       }
 
       sciSetStrings( ppsubwin->mon_x_label,
-                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.pStrings ) ;
+                     sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_x_label) ) ;
       
 
       /*------------------------------------*/
@@ -543,7 +543,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	return (sciPointObj *) NULL;
       }
       sciSetStrings( ppsubwin->mon_y_label,
-                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.pStrings ) ;
+                     sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_y_label) ) ;
      
       /*------------------------------------*/
       if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
@@ -557,7 +557,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	return (sciPointObj *) NULL;
       }
       sciSetStrings( ppsubwin->mon_z_label,
-                     pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.pStrings ) ;
+                     sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)  ) ;
            
       /* labels auto_position modes */
       pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position = 
@@ -701,6 +701,126 @@ ConstructScrollH (sciPointObj * pparentfigure)
 }
 
 
+/**
+ * creates a new text object. However the link with the parent is not created.
+ * this function is to be used with objects including a text object.
+ */
+sciPointObj * allocateText( sciPointObj       * pparentsubwin,
+                            char             ** text         ,
+                            int                 nbRow        ,
+                            int                 nbCol        ,
+                            double              x            ,
+                            double              y            ,
+                            BOOL                autoSize     ,
+                            double              userSize[2]  ,
+                            BOOL                centerPos    ,
+                            int               * foreground   ,
+                            int               * background   , 
+                            BOOL                isboxed      ,
+                            BOOL                isline       ,
+                            BOOL                isfilled     ,
+                            sciTextAlignment    align         )
+{
+  sciPointObj * pObj = NULL ;
+  sciText * ppText ;
+  if ((pObj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+  {
+    return (sciPointObj *) NULL;
+  }
+  
+  sciSetEntityType (pObj, SCI_TEXT);
+  
+  if ((pObj->pfeatures = MALLOC ((sizeof (sciText)))) == NULL)
+  {
+    FREE(pObj);
+    return (sciPointObj *) NULL;
+  }
+  
+  ppText = pTEXT_FEATURE( pObj ) ;
+
+  ppText->user_data = (int *) NULL;
+  ppText->size_of_user_data = 0;
+  sciSetCurrentSon (pObj, NULL);
+  ppText->relationship.psons = NULL;
+  ppText->relationship.plastsons = NULL;
+
+  /* it must be specified for some functions */
+  sciSetParent( pObj, pparentsubwin ) ;
+
+  ppText->callback = (char *)NULL;
+  ppText->callbacklen = 0;
+  ppText->callbackevent = 100;
+  ppText->visible = sciGetVisibility( pparentsubwin );
+      
+  ppText->clip_region_set = 0 ;
+  sciInitIsClipping( pObj, sciGetIsClipping( pparentsubwin ) ) ;
+  sciSetClipping( pObj, sciGetClipping(pparentsubwin) );
+  
+  /* allocate the matrix */
+  ppText->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
+  if ( ppText->pStrings == NULL )
+  {
+    FREE(pObj->pfeatures);
+    FREE(pObj);
+    return NULL ;
+  }
+  
+  /* initialize position */
+  ppText->is3d = TRUE ;
+  ppText->x = x;
+  ppText->y = y;
+  ppText->z = 0.0; /**DJ.Abdemouche 2003**/
+  
+  
+  if ( sciInitFontContext (pObj) == -1 )
+  {
+    FREE(pObj->pfeatures);
+    FREE(pObj);
+    return NULL ;
+  }
+  
+  if ( sciInitGraphicContext(pObj) == -1 )
+  {
+    FREE(pObj->pfeatures);
+    FREE(pObj);
+    return NULL ;
+  }
+  
+  ppText->centeredPos = centerPos ;
+  ppText->autoSize = autoSize ;
+
+  /* userSize must be specified if the size is given by the user */
+  /* or the user specified a rectangle */
+
+  if ( !autoSize || centerPos )
+  {
+    ppText->userSize[0] = userSize[0] ;
+    ppText->userSize[1] = userSize[1] ;
+  }
+  else
+  {
+    ppText->userSize[0] = 0.0 ;
+    ppText->userSize[1] = 0.0 ;
+  }
+  
+  ppText->stringsAlign = align ;
+  
+  sciInitIsBoxed(pObj,isboxed);
+  sciInitIsLine(pObj,isline);
+  sciInitIsFilled(pObj,isfilled);
+
+  if(foreground != NULL)
+  {
+    sciInitForeground(pObj,(*foreground));
+  }
+  
+  if(background != NULL)
+  {
+    sciInitBackground(pObj,(*background));
+  }
+  
+  return pObj;
+}
 
 /**ConstructText
  * This function creates the parents window (manager) and the elementaries structures
@@ -716,135 +836,40 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 	       BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align )
 {
   sciPointObj * pobj   = (sciPointObj *) NULL;
-  sciText     * ppText ;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN) 
+  {
+    pobj = allocateText( pparentsubwin, text, nbRow, nbCol, x, y, autoSize, userSize,
+                         centerPos, foreground, background, isboxed, isline, isfilled, align ) ;
+    
+    if ( pobj == NULL )
     {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-      {
-	return (sciPointObj *) NULL;
-      }
-
-      sciSetEntityType (pobj, SCI_TEXT);
-      
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciText)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      
-      /* get the feature */
-      ppText = pTEXT_FEATURE( pobj ) ;
-
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-
-      ppText->user_data = (int *) NULL;
-      ppText->size_of_user_data = 0;
-      ppText->relationship.psons = (sciSons *) NULL;
-      ppText->relationship.plastsons = (sciSons *) NULL;
-
-      ppText->callback = (char *)NULL;
-      ppText->callbacklen = 0;
-      ppText->callbackevent = 100;
-      ppText->visible = sciGetVisibility(sciGetParentSubwin (pobj));
-      
-      ppText->clip_region_set = 0;
-      
-      sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj) ) ) ;
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
-      
-      /*       pTEXT_FEATURE (pobj)->clip_region = (double *) NULL; */
-
-      /* allocate the matrix */
-      ppText->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( ppText->pStrings == NULL )
-      {
-        sciprint("No more place to allocates text string, try a shorter string");
-        sciDelThisToItsParent (pobj, sciGetParent (pobj));
-        sciDelHandle (pobj);
-        FREE(pobj->pfeatures);	  
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      
-      /* initialize position */
-      ppText->x = x;
-      ppText->y = y;
-      ppText->z = 0.0; /**DJ.Abdemouche 2003**/
-      
-      
-      if ( sciInitFontContext (pobj) == -1 )
-      {
-        deleteMatrix( ppText->pStrings ) ;        
-        sciDelThisToItsParent (pobj, sciGetParent (pobj));
-        sciDelHandle (pobj);
-        FREE(pobj->pfeatures);	  
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      
-      if ( sciInitGraphicContext(pobj) == -1 )
-	{
-          deleteMatrix( ppText->pStrings ) ;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppText)
-	  FREE(pobj);
-	  sciprint("pas de context");
-	  return (sciPointObj *) NULL;
-	}
-      
-      ppText->centeredPos = centerPos ; /* to distinguish between xstring and xstringb */
-      ppText->autoSize = autoSize ;
-
-      /* userSize must be specified if the size is given by the user */
-      /* or the user specified a rectangle */
-
-      if ( !autoSize || centerPos )
-      {
-        ppText->userSize[0] = userSize[0] ;
-        ppText->userSize[1] = userSize[1] ;
-      }
-      else
-      {
-        ppText->userSize[0] = 0.0 ;
-        ppText->userSize[1] = 0.0 ;
-      }
-      
-      ppText->stringsAlign = align ;
-
-      sciInitIsBoxed(pobj,isboxed);
-      sciInitIsLine(pobj,isline);
-      sciInitIsFilled(pobj,isfilled);
-      
-      if(foreground != NULL)
-	sciInitForeground(pobj,(*foreground));
-      
-      if(background != NULL)
-	sciInitBackground(pobj,(*background));
-      
-      return pobj;
+      return NULL ;
     }
-  else
+    
+    if (sciAddNewHandle (pobj) == -1)
     {
-      sciprint ("The parent has to be a SUBWIN \n");
-      return (sciPointObj *) NULL;
+      deleteMatrix(  pTEXT_FEATURE( pobj )->pStrings ) ;
+      FREE(pobj->pfeatures);
+      FREE(pobj);
+      return  NULL;
     }
+    
+    if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
+    {
+      deleteMatrix(  pTEXT_FEATURE( pobj )->pStrings ) ;
+      sciDelHandle (pobj);
+      FREE(pobj->pfeatures);
+      FREE(pobj);
+      return NULL;
+    }
+    
+    return pobj ;
+
+  }
+  
+  sciprint ("The parent has to be a SUBWIN \n");
+  return NULL;
 }
 
 
@@ -2712,7 +2737,7 @@ ConstructCompoundSeq (int number)
 
 
 /**ConstructLabel
- * @memo This function creates Label structure used for x,y,z labels and for the Title.
+ * This function creates Label structure used for x,y,z labels and for the Title.
  * @param  sciPointObj *pparentsubwin
  * @param  char text[] : intial text string.
  * @param  int type to get info. on the type of label
@@ -2721,9 +2746,11 @@ ConstructCompoundSeq (int number)
 sciPointObj *
 ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 {
-  sciPointObj * pobj =    (sciPointObj *) NULL;
+  sciPointObj * pobj = NULL;
   /* get a pointer on the feature */
-  sciLabel    * ppLabel ; 
+  sciLabel    * ppLabel ;
+  char * emptyString = "" ;
+  int defaultColor = 0 ;
   
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
   {
@@ -2740,60 +2767,48 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     }
 
     ppLabel =  pLABEL_FEATURE( pobj ) ;
+
+    ppLabel->text = allocateText( pparentsubwin, &emptyString, 1, 1,
+                                  0.0, 0.0, TRUE, NULL, FALSE, &defaultColor, &defaultColor,
+                                  FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+
+    if ( ppLabel->text == NULL )
+    {
+      FREE(ppLabel);
+      FREE(pobj);
+      return NULL ;
+    }
     
     if (sciAddNewHandle (pobj) == -1)
     {
+      desallocateText( ppLabel->text ) ;
       FREE(ppLabel);
       FREE(pobj);
-      return (sciPointObj *) NULL;
+      return NULL;
     }
     
-    /*  sciSetParent (pobj, pparentsubwin); */
     if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
     {
+      desallocateText( ppLabel->text ) ;
       sciDelHandle (pobj);
       FREE(ppLabel);
       FREE(pobj);
-      return (sciPointObj *) NULL;
+      return NULL;
     }
     
     sciSetCurrentSon (pobj, (sciPointObj *) NULL);
     sciInitIsFilled(pobj,FALSE); /* by default a simple text is display (if existing) */
-    ppLabel->user_data = (int *) NULL;
-    ppLabel->size_of_user_data = 0;
-    ppLabel->text.relationship.psons = (sciSons *) NULL;
-    ppLabel->text.relationship.plastsons = (sciSons *) NULL;
-    ppLabel->text.isboxed = FALSE ;
-    ppLabel->text.isline  = TRUE ;
-    ppLabel->text.callback = (char *) NULL;
-    ppLabel->text.callbacklen = 0; 
-    ppLabel->visible = sciGetVisibility(sciGetParentSubwin(pobj));
     
-
-    ppLabel->text.pStrings = newFullStringMatrix( &text, 1, 1) ; /* only one string for now */
-    if ( ppLabel->text.pStrings == NULL)
-    {
-      sciprint("No more place to allocates text string, try a shorter string");
-      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-      sciDelHandle (pobj);
-      FREE(ppLabel);
-      FREE(pobj);
-      return (sciPointObj *) NULL;
-    }
+    sciInitIs3d( pobj, FALSE ) ; /* the text of labels is displayed using 2d scale */
 
     ppLabel->ptype = type;
-    
-    ppLabel->text.fontcontext.textorientation = 0; 
-    
-    /*   pLABEL_FEATURE (pobj)->titleplace = SCI_LABEL_IN_TOP; */
+    ppLabel->auto_position = TRUE;
+    ppLabel->auto_rotation = TRUE;
+
     ppLabel->isselected = TRUE;
     if (sciInitFontContext (pobj) == -1)
     {
-      deleteMatrix( ppLabel->text.pStrings ) ;
-      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-      sciDelHandle (pobj);
-      FREE(ppLabel);
-      FREE(pobj);
+      DestroyLabel( pobj ) ;
       return (sciPointObj *) NULL;
     }
     

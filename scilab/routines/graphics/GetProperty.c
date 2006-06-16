@@ -313,7 +313,7 @@ sciGetGraphicContext (sciPointObj * pobj)
       return  &(pTEXT_FEATURE (pobj)->graphiccontext);
       break;
     case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/06 */
-      return &(pLABEL_FEATURE(pobj)->text.graphiccontext);
+      return sciGetGraphicContext( pLABEL_FEATURE(pobj)->text );
     case SCI_AGREG:
     case SCI_TITLE:
     case SCI_PANNER:
@@ -333,15 +333,16 @@ sciGetGraphicContext (sciPointObj * pobj)
  */
 int
 sciGetNumColors (sciPointObj * pobj)
-{ 
-  if ( (pobj == pfiguremdl) || (pobj == paxesmdl) 
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_title)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label) ) /* Addings F.Leray 10.06.04 */
-    return pFIGURE_FEATURE (pfiguremdl)->numcolors;
-  else
-    return sciGetScilabXgc (pobj)->Numcolors;
+{
+  /* modified jb Silvy 06/2006 */
+  switch (sciGetEntityType (pobj))
+  {
+  case SCI_FIGURE:
+    return pFIGURE_FEATURE (pobj)->numcolors ;
+  default:
+    return sciGetNumColors( sciGetParentFigure( pobj ) ) ;
+  }
+  return -1 ;
 }
 
 
@@ -1411,7 +1412,7 @@ sciGetIsFilled (sciPointObj * pobj)
       return pARC_FEATURE(pobj)->fill;
       break;  
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      return pLABEL_FEATURE(pobj)->isfilled ;
+      return sciGetIsFilled( pLABEL_FEATURE(pobj)->text ) ;
       break;
     case SCI_TEXT:
       return pTEXT_FEATURE(pobj)->isfilled ;
@@ -1540,7 +1541,7 @@ sciGetFontContext (sciPointObj * pobj)
       return &(pFIGURE_FEATURE (pobj)->fontcontext);
       break;
     case SCI_LABEL: /* F.Leray 27.05.04 */
-      return &(pLABEL_FEATURE (pobj)->text.fontcontext);
+      return sciGetFontContext( pLABEL_FEATURE(pobj)->text ) ;
       break;
     case SCI_ARC:
     case SCI_SEGS: 
@@ -1728,7 +1729,7 @@ StringMatrix * sciGetText( sciPointObj * pobj )
       return pLEGEND_FEATURE (pobj)->text.pStrings;
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      return pLABEL_FEATURE (pobj)->text.pStrings;
+      return sciGetText( pLABEL_FEATURE (pobj)->text ) ;
       break;
     case SCI_UIMENU:
       return pUIMENU_FEATURE (pobj)->label.pStrings;
@@ -2400,15 +2401,16 @@ sciGetLegendPos (sciPointObj * pobj)
 sciPointObj *
 sciGetParentFigure (sciPointObj * pobj)
 {
-  if ( (pobj == pfiguremdl) || (pobj == paxesmdl)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_title)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label)
-       || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label) ) /* Addings F.Leray 10.06.04 */
-    return (sciPointObj *) pfiguremdl;
+  /* if ( (pobj == pfiguremdl) || (pobj == paxesmdl) */
+/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_title) */
+/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label) */
+/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label) */
+/*        || (pobj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label) ) /\* Addings F.Leray 10.06.04 *\/ */
+/*     return (sciPointObj *) pfiguremdl; */
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
+      return pobj ;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -2433,16 +2435,17 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
       {
-        sciPointObj * figure ;
-        figure = sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;
-        return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure;
+        /* sciPointObj * figure ; */
+/*         figure = sciGetScilabXgc ((sciPointObj *) pobj)->mafigure; */
+/*         return sciGetScilabXgc ((sciPointObj *) pobj)->mafigure; */
+        return sciGetParentFigure( sciGetParent( pobj ) ) ; /* jbs 06/2006 */
       }  
       break;
     default:  
-      return (sciPointObj *) NULL;
+      return NULL;
       break;
     }
-  return (sciPointObj *) NULL;
+  return NULL;
 }
 /** 19/09/2002 ***/
 /**sciGetParentSubwin
@@ -2796,7 +2799,7 @@ sciGetClipping (sciPointObj * pobj)
 /*       return pGRAYPLOT_FEATURE (pobj)->clip_region; */
 /*       break; */
     case SCI_LABEL:
-      return pLABEL_FEATURE (pobj)->clip_region;
+      return sciGetClipping( pLABEL_FEATURE(pobj)->text ) ;
       break;
 	case SCI_UIMENU:
     case SCI_SURFACE:
@@ -3121,7 +3124,7 @@ sciGetVisibility (sciPointObj * pobj)
       return pAGREG_FEATURE (pobj)->visible;
       break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
-      return pLABEL_FEATURE (pobj)->visible;
+      return sciGetVisibility ( pLABEL_FEATURE (pobj)->text ) ;
       break;
 	case SCI_UIMENU:
 	  return pUIMENU_FEATURE (pobj)->visible;
@@ -4377,8 +4380,7 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
       *size_ptr =  &(((sciMerge *) pMERGE_FEATURE (pobj))->size_of_user_data);
       break;
     case SCI_LABEL:
-      *user_data_ptr = &(((sciLabel *) pLABEL_FEATURE (pobj))->user_data);
-      *size_ptr =  &(((sciLabel *) pLABEL_FEATURE (pobj))->size_of_user_data);
+      sciGetPointerToUserData ( pLABEL_FEATURE(pobj)->text, user_data_ptr, size_ptr ) ;
       break;
 
 	case SCI_UIMENU:
@@ -4849,11 +4851,11 @@ sciGetInterpVector(sciPointObj * pobj)
 int
 sciGetPosition (sciPointObj * pobj, double *x, double *y)
 {
-  switch (sciGetEntityType (pobj))
+  switch ( sciGetEntityType (pobj) )
     {
     case SCI_LABEL:
-      *x = pLABEL_FEATURE(pobj)->position[0];
-      *y = pLABEL_FEATURE(pobj)->position[1];
+      *x = sciGetTextPosX( pLABEL_FEATURE(pobj)->text ) ;
+      *y = sciGetTextPosY( pLABEL_FEATURE(pobj)->text ) ;
       return 0;
       break;
     case SCI_POLYLINE:
@@ -5051,5 +5053,25 @@ BOOL sciGetCenterPos( sciPointObj * pObj )
     sciprint ("This object has no centered position.\n");
     return FALSE ;
   }
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * return wether the current object is displayed in 2d or 3d mode.
+ */
+BOOL sciGetIs3d( sciPointObj * pObj )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->is3d ;
+  case SCI_TEXT:
+    return pTEXT_FEATURE( pObj )->is3d ;
+  case SCI_LABEL:
+    return sciGetIs3d( pLABEL_FEATURE( pObj )->text ) ;
+  default:
+    sciprint ("This object has no 3d mode.\n");
+    return FALSE ;
+  }
+  return FALSE ;
 }
 /*--------------------------------------------------------------------------------------------*/

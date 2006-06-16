@@ -101,7 +101,7 @@ void changeMatElement( sciMatrix * mat, int row, int col, void * newValue )
   mat->data[row + col * mat->nbRow] = newValue ;
 }
 /*-------------------------------------------------------------------------------------------*/
-void copyMatElement(       sciMatrix * mat          ,
+void copyMatElement(       sciMatrix     * mat      ,
                            int             row      ,
                            int             col      , 
                      const void          * copyValue,

@@ -2748,7 +2748,7 @@ int scixfpolys(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scixget(char *fname,unsigned long fname_len)
 {
-  integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v,i ;
+  integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v = 0,i ;
   double dv;
   BOOL keyFound = FALSE ;
 

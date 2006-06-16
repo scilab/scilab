@@ -12,24 +12,37 @@
 #include "sciMatrix.h"
 
 /*-------------------------------------------------------------------------------------------*/
-/* matrix of strings */
+/**
+ * The StringMatrix is just a pointer matrix. So it can be used in any function using
+ * sciMatrix. The typedef is used for a more understandable code.
+ */
 typedef sciMatrix StringMatrix ;
 
 /*-------------------------------------------------------------------------------------------*/
 /* Constructors */
-/* create a nbRow x nbCol matrix which data are copied from textMat */
+/**
+ * create a nbRow x nbCol matrix which data are copied.
+ * @param textMat the copied data.
+ */
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol ) ;
 
-/* copy constructor */
+/** 
+ * copy constructor
+ */
 StringMatrix * copyStringMatrix( const StringMatrix * copyMat ) ;
 
 /*-------------------------------------------------------------------------------------------*/
 /* accessors */
 char * getStrMatElement( const StringMatrix * mat, int row, int col ) ;
 
+/**
+ * get the pointer on the array of string. May be used for faster access to the data.
+ */
 char ** getStrMatData(  const StringMatrix * mat ) ;
 
-/* desalocate the (row,col) current string and copy the new one */
+/**
+ * desalocate the (row,col) current string and copy the new one.
+ */
 void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyStr ) ;
 
 /*-------------------------------------------------------------------------------------------*/
