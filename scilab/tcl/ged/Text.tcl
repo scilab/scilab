@@ -838,15 +838,14 @@ proc sciCommandData {} {
     if { $longueur == 0 } {
 	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
     } else {
-	
-	ScilabEval "global ged_handle;ged_handle.data=$scicomint_text;" "seq"
-	#Refresh now !
-	ScilabEval "tkged();" "seq"
+	# check if it is needed to reload the page
+        # jb Silvy 06/2006: I removed the call to tkged
+        ScilabEval "global ged_handle ; if ( ged_handle.text <> $scicomint_text ) then, ged_handle.text = $scicomint_text ; end;" "seq"
     }
 }
 
 proc GUIEditData  {} {
-    ScilabEval "global ged_handle;EditData(ged_handle.text,\"ged_handle.text\")" "seq"
+    ScilabEval "global ged_handle;editvar(\"ged_handle.text\")" "seq"
 }
 
 proc SelectData  {w args} {
@@ -854,8 +853,6 @@ proc SelectData  {w args} {
     set finddbarray -1
     set dbarray "string array"
     set finddbarray [expr [string first $dbarray $curtext]]
-#    puts "finddbarray = $finddbarray"
-
 
     if { ($curtext == "----") || ($finddbarray != -1) } {
 #	puts "nothing to do"

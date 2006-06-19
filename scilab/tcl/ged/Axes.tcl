@@ -105,68 +105,6 @@ global xauto_rotation yauto_rotation zauto_rotation titleauto_rotation
 global smallPad mediumPad #used to be 1m and 2m
 global gedFont
 
-# #debug
-#  set ged_handle_list_size 2
-#  set curgedindex 1
-
-#  set SELOBJECT(1) "Figure"
-#  set SELOBJECT(2) "Axes"
-
-#  set OBJECTSARRAY(1) "dzdz"
-#  set OBJECTSARRAY(2) "dzd"
-#  set curgedobject "dzd"
-
-
-
-# add for XF init only : to remove after...
-
-    #test debug
-  #   set nbticks_x 2
-
-#     set LOCATIONS_X(1) 0.001
-#     set LOCATIONS_X(2) 1.7
-
-#     set LABELS_X(1) "zero virgule 00 et un"
-#     set LABELS_X(2) "un,7"
-    #
-
-
-#      set ncolors 32
-#      set curcolor 4
-#      set curfontsize 1
-#      set curfontcolor 7
-#      set curthick 1
-
-#      set xToggle "n"
-#      set yToggle "n"
-
-#      set xlabel_foreground 1
-#      set ylabel_foreground 1
-#      set zlabel_foreground 1
-#      set titlelabel_foreground 1
-
-#      set xlabel_fontsize 1
-#      set ylabel_fontsize 1
-#      set zlabel_fontsize 1
-#      set titlelabel_fontsize 1
-
-
-#      set xGrid -1
-#      set yGrid -1
-#      set zGrid -1
-
-#      set boxToggle "on"
-
-#      set fcolor -1
-#      set bcolor -2
-
-#      set viewToggle "2D"
-#      set isoToggle "off"
-#      set limToggle "off"
-#      set cubToggle "off"
-#      set visToggle "on"
-#      set curvis "on"
-
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
     
@@ -323,15 +261,22 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lbx -borderwidth 0
 pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 0
 
+set mycurtext $xlabel
 
-label $w.frame.xlabel -text "Label:" -font $gedFont -anchor e -width $largeur
-entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel  -font $gedFont
-pack $w.frame.xlabel -in  $w.frame.lbx -side left
-pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 0 -padx $mediumPad
-bind  $w.frame.xlabel1 <Return> {setXlabel} 
-bind  $w.frame.xlabel1 <KP_Enter> {setXlabel}
-bind  $w.frame.xlabel1 <FocusOut> {setXlabel}
+label $w.frame.textlabel  -height 0 -text "Text:" -width 0  -font $gedFont  -anchor e -width $largeur
+combobox $w.frame.text \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable xlabel \
+    -editable true \
+    -command [list SelectXlabel ] -font $gedFont
+eval $w.frame.text list insert end [list $mycurtext "----" "Edit data..."]
+pack $w.frame.textlabel -in $w.frame.lbx  -side left
+pack $w.frame.text   -in $w.frame.lbx  -expand 1 -fill x -pady 0 -padx $mediumPad
 
+#visibility
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0
 label $w.frame.vislablabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
@@ -590,14 +535,22 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lby -borderwidth 0
 pack $w.frame.lby  -in $w.frame -side top   -fill x  -pady 0
 
-label $w.frame.ylabel -text "Label:" -font $gedFont -anchor e -width $largeur
-entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel  -font $gedFont
-pack $w.frame.ylabel -in  $w.frame.lby -side left
-pack $w.frame.ylabel1  -in  $w.frame.lby  -expand 1 -fill x -pady 0 -padx $mediumPad
-bind  $w.frame.ylabel1 <Return> {setYlabel} 
-bind  $w.frame.ylabel1 <KP_Enter> {setYlabel}
-bind  $w.frame.ylabel1 <FocusOut> {setYlabel}
+set mycurtext $ylabel
 
+label $w.frame.textlabel  -height 0 -text "Text:" -width 0  -font $gedFont  -anchor e -width $largeur
+combobox $w.frame.text \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable ylabel \
+    -editable true \
+    -command [list SelectYlabel ] -font $gedFont
+eval $w.frame.text list insert end [list $mycurtext "----" "Edit data..."]
+pack $w.frame.textlabel -in $w.frame.lby  -side left
+pack $w.frame.text   -in $w.frame.lby  -expand 1 -fill x -pady 0 -padx $mediumPad
+
+#visibility
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0
 label $w.frame.vislablabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
@@ -849,14 +802,23 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lbz -borderwidth 0
 pack $w.frame.lbz  -in $w.frame -side top   -fill x -pady 0
 
-label $w.frame.zlabel -text "Label:" -font $gedFont -anchor e -width $largeur
-entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel  -font $gedFont
-pack $w.frame.zlabel -in  $w.frame.lbz -side left
-pack $w.frame.zlabel1  -in  $w.frame.lbz  -expand 1 -fill x -pady 0 -padx $mediumPad
-bind  $w.frame.zlabel1 <Return> {setZlabel} 
-bind  $w.frame.zlabel1 <KP_Enter> {setZlabel}
-bind  $w.frame.zlabel1 <FocusOut> {setZlabel}
+set mycurtext $zlabel
 
+label $w.frame.textlabel  -height 0 -text "Text:" -width 0  -font $gedFont  -anchor e -width $largeur
+combobox $w.frame.text \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable zlabel \
+    -editable true \
+    -command [list SelectZlabel ] -font $gedFont
+eval $w.frame.text list insert end [list $mycurtext "----" "Edit data..."]
+pack $w.frame.textlabel -in $w.frame.lbz  -side left
+pack $w.frame.text   -in $w.frame.lbz  -expand 1 -fill x -pady 0 -padx $mediumPad
+
+
+#visibility
 frame $w.frame.vislab -borderwidth 0
 pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 0
 label $w.frame.vislablabel  -text "Visibility:" -font $gedFont -anchor e -width $largeur
@@ -4458,6 +4420,114 @@ proc toggleAutoRotationtitle { frame } {
     OnOffForeground $frame $titleauto_rotation
 }
 
+proc sciCommandXlabel {} {
+    global scicomint_Xlabel
+
+    set longueur [expr [string length $scicomint_Xlabel]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
+    } else {
+        ScilabEval "global ged_handle ; if ( ged_handle.x_label.text <> $scicomint_Xlabel ) then, ged_handle.x_label.text = $scicomint_Xlabel ; end;" "seq"
+    }
+}
+
+proc GUIEditXlabel  {} {
+    ScilabEval "global ged_handle;editvar(\"ged_handle.x_label.text\")" "seq"
+}
+
+proc SelectXlabel  {w args} {
+    global xlabel scicomint_Xlabel
+    set finddbarray -1
+    set dbarray "string array"
+    set finddbarray [expr [string first $dbarray $xlabel]]
+
+    if { ($xlabel == "----") || ($finddbarray != -1) } {
+#	puts "nothing to do"
+    } else {
+	if { $xlabel ==  "Edit data..." } {
+            GUIEditXlabel
+	} else {
+	    #enter a variable
+	    set scicomint_Xlabel $xlabel
+	    sciCommandXlabel
+	}
+    }
+}
+
+
+proc sciCommandYlabel {} {
+    global scicomint_Ylabel
+
+    set longueur [expr [string length $scicomint_Ylabel]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
+    } else {
+        ScilabEval "global ged_handle ; if ( ged_handle.y_label.text <> $scicomint_Ylabel ) then, ged_handle.y_label.text = $scicomint_Ylabel ; end;" "seq"
+    }
+}
+
+proc GUIEditYlabel  {} {
+    ScilabEval "global ged_handle;editvar(\"ged_handle.y_label.text\")" "seq"
+}
+
+proc SelectYlabel  {w args} {
+    global ylabel scicomint_Ylabel
+    set finddbarray -1
+    set dbarray "string array"
+    set finddbarray [expr [string first $dbarray $ylabel]]
+
+    if { ($ylabel == "----") || ($finddbarray != -1) } {
+#	puts "nothing to do"
+    } else {
+	if { $ylabel ==  "Edit data..." } {
+            GUIEditYlabel
+	} else {
+	    #enter a variable
+	    set scicomint_Ylabel $ylabel
+	    sciCommandYlabel
+	}
+    }
+}
+
+
+proc sciCommandZlabel {} {
+    global scicomint_Zlabel
+
+    set longueur [expr [string length $scicomint_Zlabel]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
+    } else {
+        # jb Silvy I removed tkged
+        ScilabEval "global ged_handle ; if ( ged_handle.z_label.text <> $scicomint_Zlabel ) then, ged_handle.z_label.text = $scicomint_Zlabel ; end;" "seq"
+    }
+}
+
+proc GUIEditZlabel  {} {
+    ScilabEval "global ged_handle;editvar(\"ged_handle.z_label.text\")" "seq"
+}
+
+proc SelectZlabel  {w args} {
+    global zlabel scicomint_Zlabel
+    set finddbarray -1
+    set dbarray "string array"
+    set finddbarray [expr [string first $dbarray $zlabel]]
+
+    if { ($zlabel == "----") || ($finddbarray != -1) } {
+#	puts "nothing to do"
+    } else {
+	if { $zlabel ==  "Edit data..." } {
+            GUIEditZlabel
+	} else {
+	    #enter a variable
+	    set scicomint_Zlabel $zlabel
+	    sciCommandZlabel
+	}
+    }
+}
+
 
 proc sciCommandTextTitle {} {
     global scicomint_textTitle
@@ -4467,15 +4537,12 @@ proc sciCommandTextTitle {} {
     if { $longueur == 0 } {
 	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a string matrix\n(or use a macro call).\n to initialize the \"text\" field."
     } else {
-	
-	ScilabEval "global ged_handle;ged_handle.title.text=$scicomint_textTitle;" "seq"
-	#Refresh now !
-	ScilabEval "tkged();" "seq"
+        ScilabEval "global ged_handle ; if ( ged_handle.title.text <> $scicomint_textTitle ) then, ged_handle.title.text = $scicomint_textTitle ; end;" "seq"
     }
 }
 
 proc GUIEditTextTitle  {} {
-    ScilabEval "global ged_handle;EditData(ged_handle.title.text,\"ged_handle.title.text\")" "seq"
+    ScilabEval "global ged_handle;editvar(\"ged_handle.title.text\")" "seq"
 }
 
 proc SelectTextTitle  {w args} {

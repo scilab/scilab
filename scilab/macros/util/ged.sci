@@ -437,12 +437,40 @@ function ged_axes(h)
   TCL_SetVar("Zlabelfontstyle",ged_fontarray(h.z_label.font_style+1))
   TCL_SetVar("TITLEfontstyle",ged_fontarray(h.title.font_style+1))
   TCL_SetVar("fontstyle",ged_fontarray(h.font_style+1))
-  TCL_SetVar("xlabel",h.x_label.text(1,1)) // get the convinience of just an unput line
-  TCL_SetVar("ylabel",h.y_label.text(1,1))
-  TCL_SetVar("zlabel",h.z_label.text(1,1))
-  //TCL_SetVar("tlabel",h.title.text)
-  txt = "["+strcat(string(size(h.title.text)),'x')+" string array]"
+
+  // label texts
+  if size(h.x_label.text,'*') == 1 then
+    txt = """" + h.x_label.text + """" ;
+  else
+    // an array of strings
+    txt = "["+strcat(string(size(h.x_label.text)),'x')+" string array]" ;
+  end
+  TCL_SetVar("xlabel", txt );
+  
+  if size(h.y_label.text,'*') == 1 then
+    txt = """" + h.y_label.text + """" ;
+  else
+    // an array of strings
+    txt = "["+strcat(string(size(h.y_label.text)),'x')+" string array]" ;
+  end
+  TCL_SetVar("ylabel", txt );
+  
+  if size(h.z_label.text,'*') == 1 then
+    txt = """" + h.z_label.text + """" ;
+  else
+    // an array of strings
+    txt = "["+strcat(string(size(h.z_label.text)),'x')+" string array]" ;
+  end
+  TCL_SetVar("zlabel", txt );
+  
+  if size(h.title.text,'*') == 1 then
+    txt = """" + h.title.text + """" ;
+  else
+    // an array of strings
+    txt = "["+strcat(string(size(h.title.text)),'x')+" string array]" ;
+  end
   TCL_SetVar("tlabel", txt );
+  
   TCL_SetVar("xlabel_fontforeground",string(h.x_label.font_foreground))
   TCL_SetVar("ylabel_fontforeground",string(h.y_label.font_foreground))
   TCL_SetVar("zlabel_fontforeground",string(h.z_label.font_foreground))
@@ -829,7 +857,11 @@ function ged_text(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  txt = "["+strcat(string(size(h.text)),'x')+" string array]"
+  if size(h.text,'*') == 1 then
+    txt =""""+ h.text +"""" ; // one double quote at each side
+  else
+    txt = "["+strcat(string(size(h.text)),'x')+" string array]"
+  end
   TCL_SetVar("curtext", txt );
   TCL_SetVar( "textBoxWidth", string( h.text_box(1) ) ) ;
   TCL_SetVar("textBoxHeight", string( h.text_box(2) ) ) ;
