@@ -1,6 +1,6 @@
 function %h_save(h,fd)
   //Author S. Steer Sept 2004, Copyright INRIA
-  version=[4 0 0 0]
+  version=[4 0 0 1]
   mput(version,'c',fd)
   
   hsize = size(h);
@@ -75,7 +75,7 @@ function save_graphichandle(h,fd)
     // title
     l=h.title;
     mput(bool2s(l.visible=='on'),'c',fd) ; // title.visible
-    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); // title.text
+    save_text_matrix( l.text, fd ) ;
     mput(l.font_foreground,'il',fd); // title_label.font_foreground
     mput(l.foreground,'il',fd) // title.foreground
     mput(l.background,'il',fd) // title.background
@@ -91,7 +91,7 @@ function save_graphichandle(h,fd)
     // x_label
     l=h.x_label
     mput(bool2s(l.visible=='on'),'c',fd) // x_label.visible
-    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); // x_label.text
+    save_text_matrix( l.text, fd ) ;
     mput(l.font_foreground,'il',fd); // x_label.font_foreground
     mput(l.foreground,'il',fd) // x_label.foreground
     mput(l.background,'il',fd) // x_label.background
@@ -107,7 +107,7 @@ function save_graphichandle(h,fd)
     // y_label
     l=h.y_label
     mput(bool2s(l.visible=='on'),'c',fd) // y_label.visible
-    mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); //y_label.text
+    save_text_matrix( l.text, fd ) ;
     mput(l.font_foreground,'il',fd); // y_label.font_foreground
     mput(l.foreground,'il',fd) // y_label.foreground
     mput(l.background,'il',fd) // y_label.background
@@ -124,7 +124,7 @@ function save_graphichandle(h,fd)
       // z_label
       l=h.z_label
       mput(bool2s(l.visible=='on'),'c',fd) // z_label.visible
-      mput(length(l.text),'c',fd);mput(ascii(l.text),'c',fd); // z_label.text
+      save_text_matrix( l.text, fd ) ;
       mput(l.font_foreground,'il',fd); // z_label.font_foreground
       mput(l.foreground,'il',fd) // z_label.foreground
       mput(l.background,'il',fd) // z_label.background
@@ -479,7 +479,8 @@ function save_graphichandle(h,fd)
   case "Text"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd); // type
     mput(bool2s(h.visible=='on'),'c',fd) // visible
-    save_text_vector(h.text,fd) // text
+    //save_text_vector(h.text,fd) // text
+    save_text_matrix( h.text, fd ) ;
     mput(size(h.data),'c',fd); // data // size could be 2 or 3
     mput(h.data,'dl',fd); 
     mput(h.text_box,'dl',fd); // text_box
@@ -499,6 +500,9 @@ function save_graphichandle(h,fd)
     
     mput( h.font_foreground, 'il', fd ) ; // font_foreground
     mput( h.background     , 'il', fd ) ; // background
+    
+    mput(length(h.alignment),'c',fd);
+    mput(ascii(h.alignment),'c',fd) ; // alignment
     
     mput(length(h.clip_state),'c',fd); // clip_state
     mput(ascii(h.clip_state),'c',fd);
@@ -538,4 +542,19 @@ endfunction
 function save_text_vector(t,fd)
     t=strcat(t,ascii(10))
     mput(length(t),'il',fd);mput(ascii(t),'c',fd);
+endfunction
+
+// save a text matrix
+function save_text_matrix(strMat,fd)
+  // put nbRow and nbCol
+  nbRow = size( strMat, 1 ) ;
+  nbCol = size( strMat, 2 ) ;
+  mput( nbRow, 'il', fd ) ;
+  mput( nbCol, 'il', fd ) ;
+  for i = 1:nbRow
+    for j = 1:nbCol
+      mput(length(strMat(i,j)),'c',fd) ;
+      mput(ascii(strMat(i,j)),'c',fd) ;
+    end
+  end
 endfunction

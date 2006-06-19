@@ -126,7 +126,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     // title
     set(titl,"visible"   , toggle(mget(1,'c',fd))) // title.visible
-    set(titl,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+    if is_higher_than( [4 0 0 0] ) then
+      set(titl, "text", load_text_matrix( fd ) ) ;
+    else
+      set(titl,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+    end
     if is_higher_than([3 1 0 2]) then
       set(titl,"font_foreground", mget(1,'il',fd)); // title.font_foreground
     end
@@ -148,7 +152,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     // x_label
     set(x_label,"visible"   , toggle(mget(1,'c',fd))) // x_label.visible
-    set(x_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd)) ) ; // x_label.text
+    if is_higher_than( [4 0 0 0] ) then
+      set(x_label, "text", load_text_matrix( fd ) ) ;
+    else
+      set(x_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+    end
     if is_higher_than([3 1 0 2]) then
       set(x_label,"font_foreground", mget(1,'il',fd)); // x_label.font_foreground
     end
@@ -169,7 +177,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     // y_label
     set(y_label,"visible"        , toggle(mget(1,'c',fd)))
-    set(y_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd))) // y_label.text
+    if is_higher_than( [4 0 0 0] ) then
+      set(y_label, "text", load_text_matrix( fd ) ) ;
+    else
+      set(y_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+    end
     if is_higher_than([3 1 0 2]) then
       set(y_label,"font_foreground", mget(1,'il',fd)); // y_label.font_foreground
     end
@@ -192,7 +204,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       // z_label
       z_label=a.z_label
       set(z_label,"visible"        , toggle(mget(1,'c',fd)))
-      set(z_label,"text"           , ascii(mget(mget(1,'c',fd),'c',fd))) // z_label.text
+      if is_higher_than( [4 0 0 0] ) then
+	set(z_label, "text", load_text_matrix( fd ) ) ;
+      else
+	set(z_label,"text"      , ascii(mget(mget(1,'c',fd),'c',fd))) // title.text
+      end
       if is_higher_than([3 1 0 2]) then
 	set(z_label,"font_foreground", mget(1,'il',fd)); // z_label.font_foreground
       end
@@ -943,7 +959,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
   case "Text"
     visible         = toggle(mget(1,'c',fd)) // visible
-    text            = load_text_vector(fd) // text
+    
+    if is_higher_than( [4 0 0 0] ) then
+      text            = load_text_matrix( fd ) ;
+    else
+      text            = load_text_vector(fd) // text
+    end
     sz              = mget(2,'c',fd)
     data            = matrix(mget(prod(sz),'dl',fd),sz(1),-1) // data
     text_box        = mget(2,'dl',fd) // text_box
@@ -979,6 +1000,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       
       set( h, "font_foreground", mget( 1, 'il', fd ) ) ; // font_foreground
       set( h, "background"     , mget( 1, 'il', fd ) ) ; // background
+    end
+    
+    if is_higher_than( [4 0 0 0] ) then
+      set( h, "alignment", ascii(mget(mget(1,'c',fd),'c',fd)  ) ) ; // alignment
     end
     
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
@@ -1059,5 +1084,16 @@ function text=load_text_vector(fd)
   for k=1:size(newline,'*')
     text=[text;ascii(T(p:newline(k)-1))]
     p=newline(k)+1
+  end
+endfunction
+
+// retrieve a string matrix saved by save_text_matrix
+function strMat = load_text_matrix( fd )
+  nbRow = mget( 1, 'il', fd ) ;
+  nbCol = mget( 1, 'il', fd ) ;
+  for i = 1:nbRow
+    for j = 1:nbCol
+      strMat(i,j) = ascii(mget(mget(1,'c',fd),'c',fd)) ;
+    end
   end
 endfunction
