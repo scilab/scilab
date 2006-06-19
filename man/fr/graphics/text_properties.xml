@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -38,8 +38,13 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="text: ">
-        <SP>This field is the character string vector which contains the
-        text.</SP>
+        <SP>The matrix containing the strings of the object. The rows of the
+        matrix are displayed horizontally and the columns vertically.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="alignment: ">
+        <SP>Specify how the strings are aligned in their columns. The value
+        must be <BD>'left'</BD>,<BD> 'center' </BD>or <BD>'right'</BD>.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="data: ">
@@ -65,6 +70,22 @@
         box when the <VERB>box</VERB> property is <VERB>"on"</VERB>. If
         <VERB>fill_mode</VERB> is <VERB>"off"</VERB>, the background of the
         box is not transparent.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="text_box: ">
+        <SP>A two dimensionnal vector specifying the size of the rectangle
+        which is used when the text_box_mode property is set to
+        <BD>'centered'</BD> or <BD>'filled'</BD>.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="text_box_mode: ">
+        <SP>May have three different value : <BD>'off'</BD>,
+        <BD>'centered'</BD> or <BD>'filled'</BD>. If <BD>'off'</BD>, the
+        strings are displayed using the given font and the data field
+        specifies the position of the lower-left point of the text. If
+        <BD>'centered'</BD>, the text is displayed in the middle of the
+        rectangle whose size is given by text_box. If <BD>'filled' </BD>the
+        font size of the strings will be expanded to fill the rectangle.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_foreground: ">
@@ -138,22 +159,26 @@
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[   
-
+  <EXAMPLE><![CDATA[
   set("figure_style","new") //create a figure
-   a=get("current_axes");
-   a.data_bounds=[0,0;1,1];
+  a=get("current_axes");
+  a.data_bounds=[0,0;1,1];
+  a.axes_visible = 'on' ;
 
-   xstring(0.5,0.6,"Scilab is not esilaB",0,0)
+  xstring(0.5,0.5,"Scilab is not esilaB",0,0)
 
-   t=get("hdl")   //get the handle of the newly created object
+  t=get("hdl")   //get the handle of the newly created object
 
-   t.foreground=9;
-   t.font_size=5;
-   t.font_style=5;
-   t.text="SCILAB";
-   t.font_angle=90;
+  t.foreground=9; // change font properties
+  t.font_size=5;
+  t.font_style=5;
 
+  t.text=["SCILAB","is";"not","esilaB"] ; // change the text
+  t.font_angle=90 ; // turn the strings
+  t.text_box = [0,0] ;
+  t.text_box_mode = 'centered' ; // the text is now centered on [0.5,0.5].
+  t.alignment = 'center' ;
+  t.box = 'on' ; // draw a box around the text
  ]]></EXAMPLE>
 
   <SEE_ALSO>
@@ -178,5 +203,5 @@
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
-  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE, Jean-Baptiste SILVY</AUTHOR>
 </MAN>

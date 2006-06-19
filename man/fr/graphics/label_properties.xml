@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -39,8 +39,8 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="text: ">
-        <SP>This field is the character string vector which contains the
-        label.</SP>
+        <SP>The matrix containing the strings of the object. The rows of the
+        matrix are displayed horizontally and the columns vertically.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="font_foreground: ">
@@ -118,8 +118,7 @@
    a.x_label
    a.y_label
    a.z_label
-   xtitle("My title","my x axis label", "Volume") 
-   a.z_label.text="Month"
+   xtitle("My title","my x axis label", "Volume","Month") 
 
    t=a.title;
    t.foreground=9;
