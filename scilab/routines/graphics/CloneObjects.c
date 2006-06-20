@@ -388,9 +388,47 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
 }
 
 /*--------------------------------------------------------------------------*/
-void cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
+int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
 {
   /* struct affectation */
   *(sciGetGraphicContext(pObjDest)) = *(sciGetGraphicContext(pObjSource)) ;
+  return 0 ;
+}
+/*--------------------------------------------------------------------------*/
+int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
+{
+  
+  /* struct affectation, doesn't copy the font name */
+  /* *(sciGetFontContext(pObjDest)) = *(sciGetFontContext(pObjSource)) ; */
+
+  sciFont * sourceFC = sciGetFontContext( pObjSource ) ;
+  sciFont * destFC   = sciGetFontContext( pObjDest   ) ;
+
+  if ( destFC->fontnamelen != 0 )
+  {
+    FREE( destFC->pfontname ) ;
+    destFC->pfontname = NULL ;
+  }
+  
+  /* copy the font name */
+  if ( sourceFC->fontnamelen != 0 )
+  {
+    /* use of realloc, because the pointer might be already used */
+    destFC->pfontname
+      = MALLOC( sourceFC->fontnamelen * sizeof( char ) ) ;
+    if ( destFC->pfontname == NULL )
+    {
+      return -1 ;
+    }
+    strcpy( destFC->pfontname, sourceFC->pfontname ) ;
+  }
+  
+  destFC->fontnamelen     = sourceFC->fontnamelen     ;
+  destFC->backgroundcolor = sourceFC->backgroundcolor ;
+  destFC->foregroundcolor = sourceFC->foregroundcolor ;
+  destFC->fonttype        = sourceFC->fonttype        ;
+  destFC->fontdeciwidth   = sourceFC->fontdeciwidth   ;
+  destFC->textorientation = sourceFC->textorientation ;
+  return 0 ;
 }
 /*--------------------------------------------------------------------------*/

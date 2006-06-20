@@ -433,7 +433,7 @@ int C2F(graphicsmodels) ()
 
 
 /**sciInitGraphicContext
- * @memo Inits the graphic context of this object with the default value. the new graphic object inherits parent's features by sciGetParent()
+ * Inits the graphic context of this object with the default value. the new graphic object inherits parent's features by sciGetParent()
  */
 int
 sciInitGraphicContext (sciPointObj * pobj)
@@ -444,163 +444,122 @@ sciInitGraphicContext (sciPointObj * pobj)
    * la colormap des fils est heritee du parent
    */
 
-  /* F.Leray debug 30.03.04*/
-  /*
-    sciGraphicContext * psciGC_pobj = sciGetGraphicContext(pobj); 
-    sciGraphicContext * psciGC_paxe = sciGetGraphicContext(paxesmdl);
-    sciGraphicContext * psciGC_pfig = sciGetGraphicContext(pfiguremdl);
-  */
   switch (sciGetEntityType (pobj))
+  {
+  case SCI_FIGURE:
+    if ( pobj == pfiguremdl )
     {
-    case SCI_FIGURE:
-      if (pobj == pfiguremdl)
-	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor = -3; /*33;*/  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
-	  (sciGetGraphicContext(pobj))->foregroundcolor = -2; /*32;*/  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
-	  (sciGetGraphicContext(pobj))->fillstyle = HS_HORIZONTAL;
-	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
-	  (sciGetGraphicContext(pobj))->linewidth = 1;
-	  (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
- 	  (sciGetGraphicContext(pobj))->ismark    = FALSE;
- 	  (sciGetGraphicContext(pobj))->isline    = TRUE;
-	  (sciGetGraphicContext(pobj))->markstyle = 0;
-	  (sciGetGraphicContext(pobj))->marksize = 0; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
-	}
-      else
-	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(pfiguremdl))->backgroundcolor;
-	  (sciGetGraphicContext(pobj))->foregroundcolor = (sciGetGraphicContext(pfiguremdl))->foregroundcolor;
-	  (sciGetGraphicContext(pobj))->fillstyle = (sciGetGraphicContext(pfiguremdl))->fillstyle;
-	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pfiguremdl))->fillcolor;
-	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(pfiguremdl))->linewidth;
-	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(pfiguremdl))->linestyle;
- 	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(pfiguremdl))->ismark ;
- 	  (sciGetGraphicContext(pobj))->isline    = (sciGetGraphicContext(pfiguremdl))->isline ;
-	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(pfiguremdl))->markstyle;
-	  (sciGetGraphicContext(pobj))->marksize = (sciGetGraphicContext(pfiguremdl))->marksize; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markbackground = (sciGetGraphicContext(pfiguremdl))->markbackground; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markforeground = (sciGetGraphicContext(pfiguremdl))->markforeground; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->marksizeunit = (sciGetGraphicContext(pfiguremdl))->marksizeunit; /* New F.Leray 22.02.05 */
-	  
-	}
-      return 0;
-      break;
-    case SCI_SUBWIN:
-      if (pobj == paxesmdl)
-	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor =	-3;  /* F.Leray 09.04.04 POSSIBLE DISCUSSION HERE : may it be (sciGetGraphicContext(sciGetParent(pobj)))->backgroundcolor ??*/
-	  (sciGetGraphicContext(pobj))->foregroundcolor =	-2;  /* HERE too : may it be  (sciGetGraphicContext(sciGetParent(pobj)))->foregroundcolor ??*/
-	  (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
-	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
-	  (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
-	  (sciGetGraphicContext(pobj))->linestyle =	sciGetLineStyle (sciGetParent (pobj));
- 	  (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
- 	  (sciGetGraphicContext(pobj))->isline    =	sciGetIsLine (sciGetParent (pobj));
-	  (sciGetGraphicContext(pobj))->markstyle =	sciGetMarkStyle (sciGetParent (pobj));
-	  (sciGetGraphicContext(pobj))->marksize = 	sciGetMarkSize (sciGetParent (pobj)); /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->marksizeunit = 	sciGetMarkSizeUnit (sciGetParent (pobj)); /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
-	}
-      else
-	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor = (sciGetGraphicContext(paxesmdl))->backgroundcolor;
-	  (sciGetGraphicContext(pobj))->foregroundcolor = (sciGetGraphicContext(paxesmdl))->foregroundcolor;
-	  (sciGetGraphicContext(pobj))->fillstyle = (sciGetGraphicContext(paxesmdl))->fillstyle;
-	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(paxesmdl))->fillcolor;
-	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(paxesmdl))->linewidth;
-	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(paxesmdl))->linestyle;
- 	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(paxesmdl))->ismark;
- 	  (sciGetGraphicContext(pobj))->isline    = (sciGetGraphicContext(paxesmdl))->isline;
-	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(paxesmdl))->markstyle;
-	  (sciGetGraphicContext(pobj))->marksize = (sciGetGraphicContext(paxesmdl))->marksize; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markbackground = (sciGetGraphicContext(paxesmdl))->markbackground; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->markforeground = (sciGetGraphicContext(paxesmdl))->markforeground; /* New F.Leray 21.01.05 */
-	  (sciGetGraphicContext(pobj))->marksizeunit = (sciGetGraphicContext(paxesmdl))->marksizeunit; /* New F.Leray 22.02.05 */
-	}
-      return 0;
-      break;
-    case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_LIGHT:
-    case SCI_AXES:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB: 
-    case SCI_LEGEND: /* Adding a graphic context to legend object F.Leray 21.01.05 */
-    case SCI_TEXT:
-      (sciGetGraphicContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
-      (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
-      (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
+      (sciGetGraphicContext(pobj))->backgroundcolor = -3; /*33;*/  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
+      (sciGetGraphicContext(pobj))->foregroundcolor = -2; /*32;*/  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
+      (sciGetGraphicContext(pobj))->fillstyle = HS_HORIZONTAL;
       (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
-      (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
-      (sciGetGraphicContext(pobj))->linestyle =	sciGetLineStyle (sciGetParent (pobj));
-      (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
-      (sciGetGraphicContext(pobj))->isline    =	sciGetIsLine (sciGetParent (pobj));
-      (sciGetGraphicContext(pobj))->markstyle =	sciGetMarkStyle (sciGetParent (pobj));
-      (sciGetGraphicContext(pobj))->marksize  = sciGetMarkSize  (sciGetParent (pobj));
-      (sciGetGraphicContext(pobj))->markbackground  = sciGetMarkBackground (sciGetParent (pobj)) - 1;
-      (sciGetGraphicContext(pobj))->markforeground  = sciGetMarkForeground (sciGetParent (pobj)) - 1;
-      (sciGetGraphicContext(pobj))->marksizeunit  = sciGetMarkSizeUnit  (sciGetParent (pobj));
-      return 0;
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
-      if ( sciGetParent(pobj) == paxesmdl )
-      {
-        /* this is a label model */
-        cloneGraphicContext( sciGetParent( pobj ), pobj ) ;
-        return 0;
-      }
-      else
-      {
-        sciPointObj * plabelmdl = NULL ;
-        switch ( pLABEL_FEATURE(pobj)->ptype )
-        {
-        case 1:
-          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
-          break ;
-        case 2:
-          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
-          break ;
-        case 3:
-          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
-          break ;
-        case 4:
-          plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
-          break ;
-        default:
-          /* arrgh*/
-          return -1 ;
-          break ;
-        }
-        cloneGraphicContext( plabelmdl, pobj ) ;
-        return 0 ;
-      }
-    case SCI_AGREG:
-    case SCI_TITLE:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    case SCI_UIMENU:
-    default:
-      return -1;
-      break;
+      (sciGetGraphicContext(pobj))->linewidth = 1;
+      (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
+      (sciGetGraphicContext(pobj))->ismark    = FALSE;
+      (sciGetGraphicContext(pobj))->isline    = TRUE;
+      (sciGetGraphicContext(pobj))->markstyle = 0;
+      (sciGetGraphicContext(pobj))->marksize = 0; /* New F.Leray 21.01.05 */
+      (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
+      (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
+      (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
     }
+    else
+    {
+      cloneGraphicContext( pfiguremdl, pobj ) ;
+    }
+    return 0;
+    break;
+  case SCI_SUBWIN:
+    if ( pobj == paxesmdl )
+    {
+      cloneGraphicContext( sciGetParent (pobj), pobj ) ;
+      sciGetGraphicContext(pobj)->backgroundcolor = -3 ;
+      sciGetGraphicContext(pobj)->foregroundcolor = -2 ;
+      sciGetGraphicContext(pobj)->markbackground  = -3 ;
+      sciGetGraphicContext(pobj)->markforeground  = -2 ;
+    }
+    else
+    {
+      cloneGraphicContext( paxesmdl, pobj ) ;
+    }
+    return 0;
+    break;
+  case SCI_ARC:
+  case SCI_SEGS: 
+  case SCI_FEC: 
+  case SCI_GRAYPLOT: 
+  case SCI_POLYLINE:
+  case SCI_RECTANGLE:
+  case SCI_SURFACE:
+  case SCI_LIGHT:
+  case SCI_AXES:
+  case SCI_MENU:
+  case SCI_MENUCONTEXT:
+  case SCI_STATUSB: 
+  case SCI_LEGEND: /* Adding a graphic context to legend object F.Leray 21.01.05 */
+  case SCI_TEXT:
+    cloneGraphicContext( sciGetParent (pobj), pobj ) ;
+    return 0;
+    break;
+  case SCI_LABEL: /* F.Leray 28.05.04, modif JB.Silvy 03/2006 */
+    if ( sciGetParent(pobj) == paxesmdl )
+    {
+      /* this is a label model */
+      cloneGraphicContext( sciGetParent( pobj ), pobj ) ;
+      return 0;
+    }
+    else
+    {
+      sciPointObj * plabelmdl = NULL ;
+      switch ( pLABEL_FEATURE(pobj)->ptype )
+      {
+      case 1:
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
+        break ;
+      case 2:
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
+        break ;
+      case 3:
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
+        break ;
+      case 4:
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+        break ;
+      default:
+        /* arrgh*/
+        return -1 ;
+        break ;
+      }
+      cloneGraphicContext( plabelmdl, pobj ) ;
+      return 0 ;
+    }
+  case SCI_AGREG:
+  case SCI_TITLE:
+  case SCI_PANNER:		/* pas de context graphics */
+  case SCI_SBH:		/* pas de context graphics */
+  case SCI_SBV:		/* pas de context graphics */
+  case SCI_UIMENU:
+  default:
+    return -1;
+    break;
+  }
   return 0;
 }
 
-
+/**
+ * Inits the font context of an object byt copying the one of an other.
+ * @param pObjSource the object from which the FC is taken
+ * @param pObjDest the object in which the FC is paste
+ */
+int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest )
+{
+  sciGetFontContext( pObjDest )->fontnamelen = 0 ;
+  sciGetFontContext( pObjDest )->pfontname = NULL ;
+  return cloneFontContext( pObjSource, pObjDest ) ;
+}
 
 /**sciInitFontContext
- * @memo Inits the graphic context of this object with the default value
+ * Inits the graphic context of this object with the default value
  * @param sciPointObj * pobj: the pointer to the entity
  */
 int
@@ -629,106 +588,47 @@ sciInitFontContext (sciPointObj * pobj)
   case SCI_MENUCONTEXT:
   case SCI_STATUSB:
   {
-    sciPointObj * parentObject = sciGetParent (pobj) ;
-    (sciGetFontContext(pobj))->backgroundcolor =  sciGetFontBackground( parentObject  ) - 1 ;
-    (sciGetFontContext(pobj))->foregroundcolor =  sciGetFontForeground( parentObject  ) - 1;
-    (sciGetFontContext(pobj))->fonttype        =  sciGetFontContext( parentObject )->fonttype; 
-    (sciGetFontContext(pobj))->fontdeciwidth   =  sciGetFontContext( parentObject )->fontdeciwidth;
-    (sciGetFontContext(pobj))->textorientation =  sciGetFontContext( parentObject )->textorientation;
-    (sciGetFontContext(pobj))->fontnamelen     =  sciGetFontContext( parentObject )->fontnamelen; 
-    if (((sciGetFontContext(pobj))->pfontname =
-         CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                 sizeof (char))) == NULL)
-    {
-      sciprint ("No more Memory for fontname\n"); 
-      return 0;
-    }
+    initFCfromCopy( sciGetParent(pobj), pobj ) ;
   }
   break;
   case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
-    if(sciGetParent(pobj) == paxesmdl)
+    if ( sciGetParent(pobj) == paxesmdl )
     {
-      /* init plabelmdl that could be models for title, x_label, y_label or z_label */
-      (sciGetFontContext(pobj))->fonttype        = 6 ; /* set helvetica font */
-      (sciGetFontContext(pobj))->backgroundcolor = -3;
-      (sciGetFontContext(pobj))->foregroundcolor = -2; 
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-      (sciGetFontContext(pobj))->textorientation = 0;
-
-      if (((sciGetFontContext(pobj))->pfontname =
-           CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                   sizeof (char))) == NULL)
-      {
-        sciprint ("No more Memory for fontname\n"); 
-        return 0;
-      }
+      initFCfromCopy( sciGetParent(pobj), pobj ) ;
     }
     else
     {
       sciPointObj * plabelmdl = NULL;
 	  
       if(pLABEL_FEATURE(pobj)->ptype == 1) /* title */
-        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
-      else if(pLABEL_FEATURE(pobj)->ptype == 2) /* x_label */
-        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
-      else if(pLABEL_FEATURE(pobj)->ptype == 3) /* y_label */
-        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
-      else if(pLABEL_FEATURE(pobj)->ptype == 4) /* z_label */
-        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
-	  
-      (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ = (sciGetFontContext(plabelmdl))->backgroundcolor;
-      (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(plabelmdl))->foregroundcolor;
-      (sciGetFontContext(pobj))->fonttype  /*=        aa[2] */ = (sciGetFontContext(plabelmdl))->fonttype;
-      (sciGetFontContext(pobj))->fontdeciwidth  /*=   aa[3] */ = (sciGetFontContext(plabelmdl))->fontdeciwidth;
-      (sciGetFontContext(pobj))->fontnamelen  /*=     aa[5] */ = (sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
-      (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ = (sciGetFontContext(plabelmdl))->textorientation;
-	  
-      if (
-        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                                                        sizeof (char))) == NULL)
       {
-        sciprint ("No more Memory for fontname\n");
-        return 0;
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_title;
       }
+      else if(pLABEL_FEATURE(pobj)->ptype == 2) /* x_label */
+      {
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_x_label;
+      }
+      else if(pLABEL_FEATURE(pobj)->ptype == 3) /* y_label */
+      {
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_y_label;
+      }
+      else if(pLABEL_FEATURE(pobj)->ptype == 4) /* z_label */
+      {
+        plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+      }
+        
+      initFCfromCopy( plabelmdl, pobj ) ;
+
     }
     break;
   case SCI_SUBWIN: 
     if (pobj == paxesmdl)
     {
-      sciInitFontStyle (pobj, 6); /* set helvetica font */
-      (sciGetFontContext(pobj))->backgroundcolor = -3;
-      (sciGetFontContext(pobj))->foregroundcolor = -2; 
-      (sciGetFontContext(pobj))->fontdeciwidth = 100;
-      (sciGetFontContext(pobj))->textorientation = 0;
-      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
-	  
-      if (
-        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                                                        sizeof (char))) == NULL)
-      {
-        sciprint ("No more Memory for fontname\n");
-        return 0;
-      }
+      initFCfromCopy( sciGetParent( pobj ), pobj ) ;
     }
     else
     {
-      (sciGetFontContext(pobj))->backgroundcolor /* = aa[0] */ = (sciGetFontContext(paxesmdl))->backgroundcolor;
-      (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(paxesmdl))->foregroundcolor;
-      (sciGetFontContext(pobj))->fonttype /* =        aa[2] */ = (sciGetFontContext(paxesmdl))->fonttype;
-      (sciGetFontContext(pobj))->fontdeciwidth /* =   aa[3] */ =(sciGetFontContext(paxesmdl))->fontdeciwidth;
-      (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =(sciGetFontContext(paxesmdl))->textorientation;
-      (sciGetFontContext(pobj))->fontnamelen /* =     aa[5] */ =(sciGetFontContext(paxesmdl))->fontnamelen; /*fontname not used */
-	  
-      if (
-        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                                                        sizeof (char))) == NULL)
-      {
-        sciprint ("No more Memory for fontname\n");
-        return 0;
-      }
-      /* END ADDING F.Leray 08.04.04*/ 
+      initFCfromCopy( paxesmdl, pobj ) ;
     } 
     break;
   case SCI_FIGURE:
@@ -752,23 +652,7 @@ sciInitFontContext (sciPointObj * pobj)
     }
     else
     {
-      /* START ADDING F.Leray 08.04.04*/ 
-      /* F.Leray 08.04.04 : I create a  sciFont fontcontext; to act on Axes font*/
-      (sciGetFontContext(pobj))->backgroundcolor = (sciGetFontContext(pfiguremdl))->backgroundcolor;	
-      (sciGetFontContext(pobj))->foregroundcolor = (sciGetFontContext(pfiguremdl))->foregroundcolor;
-      (sciGetFontContext(pobj))->fonttype =        (sciGetFontContext(pfiguremdl))->fonttype;
-      (sciGetFontContext(pobj))->fontdeciwidth =   (sciGetFontContext(pfiguremdl))->fontdeciwidth;
-      (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(pfiguremdl))->textorientation;
-      (sciGetFontContext(pobj))->fontnamelen =     (sciGetFontContext(pfiguremdl))->fontnamelen; /*fontname not used */
-	  
-      if (
-        ((sciGetFontContext(pobj))->pfontname = CALLOC ((sciGetFontContext(pobj))->fontnamelen + 1,
-                                                        sizeof (char))) == NULL)
-      {
-        sciprint ("No more Memory for fontname\n");
-        return 0;
-      }
-      /* END ADDING F.Leray 08.04.04*/  
+      initFCfromCopy( pfiguremdl, pobj ) ;
     }
     break;
   case SCI_PANNER:		/* pas de context graphics */
@@ -1271,7 +1155,7 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
   
   if ( ppLabel->text == NULL )
   {
-    desallocateText( ppLabel->text ) ;
+    deallocateText( ppLabel->text ) ;
     FREE( ppLabel ) ;
     FREE( newLabel  );
     return NULL ;
@@ -1314,6 +1198,9 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     DestroyLabel( newLabel ) ;
     return NULL ;
   }
+  
+  
+
   return newLabel ;
 }
 

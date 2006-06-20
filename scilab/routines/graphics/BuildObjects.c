@@ -702,7 +702,8 @@ ConstructScrollH (sciPointObj * pparentfigure)
 
 
 /**
- * creates a new text object. However the link with the parent is not created.
+ * creates a new text object. However the object is not added in the handle list.
+ * Its graphic and font context are also not initialized.
  * this function is to be used with objects including a text object.
  */
 sciPointObj * allocateText( sciPointObj       * pparentsubwin,
@@ -723,17 +724,17 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
 {
   sciPointObj * pObj = NULL ;
   sciText * ppText ;
-  if ((pObj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+  if ( ( pObj = MALLOC( sizeof(sciPointObj) ) ) == NULL )
   {
-    return (sciPointObj *) NULL;
+    return NULL;
   }
   
   sciSetEntityType (pObj, SCI_TEXT);
   
-  if ((pObj->pfeatures = MALLOC ((sizeof (sciText)))) == NULL)
+  if ( ( pObj->pfeatures = MALLOC( sizeof (sciText) ) ) == NULL )
   {
-    FREE(pObj);
-    return (sciPointObj *) NULL;
+    FREE( pObj ) ;
+    return NULL;
   }
   
   ppText = pTEXT_FEATURE( pObj ) ;
@@ -771,21 +772,6 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   ppText->y = y;
   ppText->z = 0.0; /**DJ.Abdemouche 2003**/
   
-  
-  if ( sciInitFontContext (pObj) == -1 )
-  {
-    FREE(pObj->pfeatures);
-    FREE(pObj);
-    return NULL ;
-  }
-  
-  if ( sciInitGraphicContext(pObj) == -1 )
-  {
-    FREE(pObj->pfeatures);
-    FREE(pObj);
-    return NULL ;
-  }
-  
   ppText->centeredPos = centerPos ;
   ppText->autoSize = autoSize ;
 
@@ -809,12 +795,12 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   sciInitIsLine(pObj,isline);
   sciInitIsFilled(pObj,isfilled);
 
-  if(foreground != NULL)
+  if ( foreground != NULL )
   {
     sciInitForeground(pObj,(*foreground));
   }
   
-  if(background != NULL)
+  if ( background != NULL )
   {
     sciInitBackground(pObj,(*background));
   }
@@ -835,29 +821,39 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 	       double y, BOOL autoSize, double userSize[2], BOOL centerPos, int *foreground, int *background, 
 	       BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align )
 {
-  sciPointObj * pobj   = (sciPointObj *) NULL;
-
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN) 
+  if ( sciGetEntityType( pparentsubwin ) == SCI_SUBWIN ) 
   {
-    pobj = allocateText( pparentsubwin, text, nbRow, nbCol, x, y, autoSize, userSize,
-                         centerPos, foreground, background, isboxed, isline, isfilled, align ) ;
+    sciPointObj * pobj = allocateText( pparentsubwin, text, nbRow, nbCol, x, y,
+                                       autoSize, userSize, centerPos, foreground, background,
+                                       isboxed, isline, isfilled, align ) ;
     
     if ( pobj == NULL )
     {
       return NULL ;
     }
+
+    if ( sciInitFontContext( pobj ) == -1 )
+    {
+      FREE(pobj->pfeatures);
+      FREE(pobj);
+      return NULL ;
+    }
+  
+    if ( sciInitGraphicContext( pobj ) == -1 )
+    {
+      deallocateText( pobj ) ;
+      return NULL ;
+    }
     
     if (sciAddNewHandle (pobj) == -1)
     {
-      deleteMatrix(  pTEXT_FEATURE( pobj )->pStrings ) ;
-      FREE(pobj->pfeatures);
-      FREE(pobj);
+      deallocateText( pobj ) ;
       return  NULL;
     }
     
-    if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
+    if ( !(sciAddThisToItsParent (pobj, pparentsubwin)) )
     {
-      deleteMatrix(  pTEXT_FEATURE( pobj )->pStrings ) ;
+      deleteMatrix( pTEXT_FEATURE( pobj )->pStrings ) ;
       sciDelHandle (pobj);
       FREE(pobj->pfeatures);
       FREE(pobj);
@@ -2781,7 +2777,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     
     if (sciAddNewHandle (pobj) == -1)
     {
-      desallocateText( ppLabel->text ) ;
+      deallocateText( ppLabel->text ) ;
       FREE(ppLabel);
       FREE(pobj);
       return NULL;
@@ -2789,7 +2785,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
     
     if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
     {
-      desallocateText( ppLabel->text ) ;
+      deallocateText( ppLabel->text ) ;
       sciDelHandle (pobj);
       FREE(ppLabel);
       FREE(pobj);

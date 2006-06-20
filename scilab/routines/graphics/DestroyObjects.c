@@ -354,7 +354,7 @@ DestroyScrollH (sciPointObj * pthis)
 /**
  * free the structure used by the text object but does not remove the relationship links.
  */
-int desallocateText( sciPointObj * pthis )
+int deallocateText( sciPointObj * pthis )
 {
   deleteMatrix( pTEXT_FEATURE(pthis)->pStrings ) ;
   FREE (pTEXT_FEATURE (pthis)->user_data);
@@ -779,7 +779,7 @@ int DestroyLabel (sciPointObj * pthis)
  
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1) { return -1 ; }
-  textStatus = desallocateText( ppLabel->text ) ;
+  textStatus = deallocateText( ppLabel->text ) ;
   if ( textStatus != 0 )
   {
     return textStatus ;

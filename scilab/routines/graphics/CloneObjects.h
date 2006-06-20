@@ -29,12 +29,20 @@ extern sciPointObj *sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparentt
 
 /*--------------------------------------------------------------------------*/
 /**
- * @memo copy the graphicontext of an object to another
+ * copy the graphicontext of an object to another
  * @param pObjSource the object from which the GC is taken
  * @param pObjDest the object in which the GC is paste
+ * @return 0 if the copy is ok, -1 otherwise.
  */
-extern void cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
-
+extern int cloneGraphicContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
+/*--------------------------------------------------------------------------*/
+/**
+ * copy the fontContext of an object to another.
+ * @param pObjSource the object from which the FC is taken
+ * @param pObjDest the object in which the FC is paste
+ * @return 0 if the copy is ok, -1 otherwise.
+ */
+extern int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest ) ;
 /*--------------------------------------------------------------------------*/
 
 #endif /* __SCI_CLONE__ */
