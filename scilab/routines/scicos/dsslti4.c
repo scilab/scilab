@@ -38,13 +38,20 @@ void dsslti4(scicos_block *block,int flag)
   }
   else if (flag ==2){
     /* x+=a*x+b*u */
-    if ((w=(double*)MALLOC(sizeof(double)*nz)) == NULL) return;    
+    w =*block->work;
     memcpy(w,z,nz*sizeof(double));
     C2F(dmmul)(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
     C2F(dmmul1)(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
     FREE(w);
   }
+  else if (flag ==4){/* the workspace for temp storage
+		      */
+    if ((*block->work=
+	 scicos_malloc(sizeof(double)*nz))== NULL ) {
+      set_block_error(-16);
+      return;
+    }
+  }
 }
-
 
 
