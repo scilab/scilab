@@ -71,25 +71,7 @@ function %h_p(h)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box)
 	 "user_data = "+fmtuser_data(u)]
-    case "Patch"
-      if size(h.data,'*') > 10 then 
-       d="matrix "+strcat(string(size(h.data)),'x')
-     else
-       d=sci2exp(h.data,0)
-       if length(d)>70 then 
-       d="matrix "+strcat(string(size(h.data)),'x'),end
-     end
-      u=h.user_data
-      t=[t;
-	 "parent: "+h.parent.type
-	 "children: "+fmtchildren(h.children)
-	 "visible = "+sci2exp(h.visible)
-	 "data = "+d
-	 "foreground = "+string(h.foreground)
-	 "clip_state = "+sci2exp(h.clip_state)
-	 "clip_box = "+sci2exp(h.clip_box)
-	 "user_data = "+fmtuser_data(u)]
-    case "Compound"
+   case "Compound"
       u=h.user_data
       t=[t;
 	 "parent: "+h.parent.type
