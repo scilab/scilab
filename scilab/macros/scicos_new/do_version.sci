@@ -1153,7 +1153,7 @@ function scs_m_new=do_version27(scs_m)
   if size(tol,'*')<5 then tol(5)=0,end
   if size(tol,'*')<6 then tol(6)=0,end
   for iix=size(scs_m(1))+1:10,scs_m(1)(iix)=[];end
-  scs_m_new.props=scicos_params(wpar=scs_m(1)(1),title=scs_m(1)(2),..
+  scs_m_new.props=scicos_params(wpar=scs_m(1)(1),Title=scs_m(1)(2),..
 				tol=tol,tf=tf,..
 				context=scs_m(1)(5),options=scs_m(1)(7),..
 				doc=scs_m(1)(10))
