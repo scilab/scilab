@@ -64,4 +64,6 @@ extern void delete_sgwin_entities(int win_num,int v_flag);
 /* free the user_data */
 extern void clearUserData( sciPointObj * pObj ) ;
 
+extern void sciDeleteWindow( int winNum ) ;
+
 #endif /* __SCI_DESTROY__ */

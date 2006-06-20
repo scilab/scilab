@@ -939,4 +939,12 @@ void clearUserData( sciPointObj * pObj )
   *pSizeUD = 0 ;
 }
 /*------------------------------------------------------------------------------------*/
-
+extern int C2F(deletewin)(integer *number);
+/**
+ * Close the figure with number winNum.
+ */
+void sciDeleteWindow( int winNum )
+{
+  C2F(deletewin)( &winNum ) ;
+}
+/*------------------------------------------------------------------------------------*/
