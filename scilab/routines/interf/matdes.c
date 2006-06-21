@@ -2211,6 +2211,16 @@ int scixstringb(char *fname,unsigned long fname_len)
   long hdlstr;
 
   SciWin();
+
+  if ( Rhs <= 0 )
+  {
+    /* demo */
+    int one = 1 ;
+    char demo[] = "scf(); axes = gca() ; axes.axes_visible = 'on' ; str = ['Scilab','is';'not','Esilab']; xstringb(0.1,0.1,str,0.5,0.5,'fill') ; txt = gce() ; txt.box = 'on' ;" ;
+    sci_demo( fname, demo, &one ) ;
+    return 0 ;
+  }
+
   CheckRhs(5,6);
 
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1);  x = *stk(l1);
@@ -2221,9 +2231,10 @@ int scixstringb(char *fname,unsigned long fname_len)
   GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);  w = *stk(l4);
   GetRhsVar(5,"d",&m5,&n5,&l5); CheckScalar(5,m5,n5);  hx = *stk(l5);
 
-  if (Rhs == 6) {
-    GetRhsVar(6,"c",&m6,&n6,&l6);
-    if ( m6*n6 !=0 && strcmp(cstk(l6),"fill") == 0)
+  if (Rhs == 6)
+  {
+    GetRhsVar(6,"c",&m6,&n6,&l6) ;
+    if ( m6*n6 !=0 && strcmp(cstk(l6),"fill") == 0 )
     {
       autoSize = FALSE ;
     } 
@@ -2242,8 +2253,6 @@ int scixstringb(char *fname,unsigned long fname_len)
   }
   else 
   { /* NG end */
-    /* does not work any more. */
-    /* Scierror(1234,"xstringb does not exists in old style. Please update your code to the new style.\r\n",fname ) ; */
     int v ;
     int i ;
     int j ;
