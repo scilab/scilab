@@ -2193,6 +2193,16 @@ int scixstringb(char *fname,unsigned long fname_len)
   long hdlstr;
 
   SciWin();
+
+  if ( Rhs <= 0 )
+  {
+    /* demo */
+    int one = 1 ;
+    char demo[] = "scf(); axes = gca() ; axes.axes_visible = 'on' ; str = ['Scilab','is';'not','Esilab']; xstringb(0.1,0.1,str,0.5,0.5,'fill') ;" ;
+    sci_demo( fname, demo, &one ) ;
+    return 0 ;
+  }
+
   CheckRhs(5,6);
 
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1);  x = *stk(l1);
