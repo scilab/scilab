@@ -38,19 +38,19 @@
 			<ul>
 				<a href="#chap2.1">2.1. The macros directory</a><br />
 				<ul>
-					<a href="#chap2.1.1">2.1.1. Creation of the builder</a><br />
-					<a href="#chap2.1.2">2.1.2. Creation of the loader</a><br />
+					<a href="#chap2.1.1">2.1.1. The macros builder</a><br />
+					<a href="#chap2.1.2">2.1.2. The macros loader</a><br />
 				</ul>
-				<a href="#chap2.2">2.2. The src directory</a><br />
+				<a href="#chap2.2">2.2. the interface and src directories</a><br />
 				<ul>
-					<a href="#chap2.2.1">2.2.1. Interface</a><br />
-					<a href="#chap2.2.2">2.2.2. Creation of the builder</a><br />
+					<a href="#chap2.2.1">2.2.1. interface examples</a><br />
+					<a href="#chap2.2.2">2.2.2. Primitives builder</a><br />
 				</ul>
 					<a href="#chap2.3">2.3. The man directory</a><br />
 				<ul>
 					<a href="#chap2.3.1">2.3.1. Creation of .xml files</a><br />
-					<a href="#chap2.3.2">2.3.2. Creation of the builder</a><br />
-					<a href="#chap2.3.3">2.3.3. Creation of the loader</a><br />
+					<a href="#chap2.3.2">2.3.2. The man builder</a><br />
+					<a href="#chap2.3.3">2.3.3. The man loader</a><br />
 				</ul>
 			</ul>
 			<a href="#chap3">3. The main builder and loader</a><br />
@@ -62,7 +62,7 @@
 		<p>The root directory has the generic name of the toolbox (here <b>toolbox_example</b>), it contains 7 sub-directories:</p> 
 		
 		<ul style="list-style-type: disc">
-			<li><b>macros</b>: Scilab macros (all .sci files),the builder and loader scripts</li>
+			<li><b>macros</b>: Scilab macros (all .sci files), the builder and loader scripts</li>
 			<li><b>src</b>: code source (all .c and .f  files), a builder script</li>
 			<li><b>interface</b>: interface programs, a builder</li>
 			<li><b>man</b>: all .xml files, the builder and loader scripts</li>
@@ -85,10 +85,9 @@
 				The main builder and main loader scripts launch respectively the sub-builders and sub-loaders included in the sub-directories (macros, src, man, ...), to generate and to load the necessary libraries and the Scilab help files.
 			</p>
 		
-		<a name="#chap2.1"></a>
-		<h3>2.1 The macros directoy</h3>
+		<a name="chap2.1"></a>
+		<h3>2.1 The macros directory</h3>
 		<p>
-			The main builder and main loader scripts launche respectively the sub-builders and sub-loaders included in the sub-directories (macros, man, ...), to generate and to load the necessary libraries and the Scilab help files.
 			This directory included macros Scilab functions, a builder and a loader script.<br />
 			A  macros is a function written in Scilab code (included in .sci file)<br />
 			We consider that the macros directory of the toolbox <b>toolbox_example</b> contains just one .sci file: the function <var><strong>foo1</strong></var> (see above script). Given a matrix A, this function returns the positive components of the A diagonal.
@@ -116,7 +115,7 @@ function [X]=foo1(A)
 endfunction</pre>
 		
 		<a name="chap2.1.1"></a>
-		<h4>2.1.1 Creation of the builder</h4>
+		<h4>2.1.1 The macros builder</h4>
 		<p>
 			The builder (see above script) creates a library variable, (named here: toolbox_examplelib= toolbox name +'lib')
 			from functions .sci  include in the directory macros, and saves it in the file lib.
@@ -137,7 +136,7 @@ clear pathB genlib toolboxname</pre>
 		To customize this template, replace the characters string 'toolbox_example' by the name of your toolbox.
 		
 		<a name="chap2.1.2"></a>
-		<h4>2.1.2 Creation of the loader</h4>
+		<h4>2.1.2 The macros loader</h4>
 		<p>
 			The loader (see above script) loads the library lib included in the directory macros. Like the builder, the code is generic, the first step to locate macrosloader.sce script, and the second to load the library (see help <strong><var>load</strong></var> function)
 		</p>
@@ -151,22 +150,22 @@ load(pathL+'/lib')
 clear pathL</pre>	
 		
 		<a name="chap2.2"></a>
-		<h3>2.2 The src directory</h3>
+		<h3>2.2 Interface and src directories</h3>
 		<p>
-			This directory included .c files and a builder script<br />
 			A Scilab primitive is a Scilab function which calls a function written in C or fortran code (using an interface program)<br />
-			Before to write the builder, its necessary to create for each primitives the corresponding interface programs. When a Scilab primitive is called, the interface program checks that the number, the type and the size of  inputs/outputs arguments is correct (using CheckRhs and CheckLhs functions), and get the adress of the rhs arguments which are in Scilab internal stack to give this information at the interfaced function. So in the first part we explain, thanks to template, how to implement some interfaces programs (written in C code). In this article we don't describe all the possibilities of the interface programs, for more explanations see the directory SCI/examples.  
+			Before to write the builder, its necessary to create for each primitives the corresponding interface programs which are included in the directory: interface. When a Scilab primitive is called, the interface program checks that the number, the type and the size of  inputs/outputs arguments is correct (using CheckRhs and CheckLhs functions), and get the adress of the rhs arguments which are in Scilab internal stack to give this information at the interfaced function. So in the first part we explain, thanks to template, how to implement some interfaces programs (written in C code). In this article we don't describe all the possibilities of the interface programs, for more explanations see the directory SCI/examples.
+			All interface programs are included in the directory: interface<br />  
 		</p>
 		
 		<a name="chap2.2.1"></a>
-		<h4>2.2.1 Interface</h4>
+		<h4>2.2.1 Examples of interfaces programs</h4>
 		<p>
 			Here two examples which enable to write many interfaces, so it's important to understand it, and know how to customize it for your toolbox. 
 		</p>
 		
 		<p>
 			<EM>Example a</EM>: <br />             
-			We consider an C routine sumab which returns the sum of  two vectors. I suppose that the name of the corresponding primitive is 
+			We consider an C routine <var><strong>sumab</strong></var> which returns the sum of two vectors. I suppose that the name of the corresponding primitive is 
 			<var><strong>scisum</strong></var>. We can keep the same name that the C routine (sumab) or try an other name.<br />
 			The both following scripts represent the C code of <var><strong>sumab</strong></var> and its associated interface program when 
 			we call the primitive <var><strong>scisum </strong></var>in a Scilab window as follows:<br />
@@ -191,30 +190,30 @@ extern int sumab(int n, double * a, double * b, double * y);
 void intsumab(char *fname){  
 int l1, m1, n1, l2, m2, n2, l3, n;   
 		
-/* 1 - Check the nuumber of input/output arguments  */  
+/* 1 - Check the number of inputs/outputs arguments  */  
 int minlhs=1, maxlhs=1, minrhs=2, maxrhs=2; 
 CheckRhs(minrhs,maxrhs) ; 
 CheckLhs(minlhs,maxlhs) ; 
 
-/* 2 - Check input arguments type and get input arguments adress in the Scilab stack */  
+/* 2 - Check inputs arguments type, and get the size and the adress in the Scilab stack of the inputs arguments */  
 GetRhsVar(1, "d", &m1, &n1, &l1);
 GetRhsVar(2, "d", &m2, &n2, &l2);
 		
-/* 3 - Check that the input arguments have the same size */
+/* 3 - Check that the inputs arguments have the same size */
+/* it's possible to use the chekdims and getscalar functions to do these checks*/ 
 n=m2*n2; 
 if( n1!=n2 || m1!=m2) 
 {
-	cerro("input arguments must have the same size"); 
+	cerro("inputs arguments must have the same size"); 
 	return 0; 
 }	
 if(n1!=0 && m1!=0)    
 	if(n1!=1 && m1!=1)   
 	{
-		cerro("input arguments must be vectors");    
+		cerro("inputs arguments must be vectors");    
 		return(0); 
 	}
-		
-/* it's possible to use the chekdims and getscalar functions: a completer ................*/  
+		 
 		
 /* 4 - Create the output argument */ 
 CreateVar(3,"d",&m2,&n2,&l3);   
@@ -262,13 +261,13 @@ return 0;
 			<br />
 			
 			<EM>In Step 4</EM>: instruction <b><i>LhsVar(1) = 3</b></i><br />
-			The instruction <b><i>LhsVar(1) = 3</b></i> means the first output argument take the value of the variable placed in the 3th position (i.e Y)<br />
+			The instruction <b><i>LhsVar(1) = 3</b></i> means the first output argument takes the value of the variable placed in the 3th position (i.e Y)<br />
 			
 			<br />
 			<br />
 			
 			<EM>Example b</EM>:<br />
-				In the second example we describe the interface program (see above script) of the primitive </b></i>scifun1</b></i> which uses the C functions <b><i>fun1</b></i> and <b><i>fun2</b></i> (see above script). This primitive have two syntaxes:<br />
+				In the second example we describe the interface program (see above script) of the primitive <b><i>scifun1</b></i> which uses the C functions <b><i>fun1</b></i> and <b><i>fun2</b></i> (see above script). This primitive has two syntaxes:<br />
 			
 			<br />
 			the first syntax is:</b></i><br />
@@ -282,20 +281,20 @@ return 0;
 		</p>
 		
 		<br />
-		fun1.c 
+		fun1.c (the C function <b><i>fun1</b></i> creates the vector <b><i>X</b></i> and the scalar <b><i>Y</b></i>, it calls the C function <b><i>fun2</b></i> to get the needed size of <b><i>X</b></i> in order to allocate the memory place)
 		<pre class="entete">
 extern void  fun2(double *, int, int *);
 
-void fun1(double * a,  int na, int * nb,  double ** b , double * positive_sum){
+void fun1(double * a,  int na, int * nx,  double ** x , double * y){
 	int i, k1=0;
-	*positive_sum=0;
-	fun2(a, na, nb);
-	*b=(double *)malloc((*nb)*sizeof(double));
-	*positive_sum=0;
+	*y=0;
+	fun2(a, na, nx);
+	*x=(double *)malloc((*nx)*sizeof(double));
+	*y=0;
 	for(i=0;i<na;i++)
 	if(a[i]>0) {
-		*(*b+k1)=a[i];
-		*positive_sum += a[i];
+		*(*x+k1)=a[i];
+		*y += a[i];
 		k1++;
 	};
 }</pre>	
@@ -304,13 +303,13 @@ void fun1(double * a,  int na, int * nb,  double ** b , double * positive_sum){
 		
 		fun2.c
 		<pre class="entete">
-void  fun2(double * a, int na, int * m)
+void  fun2(double * a, int na, int * nx)
 {
 	int i;
-	*m=0;
+	*nx=0;
 	for(i=0;i<na;i++)
 	if (a[i]>0)  
-		(*m)++;
+		(*nx)++;
 }</pre>	
 		
 		<br />
@@ -323,8 +322,8 @@ extern void fun1(double * ,  int, int *, double **, double *);
 
 int intfun1(char *fname)
 {
-	int l1, m1, n1, m=1, nX, i, l2, l3;
-	double * X, S;
+	int la, ma, na, m=1, nx, i, lx, ls;
+	double * x, s;
 
 	/* 1 - Check the number of inputs and outputs arguments */
 	/* You can use the variables: Lhs and Rhs */
@@ -332,38 +331,38 @@ int intfun1(char *fname)
 	CheckRhs(minrhs,maxrhs) ;
 	CheckLhs(minlhs,maxlhs) ;
 
-	/* 2 - Check rhs type, get the rows number (m1) and the columns number (n1) of rhs, and its adress (l1) in the Scilab stack */
-	GetRhsVar(1, "d", &m1, &n1, &l1); 
+	/* 2 - Check the rhs type, get the rows number (ma) and the columns number (na) of rhs, and its adress (la) in the Scilab stack (first position) */
+	GetRhsVar(1, "d", &ma, &na, &la); 
 
 	/* 3 - Check rhs is a vector */
-	if(m1!=0 && n1!=0 )
+	if(ma!=0 && na!=0 )
 	{
-		if(m1!=1 && n1!=1)
+		if(ma!=1 && na!=1)
 		{
 			cerro("input argument must be a vector");
 			return(0);
 		}
 	}
 
-	fun1(stk(l1), n1*m1, &nX, &X, &S);
+	fun1(stk(la), na*ma, &nx, &x, &s);
 
-	/* 4 - Create the place for the first output X ( a vector of doubles, size: m*n ) to the adress l2 in the Scilab stack */
-	CreateVar(2, "d", &m, &nX, &l2);
+	/* 4 - Create the place for the first output argument x ( a vector of doubles, size: 1*nx ) to the adress lx in the Scilab stack (second position) */
+	CreateVar(2, "d", &m, &nx, &lx);
 
-	/* if there are two outputs variable then: Create the place for the second output S ( a double, size 1*1) to the adress l3 in the Scilab stack */ 
-	/* get the value of S, and put it in the Scilab stack */
+	/* if there are two outputs variables then: Create the place for the second output s ( a double, size 1*1) to the adress ls in the Scilab stack (third position) */ 
+	/* get the value of s, and put it in the Scilab stack */
 	if(Lhs==2)
 	{
-		CreateVar(3, "d", &m, &m, &l3);
-		*stk(l3)=S;
+		CreateVar(3, "d", &m, &m, &ls);
+		*stk(ls)=s;
 	}
 
-	/* get the components of  X, and put them in the Scilab stack */
-	for(i=0;i&gt;nX;i++) 
-		stk(l2)[i]=X[i];
+	/* get the components of x, and put them in the Scilab stack */
+	for(i=0;i&gt;nx;i++) 
+		stk(lx)[i]=x[i];
 
 	/* free memory */
-	free(X);
+	free(x);
 
 	/* 5 - Specification of outputs variables */
 	LhsVar(1) = 2;
@@ -375,45 +374,10 @@ int intfun1(char *fname)
 		<br />
 		
 		<a name="chap2.2.2"></a>
-		<h4>2.2.2 Creation of the builder</h4>
-		<p>
-			Now the src directory of the toolbox toolbox_example contains all the necessary files (<b><i>fun1.c</b></i>,
-		 	<b><i>fun2.c</b></i>, <b><i>intfun1.c</b></i>, <b><i>sumab.c</b></i>, <b><i>intsumab.c</b></i>) to create the 
-			 builder (see above template) for the primitives scifun1 and scisum.
-			<br />
-			We need to write two builders: one the hand, the src builder (see above script) which creates a shared libraries (see help <i><b>ilib_for_link</b></i> function) corresponding to the .c functions. 
-			And the other hand, the interface builder (see above script) which creates new shared libraries to link the compiled C or Fortran 
-			new Scilab interface routines (thanks to src libraries), and generates a loader (see help <i><b>ilib_build</b></i> function). 
-			This loader file calls the addinter function to dynamically load the shared library (see help <i><b>addinter</b></i> function)
-		</p>
-		
-		the src builder
-		<pre class="entete">
-ilib_for_link('toolboxsrc',['fun1.o' 'fun2.o','sumab.o'],[],"c")</pre>	
-		
+		<h4>2.2.2 Primitives builder</h4>
+		<p>Now the src and the interface directories contain all the necessary files (<b><i>fun1.c</b></i>, <b><i>fun2.c</b></i>, <b><i>intfun1.c</b></i>, <b><i>sumab.c</b></i>, <b><i>intsumab.c</b></i>) to create the builder (see above template) for the primitives <i><b>scifun1</i></b> and <i><b>scisum</i></b>.
 		<br />
-		the interface builder<br />
-		
-		<pre class="entete">
-// must be run from this directory
-ilib_name  = 'libtoolbox_example'     // interface library name
-files = ['intfun1.o', 'intsumab.o'];  // objects files
-libs  = ["../src/libtooloxsrc"]                 // other libs needed for linking
-table = [ 'scifun1', 'intfun1';
-	'scisum','intsumab'];        // table of (scilab_name,interface-name)
-// do not modify below
-ilib_build(ilib_name,table,files,libs)</pre>	
-		
-		<br />	
-		<br />
-		
-		<a name="chap2.2.2"></a>
-		<h4>2.2.2 Creation of the builder</h4>
-		<p>Now the src directory of the toolbox toolbox_example contains all the necessary files (<b><i>fun1.c</b></i>, <b><i>fun2.c</b></i>, <b><i>intfun1.c</b></i>, <b><i>sumab.c</b></i>, <b><i>intsumab.c</b></i>) to create the builder (see above template) for the primitives scifun1 and scisum.
-		<br />
-		We need to write two builders: one the hand, the src builder (see above script) which creates a shared libraries (see help <i><b>ilib_for_link</b></i> function) corresponding to the .c functions. 
-		And the other hand, the interface builder (see above script) which creates new shared libraries to link the compiled C or Fortran 
-		new Scilab interface routines (thanks to src libraries), and generates a loader (see help <i><b>ilib_build</b></i> function). 
+		We need to write two builders:<br /> One the hand, in the src directory, this builder creates a shared libraries (see help <i><b>ilib_for_link</b></i> function) corresponding to the C functions.And the other hand, in the interface directory, this builder creates the new shared libraries to link the compiled C or Fortran new Scilab interface routines (thanks to src libraries), and generates a loader (see help <i><b>ilib_build</b></i> function). 
 		This loader file calls the addinter function to dynamically load the shared library (see help <i><b>addinter</b></i> function)</p>
 		
 		the src builder
@@ -442,14 +406,13 @@ ilib_build(ilib_name,table,files,libs)</pre>
 		<h3>2.3 The  man directory</h3>
 		<p>This directory included .xml files, a manbuilder and a manloader scripts
 				On Unix/Linux systems: to create the manual pages you need 'sabcmd', an XML parser which is part of the Sablotron package.<br /> 
-				(here link to download it:<A href="http://www.scilab.org/download/index_download.php?page=related_tool.html">  http://www.scilab.org/download/index_download.php?page=related_tool.html</A>)<br />
-				(.................... a completer  ............................)
+				(see the link to download it:<A href="http://www.scilab.org/download/index_download.php?page=related_tool.html">  http://www.scilab.org/download/index_download.php?page=related_tool.html</A>)<br />
 		</p>
 		
 		<a name="chap2.3.1"></a>
 		<h4>2.3.1 Creation of .xml files</h4>
 		<p> 
-		Here a template which helps you to write the .xml help files. You should just fill the different items(Langage, title, type, date, short description, ...) for the .xml files of your functions (here <b><i>foo1.xml</i></b>, <b><i>scifun1.xml</i></b>, <b><i>scisum.xml</i></b>) and put them in the man directory.
+		Here a template which shows you how to write the .xml help files. You should just fill the different items(Langage, title, type, date, short description, ...) for the .xml files of your functions (here <b><i>scifun1.xml</i></b>, <b><i>scisum.xml</i></b>) and put them in the man directory.
 		</p>
 		
 		<pre class="entete">
@@ -457,7 +420,7 @@ ilib_build(ilib_name,table,files,libs)</pre>
 &lt;!DOCTYPE MAN SYSTEM &quot;/home/scilab/scilab-3.0/man/manrev.dtd&quot;&gt;
 &lt;MAN&gt;
 &lt;LANGUAGE&gt;eng&lt;/LANGUAGE&gt;
-&lt;TITLE&gt;scifoo2&lt;/TITLE&gt;
+&lt;TITLE&gt;scisum&lt;/TITLE&gt;
 &lt;TYPE&gt;Scilab Function  &lt;/TYPE&gt;
 &lt;DATE&gt;20-Mar-2006&lt;/DATE&gt;
 &lt;SHORT_DESCRIPTION name=&quot;add function name&quot;&gt;  add short decription here&lt;/SHORT_DESCRIPTION&gt;
@@ -513,7 +476,7 @@ Add here scilab instructions and comments
 &lt;/SEE_ALSO&gt;
 
 &lt;BIBLIO&gt;
-Add here the function bibliography if any
+&lt;Add here the function bibliography if any 
 &lt;/BIBLIO&gt;
 
 &lt;AUTHORS&gt;
@@ -527,8 +490,8 @@ Add here the used function name and  references
 &lt;/MAN&gt;</pre>	
 		
 		<a name="chap2.3.2"></a>
-		<h4>2.3.2 Creation of the builder</h4>
-		<p>The manbuilder (see above) creates a whatis.htm file which is a short description of the functions, and translates the xml files to html (see help xmltohtml function)
+		<h4>2.3.2 The man builder</h4>
+		<p>The manbuilder (see above) creates a whatis.htm file which is a short description of the functions, and translates the xml files to html (see help <b><i>xmltohtml</b></i> function)
 		</p>
 		
 		<br />
@@ -543,7 +506,7 @@ xmltohtml(path,"Title1")
 clear path add_help_chapter get_absolute_file_path </pre>	
 		
 		<a name="chap2.3.3"></a>
-		<h4>2.3.3 Creation of the loader</h4>
+		<h4>2.3.3 The man loader</h4>
 		<p>The loader(see above script) add your help functions files in the help Scilab browser 
 		</p>
 		
