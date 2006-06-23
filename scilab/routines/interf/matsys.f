@@ -1825,7 +1825,8 @@ c     .  get error number  if given
             errn=int(stk(l))
             top=top-1
          else
-            errn=9999
+c Bug 1421 corrected - Francois VOGEL June 2006
+            errn=10000
          endif
          if(.not.getsmat('error',topk,top,m,n,1,1,il,n1)) return
          buf=' '
