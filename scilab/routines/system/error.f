@@ -169,7 +169,7 @@ c     recoverable by errcatch or not:
 c     errtyp=0  : recoverable error
 c     errtyp=1  : unrecoverable error
 c
-c     n : error number, if n execeeds the maximum error number this
+c     n : error number, if n exceeds the maximum error number this
 c         routines displays the error message contained in buf
 c!
       include '../stack.h'
@@ -212,7 +212,8 @@ c Bug 1069 corrected - Francois VOGEL November 2004
      +     260,261,262,263,264,265,266,267,268,269,
      +     270,271,272,273,274,275,276,277,278,279,
      +     280),n-199
-      if(n.ge.10000) return
+c Bug 1421 corrected - Francois VOGEL June 2006
+c     if(n.gt.10000) return
       goto 998
 c
     1 call msgout(io,lunit,'incorrect assignment')
@@ -1286,7 +1287,7 @@ c---------------------------------------------------------------------
 c     message d'erreur soft
 c Bug 1422 corrected - Francois VOGEL June 2006
       bufl=1
-      do while ( .not.(buf(bufl:bufl).eq.char(0)) .and. bufl.lt.80 )
+      do while ( buf(bufl:bufl).ne.char(0) .and. bufl.lt.80 )
          bufl=bufl+1
       enddo
       bufl=bufl-1
