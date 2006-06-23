@@ -174,7 +174,7 @@ c         routines displays the error message contained in buf
 c!
       include '../stack.h'
       parameter (iif=1,iwhile=2,iselect=3)
-      integer n,errtyp
+      integer n,errtyp,bufl
       integer lunit,sadr,nl,io
       character line*340
 c
@@ -1284,7 +1284,13 @@ c
 c---------------------------------------------------------------------
  998  continue
 c     message d'erreur soft
-      call msgout(io,lunit,buf(1:80))
+c Bug 1422 corrected - Francois VOGEL June 2006
+      bufl=1
+      do while ( .not.(buf(bufl:bufl).eq.char(0)) .and. bufl.lt.80 )
+         bufl=bufl+1
+      enddo
+      bufl=bufl-1
+      call msgout(io,lunit,buf(1:bufl))
 c
  999  return
       end
