@@ -42,7 +42,6 @@ void dsslti4(scicos_block *block,int flag)
     memcpy(w,z,nz*sizeof(double));
     C2F(dmmul)(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
     C2F(dmmul1)(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
-    FREE(w);
   }
   else if (flag ==4){/* the workspace for temp storage
 		      */
@@ -51,6 +50,9 @@ void dsslti4(scicos_block *block,int flag)
       set_block_error(-16);
       return;
     }
+  }
+  else if (flag ==5){
+    scicos_free(*block->work);
   }
 }
 
