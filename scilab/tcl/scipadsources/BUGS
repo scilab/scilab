@@ -20,7 +20,7 @@ Bugs:
 -On some platforms certain bindings for blinking character never trigger,
  e.g. for bracketleft on Windows (AltGr-5, french keyboard) one gets
  Control_L plus parenleft - this one however blinks through the parenleft
- binding, but others such as braceleft does never trigger and gives
+ binding, but others such as braceleft do never trigger and gives
  Control_L plus quoteright - depends on keyboard, platform and whatnot...
 
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
@@ -122,6 +122,8 @@ Debugger wishes:
  a graphical command, so that an array is *plotted* at each breakpoint)
  Way to go: add a pane with expressions to be executed and result of their
  evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
+
+-Add a field showing the type of the variables displayed in the watch window
 
 -Scipad defines and uses, mostly for the debugger, some variables in order to
  send values to Scipad. All these variables currently start with the prefix 

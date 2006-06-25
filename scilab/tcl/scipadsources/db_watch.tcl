@@ -198,23 +198,28 @@ proc showwatch_bp {} {
     panedwindow $watch.f.vpw.f2.f2r.hpw -orient horizontal -opaqueresize true
 
     frame $watch.f.vpw.f2.f2r.hpw.fl
-    set lbvarname $watch.f.vpw.f2.f2r.hpw.fl.lbvarname
-    set scrolly   $watch.f.vpw.f2.f2r.hpw.fl.yscroll
+    frame $watch.f.vpw.f2.f2r.hpw.fl.f1
+    set lbvarname $watch.f.vpw.f2.f2r.hpw.fl.f1.lbvarname
+    set scrollxl  $watch.f.vpw.f2.f2r.hpw.fl.f1.xscroll
+    frame $watch.f.vpw.f2.f2r.hpw.fl.f2
+    set scrolly   $watch.f.vpw.f2.f2r.hpw.fl.f2.yscroll
     frame $watch.f.vpw.f2.f2r.hpw.fr
     set lbvarval  $watch.f.vpw.f2.f2r.hpw.fr.lbvarval
-    set scrollx   $watch.f.vpw.f2.f2r.hpw.fr.xscroll
+    set scrollxr  $watch.f.vpw.f2.f2r.hpw.fr.xscroll
     $buttonAddw   configure -command {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
     $buttonRemove configure -command {Removearg_bp $lbvarname $lbvarval; \
                                       closewatch_bp $watch nodestroy}
-    scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval" -takefocus 0
-    scrollbar $scrollx -command "$lbvarval xview" -orient horizontal -takefocus 0
+    scrollbar $scrolly  -command "scrollyboth_bp $lbvarname $lbvarval" -takefocus 0
+    scrollbar $scrollxl -command "$lbvarname xview" -orient horizontal -takefocus 0
+    scrollbar $scrollxr -command "$lbvarval  xview" -orient horizontal -takefocus 0
     listbox $lbvarname -height 6 -width 12 -font $textFont -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
+                       -xscrollcommand "$scrollxl set" \
                        -takefocus 0
     listbox $lbvarval  -height 6 -font $textFont -yscrollcommand \
                        "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
-                       -xscrollcommand "$scrollx set" \
+                       -xscrollcommand "$scrollxr set" \
                        -takefocus 0
     if {[info exists watchvars]} {
         foreach var $watchvars {
@@ -223,11 +228,16 @@ proc showwatch_bp {} {
         }
     }
 
-    pack $lbvarname -side left -expand 1 -fill both -padx 2
+    pack $lbvarname -side top  -expand 1 -fill both -padx 2
+    pack $scrollxl             -expand 0 -fill x
+
     pack $scrolly   -side left -expand 0 -fill both -padx 2
 
-    pack $lbvarval -side top -expand 1 -fill both
-    pack $scrollx            -expand 0 -fill x
+    pack $watch.f.vpw.f2.f2r.hpw.fl.f1 $watch.f.vpw.f2.f2r.hpw.fl.f2 \
+            -side left -expand 0 -fill y
+
+    pack $lbvarval  -side top  -expand 1 -fill both
+    pack $scrollxr             -expand 0 -fill x
 
     $watch.f.vpw.f2.f2r.hpw add $watch.f.vpw.f2.f2r.hpw.fl
     $watch.f.vpw.f2.f2r.hpw add $watch.f.vpw.f2.f2r.hpw.fr

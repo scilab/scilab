@@ -2223,3 +2223,7 @@ Francois VOGEL, 10/05/06
  * Fixed: scicos_blocks/*/lib keywords can be colorized, opened as source,
    and tab-completed on Windows (apparently only worked before on Linux)
  * version --> 6.31
+
+Francois VOGEL, 25/06/06
+ * Added an horizontal scrollbar in the watch window for variables names
+ * version --> 6.32
