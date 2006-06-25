@@ -92,14 +92,28 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 				lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 			}
 	
-		if (TextToSend[i]==10) i++;
+		if (TextToSend[i]==10) 
+			{
+				/* LF not preceded by a CR */
+				/* fool it: turn LF into CR */
+				/* Bug 1960 corrected - Francois VOGEL June 2006 */
+				*lptw->KeyBufIn = 13;
+				SetReadyOrNotForAnewLign(FALSE);
+				while ( IsReadyForAnewLign() == FALSE ) {Sleep(TEMPOTOUCHE);}
+				while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+				while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
+			}
 		if (TextToSend[i]==13) 
 			{
 				SetReadyOrNotForAnewLign(FALSE);
 				while ( IsReadyForAnewLign() == FALSE ) {Sleep(TEMPOTOUCHE);}
 				while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
 				while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
-				i++;
+				if (i<lg-1)
+				{
+					/* skip LF that follows CR*/
+					if (TextToSend[i+1]==10) i++;
+				}
 			}
 		i++;	
 		
