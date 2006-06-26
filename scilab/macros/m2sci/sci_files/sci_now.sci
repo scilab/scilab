@@ -1,0 +1,14 @@
+function   tree=sci_now(tree)
+// Copyright INRIA
+// M2SCI function
+// Conversion function for Matlab now()
+// Input: tree = Matlab funcall tree
+// Ouput: tree = Scilab equivalent for tree
+// F.B.
+
+if size(tree.lhs)==1 then
+  tree.lhs(1).type=Type(Double,Real)
+  tree.lhs(1).dims=list(1,1)
+end
+
+endfunction
