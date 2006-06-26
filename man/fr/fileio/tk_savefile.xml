@@ -48,7 +48,7 @@
 <![CDATA[
 tk_savefile()
 tk_savefile('*.sci','SCI/macros/xdess')
-tk_savefile(Title='Choose a file name ')
+tk_savefile(title='Choose a file name ')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
