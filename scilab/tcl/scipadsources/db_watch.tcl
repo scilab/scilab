@@ -16,7 +16,7 @@ proc showwatch_bp {} {
 
     # Hardwired size, but how else?
     if {$tcl_platform(platform) == "unix"} {
-        # 85 enough for windows, 105 for my Linux Mandrake 10.1
+        # 90 enough for windows, 105 for my Linux Mandrake 10.1
         set heightofwatchwithnoarea 105
     } else {
         set heightofwatchwithnoarea 90
@@ -82,24 +82,24 @@ proc showwatch_bp {} {
          $buttonBreakDebug $buttonCancelDebug \
          -padx 0 -pady 0 -side left
 
-    frame $watch.f.f1.f1r -bg orange
+    frame $watch.f.f1.f1r ;# -bg orange
     set checkboxalwaysontop $watch.f.f1.f1r.watchalwaysontop
     checkbutton $checkboxalwaysontop -variable watchalwaysontop \
             -command "managewatchontop_bp" \
             -text [mc "Always on top"] -width 20 -font $menuFont \
-            -anchor w -borderwidth 0 -pady 0
+            -anchor w -borderwidth 1 -pady 0
     set checkboxshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
     checkbutton $checkboxshowwatchvariablesarea -variable showwatchvariablesarea \
             -command "closewatch_bp $watch; showwatch_bp" \
             -onvalue "false" -offvalue "true" \
             -text [mc "Hide watch variables"] -width 20 -font $menuFont \
-            -anchor w -borderwidth 0 -pady 0
+            -anchor w -borderwidth 1 -pady 0
     set checkboxshowcallstackarea $watch.f.f1.f1r.showcallstackarea
     checkbutton $checkboxshowcallstackarea -variable showcallstackarea \
             -command "closewatch_bp $watch; showwatch_bp" \
             -onvalue "false" -offvalue "true" \
             -text [mc "Hide call stack"] -width 20 -font $menuFont \
-            -anchor w -borderwidth 0 -pady 0
+            -anchor w -borderwidth 1 -pady 0
 
     pack $checkboxalwaysontop $checkboxshowwatchvariablesarea \
             $checkboxshowcallstackarea -pady 0
@@ -108,7 +108,7 @@ proc showwatch_bp {} {
 
     frame $watch.f.f1.f1fr ;# -bg lightblue
     set debugstateindicator $watch.f.f1.f1fr.debugstateindicator
-    canvas $debugstateindicator -relief ridge -width 15 -height 15
+    canvas $debugstateindicator -relief ridge -width 15 -height 15 -borderwidth 1
     updatedebugstateindicator_bp
 
     pack $watch.f.f1.f1fr $debugstateindicator -expand 1
@@ -233,8 +233,8 @@ proc showwatch_bp {} {
 
     pack $scrolly   -side left -expand 0 -fill both -padx 2
 
-    pack $watch.f.vpw.f2.f2r.hpw.fl.f1 $watch.f.vpw.f2.f2r.hpw.fl.f2 \
-            -side left -expand 0 -fill y
+    pack $watch.f.vpw.f2.f2r.hpw.fl.f1 -side left -expand 1 -fill both
+    pack $watch.f.vpw.f2.f2r.hpw.fl.f2 -side left -expand 0 -fill y
 
     pack $lbvarval  -side top  -expand 1 -fill both
     pack $scrollxr             -expand 0 -fill x

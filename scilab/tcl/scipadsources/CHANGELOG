@@ -2227,3 +2227,8 @@ Francois VOGEL, 10/05/06
 Francois VOGEL, 25/06/06
  * Added an horizontal scrollbar in the watch window for variables names
  * version --> 6.32
+
+Francois VOGEL, 26/06/06
+ * Variable names area extend again when resizing the watch window, plus
+   cosmetics about the checkable boxes
+ * version --> 6.33
