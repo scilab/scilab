@@ -12,6 +12,7 @@ tests = ['algebra.tst';
 	'auto.tst';
 	'basiclink.tst';
 	'binary.tst';
+	'binary_representation.tst';
 	'breakpoints.tst';
 	'bvode.tst';
 	'call.tst';
