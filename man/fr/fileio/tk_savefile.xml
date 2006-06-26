@@ -7,9 +7,9 @@
   <DATE>Jan 1996</DATE>
   <SHORT_DESCRIPTION name="tk_savefile"> dialog to get a file path for writing</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile([title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,[title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,[title='string'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile([Title='string'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,[Title='string'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,[Title='string'])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,'string')  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -33,9 +33,9 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>title='string'  </PARAM_NAME>
+        <PARAM_NAME>Title='string'  </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:Optional arguments which gives the title for the tk_savefile window.</SP>
+          <SP>:Optional argument which gives the title for the tk_savefile window.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -48,7 +48,7 @@
 <![CDATA[
 tk_savefile()
 tk_savefile('*.sci','SCI/macros/xdess')
-tk_savefile(title='Choose a file name ')
+tk_savefile(Title='Choose a file name ')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
