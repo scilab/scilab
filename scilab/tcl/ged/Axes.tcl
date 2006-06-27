@@ -103,68 +103,6 @@ global xauto_rotation yauto_rotation zauto_rotation titleauto_rotation
 global smallPad mediumPad #used to be 1m and 2m
 global gedFont
 
-# #debug
-#  set ged_handle_list_size 2
-#  set curgedindex 1
-
-#  set SELOBJECT(1) "Figure"
-#  set SELOBJECT(2) "Axes"
-
-#  set OBJECTSARRAY(1) "dzdz"
-#  set OBJECTSARRAY(2) "dzd"
-#  set curgedobject "dzd"
-
-
-
-# add for XF init only : to remove after...
-
-    #test debug
-  #   set nbticks_x 2
-
-#     set LOCATIONS_X(1) 0.001
-#     set LOCATIONS_X(2) 1.7
-
-#     set LABELS_X(1) "zero virgule 00 et un"
-#     set LABELS_X(2) "un,7"
-    #
-
-
-#      set ncolors 32
-#      set curcolor 4
-#      set curfontsize 1
-#      set curfontcolor 7
-#      set curthick 1
-
-#      set xToggle "n"
-#      set yToggle "n"
-
-#      set xlabel_foreground 1
-#      set ylabel_foreground 1
-#      set zlabel_foreground 1
-#      set titlelabel_foreground 1
-
-#      set xlabel_fontsize 1
-#      set ylabel_fontsize 1
-#      set zlabel_fontsize 1
-#      set titlelabel_fontsize 1
-
-
-#      set xGrid -1
-#      set yGrid -1
-#      set zGrid -1
-
-#      set boxToggle "on"
-
-#      set fcolor -1
-#      set bcolor -2
-
-#      set viewToggle "2D"
-#      set isoToggle "off"
-#      set limToggle "off"
-#      set cubToggle "off"
-#      set visToggle "on"
-#      set curvis "on"
-
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
     
@@ -188,7 +126,7 @@ set Wwidth  [expr $NBwidth  + 265]
 
 #create the font we will use
 set gedFont {Arial -12}
-
+set titFont {Arial -15}
 
 set ww .axes
 catch {destroy $ww}
@@ -303,8 +241,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
@@ -577,8 +515,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
@@ -833,8 +771,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
@@ -1090,8 +1028,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-#set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+#set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
