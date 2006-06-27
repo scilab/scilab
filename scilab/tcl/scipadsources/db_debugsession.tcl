@@ -428,7 +428,11 @@ proc goonwo_bp {} {
 proc break_bp {} {
     if {[isscilabbusy]} {
 
-# Many solutions were explored, none is fully functional:
+# Many solutions were explored, none is fully functional.
+# Apparently the problem boils down to sending a sync command
+# while in a seq execution (the one from the very beginning
+# of the debug, which executes the function to debug)
+# See also bug 1086 for that sort of issues
 
 # 1. send a seq pause preceded by flush
 # two flushes since the first one may just queue new commands

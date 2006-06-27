@@ -2232,3 +2232,15 @@ Francois VOGEL, 26/06/06
  * Variable names area extend again when resizing the watch window, plus
    cosmetics about the checkable boxes
  * version --> 6.33
+
+Francois VOGEL, 27/06/06
+ * Removed erroneous double escaping of special characters in proc OKadda_bp
+ * Worked around a bug in OKadda_bp: when the "Get current value from Scilab"
+   box was checked, the watched variable value was not updated in certain
+   cases - This is a ScilabEval "sync" parser issue (Bug 1086 like)
+ * Removed duplicate -count Matchlength option in proc doonesearch (was not
+   harmful)
+ * Fixed hanging of Scipad when searching for a string whose match length
+   is zero (e.g. regexp searching for ^) - This was partly Tk bug 1513517
+ * Added a progress bar for replace all (long replaces look like hangs)
+ * version --> 6.34

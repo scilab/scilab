@@ -137,9 +137,6 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         if {[string first listboxinput $leftwin] != -1} {
             set funname [$spin get]
         }
-        # certain special characters are allowed in Scilab names,
-        # these must be escaped
-        set escargname [escapespecialchars $argname]
         if {$alreadyexists == "false"} {
             # a new variable was added in the add box
             set pos [expr $pos + 1]
@@ -153,7 +150,17 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    getonefromshell $escargname "sync"
+        # BUG! "sync" option does not work correctly  (Bug 1086 like)
+        # getonefromshell performs right but asynchronously: it
+        # returns before completion - See WORKAROUND below
+    #                getonefromshell $argname "sync"
+        # WORKAROUND: use getfromshell seq and force update of the watch window
+        # <TODO> Once the parser works correctly with "sync" the three next
+        # lines can be removed and the comment sign can be removed
+        # from line   getonefromshell $argname "sync"   above
+        getonefromshell $argname
+        set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
+        ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }
             }
@@ -176,7 +183,17 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
                 if {$getvaluefromscilab == 1} {set forceget "true"}
                 set watchvarsvals($argname) $argvalue
                 if {$forceget == "true"} {
-                    getonefromshell $escargname "sync"
+        # BUG! "sync" option does not work correctly  (Bug 1086 like)
+        # getonefromshell performs right but asynchronously: it
+        # returns before completion - See WORKAROUND below
+    #                getonefromshell $argname "sync"
+        # WORKAROUND: use getfromshell seq and force update of the watch window
+        # <TODO> Once the parser works correctly with "sync" the three next
+        # lines can be removed and the comment sign can be removed
+        # from line   getonefromshell $argname "sync"   above
+        getonefromshell $argname
+        set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
+        ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }
             }

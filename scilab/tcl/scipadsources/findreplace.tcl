@@ -828,6 +828,7 @@ proc replaceall {w pw textarea tosearchfor reg} {
     global listofmatch indoffirstmatch indofcurrentmatch
     global listoffile multiplefiles
     global buffermodifiedsincelastsearch
+    global pad caset searchinsel wholeword ;# these are for the progress bar
 
     set buffermodifiedsincelastsearch false
 
@@ -839,13 +840,31 @@ proc replaceall {w pw textarea tosearchfor reg} {
 
     set nbofreplaced 0
 
-    # loop on matches
+    # initialize progress bar
+    # note that efficiency is maintained: listofmatches is
+    # computed here and only once (it won't be done later
+    # in proc replaceit, even not during the first call)
+    set replprogressbar [Progress $pad.rpb]
+    pack $replprogressbar -fill both -expand 0 -before $pad.pw0 -side bottom
+    set listofmatch [searchforallmatches $textarea $tosearchfor \
+                         $caset $reg $searchinsel $wholeword]
+    set nbofmatches [llength $listofmatch]
+    if {$nbofmatches == 0} {
+        # avoid division by zero error in the progress bar computations
+        set nbofmatches 1
+    }
+
+    # loop on matches and update progress bar
     set prevfindres "searchagain"
     while {$prevfindres == "searchagain"} {
         set prevfindres [replaceit $w $pw $textarea $tosearchfor $reg 0]
+        SetProgress $replprogressbar $nbofreplaced $nbofmatches $listoffile("$textarea",displayedname)
+        update idletasks
         incr nbofreplaced
     }
     incr nbofreplaced -1
+
+    destroy $replprogressbar
 
     if {!$multiplefiles} {
         showinfo "$nbofreplaced [mc "replacements done"]"
@@ -882,7 +901,22 @@ proc searchforallmatches {textarea str cas reg ssel whword} {
     set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword]
     while {[lindex $match 0] != ""} {
         lappend matchlist $match
-        set start [$textarea index "[lindex $match 0] + [lindex $match 1]c"]
+        set mleng [lindex $match 1]
+        if {$mleng == 0} {
+            # a match was found but its length is zero - can happen while
+            # searching for a regexp, for instance ^ or \A
+            # in that case, let's artificially set match length to 1 (only
+            # in this loop) to avoid endless loop
+            set mleng 1
+        }
+        set start [$textarea index "[lindex $match 0] + $mleng c"]
+        # $ta search with $start == $stop == [$ta index end] wraps around
+        # this is not wanted (and contrary to the Tcl man page for text)
+        # this is Tk bug 1513517
+        # once this bug is fixed, the three lines below can be removed
+        if {[$textarea compare $start == $stop]} {
+            break
+        }
         set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword]
     }
     return $matchlist
@@ -928,7 +962,6 @@ proc doonesearch {textarea sta sto str dir cas reg whword} {
     if {$reg == "regexp"} {
         lappend optlist -regexp
     }
-    lappend optlist -count MatchLength
     if {$Tk85} {
         # this option doesn't work as expected before Tk cvs of 10/10/05
         # see http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/e80f2586408ab598/2a3660c107cd21ba?lnk=raot&hl=fr#2a3660c107cd21ba
