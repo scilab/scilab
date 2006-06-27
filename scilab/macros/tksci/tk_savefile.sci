@@ -7,6 +7,10 @@ function p=tk_savefile(file_mask,path,Title,foo)
   end
   if exists('path','local')==1 then arg=arg+' -initialdir ""'+path+'""',end
   if exists('Title','local')==1 then arg=arg+' -title ""'+Title+'""',end
+  if exists('title','local')==1 then 
+  Title=title
+  arg=arg+' -title ""'+Title+'""'
+  end
   if exists('ini','local')==1 then arg=arg+' -initialfile ""'+ini+'""',end
   TCL_EvalStr('set scifilepath [tk_getSaveFile'+arg+']')
   p=TCL_GetVar('scifilepath')
