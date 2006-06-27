@@ -506,12 +506,19 @@ c
 
       il3=iadr(lstk(top))
       if(istk(il3).lt.0) il3=iadr(istk(il3+1))
+      if(istk(il3).eq.1) then
+         if (istk(il3+1)*istk(il3+2).eq.0) goto 01
+         top=top0
+         fin=-fin
+         return
+      endif
+
       if(istk(il3).ne.9) then
          top=top0
          fin=-fin
          return
       endif
-      m3=istk(il3+1)
+ 01   m3=istk(il3+1)
       n3=istk(il3+2)
       it3=istk(il3+3)
       l3=sadr(il3+4)
