@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE,   INRIA 2001-2002
+ *    Djalel ABDEMOUCHE,   INRIA 2002-2004
+ *    Fabrice Leray,       INRIA 2004-2006
+ *    Jean-Baptiste Silvy, INRIA 2005-xxxx
  *    Comment:
  *    This file contains all structures definitions used for New Graphics mode.
  --------------------------------------------------------------------------*/
@@ -1013,7 +1014,7 @@ typedef struct
   int cdatamapping; /* like in Matlab, it determines how the color is computed ('scaled' or 'direct' mode) */
                     /* 0: scaled */
                     /* 1: direct (default) */
-  integer izcol;
+  integer izcol; /* 0 : no color; 1 : color is a vector, 2 : color is a matrix */
   integer dimzx;
   integer dimzy;
 
@@ -1043,7 +1044,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;
 
-  int flag_x;
+  int flag_x; /* 1 if the vector is increasing, -1 if decreasing. */
+              /* The vector should be either increasing or decreasing. */
   int flag_y;
   
   int * user_data; /* adding 27.06.05 */

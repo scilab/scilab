@@ -2313,12 +2313,7 @@ int get3ddata(sciPointObj *pobj)
 	{
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
 	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3*/
-	  /*
-	    CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-	    CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-	    CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
-	  */
-
+	  
 	  /* Add 'variable' tlist items to stack */
 	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
 	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);

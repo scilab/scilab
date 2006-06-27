@@ -128,7 +128,7 @@ set Wwidth  [expr $NBwidth  + 265]
 
 #create the font we will use
 set gedFont {Arial -12}
-
+set titFont {Arial -15}
 
 set ww .axes
 catch {destroy $ww}
@@ -243,8 +243,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
@@ -517,8 +517,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
@@ -785,8 +785,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 
@@ -1056,8 +1056,8 @@ pack $theframe.frame -anchor w -fill both
 
 #adding 25.05.2005
 set topflabel  [frame $theframe.frame.topflabel]
-set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font {Arial 8}]
-#set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font {Arial 8}]
+set titf1label [TitleFrame $topflabel.titflabel1 -text "Label Options" -font $titFont]
+#set titf1axes  [TitleFrame $topflabel.titfaxes1 -text "Axis Options" -font $titFont]
 
 set w [$titf1label getframe]
 

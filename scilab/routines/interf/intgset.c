@@ -35,7 +35,7 @@ static char error_message[256];
 int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow, int * numcol);
 int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
 int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
-int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc, char *fname);
+int set3ddata(sciPointObj *pobj, int value[4], int numrow[4], int numcol[4], int flagc, char *fname);
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol);
 int LinearScaling2Colormap(sciPointObj* pobj);
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels);
@@ -762,7 +762,7 @@ int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, cha
 }
 /*-----------------------------------------------------------------------------------*/
 /* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
-int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc, char *fname)
+int set3ddata(sciPointObj *pobj, int value[4], int numrow[4], int numcol[4], int flagc, char *fname)
 {
   int i=0,j,nc;
   sciSurface * psurf = pSURFACE_FEATURE (pobj);
@@ -776,9 +776,9 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
   int dimvectx = 0;
   int dimvecty = 0;
 
-  m1 = numrow[0];
-  m2 = numrow[1];
-  m3 = numrow[2];
+  m1 = numrow[0]; /* X size */
+  m2 = numrow[1]; /* Y size */
+  m3 = numrow[2]; /* Z size */
   m3n = numrow[3]; /* F.Leray for color */
   n1 = numcol[0];
   n2 = numcol[1];
@@ -789,136 +789,163 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
   l3 = value[2];
   l3n = value[3]; /* F.Leray for color */
 
-  if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
-    if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
+  if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 )
+  {
+    if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
+    {
       Scierror(999,"%s:  Inside the Tlist (third argument): The three first arguments have incompatible length \r\n",fname);
       return 0;
     }
-  } else {
-    if (m2 * n2 != n3) {
+  }
+  else 
+  {
+    if ( m2 * n2 != n3 )
+    {
       Scierror(999,"%s:  Inside the Tlist (third argument): The second and third arguments have incompatible length\r\n",fname);
       return 0;
     }
-    if (m1 * n1 != m3) {
+    if ( m1 * n1 != m3 )
+    {
       Scierror(999,"%s:  Inside the Tlist (third argument): The first and third arguments have incompatible length\r\n",fname);
       return 0;
     }
-    if ( m1*n1 <= 1 || m2*n2 <= 1 ) 
-      {
-	Scierror(999,"%s: Inside the Tlist (third argument):The first and second arguments should be of size >= 2\r\n",fname);
-	return 0;
-      }
+    if ( m1 * n1 <= 1 || m2 * n2 <= 1 ) 
+    {
+      Scierror(999,"%s: Inside the Tlist (third argument):The first and second arguments should be of size >= 2\r\n",fname);
+      return 0;
+    }
   }
 
-  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-  /* SciWin();
-     C2F(scigerase)();*/
+  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0)
+  { 
+    LhsVar(1) = 0 ; 
+    return 0;
+  } 
 
   if(flagc == 1)
+  {
+     
+    if ( m3n * n3n == m3 * n3 )
     {
-      /*psurf->nc = 1; */  /* Wrong!!  */
-      /* psurf->nc = m3n*n3n;*/
-      izcol = 1;
-      if (   m3n*n3n == m3*n3 ) izcol=2  ;
-      psurf->izcol = izcol;
+      /* the color is a matrix */
+      izcol = 2 ; 
     }
-  else
+    else
     {
-      /*psurf->nc = 0;*/
-      psurf->izcol = 0;
+      /* a vector */
+      izcol = 1 ;
     }
-
-  if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
-    { /* case isfac=1;*/
-      if(psurf->isfac != 1)
-	{
-	  sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n");
-	  return 0;
-	}
-    }
+    psurf->izcol = izcol;
+  }
   else
-    { 
-      /* case isfac=0;*/
-      if(psurf->isfac != 0)
-	{
-	  sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n");
-	  return 0;
-	}
-    }
+  {
+    psurf->izcol = 0;
+  }
 
+  if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 ) /* NG beg */
+  { /* case isfac=1;*/
+    if( psurf->isfac != 1 )
+    {
+      sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n");
+      return 0;
+    }
+  }
+  else
+  { 
+    /* case isfac=0;*/
+    if(psurf->isfac != 0)
+    {
+      sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n");
+      return 0;
+    }
+  }
+  
   
   /* check the monotony on x and y */
   
-  if(m1 == 1) /* x is a row vector */
-    dimvectx = n1;
-  else if(n1 == 1) /* x is a column vector */
-    dimvectx = m1;
+  if ( m1 == 1 ) /* x is a row vector */
+  {
+    dimvectx = n1 ;
+  }
+  else if ( n1 == 1 ) /* x is a column vector */
+  {
+    dimvectx = m1 ;
+  }
   else /* x is a matrix */
-    dimvectx = -1;
+  {
+    dimvectx = -1 ;
+  }
   
-  if(dimvectx>1){
+  if ( dimvectx > 1 )
+  {
     /* test the monotony on x*/
-    if(stk(l1)[0] >= stk(l1)[1]) /* decreasing */
+    if( stk(l1)[0] >= stk(l1)[1] ) /* decreasing */
+    {
+      int i;
+      for(i=1;i<dimvectx-1;i++)
       {
-	int i;
-	for(i=1;i<dimvectx-1;i++)
-	  {
-	    if(stk(l1)[i] < stk(l1)[i+1])
-	      {
-		Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
-		return 0;
-	      }
-	  }
-	psurf->flag_x = -1;
+        if(stk(l1)[i] < stk(l1)[i+1])
+        {
+          Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
+          return 0;
+        }
       }
+      psurf->flag_x = -1;
+    }
     else /* x[0] < x[1]*/
+    {
+      for(i=1;i<dimvectx-1;i++)
       {
-	for(i=1;i<dimvectx-1;i++)
-	  {
-	    if(stk(l1)[i] > stk(l1)[i+1])
-	      {
-		Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
-		return 0;
-	      }
-	  }
-	psurf->flag_x = 1;
+        if(stk(l1)[i] > stk(l1)[i+1])
+        {
+          Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
+          return 0;
+        }
       }
+      psurf->flag_x = 1;
+    }
   }
 
   if(m2 == 1) /* y is a row vector */
-    dimvecty = n2;
+  {
+    dimvecty = n2 ;
+  }
   else if(n2 == 1) /* y is a column vector */
-    dimvecty = m2;
+  {
+    dimvecty = m2 ;
+  }
   else /* y is a matrix */
-    dimvecty = -1;
-  
-  if(dimvecty>1){
+  {
+    dimvecty = -1 ;
+  }
+  if(dimvecty>1)
+  {
     /* test the monotony on y*/
     if(stk(l2)[0] >= stk(l2)[1]) /* decreasing */
+    {
+      int i;
+      for(i=1;i<dimvecty-1;i++)
       {
-	int i;
-	for(i=1;i<dimvecty-1;i++)
-	  {
-	    if(stk(l2)[i] < stk(l2)[i+1])
-	      {
-		Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
-		return 0;
-	      }
-	  }
-	psurf->flag_y = -1;
+        if(stk(l2)[i] < stk(l2)[i+1])
+        {
+          Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
+          return 0;
+        }
       }
+      psurf->flag_y = -1;
+    }
     else /* y[0] < y[1]*/
+    {
+      for(i=1;i<dimvecty-1;i++)
       {
-	for(i=1;i<dimvecty-1;i++)
-	  {
-	    if(stk(l2)[i] > stk(l2)[i+1])
-	      {
-		Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
-		return 0;
-	      }
-	  }
-	psurf->flag_y = 1;
+        if(stk(l2)[i] > stk(l2)[i+1])
+        {
+          Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
+          return 0;
+        }
       }
+      psurf->flag_y = 1;
+    }
   }
   
   /* Update of the dimzx, dimzy depends on  m3, n3: */
@@ -951,150 +978,180 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
 
   /* Copy the new values F.Leray */
   for(i=0;i< m1*n1;i++)
+  {
     pvecx[i] = stk(l1)[i];
+  }
 
   for(i=0;i< m2*n2;i++)
+  {
     pvecy[i] = stk(l2)[i];
+  }
 
   for(i=0;i< m3*n3;i++)
+  {
     pvecz[i] = stk(l3)[i];
-  
-  if(flagc ==1) /* F.Leray There is a color matrix */
+  }
+
+  if( flagc == 1 ) /* F.Leray There is a color matrix */
+  {
+    if( m3n * n3n != 0 ) /* Normally useless test here: means we have a color vector or matrix */
     {
-      if(m3n * n3n != 0) /* Normally useless test here: means we have a color vector or matrix */
-	{
-	  if (((psurf->inputCMoV = MALLOC (( (m3n)*(n3n) * sizeof (double)))) == NULL))
-	    {
-	      FREE(pvecx); pvecx = (double *) NULL;
-	      FREE(pvecy); pvecy = (double *) NULL;
-	      FREE(pvecz); pvecz = (double *) NULL;
-	      return -1;
-	    }
-
-	  for (j = 0;j < (m3n)*(n3n); j++)  
-	    psurf->inputCMoV[j] = stk(l3n)[j];
-
-	}
-
-      if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
-	{ /* case of SCI_PLOT3D avoid */
-	  nc = psurf->dimzy;
-	}
-      else if(psurf->flagcolor == 3)
-	{
-	  nc = psurf->dimzx * psurf->dimzy;
-	}  
-      else
-	nc=0;
-
-      if(nc>0){
-	if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL) {
-	  FREE(pvecx); pvecx = (double *) NULL;
-	  FREE(pvecy); pvecy = (double *) NULL;
-	  FREE(pvecz); pvecz = (double *) NULL;
-	  return -1;
-	}
+      if (((psurf->inputCMoV = MALLOC (( (m3n)*(n3n) * sizeof (double)))) == NULL))
+      {
+        FREE(pvecx); pvecx = (double *) NULL;
+        FREE(pvecy); pvecy = (double *) NULL;
+        FREE(pvecz); pvecz = (double *) NULL;
+        return -1;
       }
 
-      /* case flagcolor == 2*/
-      if(psurf->flagcolor==2 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-	{
-	  /* We have just enough information to fill the psurf->zcol array*/
-	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-	    psurf->zcol[j] = psurf->inputCMoV[j];  /* DJ.A 2003 */
-	}
-      else if(psurf->flagcolor==2 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-	{
-	  /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
-	  /* NO !! Let's do better; F.Leray 08.05.04 : */
-	  /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
-	  /* in our example: m3n=4 and n3n=400 */
-	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-	    {
-	      double tmp = 0;
-	      for(ii=0;ii<m3n;ii++)
-		tmp = tmp +  psurf->inputCMoV[j*m3n + ii];
-	      tmp = tmp / m3n;
-	      psurf->zcol[j] = tmp;
-	    }
-	}
-      /* case flagcolor == 3*/
-      else if(psurf->flagcolor==3 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-	{
-	  /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-	  /* We repeat the data:*/
-	  for(i = 0; i< psurf->dimzy; i++){
-	    for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-	      psurf->zcol[psurf->dimzx*i+j] = psurf->inputCMoV[i];  /* DJ.A 2003 */
-	  }
-	}
-      else if(psurf->flagcolor==3 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-	{
-	  /* We have just enough information to fill the psurf->zcol array*/
-	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-	    psurf->zcol[j]= psurf->inputCMoV[j];
-	}  
-      /* case flagcolor == 4*/
-      else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-	{
-	  /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-	  /* We repeat the data:*/
-	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-	    psurf->zcol[j] = psurf->inputCMoV[j];
-
-	}
-      else if(psurf->flagcolor==4 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-	{
-	  /* input : color matrix , we use 1 color per facet with Matlab selection mode (no average computed) */
-	  /* HERE is the difference with case 2 */
-	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-	    psurf->zcol[j] = psurf->inputCMoV[j*m3n];
-	}
+      for (j = 0;j < (m3n)*(n3n); j++)
+      {
+        psurf->inputCMoV[j] = stk(l3n)[j] ;
+      }
 
     }
+
+    if( psurf->flagcolor == 2 || psurf->flagcolor == 4 )
+    { /* case of SCI_PLOT3D avoid */
+      nc = psurf->dimzy ;
+    }
+    else if( psurf->flagcolor == 3 )
+    {
+      nc = psurf->dimzx * psurf->dimzy ;
+    }
+    else
+    {
+      nc = 0 ;
+    }
+
+    if ( nc > 0 )
+    {
+      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
+      {
+        FREE(pvecx); pvecx = (double *) NULL;
+        FREE(pvecy); pvecy = (double *) NULL;
+        FREE(pvecz); pvecz = (double *) NULL;
+        return -1;
+      }
+    }
+
+    /* case flagcolor == 2*/
+    if( psurf->flagcolor == 2 && ( m3n == 1 || n3n == 1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
+    {
+      /* We have just enough information to fill the psurf->zcol array*/
+      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
+      {
+        psurf->zcol[j] = psurf->inputCMoV[j];  /* DJ.A 2003 */
+      }
+    }
+    else if( psurf->flagcolor == 2 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
+    {
+      /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
+      /* NO !! Let's do better; F.Leray 08.05.04 : */
+      /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
+      /* in our example: m3n=4 and n3n=400 */
+      for ( j = 0 ; j < nc ; j++)   /* nc value is dimzy*/
+      {
+        double tmp = 0.0 ;
+        for(ii=0;ii<m3n;ii++)
+        {
+          tmp = tmp +  psurf->inputCMoV[j * m3n + ii] ;
+        }
+        tmp = tmp / m3n ;
+        psurf->zcol[j] = tmp;
+      }
+    }
+    /* case flagcolor == 3*/
+    else if( psurf->flagcolor==3 && ( m3n==1 || n3n ==1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
+    {
+      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
+      /* We repeat the data:*/
+      for(i = 0; i< psurf->dimzy; i++)
+      {
+        for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+        {
+          psurf->zcol[psurf->dimzx*i+j] = psurf->inputCMoV[i];  /* DJ.A 2003 */
+        }
+      }
+    }
+    else if( psurf->flagcolor==3 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
+    {
+      /* We have just enough information to fill the psurf->zcol array*/
+      for (j = 0;j < nc; j++)
+      {   /* nc value is dimzy*/
+        psurf->zcol[j]= psurf->inputCMoV[j] ;
+      }
+    }  
+    /* case flagcolor == 4*/
+    else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
+    {
+      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
+      /* We repeat the data:*/
+      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+      {
+        psurf->zcol[j] = psurf->inputCMoV[j];
+      }
+    }
+    else if ( psurf->flagcolor == 4 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
+    {
+      /* input : color matrix , we use 1 color per facet with Matlab selection mode (no average computed) */
+      /* HERE is the difference with case 2 */
+      for ( j = 0 ; j < nc ; j++ )   /* nc value is dimzy*/
+      {
+        psurf->zcol[j] = psurf->inputCMoV[j*m3n] ;
+      }
+    }
+
+  }
   else /* else we put the value of the color_mode flag[0]*/
-    {
+  {
 
-      if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
-	{ /* case of SCI_PLOT3D avoid */
-	  nc = psurf->dimzy;
-	}
-      else if(psurf->flagcolor == 3)
-	{
-	  nc = psurf->dimzx *  psurf->dimzy;
-	} 
-      else
-	nc=0;
-
-      if(nc>0){
-	if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL) {
-	  FREE(pvecx); pvecx = (double *) NULL;
-	  FREE(pvecy); pvecy = (double *) NULL;
-	  FREE(pvecz); pvecz = (double *) NULL;
-	  return -1;
-	}
-      }
-
-      /* case flagcolor == 2*/
-      if(psurf->flagcolor==2 || psurf->flagcolor==4) /* we have to fill a Color vector */
-	{
-	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-	    psurf->zcol[j] = psurf->flag[0];
-	}
-      else if(psurf->flagcolor==3) /* we have to fill a color matrix */
-	{
-	  for(i = 0; i< psurf->dimzy; i++){
-	    for (j = 0;j < psurf->dimzx; j++)
-	      psurf->zcol[psurf->dimzx*i+j] = psurf->flag[0];
-	  }
-	}
-      else
-	{
-	  /* case flagcolor == 0 or 1 */
-	  psurf->zcol = NULL;
-	  psurf->izcol = 0;
-	}
+    if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
+    { /* case of SCI_PLOT3D avoid */
+      nc = psurf->dimzy;
     }
+    else if(psurf->flagcolor == 3)
+    {
+      nc = psurf->dimzx *  psurf->dimzy;
+    } 
+    else
+    {
+      nc=0;
+    }
+
+    if ( nc > 0)
+    {
+      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
+      {
+        FREE(pvecx); pvecx = (double *) NULL;
+        FREE(pvecy); pvecy = (double *) NULL;
+        FREE(pvecz); pvecz = (double *) NULL;
+        return -1;
+      }
+    }
+
+    /* case flagcolor == 2*/
+    if(psurf->flagcolor==2 || psurf->flagcolor==4) /* we have to fill a Color vector */
+    {
+      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+      {
+        psurf->zcol[j] = psurf->flag[0];
+      }
+    }
+    else if(psurf->flagcolor==3) /* we have to fill a color matrix */
+    {
+      for ( i = 0 ; i < psurf->dimzx * psurf->dimzy ; i++ )
+      {
+        psurf->zcol[i] = psurf->flag[0];
+      }
+    }
+    else
+    {
+      /* case flagcolor == 0 or 1 */
+      psurf->zcol = NULL;
+      psurf->izcol = 0;
+    }
+  }
 
   psurf->pvecx = pvecx;
   psurf->pvecy = pvecy;
@@ -1112,23 +1169,32 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
   psurf->n3n = n3n;
 
   /* We need to rebuild ...->color matrix */
-  if(psurf->flagcolor != 0 && psurf->flagcolor !=1){ 
-    if(psurf->cdatamapping == 0){ /* scaled */
+  if( psurf->flagcolor != 0 && psurf->flagcolor != 1 )
+  { 
+    if(psurf->cdatamapping == 0)
+    {
+      /* scaled */
       FREE(psurf->color);
       LinearScaling2Colormap(pobj);
     }
-    else{
+    else
+    {
       int nc = psurf->nc;
 
       FREE(psurf->color);
 
-      if(nc>0){
+      if(nc>0)
+      {
 	if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
+        {
 	  return -1;
+        }
       }
 
       for(i=0;i<nc;i++)
+      {
 	psurf->color[i] = psurf->zcol[i];
+      }
       /* copy zcol that has just been freed and re-alloc + filled in */
     }
   }

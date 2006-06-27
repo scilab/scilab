@@ -35,7 +35,7 @@ proc LemonTree::add {w parent type name {text ""}} {
     set fill [expr {[string match (* $text)]? "blue": "black"}]
     set drawcross [expr {[info proc ::LemonTree::kids($type)] eq ""?
 			 "never": "allways"}]
-    $w insert end $parent $id -text $text -data $data -font {Arial 9}\
+    $w insert end $parent $id -text $text -data $data -font {Arial -15}\
 	-drawcross $drawcross -fill $fill
         
      if { $type eq "variable" } {
