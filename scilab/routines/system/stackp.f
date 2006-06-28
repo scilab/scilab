@@ -20,19 +20,7 @@ c
          call basout(io,wte,' stackp  '//buf(1:nlgh))
       endif
 c
-      if(macprt.ne.0) then  
-         call funtab(id,ifun,1)
-         if(ifun.gt.0) then
-            if(macprt.eq.2) then  
-               call  putid(ids(1,pt+1),id)
-               call error(223)
-               if(err.gt.0) return
-            elseif(macprt.eq.1) then  
-               call  putid(ids(1,pt+1),id)
-               call msgs(42,vt)
-            endif
-         endif
-      endif
+
       
       if(err1.gt.0) return
 c     compilation  stackp: <1,nom(1:4)>
@@ -75,8 +63,27 @@ c
       k = last
  05   k = k-1
       if (.not.eqid(idstk(1,k),id)) go to 05
-      if (k .eq. bot-1) go to 10
+
+      if (k .eq. bot-1) then
+c     .  the variable does not exist, check for function redefinition
+         if(macprt.ne.0) then  
+            call funtab(id,ifun,1)
+            if(ifun.gt.0) then
+               if(macprt.eq.2) then  
+                  call  putid(ids(1,pt+1),id)
+                  call error(223)
+                  if(err.gt.0) return
+               elseif(macprt.eq.1) then  
+                  call  putid(ids(1,pt+1),id)
+                  call msgs(42,vt)
+               endif
+            endif
+         endif
+         go to 10
+      endif
+
 c
+
       if(infstk(k).eq.2.and.vt.gt.0) then
 c     .  check if k always point to a valid global variable
          kg=istk(iadr(lstk(k))+2)
