@@ -778,6 +778,7 @@ static int MaybeCopyVectLI(char *name, integer **nx, integer *x, int l)
  *---------------------------------------------------------------------------*/
 
 struct listplot *ListPFirst = NULL ;
+static struct listplot *List_last = NULL ;
 
 /*-------------------------------------------------------------------------
  * StoreXgc is to be called after CleanPlots 
@@ -2697,6 +2698,7 @@ int Store(char *type, char *plot)
 	    ListPFirst->window=curwin();
 	    ListPFirst->ptrplot=NULL;
 	    ListPFirst->previous=NULL;
+	    List_last = ListPFirst;
 	  }
 	else
 	  {
@@ -2707,9 +2709,12 @@ int Store(char *type, char *plot)
   else 
     {
       struct listplot *list;
-      list=ListPFirst;
+ //jpc's correction makes new insertions O(n) rather than O(n^2)
+ /*      list=ListPFirst;
       while (list->ptrplot != NULL) 
-	list=list->ptrplot;
+      list=list->ptrplot; */
+      list = List_last;
+
       list->ptrplot=(struct listplot *)
 	MALLOC(sizeof(struct listplot));
       if (list->ptrplot != NULL)
@@ -2722,6 +2727,7 @@ int Store(char *type, char *plot)
 	  list->ptrplot->previous=list;
 	  list->ptrplot->window=curwin();
 	  list->ptrplot->ptrplot=NULL;
+	  List_last = list->ptrplot;
 	}
       else 
 	{
