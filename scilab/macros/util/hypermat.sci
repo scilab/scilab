@@ -6,14 +6,18 @@ function M=hypermat(dims,v)
 // M data structure contains the vector of matrix dimensions M('dims')
 // and the vector of entries M('entries') such as the leftmost subcripts vary first
 // [M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]
-[lhs,rhs]=argn(0)
-//dims=round(dims)
-if rhs<2 then
-  M=mlist(['hm','dims','entries'],int32(matrix(dims,1,-1)),zeros(prod(dims),1))
-else
+  [lhs,rhs]=argn(0)
+  dims=double(dims)
+  if dims==[] then dims=[0 0],end
+  if size(dims,'*')==1 then dims=[1 dims],end
+  
+  if argn(2)<2 then v=zeros(prod(dims),1),end
   if size(v,'*')<> double(prod(dims)) then
     error('hypermat: Number of entries does not match product of dimensions')
   end
-  M=mlist(['hm','dims','entries'],int32(matrix(dims,1,-1)),matrix(v,-1,1))
-end
+  if size(dims,'*')<=2 then
+    M=matrix(v,dims)
+  else
+    M=mlist(['hm','dims','entries'],int32(matrix(dims,1,-1)),matrix(v,-1,1))
+  end
 endfunction
