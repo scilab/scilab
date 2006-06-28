@@ -419,6 +419,9 @@ proc goonwo_bp {} {
         removescilab_bp "with_output"
         ScilabEval_lt "resume(0)" "seq"
         getfromshell
+        checkexecutionerror_bp
+    } else {
+        # <TODO> .sce case if some day the parser uses pseudocode noops
     }
     setdbstate "ReadyForDebug"
 }

@@ -356,10 +356,12 @@ proc checkexecutionerror_bp {} {
                                  set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
                                  set errmsg  \"\"\"+db_str+\"\"\"; \
                                  if {\$errnum != 0} { \
-                                     set errtext \[mc \"\"The Scilab shell returned to main level due to an error:\"\"\]; \
-                                     append errtext \"\"\n\"\" \[mc \"\"Error \"\"\] \$errnum \"\"\n\"\" \
-                                                    \$errmsg \"\"\n\"\" \
-                                                    \[mc \"\"at line \"\"\] \$errline \[mc \"\" of \"\"\] \$errfunc ; \
+                                     bell; \
+                                     set errtext \[mc \"\"Error \"\"\]; \
+                                     append errtext \$errnum \"\" -- \"\" \$errmsg \"\"\n\"\" \
+                                                    \[mc \"\"at line \"\"\] \$errline \[mc \"\" of \"\"\] \
+                                                     \$errfunc \"\"\n\"\" \"\"\n\"\" \
+                                                    \[mc \"\"Scilab is back at the main level now.\"\"\]; \
                                      set callstackcontent \$errtext; \
                                      updatewatch_bp; \
                                      blinkline \$errline \$errfunc; \

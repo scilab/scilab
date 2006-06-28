@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.35
+# in sync at least with v6.36
 
 
 # commons
@@ -118,8 +118,8 @@
 ::msgcat::mcset fr "Currently no debug session" "Pas de session de débug en cours"
 ::msgcat::mcset fr "Ready to start debug" "Prêt pour le débug"
 ::msgcat::mcset fr "Debug in progress" "Débug en cours"
-::msgcat::mcset fr "The Scilab shell returned to main level due to an error:" \
-                   "Le shell Scilab est retourné au niveau principal sur une erreur:"
+::msgcat::mcset fr "Scilab is back at the main level now." \
+                   "Scilab est de retour au niveau principal."
 
 
 # db_watch.tcl

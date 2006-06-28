@@ -2249,3 +2249,10 @@ Francois VOGEL, 28/06/06
  * The debugger retrieves execution errors from Scilab, reports in the watch
    window, and blinks the offending line
  * version --> 6.35
+
+Francois VOGEL, 28/06/06
+ * Fixed f***ing line endings issues (hopefully)
+ * Execution errors retrieved also on "Go on ignoring any breakpoint"
+ * Changed formatting of the error message in the watch window, and added
+   a bell
+ * version --> 6.36
