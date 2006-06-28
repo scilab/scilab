@@ -150,6 +150,9 @@ if {0} {
     bind all <Control-equal> { \
         if {[isscilabbusy]} {tk_messageBox -message "BUSY"} else {tk_messageBox -message "IDLE"}
     }
+    bind all <Control-equal> { \
+        checkexecutionerror_bp \
+    }
 }
 
 # End of useful binding triggering a command

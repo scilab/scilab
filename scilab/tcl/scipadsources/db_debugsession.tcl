@@ -1,6 +1,7 @@
 proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
 
     if {[getdbstate] == "ReadyForDebug"} {
+        clearscilaberror
         execfile_bp $stepmode
     } elseif {[getdbstate] == "DebugInProgress"} {
         resume_bp $checkbusyflag $stepmode
@@ -57,12 +58,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         if {$watchsetcomm != ""} {
             ScilabEval_lt "$watchsetcomm"  "seq"
         }
-# <TODO> A ScilabEval "seq" never causes an error, this only happens with "sync"
-#        It would be a good idea to arrange for an error to be reported even with a seq,
-#        but this is outside of Scipad.
-        if {[catch {ScilabEval_lt "$setbpcomm; $funnameargs;"  "seq"}]} {
-            scilaberror $funnameargs
-        }
+        ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
         updateactivebreakpoint
         getfromshell
         checkendofdebug_bp $stepmode
@@ -119,6 +115,8 @@ proc stepbystep_bp {checkbusyflag stepmode} {
         # while skipping lines without executable statements
         # (which might occur during step by step)
         if {[isscilabbusy 5]} {return}
+
+        clearscilaberror
 
 #        showwrappercode
 

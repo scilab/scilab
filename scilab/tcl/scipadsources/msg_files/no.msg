@@ -87,7 +87,7 @@
 ::msgcat::mcset no "Scilab execution error" "Kjørefeil i Scilab"
 ::msgcat::mcset no "The shell reported an error while trying to execute "\
                    "Skallet rapporterte en feil under kjøring "
-::msgcat::mcset no " at line " " på rad "
+::msgcat::mcset no "at line " "på rad "
 ::msgcat::mcset no " of " " i "
 ::msgcat::mcset no "Execution aborted!" "Kjøring avbrutt!"
 

@@ -2244,3 +2244,8 @@ Francois VOGEL, 27/06/06
    is zero (e.g. regexp searching for ^) - This was partly Tk bug 1513517
  * Added a progress bar for replace all (long replaces look like hangs)
  * version --> 6.34
+
+Francois VOGEL, 28/06/06
+ * The debugger retrieves execution errors from Scilab, reports in the watch
+   window, and blinks the offending line
+ * version --> 6.35

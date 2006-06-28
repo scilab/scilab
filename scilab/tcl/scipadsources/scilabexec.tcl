@@ -350,15 +350,15 @@ proc isscilabbusy {{messagenumber "nomessage"} args} {
 proc scilaberror {funnameargs} {
     global errnum errline errmsg errfunc
     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();\
-                   TCL_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
-                                               set errnum  \"+string(db_n)+\"; \
-                                               set errline \"+string(db_l)+\"; \
-                                               set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                               set errmsg  \"\"\"+db_str+\"\"\"}\")" \
+                   TCL_EvalStr(\"global errnum errline errmsg errfunc; \
+                                 set errnum  \"+string(db_n)+\"; \
+                                 set errline \"+string(db_l)+\"; \
+                                 set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
+                                 set errmsg  \"\"\"+db_str+\"\"\" \" , \"scipad\" )" \
                   "sync" "seq"
     tk_messageBox -title [mc "Scilab execution error"] \
       -message [concat [mc "The shell reported an error while trying to execute "]\
-      $funnameargs ": error " $errnum ", " $errmsg [mc " at line "]\
+      $funnameargs [mc ": error "] $errnum ", " $errmsg ", " [mc "at line "]\
       $errline [mc " of "] $errfunc]
     showinfo [mc "Execution aborted!"]
     if {[getdbstate] == "DebugInProgress"} {

@@ -88,7 +88,7 @@
 ::msgcat::mcset pl "The shell reported an error while trying to execute "\
                    "Pow\u0142oka wys\u0142a\u0142a\
                    b\u0142\u0105d, podczas pr\u00F3by wykonywania "
-::msgcat::mcset pl " at line " " w linii "
+::msgcat::mcset pl "at line " "w linii "
 ::msgcat::mcset pl " of " " na "
 ::msgcat::mcset pl "Execution aborted!" "Wykonywanie przerwane!"
 

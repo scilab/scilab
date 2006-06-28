@@ -327,17 +327,65 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
                    }
     }
 
-    set comm1 "\[db_l,db_m\]=where();"
-    set comm2 "if size(db_l,1)==1 then"
-    set comm3   "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm4   "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
-    set comm5   "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
-    set comm6 "else"
-    set comm7   "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm8   "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
-#    set comm9 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
-    set comm9 "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9]
+    set comm1  "\[db_l,db_m\]=where();"
+    set comm2  "if size(db_l,1)==1 then"
+    set comm3    "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm4    "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
+    set comm5    "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
+    set comm6    "TCL_EvalStr(\"checkexecutionerror_bp\",\"scipad\");"
+    set comm7  "else"
+    set comm8    "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm9    "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
+#    set comm10 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
+    set comm10 "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10]
 
     ScilabEval_lt "$fullcomm" "seq"
+}
+
+proc checkexecutionerror_bp {} {
+# detect whether there was an execution error or not in Scilab
+# since the previous call to this proc
+# this proc makes use of lasterror(%f), i.e. without clearing the error.
+# in case an error occurred previously ($errnum is non zero), display
+# the error information in the call stack area of the watch window
+    ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror(%f);\
+                   TCL_EvalStr(\"global errnum errline errmsg errfunc callstackcontent; \
+                                 set errnum  \"+string(db_n)+\"; \
+                                 set errline \"+string(db_l)+\"; \
+                                 set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
+                                 set errmsg  \"\"\"+db_str+\"\"\"; \
+                                 if {\$errnum != 0} { \
+                                     set errtext \[mc \"\"The Scilab shell returned to main level due to an error:\"\"\]; \
+                                     append errtext \"\"\n\"\" \[mc \"\"Error \"\"\] \$errnum \"\"\n\"\" \
+                                                    \$errmsg \"\"\n\"\" \
+                                                    \[mc \"\"at line \"\"\] \$errline \[mc \"\" of \"\"\] \$errfunc ; \
+                                     set callstackcontent \$errtext; \
+                                     updatewatch_bp; \
+                                     blinkline \$errline \$errfunc; \
+                                 } ; \
+                               \" , \"scipad\" )" \
+                  "seq"
+}
+
+proc clearscilaberror {} {
+# send lasterror(%t), which has the effect of clearing the last
+# error in Scilab. In Scilab the lasterror output becomes:
+#
+#    -->[str,n,line,func]=lasterror(%f)
+#     func  =
+#    
+#    
+#     line  =
+#    
+#        0.
+#     n  =
+#    
+#        0.
+#     str  =
+#    
+#         []
+#
+    if {[isscilabbusy 5]} {return}
+    ScilabEval_lt "lasterror(%t)" "seq"
 }

@@ -67,7 +67,7 @@
 ::msgcat::mcset se "Scilab execution error" "Exekveringsfel i Scilab"
 ::msgcat::mcset se "The shell reported an error while trying to execute " \
                    "Skalet rapporterade ett fel när det försökte exekvera "
-    ::msgcat::mcset se " at line " " på rad "
+    ::msgcat::mcset se "at line " "på rad "
     ::msgcat::mcset se " of " " i "
 ::msgcat::mcset se "Execution aborted!" "Exekveringen avbrute!"
 

@@ -93,7 +93,7 @@
 ::msgcat::mcset de "The shell reported an error while trying to execute "\
                    "Die Shell signalisierte einen Fehler bei der Ausführung\
                     von "
-::msgcat::mcset de " at line " " in Zeile "
+::msgcat::mcset de "at line " "in Zeile "
 ::msgcat::mcset de " of " " von "
 ::msgcat::mcset de "Execution aborted!" "Ausführung abgebrochen!"
 

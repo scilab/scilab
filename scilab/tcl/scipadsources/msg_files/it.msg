@@ -547,7 +547,7 @@
                    "Errore di Scilab durante l'esecuzione"
 ::msgcat::mcset it "The shell reported an error while trying to execute "\
                    "Lo shell ha riportato un errore nel cercare di eseguire"
-::msgcat::mcset it " at line " " alla linea "
+::msgcat::mcset it "at line " "alla linea "
 ::msgcat::mcset it " of " " di "
 ::msgcat::mcset it "Execution aborted!" "Esecuzione annullata!"
 

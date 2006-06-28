@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.24
+# in sync at least with v6.35
 
 
 # commons
@@ -11,6 +11,7 @@
 ::msgcat::mcset fr "Untitled" "SansTitre"
 ::msgcat::mcset fr "Close" "Fermer"
 ::msgcat::mcset fr "&Close" "&Fermer"
+::msgcat::mcset fr "Error " "Erreur "
 
 
 # buffernavigation.tcl
@@ -117,6 +118,8 @@
 ::msgcat::mcset fr "Currently no debug session" "Pas de session de débug en cours"
 ::msgcat::mcset fr "Ready to start debug" "Prêt pour le débug"
 ::msgcat::mcset fr "Debug in progress" "Débug en cours"
+::msgcat::mcset fr "The Scilab shell returned to main level due to an error:" \
+                   "Le shell Scilab est retourné au niveau principal sur une erreur:"
 
 
 # db_watch.tcl
@@ -470,7 +473,8 @@
                    "Scilab est occupé, attendez le prompt pour effectuer des commandes de débug."
 ::msgcat::mcset fr "Scilab execution error" "Erreur Scilab durant l'exécution"
 ::msgcat::mcset fr "The shell reported an error while trying to execute " "Le shell a rencontré une erreur en tentant d'exécuter "
-    ::msgcat::mcset fr " at line " " ligne "
+    ::msgcat::mcset fr ": error " ": erreur "
+    ::msgcat::mcset fr "at line " "ligne "
     ::msgcat::mcset fr " of " " de "
 ::msgcat::mcset fr "Execution aborted!" "Exécution arrêtée!"
 
