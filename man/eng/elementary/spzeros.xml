@@ -39,7 +39,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>sp=spzeros(nrows,ncols,fill)</VERB> returns a sparse zero matrix <VERB>sp</VERB> 
+    <P><VERB>sp=spzeros(nrows,ncols)</VERB> returns a sparse zero matrix <VERB>sp</VERB> 
     with <VERB>nrows</VERB> rows, <VERB>ncols</VERB> columns. 
     (Equivalent to <VERB>sparse([],[],[nrow,ncols])</VERB>)</P>
     <P><VERB>sp=spzeros(A)</VERB> returns a sparse zero matrix with same

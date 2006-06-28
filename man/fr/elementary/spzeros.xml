@@ -44,7 +44,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>sp=spzeros(nrows,ncols,fill)</VERB> renvoie une matrice creuse nulle <VERB>sp</VERB> 
+    <VERB>sp=spzeros(nrows,ncols)</VERB> renvoie une matrice creuse nulle <VERB>sp</VERB> 
     avec <VERB>nrows</VERB> lignes et <VERB>ncols</VERB> colonnes (Équivalent à <VERB>sparse([],[],[nrow,ncols])</VERB>).
   </P>
   <P>
