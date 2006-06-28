@@ -42,11 +42,18 @@
     all its propeties'values, it returns the handle on this new
     entity.  
   <VERB>h_axes</VERB> omitted, graphics entity is cloned and it's 
-  copied in the same parent axes entity.</P>
+  copied in the  same parent axes entity.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-
+subplot(211);a1=gca();
+plot2d()
+e=gce();
+p1=e.children(1);
+p2=copy(p1);p2.data(:,2)=p2.data(:,2)-0.5;
+subplot(212);a2=gca();
+a2.data_bounds=a1.data_bounds;
+copy(p1,a2);
 
  ]]>
   </EXAMPLE>
