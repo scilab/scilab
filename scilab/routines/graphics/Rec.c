@@ -2684,6 +2684,8 @@ static void GReplay(char *type, char *plot)
 
 int Store(char *type, char *plot)
 {
+  struct listplot *list;
+
   if (ListPFirst == NULL)
       {
 	ListPFirst = (struct listplot *)MALLOC(sizeof(struct listplot));
@@ -2708,11 +2710,13 @@ int Store(char *type, char *plot)
       }
   else 
     {
-      struct listplot *list;
  //jpc's correction makes new insertions O(n) rather than O(n^2)
  /*      list=ListPFirst;
       while (list->ptrplot != NULL) 
       list=list->ptrplot; */
+ /* forgotten init, causes bug 2046: */
+      if (List_last == NULL) List_last=ListPFirst; 
+
       list = List_last;
 
       list->ptrplot=(struct listplot *)
