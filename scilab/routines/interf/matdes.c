@@ -1642,7 +1642,7 @@ int scixpoly(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scixpolys(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,mn2;
   int i;
   long hdl;
 
@@ -1652,6 +1652,8 @@ int scixpolys(char *fname,unsigned long fname_len)
   GetRhsVar(1,"d",&m1,&n1,&l1);
   GetRhsVar(2,"d",&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
+  mn2 = m2 * n2;
+  if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
 
   if (Rhs == 3) 
     {
@@ -2678,7 +2680,7 @@ int scixfpoly(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scixfpolys(char *fname,unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2=0; /* v2 = 0 F.leray 24.02.04 unused flag*/
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,mn2,v1=0,v2=0; /* v2 = 0 F.leray 24.02.04 unused flag*/
   /* v1 is the flag used for flat (v1==1) or interpolated (v1==2) shading */
 
   int i,color;
@@ -2690,6 +2692,8 @@ int scixfpolys(char *fname,unsigned long fname_len)
   GetRhsVar(1,"d",&m1,&n1,&l1);
   GetRhsVar(2,"d",&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
+  mn2 = m2 * n2;
+  if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
 
 
   if (Rhs == 3) 
