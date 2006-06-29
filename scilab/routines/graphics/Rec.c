@@ -1045,6 +1045,8 @@ void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, inte
 	    (list->ptrplot)->previous=list->previous;
 	  list1=list;
 	  list =list->ptrplot;
+	  /* we are removing the last record */
+	  if ( List_last  == list1 ) List_last = list1->previous;
 	  FREE((char *) list1);
 	}
       else 
@@ -2710,15 +2712,14 @@ int Store(char *type, char *plot)
       }
   else 
     {
- //jpc's correction makes new insertions O(n) rather than O(n^2)
- /*      list=ListPFirst;
-      while (list->ptrplot != NULL) 
-      list=list->ptrplot; */
- /* forgotten init, causes bug 2046: */
-      if (List_last == NULL) List_last=ListPFirst; 
+      /* jpc's correction makes new insertions O(n) rather than O(n^2) */
+      /*      list=ListPFirst;
+       *	      while (list->ptrplot != NULL) 
+       *      list=list->ptrplot; 
+       */
+      /* direct access to last */
 
       list = List_last;
-
       list->ptrplot=(struct listplot *)
 	MALLOC(sizeof(struct listplot));
       if (list->ptrplot != NULL)
