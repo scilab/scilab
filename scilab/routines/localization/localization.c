@@ -251,7 +251,7 @@ static char *Replace(char *S1, char *S2, char *S3)
       str_index    += old_len;
 
       /* Check for another pattern match */
-      if((c = (char *) strstr(S1+str_index, S2)) != NULL) oldpiece_index = c - string;
+      if((c = (char *) strstr(S1+str_index, S2)) != NULL) oldpiece_index = c - S1;
    } 
    /* Copy remaining characters from the right of last matched pattern */   
    strcpy(newstring+newstr_index, S1+str_index); 
