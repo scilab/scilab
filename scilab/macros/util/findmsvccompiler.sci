@@ -47,10 +47,12 @@ function MSCompiler=findmsvccompiler()
       ierr2=execstr("W2003SDK=winqueryreg(''HKEY_LOCAL_MACHINE'',''Software\Microsoft\MicrosoftSDK\InstalledSDKs\8F9E5EF3-A9A5-491B-A889-C58EFFECE8B3'',''Install Dir'');","errcatch");
       if ( (ierr1 == 0) | (ierr2 == 0) ) then 
         MSCompiler='msvc80express'; // Microsoft Visual C++ Express 8.0
+        lasterror(%T); // The error message is cleared
         return;
       else
         printf('\nWarning : Microsoft Visual C++ 2005 Express Edition has been detected,\nbut not Microsoft Platform SDK for Windows Server 2003 R2.\nPlease install this SDK if you want to use dynamic link with scilab.\n');
-      end  
+        lasterror(%T); // The error message is cleared
+      end
     else
       lasterror(%T); // The error message is cleared
     end
