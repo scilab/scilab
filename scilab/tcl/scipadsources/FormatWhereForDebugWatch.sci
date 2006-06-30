@@ -5,25 +5,15 @@ function txt = FormatWhereForDebugWatch(startitem)
 // The callstackfuns and callstacklines lists are also set inside the scipad
 // interpreter by this function for later use during step by step or run to
 // cursor
-// Author: François Vogel, 2004-06 (freely inspired from whereami())
+// Author: François Vogel, 2004-2006 (freely inspired from whereami())
 
-global LANGUAGE
-select LANGUAGE
-case "eng"
-    str0 = "Breakpoint"
-    str1 = " called at line ";
-    str2 = " of exec file";
-    str3 = " of execstr instruction";
-    str4 = " called under pause";
-    str5 = " of macro ";
-case "fr"
-    str0 = "Point d''arrêt"
-    str1 = " appelé à la ligne ";
-    str2 = " dans un fichier exec";
-    str3 = " dans une instruction execstr";
-    str4 = " appelé sous pause";
-    str5 = " de la macro ";
-end
+// Localisation
+str0=LocalizeForScipad("Breakpoint");
+str1=LocalizeForScipad(" called at line ");
+str2=LocalizeForScipad(" of exec file");
+str3=LocalizeForScipad(" of execstr instruction");
+str4=LocalizeForScipad(" called under pause");
+str5=LocalizeForScipad(" of macro ");
 
 [linn,mac] = where()
 nn  = prod(size(linn))
@@ -67,7 +57,7 @@ if pos ~= [] then
     end
 end
 
-// Special case : the dollar sign must be escaped otherwise what follows it is
+// Special case : the dollar sign must be escaped otherwise what follows is
 // interpreted as a Tcl variable
 // A dollar can be found in txt when debugging a function whose name starts
 // with $

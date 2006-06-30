@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.36
+# in sync at least with v6.37
 
 
 # commons
@@ -232,6 +232,24 @@
 ::msgcat::mcset fr "&Previous" "&Précédent"
 ::msgcat::mcset fr "&Next" "&Suivant"
 ::msgcat::mcset fr "Scipad search results" "Résultats de recherche Scipad"
+
+
+#FormatStringsForDebugWatch.sci
+::msgcat::mcset fr " what you try to watch is not supported by the debugger" \
+                   " ce que vous essayez d'espionner n'est pas supporté par le débuggueur"
+::msgcat::mcset fr " what you try to watch is of type " \
+                   " ce que vous tentez d'espionner est de type "
+    ::msgcat::mcset fr " - this type is not supported by the debugger" \
+                       " - ce type n'est pas supporté par le débuggueur"
+
+
+#FormatWhereForDebugWatch.sci
+::msgcat::mcset fr "Breakpoint" "Point d'arrêt"
+::msgcat::mcset fr " called at line " " appelé à la ligne "
+::msgcat::mcset fr " of exec file" " dans un fichier exec"
+::msgcat::mcset fr " of execstr instruction" " dans une instruction execstr"
+::msgcat::mcset fr " called under pause" " appelé sous pause"
+::msgcat::mcset fr " of macro " " de la macro "
 
 
 # helps.tcl

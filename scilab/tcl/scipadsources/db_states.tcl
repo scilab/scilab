@@ -208,6 +208,9 @@ if {$dev_debug=="true"} {
 proc getdebuggersciancillaries_bp {} {
     global env
     ScilabEval_lt "db_funcprotscheme=funcprot();funcprot(0)" "seq"
+    # Currently localization in .sci files is only used by the debugger, therefore
+    # getf LocalizeForScipad.sci is safely done here
+    ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/LocalizeForScipad.sci\"" "seq"
     ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\"" "seq"
     ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/FormatWhereForDebugWatch.sci\"" "seq"
     ScilabEval_lt "getf \"$env(SCIPATH)/tcl/scipadsources/ext_exists.sci\"" "seq"

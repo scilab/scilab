@@ -5,21 +5,23 @@ function [svar] = FormatStringsForDebugWatch(varargin)
 // The output string is identical to what the user would have typed in the
 // Scilab shell, apart from some extra characters needed to pass the string
 // to TCL/TK.
-// Author: François Vogel, 2004-2005
+// Author: François Vogel, 2004-2006
 
   if argn(2) == 0 then error(39); else var = varargin(1); end
 
   unklabel = "<?>"; // Warning: if this is changed it must be changed accordingly in db_init.tcl
 
   if execstr("tvar = type(var);","errcatch") <> 0 then
-    warning(" what you try to watch is not supported by the debugger");
+    warning(LocalizeForScipad(" what you try to watch is not supported by the debugger"));
     svar = unklabel;
 
   else
 
     if tvar<>1 & tvar<>2 & tvar<>4 & tvar<>5 & tvar<>6 & tvar<>8 & tvar<>10 & tvar<>15 & tvar<>16 & tvar<>17 then
       // unsupported cases
-      warning(" type not supported by the debugger (what you try to watch is of type "+typeof(var)+")");
+      warning(LocalizeForScipad(" what you try to watch is of type ")...
+          +typeof(var)...
+          +LocalizeForScipad(" - this type is not supported by the debugger"));
       svar = unklabel;
 
     else

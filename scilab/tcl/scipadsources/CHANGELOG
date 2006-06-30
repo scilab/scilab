@@ -2256,3 +2256,9 @@ Francois VOGEL, 28/06/06
  * Changed formatting of the error message in the watch window, and added
    a bell
  * version --> 6.36
+
+Francois VOGEL, 30/06/06
+ * Better localized the strings from FormatStringsForDebugWatch and
+   FormatWhereForDebugWatch, making use of msgcat and no more of the
+   global LANGUAGE from Scilab (was eng and fr only)
+ * version --> 6.37
