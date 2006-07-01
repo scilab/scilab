@@ -1,7 +1,10 @@
 function L=dir(str)
-  mask = int32(61440), dirtype = 16384,
+  mask = int32(61440),
+  dirtype = 16384,
+  basepath=''
   if argn(2)==1 then
     files=listfiles(str)
+    basepath=str
   else
    files=listfiles()
   end
@@ -20,7 +23,7 @@ function L=dir(str)
     bytes=zeros(n,1)
     isd(n,1)=%f
     for k=1:n
-      [x,ierr]=fileinfo(files(k)) 
+      [x,ierr]=fileinfo(basepath+'/'+files(k)) 
       if x<>[] then
 	dt(k)=x(6)
 	bytes(k)=x(1);
