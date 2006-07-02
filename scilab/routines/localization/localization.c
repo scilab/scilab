@@ -226,35 +226,42 @@ static char *Replace(char *S1, char *S2, char *S3)
 { 
    int str_index, newstr_index, oldpiece_index, end,new_len, old_len, cpy_len; 
    char *c=NULL; 
-   char *newstring=(char*)MALLOC((strlen(S1)*2)*sizeof(char));
+   char *newstring=NULL;
 
-   if ((c = (char *) strstr(S1, S2)) == NULL) return S1; 
+   newstring = (char*)MALLOC((strlen(S1)*2)*sizeof(char));
 
-   new_len        = strlen(S3);
-   old_len        = strlen(S2);
-   end            = strlen(S1)   - old_len;
-   oldpiece_index = c - S1;
+   if (newstring)
+   {
+	   if ((c = (char *) strstr(S1, S2)) == NULL) return S1; 
 
-   newstr_index = 0; 
-   str_index = 0; 
-   while(str_index <= end && c != NULL) 
-   { 
-      /* Copy characters from the left of matched pattern occurence */
-      cpy_len = oldpiece_index-str_index;
-      strncpy(newstring+newstr_index, S1+str_index, cpy_len);
-      newstr_index += cpy_len;
-      str_index    += cpy_len;
+	   new_len        = strlen(S3);
+	   old_len        = strlen(S2);
+	   end            = strlen(S1) - old_len;
+	   oldpiece_index = c - S1;
 
-      /* Copy replacement characters instead of matched pattern */
-      strcpy(newstring+newstr_index, S3);
-      newstr_index += new_len;
-      str_index    += old_len;
+	   newstr_index = 0; 
+	   str_index = 0; 
 
-      /* Check for another pattern match */
-      if((c = (char *) strstr(S1+str_index, S2)) != NULL) oldpiece_index = c - S1;
-   } 
-   /* Copy remaining characters from the right of last matched pattern */   
-   strcpy(newstring+newstr_index, S1+str_index); 
+	   while(str_index <= end && c != NULL) 
+	   { 
+		   /* Copy characters from the left of matched pattern occurrence */
+		   cpy_len = oldpiece_index-str_index;
+		   strncpy(newstring+newstr_index, S1+str_index, cpy_len);
+		   newstr_index += cpy_len;
+		   str_index    += cpy_len;
+
+		   /* Copy replacement characters instead of matched pattern */
+		   strcpy(newstring+newstr_index, S3);
+		   newstr_index += new_len;
+		   str_index    += old_len;
+
+		   /* Check for another pattern match */
+		   if((c = (char *) strstr(S1+str_index, S2)) != NULL) oldpiece_index = c - S1;
+	   }
+
+   }
+   else return S1; 
+   
    return newstring; 
 }
 /*-----------------------------------------------------------------------------------*/ 
