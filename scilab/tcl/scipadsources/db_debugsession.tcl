@@ -294,6 +294,13 @@ proc isinstepscope {funname stepscope} {
 # see proc getlogicallinenumbersranges for the available scopes
     global funnameargs
     global callstackfuns
+    global debugger_fun_ancillaries
+
+    # the debugger ancillaries cannot be debugged and shouldn't be stepped
+    if {[lsearch -exact $debugger_fun_ancillaries $funname] != -1} {
+        return false
+    }
+
     if {$stepscope == "allscilabbuffers"} {
         return true
     } elseif {$stepscope == "configuredfoo"} {

@@ -9,11 +9,11 @@ function txt = FormatWhereForDebugWatch(startitem)
 
 // Localisation
 str0=LocalizeForScipad("Breakpoint");
-str1=LocalizeForScipad(" called at line ");
-str2=LocalizeForScipad(" of exec file");
-str3=LocalizeForScipad(" of execstr instruction");
-str4=LocalizeForScipad(" called under pause");
-str5=LocalizeForScipad(" of macro ");
+str1=LocalizeForScipad("called at line");
+str2=LocalizeForScipad("of exec file");
+str3=LocalizeForScipad("of execstr instruction");
+str4=LocalizeForScipad("called under pause");
+str5=LocalizeForScipad("of macro");
 
 [linn,mac] = where()
 nn  = prod(size(linn))
@@ -35,13 +35,13 @@ TCL_SetVar("callstacklines",linnstring,"scipad")
 for k = 2:nn-1    // The first item is omitted since it is always "FormatWhereForDebugWatch"
                   // The last item is omitted since it is the execstr from the ScilabEval "foo_to_debug()"
     if mac(k)=='exec' then
-        txt = txt + part(mac(k-1),1:lm) + str1 + string(linn(k)) + str2 + "\n"
+        txt = txt + part(mac(k-1),1:lm) + " " + str1 + " " + string(linn(k)) + " " + str2 + "\n"
     elseif mac(k)=='execstr' then
-        txt = txt + part(mac(k-1),1:lm) + str1 + string(linn(k)) + str3 + "\n"
+        txt = txt + part(mac(k-1),1:lm) + " " + str1 + " " + string(linn(k)) + " " + str3 + "\n"
     elseif mac(k)=='pause' then
-        txt = txt + part(mac(k-1),1:lm) + str4 + "\n"
+        txt = txt + part(mac(k-1),1:lm) + " " + str4 + "\n"
     else
-        txt = txt + part(mac(k-1),1:lm) + str1 + string(linn(k)) + str5 + mac(k) + "\n"
+        txt = txt + part(mac(k-1),1:lm) + " " + str1 + " " + string(linn(k)) + " " + str5 + " " + mac(k) + "\n"
     end
 end
 

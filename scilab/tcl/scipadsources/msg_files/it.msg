@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.36
+# in sync at least with v6.38
 
 
 # commons
@@ -293,12 +293,12 @@
 
 #FormatWhereForDebugWatch.sci
 ::msgcat::mcset it "Breakpoint" "Arresto"
-::msgcat::mcset it " called at line " " alla linea "
-::msgcat::mcset it " of exec file" "in un file exec"
-::msgcat::mcset it " of execstr instruction"\
+::msgcat::mcset it "called at line" "alla linea"
+::msgcat::mcset it "of exec file" "in un file exec"
+::msgcat::mcset it "of execstr instruction"\
                    "in una instruzione execstr"
-::msgcat::mcset it " called under pause" "chiamata durante \"pause\""
-::msgcat::mcset it " of macro " " della macro "
+::msgcat::mcset it "called under pause" "chiamata durante \"pause\""
+::msgcat::mcset it "of macro" "della macro"
 
 
 # helps.tcl

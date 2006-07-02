@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.37
+# in sync at least with v6.38
 
 
 # commons
@@ -245,11 +245,11 @@
 
 #FormatWhereForDebugWatch.sci
 ::msgcat::mcset fr "Breakpoint" "Point d'arrêt"
-::msgcat::mcset fr " called at line " " appelé à la ligne "
-::msgcat::mcset fr " of exec file" " dans un fichier exec"
-::msgcat::mcset fr " of execstr instruction" " dans une instruction execstr"
-::msgcat::mcset fr " called under pause" " appelé sous pause"
-::msgcat::mcset fr " of macro " " de la macro "
+::msgcat::mcset fr "called at line" "appelé à la ligne "
+::msgcat::mcset fr "of exec file" "dans un fichier exec"
+::msgcat::mcset fr "of execstr instruction" "dans une instruction execstr"
+::msgcat::mcset fr "called under pause" "appelé sous pause"
+::msgcat::mcset fr "of macro" "de la macro"
 
 
 # helps.tcl

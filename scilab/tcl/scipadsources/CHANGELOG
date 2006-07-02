@@ -2262,3 +2262,8 @@ Francois VOGEL, 30/06/06
    FormatWhereForDebugWatch, making use of msgcat and no more of the
    global LANGUAGE from Scilab (was eng and fr only)
  * version --> 6.37
+
+Francois VOGEL, 02/07/06
+ * Trimmed strings used in FormatStringsForDebugWatch
+ * Prevented the user from debugging the debugger ancillary functions
+ * version --> 6.38

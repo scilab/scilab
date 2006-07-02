@@ -11,6 +11,16 @@ set showwatchvariablesarea "true"
 set showcallstackarea "true"
 set watchalwaysontop 0
 
+# list of functions names that cannot be debugged
+# because they are debugger ancillaries
+set debugger_fun_ancillaries [list \
+    "LocalizeForScipad" \
+    "FormatStringsForDebugWatch" \
+    "MatFormatStringsForDebugWatch" \
+    "FormatWhereForDebugWatch" \
+    "ext_exists" \
+    ]
+
 # Set the Scilab limits in terms of max number of breakpointed functions
 # and of max number of breakpoints (see help setbpt)
 set ScilabCodeMaxBreakpointedMacros 100

@@ -423,10 +423,20 @@ proc Obtainall_bp {} {
     global spin listboxinput listboxinputval funnames funvars funvarsvals
     global funsinbuffer
     global debugassce pad conf
+    global debugger_fun_ancillaries
 
     set textarea [gettextareacur]
     set funsinbuffer($textarea) ""
     set funsinfo [lindex [getallfunsintextarea $textarea] 1]
+
+    # the debugger ancillaries cannot be debugged and shouldn't be configured
+    # for debug, therefore remove them from the list of functions found
+    for {set i 0} {$i < [llength $funsinfo]} {incr i 3} {
+        set funname [lindex $funsinfo $i]
+        if {[lsearch -exact $debugger_fun_ancillaries $funname] != -1} {
+            set funsinfo [lreplace $funsinfo $i [expr $i+2]]
+        }
+    }
 
     if {[lindex $funsinfo 0] != "0NoFunInBuf"} {
         # At least one function definition was found in the buffer
@@ -497,7 +507,7 @@ proc Obtainall_bp {} {
         # not a pure .sci file
         # wrap in a function, and run the game again
 
-        # wrapper data cannot be undone
+        # wrapper instructions insertion cannot be undone
         # and must not change the modified flag
         $textarea configure -undo 0
         set mflag [ismodified $textarea]
