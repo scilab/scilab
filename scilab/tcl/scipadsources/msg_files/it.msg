@@ -182,8 +182,8 @@
 ::msgcat::mcset it "The file" "Il file"
 ::msgcat::mcset it "is already opened! Save the current opened file to\
                     another name and reopen it from disk!"\
-                   "è già aperto! Salvarlo eventualmente con un altro nome\
-                    e riaprirlo dal disco"
+                   "è già aperto! Salvarlo eventualmente con un altro nome e\
+                    riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
 ::msgcat::mcset it "saved" "salvato"
 ::msgcat::mcset it "cannot be written!" "non è scrivibile!"
@@ -282,17 +282,36 @@
 ::msgcat::mcset it "Scipad search results" "Risultati della ricerca"
 
 
+#FormatStringsForDebugWatch.sci
+::msgcat::mcset it " what you try to watch is not supported by the debugger"\
+                   "Il debugger non supporta quello che si sta cercando di osservare"
+::msgcat::mcset it " what you try to watch is of type "\
+                   "Stai cercando di osservare un oggetto di tipo "
+::msgcat::mcset it " - this type is not supported by the debugger"\
+                   "questo tipo non viene supportato dal debugger"
+
+
+#FormatWhereForDebugWatch.sci
+::msgcat::mcset it "Breakpoint" "Arresto"
+::msgcat::mcset it " called at line " " alla linea "
+::msgcat::mcset it " of exec file" "in un file exec"
+::msgcat::mcset it " of execstr instruction"\
+                   "in una instruzione execstr"
+::msgcat::mcset it " called under pause" "chiamata durante \"pause\""
+::msgcat::mcset it " of macro " " della macro "
+
+
 # helps.tcl
 ::msgcat::mcset it "About" "A proposito"
 ::msgcat::mcset it "aboutme_message"\
                    "\n Originato da tknotepad di Joseph Acosta,\
                     joeja@mindspring.com.\n Modificato dal Consorzio\
                     Scilab.\n Migliorato da Enrico Segre 2003-2006\n e da\
-                    François Vogel (in particolare il debugger)\
-                    2004-2006.\n Traduzioni: \n   norvegese, Torbjørn\
-                    Pettersen 2005; \n   polacco, Bartosz Kosiorek 2005; \n  \
-                    svedese, Gunnar Lindholm 2005; \n   tedesco, Dirk Reusch\
-                    2005; \n   spagnolo, Juan Nicolás Quesada 2006."
+                    François Vogel (in particolare il debugger) 2004-2006.\n\
+                    Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n  \
+                    polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
+                    Lindholm 2005; \n   tedesco, Dirk Reusch 2005; \n  \
+                    spagnolo, Juan Nicolás Quesada 2006."
 
 
 # infomessages.tcl
@@ -515,10 +534,10 @@
                     imprevedibile.\n\n Il comando in questione è:\n\n-->"
 ::msgcat::mcset it "impossibleScilabEval_message2"\
                    "ATTENZIONE : Un comando non ha potuto essere passato a\
-                    Scilab ed è stato ignorato perché troppo lungo. Ne\
-                    può risultare un comportamento imprevedibile.\n\n Se si\
-                    è nel corso di una sessione di debug, provare a ridurre\
-                    le variabili osservate. \n\n Il comando in questione\
+                    Scilab ed è stato ignorato perché troppo lungo. Ne può\
+                    risultare un comportamento imprevedibile.\n\n Se si è\
+                    nel corso di una sessione di debug, provare a ridurre le\
+                    variabili osservate. \n\n Il comando in questione\
                     è:\n\n-->"
 ::msgcat::mcset it "(end of command skipped)" "(resto del comando omesso)"
 ::msgcat::mcset it "Scilab working" "Scilab occupato"
@@ -535,8 +554,8 @@
                     selezione"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a\
                     Matlab file."\
-                   "Scilab è occupato, attendere il prompt per convertire\
-                    un file Matlab"
+                   "Scilab è occupato, attendere il prompt per convertire un\
+                    file Matlab"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to compile the\
                     help file."\
                    "Scilab è occupato, attendere il prompt per compilare la\
