@@ -2561,8 +2561,9 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
       integer j;
       j = strcmp(str,MissileGCTab_[i].name);
       if ( j == 0 ) 
-	{ if (*verbose == 1)
-	  sciprint("\nGetting Info on %s\r\n",str);
+      { 
+        /* if (*verbose == 1) */
+/* 	  sciprint("\nGetting Info on %s\r\n",str); */
 	if (flag == 1)
 	  (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
 	else 
