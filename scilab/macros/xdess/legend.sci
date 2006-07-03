@@ -160,7 +160,18 @@ function R=legend(varargin)
 	  // part modified by bruno (25 april 05) *********
 	  line_mode = stripblanks(h.line_mode)
 	  mark_mode = stripblanks(h.mark_mode)
-	  if line_mode == "on" then
+	  
+	  if h.polyline_style==6 then
+	    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');
+	    st=1//h.polyline_style;  //if st==3 then st=0,else st=0;end
+	    r = gce();
+	    r.line_mode = "on";
+	    r.mark_mode = "off";
+	    r.foreground=h.background;
+	    r.thickness=h.thickness;
+	    r.polyline_style=max(1,st);
+	    r.line_style=max(h.line_style,1);
+	  elseif line_mode == "on" then
 	    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');
 	    st=1//h.polyline_style;  //if st==3 then st=0,else st=0;end
 	    r = gce();
