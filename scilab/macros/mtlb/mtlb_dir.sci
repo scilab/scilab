@@ -11,9 +11,11 @@ rhs=argn(2)
 
 mask = int32(61440)
 dirtype = 16384
+basepath=''
 
 if rhs==1 then
   files=listfiles(path)
+  basepath=path
 else
   files=listfiles()
 end
@@ -29,7 +31,8 @@ lbytes=list()
 lisdir=list()
 for k=1:n
   lfiles(k)=files(k)
-  [x,ierr]=fileinfo(files(k)) 
+  [x,ierr]=fileinfo(basepath+'/'+files(k)) 
+  if ( (x == []) & (ierr== -1) ) then [x,ierr]=fileinfo(files(k)),end
   if x<>[] then
     w=getdate(x(6))
     month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
