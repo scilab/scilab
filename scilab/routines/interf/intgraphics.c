@@ -102,6 +102,7 @@ extern int intxs2bmp _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2emf _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu _PARAMS((char *fname,unsigned long fname_len));
 extern int scinewaxes _PARAMS((char *fname,unsigned long fname_len));
+extern int sciRelocateHandle _PARAMS((char *fname,unsigned long fname_len));
 int intshowalluimenushandles _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
@@ -192,6 +193,7 @@ static MatdesTable Tab[]={
 	{gget,"get"},
 	{gset,"set"},
 	{scinewaxes,"newaxes"},
+        {sciRelocateHandle,"relocate_handle"},
 /* NG end */
 	{scixsort,"gsort"},
 	{int_gtkhelp,"help_gtk"},

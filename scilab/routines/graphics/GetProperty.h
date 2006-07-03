@@ -177,4 +177,6 @@ extern BOOL sciGetAutoSize( sciPointObj * pObj ) ;
 extern sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;
 extern void sciGetUserSize( sciPointObj * pObj, double * width, double * height ) ;
 
+extern int sciGetNbChildren( sciPointObj * pObj ) ; /* GET */
+
 #endif /* __SCI_GET_PROPERTY__ */

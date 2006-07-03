@@ -5075,3 +5075,19 @@ BOOL sciGetIs3d( sciPointObj * pObj )
   return FALSE ;
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+ * get the number of children of a graphic object
+ * @return number of children of object pObj
+ */
+int sciGetNbChildren( sciPointObj * pObj )
+{
+  int nbChildren = 0 ;
+  sciSons * curSon = sciGetSons( pObj ) ;
+  while ( curSon != NULL && curSon->pointobj != NULL )
+  {
+    nbChildren ++ ;
+    curSon = curSon->pnext ;
+  }
+  return nbChildren ;
+}
+/*--------------------------------------------------------------------------------------------*/

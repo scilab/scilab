@@ -3128,3 +3128,4 @@ sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback
       return (sciPointObj *) NULL;
     }
 }
+

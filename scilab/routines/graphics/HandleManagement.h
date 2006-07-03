@@ -35,7 +35,8 @@ extern sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern long sciGetCurrentHandle (); /* HANDLE MANAGEMENT */
 extern sciPointObj *sciGetCurrentObj ();  /* HANDLE MANAGEMENT */
 extern int sciSetCurrentObj (sciPointObj * pobj); /* HANDLE MANAGEMENT */
-
-
+extern int sciGetNbFigures( void ) ;
+extern int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle ) ;
+extern BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;
 
 #endif /* __SCI_HANDLE_MANAGEMENT__ */

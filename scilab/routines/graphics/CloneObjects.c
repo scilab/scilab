@@ -413,9 +413,7 @@ int cloneFontContext( sciPointObj * pObjSource, sciPointObj * pObjDest )
   /* copy the font name */
   if ( sourceFC->fontnamelen != 0 )
   {
-    /* use of realloc, because the pointer might be already used */
-    destFC->pfontname
-      = MALLOC( sourceFC->fontnamelen * sizeof( char ) ) ;
+    destFC->pfontname = MALLOC( sourceFC->fontnamelen * sizeof( char ) ) ;
     if ( destFC->pfontname == NULL )
     {
       return -1 ;

@@ -17,7 +17,10 @@
 #include <time.h>
 
 #include "HandleManagement.h"
+#include "DrawObjects.h"
+#include "SetProperty.h"
 #include "GetProperty.h"
+#include "BuildObjects.h"
 #include "bcg.h"
 
 
@@ -1086,18 +1089,177 @@ sciGetCurrentObj ()
 int
 sciSetCurrentObj (sciPointObj * pobj)
 {
-  /* pcurrentobj is a static variable */
-  /* if(PCURRENTPOBJ != NULL){
-     sciprint (" \nIN sciSetCurrentObj, BEF setting, *PCURRENTPOBJ = %d\r\n",&(*PCURRENTPOBJ));
-     sciprint (" IN sciSetCurrentObj, BEF setting, *PCURRENTPOBJ->EntityType = %s\r\n\n",sciGetCharEntityType(PCURRENTPOBJ));}
-     else
-     sciprint ("\nPCURRENTPOBJ is NULL (Only at the beginning normally)\n");*/
-  
   PCURRENTPOBJ = pobj;
-  /*
-    sciprint (" IN sciSetCurrentObj, AFTER setting, *PCURRENTPOBJ = %d\r\n",&(*PCURRENTPOBJ));
-    sciprint (" IN sciSetCurrentObj, AFTER setting, *PCURRENTPOBJ->EntityType = %s\r\n",sciGetCharEntityType(PCURRENTPOBJ));
-    sciprint ("------------------------------------------------------------------------\n");*/
   return 0;
 }
+/*-----------------------------------------------------------------------------------*/
+/**
+ * move a graphic object from its position in the hierarchy to an other place.
+ * Note that we don't check wether the moved object is compatible with its new parent.
+ * @param[in/out] movedObj  graphical object which is moved.
+ * @param[in/out] newParent graphical object under which the movedObj will be placed.
+ * @return        0 if everything was achieved, -1 otherwise.
+ */
+int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
+{
+  sciPointObj * oldParent = sciGetParent( movedObj ) ;
+  sciDelThisToItsParent( movedObj, oldParent ) ;
+  sciAddThisToItsParent( movedObj, newParent ) ;
 
+  /* if an axis has been moved, its previous parent, a figure might haven't son any more.*/
+  if ( sciGetEntityType( movedObj ) == SCI_SUBWIN )
+  {
+    if ( sciGetNbChildren( oldParent ) == 0 )
+    {
+      /* we need to recreate a subwin */
+      sciPointObj * newSubWin = ConstructSubWin( oldParent, sciGetNumFigure( oldParent ) ) ;
+      if ( newSubWin == NULL )
+      {
+        return -1 ;
+      }
+      sciSetOriginalSubWin( oldParent, newSubWin ) ;
+    }
+  }
+
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * @return number of graphic windows in Scilab.
+ */
+int sciGetNbFigures( void )
+{
+  int nbFigure = 0 ;
+  int flag     = 0 ;
+  int ids          ;
+  C2F(getwins)( &nbFigure, &ids, &flag ) ;
+  return nbFigure ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * check if an object can be the son of an other.
+ * In Scilab :
+ * - figures are the root of scilab hierarchy and can not be sons of any other object.
+ * - axes can only be under a figure object
+ * - any other object can be gathered under a subwindow or a compound.
+ * @param[in] son object we try to move under parent
+ * @return TRUE if son can be moved under parent, FALSE otherwise.
+ */
+BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
+{
+  sciEntityType parentType = sciGetEntityType( parent ) ;
+  switch ( sciGetEntityType( son ) )
+  {
+  case SCI_FIGURE:
+    /* figure can not have parents */
+    return FALSE ;
+  case SCI_SUBWIN:
+    /* axes can only have figure parents */
+    return ( parentType == SCI_FIGURE ) ;
+  default:
+    return ( parentType == SCI_SUBWIN || parentType == SCI_AGREG ) ;
+  }
+  return FALSE ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * move a list of handle from anywhere in the handles hierarchy under another handle.
+ * Can be used for example to move an object from a window to another.
+ * @param[in] handles Indexes of the handles to relocate.
+ * @parem[in] nbHandles Size of the handle array.
+ * @param[in] newParentHandle handle of which the handles will be sons.
+ * @return    0 if everithing was executed fine, -1 otherwise.
+ */
+int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle )
+{
+  sciPointObj ** movedObjs = NULL ; /* array of moved objects */
+  sciPointObj *  parentObj = sciGetPointerFromHandle( newParentHandle ) ;
+  int i ;
+  int nbFigure = 0 ;
+  BOOL * modifiedFigure = NULL ; /* tell wether the figure number i or its children has been */
+                                 /* changed. Use for final redraw */
+  int curFigure = sciGetNumFigure( sciGetCurrentFigure() ) ;
+
+  /* check parent */
+  if ( parentObj == NULL )
+  {
+    Scierror( 999,"The parent handle is not or no more valid\r\n" ) ;
+    return -1 ;
+  }
+
+  /* we copy the pointer on the objects in this array */
+  movedObjs = MALLOC( nbHandles * sizeof(sciPointObj *) ) ;
+  if ( movedObjs == NULL )
+  {
+    Scierror(999,"Memory full, aborting operation.\r\n", i  ) ;
+    return -1 ;
+  }
+
+  /* check handles and copy their object in an array */
+  /* It is better to do a first loop, just to test the validity of the handles. */
+  /* As a result, we won't need to stop in the middle of the changes. */
+  for ( i = 0 ; i < nbHandles ; i++ )
+  {
+    movedObjs[i] = sciGetPointerFromHandle( handles[i] ) ;
+    /* check handle validity */
+    if ( movedObjs[i] == NULL )
+    {
+       Scierror(999,"Handle number %d is not or no more valid\r\n", i + 1  ) ;
+       FREE( movedObjs ) ;
+       return -1 ;
+    }
+    /* check that handles can be inserted under the parent */
+    if ( !sciCanBeSonOf( movedObjs[i], parentObj ) )
+    {
+      Scierror(999,"Handle number %d can not be relocated under the parent.\r\n", i +1 ) ;
+      FREE( movedObjs ) ;
+      return -1 ;
+    }
+  }
+
+  /* allocate the array with as much space as number of figures. */
+  nbFigure = sciGetNbFigures() ;
+  modifiedFigure = MALLOC( nbFigure * sizeof(BOOL) ) ;
+  if ( modifiedFigure == NULL )
+  {
+    Scierror(999,"Memory full, aborting operation.\r\n", i  ) ;
+    FREE( movedObjs ) ;
+    return -1 ;
+  }
+  
+  for ( i = 0 ; i < nbFigure ; i++ )
+  {
+    modifiedFigure[i] = FALSE ;
+  }
+
+  /* now move each object */
+  for ( i = 0 ; i < nbHandles ; i++ )
+  {
+    /* both the current and future (wich might be the same) figure of the object */
+    /* are modified. */
+    modifiedFigure[sciGetNumFigure(movedObjs[i])] = TRUE ;
+    modifiedFigure[sciGetNumFigure(parentObj)]    = TRUE ;
+    if ( sciRelocateObject( movedObjs[i], parentObj ) != 0 )
+    {
+      Scierror(999,"Error relocating handle %d.", i  ) ;
+    }
+  }
+  
+  FREE( movedObjs ) ;
+ 
+  /* redraw the modified figures */
+  for ( i = 0 ; i < nbFigure ; i++ )
+  {
+    if ( modifiedFigure[i] )
+    {
+      sciSetUsedWindow( i ) ;
+      sciDrawObj( sciGetCurrentFigure() ) ;
+      sciSetUsedWindow( curFigure ) ;
+    }
+  }
+
+  FREE( modifiedFigure ) ;
+  
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
