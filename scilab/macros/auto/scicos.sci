@@ -24,27 +24,13 @@ set("old_style","on")
 
 //check if superblock editing mode
 [%ljunk,%mac]=where()
-slevel=prod(size(find(%mac=='scicos_new')))
+slevel=prod(size(find(%mac=='scicos')))
 super_block=slevel>1
 if ~super_block then
   // TO BE REMOVED LATER
   [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
    %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicosnew_tables()
    //
-  write(%io(2),['Warning:'
-		'This is the development version'
-		'of the new Scicos editor (scicos_new).'
-		'The stable editor is scicos.'
-		'The new editor has not been fully tested'
-		'and validated; save your diagram regularly.' 
-		'Diagrams edited with the two editors are'
-		'compatible so you can switch at any time.'
-		'Menus cannot currently be customized with'
-		'the new editor.'
-		'Send all bug reports and suggestions to ramine.nikoukhah@inria.fr'])
- 
-  
-  
   // define scicos libraries
   if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 |..
 	exists('%scicos_display_mode')==0| exists('scicos_pal_libs') ==0 then 
@@ -160,19 +146,16 @@ if ~super_block then
  
  //
 
- if exists('scicos_newlib')==0 then 
-   load('SCI/macros/scicos_new/lib'),
+ if exists('scicoslib')==0 then 
+   load('SCI/macros/scicos/lib'),
  end
  exec(loadpallibs,-1) //to load the palettes libraries
- //To be removed
- scicos_newlib.SUPER_f
- //To be removed later: it is important because SUPER_f is duplicated in scicos_new/lib
 
 end
 
 
 
-scicos_ver='scicos2.7.3' // set current version of scicos
+scicos_ver='scicos4' // set current version of scicos
 Main_Scicos_window=1000
 
 //Initialisation
