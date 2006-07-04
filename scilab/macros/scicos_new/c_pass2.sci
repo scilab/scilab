@@ -1374,6 +1374,7 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
   all=get_allchildrenport(blk,port)
   //on met tous les enfants de clk à 0
   vec(all(:,1))=0
+  
   //on cherche les enfants directs: primary
   primary=get_childrenport([],blk,port)
   //on met les enfants à 1
@@ -1389,9 +1390,15 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
       end
     end
   end
+  // To fix the problem with algebraic loops when blk is typ_l
+  if blk>0 then  // exclude the block "always active"
+    if typ_l(blk) then primary=[primary;blk,1],end
+  end
+  
   n_p=size(primary,1)
   if n_p>0 then
-    while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
+    gap=%f
+    while ~fromfixe & ~bouclalg & ~gap
       for i=1:n_p
 	primary1=primary(i,1)
         if typ_l(primary1) then   //RN
@@ -1421,13 +1428,16 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,..
 	end
 	vec(w(:,1))=vec(primary1)
       end
+
+      gap=find_gap(vec(primary(:,1)))
+      
       if vec==oldvec2 then
 	fromfixe=%t
       else
 	oldvec2=vec
       end
       counter2=counter2+1
-      if counter2>2*nblock then
+      if counter2>2*nblock | gap then
 	//améliorer la borne inf!?
 	bouclalg=%t
 	disp('Algebric loop detected in ordo2')
@@ -1438,7 +1448,6 @@ endfunction
 
 function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat,..
 				      dep_t,dep_u,dep_uptr)
-
   counter2=0
   oldvec2=[]
   blk_duplicated=[]
@@ -1463,7 +1472,8 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat,..
 
   n_p=size(primary,1)  
   if n_p>1 then
-    while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
+    gap=%f
+    while ~fromfixe & ~bouclalg & ~gap
       for i=1:n_p
 	w=primary(i)
 
@@ -1475,7 +1485,7 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat,..
             f=find(connectmat(:,3)==wu(i,1) & connectmat(:,4)==wu(i,2))'
             g=[g;connectmat(f,1)]
           end
-	//if dep_ut(w,1) then
+	  //if dep_ut(w,1) then
 	  //g=connectmat(find(connectmat(:,3)==w),1)
 	  if (g ~= []) then
 	    vec(w)=vec(w)-1
@@ -1483,17 +1493,20 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat,..
 	  end
 	end
       end
+
+      gap=find_gap(vec(primary(:,1)))
+
       if vec==oldvec2 then
 	fromfixe=%t
       else
 	oldvec2=vec
       end
       counter2=counter2+1
-      if counter2>2*nblock then
+      
+      if counter2>2*nblock | gap then
 	//améliorer la borne inf!?
 	bouclalg=%t
-	disp('boucle algébrique détectée')
-	disp('le vec ne converge pas...')
+	disp('Algebraic loop detected in ordo3')
       end
     end
   end
@@ -1535,7 +1548,7 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
     else
       [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_uptr,..
        corinv,blk_duplicated,clkptr,cliptr,critev]=ordo1(primary,blk,port,clkconnect,..
-       connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
+		  connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
     end
   end
   primary=get_childrenport([],blk,port)
@@ -1571,7 +1584,7 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
   vec(all(:,1))=0
   //on met les enfants à 1
   vec(primary(:,1))=1
-  
+
   while ~pointfixe & ~bouclalg
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
@@ -1638,105 +1651,8 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	disp('le vec ne converge pas...')
       end
     end
-    gap=find_gap(vec(primary(:,1)))
-    if gap then
-      counter2=0  
-      oldvec2=[]
-      bouclalg=%f
-      fromfixe=%f
-      vec=-ones(nblock,1)
-      vec(all(:,1))=0
-      vec(primary(:,1))=1
-      while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
-        for i=1:n_p
-       	  w0=primary(i,:)
-          if typ_l(primary(i,1)) then //RN	
-	    w=get_allchildren2port(primary(i,1))
-          else
-	    w=[]
-	  end
-	  //on enleve les blocs du primary qui se trouve dans w
-	  n_w=size(w,1)
-	  if n_w>0 then
-	    del1=[]
-	    for k1=1:n_p
-	      f=find(primary(k1,1)==w(:,1))
-	      del1=[del1,f]
-	    end
-	    w(del1',:)=[]
-	  end
-	  w=[w0;w]
-	  //on cherche d'où vient l'entrée des blocs: g
-	  n_w=size(w,1)
-	  wu=[];
-	  for k=1:n_w
 
-	    //if dep_ut(w(k,1),1) then
-	    indport=find(dep_u(dep_uptr(w(k,1)):dep_uptr(w(k,1)+1)-1));
-	    g=[];
-	    if ( indport ~= [] ) then
-	      wu=[wu;w(k,1)*ones(size(indport','*'),1) indport'];
-	      for i=1:size(wu,1)
-                f=find(connectmat(:,3)==wu(i,1) & connectmat(:,4)==wu(i,2))'
-                g=[g;connectmat(f,1)]
-              end
- 
-	      //g=connectmat(find(connectmat(:,3)==w(k,1)),1)
-	      if g==[] then
-		if show_comment then
-		  disp('pb: le bloc '+string(w(k,1))+' est dep_u mais ne provient d aucun bloc!')
-		end
-	      else
-		//on garde les blocs de g qui ne sont pas dans w  
-		h=my_setdiff(g,w(:,1))
-		if h==[] then
-		  //si aucun bloc ne vient d'en dehors du faisceau
-		  vec(w(k,1))=max(vec(g))
-		else 
-		  //on garde dans h les termes >-1
-		  //i.e. les blocs activés par l'horloge clk
-		  h=h(find(vec(h)>-1))
-		  if h~=[] then
-		    vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
-		  else 
-		    vec(w(k,1))=max(vec(w(:,1)))
-		  end
-		end
-	      end
-	    else
-	      //si le bloc w(k) n'est pas dep_u
-	      vec(w(k,1))=vec(primary(i,1))
-	    end
-	    //if k==1 & counter2==0 then
-	    if k==1 then
-	      //si w(k) est primary(i) on descend son n° à ses enfants
-	      vec(w(:,1))=vec(w(k,1))
-	    end
-	  end
-	end
-	if vec==oldvec2 then
-	  fromfixe=%t
-	else
-	  oldvec2=vec
-	end
-	counter2=counter2+1
-	if counter2>2*nblock then
-	  //améliorer la borne inf!?
-	  bouclalg=%t
-	  disp('boucle algébrique détectée dans ordo1')
-	  disp('le vec ne converge pas...')
-	end
-      end    
-      for i=1:n_p
-	if typ_l(primary(i,1)) then
-	  w=get_allchildren2port(primary(i,1))
-	  //on met le primary au max de ses enfants
-	  if w~=[] then
-	    vec(primary(i,1))=max(vec(w(:,1)))
-	  end
-	end
-      end
-    end
+    gap=find_gap(vec(primary(:,1)))
 
     if (gap | oldvec1==vec | counter1>=n_p) & ~bouclalg then
       children=get_allchildrenport(blk,port)
@@ -1783,7 +1699,10 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
     counter1=counter1+1
     counter2=0
   end //fin du while
-  
+  if gap then
+    bouclalg=%t
+    disp('Algebraic loop detected in ordo1')
+  end  
 endfunction
 
 //On cherche les blocs à dupliquer qui empêche l'ordonnancement du 1er niveau
