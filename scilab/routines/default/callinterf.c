@@ -48,12 +48,6 @@ void C2F(Nointscicos)(void)
 	C2F(error)(&c_local);
 	return;
 }
-void C2F(Nocoselm)(void)
-{
-	sciprint("scicos interfaces not loaded \n");
-	C2F(error)(&c_local);
-	return;
-}
 void C2F(Nointcscicos)(void)
 {
 	sciprint("scicos interfaces not loaded \n");

@@ -131,16 +131,15 @@
 #include "../lapack/lapack.fundef"
 
 #define  IN_intcos  45  
-#define  IN_coselm  46  
-#define  IN_intcscicos 47
+#define  IN_intcscicos 46
 #include "../scicos/scicos.fundef"
 
-#define  IN_intwintools 48
+#define  IN_intwintools 47
 #include "../wintools/wintools.fundef"
 
-#define  IN_inttime 49
+#define  IN_inttime 48
 #include "../time/time.fundef"
 
-#define  IN_intsound 50
+#define  IN_intsound 49
 #include "../sound/sound.fundef"
 

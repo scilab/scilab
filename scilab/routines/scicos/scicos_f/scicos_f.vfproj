@@ -36,7 +36,6 @@ cd .."/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\affich.f"/>
 		<File RelativePath="..\constraint.f"/>
-		<File RelativePath="..\coselm.f"/>
 		<File RelativePath="..\csslti.f"/>
 		<File RelativePath="..\cstblk.f"/>
 		<File RelativePath="..\delay.f"/>

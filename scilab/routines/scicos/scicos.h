@@ -1,6 +1,6 @@
 #ifndef __SCICOS_H 
 #define __SCICOS_H 
-#include "scicos_block.h"
+#include "scicos_block4.h"
 /* maximum value for sum of number of inputs and outputs ports of a given 
 block of type 2 */
 #define SZ_SIZE 60

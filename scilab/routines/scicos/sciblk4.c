@@ -1,373 +1,614 @@
 /* Copyright INRIA */
 #include <string.h>
+#include <stdio.h>
 
 #include "../machine.h"
 #include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #include "../stack-c.h"
-#include "scicos_block.h"
+#include "scicos_block4.h"
 
+/* Define external function */
 extern integer C2F(scierr)();
-extern void C2F(itosci)();
-extern void C2F(dtosci)();
-extern void C2F(vvtosci)();
-extern void C2F(scitovv)();
-extern void C2F(skipvars)();
-extern void C2F(scitod)();
-extern void C2F(list2vars)();
-extern void C2F(ltopadj)();
-extern int C2F(mktlist)();
 extern void C2F(scifunc)();
-extern int C2F(mklist)();
-extern void str2sci(char** x,int n,int m);
 extern int *listentry(int *header, int i);
 
-void 
-sciblk4(Blocks,flag)
+/* Define var2sci,sci2var,createblklist function */
+extern int var2sci(void *x,int n,int m,int typ_var); /*it's now in intcscicos.c*/
+extern int createblklist(scicos_block *Blocks, int *ierr, int flag_imp); /*it's now in intcscicos.c*/
+int sci2var(void *x,void *y,int typ_var);
 
-     scicos_block *Blocks; 
+/* sciblk4. Run scilab block type 5.
+ *
+ * Input parameters :
+ * Blocks : Tlist
+ *    - 1 : Blocks(1)      : !scicos_block nevprt funpt type   scsptr  nz
+ *                            z            nx     x     xd     res     nin
+ *                            insz         inptr  nout  outsz  outptr  nevout
+ *                            evout        nrpar  rpar  nipar  ipar    ng
+ *                            g            ztyp   jroot label  work    nmode
+ *                            mode !
+ *    - 2  : Blocks.nevprt :
+ *    - 3  : Blocks.funpt  :
+ *    - 4  : Blocks.type   :
+ *    - 5  : Blocks.scsptr :
+ *    - 6  : Blocks.nz     :
+ *    - 7  : Blocks.z      :
+ *    - 8  : Blocks.nx     :
+ *    - 9  : Blocks.x      :
+ *    - 10 : Blocks.xd     :
+ *    - 11 : Blocks.res    :
+ *    - 12 : Blocks.nin    :
+ *    - 13 : Blocks.insz   :
+ *    - 14 : Blocks.inptr  :
+ *    - 15 : Blocks.nout   :
+ *    - 16 : Blocks.outsz  :
+ *    - 17 : Blocks.outptr :
+ *    - 18 : Blocks.nevout :
+ *    - 19 : Blocks.evout  :
+ *    - 20 : Blocks.nrpar  :
+ *    - 21 : Blocks.rpar   :
+ *    - 22 : Blocks.nipar  :
+ *    - 23 : Blocks.ipar   :
+ *    - 24 : Blocks.ng     :
+ *    - 25 : Blocks.g      :
+ *    - 26 : Blocks.ztyp   :
+ *    - 27 : Blocks.jroot  :
+ *    - 28 : Blocks.label  :
+ *    - 29 : Blocks.work   :
+ *    - 30 : Blocks.nmode  :
+ *    - 31 : Blocks.mode   :
+ *
+ * flag : integer
+ *         0 : update continuous state
+ *         1 : update output state
+ *         2 : update state
+ *         3 : update event output state
+ *         4 : state initialisation
+ *         5 : finish
+ *         6 : output state initialisation
+ *         7 :
+ *         9 :
+ *
+ * Output parameters :
+ * Blocks : Scilab Tlist (updated blocks Scilab list)
+ *
+ * 08/06/06, Alan   : Rewritten from original code of sciblk4.c
+ * of scicos 2.7.
+ *
+ */
+
+/* prototype */
+void sciblk4(Blocks,flag)
+     scicos_block *Blocks;
      integer flag;
-
 {
-  int k,j,i,topsave;
-  double *u,*y;
-  int one=1,*header,ne1,ne3,ne8;
-  int nu,ny,l5,l,moinsun=-1;
+  /*counter and address variable declaration*/
+  int i,j,topsave;
+  int ierr = 0;
+
+  int *header,ne1;
+  double *le111;
+
+  int *il_xd, *il_res, *il_out, *il_outptr, *il_z, *il_x;
+  int *il_mode, *il_evout, *il_g;
+
+  /* variable for output typed port */
+  int nout;
+
+  /* set number of left and right hand side parameters */
   int mlhs=1,mrhs=2;
-  int n27=31,zero=0;
-  int *le1,*le2,ne2,*le3,*le4,ne4,ne7,*le33,*le5,*le6,ne6,*le7,*le8;
-  double *le22,*le44,*le111,*le333,*le55,*le222,*le444,*le66,*le666,*le77,*le88;
-  char *str[]={ "scicos_block","nevprt","funpt","type",
-		"scsptr","nz","z","nx","x","xd","res","nin",
-		"insz","inptr","nout","outsz","outptr","nevout",
-		"evout","nrpar","rpar","nipar","ipar","ng","g",
-		"ztyp","jroot","label","work","nmode","mode"};
-  
-  char **str1;
-  
 
+  /* Save Top counter */
   topsave=Top;
-  str2sci(str,1,31);
 
-  C2F(itosci)(&Blocks[0].nevprt,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].funpt,&zero,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].type,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].scsptr,&zero,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].nz,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  if(Blocks[0].scsptr>0){
-    C2F(vvtosci)(Blocks[0].z,&Blocks[0].nz);
-    if (C2F(scierr)()!=0) goto err; 
-  }  else{
-    C2F(dtosci)(Blocks[0].z,&Blocks[0].nz,&one);
-    if (C2F(scierr)()!=0) goto err; 
-  }
-  C2F(itosci)(&Blocks[0].nx,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(dtosci)(Blocks[0].x,&Blocks[0].nx,&one);
-  if (C2F(scierr)()!=0) goto err; 
-  C2F(dtosci)(Blocks[0].xd,&Blocks[0].nx,&one);
-  if (C2F(scierr)()!=0) goto err; 
-  C2F(dtosci)(Blocks[0].res,&Blocks[0].nx,&one);
-  if (C2F(scierr)()!=0) goto err; 
-  C2F(itosci)(&Blocks[0].nin,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(Blocks[0].insz,&Blocks[0].nin,&one);
-  if (C2F(scierr)()!=0) goto err;
-  for (k=0;k<Blocks[0].nin;k++) {
-    u=(double *)Blocks[0].inptr[k];
-    nu=Blocks[0].insz[k];
-    C2F(dtosci)(u,&nu,&one);
-    if (C2F(scierr)()!=0) goto err;
-  }
-  C2F(mklist)(&Blocks[0].nin); 
-  
-  C2F(itosci)(Blocks[0].outsz,&Blocks[0].nout,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].nout,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  for (k=0;k<Blocks[0].nout;k++) {
-    y=(double *)Blocks[0].outptr[k];
-    ny=Blocks[0].outsz[k];
-    C2F(dtosci)(y,&ny,&one);
-    if (C2F(scierr)()!=0) goto err;
-  }
-  C2F(mklist)(&Blocks[0].nout);
-  
-  C2F(itosci)(&Blocks[0].nevout,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(dtosci)(Blocks[0].evout,&Blocks[0].nevout,&one);
-  if (C2F(scierr)()!=0) goto err; 
-  C2F(itosci)(&Blocks[0].nrpar,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  if(Blocks[0].scsptr>0){
-    C2F(vvtosci)(Blocks[0].rpar,&Blocks[0].nrpar);
-    if (C2F(scierr)()!=0) goto err; 
-  }  else{
-    C2F(dtosci)(Blocks[0].rpar,&Blocks[0].nrpar,&one);
-    if (C2F(scierr)()!=0) goto err; 
-  }
-  C2F(itosci)(&Blocks[0].nipar,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(Blocks[0].ipar,&Blocks[0].nipar,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].ng,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(dtosci)(Blocks[0].g,&Blocks[0].ng,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(&Blocks[0].ztyp,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(Blocks[0].jroot,&Blocks[0].ng,&one);
-  if (C2F(scierr)()!=0) goto err;
-  
-  if ((str1=MALLOC(sizeof(char*))) ==NULL )  return ;
-  if ((str1[0]=MALLOC(sizeof(char)*(strlen(Blocks[0].label)+1))) ==NULL )  return ;
-  (str1[0])[strlen(Blocks[0].label)]='\0';
-  strncpy(str1[0],Blocks[0].label,strlen(Blocks[0].label));
-  str2sci(str1,1,1);
-  FREE(str1[0]);
-  FREE(str1);
-  if (C2F(scierr)()!=0) goto err; 
-  
-  C2F(vvtosci)(*Blocks[0].work,&zero);
-  if (C2F(scierr)()!=0) goto err; 
-  C2F(itosci)(&Blocks[0].nmode,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  C2F(itosci)(Blocks[0].mode,&Blocks[0].nmode,&one);  
-  if (C2F(scierr)()!=0) goto err;
+  /****************************
+   * create scilab tlist Blocks
+   ****************************/
+  if((createblklist(&Blocks[0], &ierr,(i=-1)))==0) goto err;
 
-  C2F(mktlist)(&n27);
-  if (C2F(scierr)()!=0) goto err; 
-  
-  C2F(itosci)(&flag,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
-  
+  /* * flag * */
+  ierr=var2sci(&flag,1,1,80);
+  if (ierr!=0) goto err;
 
+  /**********************
+   * Call scilab function
+   **********************/
   C2F(scifunc)(&mlhs,&mrhs);
-
   if (C2F(scierr)()!=0) goto err;
-  
-  l5=Top;
-  l = *Lstk(l5);
-  header = (int *) stk(l);
- 
-  switch (flag) {
-  case 1 :
-    /* y computation */
+
+  /***************************
+   * Update C block structure
+   **************************/
+  /* get header of output variable Blocks of sciblk4 */
+  header = (int *) stk(*Lstk(Top));
+
+  /* switch to appropriate flag */
+  switch (flag)
+  {
+   case 0 : /* update continuous state */
+   {
+    if (Blocks[0].nx != 0)
     {
-      /* 16ieme element de la tlist y */
-      if (Blocks[0].nout!=0) {
-	le3=(int*) listentry(header,17);
-	for (j=1; j <=le3[1] ; j++)
-	  {
-	    le33=(int*) listentry(le3,j); 
-	    le333=(double *) (le33+4);
-	    if (le33){
-	      ne3=le33[1];
-	    }
-	    else{ne3=0;}
-	    C2F(unsfdcopy)(&ne3,le333,&moinsun,Blocks[0].outptr[j-1],&moinsun);
-	  }
-      }
+     /* 10 - xd */
+     il_xd = (int *) listentry(header,10);
+     ierr=sci2var(il_xd,Blocks[0].xd,10); /* double */
+     if (ierr!=0) goto err;
+
+     /* 11 - res */
+     il_res = (int *) listentry(header,11);
+     ierr=sci2var(il_res,Blocks[0].res,10); /* double */
+     if (ierr!=0) goto err;
     }
-    break;
-  case 0 :
-    /*  x'  computation */
-    /* 9 ieme element de la tlist xd */
-    if (Blocks[0].nx != 0){
-      le4=(int*) listentry(header,10);
-      le44=(double *) listentry(header,10);
-      ne4=le4[1];
-      le444=((double *) (le4+4));
-      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
-      /* 10 ieme element de la tlist res */
-      le6=(int*) listentry(header,11);
-      le66=(double *) listentry(header,11);
-      ne6=le6[1];
-      le666=((double *) (le6+4));
-      C2F(unsfdcopy)(&ne6,le666,&moinsun,Blocks[0].res,&moinsun);
-    }
-    break;
-  case 2 :
+   }
+   break;
+
+   case 1 : /* update output state */
+   {
+    /* 17 - outptr */
+    if (Blocks[0].nout!=0) 
     {
-      /* 6ieme element de la tlist z */
-      if (Blocks[0].nz != 0){
-	le1=(int*) listentry(header,7);
-	if(Blocks[0].scsptr>0){
-	  le111=(double*) listentry(header,7);
-	  ne1=header[7+2]-header[7+1];
-	} else{
-	  ne1=le1[1];
-	  le111=((double *) (le1+4));
-	}
-	C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
-      }
-      /* 8 ieme element de la tlist x */
-      if (Blocks[0].nx != 0){
-	le2=(int*) listentry(header,9);
-	le22=(double *) listentry(header,9);
-	ne2=le2[1];
-	le222=((double *) (le2+4));
-	C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
-	/* 9 ieme element de la tlist xd */
-      	le4=(int*) listentry(header,10);
-	le44=(double *) listentry(header,10);
-	ne4=le4[1];
-	le444=((double *) (le4+4));
-	C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
-      }
-      /* 30 ieme element de la tlist mode */
-      le7=(int*) listentry(header,31);
-      le77=(double*) (le7+4);
-      ne7=le7[1];
-      for (i=0; i<ne7; i++){
-	Blocks[0].mode[i]=(int)le77[i];
-      }   
+     il_out = (int*) listentry(header,17);
+     nout = il_out[1];
+
+     for (j=0;j<nout;j++)
+     {
+      il_outptr = (int *) listentry(il_out,j+1);
+      ierr=sci2var(il_outptr,Blocks[0].outptr[j],Blocks[0].outsz[2*nout+j]);
+      if (ierr!=0) goto err;
+     }
     }
-    break;
-  case 3 :
-    le5=(int*) listentry(header,19);
-    le55=(double*) (le5+4);
-    for (j=0; j<Blocks[0].nevout;j++){
-      Blocks[0].evout[j]=le55[j];
+   }
+   break;
+
+   case 2 : /* update state */
+   {
+    /* 7 - z */
+    if (Blocks[0].nz != 0)
+    {
+     il_z = (int *) listentry(header,7);
+     if(Blocks[0].scsptr>0)
+     {
+      le111=(double *) listentry(header,7);
+      ne1=header[7+2]-header[7+1];
+      C2F(unsfdcopy)(&ne1,le111,(i=-1,&i),Blocks[0].z,(j=-1,&j));
+     }
+     else
+     {
+      ierr=sci2var(il_z,Blocks[0].z,10); /* double */
+      if (ierr!=0) goto err;
+     }
     }
-    break;
-  case 4 :
-    if (Blocks[0].nz != 0){
-      le1=(int*) listentry(header,7);
-      if(Blocks[0].scsptr>0){
-	le111=(double*) listentry(header,7);
-	ne1=header[7+2]-header[7+1];
-      } else{
-	ne1=le1[1];
-	le111=((double *) (le1+4));
-      }
-      C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
+
+    if (Blocks[0].nx != 0)
+    {
+     /* 9 - x */
+     il_x = (int *) listentry(header,9);
+     ierr=sci2var(il_x,Blocks[0].x,10); /* double */
+     if (ierr!=0) goto err;
+
+     /* 10 - xd */
+     il_xd = (int *) listentry(header,10);
+     ierr=sci2var(il_xd,Blocks[0].xd,10); /* double */
+     if (ierr!=0) goto err;
     }
-    /* 8ieme element de la tlist x */
-    if (Blocks[0].nx != 0){
-      le2=(int*) listentry(header,9);
-      le22=(double *) listentry(header,9);
-      ne2=le2[1];
-      le222=((double *) (le2+4));
-      C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
-      /* 9 ieme element de la tlist xd */
-      le4=(int*) listentry(header,10);
-      le44=(double *) listentry(header,10);
-      ne4=le4[1];
-      le444=((double *) (le4+4));
-      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+
+    /* 31 - mode */
+    il_mode = (int *) listentry(header,31);
+    ierr=sci2var(il_mode,Blocks[0].mode,80); /* int */
+    if (ierr!=0) goto err;
+   }
+   break;
+
+   case 3 : /* update event output state */
+   {
+    /* 19 - evout */
+    il_evout = (int *) listentry(header,19);
+    ierr=sci2var(il_evout,Blocks[0].evout,10); /* double */
+    if (ierr!=0) goto err;
+   }
+   break;
+
+   case 4 : /* state initialisation */
+   {
+    /* 7 - z */
+    if (Blocks[0].nz != 0)
+    {
+     il_z = (int *) listentry(header,7);
+     if(Blocks[0].scsptr>0)
+     {
+      le111=(double *) listentry(header,7);
+      ne1=header[7+2]-header[7+1];
+      C2F(unsfdcopy)(&ne1,le111,(i=-1,&i),Blocks[0].z,(j=-1,&j));
+     }
+     else
+     {
+      ierr=sci2var(il_z,Blocks[0].z,10); /* double */
+      if (ierr!=0) goto err;
+     }
     }
-    break;
-  case 5 :
-    if (Blocks[0].nz != 0){
-      le1=(int*) listentry(header,7);
-      if(Blocks[0].scsptr>0){
-	le111=(double*) listentry(header,7);
-	ne1=header[7+2]-header[7+1];
-      } else{
-	ne1=le1[1];
-	le111=((double *) (le1+4));
-      }
-      C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
+
+    if (Blocks[0].nx != 0)
+    {
+     /* 9 - x */
+     il_x = (int *) listentry(header,9);
+     ierr=sci2var(il_x,Blocks[0].x,10); /* double */
+     if (ierr!=0) goto err;
+
+     /* 10 - xd */
+     il_xd = (int *) listentry(header,10);
+     ierr=sci2var(il_xd,Blocks[0].xd,10); /* double */
+     if (ierr!=0) goto err;
     }
-    /* 8ieme element de la tlist x */
-    if (Blocks[0].nx != 0){
-      le2=(int*) listentry(header,9);
-      le22=(double *) listentry(header,9);
-      ne2=le2[1];
-      le222=((double *) (le2+4));
-      C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
-      /* 9 ieme element de la tlist xd */
-      le4=(int*) listentry(header,10);
-      le44=(double *) listentry(header,10);
-      ne4=le4[1];
-      le444=((double *) (le4+4));
-      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+   }
+   break;
+
+   case 5 : /* finish */
+   {
+    /* 7 - z */
+    if (Blocks[0].nz != 0)
+    {
+     il_z = (int *) listentry(header,7);
+     if(Blocks[0].scsptr>0)
+     {
+      le111=(double *) listentry(header,7);
+      ne1=header[7+2]-header[7+1];
+      C2F(unsfdcopy)(&ne1,le111,(i=-1,&i),Blocks[0].z,(j=-1,&j));
+     }
+     else
+     {
+      ierr=sci2var(il_z,Blocks[0].z,10); /* double */
+      if (ierr!=0) goto err;
+     }
     }
-    break;
-  case 6 :
-    /* 6ieme element de la tlist z */
-    if (Blocks[0].nz != 0){
-      le1=(int*) listentry(header,7);
-      if(Blocks[0].scsptr>0){
-	le111=(double*) listentry(header,7);
-	ne1=header[7+2]-header[7+1];
-	} else{
-	  ne1=le1[1];
-	  le111=((double *) (le1+4));
-	}
-      C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
+
+    if (Blocks[0].nx != 0)
+    {
+     /* 9 - x */
+     il_x = (int *) listentry(header,9);
+     ierr=sci2var(il_x,Blocks[0].x,10); /* double */
+     if (ierr!=0) goto err;
+
+     /* 10 - xd */
+     il_xd = (int *) listentry(header,10); /* double */
+     ierr=sci2var(il_xd,Blocks[0].xd,10);
+     if (ierr!=0) goto err;
     }
-    /* 8ieme element de la tlist x */
-    if (Blocks[0].nx != 0){
-      le2=(int*) listentry(header,9);
-      le22=(double *) listentry(header,9);
-      ne2=le2[1];
-      le222=((double *) (le2+4));
-      C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
-      /* 9 ieme element de la tlist xd */
-      le4=(int*) listentry(header,10);
-      le44=(double *) listentry(header,10);
-      ne4=le4[1];
-      le444=((double *) (le4+4));
-      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+   }
+   break;
+
+   case 6 : /* output state initialisation */
+   {
+    /* 7 - z */
+    if (Blocks[0].nz != 0)
+    {
+     il_z = (int *) listentry(header,7);
+     if(Blocks[0].scsptr>0)
+     {
+      le111=(double *) listentry(header,7);
+      ne1=header[7+2]-header[7+1];
+      C2F(unsfdcopy)(&ne1,le111,(i=-1,&i),Blocks[0].z,(j=-1,&j));
+     }
+     else
+     {
+      ierr=sci2var(il_z,Blocks[0].z,10); /* double */
+      if (ierr!=0) goto err;
+     }
     }
-    /* 16ieme element de la tlist y */
-    if (Blocks[0].nout!=0) {
-      le3=(int*) listentry(header,17);
-      for (j=1; j <= Blocks[0].nout  ; j++)
-	{
-	  le33=(int*) listentry(le3,j); 
-	  le333=(double *) (le33+4);
-	  if (le33){
-	    ne3=le33[1];
-	  }
-	  else{ne3=0;}
-	  C2F(unsfdcopy)(&ne3,le333,&moinsun,Blocks[0].outptr[j-1],&moinsun);
-	}
+
+    if (Blocks[0].nx != 0)
+    {
+     /* 9 - x */
+     il_x = (int *) listentry(header,9);
+     ierr=sci2var(il_x,Blocks[0].x,10); /* double */
+     if (ierr!=0) goto err;
+
+     /* 10 - xd */
+     il_xd = (int *) listentry(header,10);
+     ierr=sci2var(il_xd,Blocks[0].xd,10); /* double */
+     if (ierr!=0) goto err;
     }
-    
-    break;
-  case 7 :
-    /* 9 ieme element de la tlist xd */
-    if (Blocks[0].nx != 0){
-      le4=(int*) listentry(header,10);
-      le44=(double *) listentry(header,10);
-      ne4=le4[1];
-      le444=((double *) (le4+4));
-      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+
+    /* 17 - outptr */
+    if (Blocks[0].nout!=0) 
+    {
+     il_out = (int *) listentry(header,17);
+     nout = il_out[1];
+     for (j=0;j<nout;j++)
+     {
+      il_outptr = (int *) listentry(il_out,j+1);
+      ierr=sci2var(il_outptr,Blocks[0].outptr[j],Blocks[0].outsz[2*nout+j]);
+      if (ierr!=0) goto err;
+     }
     }
-    /* 30 ieme element de la tlist mode */
-    le7=(int*) listentry(header,31);
-    le77=(double*) (le7+4);
-    ne7=le7[1];
-    for (i=0; i<ne7; i++){
-      Blocks[0].mode[i]=(int)le77[i];
-    }     
-    break;
-  case 9 :
-    /* 24 ieme element de la tlist g */
-    le8=(int*) listentry(header,25);
-    le88=(double*) (le8+4);
-    ne8=le8[1];
-    C2F(unsfdcopy)(&ne8,le88,&moinsun,Blocks[0].g,&moinsun);
-    /* 30 ieme element de la tlist mode */
-    le7=(int*) listentry(header,31);
-    le77=(double*) (le7+4);
-    ne7=le7[1];
-    for (i=0; i<ne7; i++){
-      Blocks[0].mode[i]=(int)le77[i];
-    }     
-    break;
+   }
+   break;
+
+   case 7 : /* */
+   {
+    /* 10 - xd */
+    if (Blocks[0].nx != 0)
+    {
+     il_xd = (int *) listentry(header,10);
+     ierr=sci2var(il_xd,Blocks[0].xd,10); /* double */
+     if (ierr!=0) goto err;
+    }
+
+    /* 31 - mode */
+    il_mode = (int *) listentry(header,31);
+    ierr=sci2var(il_mode,Blocks[0].mode,80); /* int */
+    if (ierr!=0) goto err;
+   }
+   break;
+
+   case 9 : /* */
+   {
+    /* 25 - g */
+    il_g = (int *) listentry(header,25);
+    ierr=sci2var(il_g,Blocks[0].g,10); /* double */
+    if (ierr!=0) goto err;
+
+    /* 31 - mode */
+    il_mode = (int *) listentry(header,31);
+    ierr=sci2var(il_mode,Blocks[0].mode,80); /* int */
+    if (ierr!=0) goto err;
+   }
+   break;
   }
-  /* Top=Top-1; */
+
+  /* Restore initial position Top */
   Top=topsave;
   return;
- err: 
+
+ /* if error then restore initial position Top
+  * and set_block_error with flag -1 */
+ err:
   Top=topsave;
+  if (ierr!=0) /*var2sci or sci2var error*/
+  {
+   /* Please update me !*/
+   if (ierr < 1000) /*var2sci error*/
+   {
+    switch (ierr)
+    {
+     case 1  : Scierror(888,"var2sci : error %d. Stack is full.\n",ierr);
+               break;
+
+     case 2  : Scierror(888,"var2sci : error %d. No more space on the stack for new data.\n",ierr);
+               break;
+
+     default : Scierror(888,"var2sci : error %d. Undefined error.\n",ierr);
+               break;
+    }
+   }
+   else /*sci2var error*/
+   {
+    switch (ierr)
+    {
+     case 1001  : Scierror(888,"sci2var : error %d. Only integer or double object are accepted.\n",ierr);
+                  break;
+
+     case 1002  : Scierror(888,"sci2var : error %d. Bad double object sub_type.\n",ierr);
+                  break;
+
+     case 1003  : Scierror(888,"sci2var : error %d. Bad integer object sub_type.\n",ierr);
+                  break;
+
+     case 1004  : Scierror(888,"sci2var : error %d. A type of a scilab object has changed.\n",ierr);
+                  break;
+
+     default    : Scierror(888,"sci2var : error %d. Undefined error.\n",ierr);
+                  break;
+    }
+   }
+  }
   set_block_error(-1);
+}
+
+
+/* sci2var function to convert scilab object
+ * to an array of scicos blocks.
+ *
+ * Input parameters :
+ * *x      : void ptr of scilab object.
+ * *y      : void ptr of scicos blocks array.
+ * typ_var : integer, type of scicos data :
+ *           10  : double real
+ *           11  : double complex
+ *           80  : int
+ *           81  : int8
+ *           82  : int16
+ *           84  : int32
+ *           800 : uint
+ *           811 : uint8
+ *           812 : uint16
+ *           814 : uint32
+ *
+ * Output parameters : int (>1000), error flag 
+ *                     (0 if no error)
+ *
+ * 15/06/06, Alan   : Initial version.
+ *
+ */
+
+/* prototype */
+int sci2var(void *x,void *y, int typ_var)
+{
+ /************************************
+  * variables and constants définition
+  ************************************/
+ /* counter and address variable declaration */
+ int err,i,j;
+
+ /* variables to store n,m and type of scilab object */
+ int n,m,nm,typ,sub_typ;
+
+ /* define int *header */
+ int *header;
+
+  /*define all type of accepted ptr */
+  double *ptr_d, *y_d;
+  char *ptr_c, *y_c;
+  unsigned char *ptr_uc, *y_uc;
+  short *ptr_s, *y_s;
+  unsigned short *ptr_us, *y_us;
+  int *ptr_i, *y_i;
+  unsigned int *ptr_ui,*y_ui;
+  long *ptr_l,*y_l;
+  unsigned long *ptr_ul,*y_ul;
+
+ /*****************************************
+  * get header,n,m and typ of scilab object
+  *****************************************/
+ /* retrieve header address */
+ header = (int *) x;
+
+ /* retieve number of rows and columns */
+ n = header[1];
+ m = header[2];
+
+ /* retrieve type of scilab object */
+ typ = header[0];
+
+ /* Test if scilab object is a typed scicos
+  * accepted data */
+ if ((typ!=1)&(typ!=8))
+ {
+  err = 1001;
+  return err;
+ }
+
+ /* retrieve sub_type of scilab object */
+ sub_typ =  header[3];
+
+ /* cross type of data checking 
+  * and copy scilab object in
+  * scicos blocks array structure
+  */
+ switch (typ)
+ {
+  case 1 :
+          {/*check type of double matrix*/
+           if ((sub_typ!=0&sub_typ!=1))
+           {
+            err = 1002;
+            return err;
+           }
+           if ((sub_typ==0)&(typ_var!=10))
+           {
+            err = 1004;
+            return err;
+           }
+           if ((sub_typ==1)&(typ_var!=11))
+           {
+            err = 1004;
+            return err;
+           }
+
+           /*copy double matrix*/
+           switch (sub_typ)
+           {
+            case 0 : nm=n*m;
+                     ptr_d = (double *) (header+4);
+                     y_d = (double *) y;
+                     C2F(unsfdcopy)(&nm,ptr_d,(i=-1,&i),y_d,(j=-1,&j));
+                     break;
+
+            case 1 : nm=2*n*m;
+                     ptr_d = (double *) (header+4);
+                     y_d = (double *) y;
+                     C2F(unsfdcopy)(&nm,ptr_d,(i=-1,&i),y_d,(j=-1,&j));
+                     break;
+           }
+          }
+          break;
+
+  case 8 :
+          {/*check type of integer matrix*/
+           if ((sub_typ!=1)  & (sub_typ!=2) &(sub_typ!=4) /
+               (sub_typ!=11) & (sub_typ!=12)&(sub_typ!=14))
+           {
+            err = 1003;
+            return err;
+           }
+           if ((sub_typ==1)&(typ_var!=81))
+           {
+            err = 1004;
+            return err;
+           }
+           if ((sub_typ==2)&(typ_var!=82))
+           {
+            err = 1004;
+            return err;
+           }
+           if ((sub_typ==4)&(typ_var!=80)&(typ_var!=84))
+           {
+            err = 1004;
+            return err;
+           }
+           if ((sub_typ==11)&(typ_var!=811))
+           {
+            err = 1004;
+            return err;
+           }
+           if ((sub_typ==12)&(typ_var!=812))
+           {
+            err = 1004;
+            return err;
+           }
+           if ((sub_typ==14)&(typ_var!=800)&(typ_var!=814))
+           {
+            err = 1004;
+            return err;
+           }
+
+           /*copy integer matrix*/
+           switch (typ_var)
+           {
+            case 80  : ptr_i = (int *) (header+4);
+                       y_i = (int *) y;
+                       for(i=0;i<n*m;i++) y_i[i] = ptr_i[i];
+                       break;
+
+            case 81  : ptr_c = (char *) (header+4);
+                       y_c = (char *) y;
+                       for(i=0;i<n*m;i++) y_c[i] = ptr_c[i];
+                       break;
+
+            case 82  : ptr_s = (short *) (header+4);
+                       y_s = (short *) y;
+                       for(i=0;i<n*m;i++) y_s[i] = ptr_s[i];
+                       break;
+
+            case 84  : ptr_l = (long *) (header+4);
+                       y_l = (long *) y;
+                       for(i=0;i<n*m;i++) y_l[i] = ptr_l[i];
+                       break;
+
+            case 800 : ptr_ui = (unsigned int *) (header+4);
+                       y_ui = (unsigned int *) y;
+                       for(i=0;i<n*m;i++) y_ui[i] = ptr_ui[i];
+                       break;
+
+            case 811 : ptr_uc = (unsigned char *) (header+4);
+                       y_uc = (unsigned char *) y;
+                       for(i=0;i<n*m;i++) y_uc[i] = ptr_uc[i];
+                       break;
+
+            case 812 : ptr_us = (unsigned short *) (header+4);
+                       y_us = (unsigned short *) y;
+                       for(i=0;i<n*m;i++) y_us[i] = ptr_us[i];
+                       break;
+
+            case 814 : ptr_ul = (unsigned long *) (header+4);
+                       y_ul = (unsigned long *) y;
+                       for(i=0;i<n*m;i++) y_ul[i] = ptr_ul[i];
+                       break;
+           }
+          }
+          break;
+ }
+
+ /* return error flag = 0 */
+ err = 0;
+ return 0;
 }

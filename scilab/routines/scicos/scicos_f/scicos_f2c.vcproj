@@ -169,10 +169,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\coselm.c"
-				>
-			</File>
-			<File
 				RelativePath="..\csslti.c"
 				>
 			</File>

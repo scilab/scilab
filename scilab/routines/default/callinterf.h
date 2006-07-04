@@ -71,20 +71,17 @@ extern void    /* 44  */ C2F(intlapack)();
 
 #if WITHOUT_SCICOS
 	#define SCICOSINTERF1 C2F(Nointscicos)
-	#define SCICOSINTERF2 C2F(Nocoselm)
-	#define SCICOSINTERF3 C2F(Nointcscicos)
+	#define SCICOSINTERF2 C2F(Nointcscicos)
 #else
 	extern void    /* 45  */ C2F(intscicos)();
 	#define SCICOSINTERF1 C2F(intscicos)
-	extern void    /* 46  */ C2F(coselm)();
-	#define SCICOSINTERF2 C2F(coselm)
-	extern void    /* 47  */ C2F(intcscicos)();
-	#define SCICOSINTERF3 C2F(intcscicos)
+	extern void    /* 46  */ C2F(intcscicos)();
+	#define SCICOSINTERF2 C2F(intcscicos)
 #endif
 
-extern void    /* 48  */ C2F(intwintools)();
-extern void    /* 49  */ C2F(mattime)();
-extern void    /* 50  */ C2F(matsound)();
+extern void    /* 47  */ C2F(intwintools)();
+extern void    /* 48  */ C2F(mattime)();
+extern void    /* 49  */ C2F(matsound)();
 
 static OpTab Interfaces[] ={
   /* 01  */ {C2F(matlu)},
@@ -133,10 +130,9 @@ static OpTab Interfaces[] ={
   /* 44  */ {C2F(intlapack)},
   /* 45  */ {SCICOSINTERF1},  
   /* 46  */ {SCICOSINTERF2},
- 	/* 47  */ {SCICOSINTERF3},
-	/* 48  */ {C2F(intwintools)},
-	/* 49  */ {C2F(mattime)},
-	/* 50  */	{C2F(matsound)}
+	/* 47  */ {C2F(intwintools)},
+	/* 48  */ {C2F(mattime)},
+	/* 49  */	{C2F(matsound)}
 };
 
 #endif /*__CALLINTERF__*/

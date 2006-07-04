@@ -50,21 +50,13 @@ C2F(dcd)()
 #ifdef NOSCICOS 
 
 static char scicos_name[MAX_ENV];
-static char *scicos_names[]={ "coselm","intcos",(char *) 0};
+static char *scicos_names[]={"intcos",(char *) 0};
 static char *scicos_files[] = {
   scicos_name,
   (char *) 0
 };
-int scicos_nums[2];
-static int coselmpos=-1;
+int scicos_nums[1];
 static int intcospos=-1;
-
-void C2F(coselm) ()
-{
-  static int Buildname=0;
-  if ( Buildname == 0) { BuildName(scicos_name,"scicos.so"); Buildname++;}
-  CallDynInterf(&coselmpos,2,0,scicos_names,scicos_nums,scicos_files);
-}
 
 void C2F(intcos) ()
 {

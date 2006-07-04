@@ -45,7 +45,7 @@ BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	evtvardly.o edgetrig.o tcslti4.o tcsltj4.o dsslti4.o \
 	csslti4.o cstblk4.o samphold4.o dollar4.o invblk4.o delay4.o
 
-OBJSF=intcos.o coselm.o sciblk.o  \
+OBJSF=intcos.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
 	list2vars.o dtosci.o itosci.o scitoi.o scitod.o vvtosci.o \
 	scitovv.o  $(BLOCKS_CODE)
@@ -75,7 +75,6 @@ distclean::
 #--------------dependencies 
 # fortran code
 affich.o: affich.f ../stack.h
-coselm.o: coselm.f ../stack.h
 dtosci.o: dtosci.f  ../stack.h
 intcos.o: intcos.f  ../stack.h
 itosci.o: itosci.f  ../stack.h
