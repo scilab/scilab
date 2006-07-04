@@ -31,7 +31,6 @@ CurrentDirectory=pwd();
 if %scicos then
 Directories=[Directories,
  "scicos",
- "scicos_new",
  "scicos_blocks"];
 
 end
