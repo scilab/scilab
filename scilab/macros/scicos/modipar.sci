@@ -121,7 +121,7 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 	if type(sim('funs')(kc))<>13 then   //scifunc
 	  sim('funs')(kc)=fun(1);
 	  if prod(size(fun))> 1 then 
-	    sim('funtyp')(kc)=fun(2);
+	    sim('funtyp')(kc)=int32(fun(2));
 	  else 
 	    sim('funtyp')(kc)==0;
 	  end

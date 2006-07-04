@@ -17,9 +17,11 @@ function %pt=do_block_info(%pt,scs_m)
       k=getobj(scs_m,[xc;yc])
       if k<>[] then txt=get_block_info(scs_m,k),end
     end
-    x_message_modeless(txt)
+    if exists('txt') then
+     x_message_modeless(txt)
+    end
   else
-    if size(Select,'1')>1 then
+    if size(Select,1)>1 then
       message("Only one block can be selected for this operation.")
       Cmenu=[];%pt=[];return
     end

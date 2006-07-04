@@ -31,6 +31,8 @@ function texte = standard_document(objet, k)
 	language = '4 (C code)'
       elseif fonction(2) == 5 then
 	language = '5 (Scilab function)'
+      elseif fonction(2) == 99 then
+	language = '99 (Scicos debug block)'
        elseif fonction(2) < 0  then
 	language = '<0 (synchro block)'
       elseif fonction(2) <10000 then
@@ -73,6 +75,7 @@ function texte = standard_document(objet, k)
     identification = graphique.id
 
     //- Informations generales 
+
     if modele.sim=='super'|modele.sim=='csuper' then
       texte = ['General Information'; 
 	       '--------------------';' '
@@ -112,27 +115,134 @@ function texte = standard_document(objet, k)
     end
     //- Entrees / sorties 
 
-    tableau = ['Port type', 'Number', 'Size', 'Link'; '-', '-', '-', '-']
+    //tableau = ['Port type', 'Number', 'Size', 'Link'; '-', '-', '-', '-']
+    tableau = ['Port type', 'Number', 'I/E', 'Size', 'Data type', 'Link';
+               '-', '-', '-', '-', '-', '-']
     //- Entrees standard
     for i = 1 : min(size(modele.in,'*'),size(graphique.pin,'*'))
-      tableau = [tableau; 'Regular input', string(i),..
-		 string(modele.in(i)), string(graphique.pin(i))]
+      // General information
+      txt = ['Regular input', string(i)]
+      // Info. for implicit/explicit port
+      ierr=execstr('tt=string(graphique.in_implicit(i))','errcatch')
+      if ierr<>0 then
+        txt = [txt, '?'] //not specified
+      else
+        if tt==[] then 
+          txt = [txt, '?'] //not specified
+        else 
+          txt = [txt, tt]
+        end
+      end
+      // Info. for size of port
+      txt = [txt ,'['];
+      tt=string(modele.in(i)) //first dim.
+      if tt==[] then 
+        txt($) = txt($)+'?' //not specified
+      else 
+        txt($) = txt($)+tt
+      end
+      txt($)=txt($)+';'
+      ierr=execstr('tt=string(modele.in2(i))','errcatch')//sec. dim.
+      if ierr<>0 then 
+        txt($) = txt($)+'?' //not specified
+      else
+        if tt==[] then 
+          txt($) = txt($)+'?' //not specified
+        else 
+          txt($) = txt($)+tt
+        end
+      end
+      txt($)=txt($)+']'
+      // Info for data type
+      ierr=execstr('ttyp=modele.intyp(i)','errcatch')
+      if ierr<> 0 then
+        tt='?' //not specified
+      else
+        if ttyp==1 then tt='double'
+        elseif ttyp==2 tt='complex'
+        elseif ttyp==3 tt='int32'
+        elseif ttyp==4 tt='int16'
+        elseif ttyp==5 tt='int8'
+        elseif ttyp==6 tt='uint32'
+        elseif ttyp==7 tt='uint16'
+        elseif ttyp==8 tt='uint8'
+        else tt='?' //Unknown
+        end
+      end
+      txt = [txt, tt]
+      //Info for link
+      txt = [txt,string(graphique.pin(i))]
+      //update tableau
+      tableau = [tableau; txt]
     end
 
     //- Sorties standard
     for i = 1 : min(size(modele.out,'*'),size(graphique.pout,'*'))
-      tableau = [tableau; 'Regular output', string(i),..
-		 string(modele.out(i)), string(graphique.pout(i))]
+      //General informations.
+      txt = ['Regular output', string(i)]
+      // Info. for implicit/explicit port
+      ierr=execstr('tt=string(graphique.out_implicit(i))','errcatch')
+      if ierr<>0 then
+          txt = [txt, '?'] //not specified
+      else
+        if tt==[] then 
+          txt = [txt, '?'] //not specified
+        else 
+          txt = [txt, tt]
+        end
+      end
+      // Info. for size of port
+      txt = [txt ,'['];
+      tt=string(modele.out(i)) //first dim.
+      if tt==[] then 
+        txt($) = txt($)+'?' //not specified
+      else 
+        txt($) = txt($)+tt
+      end
+      txt($)=txt($)+';'
+      ierr=execstr('tt=string(modele.out2(i))','errcatch') //sec. dim.
+      if ierr<>0 then
+          txt($) = txt($)+ '?' //not specified
+      else
+        if tt==[] then 
+          txt($) = txt($)+ '?' //not specified
+        else 
+          txt($) = txt($)+ tt
+        end
+      end
+      txt($)=txt($)+']'
+      // Info for data type
+      ierr=execstr('ttyp=modele.outtyp(i)','errcatch')
+      if ierr<>0 then
+        tt='?' //not specified
+      else
+        if ttyp==1 then tt='double'
+        elseif ttyp==2 tt='complex'
+        elseif ttyp==3 tt='int32'
+        elseif ttyp==4 tt='int16'
+        elseif ttyp==5 tt='int8'
+        elseif ttyp==6 tt='uint32'
+        elseif ttyp==7 tt='uint16'
+        elseif ttyp==8 tt='uint8'
+        else tt='?' //Unknown
+        end
+      end
+      txt = [txt, tt]
+      //Info for link
+      txt = [txt,string(graphique.pout(i))]
+      //update tableau
+      tableau = [tableau; txt]
     end
+
     //- Entrees evenements 
     for i = 1 : min(size(modele.evtin,'*'),size(graphique.pein,'*'))
-      tableau = [tableau; 'Event input', string(i),..
-		 string(modele.evtin(i)), string(graphique.pein(i))]
+      tableau = [tableau; 'Event input', string(i),'',..
+		 string(modele.evtin(i)),'', string(graphique.pein(i))]
     end
     //- Sorties evenements 
     for i = 1 : min(size(modele.evtout,'*'),size(graphique.peout,'*'))
-      tableau = [tableau; 'Event output', string(i),..
-		 string(modele.evtout(i)), string(graphique.peout(i))]
+      tableau = [tableau; 'Event output', string(i),'',..
+		 string(modele.evtout(i)),'', string(graphique.peout(i))]
     end
     //
     texte = [texte; 'Input / output'; 
@@ -178,7 +288,6 @@ function texte = standard_document(objet, k)
 	     'Object type                : '+sous_type;
 	     'Object Identification      : '+identification'; 
 	     'Object number in diagram   : '+string(k); ' ']
-    
     from=objet.from
     if %cpr<>list() then
       if sous_type == 'Regular Link' then 
@@ -210,11 +319,21 @@ function texte = standard_document(objet, k)
 	path($+1)=from(1)
 	ind=cor(path)
 	if type(ind)==1 then
-	  kl=%cpr.sim('outlnk')(%cpr.sim('outptr')(ind)+(from(2)-1))
-	  beg=%cpr.sim('lnkptr')(kl)
-	  fin=%cpr.sim('lnkptr')(kl+1)-1
-	  txt = ['Compiled link memory zone  : ['+..
-		 string(beg)+':'+string(fin)+']'; ' ']
+	  kl=%cpr.sim('outlnk')(%cpr.sim('outptr')(ind)+(from(2)-1));
+          kmin=[];kmax=[];count=1;
+          for j=1:size(%cpr.state('outtb'))
+            if j==kl then
+              kmin=count;
+              kmax=count+size(%cpr.state.outtb(j),'*')-1;
+              break
+            else
+              count=count+size(%cpr.state.outtb(j),'*');
+            end
+          end
+          txt =   ['Compiled link memory zone  : outtb('+string(kl)+')']
+          txt=[txt;'                     Area  : ['+string(kmin)+':'+string(kmax)+']']
+          txt=[txt;'                     Type  : '+typeof(%cpr.state.outtb(kl))']
+          txt=[txt;'                     Size  : '+sci2exp(size(%cpr.state.outtb(kl)))';' ']
 	else
 	  txt = ['Compiled link memory zone  : Not available';' ']
 	end

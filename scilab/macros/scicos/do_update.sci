@@ -3,7 +3,8 @@ function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcom
 //parameter changes
 //!
 // Copyright INRIA
-ok=%t 
+
+ok=%t
 select needcompile
  case 0 then  // only parameter changes 
   if size(newparameters)<>0 then
@@ -49,10 +50,10 @@ select needcompile
   [ok,bllst]=adjust(bllst,sim('inpptr'),sim('outptr'),sim('inplnk'),..
 		    sim('outlnk'))
   if ok then
-    %cpr.sim('lnkptr')=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),..
-				  sim('inplnk'),sim('outlnk'))
-    %cpr.state('outtb')=0*ones(%cpr.sim('lnkptr')($)-1,1)
-    %state0('outtb')=0*ones(%cpr.sim('lnkptr')($)-1,1)
+    [lnksz,lnktyp]=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),...
+                                     sim('inplnk'),sim('outlnk'))
+    %cpr.state('outtb')=buildouttb(lnksz,lnktyp)
+    %state0('outtb')=buildouttb(lnksz,lnktyp)
     needcompile=0
   end
  
@@ -70,4 +71,5 @@ select needcompile
     needcompile=0
   end
 end
+
 endfunction

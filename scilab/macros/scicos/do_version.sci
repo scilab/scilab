@@ -2,7 +2,8 @@ function scs_m=do_version(scs_m,version)
 // Copyright INRIA
 //translate scicos data structure to new version
 if version<>'scicos2.2'&version<>'scicos2.3'&version<>'scicos2.3.1'&..
-    version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&version<>'scicos2.7.1' then
+   version<>'scicos2.4'&version<>'scicos2.5.1'&version<>'scicos2.7'&..
+   version<>'scicos2.7.1'&version<>'scicos2.7.3' then
 error('No version update defined to '+version+' version')
 end
 
@@ -26,9 +27,94 @@ if version=='scicos2.7' then
   version='scicos2.7.1';
 end
 if version=='scicos2.7.1' then scs_m=do_version272(scs_m),version='scicos2.7.2';end
-  if version=='scicos2.7.2' then scs_m=do_version273(scs_m),version='scicos2.7.3';end
+if version=='scicos2.7.2' then scs_m=do_version273(scs_m),version='scicos2.7.3';end
+if version=='scicos2.7.3' then
+ ncl=lines()
+ lines(0)
+ printf("Update to scicos 4. Please wait... ")
+ scs_m=do_version4(scs_m),version='scicos4';
+ printf("Done !\n")
+ lines(ncl(2))
+end
 endfunction
 
+//Add model.in2,model.intype,model.out2 & model.outtype
+//for all blocks
+function scs_m_new=do_version4(scs_m)
+  scs_m_new=scs_m;
+  n=size(scs_m.objs);
+  mod=scicos_model();
+  gra=scicos_graphics();
+  for j=1:n //loop on objects
+    o=scs_m.objs(j);
+    if typeof(o)=='Block' then
+
+      //update model with in2/out2,intyp,outtyp
+      omod=o.model;
+      T=getfield(1,o.model);
+      Ttmp=[];tt=[];
+      for i=1:size(T,2)
+         Ttmp=[Ttmp,T(1,i)];
+         if i>1 then
+           if i<>size(T,2) then
+            tt=[tt+"omod."+T(1,i)+","];
+           else
+            tt=[tt+"omod."+T(1,i)];
+           end
+         end
+         if T(1,i)=='in' then 
+           Ttmp=[Ttmp,'in2'];
+           Ttmp=[Ttmp,'intyp'];
+           tt=[tt+"mod.in2,"];
+           tt=[tt+"mod.intyp,"];
+         end;
+         if T(1,i)=='out' then 
+           Ttmp=[Ttmp,'out2'];
+           Ttmp=[Ttmp,'outtyp'];
+           tt=[tt+"mod.out2,"];
+           tt=[tt+"mod.outtyp,"];
+         end;
+      end
+      Ttmp=sci2exp(Ttmp,0);
+      ierr=execstr("omod=tlist("+Ttmp+","+tt+")",'errcatch')
+      if ierr<>0 then
+         error("Problem in convertion of model of block.")
+      end
+      if omod.sim=='super'|omod.sim=='csuper' then
+         rpar=do_version4(omod.rpar)
+         omod.rpar=rpar
+      end
+
+      //update graphics with theta=0
+      ogra=o.graphics;
+      T=getfield(1,o.graphics);
+      Ttmp=[];tt=[];
+      for i=1:size(T,2)
+         Ttmp=[Ttmp,T(1,i)];
+         if i>1 then
+           if i<>size(T,2) then
+            tt=[tt+"ogra."+T(1,i)+","];
+           else
+            tt=[tt+"ogra."+T(1,i)];
+           end
+         end
+         if T(1,i)=='flip' then 
+           Ttmp=[Ttmp,'theta'];
+           tt=[tt+"gra.theta,"];
+         end;
+      end
+      Ttmp=sci2exp(Ttmp,0);
+      ierr=execstr("ogra=tlist("+Ttmp+","+tt+")",'errcatch')
+      if ierr<>0 then
+         error("Problem in convertion of graphics of block.")
+      end
+
+      o.model=omod;
+      o.graphics=ogra;
+      scs_m_new.objs(j)=o;
+     end
+  end
+endfunction
 
 
 function scs_m_new=do_version273(scs_m)

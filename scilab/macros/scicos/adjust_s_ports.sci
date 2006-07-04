@@ -20,21 +20,21 @@ for k=1:lstsize(scs_m.objs)
     case 'IN_f' then
       nin=nin+1
       inp=[inp o.model.ipar]
-      in=[in;o.model.out]
+      in=[in;[o.model.out,o.model.out2]]
     case 'OUTIMPL_f' then
       nout=nout+1
       outp=[outp o.model.ipar]
-      out=[out;o.model.in]
+      out=[out;[o.model.in,o.model.in2]]
       // graphics.out_implicit=[graphics.out_implicit;'I']
       out_implicit=[out_implicit; nout]
     case 'OUT_f' then
       nout=nout+1
       outp=[outp o.model.ipar]
-      out=[out;o.model.in]
+      out=[out;[o.model.in,o.model.in2]]
     case 'INIMPL_f' then
       nin=nin+1
       inp=[inp o.model.ipar]
-      in=[in;o.model.out]
+      in=[in;[o.model.out,o.model.out2]]
       //graphics.in_implicit=[graphics.in_implicit;'I']
       in_implicit=[in_implicit;nin]
     case 'CLKIN_f' then
@@ -68,7 +68,7 @@ if nin>0 then
 	'from 1 to '+string(nin);' ']
     ok=%f
   end
-  in=in(k)
+  in=in(k,:)
 end
 if nout>0 then
   [outp,k]=sort(-outp)
@@ -78,7 +78,7 @@ if nout>0 then
 	'from 1 to '+string(nout);' ']
     ok=%f
   end
-  out=out(k)
+  out=out(k,:)
 end
 
 

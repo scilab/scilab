@@ -26,7 +26,7 @@ for k=1:size(corinv)
     m.state=cpr.state.x(sim.xptr(k)+(0:n-1))
     m.dstate=cpr.state.z(sim.zptr(k):sim.zptr(k+1)-1)
     m.rpar=sim.rpar(sim.rpptr(k):sim.rpptr(k+1)-1)
-    m.ipar=sim.ipar(sim.ipptr(k):sim.ipptr(k+1)-1)
+    m.ipar=int32(sim.ipar(sim.ipptr(k):sim.ipptr(k+1)-1))
     m.label=''
     m.sim=list(sim.funs(k),sim.funtyp(k))
     //here it is assumed that modelica blocs does not have output events
@@ -41,9 +41,9 @@ end
 [ok,bllst]=adjust(bllst,inpptr,outptr,inplnk,outlnk)
 if ~ok then return; end
 
-lnkptr=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
+[lnksz,lnktyp]=lnkptrcomp(bllst,inpptr,outptr,inplnk,outlnk)
 //
-xptr=1;zptr=1;rpptr=1;ipptr=1;xc0=[];xcd0=[];xd0=[];
+xptr=int32(1);zptr=int32(1);rpptr=int32(1);ipptr=int32(1);xc0=[];xcd0=[];xd0=[];
 rpar=[];ipar=[];initexe=[];funtyp=[];labels=[];
 //
 for i=1:length(bllst)
@@ -79,8 +79,9 @@ for i=1:length(bllst)
   
   rpptr=[rpptr;rpptr($)+size(rpark,'*')]
   //
-  if type(ll.ipar)==1 then 
-    ipar=[ipar;ll.ipar(:)];ipptr=[ipptr;ipptr($)+size(ll.ipar,'*')]
+  if type(ll.ipar)==1|type(ll.ipar)==8 then //because ipar should be integer
+    ipar=[int32(ipar);int32(ll.ipar(:))];
+    ipptr=[ipptr;ipptr($)+size(ll.ipar,'*')]
   else
     ipptr=[ipptr;ipptr($)]
   end
@@ -101,23 +102,23 @@ end
 //initialize agenda
 [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
 
-sim.xptr=xptr
-sim.zptr=zptr
+sim.xptr=int32(xptr)
+sim.zptr=int32(zptr)
 
-sim.inpptr=inpptr
-sim.outptr=outptr
-sim.inplnk=inplnk
-sim.outlnk=outlnk
-sim.lnkptr=lnkptr
+sim.inpptr=int32(inpptr)
+sim.outptr=int32(outptr)
+sim.inplnk=int32(inplnk)
+sim.outlnk=int32(outlnk)
 sim.rpar=rpar
 sim.rpptr=rpptr
-sim.ipar=ipar
-sim.ipptr=ipptr
-sim.clkptr=clkptr
+sim.ipar=int32(ipar)
+sim.ipptr=int32(ipptr)
+sim.clkptr=int32(clkptr)
 sim.labels=labels
 cpr.sim=sim;
 
-outtb=0*ones(lnkptr($)-1,1)
+outtb=list();
+outtb=buildouttb(lnksz,lnktyp);
 
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
 if max(funtyp)>10000 &%scicos_solver==0 then
@@ -134,8 +135,8 @@ state.x=xc0;
 state.z=xd0;
 state.iz=iz0;
 state.tevts=tevts;
-state.evtspt=evtspt;
-state.pointi=pointi;
+state.evtspt=int32(evtspt);
+state.pointi=int32(pointi);
 state.outtb=outtb
 cpr.state=state
 endfunction

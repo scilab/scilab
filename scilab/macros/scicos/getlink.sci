@@ -39,8 +39,13 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     else //old link comes from an regular output or input (implicit) port
       typp=outin(from(3)+1)
     end
-  
+
+    //get port size
     szout=getportsiz(scs_m.objs(from(1)),from(2),typp)
+    //get port data type
+    if typp=='out'|typp=='in' then
+     szouttyp=getporttyp(scs_m.objs(from(1)),from(2),typp)
+    end
 
     // get initial split position
     wh=wh(1)
@@ -123,15 +128,20 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     fromsplit=%f
     clr=default_color(typo)
 
+    //get port size
     szout=getportsiz(o1,port_number,typpfrom)
-    
+    //get port data type
+    if typpfrom=='out'|typpfrom=='in' then
+      szouttyp=getporttyp(o1,port_number,typpfrom)
+    end
+
     //to be created link from origin 
     from=[kfrom,port_number,bool2s(typpfrom=='in'|typpfrom=='evtin')]
     xl=xo
     yl=yo
 
   end
-  
+
 
 
   //----------- get link path ----------------------------------------
@@ -159,7 +169,7 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 	driver(dr);
 	return
       end
-      
+
       //erase last link segment
       xpoly([xo;xe],[yo;ye],'lines')
       //plot new position of last link segment
@@ -167,7 +177,7 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       xpoly([xo;xe],[yo;ye],'lines')
       if pixmap then xset('wshow'),end
     end
-    
+
     kto=getblock(scs_m,[xe;ye])
     if kto<>[] then //new point designs the "to block"
       o2=scs_m.objs(kto);
@@ -214,13 +224,50 @@ function [scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
 	  return
 	end
 	typpto='in'
-	szin=getportsiz(o2,port_number,'in')
-	if szin<>szout & mini([szin szout])>0 then
-	  message(['Warning';
-		   'selected ports don''t have the same  size';
-		   'The port at the origin of the link has size '+string(szout);
-		   'the port at the end has size '+string(szin)])
-	end
+
+        //get port size
+        //and say warning if doesn't match with szout
+        szin=getportsiz(o2,port_number,'in')
+        need_warning=%f;
+        if (szin(1)<>szout(1)) & mini([szin(1) szout(1)])>0 then
+          need_warning=%t
+        end
+        //check for different number of dimension
+        szout2=[];szin2=[];
+        if size(szout,'*')==1 then 
+           szout2=1;
+        else
+           szout2=szout(2);
+        end
+        if size(szin,'*')==1 then 
+           szin2=1;
+        else
+           szin2=szin(2);
+        end
+        if (szin2<>szout2) & mini([szin2 szout2])>0 then
+          need_warning=%t
+        end
+        if need_warning then
+          message(['Warning';
+                   'selected ports don''t have the same  size';
+                   'The port at the origin of the link has size '+sci2exp(szout);
+                   'the port at the end has size '+sci2exp(szin)])
+        end
+
+        //get port data type
+        //and say warning if doesn't match with szouttyp
+        szintyp=getporttyp(o2,port_number,'in')
+        if szintyp<>szouttyp then
+          tt_typ=['double';'complex';'int32';'int16';
+                  'int8';'uint32';'uint16';'uint8']
+          message(['Warning';
+                   'selected ports don''t have the data type';
+                   'The port at the origin of the link has datatype '+...
+                    tt_typ(szouttyp)+' ('+sci2exp(szouttyp)+')';
+                   'the port at the end has datatype '+...
+                    tt_typ(szintyp)+' ('+sci2exp(szintyp)+')'])
+        end
+
       elseif typi==2 & k<=size(ip,'*') then //implicit "input" port
 	port_number=k
 	if ip(port_number)<>0 then
