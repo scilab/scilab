@@ -13,7 +13,7 @@ h=h
 	else
 	  h=h(p)
 	end
-      elseif type(p)==1|type(p)==4|type(p)==2|type(p)==129 then
+      elseif or(type(p)==[1 2 4 8 129]) then
 	h=h(p)
       elseif type(p)==15 then
 	h=h(p(:))
