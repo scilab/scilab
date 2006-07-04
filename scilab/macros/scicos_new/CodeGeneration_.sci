@@ -1,19 +1,23 @@
 function  CodeGeneration_()
-  win=%win
-  xc=%pt(1);yc=%pt(2);
-  %pt=[];Cmenu=[]
-  if Select==[] then
-    k=getobj(scs_m,[xc;yc])
-    if k==[] then return,end
-  else
-    k=Select(:,1)';%pt=[]
-    if size(k,'*')>1|curwin<>Select(1,2) then
-      message("Only one block can be selected in current window for this o"+...
-	      "peration.")
-      return
+Cmenu='Open/Set'
+xinfo('Click on a Superblock (without activation output)'+..
+	' to obtain a coded block ! ')
+  k=[]
+  while %t 
+    if %pt==[] then
+      [btn,%pt,win,Cmenu]=cosclick()
+      
+      if Cmenu<>[] then
+	[%win,Cmenu]=resume(win,Cmenu)
+      end
+    else 
+      win=%win
     end
+    
+    xc=%pt(1);yc=%pt(2);%pt=[]
+    k=getobj(scs_m,[xc;yc])
+    if k<>[] then break,end
   end
-  
   if scs_m.objs(k).model.sim(1)=='super' then
     disablemenus()
     all_scs_m=scs_m;
@@ -27,7 +31,7 @@ function  CodeGeneration_()
       needcompile=4
       Cmenu='Replot';
     else
-      Cmenu=[] 
+      Cmenu='Open/Set' 
     end     
   else
     message('Generation Code only work for a Superblock ! ')
@@ -1765,6 +1769,8 @@ zcptr=cpr.sim.zcptr;
 		        list('str',1,'str',1,'str',1),label1);
     if okk==%f then ok=%f;return; end
     rpat=stripblanks(rpat);
+    rdnom=strsubst(rdnom,'-','_');
+    rpat=strsubst(rpat,'-','_');
     dirinfo=fileinfo(rpat)
     if dirinfo==[] then
       [pathrp,fnamerp,extensionrp]=fileparts(rpat)
@@ -2203,7 +2209,7 @@ function Makename=gen_make_unix(name,files,libs,Makename)
      "OBJSSTAN="+rdnom+'_standalone.o '+rdnom+'_act_sens_events.o '+rdnom+'_Cblocks.o'
      "SCILIBS = $(SCIDIR)/libs/scicos.a $(SCIDIR)/libs/lapack.a "+..
      "$(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a "+..
-     "$(SCIDIR)/libs/blas.a $(SCIDIR)/libs/lapack.a"
+     "$(SCIDIR)/libs/blas.a $(SCIDIR)/libs/lapack.a $(SCIDIR)/libs/os_specific.a"
      "LIBRARY =  lib"+name
      "OTHERLIBS = "+libs
      "include $(SCIDIR)/Makefile.incl";
