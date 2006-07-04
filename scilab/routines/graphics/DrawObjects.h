@@ -239,4 +239,6 @@ extern void getTextAabb( sciPointObj * pText     ,
 
 void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2], int offsets[2] ) ;
 
+void sciDrawFigure( int numFigure ) ;
+
 #endif /* __SCI_DRAWINGS__ */

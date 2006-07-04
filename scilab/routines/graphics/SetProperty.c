@@ -3669,7 +3669,39 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   return sciInitSelectedSubWin( psubwinobj ) ;
 }
 
-
+/*----------------------------------------------------------------------------------------*/
+/**
+ * change the isSelected value of an object. Can only be used on subwindows.
+ * If val is TRUE, the subwindow is considered as the selected one under its parent figure.
+ * Be careful when using this function, there can only be one selected subwin under a figure.
+ */
+int sciInitIsSelected( sciPointObj * pObj, BOOL val )
+{
+  switch ( sciGetEntityType( pObj ) )
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE( pObj )->isselected = val ;
+    return 0 ;
+  default:
+    sciprint( "This object can not be selected.\n" ) ;
+    return -1 ;
+  }
+  return 0 ;
+}
+/*----------------------------------------------------------------------------------------*/
+/**
+ * change the isSelected propety of a subwindow if needed.
+ */
+int sciSetIsSelected( sciPointObj * pObj, BOOL val )
+{
+  if ( sciGetIsSelected( pObj ) == val )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitIsSelected( pObj, val ) ;
+}
+/*----------------------------------------------------------------------------------------*/
 
 /**sciSetOriginalSubWin
  * @memo DO NOT USE !!!

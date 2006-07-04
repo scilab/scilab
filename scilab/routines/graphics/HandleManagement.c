@@ -1103,12 +1103,20 @@ sciSetCurrentObj (sciPointObj * pobj)
 int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
 {
   sciPointObj * oldParent = sciGetParent( movedObj ) ;
+  
+  if ( oldParent == newParent )
+  {
+    /* nothing to do */
+    return 0 ;
+  }
+  
   sciDelThisToItsParent( movedObj, oldParent ) ;
   sciAddThisToItsParent( movedObj, newParent ) ;
 
   /* if an axis has been moved, its previous parent, a figure might haven't son any more.*/
-  if ( sciGetEntityType( movedObj ) == SCI_SUBWIN )
+  if ( sciGetEntityType( movedObj ) == SCI_SUBWIN && sciGetIsSelected( movedObj ) )
   {
+    sciSelectFirstSubwin( oldParent ) ;
     if ( sciGetNbChildren( oldParent ) == 0 )
     {
       /* we need to recreate a subwin */
@@ -1117,8 +1125,12 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
       {
         return -1 ;
       }
+      /* we must set the selected subwin */
       sciSetOriginalSubWin( oldParent, newSubWin ) ;
+      sciInitSelectedSubWin( newSubWin ) ;
     }
+    /* there should already exists a selected subwin */
+    sciSetIsSelected( movedObj, FALSE ) ;
   }
 
   return 0 ;
@@ -1178,8 +1190,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   int nbFigure = 0 ;
   BOOL * modifiedFigure = NULL ; /* tell wether the figure number i or its children has been */
                                  /* changed. Use for final redraw */
-  int curFigure = sciGetNumFigure( sciGetCurrentFigure() ) ;
-
+  
   /* check parent */
   if ( parentObj == NULL )
   {
@@ -1252,9 +1263,10 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   {
     if ( modifiedFigure[i] )
     {
-      sciSetUsedWindow( i ) ;
-      sciDrawObj( sciGetCurrentFigure() ) ;
-      sciSetUsedWindow( curFigure ) ;
+      sciDrawFigure( i ) ;
+      /* sciSetUsedWindow( i ) ; */
+/*       sciDrawObj( sciGetCurrentFigure() ) ; */
+/*       sciSetUsedWindow( curFigure ) ; */
     }
   }
 

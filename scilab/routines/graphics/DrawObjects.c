@@ -6460,6 +6460,18 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
 }
 
+/*------------------------------------------------------------------------------------------*/
+/**
+ * draw the figure number numFigure.
+ */
+void sciDrawFigure( int numFigure )
+{
+  int curFigure = sciGetNumFigure( sciGetCurrentFigure() ) ;
+  sciSetUsedWindow( numFigure ) ;
+  sciDrawObj( sciGetCurrentFigure() ) ;
+  sciSetUsedWindow( curFigure ) ;
+}
+/*------------------------------------------------------------------------------------------*/
 
 /*-------------------------------------------------------------------------------------------*/
 /* sciRefreshObj                                                                             */
