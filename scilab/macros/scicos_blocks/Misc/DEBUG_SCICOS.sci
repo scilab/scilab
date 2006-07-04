@@ -25,7 +25,9 @@ function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
 	if execstr('deff(tt,txt)','errcatch')==0 then
 	  save(TMPDIR+'/debug_scicos',debug_scicos)
 	  exprs(2)=txt
-	  scicos_debug(2)
+          if (scicos_debug()<>2 & scicos_debug()<>3) then
+	   scicos_debug(2)
+          end
 	  break
 	else
 	  message(['Error in the instructions';lasterror()])
