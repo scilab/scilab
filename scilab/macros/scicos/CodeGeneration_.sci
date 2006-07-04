@@ -2209,7 +2209,7 @@ function Makename=gen_make_unix(name,files,libs,Makename)
      "OBJSSTAN="+rdnom+'_standalone.o '+rdnom+'_act_sens_events.o '+rdnom+'_Cblocks.o'
      "SCILIBS = $(SCIDIR)/libs/scicos.a $(SCIDIR)/libs/lapack.a "+..
      "$(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a "+..
-     "$(SCIDIR)/libs/blas.a $(SCIDIR)/libs/lapack.a"
+     "$(SCIDIR)/libs/blas.a $(SCIDIR)/libs/lapack.a $(SCIDIR)/libs/os_specific.a"
      "LIBRARY =  lib"+name
      "OTHERLIBS = "+libs
      "include $(SCIDIR)/Makefile.incl";
