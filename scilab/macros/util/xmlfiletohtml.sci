@@ -1,9 +1,9 @@
 function xmlfiletohtml(path,xsl)
 
 	// Copyright Enpc (Jean-Philippe Chancelier)
-	//given a path on a Scilab help xml file  (assumed to respect 
-	//SCI/man/man-rev.dtd ) this function generates the corresponding htm
-	//file using the /man/<LANGUAGE>/html-rev.xsl xsl file
+	// given a path on a Scilab help xml file  (assumed to respect 
+	// SCI/man/man-rev.dtd ) this function generates the corresponding htm
+	// file using the /man/<LANGUAGE>/html-rev.xsl xsl file
 	
 	generate_cmd='xsltproc';
 	
@@ -11,10 +11,10 @@ function xmlfiletohtml(path,xsl)
 	if rhs < 2 then xsl= 'html-rev.xsl';end //the xsl file name;
 	global LANGUAGE %helps
 	path=pathconvert(path,%f,%t) // convert path to host convention
-	  
+	
 	//proceed if xml file is newest than htm file
 	if newest(path,strsubst(path,".xml",".htm"))==1 then
-	
+		
 		mprintf('  Processing file %s.xml\n',basename(path));
 		
 		// build .xml2 file where LINK tags references are solved
@@ -58,7 +58,7 @@ function xmlfiletohtml(path,xsl)
 			end
 			RM='rm -f '
 		end
-
+		
 		//run html generator
 		if execstr('unix_s('+sci2exp(instr)+')','errcatch')<>0 then 
 			write(%io(2),'     Warning '+path+' does not follow the dtd','(a)')
