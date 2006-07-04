@@ -4,7 +4,7 @@
 /* Copyright INRIA */
 typedef struct
 {
-  int lnk;;
+  int lnk;
   int pos;
 } outtb_el;
 

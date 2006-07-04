@@ -40,7 +40,7 @@ static int *il_sim_save; /*n'est valable que dans inctscicos.c*/
 struct {integer kfun;} C2F(curblk); /* declaration of curblk -valable partout- */
 typedef struct /* declaration of outtb_elem -valable dans inctscicos.c- */
 {
-  int lnk;;
+  int lnk;
   int pos;
 } outtb_el;
 
