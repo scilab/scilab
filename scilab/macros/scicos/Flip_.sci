@@ -1,8 +1,0 @@
-function Flip_()
-    Cmenu='Open/Set'
-    xinfo('Click on block to be flipped')
-    scs_m_save=scs_m;nc_save=needcompile;
-    [%pt,scs_m]=do_tild(%pt,scs_m)
-    xinfo(' ')
-    %pt=[]
-endfunction
