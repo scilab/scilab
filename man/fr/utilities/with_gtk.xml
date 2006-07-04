@@ -22,7 +22,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Returns <VERB>%t</VERB> if Scilab as been built  with gtk library
-    interface or <VERB>%f</VERB> if not.</P>
+    Returns always <VERB>%f</VERB> gtk library is not supported by Scilab 5 and more.
+    </P>
   </DESCRIPTION>
 </MAN>
