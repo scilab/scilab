@@ -262,7 +262,7 @@ proc displaymatchresultswin {} {
         $matchres.f1.resarea tag configure foundtext -background $FOUNDTEXTCOLOR
         bind $matchres.f1.resarea <Double-Button-1> { openpointedmatch %W %x %y ; break }
         bind $matchres.f1.resarea <<Modified>> {break}
-        # prevent from unwanted Text class bindings from triggering
+        # prevent unwanted Text class bindings from triggering
         bind $matchres.f1.resarea <Button-3> {break}
         bind $matchres.f1.resarea <Shift-Button-3> {break}
         bind $matchres.f1.resarea <Control-Button-3> {break}

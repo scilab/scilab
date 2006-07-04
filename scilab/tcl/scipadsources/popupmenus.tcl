@@ -75,7 +75,7 @@ proc showpopupsource {ind} {
             } else {
                 # scicos or libfun
                 set plabel [concat [mc "Open the source of"] $curterm ]
-                set sourcecommand "opensourcecommand $curterm"
+                set sourcecommand "opensourcecommand $tagname $curterm"
             }
             menu $pad.popsource -tearoff 0 -font $menuFont
             $pad.popsource add command -label $plabel -command $sourcecommand
@@ -84,9 +84,9 @@ proc showpopupsource {ind} {
     }
 }
 
-proc opensourcecommand {curterm} {
-    if {![isscilabbusy]} {
-        ScilabEval_lt scipad(get_function_path("$curterm"))
+proc opensourcecommand {tagname curterm} {
+    if {![isscilabbusy 0]} {
+        doopenfunsource $tagname $curterm
     }
 }
 

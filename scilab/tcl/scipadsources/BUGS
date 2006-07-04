@@ -72,10 +72,6 @@ Bugs:
     still use tabs to indent. Ctrl-d/D should transform existing tabs into
     spaces or viceversa depending on the option,
 
--proc blinkline blinks in the active buffer, this is not always the good one
- warning: when fixing this, don't forget edit_error and others that make
- use of blinkline outside of Scipad
-
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

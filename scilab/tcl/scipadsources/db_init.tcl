@@ -10,6 +10,10 @@ set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"
 set showcallstackarea "true"
 set watchalwaysontop 0
+set errmsg ""
+set errnum 0
+set errline 0
+set errfunc ""
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries

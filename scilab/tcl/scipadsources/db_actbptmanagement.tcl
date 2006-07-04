@@ -17,19 +17,10 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
 # Show the active breakpoint
 # This is done by using proc dogotoline
 # <TODO> this might fail if the same function name can be found in more
-#        than one single buffer
+#        than one single buffer - see also funnametofunnametafunstart
     removeallactive_bp
     if {$activemacro == ""} {return}
-    set fundefs [getallfunsinalltextareas]
-    set funtogoto ""
-    foreach {ta fundefsinta} $fundefs {
-        foreach {funcname funcline funstartline} $fundefsinta {
-            if {$funcname == $activemacro} {
-                set funtogoto [list $funcname $ta $funstartline]
-                break
-            }
-        }
-    }
+    set funtogoto [funnametofunnametafunstart $activemacro]
     if {$funtogoto != ""} {
         dogotoline "logical" $activeline "function" $funtogoto
         set actpos [[lindex $funtogoto 1] index insert]

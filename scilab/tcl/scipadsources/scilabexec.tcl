@@ -368,14 +368,27 @@ proc scilaberror {funnameargs} {
 }
 
 proc blinkline {li ma {nb 3}} {
-# Blink $nb times line $li in macro function $ma
+# Blink $nb times logical line $li in macro function named $ma
+# The macro is supposed to be defined in one of the opened buffers (no
+# opening of files occur here)
 # Warning: This proc is also used from outside of Scipad by edit_error
-    for {set i 0} {$i < $nb} {incr i} {
-        updateactivebreakpointtag $li $ma
-        update idletasks
-        after 500
-        updateactivebreakpointtag 0 ""
-        update idletasks
-        after 500
+    global SELCOLOR
+    set funtogoto [funnametofunnametafunstart $ma]
+    if {$funtogoto != ""} {
+        dogotoline "logical" $li "function" $funtogoto
+        set w [lindex $funtogoto 1]
+        set i1 [$w index "insert linestart"]
+        set i2 [$w index "insert lineend + 1c"]
+        for {set i 0} {$i < $nb} {incr i} {
+            $w tag add blinkedline $i1 $i2
+            $w tag configure blinkedline -background $SELCOLOR
+            update idletasks
+            after 500
+            $w tag remove blinkedline $i1 $i2
+            update idletasks
+            after 500
+        }
+    } else {
+        # function not found among opened buffers, do nothing
     }
 }

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.38
+# in sync at least with v6.39
 
 
 # commons
@@ -133,6 +133,9 @@
 ::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
 ::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
 ::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"
+::msgcat::mcset fr "Scipad cannot find source code for the selected function.\nPlease open the adequate file manually and try again." \
+                   "Scipad ne trouve pas le code source de la fonction sélectionnée.\nVeuillez ouvrir le fichier manuellement et réessayer."
+::msgcat::mcset fr "Missing source code" "Code source manquant"
 
 
 # filecommands.tcl

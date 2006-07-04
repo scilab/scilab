@@ -361,7 +361,7 @@ proc checkexecutionerror_bp {} {
                                  if {\$errnum != 0} { \
                                      bell; \
                                      set errtext \[mc \"\"Error \"\"\]; \
-                                     append errtext \$errnum \"\" -- \"\" \$errmsg \"\"\n\"\" \
+                                     append errtext \$errnum \"\" -- << \"\" \$errmsg \"\" >>\n\"\" \
                                                     \[mc \"\"at line \"\"\] \$errline \[mc \"\" of \"\"\] \
                                                      \$errfunc \"\"\n\"\" \"\"\n\"\" \
                                                     \[mc \"\"Scilab is back at the main level now.\"\"\]; \

@@ -3,8 +3,8 @@ function txt = FormatWhereForDebugWatch(startitem)
 // mimics the output of whereami()
 // This is used for the watch window of the debugger in Scipad.
 // The callstackfuns and callstacklines lists are also set inside the scipad
-// interpreter by this function for later use during step by step or run to
-// cursor
+// interpreter by this function for later use during step by step, run to
+// cursor, or to open a stack level by double-clicking in the call stack area
 // Author: François Vogel, 2004-2006 (freely inspired from whereami())
 
 // Localisation

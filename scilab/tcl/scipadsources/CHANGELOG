@@ -2267,3 +2267,18 @@ Francois VOGEL, 02/07/06
  * Trimmed strings used in FormatStringsForDebugWatch
  * Prevented the user from debugging the debugger ancillary functions
  * version --> 6.38
+
+Francois VOGEL, 04/07/06
+ * Double-clicking in the call stack area jumps to the function and line
+   number displayed in the clicked line - works both during debug and
+   after an error, cursor changes shape while over a clickable line,
+   clicked line blinks and target line as well
+ * Added a vertical scrollbar for the call stack area of the watch
+   window
+ * Fixed a bug when trying to open function source of a scicos keyword
+   through the popupmenu: the file did not open and the shell warned
+   that it is not a libfun file
+ * Rewrote proc blinkline in such a way that it uses a dedicated tag to
+   blink lines instead of using the active breakpoint tag - now blinkline
+   can be used during debug without destroying the active breakpoint 
+ * version --> 6.39

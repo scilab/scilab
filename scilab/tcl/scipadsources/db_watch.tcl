@@ -231,7 +231,7 @@ proc showwatch_bp {} {
     pack $lbvarname -side top  -expand 1 -fill both -padx 2
     pack $scrollxl             -expand 0 -fill x
 
-    pack $scrolly   -side left -expand 0 -fill both -padx 2
+    pack $scrolly   -side left -expand 0 -fill y    -padx 2
 
     pack $watch.f.vpw.f2.f2r.hpw.fl.f1 -side left -expand 1 -fill both
     pack $watch.f.vpw.f2.f2r.hpw.fl.f2 -side left -expand 0 -fill y
@@ -254,13 +254,19 @@ proc showwatch_bp {} {
     label $watch.f.vpw.f6.cslabel -text $csl -font $menuFont
     pack $watch.f.vpw.f6.cslabel -anchor w -pady 4
     set callstackwidget $watch.f.vpw.f6.callstack
-    text $callstackwidget -height 5 -font $textFont -state normal -background gray83
-    pack $callstackwidget -fill both -expand 1
+    set csscrolly $watch.f.vpw.f6.yscroll
+    text $callstackwidget -height 5 -font $textFont -state normal \
+            -background gray83 -cursor xterm -yscrollcommand "$csscrolly set"
+    scrollbar $csscrolly -command "$callstackwidget yview" -takefocus 0
+    pack $callstackwidget $csscrolly -side left
+    pack configure $callstackwidget -fill both -expand 1
+    pack configure $csscrolly       -fill y    -expand 0 -padx 2
     if {$showcallstackarea == "true"} {
         $watch.f.vpw add $watch.f.vpw.f6
     }
     $callstackwidget delete 1.0 end
     $callstackwidget insert 1.0 $callstackcontent
+    updateclickablelinetag
     $callstackwidget configure -state disabled
 
     frame $watch.f.f9
@@ -306,6 +312,16 @@ proc showwatch_bp {} {
     bind $watch <Right> {$lbvarval xview scroll  1 units}
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
                                         {scrollarrows_bp $lbvarname up}   }
+
+    bind $callstackwidget <Double-Button-1> {openpointedstacklevel %W %x %y ; break}
+    # prevent unwanted Text class bindings from triggering
+    bind $callstackwidget <Button-3> {break}
+    bind $callstackwidget <Shift-Button-3> {break}
+    bind $callstackwidget <Control-Button-3> {break}
+
+    $callstackwidget tag bind clickableline <Enter> {%W configure -cursor hand2}
+    $callstackwidget tag bind clickableline <Leave> {%W configure -cursor xterm}
+
     bind $watch <Configure> { \
         if {$showwatchvariablesarea == "true" && $firsttimeinshowwatch == "false"} { \
             set watchhsashcoord [$watch.f.vpw.f2.f2r.hpw sash coord 0]; \
@@ -369,6 +385,7 @@ proc updatewatch_bp {} {
             $callstackwidget configure -state normal
             $callstackwidget delete 1.0 end
             $callstackwidget insert 1.0 $callstackcontent
+            updateclickablelinetag
             $callstackwidget configure -state disabled
         }
     }
@@ -386,6 +403,39 @@ proc closewatch_bp {w {dest "destroy"}} {
         set watchvarsvals($wvarname) $wvarvalue
     }
     if {$dest == "destroy"} {destroy $w}
+}
+
+proc updateclickablelinetag {} {
+    global callstackwidget
+    global callstackfuns callstacklines 
+    global errfunc errline
+    if {[getdbstate] == "DebugInProgress"} {
+        # there is no error displayed in the call stack area
+        # the call stack area looks like this:
+        #     Breakpoint called at line 4 of macro %foo
+        #     %foo       called at line 4 of macro foo
+        #     foo        called at line 5 of macro b_test
+        #     b_test     called at line 101 of macro atest
+        $callstackwidget tag add clickableline 1.0 "end - 1c"
+    } else {
+        # no debug in progress
+        # either there was no error (the call stack area is empty), and in
+        # this case $errfunc is "" and $errline is 0
+        # or the debug stopped due to an error and the call stack area looks
+        # like this:
+        #     Error 4 -- << undefined variable : A                        >>
+        #     at line 14 of atest
+        #
+        #     Scilab is back at the main level now.
+        # note that only line 2 is relevant to click in this case, and that
+        # $errfunc and $errline set in proc checkexecutionerror_bp contain
+        # the target destination
+        $callstackwidget tag remove clickableline 1.0 end
+        if {$errfunc != ""} {
+            # non empty call stack area
+            $callstackwidget tag add clickableline 2.0 3.0
+        }
+    }
 }
 
 proc getfromshell { {startitem 3} } {
@@ -525,6 +575,71 @@ proc createsetinscishellcomm {setofvars} {
         set retcomm "\[$retcomm\]=resume($retcomm);"
     }
     return [list $fullcomm $retcomm $viscomm]
+}
+
+proc openpointedstacklevel {w x y} {
+# display the line in the file pointed by the mouse in the call stack area
+    global callstackwidget
+    global callstackfuns callstacklines
+    global errfunc errline
+    global SELCOLOR
+
+    # if the cursor is not a hand, then the line is not clickable
+    if {[$callstackwidget cget -cursor] != "hand2"} {return}
+
+    set indincstackwidget [$w index "@$x,$y"]
+    scan $indincstackwidget "%d.%d" lin col
+
+    if {[getdbstate] == "DebugInProgress"} {
+        # there is no error displayed in the call stack area
+        # the call stack area looks like this:
+        #     Breakpoint called at line 4 of macro %foo
+        #     %foo       called at line 4 of macro foo
+        #     foo        called at line 5 of macro b_test
+        #     b_test     called at line 101 of macro atest
+        set nametoopen  [lindex $callstackfuns  [expr $lin - 1]]
+        set loglinetogo [lindex $callstacklines [expr $lin - 1]]
+    } else {
+        # no debug in progress
+        # either there was no error (the call stack area is empty), and in
+        # this case $errfunc is "" and $errline is 0
+        # or the debug stopped due to an error and the call stack area looks
+        # like this:
+        #     Error 4 -- << undefined variable : A                        >>
+        #     at line 14 of atest
+        #
+        #     Scilab is back at the main level now.
+        # note that only line 2 is relevant to click in this case, and that
+        # $errfunc and $errline set in proc checkexecutionerror_bp contain
+        # the target destination - however, there is no need to check that
+        # {$errfunc != ""} and {$lin == 2} since this is done by the hand2
+        # cursor
+        set nametoopen  $errfunc
+        set loglinetogo $errline
+    }
+    
+    set keywtype [gettagfromkeyword $nametoopen]
+    if {$keywtype != "error"} {
+        doopenfunsource $keywtype $nametoopen
+        # things must be done through ScilabEval "seq" here because
+        # doopenfunsource opens files using ScilabEval "seq"
+        ScilabEval_lt "TCL_EvalStr(\"blinkline $loglinetogo $nametoopen 1\",\"scipad\")" "seq"
+    } else {
+        set mes [mc "Scipad cannot find source code for the selected function.\nPlease open the adequate file manually and try again."]
+        set tit [mc "Missing source code"]
+        # here ScilabEval is used in order to blink the line in
+        # the call stack area before the message box opening
+        ScilabEval_lt "TCL_EvalStr(\"tk_messageBox -message \"\"$mes\"\" -icon warning -title \"\"$tit\"\"\",\"scipad\")" "seq"
+    }
+
+   # blink once the clicked line in the call stack area
+    $w tag add clickedline "$indincstackwidget linestart" "$indincstackwidget lineend + 1c"
+    set curbg [$w tag cget clickedline -background]
+    $w tag configure clickedline -background $SELCOLOR
+    update idletasks
+    after 500
+    $w tag configure clickedline -background $curbg
+    $w tag delete clickedline
 }
 
 proc duplicatechars {st ch} {

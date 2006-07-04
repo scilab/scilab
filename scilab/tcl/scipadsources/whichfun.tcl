@@ -360,7 +360,7 @@ proc getallfunsintextarea {{buf "current"}} {
 # Note that the leading zero in "0NoFunInBuf" is here so that the latter cannot
 # be a valid function name in Scilab (they can't start with a number)
 # If there is at least one function definition in $buf, then $result_of_whichfun
-# is a list of proc whichfun results:
+# is a flat list of proc whichfun results:
 #   { $funname1 $funline1 $precfun1  $funname2 $funline2 $precfun2  ... }
 #       $funname   : function name
 #       $funline   : definition line of the function, e.g. [a,b]=foo(c,d)
@@ -421,6 +421,29 @@ proc getallfunsintextarea {{buf "current"}} {
     } else {
         return [list $textarea $hitslist]
     }
+}
+
+proc funnametofunnametafunstart {functionname} {
+# given a function name, this proc looks in all the opened buffers and
+# tries to find a function with this name
+# if it succeeds, then the proc returns a list with one getallfunsintextarea
+# result
+# if it does not succeed, then the return value is ""
+# <TODO> this search might fail if the same function name can be found in more
+#        than one single buffer - in this case, the first match is returned
+#        this proc should be improved to prompt the user whenever there is
+#        more than one match
+    set fundefs [getallfunsinalltextareas]
+    set funstruct ""
+    foreach {ta fundefsinta} $fundefs {
+        foreach {funcname funcline funstartline} $fundefsinta {
+            if {$funcname == $functionname} {
+                set funstruct [list $funcname $ta $funstartline]
+                break
+            }
+        }
+    }
+    return $funstruct
 }
 
 proc trimcontandcomments {str} {

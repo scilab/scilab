@@ -398,7 +398,15 @@ proc doopenfunsource {keywtype nametoopen} {
     global env words
     switch $keywtype {
         "libfun" {
-            ScilabEval_lt "scipad(get_function_path(\"$nametoopen\"))"
+            # the simplest thing to do here would have been to
+            #   ScilabEval_lt "scipad(get_function_path(\"$nametoopen\"))" "seq"
+            # but unfortunately this does not work when used from the debugger
+            # call stack area (the shell goes deeper one level and execution is
+            # delayed), therefore a more complicated solution here
+            set comm1 "TCL_EvalStr(\"set fullfunpathtoopen \"+strsubst(get_function_path(\"$nametoopen\"),\"\\\",\"/\"),\"scipad\");"
+            set comm2 "TCL_EvalStr(\"openfile \"\"\$fullfunpathtoopen\"\"\",\"scipad\");"
+            set fullcomm [concat $comm1 $comm2]
+            ScilabEval_lt $fullcomm "seq"
         }
         "scicos" {
             set scicosdir [file join "$env(SCIPATH)" macros scicos \
@@ -406,7 +414,10 @@ proc doopenfunsource {keywtype nametoopen} {
             set blocksdir [file join "$env(SCIPATH)" macros \
                           scicos_blocks "*" $nametoopen.sci]
             set filetoopen [glob $scicosdir $blocksdir]
-            ScilabEval_lt "scipad(\"$filetoopen\")"
+            # for the same reason as above, simply issuing
+            #   ScilabEval_lt "scipad(\"$filetoopen\")" "seq"
+            # does not always work
+            ScilabEval_lt "TCL_EvalStr(\"openfile \"\"$filetoopen\"\"\",\"scipad\");" "seq"
         }
         "userfun" {
             set nameinitial [string range $nametoopen 0 0]
