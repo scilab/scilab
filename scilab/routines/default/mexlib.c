@@ -919,7 +919,7 @@ void mxAssert(int expr, char *error_message)
   if (!expr) mexErrMsgTxt(error_message);
 }
 
-mxArray *mxCreateDoubleMatrix __PARAMS((int m, int n, mxComplexity it))
+mxArray *mxCreateDoubleMatrix (int m, int n, mxComplexity it)
 {
   static int lw, lr, lc;
   int k;
