@@ -25,7 +25,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -94,7 +94,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Conversion f2c"
-				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)"
+				CommandLine="cd ..&#x0D;&#x0A;for %%f in (*.f) do ..\..\bin\f2c.exe %%f&#x0D;&#x0A;cd $(ProjectDir)&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -398,6 +398,10 @@
 			</File>
 			<File
 				RelativePath="..\skpins.c"
+				>
+			</File>
+			<File
+				RelativePath="..\stack.c"
 				>
 			</File>
 			<File

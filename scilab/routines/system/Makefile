@@ -29,7 +29,7 @@ OBJSF = allops.o  banier.o\
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \
-	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o 
+	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o stack.o
 
 include ../../Makefile.incl
 
@@ -39,7 +39,8 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
 
-allops.o:  ../stack.h
+stack.o: ../stack.h
+allops.o: ../stack.h
 bexec.o:  ../stack.h
 clause.o:  ../stack.h
 cmdstr.o:  ../stack.h
