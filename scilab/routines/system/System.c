@@ -87,12 +87,14 @@ extern void
       AddHistory(),
       C2F(xerbla)(),
       C2F(intfromjava)(),
-	  C2F(intgetmemory)(),
-	  C2F(intwhat)(),
-	  C2F(intfromc)(),
-	  C2F(intgetmd5)(),
-	  C2F(intulink)(),
-	  C2F(intwarning)();
+      C2F(intgetmemory)(),
+      C2F(intwhat)(),
+      C2F(intfromc)(),
+      C2F(intgetmd5)(),
+      C2F(intulink)(),
+      C2F(intwarning)(),
+      C2F(adjuststacksize)(),
+      C2F(adjustgstacksize)();
 
 
 void System_contents( int x)
@@ -186,6 +188,8 @@ void System_contents( int x)
     C2F(intgetmd5)();
     C2F(intulink)();
     C2F(intwarning)();
+    C2F(adjuststacksize)();
+    C2F(adjustgstacksize)();
     }
 } 
 
