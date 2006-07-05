@@ -37,7 +37,8 @@
 extern int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr, int* ord,int* nord,int* ok);
 extern int ctree3(int*vec,int nb,int* depu,int* depuptr,int* typl,int* bexe,int* boptr,int* blnk,int* blptr,int* ord,int* nord,int* ok);
 extern int ctree4(int* vec,int nb,int *nd,int nnd,int* typ_r,int* outoin,int* outoinptr,int* r1,int* r2, int* nr);
-
+extern int C2F(scicos)();
+extern int C2F(namstr)();
 #endif
 
 /* fonction pour recuperer le nombre du champs a partir de son nom */
@@ -1715,7 +1716,7 @@ int intscicosimc(fname,fname_len)
  else if (m6==5) {for(i=0;i<5;i++) simpar[i]=l_tol[i];simpar[5]=0;simpar[6]=0;}
  else if (m6==6) {for(i=0;i<6;i++) simpar[i]=l_tol[i];simpar[6]=0;}
  else for(i=0;i<7;i++) simpar[i]=l_tol[i];
- solver=simpar[5]; /*set solver variable*/
+ solver=(int)simpar[5]; /*set solver variable*/
 
  /******************************
   * cross variable size checking
@@ -2254,14 +2255,14 @@ int var2sci(void *x,int n,int m,int typ_var)
   /* set number of double needed to store data */
   if (typ_var==10) nm=n*m; /*double real matrix*/
   else if (typ_var==11)  nm=n*m*2; /*double real matrix*/
-  else if (typ_var==80)  nm=ceil((n*m)/2)+1; /*int*/
-  else if (typ_var==81)  nm=ceil((n*m)/8)+1; /*int8*/
-  else if (typ_var==82)  nm=ceil((n*m)/4)+1; /*int16*/
-  else if (typ_var==84)  nm=ceil((n*m)/2)+1; /*int32*/
-  else if (typ_var==800) nm=ceil((n*m)/2)+1; /*uint*/
-  else if (typ_var==811) nm=ceil((n*m)/8)+1; /*uint8*/
-  else if (typ_var==812) nm=ceil((n*m)/4)+1; /*uint16*/
-  else if (typ_var==814) nm=ceil((n*m)/2)+1; /*uint32*/
+  else if (typ_var==80)  nm=(int)(ceil((n*m)/2)+1); /*int*/
+  else if (typ_var==81)  nm=(int)(ceil((n*m)/8)+1); /*int8*/
+  else if (typ_var==82)  nm=(int)(ceil((n*m)/4)+1); /*int16*/
+  else if (typ_var==84)  nm=(int)(ceil((n*m)/2)+1); /*int32*/
+  else if (typ_var==800) nm=(int)(ceil((n*m)/2)+1); /*uint*/
+  else if (typ_var==811) nm=(int)(ceil((n*m)/8)+1); /*uint8*/
+  else if (typ_var==812) nm=(int)(ceil((n*m)/4)+1); /*uint16*/
+  else if (typ_var==814) nm=(int)(ceil((n*m)/2)+1); /*uint32*/
   else nm=n*m; /*double real matrix*/
 
   /*check if there is free space for new data*/

@@ -203,35 +203,28 @@ void call_debug_scicos(double *, double *, double *, double *,double *,integer
 static integer debug_block;
 
 /* Subroutine */ 
-int C2F(scicos)
-     (x_in, xptr_in, z__, work,zptr,modptr_in, iz, izptr, t0_in, tf_in, tevts_in, 
-      evtspt_in, nevts, pointi_in, outtbptr_in, outtbsz_in, outtbtyp_in, outtb_elem_in, nelem1, nlnk1,
-      funptr, funtyp_in, inpptr_in, outptr_in,
-      inplnk_in, outlnk_in, rpar, rpptr, ipar, ipptr, clkptr_in,
-      ordptr_in, nordptr1, ordclk_in, cord_in, ncord1, iord_in, niord1, oord_in, noord1,
-      zord_in, nzord1, critev_in, nblk1, ztyp, zcptr_in, subscr, nsubs, simpar,
-      flag__, ierr_out)
-     double *x_in,*z__;
-     void **work;
-     integer *modptr_in;
-     integer *xptr_in;
-     integer *zptr, *iz, *izptr;
-     double *t0_in, *tf_in, *tevts_in;
-     integer *evtspt_in, *nevts, *pointi_in;
-     void **outtbptr_in;
-     integer *outtbsz_in;
-     integer *outtbtyp_in;
-     outtb_el *outtb_elem_in;
-     integer *nelem1;
-     integer *nlnk1, *funptr, *funtyp_in, *inpptr_in, *outptr_in;
-     integer *inplnk_in, *outlnk_in;
-     double *rpar;
-     integer *rpptr, *ipar, *ipptr, *clkptr_in, *ordptr_in, *nordptr1;
-     integer *ordclk_in, *cord_in, *ncord1, *iord_in, *niord1, *oord_in;
-     integer *noord1, *zord_in, *nzord1, *critev_in, *nblk1, *ztyp, *zcptr_in;
-     integer *subscr, *nsubs;
-     double *simpar;
-     integer *flag__, *ierr_out;
+int C2F(scicos)(
+     double *x_in, double *z__,
+     void **work,
+     integer *modptr_in,
+     integer *xptr_in,
+     integer *zptr,integer *iz,integer *izptr,
+     double *t0_in,double *tf_in,double *tevts_in,
+     integer *evtspt_in,integer *nevts,integer *pointi_in,
+     void **outtbptr_in,
+     integer *outtbsz_in,
+     integer *outtbtyp_in,
+     outtb_el *outtb_elem_in,
+     integer *nelem1,
+     integer *nlnk1,integer *funptr,integer *funtyp_in,integer *inpptr_in,integer *outptr_in,
+     integer *inplnk_in,integer *outlnk_in,
+     double *rpar,
+     integer *rpptr,integer *ipar,integer *ipptr,integer *clkptr_in,integer *ordptr_in,integer *nordptr1,
+     integer *ordclk_in,integer *cord_in,integer *ncord1,integer *iord_in,integer *niord1,integer *oord_in,
+     integer *noord1,integer *zord_in,integer *nzord1,integer *critev_in,integer *nblk1,integer *ztyp,integer *zcptr_in,
+     integer *subscr,integer *nsubs,
+     double *simpar,
+     integer *flag__,integer *ierr_out)
 
 {
   integer i1,kf,lprt,in,out,job=1;

@@ -488,7 +488,7 @@ int sci2var(void *x,void *y, int typ_var)
  {
   case 1 :
           {/*check type of double matrix*/
-           if ((sub_typ!=0&sub_typ!=1))
+           if ((sub_typ!=0)&(sub_typ!=1))
            {
             err = 1002;
             return err;

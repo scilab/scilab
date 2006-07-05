@@ -56,13 +56,11 @@ double Get_Jacobian_parameter(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
 
-#if WIN32
-#undef min
-#undef max
+#ifndef _MSC_VER
+	#define max(a,b) ((a) >= (b) ? (a) : (b))
+	#define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
 
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#define min(a,b) ((a) <= (b) ? (a) : (b))
 
 extern int s_copy();
 extern int s_cmp();
