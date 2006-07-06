@@ -9,13 +9,14 @@ c     routine for intstacksize
       integer mem,offset
       integer iadr,sadr
       integer p
-      
+         
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
       
-      offset=offset+1
-      
       lbot=lstk(isiz)-lstk(bot)
+      ltop=lstk(top+1)-lstk(1)
+      
+      offset=offset+1
       
       l1=lstk(1)
       l2=lstk(bot)

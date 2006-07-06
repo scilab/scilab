@@ -2156,56 +2156,6 @@ c     return a null matrix
       lstk(top+1)=lstk(top)+1
       return
       end
-c ====================================================================
-      subroutine intgstacksize
-c     Copyright INRIA
-      include '../stack.h'
-      integer offset
-      logical checkrhs,checklhs,cremat,getscalar
-      integer iadr,sadr
-c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
-      rhs=max(rhs,0)
-c
-      if(.not.checklhs('gstacksize',1,1)) return
-      if(.not.checkrhs('gstacksize',0,1)) return
-
-      if (rhs.eq.0) then
-         top=top+1
-         if(.not.cremat('gstacksize',top,0,1,2,l,lc)) return
-         stk(l)=lstk(gbot)-lstk(isiz+2)+1
-         if(gtop.ge.isiz+2) then
-            stk(l+1)=lstk(gtop+1)-lstk(isiz+2)+1
-         else 
-            stk(l+1)=0.0d0
-         endif
-         return
-      endif
-
-      if(.not.getscalar('gstacksize',top,top,l)) return
-      mem=stk(l)
-      memold=lstk(gbot)-lstk(isiz+2)
-      if (mem.eq.memold) goto 10
-      l=lstk(gtop+1)-lstk(isiz+2)
-      if (mem.lt.l) then
-         buf='Required memory too small for defined data'
-         call error(1503)
-         return
-      endif
-      
-      call scigmem(mem+1,offset)
-      
-      if(offset.eq.0) then
-         call error(112)
-         return
-      endif
-      call adjustgstacksize(mem,offset)
- 10   call objvide('gstacksize',top)
-      return
-      end
-c ====================================================================      
       subroutine inthavewindow
 c     Copyright INRIA
       include '../stack.h'
@@ -2810,65 +2760,6 @@ c the end...
       return
       end
 
-      subroutine intstacksize
-c     Copyright INRIA
-      include '../stack.h'
-      integer offset,p
-      logical checkrhs,checklhs,cremat,getscalar
-      integer iadr,sadr
-c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
-      rhs=max(rhs,0)
-c
-      if(.not.checklhs('stacksize',1,1)) return
-      if(.not.checkrhs('stacksize',0,1)) return
-
-      if (rhs.eq.0) then
-         top=top+1
-         if(.not.cremat('stacksize',top,0,1,2,l,lc)) return
-         stk(l)=lstk(isiz)-lstk(1)
-         stk(l+1)=lstk(isiz)-lstk(bot)+1
-         return
-      endif
-
-      if(.not.getscalar('stacksize',top,top,l)) return
-      top=top-1
-c
-      if (stk(l).lt.1000.or.stk(l).gt.2.0d0**31) then
-         buf='Out of bounds value for stacksize argument'
-         call error(1504)
-         return
-      endif
-      mem=stk(l)
-      memold=lstk(isiz)-lstk(1)
-      if (mem.eq.memold) goto 50
-      lbot=lstk(isiz)-lstk(bot)
-      ltop=0
-      if (top.gt.0) ltop=lstk(top+1)-lstk(1)
-      if (mem.lt.lbot+ltop) then
-         buf='Required memory too small for defined data'
-         call error(1503)
-         return
-      endif
-      
-      call scimem(mem+1,offset)
-      
-      if(offset.eq.0) then
-         call error(112)
-         return
-      endif
-      
-      call adjuststacksize(mem,offset)
-      
- 50   top=top+1
-      call objvide('stacksize',top)
-      return
-      
-      end
-      
-c ====================================================================
 
       subroutine inttype
 c     Copyright INRIA
@@ -3167,3 +3058,113 @@ c
       lstk(top+1)=lstk(top)+1
       return
       end
+c ====================================================================      
+      subroutine intstacksize
+c     Copyright INRIA
+      include '../stack.h'
+      integer offset,p
+      logical checkrhs,checklhs,cremat,getscalar
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      rhs=max(rhs,0)
+c
+      if(.not.checklhs('stacksize',1,1)) return
+      if(.not.checkrhs('stacksize',0,1)) return
+
+      if (rhs.eq.0) then
+         top=top+1
+         if(.not.cremat('stacksize',top,0,1,2,l,lc)) return
+         stk(l)=lstk(isiz)-lstk(1)
+         stk(l+1)=lstk(isiz)-lstk(bot)+1
+         return
+      endif
+
+      if(.not.getscalar('stacksize',top,top,l)) return
+      top=top-1
+c
+      if (stk(l).lt.1000.or.stk(l).gt.2.0d0**31) then
+         buf='Out of bounds value for stacksize argument'
+         call error(1504)
+         return
+      endif
+      mem=stk(l)
+      memold=lstk(isiz)-lstk(1)
+      if (mem.eq.memold) goto 50
+      lbot=lstk(isiz)-lstk(bot)
+      ltop=0
+      if (top.gt.0) ltop=lstk(top+1)-lstk(1)
+      if (mem.lt.lbot+ltop) then
+         buf='Required memory too small for defined data'
+         call error(1503)
+         return
+      endif
+      
+      call scimem(mem+1,offset)
+      
+      if(offset.eq.0) then
+         call error(112)
+         return
+      endif
+      
+      call adjuststacksize(mem,offset)
+      
+ 50   top=top+1
+      call objvide('stacksize',top)
+      return
+      
+      end
+      
+c ====================================================================
+      subroutine intgstacksize
+c     Copyright INRIA
+      include '../stack.h'
+      integer offset
+      logical checkrhs,checklhs,cremat,getscalar
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      rhs=max(rhs,0)
+c
+      if(.not.checklhs('gstacksize',1,1)) return
+      if(.not.checkrhs('gstacksize',0,1)) return
+
+      if (rhs.eq.0) then
+         top=top+1
+         if(.not.cremat('gstacksize',top,0,1,2,l,lc)) return
+         stk(l)=lstk(gbot)-lstk(isiz+2)+1
+         if(gtop.ge.isiz+2) then
+            stk(l+1)=lstk(gtop+1)-lstk(isiz+2)+1
+         else 
+            stk(l+1)=0.0d0
+         endif
+         return
+      endif
+
+      if(.not.getscalar('gstacksize',top,top,l)) return
+      mem=stk(l)
+      memold=lstk(gbot)-lstk(isiz+2)
+      if (mem.eq.memold) goto 10
+      l=lstk(gtop+1)-lstk(isiz+2)
+      if (mem.lt.l) then
+         buf='Required memory too small for defined data'
+         call error(1503)
+         return
+      endif
+      
+      call scigmem(mem+1,offset)
+      
+      if(offset.eq.0) then
+         call error(112)
+         return
+      endif
+      
+      call adjustgstacksize(mem,offset)
+ 10   call objvide('gstacksize',top)
+      return
+      end
+c ====================================================================      
