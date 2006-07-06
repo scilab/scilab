@@ -23,9 +23,9 @@ CurrentDirectory=pwd();
  "tksci",
  "xdess",
  "sparse",
- "m2sci",
  "gui",
  "time",
+ "m2sci",
  "pvm"];
  
 if %scicos then
