@@ -94,7 +94,9 @@ extern void
       C2F(intulink)(),
       C2F(intwarning)(),
       C2F(adjuststacksize)(),
-      C2F(adjustgstacksize)();
+      C2F(adjustgstacksize)(),
+	  C2F(getstackinfo)(),
+	  C2F(intstacksize)();
 
 
 void System_contents( int x)
@@ -190,6 +192,8 @@ void System_contents( int x)
     C2F(intwarning)();
     C2F(adjuststacksize)();
     C2F(adjustgstacksize)();
+	C2F(getstackinfo)();
+	C2F(intstacksize)();
     }
 } 
 

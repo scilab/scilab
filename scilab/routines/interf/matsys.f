@@ -197,7 +197,7 @@ c     havewindow
       return
 c
 c     stacksize
- 500  call intstacksize
+ 500  call intstacksize("stacksize")
       goto 999
 c
 c     mtlb_mode
@@ -3058,65 +3058,6 @@ c
       lstk(top+1)=lstk(top)+1
       return
       end
-c ====================================================================      
-      subroutine intstacksize
-c     Copyright INRIA
-      include '../stack.h'
-      integer offset,p
-      logical checkrhs,checklhs,cremat,getscalar
-      integer iadr,sadr
-c
-      iadr(l)=l+l-1
-      sadr(l)=(l/2)+1
-c
-      rhs=max(rhs,0)
-c
-      if(.not.checklhs('stacksize',1,1)) return
-      if(.not.checkrhs('stacksize',0,1)) return
-
-      if (rhs.eq.0) then
-         top=top+1
-         if(.not.cremat('stacksize',top,0,1,2,l,lc)) return
-         stk(l)=lstk(isiz)-lstk(1)
-         stk(l+1)=lstk(isiz)-lstk(bot)+1
-         return
-      endif
-
-      if(.not.getscalar('stacksize',top,top,l)) return
-      top=top-1
-c
-      if (stk(l).lt.1000.or.stk(l).gt.2.0d0**31) then
-         buf='Out of bounds value for stacksize argument'
-         call error(1504)
-         return
-      endif
-      mem=stk(l)
-      memold=lstk(isiz)-lstk(1)
-      if (mem.eq.memold) goto 50
-      lbot=lstk(isiz)-lstk(bot)
-      ltop=0
-      if (top.gt.0) ltop=lstk(top+1)-lstk(1)
-      if (mem.lt.lbot+ltop) then
-         buf='Required memory too small for defined data'
-         call error(1503)
-         return
-      endif
-      
-      call scimem(mem+1,offset)
-      
-      if(offset.eq.0) then
-         call error(112)
-         return
-      endif
-      
-      call adjuststacksize(mem,offset)
-      
- 50   top=top+1
-      call objvide('stacksize',top)
-      return
-      
-      end
-      
 c ====================================================================
       subroutine intgstacksize
 c     Copyright INRIA
