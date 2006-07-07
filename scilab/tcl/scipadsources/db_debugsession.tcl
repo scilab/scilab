@@ -22,7 +22,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         set tagranges [$textarea tag ranges breakpoint]
         foreach {tstart tstop} $tagranges {
             set infun [whichfun [$textarea index $tstart] $textarea]
-            if {$infun !={} } {
+            if {$infun != {} } {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
@@ -88,27 +88,29 @@ proc execfile_bp {{stepmode "nostep"}} {
 # implementation does not allow to step into non opened files that the debugger
 # could open, e.g. library files.
 
-proc stepbystepinto_bp {{checkbusyflag 1}} {
+proc stepbystepinto_bp {{checkbusyflag 1} {rescanbuffers 1}} {
 # perform "step into" debug
-    stepbystep_bp $checkbusyflag "into"
+    stepbystep_bp $checkbusyflag "into" $rescanbuffers
 }
 
-proc stepbystepover_bp {{checkbusyflag 1}} {
+proc stepbystepover_bp {{checkbusyflag 1} {rescanbuffers 1}} {
 # perform "step over" debug
-    stepbystep_bp $checkbusyflag "over"
+    stepbystep_bp $checkbusyflag "over" $rescanbuffers
 }
 
-proc stepbystepout_bp {{checkbusyflag 1}} {
+proc stepbystepout_bp {{checkbusyflag 1} {rescanbuffers 1}} {
 # perform "step out" debug
-    stepbystep_bp $checkbusyflag "out"
+    stepbystep_bp $checkbusyflag "out" $rescanbuffers
 }
 
-proc stepbystep_bp {checkbusyflag stepmode} {
+proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
 # set a breakpoint in Scilab on really every line of every function
 # of every opened buffer consistently with the current step mode,
 # run execution, delete all those breakpoints and restore the
 # breakpoints that were really set by the user
     global funnameargs
+    global logicallinenumbersranges previousstepscope
+    global CurBreakpointedMacros CurBreakpointedLines ; # only used while skipping lines
 
     if {[getdbstate] == "ReadyForDebug"} {
         # always a busy check - this code part cannot be entered
@@ -145,15 +147,28 @@ proc stepbystep_bp {checkbusyflag stepmode} {
 
 #            showwrappercode
 
-            # because the user can open or close files during debug,
-            # getlogicallinenumbersranges must be called at each step
             switch -- $stepmode {
-                "into"  {set stepscope "allscilabbuffers"}
+                "into"  {set stepscope "current&ancill"}
                 "over"  {set stepscope "currentcontext"}
                 "out"   {set stepscope "callingcontext"}
                 default {set stepscope "allscilabbuffers" ;# should never happen}
             }
-            set cmd [getlogicallinenumbersranges $stepscope]
+            # because the user can open or close files during debug,
+            # getlogicallinenumbersranges must be called at each step
+            # however, do it a minima, i.e. not when skipping no code lines
+            if {![info exists previousstepscope] || \
+                ![info exists logicallinenumbersranges]} {
+                foreach {logicallinenumbersranges CurBreakpointedMacros CurBreakpointedLines} \
+                        [getlogicallinenumbersranges $stepscope] {}
+            } else {
+                if {$rescanbuffers || ($previousstepscope != $stepscope) } {
+                    foreach {logicallinenumbersranges CurBreakpointedMacros CurBreakpointedLines} \
+                            [getlogicallinenumbersranges $stepscope] {}
+                }
+            }
+            updatebptcomplexityindicators_bp $CurBreakpointedMacros $CurBreakpointedLines
+            set previousstepscope $stepscope
+            set cmd $logicallinenumbersranges
             # check Scilab limits in terms of breakpoints
             if {$cmd == "-1"} {
                 # abort step-by-step command - do nothing
@@ -202,12 +217,18 @@ proc getlogicallinenumbersranges {stepscope} {
 #                        current stop point
 #   - callingcontext   : functions listed in the call stack at the
 #                        current stop point, but the first one
-# return value is normally a single string:
+#   - current&ancill   : userfuns called by the function where the
+#                        debugger has currently stopped in, plus
+#                        function from "currentcontext" above
+# return value is a list with 3 elements: {item1 n m} where:
+#  item1 is normally a single string:
 #   ("$fun1",[1,max1]);("$fun2",[1,max2]);...;("$funN",[1,maxN]);
 # this format is especially useful when this string is used to set or
 # delete breakpoints in all the lines - just use a regsub to replace
 # the opening parenthesis by setbpt( or delbpt(
-# in case any Scilab limit is exceeded, return value is a string containing
+#  n is the number of currently breakpointed macros
+#  m is the number of currently breakpointed lines
+# in case any Scilab limit is exceeded, item1 is a string containing
 # a return code:
 #   "0"  : the calling procedure should apply "Go to next breakpoint" instead
 #          of the intended step-by-step command
@@ -259,7 +280,9 @@ proc getlogicallinenumbersranges {stepscope} {
     #                   of breakpoints is set to 1000
     # Check it and ask what to do if any limit is exceeded
     if {$nbmacros >= $ScilabCodeMaxBreakpointedMacros} {
-        set mes [concat [mc "You have currently"] $nbmacros [mc "functions in your opened files."] \
+       # number is > 100%
+       updatebptcomplexityindicators_bp $nbmacros $nbbreakp
+       set mes [concat [mc "You have currently"] $nbmacros [mc "functions in your opened files."] \
                         [mc "Scilab supports a maximum of"] $ScilabCodeMaxBreakpointedMacros \
                         [mc "possible breakpointed functions (see help setbpt)."] \
                         [mc "Step-by-step hence cannot be performed."] \
@@ -270,8 +293,11 @@ proc getlogicallinenumbersranges {stepscope} {
             ok     {set cmd "0"}
             cancel {set cmd "-1"}
         }
+        set nbmacros [countallbreakpointedmacros]
     }
     if {$nbbreakp >= $ScilabCodeMaxBreakpoints} {
+        # number is > 100%
+        updatebptcomplexityindicators_bp $nbmacros $nbbreakp
         set mes [concat [mc "Executing this command would require to set"] $nbbreakp \
                         [mc "breakpoints in your opened files."] \
                         [mc "Scilab supports a maximum of"] $ScilabCodeMaxBreakpoints \
@@ -284,9 +310,10 @@ proc getlogicallinenumbersranges {stepscope} {
             ok     {set cmd "0"}
             cancel {set cmd "-1"}
         }
+        set nbbreakp [countallbreakpointedlines]
     }
 
-    return $cmd
+    return [list $cmd $nbmacros $nbbreakp]
 }
 
 proc isinstepscope {funname stepscope} {
@@ -303,6 +330,7 @@ proc isinstepscope {funname stepscope} {
 
     if {$stepscope == "allscilabbuffers"} {
         return true
+
     } elseif {$stepscope == "configuredfoo"} {
         set oppar [expr [string first "\(" $funnameargs] - 1]
         set configuredfunname [string range $funnameargs 0 $oppar]
@@ -311,6 +339,7 @@ proc isinstepscope {funname stepscope} {
         } else {
             return false
         }
+
     } elseif {$stepscope == "currentcontext"} {
         # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
         if {[lsearch -exact $callstackfuns $funname] != -1} {
@@ -318,6 +347,7 @@ proc isinstepscope {funname stepscope} {
         } else {
             return false
         }
+
     } elseif {$stepscope == "callingcontext"} {
         # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
         if {[llength $callstackfuns] > 1} {
@@ -330,6 +360,23 @@ proc isinstepscope {funname stepscope} {
         } else {
             return false
         }
+
+    } elseif {$stepscope == "current&ancill"} {
+        # current context plus ancillaries tagged as "userfun"
+        # try current context first since looking for ancillaries is slow
+        if {[isinstepscope $funname "currentcontext"]} {
+            return true
+        } else {
+            set currentfunction [lindex $callstackfuns 0]
+            set taofcurrentfunction [lindex [funnametofunnametafunstart $currentfunction] 1]
+            set ufanclist [getlistofancillaries $taofcurrentfunction $currentfunction "userfun"]
+            if {[lsearch -exact $ufanclist $funname] != -1} {
+                return true
+            } else {
+                return false
+            }
+        }
+
     } else {
         tk_messageBox -message "Unexpected step scope ($stepscope) in proc isinstepscope. Please report."
         return false

@@ -13,13 +13,13 @@ proc showwatch_bp {} {
     global debugstateindicator
     global menuFont textFont
     global tcl_platform
+    global bptfunsindic totbptsindic
 
     # Hardwired size, but how else?
     if {$tcl_platform(platform) == "unix"} {
-        # 90 enough for windows, 105 for my Linux Mandrake 10.1
-        set heightofwatchwithnoarea 105
+        set heightofwatchwithnoarea 115
     } else {
-        set heightofwatchwithnoarea 90
+        set heightofwatchwithnoarea 100
     }
     set widthofwatchwithnoarea  587 ;# Anyway, could depend on font size, language...
 
@@ -270,16 +270,26 @@ proc showwatch_bp {} {
     $callstackwidget configure -state disabled
 
     frame $watch.f.f9
+    frame $watch.f.f9.fl
+    set totbptsindic [Progress $watch.f.f9.fl.totbptsindic]
+    SetProgressBarNarrow $totbptsindic
+    set bptfunsindic [Progress $watch.f.f9.fl.bptfunsindic]
+    SetProgressBarNarrow $bptfunsindic
     set bl [mc "Close"]
     button $watch.f.f9.buttonClose -text $bl -command "closewatch_bp $watch"\
            -width 10 -height 1 -font $menuFont
-    pack $watch.f.f9.buttonClose
+    pack $totbptsindic -expand no -fill x
+    pack $bptfunsindic -expand no -fill x -pady 2
+    pack $watch.f.f9.fl -side left
+    pack $watch.f.f9.buttonClose -side left -padx 40
+    pack configure $watch.f.f9.fl -expand yes -fill x
+    updatebptcomplexityindicators_bp
 
     # In order to make the Close button visible at all times, it must be packed
     # first with -side bottom, and the panedwindow must be packed after it with
     # -side top. This is a feature of the pack command, it is not a bug.
     # See Tk bug 1217762 (resolved as invalid, btw)
-    pack $watch.f.f9 -pady 2 -side bottom
+    pack $watch.f.f9 -pady 2 -side bottom -fill both -expand no
     if {$showwatchvariablesarea == "true" || $showcallstackarea == "true"} {
         pack $watch.f.vpw -fill both -expand yes -side top
     }
@@ -387,6 +397,7 @@ proc updatewatch_bp {} {
             $callstackwidget insert 1.0 $callstackcontent
             updateclickablelinetag
             $callstackwidget configure -state disabled
+            updatebptcomplexityindicators_bp
         }
     }
 }
@@ -423,7 +434,7 @@ proc updateclickablelinetag {} {
         # this case $errfunc is "" and $errline is 0
         # or the debug stopped due to an error and the call stack area looks
         # like this:
-        #     Error 4 -- << undefined variable : A                        >>
+        #     Error 4 -- << undefined variable : A >>
         #     at line 14 of atest
         #
         #     Scilab is back at the main level now.
@@ -434,6 +445,24 @@ proc updateclickablelinetag {} {
         if {$errfunc != ""} {
             # non empty call stack area
             $callstackwidget tag add clickableline 2.0 3.0
+        }
+    }
+}
+
+proc updatebptcomplexityindicators_bp {{NbBreakpointedMacros -1} {NbBreakpoints -1}} {
+# update the indicators describing the complexity of the debug in
+# terms of number of breakpoints and number of breakpointed functions
+    global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
+    global bptfunsindic totbptsindic
+    global watch
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            if {$NbBreakpointedMacros == -1} {
+                set NbBreakpointedMacros [countallbreakpointedmacros]
+                set NbBreakpoints [countallbreakpointedlines]
+            }
+            SetProgress $totbptsindic $NbBreakpoints $ScilabCodeMaxBreakpoints [mc "Breakpoints"] {0.6 0.8}
+            SetProgress $bptfunsindic $NbBreakpointedMacros $ScilabCodeMaxBreakpointedMacros [mc "Breakpointed functions"] {0.6 0.8}
         }
     }
 }
@@ -605,7 +634,7 @@ proc openpointedstacklevel {w x y} {
         # this case $errfunc is "" and $errline is 0
         # or the debug stopped due to an error and the call stack area looks
         # like this:
-        #     Error 4 -- << undefined variable : A                        >>
+        #     Error 4 -- << undefined variable : A >>
         #     at line 14 of atest
         #
         #     Scilab is back at the main level now.

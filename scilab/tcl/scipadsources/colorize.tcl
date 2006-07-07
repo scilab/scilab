@@ -602,6 +602,20 @@ proc colorizationinprogress {} {
 
 }
 
+proc iscurrentbufnotcolorized {} {
+# return true if current buffer is not colorized
+# certain debugger commands cannot be executed if colorization is disabled
+    global ColorizeIt
+    if {!$ColorizeIt} {
+        set mes [mc "You must enable colorization to be able to launch the debugger!"]
+        set tit [mc "The debugger needs colorization"]
+        tk_messageBox -message $mes -icon error -title $tit
+        return true
+    } else {
+        return false
+    }
+}
+
 proc backgroundcolorizeuserfun {} {
 # launch a docolorizeuserfun command in background for all the visible buffers
 # docolorizeuserfun can be a bit long to execute for large buffers despite

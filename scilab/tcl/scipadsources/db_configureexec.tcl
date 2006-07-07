@@ -4,10 +4,14 @@ proc configurefoo_bp {} {
     global funnames funvars funvarsvals funnameargs
     global menuFont textFont
 
-    # configurefoo_bp cannot be executed since it uses Obtain_all which
-    # in turn needs getallfunsintextarea
+    # configurefoo_bp cannot be executed when colorization is in progress
+    # since it uses Obtain_all which in turn needs getallfunsintextarea
     # which needs the colorization results
     if {[colorizationinprogress]} {return}
+    
+    # configurefoo_bp cannot be executed if colorization has been turned
+    # off in the current buffer
+    if {[iscurrentbufnotcolorized]} {return}
 
     set conf $pad.conf
     catch {destroy $conf}

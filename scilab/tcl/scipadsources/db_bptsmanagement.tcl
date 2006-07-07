@@ -10,11 +10,20 @@ proc insertremove_bp {{buf "current"}} {
     } elseif {![isnocodeline $textarea insert]} {
         set i1 [getrealstartofcontline $textarea "insert linestart"]
         set i2 [$textarea index "$i1 lineend"  ]
-        set activetags [$textarea tag names $i1]
-        if {[lsearch $activetags breakpoint] == -1} {
-            $textarea tag add breakpoint $i1 $i2
+        set infun [whichfun [$textarea index $i1] $textarea]
+        if {$infun != {} } {
+            # this test is to prevent from breakpointing the function
+            # definition line (would need to say later setbpt("foo",0)
+            # which is forbidden)
+            set activetags [$textarea tag names $i1]
+            if {[lsearch $activetags breakpoint] == -1} {
+                $textarea tag add breakpoint $i1 $i2
+            } else {
+                $textarea tag remove breakpoint $i1 $i2
+            }
+            updatebptcomplexityindicators_bp
         } else {
-            $textarea tag remove breakpoint $i1 $i2
+            showinfo [mc "No breakpoint here!"]
         }
     } else {
         showinfo [mc "No breakpoint here!"]
@@ -25,28 +34,35 @@ proc insertremovedebug_bp {textarea} {
     global setbptonreallybreakpointedlinescmd
     if {[isscilabbusy 5]} {return}
     set i1 [getrealstartofcontline $textarea "insert linestart"]
-    set i2 [$textarea index "$i1 lineend"  ]
+    set i2 [$textarea index "$i1 lineend"]
     if {![isnocodeline $textarea $i1] &&
         [lsearch [$textarea tag names $i1] "db_wrapper"] == -1} {
         set infun [whichfun [$textarea index $i1] $textarea]
-        # during debug, because .sce files debug uses a wrapper function,
-        # and because no buffer modification is allowed, $infun is always
-        # non empty and contains valid function data
-        set activetags [$textarea tag names $i1]
-        if {[lsearch $activetags breakpoint] == -1} {
-            $textarea tag add breakpoint $i1 $i2
-            set funname [lindex $infun 0]
-            set lineinfun [expr [lindex $infun 1] - 1]
-            set setbpcomm "setbpt(\"$funname\",$lineinfun);"
-            append setbptonreallybreakpointedlinescmd $setbpcomm
-            ScilabEval_lt $setbpcomm "seq"
+        if {$infun != {} } {
+            # during debug, because .sce files debug uses a wrapper function,
+            # and because no buffer modification is allowed, $infun is almost
+            # always non empty and contains valid function data - the only case
+            # where this is wrong is when the user tries to breakpoint the
+            # function declaration line
+            set activetags [$textarea tag names $i1]
+            if {[lsearch $activetags breakpoint] == -1} {
+                $textarea tag add breakpoint $i1 $i2
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                set setbpcomm "setbpt(\"$funname\",$lineinfun);"
+                append setbptonreallybreakpointedlinescmd $setbpcomm
+                ScilabEval_lt $setbpcomm "seq"
+            } else {
+                $textarea tag remove breakpoint $i1 $i2
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                set delbpcomm "delbpt(\"$funname\",$lineinfun);"
+                append setbptonreallybreakpointedlinescmd $delbpcomm
+                ScilabEval_lt $delbpcomm  "seq"
+            }
+            updatebptcomplexityindicators_bp
         } else {
-            $textarea tag remove breakpoint $i1 $i2
-            set funname [lindex $infun 0]
-            set lineinfun [expr [lindex $infun 1] - 1]
-            set delbpcomm "delbpt(\"$funname\",$lineinfun);"
-            append setbptonreallybreakpointedlinescmd $delbpcomm
-            ScilabEval_lt $delbpcomm  "seq"
+            showinfo [mc "No breakpoint here!"]
         }
     } else {
         showinfo [mc "No breakpoint here!"]
@@ -142,4 +158,37 @@ proc reshape_bp {} {
         $textareacur tag remove activebreakpoint $tstart $tstop
         $textareacur tag add activebreakpoint "$tstart linestart" "$tstart lineend"
     }
+}
+
+proc countallbreakpointedlines {} {
+# count the number of breakpointed lines in all the opened buffers
+    global listoftextarea
+    set N 0
+    foreach ta $listoftextarea {
+        incr N [llength [$ta tag ranges breakpoint]]
+    }
+    # divide by 2 since $ta tag ranges returns 2 elements for each breakpoint
+    return [expr $N/2]
+}
+
+proc countallbreakpointedmacros {} {
+# look in all the opened buffers and count the number of macros that
+# contain breakpointed lines
+    global listoftextarea
+    set N 0
+    foreach ta $listoftextarea {
+        # to take into account functions of the same name defined in
+        # different buffers, macrlst is initialized for each buffer
+        set macrlst [list ]
+        foreach {i j} [$ta tag ranges breakpoint] {
+            # use position $j rather than $i to avoid problems when the
+            # function declaration line is breakpointed
+            set funname [lindex [whichfun $j $ta] 0]
+            if {[lsearch -exact $macrlst $funname] == -1} {
+                incr N
+                lappend macrlst $funname
+            }
+        }
+    }
+    return $N
 }

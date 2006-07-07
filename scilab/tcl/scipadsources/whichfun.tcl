@@ -356,12 +356,12 @@ proc getallfunsintextarea {{buf "current"}} {
 # Continued lines and comments are trimmed so that the function definition line
 # returned constitutes a single line
 # If there is no function in $buf, then $result_of_whichfun is the following list:
-#   { "0NoFunInBuf" 0 0 }
+#   $textarea { "0NoFunInBuf" 0 0 }
 # Note that the leading zero in "0NoFunInBuf" is here so that the latter cannot
 # be a valid function name in Scilab (they can't start with a number)
 # If there is at least one function definition in $buf, then $result_of_whichfun
-# is a flat list of proc whichfun results:
-#   { $funname1 $funline1 $precfun1  $funname2 $funline2 $precfun2  ... }
+# is a flat list of proc whichfun results preceded by the textarea name:
+#   $textarea { $funname1 $funline1 $precfun1  $funname2 $funline2 $precfun2  ... }
 #       $funname   : function name
 #       $funline   : definition line of the function, e.g. [a,b]=foo(c,d)
 #       $precfun   : physical line number where $funname is defined in $buf
@@ -433,6 +433,11 @@ proc funnametofunnametafunstart {functionname} {
 #        than one single buffer - in this case, the first match is returned
 #        this proc should be improved to prompt the user whenever there is
 #        more than one match
+#        Hmm, maybe the ultimate fix would rather be to maintain a list of
+#        functions defined in the buffers i.e. listoftextarea("$ta",definedfuns)
+#        this should be dynamical - this would be good for performance since
+#        getallfunsinalltextareas, which is usually the slowest proc, would
+#        have to be called much less often
     set fundefs [getallfunsinalltextareas]
     set funstruct ""
     foreach {ta fundefsinta} $fundefs {
@@ -548,4 +553,37 @@ proc bufferhaslevelzerocode {w} {
     }
 
     return $out
+}
+
+proc getlistofancillaries {ta fun tag} {
+# scan function $funname from textarea $ta for words tagged
+# as $tag and return these words in a list
+# duplicate names are removed from the list
+    set listofancill [list ]
+    set allfunshere [lindex [getallfunsintextarea $ta] 1]
+    foreach {funname funline precfun} $allfunshere {
+        if {$funname != $fun} {
+            continue
+        }
+        # function of interest is located, create list of
+        # all calls to ancillaries tagged as $tag
+        set endpos [getendfunctionpos $ta $precfun]
+        foreach {i j} [$ta tag ranges $tag] {
+            if {[$ta compare $precfun <= $i]} {
+                if {[$ta compare $j <= $endpos]} {
+                    lappend listofancill [$ta get $i $j]
+                }
+            }
+        }
+        # remove duplicates
+        for {set i 0} {$i < [llength $listofancill]} {incr i} {
+            for {set j [expr $i+1]} {$j < [llength $listofancill]} {incr j} {
+                if {[lindex $listofancill $j] == [lindex $listofancill $i]} {
+                    set listofancill [lreplace $listofancill $j $j]
+                    incr j -1
+                }
+            }
+        }
+    }
+    return $listofancill
 }

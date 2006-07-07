@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.39"
+set version "Version 6.40"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -263,7 +263,16 @@ append bracescontlineRE {)*[^\}]*)*\n)+(?:(?:[^/]/?)*\.{2,} *(?://.*)?\n)*)}
 # the user might want the same behaviour on Windows as on Linux for
 # double-clicking - this is bug 1792, see also
 # http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/659fd6c1f41d9a81/eb2a841ac335580e
-catch {tcl_endOfWord}
+# note: the need to say catch {tcl_endOfWord} is due to Tk bug 1517768
+# with this catch, tcl_wordchars and tcl_nonwordchars become known to wish
+# however, the need to do this leads to infinite loop when $debuglog == true
+# the second time Scipad is launched in the same Scilab session
+# no attempt to fix this is made because it only happens in debuglog
+# mode (due to the renaming of the procs) and because it is a Tk bug
+# to have to say catch {tcl_endOfWord}
+if {![info exists tcl_wordchars]} {
+    catch {tcl_endOfWord}
+}
 set tcl_wordchars_linux {[a-zA-Z0-9_]}
 set tcl_nonwordchars_linux {[^a-zA-Z0-9_]}
 set tcl_wordchars_windows {\S}

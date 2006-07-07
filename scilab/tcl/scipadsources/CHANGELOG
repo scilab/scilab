@@ -2282,3 +2282,25 @@ Francois VOGEL, 04/07/06
    blink lines instead of using the active breakpoint tag - now blinkline
    can be used during debug without destroying the active breakpoint 
  * version --> 6.39
+
+Francois VOGEL, 07/07/06
+ * Cosmetic changes in the call stack area of the watch window
+ * More clever way of breakpointing for step into: instead of breakpointing
+   all lines of all functions of all opened buffers, the debugger now
+   breakpoints only the current context functions and the userfun
+   ancillaries called by the function the debugger has currently stopped in.
+   This contributes to limiting the number of breakpointed macros as well as
+   the total number of breakpoints
+ * Better performance while single stepping (avoid to rescan the buffers
+   while skipping no code lines)
+ * Added indicators of "debug complexity" showing how close the user is from
+   the limits in number of breakpointed macros and in total number of
+   breakpoints
+ * Prevented the user from breakpointing the function declaration line - this
+   is anyway illegal in Scilab since it would require to setbpt at line 0
+ * The user can launch the debugger only when the file is a Scilab file and
+   when this file is colorized
+ * Fixed: actbptextFont was updated on font size change but was lost since it
+   was not a global
+ * Progressbars now have $textFont by default
+ * version --> 6.40

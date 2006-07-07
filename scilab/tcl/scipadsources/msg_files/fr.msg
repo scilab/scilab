@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.39
+# in sync at least with v6.40
 
 
 # commons
@@ -45,6 +45,10 @@
 
 
 # db_configureexec.tcl
+::msgcat::mcset fr "You must enable colorization to be able to launch the debugger!" \
+                   "Vous devez autoriser la colorisation pour lancer le débuggueur !"
+::msgcat::mcset fr "The debugger needs colorization" \
+                   "Le débuggueur a besoin de la colorisation"
 ::msgcat::mcset fr "Configure execution" "Configurer l'exécution"
 ::msgcat::mcset fr "Function name:" "Nom de la fonction :"
 ::msgcat::mcset fr "Obtain" "Obtenir"
@@ -130,6 +134,8 @@
 ::msgcat::mcset fr "Hide watch variables" "Cacher les variables"
 ::msgcat::mcset fr "Hide call stack" "Cacher la pile d'appel"
 ::msgcat::mcset fr "Always on top" "Toujours à l'avant-plan"
+::msgcat::mcset fr "Breakpoints" "Points d'arrêt"
+::msgcat::mcset fr "Breakpointed functions" "Fonctions avec breakpoints"
 ::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
 ::msgcat::mcset fr ".\nThis variable will not be updated in Scilab." ".\nCette variable ne sera pas mise à jour dans Scilab"
 ::msgcat::mcset fr "Illegal undefined element found" "Elément indéfini illégal identifié"

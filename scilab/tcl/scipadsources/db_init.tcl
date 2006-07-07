@@ -5,6 +5,8 @@ set curdropind 0
 set dragndroplb ""
 set watchvars ""
 array set watchvarsvals {}
+set callstackfuns ""
+set callstacklines ""
 set callstackcontent ""
 set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"

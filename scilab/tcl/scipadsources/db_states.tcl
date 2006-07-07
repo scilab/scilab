@@ -56,6 +56,7 @@ proc setdbstate {state} {
     set debugstate $state
     setdbmenuentriesstates_bp
     setdbstatevisualhints_bp
+    updatebptcomplexityindicators_bp
 }
 
 proc getdbstate {} {
@@ -99,6 +100,10 @@ global dev_debug
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
         bind all <F12> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state normal
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state normal
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state normal
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state normal
 
     } elseif {[getdbstate] == "ReadyForDebug"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
@@ -125,6 +130,10 @@ global dev_debug
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
         bind all <F12> {}
         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state disabled
 
     } elseif {[getdbstate] == "DebugInProgress"} {
         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
@@ -156,6 +165,10 @@ if {$dev_debug=="true"} {
         bind all <F12> {}
 }
         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state disabled
+        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state disabled
 
     } else {
         tk_messageBox -message $errmess
@@ -315,17 +328,17 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
             set skipline ""
                    }
         "into"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepinto_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\[iscursorplace_bp  \]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\[isnocodeline \[gettextareacur\] insert\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }
@@ -352,12 +365,13 @@ proc checkexecutionerror_bp {} {
 # this proc makes use of lasterror(%f), i.e. without clearing the error.
 # in case an error occurred previously ($errnum is non zero), display
 # the error information in the call stack area of the watch window
+# and blink the offending line
     ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror(%f);\
                    TCL_EvalStr(\"global errnum errline errmsg errfunc callstackcontent; \
                                  set errnum  \"+string(db_n)+\"; \
                                  set errline \"+string(db_l)+\"; \
                                  set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                 set errmsg  \"\"\"+db_str+\"\"\"; \
+                                 set errmsg  \"\"\"+stripblanks(db_str)+\"\"\"; \
                                  if {\$errnum != 0} { \
                                      bell; \
                                      set errtext \[mc \"\"Error \"\"\]; \

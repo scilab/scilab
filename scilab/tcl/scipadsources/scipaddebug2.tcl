@@ -38,18 +38,20 @@ if {$debuglog} {
     bindenable binddisable findbinding \
     ]
 
+    # delete procs that were renamed during the previous Scipad session
+    # that was launched from the same Scilab session
+    foreach pr [info procs] {
+        if {[info procs ScipadLog_$pr] != ""} {
+            rename ScipadLog_$pr ""
+        }
+    }    
+
     # for each Scipad proc not excluded in the list above, this surrounds the existing
     # proc with log info: proc called with input arguments, and proc return value
     set logid 0
     foreach pr [info procs] {
         if {[lsearch $nologprocs $pr] == -1 && \
-            [lsearch $excludedScipadprocs $pr] == -1 && \
-            [regexp "^ScipadLog_.*" $pr] == 0 } {
-            # delete procs that were renamed during the previous Scipad session
-            # that was launched from the same Scilab session
-            if {[info procs ScipadLog_$pr] != ""} {
-                rename ScipadLog_$pr ""
-            }
+            [lsearch $excludedScipadprocs $pr] == -1 } {
             # add log info to the proc
             rename $pr ScipadLog_$pr
             eval "proc $pr {args} {global logid; \
