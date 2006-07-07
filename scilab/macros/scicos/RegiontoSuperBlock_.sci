@@ -1,25 +1,61 @@
 function RegiontoSuperBlock_()
-  disablemenus()
-  %win=curwin // only in main window
-  if Select==[] then
-    %pt=[]
-    [%pt,scs_m]=do_region2block(%pt,scs_m)
-  else
-    if Select(1,2)<>curwin then return,end
-    [%pt,scs_m]=do_select2block(%pt,scs_m)
-  end
-  enablemenus()
-  Cmenu=[];%pt=[];
-endfunction
-
-
-function [%pt,scs_m]=do_select2block(%pt,scs_m)
-  scs_m_save=scs_m,nc_save=needcompile
-  keep=[];del=[]
-  sel=Select(:,1)';nsel=setdiff(1:size(scs_m.objs),sel)
+//** 29 June 2006
+//** This is a quite f..ing function : handle with care    
   
+  disablemenus() ;
+
+  %win = curwin // only in main window
+ 
+  if Select==[] then
+    
+    // %pt = []
+    // pause
+    // disp (".... do_region2block()... ");
+    
+      [%pt, scs_m] = do_region2block(%pt,scs_m); //** see file: 
+    
+    disp ("dd_6 "); // pause
+    
+    //** evenually put "%pt = [] " here 
+                                  
+  else
+    
+    if Select(1,2)<>curwin then
+         return ; //** --> Exit point 
+    end
+    
+    [%pt,scs_m] = do_select2block(%pt,scs_m);  //** ---> see below in this file :)    
+  end
+  
+  enablemenus()
+  
+  Cmenu='Replot'; %pt=[];
+  
+  // Cmenu=[];%pt=[];
+    
+  // drawnow();show_pixmap(); 
+  
+  // pause
+ 
+  
+endfunction
+//**---------------------------------------------------------------------
+
+
+//**---------------------------------------------------------------------
+function [%pt,scs_m] = do_select2block(%pt,scs_m)
+
+  scs_m_save = scs_m,nc_save = needcompile ; 
+  
+  keep = [] ; del = [] ;
+  
+  sel = Select(:,1)'; nsel = setdiff(1:size(scs_m.objs),sel)
+  
+  //**-----------------------------------------------------------------
   for bl=sel
+    
     if typeof(scs_m.objs(bl))=='Block' then
+      
       if or(scs_m.objs(bl).gui==['IN_f' 
 		    'OUT_f'
 		    'CLKINV_f'
@@ -29,11 +65,16 @@ function [%pt,scs_m]=do_select2block(%pt,scs_m)
                     'INIMPL_f'
 		    'OUTIMPL_f']) then
 	message('Input/Output ports are not allowed in the region.')
-	return
-      end
+	return ; //** Exit point !
+      end //** check block type 
+      
       keep=[keep bl]
-    end
+    
+    end //** end block filter 
+  
   end
+  //**------------------------------------------------------------------
+  
   
   for bl=nsel
     if typeof(scs_m.objs(bl))=='Block' then
