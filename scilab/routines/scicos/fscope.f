@@ -147,7 +147,12 @@ c
          nax(4)=10
          n1=int(t)/per
          if(t.le.0.0d0) n1=n1-1
-         call sciwin()
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1);
+c  -------------
+c         
+	 call sciwin()
          call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
      $        dv,dv,dv,dv)
          if(cur.ne.wid) then
@@ -188,6 +193,12 @@ c     to force dimensions update
          z(1)=0.0d0
          z(2)=t
          call dset(nu*N,0.0d0,z(3),1)
+c  --- patch ---	 
+c  reset the new graphics 	 
+	 call oldgraphics(0);
+c  -------------
+c
+c ----------------------------------        
       elseif(flag.eq.5) then
          wid=ipar(1)
          N=ipar(3)

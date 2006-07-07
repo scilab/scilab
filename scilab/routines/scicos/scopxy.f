@@ -87,6 +87,7 @@ c     erase memory
             call  setscale2d(frect,rect,'nn'//char(0))
             z(1)=0.0d0
          endif
+c ---------------	 
       elseif(flag.eq.4) then
          wid=ipar(1)
          N=ipar(3)
@@ -98,6 +99,11 @@ c     erase memory
          nax(2)=10
          nax(3)=2
          nax(4)=10
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1);
+c  -------------
+c	  
          call sciwin()
          call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
      $        dv,dv,dv,dv)
@@ -111,7 +117,7 @@ c     erase memory
          if(ipar(iwp).ge.0) then
             call dr1('xset'//char(0),'wpos'//char(0),ipar(iwp),
      $           ipar(iwp+1),v,v,v,v,dv,dv,dv,dv)
-         endif
+         e ndif
          iwd=9
          if(ipar(iwd).ge.0) then
             call dr1('xset'//char(0),'wdim'//char(0),ipar(iwd),
@@ -163,7 +169,13 @@ c first point drawing
      &           1,2,v,z(2),z(2+N),dv,dv)
          endif
          z(1)=0
-         
+	 
+c  --- patch ---	 
+c  reset the new graphics 	 
+	 call oldgraphics(0);
+c  -------------
+c
+c ----------------------------------        
       elseif(flag.eq.5) then
          wid=ipar(1)
          N=ipar(3)

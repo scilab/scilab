@@ -116,6 +116,11 @@ c ----------------------------------------------------------
          nax(4)=10
          n1=int(t)/per
          if(t.le.0.0d0) n1=n1-1
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1);
+c  -------------
+c	  
          call sciwin()
          call dr1('xget'//char(0),'window'//char(0),verb,cur,na,
      $        v,v,v,
@@ -167,6 +172,11 @@ c
          endif
          call sxevents()
          z(1)=0.0d0
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1);
+c  -------------
+c	 
       endif
 
       call dr1('xsetdr'//char(0),name,v,v,v,v,v,v,

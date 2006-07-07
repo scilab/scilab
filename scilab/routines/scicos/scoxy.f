@@ -88,6 +88,11 @@ c     draw new point
          nax(2)=10
          nax(3)=2
          nax(4)=10
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1);
+c  -------------
+c	 
          call sciwin()
          call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
      $        dv,dv,dv,dv)
@@ -143,7 +148,12 @@ c     draw new point
 c first point drawing
 
          z(1)=0
-         
+c  --- patch ---	 
+c  reset the new graphics 	 
+	 call oldgraphics(0);
+c  -------------
+c
+c ----------------------------------        
       elseif(flag.eq.5) then
          wid=ipar(1)
          N=ipar(3)
