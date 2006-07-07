@@ -1,6 +1,8 @@
-function [reg,rect,prt]=get_region2(xc,yc,win)
+function [reg, rect, prt] = get_region2(xc, yc, win)
+//** INRIA 
+//
 //Creates in reg the superblock formed with the objects selected 
-  
+//  
 //prt is a matrix, each row contains information on the links passing
 //throught the superblock rectangle.
 //    [io,old_internal_block_#, superblock_port_#, link_type, link_color,..
@@ -11,43 +13,71 @@ function [reg,rect,prt]=get_region2(xc,yc,win)
 //    io = 4 : event link from superblock to extern 
 //    io = 5 : implicit link from extern to superblock
 //    io = 6 : implicit link from superblock to extern 
-
-
+//
+//
 // Copyright INRIA
-  ok=%t
-  alu=xget('alufunction')
-  wins=curwin
-  xset('window',win)
-  xset('alufunction',6)
-  reg=list();rect=[]
-  kc=find(win==windows(:,2))
+//
+//** 29 Jun 2006 
+//
+//  
+  ok = %t
+  
+  //** obsolete removed :
+  //** alu = xget('alufunction')
+  
+  wins = curwin
+  
+  //** obsolete removed : set the xor mode for the current window 
+  // xset('window',win
+  // xset('alufunction',6)
+  
+  reg = list(); rect = []
+  
+  kc = find (win==windows(:,2) )
+  
   if kc==[] then
-    message('This window is not an active palette')
-    return
-  elseif windows(kc,1)<0 then //click dans une palette
-    kpal=-windows(kc,1)
-    scs_m=palettes(kpal)
-  elseif win==curwin then //click dans la fenetre courante
-    scs_m=scs_m
+    message('This window is not an active palette') ;
+    return ; //** ---> Exit point 
+    
+  elseif windows(kc,1)<0 then // click inside a palette window 
+    kpal  = -windows(kc,1)  ;
+    scs_m = palettes(kpal)  ;
+    
+  elseif win==curwin then     //click inside the current window 
+    scs_m = scs_m
+    
   elseif pal_mode&win==lastwin then 
-    scs_m=scs_m_s
+    scs_m = scs_m_s
+    
   elseif slevel>1 then
-    execstr('scs_m=scs_m_'+string(windows(kc,1)))
+    execstr('scs_m=scs_m_'+string(windows(kc,1))) ;
+    
   else
     message('This window is not an active palette')
-    return
+    return ;
   end
 
   
-  [ox,oy,w,h,ok]=get_rectangle(xc,yc)
-  if ~ok then prt=[];rect=[];return;end
+  [ox, oy, w, h, ok] = get_rectangle(xc,yc) ; //** <-- key function !
+  
+  disp("x_1");
+  
+  if ~ok then
+     prt = [];
+     rect = [];
+     return   ; //** ---> Exit point 
+  end
 
-  [keep,del]=get_blocks_in_rect(scs_m,ox,oy,w,h);
-  //keep:objects in the region ,del :object outside the region
+  [keep,del] = get_blocks_in_rect(scs_m,ox,oy,w,h); //** see file "get_blocks_in_rect.sci" 
+  // keep:objects in the region ,del :object outside the region
 
+  // disp("take a look at the object :") ; pause
+  
+  
   for bkeep=keep
 
     if typeof(scs_m.objs(bkeep))=='Block' then
+      
       if or(scs_m.objs(bkeep).gui==['IN_f' 
 		    'OUT_f'
 		    'CLKINV_f'
@@ -59,24 +89,26 @@ function [reg,rect,prt]=get_region2(xc,yc,win)
 	message('Input/Output ports are not allowed in the region.')
 	prt=[];rect=[];return
       end
+    
     end
-  end
+  
+  end //** for loop 
 
   //preserve information on splitted links
 
-  prt=splitted_links(scs_m,keep,del)
+  prt = splitted_links(scs_m,keep,del)
 
-  [reg,DEL]=do_delete2(scs_m,del,%f)
+  [reg,DEL] = do_delete2(scs_m,del,%f)
 
-  rect=[ox,oy-h,w,h]
+  rect = [ox,oy-h,w,h]
 
-  xset('window',wins)
-  xset('alufunction',alu)
+  // xset('window',wins)
+  // xset('alufunction',alu)
 
-  nin=0
-  nout=0
-  ncin=0
-  ncout=0
+  nin   = 0
+  nout  = 0
+  ncin  = 0
+  ncout = 0
  
   //add input and output ports
   for k=1:size(prt,1)
