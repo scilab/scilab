@@ -1,50 +1,71 @@
-function [scs_m,needcompile]=do_copy_region(scs_m,needcompile,%pt)
-  xc=%pt(1);yc=%pt(2);
-  win=%win
+function [scs_m,needcompile] = do_copy_region(scs_m,needcompile,%pt)
+//  Copyright INRIA
+//** 28 June 2006 
+  
+  xc = %pt(1) ; yc = %pt(2);
+  
+  win = %win
+  
   disablemenus()
-  [reg,rect]=get_region(xc,yc,win)
-  // Copyright INRIA
+  
+  [reg,rect] = get_region(xc,yc,win)
+
   if rect==[] then enablemenus();return,end
-  modified=length(reg)>1
+  
+  modified = length(reg)>1
 
 
   xinfo('Drag to destination position and click (left to fix, right to cancel)')
-  rep(3)=-1
-  yc=yc-rect(4)  
-  dr=driver()
-  if dr=='Rec' then driver('X11'),end
-  pat=xget('pattern')
+  
+
+  
+  yc = yc-rect(4)  
+  //** dr = driver()
+  //** if dr=='Rec' then driver('X11'),end
+  pat = xget('pattern')
+  
   xset('pattern',default_color(0))
+  
   //move loop
+  rep(3) = -1 ;
   while rep(3)==-1 then 
     // draw block shape
     xrect(xc,yc+rect(4),rect(3),rect(4))
-    if pixmap then xset('wshow'),end
+    //** if pixmap then xset('wshow'),end
+    
     // get new position
     rep=xgetmouse()
+    
     if rep(3)==-100 then //active window has been closed
-      driver(dr);
+    //**  driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
     // erase block shape
+    
     xrect(xc,yc+rect(4),rect(3),rect(4))
-    if pixmap then xset('wshow'),end
-    xc=rep(1);yc=rep(2)
-    xy=[xc,yc];
-  end
+    
+    //** if pixmap then xset('wshow'),end
+    xc = rep(1);yc=rep(2)
+    xy = [xc,yc];
+  end //... while ()
+  
   if xget('window')<>curwin then
     //active window has been closed
-    [%win,Cmenu]=resume(curwin,'Quit')
+    [%win,Cmenu] = resume(curwin,'Quit')
   end
 
-  driver(dr);xset('pattern',pat)
+  //** driver(dr);
+  xset('pattern',pat)
+  
   if or(rep(3)==[2 5]) then enablemenus();return,end
 
-  scs_m_save=scs_m,nc_save=needcompile
-  n=lstsize(scs_m.objs)
+  scs_m_save = scs_m,nc_save = needcompile
+  n = lstsize(scs_m.objs)
+  
   for k=1:size(reg.objs)
-    o=reg.objs(k)
+    o = reg.objs(k)
     // translate blocks and update connection index 
+    
     if typeof(o)=='Link' then
       o.xx=o.xx-rect(1)+xc
       o.yy=o.yy-rect(2)+yc
@@ -66,13 +87,18 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile,%pt)
       o.graphics.orig(1)=o.graphics.orig(1)-rect(1)+xc
       o.graphics.orig(2)=o.graphics.orig(2)-rect(2)+yc
     end
-    scs_m.objs($+1)=o
+    
+    scs_m.objs($+1) = o
     drawobj(o)
-  end
+  
+  end //.. of for() loop 
+  
   if modified then 
-    needcompile=4,
-    enablemenus()
-    [scs_m_save,nc_save,enable_undo,edited]=resume(scs_m_save,nc_save,%t,%t)
+      needcompile=4,
+      enablemenus()
+      [scs_m_save,nc_save,enable_undo,edited] = resume(scs_m_save,nc_save,%t,%t)
   end
-  enablemenus()
+  
+  enablemenus();
+  
 endfunction
