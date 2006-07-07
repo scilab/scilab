@@ -1,215 +1,345 @@
-function [scs_m]=do_stupidmove(%pt,scs_m)
+function [scs_m] = do_stupidmove(%pt,scs_m)
 // Copyright INRIA
 // get a scicos object to move, and move it with connected objects
 //!
+//**
+//** 28 Jun 2006 : restart :(
+//**  
+//**
+// get block to move
+  rela = .1   ; 
+  win  = %win ;
+  xc =%pt(1); yc = %pt(2) ; //** recover mouse position at the last event
+   
+  //** look for a valid object 
+  [k,wh,scs_m] = stupid_getobj(scs_m,[xc;yc]) ;
   
-//get block to move
-  rela=.1
-  win=%win;
-  xc=%pt(1);yc=%pt(2);
-  [k,wh,scs_m]=stupid_getobj(scs_m,[xc;yc])
-  if k==[] then return,end
+  //** "k" is the object index in the data structure "scs_m" 
+  if k==[] then return , end ;//** if NO object found -> exit 
 
-
-  scs_m_save=scs_m
+  scs_m_save = scs_m ; //** make a backup of the data structure  
+  
+  //**-------------------------------------------------------------------
   if typeof(scs_m.objs(k))=='Block'| typeof(scs_m.objs(k))=='Text' then
-    needreplay=replayifnecessary()
-    scs_m=stupid_moveblock(scs_m,k,xc,yc)
+    //**-------------------- Block --------------------------------------
+      needreplay = replayifnecessary()         ;
+      scs_m = stupid_moveblock(scs_m,k,xc,yc)  ;
+  
   elseif typeof(scs_m.objs(k))=='Link' then
-    scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
+    //**------------------- Link ------------------------------ 
+    scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)  ;
+  
+  elseif typeof(scs_m.objs(k))=='Text' then
+    //**------------------- Text ------------------------------
+    //**.... do nothing ...
   end
+  //**------------------------------------------------------------------
+  
   if Cmenu=='Quit' then
     //active window has been closed
     [%win,Cmenu]=resume(%win,Cmenu)
   end
-  [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(..
-						  scs_m_save,%t,%t,needcompile,needreplay)
+  
+  [scs_m_save,enable_undo,edited,nc_save,needreplay] = resume(scs_m_save,%t,%t,needcompile,needreplay)
 endfunction
-
-function scs_m=stupid_moveblock(scs_m,k,xc,yc)
+//**-----------------------------------------------------------------------------------------------------------
+//**
+//*************************************************************************************************************
+//
+//       ---------------------------- Move Blocks and connected Link(s) --------------------------------------- 
+//
 // Move  block k and modify connected links if any
-//look at connected links
-  dr=driver()
-
-  o=scs_m.objs(k)
+// look at connected links
+//
+function scs_m = stupid_moveblock(scs_m,k,xc,yc)
+// Move  block k and modify connected links if any
+// look at connected links
+  
+  //**----------------------------------------------------------------------------------
+  //** the code below is modified according the new graphics API
+  gh_curwin = gh_current_window ; 
+  gh_curwin.pixmap ='on'; //set the pixmap mode
+  
+  //** at this point I need to build the [scs_m] <-> [gh_window] datastructure 
+  //** I need an equivalent index for the graphics 
+  
+  o_size = size (gh_curwin.children.children ) ; //** the size:number of all the object 
+  
+  //** "k" is the object index in the data structure "scs_m"
+  //** compute the equivalent "gh_k" for the graphics datastructure 
+  gh_k = o_size(1) - k + 1 ; //** semi empirical equation :) 
+  disp (gh_k);
+  gh_blk = gh_curwin.children.children(gh_k);
+  
+  //**-----------------------------------------------------------------------------------
+    
+  o = scs_m.objs(k) ;
+  
   xx=[];yy=[];ii=[];clr=[];mx=[];my=[]
 
   // build movable segments for all connected links
   //===============================================
-  xm=[];ym=[];  jj=0;
-  connected=unique(get_connected(scs_m,k))
+  xm = []; ym = []; jj=0 ; //** init ...
+  
+  gh_link_i = []; gh_link_mod = [];
+  
+  connected = unique(get_connected(scs_m,k))//** look for connected link(s)
+  
+  //** ----------------------------------------------------------------------
+  
+  //** look for all the connected link(s) and build "impiling" the two data structures
+  //** [xm , ym] for the links data points 
+  //** gh_link_i fro the associated graphic handles 
   for l=1:length(connected)
-    i=connected(l);
-    oi=scs_m.objs(i)
-    driver(dr)
-    drawobj(oi) //erase link
-    if pixmap then xset('wshow'),end
-    [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
     
-    nl=prod(size(xl))
-    if dr=='Rec' then driver('X11'),end
-    xpolys(xl,yl,ct(1))// redraw thin link
+    i  = connected(l) ; 
+    
+    oi = scs_m.objs(i) ;
+    
+    gh_i = o_size(1) - i + 1 ; //** calc the handler of all the connected link(s) 
+       
+    gh_link_i = [ gh_link_i gh_curwin.children.children(gh_i) ]; //** 
+    
+    [xl , yl,ct,from,to] = (oi.xx,oi.yy,oi.ct,oi.from,oi.to)
+    
+    nl = prod(size(xl)) ; 
+      
     if from(1)==k then
-      xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
-      draw_link_seg(oi,1:2) //erase link
-      clr=[clr ct(1)]
+      xm = [xm,[xl(2);xl(1)]];
+      ym = [ym,[yl(2);yl(1)]];
+      // draw_link_seg(oi,1:2) //erase link
+      // clr=[clr ct(1)]
     end
+    
     if to(1)==k then
-      xm=[xm,xl($-1:$)];ym=[ym,yl($-1:$)];
-      draw_link_seg(oi,$-1:$) //erase link
-      clr=[clr ct(1)]
+      xm = [xm,xl($-1:$)];
+      ym = [ym,yl($-1:$)];
+      // draw_link_seg(oi,$-1:$) //erase link
+      // clr=[clr ct(1)]
     end
-  end
+  
+  end //** end of the for() loop 
+  //** ----------------------------------------------------------------------
 
 
-  xmt=xm;ymt=ym;
+  xmt = xm ; ymt = ym ; //** init ...
+  
   // move a block and connected links
   //=================================
+  
+  
   if size(connected,2)>0 then // move a block and connected links
-    [xmin,ymin]=getorigin(o)
-    xco=xc;yco=yc;
-    rep(3)=-1
-    [xy,sz]=(o.graphics.orig,o.graphics.sz)
-    // clear block
-    driver(dr)
-    drawobj(o)
-    if dr=='Rec' then driver('X11'),end
-    dx=xc-xmin;dy=yc-ymin;
     
-    while 1 do
-      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
-      xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))// draw block shape
-      // draw moving links
-      xpolys(xmt,ymt,clr)// draw moving part of links get new position
-      if pixmap then xset('wshow'),end    
-      rep=xgetmouse(0,[%t,%t]);
+    //** ------------- MOVE BLOCK AND CONNECTED LINKS LINKS -----------------
+    disp("do_stupidmove.sci : Move block WITH connected links ");
+    
+    [xmin,ymin] = getorigin(o) ;
+    
+    xco = xc; yco = yc;
+   
+    [xy,sz] = (o.graphics.orig,o.graphics.sz)
+    
+    dx = xc - xmin ; dy = yc - ymin ;
+    
+    //**-------------------------------------------------------------------
+    //** rep(3) = -1 ;
+    gh_link_mod = [] ;
+    tmp_data = [] ;
+    t_xmt = [] ; t_ymt  = []; 
+    while 1 do //** interactive move loop
+      
+      rep = xgetmouse(0,[%t,%t]);
+      
+      if or(rep(3)==[0,2,3,5,-5,-100]) then
+          break ; //** ---> EXIT point of the while 
+      end
+      
+      //** rep = xgetmouse(0,[%t,%t]);
+      
       if xget('window')<>curwin|rep(3)==-100 then
-	//active window has been closed
-	driver(dr);
 	[%win,Cmenu]=resume(curwin,'Quit')
       end
-      // clear block shape
-      xrect(xc-dx,yc+sz(2)-dy,sz(1),sz(2))
-      // clear moving part of links
-      xpolys(xmt,ymt,clr)// erase moving part of links
-      xc=rep(1);yc=rep(2)      
-      xmt(2,:)=xm(2,:)-xco+xc; ymt(2,:)=ym(2,:)-yco+yc; 
-    end
-
+      
+      delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position ...
+      
+      drawlater();
+	     
+	     move (gh_blk , [delta_x , delta_y]);  //** ..because "move()" works only in differential 
+	     
+	     xc = rep(1); yc = rep(2)      
+      
+             xmt(2,:) = xm(2,:) - xco + xc ; //** update datas of links 
+             ymt(2,:) = ym(2,:) - yco + yc ; 
+    
+	     j = 0 ; //** init  
+             //**---------------------------------------
+             for l=1:length(connected) // ... for all the connected links 
+	        i  = connected(l)  ; // from the progressive index "l" to the scs_m index "i"
+	        oi = scs_m.objs(i) ; // get the "i"th link
+	        [xl,from,to] = (oi.xx,oi.from,oi.to); // extract the proprieties from the link 
+	
+		gh_link_mod = gh_link_i(l) ; // get the link graphics data structure 
+	        
+		if from(1)==k then
+	            tmp_data = gh_link_mod.children.data ; // extract the vectors that define the link 
+		    // the first two points 
+		    j = j + 1 ; // update the [x,y]mt pointer 
+ 		    t_xmt = xmt([2,1],j) ;  t_ymt = ymt([2,1],j) ; // estract the element
+		    //** update the graphics datastructure 
+		    gh_link_mod.children.data = [ [t_xmt(1) , t_ymt(1)] ; tmp_data(2:$ , 1:$) ]  ;
+		   
+		 end
+                //** see the obove comments :)	
+	        if to(1)==k then
+		    tmp_data = gh_link_mod.children.data ;
+		    // the last two points
+		    j = j + 1 ; 
+    	            gh_link_mod.children.data = [ tmp_data(1:$-2 , 1:$) ; [xmt(:,j) , ymt(:,j)] ]  ; 
+		end
+		
+	      end // ... of for() link loop 	
+	     
+      drawnow();
+      show_pixmap();
+      
+    end //** ...  of while 
+    //**-------------------------------------------------------------------
+    
     if xget('window')<>curwin|rep(3)==-100 then
-      //active window has been closed
-      driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-    xy=[xc-dx,yc-dy];
+    
+    xy = [xc-dx,yc-dy];
     
     // update and draw block
-    if or(rep(3)==[2 5]) then //user cancels move
-      driver(dr)
-      drawobj(o)
-      xpolys(xm,ym,clr)
-      if pixmap then xset('wshow'),end
-    else
-      o.graphics.orig=xy;  scs_m.objs(k)=o; //update block coordinates
-      driver(dr)
-      drawobj(o)
-      if pixmap then xset('wshow'),end
-      j=0
+      
+      o.graphics.orig = xy; 
+      scs_m.objs(k) = o; //update block coordinates
+      
+      j = 0 ; //** init  
+      //**---------------------------------------
       for l=1:length(connected)
-	i=connected(l);
-	oi=scs_m.objs(i);
-	[xl,from,to]=(oi.xx,oi.from,oi.to);
+	i  = connected(l)  ;
+	oi = scs_m.objs(i) ;
+	[xl,from,to] = (oi.xx,oi.from,oi.to);
+	
 	if from(1)==k then
-	  j=j+1
-	  oi.xx(1:2)=xmt([2,1],j)
-	  oi.yy(1:2)=ymt([2,1],j)
-	  draw_link_seg(oi,1:2) //draw link
+	  j = j + 1 ;
+	  oi.xx(1:2) = xmt([2,1],j)
+	  oi.yy(1:2) = ymt([2,1],j)
+	  // draw_link_seg(oi,1:2) //draw link
 	end
+	
 	if to(1)==k then
-	  j=j+1
-	  oi.xx($-1:$)=xmt(:,j)
-	  oi.yy($-1:$)=ymt(:,j)
-	  draw_link_seg(oi,$-1:$)//draw link
+	  j = j+1
+	  oi.xx($-1:$) = xmt(:,j)
+	  oi.yy($-1:$) = ymt(:,j)
+	  // draw_link_seg(oi,$-1:$) //draw link
 	end
-	scs_m.objs(i)=oi
-	if pixmap then xset('wshow'),end
-      end
-    end
+	
+	scs_m.objs(i) = oi ;
+	
+      end //... for loop  
+      //**----------------------------------------
+    
+  //** ---------------------------- MOVE BLOCK W/O LINKS ------------------------
   else // move an unconnected block
-    rep(3)=-1
-    [xy,sz]=(o.graphics.orig,o.graphics.sz)
-    // clear block
-    drawobj(o)
-    dr=driver()
-    if dr=='Rec' then driver('X11'),end
+    disp("Move block without links");
+    
+    [xy,sz] = (o.graphics.orig,o.graphics.sz)
+    
+    //**----------------------------------------------------------------------
+    %xc = xy(1); %yc = xy(2); //** default start position 
     while 1 do
-      if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
-      xrect(xc,yc+sz(2),sz(1),sz(2))// draw block shape
-      if pixmap then xset('wshow'),end
-      // get new position
-      rep=xgetmouse(0,[%t,%t])
-      if xget('window')<>curwin|rep(3)==-100 then
-	//active window has been closed
-	driver(dr);
-	[%win,Cmenu]=resume(curwin,'Quit')
-      end
-      // clear block shape
-      xrect(xc,yc+sz(2),sz(1),sz(2))
-      xc=rep(1);yc=rep(2)
-      xy=[xc,yc];
+        
+      rep = xgetmouse(0,[%t,%t]); // get new position
+    
+      if or(rep(3)==[0, 2, 3, 5, -5, -100]) then break ; end //** ---> EXIT point of the while 
+     
+      xc = rep(1) ; yc = rep(2) ;
+     
+      dx = xc - %xc ; dy = yc - %yc ;
+     
+      drawlater();
+  
+        move (gh_blk , [dx dy]);
+     
+      drawnow();
+      show_pixmap();
+ 
+      %xc = xc ; %yc = yc ; //** block position absolute position update 
+     
     end
+    //**---------------------------------------------------------------------
+    
     if xget('window')<>curwin|rep(3)==-100 then
-      //active window has been closed
-      driver(dr);
-      [%win,Cmenu]=resume(curwin,'Quit')
+      //   active window has been closed
+         [%win,Cmenu]=resume(curwin,'Quit')
     end
-      // update and draw block
-    if and(rep(3)<>[2 5]) then o.graphics.orig=xy,scs_m.objs(k)=o,end
-    driver(dr)
-    drawobj(o)
-    if pixmap then xset('wshow'),end
-  end
+      
+    // update and draw block
+    if and(rep(3)<>[2 5]) then
+        // update and draw block
+        xy = [%xc, %yc] ; //** compute the new position 
+        o.graphics.orig = xy ; //** update the local data strucure 
+        scs_m.objs(k) = o    ; //** update the global data structure 
+    end
+   
+  end // end of Move Block with / without Link(s)  
   
 endfunction
+//**--------------------------------------------------------------------------
 
-function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
-  o=scs_m.objs(k)
-  [xx,yy,ct]=(o.xx,o.yy,o.ct)
-  dr=driver()
+function scs_m = stupid_movecorner(scs_m,k,xc,yc,wh)
+  
+  o = scs_m.objs(k) ;
+  
+  [xx,yy,ct] = (o.xx,o.yy,o.ct) ;
+  
+  //** dr=driver()
 
-  seg=[-wh-1:-wh+1]
+  seg = [-wh-1:-wh+1] ;
 
-  if dr=='Rec' then driver('X11'),end
+  //** if dr=='Rec' then driver('X11'),end
 
   xpolys(xx(seg),yy(seg),ct(1)) //draw thin link
-  if pixmap then xset('wshow'),end
-  X1=xx(seg)
-  Y1=yy(seg)
-  x1=X1;y1=Y1;
+  //** if pixmap then xset('wshow'),end
+  
+  X1 = xx(seg)
+  Y1 = yy(seg) 
+  x1 = X1 ; y1 = Y1;
 
   xpolys(x1,y1,ct(1)) //erase moving part of the link
   rep(3)=-1
 
   while 1 do
+    
     if or(rep(3)==[0,2,3,5,-5,-100]) then break,end
+    
     xpolys(x1,y1,ct(1))//draw moving part of the link
+    
     rep=xgetmouse(0,[%t,%t]);
+    
     if xget('window')<>curwin|rep(3)==-100 then
       //active window has been closed
-      driver(dr);
+      // driver(dr);
       [%win,Cmenu]=resume(curwin,'Quit')
     end
-    if pixmap then xset('wshow'),end
-    xpolys(x1,y1,ct(1))//erase moving part of the link
-    xc1=rep(1);yc1=rep(2)
+    
+    //** if pixmap then xset('wshow'),end
+    
+    xpolys(x1,y1,ct(1)) //erase moving part of the link
+    xc1 = rep(1); yc1 = rep(2)
     x1(2)=X1(2)-(xc-xc1)
     y1(2)=Y1(2)-(yc-yc1)
-  end
+  end //** of the while 
+  
   if xget('window')<>curwin|rep(3)==-100 then
     //active window has been closed
-     driver(dr);
+    //** driver(dr);
     [%win,Cmenu]=resume(curwin,'Quit')
   end
+  
   if and(rep(3)<>[2 5]) then
     if abs(x1(1)-x1(2))<rela*abs(y1(1)-y1(2)) then
       x1(2)=x1(1)
@@ -236,12 +366,14 @@ function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
     o.xx=xx;o.yy=yy
     scs_m.objs(k)=o
   end
-  driver(dr)
+  //** driver(dr)
   draw_link_seg(o,seg)
-  if pixmap then xset('wshow'),end
+  //** if pixmap then xset('wshow'),end
 endfunction
 
-function [k,wh,scs_m]=stupid_getobj(scs_m,pt)
+//**-----------------------------------------------------------------------------------------------
+
+function [k,wh,scs_m] = stupid_getobj(scs_m,pt)
   n=lstsize(scs_m.objs)
   wh=[];
   x=pt(1);y=pt(2)
@@ -281,6 +413,7 @@ function [k,wh,scs_m]=stupid_getobj(scs_m,pt)
   end
 endfunction
 
+//**---------------------------------------------------------------------------------------
 function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)
 // computes minimum distance from a point to a polyline
 //d    minimum distance to polyline
@@ -289,7 +422,7 @@ function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)
 //     if negative polyline closest point is a polyline corner:
 //        pt=[xp(-ind) yp(-ind)]
 //     if positive pt lies on segment [ind ind+1]
-
+//
   x=pt(1)
   y=pt(2)
   xp=xp(:);yp=yp(:)
@@ -320,6 +453,8 @@ function [d,pt,ind]=stupid_dist2polyline(xp,yp,pt,pereps)
   pt(2)=yp(k)
   if k>np then ind=ki(k-np),else ind=-k,end
 endfunction
+
+//**-----------------------------------------------------------------------------------------
 
 function draw_link_seg(o,seg)
   if o.thick(2)>=0 then
