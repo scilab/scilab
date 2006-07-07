@@ -3,19 +3,21 @@ function SelectRegion_()
   Cmenu=[];%ppt=[];Select=[]
   winback=xget('window')
   xset('window',%win)
-  aluback=xget('alufunction')
+  scf(%win)
+
   xset('alufunction',6)
   disablemenus()
-  [ox,oy,w,h,ok]=get_rectangle(%xc,%yc)
-  xset('alufunction',aluback)
-  xset('window',winback)
   
-  kc=find(%win==windows(:,2))
-  if kc==[] then
-    message('This window is not an active palette')
-  enablemenus()
-  return
-//  
+  [ox,oy,w,h,ok]=get_rectangle(%xc,%yc)
+  
+scf(winback)
+
+kc=find(%win==windows(:,2))
+if kc==[] then
+  message('This window is not an active palette')
+enablemenus()
+return
+  
   elseif windows(kc,1)<0 then //click dans une palette
     kpal=-windows(kc,1)
     [in,out]=get_objs_in_rect(palettes(kpal),ox,oy,w,h)
