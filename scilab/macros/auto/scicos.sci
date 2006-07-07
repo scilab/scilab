@@ -12,7 +12,7 @@ function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
 [lhs,rhs]=argn(0)
 
 if ~%scicos then
-  warning('scicos isn''t installed. ');
+  warning('scicos isn''t installed.');
   abort;
 end
 
