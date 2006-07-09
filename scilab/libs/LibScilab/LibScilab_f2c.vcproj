@@ -68,7 +68,8 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul&#x0D;&#x0A;copy ..\*.def ..\LibScilab.def &gt;nul&#x0D;&#x0A;copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul&#x0D;&#x0A;"
+				Description="Create LibScilab.def"
+				CommandLine="cd ..&#x0D;&#x0A;Libscilabdef.bat&#x0D;&#x0A;cd LibScilab&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -169,7 +170,8 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul&#x0D;&#x0A;copy ..\*.def ..\LibScilab.def &gt;nul&#x0D;&#x0A;copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul&#x0D;&#x0A;"
+				Description="Create LibScilab.def"
+				CommandLine="cd ..&#x0D;&#x0A;Libscilabdef.bat&#x0D;&#x0A;cd LibScilab&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -372,11 +374,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\routines\wsci\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico"
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
