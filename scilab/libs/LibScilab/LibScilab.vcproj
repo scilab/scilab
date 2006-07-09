@@ -62,10 +62,10 @@
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -137,10 +137,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -212,10 +212,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -287,10 +287,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -357,10 +357,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -433,10 +433,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -508,10 +508,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -578,10 +578,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -648,10 +648,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
@@ -723,10 +723,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -801,10 +801,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				Name="VCPreBuildEventTool"/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
-copy ..\*.def ..\LibScilab.def &gt;nul
-copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
-"/>
+				Description="Create LibScilab.def"
+				CommandLine="cd ..
+Libscilabdef.bat
+cd LibScilab"/>
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
@@ -1047,10 +1047,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico">
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico">
+				RelativePath="..\..\routines\wsci\scilab.ico">
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico">
