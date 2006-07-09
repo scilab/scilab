@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.38
+# in sync at least with v6.40
 
 
 # commons
@@ -51,6 +51,11 @@
 
 
 # db_configureexec.tcl
+::msgcat::mcset it "You must enable colorization to be able to launch the\
+                    debugger!"\
+                   "Occorre attivare la colorazione per potere usare il debugger!"
+::msgcat::mcset it "The debugger needs colorization"\
+                   "Il debugger ha bisogno della colorazione"
 ::msgcat::mcset it "Configure execution" "Configura l'esecuzione"
 ::msgcat::mcset it "Function name:" "Nome della funzione:"
 ::msgcat::mcset it "Obtain" "Ottieni"
@@ -151,12 +156,21 @@
 ::msgcat::mcset it "Hide watch variables" "Nascondi le variabili"
 ::msgcat::mcset it "Hide call stack" "Nascondi lo stack"
 ::msgcat::mcset it "Always on top" "Sempre in primo piano"
+::msgcat::mcset it "Breakpoints" "Punti d'arresto"
+::msgcat::mcset it "Breakpointed functions" "Funzioni con arresti"
 ::msgcat::mcset it "Undefined elements are not legal in variable"\
                    "Gli elementi indefiniti sono illegali in questa variabile"
 ::msgcat::mcset it ".\nThis variable will not be updated in Scilab."\
                    ".\nQuesta variabile non sarà aggiornata in Scilab"
 ::msgcat::mcset it "Illegal undefined element found"\
                    "Trovato un elemento indefinito"
+::msgcat::mcset it "Scipad cannot find source code for the selected\
+                    function.\nPlease open the adequate file manually and\
+                    try again."\
+                   "Scipad non trova il codice sorgente della funzione\
+                    selezionata.\nAprire manualmente il file corrispondente e\
+                    riprovare."
+::msgcat::mcset it "Missing source code" "Codice sorgente mancante"
 
 
 # filecommands.tcl
@@ -284,7 +298,8 @@
 
 #FormatStringsForDebugWatch.sci
 ::msgcat::mcset it " what you try to watch is not supported by the debugger"\
-                   "Il debugger non supporta quello che si sta cercando di osservare"
+                   "Il debugger non supporta quello che si sta cercando di\
+                    osservare"
 ::msgcat::mcset it " what you try to watch is of type "\
                    "Stai cercando di osservare un oggetto di tipo "
 ::msgcat::mcset it " - this type is not supported by the debugger"\
@@ -295,8 +310,7 @@
 ::msgcat::mcset it "Breakpoint" "Arresto"
 ::msgcat::mcset it "called at line" "alla linea"
 ::msgcat::mcset it "of exec file" "in un file exec"
-::msgcat::mcset it "of execstr instruction"\
-                   "in una instruzione execstr"
+::msgcat::mcset it "of execstr instruction" "in una instruzione execstr"
 ::msgcat::mcset it "called under pause" "chiamata durante \"pause\""
 ::msgcat::mcset it "of macro" "della macro"
 
