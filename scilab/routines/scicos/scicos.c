@@ -204,19 +204,15 @@ static integer debug_block;
 
 /* Subroutine */ 
 int C2F(scicos)(
-     double *x_in, double *z__,
-     void **work,
-     integer *modptr_in,
-     integer *xptr_in,
-     integer *zptr,integer *iz,integer *izptr,
+     double *x_in, integer *xptr_in, double *z__,
+     void **work,integer *zptr,integer *modptr_in,
+     
+     integer *iz,integer *izptr,
      double *t0_in,double *tf_in,double *tevts_in,
      integer *evtspt_in,integer *nevts,integer *pointi_in,
-     void **outtbptr_in,
-     integer *outtbsz_in,
-     integer *outtbtyp_in,
-     outtb_el *outtb_elem_in,
-     integer *nelem1,
-     integer *nlnk1,integer *funptr,integer *funtyp_in,integer *inpptr_in,integer *outptr_in,
+     void **outtbptr_in,     integer *outtbsz_in,integer *outtbtyp_in,
+     outtb_el *outtb_elem_in,integer *nelem1,integer *nlnk1,
+     integer *funptr,integer *funtyp_in,integer *inpptr_in,integer *outptr_in,
      integer *inplnk_in,integer *outlnk_in,
      double *rpar,
      integer *rpptr,integer *ipar,integer *ipptr,integer *clkptr_in,integer *ordptr_in,integer *nordptr1,
