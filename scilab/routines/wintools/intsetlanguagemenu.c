@@ -7,6 +7,11 @@
 #ifdef WIN32
   extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 #endif
+
+#if defined (linux)
+#include <string.h>
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(intsetlanguagemenu) _PARAMS((char *fname))
 {

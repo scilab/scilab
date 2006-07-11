@@ -9,6 +9,10 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#if defined (linux)
+#include <string.h>
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(intconsoledos) _PARAMS((char *fname))
 {

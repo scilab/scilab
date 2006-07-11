@@ -3,6 +3,10 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intabout.h"
+#if defined (linux)
+#include <string.h>
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32
   extern void Callback_ABOUT(void);

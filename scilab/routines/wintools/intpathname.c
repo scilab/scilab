@@ -8,6 +8,9 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
+#if defined (linux)
+#include <string.h>
+#endif
 
 /*-----------------------------------------------------------------------------------*/
 #ifdef WIN32

@@ -7,7 +7,7 @@
  *     Bruno Pincon
  */
 
-#if WIN32
+#if WIN32|| defined (linux)
 #include <string.h>
 #endif
 #include <math.h>

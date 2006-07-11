@@ -1,5 +1,9 @@
 #include "../stack-c.h"
 #include "intgetmemory.h"
+#if WIN32|| defined (linux)
+#include <string.h>
+#endif
+
 /*-----------------------------------------------------------------------------------
 * INRIA 2005 
 * Allan CORNET 

@@ -8,6 +8,11 @@
   #include "../os_specific/win_mem_alloc.h"
   extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+
+#if defined (linux)
+#include <string.h>
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intwinopen) _PARAMS((char *fname,unsigned long l));
 extern int C2F(intwinqueryreg) _PARAMS((char *fname,unsigned long l));
