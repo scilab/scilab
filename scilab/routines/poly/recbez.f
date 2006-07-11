@@ -84,7 +84,10 @@ c     lu : pointeur sur le coin en haut a gauche de la matrice u courante
       err=0.0d+0
       ipb(1)=1
       if(min(nn1,nn2).eq.0) goto 70
-      if(nn1-nn2) 40,50,60
+      CRES=nn1-nn2
+      if (CRES .lt. 0) goto 40
+      if (CRES .eq. 0) goto 50
+      goto 60
  40   continue
 c     p1=0
       np=nn2
@@ -130,7 +133,10 @@ c     p2=0
 c
  70   best(1)=1.0d+0
       ipb(2)=2
-      if(nn1-nn2) 90,95,100
+      CRES=nn1-nn2
+      if (CRES .lt. 0) goto 90
+      if (CRES .eq. 0) goto 95
+      goto 100
  90   continue
 c     p1=cte
       best(ipb(2))=1.0d+0/p1(1)

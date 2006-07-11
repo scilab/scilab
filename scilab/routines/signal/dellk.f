@@ -11,7 +11,8 @@ c
       dpi=4.0d+0*atan(1.0d+00)
       domi=2.0d+0*dlamch('p')
       dgeo = de - dk*dk
-      if (dgeo) 10, 10, 20
+      if (dgeo .le. 0) goto 10
+      goto 20
   10  dellk = flma
       return
   20  dgeo = sqrt(dgeo)
@@ -19,7 +20,8 @@ c
   30  dari = dri
       dtest = dari*domi
       dri = dgeo + dri
-      if (dari-dgeo-dtest) 50, 50, 40
+      if (dari-dgeo-dtest .le. 0) goto 50
+      goto 40
   40  dgeo = sqrt(dari*dgeo)
       dri = 0.50d+0*dri
       go to 30

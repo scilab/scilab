@@ -339,7 +339,10 @@ c     :::::::::: for en=n step -1 until 1 do -- ::::::::::
          q = wi(en)
          na = en - 1
          q=q+1.0d+0
-         if (q-1.0d+0) 710, 600, 800
+         CRES=(q-1.0d+0)
+         if (CRES .lt. 0) goto 710
+         if (CRES .eq. 0) goto 600
+         goto 800
 c     :::::::::: real vector ::::::::::
   600    m = en
          h(en,en) = 1.0d+0

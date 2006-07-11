@@ -390,7 +390,8 @@ C
       IF (B(K) .EQ. ZERO) GOTO 30
       INFO=-K
       IF (K .LE. MEQ) GOTO 730
-      IF (B(K)) 30,30,730
+      if (B(K) .le. 0) goto 30
+      goto 730
    20 SUM=ONE/DSQRT(SUM)
    30 IA=IWA+K
    40 W(IA)=SUM
@@ -525,7 +526,9 @@ C
   240 CONTINUE
       XMAG=ZERO
       VFACT=1.D+0
-      IF (NACT) 340,340,280
+      if (NACT .le. 0) goto 340
+      goto 280
+
 C
 C     SET THE RESIDUALS OF THE KUHN-TUCKER CONDITIONS FOR GENERAL X.
 C
@@ -692,7 +695,9 @@ C
       IA=IWA+M+K
       IF (W(IA) .LE. ZERO) GOTO 485
       SUM=XL(K)-X(K)
-      IF (SUM) 482,485,483
+      if (SUM .lt. 0) goto 482
+      if (SUM .eq. 0) goto 485
+      goto 483
   482 SUM=X(K)-XU(K)
       LOWER=.FALSE.
   483 IF (SUM .LE. CVMAX) GOTO 485
@@ -978,7 +983,8 @@ C
       JFLAG=2
       GOTO 910
   690 IF (SUM .LT. (XMAGR*XMAG)) GOTO 230
-      IF (ITREF) 450,450,250
+      if (ITREF .le. 0) goto 450
+      goto 250
 C
 C     INITIATE ITERATIVE REFINEMENT IF IT HAS NOT YET BEEN USED,
 C     OR RETURN AFTER RESTORING THE DIAGONAL ELEMENTS OF G.

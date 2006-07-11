@@ -41,7 +41,8 @@ c   update factors given in a by   sig*z*ztranspose
    20 continue
       if(ir.le.0 )goto21
       if(ti.gt.0.d0)goto22
-      if(mk-1)40,40,23
+      if ((mk-1) .le. 0) goto 40
+      goto 23
    21 ti=0.d0
       ir=-ir-1
       goto23
@@ -80,7 +81,8 @@ c   update factors given in a by   sig*z*ztranspose
       goto66
    53 continue
       al=v/a(ij)
-      if(mm)54,54,55
+      if (nm .le. 0) goto 54
+      goto 55
    54 ti=tim+v*al
       goto56
    55 ti=w(i)

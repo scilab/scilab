@@ -236,7 +236,10 @@ c
 3     j=l
 4     i=j
       j=2*j
-      if(j-r)5,6,8
+      CRES=j-r
+      if (CRES .lt. 0) goto 5
+      if (CRES .eq. 0) goto 6
+      goto 8
 5     if(criter(j).lt.criter(j+1))j=j+1
 6     if(crit.ge.criter(j))goto 8
       record(i)=record(j)

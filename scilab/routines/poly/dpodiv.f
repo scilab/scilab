@@ -17,7 +17,8 @@ c     3. na: degre du polynome a.
 c     4. nb: degre du polynome b.
 c
       l=na-nb+1
-    2 if(l)5,5,3
+    2 if (l .le. 0) goto 5
+      goto 3
     3 n=l+nb
       q=a(n)/b(nb+1)
       nb1=nb+1

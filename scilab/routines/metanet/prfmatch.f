@@ -14,7 +14,7 @@ c     ***     (min-cost perfect matching problem)              ***
       integer zfw,cost,nmatch(n),cc(m2),nbl(m2)
       integer index(np1)
       double precision  y1(n),y2(n),dminus(n),dplus(n),eps
-      eps=10.**(-38)
+      eps=10.**(-38)  
       sup=40000000
       cost=400000000
       do 1,i=1,n

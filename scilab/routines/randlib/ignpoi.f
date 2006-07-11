@@ -226,7 +226,9 @@ C
       xx = x*x
       fx = -0.5*xx
       fy = omega* (((c3*xx+c2)*xx+c1)*xx+c0)
-      IF (kflag) 40,40,60
+      IF (kflag .le. 0) goto 40
+      goto 60
+      
 C
 C     C A S E  B. (START NEW TABLE AND CALCULATE P0 IF NECESSARY)
 C

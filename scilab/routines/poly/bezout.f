@@ -99,7 +99,10 @@ c
       x(2)=1.0d+0
 c algorithme d'euclide
 c
-   20 if(df(k1)-df(k2)) 22,21,23
+   20 CRES=df(k1)-df(k2)
+      if (CRES .lt. 0) goto 22
+      if (CRES .eq. 0) goto 21
+      goto 23
    21 if(abs(f(jf(k1)+df(k1))).lt.abs(f(jf(k2)+df(k2)))) goto 23
    22 k1=3-k1
       k2=3-k2

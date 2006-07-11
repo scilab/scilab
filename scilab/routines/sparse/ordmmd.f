@@ -406,7 +406,9 @@ C            -----------------------------------------------------
                      DO  800  J = JSTRT, JSTOP
                          NODE = ADJNCY(J)
                          LINK = - NODE
-                         IF  ( NODE )  400, 900, 500
+                         IF (NODE .lt. 0) goto 400
+                         IF (NODE .eq. 0) goto 900
+                         goto 500
   500                    CONTINUE
                          IF  ( MARKER(NODE) .GE. TAG  .OR.
      1                         DFORW(NODE) .LT. 0 )  GO TO 800
@@ -440,7 +442,9 @@ C        --------------------------------------------------------
              DO  1700  I = ISTRT, ISTOP
                  RNODE = ADJNCY(I)
                  LINK = - RNODE
-                 IF  ( RNODE )  1100, 1800, 1200
+                 IF (RNODE .lt. 0) goto 1100
+                 IF (RNODE .eq. 0) goto 1800
+                 goto 1200                 
  1200            CONTINUE
 C                --------------------------------------------
 C                IF RNODE IS IN THE DEGREE LIST STRUCTURE ...
@@ -690,7 +694,9 @@ C            ---------------------------------------------
                  DO  700  I = ISTRT, ISTOP
                      ENODE = ADJNCY(I)
                      LINK = - ENODE
-                     IF  ( ENODE )  400, 800, 500
+                     IF (ENODE .lt. 0) goto 400
+                     IF (ENODE .eq. 0) goto 800
+                     goto 500
 C
   500                CONTINUE
                      IF  ( QSIZE(ENODE) .EQ. 0 )  GO TO 700
@@ -747,7 +753,10 @@ C                        --------------------------------------------
                              NODE = ADJNCY(I)
                              LINK = - NODE
                              IF  ( NODE .EQ. ENODE )  GO TO 1400
-                             IF  ( NODE )  1000, 2100, 1100
+                             IF (NODE .lt. 0) goto 1000
+                             IF (NODE .eq. 0) goto 2100
+                             goto 1100
+
 C
  1100                        CONTINUE
                              IF  ( QSIZE(NODE) .EQ. 0 )  GO TO 1400
@@ -821,7 +830,9 @@ C                                    -------------------------------
                                      DO  1900  J = JSTRT, JSTOP
                                          NODE = ADJNCY(J)
                                          LINK = - NODE
-                                         IF  ( NODE )  1700, 2000, 1800
+                                         IF (NODE .lt. 0) goto 1700
+                                         IF (NODE .eq. 0) goto 2000
+                                         goto 1800
 C
  1800                                    CONTINUE
                                          IF  ( MARKER(NODE) .GE. TAG )

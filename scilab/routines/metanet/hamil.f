@@ -183,7 +183,10 @@ c (break ties by choosing  i  with minimum  vr(i) ).
       minu = vr(1)
       jr = 1
       do 100 i=2,n
-        if (vc(i)-maxe) 100, 70, 80
+        CRES=vc(i)-maxe
+        if (CRES .lt. 0) goto 100
+        if (CRES .eq. 0) goto 70
+        goto 80
    70   if (vr(i).ge.minu) go to 100
         go to 90
    80   maxe = vc(i)

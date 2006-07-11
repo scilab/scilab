@@ -20,7 +20,8 @@ c     4. nb: degre du polynome b.
 c
       ierr=0
       l=na-nb+1
-    2 if(l)5,5,3
+    2 if (l .le. 0) goto 5
+      goto 3
     3 n=l+nb
 c      q=a(n)/b(nb+1)
       call wwdiv(ar(n),ai(n),br(nb+1),bi(nb+1),qr,qi,ierr)

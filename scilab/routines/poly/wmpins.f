@@ -51,7 +51,9 @@ c
       do 20 i=1,ligr
       kr=kr+1
       lr=depr(kr)
-      if(lr) 11,12,13
+      if (lr .lt. 0) goto 11
+      if (lr .eq. 0) goto 12
+      goto 13
    11 l2=-lr
       l=dep2(l2+1)-dep2(l2)
       call dcopy(l,mat2r(dep2(l2)),1,matrr(depr(kr-1)),1)

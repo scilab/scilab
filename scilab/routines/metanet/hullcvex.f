@@ -172,13 +172,19 @@ c of the left sons while traversing the right sons(down the right half)
 c find two vertices of the convex hull for the initial partition
       do 6 i=2,m
         j=in(i)
-        if(x(1,j)-x(1,kx))3,1,2
+        CRES=x(1,j)-x(1,kx)
+        if (CRES .lt. 0) goto 3
+        if (CRES .eq. 0) goto 1
+        goto 2
 1       maxe=.true.
         goto 3
 2       maxe=.false.
         mx=i
         kx=j
-3       if(x(1,j)-x(1,kn))5,4,6
+        CRES=x(1,j)-x(1,kn)
+3       if (CRES .lt. 0) goto 5
+        if (CRES .eq. 0) goto 4
+        goto 6
 4       mine=.true.
         goto 6
 5       mine=.false.

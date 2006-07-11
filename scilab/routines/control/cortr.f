@@ -45,7 +45,8 @@ c
 c     .......... form the matrix of accumulated transformations
 c                from the information left by corth ..........
       iend = igh - low - 1
-      if (iend) 150, 150, 105
+      if (iend .le. 0) goto 150
+      goto 105
 c     .......... for i=igh-1 step -1 until low+1 do -- ..........
   105 do 140 ii = 1, iend
          i = igh - ii

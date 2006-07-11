@@ -1463,7 +1463,9 @@ C***FIRST EXECUTABLE STATEMENT  DXADD
       IZ = IX
       GO TO 220
    40 I = IX - IY
-      IF (I) 80, 50, 90
+      if (I .lt. 0) goto 80
+      if (I .eq. 0) goto 50
+      goto 90
    50 IF (ABS(X).GT.1.0D0 .AND. ABS(Y).GT.1.0D0) GO TO 60
       IF (ABS(X).LT.1.0D0 .AND. ABS(Y).LT.1.0D0) GO TO 70
       Z = X + Y
