@@ -668,6 +668,46 @@ int agrandir(xmin, xmax, xlow, xup)
 }
 
 
+/**
+ * compute new bounds when the given ones are to close for display.
+ * @param[in]  min    Given minimal bound.
+ * @param[in]  max    Given maximal bound.
+ * @param[out] lBound New lower bound which can be displayed.
+ * @param[out] uBound New upper bound which can be displayed.
+ */
+void correctBounds( double min, double max, double * lBound, double * uBound )
+{
+  double offset ;
+
+  if ( Abs(min) < 10.0 && Abs(max) < 10.0 )
+  {
+    /* we can use 1 */
+    offset = 1.0 ;
+  }
+  else
+  {
+    /* get the power 10 just below |min| and |max| */
+    /* we could use 1 also but for huge values this does not work (if val + 1 == val) */
+    offset = pow( 10.0, floor( log10( Max( Abs(min), Abs(max) ) ) ) ) ;
+  }
+
+  /* first try to just get the closest integer */
+  *lBound = floor( min ) ;
+  *uBound = ceil(  max ) ;
+  
+
+  /* check if it is enough */
+  if (  min - *lBound < 0.2 )
+  {
+    *lBound = *lBound - offset ;
+  }
+  if ( *uBound - max < 0.2 )
+  {
+    *uBound = *uBound + offset ;
+  }
+}
+
+
 int C2F(theticks)(xminv, xmaxv, grads, ngrads)
      double *xminv, *xmaxv, *grads;
      int *ngrads;
@@ -685,35 +725,14 @@ int C2F(theticks)(xminv, xmaxv, grads, ngrads)
   static double xmin, xmax, work[20], xlow, thewidth, xup, scale, scal;
   static int k, tst0;
 
-  /*  if ( (ABS(*xminv)+1) == ABS(*xminv)) */ /* Not really necessary and void bug plot2d([10^60 10^60+1])*/
-/*     { */
-/*       *ngrads=1;grads[0]=*xminv; return 1; */
-/*     } */
-  
-
+  /* check if the two bounds are not too close for a correct display */
   if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) ) 
   {
-    xmin = floor(*xminv) ;
-    xmax = ceil(*xmaxv)  ;
-    /* check if the bounds are not too close to the curve */
-    if ( Abs( *xminv - xmin ) < 0.2 )
-    {
-      xmin-- ;
-    }
-    if ( Abs( *xmaxv - xmax ) < 0.2 )
-    {
-      xmax++ ;
-    }
-        
+    correctBounds( *xminv, *xmaxv, &xmin, &xmax ) ;    
+    /* call again the ticks with updated values. */
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
-    /* hum, strange, isn't it ? */
-  /* if (*xminv != *xminv) { */
-/*    *ngrads=1;grads[0]=*xminv; return 1;  */
-/*   } */
-/*   if (*xmaxv != *xmaxv) { */
-/*    *ngrads=1;grads[0]=*xmaxv; return 1;  */
-/*   } */
+    
   if (*xminv >= 0 && *xmaxv > 0) {
     if (*xminv > *xmaxv) {
       xmin=*xmaxv;xmax=*xminv;
