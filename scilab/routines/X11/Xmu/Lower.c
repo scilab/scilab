@@ -34,6 +34,7 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/Xmu/SysUtil.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
   #ifndef HAS_SNPRINTF
