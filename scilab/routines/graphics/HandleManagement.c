@@ -1222,7 +1222,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
     /* check that handles can be inserted under the parent */
     if ( !sciCanBeSonOf( movedObjs[i], parentObj ) )
     {
-      Scierror(999,"Handle number %d can not be relocated under the parent.\r\n", i +1 ) ;
+      Scierror(999,"Handle number %d is not compatible with the parent handle.\r\n", i +1 ) ;
       FREE( movedObjs ) ;
       return -1 ;
     }
@@ -1264,9 +1264,6 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
     if ( modifiedFigure[i] )
     {
       sciDrawFigure( i ) ;
-      /* sciSetUsedWindow( i ) ; */
-/*       sciDrawObj( sciGetCurrentFigure() ) ; */
-/*       sciSetUsedWindow( curFigure ) ; */
     }
   }
 
