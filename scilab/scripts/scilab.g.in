@@ -87,6 +87,7 @@ echo     "      -ns             : do not execute scilab.star startup file."
 echo     "      -nouserstartup  : do not execute the user startup files .scilab or scilab.ini."
 echo     "      -nw             : start Scilab without specialized Scilab Window."
 echo     "      -nwni           : start Scilab without user interaction (batch mode)."
+echo     "      -nogui          : start Scilab without user GUI (batch mode)."
 echo     "      --texmacs       : reserved for TeXMacs."
 exit
 }
@@ -260,6 +261,9 @@ if test "$rest" = "yes"; then
       continue
     fi
     case $sciarg in
+      -nogui)
+	  sci_args="$sci_args -nogui"
+          ;;
       -ns)
 	  sci_args="$sci_args -ns"
           ;;

@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------------*/
- * Real main function for Scilab on X11 platform 
+/* Real main function for Scilab on X11 platform */
  /*-----------------------------------------------------------------------------------*/
 /* main.c */
 
@@ -84,17 +84,6 @@ extern char *getenv();
 extern void exit();
 #endif
 /*-----------------------------------------------------------------------------------*/
-#ifndef BOOL
- typedef int BOOL;
-#endif 
-
-#ifndef TRUE
-	#define TRUE 1
-#endif	
-
-#ifndef FALSE
-	#define FALSE 0
-#endif	
 
 /*-----------------------------------------------------------------------------------*/
 char *ProgramName;
@@ -109,7 +98,7 @@ extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
 extern void settexmacs();
 extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
-extern void SetWITH_GUI(BOOL ON);
+extern void SetWITH_GUI();
 /*-----------------------------------------------------------------------------------*/
 static void Syntax  __PARAMS((char *badOption));  
 static void Syntax  (char *badOption);  
@@ -171,7 +160,7 @@ void C2F(mainscic)()
 	  		initial_script_type = 1;
 			} 
       else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
-      else if ( strcmp(argv[i],"-nogui") == 0)  {no_window = 1; nointeractive = 1; SetWITH_GUI(FALSE);}
+      else if ( strcmp(argv[i],"-nogui") == 0)  {no_window = 1; nointeractive = 1; SetWITH_GUI(0);}
     }
 
   realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
