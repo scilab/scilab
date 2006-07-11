@@ -1,6 +1,6 @@
-/*---------------------------------------------------------- 
+/*-----------------------------------------------------------------------------------*/
  * Real main function for Scilab on X11 platform 
- *----------------------------------------------------------*/
+ /*-----------------------------------------------------------------------------------*/
 /* main.c */
 
 #include <pwd.h>
@@ -83,37 +83,49 @@ extern char *realloc();
 extern char *getenv();
 extern void exit();
 #endif
+/*-----------------------------------------------------------------------------------*/
+#ifndef BOOL
+ typedef int BOOL;
+#endif 
 
+#ifndef TRUE
+	#define TRUE 1
+#endif	
+
+#ifndef FALSE
+	#define FALSE 0
+#endif	
+
+/*-----------------------------------------------------------------------------------*/
 char *ProgramName;
-
-
+/*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit (int);
 extern int C2F(nofpex) (void);
 extern int C2F(scigetarg) (int *,char *,long int l);
-
 extern char *strindex ();
 extern void do_hangup();
 extern void do_kill();
 extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
-
+extern void settexmacs();
+extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
+extern void SetWITH_GUI(BOOL ON);
+/*-----------------------------------------------------------------------------------*/
 static void Syntax  __PARAMS((char *badOption));  
 static void Syntax  (char *badOption);  
-
-
-extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
-
-/*---------------------------------------------------------- 
+/*-----------------------------------------------------------------------------------*/
+/**
  * mainsci.f directly call this function 
  * thus this is the real main for scilab 
  * Copyright Inria/Enpc 
- *----------------------------------------------------------*/
-
+ */
+/*-----------------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
-extern void settexmacs();
-
 int  sci_show_banner=1;
 static int  no_window = 0;
+static int nointeractive = 0;
+/*----------------------------------------------------------------------------------*/
+int IsNoInteractiveWindow(void);
 /*----------------------------------------------------------------------------------*/
 void C2F(mainscic)()
 {
@@ -140,31 +152,29 @@ void C2F(mainscic)()
   ProgramName = argv[0];
   /* scanning options */
   for ( i=0 ; i < argc ; i++) 
-    {
+  {
       if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
-
-      if ( strcmp(argv[i],"-nwni") == 0){ no_window = 1; } 
-
+      else if ( strcmp(argv[i],"-nwni") == 0) { no_window = 1; nointeractive = 1;} 
       else if ( strcmp(argv[i],"-display") == 0) 
-	{ 
-	  char dpy[128];
-	  sprintf(dpy,"DISPLAY=%s",display);
-	  putenv(dpy);
-	} 
-      else if ( strcmp(argv[i],"-nb") == 0) { sci_show_banner = 0; }
+			{ 
+	  		char dpy[128];
+	  		sprintf(dpy,"DISPLAY=%s",display);
+	  		putenv(dpy);
+			} 
+      else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { i++;memory = Max(atoi(argv[i]),MIN_STACKSIZE );} 
-      else if ( strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 
+      else if ( strcmp(argv[i],"-f") == 0)   { initial_script = argv[++i];} 
       else if ( strcmp(argv[i],"-e") == 0) 
-	{
-	  initial_script = argv[++i];
-	  initial_script_type = 1;
-	} 
+	    {
+	  		initial_script = argv[++i];
+	  		initial_script_type = 1;
+			} 
       else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
-
+      else if ( strcmp(argv[i],"-nogui") == 0)  {no_window = 1; nointeractive = 1; SetWITH_GUI(FALSE);}
     }
 
- realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
+  realmain(no_window,no_startup_flag,initial_script,initial_script_type,memory);
 }
 
 /*----------------------------------------------------------------------------------*/
@@ -263,13 +273,12 @@ int number_ourTopLevelShellArgs = 2;
 XtAppContext app_con;
 Widget toplevel = (Widget) NULL;
 Widget realToplevel = (Widget) NULL;
-
-/*
+/*----------------------------------------------------------------------------------*/
+/**
  * DeleteWindow(): Action proc to implement ICCCM delete_window.
  */
-
-void
-DeleteWindow(w, event, params, num_params)
+ /*----------------------------------------------------------------------------------*/
+void DeleteWindow(w, event, params, num_params)
     Widget w;
     XEvent *event;
     String *params;
@@ -277,10 +286,8 @@ DeleteWindow(w, event, params, num_params)
 {
  sci_clear_and_exit(0); 
 }
-
-
-void
-KeyboardMapping(w, event, params, num_params)
+/*----------------------------------------------------------------------------------*/
+void KeyboardMapping(w, event, params, num_params)
     Widget w;
     XEvent *event;
     String *params;
@@ -292,18 +299,17 @@ KeyboardMapping(w, event, params, num_params)
 	  break;
     }
 }
-
-/** extern void  SGDeleteWindow(); **/
-
+/*----------------------------------------------------------------------------------*/
 static XtActionsRec actionProcs[] = {
   {"DeleteWindow", DeleteWindow},
   {"SGDeleteWindow", SGDeleteWindow},
   {"KeyboardMapping", KeyboardMapping}
 };
-
-
-/* used by scilab to know the dpy and toplevel */
-
+/*----------------------------------------------------------------------------------*/
+/**
+ * used by scilab to know the dpy and toplevel 
+ */
+/*----------------------------------------------------------------------------------*/
 int Xscilab(dpy,topwid)
      Display **dpy;
      Widget *topwid;
@@ -312,15 +318,15 @@ int Xscilab(dpy,topwid)
   if ( toplevel != (Widget) NULL) *dpy=XtDisplay(toplevel);
   return(1);
 }
-
+/*----------------------------------------------------------------------------------*/
 Atom wm_delete_window;
-
-/*
+/*----------------------------------------------------------------------------------*/
+/**
  * initColors: To allow resources to be specified separately for color
  *	and mono displays, we add a dummy Form widget below realToplevel
  *	in appropriate circumstances.
  */
-
+/*----------------------------------------------------------------------------------*/ 
 #define ADDTOPLEVEL(NAME) \
 	toplevel_w = XtCreateManagedWidget(NAME,formWidgetClass, \
 					 realToplevel_w,(ArgList)0 ,(Cardinal)0);
@@ -340,8 +346,7 @@ void setcolordef(screenc)
 {
   screencolor = screenc;
 }
-
-
+/*----------------------------------------------------------------------------------*/
 Widget initColors(realToplevel_w)
      Widget realToplevel_w;
 {
@@ -402,7 +407,7 @@ Widget initColors(realToplevel_w)
   /* Ton van Overbeek patch 22/08/00 */
   return toplevel_w;
 }
-
+/*----------------------------------------------------------------------------------*/
 void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
 {
   XtermWidget CreateSubWindows();
@@ -508,9 +513,7 @@ void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
   VTRun(startup,lstartup,memory);
 
 }
-
-
-
+/*----------------------------------------------------------------------------------*/
 #ifdef sun 
 #ifndef SYSV
 #include <sys/ieeefp.h>
@@ -527,7 +530,7 @@ clear_ieee_warnings()
 #include <stropts.h>
 #include <poll.h>
 #endif
-
+/*----------------------------------------------------------------------------------*/
 int GetBytesAvailable (fd)
     int fd;
 {
@@ -542,48 +545,48 @@ int GetBytesAvailable (fd)
     return poll (pollfds, 1, 0);
 #endif
 }
-
+/*----------------------------------------------------------------------------------*/
 void sci_clear_and_exit(int n) /* used with handlers */ 
 {
    C2F(sciquit)();
 }
-
-/*-------------------------------------------------------
+/*----------------------------------------------------------------------------------*/
+/**
  * usr1 signal : used to transmit a Control C to 
  * scilab 
- *-------------------------------------------------------*/
-
+ */
+/*----------------------------------------------------------------------------------*/
 void sci_usr1_signal(int n) 
 {
    controlC_handler(n);
 }
-
-/*-------------------------------------------------------
+/*----------------------------------------------------------------------------------*/
+/**
  * Ctrl-Z : stops the current computation 
  *          or the current interface call 
- *-------------------------------------------------------*/
-
+ */
+/*----------------------------------------------------------------------------------*/
 void  sci_sig_tstp(int n)
 {
   Scierror(999,"SIGSTP: aborting current computation\r\n");
 }
-
-/*-------------------------------------------------------
+/*----------------------------------------------------------------------------------*/
+/**
  * Utility function to try to hide system differences from
  * everybody who used to call killpg() 
- *-------------------------------------------------------*/
-
+ */
+/*----------------------------------------------------------------------------------*/
 int kill_process_group(pid, sig)
     int pid;
     int sig;
 {
     return kill (-pid, sig);
 }
-
-/*-------------------------------------------------------
+/*----------------------------------------------------------------------------------*/
+/**
  * Syntax 
- *-------------------------------------------------------*/
-
+ */
+/*----------------------------------------------------------------------------------*/
 static void Syntax (badOption)
     char *badOption;
 {
@@ -609,11 +612,19 @@ static void Syntax (badOption)
 	   ProgramName);
   exit (1);
 }
-
-/* V.C 04/2004 */
-/* Function used to know if we are in window mode (returned value is 1) */
-/* or in console mode (returned value is 0) */
+/*----------------------------------------------------------------------------------*/
+/** V.C 04/2004 
+ * Function used to know if we are in window mode (returned value is 1)
+ * or in console mode (returned value is 0) 
+ */
+/*----------------------------------------------------------------------------------*/ 
 int IsConsoleMode(void)
 {
   return no_window;
 }
+/*----------------------------------------------------------------------------------*/
+int IsNoInteractiveWindow(void)
+{
+	return nointeractive;
+}
+/*----------------------------------------------------------------------------------*/

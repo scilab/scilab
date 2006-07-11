@@ -54,6 +54,7 @@ extern void CreateSplashscreen(void);
 extern void settexmacs(void);
 extern void MessageBoxNewGraphicMode(void);
 extern int ExitScilab(void);
+extern void SetWITH_GUI(BOOL ON);
 /*-----------------------------------------------------------------------------------*/
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
@@ -140,16 +141,22 @@ int Console_Main(int argc, char **argv)
 		{
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		} 
-	  else if ( strcmp(my_argv[argcount],"-TEXMACS") == 0 && argcount + 1 < my_argc)
+	  else if ( stricmp(my_argv[argcount],"-TEXMACS") == 0 )
 	  {
 		  settexmacs();
+	  }
+	  else if ( stricmp(my_argv[argcount],"-NOGUI") == 0 )
+	  {
+		  nowin = 1;
+		  nointeractive = 1;
+		  SetWITH_GUI(FALSE);
 	  }
 	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
 		  (stricmp (my_argv[argcount],"-?")==0) ||
 		  (stricmp (my_argv[argcount],"-HELP")==0) )
 	  {
-		  printf(MSG_SCIMSG24B);
-		  printf(MSG_SCIMSG122); 
+		    printf(MSG_SCIMSG24B);
+		    printf(MSG_SCIMSG122); 
 			printf(MSG_SCIMSG123); 
 			printf(MSG_SCIMSG124); 
 			printf(MSG_SCIMSG125); 
@@ -161,6 +168,7 @@ int Console_Main(int argc, char **argv)
 			printf(MSG_SCIMSG131); 
 			printf(MSG_SCIMSG132); 
 			printf(MSG_SCIMSG133); 
+			printf(MSG_SCIMSG134); 
 
 		  printf("\n");
 		  exit(1);
@@ -316,7 +324,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	for (i=1;i<my_argc;i++)
 	{
-		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) )
+		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) || (stricmp (my_argv[i], "-NOGUI") == 0) )
 		{
 			MessageBox(NULL,"Not with Windows Console","Error",MB_ICONINFORMATION);
 			exit(1);
@@ -340,6 +348,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			strcat(Msg,MSG_SCIMSG131); 
 			strcat(Msg,MSG_SCIMSG132); 
 			strcat(Msg,MSG_SCIMSG133); 
+			strcat(Msg,MSG_SCIMSG134); 
 
 			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
 			exit(1);

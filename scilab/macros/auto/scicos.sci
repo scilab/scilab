@@ -23,6 +23,14 @@
 
 function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
+	noguimode=find(sciargs()=="-nogui");
+	if (noguimode <>[]) then
+	 clear noguimode
+	 warning(" Scilab in no gui mode : Scicos unavailable");
+	 abort;
+	end;
+	clear noguimode
+
     [lhs,rhs] = argn(0) ;
 
 //** ----------------------------- Check the recurring calling level of scicos_new -------------------------------

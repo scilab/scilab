@@ -29,6 +29,7 @@ extern int version_flag(void);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int IsFromC(void);
 extern int ExitScilab(void);
+extern BOOL GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);
@@ -59,6 +60,11 @@ static void SetSciEnv(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
+void DisableInteractiveMode(void)
+{
+	SetWITH_GUI(FALSE);
+}
+/*-----------------------------------------------------------------------------------*/
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 {
 	int bOK=FALSE;
@@ -72,6 +78,8 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	static int iflag=-1,ierr=0;
 
 	if (StartScilabIsOK) return bOK;
+
+	SetFromCToON();
 
 	if (SCIpath==NULL)
 	{
@@ -112,8 +120,6 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		StacksizeUsed=*Stacksize;
 	}
 
-	SetFromCToON();
-
 	/* Scilab Initialization */ 
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
@@ -127,13 +133,11 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	C2F(settmpdir)();
 #if _MSC_VER
 	InitWindowGraphDll();
-
 #endif
 
 	lengthStringToScilab=(int)(strlen("exec(\"SCI/scilab.star\",-1);quit;")+strlen(ScilabStartupUsed));
 	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
-
 	
 	C2F(scirun)(InitStringToScilab,strlen(InitStringToScilab));
 
@@ -196,15 +200,18 @@ int SendScilabJob(char *job)
 /*-----------------------------------------------------------------------------------*/
 void ScilabDoOneEvent(void)
 {
-#if _MSC_VER
-	TextMessage1 (1);
-#else 
-	C2F(sxevents)();
-#endif
-
-	while(C2F(ismenu)()==1 ) 
+	if ( GetWITH_GUI() )
 	{
-		C2F(scirun)("quit;",(int)strlen("quit;"));
+		#if _MSC_VER
+			TextMessage1 (1);
+		#else 
+			C2F(sxevents)();
+		#endif
+
+		while(C2F(ismenu)()==1 ) 
+		{
+			C2F(scirun)("quit;",(int)strlen("quit;"));
+		}
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -213,17 +220,24 @@ int ScilabHaveAGraph(void)
 	integer iflag =0,ids,num;
 	int vInt=0;
 
-	if (version_flag() == 0)
+	if ( GetWITH_GUI() )
 	{
-		sciGetIdFigure (&ids,&num,&iflag);
-		if (num > 0) vInt=1;
+		if (version_flag() == 0)
+		{
+			sciGetIdFigure (&ids,&num,&iflag);
+			if (num > 0) vInt=1;
 
-	}/* NG end*/
+		}/* NG end*/
+		else
+		{
+			C2F(getwins)(&num,&ids ,&iflag);
+			if (num > 0) vInt=1;
+		} 
+	}
 	else
 	{
-		C2F(getwins)(&num,&ids ,&iflag);
-		if (num > 0) vInt=1;
-	} 
+		vInt=0;
+	}
 
 	return vInt;
 }

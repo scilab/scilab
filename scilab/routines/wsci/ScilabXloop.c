@@ -25,6 +25,9 @@ extern void flushTKEvents ();
 extern int  tcl_check_one_event(void);
 static int BasicScilab = 0;
 #endif
+
+extern int GetWITH_GUI(void);
+
 /*-----------------------------------------------------------------------------------*/
 /** do I want a scilab or an xscilab (here it means Windows ) */
 
@@ -88,14 +91,17 @@ void TextMessage1 (int ctrlflag)
 /*-----------------------------------------------------------------------------------*/
 int C2F (sxevents) ()
 {
-  #ifdef WITH_TK
-  if (INXscilab == 1 || BasicScilab == 0 )
-  #else
-  if (INXscilab == 1 )
-  #endif
-    {
-      TextMessage1 (1);
-    }
+  if ( GetWITH_GUI() )
+  {
+#ifdef WITH_TK
+	  if (INXscilab == 1 || BasicScilab == 0 )
+#else
+	  if (INXscilab == 1 )
+#endif
+	  {
+		  TextMessage1 (1);
+	  }
+  }
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/

@@ -143,7 +143,8 @@
 #define MSG_SCIMSG130 "-nouserstartup : don't execute user startup files .scilab or scilab.ini.\n"
 #define MSG_SCIMSG131 "-nw : start Scilab without specialized Scilab Window.\n"
 #define MSG_SCIMSG132 "-nwni : start Scilab without user interaction (batch mode).\n"
-#define MSG_SCIMSG133 "-texmacs : reserved for WinTeXMacs.\n"
+#define MSG_SCIMSG133 "-nogui : start Scilab without GUI,tcl/tk and user interaction (batch mode).\n"
+#define MSG_SCIMSG134 "-texmacs : reserved for WinTeXMacs.\n"
 
 
 #endif /*_MESSAGESH_*/

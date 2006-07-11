@@ -18,6 +18,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
+extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef _MSC_VER
@@ -28,9 +29,16 @@ char *GetSciPath(void);
 /*-----------------------------------------------------------------------------------*/
 void initTCLTK(void)
 {
-	if ( OpenTCLsci()==0 ) 
+	if ( GetWITH_GUI() )
 	{
-		TK_Started=1;
+		if ( OpenTCLsci()==0 ) 
+		{
+			TK_Started=1;
+		}
+		else
+		{
+			TK_Started=0;
+		}
 	}
 	else
 	{
@@ -74,7 +82,6 @@ int OpenTCLsci(void)
 #ifdef _MSC_VER
   strcpy(TkScriptpath, SciPath);
   strcat(TkScriptpath, "/tcl/TK_Scilab.tcl");
-
 
   tmpfile = fopen(TkScriptpath,"r");
   if (tmpfile==NULL) 

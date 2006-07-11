@@ -30,6 +30,14 @@ function Info=scicos_simulate(scs_m,Info,%scicos_context,flag)
 //
 // list of blocks to ignore (blocks using graphics) in nw mode
 
+	noguimode=find(sciargs()=="-nogui");
+	if (noguimode <>[]) then
+	 clear noguimode	 
+	 warning(" Scilab in no gui mode : Scicos unavailable");
+	 abort;
+	end;
+	clear noguimode
+
 	if ~%scicos then
     warning('scicos isn''t installed.');
     abort;

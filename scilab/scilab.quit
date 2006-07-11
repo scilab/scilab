@@ -11,7 +11,7 @@
    ge_check_before_quit()
  end
 
- if (sciargs()<>"-nw")&(sciargs()<>"-nwni")
+ if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"-nogui")
 	 if with_tk() then
   	 TCL_EvalStr("set isscipadinterp [interp exists scipad]")
   	 if TCL_GetVar("isscipadinterp")<>'0' then 

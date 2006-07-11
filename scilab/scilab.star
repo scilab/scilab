@@ -126,6 +126,7 @@ global demolist
 demolist=initial_demos_tables()
 clear initial_demos_tables demolist
 
+
 // Scipad font size micro=10,small=12,medium=14,large=18
 //Overridden by the preference file ES 15/11/04
 //global %scipad_fontsize;%scipad_fontsize=12
@@ -138,7 +139,7 @@ clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variabl
       
 // Menu for Help and editor ===========================================
 if grep(args,'scilex')<>[] then
-  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
+  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs")&(args<>"-nogui") then
     
     if ~MSDOS then 
       delmenu("Help")
@@ -181,13 +182,15 @@ end
 predef('all') 
 
 // Graphic mode and Startup info ======================================
-set old_style off
-verbose=sciargs()<>"-nb"
-if verbose then
-	show_startupinfo();
-	clear show_startupinfo;
-end
-clear verbose;
+if %gui then 
+  set old_style off
+  verbose=sciargs()<>"-nb"
+  if verbose then
+	  show_startupinfo();
+	  clear show_startupinfo;
+  end
+  clear verbose;
+end  
 
 // load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');

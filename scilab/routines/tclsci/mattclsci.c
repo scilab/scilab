@@ -8,6 +8,7 @@
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
@@ -56,11 +57,13 @@ extern int C2F(intTclExistInterp) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
 {  
-	if (TK_Started)
+	if ( GetWITH_GUI() )
 	{
-		Rhs = Max(0, Rhs);
-	#if _MSC_VER
-		#ifndef _DEBUG
+		if (TK_Started)
+		{
+			Rhs = Max(0, Rhs);
+#if _MSC_VER
+#ifndef _DEBUG
 			_try
 			{
 				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
@@ -71,17 +74,24 @@ int C2F(inttclsci)()
 				sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
 				if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 			}
-		#else
+#else
 			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-		#endif
-	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-	#endif
+#endif
+#else
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+#endif
+		}
+		else
+		{
+			sciprint(TCL_WARNING6);
+		}
 	}
 	else
 	{
-		sciprint(TCL_WARNING6);
+		Scierror(999,"Tcl/TK interface disabled in -nogui mode.\r\n");
+		return 0;
 	}
+	
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/

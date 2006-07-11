@@ -5,6 +5,15 @@ c     =============================================================
 c     Copyright ENPC 
       include '../stack.h'
       external setmen, unsmen
+      integer irep
+      
+      call withgui(irep)
+      if (irep .eq. 0) then
+        buf='interface disabled in -nogui mode.'
+        call error(999)
+        return
+      endif
+      
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' xawelm '//buf(1:4))
@@ -185,8 +194,6 @@ c        checking variable submenu names (number 3-iskip)
       call objvide(fname,top)
       return
       end
-
-
 
 
 

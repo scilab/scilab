@@ -238,7 +238,7 @@ c     . hard predefined variables
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
 c     13 is the number of predefined variables 
-      bot=isiz-13
+      bot=isiz-14
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -272,6 +272,12 @@ c     . %gtk
       vname = ' '
       vname(1:4) = "%gtk"
       call withgtk(irep)
+      call cvname(idloc,vname,0)
+      call crebmatvar(idloc,k,1,1,irep)
+      k=k+1
+c     . %gui
+      vname(1:4) = "%gui"
+      call withgui(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1

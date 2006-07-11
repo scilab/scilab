@@ -63,7 +63,7 @@ static int lenbuffstring;
 static int posinbuff=0;
 extern int Xscilab  __PARAMS((Display **dpy, Widget *topwid));  
 extern void xevents1  __PARAMS((void));  
-
+extern int GetWITH_GUI(void);
 /*-------------------------------------------------------
  * Functions to set or to get the scilab status 
  * is it a scilab or a scilab -nw 
@@ -312,7 +312,9 @@ int Xorgetchar(int interrupt)
 
 int C2F(sxevents)()
 {
-  if (INXscilab==1) 
+	if ( GetWITH_GUI() )
+	{
+		  if (INXscilab==1) 
     {
       xevents1();
     }
@@ -332,6 +334,8 @@ int C2F(sxevents)()
 	XtDispatchEvent(&event);
       } while (QLength(the_dpy) > 0);
     }
+	}
+	
   return(0);
 }
 
