@@ -33,8 +33,8 @@ end
 
 // To have good size for result with String as input
 // And overloading functions are not written for Strings
-A = convert2double(A)
-B = convert2double(B)
+//A = convert2double(A)
+//B = convert2double(B)
 tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)

@@ -13,17 +13,17 @@ function [tree]=%m2sci(tree)
 [A,B]=getoperands(tree)
 
 // Multiplication does not work with Strings in Scilab
-if or(A.vtype==[String,Unknown]) then
-  A=convert2double(A)
-end
-if or(B.vtype==[String,Unknown]) then
-  B=convert2double(B)
-end
+//if or(A.vtype==[String,Unknown]) then
+  //A=convert2double(A)
+//end
+//if or(B.vtype==[String,Unknown]) then
+  //B=convert2double(B)
+//end
 
 // %b_m_b is not defined in Scilab
-if A.vtype==Boolean & B.vtype==Boolean then
-  B=convert2double(B)
-end
+//if A.vtype==Boolean & B.vtype==Boolean then
+  //B=convert2double(B)
+//end
 tree.operands=list(A,B)
 
 if is_complex(A) & is_complex(B) then

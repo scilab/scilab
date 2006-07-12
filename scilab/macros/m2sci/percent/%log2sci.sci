@@ -8,8 +8,8 @@ function [tree]=%log2sci(tree)
 // V.C.
 
 [A,B]=getoperands(tree)
-A=convert2double(A)
-B=convert2double(B)
+//A=convert2double(A)
+//B=convert2double(B)
 
 // Special case for nargout
 if typeof(A)=="variable" & typeof(B)=="cste" then
@@ -32,7 +32,7 @@ tree.out(1).type=Type(Boolean,Real)
 if is_empty(A) | is_empty(B) then 
     // For >, <, >= and <= : Scilab gives an error message if both operands are []
     // For == and ~= : Scilab returns %T or %F
-    set_infos("At lest one operand is an empty matrix for operator: "+expression2code(tree)+", result set to []",1);
+    set_infos("At least one operand is an empty matrix for operator: "+expression2code(tree)+", result set to []",1);
     tree=Cste([])
 elseif is_a_scalar(A) & not_empty(B) then
     tree.out(1).dims=B.dims
