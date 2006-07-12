@@ -33,9 +33,13 @@ c        boucle
       inf=0
 c        calcul du pas saturant la ieme contrainte:tb
       CRES=d(i)
-      if (CRES .lt. 0) goto 61
-      if (CRES .eq. 0) goto 70
-      goto 62
+      if (CRES .lt. 0) then
+         goto 61
+      elseif (CRES .eq. 0) then
+         goto 70
+      else
+         goto 62
+      endif
 61    tb=(binf(i)-x(i))/d(i)
       inf=1
       go to 63

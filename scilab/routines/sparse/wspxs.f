@@ -52,9 +52,13 @@ c     at end of b-row transfer rest of a-row.
             if (jb.gt.nc) go to 11
             j2     = jb
             CRES=j1-j2
-            if (CRES .lt. 0) goto 11
-            if (CRES .eq. 0) goto 9
-            goto 10
+            if (CRES .lt. 0) then
+               goto 11
+            elseif (CRES .eq. 0) then 
+               goto 9
+            else
+               goto 10
+            endif
 c     if a-index equals b-index multiply elements ,place  in c.
  9          continue
             if (jc.gt.nelmx) go to 16

@@ -25,9 +25,13 @@
             d(v) = dv
             p(v) = u
             CRES=q(v)
-            if (CRES .lt. 0) goto 30
-            if (CRES .eq. 0) goto 40
-            goto 50
+            if (CRES .lt. 0) then
+               goto 30
+            elseif (CRES .eq. 0) then
+               goto 40
+            else
+               goto 50
+            endif
  30         q(v) = q(pntr)
             q(pntr) = v
             if ( last .eq. pntr ) last=v

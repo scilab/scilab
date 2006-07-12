@@ -173,9 +173,13 @@ c find two vertices of the convex hull for the initial partition
       do 6 i=2,m
         j=in(i)
         CRES=x(1,j)-x(1,kx)
-        if (CRES .lt. 0) goto 3
-        if (CRES .eq. 0) goto 1
-        goto 2
+        if (CRES .lt. 0) then 
+           goto 3
+        elseif (CRES .eq. 0) then
+           goto 1
+        else
+           goto 2
+        endif
 1       maxe=.true.
         goto 3
 2       maxe=.false.

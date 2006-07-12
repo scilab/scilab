@@ -42,8 +42,11 @@ c
  3    continue
       if(ir.le.0) go to 9
       if(hon.gt.0.0d+0) go to 10
-      if ((indic-1) .le. 0) goto 99
-      goto 11
+      if ((indic-1) .le. 0) then 
+         goto 99
+      else
+         goto 11
+      endif
  9    continue
       hon=0.0d+0
       ir=-ir-1
@@ -87,8 +90,11 @@ c
          go to 98
  14      continue
          hml=del/hm(ll)
-         if (mm .le. 0) goto 17
-         goto 18
+         if (mm .le. 0) then 
+            goto 17
+         else
+            goto 18
+         endif
  17      hon=honm+del*hml
          go to 19
  18      hon=dd(i)

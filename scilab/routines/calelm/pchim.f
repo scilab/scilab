@@ -192,9 +192,13 @@ C        SET D(I)=0 UNLESS DATA ARE STRICTLY MONOTONIC.
 C
          D(1,I) = ZERO
          CRES=DPCHST(DEL1,DEL2)
-         if (CRES .lt. 0) goto 42
-         if (CRES .eq. 0) goto 41
-         goto 45
+         if (CRES .lt. 0) then 
+            goto 42
+         elseif (CRES .eq. 0) then 
+            goto 41
+         else
+            goto 45
+         endif
 C
 C        COUNT NUMBER OF CHANGES IN DIRECTION OF MONOTONICITY.
 C

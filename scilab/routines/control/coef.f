@@ -80,8 +80,11 @@ c
       ir = mod(i,2)
       id = (i+3)/2
       ie = id
-      if (ir .eq. 0) goto 70
-      goto 80
+      if (ir .eq. 0) then
+         goto 70
+      else
+         goto 80
+      endif
    70 m(id) = m(id) + m(id)
    80 m(id) = m(id) + m(id-1)
       id = id - 1

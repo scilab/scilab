@@ -66,9 +66,13 @@ c
 c is there a four factor left
 c
 60    CRES=n2pow-3*n8pow-1
-      if (CRES .lt. 0) goto 90
-      if (CRES .eq. 0) goto 70
-      goto 80
+      if (CRES .lt. 0) then
+         goto 90
+      elseif (CRES .eq. 0) then
+         goto 70
+      else
+         goto 80
+      endif
 c
 c iteration de l'algoritme en base 2
 c
@@ -103,8 +107,11 @@ c
       do 130 j14=j13,l14,l13
       do 130 ji=j14,l15,l14
       CRES=ij-ji
-      if (CRES .lt. 0) goto 120
-      if (CRES .ge. 0) goto 130
+      if (CRES .ge. 0) then
+         goto 130
+      else
+         goto 120
+      endif
 120   r=x(ij)
       x(ij)=x(ji)
       x(ji)=r

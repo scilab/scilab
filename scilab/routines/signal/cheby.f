@@ -52,8 +52,11 @@ c
       c1=xcompt/xordr
       freq=teta*cos(twopi*c1)+gama
       CRES=abs(freq)-1.0d+0
-      if (CRES .le. 0) goto 10
-      goto 20
+      if (CRES .le. 0) then
+         goto 10
+      else
+         goto 20
+      endif
 10    tam(icompt)=dp*cos(c0*acos(freq))
       goto 30
 20    tam(icompt)=dp*cosh(c0*coshin(freq))

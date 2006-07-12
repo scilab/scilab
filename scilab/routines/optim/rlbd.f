@@ -143,9 +143,13 @@ c     calcul de tproj:plus petit point de discontinuite de h'(t)
       tproj=0.0d+0
       do 7 i=1,n
       CRES=d(i)
-      if (CRES .lt. 0) goto 4
-      if (CRES .eq. 0) goto 7
-      goto 5
+      if (CRES .lt. 0) then
+         goto 4
+      elseif (CRES .eq. 0) then 
+         goto 7
+      else
+         goto 5
+      endif
 4     t2=(binf(i)-x(i))/d(i)
       go to 6
 5     t2=(bsup(i)-x(i))/d(i)
@@ -220,9 +224,13 @@ c      calcul du pas saturant toutes les bornes:tmaxp
       ico1=0
       do 350 i=1,n
       CRES=d(i)
-      if (CRES .lt. 0) goto 310
-      if (CRES .eq. 0) goto 350
-      goto 320
+      if (CRES .lt. 0) then 
+         goto 310
+      elseif (CRES .eq. 0) then
+         goto 350
+      else
+         goto 320
+      endif
 310   t2=(binf(i)-x(i))/d(i)
       go to 330
 320   t2=(bsup(i)-x(i))/d(i)

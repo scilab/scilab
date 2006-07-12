@@ -63,9 +63,13 @@ C-----------------------------------------------------------------------
 C
 C     LET T BE THE PRODUCT OF A-J WHEN A .GE. 2
 C
-      IF (m .lt. 0) goto 40
-      IF (m .eq. 0) goto 30
-      goto 10
+      if (m .lt. 0) then
+         goto 40
+      elseif (m .eq. 0) then
+         goto 30
+      else
+         goto 10
+      endif
    10 DO 20 j = 1,m
           x = x - 1.0D0
           t = x*t

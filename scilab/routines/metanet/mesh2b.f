@@ -237,9 +237,13 @@ c
 4     i=j
       j=2*j
       CRES=j-r
-      if (CRES .lt. 0) goto 5
-      if (CRES .eq. 0) goto 6
-      goto 8
+      if (CRES .lt. 0) then
+         goto 5
+      elseif (CRES .eq. 0) then
+         goto 6
+      else
+         goto 8
+      endif
 5     if(criter(j).lt.criter(j+1))j=j+1
 6     if(crit.ge.criter(j))goto 8
       record(i)=record(j)

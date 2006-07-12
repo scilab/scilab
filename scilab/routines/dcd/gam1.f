@@ -35,9 +35,13 @@ C     -------------------
       t = a
       d = a - 0.5D0
       IF (d.GT.0.0D0) t = d - 0.5D0
-      IF (t .lt. 0) goto 40
-      IF (t .eq. 0) goto 10
-      goto 20
+      if (t .lt. 0) then
+         goto 40
+      elseif (t .eq. 0) then
+         goto 10
+      else
+         goto 20
+      endif
 C
    10 gam1 = 0.0D0
       RETURN

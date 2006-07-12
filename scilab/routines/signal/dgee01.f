@@ -14,8 +14,11 @@ c
       q=x(k)
       do 3 l=1,m
       do 2 j=l,n,m
-      if ((j-k) .eq. 0) goto 2
-      goto 1
+      if ((j-k) .eq. 0) then
+         goto 2
+      else
+         goto 1
+      endif
     1 d=2.0d+0*d*(q-x(j))
     2 continue
     3 continue

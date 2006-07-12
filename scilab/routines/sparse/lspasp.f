@@ -59,9 +59,13 @@ c     at end of b-row transfer rest of a-row.
             if (jb.gt.kb) go to 7
             j2     = indb(jb+kf)
             CRES=j1-j2
-            if (CRES .lt. 0) goto 7
-            if (CRES .eq. 0) goto 9
-            goto 10
+            if (CRES .lt. 0) then
+               goto 7
+            elseif (CRES .eq. 0) then
+               goto 9
+            else
+               goto 10
+            endif
 c     if a-index less than b-index transfer a-element to c.
  7          if (jc.gt.nelmx) go to 16
  8          continue

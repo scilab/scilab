@@ -127,9 +127,13 @@ c
       mxdg = 0
       do 300 i = 1, n
          CRES=degree(i)
-          if (CRES .lt. 0) goto 6000
-          if (CRES .eq. 0) goto 100
-          goto 200
+          if (CRES .lt. 0) then
+             goto 6000
+          elseif (CRES .eq. 0) then 
+             goto 100
+          else
+             goto 200
+          endif
   100         work(nxtnum) = i
               nxtnum = nxtnum + 1
               go to 300
@@ -993,9 +997,13 @@ c
       acount = 0
       do 300 i = 1, n
          CRES=lstruc(i)
-          if (CRES .LT. 0) goto 200
-          if (CRES .EQ. 0) goto 300
-          goto 6000
+          if (CRES .LT. 0) then
+             goto 200
+          elseif (CRES .EQ. 0) then
+             goto 300
+          else
+             goto 6000
+          endif
   200         level = -lstruc(i)
               lstruc(i) = level
               plevel = lvlptr (level)
@@ -1420,9 +1428,13 @@ c
 c treat  0, 1 or 2  nodes added as special cases
                   added = strtic - queueb
                   CRES=added-2
-                  if (CRES .lt. 0) goto 1000
-                  if (CRES .eq. 0) goto 800
-                  goto 900
+                  if (CRES .lt. 0) then
+                     goto 1000
+                  elseif (CRES .eq. 0) then
+                     goto 800
+                  else
+                     goto 900
+                  endif
 c
   800                 if (work(strtic-1) .gt. work(strtic))  go to 1000
                           jnode = work(strtic)
@@ -2005,9 +2017,13 @@ c     ... determine degree in full adjacency structure
           do 300 k = kstart, kstop
               i = connec(k)
               CRES=i - j
-              if (CRES .lt. 0) goto 3100
-              if (CRES .eq. 0) goto 300
-              goto 200
+              if (CRES .lt. 0) then
+                 goto 3100
+              elseif (CRES .eq. 0) then
+                 goto 300
+              else
+                 goto 200
+              endif
 c                         i<j   i=j   i>j
 c             ... in lower triangle
   200             if  (i .gt. n)  go to 3000
@@ -2307,10 +2323,14 @@ c
               connec (xaddr) = 0
 c             ... get address of permuted (i,j) - element
               CRES=newj - newi
-              if (CRES .lt. 0) goto 900
-              if (CRES .eq. 0) goto 1000
-              goto 1100
-c
+              if (CRES .lt. 0) then
+                 goto 900
+              elseif (CRES .eq. 0) then
+                 goto 1000
+              else
+                 goto 1100
+              endif
+c     
   900             nxaddr = xenv(newi) -  (newi - newj - 1)
                   if  (nxaddr .le. xenv(newi-1))  go to 3200
                   go to 1200
