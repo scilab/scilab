@@ -126,7 +126,14 @@ c         the front of the work area.
 c
       mxdg = 0
       do 300 i = 1, n
-          if  (degree(i))  6000, 100, 200
+         CRES=degree(i)
+          if (CRES .lt. 0) then
+             goto 6000
+          elseif (CRES .eq. 0) then 
+             goto 100
+          else
+             goto 200
+          endif
   100         work(nxtnum) = i
               nxtnum = nxtnum + 1
               go to 300
@@ -989,7 +996,14 @@ c     ... establish starting and ending pointers for each level
 c
       acount = 0
       do 300 i = 1, n
-          if (lstruc(i)) 200, 300, 6000
+         CRES=lstruc(i)
+          if (CRES .LT. 0) then
+             goto 200
+          elseif (CRES .EQ. 0) then
+             goto 300
+          else
+             goto 6000
+          endif
   200         level = -lstruc(i)
               lstruc(i) = level
               plevel = lvlptr (level)
@@ -1413,7 +1427,14 @@ c for decreasing index.)
 c
 c treat  0, 1 or 2  nodes added as special cases
                   added = strtic - queueb
-                  if  (added - 2)  1000, 800, 900
+                  CRES=added-2
+                  if (CRES .lt. 0) then
+                     goto 1000
+                  elseif (CRES .eq. 0) then
+                     goto 800
+                  else
+                     goto 900
+                  endif
 c
   800                 if (work(strtic-1) .gt. work(strtic))  go to 1000
                           jnode = work(strtic)
@@ -1995,7 +2016,14 @@ c     ... determine degree in full adjacency structure
           if  (kstart .gt. kstop)  go to 400
           do 300 k = kstart, kstop
               i = connec(k)
-              if  (i - j) 3100, 300,  200
+              CRES=i - j
+              if (CRES .lt. 0) then
+                 goto 3100
+              elseif (CRES .eq. 0) then
+                 goto 300
+              else
+                 goto 200
+              endif
 c                         i<j   i=j   i>j
 c             ... in lower triangle
   200             if  (i .gt. n)  go to 3000
@@ -2294,8 +2322,15 @@ c
   800         newi  = permut (i)
               connec (xaddr) = 0
 c             ... get address of permuted (i,j) - element
-              if  (newj - newi)  900, 1000, 1100
-c
+              CRES=newj - newi
+              if (CRES .lt. 0) then
+                 goto 900
+              elseif (CRES .eq. 0) then
+                 goto 1000
+              else
+                 goto 1100
+              endif
+c     
   900             nxaddr = xenv(newi) -  (newi - newj - 1)
                   if  (nxaddr .le. xenv(newi-1))  go to 3200
                   go to 1200

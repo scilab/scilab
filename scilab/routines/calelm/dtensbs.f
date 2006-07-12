@@ -700,7 +700,13 @@ C***FIRST EXECUTABLE STATEMENT  DBNFAC
       MIDDLE = NBANDU + 1
 C                         W(MIDDLE,.) CONTAINS THE MAIN DIAGONAL OF  A .
       NROWM1 = NROW - 1
-      IF (NROWM1) 120, 110, 10
+      if (NROWM1 .lt. 0) then 
+         goto 120
+      elseif (NROWM1 .eq. 0) then 
+         goto 110
+      else
+         goto 10
+      endif
    10 IF (NBANDL.GT.0) GO TO 30
 C                A IS UPPER TRIANGULAR. CHECK THAT DIAGONAL IS NONZERO .
       DO 20 I=1,NROWM1

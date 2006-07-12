@@ -179,7 +179,11 @@ C     ..
 C     .. Executable Statements ..
       IF (pp.NE.psave) GO TO 10
       IF (n.NE.nsave) GO TO 20
-      IF (xnp-30.) 150,30,30
+      IF ((xnp-30.) .lt. 0) then 
+         goto 150
+      else
+         goto 30
+      endif
 C
 C*****SETUP, PERFORM ONLY WHEN PARAMETERS CHANGE
 C
@@ -259,7 +263,14 @@ C
       f = 1.0
       r = p/q
       g = (n+1)*r
-      IF (m-ix) 80,120,100
+      CRES=m-ix
+      IF (CRES .lt. 0) then 
+         goto 80
+      elseif (CRES .eq. 0) then 
+         goto 120
+      else
+         goto 100
+      endif
    80 mp = m + 1
       DO 90 i = mp,ix
           f = f* (g/i-r)
@@ -270,7 +281,11 @@ C
       DO 110 i = ix1,m
           f = f/ (g/i-r)
   110 CONTINUE
-  120 IF (v-f) 170,170,30
+  120 IF ((v-f) .le. 0) then 
+         goto 170
+      else
+         goto 30
+      endif
 C
 C     SQUEEZING USING UPPER AND LOWER BOUNDS ON LOG(F(X))
 C
@@ -291,12 +306,16 @@ C
       x2 = x1*x1
       f2 = f1*f1
       w2 = w*w
-      IF (alv- (xm*log(f1/x1)+ (n-m+.5)*log(z/w)+ (ix-
+      IF ((alv- (xm*log(f1/x1)+ (n-m+.5)*log(z/w)+ (ix-
      +    m)*log(w*p/ (x1*q))+ (13860.- (462.- (132.- (99.-
      +    140./f2)/f2)/f2)/f2)/f1/166320.+ (13860.- (462.- (132.- (99.-
      +    140./z2)/z2)/z2)/z2)/z/166320.+ (13860.- (462.- (132.- (99.-
      +    140./x2)/x2)/x2)/x2)/x1/166320.+ (13860.- (462.- (132.- (99.-
-     +    140./w2)/w2)/w2)/w2)/w/166320.)) 170,170,30
+     +    140./w2)/w2)/w2)/w2)/w/166320.)) .le. 0) then
+         goto 170
+      else
+         goto 30
+      endif
 C
 C     INVERSE CDF LOGIC FOR MEAN LESS THAN 30
 C

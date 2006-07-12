@@ -477,7 +477,14 @@ c step 3
       lold = ll
       qs = ms
       pr = pr + ip
-      if ( ll - (ns - 2) ) 240, 220, 210
+      CRES=ll - (ns - 2) 
+      if (CRES .lt. 0) then 
+         goto 240
+      elseif (CRES .eq. 0) then
+         goto 220
+      else
+         goto 210
+      endif
   210 ii = ns
       go to 250
   220 if ( qs .lt. ws(ns) ) go to 230
@@ -518,7 +525,13 @@ c step 3
       ii = kk
   330 if ( vs .ge. pr + qs*ps(nn)/ws(nn) ) go to 280
       diff = ws(nn) - ws(kk)
-      if ( diff ) 390, 340, 350
+      if (diff .lt. 0) then 
+         goto 390
+      elseif (diff .eq. 0) then
+         goto 340
+      else
+         goto 350
+      endif
   340 nn = nn + 1
       go to 330
   350 if ( diff .gt. r ) go to 340

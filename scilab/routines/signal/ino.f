@@ -40,7 +40,11 @@ c
       incr=incr*y/xcompt
       term=incr*incr
       somm=somm+term
-      if(somm*prec-term)10,10,20
+      if ((somm*prec-term) .le. 0) then
+         goto 10
+      else
+         goto 20
+      endif
 10    continue
 20    ino=somm
       return

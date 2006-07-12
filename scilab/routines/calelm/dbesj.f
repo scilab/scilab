@@ -114,11 +114,29 @@ C     I1MACH(15) REPLACES I1MACH(12) IN A DOUBLE PRECISION CODE
 C     TOLLN = -LN(TOL)
       TOLLN = 2.303D0*TB*I1
       TOLLN = MIN(TOLLN,34.5388D0)
-      IF (N-1) 720, 10, 20
+      if ((N-1) .lt. 0) then 
+         goto 720
+      elseif ((N-1) .eq. 0) then 
+         goto 10
+      else
+         goto 20
+      endif
    10 KT = 2
    20 NN = N
-      IF (X) 730, 30, 80
-   30 IF (ALPHA) 710, 40, 50
+      if (X .lt. 0) then 
+         goto 730
+      elseif (X .eq. 0) then 
+         goto 30
+      else
+         goto 80
+      endif
+   30 if (ALPHA .lt. 0) then 
+         goto 710
+      elseif (ALPHA .eq. 0) then 
+         goto 40
+      else
+         goto 50
+      endif
    40 Y(1) = 1.0D0
       IF (N.EQ.1) RETURN
       I1 = 2
@@ -239,7 +257,13 @@ C
       FNI = FNI - 1.0D0
       DFN = FNI + FNF
       FN = DFN
-      IF (NN-1) 440, 390, 130
+      if ((NN-1) .lt. 0) then 
+         goto 440
+      elseif ((NN-1) .eq. 0) then 
+         goto 390
+      else
+         goto 130
+      endif
   390 KT = 2
       IS = 2
       GO TO 130
@@ -249,7 +273,13 @@ C
       FNI = FNI - 1.0D0
       DFN = FNI + FNF
       FN = DFN
-      IF (NN-1) 440, 410, 420
+      if ((NN-1) .lt. 0) then 
+         goto 440
+      elseif ((NN-1) .eq. 0) then 
+         goto 410
+      else
+         goto 420
+      endif
   410 KT = 2
       IS = 2
   420 IF (SXO2.LE.FNP1) GO TO 430

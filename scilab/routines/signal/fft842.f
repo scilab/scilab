@@ -65,7 +65,14 @@ c
 c
 c is there a four factor left
 c
-60    if(n2pow-3*n8pow-1)90, 70, 80
+60    CRES=n2pow-3*n8pow-1
+      if (CRES .lt. 0) then
+         goto 90
+      elseif (CRES .eq. 0) then
+         goto 70
+      else
+         goto 80
+      endif
 c
 c iteration de l'algoritme en base 2
 c
@@ -78,7 +85,9 @@ c
 c
 90    do 110 j=1,15
       l(j)=1.0d+0
-      if(j-n2pow)100, 100, 110
+      CRES=j-n2pow
+      if (CRES .le. 0) goto 100
+      goto 110
 100   l(j)=2.0d+0**(n2pow+1-j)
 110   continue
       ij=1
@@ -97,7 +106,12 @@ c
       do 130 j13=j12,l13,l12
       do 130 j14=j13,l14,l13
       do 130 ji=j14,l15,l14
-      if(ij-ji)120, 130, 130
+      CRES=ij-ji
+      if (CRES .ge. 0) then
+         goto 130
+      else
+         goto 120
+      endif
 120   r=x(ij)
       x(ij)=x(ji)
       x(ji)=r

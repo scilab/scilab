@@ -116,12 +116,30 @@ C     TOLLN = -LN(TOL)
       I1 = I1MACH(14)+1
       TOLLN = 2.303D0*GLN*I1
       TOLLN = MIN(TOLLN,34.5388D0)
-      IF (N-1) 590, 10, 20
+      if ((N-1) .lt. 0) then 
+         goto 590
+      elseif ((N-1) .eq. 0) then 
+         goto 10
+      else
+         goto 20
+      endif
    10 KT = 2
    20 NN = N
       IF (KODE.LT.1 .OR. KODE.GT.2) GO TO 570
-      IF (X) 600, 30, 80
-   30 IF (ALPHA) 580, 40, 50
+      if (X .lt. 0) then 
+         goto 600
+      elseif (X .eq. 0) then
+         goto 30
+      else
+         goto 80
+      endif
+   30 if (ALPHA .lt. 0) then 
+         goto 580
+      elseif (ALPHA .eq. 0) then 
+         goto 40
+      else
+         goto 50
+      endif
    40 Y(1) = 1.0D0
       IF (N.EQ.1) RETURN
       I1 = 2
@@ -273,7 +291,13 @@ C
       FNI = FNI - 1.0D0
       DFN = FNI + FNF
       FN = DFN
-      IF (NN-1) 340, 290, 130
+      if ((NN-1) .lt. 0) then 
+         goto 340
+      elseif ((NN-1) .eq. 0) then
+         goto 290
+      else
+         goto 130
+      endif
   290 KT = 2
       IS = 2
       GO TO 130
@@ -283,7 +307,13 @@ C
       FNI = FNI - 1.0D0
       DFN = FNI + FNF
       FN = DFN
-      IF (NN-1) 340, 310, 320
+      if ((NN-1) .lt. 0) then 
+         goto 340
+      elseif ((NN-1) .eq. 0) then 
+         goto 310
+      else
+         goto 320
+      endif
   310 KT = 2
       IS = 2
   320 IF (SXO2.LE.FNP1) GO TO 330

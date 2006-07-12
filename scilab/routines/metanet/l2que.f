@@ -24,7 +24,14 @@
          if ( d(v) .gt. dv ) then
             d(v) = dv
             p(v) = u
-            if ( q(v) ) 30,40,50
+            CRES=q(v)
+            if (CRES .lt. 0) then
+               goto 30
+            elseif (CRES .eq. 0) then
+               goto 40
+            else
+               goto 50
+            endif
  30         q(v) = q(pntr)
             q(pntr) = v
             if ( last .eq. pntr ) last=v
