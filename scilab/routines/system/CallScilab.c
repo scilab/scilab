@@ -9,6 +9,17 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+#ifndef BOOL
+typedef int BOOL;
+#endif
+
+#ifndef TRUE
+ #define TRUE 1
+#endif
+
+#ifndef FALSE
+ #define FALSE 0
+#endif
 /*-----------------------------------------------------------------------------------*/
 static char DefaultScilabStartup[]="SCI/scilab.star";
 static char DefaultScilabQuit[]="SCI/scilab.quit";
@@ -28,6 +39,7 @@ extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int IsFromC(void);
 extern void C2F(freegmem)(void);
 extern void C2F(freemem)(void);
+extern BOOL GetWITH_GUI(void);
 #ifdef WITH_TK
 extern int CloseTCLsci(void);
 #endif
@@ -63,6 +75,11 @@ static void SetSciEnv(void)
 }
 #endif
 /*-----------------------------------------------------------------------------------*/
+void DisableInteractiveMode(void)
+{
+	SetWITH_GUI(FALSE);
+}
+/*-----------------------------------------------------------------------------------*/
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 {
 	int bOK=FALSE;
@@ -76,6 +93,8 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	static int iflag=-1,ierr=0;
 
 	if (StartScilabIsOK) return bOK;
+	
+	SetFromCToON();
 
 	if (SCIpath==NULL)
 	{
@@ -115,9 +134,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	{
 		StacksizeUsed=*Stacksize;
 	}
-
-	SetFromCToON();
-
+	
 	/* Scilab Initialization */ 
 	#ifdef WITH_TK
 	 initTCLTK(); /* TCLTK Init. */
@@ -236,15 +253,18 @@ int SendScilabJob(char *job)
 /*-----------------------------------------------------------------------------------*/
 void ScilabDoOneEvent(void)
 {
-#if WIN32
-	TextMessage1 (1);
-#else 
-	C2F(sxevents)();
-#endif
-
-	while(C2F(ismenu)()==1 ) 
+	if ( GetWITH_GUI() )
 	{
-		C2F(scirun)("quit;",(int)strlen("quit;"));
+		#if WIN32
+			TextMessage1 (1);
+		#else 
+			C2F(sxevents)();
+		#endif
+
+		while(C2F(ismenu)()==1 ) 
+		{
+			C2F(scirun)("quit;",(int)strlen("quit;"));
+		}
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -253,17 +273,23 @@ int ScilabHaveAGraph(void)
 	integer iflag =0,ids,num;
 	int vInt=0;
 
-	if (version_flag() == 0)
+	if ( GetWITH_GUI() )
 	{
-		sciGetIdFigure (&ids,&num,&iflag);
-		if (num > 0) vInt=1;
-
-	}/* NG end*/
+		if (version_flag() == 0)
+		{
+			sciGetIdFigure (&ids,&num,&iflag);
+			if (num > 0) vInt=1;
+		}/* NG end*/
+		else
+		{
+			C2F(getwins)(&num,&ids ,&iflag);
+			if (num > 0) vInt=1;
+		} 
+	}
 	else
 	{
-		C2F(getwins)(&num,&ids ,&iflag);
-		if (num > 0) vInt=1;
-	} 
+		vInt=0;
+	}
 
 	return vInt;
 }

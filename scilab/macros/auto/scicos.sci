@@ -9,6 +9,15 @@ function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
 // menus : vector of character strings,optional parameter giving usable menus 
 //!
 // Copyright INRIA
+
+	noguimode=find(sciargs()=="-nogui");
+	if (noguimode <>[]) then
+	 clear noguimode
+	 warning(" Scilab in no gui mode : Scicos unavailable");
+	 abort;
+	end;
+	clear noguimode
+
 [lhs,rhs]=argn(0)
 
 // Define Scicos data tables ===========================================

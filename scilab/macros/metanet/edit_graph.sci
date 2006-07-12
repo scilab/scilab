@@ -9,6 +9,16 @@ function win=edit_graph(GraphList,%zoom,%wsiz)
 //Author : Serge Steer 2002
 
 // Copyright INRIA
+
+	noguimode=find(sciargs()=="-nogui");
+	if (noguimode <>[]) then
+	 clear noguimode
+	 warning(" Scilab in no gui mode : edit_graph unavailable");
+	 abort;
+	end;
+	clear noguimode
+
+
 [lhs,rhs]=argn(0)
 
 if rhs<2 then %zoom=1,end

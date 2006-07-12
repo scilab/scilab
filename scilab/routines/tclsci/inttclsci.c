@@ -8,6 +8,7 @@
 #include "../os_specific/win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
@@ -58,7 +59,10 @@ extern int C2F(intTclExistInterp) _PARAMS((char *fname,unsigned long fname_len))
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
-{  
+{ 
+
+	if ( GetWITH_GUI() )
+	{ 
 	Rhs = Max(0, Rhs);
 	ReInitTCL();  
 	#if WIN32
@@ -79,6 +83,12 @@ int C2F(inttclsci)()
 	#else
 		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	#endif
+  }
+  else
+  {
+  	Scierror(999,"Tcl/TK interface disabled in -nogui mode.\r\n");
+		return 0;
+  }
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/

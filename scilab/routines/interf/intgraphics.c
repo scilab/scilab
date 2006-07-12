@@ -8,6 +8,7 @@
 #if WIN32
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
+extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 extern int scichamp      _PARAMS((char *fname, unsigned long fname_len));
 extern int scicontour    _PARAMS((char *fname, unsigned long fname_len));
@@ -210,27 +211,35 @@ static MatdesTable Tab[]={
 int C2F(matdes)()
 {  
   Rhs = Max(0, Rhs);
-
-#if WIN32
+  if ( GetWITH_GUI() || (strcmp(Tab[Fin-1].name,"gsort")==0) ) /*Veru en attendant de deplacer gsort*/
+  {
+#if _MSC_VER
 #ifndef _DEBUG
-  _try
-    {
-      (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-    }
-  _except (EXCEPTION_EXECUTE_HANDLER)
-    {
-      char *ExceptionString=GetExceptionString(GetExceptionCode());
-      sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-      if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
-    }
+	  _try
+	  {
+		  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+	  }
+	  _except (EXCEPTION_EXECUTE_HANDLER)
+	  {
+		  char *ExceptionString=GetExceptionString(GetExceptionCode());
+		  sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+		  if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+	  }
 #else
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 #else
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 
-  C2F(putlhsvar)();
+	  C2F(putlhsvar)();
+  }
+  else
+  {
+	  Scierror(999,"graphic interface disabled -nogui mode.\r\n");
+	  return 0;
+  }
+
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 

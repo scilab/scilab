@@ -138,7 +138,7 @@ clear %browsehelp with_tk with_gtk loaddefaultbrowser //remove the local variabl
       
 // Menu for Help and editor ===========================================
 if grep(args,'scilex')<>[] then
-  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
+  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs")&(args<>"-nogui") then
     
     if ~MSDOS then 
     	delmenu("Help")
@@ -167,13 +167,15 @@ clear LCC
 predef('all') 
 
 // Graphic mode and Startup info ======================================
-set old_style off
-verbose=sciargs()<>"-nb"
-if verbose then
-	show_startupinfo();
-	clear show_startupinfo;
-end
-clear verbose;
+if %gui then 
+  set old_style off
+  verbose=sciargs()<>"-nb"
+  if verbose then
+	  show_startupinfo();
+	  clear show_startupinfo;
+   end
+   clear verbose;
+end   
 // load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
 if ierr== 0 then;

@@ -54,6 +54,8 @@ extern TW InitTWStruct(void);
 extern void CreateSplashscreen(void);
 extern void settexmacs(void);
 extern void MessageBoxNewGraphicMode(void);
+extern BOOL GetWITH_GUI(void);
+extern void SetWITH_GUI(BOOL ON);
 /*-----------------------------------------------------------------------------------*/
 static void AllGraphWinDelete ();
 static LPSTR my_argv[MAXCMDTOKENS];
@@ -148,9 +150,15 @@ int Console_Main(int argc, char **argv)
 		{
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		} 
-	  else if ( strcmp(my_argv[argcount],"-TEXMACS") == 0 && argcount + 1 < my_argc)
+	  else if ( stricmp(my_argv[argcount],"-TEXMACS") == 0)
 	  {
 		  settexmacs();
+	  }
+	  else if ( stricmp(my_argv[argcount],"-NOGUI") == 0 )
+	  {
+		  nowin = 1;
+		  nointeractive = 1;
+		  SetWITH_GUI(FALSE);
 	  }
 	  else if ( (stricmp (my_argv[argcount],"-H")==0) ||
 		  (stricmp (my_argv[argcount],"-?")==0) ||
@@ -168,7 +176,8 @@ int Console_Main(int argc, char **argv)
 			printf(MSG_SCIMSG130); 
 			printf(MSG_SCIMSG131); 
 			printf(MSG_SCIMSG132); 
-			printf(MSG_SCIMSG133); 
+			printf(MSG_SCIMSG133);
+			printf(MSG_SCIMSG134);  
 
 		  printf("\n");
 		  exit(1);
@@ -326,7 +335,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	for (i=1;i<my_argc;i++)
 	{
-		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) )
+		if  ( (stricmp (my_argv[i], "-NW") == 0) || (stricmp (my_argv[i], "-NWI") == 0) || (stricmp (my_argv[i], "-TEXMACS") == 0) || (stricmp (my_argv[i], "-NOGUI") == 0) )
 		{
 			MessageBox(NULL,"Not with Windows Console","Error",MB_ICONINFORMATION);
 			exit(1);
@@ -349,7 +358,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			strcat(Msg,MSG_SCIMSG130); 
 			strcat(Msg,MSG_SCIMSG131); 
 			strcat(Msg,MSG_SCIMSG132); 
-			strcat(Msg,MSG_SCIMSG133); 
+			strcat(Msg,MSG_SCIMSG133);
+			strcat(Msg,MSG_SCIMSG134);  
 			
 			MessageBox(NULL,Msg,MSG_SCIMSG30,MB_ICONINFORMATION);
 			exit(1);
@@ -482,42 +492,44 @@ void InitWindowGraphDll(void)
 /* Display graphic menus with a call of the DLL Scilab*/
 /* for Interface with Java */
 {
-  char *ScilabDirectory=NULL;
+	if ( GetWITH_GUI() )
+	{
+		char *ScilabDirectory=NULL;
 
-  HINSTANCE hdllInstanceTmp=NULL;
-  char *p1 = (char*)getenv ("SCI");
-  hdllInstanceTmp=(HINSTANCE)GetModuleHandle(MSG_SCIMSG11);
+		HINSTANCE hdllInstanceTmp=NULL;
+		char *p1 = (char*)getenv ("SCI");
+		hdllInstanceTmp=(HINSTANCE)GetModuleHandle(MSG_SCIMSG11);
 
-  if (hdllInstanceTmp==NULL) 
-  {
-  	MessageBox(NULL,MSG_ERROR39,MSG_ERROR20,MB_ICONWARNING|MB_OK);
-  	exit(1);
-  }
+		if (hdllInstanceTmp==NULL) 
+		{
+			MessageBox(NULL,MSG_ERROR39,MSG_ERROR20,MB_ICONWARNING|MB_OK);
+			exit(1);
+		}
 
-  ForbiddenToUseScilab();
-  
-  hdllInstance=hdllInstanceTmp;
-  ScilabDirectory=GetScilabDirectory(FALSE);
+		ForbiddenToUseScilab();
 
-  if (ScilabDirectory == NULL)
-  {
-	MessageBox (NULL, MSG_ERROR20, MSG_ERROR38, MB_ICONSTOP | MB_OK);
-	exit(1);
-  }	
+		hdllInstance=hdllInstanceTmp;
+		ScilabDirectory=GetScilabDirectory(FALSE);
 
-  InitszGraphMenuName(ScilabDirectory);
-  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
-  
-   InitCommonControls ();
-  
-   graphwin=InitGWStruct();
-   graphwin.hInstance = hdllInstance;
-   graphwin.hPrevInstance = NULL;
-   graphwin.Title = MSG_SCIMSG23;
-   graphwin.szMenuName = GetszGraphMenuName();
-   graphwin.lptw = &textwin;
-   sci_tk_activate();
-    
+		if (ScilabDirectory == NULL)
+		{
+			MessageBox (NULL, MSG_ERROR20, MSG_ERROR38, MB_ICONSTOP | MB_OK);
+			exit(1);
+		}	
+
+		InitszGraphMenuName(ScilabDirectory);
+		if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
+
+		InitCommonControls ();
+
+		graphwin=InitGWStruct();
+		graphwin.hInstance = hdllInstance;
+		graphwin.hPrevInstance = NULL;
+		graphwin.Title = MSG_SCIMSG23;
+		graphwin.szMenuName = GetszGraphMenuName();
+		graphwin.lptw = &textwin;
+		sci_tk_activate();
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 /* to simulate argv */

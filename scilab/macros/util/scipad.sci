@@ -1,11 +1,13 @@
 function scipad(varargin)
 // start Scipad editor
 	nwnimode=find(sciargs()=="-nwni");
-	if (nwnimode <>[]) then
-	 clear nwnimode
+	noguimode=find(sciargs()=="-nogui");
+	if (nwnimode <>[] | noguimode <>[]) then
+	 clear nwnimode noguimode
 	 warning(" Scilab in no window no interactive mode : Scipad unavailable");
 	 abort;
 	end;
+	clear nwnimode noguimode
 	
 global LANGUAGE
 global TMPDIR

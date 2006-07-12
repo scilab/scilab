@@ -17,6 +17,10 @@
 #define TRUE 1
 #define FALSE 0
 /*-----------------------------------------------------------------------------------*/
+void DisableInteractiveMode(void);
+/* Disable TCL/TK and graphic interfaces */
+/* Scilab no GUI no TCL/TK "kernel mode" */
+
 int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 /* Initialize Scilab */
 /* returns TRUE if it is OK else FALSE */

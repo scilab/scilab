@@ -18,8 +18,8 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
-extern int IsFromC(void);
 extern void sci_tk_activate(void);
+extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef WIN32
@@ -35,7 +35,21 @@ static int first =0;
 /*-----------------------------------------------------------------------------------*/ 
 void initTCLTK(void)
 {
-	if ( OpenTCLsci()==0 ) TK_Started=1;
+	if ( GetWITH_GUI() )
+	{
+		if ( OpenTCLsci()==0 ) 
+		{
+			TK_Started=1;
+		}
+		else
+		{
+			TK_Started=0;
+		}
+	}
+	else
+	{
+		TK_Started=0;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 int OpenTCLsci(void)
@@ -169,14 +183,17 @@ int OpenTCLsci(void)
 int CloseTCLsci(void)
 {
 	int bOK=0;
-	if (TK_Started)
+	if ( GetWITH_GUI() )
 	{
-		Tcl_DeleteInterp(TCLinterp);
-		TCLinterp=NULL;
-		TKmainWindow=NULL;
-		bOK=1;
-		TK_Started=0;
-		first=0;
+		if (TK_Started)
+		{
+			Tcl_DeleteInterp(TCLinterp);
+			TCLinterp=NULL;
+			TKmainWindow=NULL;
+			bOK=1;
+			TK_Started=0;
+			first=0;
+		}
 	}
 	return bOK;
 }

@@ -17,13 +17,30 @@
 #include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #endif
 
+
+/*************************************************************************************************/
+#ifndef BOOL
+typedef int BOOL;
+#endif
+
+#ifndef TRUE
+ #define TRUE 1
+#endif
+
+#ifndef FALSE
+ #define FALSE 0
+#endif
+/*************************************************************************************************/
 #ifdef WIN32
 	BOOL FileExist(char *filename);
 	BOOL ExistModelicac(void);
 	BOOL ExistJavaSciWin(void);
 #endif
 
-
+static BOOL WITH_GUI=TRUE;
+/*************************************************************************************************/
+void SetWITH_GUI(int ON);
+BOOL  GetWITH_GUI(void);
 /*************************************************************************************************/
 /*-------------------------------------------
  *  get configure options used for compilation 
@@ -207,5 +224,21 @@ int ExistJavaSciUnix(void)
 	if (fullpathJavaSci) FREE(fullpathJavaSci);
 #endif
 	return bOK;
+}
+/*************************************************************************************************/
+int C2F(withgui)(int *rep)
+{ 
+	*rep = WITH_GUI; 
+	return 0;
+}
+/*************************************************************************************************/
+void SetWITH_GUI(BOOL ON)
+{
+	if ( (ON == FALSE) || (ON == TRUE) ) WITH_GUI=ON;
+}
+/*************************************************************************************************/
+BOOL  GetWITH_GUI(void)
+{
+	return WITH_GUI;
 }
 /*************************************************************************************************/
