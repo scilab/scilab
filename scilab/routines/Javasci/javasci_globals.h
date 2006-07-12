@@ -49,7 +49,7 @@ extern int version_flag();
 extern void SetFromJavaToON(void);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);
-extern int TerminateScilab(char *ScilabQuit);
+extern int ExitScilab(void);
 extern int GetLastErrorCode(void);
 /********************************************************************************************************/
 #if _MSC_VER
