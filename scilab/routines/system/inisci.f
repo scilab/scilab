@@ -237,7 +237,7 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     13 is the number of predefined variables 
+c     14 is the number of predefined variables 
       bot=isiz-14
       bbot=bot
       bot0=bot
@@ -262,7 +262,7 @@ c     . COMPILER
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
 c     . %scicos
-	vname = ' '
+	    vname = ' '
       vname(1:7) = "%scicos"
       call withscicos(irep)
       call cvname(idloc,vname,0)

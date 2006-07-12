@@ -55,6 +55,7 @@ extern void settexmacs(void);
 extern void MessageBoxNewGraphicMode(void);
 extern int ExitScilab(void);
 extern void SetWITH_GUI(BOOL ON);
+extern BOOL GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/
 static LPSTR my_argv[MAXCMDTOKENS];
 /*-----------------------------------------------------------------------------------*/
@@ -478,42 +479,43 @@ void InitWindowGraphDll(void)
 /* Display graphic menus with a call of the DLL Scilab*/
 /* for Interface with Java */
 {
-  char *ScilabDirectory=NULL;
+	if ( GetWITH_GUI() )
+	{
+		char *ScilabDirectory=NULL;
 
-  HINSTANCE hdllInstanceTmp=NULL;
-  char *p1 = (char*)getenv ("SCI");
-  hdllInstanceTmp=(HINSTANCE)GetModuleHandle(MSG_SCIMSG11);
+		HINSTANCE hdllInstanceTmp=NULL;
+		char *p1 = (char*)getenv ("SCI");
+		hdllInstanceTmp=(HINSTANCE)GetModuleHandle(MSG_SCIMSG11);
 
-  if (hdllInstanceTmp==NULL) 
-  {
-  	MessageBox(NULL,MSG_ERROR39,MSG_ERROR20,MB_ICONWARNING|MB_OK);
-  	exit(1);
-  }
+		if (hdllInstanceTmp==NULL) 
+		{
+			MessageBox(NULL,MSG_ERROR39,MSG_ERROR20,MB_ICONWARNING|MB_OK);
+			exit(1);
+		}
 
-  ForbiddenToUseScilab();
-  
-  hdllInstance=hdllInstanceTmp;
-  ScilabDirectory=GetScilabDirectory(FALSE);
+		ForbiddenToUseScilab();
 
-  if (ScilabDirectory == NULL)
-  {
-	MessageBox (NULL, MSG_ERROR20, MSG_ERROR38, MB_ICONSTOP | MB_OK);
-	exit(1);
-  }	
+		hdllInstance=hdllInstanceTmp;
+		ScilabDirectory=GetScilabDirectory(FALSE);
 
-  InitszGraphMenuName(ScilabDirectory);
-  if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
-  
-   InitCommonControls ();
-  
-   graphwin=InitGWStruct();
-   graphwin.hInstance = hdllInstance;
-   graphwin.hPrevInstance = NULL;
-   graphwin.Title = MSG_SCIMSG23;
-   graphwin.szMenuName = GetszGraphMenuName();
-   graphwin.lptw = &textwin;
+		if (ScilabDirectory == NULL)
+		{
+			MessageBox (NULL, MSG_ERROR20, MSG_ERROR38, MB_ICONSTOP | MB_OK);
+			exit(1);
+		}	
 
-    
+		InitszGraphMenuName(ScilabDirectory);
+		if (ScilabDirectory){FREE(ScilabDirectory);ScilabDirectory=NULL;}		
+
+		InitCommonControls ();
+
+		graphwin=InitGWStruct();
+		graphwin.hInstance = hdllInstance;
+		graphwin.hPrevInstance = NULL;
+		graphwin.Title = MSG_SCIMSG23;
+		graphwin.szMenuName = GetszGraphMenuName();
+		graphwin.lptw = &textwin;
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 /* to simulate argv */

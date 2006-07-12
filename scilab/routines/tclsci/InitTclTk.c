@@ -168,13 +168,16 @@ int OpenTCLsci(void)
 int CloseTCLsci(void)
 {
 	int bOK=0;
-	if (TK_Started)
+	if ( GetWITH_GUI() )
 	{
-		Tcl_DeleteInterp(TCLinterp);
-		TCLinterp=NULL;
-		TKmainWindow=NULL;
-		bOK=1;
-		TK_Started=0;
+		if (TK_Started)
+		{
+			Tcl_DeleteInterp(TCLinterp);
+			TCLinterp=NULL;
+			TKmainWindow=NULL;
+			bOK=1;
+			TK_Started=0;
+		}
 	}
 	return bOK;
 }

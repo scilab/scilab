@@ -3,16 +3,26 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "TclEvents.h"
+extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 void flushTKEvents(void)
 {
-  while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1)
-  {
-  }
+	if( GetWITH_GUI() ) 
+	{
+		while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1)
+		{
+		}
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 int tcl_check_one_event(void) 
 {
-  return Tcl_DoOneEvent ( TCL_DONT_WAIT);
+	int bRes=0;
+
+	if( GetWITH_GUI() ) 
+	{
+		bRes=Tcl_DoOneEvent ( TCL_DONT_WAIT);
+	}
+	return bRes;
 }
 /*-----------------------------------------------------------------------------------*/
