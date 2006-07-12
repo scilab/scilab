@@ -90,7 +90,7 @@ c     draw new point
          nax(4)=10
 c  --- patch ---	 
 c	 
-	 call oldgraphics(1);
+	 call oldgraphics(1)
 c  -------------
 c	 
          call sciwin()
@@ -150,7 +150,7 @@ c first point drawing
          z(1)=0
 c  --- patch ---	 
 c  reset the new graphics 	 
-	 call oldgraphics(0);
+	 call oldgraphics(0)
 c  -------------
 c
 c ----------------------------------        

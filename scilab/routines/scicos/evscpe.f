@@ -118,7 +118,7 @@ c ----------------------------------------------------------
          if(t.le.0.0d0) n1=n1-1
 c  --- patch ---	 
 c	 
-	 call oldgraphics(1);
+	 call oldgraphics(1)
 c  -------------
 c	  
          call sciwin()
@@ -174,7 +174,7 @@ c
          z(1)=0.0d0
 c  --- patch ---	 
 c	 
-	 call oldgraphics(1);
+	 call oldgraphics(1)
 c  -------------
 c	 
       endif

@@ -149,7 +149,7 @@ c
          if(t.le.0.0d0) n1=n1-1
 c  --- patch ---	 
 c	 
-	 call oldgraphics(1);
+	 call oldgraphics(1)
 c  -------------
 c         
 	 call sciwin()
@@ -195,7 +195,7 @@ c     to force dimensions update
          call dset(nu*N,0.0d0,z(3),1)
 c  --- patch ---	 
 c  reset the new graphics 	 
-	 call oldgraphics(0);
+	 call oldgraphics(0)
 c  -------------
 c
 c ----------------------------------        
