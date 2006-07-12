@@ -50,7 +50,13 @@ c     ja counts elements of a.
 c     at end of b-row transfer rest of a-row.
             if (jb.gt.nc) go to 11
             j2     = jb
-            if (j1-j2) 11,9,10
+            if ((j1-j2) .lt. 0) then
+               goto 11
+            elseif ((j1-j2) .eq. 0) then 
+               goto 9
+            else
+               goto 10                  
+            endif
 c     if a-index equals b-index multiply elements ,place  in c.
  9          continue
             if (jc.gt.nelmx) go to 16
