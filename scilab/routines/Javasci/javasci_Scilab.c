@@ -70,7 +70,16 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Exec(JNIEnv *env , jclass cl, jst
 JNIEXPORT jboolean JNICALL Java_javasci_Scilab_Finish (JNIEnv *env , jobject obj_this)
 {
 	jboolean bOK=0;
-	bOK=TerminateScilab(NULL);
+
+	if (GetInterfState() == 0)
+	{
+		bOK=0;
+	}
+	else
+	{
+		ExitScilab();
+		bOK=1;
+	}
 	return bOK;
 }
 /********************************************************************************************************/
