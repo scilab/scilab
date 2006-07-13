@@ -172,9 +172,8 @@ c
          endif
          call sxevents()
          z(1)=0.0d0
-c  --- patch ---	 
 c	 
-	 call oldgraphics(1)
+	 call oldgraphics(0)
 c  -------------
 c	 
       endif
