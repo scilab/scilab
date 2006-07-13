@@ -60,6 +60,8 @@ c     compatibility
          herited=ipar(8+ipar(2)+nu).ne.0
       endif
 c
+c
+c ------------------------------------------------------------------      
       if (flag.le.2) then
          K=int(z(1))
          if(K.gt.0) then
@@ -165,6 +167,7 @@ c     clear window
          endif
          t=tsave
 c
+c------------------------------------------------------------------------
       elseif(flag.eq.4) then
 
          nax(1)=2
@@ -173,6 +176,11 @@ c
          nax(4)=10
          n1=int(t)/per
          if(t.le.0.0d0) n1=n1-1
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1)
+c  -------------
+c	 
          call sciwin()
          call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
      $        dv,dv,dv,dv)
@@ -227,6 +235,11 @@ c
          z(1)=0.0d0
          z(2)=t
          call dset(nu*N,0.0d0,z(3),1)
+c  --- patch ---	 
+c	 
+	 call oldgraphics(0)
+c  -------------
+c
       elseif(flag.eq.5) then
 
          K=int(z(1))

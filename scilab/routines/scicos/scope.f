@@ -49,7 +49,8 @@ c     compatibility
          iwd=1+nipar-3
       endif
 c     
-
+c     State machine 
+c ---------------------------------------------------------------------------
       if(flag.eq.2) then
          dt=rpar(1)
          ymin=rpar(2)
@@ -139,7 +140,8 @@ c            call dr('xset'//char(0),'clipping'//char(0),rect(1),rect(2),
 c     &           rect(3),rect(4),v,v,dv,dv,dv,dv)
          endif
          t=tsave
-c
+c --------------------------------------------------------------------------
+c                    Initialization 
       elseif(flag.eq.4) then
          wid=ipar(1)
          N=ipar(3)
@@ -152,6 +154,11 @@ c
          nax(4)=10
          n1=int(t)/per
          if(t.le.0.0d0) n1=n1-1
+c  --- patch ---	 
+c	 
+	 call oldgraphics(1)
+c  -------------
+c	 
          call sciwin()
          call dr1('xset'//char(0),'window'//char(0),wid,v,v,v,v,v,
      $        dv,dv,dv,dv)
@@ -199,6 +206,11 @@ c     to force dimensions update
          z(1)=0.0d0
          z(2)=t
          call dset(nu*N,0.0d0,z(3),1)
+c  --- patch ---	 
+c	 
+	 call oldgraphics(0)
+c  -------------
+c
       elseif(flag.eq.5) then
          wid=ipar(1)
          N=ipar(3)
