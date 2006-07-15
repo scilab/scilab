@@ -127,7 +127,8 @@ if {0} {
     proc dispsthg {} {
 #        set str [countcontlines [gettextareacur] 1.0 [[gettextareacur] index insert]]
 #        set str [time {colorize [gettextareacur] 1.0 end}]
-        set str "[getlogicallinenumbersranges allscilabbuffers]\n\n[getlogicallinenumbersranges current&ancill]"
+#        set str "[getlogicallinenumbersranges allscilabbuffers]\n\n[getlogicallinenumbersranges current&ancill]"
+        set str "[getlistofancillaries [gettextareacur] FOO1 libfun]"
         tk_messageBox -message "$str"
     }
     bind all <Control-equal> {dispsthg}

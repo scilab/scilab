@@ -28,9 +28,9 @@ Bugs:
 
 -On Windows, opening files and then closing one of them makes the remaining
  ones unselectable in the windows menu. This is Tk bug 1224330.
- The fix for the Tk bug exists and has beed applied to the Tk cvs tree,
- Tcl/Tk 8.4.13 include it in principle, but something probably went wrong
- since the final release for 8.4.13 still fails.
+ The fix for the Tk bug exists and has beed applied to the Tk cvs tree.
+ Tcl/Tk 8.4.14 as well as Tcl/Tk 8.5a5 include it but these versions are not
+ yet released, and therefore a fortiori not used by Scilab.
 
 -When a function definition line ends with a comment, the line numbering is
  wrong 1 unit, resulting is various strange behaviors: execution not stopping
@@ -166,7 +166,7 @@ Debugger wishes:
 Other wishes:
 
 -default fonts modifiable within the program (menuFont and textFont for now,
- and probably actbptextFont)
+ and probably actbptextFont and textsmallerFont)
  See TIP 213 for a possible implementation (new tk_chooseFont command
  possibly available in Tk 8.5)
  Other possible references (licence issues to be checked):

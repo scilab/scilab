@@ -217,15 +217,17 @@ proc getlogicallinenumbersranges {stepscope} {
 #                        current stop point
 #   - callingcontext   : functions listed in the call stack at the
 #                        current stop point, but the first one
-#   - current&ancill   : userfuns called by the function where the
-#                        debugger has currently stopped in, plus
-#                        function from "currentcontext" above
+#   - current&ancill   : userfuns and libfuns called by the function
+#                        where debugger has currently stopped in,
+#                        plus functions from "currentcontext" above
 # return value is a list with 3 elements: {item1 n m} where:
 #  item1 is normally a single string:
 #   ("$fun1",[1,max1]);("$fun2",[1,max2]);...;("$funN",[1,maxN]);
 # this format is especially useful when this string is used to set or
 # delete breakpoints in all the lines - just use a regsub to replace
 # the opening parenthesis by setbpt( or delbpt(
+# for libfun ancillaries, max is always 1 such that the output string
+# is simplified for these items: ("$libfun1",1)
 #  n is the number of currently breakpointed macros
 #  m is the number of currently breakpointed lines
 # in case any Scilab limit is exceeded, item1 is a string containing
@@ -236,6 +238,7 @@ proc getlogicallinenumbersranges {stepscope} {
 
     global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
     global debugassce
+    global callstackfuns
 
     set cmd ""
     set nbmacros 0 ; # used to test max number of breakpointed macros
@@ -272,6 +275,18 @@ proc getlogicallinenumbersranges {stepscope} {
             append cmd "(\"$funname\",\[1:" $lastlogicalline "\]);"
 
             incr nbbreakp $lastlogicalline
+        }
+    }
+    # libfun ancillaries
+    if {$stepscope == "current&ancill"} {
+        set currentfunction [lindex $callstackfuns 0]
+        set taofcurrentfunction [lindex [funnametofunnametafunstart $currentfunction] 1]
+        set lfanclist [getlistofancillaries $taofcurrentfunction $currentfunction "libfun"]
+        foreach libfunanc $lfanclist {
+            # <TODO> check if ancillary is not already breakpointed
+            append cmd "(\"$libfunanc\",1);"
+            incr nbbreakp
+            incr nbmacros
         }
     }
 

@@ -2304,3 +2304,7 @@ Francois VOGEL, 07/07/06
    was not a global
  * Progressbars now have $textFont by default
  * version --> 6.40
+
+Francois VOGEL, 15/07/06
+ * The debugger automatically opens libfun ancillaries on step into
+ * version --> 6.41

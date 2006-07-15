@@ -16,6 +16,7 @@ set errmsg ""
 set errnum 0
 set errline 0
 set errfunc ""
+set uabpt_opened_a_file false ;# see proc updateactivebreakpointtag
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries

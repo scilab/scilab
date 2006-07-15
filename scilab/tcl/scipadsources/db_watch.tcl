@@ -256,7 +256,8 @@ proc showwatch_bp {} {
     set callstackwidget $watch.f.vpw.f6.callstack
     set csscrolly $watch.f.vpw.f6.yscroll
     text $callstackwidget -height 5 -font $textFont -state normal \
-            -background gray83 -cursor xterm -yscrollcommand "$csscrolly set"
+            -background gray83 -cursor xterm -yscrollcommand "$csscrolly set" \
+            -wrap word
     scrollbar $csscrolly -command "$callstackwidget yview" -takefocus 0
     pack $callstackwidget $csscrolly -side left
     pack configure $callstackwidget -fill both -expand 1
