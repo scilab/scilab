@@ -2308,3 +2308,9 @@ Francois VOGEL, 07/07/06
 Francois VOGEL, 15/07/06
  * The debugger automatically opens libfun ancillaries on step into
  * version --> 6.41
+
+Francois VOGEL, 16/07/06
+ * Fixed issue on stepping into calfrq (colorization must be done before
+   displaying the buffer)
+ * Clipped userfun tag length to 24 characters to match Scilab's limitation
+ * version --> 6.42

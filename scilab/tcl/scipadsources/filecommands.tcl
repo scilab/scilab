@@ -626,6 +626,11 @@ proc shownewbuffer {file tiledisplay} {
     if [fileunreadable $file] return
     openfileondisk $pad.new$winopened $file $tiledisplay
     resetmodified $pad.new$winopened
+    # colorization must be launched before showing the textarea
+    # so that foreground colorization while stepping into
+    # libfun ancillaries works (example with calfrq)
+    backgroundcolorize $pad.new$winopened
+    tagcontlines $pad.new$winopened
     if {$tiledisplay == "currenttile"} {
         montretext $pad.new$winopened
     } else {
@@ -635,8 +640,6 @@ proc shownewbuffer {file tiledisplay} {
     }
     RefreshWindowsMenuLabels
     AddRecentFile [file normalize $file]
-    tagcontlines $pad.new$winopened
-    backgroundcolorize $pad.new$winopened
 }
 
 proc newfilebind {} {

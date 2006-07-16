@@ -54,7 +54,7 @@ Bugs:
  than once among the opened buffers, for instance the wrong buffer may become
  the active one to show the active breakpoint - same issue in configureexec:
  if a function is defined in more than one buffer, proc checkarglist may
- detect the wrong one and prevents correct configuration of the debugger
+ detect the wrong one and prevent correct configuration of the debugger
 
 -modselection bugs:
   . <TODO> Ctrl-d with a selection starting in the middle of a line -> indent
@@ -110,6 +110,15 @@ Old bugs/whishes which have been hacked but could have been done better:
 -The bindings in findreplace.tcl used for the F3 case and for find in files live
  in the textarea forever. Find a solution to get rid of these!
 
+-trying to debug functions with names > 24 characters does not work. This is
+ a very general Scilab limitation (in the debugger context, setbpt looses
+ characters for long names, that's why it doesn't work). Currently 
+ a check on name length when colorizing user functions has been added to
+ remind the user from this limit. Only this visual hint is provided, i.e.
+ configure execution will propose too long names. Scipad or the debugger
+ is not limited to 24 chars, but Scilab still is. Let's wait for Scilab
+ improvement instead of restraining the debugger!
+
 
 Wishes:
 -------
@@ -134,11 +143,6 @@ Debugger wishes:
  always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used (who, who_user...)
 
--Carefully study whether the debugger would benefit from using editvar
- or browsevar for the watch window variables. Drawbacks:
-   . sciGUI is not localized
-   . lists cannot be used yet with editvar
-
 -Avoid to destroy and recreate the whole watch window when hiding/displaying
  one of its sub-areas. Would probably require -hide option for panedwindow,
  but this one is only available from Tk 8.5 (TIP #179)
@@ -156,11 +160,6 @@ Debugger wishes:
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin
-
--trying to debug functions with names > 24 characters does not work. This is
- a very general Scilab limitation (in the debugger context, setbpt looses
- characters for long names, that's why it doesn't work). One could add
- a check on name length when colorizing user functions for instance.
 
 
 Other wishes:

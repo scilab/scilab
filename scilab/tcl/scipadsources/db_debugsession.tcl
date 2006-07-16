@@ -222,7 +222,7 @@ proc getlogicallinenumbersranges {stepscope} {
 #                        plus functions from "currentcontext" above
 # return value is a list with 3 elements: {item1 n m} where:
 #  item1 is normally a single string:
-#   ("$fun1",[1,max1]);("$fun2",[1,max2]);...;("$funN",[1,maxN]);
+#   ("$fun1",1:max1);("$fun2",1:max2);...;("$funN",1:maxN);
 # this format is especially useful when this string is used to set or
 # delete breakpoints in all the lines - just use a regsub to replace
 # the opening parenthesis by setbpt( or delbpt(
@@ -272,7 +272,7 @@ proc getlogicallinenumbersranges {stepscope} {
                 incr lastlogicalline -4
             }
 
-            append cmd "(\"$funname\",\[1:" $lastlogicalline "\]);"
+            append cmd "(\"$funname\",1:" $lastlogicalline ");"
 
             incr nbbreakp $lastlogicalline
         }

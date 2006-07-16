@@ -731,9 +731,16 @@ proc docolorizeuserfun {} {
             foreach {fullmatch funnamematch} $allmatch {
                 foreach {i j} $funnamematch {}
                 set star [$ta index "$ind + [expr $i - $previ] c"]
-                set stop [$ta index "$star + [expr $j - $i + 1] c"]
+                set malength [expr $j - $i + 1]
+                set stop [$ta index "$star + $malength c"]
                 if {[lsearch [$ta tag names $star] "rem2"] == -1} {
                     if {[lsearch [$ta tag names $star] "textquoted"] == -1} {
+                        if {$malength > 24} {
+                            # clip tagging length to 24 characters, since this is the
+                            # Scilab limitation - this is to remind the user of this limit
+                            # Scipad is not limited in function names, but Scilab is
+                            set stop [$ta index "$stop - [expr $malength - 24] c"]
+                        }
                         $ta tag add "userfun" $star $stop
                     }
                 }

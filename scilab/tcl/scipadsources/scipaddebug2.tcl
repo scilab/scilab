@@ -37,6 +37,7 @@ if {$debuglog} {
     trimcontandcomments extractfunnamefromfunline \
     bindenable binddisable findbinding \
     ]
+#    set excludedScipadprocs [list ]
 
     # delete procs that were renamed during the previous Scipad session
     # that was launched from the same Scilab session
