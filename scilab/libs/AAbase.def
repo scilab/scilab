@@ -15,3 +15,4 @@ EXPORTS
 	SciMDialog
 	ScilabDialog
 	ScilabMessage
+	versionflag
