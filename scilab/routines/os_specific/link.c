@@ -70,39 +70,52 @@ static int NEpoints = 0   ;        /* Number of Linked names */
 int C2F(scilinknorhs)()
 {
 	int i=0;
-	int m1,n1;
+	static int l1,n1,m1;
 	char **ReturnArrayString=NULL;
 	int j=0;
-	m1=NEpoints;
+	m1=NEpoints-1;
 	n1=1;
 
-	ReturnArrayString = (char **) MALLOC(NEpoints*sizeof(char **));
-
-	for ( i = NEpoints-1 ; i >=0 ; i--) 
+	if (NEpoints)
 	{
-		char *EntryName=(char *)MALLOC(strlen(EP[i].name)*sizeof(char));
-		if ( hd[i].ok == OK) 
+		ReturnArrayString = (char **) MALLOC(NEpoints*sizeof(char **));
+
+		for ( i = NEpoints-1 ; i >=0 ; i--) 
 		{
-			sprintf(EntryName,"%s",EP[i].name);
-			ReturnArrayString[j]=EntryName;
-			j++;
+			char *EntryName=(char *)MALLOC(strlen(EP[i].name)*sizeof(char));
+			if ( hd[i].ok == OK) 
+			{
+				sprintf(EntryName,"%s",EP[i].name);
+				ReturnArrayString[j]=EntryName;
+				j++;
+			}
 		}
+
+		CreateVarFromPtr(Rhs+1, "S", &n1, &m1, ReturnArrayString);
+
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
+
+		for (i=0;i<NEpoints;i++)
+		{
+			if (ReturnArrayString[i])
+			{
+				FREE(ReturnArrayString[i]);
+				ReturnArrayString[i]=NULL;
+			}
+		}
+		FREE(ReturnArrayString);
+	}
+	else
+	{
+		m1=0;
+		n1=0;
+		l1=0;
+		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
 	}
 
-	CreateVarFromPtr(Rhs+1, "S", &n1, &m1, ReturnArrayString);
-
-	LhsVar(1)=Rhs+1;
-	C2F(putlhsvar)();
-
-	for (i=0;i<NEpoints;i++)
-	{
-		if (ReturnArrayString[i])
-		{
-			FREE(ReturnArrayString[i]);
-			ReturnArrayString[i]=NULL;
-		}
-	}
-	FREE(ReturnArrayString);
 
 	return 0;
 }
