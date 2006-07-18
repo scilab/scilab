@@ -142,9 +142,9 @@ int C2F(creadcmat)(namex, m, n, scimat, name_len)
  * logic=cwritemat('matrixname'//char(0),m,n,mat)
  * name: character string; name of the scilab variable ( null terMinated) 
  * m: number of rows 
- *  n: number of columns 
- *  mat: matrix entries stored columnwise in Scilab object 
- *----------------------------------------------------------------*/
+ * n: number of columns 
+ * mat: matrix entries stored columnwise in Scilab object
+----------------------------------------------------------------*/
 
 int C2F(cwritemat)(namex, m, n, mat, name_len)
      char *namex;
@@ -172,6 +172,41 @@ int C2F(cwritemat)(namex, m, n, mat, name_len)
   if (Err > 0)  return FALSE_;
   return TRUE_;
 } 
+
+
+/*-----------------------------------------------------------------------------------*/
+/**
+* cwritecmat writes vector/matrix in scilab's internal stack
+* name: character string; name of the scilab variable ( null terMinated) 
+* m: number of rows 
+* n: number of columns 
+* mat: matrix entries stored columnwise in Scilab object 
+* for complex number
+*/
+/*-----------------------------------------------------------------------------------*/
+int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long name_len)
+{
+	integer   ix1 = *m * *n *2; /* real part + imaginary part */
+	integer Rhs_k = Rhs , Top_k = Top ;
+	integer l4, id[nsiz], lc, lr;
+	int IT=1; /* Type Complex */
+
+	C2F(str2name)(namex, id, name_len);
+	
+	Top = Top + Nbvars + 1; 
+	if (! C2F(cremat)("cwritecmat", &Top, &IT, m, n, &lr, &lc, 10L)) return  FALSE_;
+	C2F(dcopy)(&ix1, mat, &cx1, stk(lr ), &cx1);
+	Rhs = 0;
+	l4 = C2F(iop).lct[3];
+	C2F(iop).lct[3] = -1;
+	C2F(stackp)(id, &cx0);
+	C2F(iop).lct[3] = l4;
+	Top = Top_k;
+	Rhs = Rhs_k;
+	if (Err > 0)  return FALSE_;
+	return TRUE_;
+} 
+/*-----------------------------------------------------------------------------------*/
 
 int C2F(putvar)(number, namex, name_len)
      /* Put variable number into Scilab internal stack with name "namex" */
