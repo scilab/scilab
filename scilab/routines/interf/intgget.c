@@ -200,7 +200,7 @@ int gget(char *fname,unsigned long fname_len)
 int sciGet(sciPointObj *pobj,char *marker)
 {
   int numrow, numcol, outindex, i,j,k;
-  integer x[2],x1[10], x2,itmp=0,na,flagx=0;
+  integer x[2], itmp = 0, na ;
   sciSons *toto;
   double *tab;
   char **str;
@@ -598,27 +598,35 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   /******************************** context graphique  *****************************************/
 
-  else if (strcmp(marker,"color_map") == 0)
-    { 
-      if ((sciPointObj *) pobj != pfiguremdl)
-	{
-	  numcol = 3;
-/* 	  CheckColormap(&numrow); */
-	  numrow = sciGetNumColors (pobj);
-	  if ( numrow == 0) numcol=0;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  C2F(dr1)("xget", "colormap",&flagx,x1,&x2,PI0,PI0,PI0,stk(outindex),PD0,PD0,PD0,5L,bsiz);
-	}
-      else
-	{
-	  numcol = 3;
-	  numrow = sciGetNumColors (pobj);
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for  (i = 0; i < numcol*numrow; i++)
-	    stk(outindex)[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
-
-	}
+  else if ( strcmp(marker,"color_map") == 0 )
+  {
+    if ( sciGetEntityType( pobj ) != SCI_FIGURE )
+    {
+      strcpy(error_message,"color_map property does not exist for this handle.");
+      return -1;
     }
+    if ((sciPointObj *) pobj != pfiguremdl)
+    {
+      numcol = 3;
+      numrow = sciGetNumColors (pobj);
+      if ( numrow == 0 ) numcol=0;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      for  ( i = 0 ; i < numcol*numrow ; i++ )
+      {
+        stk(outindex)[i] = pFIGURE_FEATURE(pobj)->pcolormap[i];
+      }
+    }
+    else
+    {
+      numcol = 3;
+      numrow = sciGetNumColors (pobj);
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      for  ( i = 0; i < numcol*numrow; i++ )
+      {
+        stk(outindex)[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
+      }
+    }
+  }
   else if (strcmp(marker,"interp_color_vector") == 0)
     {
       int * vectmp = sciGetInterpVector((sciPointObj *) pobj);

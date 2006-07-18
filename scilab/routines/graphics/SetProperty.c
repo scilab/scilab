@@ -191,14 +191,14 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
     sciSetUsedWindow( curWinIndex ) ;
   }
   
-  if ( notSucceed )
+  if ( notSucceed == 1 )
   {
     /* failed to allocate or xinit (for Gif driver) was missing */
     sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
     return -1;
   }
   
-  if (m1 != old_m)
+  if ( m1 != old_m )
   {
    /* color map size changes, reallocate it */
     if ( ( cmap = MALLOC ( m * n * sizeof(double) ) ) == NULL )
@@ -210,7 +210,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 	C2F(dr)("xset","colormap",&old_m,&n,&notSucceed,PI0,PI0,PI0,
 		pFigure->pcolormap,PD0,PD0,PD0,0L,0L);
 	
-	if( notSucceed )
+	if ( notSucceed == 1 )
         {
           /* failed to allocate or xinit (for Gif driver) was missing */
 	  sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
@@ -222,7 +222,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
       return -1;
     }  
     FREE( pFigure->pcolormap ) ;
-    pFigure->pcolormap = cmap;
+    pFigure->pcolormap = cmap ;
   }
   for ( k =  0  ; k < m1 * n ; k++ )
   {
