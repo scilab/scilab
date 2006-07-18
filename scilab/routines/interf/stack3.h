@@ -6,6 +6,7 @@ extern int C2F(creadmat)  __PARAMS((char *name__, integer *m, integer *n, double
 extern int C2F(creadcmat)  __PARAMS((char *name__, integer *m, integer *n, double *scimat, unsigned long name_len));
 extern int C2F(creadsmat)  __PARAMS((char *name__, integer *m, integer *n, double *scimat, unsigned long name_len));
 extern int C2F(cwritemat)  __PARAMS((char *name__, integer *m, integer *n, double *mat, unsigned long name_len));
+extern int C2F(cwritecmat)  __PARAMS((char *name__, integer *m, integer *n, double *mat, unsigned long name_len));
 extern int C2F(readchain)  __PARAMS((char *name__, integer *itslen, char *chai, unsigned long name_len, unsigned long chai_len));
 extern int C2F(creadchain)  __PARAMS((char *name__, integer *itslen, char *chai, unsigned long name_len, unsigned long chai_len));
 extern int C2F(creadchains)  __PARAMS((char *name__, integer *ir, integer *ic, integer *itslen, char *chai, unsigned long name_len, unsigned long chai_len));
