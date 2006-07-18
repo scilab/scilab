@@ -52,6 +52,11 @@ proc setdbstate {state} {
     if {$state == "NoDebug" || $state == "ReadyForDebug"} {
         removeallactive_bp
     }
+    # when entering the debug mode, the Scilab shell must be at main level
+    # this is safer wrt ScilabEval, and is required for FormatWhereForDebugWatch
+    if {$state == "DebugInProgress"} {
+        ScilabEval_lt "abort" "seq"
+    }
     # Before this point, $state is the new debug state, and $debugstate is the old one
     set debugstate $state
     setdbmenuentriesstates_bp
@@ -331,7 +336,11 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
             set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
+            # stepbystepover_bp 0 1, i.e. with rescanbuffers set to true,
+            # because Scipad must rescan the buffer when leaving it on
+            # step over - this is required to prevent Scipad to skip
+            # nested libfuns contructs
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
             set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"

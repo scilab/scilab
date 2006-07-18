@@ -248,7 +248,6 @@ proc getlogicallinenumbersranges {stepscope} {
         if {[lindex $funsinthatta 0] == "0NoFunInBuf"} {
             continue
         }
-        incr nbmacros
         foreach {funname funline precfun} $funsinthatta {
 
             if {![isinstepscope $funname $stepscope]} {
@@ -276,6 +275,7 @@ proc getlogicallinenumbersranges {stepscope} {
 
             incr nbbreakp $lastlogicalline
         }
+        incr nbmacros
     }
     # libfun ancillaries
     if {$stepscope == "current&ancill"} {
@@ -283,10 +283,35 @@ proc getlogicallinenumbersranges {stepscope} {
         set taofcurrentfunction [lindex [funnametofunnametafunstart $currentfunction] 1]
         set lfanclist [getlistofancillaries $taofcurrentfunction $currentfunction "libfun"]
         foreach libfunanc $lfanclist {
-            # <TODO> check if ancillary is not already breakpointed
-            append cmd "(\"$libfunanc\",1);"
-            incr nbbreakp
-            incr nbmacros
+            # check if ancillary is already breakpointed - if it is, then its
+            # breakpointed lines range is greater than just the first line
+            # -> nothing to do
+            # note: escaped quotes mandatory to distinguish "modulo" and
+            # "pmodulo" !
+            if {[string first "\"$libfunanc\"" $cmd] == -1} {
+                append cmd "(\"$libfunanc\",1);"
+                incr nbbreakp
+                incr nbmacros
+            }
+        }
+    }
+    # libfun ancillaries for nested constructs, e.g. pmodulo(modulo()),
+    # breakpoint all the ancillaries of the upper level function
+    if {[llength $callstackfuns] > 1} {
+        set callingfunction [lindex $callstackfuns 1]
+        set taofcallingfunction [lindex [funnametofunnametafunstart $callingfunction] 1]
+        set lfanclist [getlistofancillaries $taofcallingfunction $callingfunction "libfun"]
+        foreach libfunanc $lfanclist {
+            # check if ancillary is already breakpointed - if it is, then its
+            # breakpointed lines range is greater than just the first line
+            # -> nothing to do
+            # note: escaped quotes mandatory to distinguish "modulo" and
+            # "pmodulo" !
+            if {[string first "\"$libfunanc\"" $cmd] == -1} {
+                append cmd "(\"$libfunanc\",1);"
+                incr nbbreakp
+                incr nbmacros
+            }
         }
     }
 

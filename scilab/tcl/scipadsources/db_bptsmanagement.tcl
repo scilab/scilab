@@ -158,6 +158,8 @@ proc reshape_bp {} {
         $textareacur tag remove activebreakpoint $tstart $tstop
         $textareacur tag add activebreakpoint "$tstart linestart" "$tstart lineend"
     }
+    # recount the breakpoints for display in the watch window
+    updatewatch_bp
 }
 
 proc countallbreakpointedlines {} {
@@ -183,7 +185,7 @@ proc countallbreakpointedmacros {} {
         foreach {i j} [$ta tag ranges breakpoint] {
             # use position $j rather than $i to avoid problems when the
             # function declaration line is breakpointed
-            set funname [lindex [whichfun $j $ta] 0]
+            set funname [lindex [whichfun "$j - 1c" $ta] 0]
             if {[lsearch -exact $macrlst $funname] == -1} {
                 incr N
                 lappend macrlst $funname

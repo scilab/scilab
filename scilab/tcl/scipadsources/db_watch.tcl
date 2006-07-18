@@ -329,6 +329,7 @@ proc showwatch_bp {} {
     bind $callstackwidget <Button-3> {break}
     bind $callstackwidget <Shift-Button-3> {break}
     bind $callstackwidget <Control-Button-3> {break}
+    bind $callstackwidget <ButtonRelease-2> {break}
 
     $callstackwidget tag bind clickableline <Enter> {%W configure -cursor hand2}
     $callstackwidget tag bind clickableline <Leave> {%W configure -cursor xterm}
