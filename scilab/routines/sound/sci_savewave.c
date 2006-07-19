@@ -1,4 +1,4 @@
-#include "intsavewave.h"
+#include "sci_savewave.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 extern int C2F(savewave)(char * filename,double *res,integer * rate,integer *size_res,integer *nchannels, integer *ierr);
@@ -15,7 +15,7 @@ static long int lin,lout;
 /*-----------------------------------------------------------------------------------*/ 
 /* SCILAB function : savewave */
 /*-----------------------------------------------------------------------------------*/ 
-int intsavewave __PARAMS((char *fname,unsigned long fname_len))
+int sci_savewave __PARAMS((char *fname,unsigned long fname_len))
 {
   int m1,n1,l1,m2,n2,mn2,l2,m3,n3,l3,l4,err,rate=22050,channels;
   int un=1;

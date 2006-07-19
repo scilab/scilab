@@ -6,7 +6,7 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/sound.a
 
-OBJSC = matsound.o intloadwave.o intsavewave.o intbeep.o intPlaySound.o wav.o raw.o sox.o libst.o
+OBJSC = gw_sound.o sci_loadwave.o sci_savewave.o sci_beep.o sci_PlaySound.o wav.o raw.o sox.o libst.o
 
 include ../../Makefile.incl
 

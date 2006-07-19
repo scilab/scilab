@@ -81,7 +81,7 @@ extern void    /* 44  */ C2F(intlapack)();
 
 extern void    /* 47  */ C2F(intwintools)();
 extern void    /* 48  */ C2F(mattime)();
-extern void    /* 49  */ C2F(matsound)();
+extern void    /* 49  */ C2F(gw_sound)();
 
 static OpTab Interfaces[] ={
   /* 01  */ {C2F(matlu)},
@@ -132,7 +132,7 @@ static OpTab Interfaces[] ={
   /* 46  */ {SCICOSINTERF2},
 	/* 47  */ {C2F(intwintools)},
 	/* 48  */ {C2F(mattime)},
-	/* 49  */	{C2F(matsound)}
+	/* 49  */	{C2F(gw_sound)}
 };
 
 #endif /*__CALLINTERF__*/

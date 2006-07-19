@@ -1,4 +1,4 @@
-#include "intloadwave.h"
+#include "sci_loadwave.h"
 #include "sox.h" 
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
@@ -16,7 +16,7 @@ static long int lin,lout;
 /*-----------------------------------------------------------------------------------*/ 
 /* SCILAB function : loadwave */
 /*-----------------------------------------------------------------------------------*/ 
-int intloadwave(char *fname,unsigned long fname_len)
+int sci_loadwave(char *fname,unsigned long fname_len)
 {
   WavInfo Wi;
   int m1,n1,l1,m2=1,n2,nn2,l2,err=0,un=1,eight=8,l3,m4,n4,l4;

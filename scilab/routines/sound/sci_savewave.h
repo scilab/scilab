@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTBEEP__
-#define __INTBEEP__
+#ifndef __INTSAVEWAVE__
+#define __INTSAVEWAVE__
 
 #ifdef _MSC_VER
 #include <windows.h>
@@ -22,7 +22,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int intBeep __PARAMS((char *fname,unsigned long fname_len));
+int sci_savewave __PARAMS((char *fname,unsigned long fname_len));
 
-#endif /* __INTBEEP__ */
+#endif /* __INTSAVEWAVE__ */
 /*-----------------------------------------------------------------------------------*/

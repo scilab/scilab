@@ -1,4 +1,4 @@
-#include "intPlaySound.h"
+#include "sci_PlaySound.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 	#pragma comment(lib, "winmm.lib")
@@ -20,7 +20,7 @@ int C2F(playsound)(char *fname,char *command,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/ 
 /* SCILAB function : PlaySound */
 /*-----------------------------------------------------------------------------------*/ 
-int intPlaysound __PARAMS((char *fname,unsigned long fname_len))
+int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
 {
   char *command=NULL;
   int m1,n1,l1,un=1,rep,m2,n2,l2;

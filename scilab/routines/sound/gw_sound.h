@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __MATSOUND__
-#define __MATSOUND__
+#ifndef __GW_SOUND__
+#define __GW_SOUND__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -20,5 +20,5 @@ typedef struct table_struct {
   char *name;      /** its name **/
 } intSoundTable;
 
-#endif /*  __MATSOUND__ */
+#endif /*  __GW_SOUND__ */
 /*-----------------------------------------------------------------------------------*/

@@ -173,19 +173,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\intbeep.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intloadwave.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intPlaySound.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intsavewave.c"
+				RelativePath=".\gw_sound.c"
 				>
 			</File>
 			<File
@@ -193,11 +181,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\matsound.c"
+				RelativePath=".\raw.c"
 				>
 			</File>
 			<File
-				RelativePath=".\raw.c"
+				RelativePath=".\sci_beep.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_loadwave.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_PlaySound.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_savewave.c"
 				>
 			</File>
 			<File
@@ -214,19 +214,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\intbeep.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intloadwave.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intPlaySound.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intsavewave.h"
+				RelativePath=".\gw_sound.h"
 				>
 			</File>
 			<File
@@ -234,7 +222,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\matsound.h"
+				RelativePath=".\sci_beep.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_loadwave.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_PlaySound.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_savewave.h"
 				>
 			</File>
 			<File

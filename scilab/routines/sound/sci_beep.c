@@ -1,4 +1,4 @@
-#include "intbeep.h"
+#include "sci_beep.h"
 /*-----------------------------------------------------------------------------------*/ 
 static int BeepON=1;
 /*-----------------------------------------------------------------------------------*/ 
@@ -6,7 +6,7 @@ void BeepLinuxWindows(void);
 /*-----------------------------------------------------------------------------------*/ 
 /* SCILAB function : beep */
 /*-----------------------------------------------------------------------------------*/ 
-int intBeep __PARAMS((char *fname,unsigned long fname_len))
+int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
 	char *output=NULL ;

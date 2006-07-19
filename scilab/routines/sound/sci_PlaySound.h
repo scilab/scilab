@@ -22,7 +22,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int intPlaysound __PARAMS((char *fname,unsigned long fname_len));
+int sci_Playsound __PARAMS((char *fname,unsigned long fname_len));
 
 #endif /* __INTPLAYSOUND__ */
 /*-----------------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-#include "matsound.h"
+#include "gw_sound.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -11,19 +11,19 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
-extern int intBeep __PARAMS((char *fname,unsigned long fname_len));
-extern int intPlaysound __PARAMS((char *fname,unsigned long fname_len));
-extern int intsavewave __PARAMS((char *fname,unsigned long fname_len));
-extern int intloadwave __PARAMS((char *fname,unsigned long fname_len));
+extern int sci_Beep __PARAMS((char *fname,unsigned long fname_len));
+extern int sci_Playsound __PARAMS((char *fname,unsigned long fname_len));
+extern int sci_savewave __PARAMS((char *fname,unsigned long fname_len));
+extern int sci_loadwave __PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static intSoundTable Tab[]={
-	{ intsavewave, "savewave"},
-	{ intloadwave, "loadwave"},
-	{intPlaysound,"PlaySound"},
-	{intBeep,"beep"}
+	{ sci_savewave, "savewave"},
+	{ sci_loadwave, "loadwave"},
+	{ sci_Playsound,"PlaySound"},
+	{ sci_Beep,"beep"}
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(matsound)()
+int C2F(gw_sound)()
 {  
 	Rhs = Max(0, Rhs);
 	#if _MSC_VER
