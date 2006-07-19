@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>SciComplex</TITLE>
+
+  <TYPE>Java Interface</TYPE>
+
+  <DATE>July 2006</DATE>
+
+  <SHORT_DESCRIPTION name="SciComplex">Class to use complex object with
+  scilab</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P><IMG src="../../images/java/SciComplexClass.gif"></IMG></P>
+
+    <P>Method Summary :</P>
+
+    <P><VERB>public SciComplex(String name,SciComplex Obj)</VERB> :
+    Constructor</P>
+
+    <P><VERB>public SciComplex(String name) </VERB>: Constructor</P>
+
+    <P><VERB>public SciComplex(String name,double realpart,double imaginarypart )</VERB> : Constructor</P>
+
+    <P><VERB>public String getName()</VERB> : Get Name of scilab object</P>
+
+    <P><VERB>public double getRealPartData()</VERB> : Get Real Part Value of scilab object</P>
+    
+    <P><VERB>public double getImaginaryPartData()</VERB> : Get Imaginary Part Value of scilab object</P>
+
+    <P><VERB>public void Get()</VERB> : Get in java object , value of scilab object</P>
+
+    <P><VERB>public boolean Job(String job)</VERB> : Execute a job in scilab</P>
+
+    <P><VERB>public void Send()</VERB> : Send to scilab object , value of java object</P>
+
+    <P><VERB>public void disp()</VERB> : disp object</P>
+    
+    <P><VERB>public void toString()</VERB> : convert complex to a string</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ // See SCI/examples/Callsci/CallsciJava directory]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>Scilab</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciComplexArray</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciString</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>SciStringArray</LINK>
+    </SEE_ALSO_ITEM>
+    
+    <SEE_ALSO_ITEM>
+      <LINK>SciDoubleArray</LINK>
+    </SEE_ALSO_ITEM>
+    
+    <SEE_ALSO_ITEM>
+      <LINK>SciDouble</LINK>
+    </SEE_ALSO_ITEM>
+    
+  </SEE_ALSO>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>
