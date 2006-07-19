@@ -9,16 +9,16 @@
 extern "C" {
 #endif
 
-/* private static native void Initialize(); */
+/*! private static native void Initialize(); */
 JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Initialize (JNIEnv *env, jclass cl);
 
-/* public native boolean Job(String job); */
+/*! public native boolean Job(String job); */
 JNIEXPORT jboolean JNICALL Java_javasci_SciDoubleArray_Job (JNIEnv *, jobject, jstring);
 
-/* public native void Get(); */
+/*! public native void Get(); */
 JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Get(JNIEnv *env , jobject obj_this);
 
-/* public native void Send(); */
+/*! public native void Send(); */
 JNIEXPORT void JNICALL Java_javasci_SciDoubleArray_Send(JNIEnv *env , jobject obj_this);
 
 /*! public native double GetElement(int indr,int indc); */
