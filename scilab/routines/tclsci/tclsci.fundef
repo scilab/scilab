@@ -17,4 +17,5 @@
 {"TCL_DeleteInterp",    IN_tclsci, 17,	2},
 {"TCL_CreateSlave",    IN_tclsci, 18,	2},
 {"TCL_ExistInterp",    IN_tclsci, 19,	2},
+{"TCL_ExistArray",    IN_tclsci,  20,	2},
 

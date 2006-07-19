@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\intTclExistArray.c"
+				>
+			</File>
+			<File
 				RelativePath=".\intTclExistInterp.c"
 				>
 			</File>
@@ -324,6 +328,10 @@
 			</File>
 			<File
 				RelativePath=".\intTclEvalStr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\intTclExistArray.h"
 				>
 			</File>
 			<File
