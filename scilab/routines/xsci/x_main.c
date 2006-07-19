@@ -617,3 +617,14 @@ int IsNoInteractiveWindow(void)
 	return nointeractive;
 }
 /*----------------------------------------------------------------------------------*/
+void InitXsession(void)
+{ 
+	static Display *dpy = (Display *) NULL;
+	static  Widget toplevel1;
+	int i=0;
+	
+	DisplayInit("",&dpy,&toplevel1);
+	for (i=0;i<1000;i++) app_flush(); /* force to empty X event loop */
+	XSync(dpy,0);
+}
+/*----------------------------------------------------------------------------------*/

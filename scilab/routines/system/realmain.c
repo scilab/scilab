@@ -15,6 +15,9 @@ extern int sci_exit(int n);
 extern int C2F(sciiargc) (void);
 #if _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);
+#else
+extern int IsNoInteractiveWindow(void);
+extern void InitXsession(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
 static void strip_blank(char *source);
@@ -100,6 +103,10 @@ void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_scr
     }
   else 
     {
+    	if (! IsNoInteractiveWindow() )
+    	{
+    		InitXsession();
+    	}
       /* initialize scilab interp  */
       C2F(inisci)(&ini, &memory, &ierr);
       if (ierr > 0) sci_exit(1) ;
