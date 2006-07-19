@@ -4,13 +4,12 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclExistArray.h"
 /*-----------------------------------------------------------------------------------*/
+extern int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intTclExistArray) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	static int l2,n2,m2;
-
-	char MyTclCommand[2048];
-	char *StrHandle=NULL;
 
 	int ValRet=0;
 
@@ -56,26 +55,8 @@ int C2F(intTclExistArray) _PARAMS((char *fname))
 			/* only one argument given - use the main interpreter */
 			TCLinterpreter=TCLinterp;
 		}
-		
 
-		sprintf(MyTclCommand, "set TclScilabTmpVar  [array exist %s];",VarName); 
-
-		if ( Tcl_Eval(TCLinterpreter,MyTclCommand) == TCL_ERROR  )
-		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
-			return 0;
-		}
-
-		StrHandle = (char *) Tcl_GetVar(TCLinterpreter, "TclScilabTmpVar",TCL_GLOBAL_ONLY);
-
-		if ( StrHandle == NULL  )
-		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterpreter->result);
-			return 0;
-		}
-
-		Tcl_UnsetVar(TCLinterpreter, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
-		ValRet=(int)atoi(StrHandle);
+		ValRet=TCL_ArrayExist(TCLinterpreter,VarName);
 		
 		n1=1;
 		if ( ValRet )
