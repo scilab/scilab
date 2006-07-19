@@ -10,7 +10,7 @@ JAVAINC=@JAVA_INCL@
 
 #--------------------------------------------------------
 LIBRARY= $(SCIDIR)/bin/libjavasci.@SONAME@
-OBJSC=  javasci_SciStringArray.o javasci_globals.o javasci_Scilab.o javasci_Scilab2.o javasci_SciDoubleArray.o @GCCFIX@
+OBJSC=  javasci_SciStringArray.o javasci_globals.o javasci_Scilab.o javasci_Scilab2.o javasci_SciDoubleArray.o javasci_SciComplexArray.o @GCCFIX@
 OBJSF =
 OBJS = $(OBJSC)
 CFLAGS = $(CC_OPTIONS) $(JAVAINC)

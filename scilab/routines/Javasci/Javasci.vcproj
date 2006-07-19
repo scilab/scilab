@@ -452,6 +452,9 @@ cd ..
 				RelativePath=".\javasci_globals.c">
 			</File>
 			<File
+				RelativePath=".\javasci_SciComplexArray.c">
+			</File>
+			<File
 				RelativePath=".\javasci_SciDoubleArray.c">
 			</File>
 			<File
@@ -470,6 +473,9 @@ cd ..
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
 				RelativePath=".\javasci_globals.h">
+			</File>
+			<File
+				RelativePath=".\javasci_SciComplexArray.h">
 			</File>
 			<File
 				RelativePath=".\javasci_SciDoubleArray.h">
@@ -500,6 +506,12 @@ cd ..
 			Filter="">
 			<File
 				RelativePath=".\classes\BadDataArgumentException.java">
+			</File>
+			<File
+				RelativePath=".\classes\SciComplex.java">
+			</File>
+			<File
+				RelativePath=".\classes\SciComplexArray.java">
 			</File>
 			<File
 				RelativePath=".\classes\SciDouble.java">
