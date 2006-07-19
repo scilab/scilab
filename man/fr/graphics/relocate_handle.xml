@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -9,8 +9,8 @@
 
   <DATE>2006</DATE>
 
-  <SHORT_DESCRIPTION name="relocate_handle">DÃ©place un handle Ã  l'intÃ©rieur de
-  la hiÃ©rarchie graphique.</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="relocate_handle">Déplace un handle à  l'intérieur de
+  la hiérarchie graphique.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>relocate_handle( movedHandles, parent
@@ -23,7 +23,7 @@
         <PARAM_NAME>movedHandles</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: Vecteur contenant les handles dÃ©placÃ©s.</SP>
+          <SP>: Vecteur contenant les handles déplacés.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -38,24 +38,24 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>La routine <BD>relocate_handle</BD> permet de dÃ©placer des handles
-    graphiques Ã  partir de leurs emplacements actuels vers un autre dans la
-    hierarchie graphique. Les entitÃ©s dÃ©placÃ©es sont relogÃ©es sous le handle
-    <BD>parent</BD> spÃ©cifiÃ©.</P>
+    <P>La routine <BD>relocate_handle</BD> permet de déplacer des handles
+    graphiques à  partir de leurs emplacements actuels vers un autre dans la
+    hierarchie graphique. Les entités déplacées sont relogées sous le handle
+    <BD>parent</BD> spécifié.</P>
 
     <P>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-    existe des restrictions quant Ã  l'utilisation de la routine . Il est par
-    exemple impossible de dÃ©placer une handle axes comme enfant d'une
-    polyline. Pour plus d'information Ã  ce sujet, on peut se reporter Ã  la
+    existe des restrictions quant à  l'utilisation de la routine . Il est par
+    exemple impossible de déplacer une handle axes comme enfant d'une
+    polyline. Pour plus d'information à  ce sujet, on peut se reporter à  la
     page <LINK>graphics_entities</LINK>.</P>
 
-    <P>Cette routine est particuliÃ¨rement utile pour dÃ©placer un objet d'un
-    axe Ã  un autre ou pour dÃ©placer des axes entre fenÃªtre.</P>
+    <P>Cette routine est particulièrement utile pour déplacer un objet d'un
+    axe à  un autre ou pour déplacer des axes entre fenêtre.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[x = 0:10 ;
 
-// construction d'une premiÃ¨re polyline
+// construction d'une première polyline
 plot(x,x^2) ;
 axes1 = gca() ;
 poly1 = gce() ;
@@ -65,9 +65,9 @@ scf() ;
 plot( x,x )  ;
 axes2 = gca() ;
 poly2 = gce()  ;
-poly2bis = copy( poly2 ) ; // copie de la polyline pour la dÃ©placer ensuite
+poly2bis = copy( poly2 ) ; // copie de la polyline pour la déplacer ensuite
 
-// les deux polylines se retrouvent dans le mÃªme axe.
+// les deux polylines se retrouvent dans le même axe.
 relocate_handle( poly2bis, axes1 ) ;
 
 ]]></EXAMPLE>
