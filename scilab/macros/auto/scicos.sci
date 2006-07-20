@@ -1,8 +1,11 @@
+function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 //** 06 Feb 2006 : restart of the mods job :
 //** 
 //** 22 May 2006 : New restart
 //**
 //** 19 Jun 2006 : Last restart 
+//**
+//** 10 Jul 2006 : looking for a residual oldgraphics instruction 
 //**
 //** Comments & mods by Simone Mannori
 //** 
@@ -20,8 +23,6 @@
 // Copyright INRIA
 
 //** 20 dec 2005: Code modified by Simone Mannori 
-
-function [scs_m,newparameters,needcompile,edited] = scicos(scs_m,menus)
 
 	noguimode=find(sciargs()=="-nogui");
 	if (noguimode <>[]) then
@@ -391,38 +392,42 @@ end
 //set context (variable definition...)
 if type(scs_m.props.context) == 10 then
   
-  %now_win = xget('window')
+  // %now_win = xget('window')
+  gh_percent_now_win = gcf();
 
   [%scicos_context,ierr] = script2var(scs_m.props.context,%scicos_context)
   //for backward compatibility for scifunc
   if ierr==0 then
-    %mm=getfield(1,%scicos_context)
+    %mm = getfield(1,%scicos_context)
+    
     for %mi=%mm(3:$)
-      ierr=execstr(%mi+'=%scicos_context(%mi)','errcatch')
+       ierr = execstr(%mi+'=%scicos_context(%mi)','errcatch')
        if ierr<>0 then
 	        break
-      end
+       end
     end  
+  
   end
   //end of for backward compatibility for scifunc
 
   if ierr  <>0 then
-    message(['Error occur when evaluating context:'
-	     lasterror() ])
+    message(['Error occur when evaluating context:' lasterror() ]) ; 
   else
     deff('%fonct()',scs_m.props.context)
-    %outfun=macrovar(%fonct);
+    %outfun = macrovar(%fonct);
+    
     //perform eval only if context contains functions which may give
     //different results from one execution to next
-    if or(%outfun(4)=='rand')|or(%outfun(4)=='exec')|or(%outfun(4)=='load') ...
-    then
-      disablemenus()
-      [scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
-      enablemenus()
+    if or(%outfun(4)=='rand')|or(%outfun(4)=='exec')|or(%outfun(4)=='load') then
+      disablemenus() ;
+      [scs_m,%cpr,needcompile,ok] = do_eval(scs_m,%cpr);
+      enablemenus() ;
     end
+  
   end
   
-  xset('window',%now_win)
+  //** xset('window',%now_win)
+  scf(gh_percent_now_win);
 else
   
   scs_m.props.context=' ' 
@@ -431,14 +436,7 @@ end
 
 //** -------------------- end of the very obscure code ---------------------------------------------
 
-//** ------------------------------------------------------------------------------------------------
- 
-//** ---------------------------------------------------------------------------------------------
-
-drawobjs(scs_m) ; //** draw the diagram 
-
-//** obsolete (removed) 
-//** if pixmap then xset('wshow'),end
+drawobjs(scs_m) ; //** draw the full diagram 
 
 //** --------------------------------------------------------------------------------------------------------
 //** Begin of the command interpreter loop 
@@ -460,7 +458,7 @@ Select_back=[];
 
 Clipboard = [];
 
-hilite_image = list() ; // create an empty list for the hilite images
+//** hilite_image = list() ; // create an empty list for the hilite images
 
 //** ----------------------------- real command interpreter / state machine loop ---------------------------- 
 
@@ -489,9 +487,7 @@ while ( Cmenu <> 'Quit' ) //** Cmenu -> exit from Scicos
   if (Cmenu<>[] & CmenuType==1 & %pt==[] & Select<>[]) then
        [%pt,%win]=get_selection(Select) //in case object selected
   end
-  
-  //** disp(2),disp(Cmenu)
-  
+
   xinfo(mess);
   
     if ( Cmenu==[] | (CmenuType==1 & %pt==[] & Select==[]) ) then // need MORE information
@@ -520,16 +516,13 @@ while ( Cmenu <> 'Quit' ) //** Cmenu -> exit from Scicos
 
         Select_back=Select;
       
-        //** ---------- For debugging purpose only ---------------
-        exestring = "Executing ...... " + %cor_item_exec(%koko,2);          //
-        disp(exestring)       ;          //
-        //** -----------------------------------------------------
+        //** ---------- For debugging purpose only ------------------
+        exestring = "Executing ...... " + %cor_item_exec(%koko,2); //
+        disp(exestring)       ;                                    //
+        //** --------------------------------------------------------
         //** Don't ever think to touch this line of code ;)
-        execstr('exec('+%cor_item_exec(%koko,2)+',-1)') ; //** call the
-                                                          //function that
-                                                          //exec the
-                                                          //desired
-                                                          //action 
+        execstr('exec('+%cor_item_exec(%koko,2)+',-1)') ; //** call the function that
+                                                          //exec the desired action 
 	//** after the execution I will show the graphics datastructure
 	gh_test = gcf(1000); 
 	gh_spy = gh_test.children.children ; 
@@ -559,10 +552,6 @@ while ( Cmenu <> 'Quit' ) //** Cmenu -> exit from Scicos
 end //** ---------------- end of the while loop ---------------------------------------------------------------
 
 do_exit()
-
-//** if pixmap then xset('wshow'),end
-
-//** set('old_style',stripblanks(olds)) <---- terminated OLD Graphics 
 
 endfunction
 
@@ -633,3 +622,4 @@ function selecthilite(Select, flag)  // update the image
   
 endfunction 
 
+//**---------------------------------------------------------------------------------------------------------------------
