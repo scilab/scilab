@@ -33,7 +33,6 @@ function %helps=initial_help_chapters(language)
 				"signal";
 				"arma";
 				"metanet";
-				"sound";
 				"translation";
 				"tdcs";
 				"statistics";
@@ -73,7 +72,6 @@ function %helps=initial_help_chapters(language)
 			"Signal Processing toolbox";
 			"Arma modelisation and simulation toolbox";
 			"Metanet: graph and network toolbox";
-			"Sound file handling";
 			"Language or data translations";
 			"TdCs";
 			"Statistic basics";
@@ -110,7 +108,6 @@ function %helps=initial_help_chapters(language)
 			"Traitement du signal";
 			"Modélisation et simulation ARMA";
 			"Metanet : graphes et réseaux";
-			"Manipulation de fichiers sons";
 			"Génération de code, traduction de données";
 			"TdCs";
 			"Statistiques";

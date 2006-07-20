@@ -1,0 +1,25 @@
+// ====================================================================
+// sound module initifalisation file 
+// Copyright INRIA 2006
+// ====================================================================
+//Load  functions librarie
+load('SCI/modules/sound/macros/lib')
+// ====================================================================
+//add help chapter
+global LANGUAGE
+path=get_absolute_file_path('sound.star');
+path=getshortpathname(path);
+path=strsubst(path,'\','/');
+if (LANGUAGE=='fr') then
+  path=strsubst(path,'/etc/','/help/fr');
+  add_help_chapter("Manipulation de fichiers sons",path);
+end
+
+if (LANGUAGE=='eng') then
+  path=strsubst(path,'/etc/','/help/eng');
+  add_help_chapter("Sound file handling",path)
+end
+clear path ;
+// ====================================================================
+
+// ====================================================================

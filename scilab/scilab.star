@@ -49,13 +49,19 @@ if verbose then
 end 
 clear verbose
 
+// use MSDOS syntax?
+MSDOS = (getos() == "Windows")
+
 load('SCI/macros/mtlb/lib')
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/tksci/lib')
 load('SCI/macros/arma/lib')
 load('SCI/macros/metanet/lib')
-load('SCI/macros/sound/lib')
+// temporaire
+if ~MSDOS then 
+  load('SCI/macros/sound/lib')
+end
 load('SCI/macros/robust/lib')
 load('SCI/macros/auto/lib')
 load('SCI/macros/optim/lib')
@@ -77,8 +83,6 @@ load('SCI/macros/pvm/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
 SCI=getenv('SCI');
-// use MSDOS syntax?
-MSDOS = (getos() == "Windows")
 TMPDIR=getenv('TMPDIR')
 PWD = getcwd()
 [home,SCIHOME]=sethomedirectory();
@@ -177,6 +181,11 @@ if %scicos then
   end
   //======================================================================
 end
+
+if MSDOS then
+ exec SCI/modules/sound/etc/sound.start;
+end
+
 
 // Protect variable previously defined  ================================
 predef('all') 

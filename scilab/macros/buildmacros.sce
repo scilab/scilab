@@ -16,7 +16,6 @@ CurrentDirectory=pwd();
  "robust",
  "sci2for",
  "signal",
- "sound",
  "statistics",
  "tdcs",
  "texmacs",
@@ -28,15 +27,21 @@ CurrentDirectory=pwd();
  "m2sci",
  "pvm"];
  
+ if MSDOS then
+   Directories=[Directories;"SCI/modules/sound/macros"];
+ else
+   Directories=[Directories;"sound"]; 
+ end
+ 
 if %scicos then
-Directories=[Directories,
- "scicos",
+Directories=[Directories;
+ "scicos";
  "scicos_blocks"];
 
 end
 
 Dim=size(Directories);
-timer();
+
 
 for i=1:Dim(1) do 
   chdir(Directories(i));
