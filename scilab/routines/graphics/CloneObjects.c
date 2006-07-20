@@ -17,6 +17,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+#include "Graphics.h" 
 #include "CloneObjects.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"

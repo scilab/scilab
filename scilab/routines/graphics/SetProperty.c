@@ -31,6 +31,7 @@
 #include "bcg.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
+#include "Graphics.h" 
 
 #if _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */

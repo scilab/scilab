@@ -17,6 +17,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+#include "Graphics.h" 
 #include "Interaction.h"
 #include "SetProperty.h"
 #include "GetProperty.h"

@@ -19,6 +19,8 @@
 #include "../stack-c.h" 
 #include "../os_specific/men_Sutils.h" 
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */

@@ -7,6 +7,7 @@
 #ifdef _MSC_VER
   extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 #endif
+  extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 int C2F(intsetlanguagemenu) _PARAMS((char *fname))
 {

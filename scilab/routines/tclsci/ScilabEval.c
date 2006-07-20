@@ -17,6 +17,8 @@ extern int GetCommand(char *str);
 extern int StoreCommand ( char *command); 
 extern int C2F(tksynchro)();
 extern integer C2F (ismenu)(void); 
+extern void sciprint __PARAMS((char *fmt,...));
+
 /*-----------------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {

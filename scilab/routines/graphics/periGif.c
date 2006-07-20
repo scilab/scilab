@@ -45,6 +45,7 @@ extern  char  *getenv();
 #endif
 
 #include "Math.h"
+#include "Graphics.h" 
 #include "periGif.h"
 #include "color.h"
 #include "../gd/gd.h"

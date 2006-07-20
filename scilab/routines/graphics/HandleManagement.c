@@ -16,6 +16,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+#include "Graphics.h" 
 #include "HandleManagement.h"
 #include "DrawObjects.h"
 #include "SetProperty.h"

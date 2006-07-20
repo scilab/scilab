@@ -29,6 +29,8 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "../graphics/Graphics.h" 
+
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 
 #ifndef STRICT

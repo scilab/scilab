@@ -10,6 +10,7 @@
 #include <string.h> /* in case of dbmalloc use */
 #include <stdio.h>
 #include "Math.h"
+#include "Graphics.h" 
 #include "Rec.h"
 
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);

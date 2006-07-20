@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "Math.h"
+#include "Graphics.h" 
 #include "PloEch.h"
 
 typedef void (f_xcall1) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,

@@ -36,6 +36,7 @@
 
 #include <stdio.h>
 #include "Math.h"
+#include "Graphics.h" 
 #include "Rec.h"
 
 #if _MSC_VER

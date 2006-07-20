@@ -48,6 +48,8 @@ static void DispInternalFunctions(void);
 static void DispCommands(void);
 static void SortStrings(char **Strs,int SizeOfStrs);
 /*-----------------------------------------------------------------------------------*/
+extern void sciprint __PARAMS((char *fmt,...));
+/*-----------------------------------------------------------------------------------*/
 int C2F(intwhat) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;

@@ -18,6 +18,7 @@
 	extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 	extern int IsAScalar(int RhsNumber);
 #endif
+extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 /* Print from scilab (Windows) for Scipad and figure */
 int C2F(inttoprint) _PARAMS((char *fname))

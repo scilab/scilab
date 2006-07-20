@@ -18,6 +18,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+#include "Graphics.h" 
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "bcg.h"

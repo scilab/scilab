@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "Math.h"
+#include "Graphics.h" 
 #include "Rec.h"
 #include "PloEch.h"
 

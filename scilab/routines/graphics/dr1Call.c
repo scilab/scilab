@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "../stack-c.h"
+#include "Graphics.h" 
 /*------------------------------------------------
  * Xrect
  *-----------------------------------------------*/   

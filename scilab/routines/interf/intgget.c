@@ -6,6 +6,7 @@
 #include "intgget.h"
 /*-----------------------------------------------------------------------------------*/
 #include "../graphics/bcg.h"
+#include "../graphics/Graphics.h" 
 #include "../stack-c.h"
 #include "../graphics/CloneObjects.h"
 #include "../graphics/Interaction.h"

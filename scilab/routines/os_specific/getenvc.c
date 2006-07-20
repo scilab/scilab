@@ -6,6 +6,8 @@
 #include "../graphics/Math.h"
 #include "Os_specific.h"
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
   char *getenv(const char *),*local;

@@ -8,7 +8,8 @@
 #else
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
-
+/*-----------------------------------------------------------------------------------*/
+extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 int C2F(intconsoledos) _PARAMS((char *fname))
 {

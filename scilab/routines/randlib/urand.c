@@ -20,6 +20,8 @@
 #include "../graphics/Math.h" /* to use sciprint */
 #include <math.h>             /* to use floor    */
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 static unsigned long s = 0;
 
 unsigned long urandc()

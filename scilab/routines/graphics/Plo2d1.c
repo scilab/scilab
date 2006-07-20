@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "Math.h"
+#include "Graphics.h" 
 #include "PloEch.h"
 
 extern void Plo2d1RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));

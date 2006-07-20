@@ -12,6 +12,7 @@
 extern integer C2F(scimem)(integer *n, integer *ptr);
 extern integer C2F(adjuststacksize)();
 extern integer C2F(getstackinfo)();
+extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
 #define KERNEL_MEMORY_ZONE  134217728  /* 2^27 0x80000000 */

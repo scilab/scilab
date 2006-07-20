@@ -35,6 +35,7 @@
 static long s1 = 1234567890 ;
 static long s2 = 123456789  ;
 
+extern void sciprint __PARAMS((char *fmt,...));
 
 unsigned long clcg2()
 {

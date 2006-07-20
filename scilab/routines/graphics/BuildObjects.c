@@ -24,6 +24,7 @@
 #include <windows.h>
 #endif
 
+#include "Graphics.h" 
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "InitObjects.h"

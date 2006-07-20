@@ -22,6 +22,8 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #include "others_generators.h"
 #include <math.h>
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 enum {MT, KISS, CLCG4, CLCG2, URAND, FSULTRA};
 
 /* the current generator : */

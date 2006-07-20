@@ -8,6 +8,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "Math.h"
+#include "Graphics.h" 
 #include "PloEch.h"
 #include "GetProperty.h"
 #include "SetProperty.h"

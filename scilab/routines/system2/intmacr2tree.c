@@ -21,6 +21,8 @@ static int nbvars = 0;
 /* Store stack index for last EOL */
 static int last_eol_pos = 0;
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 /****************************************************************
  Function name: macr2tree
 ****************************************************************/

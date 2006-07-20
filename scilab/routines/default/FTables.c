@@ -14,6 +14,7 @@
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
 static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));  
 static void Emptyfunc  __PARAMS((void)) {} ;
+extern void sciprint __PARAMS((char *fmt,...));
 
 voidf SetFunction  __PARAMS((char *name, int *rep, FTAB *table));  
 

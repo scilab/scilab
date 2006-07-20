@@ -53,6 +53,7 @@ static unsigned   hsize;
 static unsigned   filled;
 /*-----------------------------------------------------------------------------------*/
 extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
+extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 static int	 myhcreate(unsigned int nel);
 static int 	 myhsearch(int *key, int *data, int *level, SCIACTION action);

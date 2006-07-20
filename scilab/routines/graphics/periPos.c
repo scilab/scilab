@@ -43,6 +43,7 @@
 #endif
 
 #include "Math.h"
+#include "Graphics.h" 
 #include "periPos.h"
 #include "color.h"
 #include "bcg.h" /* NG */

@@ -44,9 +44,11 @@
 #else 
 #ifdef _MSC_VER
 #include "Math.h"
+#include "Graphics.h" 
 #include "periWin.h"
 #else
 #include "Math.h"
+#include "Graphics.h" 
 #include "periX11.h"
 #endif
 #endif 

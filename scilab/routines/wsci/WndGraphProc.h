@@ -15,6 +15,7 @@
 #include "../version.h"
 #include "../os_specific/win_mem_alloc.h"
 #include "wresource.h"
+#include "../graphics/Graphics.h" 
 #include "../graphics/bcg.h"
 /*-----------------------------------------------------------------------------------*/
 EXPORT LRESULT CALLBACK WndGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);

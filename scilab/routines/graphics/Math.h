@@ -203,7 +203,7 @@ int safeEqual( double val1, double val2, double accuracy ) ;
 
 
 
-#include "Graphics.h" 
+
 
 #endif /* SCI_MATH.HG */
 

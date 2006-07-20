@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "Graphics.h" 
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"

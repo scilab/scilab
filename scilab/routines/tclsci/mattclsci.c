@@ -9,6 +9,7 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 extern int GetWITH_GUI(void);
+extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/

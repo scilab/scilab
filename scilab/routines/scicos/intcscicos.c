@@ -41,6 +41,8 @@ extern int C2F(scicos)();
 extern int C2F(namstr)();
 #endif
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 /* fonction pour recuperer le nombre du champs a partir de son nom */
 int MlistGetFieldNumber(int *ptr, const char *string)
 {

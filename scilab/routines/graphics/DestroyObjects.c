@@ -19,6 +19,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+#include "Graphics.h" 
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"

@@ -5,7 +5,7 @@
  --------------------------------------------------------------------------*/
 
 #include "Math.h"
-
+#include "Graphics.h" 
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "DrawObjects.h"

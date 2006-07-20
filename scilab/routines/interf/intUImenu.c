@@ -21,6 +21,7 @@ extern sciEntityType sciGetEntityType (sciPointObj * pobj);
 extern long sciGetHandle (sciPointObj * pobj);
 extern sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback,BOOL handle_visible);
 extern int version_flag();
+extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 int intUImenu(char *fname,unsigned long fname_len)
 {

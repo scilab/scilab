@@ -67,6 +67,8 @@ static Epoints EP[ENTRYMAX];  /* entryPoints */
 static int NEpoints = 0   ;        /* Number of Linked names */
 
 /*-----------------------------------------------------------------------------------*/
+extern void sciprint __PARAMS((char *fmt,...));
+/*-----------------------------------------------------------------------------------*/
 int C2F(scilinknorhs)()
 {
 	int i=0;

@@ -26,6 +26,7 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 
+extern void sciprint __PARAMS((char *fmt,...));
 
 #if _MSC_VER
 #undef min

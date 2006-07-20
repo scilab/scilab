@@ -102,6 +102,8 @@ static  double DEFAULT_SEED1= 1234567.0, DEFAULT_SEED2=7654321.0;
 */
 #define SWB(c,x,y,z) c = (y<0) ? (((z=x-y-c) < 0) || (x>=0)) : (((z=x-y-c) < 0) && (x>=0));
 
+extern void sciprint __PARAMS((char *fmt,...));
+
 void advance_state_swb()
 { 
   int i;
