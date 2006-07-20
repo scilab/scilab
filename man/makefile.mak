@@ -37,7 +37,6 @@ clean::
 	-del eng\pvm\*.htm /s
 	-del eng\robust\*.htm /s
 	-del eng\signal\*.htm /s
-	-del eng\sound\*.htm /s
 	-del eng\statistics\*.htm /s
 	-del eng\strings\*.htm /s
 	-del eng\tdcs\*.htm /s
@@ -65,7 +64,6 @@ clean::
 	-del fr\pvm\*.htm /s
 	-del fr\robust\*.htm /s
 	-del fr\signal\*.htm /s
-	-del fr\sound\*.htm /s
 	-del fr\statistics\*.htm /s
 	-del fr\strings\*.htm /s
 	-del fr\tdcs\*.htm /s
