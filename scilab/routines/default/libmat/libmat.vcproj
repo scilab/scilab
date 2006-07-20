@@ -205,10 +205,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\machine-abs.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\machine.h"
 				>
 			</File>
