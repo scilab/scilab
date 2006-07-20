@@ -11,7 +11,8 @@ javac -classpath ..\..\..\bin -d ..\..\..\bin SciDoubleArray.java
 javac -classpath ..\..\..\bin -d ..\..\..\bin SciDouble.java
 javac -classpath ..\..\..\bin -d ..\..\..\bin SciStringArray.java
 javac -classpath ..\..\..\bin -d ..\..\..\bin SciString.java
-javac -classpath ..\..\..\bin -d ..\..\..\bin SciComplex.java
 javac -classpath ..\..\..\bin -d ..\..\..\bin SciComplexArray.java
+javac -classpath ..\..\..\bin -d ..\..\..\bin SciComplex.java
+
 
 @echo on
