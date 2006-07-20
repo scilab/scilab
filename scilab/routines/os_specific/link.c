@@ -73,7 +73,7 @@ int C2F(scilinknorhs)()
 	static int l1,n1,m1;
 	char **ReturnArrayString=NULL;
 	int j=0;
-	m1=NEpoints-1;
+	m1=NEpoints;
 	n1=1;
 
 	if (NEpoints)
