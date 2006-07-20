@@ -1,4 +1,5 @@
 function Color_()
+// Copyright INRIA
     
     scs_m_save = scs_m    ;
     nc_save = needcompile ;
