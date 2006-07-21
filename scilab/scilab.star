@@ -184,6 +184,8 @@ end
 
 if MSDOS then
  exec SCI/modules/sound/etc/sound.start;
+ exec SCI/modules/Javasci/etc/javasci.start;
+ 
 end
 
 

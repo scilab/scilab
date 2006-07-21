@@ -43,7 +43,6 @@ function %helps=initial_help_chapters(language)
 	
 	if %tk then dirs=[dirs;"tksci"];,end;
 	if %scicos then dirs=[dirs;"scicos"];,end;
-	if with_javasci() then dirs=[dirs;"java"];,end;
 	if %pvm then 	dirs=[dirs;"pvm"];,end;
 	
 	
@@ -82,7 +81,6 @@ function %helps=initial_help_chapters(language)
 			
 			if %tk then helpstmp=[helpstmp;"TCL/Tk interface"];,end;
 			if %scicos then helpstmp=[helpstmp;"Scicos: Bloc diagram editor and simulator"];,end;
-			if with_javasci() then helpstmp=[helpstmp;"Java Interface"];,end;
 			if %pvm then helpstmp=[helpstmp;"PVM parallel toolbox"];,end;
 			
 			%helps=[%helps,helpstmp];
@@ -119,7 +117,6 @@ function %helps=initial_help_chapters(language)
 			
 			if %tk then helpstmp=[helpstmp;"Interface TCL/Tk"];,end;
 			if %scicos then helpstmp=[helpstmp;"Scicos : éditeur et simulateur de blocs diagrammes"];,end;
-			if with_javasci() then helpstmp=[helpstmp;"Interface Java"];,end;
 			if %pvm then helpstmp=[helpstmp;"Calcul parallèle avec PVM"];,end;
 			
 			%helps=[%helps,helpstmp];

@@ -93,7 +93,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				CommandLine="cd src\java&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -175,7 +175,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd classes&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				CommandLine="cd src\java&#x0D;&#x0A;MakeJavaClass.bat&#x0D;&#x0A;cd ..\..&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -188,31 +188,31 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\DllmainJavasci.c"
+				RelativePath=".\src\c\DllmainJavasci.c"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_globals.c"
+				RelativePath=".\src\c\javasci_globals.c"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_SciComplexArray.c"
+				RelativePath=".\src\c\javasci_SciComplexArray.c"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_SciDoubleArray.c"
+				RelativePath=".\src\c\javasci_SciDoubleArray.c"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_Scilab.c"
+				RelativePath=".\src\c\javasci_Scilab.c"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_Scilab2.c"
+				RelativePath=".\src\c\javasci_Scilab2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_SciStringArray.c"
+				RelativePath=".\src\c\javasci_SciStringArray.c"
 				>
 			</File>
 		</Filter>
@@ -222,27 +222,27 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\javasci_globals.h"
+				RelativePath=".\includes\javasci_globals.h"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_SciComplexArray.h"
+				RelativePath=".\includes\javasci_SciComplexArray.h"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_SciDoubleArray.h"
+				RelativePath=".\includes\javasci_SciDoubleArray.h"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_Scilab.h"
+				RelativePath=".\includes\javasci_Scilab.h"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_Scilab2.h"
+				RelativePath=".\includes\javasci_Scilab2.h"
 				>
 			</File>
 			<File
-				RelativePath=".\javasci_SciStringArray.h"
+				RelativePath=".\includes\javasci_SciStringArray.h"
 				>
 			</File>
 		</Filter>
@@ -256,39 +256,39 @@
 			Name="Java Class"
 			>
 			<File
-				RelativePath=".\classes\BadDataArgumentException.java"
+				RelativePath=".\src\java\BadDataArgumentException.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\MakeJavaClass.bat"
+				RelativePath=".\src\java\MakeJavaClass.bat"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\SciComplex.java"
+				RelativePath=".\src\java\SciComplex.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\SciComplexArray.java"
+				RelativePath=".\src\java\SciComplexArray.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\SciDouble.java"
+				RelativePath=".\src\java\SciDouble.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\SciDoubleArray.java"
+				RelativePath=".\src\java\SciDoubleArray.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\Scilab.java"
+				RelativePath=".\src\java\Scilab.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\SciString.java"
+				RelativePath=".\src\java\SciString.java"
 				>
 			</File>
 			<File
-				RelativePath=".\classes\SciStringArray.java"
+				RelativePath=".\src\java\SciStringArray.java"
 				>
 			</File>
 		</Filter>

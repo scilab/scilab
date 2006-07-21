@@ -1,4 +1,4 @@
-#include "javasci_globals.h"
+#include "../../includes/javasci_globals.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2005 */
