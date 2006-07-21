@@ -1,0 +1,7 @@
+all1:: $(LIBRARY)
+# options compilation a modifier sous hp & solaris
+$(LIBRARY): $(OBJS)
+	@echo Creation of $(LIBRARY)
+	@$(RM) $@;
+	@echo "linking";
+	@$(FC) -Wl,-shared -g -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
