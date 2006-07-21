@@ -1,6 +1,6 @@
-all:: check eng fr
+all:: check eng fr sound
 
-build:: eng fr
+build:: eng fr sound
 
 check:
   @Makesubdirs.bat
@@ -16,6 +16,11 @@ eng	:
 	@echo Creation of the help (English)
 	@..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e xmltohtml([],[],'html-rev.xsl');exit;
 	@cd..
+	
+sound :	
+	@cd ..\modules\sound\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man
 
 distclean::	
 clean::
