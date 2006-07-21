@@ -19,7 +19,7 @@ if (LANGUAGE=='eng') then
   path=strsubst(path,'/etc/','/help/eng');
   add_help_chapter("Sound file handling",path)
 end
-clear path ;
+clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================
 
 // ====================================================================
