@@ -1,0 +1,94 @@
+/**
+ *  math operators common for scilab
+ *  INRIA 2006
+ */
+
+#ifndef __BASE_MATH_H__
+#define __BASE_MATH_H__
+#include <limits.h>
+#include <math.h>
+
+#ifdef __STDC__
+#include <stdlib.h>
+#endif
+
+
+#ifdef _MSC_VER 
+		#include <float.h>
+		#define finite(x) _finite(x) 
+#else  /* _MSC_VER */ 
+	#ifndef __cplusplus
+		int finite __PARAMS((double));
+	#endif
+#endif /* _MSC_VER */
+
+#ifdef _MSC_VER 
+	#include <float.h>
+	#define ISNAN(x) _isnan(x)
+#else 
+	#define ISNAN(x) isnan(x)
+#endif 
+
+#define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
+#ifndef Min
+#define Min(x,y)	(((x)<(y))?(x):(y))
+#endif 
+
+#ifndef Max 
+#define Max(x,y)	(((x)>(y))?(x):(y))
+#endif
+
+#define PI0 (integer *) 0
+#define PD0 (double *) 0
+#define SMDOUBLE 1.e-200 /* Smalest number to avoid dividing by zero */
+
+/* angle conversion */
+#define PI_OVER_180  0.01745329251994329576913914624236578987393
+#define _180_OVER_PI 57.29577951308232087665461840231273527024
+#define DEG2RAD(x) ((x) * PI_OVER_180  )
+#define RAD2DEG(x) ((x) * _180_OVER_PI )
+
+#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
+#define EPSILON 1.0e-13
+
+
+/** 
+  if we suppose that the x transmited is in the range of integers 
+  we could also use :
+  #define inint(x) (( x > 0 ) ? ((int) (x + 0.5)) : ((int) (x - 0.5));
+ **/
+
+#define linint(x) ((integer) floor(x + 0.5 )) 
+#define inint(x) ((int) floor(x + 0.5 ))  
+
+/* XWindow function arguments can be  int16 or unsigned16 */
+
+#define SCIINT16   short
+#define INT16MAX   SHRT_MAX
+#define INT16MIN   SHRT_MIN
+#define int16max   0x7FFF
+#define uns16max   0xFFFF
+
+#if (defined(sun) && defined(SYSV)) 
+#include <ieeefp.h>
+#endif
+
+#if defined(THINK_C)|| defined(_MSC_VER)
+  #define M_PI 3.14159265358979323846
+#else
+  #if defined(HAVE_VALUES_H)
+    #include <values.h>
+  #else
+    #if defined(HAVE_LIMITS_H)
+     #include <limits.h>
+    #endif
+  #endif
+#endif
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846 
+#endif
+
+
+#endif /* __BASE_MATH_H__ */
+

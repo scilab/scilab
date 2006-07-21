@@ -57,12 +57,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd", "routines\dcd\dcd.vcp
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default", "routines\default\default.vcproj", "{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default", "modules\base\src\c\default.vcproj", "{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dumpexts", "Win-util\Nm\Dumpexts.vcproj", "{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dumpexts", "tools\Dumpexts\Dumpexts.vcproj", "{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "f2c", "routines\f2c\src\f2c.vcproj", "{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}"
 EndProject
@@ -286,7 +286,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectFramework", "routines
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetWindowsVersion", "routines\wsci\GetWindowsVersion\GetWindowsVersion.vcproj", "{982BF37F-42C4-4D37-8D14-60521B141503}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MALLOC", "routines\os_specific\MALLOC\MALLOC.vcproj", "{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MALLOC", "libs\MALLOC\MALLOC.vcproj", "{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "poly_f2c", "routines\poly\poly_f\poly_f2c.vcproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 EndProject
@@ -318,7 +318,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integ_f2c", "routines\integ
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "int_f2c", "routines\int\int_f\int_f2c.vcproj", "{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default_f2c", "routines\default\default_f\default_f2c.vcproj", "{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default_f2c", "modules\base\src\fortran\default_f2c.vcproj", "{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_f2c", "routines\dcd\dcd_f\dcd_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 EndProject
