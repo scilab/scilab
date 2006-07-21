@@ -19,6 +19,10 @@
    later version. */
 
 #include "defs.h"
+#if defined (linux)	 
+#include <string.h>
+#endif
+
 
 int
 dld_unlink_by_symbol (name, force)

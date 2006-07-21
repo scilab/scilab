@@ -20,6 +20,9 @@
 
 #include "defs.h"
 
+#if defined (linux)	 
+#include <string.h>
+#endif
 /*
  *  remove a previously defined symbol defined by dld_define().
  *  If symbol is not defined by dld_fine, this function becomes no-op.
