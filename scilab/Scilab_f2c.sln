@@ -57,7 +57,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd", "routines\dcd\dcd.vcp
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default", "modules\base\src\c\default.vcproj", "{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "modules\core\src\c\core.vcproj", "{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -318,7 +318,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integ_f2c", "routines\integ
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "int_f2c", "routines\int\int_f\int_f2c.vcproj", "{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "default_f2c", "modules\base\src\fortran\default_f2c.vcproj", "{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_f2c", "modules\core\src\fortran\core_f2c.vcproj", "{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dcd_f2c", "routines\dcd\dcd_f\dcd_f2c.vcproj", "{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 EndProject

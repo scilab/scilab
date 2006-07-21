@@ -215,11 +215,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\core_math.h"
+				>
+			</File>
+			<File
 				RelativePath="FTables.h"
 				>
 			</File>
 			<File
 				RelativePath="FTables0.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\machine.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\stack-c.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\stack-def.h"
 				>
 			</File>
 			<File
@@ -232,6 +248,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\stack3.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\version.h"
 				>
 			</File>
 		</Filter>

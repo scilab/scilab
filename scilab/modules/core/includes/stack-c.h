@@ -5,7 +5,7 @@
 #define STACK_SCI 
 
 #if  !(defined __LCC__) && ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) ) 
-#include "base_math.h"
+#include "core_math.h"
 #else
 #include "machine.h"
 #define Min(x,y)	(((x)<(y))?(x):(y))
