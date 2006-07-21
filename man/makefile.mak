@@ -1,6 +1,6 @@
-all:: check eng fr sound
+all:: check eng fr sound javasci
 
-build:: eng fr sound
+build:: eng fr sound javasci
 
 check:
   @Makesubdirs.bat
@@ -21,6 +21,12 @@ sound :
 	@cd ..\modules\sound\help
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
 	@cd ..\..\..\man
+	
+javasci :	
+	@cd ..\modules\Javasci\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man
+	
 
 distclean::	
 clean::
