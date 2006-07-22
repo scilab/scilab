@@ -4,7 +4,7 @@
 // ====================================================================
 //add help chapter
 global LANGUAGE
-path=get_absolute_file_path('javasci.star');
+path=get_absolute_file_path('javasci.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
 if (LANGUAGE=='fr') then

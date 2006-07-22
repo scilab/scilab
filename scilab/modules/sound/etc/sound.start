@@ -7,7 +7,7 @@ load('SCI/modules/sound/macros/lib')
 // ====================================================================
 //add help chapter
 global LANGUAGE
-path=get_absolute_file_path('sound.star');
+path=get_absolute_file_path('sound.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
 if (LANGUAGE=='fr') then
