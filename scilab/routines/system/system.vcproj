@@ -308,10 +308,6 @@
 				RelativePath=".\System2.c"
 				>
 			</File>
-			<File
-				RelativePath=".\tksynchro.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

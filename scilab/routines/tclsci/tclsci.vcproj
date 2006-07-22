@@ -266,6 +266,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\setenvtcl.c"
+				>
+			</File>
+			<File
 				RelativePath=".\TCL_Global.c"
 				>
 			</File>
@@ -279,6 +283,10 @@
 			</File>
 			<File
 				RelativePath=".\TclUiSet.c"
+				>
+			</File>
+			<File
+				RelativePath=".\tksynchro.c"
 				>
 			</File>
 		</Filter>

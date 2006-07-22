@@ -26,3 +26,9 @@ int tcl_check_one_event(void)
 	return bRes;
 }
 /*-----------------------------------------------------------------------------------*/
+int TclEventsLoop(void)
+{
+	return (Tcl_DoOneEvent (TCL_ALL_EVENTS | TCL_DONT_WAIT) == 1);
+	 
+};
+/*-----------------------------------------------------------------------------------*/

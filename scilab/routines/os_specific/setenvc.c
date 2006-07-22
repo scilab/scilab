@@ -3,9 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#ifdef WITH_TK
-  #include "../tclsci/TCL_Global.h"
-#endif
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
@@ -20,26 +17,7 @@ static char *env=NULL;
 int UpdateEnvVar=0;
 /*-----------------------------------------------------------------------------------*/
 #ifdef WITH_TK
-int setenvtcl(char *string,char *value)
-{
-	int bOK=FALSE;
-	char MyTclCommand[2048];
-
-	sprintf(MyTclCommand,"env(%s)",string);
-
-	if (TCLinterp==NULL) return((int)FALSE);
-	
-	if ( !Tcl_SetVar(TCLinterp,MyTclCommand, value, TCL_GLOBAL_ONLY) )
-	{
-		bOK=(int)(FALSE);
-	}
-	else
-	{
-		bOK=(int)(TRUE);
-	}
-
-	return bOK;
-}
+	extern int setenvtcl(char *string,char *value);
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* returns 0 if there is a problem else 1 */
@@ -82,3 +60,4 @@ int setenvc(char *string,char *value)
 
   return ret;
 }
+/*-----------------------------------------------------------------------------------*/

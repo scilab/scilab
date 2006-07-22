@@ -9,6 +9,7 @@
 
 int tcl_check_one_event(void);
 void flushTKEvents(void);
+int TclEventsLoop(void);
 
 #endif /* __TCLEVENTS__ */
 /*-----------------------------------------------------------------------------------*/ 

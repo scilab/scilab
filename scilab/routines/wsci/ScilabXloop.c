@@ -22,6 +22,7 @@
 #ifdef WITH_TK
 #include "tcl.h"
 extern void flushTKEvents ();
+int TclEventsLoop(void);
 extern int  tcl_check_one_event(void);
 static int BasicScilab = 0;
 #endif
@@ -77,7 +78,7 @@ void TextMessage1 (int ctrlflag)
     {
 #ifdef WITH_TK
       /* check for a tcl/tk event */
-      if (Tcl_DoOneEvent (TCL_ALL_EVENTS | TCL_DONT_WAIT) == 1) continue ;
+     if ( TclEventsLoop() ) continue ;
 #endif
       PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
       TranslateMessage (&msg);

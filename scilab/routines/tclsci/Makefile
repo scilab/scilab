@@ -12,7 +12,8 @@ OBJSC  = InitTclTk.o intClose.o intFindObj.o intOpenTk.o \
 	 intTclSet.o intTclSetVar.o ScilabEval.o TclEvents.o \
 	 TclUiGet.o TclUiSet.o TCL_Global.o intTclGetVersion.o \
 	 intTclUnsetVar.o intTclExistVar.o intTclUpVar.o intTclDeleteInterp.o \
-	 intTclExistInterp.o intTclCreateSlave.o GedManagement.o intTclExistArray.o
+	 intTclExistInterp.o intTclCreateSlave.o GedManagement.o intTclExistArray.o \
+	 tksynchro.o setenvctcl.o
 
 
 include ../../Makefile.incl

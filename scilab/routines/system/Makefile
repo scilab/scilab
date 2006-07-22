@@ -29,7 +29,7 @@ OBJSF = allops.o  banier.o\
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \
-	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o stack.o
+	lst2vars.o createref.o getfunction.o varfunptr.o stack.o
 
 include ../../Makefile.incl
 
@@ -123,5 +123,4 @@ scicurdir.o: scicurdir.c ../machine.h
 storeversion.o: storeversion.c ../stack-c.h ../graphics/Math.h \
 	../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
 	../interf/stack2.h ../interf/stack3.h ../version.h
-tksynchro.o: tksynchro.c ../machine.h ../tclsci/TCL_Global.h \
-	../stack-def.h
+
