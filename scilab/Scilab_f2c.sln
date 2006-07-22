@@ -64,7 +64,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "modules\core\src\c\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dumpexts", "tools\Dumpexts\Dumpexts.vcproj", "{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "f2c", "routines\f2c\src\f2c.vcproj", "{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "f2c", "libs\f2c\src\f2c.vcproj", "{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gd", "routines\gd\gd.vcproj", "{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -95,7 +95,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersciexe", "intersci\int
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interscin", "intersci\interscin\interscin.vcproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libf2c_DLL", "routines\f2c\libf2c\libf2c.vcproj", "{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libf2c_DLL", "libs\f2c\libf2c\libf2c.vcproj", "{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190} = {7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}
