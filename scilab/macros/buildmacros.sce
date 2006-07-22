@@ -19,7 +19,7 @@ CurrentDirectory=pwd();
  "statistics",
  "tdcs",
  "texmacs",
- "tksci",
+ 
  "xdess",
  "sparse",
  "gui",
@@ -29,7 +29,9 @@ CurrentDirectory=pwd();
  
  if MSDOS then
    Directories=[Directories;"SCI/modules/sound/macros"];
+   Directories=[Directories;"SCI/modules/tclsci/macros"];
  else
+   Directories=[Directories;"tksci"];
    Directories=[Directories;"sound"]; 
  end
  

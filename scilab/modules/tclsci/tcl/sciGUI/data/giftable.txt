@@ -1,0 +1,40 @@
+# List of .gif files ans internal names
+# This file is part of sciGUI toolbox
+# by Jaime Urzua
+#    mailto:jaime_urzua@yahoo.com
+error:error.gif
+hourglass:hourglass.gif
+info:info.gif
+passwd:passwd.gif
+question:question.gif
+scilab01:scilab01.gif
+warning:warning.gif
+tp00:tp00.gif
+tp01:tp01.gif
+tp02:tp02.gif
+tp04:tp04.gif
+tp05:tp05.gif
+tp06:tp06.gif
+tp08:tp08.gif
+tp10:tp10.gif
+tp15:tp15.gif
+tp16:tp16.gif
+tp17:tp17.gif
+#Polyline:tpPolyline.gif
+#Patch:tpPatch.gif.
+#Agregation:tpAgregation.gif
+#Axes:tpAxes.gif
+#Legend:tpLegend.gif
+#Rectangle:tpRectangle.gif
+#Arc:tpArc.gif
+#Grayplot:tpGrayplot.gif
+#Matplot:tpMatplot.gif
+#Fec:tpFec.gif
+#Segs:tpSegs.gif
+#Champ:tpChamp.gif
+#Text:tpText.gif
+#Title:tpTitle.gif
+#Plot3d:tpPlot3d.gif
+#Fac3d:tpFac3d.gif
+#Param3d:tpParam3d.gif
+#Axis:tpAxis.gif

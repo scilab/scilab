@@ -30,7 +30,7 @@ static void  sci_sigint_addinter(int n);
 
 static int c_local = 9999;
 
-void C2F(NoTclsci)(void)
+void C2F(no_gw_tclsci)(void)
 {
   sciprint("TclSci interface not loaded \n");
   C2F(error)(&c_local);

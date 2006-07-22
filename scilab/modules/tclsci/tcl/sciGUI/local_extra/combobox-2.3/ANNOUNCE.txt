@@ -1,0 +1,37 @@
+Combobox 2.3 release announcement
+September 30, 2003
+
+This is to announce version 2.3 of my pure Tcl combobox widget. This
+version includes the following new features from version 2.2
+
+* added -buttonbackground option
+* added -listvar option
+* tweaked packing order of internal widgets, which improves the
+  resize behavior a bit (thanks to Oliver Bienert for the suggestion)
+* exposed "subwidget" command (eg: .combobox subwidget entry)
+
+Where to get it:
+
+You can download combobox version 2.3 from the following URL:
+
+    http://www.purl.org/net/oakley/tcl/combobox/index.html
+
+
+Basic features:
+
+* written in pure tcl; no megawidget or OO extensions required
+
+* platform independent, and works for all versions of tk >= 8.0
+
+* self-contained and portable; all the code is in one file
+
+* API is similar to standard Tk widgets, with subcommands
+  such as configure, cget, insert, etc.
+
+* keyboard navigation
+
+* emulates the look and feel of a Windows combobox 
+
+* completely, totally, free. I retain copyright but you are 
+  free to use the code however you see fit. Don't be mean.
+

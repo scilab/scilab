@@ -1,0 +1,7 @@
+Scilab is a scientific software package for numerical computations providing a powerful open computing environment for engineering and scientific applications. Developed since 1990 by researchers from INRIA and ENPC, it is now maintained and developed by Scilab Consortium since its creation in May 2003.
+
+Distributed freely and open source (see the license) via the Internet since 1994, Scilab is currently being used in educational and industrial environments around the world.
+
+Scilab includes hundreds of mathematical functions with the possibility to add interactively programs from various languages (C, Fortran...). It has sophisticated data structures (including lists, polynomials, rational functions, linear systems...), an interpreter and a high level programming language.
+
+Scilab has been designed to be an open system where the user can define new data types and operations on these data types by using overloading.

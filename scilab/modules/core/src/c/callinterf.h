@@ -51,10 +51,10 @@ extern void    /* 38  */ C2F(randlib)();
 extern void    /* 39  */ C2F(otherspfunlib)();
 
 #ifdef WITH_TK
-extern void    /* 40  */ C2F(inttclsci)();
-#define TCLINTERF C2F(inttclsci)
+extern void    /* 40  */ C2F(gw_tclsci)();
+#define TCLINTERF C2F(gw_tclsci)
 #else 
-#define TCLINTERF C2F(NoTclsci)
+#define TCLINTERF C2F(no_gw_tclsci)
 #endif
 
 extern void    /* 41  */ C2F(lstelmi)();

@@ -55,11 +55,12 @@ MSDOS = (getos() == "Windows")
 load('SCI/macros/mtlb/lib')
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
-load('SCI/macros/tksci/lib')
+
 load('SCI/macros/arma/lib')
 load('SCI/macros/metanet/lib')
 // temporaire
 if ~MSDOS then 
+  load('SCI/macros/tksci/lib')
   load('SCI/macros/sound/lib')
 end
 load('SCI/macros/robust/lib')
@@ -185,7 +186,7 @@ end
 if MSDOS then
  exec SCI/modules/sound/etc/sound.start;
  exec SCI/modules/Javasci/etc/javasci.start;
- 
+ exec SCI/modules/tclsci/etc/tclsci.start;
 end
 
 
