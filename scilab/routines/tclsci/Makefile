@@ -6,13 +6,13 @@ LIBRARY = $(SCIDIR)/libs/tclsci.a
 
 OBJSF = 
 
-OBJSC  = InitTclTk.o intClose.o intFindObj.o intOpenTk.o \
-	 intTclDoOneEvent.o intTclEvalFile.o intTclEvalStr.o \
-	 intTclGcf.o intTclGet.o intTclGetVar.o mattclsci.o \
-	 intTclSet.o intTclSetVar.o ScilabEval.o TclEvents.o \
-	 TclUiGet.o TclUiSet.o TCL_Global.o intTclGetVersion.o \
-	 intTclUnsetVar.o intTclExistVar.o intTclUpVar.o intTclDeleteInterp.o \
-	 intTclExistInterp.o intTclCreateSlave.o GedManagement.o intTclExistArray.o \
+OBJSC  = InitTclTk.o sci_close.o sci_findobj.o sci_opentk.o \
+	 sci_TCL_DoOneEvent.o sci_TCL_EvalFile.o sci_TCL_EvalStr.o \
+	 sci_TCL_gcf.o sci_get.o sci_TCL_GetVar.o gw_tclsci.o \
+	 sci_set.o sci_TCL_SetVar.o ScilabEval.o TclEvents.o \
+	 TclUiGet.o TclUiSet.o TCL_Global.o sci_TCL_GetVersion.o \
+	 sci_TCL_UnsetVar.o sci_TCL_ExistVar.o sci_TCL_UpVar.o sci_TCL_DeleteInterp.o \
+	 sci_TCL_ExistInterp.o sci_TCL_CreateSlave.o GedManagement.o sci_TCL_ExistArray.o \
 	 tksynchro.o setenvctcl.o
 
 

@@ -7,9 +7,6 @@
 
 #ifndef __GEDMANAGEMENT_H_
 #define __GEDMANAGEMENT_H_
-
-#include "intTclEvalStr.h"
-
 /*-----------------------------------------------------------------------------------------*/
 /* close the graphic editor linked with the window figureId */
 int sciDestroyGed( int figureId ) ;
@@ -19,11 +16,4 @@ int sciDestroyGed( int figureId ) ;
 /* return true if ged is opened on the window figureId */
 int isGedOpenedOn( int figureId ) ;
 /*-----------------------------------------------------------------------------------------*/
-
-/*-----------------------------------------------------------------------------------------*/
-/* return the ged interpreter (default interpreter for now) */
-Tcl_Interp * getGedInterpreter( void ) ;
-/*-----------------------------------------------------------------------------------------*/
-
-
 #endif /* __GEDMANAGEMENT_H_ */

@@ -178,87 +178,87 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_tclsci.c"
+				>
+			</File>
+			<File
 				RelativePath=".\InitTclTk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intClose.c"
+				RelativePath=".\sc_TCL_UnsetVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intFindObj.c"
+				RelativePath=".\sci_close.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intOpenTk.c"
+				RelativePath=".\sci_findobj.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclCreateSlave.c"
+				RelativePath=".\sci_get.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclDeleteInterp.c"
+				RelativePath=".\sci_opentk.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclDoOneEvent.c"
+				RelativePath=".\sci_set.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclEvalFile.c"
+				RelativePath=".\sci_TCL_CreateSlave.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclEvalStr.c"
+				RelativePath=".\sci_TCL_DeleteInterp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclExistArray.c"
+				RelativePath=".\sci_TCL_DoOneEvent.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclExistInterp.c"
+				RelativePath=".\sci_TCL_EvalFile.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclExistVar.c"
+				RelativePath=".\sci_TCL_EvalStr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclGcf.c"
+				RelativePath=".\sci_TCL_ExistArray.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclGet.c"
+				RelativePath=".\sci_TCL_ExistInterp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclGetVar.c"
+				RelativePath=".\sci_TCL_ExistVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclGetVersion.c"
+				RelativePath=".\sci_TCL_gcf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclSet.c"
+				RelativePath=".\sci_TCL_GetVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclSetVar.c"
+				RelativePath=".\sci_TCL_GetVersion.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclUnsetVar.c"
+				RelativePath=".\sci_TCL_SetVar.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intTclUpVar.c"
-				>
-			</File>
-			<File
-				RelativePath=".\mattclsci.c"
+				RelativePath=".\sci_TCL_UpVar.c"
 				>
 			</File>
 			<File
@@ -303,91 +303,91 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_tclsci.h"
+				>
+			</File>
+			<File
 				RelativePath=".\InitTclTk.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intClose.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intFindObj.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intOpenTk.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclCreateSlave.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclDeleteInterp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclDoOneEvent.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclEvalFile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclEvalStr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclExistArray.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclExistInterp.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclExistVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclGcf.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclGet.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclGetVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclGetVersion.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclSet.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclSetVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclUnsetVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intTclUpVar.h"
-				>
-			</File>
-			<File
-				RelativePath=".\mattclsci.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Messages.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_close.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_findobj.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_get.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_opentk.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_set.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_CreateSlave.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_DeleteInterp.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_DoOneEvent.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_EvalFile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_EvalStr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_ExistArray.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_ExistInterp.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_ExistVar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_gcf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_GetVar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_GetVersion.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_SetVar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_UnsetVar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_TCL_UpVar.h"
 				>
 			</File>
 			<File

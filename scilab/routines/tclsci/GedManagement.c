@@ -6,9 +6,11 @@
 /*-----------------------------------------------------------------------------------------*/
 
 #include "GedManagement.h"
-
+#include "TCL_Global.h"
 /*-----------------------------------------------------------------------------------------*/
-
+/* return the ged interpreter (default interpreter for now) */
+static Tcl_Interp * getGedInterpreter( void ) ;
+/*-----------------------------------------------------------------------------------------*/
 int sciDestroyGed( int figureId )
 {
   Tcl_Interp * gedInterp = getGedInterpreter() ;
@@ -66,7 +68,7 @@ int isGedOpenedOn( int figureId )
 
 /*-----------------------------------------------------------------------------------------*/
 
-Tcl_Interp * getGedInterpreter( void )
+static Tcl_Interp * getGedInterpreter( void )
 {
   return TCLinterp ;
 }
