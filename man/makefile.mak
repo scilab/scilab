@@ -1,6 +1,6 @@
-all:: check eng fr sound javasci
+all:: check eng fr sound javasci tclsci
 
-build:: eng fr sound javasci
+build:: eng fr sound javasci tclsci
 
 check:
   @Makesubdirs.bat
@@ -26,7 +26,11 @@ javasci :
 	@cd ..\modules\Javasci\help
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
 	@cd ..\..\..\man
-	
+
+tclsci :	
+	@cd ..\modules\tclsci\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man	
 
 distclean::	
 clean::
@@ -51,12 +55,10 @@ clean::
 	-del eng\statistics\*.htm /s
 	-del eng\strings\*.htm /s
 	-del eng\tdcs\*.htm /s
-	-del eng\tksci\*.htm /s
 	-del eng\translation\*.htm /s
 	-del eng\utilities\*.htm /s
 	-del eng\sparse\*.htm /s
 # -del eng\scicos\*.htm /s
-
 	-del fr\arma\*.htm /s
 	-del fr\control\*.htm /s
 	-del fr\dcd\*.htm /s
@@ -78,7 +80,6 @@ clean::
 	-del fr\statistics\*.htm /s
 	-del fr\strings\*.htm /s
 	-del fr\tdcs\*.htm /s
-	-del fr\tksci\*.htm /s
 	-del fr\translation\*.htm /s
 	-del fr\utilities\*.htm /s
 	-del fr\sparse\*.htm /s
