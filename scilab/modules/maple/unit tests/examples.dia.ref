@@ -1,0 +1,367 @@
+ 
+// example 1
+ 
+x=1
+ x  =
+ 
+    1.  
+ 
+ 
+link('foof1.o','foof1');
+shared archive loaded
+Link done
+ 
+ 
+out=foof1(x)
+ out  =
+ 
+    8.7811181  
+ 
+ 
+link('fooc1.o','fooc1','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc1(x)
+ out  =
+ 
+    8.7811181  
+ 
+ 
+ 
+out=foos1(x)
+ out  =
+ 
+    8.7811181  
+ 
+ 
+// example 2
+ 
+ 
+link('foof2.o','foof2');
+shared archive loaded
+Link done
+ 
+ 
+out=foof2()
+ out  =
+ 
+! - 85.  - 55.  - 37.  - 35.    97.    50.    79.    56.    49.    63. !
+!   57.  - 59.    45.  - 8.   - 93.    92.    43.  - 62.    77.    66. !
+!   54.  - 5.     99.  - 61.  - 50.  - 12.  - 18.    31.  - 26.  - 62. !
+!   1.   - 47.  - 91.  - 47.  - 61.    41.  - 58.  - 90.    53.  - 1.  !
+!   94.    83.  - 86.    23.  - 84.    19.  - 50.    88.  - 53.    85. !
+ 
+ 
+link('fooc2.o','fooc2','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc2()
+ out  =
+ 
+! - 85.  - 55.  - 37.  - 35.    97.    50.    79.    56.    49.    63. !
+!   57.  - 59.    45.  - 8.   - 93.    92.    43.  - 62.    77.    66. !
+!   54.  - 5.     99.  - 61.  - 50.  - 12.  - 18.    31.  - 26.  - 62. !
+!   1.   - 47.  - 91.  - 47.  - 61.    41.  - 58.  - 90.    53.  - 1.  !
+!   94.    83.  - 86.    23.  - 84.    19.  - 50.    88.  - 53.    85. !
+ 
+ 
+ 
+out=foos2()
+ out  =
+ 
+! - 85.  - 55.  - 37.  - 35.    97.    50.    79.    56.    49.    63. !
+!   57.  - 59.    45.  - 8.   - 93.    92.    43.  - 62.    77.    66. !
+!   54.  - 5.     99.  - 61.  - 50.  - 12.  - 18.    31.  - 26.  - 62. !
+!   1.   - 47.  - 91.  - 47.  - 61.    41.  - 58.  - 90.    53.  - 1.  !
+!   94.    83.  - 86.    23.  - 84.    19.  - 50.    88.  - 53.    85. !
+ 
+ 
+// example 3
+ 
+x=2
+ x  =
+ 
+    2.  
+ 
+ 
+link('fooc3.o','fooc3','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc3(x)
+ out  =
+ 
+!   1.4142136 !
+! - 0.1411200 !
+ 
+ 
+link('foof3.o','foof3');
+shared archive loaded
+Link done
+ 
+ 
+out=foof3(x)
+ out  =
+ 
+!   1.4142136 !
+! - 0.1411200 !
+ 
+ 
+ 
+out=foos3(x)
+ out  =
+ 
+!   1.4142136 !
+! - 0.1411200 !
+ 
+ 
+// example 4
+ 
+x=1
+ x  =
+ 
+    1.  
+ 
+y=2
+ y  =
+ 
+    2.  
+ 
+ 
+link('foof4.o','foof4');
+shared archive loaded
+Link done
+ 
+ 
+out=foof4(x,y)
+ out  =
+ 
+!   1.    2. !
+ 
+ 
+link('fooc4.o','fooc4','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc4(x,y)
+ out  =
+ 
+!   1.    2. !
+ 
+ 
+ 
+out=foos4(x,y)
+ out  =
+ 
+!   1.    2. !
+ 
+ 
+// example 5
+ 
+k=2
+ k  =
+ 
+    2.  
+ 
+x=[1,2,3]
+ x  =
+ 
+!   1.    2.    3. !
+ 
+ 
+link('foof5.o','foof5');
+shared archive loaded
+Link done
+ 
+ 
+out=foof5(k,x)
+ out  =
+ 
+!   2.           1. !
+! - 0.1411200    3. !
+ 
+ 
+link('fooc5.o','fooc5','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc5(k,x)
+ out  =
+ 
+!   2.           1. !
+! - 0.1411200    3. !
+ 
+ 
+ 
+out=foos5(k,x)
+ out  =
+ 
+!   2.           1. !
+! - 0.1411200    3. !
+ 
+ 
+// example 6
+ 
+k=2
+ k  =
+ 
+    2.  
+ 
+x=[1,2,3;4,5,6]
+ x  =
+ 
+!   1.    2.    3. !
+!   4.    5.    6. !
+ 
+ 
+link('foof6.o','foof6');
+shared archive loaded
+Link done
+ 
+ 
+out=foof6(k,x)
+ out  =
+ 
+!   6.     12. !
+!   20.    1.  !
+!   6.     3.  !
+ 
+ 
+link('fooc6.o','fooc6','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc6(k,x)
+ out  =
+ 
+!   6.     12. !
+!   20.    1.  !
+!   6.     3.  !
+ 
+ 
+ 
+out=foos6(k,x)
+ out  =
+ 
+!   6.     12. !
+!   20.    1.  !
+!   6.     3.  !
+ 
+ 
+// example 7
+ 
+k=2
+ k  =
+ 
+    2.  
+ 
+x=[1,2,3;4,5,6]
+ x  =
+ 
+!   1.    2.    3. !
+!   4.    5.    6. !
+ 
+ 
+link('foof7.o','foof7');
+shared archive loaded
+Link done
+ 
+ 
+out=foof7(k,x)
+ out  =
+ 
+(   20,   20) sparse matrix
+ 
+(    1,    1)        6. 
+(    2,    4)        12. 
+(   15,    6)      - 4. 
+ 
+ 
+link('fooc7.o','fooc7','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc7(k,x)
+ out  =
+ 
+(   20,   20) sparse matrix
+ 
+(    1,    1)        6. 
+(    2,    4)        12. 
+(   15,    6)      - 4. 
+ 
+ 
+ 
+out=foos7(k,x)
+ out  =
+ 
+(   20,   20) sparse matrix
+ 
+(    1,    1)        6. 
+(    2,    4)        12. 
+(   15,    6)      - 4. 
+ 
+ 
+// example 8
+ 
+ 
+link('foof8.o','foof8');
+shared archive loaded
+Link done
+ 
+ 
+out=foof8()
+ out  =
+ 
+!   49.    78.    17.    72.  - 99.  - 85.  - 86.    30.    80.    72. !
+!   66.  - 29.  - 91.  - 53.  - 19.  - 47.    68.  - 72.  - 87.    79. !
+!   43.  - 66.  - 53.  - 61.  - 23.  - 37.    31.  - 34.  - 42.    88. !
+! - 76.  - 65.    25.    28.  - 61.  - 60.    9.     29.  - 66.  - 32. !
+!   78.    39.    94.    68.  - 17.  - 98.  - 36.    40.    22.    5.  !
+ 
+ 
+link('fooc8.o','fooc8','c');
+shared archive loaded
+Link done
+ 
+ 
+out=fooc8()
+ out  =
+ 
+! - 88.  - 43.  - 73.    25.    4.   - 59.    62.  - 55.    25.    9.  !
+!   40.    61.    40.  - 78.    62.    11.    88.    1.     30.    81. !
+! - 5.   - 28.    4.   - 11.    10.    57.  - 82.  - 48.  - 11.    38. !
+! - 7.     58.  - 94.  - 68.    14.  - 35.  - 14.  - 9.   - 51.  - 73. !
+! - 73.  - 91.    1.     5.   - 86.    43.  - 4.   - 50.    50.    67. !
+ 
+ 
+ 
+out=foos8()
+ out  =
+ 
+! - 39.    8.   - 49.    11.    93.  - 14.  - 99.  - 67.    68.    45. !
+!   76.    6.     72.  - 28.  - 61.  - 59.    6.   - 87.    72.  - 46. !
+! - 68.  - 42.  - 47.  - 32.    37.  - 93.  - 58.  - 90.  - 53.  - 69. !
+! - 84.    46.    59.  - 56.  - 83.  - 91.    92.  - 93.    91.  - 54. !
+!   10.  - 77.  - 63.  - 90.    61.  - 3.   - 82.    16.  - 40.    21. !
+ 
+ 
+// example 9
+ 
+ 
+ 
+out=foos9(1,1,1)
+ out  =
+ 
+!   379.456 !
+!   12601.  !
+ 
