@@ -109,24 +109,27 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 			  DWORD result,dwsize=4;
 			  char Clef[MAX_PATH];
 			  int DontShowMessageNewGraphicMode;
+			  LONG TstRegCreateKeyEx=0;
 
 			  wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);  	
-			  RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
-
-			  if(IsDlgButtonChecked(hwnd, IDC_CHECKNEWGRAPHIC) == BST_CHECKED)
+			  TstRegCreateKeyEx=RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
+			  if (TstRegCreateKeyEx == ERROR_SUCCESS)
 			  {
-				  //The Box is CHECKED!
-				  DontShowMessageNewGraphicMode=1;
-				  RegSetValueEx(key, "DontShowMessageNewGraphicMode", 0, REG_DWORD, (LPBYTE)&DontShowMessageNewGraphicMode, dwsize);
-			  }
-			  else
-			  {
-				  //The Box is NOT checked!
-				  DontShowMessageNewGraphicMode=0;
-				  RegSetValueEx(key, "DontShowMessageNewGraphicMode", 0, REG_DWORD, (LPBYTE)&DontShowMessageNewGraphicMode, dwsize);
-			  }
+				  if(IsDlgButtonChecked(hwnd, IDC_CHECKNEWGRAPHIC) == BST_CHECKED)
+				  {
+					  //The Box is CHECKED!
+					  DontShowMessageNewGraphicMode=1;
+					  RegSetValueEx(key, "DontShowMessageNewGraphicMode", 0, REG_DWORD, (LPBYTE)&DontShowMessageNewGraphicMode, dwsize);
+				  }
+				  else
+				  {
+					  //The Box is NOT checked!
+					  DontShowMessageNewGraphicMode=0;
+					  RegSetValueEx(key, "DontShowMessageNewGraphicMode", 0, REG_DWORD, (LPBYTE)&DontShowMessageNewGraphicMode, dwsize);
+				  }
 
-			  RegCloseKey(key);
+				  RegCloseKey(key);
+			  }
 		  
 			  EndDialog(hwnd, IDOK);
 		}

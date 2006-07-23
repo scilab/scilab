@@ -488,7 +488,7 @@ void WriteRegistryTxt (LPTW lptw)
 	Sauvegarde dans HKEY_CURRENT_USER car données dépendant de l'utilisateur
 	*/
 
-	HKEY key;
+	HKEY key = NULL;
 	DWORD result,dwsize=4;
 	RECT rect;
 	int iconic;
@@ -502,45 +502,49 @@ void WriteRegistryTxt (LPTW lptw)
   	int TextFontSize;
 	BOOL ShowButtons;
 	int LanguageCode;
+	LONG TstRegCreateKeyEx=0;
 
   	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);  	
-  	RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
-  	iconic = IsIconic (lptw->hWndParent);
-  	if (iconic) ShowWindow (lptw->hWndParent, SW_SHOWNORMAL);
-  	
-  	GetWindowRect (lptw->hWndParent, &rect);
-  	RegSetValueEx(key, "TextOriginX", 0, REG_DWORD, (LPBYTE)&rect.left, dwsize);
-  	RegSetValueEx(key, "TextOriginY", 0, REG_DWORD, (LPBYTE)&rect.top, dwsize);
-  		
-  	SizeX=rect.right - rect.left;
-  	SizeY=rect.bottom - rect.top;
-  	RegSetValueEx(key, "TextSizeX", 0, REG_DWORD, (LPBYTE)&SizeX, dwsize);
-  	RegSetValueEx(key, "TextSizeY", 0, REG_DWORD, (LPBYTE)&SizeY, dwsize);
-  	  	
-  	RegSetValueEx(key, "TextMinimized", 0, REG_DWORD, (LPBYTE)&iconic, dwsize);
- 	
-  	strcpy(TextFontName,lptw->fontname);
-  	RegSetValueEx(key, "TextFontName", 0, REG_SZ, (LPBYTE)TextFontName, strlen(TextFontName)+1);
-  	  	
-  	TextFontSize=lptw->fontsize;
-  	RegSetValueEx(key, "TextFontSize", 0, REG_DWORD, (LPBYTE)&TextFontSize, dwsize);
-  	
-  	SysColors=lptw->bSysColors;
-	RegSetValueEx(key, "SysColors", 0, REG_DWORD, (LPBYTE)&SysColors, dwsize);
+  	TstRegCreateKeyEx = RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
+	if (TstRegCreateKeyEx == ERROR_SUCCESS)
+	{
+		iconic = IsIconic (lptw->hWndParent);
+		if (iconic) ShowWindow (lptw->hWndParent, SW_SHOWNORMAL);
 
-	TextColor=GetIhmTextColor();
-	RegSetValueEx(key, "TextColor", 0, REG_DWORD, (LPBYTE)&TextColor, dwsize);
+		GetWindowRect (lptw->hWndParent, &rect);
+		RegSetValueEx(key, "TextOriginX", 0, REG_DWORD, (LPBYTE)&rect.left, dwsize);
+		RegSetValueEx(key, "TextOriginY", 0, REG_DWORD, (LPBYTE)&rect.top, dwsize);
 
-	BackgroundColor= GetIhmTextBackgroundColor();
-	RegSetValueEx(key, "BackgroundColor", 0, REG_DWORD, (LPBYTE)&BackgroundColor, dwsize);
+		SizeX=rect.right - rect.left;
+		SizeY=rect.bottom - rect.top;
+		RegSetValueEx(key, "TextSizeX", 0, REG_DWORD, (LPBYTE)&SizeX, dwsize);
+		RegSetValueEx(key, "TextSizeY", 0, REG_DWORD, (LPBYTE)&SizeY, dwsize);
 
- 	ShowButtons=lptw->lpmw->ShowToolBar;
-	RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ShowButtons, dwsize);
-	
-	LanguageCode=lptw->lpmw->CodeLanguage;
-	RegSetValueEx(key, "Language", 0, REG_DWORD, (LPBYTE)&LanguageCode, dwsize);
-	
-	RegCloseKey(key);
+		RegSetValueEx(key, "TextMinimized", 0, REG_DWORD, (LPBYTE)&iconic, dwsize);
+
+		strcpy(TextFontName,lptw->fontname);
+		RegSetValueEx(key, "TextFontName", 0, REG_SZ, (LPBYTE)TextFontName, strlen(TextFontName)+1);
+
+		TextFontSize=lptw->fontsize;
+		RegSetValueEx(key, "TextFontSize", 0, REG_DWORD, (LPBYTE)&TextFontSize, dwsize);
+
+		SysColors=lptw->bSysColors;
+		RegSetValueEx(key, "SysColors", 0, REG_DWORD, (LPBYTE)&SysColors, dwsize);
+
+		TextColor=GetIhmTextColor();
+		RegSetValueEx(key, "TextColor", 0, REG_DWORD, (LPBYTE)&TextColor, dwsize);
+
+		BackgroundColor= GetIhmTextBackgroundColor();
+		RegSetValueEx(key, "BackgroundColor", 0, REG_DWORD, (LPBYTE)&BackgroundColor, dwsize);
+
+		ShowButtons=lptw->lpmw->ShowToolBar;
+		RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ShowButtons, dwsize);
+
+		LanguageCode=lptw->lpmw->CodeLanguage;
+		RegSetValueEx(key, "Language", 0, REG_DWORD, (LPBYTE)&LanguageCode, dwsize);
+
+		RegCloseKey(key);
+	}
 	
 	if (iconic) ShowWindow (lptw->hWndParent, SW_SHOWMINIMIZED);
   
@@ -561,23 +565,29 @@ void WriteRegistryGraph (struct BCG *ScilabGC)
 	RECT rect;
 	long GraphSizeX,GraphSizeY;
 	int iconic;
+	LONG TstRegCreateKeyEx=0;
+
 
 	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);  	
-  	RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
-  	iconic = IsIconic (ScilabGC->hWndParent);
-	if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
+  	TstRegCreateKeyEx=RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
+	if (TstRegCreateKeyEx == ERROR_SUCCESS)
+	{
+		iconic = IsIconic (ScilabGC->hWndParent);
+		if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
 
-	GetWindowRect (ScilabGC->hWndParent, &rect);
-	RegSetValueEx(key, "GraphOriginX", 0, REG_DWORD, (LPBYTE)&rect.left, dwsize);
-  	RegSetValueEx(key, "GraphOriginY", 0, REG_DWORD, (LPBYTE)&rect.top, dwsize);
+		GetWindowRect (ScilabGC->hWndParent, &rect);
+		RegSetValueEx(key, "GraphOriginX", 0, REG_DWORD, (LPBYTE)&rect.left, dwsize);
+		RegSetValueEx(key, "GraphOriginY", 0, REG_DWORD, (LPBYTE)&rect.top, dwsize);
 
-	GraphSizeX=rect.right - rect.left;
-	GraphSizeY=rect.bottom - rect.top;
-	RegSetValueEx(key, "GraphSizeX", 0, REG_DWORD,(LPBYTE)&GraphSizeX, dwsize);
-  	RegSetValueEx(key, "GraphSizeY", 0, REG_DWORD,(LPBYTE)&GraphSizeY, dwsize);
-	RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ScilabGC->lpmw.ShowToolBar, dwsize);
+		GraphSizeX=rect.right - rect.left;
+		GraphSizeY=rect.bottom - rect.top;
+		RegSetValueEx(key, "GraphSizeX", 0, REG_DWORD,(LPBYTE)&GraphSizeX, dwsize);
+		RegSetValueEx(key, "GraphSizeY", 0, REG_DWORD,(LPBYTE)&GraphSizeY, dwsize);
+		RegSetValueEx(key, "ToolBar", 0, REG_DWORD, (LPBYTE)&ScilabGC->lpmw.ShowToolBar, dwsize);
 
-	RegCloseKey(key);
+		RegCloseKey(key);
+	}
+  	
 	if (iconic) ShowWindow (ScilabGC->hWndParent, SW_SHOWMINIMIZED);
   
 }
