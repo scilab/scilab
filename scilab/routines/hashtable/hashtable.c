@@ -3,6 +3,7 @@
 /* HUANG Xu */
 /*-----------------------------------------------------------------------------------*/ 
 #include "hashtable.h"
+#include <stdio.h>
 #ifdef _MSC_VER
 	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #else
@@ -47,8 +48,8 @@ char *SearchHash(GHashTable *hash_table, const char* key)
 
 	if (ElemHash)
 	{
-		RetElem=(char*) MALLOC (sizeof(ElemHash));
-		strcpy(RetElem,ElemHash);
+		RetElem=(char*) MALLOC ((sizeof(ElemHash)+1)*sizeof(char));
+		sprintf(RetElem,"%s",ElemHash);
 	}
 	return RetElem;
 }
