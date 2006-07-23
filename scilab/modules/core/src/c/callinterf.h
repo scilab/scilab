@@ -24,7 +24,7 @@ extern void    /* 11  */ C2F(matopt)();
 extern void    /* 12  */ C2F(matode)();
 extern void    /* 13  */ C2F(matsys)();
 extern void    /* 14  */ C2F(matusr)();
-extern void    /* 15  */ C2F(metane)();
+extern void    /* 15  */ C2F(gw_metanet)();
 extern void    /* 16  */ C2F(polelm)();
 extern void    /* 17  */ C2F(lstelm)();
 extern void    /* 18  */ C2F(sigelm)();
@@ -98,7 +98,7 @@ static OpTab Interfaces[] ={
 	/* 12  */ {C2F(matode)},
 	/* 13  */ {C2F(matsys)},
 	/* 14  */ {C2F(matusr)},
-	/* 15  */ {C2F(metane)},
+	/* 15  */ {C2F(gw_metanet)},
 	/* 16  */ {C2F(polelm)},
 	/* 17  */ {C2F(lstelm)},
 	/* 18  */ {C2F(sigelm)},

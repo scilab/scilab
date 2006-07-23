@@ -39,7 +39,7 @@
 #include "../../../../routines/interf/usr.fundef"
 
 #define  IN_metane  15
-#include "../../../../routines/metanet/metanet.fundef"  
+#include "../../metanet/sci_gateway/metanet.fundef"  
 
 #define  IN_polelm  16
 #include "../../../../routines/interf/polelm.fundef"  
@@ -141,5 +141,5 @@
 #include "../../../../routines/time/time.fundef"
 
 #define  IN_intsound 49
-#include "../../../../routines/sound/sound.fundef"
+#include "../../sound/sci_gateway/sound.fundef"  
 

@@ -32,7 +32,6 @@ function %helps=initial_help_chapters(language)
 				"nonlinear";
 				"signal";
 				"arma";
-				"metanet";
 				"translation";
 				"tdcs";
 				"statistics";
@@ -70,7 +69,6 @@ function %helps=initial_help_chapters(language)
 			"Optimization and simulation";
 			"Signal Processing toolbox";
 			"Arma modelisation and simulation toolbox";
-			"Metanet: graph and network toolbox";
 			"Language or data translations";
 			"TdCs";
 			"Statistic basics";
@@ -105,7 +103,6 @@ function %helps=initial_help_chapters(language)
 			"Optimisation et simulation";
 			"Traitement du signal";
 			"Modélisation et simulation ARMA";
-			"Metanet : graphes et réseaux";
 			"Génération de code, traduction de données";
 			"TdCs";
 			"Statistiques";

@@ -229,12 +229,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "menusX", "routines\menusX\m
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "metanet", "routines\metanet\metanet.vcproj", "{E9741474-5C3A-4101-8B85-AC5221018C05}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "metanet", "modules\metanet\src\c\metanet.vcproj", "{E9741474-5C3A-4101-8B85-AC5221018C05}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "metanet_f", "routines\metanet\metanet_f\metanet_f.vfproj", "{1D5E735D-176E-4C6D-B980-3C2EC7051F90}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "metanet_f", "modules\metanet\src\fortran\metanet_f.vfproj", "{1D5E735D-176E-4C6D-B980-3C2EC7051F90}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection

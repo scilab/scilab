@@ -10,7 +10,6 @@ CurrentDirectory=pwd();
  "calpol",
  "elem",
  "int",
- "metanet",
  "mtlb",
  "optim",
  "robust",
@@ -19,7 +18,6 @@ CurrentDirectory=pwd();
  "statistics",
  "tdcs",
  "texmacs",
- 
  "xdess",
  "sparse",
  "gui",
@@ -28,9 +26,11 @@ CurrentDirectory=pwd();
  "pvm"];
  
  if MSDOS then
+   Directories=[Directories;"SCI/modules/metanet/macros"];
    Directories=[Directories;"SCI/modules/sound/macros"];
    Directories=[Directories;"SCI/modules/tclsci/macros"];
  else
+ 	Directories=[Directories;"metanet"];
    Directories=[Directories;"tksci"];
    Directories=[Directories;"sound"]; 
  end
