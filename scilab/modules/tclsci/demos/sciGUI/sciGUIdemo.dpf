@@ -1,0 +1,58 @@
+# sciGUI demo
+# by Jaime Urzua
+#    mailto:jaime_urzua@yahoo.com
+<slide>
+<img>logo01.gif
+<tx>sciGUI is a GUI collection developed by Jaime Urzua.
+<tx>
+<tx>The code is a mix of scilab + Tk/Tcl and some extra files.
+<tx>
+<tx>Press "next" button to show somes examples.
+
+<slide silen>waitbar
+<tx>This is an example of waitbar:
+<tx>
+<cm>winId=waitbar(0,"Example of waitbar");
+<cm>realtimeinit(0.5);
+<cm>for j=0:0.1:1,
+<cm> realtime(j*5);
+<cm> waitbar(j,winId);
+<cm>end;
+<cm>winclose(winId);
+
+<slide>progressionbar
+<tx>This is an example of progressionbar:
+<tx>
+<cm>winId=progressionbar("This is an example");
+<cm>realtimeinit(0.5);
+<cm>for j=0:0.1:1,
+<cm> realtime(j*5);
+<cm> progressionbar(winId);
+<cm>end;
+<cm>winclose(winId);
+
+<slide>buttondialog
+<tx>This is an example of buttondialog:
+<cm>op=buttondialog("Choose an option","use internal|use external|later")
+<cm>select op,
+<cm> case 0 then disp('Choose somethig!');
+<cm> case 1 then disp('Internal');
+<cm> case 2 then disp('External');
+<cm> case 3 then disp('Later');
+<cm>end;
+<slide>Variable browser
+<tx>sciGUI implements a variable browser, to lunch, just type:
+<tx>
+<cm>browsevar()
+
+<slide>Help browser
+<tx>sciGUI implements a interactive help browser, to lunch, just type:
+<tx>
+<cm>bhelp();
+
+<slide>demoplay
+<tx>sciGUI implements a interactive demo player. This demo is itself an example. type "help demoplay" to get more information
+
+<slide>That's all
+
+

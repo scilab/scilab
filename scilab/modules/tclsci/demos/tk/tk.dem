@@ -1,0 +1,29 @@
+// Copyright INRIA
+mode(-1)
+if ~with_tk() then
+  x_message('Sorry this version has not been built with tcl/tk interface')
+  return
+end
+oldln=lines();
+lines(0)
+deff('[]=demoex(num)','execstr(demolist(num,2))')
+tkpath=SCI+'/demos/tk/'
+if MSDOS then tkpath=strsubst(tkpath,'/','\'),end
+
+demolist=[
+'Color','exec(tkpath+''tcolor.sce'')';
+'Puzzle','exec(tkpath+''puzzle.sce'')';
+'Scroll','exec(tkpath+''scroll.sce'')';
+'Scale','exec(tkpath+''scale.sce'')';
+'Uicontrol','exec(tkpath+''uicontrol1.sce'')';
+]
+while %t then
+  num=tk_choose(demolist(:,1),'demo of TCL/TK interface and uicontrol');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+  end
+  sleep(1);
+end
