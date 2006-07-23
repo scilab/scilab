@@ -1,6 +1,6 @@
-all:: check eng fr sound javasci tclsci
+all:: check eng fr sound javasci tclsci metanet
 
-build:: eng fr sound javasci tclsci
+build:: eng fr sound javasci tclsci metanet
 
 check:
   @Makesubdirs.bat
@@ -31,6 +31,11 @@ tclsci :
 	@cd ..\modules\tclsci\help
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
 	@cd ..\..\..\man	
+	
+metanet :	
+	@cd ..\modules\metanet\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man	
 
 distclean::	
 clean::
@@ -44,7 +49,6 @@ clean::
 	-del eng\gui\*.htm /s
 	-del eng\identification\*.htm /s
 	-del eng\linear\*.htm /s
-	-del eng\metanet\*.htm /s
 	-del eng\mtlb\*.htm /s
 	-del eng\nonlinear\*.htm /s
 	-del eng\polynomials\*.htm /s
@@ -69,7 +73,6 @@ clean::
 	-del fr\gui\*.htm /s
 	-del fr\identification\*.htm /s
 	-del fr\linear\*.htm /s
-	-del fr\metanet\*.htm /s
 	-del fr\mtlb\*.htm /s
 	-del fr\nonlinear\*.htm /s
 	-del fr\polynomials\*.htm /s
