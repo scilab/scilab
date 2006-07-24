@@ -7,12 +7,12 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/time.a
 
 
-OBJSC = mattime.o \
-        intgetdate.o getdate.o \
-        intcalendar.o \
-        inttimer.o timer.o \
-        intsleep.o intxpause.o \
-        intrealtime.o realtime.o
+OBJSC = gw_time.o \
+        sci_getdate.o getdate.o \
+        sci_calendar.o \
+        sci_timer.o timer.o \
+        sci_sleep.o sci_xpause.o \
+        sci_realtime.o realtime.o
 
 
 include ../../Makefile.incl
