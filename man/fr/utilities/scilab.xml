@@ -45,7 +45,7 @@
 	l'utilisateur. Les valeurs possible pour sont <VERB>-l fr</VERB>
 	pour sélectionner le francais et <VERB>-l eng</VERB>
 	pour sélectionner l'anglais. La langue par défaut est l'anglais,
-	ce défaut est fixé dans le fichier <VERB>scilab.star</VERB>.</SP> 
+	ce défaut est fixé dans le fichier <VERB>scilab.start</VERB>.</SP> 
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM  label='scilab -link &lt;objects&gt;'> 
@@ -67,7 +67,7 @@
 	<SP>: Spécifie la valeur initiale de la stacksize, cette option est a
 	  utiliser avec l'option -ns. Lorsque Scilab est appelé sans l'option
 	  -ns  la valeur initiale de la stacksize est définie par le script
-	  scilab.star.</SP> 
+	  scilab.start.</SP> 
       </DESCRIPTION_ITEM>
  
       <DESCRIPTION_ITEM label="-nb">
@@ -77,7 +77,7 @@
 
       <DESCRIPTION_ITEM  label='-ns'> 
 	<SP>: si cette option est présente le script de démarrage
-	  <VERB>SCI/scilab.star</VERB> n&apos;est pas exécuté.</SP>  
+	  <VERB>SCI/scilab.start</VERB> n&apos;est pas exécuté.</SP>  
       </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label="-nouserstartup">

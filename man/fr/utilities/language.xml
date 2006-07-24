@@ -16,7 +16,7 @@
   </P>
   <P>
     Cette variable est définie dans le fichier d'initialisation
-    <VERB>scilab.star</VERB>. On peut la changer là.
+    <VERB>scilab.start</VERB>. On peut la changer là.
   </P>
   <P>
     Quand on lance Scilab, on peut donner la valeur de la langue comme

@@ -31,7 +31,7 @@
       possible de choisir un autre browser. La variable globale
       <VERB>%browsehelp</VERB> contient une chaîne de caractères définissant
       quel browser doit être utilisé. Sa valeur initiale est fixée par le
-      fichier startup <VERB>scilab.star</VERB> est peut être changée. </P>
+      fichier startup <VERB>scilab.start</VERB> est peut être changée. </P>
 
 
       <P>Si cette variable est affectée à la matrice vide ( <VERB>global

@@ -18,7 +18,7 @@ répertoire_du_chapitre    titre_du_chapitre
     <VERB>%helps(2,:)</VERB>.
   </P>
   <P>
-    La valeur par défaut de <VERB>%helps</VERB> est initialisée dans le fichier <VERB>SCI+&quot;scilab.star&quot;</VERB>.
+    La valeur par défaut de <VERB>%helps</VERB> est initialisée dans le fichier <VERB>SCI+&quot;scilab.start&quot;</VERB>.
   </P>
   <P>
     Pour ajouter de nouveaux chapitres d&apos;aide il suffit d&apos;ajouter des lignes à la variable <VERB>%helps</VERB>, par exemple dans le fichier utilisateur de démarrage <VERB>.scilab</VERB>.

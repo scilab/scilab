@@ -15,7 +15,7 @@
     <VERB>&quot;fr&quot;</VERB> for French.</P>
     <P>
     This variable is defined in the startup file
-    <VERB>scilab.star</VERB>. It can be changed there.</P>
+    <VERB>scilab.start</VERB>. It can be changed there.</P>
     <P>
     When launching Scilab, you can also give the value of language
     as an argument: <VERB>scilab -l &lt;language&gt;</VERB> for Unix and

@@ -49,7 +49,7 @@
 	  language. The possible <VERB>lang</VERB> values are
 	  <VERB>'fr'</VERB> for french and <VERB>'eng'</VERB> for
 	  english. The default language is english. This default
-	  value is fixed the <VERB>scilab.star</VERB> file.</SP>
+	  value is fixed the <VERB>scilab.start</VERB> file.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="scilab -link &lt;objects&gt;">
@@ -72,7 +72,7 @@
 
       <DESCRIPTION_ITEM label="-mem N">
 	<SP>:set the initial stacksize, for use with -ns option. Without
-	  -ns option the initial stacksize is set by scilab.star script.</SP>
+	  -ns option the initial stacksize is set by scilab.start script.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="-nb">
@@ -82,7 +82,7 @@
 
       <DESCRIPTION_ITEM label="-ns">
 	<SP>:if this option is  present the startup file
-	  <VERB>SCI/scilab.star</VERB> and the user startup files
+	  <VERB>SCI/scilab.start</VERB> and the user startup files
 	  <VERB>.scilab</VERB>, <VERB>scilab.ini</VERB> are not executed.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-nouserstartup">

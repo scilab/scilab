@@ -47,11 +47,11 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-mgetl('SCI/scilab.star',5)
+mgetl('SCI/scilab.start',5)
 
 mgetl SCI/macros/elem/erf.sci
 
-fd=mopen('SCI/scilab.star','r')
+fd=mopen('SCI/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
  ]]>

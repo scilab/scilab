@@ -83,7 +83,7 @@
   </SECTION>
   <EXAMPLE>
 <![CDATA[
-w=fileinfo(SCI+'/scilab.star')
+w=fileinfo(SCI+'/scilab.start')
 getdate(w(6))
    ]]>
   </EXAMPLE>

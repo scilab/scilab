@@ -17,7 +17,7 @@
     <VERB>%helps(2,:)</VERB>.</P>
     <P>
     The variable <VERB>%helps</VERB> is defined in the Scilab startup
-    file <VERB>SCI+&quot;/scilab.star&quot;</VERB>.</P>
+    file <VERB>SCI+&quot;/scilab.start&quot;</VERB>.</P>
     <P>
     To add a new help directory, the user should add a row to
     the variable <VERB>%helps</VERB>. (One row for each directory).</P>

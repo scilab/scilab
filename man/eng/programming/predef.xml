@@ -28,7 +28,7 @@
   </DESCRIPTION>
   <SECTION label="Remark">
     <P>
-    A number of protected variables are set in the start-up file <VERB>SCIDIR/scilab.star</VERB>.  User may in particular set its own predefined variables in user's startup file <VERB>home/.scilab</VERB></P>
+    A number of protected variables are set in the start-up file <VERB>SCIDIR/scilab.start</VERB>.  User may in particular set its own predefined variables in user's startup file <VERB>home/.scilab</VERB></P>
   </SECTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

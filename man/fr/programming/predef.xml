@@ -44,7 +44,7 @@
   <SECTION label='REMARQUE'>
     <P>
       Le nombre de variables protégées est défini dans le fichier de démarrage
-      <VERB>SCIDIR/scilab.star</VERB>.  L&apos;utilisateur a la possibilité de
+      <VERB>SCIDIR/scilab.start</VERB>.  L&apos;utilisateur a la possibilité de
       définir ses propres variables protégées dans le fichier de démarrage
       <VERB>home/.scilab</VERB> 
     </P>
