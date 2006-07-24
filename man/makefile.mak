@@ -1,6 +1,6 @@
-all:: check eng fr sound javasci tclsci metanet
+all:: check eng fr sound javasci tclsci metanet time
 
-build:: eng fr sound javasci tclsci metanet
+build:: eng fr sound javasci tclsci metanet time
 
 check:
   @Makesubdirs.bat
@@ -34,6 +34,11 @@ tclsci :
 	
 metanet :	
 	@cd ..\modules\metanet\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man	
+
+time :	
+	@cd ..\modules\time\help
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
 	@cd ..\..\..\man	
 
