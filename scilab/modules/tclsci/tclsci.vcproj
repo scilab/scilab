@@ -186,10 +186,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_TCL_UnsetVar.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\sci_close.c"
 				>
 			</File>
@@ -255,6 +251,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\sci_TCL_SetVar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_TCL_UnsetVar.c"
 				>
 			</File>
 			<File
@@ -415,6 +415,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\sci_gateway\tclsci.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
