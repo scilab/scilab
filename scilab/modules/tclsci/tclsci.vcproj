@@ -186,7 +186,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sc_TCL_UnsetVar.c"
+				RelativePath=".\sci_gateway\sci_TCL_UnsetVar.c"
 				>
 			</File>
 			<File
