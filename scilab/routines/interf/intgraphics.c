@@ -68,43 +68,44 @@ extern int scixs2ps      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixs2fig     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixsort      _PARAMS((char *fname, unsigned long fname_len));
 extern int sciwinsid     _PARAMS((char *fname, unsigned long fname_len));
-extern int sciparam3d1   _PARAMS((char *fname, unsigned long fname_len));
-extern int scixstringb   _PARAMS((char *fname, unsigned long fname_len));
-extern int scimatplot    _PARAMS((char *fname, unsigned long fname_len));
-extern int scicontour2d1 _PARAMS((char *fname, unsigned long fname_len));
-extern int scic2dex      _PARAMS((char *fname, unsigned long fname_len));
-extern int scigray2plot  _PARAMS((char *fname, unsigned long fname_len));
-extern int scixgraduate  _PARAMS((char *fname, unsigned long fname_len));
-extern int scixname      _PARAMS((char *fname, unsigned long fname_len));
-extern int scixaxis      _PARAMS((char *fname, unsigned long fname_len));
-extern int sciseteventhandler _PARAMS((char *fname, unsigned long fname_len));
-extern int int_gtkhelp   _PARAMS((char *fname, unsigned long fname_len));
-extern int gset          _PARAMS((char *fname, unsigned long fname_len));
-extern int gget          _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_delete    _PARAMS((char *fname, unsigned long fname_len));
-extern int addcb         _PARAMS((char *fname, unsigned long fname_len));
-extern int copy          _PARAMS((char *fname, unsigned long subwinparenttarget));
-extern int move          _PARAMS((char *fname, unsigned long fname_len));
-extern int glue _PARAMS((char *fname, unsigned long fname_len));
-extern int unglue _PARAMS((char *fname, unsigned long fname_len));
-extern int drawnow _PARAMS((char *fname, unsigned long fname_len));
-extern int drawlater _PARAMS((char *fname, unsigned long fname_len));
-extern int draw _PARAMS((char *fname, unsigned long fname_len));
-extern int scixs2gif _PARAMS((char *fname,unsigned long fname_len));
-extern int scixs2ppm _PARAMS((char *fname,unsigned long fname_len));
-extern int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
-extern int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len));
-extern int HomeFunction _PARAMS((char *fname, unsigned long fname_len));
-extern int scisetposfig _PARAMS((char *fname,unsigned long fname_len));
-extern int XSaveNative _PARAMS((char *fname, unsigned long fname_len));
-extern int scizoomrect _PARAMS((char *fname, unsigned long fname_len));
-extern int sciunzoom _PARAMS((char *fname,unsigned long fname_len));
-extern int intxs2bmp _PARAMS((char *fname,unsigned long fname_len));
-extern int intxs2emf _PARAMS((char *fname,unsigned long fname_len));
-extern int intUImenu _PARAMS((char *fname,unsigned long fname_len));
-extern int scinewaxes _PARAMS((char *fname,unsigned long fname_len));
-extern int sciRelocateHandle _PARAMS((char *fname,unsigned long fname_len));
-int intshowalluimenushandles _PARAMS((char *fname,unsigned long fname_len));
+extern int sciparam3d1                    _PARAMS((char *fname, unsigned long fname_len));
+extern int scixstringb                    _PARAMS((char *fname, unsigned long fname_len));
+extern int scimatplot                     _PARAMS((char *fname, unsigned long fname_len));
+extern int scicontour2d1                  _PARAMS((char *fname, unsigned long fname_len));
+extern int scic2dex                       _PARAMS((char *fname, unsigned long fname_len));
+extern int scigray2plot                   _PARAMS((char *fname, unsigned long fname_len));
+extern int scixgraduate                   _PARAMS((char *fname, unsigned long fname_len));
+extern int scixname                       _PARAMS((char *fname, unsigned long fname_len));
+extern int scixaxis                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sciseteventhandler             _PARAMS((char *fname, unsigned long fname_len));
+extern int int_gtkhelp                    _PARAMS((char *fname, unsigned long fname_len));
+extern int gset                           _PARAMS((char *fname, unsigned long fname_len));
+extern int gget                           _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_delete                     _PARAMS((char *fname, unsigned long fname_len));
+extern int addcb                          _PARAMS((char *fname, unsigned long fname_len));
+extern int copy                           _PARAMS((char *fname, unsigned long subwinparenttarget));
+extern int move                           _PARAMS((char *fname, unsigned long fname_len));
+extern int glue                           _PARAMS((char *fname, unsigned long fname_len));
+extern int unglue                         _PARAMS((char *fname, unsigned long fname_len));
+extern int drawnow                        _PARAMS((char *fname, unsigned long fname_len));
+extern int drawlater                      _PARAMS((char *fname, unsigned long fname_len));
+extern int draw                           _PARAMS((char *fname, unsigned long fname_len));
+extern int scixs2gif                      _PARAMS((char *fname,unsigned long fname_len));
+extern int scixs2ppm                      _PARAMS((char *fname,unsigned long fname_len));
+extern int ClearScreenConsole             _PARAMS((char *fname, unsigned long fname_len));
+extern int ShowWindowFunction             _PARAMS((char *fname, unsigned long fname_len));
+extern int HomeFunction                   _PARAMS((char *fname, unsigned long fname_len));
+extern int scisetposfig                   _PARAMS((char *fname,unsigned long fname_len));
+extern int XSaveNative                    _PARAMS((char *fname, unsigned long fname_len));
+extern int scizoomrect                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sciunzoom                      _PARAMS((char *fname,unsigned long fname_len));
+extern int intxs2bmp                      _PARAMS((char *fname,unsigned long fname_len));
+extern int intxs2emf                      _PARAMS((char *fname,unsigned long fname_len));
+extern int intUImenu                      _PARAMS((char *fname,unsigned long fname_len));
+extern int scinewaxes                     _PARAMS((char *fname,unsigned long fname_len));
+extern int intshowalluimenushandles       _PARAMS(( char * fname, unsigned long fname_len ) ) ;
+extern int sciRelocateHandle              _PARAMS(( char * fname, unsigned long fname_len ) ) ;
+extern int sciSwapHandles                 _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
 	{scichamp,"champ"},	
@@ -195,7 +196,8 @@ static MatdesTable Tab[]={
 	{gset,"set"},
 	{scinewaxes,"newaxes"},
         {sciRelocateHandle,"relocate_handle"},
-/* NG end */
+        {sciSwapHandles,"swap_handles"},
+        /* NG end */
 	{scixsort,"gsort"},
 	{int_gtkhelp,"help_gtk"},
 	{ClearScreenConsole,"clc"},

@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE,   INRIA 2001-2002
+ *    Djalel ABDEMOUCHE,   INRIA 2002-2004
+ *    Fabrice Leray,       INRIA 2004-2006
+ *    Jean-Baptiste Silvy, INRIA 2005-xxxx
  *    Comment:
  *    This file contains all functions used to GET the properties of graphics
  *    objects.
@@ -143,7 +144,7 @@ extern unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
 /* extern struct BCG *sciGetCurrentScilabXgc (); /\* GET *\/ */
 
 extern sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
-extern BOOL Check3DObjs(sciPointObj *pobj); /* GET */
+
 extern sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
 
 /* extern BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
@@ -178,5 +179,15 @@ extern sciTextAlignment sciGetAlignment( sciPointObj * pObj ) ;
 extern void sciGetUserSize( sciPointObj * pObj, double * width, double * height ) ;
 
 extern int sciGetNbChildren( sciPointObj * pObj ) ; /* GET */
+
+extern BOOL sciGetIsAccessibleChild( sciPointObj * pObj ) ; /* GET */
+
+extern int sciGetNbAccessibleChildren( sciPointObj * pObj ) ; /* GET */
+
+extern BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj ) ; /* GET */
+
+extern int sciGetSubwinNbSurf( sciPointObj * pObj ) ;
+
+extern int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
 #endif /* __SCI_GET_PROPERTY__ */

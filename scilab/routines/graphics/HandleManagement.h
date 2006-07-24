@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE  , INRIA 2001-2002
+ *    Djalel ABDEMOUCHE  , INRIA 2002-2004
+ *    Fabrice Leray      , INRIA 2004-2006
+ *    Jean-Baptiste Silvy, INRIA 2005-xxxx
  *    Comment:
  *    This file contains all functions used in graphics handle management.
  --------------------------------------------------------------------------*/
@@ -32,11 +33,15 @@ extern BOOL sciAddThisToItsParent (sciPointObj * pthis,  sciPointObj * pparent);
 extern BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent); /* HANDLE MANAGEMENT */
 extern sciSons *sciGetSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
+extern sciSons * sciGetNextAccessibleSon( sciSons * son ) ; /* HANDLE MANAGEMENT */
+extern sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj ) ; /* HANDLE MANAGEMENT */
+extern sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
 extern long sciGetCurrentHandle (); /* HANDLE MANAGEMENT */
 extern sciPointObj *sciGetCurrentObj ();  /* HANDLE MANAGEMENT */
 extern int sciSetCurrentObj (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern int sciGetNbFigures( void ) ;
 extern int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle ) ;
 extern BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;
+extern int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
 
 #endif /* __SCI_HANDLE_MANAGEMENT__ */

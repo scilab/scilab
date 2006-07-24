@@ -393,7 +393,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   sciTypeOf3D typeof3d;
   integer flagcolor;  
   long *hdltab;
-  int i, ok, mn;
+  int i, mn;
+  BOOL needMerge = FALSE ;
   sciPointObj *psubwin = NULL, *pobj = NULL;
   double drect[6];
   char * loc = NULL;
@@ -531,8 +532,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
-  ok=0;  
-  if (ChildrenCounter(psubwin)>0) ok=1;
+  if ( ChildrenCounter(psubwin) > 0 )
+  { 
+    needMerge = TRUE ;
+  }
   
   if ((sciGetGraphicMode (psubwin)->autoscaling)) {
     /* compute and merge new specified bounds with psubwin->Srect */
@@ -732,23 +735,6 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       }
 
 
-/*       	if ((*n > 0) && (zcol != (double *)NULL)) { */
-/*       	  if ((int) zcol[i] > 0){ */
-/*       	    sciSetForeground (pobj, (int) zcol[i]); */
-/*       	    sciSetIsMark(pobj, FALSE); */
-/*       	    sciSetIsLine(pobj,  TRUE); */
-/*       	  } */
-/*       	  else { */
-/*       /\* 	    sciSetMarkSizeUnit(pobj,2); /\\* force switch to tabulated mode : old syntax *\\/ *\/ */
-/*        	    sciSetIsMark(pobj,TRUE); */
-/*       	    sciSetIsLine(pobj,FALSE); */
-/*       	    sciSetMarkStyle(pobj,(int) -zcol[i]); */
-/*       	  } */
-/*       	} */
-/*       	hdltab[i]=sciGetHandle(pobj); */
-/*             } */
-
-
       /** construct Compound and make it current object**/
       if ( *n>1 ) sciSetCurrentObj (ConstructCompound (hdltab, *n));  
       FREE(hdltab);
@@ -758,7 +744,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * Merge with previous 3D plots (build a set of facets)
    * ================================================= */
 
-  if (ok==1) Merge3d(psubwin);
+  if ( needMerge )
+  {
+    Merge3d( psubwin ) ;
+  }
 
   /* =================================================
    * Redraw Figure

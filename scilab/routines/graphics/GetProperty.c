@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE,   INRIA 2001-2002
+ *    Djalel ABDEMOUCHE,   INRIA 2002-2004
+ *    Fabrice Leray,       INRIA 2004-2006
+ *    Jean-Baptiste Silvy, INRIA 2005-xxxx
  *    Comment:
  *    This file contains all functions used to GET the properties of graphics
  *    objects.
@@ -4572,39 +4573,36 @@ int version_flag()
   return CurrentScilabXgc->graphicsversion;
 }
 
-
-
-sciPointObj *sciGetSurface(sciPointObj *psubwin)
+/**
+ * Return the first surface found within the descendant of the object.
+ * @param[in] psubwin Object from which the surface will be searched.
+ * @return The first surface object if found, NULL otherwise.
+ */
+sciPointObj * sciGetSurface( sciPointObj * pObj )
 {
-  sciSons *psonstmp;
+  sciSons * psonstmp;
+  sciPointObj * sonSurface = NULL ;
   
-  psonstmp = sciGetSons (psubwin);
-  while (psonstmp != (sciSons *) NULL)	
-    {   
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
-	return (sciPointObj *) psonstmp->pointobj;
-      psonstmp = psonstmp->pnext;
+  psonstmp = sciGetSons( pObj ) ;
+  while ( psonstmp != NULL )
+  {
+    if( sciGetEntityType( psonstmp->pointobj ) == SCI_SURFACE )
+    {
+      /* We found one, return it.*/
+      return psonstmp->pointobj ;
     }
-  return (sciPointObj *) NULL;
+    /* check the sons of this children */
+    sonSurface = sciGetSurface( psonstmp->pointobj ) ;
+    if ( sonSurface != NULL )
+    {
+      return sonSurface ;
+    }
+    psonstmp = psonstmp->pnext;
+  }
+  /* nothing has been found */
+  return NULL;
 }
 
-/* DJ.A 2003 */
-BOOL Check3DObjs(sciPointObj *pobj)
-{  
-  sciSons *psonstmp;
-
-  psonstmp = sciGetSons (pobj); 
-  while (psonstmp != (sciSons *) NULL)	
-    {  
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
-	{
-	  if ((pobj= sciGetSurface(psonstmp->pointobj)) != (sciPointObj *) NULL)
-	    return TRUE;
-	}
-      psonstmp = psonstmp->pnext;
-    } 
-  return FALSE;
-}
 sciPointObj *CheckClickedSubwin(integer x, integer y)
 { 
   integer box[4]; 
@@ -5086,9 +5084,78 @@ int sciGetNbChildren( sciPointObj * pObj )
   sciSons * curSon = sciGetSons( pObj ) ;
   while ( curSon != NULL && curSon->pointobj != NULL )
   {
-    nbChildren ++ ;
+    nbChildren++ ;
     curSon = curSon->pnext ;
   }
   return nbChildren ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Return if an object directly accessible as a son of an other in Scilab.
+ * For instance, Label objects are not accessible.
+ * @return TRUE if the object is accessible, FALSE otherwise.
+ */
+BOOL sciGetIsAccessibleChild( sciPointObj * pObj )
+{
+  return    sciGetEntityType( pObj ) != SCI_MERGE
+	 && sciGetEntityType( pObj ) != SCI_LABEL
+         && GetHandleVisibilityOnUimenu( pObj ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * return the number of children of an object. This corresponds to the number of children
+ * seen in the Scilab console.
+ */
+int sciGetNbAccessibleChildren( sciPointObj * pObj )
+{
+  int nbChildren = 0 ;
+  sciSons * curSon = sciGetFirstAccessibleSon( pObj ) ;
+
+  while ( curSon != NULL && curSon->pointobj != NULL )
+  {
+    nbChildren++ ;
+    curSon = sciGetNextAccessibleSon( curSon ) ;
+  }
+  return nbChildren ;
+}
+/*--------------------------------------------------------------------------------------------*/
+BOOL GetHandleVisibilityOnUimenu( sciPointObj * pobj )
+{
+  if (sciGetEntityType(pobj)!=SCI_UIMENU) { return TRUE ; }
+  
+  return pUIMENU_FEATURE(pobj)->handle_visible;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * return the number of surfaces among the descendants of a subWindow.
+ */
+int sciGetSubwinNbSurf( sciPointObj * pSubwin )
+{
+  /* for subwindow, the number of surfaces is already know */
+  return pSUBWIN_FEATURE( pSubwin )->surfcounter ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * return the number of object of a certain type which can be found among the descendants
+ * of an object.
+ * To get the number of surfaces of a subwindow, it is much faster to use the
+ * sciGetSubwinNbSurf funtion.
+ */
+int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
+{
+  int nbFound = 0 ;
+  sciSons * curSon ;
+
+  curSon = sciGetSons( pObj ) ;
+  while( curSon != NULL )
+  {
+    if ( sciGetEntityType( curSon->pointobj ) == type )
+    {
+      nbFound++ ;
+    }
+    nbFound += sciGetNbTypedObjects( curSon->pointobj, type ) ;
+    curSon = curSon->pnext ;
+  }
+  return nbFound ;
 }
 /*--------------------------------------------------------------------------------------------*/

@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE  , INRIA 2001-2002
+ *    Djalel ABDEMOUCHE  , INRIA 2002-2004
+ *    Fabrice Leray      , INRIA 2004-2006
+ *    Jean Baptiste Silvy, INRIA 2005-xxxx
  *    Comment:
  *    This file contains all functions used in graphics handle management.
  --------------------------------------------------------------------------*/
@@ -19,6 +20,7 @@
 #include "Graphics.h" 
 #include "HandleManagement.h"
 #include "DrawObjects.h"
+#include "DestroyObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
@@ -1055,14 +1057,55 @@ sciGetLastSons (sciPointObj * pobj)
     }
   return (sciSons *) NULL;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
+/**
+ * return the next son in the sons list which is accessible, ie which can be seen in the
+ * Scilab console. If there is not any more accessible one, then return NULL.
+ */
+sciSons * sciGetNextAccessibleSon( sciSons * son )
+{
+  sciSons * nextSon = son->pnext ;
+  while ( nextSon != NULL && !(sciGetIsAccessibleChild( nextSon->pointobj ) ) )
+  {
+    nextSon = nextSon->pnext ;
+  }
+  return nextSon ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * return the first accessible son of an object or NULL if there is not any.
+ */
+sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj )
+{
+  sciSons * firstSon = sciGetSons( pObj ) ;
+  while( firstSon != NULL && !(sciGetIsAccessibleChild( firstSon->pointobj ) ) )
+  {
+    firstSon = firstSon->pnext ;
+  }
+  return firstSon ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * return the first son of parentObj which points on searchObj.
+ * @param[in] searchObj Object we are looking for in the children list.
+ * @param[in] parentObj Object containing the list of children.
+ * @return The son of the object parent pointing on searchObj, or NULL if there is not any.
+ */
+sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj )
+{
+  sciSons * curSon = sciGetSons( parentObj ) ;
+  while ( curSon != NULL && curSon->pointobj != searchedObj )
+  {
+    curSon = curSon->pnext ;
+  }
+  return curSon ;
+}
 
 /************************************ END SONS **************************************/
 
 
-/**sciGetCurrentHandle()
- * @memo returns the handle of the current object
+/**
+ * returns the handle of the current object
  */
 long
 sciGetCurrentHandle ()
@@ -1073,8 +1116,8 @@ sciGetCurrentHandle ()
 
 
 
-/**sciGetCurrentObj()
- * @memo Returns the pointer to the current selected object (actualy figure object). Duplicated in the peri*.c files.
+/**
+ * Returns the pointer to the current selected object (actualy figure object). Duplicated in the peri*.c files.
  */
 sciPointObj *
 sciGetCurrentObj ()
@@ -1084,8 +1127,8 @@ sciGetCurrentObj ()
 
 
 
-/**sciSetCurrentObj()
- * @memo sets the pointer to the current selected object (actualy figure object). Used after contructor function.
+/**
+ * sets the pointer to the current selected object (actualy figure object). Used after contructor function.
  */
 int
 sciSetCurrentObj (sciPointObj * pobj)
@@ -1118,7 +1161,7 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
   if ( sciGetEntityType( movedObj ) == SCI_SUBWIN && sciGetIsSelected( movedObj ) )
   {
     sciSelectFirstSubwin( oldParent ) ;
-    if ( sciGetNbChildren( oldParent ) == 0 )
+    if ( sciGetNbTypedObjects( oldParent, SCI_SUBWIN ) == 0 )
     {
       /* we need to recreate a subwin */
       sciPointObj * newSubWin = ConstructSubWin( oldParent, sciGetNumFigure( oldParent ) ) ;
@@ -1132,6 +1175,23 @@ int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent )
     }
     /* there should already exists a selected subwin */
     sciSetIsSelected( movedObj, FALSE ) ;
+  }
+  else if ( sciGetEntityType( movedObj ) == SCI_SURFACE )
+  {
+    /* we must take care of the merge objects */
+    sciPointObj * oldParentSubwin = sciGetParentSubwin( oldParent ) ;
+    sciPointObj * newParentSubwin = sciGetParentSubwin( newParent ) ;
+
+    /* the merge object will be the same if the surfaces are in the same subwin */
+    if ( oldParentSubwin != newParentSubwin )
+    {
+      pSUBWIN_FEATURE(oldParent)->surfcounter-- ;
+      pSUBWIN_FEATURE(newParent)->surfcounter++ ;
+      
+      /* reccompute the merge objects */
+      updateMerge( oldParentSubwin ) ;
+      updateMerge( newParentSubwin ) ;
+    }
   }
 
   return 0 ;
@@ -1160,7 +1220,14 @@ int sciGetNbFigures( void )
  */
 BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent )
 {
-  sciEntityType parentType = sciGetEntityType( parent ) ;
+  sciEntityType parentType ;
+
+  if ( parent == NULL || son == NULL )
+  {
+    return FALSE ;
+  }
+  
+  parentType = sciGetEntityType( parent ) ;
   switch ( sciGetEntityType( son ) )
   {
   case SCI_FIGURE:
@@ -1195,7 +1262,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   /* check parent */
   if ( parentObj == NULL )
   {
-    Scierror( 999,"The parent handle is not or no more valid\r\n" ) ;
+    Scierror( 999,"The parent handle is not or no more valid.\r\n" ) ;
     return -1 ;
   }
 
@@ -1216,14 +1283,14 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
     /* check handle validity */
     if ( movedObjs[i] == NULL )
     {
-       Scierror(999,"Handle number %d is not or no more valid\r\n", i + 1  ) ;
+       Scierror(999,"Handle number %d is not or no more valid.\r\n", i + 1  ) ;
        FREE( movedObjs ) ;
        return -1 ;
     }
     /* check that handles can be inserted under the parent */
     if ( !sciCanBeSonOf( movedObjs[i], parentObj ) )
     {
-      Scierror(999,"Handle number %d is not compatible with the parent handle.\r\n", i +1 ) ;
+      Scierror(999,"Handle number %d is not compatible with the parent handle.\r\n", i + 1 ) ;
       FREE( movedObjs ) ;
       return -1 ;
     }
@@ -1271,5 +1338,134 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   FREE( modifiedFigure ) ;
   
   return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * Change the position of two graphic objects in the scilab hierarchy.
+ * The two objects should be compatible with their new parents.
+ * @return 0 if the swap was successful, -1 otherwise.
+ */
+int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject )
+{
+  sciSons * firstSon  = NULL ; /* the two sons entitities pointing on the objects */
+  sciSons * secondSon = NULL ;
+  sciPointObj * firstParent  = sciGetParent( firstObject  ) ; /* current parent of the first object */
+  sciPointObj * secondParent = sciGetParent( secondObject ) ;
+
+  /* check compatibility of the objects with new parents */
+  if ( !sciCanBeSonOf( firstObject, sciGetParent( secondObject ) ) )
+  {
+    Scierror(999,"First handle is not compatible with its new parent.\r\n" ) ;
+    return -1 ;
+  }
+  
+  if ( !sciCanBeSonOf( secondObject, sciGetParent( firstObject ) ) )
+  {
+    Scierror(999,"Second handle is not compatible with its new parent.\r\n" ) ;
+    return -1 ;
+  }
+
+  firstSon  = sciFindSon( firstObject , firstParent  ) ;
+  secondSon = sciFindSon( secondObject, secondParent ) ;
+  
+  /* check if the sons are correct. This should always be true. */
+  if ( firstSon == NULL )
+  {
+    Scierror( 999,"First object is not correctly placed in the hierarchy.\r\n" ) ;
+    return -1 ;
+  }
+  if ( secondSon == NULL )
+  {
+    Scierror( 999,"Second object is not correctly placed in the hierarchy.\r\n" ) ;
+    return -1 ;
+  }
+
+  /* Swap the two pointed values of the handles */
+  firstSon->pointobj  = secondObject ;
+  secondSon->pointobj = firstObject  ;
+
+  /* change their parents */
+  sciSetParent( firstObject , secondParent ) ;
+  sciSetParent( secondObject, firstParent  ) ;
+
+
+  /* In the case of surface handles we must take care of merge objects */
+  if (    sciGetEntityType( firstObject ) == SCI_SURFACE
+       || sciGetEntityType( secondObject ) == SCI_SURFACE )
+  {
+    sciPointObj * firstParentSubwin  = sciGetParentSubwin( firstObject  ) ;
+    sciPointObj * secondParentSubwin = sciGetParentSubwin( secondObject ) ;
+
+    /* update the number of figure for each objects */
+    if ( sciGetEntityType( firstObject ) == SCI_SURFACE )
+    {
+      /* beware, the objects have already been moved to their new parents */
+      pSUBWIN_FEATURE( firstParentSubwin  )->surfcounter++ ;
+      pSUBWIN_FEATURE( secondParentSubwin )->surfcounter-- ;
+    }
+
+    if ( sciGetEntityType( secondObject ) == SCI_SURFACE )
+    {
+      pSUBWIN_FEATURE( secondParentSubwin )->surfcounter++ ;
+      pSUBWIN_FEATURE( firstParentSubwin  )->surfcounter-- ;
+    }
+
+    updateMerge( firstParentSubwin  ) ;
+    updateMerge( secondParentSubwin ) ;
+  }
+  
+
+  return 0 ;
+
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * Swap the position of the two handles in the hierarchy.
+ * Both handles should be compatible with their new places.
+ * @param[in] firstHandle  Index of an handle.
+ * @param[in] secondHandle Index of the other handle.
+ * @return 0 if swapping is successful, -1 otherwise.
+ */
+int swapHandles( unsigned long firstHdl, unsigned long secondHdl )
+{
+  sciPointObj * firstObject  = sciGetPointerFromHandle( firstHdl  )  ;
+  sciPointObj * secondObject = sciGetPointerFromHandle( secondHdl )  ;
+  sciPointObj * firstParentFig  = NULL ;
+  sciPointObj * secondParentFig = NULL ;
+  
+  if ( firstObject == NULL )
+  {
+    Scierror( 999,"First handle is not or no more valid.\r\n" ) ;
+    return -1 ;
+  }
+
+  if ( secondObject == NULL )
+  {
+     Scierror( 999,"Second handle is not or no more valid.\r\n" ) ;
+    return -1 ;
+  }
+
+  if ( sciSwapObjects( firstObject, secondObject ) != 0 )
+  {
+    return -1 ;
+  }
+
+  firstParentFig  = sciGetParentFigure( firstObject ) ;
+  secondParentFig = sciGetParentFigure( secondObject ) ;
+
+  /* redraw the parent figures */
+  if ( firstParentFig == secondParentFig )
+  {
+    /* we need only to redraw once since it is the same figure */
+    sciDrawObj( firstParentFig ) ;
+  }
+  else
+  {
+    sciDrawObj( firstParentFig )  ;
+    sciDrawObj( secondParentFig ) ;
+  }
+  
+  return 0 ;
+
 }
 /*-----------------------------------------------------------------------------------*/

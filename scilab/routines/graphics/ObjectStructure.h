@@ -711,9 +711,9 @@ typedef struct
   sciFont fontcontext;
   
   int  subint[3]; /* Dj.A 17/12/03 */
-  EAxesBoxType  rect ; /* to know the part of the box we have to draw */
-  char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
-  char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
+  EAxesBoxType  rect ; /**< to know the part of the box we have to draw */
+  char xdir;   /**<  xdir  = 'u' | 'd'  : gives the xy-axes positions */ 
+  char ydir;   /**<  ydir  = 'r' | 'l' : gives the xy-axes positions */ 
  
 
   /* flags for switching from auto to manual ticks */

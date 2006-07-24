@@ -66,4 +66,6 @@ extern void clearUserData( sciPointObj * pObj ) ;
 
 extern void sciDeleteWindow( int winNum ) ;
 
+extern int updateMerge( sciPointObj * pSubwin ) ;
+
 #endif /* __SCI_DESTROY__ */

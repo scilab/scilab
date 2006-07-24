@@ -2,9 +2,10 @@
  *    Graphic library 
  *    Copyright INRIA
  *    newGraph Library header
- *    Matthieu PHILIPPE, INRIA 2001-2002
- *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Matthieu PHILIPPE  , INRIA 2001-2002
+ *    Djalel ABDEMOUCHE  , INRIA 2002-2004
+ *    Fabrice Leray      , INRIA 2004-2006
+ *    Jean-Baptiste Silvy, INRIA 2005-xxxx
  *    Comment:
  *    This file contains all functions used to BUILD new objects : 
  - break the binding between the deleted object and its parent in the 
@@ -514,8 +515,6 @@ DestroySurface (sciPointObj * pthis)
 {
   sciPointObj * psubwin ;
   sciSubWindow * ppSubWin ;
-  sciSons *psonstmp;
-  integer cmpt;
   sciSurface * ppSurface = pSURFACE_FEATURE (pthis) ;
   
   psubwin  = sciGetParentSubwin(pthis) ;
@@ -530,7 +529,7 @@ DestroySurface (sciPointObj * pthis)
   FREE(ppSurface->inputCMoV); /* Adding F.Leray 24.03.04*/
   FREE(ppSurface->color); /* Adding F.Leray 18.03.05 */
   
-  if (ppSurface->izcol != 0 )
+  if ( ppSurface->izcol != 0 )
   { 
     FREE(ppSurface->zcol);
   }
@@ -543,22 +542,10 @@ DestroySurface (sciPointObj * pthis)
   }
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
-  cmpt=0;
-  psonstmp = sciGetSons (psubwin);
-  while (psonstmp != (sciSons *) NULL)	
-    {   
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
-	cmpt=cmpt+1;
-      psonstmp = psonstmp->pnext;
-    }
-  if (cmpt < 2){
-    sciPointObj * pobj ;
-    if ((pobj= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
-      DestroyMerge(pobj); 
-  }
-  else
-    Merge3d(psubwin);
-  /* on peut alors detruire l'entite merge */
+
+  /* delete the merge object if needed */
+  /* Jb Silvy 07/2006 */
+  updateMerge( psubwin ) ;
 
   return 0;
 }
@@ -911,15 +898,7 @@ void delete_sgwin_entities(int win_num,int v_flag)
 	    if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
 	      {
 		sciSetCurrentFigure(pobj);
-		/* sciGetScilabXgc (pobj)->CWindow */
-		/* cur =  sciGetScilabXgc (pobj)->CWindow;*/
-		/* to force a reset in the graphic scales : COPY from Actions.c line 237 */
-		/* SwitchWindow(&cur);*/
-		/*C2F(dr)("xset","window",&(pFIGURE_FEATURE(pobj)->number),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);*/
-		/*sciDrawObj(pobj);*/
-		/*sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin
-		  (pobj));*/
-		sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
+                sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
 		break;
 		
 	      }
@@ -949,3 +928,28 @@ void sciDeleteWindow( int winNum )
   C2F(deletewin)( &winNum ) ;
 }
 /*------------------------------------------------------------------------------------*/
+/**
+ * Update the merge object of a subwindow. If there is not anymore surface in the descendants
+ * then object is cleared. Otherwise a new merge3d is created. This function should be called
+ * after a modifications of the graphic hierarchy related with surfaces.
+ * @return 0 if the call was successful, -1 otherwise.
+ */
+int updateMerge( sciPointObj * pSubwin )
+{
+  if ( sciGetSubwinNbSurf( pSubwin ) == 0 )
+  {
+    sciPointObj * merge = sciGetMerge( pSubwin ) ;
+    if ( merge != NULL )
+    {
+      DestroyMerge( merge ) ;
+    }
+    pSUBWIN_FEATURE( pSubwin )->facetmerge = FALSE ;
+  }
+  else
+  {
+    /* the merge 3d is updated */
+    Merge3d( pSubwin ) ;
+  }
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------------*/

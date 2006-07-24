@@ -2764,8 +2764,8 @@ int scixfpolys(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 int scixget(char *fname,unsigned long fname_len)
 {
-  integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v = 0,i ;
-  double dv;
+  integer flagx=0,x1[10],x2=0, m1,n1,l1,m2,n2,l2,l3,v = 0,i ;
+  double dv = 0.0;
   BOOL keyFound = FALSE ;
 
   SciWin();
@@ -2820,7 +2820,7 @@ int scixget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"colormap") == 0) 
     {
       /*     special case for colormap : must allocate space */
-      int m3,n3=3;
+      int m3=0,n3=3;
       /*      CheckColormap(&m3); */
       C2F(dr)("xget","cmap_size",x1,&m3,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       
@@ -6410,7 +6410,8 @@ void AllGraphWinDelete(void)
 }
 /*-----------------------------------------------------------------------------------*/
 /**
- *
+ * Method called for relocating handles. The input should contains a vector of handles
+ * which will be relocated and a single handle which is the new parent.
  */
 int sciRelocateHandle( char * fname, unsigned long fname_len )
 {
@@ -6465,5 +6466,37 @@ int sciRelocateHandle( char * fname, unsigned long fname_len )
   LhsVar(1) = Rhs + 1 ;
   return 0 ;
 
+}
+/*-----------------------------------------------------------------------------------*/
+/**
+ * This method is called to swap two handles position in the hierarchy.
+ * The input should be two single handle which will be swaped.
+ */
+int sciSwapHandles( char * fname, unsigned long fname_len )
+{
+  int firstHdlCol  ;
+  int firstHdlRow  ;
+  int secondHdlCol ;
+  int secondHdlRow ;
+  int firstHdlStkIndex  ;
+  int secondHdlStkIndex ;
+
+  CheckRhs( 2, 2 ) ;
+  CheckLhs( 0, 1 ) ;
+
+  GetRhsVar( 1, "h", &firstHdlRow, &firstHdlCol, &firstHdlStkIndex ) ;
+  GetRhsVar( 2, "h", &secondHdlRow, &secondHdlCol, &secondHdlStkIndex ) ;
+
+  if ( firstHdlRow * firstHdlCol != 1 || secondHdlRow * secondHdlCol != 1 )
+  {
+    Scierror(999,"%s : Routine can only swap two single handles.\r\n",fname);
+    return 0 ;
+  }
+
+  /* get the two handles and swap them */
+  swapHandles( (unsigned long) *hstk( firstHdlStkIndex  ),
+               (unsigned long) *hstk( secondHdlStkIndex ) ) ;
+  LhsVar(1) = 0 ;
+  return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/

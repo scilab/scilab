@@ -202,7 +202,6 @@ int sciGet(sciPointObj *pobj,char *marker)
 {
   int numrow, numcol, outindex, i,j,k;
   integer x[2], itmp = 0, na ;
-  sciSons *toto;
   double *tab;
   char **str;
   sciPointObj *psubwin;
@@ -525,40 +524,29 @@ int sciGet(sciPointObj *pobj,char *marker)
       *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
     }
   else if (strcmp(marker,"children") == 0)
-    { 
-      i = 0;
-      toto = sciGetSons((sciPointObj *) pobj);
-      while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
-	{
-	  /* DJ.A 30/12 */
-	  if( sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
-	     && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL
-		 && GetHandleVisibilityOnUimenu((sciPointObj *)toto->pointobj) ) /* F.Leray 28.05.04 */
-	    i++;
-	  toto = toto->pnext;
-	}
-      numrow   = i;
-      numcol   = 1;
-      if(numrow==0) {
-	CreateVar(Rhs+1,"d",&numrow,&numrow,&outindex);
+  { 
+    sciSons * curSon = NULL ;
+    numrow = sciGetNbAccessibleChildren( pobj ) ;
+    numcol = 1 ;
+    if ( numrow == 0 )
+    {
+      /* empty matrix */
+      CreateVar(Rhs+1,"d",&numrow,&numrow,&outindex) ;
       }
-      else {
-	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	toto = sciGetSons((sciPointObj *) pobj);
-	i = 0;
-	while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
-	  { /* DJ.A 30/12 */
-	    if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
-	       && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL
-		   && GetHandleVisibilityOnUimenu((sciPointObj *)toto->pointobj) ) /* F.Leray 28.05.04 */
-	      {
-		hstk(outindex)[i] = sciGetHandle((sciPointObj *)toto->pointobj);
-		i++;
-	      }
-	    toto = toto->pnext;/* toto is pointer to one son */
-	  }
+    else
+    {
+      int index = 0 ;
+      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex) ;
+      curSon = sciGetFirstAccessibleSon( pobj ) ;
+      
+      while ( curSon != NULL && curSon->pointobj != NULL )
+      {
+          hstk(outindex)[index] = sciGetHandle( curSon->pointobj ) ;
+          index++ ;
+          curSon = sciGetNextAccessibleSon( curSon ) ;
       }
     }
+  }
   else if (strcmp(marker,"hdl") == 0)
     {
       numrow   = 1;
@@ -2694,13 +2682,6 @@ int BuildTListForTicks(double * locations, char ** labels, int nbtics)
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL GetHandleVisibilityOnUimenu(sciPointObj * pobj)
-{
-	if (sciGetEntityType(pobj)!=SCI_UIMENU) return TRUE;
-
-	return pUIMENU_FEATURE(pobj)->handle_visible;
-}
-/*-----------------------------------------------------------------------------------*/
 
 int sciReturnString( const char * value )
 {
@@ -2712,7 +2693,6 @@ int sciReturnString( const char * value )
 
   return  0 ;
 }
-
 /*-----------------------------------------------------------------------------------*/
 
 int sciReturnInt( int value )
