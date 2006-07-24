@@ -1,10 +1,9 @@
-
-
-
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
- *    jpc@cereve.enpc.fr 
+ *    Copyright (C) 1998-2000 Enpc
+ *    Copyright INRIA 2006
+ *    Authors Jean-Philippe Chancelier 1998-2000 jpc@cereve.enpc.fr 
+ *            Jean-Baptiste Silvy      2005-xxxx
  --------------------------------------------------------------------------*/
 
 #include <string.h> /* in case of dbmalloc use */
@@ -331,28 +330,33 @@ static void DeleteWCScale(l)
  * (only necessary for non ansi C compilers) 
  *-------------------------------------------*/
 
-static void scale_copy(s1,s2) 
-     WCScaleList *s1,*s2;
+static void scale_copy( WCScaleList * s1, WCScaleList * s2 ) 
 {
   int i,j;
   s1->flag=s2->flag;
   s1->wdim[0]=  s2->wdim[0];
   s1->wdim[1]=  s2->wdim[1];
-  for (i=0; i< 4; i++) 
+  for ( i = 0 ; i < 4 ; i++ ) 
+  {
+    s1->subwin_rect[i]=s2->subwin_rect[i];
+    s1->frect[i]=s2->frect[i];
+    s1->WIRect1[i]=s2->WIRect1[i];
+    s1->Waaint1[i]=s2->Waaint1[i];
+    s1->xtics[i]=s2->xtics[i];
+    s1->ytics[i]=s2->ytics[i];
+    s1->axis[i]=s2->axis[i];
+  }
+  for ( i = 0 ; i < 3 ; i++ )
+  {
+    for ( j = 0 ; j < 3 ; j++ )
     {
-      s1->subwin_rect[i]=s2->subwin_rect[i];
-      s1->frect[i]=s2->frect[i];
-      s1->WIRect1[i]=s2->WIRect1[i];
-      s1->Waaint1[i]=s2->Waaint1[i];
-      s1->xtics[i]=s2->xtics[i];
-      s1->ytics[i]=s2->ytics[i];
-      s1->axis[i]=s2->axis[i];
+      s1->m[i][j] = s2->m[i][j] ;
     }
-  for (i=0; i< 3; i++) 
-    for (j=0; i< 3; i++) 
-      s1->m[i][j]=s2->m[i][j];
-  for (i=0; i< 6; i++) 
-    s1->bbox1[i]=s2->bbox1[i] ;
+  }
+  for (i=0; i< 6; i++ )
+  {
+    s1->bbox1[i] = s2->bbox1[i] ;
+  }
   s1->Wxofset1=s2->Wxofset1;
   s1->Wyofset1=s2->Wyofset1;
   s1->Wscx1=s2->Wscx1;
