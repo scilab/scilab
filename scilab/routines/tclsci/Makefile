@@ -13,7 +13,7 @@ OBJSC  = InitTclTk.o sci_close.o sci_findobj.o sci_opentk.o \
 	 TclUiGet.o TclUiSet.o TCL_Global.o sci_TCL_GetVersion.o \
 	 sci_TCL_UnsetVar.o sci_TCL_ExistVar.o sci_TCL_UpVar.o sci_TCL_DeleteInterp.o \
 	 sci_TCL_ExistInterp.o sci_TCL_CreateSlave.o GedManagement.o sci_TCL_ExistArray.o \
-	 tksynchro.o setenvctcl.o
+	 tksynchro.o setenvtcl.o
 
 
 include ../../Makefile.incl
