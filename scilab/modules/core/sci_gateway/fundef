@@ -138,7 +138,7 @@
 #include "../../../../routines/wintools/wintools.fundef"
 
 #define  IN_inttime 48
-#include "../../sound/sci_gateway/time.fundef"
+#include "../../time/sci_gateway/time.fundef"
 
 #define  IN_intsound 49
 #include "../../sound/sci_gateway/sound.fundef"  
