@@ -586,7 +586,7 @@ ES 15/11/04:
  * added support for user preference file $env(HOME)/.SciPadPreferences.tcl,
    loaded at startup by defaults.tcl and saved on exit
  * wm geometry in strict pixels (avoids cross-session shrinking due to wm decorations
- * outside of Scipad: removed %scipad_fontsize from SCI/scilab.star and 
+ * outside of Scipad: removed %scipad_fontsize from SCI/scilab.start and 
    SCI/macros/util/scipad.sci: overridden by the user preferences file
  * version --> 3.13
 
@@ -1509,7 +1509,7 @@ ES, 21/09/05
    of all Scilab internal functions
  * script makewordfile2.sce, to be run manually for now, generates a 
    "words" file containing the internal functions and the scilab commands.
-   Scicos functions and system variables used by scilab.star (e.g. LANG,
+   Scicos functions and system variables used by scilab.start (e.g. LANG,
    %toolboxes, demolist,...) are no more included.
  * the "words" file is subdivided in two groups, "intf" and "comms"
    -old tag "keywords" suppressed, superseded by "intf" and "comms"

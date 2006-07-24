@@ -34,7 +34,7 @@ c
 c     scilab start-up execution. quit added to leave parser after 
 c     start-up execution
 c
-      call scirun('exec(''SCI/scilab.star'',-1);quit')
+      call scirun('exec(''SCI/scilab.start'',-1);quit')
 c     
 c     Program's variables  a and b sent to Scilab.
 c     .  2nd argument of matz not referenced here.

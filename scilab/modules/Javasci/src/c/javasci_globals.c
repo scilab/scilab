@@ -25,7 +25,7 @@ int GetInterfState()
 void Initialize() 
 {
   static char env[1024];
-  static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
+  static char initstr[]="exec(\"SCI/scilab.start\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
   #if _MSC_VER
@@ -100,7 +100,7 @@ void Initialize()
   /* pour initialisation de la primitive scilab : fromjava() */
   SetFromJavaToON();
 
-  /* Chargement de Scilab.star */
+  /* Chargement de Scilab.start */
   C2F(scirun)(initstr,(int)strlen(initstr));
  
 }

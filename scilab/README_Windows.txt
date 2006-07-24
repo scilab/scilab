@@ -84,7 +84,7 @@ IV - DOCUMENTATION
 V - SOME IMPORTANT FILES AND DIRECTORIES
 ******************************************************************************
  
- scilab.star: startup file for Scilab instructions in this file
+ scilab.start : startup file for Scilab instructions in this file
               are executed when Scilab is executed. Note that
               you can also have your own startup file "scilab.ini" 
               in your current directory.

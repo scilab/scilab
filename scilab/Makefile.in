@@ -143,7 +143,7 @@ BINDISTFILES = \
 	$(SCIBASE)/license.txt \
 	$(SCIBASE)/licence.txt \
 	$(SCIBASE)/scilab.quit \
-	$(SCIBASE)/scilab.star \
+	$(SCIBASE)/scilab.start \
 	$(SCIBASE)/X11_defaults \
 	$(SCIBASE)/bin \
 	$(SCIBASE)/config \
@@ -226,7 +226,7 @@ INSTBINDISTFILES = \
 	license.txt \
 	licence.txt \
 	scilab.quit \
-	scilab.star \
+	scilab.start \
 	X11_defaults \
 	bin \
 	config \

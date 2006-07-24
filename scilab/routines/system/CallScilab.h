@@ -25,7 +25,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 /* Initialize Scilab */
 /* returns TRUE if it is OK else FALSE */
 /* SCIpath define SCI environment variable : Default --> NULL */
-/* ScilabStartup path & filename of scilab.star : Default --> NULL */
+/* ScilabStartup path & filename of scilab.start : Default --> NULL */
 /* Stacksize : Default --> NULL */
 
 int TerminateScilab(char *ScilabQuit);

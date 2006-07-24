@@ -484,7 +484,7 @@ void Callback_RESTART(void)
 	StoreCommand1("resethistory();",1);
 
 	SendCTRLandAKey(CTRLU);
-	write_scilab("exec('SCI/scilab.star',-1);\n");
+	write_scilab("exec('SCI/scilab.start',-1);\n");
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_ABORT(void)
@@ -1911,7 +1911,7 @@ void ResetMenu(void)
 /*-----------------------------------------------------------------------------------*/
 void ConfigureScilabStar(int LangCode)
 {
-	#define SCILABSTAR		"scilab.star"
+	#define SCILABSTAR		"scilab.start"
 
 	char scilabstarfullpath[MAX_PATH];
 	char scilabstartmpfullpath[MAX_PATH];
@@ -1950,7 +1950,7 @@ void ConfigureScilabStar(int LangCode)
 		}
 		else
 		{
-		//	MessageBox(NULL,"Couldn't Modify Scilab.star","Error",MB_ICONWARNING);
+		//	MessageBox(NULL,"Couldn't Modify Scilab.start","Error",MB_ICONWARNING);
 		}
 	}
 }
@@ -2037,7 +2037,7 @@ int GetLanguageCodeInScilabDotStar(void)
 
 	if (WSCIPath)
 	{
-		#define SCILABSTAR		"scilab.star"
+		#define SCILABSTAR		"scilab.start"
 		#define MOTCLEF			"LANGUAGE="""
 
 		FILE *fileR=NULL;
