@@ -83,6 +83,10 @@ relocate_handle( poly2bis, axes1 ) ;
     <SEE_ALSO_ITEM>
       <LINK>delete</LINK>
     </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>swap_handles</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <AUTHOR>Jean-Baptiste Silvy</AUTHOR>
