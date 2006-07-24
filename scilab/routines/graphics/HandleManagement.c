@@ -1270,7 +1270,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   movedObjs = MALLOC( nbHandles * sizeof(sciPointObj *) ) ;
   if ( movedObjs == NULL )
   {
-    Scierror(999,"Memory full, aborting operation.\r\n", i  ) ;
+    Scierror(999,"Memory full, aborting operation.\r\n") ;
     return -1 ;
   }
 
