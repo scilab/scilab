@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __MATTIME__
-#define __MATTIME__
+#ifndef __GW_TIME__
+#define __GW_TIME__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -20,5 +20,5 @@ typedef struct table_struct {
   char *name;      /** its name **/
 } intTimeTable;
 
-#endif /*  __MATTIME__ */
+#endif /*  __GW_TIME__ */
 /*-----------------------------------------------------------------------------------*/

@@ -1,28 +1,16 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
+/* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTGETDATE__
-#define __INTGETDATE__
-
-#ifdef _MSC_VER
-  #include <windows.h>
-#endif
+#ifndef __SCI_CALENDAR__
+#define __SCI_CALENDAR__
 
 #include <stdio.h>
+#include <string.h>
 #include "../machine.h"
-#include "../stack-c.h"
 #include "../version.h"
 
+int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len));
 
-#ifndef NULL
-  #define NULL 0
-#endif
-
-#define TRUE  1
-#define FALSE 0
-
-int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len));
-
-#endif /* __INTGETDATE__ */
+#endif /*SCI_CALENDAR*/
 /*-----------------------------------------------------------------------------------*/ 

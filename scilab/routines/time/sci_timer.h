@@ -1,17 +1,28 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA */
+/* INRIA 2006 */
+/* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTREALTIME__
-#define __INTREALTIME__
+#ifndef __SCI_TIMER__
+#define __SCI_TIMER__
+
+#ifdef _MSC_VER
+  #include <windows.h>
+#endif
 
 #include <stdio.h>
-#include <string.h>
 #include "../machine.h"
 #include "../stack-c.h"
 #include "../version.h"
 
-int C2F(intrealtimeinit) _PARAMS((char *fname,unsigned long fname_len));
-int C2F(intrealtime) _PARAMS((char *fname,unsigned long fname_len));
 
-#endif /*__INTREALTIME__*/
+#ifndef NULL
+  #define NULL 0
+#endif
+
+#define TRUE  1
+#define FALSE 0
+
+int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len));
+
+#endif /* __SCI_TIMER__ */
 /*-----------------------------------------------------------------------------------*/ 

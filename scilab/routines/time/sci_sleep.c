@@ -2,9 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "intsleep.h"
+#include "sci_sleep.h"
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(intsleep) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len))
 {
 	integer m1,n1,l1,sec=0;
 

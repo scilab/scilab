@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTTIMER__
-#define __INTTIMER__
+#ifndef __SCI_GETDATE__
+#define __SCI_GETDATE__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -22,7 +22,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(inttimer) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len));
 
-#endif /* __INTTIMER__ */
+#endif /* __SCI_GETDATE__ */
 /*-----------------------------------------------------------------------------------*/ 

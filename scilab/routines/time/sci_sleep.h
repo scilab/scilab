@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTXPAUSE__
-#define __INTXPAUSE__
+#ifndef __SCI_SLEEP__
+#define __SCI_SLEEP__
 
 #ifdef _MSC_VER
 	#include <windows.h>
@@ -17,7 +17,7 @@
 #include "../version.h"
 
 
-int C2F(intxpausep) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len));
 
-#endif /*INTXPAUSE*/
+#endif /*SCI_SLEEP*/
 /*-----------------------------------------------------------------------------------*/ 

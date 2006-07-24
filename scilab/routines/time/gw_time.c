@@ -1,4 +1,4 @@
-#include "mattime.h"
+#include "gw_time.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -11,25 +11,25 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
 /*-----------------------------------------------------------------------------------*/ 
-extern int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intcalendar) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(inttimer) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intsleep) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intxpause) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intrealtimeinit) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(intrealtime) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_realtimeinit) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_realtime) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 static intTimeTable Tab[]={
-  {C2F(intgetdate),"getdate"},
-	{C2F(intcalendar),"Calendar"},
-	{C2F(inttimer),"timer"},
-	{C2F(intsleep),"sleep"},
-	{C2F(intxpause),"xpause"},
-	{C2F(intrealtimeinit),"realtimeinit"},
-	{C2F(intrealtime),"realtime"},
+    {C2F(sci_getdate),"getdate"},
+	{C2F(sci_calendar),"Calendar"},
+	{C2F(sci_timer),"timer"},
+	{C2F(sci_sleep),"sleep"},
+	{C2F(sci_xpause),"xpause"},
+	{C2F(sci_realtimeinit),"realtimeinit"},
+	{C2F(sci_realtime),"realtime"},
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(mattime)()
+int C2F(gw_time)()
 {  
 	Rhs = Max(0, Rhs);
 	#if _MSC_VER

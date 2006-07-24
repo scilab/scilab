@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "inttimer.h"
+#include "sci_timer.h"
 
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -12,7 +12,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(timer)(double *etime);
 /*-----------------------------------------------------------------------------------*/
-int C2F(inttimer) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
 	double timeval=0;

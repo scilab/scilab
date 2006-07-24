@@ -177,35 +177,35 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intcalendar.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intgetdate.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intrealtime.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intsleep.c"
-				>
-			</File>
-			<File
-				RelativePath=".\inttimer.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intxpause.c"
-				>
-			</File>
-			<File
-				RelativePath=".\mattime.c"
+				RelativePath=".\gw_time.c"
 				>
 			</File>
 			<File
 				RelativePath=".\realtime.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_calendar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_getdate.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_realtime.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_sleep.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_timer.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_xpause.c"
 				>
 			</File>
 			<File
@@ -218,31 +218,31 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\intcalendar.h"
+				RelativePath=".\gw_time.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intgetdate.h"
+				RelativePath=".\sci_calendar.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intrealtime.h"
+				RelativePath=".\sci_getdate.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intsleep.h"
+				RelativePath=".\sci_realtime.h"
 				>
 			</File>
 			<File
-				RelativePath=".\inttimer.h"
+				RelativePath=".\sci_sleep.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intxpause.h"
+				RelativePath=".\sci_timer.h"
 				>
 			</File>
 			<File
-				RelativePath=".\mattime.h"
+				RelativePath=".\sci_xpause.h"
 				>
 			</File>
 		</Filter>

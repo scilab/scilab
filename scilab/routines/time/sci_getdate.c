@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intgetdate.h"
+#include "sci_getdate.h"
 
 #include <time.h>
 #include <locale.h>
@@ -25,7 +25,7 @@ extern void C2F(convertdate)();
 extern void C2F(scigetdate)();
 extern int *InversionMatrixInt(int W,int L,int *Matrix);
 /*-----------------------------------------------------------------------------------*/
-int C2F(intgetdate) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_getdate) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
 	int i=0;
