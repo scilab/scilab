@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>eomday</TITLE>
+	<TYPE>Fonction Scilab</TYPE>
+	<DATE>12-février-2006</DATE>
+	
+	<SHORT_DESCRIPTION name="eomday">Retourne le dernier jour d'un mois</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>E = eomday(Y, M)</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>E = eomday(Y, M) retourne le dernier jour du mois et de l'année passée en paramètre</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+eomday(2006,3);
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>datenum</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>datevec</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>weekday</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

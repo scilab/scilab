@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<MAN>
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>timer</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>April 1993</DATE>
+	<SHORT_DESCRIPTION name="timer">temps CPU consommé</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>timer()</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>Renvoie le temps CPU consommé par Scilab depuis le dernier appel à <VERB>timer()</VERB>.</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+timer();A=rand(100,100);timer()
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM><LINK>getdate</LINK></SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM><LINK>toc</LINK></SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM><LINK>tic</LINK></SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM><LINK>timer</LINK></SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM><LINK>etime</LINK></SEE_ALSO_ITEM>
+	</SEE_ALSO>
+</MAN>

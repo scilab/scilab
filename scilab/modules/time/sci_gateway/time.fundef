@@ -1,0 +1,7 @@
+{"getdate",	        IN_inttime,	1,	2},
+{"Calendar",        IN_inttime,	2,	2},
+{"timer",	        IN_inttime,	3,	2},
+{"sleep",	        IN_inttime,	4,	2},
+{"xpause",	        IN_inttime,	5,	2},
+{"realtimeinit",	IN_inttime,	6,	2},
+{"realtime",		IN_inttime,	7,	2},

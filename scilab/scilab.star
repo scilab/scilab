@@ -59,6 +59,7 @@ load('SCI/macros/arma/lib')
 
 // temporaire
 if ~MSDOS then 
+  load('SCI/macros/time/lib')
   load('SCI/macros/metanet/lib')
   load('SCI/macros/tksci/lib')
   load('SCI/macros/sound/lib')
@@ -79,7 +80,6 @@ clear with_texmacs
 load('SCI/macros/xdess/lib')
 load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
-load('SCI/macros/time/lib')
 load('SCI/macros/pvm/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
@@ -184,6 +184,7 @@ if %scicos then
 end
 
 if MSDOS then
+ exec SCI/modules/time/etc/time.start;
  exec SCI/modules/sound/etc/sound.start;
  exec SCI/modules/Javasci/etc/javasci.start;
  exec SCI/modules/tclsci/etc/tclsci.start;

@@ -1,23 +1,23 @@
 // ====================================================================
-// sound module initialisation file 
+// time module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/sound/macros/lib')
+load('SCI/modules/time/macros/lib')
 // ====================================================================
 //add help chapter
 global LANGUAGE
-path=get_absolute_file_path('sound.start');
+path=get_absolute_file_path('time.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
 if (LANGUAGE=='fr') then
   path=strsubst(path,'/etc/','/help/fr');
-  add_help_chapter("Manipulation de fichiers sons",path);
+  add_help_chapter("Heure et date",path);
 end
 
 if (LANGUAGE=='eng') then
   path=strsubst(path,'/etc/','/help/eng');
-  add_help_chapter("Sound file handling",path)
+  add_help_chapter("Time and Date",path)
 end
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

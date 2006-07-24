@@ -21,16 +21,17 @@ CurrentDirectory=pwd();
  "xdess",
  "sparse",
  "gui",
- "time",
  "m2sci",
  "pvm"];
  
  if MSDOS then
+   Directories=[Directories;"SCI/modules/time/macros"];
    Directories=[Directories;"SCI/modules/metanet/macros"];
    Directories=[Directories;"SCI/modules/sound/macros"];
    Directories=[Directories;"SCI/modules/tclsci/macros"];
  else
- 	Directories=[Directories;"metanet"];
+   Directories=[Directories;"time"];
+ 	 Directories=[Directories;"metanet"];
    Directories=[Directories;"tksci"];
    Directories=[Directories;"sound"]; 
  end

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>clock</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>12-february-2006</DATE>
+	
+	<SHORT_DESCRIPTION name="clock">Return current time as date vector</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>c = clock</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>c = clock returns a 6-element date vector containing the current date and time in decimal form:</P>
+		<P>c = [year month day hour minute seconds]</P>
+		<P>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+clock
+	]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>datenum</LINK>
+		</SEE_ALSO_ITEM>
+	
+		<SEE_ALSO_ITEM>
+			<LINK>datevec</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>timer</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>etime</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>tic</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>toc</LINK>
+		</SEE_ALSO_ITEM>
+		
+		
+	</SEE_ALSO>
+	
+	<AUTHORS>
+		<AUTHORS_ITEM>P.M</AUTHORS_ITEM>
+	</AUTHORS>
+</MAN>

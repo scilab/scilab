@@ -24,7 +24,6 @@ function %helps=initial_help_chapters(language)
 				"strings";
 				"gui";
 				"utilities";
-				"time";
 				"linear";
 				"polynomials";
 				"control";
@@ -61,7 +60,6 @@ function %helps=initial_help_chapters(language)
 			"Character string manipulations";
 			"GUI and Dialogs";
 			"Utilities";
-			"Time and Date";
 			"Linear Algebra";
 			"Polynomial calculations";
 			"General System and Control";
@@ -95,7 +93,6 @@ function %helps=initial_help_chapters(language)
 			"Manipulations de chaînes de caractères";
 			"IHM et Dialogues";
 			"Utilitaires";
-			"Heure et date";
 			"Algèbre linéaire";
 			"Calculs sur les polynômes";
 			"Contrôle et théorie des systèmes";

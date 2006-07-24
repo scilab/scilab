@@ -438,7 +438,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "arpack_DLL", "routines\arpa
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9} = {78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "time", "routines\time\time.vcproj", "{05D8F60B-332A-4161-B946-B8AB30ED439C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "time", "modules\time\time.vcproj", "{05D8F60B-332A-4161-B946-B8AB30ED439C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
