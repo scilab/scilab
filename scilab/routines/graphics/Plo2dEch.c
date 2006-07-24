@@ -348,9 +348,13 @@ static void scale_copy(s1,s2)
       s1->ytics[i]=s2->ytics[i];
       s1->axis[i]=s2->axis[i];
     }
-  for (i=0; i< 3; i++) 
-    for (j=0; i< 3; i++) 
-      s1->m[i][j]=s2->m[i][j];
+  for ( i = 0 ; i< 3; i++ )
+  {
+    for ( j = 0 ; j < 3 ; j++ )
+    {
+      s1->m[i][j] = s2->m[i][j] ;
+    }
+  }
   for (i=0; i< 6; i++) 
     s1->bbox1[i]=s2->bbox1[i] ;
   s1->Wxofset1=s2->Wxofset1;
