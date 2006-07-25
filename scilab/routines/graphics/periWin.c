@@ -3980,28 +3980,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 		ReadRegistryGraph(ScilabXgc);
 	}
 	ScilabXgc->Inside_init=1; /** to know that we are inside init code **/
-
-	SetWinhdc();
-	SetMapMode(hdc, MM_TEXT);
-	SetBkMode(hdc,TRANSPARENT);
-	GetClientRect(ScilabXgc->CWindow, &rect);
-	SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
-	SetTextAlign(hdc, TA_LEFT|TA_BOTTOM);
-	SetFocus( ScilabXgc->CWindow);
-	if (EntryCounter == 0)
-	{
-		C2F(CreatePatterns)();
-		LoadFonts();
-	} 
-	InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
-	/* to be sure that current values are recorded */
-	SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
-
-	StoreXgc(WinNum);
-	EntryCounter=Max(EntryCounter,WinNum);
-	EntryCounter++;
 	
-
 	ScilabXgc->hWndParent = CreateWindow(szParentGraphClass, popupname,
 			WS_OVERLAPPEDWINDOW,
 			graphwin.Origin.x, graphwin.Origin.y,
