@@ -5,7 +5,7 @@
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <Windows.h>
-#include "../os_specific/win_mem_alloc.h"
+#include "../../../libs/MALLOC/includes/MALLOC.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 extern int GetWITH_GUI(void);
