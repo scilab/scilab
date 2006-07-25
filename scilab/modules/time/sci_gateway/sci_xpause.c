@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../includes/sci_xpause.h"
+#include "sci_xpause.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_xpause) _PARAMS((char *fname,unsigned long fname_len))
 {

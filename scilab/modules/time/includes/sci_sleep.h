@@ -12,9 +12,9 @@
 #endif
 
 #include <stdio.h>
-#include "../../core/includes/machine.h"
-#include "../../core/includes/stack-c.h"
-#include "../../core/includes/version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
 
 
 int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len));

@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_getdate.h"
+#include "sci_getdate.h"
 
 #include <time.h>
 #include <locale.h>
@@ -15,7 +15,7 @@
 #include <sys/time.h> 
 #endif
 
-#include "../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(convertdate)();
 extern void C2F(scigetdate)();

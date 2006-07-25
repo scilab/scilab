@@ -10,8 +10,8 @@
   #include <stdio.h>
 #endif
 
-#include "../../core/includes/machine.h"
-#include "../../core/includes/stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 
 typedef int (*time_interf) __PARAMS((char *fname,unsigned long fname_len));
 

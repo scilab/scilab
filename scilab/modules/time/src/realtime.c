@@ -2,7 +2,7 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
-#include "../../core/includes/machine.h"
+#include "machine.h"
 
 #if _MSC_VER
 	#include <windows.h>

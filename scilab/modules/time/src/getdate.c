@@ -5,7 +5,7 @@
 	#define _USE_32BIT_TIME_T 1
 #endif
 /*-----------------------------------------------------------------------------------*/
-#include "../../core/includes/machine.h"
+#include "machine.h"
 
 #include <time.h>
 #include <locale.h>

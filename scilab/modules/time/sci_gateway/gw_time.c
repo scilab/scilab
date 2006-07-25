@@ -1,9 +1,9 @@
-#include "../includes/gw_time.h"
+#include "gw_time.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 #if _MSC_VER
 #include <Windows.h>
 extern char *GetExceptionString(DWORD ExceptionCode);

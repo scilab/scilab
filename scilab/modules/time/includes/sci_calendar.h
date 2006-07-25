@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../../core/includes/machine.h"
-#include "../../core/includes/stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 
 
 int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len));

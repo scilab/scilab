@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../../../libs/MALLOC/includes/MALLOC.h"
-#include "../includes/sci_calendar.h"
+#include "MALLOC.h"
+#include "sci_calendar.h"
 /*-----------------------------------------------------------------------------------*/
 int IsAScalar(int RhsNumber);
 static int isBissextile (unsigned annee);

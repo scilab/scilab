@@ -10,9 +10,9 @@
 #endif
 
 #include <stdio.h>
-#include "../../core/includes/machine.h"
-#include "../../core/includes/stack-c.h"
-#include "../../core/includes/version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
 
 #ifndef NULL
   #define NULL 0

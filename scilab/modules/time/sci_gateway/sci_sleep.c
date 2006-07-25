@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../includes/sci_sleep.h"
+#include "sci_sleep.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_sleep) _PARAMS((char *fname,unsigned long fname_len))
 {

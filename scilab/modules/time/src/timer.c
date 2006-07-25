@@ -14,7 +14,7 @@
 #endif 
 
 #include <time.h>
-#include "../../core/includes/machine.h"
+#include "machine.h"
 
 #if defined(THINK_C)
 	#include <Threads.h> 
