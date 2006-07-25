@@ -74,6 +74,7 @@ tests = ['algebra.tst';
 	'sprintf.tst';
 	'sscanf.tst';
 	'strelm.tst';
+	'swap_handles.tst';
 	'trycatch.tst';
 	'parse.tst';
 	'TCL_SetGet.tst';
