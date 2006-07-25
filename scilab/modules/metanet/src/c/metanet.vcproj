@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\gw_metanet.c"
+				>
+			</File>
+			<File
 				RelativePath=".\loadg.c"
 				>
 			</File>
@@ -211,6 +215,10 @@
 			>
 			<File
 				RelativePath=".\defs.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_metanet.h"
 				>
 			</File>
 			<File
