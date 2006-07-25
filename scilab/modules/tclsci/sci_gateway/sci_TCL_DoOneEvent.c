@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_DoOneEvent.h"
+#include "sci_TCL_DoOneEvent.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_DoOneEvent) _PARAMS((char *fname))
 {

@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../includes/InitTclTk.h"
-#include "../includes/TclEvents.h"
+#include "InitTclTk.h"
+#include "TclEvents.h"
 #ifndef _MSC_VER
  #include <dirent.h>
  #include <X11/Xlib.h>

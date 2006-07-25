@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_ExistInterp.h"
+#include "sci_TCL_ExistInterp.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_ExistInterp) _PARAMS((char *fname))
 {

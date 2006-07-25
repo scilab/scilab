@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_CreateSlave.h"
+#include "sci_TCL_CreateSlave.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname))
 {

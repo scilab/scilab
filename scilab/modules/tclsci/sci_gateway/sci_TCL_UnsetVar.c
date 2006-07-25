@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_UnsetVar.h"
+#include "sci_TCL_UnsetVar.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_UnsetVar) _PARAMS((char *fname))
 {

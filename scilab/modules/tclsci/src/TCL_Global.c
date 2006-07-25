@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/TCL_Global.h"
+#include "TCL_Global.h"
 /*-----------------------------------------------------------------------------------*/
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;

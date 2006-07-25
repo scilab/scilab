@@ -11,9 +11,9 @@
 #endif
 #include <stdio.h>
 #include <string.h>
-#include "../../core/includes/machine.h"
-#include "../../core/includes/stack-c.h"
-#include "../../core/includes/version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
 
 #include "tcl.h"
 #include "tk.h"
@@ -22,7 +22,7 @@
 #include "Warnings.h"
 #include "Messages.h"
 
-#include "../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 #ifndef NULL
   #define NULL 0

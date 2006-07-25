@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_EvalStr.h"
+#include "sci_TCL_EvalStr.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalStr) _PARAMS((char *fname))
 { 

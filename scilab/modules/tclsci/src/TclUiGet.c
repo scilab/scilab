@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/TclUiGet.h"
+#include "TclUiGet.h"
 /*-----------------------------------------------------------------------------------*/
 extern int GetScreenProperty(char *prop, char *value);
 extern int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);

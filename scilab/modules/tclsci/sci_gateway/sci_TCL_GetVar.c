@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_GetVar.h"
+#include "sci_TCL_GetVar.h"
 /*-----------------------------------------------------------------------------------*/
 int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
 int TCL_ArraySize(Tcl_Interp *TCLinterpreter,char *VarName);

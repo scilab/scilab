@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_gcf.h"
+#include "sci_TCL_gcf.h"
 /*-----------------------------------------------------------------------------------*/
 int GetTclCurrentFigure(void);
 int SetTclCurrentFigure(int num);

@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/TclUiSet.h"
+#include "TclUiSet.h"
 /*-----------------------------------------------------------------------------------*/
 #define NBRSTYLE 9
 char *UiStyleInternalName[NBRSTYLE] = {"button",

@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../includes/TCL_Global.h"
-#include "../includes/ScilabEval.h"
+#include "TCL_Global.h"
+#include "ScilabEval.h"
 /*-----------------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20

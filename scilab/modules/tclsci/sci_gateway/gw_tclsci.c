@@ -1,11 +1,11 @@
-#include "../includes/gw_tclsci.h"
+#include "gw_tclsci.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <Windows.h>
-#include "../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 extern int GetWITH_GUI(void);

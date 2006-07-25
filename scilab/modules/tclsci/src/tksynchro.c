@@ -3,10 +3,10 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "../machine.h"
+#include "machine.h"
 
 #ifdef WITH_TK
-#include "../tclsci/TCL_Global.h"
+#include "TCL_Global.h"
 #endif
 
 

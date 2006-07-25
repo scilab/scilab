@@ -5,8 +5,8 @@
 /* Desc   : C functions to manage ged (only destroy for now)                               */
 /*-----------------------------------------------------------------------------------------*/
 
-#include "../includes/GedManagement.h"
-#include "../includes/TCL_Global.h"
+#include "GedManagement.h"
+#include "TCL_Global.h"
 /*-----------------------------------------------------------------------------------------*/
 /* return the ged interpreter (default interpreter for now) */
 static Tcl_Interp * getGedInterpreter( void ) ;

@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "../includes/sci_TCL_DeleteInterp.h"
+#include "sci_TCL_DeleteInterp.h"
 /*-----------------------------------------------------------------------------------*/
 extern int CloseTCLsci(void);
 extern void initTCLTK(void);

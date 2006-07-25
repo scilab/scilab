@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../includes/TclEvents.h"
+#include "TclEvents.h"
 extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 void flushTKEvents(void)
