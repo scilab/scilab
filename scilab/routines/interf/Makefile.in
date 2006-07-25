@@ -28,7 +28,19 @@ OBJSF = lstelm.o lstelmi.o matelm.o matold.o lstops.o intl_e.o intl_i.o \
 	isany.o complexify.o issymmetric.o \
 	followpath.o newsave.o insertfield.o v2unit.o v2cunit.o \
 	hmcreate.o lapackf.o lapackf2.o fmexslicot.o fscislicot.o \
-	intlinmeq.o hndlops.o
+	intlinmeq.o hndlops.o \
+	sci_addinter.o sci_argn.o sci_chdir.o sci_clear.o \
+	sci_clearfun.o sci_clearglobal.o sci_comp.o sci_c_link.o \
+	sci_debug.o sci_delbpt.o sci_dispbpt.o sci_errcatch.o sci_errclear.o \
+	sci_error.o sci_exists.o sci_format.o sci_fort.o sci_funcprot.o \
+	sci_funptr.o sci_getcwd.o sci_gstacksize.o sci_havewindow.o \
+	sci_ieee.o sci_intppty.o sci_iserror.o sci_isglobal.o \
+	sci_lines.o sci_link.o sci_macrovar.o sci_mode.o sci_mtlb_mode.o \
+	sci_newfun.o sci_notify.o sci_predef.o sci_resume.o \
+	sci_sciargs.o sci_setbpt.o sci_type.o sci_typnam.o \
+	sci_useascommand.o sci_whereis.o sci_who.o
+
+
 
 
 include ../../Makefile.incl
