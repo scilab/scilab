@@ -1,4 +1,4 @@
-#include "../../includes/javasci_Scilab.h"
+#include "javasci_Scilab.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA */

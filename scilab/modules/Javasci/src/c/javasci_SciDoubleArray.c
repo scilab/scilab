@@ -1,4 +1,4 @@
-#include "../../includes/javasci_SciDoubleArray.h"
+#include "javasci_SciDoubleArray.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2005 */

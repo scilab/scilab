@@ -1,4 +1,4 @@
-#include "../../includes/javasci_SciStringArray.h"
+#include "javasci_SciStringArray.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA 2006 */
