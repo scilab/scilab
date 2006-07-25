@@ -257,6 +257,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\intgget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\intgset.c"
+				>
+			</File>
+			<File
 				RelativePath=".\matdes.c"
 				>
 			</File>
@@ -440,6 +448,14 @@
 			</File>
 			<File
 				RelativePath=".\Interaction.h"
+				>
+			</File>
+			<File
+				RelativePath=".\intgget.h"
+				>
+			</File>
+			<File
+				RelativePath=".\intgset.h"
 				>
 			</File>
 			<File

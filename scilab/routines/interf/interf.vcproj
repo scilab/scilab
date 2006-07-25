@@ -201,14 +201,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intgget.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intgset.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intinterp.c"
 				>
 			</File>
@@ -279,14 +271,6 @@
 			>
 			<File
 				RelativePath=".\intgetmemory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intgget.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intgset.h"
 				>
 			</File>
 			<File
