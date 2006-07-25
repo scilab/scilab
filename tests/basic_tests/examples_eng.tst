@@ -4084,7 +4084,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-w=fileinfo(SCI+'/scilab.star')
+w=fileinfo(SCI+'/scilab.start')
 getdate(w(6))
   
 xdel(winsid())
@@ -4094,8 +4094,8 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-   [path,fname,extension]=fileparts('SCI/scilab.star')
-   fileparts('SCI/scilab.star','extension')
+   [path,fname,extension]=fileparts('SCI/scilab.start')
+   fileparts('SCI/scilab.start','extension')
  
 xdel(winsid())
 
@@ -4189,7 +4189,7 @@ xdel(winsid())
 clear;lines(0);
 
 isdir(TMPDIR)
-isdir SCI/scilab.star
+isdir SCI/scilab.start
 
 xdel(winsid())
 
@@ -4309,11 +4309,11 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-mgetl('SCI/scilab.star',5)
+mgetl('SCI/scilab.start',5)
 
 mgetl SCI/macros/elem/erf.sci
 
-fd=mopen('SCI/scilab.star','r')
+fd=mopen('SCI/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
 
@@ -15366,7 +15366,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
  
-   scipad(SCI+'/scilab.star')
+   scipad(SCI+'/scilab.start')
 
 
 xdel(winsid())

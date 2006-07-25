@@ -4,7 +4,7 @@ reinit_for_test()
 %ans = isdir(TMPDIR);
 if load_ref('%ans') then   pause,end,
 
-%ans = isdir('SCI/scilab.star');
+%ans = isdir('SCI/scilab.start');
 if load_ref('%ans') then   pause,end,
 
 xdel_run(winsid());

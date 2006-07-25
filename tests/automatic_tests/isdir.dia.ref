@@ -10,7 +10,7 @@ reinit_for_test()
 if load_ref('%ans') then   bugmes();quit;end,
  
  
-%ans = isdir('SCI/scilab.star');
+%ans = isdir('SCI/scilab.start');
  
 if load_ref('%ans') then   bugmes();quit;end,
  
