@@ -2,7 +2,7 @@ c SCILAB function : m6dmtree, fin = 22
        subroutine intsm6dmtree(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

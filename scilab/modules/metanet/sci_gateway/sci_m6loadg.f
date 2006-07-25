@@ -2,7 +2,7 @@ c SCILAB function : m6loadg, fin = 1
        subroutine intsm6loadg(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

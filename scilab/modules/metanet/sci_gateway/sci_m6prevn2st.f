@@ -2,7 +2,7 @@ c SCILAB function : m6prevn2st, fin = 7
        subroutine intsm6prevn2st(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

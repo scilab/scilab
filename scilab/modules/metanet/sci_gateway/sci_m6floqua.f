@@ -2,7 +2,7 @@ c SCILAB function : m6floqua, fin = 27
        subroutine intsm6floqua(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

@@ -2,7 +2,7 @@ c SCILAB function : m6p2ns, fin = 5
        subroutine intsm6p2ns(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

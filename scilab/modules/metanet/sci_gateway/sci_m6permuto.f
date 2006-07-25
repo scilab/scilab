@@ -2,7 +2,7 @@ c SCILAB function : m6permuto, fin = 45
        subroutine intsm6permuto(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

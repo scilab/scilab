@@ -2,7 +2,7 @@ c SCILAB function : m6bmatch, fin = 42
        subroutine intsm6bmatch(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

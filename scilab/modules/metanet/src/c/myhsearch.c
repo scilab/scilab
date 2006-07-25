@@ -7,7 +7,7 @@
 #endif
 
 
-#include "../../../../libs/MALLOC/includes/sci_mem_alloc.h"
+#include "sci_mem_alloc.h"
 
 #include "mysearch.h"
 /*-----------------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@ c SCILAB function : m6dijkst, fin = 15
        subroutine intsm6dijkst(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

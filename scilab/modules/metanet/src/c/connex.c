@@ -5,11 +5,11 @@
 #include <malloc.h>
 #endif
 
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 
 extern void cerro();
 
-#include "../../../core/includes/machine.h"
+#include "machine.h"
 
 void C2F(concom)(icomp,n,ncomp,ns,nsize)
 int *icomp, *n, *ncomp, *nsize;

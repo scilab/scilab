@@ -2,7 +2,7 @@ c SCILAB function : m6chcm, fin = 17
        subroutine intsm6chcm(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

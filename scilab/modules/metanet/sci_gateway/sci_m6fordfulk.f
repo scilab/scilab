@@ -2,7 +2,7 @@ c SCILAB function : m6fordfulk, fin = 13
        subroutine intsm6fordfulk(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

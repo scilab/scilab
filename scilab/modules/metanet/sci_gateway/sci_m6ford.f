@@ -2,7 +2,7 @@ c SCILAB function : m6ford, fin = 50
        subroutine intsm6ford(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

@@ -13,7 +13,7 @@
 #include <malloc.h>
 #endif
 
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 
 #define MAXNAM 80
 

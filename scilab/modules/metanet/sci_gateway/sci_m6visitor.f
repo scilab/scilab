@@ -2,7 +2,7 @@ c SCILAB function : m6visitor, fin = 41
        subroutine intsm6visitor(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

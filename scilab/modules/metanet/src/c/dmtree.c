@@ -8,8 +8,8 @@
 
 extern void cerro();
 
-#include "../../../core/includes/machine.h"
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
+#include "machine.h"
+#include "MALLOC.h"
 
 #if _MSC_VER
 extern int F2C(arbor)();

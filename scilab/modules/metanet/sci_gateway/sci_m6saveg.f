@@ -3,7 +3,7 @@ c SCILAB function : m6saveg, fin = 2
        subroutine intsm6saveg(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

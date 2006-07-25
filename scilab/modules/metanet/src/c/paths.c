@@ -9,9 +9,9 @@
 
 
 
-#include "../../../core/includes/machine.h"
+#include "machine.h"
 
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 
 
 extern void cerro();

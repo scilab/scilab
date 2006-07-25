@@ -2,7 +2,7 @@ c SCILAB function : m6meshmesh, fin = 49
        subroutine intsm6meshmesh(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

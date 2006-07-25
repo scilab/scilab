@@ -2,7 +2,7 @@ c SCILAB function : m6flomax, fin = 24
        subroutine intsm6flomax(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

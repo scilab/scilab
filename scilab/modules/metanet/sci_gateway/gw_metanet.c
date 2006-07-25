@@ -1,11 +1,11 @@
-#include "../includes/gw_metanet.h"
+#include "gw_metanet.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <Windows.h>
-#include "../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/

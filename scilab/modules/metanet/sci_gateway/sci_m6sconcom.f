@@ -2,7 +2,7 @@ c SCILAB function : m6sconcom, fin = 11
        subroutine intsm6sconcom(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

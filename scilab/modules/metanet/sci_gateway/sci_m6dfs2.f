@@ -2,7 +2,7 @@ c SCILAB function : m6dfs2, fin = 34
        subroutine intsm6dfs2(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

@@ -2,7 +2,7 @@ c SCILAB function : m6lp2tad, fin = 32
        subroutine intsm6lp2tad(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

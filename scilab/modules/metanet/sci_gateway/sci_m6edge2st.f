@@ -2,7 +2,7 @@ c SCILAB function : m6edge2st, fin = 6
        subroutine intsm6edge2st(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

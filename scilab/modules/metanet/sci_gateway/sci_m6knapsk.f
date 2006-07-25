@@ -2,7 +2,7 @@ c SCILAB function : m6knapsk, fin = 43
        subroutine intsm6knapsk(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

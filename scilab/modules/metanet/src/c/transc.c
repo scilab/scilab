@@ -6,9 +6,9 @@
 #endif
 
 
-#include "../../../core/includes/machine.h"
+#include "machine.h"
 
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
+#include "MALLOC.h"
 
 #ifdef _MSC_VER
 extern void cerro __PARAMS((char *str));

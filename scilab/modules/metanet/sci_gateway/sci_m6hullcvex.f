@@ -2,7 +2,7 @@ c SCILAB function : m6hullcvex, fin = 37
        subroutine intsm6hullcvex(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

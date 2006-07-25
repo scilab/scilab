@@ -2,7 +2,7 @@ c SCILAB function : m6pcchna, fin = 12
        subroutine intsm6pcchna(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

@@ -2,7 +2,7 @@ c SCILAB function : m6umtree, fin = 20
        subroutine intsm6umtree(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

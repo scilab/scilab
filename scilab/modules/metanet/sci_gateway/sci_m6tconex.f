@@ -2,7 +2,7 @@ c SCILAB function : m6tconex, fin = 23
        subroutine intsm6tconex(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl

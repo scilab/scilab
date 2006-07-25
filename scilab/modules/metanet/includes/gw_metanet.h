@@ -12,8 +12,8 @@
 
 #include <string.h>
 
-#include "../../core/includes/machine.h"
-#include "../../core/includes/stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 
 
 typedef int (*Metanet_Interf) __PARAMS((char *fname,unsigned long l));

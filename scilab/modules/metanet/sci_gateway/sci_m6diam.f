@@ -2,7 +2,7 @@ c SCILAB function : m6diam, fin = 35
        subroutine intsm6diam(fname)
 c
        character*(*) fname
-       include '../../core/includes/stack.h'
+       include 'stack.h'
 c
        integer iadr, sadr
        integer topk,rhsk,topl
