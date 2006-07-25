@@ -11,7 +11,7 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#include "intcommongraphics.h"
+#include "../graphics/intcommongraphics.h"
 #include "../graphics/ObjectStructure.h"
 /*-----------------------------------------------------------------------------------*/
 extern void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */

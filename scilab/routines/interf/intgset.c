@@ -21,7 +21,7 @@
 #include "../graphics/BuildObjects.h"
 #include "../graphics/DestroyObjects.h"
 
-#include "intcommongraphics.h"
+#include "../graphics/intcommongraphics.h"
 
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */

@@ -205,10 +205,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intgraphics.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intgset.c"
 				>
 			</File>
@@ -249,10 +245,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\matdes.c"
-				>
-			</File>
-			<File
 				RelativePath=".\matdsr.c"
 				>
 			</File>
@@ -286,10 +278,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\intcommongraphics.h"
-				>
-			</File>
-			<File
 				RelativePath=".\intgetmemory.h"
 				>
 			</File>
@@ -298,19 +286,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intgraphics.h"
-				>
-			</File>
-			<File
 				RelativePath=".\intgset.h"
 				>
 			</File>
 			<File
 				RelativePath=".\intshowalluimenushandles.h"
-				>
-			</File>
-			<File
-				RelativePath="matdes.h"
 				>
 			</File>
 			<File

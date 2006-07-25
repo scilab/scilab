@@ -241,6 +241,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_graphics.c"
+				>
+			</File>
+			<File
 				RelativePath=".\HandleManagement.c"
 				>
 			</File>
@@ -250,6 +254,10 @@
 			</File>
 			<File
 				RelativePath=".\Interaction.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matdes.c"
 				>
 			</File>
 			<File
@@ -415,11 +423,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_graphics.h"
+				>
+			</File>
+			<File
 				RelativePath=".\HandleManagement.h"
 				>
 			</File>
 			<File
 				RelativePath=".\InitObjects.h"
+				>
+			</File>
+			<File
+				RelativePath=".\intcommongraphics.h"
 				>
 			</File>
 			<File

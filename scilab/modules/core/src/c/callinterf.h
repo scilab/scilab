@@ -16,7 +16,7 @@ extern void    /* 03  */ C2F(matsvd)();/* for backward compatibility */
 extern void    /* 04  */ C2F(matqr)();/* for backward compatibility */
 extern void    /* 05  */ C2F(matio)();
 extern void    /* 06  */ C2F(matelm)();
-extern void    /* 07  */ C2F(matdes)();
+extern void    /* 07  */ C2F(gw_graphics)();
 extern void    /* 08  */ C2F(matqz)();
 extern void    /* 09  */ C2F(matric)();
 extern void    /* 10  */ C2F(matnew)();
@@ -90,7 +90,7 @@ static OpTab Interfaces[] ={
 	/* 04  */ {C2F(matqr)},
 	/* 05  */ {C2F(matio)},
 	/* 06  */ {C2F(matelm)},
-	/* 07  */ {C2F(matdes)},
+	/* 07  */ {C2F(gw_graphics)},
 	/* 08  */ {C2F(matqz)},
 	/* 09  */ {C2F(matric)},
 	/* 10  */ {C2F(matnew)},
