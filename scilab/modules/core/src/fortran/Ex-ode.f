@@ -97,7 +97,7 @@ c     param must be defined as a scilab variable
       double precision t, y, ydot, param
       dimension y(3), ydot(3), param(3)
 
-      include '../../includes/stack.h'
+      include 'stack.h'
       call matptr('param'//char(0),m,n,lp)
       if(m.eq.-1) return
 c     ***************************
@@ -143,7 +143,7 @@ c
 c     set dimension of u here
       double precision u(1)
 c
-      include '../../includes/stack.h'
+      include 'stack.h'
       call matptr('A'//char(0),m,n,la)
       call dmmul(stk(la),m,x,m,xdot,m,m,m,1)
       call matptr('B'//char(0),m,nb,lb)

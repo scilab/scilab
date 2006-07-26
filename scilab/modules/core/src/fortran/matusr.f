@@ -1,7 +1,7 @@
       subroutine matusr
 c
 c     Copyright INRIA
-      include '../../includes/stack.h'
+      include 'stack.h'
 c
 c      integer iadr, sadr
 c      iadr(l)=l+l-1

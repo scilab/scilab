@@ -131,7 +131,7 @@ c     y=hc1(t,xc)
 c     xdot=A*xc+B*u
 c     A and B real scilab matrices
       double precision t,xc(*),xdot(*),u(*)
-      include '../../includes/stack.h'
+      include 'stack.h'
       call matptr('A'//char(0),m,n,la)
 c     call dset(m,0.0d0,xdot,1)
 c     call dgemm('n','n',m,1,m,1.0d0,stk(la),m,xc,m,1.0d0,xdot,m)
@@ -142,7 +142,7 @@ c     call dgemm('n','n',m,1,m,1.0d0,stk(la),m,xc,m,1.0d0,xdot,m)
 
       subroutine hc1(t,x,y)
       double precision t,x(*),y(*)
-      include '../../includes/stack.h'
+      include 'stack.h'
 c     y=C*x
       call matptr('C'//char(0),m,n,lc)      
       call brdmmul(stk(lc),m,x,m,y,m,m,n,1)
@@ -151,7 +151,7 @@ c     y=C*x
       subroutine fd1(xd,y,xp)
 c     xp=Ad*xd + Bd*y
       double precision xd(*),y(*),xp(*)
-      include '../../includes/stack.h'
+      include 'stack.h'
       call matptr('Ad'//char(0),m,n,la)
       call brdmmul(stk(la),m,xd,m,xp,m,m,m,1)
       call matptr('Bd'//char(0),m,nb,lb)
@@ -162,7 +162,7 @@ c     xp=Ad*xd + Bd*y
       subroutine hd1(t,xd,u)
       double precision t,xd(*),u(*)
 c     u=Cd*xd
-      include '../../includes/stack.h'
+      include 'stack.h'
 c     y=C*x
       call matptr('Cd'//char(0),m,n,lc)      
       call brdmmul(stk(lc),m,xd,m,u,m,m,n,1)
@@ -212,7 +212,7 @@ c     xd=-xd
 c     xdot=A*x1+B*x2
 c     A and B real scilab matrices
       double precision t,x(*),xdot(*)
-      include '../../includes/stack.h'
+      include 'stack.h'
       call matptr('A'//char(0),m,n,la)
       call brdmmul(stk(la),m,x,m,xdot,m,m,m,1)
       call matptr('B'//char(0),m,nb,lb)

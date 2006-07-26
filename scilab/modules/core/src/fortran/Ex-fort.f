@@ -17,7 +17,7 @@ c     Copyright INRIA
       subroutine foobar1(fname)
       character*(*) fname
       logical getrhsvar, createvar,  putlhsvar
-      include '../../includes/stack.h'
+      include 'stack.h'
 c
       nbvars=0
       minrhs=5

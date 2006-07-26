@@ -1,6 +1,6 @@
       subroutine  msgstxt(txt)
 c     Copyright INRIA
-      include '../../includes/stack.h'
+      include 'stack.h'
       character txt*(*)
       call basout(io,wte,txt)
       return

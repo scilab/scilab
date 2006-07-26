@@ -3,7 +3,7 @@ c ====================================================================
 c     evaluate user functions
 c ================================== ( Inria    ) =============
 c     Copyright INRIA
-      include '../../includes/stack.h'
+      include 'stack.h'
 c
  9999 return
       end
