@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>swap_handle</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>2006</DATE>
+
+  <SHORT_DESCRIPTION name="swap_handles">Permute deux handle dans la
+  hiérarchie graphique.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>swap_handle( handle1, handle2
+    )</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>handle1</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: premier handle de la permutation.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>handle2</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: second handle de la permutation.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>La fonction swap_handles permet de permuter deux handles dans la
+    hierarchie graphique. Le premier prend la place du second et
+    inversement.</P>
+
+    <P>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
+    existe des restrictions quant à&#160; l'utilisation de la routine. Il est
+    par exemple impossible de permuter un handle polyline et un handle axes,
+    ils ne seraient alors plus compatible avec leur nouveaux parents. Pour
+    plus d'information à&#160; ce sujet, on peut se reporter à&#160; la page
+    <LINK>graphics_entities</LINK> .</P>
+
+    <P>La routine peut-être utilisée pour modifier les indices des enfants
+    d'un handle.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[//-----------------//
+//  Permier exemple   //
+//-----------------//
+
+// creation d'un rectangle
+xrect( 0.5, 0.5,0.5,0.5) ;
+rect = gce() ;
+
+// creation d'un cercle
+xarc( 0.5, 0.5, 0.5, 0.5, 0, 64 * 360 ) ;
+circle = gce() ;
+
+// creation d'une flèche
+xpoly([0,1],[0,1]) ;
+arrow = gce() ;
+arrow.polyline_style = 4 ;
+arrow.arrow_size_factor = 4 ;
+
+// affichage de la liste des enfants
+axes = gca()  ;
+axes.children
+
+// modification de l'odre des enfants
+swap_handles( rect, arrow ) ;
+swap_handles( arrow, circle ) ;
+
+// affichage du nouvel ordre
+axes.children
+
+//------------------//
+//  Deuxième exemple //
+//------------------//
+
+// creation de deux fenêtres
+plot2d ;
+axes1 = gca() ;
+
+scf() ;
+fec ;
+axes2 = gca() ;
+
+// parmutation de leurs axes respectifs
+// Onpeut noter que les axes héritent de la color map de leur nouvelle fenêtre.
+swap_handles( axes1, axes2 ) ;
+
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>copy</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>relocate_handle</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Jean-Baptiste Silvy</AUTHOR>
+</MAN>
