@@ -12,12 +12,12 @@ path=getshortpathname(path);
 path=strsubst(path,'\','/');
 if (LANGUAGE=='fr') then
   path=strsubst(path,'/etc/','/help/fr');
-  add_help_chapter("Manipulation de fichiers sons",path);
+  add_help_chapter("Bibliothèque graphique",path);
 end
 
 if (LANGUAGE=='eng') then
   path=strsubst(path,'/etc/','/help/eng');
-  add_help_chapter("Sound file handling",path)
+  add_help_chapter("Graphics Library",path)
 end
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================
