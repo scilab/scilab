@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET (Reorganisation)*/
 /*-----------------------------------------------------------------------------------*/ 
-#include "intfileio.h"
+#include "sci_fileio.h"
 #include <string.h>
 #include <stdio.h>
 
