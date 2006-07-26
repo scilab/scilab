@@ -63,6 +63,7 @@ if ~MSDOS then
   load('SCI/macros/metanet/lib')
   load('SCI/macros/tksci/lib')
   load('SCI/macros/sound/lib')
+  load('SCI/macros/xdess/lib')
 end
 load('SCI/macros/robust/lib')
 load('SCI/macros/auto/lib')
@@ -77,7 +78,6 @@ load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
 if with_texmacs() then load('SCI/macros/texmacs/lib'),end
 clear with_texmacs
-load('SCI/macros/xdess/lib')
 load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
 load('SCI/macros/pvm/lib')
@@ -184,11 +184,12 @@ if %scicos then
 end
 
 if MSDOS then
- exec SCI/modules/time/etc/time.start;
- exec SCI/modules/sound/etc/sound.start;
+ exec SCI/modules/graphics/etc/graphics.start;
  exec SCI/modules/Javasci/etc/javasci.start;
- exec SCI/modules/tclsci/etc/tclsci.start;
  exec SCI/modules/metanet/etc/metanet.start;
+ exec SCI/modules/sound/etc/sound.start;
+ exec SCI/modules/tclsci/etc/tclsci.start;
+ exec SCI/modules/time/etc/time.start;
 end
 
 
