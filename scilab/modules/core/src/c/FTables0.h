@@ -1,7 +1,7 @@
 #ifndef __FTABLES0__
 #define __FTABLES0__
 
-#include "../../includes/machine.h"
+#include "machine.h"
 
 #define OK 1
 #define FAIL 0

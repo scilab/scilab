@@ -6,7 +6,7 @@
  * Scilab stack 
  *------------------------------------------*/
 #include <string.h>
-#include "../../includes/stack-c.h"
+#include "stack-c.h"
 
 /* REORGANISATION TEMPORAIRE */
 #include "../../../../routines/system/msgstore.h"

@@ -11,8 +11,8 @@
 #include <stdio.h>
 
 
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
-#include "../../includes/stack-c.h" 
+#include "MALLOC.h"
+#include "stack-c.h" 
 
 /* REORGANISATION TEMPORAIRE */
 #include "../../../../routines/os_specific/men_Sutils.h" 

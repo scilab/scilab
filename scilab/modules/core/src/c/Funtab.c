@@ -7,10 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../../../../libs/MALLOC/includes/sci_mem_alloc.h"
-#include "../../includes/stack-c.h"
-
-#include "../../includes/machine.h"
+#include "sci_mem_alloc.h"
+#include "stack-c.h"
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 #define NAMECODE 6
 #define OK 1

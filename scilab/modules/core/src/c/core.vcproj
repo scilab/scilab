@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../routines/f2c;../../tcl/include/X11"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -117,7 +117,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../routines/f2c;../../tcl/include/X11"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -186,7 +186,259 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\gw_core.c"
+				>
+			</File>
+			<File
 				RelativePath=".\mexlib.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_addinter.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_arg.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_banner.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_c_link.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_call.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_chdir.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_clear.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_clearfun.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_clearglobal.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_comp.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_debug.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_delbpt.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_dispbpt.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_errcatch.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_errclear.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_error.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_exists.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_format.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_fromc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_fromjava.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_funcprot.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_funptr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getcwd.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_gethistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getmd5.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getmemory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getos.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getversion.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_global.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_gstacksize.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_havewindow.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_ieee.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_intppty.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isdef.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_iserror.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_isglobal.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_lasterror.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_lines.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_link.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_loadhistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_macr2lst.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_macr2tree.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_mode.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_mtlb_mode.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_newfun.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_predef.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_pwd.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_resethistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_resume.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_return.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_savehistory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_sciargs.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_setbpt.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_stacksize.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_type.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_typename.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_ulink.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_warning.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_what.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_where.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_whereis.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_who.c"
 				>
 			</File>
 			<File
@@ -227,6 +479,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\gw_core.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\machine.h"
 				>
 			</File>
@@ -255,6 +511,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\core.fundef"
+			>
+		</File>
 		<File
 			RelativePath="..\..\sci_gateway\fundef"
 			>

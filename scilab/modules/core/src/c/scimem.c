@@ -8,8 +8,8 @@
 #include <malloc.h>
 #endif
 
-#include "../../includes/machine.h"
-#include "../../../../libs/MALLOC/includes/MALLOC.h"
+#include "machine.h"
+#include "MALLOC.h"
 
 
 #ifdef _MSC_VER 

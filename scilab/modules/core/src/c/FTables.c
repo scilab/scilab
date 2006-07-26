@@ -8,8 +8,9 @@
 #include "FTables0.h"
 #include "FTables.h"
 #define FTable_H   /* to prevent  a type conflict with GetFuncPtr */ 
-#include "../../includes/stack-c.h"
+#include "stack-c.h"
 
+/*REORGANISATION TEMPORAIRE */
 #include "../../../../routines/os_specific/link.h"
 
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
