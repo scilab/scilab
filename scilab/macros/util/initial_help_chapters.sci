@@ -17,7 +17,6 @@ function %helps=initial_help_chapters(language)
 	end
 	
 	dirs=["programming";
-				"graphics";
 				"elementary";
 				"fileio";
 				"functions";
@@ -53,7 +52,6 @@ function %helps=initial_help_chapters(language)
 	
 	case "eng"
 		helpstmp=["Programming";
-			"Graphics Library";
 			"Elementary Functions";
 			"Input/Output Functions";
 			"Handling of functions and libraries";
@@ -86,7 +84,6 @@ function %helps=initial_help_chapters(language)
 	
 	case "fr"
 			helpstmp=["Programmation";
-			"Librairie graphique";
 			"Fonctions élémentaires";
 			"Entrées-sorties";
 			"Manipulation des fonctions et des librairies";
