@@ -18,22 +18,23 @@ CurrentDirectory=pwd();
  "statistics",
  "tdcs",
  "texmacs",
- "xdess",
  "sparse",
  "gui",
  "m2sci",
  "pvm"];
  
  if MSDOS then
-   Directories=[Directories;"SCI/modules/time/macros"];
+   Directories=[Directories;"SCI/modules/graphics/macros"];
    Directories=[Directories;"SCI/modules/metanet/macros"];
    Directories=[Directories;"SCI/modules/sound/macros"];
    Directories=[Directories;"SCI/modules/tclsci/macros"];
+   Directories=[Directories;"SCI/modules/time/macros"];
  else
+   Directories=[Directories;"xdess"];
+   Directories=[Directories;"metanet"];
+   Directories=[Directories;"sound"];
    Directories=[Directories;"time"];
- 	 Directories=[Directories;"metanet"];
    Directories=[Directories;"tksci"];
-   Directories=[Directories;"sound"]; 
  end
  
 if %scicos then
