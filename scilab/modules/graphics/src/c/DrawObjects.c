@@ -12104,14 +12104,14 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
   rectCenter[1] = ( bbox[0][1] + bbox[1][1] + bbox[2][1] + bbox[3][1] ) / 4.0 ;
 
   /* We suppose the box is centered on I and we compute IRi, i=0:3 */
-  corners[0][0] = bbox[0][0] - rectCenter[0] ;
-  corners[0][1] = bbox[0][1] - rectCenter[1] ;
-  corners[1][0] = bbox[1][0] - rectCenter[0] ;
-  corners[1][1] = bbox[1][1] - rectCenter[1] ;
-  corners[2][0] = bbox[2][0] - rectCenter[0] ;
-  corners[2][1] = bbox[2][1] - rectCenter[1] ;
-  corners[3][0] = bbox[3][0] - rectCenter[0] ;
-  corners[3][1] = bbox[3][1] - rectCenter[1] ;
+  corners[0][0] = (int) (bbox[0][0] - rectCenter[0]) ;
+  corners[0][1] = (int) (bbox[0][1] - rectCenter[1]) ;
+  corners[1][0] = (int) (bbox[1][0] - rectCenter[0]) ;
+  corners[1][1] = (int) (bbox[1][1] - rectCenter[1]) ;
+  corners[2][0] = (int) (bbox[2][0] - rectCenter[0]) ;
+  corners[2][1] = (int) (bbox[2][1] - rectCenter[1]) ;
+  corners[3][0] = (int) (bbox[3][0] - rectCenter[0]) ;
+  corners[3][1] = (int) (bbox[3][1] - rectCenter[1]) ;
 
   /* compute IRi.v, i=0:3 to get the current distance between Ri and the axis. */
   /* Then for each Ri we can compute the need displacment along the centerDir to push it */
