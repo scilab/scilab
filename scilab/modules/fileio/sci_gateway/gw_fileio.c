@@ -58,7 +58,7 @@ static TabF Tab[]={
 	{intsmerror, "merror"}
 	};
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(matfileio)(void)
+int C2F(gw_fileio)(void)
 {
 	Rhs=Max(0,Rhs);
 #if _MSC_VER
