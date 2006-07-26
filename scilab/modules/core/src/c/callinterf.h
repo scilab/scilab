@@ -22,7 +22,7 @@ extern void    /* 09  */ C2F(matric)();
 extern void    /* 10  */ C2F(matnew)();
 extern void    /* 11  */ C2F(matopt)();
 extern void    /* 12  */ C2F(matode)();
-extern void    /* 13  */ C2F(matsys)();
+extern void    /* 13  */ C2F(gw_core)();
 extern void    /* 14  */ C2F(matusr)();
 extern void    /* 15  */ C2F(gw_metanet)();
 extern void    /* 16  */ C2F(polelm)();
@@ -43,7 +43,7 @@ extern void    /* 30  */ C2F(defint)();
 extern void    /* 31  */ C2F(feval)();
 extern void    /* 32  */ C2F(bva)();
 /* 33  */ /* FREE */
-extern void    /* 34  */ C2F(matfileio)();
+extern void    /* 34  */ C2F(gw_fileio)();
 extern void    /* 35  */ C2F(intarpack)();
 extern void    /* 36  */ C2F(specfun)();
 extern void    /* 37  */ C2F(dcd)();
@@ -96,7 +96,7 @@ static OpTab Interfaces[] ={
 	/* 10  */ {C2F(matnew)},
 	/* 11  */ {C2F(matopt)},
 	/* 12  */ {C2F(matode)},
-	/* 13  */ {C2F(matsys)},
+	/* 13  */ {C2F(gw_core)},
 	/* 14  */ {C2F(matusr)},
 	/* 15  */ {C2F(gw_metanet)},
 	/* 16  */ {C2F(polelm)},
@@ -117,7 +117,7 @@ static OpTab Interfaces[] ={
 	/* 31  */ {C2F(feval)},
 	/* 32  */ {C2F(bva)},
   /* 33  */ {C2F(matus2)}, /* free position may be used */
-	/* 34  */ {C2F(matfileio)},
+	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(intarpack)},
 	/* 36  */ {C2F(specfun)},
 	/* 37  */ {C2F(dcd)},

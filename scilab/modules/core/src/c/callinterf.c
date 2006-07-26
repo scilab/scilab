@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <signal.h>
 
-#include "../../includes/machine.h"
+#include "machine.h"
 
 /* REORGANISATION TEMPORAIRE */
 #include "../../../../routines/os_specific/addinter.h" /* for DynInterfStart */

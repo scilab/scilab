@@ -33,7 +33,7 @@
 #include "../../../../routines/interf/ode.fundef"  
 
 #define  IN_matsys  13  
-#include "../../../../routines/system/system.fundef"
+#include "core.fundef"
 
 #define  IN_matusr  14  
 #include "../../../../routines/interf/usr.fundef"
@@ -94,7 +94,7 @@
 /* 33 <FREE> free position may be used */  
 
 #define  IN_matfileio  34
-#include "../../../../routines/fileio/fileio.fundef"  
+#include "../../fileio/sci_gateway/fileio.fundef"  
 
 #define  IN_intarpack  35
 #include "../../../../routines/arpack/arpack.fundef"
