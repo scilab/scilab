@@ -1,0 +1,47 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+// ==========================================
+
+mode(0);
+
+// Hide the toolbar
+toolbar(0,'off');
+
+// Save the graphic context
+kp = xget('pixmap');
+
+string_to_display = [
+	'xset(''pixmap'',1);';
+	'';
+	'xselect(); //raise graphic window';
+	'np=10;';
+	't=0:0.1:np*%pi;';
+	'';
+	'if driver()==''Pos'' then';
+	'  st=1.5;';
+	'else';
+	'  st=0.5;';
+	'end';
+	'';
+	'I=1:st:30';
+	'';
+	'realtimeinit(0.03);';
+	'';
+	'for i=1:size(I,''*'')';
+	'  realtime(i)';
+	'  xset(''wwpc'');';
+	'  param3d((t/(np*%pi)*%pi).*sin(t),(t/(np*%pi)*%pi).*cos(t),I(i)*t/(np*%pi),35,45,''X@Y@Z'',[2,4]);';
+	'  xset(''wshow'');';
+	'end';
+];
+
+execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
+
+// Restore the graphic context
+xset('pixmap',kp);
+
+mode(-1);

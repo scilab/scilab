@@ -1,0 +1,13 @@
+// demo of macros portrait & fchamp
+//  limit circle
+// Copyright Enpc 
+
+xbasc();
+part1()
+// phase portrait : dimension 2
+portrait(cycllim,'default',[-2,-2,2,2],[500,0.1],'f',[0,1;0.5,2]);
+// field dynamic system
+fchamp(cycllim,0,-2:0.2:2,-2:0.2:2,0)
+
+//interactive 
+portrait(cycllim,'default',[-2,-2,2,2],[100,0.1]);

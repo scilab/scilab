@@ -1,0 +1,31 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+//
+// ==========================================
+
+mode(0);
+
+path=get_absolute_file_path('fec.dem');
+oldln=lines();
+lines(0);
+
+demolist=['Finite Element display','fec.ex1';
+	  'Finite Element display','fec.ex2';
+	  'Sfgrayplot ','fec.ex3';
+	  'Finite Element display with colorbar','fec.ex4'];
+
+deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
+
+while %t then
+	num=tk_choose(demolist(:,1),'Choose a demo');
+	if num==0 then 
+		lines(oldln(1));
+		return;
+	else
+		demoex(num)
+	end
+end
+
+mode(-1);

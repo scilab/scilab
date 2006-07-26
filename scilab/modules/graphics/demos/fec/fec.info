@@ -1,0 +1,41 @@
+In fact, I haven't written informations about the command fec 
+fec is used to plot contour level of a function defined 
+on a mesh constituted of triangles 
+and assuming that f is linear on triangles 
+
+The best way to undersantd how it works is to look at the two demo
+files in demos/fec ( and source code for fec in routines/graphics/Fec )
+
+===================================================================
+fec.ex1 is a simple demo file in which a mesh and a function 
+on that mesh is completely built in Scilab syntax 
+
+Fec is used as folows : 
+	let no be the number of nodes 
+	and Ntr the number of traiangles 
+
+fec(x,y,triangles,func,no,Ntr,strflag,legend,brect,aaint) 
+
+	x and y are two vectors of size no 
+		 (x(i),y(i)) gives the coordinates of node i 
+	func is also a vector of size no : 
+		 func(i) gives the value of the function for which we want
+		the level curves.
+
+	trianles : is a [Ntr,5] matrix 
+		each line of triangles specifies a triangle of the 
+		mesh 
+		triangle(j) = [number,node1,node2,node3,flag]
+		node1,node2,node3 : are the number of the nodes 
+		which constitues triangle(j)
+		number : is the number of the triangle 
+		flag is an integer not used in the fec function 
+
+	for the remaining arguments 
+	strflag,legend,brect,aint : see plot2d 
+===================================================================
+
+fec.ex2 is an example for which the mesh and the function value where 
+computed by an external `mesh builder    (amdba type mesh) and external program 
+A set of macros ( provided in file fec_demos.sci) were used to read the to data files in Scilab 
+and plot the results 

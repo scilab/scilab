@@ -1,0 +1,31 @@
+mode(-1)
+
+// Copyright INRIA
+
+path=get_absolute_file_path('graphics.dem');
+oldln=lines();
+lines(0)
+
+demolist=['2D and 3D plots','dessin.dem',
+		'Basic functions','xdemo.dem',
+		'Animation','anim/anim.dem',
+		'Finite Elements','fec/fec.dem',
+		'Bezier curves and surfaces','surface/bezier.dem',
+		'More surfaces','surface/surfaces.dem',
+		'Misc','misc/misc.dem',
+		'Complex elementary functions','cmplxfunc/cmplxfunc.dem',
+		'bar histogram','bar/bar.dem'
+]
+
+deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
+
+while %t then
+	num=tk_choose(demolist(:,1),'Choose a demo');
+	if num==0 then
+		lines(oldln(1))
+		return
+	else
+		demoex(num)
+	end
+end
+

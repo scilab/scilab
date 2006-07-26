@@ -1,0 +1,426 @@
+//===========================================================
+//
+// xdemo(info,str)
+// Demo of graphic : main function
+// Copyright INRIA
+// Copyright Enpc
+//
+//===========================================================
+
+function []=xdemo(info,str)
+	x_message([info;str])
+	execstr(str)
+endfunction
+
+//===========================================================
+//
+// xdemo1(filen)
+// Demo of graphic primitives
+//
+//===========================================================
+
+function []=xdemo1(filen)
+
+	[lhs,rhs]=argn(0)
+	if rhs==1,driver("Pos"),xinit(filen);deff('[]=xshow(str)','1');end
+	xbasc();
+	plot2d([-100,500],[-100,600],[-1,-1],"022");
+	deff('[v]=transl(x,t)','v=x+t*ones(x)');
+	xclip('clipgrf');
+	
+	x_message(["[I] function to plot a set of objects "]);
+	
+	// Demo I.1
+	expr=['x=0:40:240;';
+	'boxes=[x;10*ones(x);30*ones(x);30*ones(x)];';
+	'xrects(boxes)'];
+	xdemo("[I.1] function xrects : plot rectangles",expr);
+		
+	// Demo I.2
+	expr=['x=0:40:240;';
+	'boxes=[x;45*ones(x);30*ones(x);30*ones(x)];';
+	'pats=[0,4,8,12,15,xget(''white''),0];';
+	'xrects(boxes,pats);'];
+	xdemo("[I.2] fonction xrects : filling rectangles",expr);
+	
+	// Demo I.3
+	expr=['x=0:40:240;';
+	'boxes=[x;90*ones(x);30*ones(x);30*ones(x)];';
+	'arcs=[boxes; 0*ones(x);64*180*ones(x)];';
+	'pats=[0,4,8,12,15,xget(''white''),0];';
+	'xarcs(arcs,pats);'];
+	xdemo("[I.3] xarcs(arcs,patterns)",expr);
+	
+	// Demo I.4
+	expr=['x=0:40:240;';
+	'boxes=[x;135*ones(x);30*ones(x);30*ones(x)];';
+	'arcs=[boxes; 0*ones(x);64*360*ones(x)];';
+	'xarcs(arcs);']
+	xdemo("[I.4] xarcs(arcs)",expr);
+	
+	// Demo I.5
+	expr0=['x1=[0,10,20,30,20,10,0];';
+	'y1=[15,30,30,15,0,0,15];y1=160*ones(y1)+y1;';
+	'xpols=[x1;transl(x1,40);transl(x1,80);transl(x1,120)'...
+	+ ';transl(x1,160);transl(x1,200);transl(x1,240)];';
+	'ypols=[y1;y1;y1;y1;y1;y1;y1];';
+	'xfpolys(xpols'',ypols'');'];
+	xdemo("[I.5] xfpolys(x,y)",expr0);
+	
+	// Demo I.6
+	expr=[ expr0;
+	'ypols=transl(ypols,60);';
+	'pats=[0,4,8,12,15,xget(''white''),0];';
+	'xfpolys(xpols'',ypols'',pats);'];
+	xdemo("[I.6] xfpolys(x,y,pattern)",expr);
+
+	// Demo I.7
+	expr=[ expr0;
+	'ypols=transl(ypols,120);';
+	'xpolys(xpols'',ypols'',1:7);'];
+	xdemo("[I.7] xpolys(x,y,line-style)",expr);
+
+	// Demo I.8
+	expr=[ expr0;
+	'ypols=transl(ypols,180);';
+	'xpolys(xpols'',ypols'',-(1:7));'];
+	xdemo("[I.8] xpolys(x,y,line-style)",expr);
+
+	// Demo I.9
+	expr=['x=0:40:240;';
+	'xsegs([x;x+30*ones(x)],[(360+40)*ones(x);(360+70)*ones(x)]);']
+	xdemo("[I.9] xsegs(x,y)",expr);
+
+	// Demo I.10
+	expr=['x=0:40:240;';
+	'xarrows([x;x+30*ones(x)],[(360+70)*ones(x);(360+100)*ones(x)]);'];
+	xdemo(["[I.10] xarrows(x,y)"],expr);
+
+	// Demo I.11
+	expr=['x=0:100:200;';
+	'xnumb(x,500*ones(x),[10,20,35],1);';
+	'xnumb(x,550*ones(x),[10,20,35],0);';];
+	xdemo(["[[I.10] xnumb()"],expr);
+
+	xset("default");xclip();
+	if rhs==1,xend();end
+endfunction
+
+
+//===========================================================
+//
+// xdemo2(filen)
+// Demo for graphic primitives
+//
+//===========================================================
+
+function []=xdemo2(filen)
+	
+	[lhs,rhs]=argn(0)
+	if rhs==1,driver("Pos"),xinit(filen);deff('[]=xshow(str)','1');end
+	xbasc();
+	xset("default");
+	plot2d([-100,500],[-100,600],[-1,-1],"022");
+	xclip('clipgrf');
+	deff('[v]=transl(x,t)','v=x+t*ones(x)');
+
+	x_message(["[II] Basic Functions of drivers :"]);
+
+	// Demo II.1
+	expr="xrect(20,120,60,60);"
+	xdemo(["[II.1] xrect : draw one rectangle with current line style"],expr);
+
+	// Demo II.2
+	expr="xfrect(100,120,60,60);"
+	xdemo(["[II.1] xfrect : fill one rectangle with current pattern"],expr);
+
+	// Demo II.3
+	expr="xarc(20,200,50,70,0,64*(225));"
+	xdemo(["[II.2] xarc : draw part of an elipsis"],expr);
+
+	// Demo II.4
+	expr="xfarc(100,200,50,70,0,64*225);"
+	xdemo(["[II.2] xfarc : fill part of an elipsis"],expr);
+
+	// Demo II.5
+	expr0=["x=0:1:%pi;";
+	"[n1,n2]=size(x);";
+	"x1=50*sin(x)+40*ones(x);";
+	"y1=50*cos(x)+90*ones(x);"];
+	expr=[expr0;
+	"xset(''mark'',6,1);";
+	"y1=transl(y1,200);";
+	"xpoly(x1,y1,''marks'',0);";
+	"xset(''mark'',4,6);";
+	"x1=transl(x1,80);";
+	"xpoly(x1,y1,''marks'',0);"]
+	xdemo(["[II.3] xpoly(x,y,""marks"",0)"],expr);
+
+	// Demo II.6
+	expr=[expr0;"x1=transl(x1,160);";
+	"xpoly(x1,y1,''lines'',0);"];
+	xdemo(["[II.3] xpoly(x,y,""lines"",0)"],expr);
+
+	// Demo II.7
+	expr=[expr0;"x1=transl(x1,240);";
+	"xpoly(x1,y1,''lines'',1);"]
+	xdemo(["[II.3] xpoly(x,y,""lines"",1)"],expr);
+
+	// Demo II.8
+	expr=[expr0;"x1=transl(x1,320);";
+	"xfpoly(x1,y1,1);"]
+	xdemo(["[II.4] xfpoly(x,y,1)"],expr);
+
+	// Demo II.9
+	expr=["xset(''font'',2,2);";
+	"xstring(200,200,''Character string'',0,0);";
+	"xstring(200,250,''Character string'',0,1);";
+	"xstring(400,300,''Chaine '',45,0);"];
+	xdemo(["[II.5] xstring"],expr);
+
+	// Demo II.10
+	expr=["rect=xstringl(350,200,''Character string'');";
+	"xrect(rect(1),rect(2),rect(3),rect(4));"]
+	xdemo(["[II.6] xstringl";],expr);
+
+	if rhs==1,xend();end
+	xset("default");xclip();
+
+endfunction
+
+
+//===========================================================
+//
+// xdemo3()
+// Back to gcontext defaults values.
+//
+//===========================================================
+
+function []=xdemo3()
+
+	xbasc();
+	dr=driver();
+	xset("default");driver(dr)
+	plot2d([-100,500],[-100,600],[-1,-1],"022");
+	xclip('clipgrf');
+	deff('[v]=transl(x,t)','v=x+t*ones(x)');
+	
+	x_message(["[IV] Setting graphic context values"]);
+	
+	// Demo III.1
+	expr=["x=0:0.2:2*%pi;";
+	"x1=[sin(x);10*sin(x)];";
+	"y1=[cos(x);10*cos(x)];";
+	"xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));"];
+	xdemo(["[III.1] segments"],expr);
+
+	// Demo III.2
+	expr=["xrect(150,460,100,150);";
+	"xclip(150,460,100,150);";
+	"x=0:0.2:2*%pi;";
+	"x1=[sin(x);10*sin(x)];";
+	"y1=[cos(x);10*cos(x)];";
+	"y1=transl(y1,20);";
+	"xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));";
+	"xset(''clipgrf'');";];
+	xdemo(["[III.2] segments+clipping zone"],expr);
+
+	// Demo III.3
+	expr=["xset(''dashes'',1,2,2);";
+	"xget(''dashes'',1);";
+	"xrect(140,470,120,170);"];
+	xdemo(["[III.3] Setting a dash style"],expr);
+
+	// Demo III.4
+	expr=["xset(''font'',2,0);";
+	"xstring(0,130,''Scilab'');";
+	"xset(''font'',2,1);";
+	"xstring(0,150,''Scilab'');";
+	"xset(''font'',2,2);";
+	"xstring(0,170,''Scilab'');";
+	"xset(''font'',2,3);";
+	"xstring(0,200,''Scilab'');";
+	"xset(''font'',2,4);";
+	"xstring(0,230,''Scilab'');";
+	"xset(''font'',2,5);";
+	"xstring(0,270,''Scilab'');";
+	"xset(''font'',3,5);";
+	"xstring(0,310,''Scilab'');";
+	"xset(''font'',4,5);";
+	"xstring(0,350,''Scilab'');"]
+	xdemo(["[III.4] Setting font style and size"],expr);
+
+	// Demo III.5
+	expr=["xset(''line mode'',0);";
+	"xlfont(''-*-helvetica-bold-r-normal--*-%s0-*-*-p-*-*-1'',6);";
+	"xset(''font'',6,3);";
+	"xstring(100,260,''helVB'',0,1);"];
+	xdemo(["[III.5] Loading a new font hlevB is now font 6"],expr);
+
+	// Demo III.6
+	expr0=["x1=[350,400,450];";
+	"[n1,n2]=size(x1);";
+	"y1=300*ones(x1);"];
+	expr=[expr0;
+	"xset(''mark'',6,2);";
+	"xpoly(x1,y1,''marks'',0);"];
+	xdemo(["[III.6] changing current mark"],expr);
+	
+	// Demo III.7
+	expr=[expr0;
+	"xset(''mark'',7,2);";
+	"xpoly(x1,y1+50*ones(x1),''marks'',0);";
+	"xset(''mark'',8,3);";
+	"xpoly(x1,y1+100*ones(x1),''marks'',0);"];
+	xdemo(["[III.7] changing current mark"],expr);
+
+	// Demo III.8
+	expr=["xset(''thickness'',5);";
+	"xrect(400,200,50,100);";];
+	xdemo(["[III.8] Thickness)"],expr);
+
+	// Demo III.9
+	expr=["xfrect(400,50,50,100);";
+	"xclea(410,50,10,100);"];
+	xdemo(["[III.9] Clear a rectangle"],expr);
+
+	xset("default");
+	xclip();
+
+endfunction
+
+//===========================================================
+//
+// xdemo4(display)
+//
+//===========================================================
+
+function []=xdemo4(display)
+	
+	[lhs,rhs]=argn(0)
+	if rhs==0,display="unix:0.0",end
+	xbasc();
+	xset("default");
+	plot2d([-100,500],[-100,600],[-1,-1],"022");
+	plot3d();
+	
+	x_message(["[V] General functions"]);
+	
+	// Demo IV.1
+	expr=["xinit(display);";
+	"plot2d()";];
+	xdemo(["[IV.1] Creating a new window"],expr);
+
+	// Demo IV.2
+	expr=["xset(''window'',0);";
+	"xselect();";]
+	xdemo("[IV.2] Selecting and raising window 0]",expr);
+
+	if rhs==1,xend();end
+	xset("default");
+
+endfunction
+
+
+//===========================================================
+//
+// xdemo5()
+//
+//===========================================================
+
+function xdemo5()
+	
+	// xfpolys
+	xbasc();
+	xset("default");
+
+	// Demo V
+	expr=[
+	"n=16;"
+	"rect=[-n,-n,n,n];"
+	"plot2d(0,0,[0],''012'',''leg'',rect);"
+	"xclip(''clipgrf'');"
+	"x=[-1 1 1 -1 -1]'';y=[-1 -1 1 1 -1]'';"
+	"xx=x*(n-1);yy=y*(n-1);"
+	"for k=2:n,;"
+	"  xx=[xx,x*((n-k))]; yy=[yy,y*(n-k)];"
+	"end;"
+	"c=0:(n-1);"
+	"xfpolys(xx,yy,c);xclip();"];
+	xdemo("[V]",expr);
+
+endfunction
+
+//===========================================================
+//
+// xdemo6()
+//
+//===========================================================
+
+function xdemo6()
+
+	xbasc();
+	xset("default");
+	expr=[
+	"rect=[0,0,100,100];"
+	"plot2d(0,0,[0],''012'',''leg'',rect);"
+	"xclip(''clipgrf'');"
+	"x=[0 25 25  0 0]'';y=[0 0 25 25 0]'';d=25*[1 1 1 1 1]'';"
+	"xx=[];yy=[];i=0;"
+	"for k=1:4"
+	"  for l=1:4"
+	"    i=i+1;"
+	"    xx=[xx,(l-1)*d+x];yy=[yy,y+(k-1)*d];"
+	"  end"
+	"end"
+	"xfpolys(xx,yy,(1:16));xclip();"];
+	xdemo("[VI]",expr);
+
+endfunction
+
+
+//===========================================================
+//
+// xdemo7()
+//
+//===========================================================
+
+function xdemo7()
+
+	xbasc();
+	xset("default");
+	expr=[
+	"plot2d(0,0,[0],''012'',''leg'',[0,0,30,20]);"
+	"xclip(''clipgrf'');"
+	"x=[1 3 3 1 1]'';"
+	"y=[0 0 1 1 0]'';"
+	"d=4*[1 1 1 1 1]'';"
+	"xx=[x,x+d,x+2*d,x+3*d,x+4*d,x+5*d];"
+	"yy=[y,5*y,2*y,10*y,8*y,6*y];"
+	"xfpolys(xx,yy,2*[1 2 3 4 5 6]);xclip();"];
+	xdemo("[VII Colored histogram]",expr);
+
+endfunction
+
+
+//===========================================================
+//
+// xdemo8()
+//
+//===========================================================
+
+function xdemo8()
+
+	xbasc();
+	xset("default");
+	expr=[
+	"plot2d(0,0,[0],''032'',''leg'',[-1.5,-1.5 ,1.5,1.5]);"
+	"xclip(''clipgrf'');"
+	"alls=[-1,1,2,2,0,64*90;"
+	"    -1,1,2,2,64*90,64*(30);"
+	"    -1,1,2,2,64*(120),64*(70);"
+	"    -1,1,2,2,64*(190),64*(360-190)];"
+	"xfarcs(alls'',[1,3,5,7]);xclip();"];
+	xdemo("[VIII  Colored histogram]",expr);
+
+endfunction

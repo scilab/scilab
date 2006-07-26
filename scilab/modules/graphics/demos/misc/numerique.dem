@@ -1,0 +1,31 @@
+mode(-1)
+// Copyright INRIA
+write(%io(2),'variables definition ')
+//
+//
+s=poly(0,'s');
+n1=poly(154.86,'s','c');d1=s^2+6.075*s+898.72;
+n3=270*s^3-80.93*s^2+23.22d4*s-15.47d4;
+d3=s^4+12.14*s^3+15.54d2*s^2+92.06d2*s+13.11d3;
+n4=8600*s^3+84.502d3*s^2+79.249d5*s+28.984d6;
+n5=575*s+28.5d2;
+//
+f1=n1/d1; f2=n1/d3; f3=n3/d3; f4=n4/d3; f5=n5/d1;
+denom=s+3.75;
+p2=0.174/denom; p4=-1/denom;
+//
+ 
+ 
+h2= [1 0;f1 1]*[f3+f5*f2 f4;f5        0];
+write(%io(2),'Let:')
+print(%io(2),h2)
+print %io(2),p2,p4);
+write(%io(2),'calculation of  p2*h2(1,:)+p4*h2(2,:)')
+c1=p2*h2(1,:)+p4*h2(2,:);
+print(%io(2),c1)
+write(%io(2),'now: [p2 p4]*h2')
+c2=[p2 p4]*h2;
+print(%io(2),c2);
+//
+ 
+ 

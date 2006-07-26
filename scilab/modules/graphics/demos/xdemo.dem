@@ -1,0 +1,27 @@
+mode(-1)
+// Copyright ENPC
+path=get_absolute_file_path('xdemo.dem');
+getf(path+'xdemo-1.dem');
+oldln=lines();lines(0)
+
+demolist=[
+    'Rectangles, Arcs, Polylines, Segments and Numbers','xdemo1()';
+    'Rectangles, Arcs, Polylines and Strings',          'xdemo2()';
+    'Setting properties','xdemo3()';
+    'Window properties','xdemo4()';
+    'Set of rectangles','xdemo5()';
+    'Colored matrix','xdemo6()';
+    'Colored histogram','xdemo7()';
+    'Pie Chart','xdemo8()' ]
+
+xbasc();
+while %t then
+  num=tk_choose(demolist(:,1),'Choose a demo');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     execstr(demolist(num,2))
+  end,
+end
+

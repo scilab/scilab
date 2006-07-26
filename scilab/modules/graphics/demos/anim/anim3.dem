@@ -1,0 +1,51 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+// ==========================================
+
+mode(0)
+
+// Hide the toolbar
+toolbar(0,'off');
+
+// Save the graphic context
+kp = xget('pixmap');
+
+string_to_display = [
+	'xset(''pixmap'',1);';
+	'';
+	'if driver()==''Rec'' then';
+	'  driver(''X11'');';
+	'end';
+	'';
+	'//compute lorenz differential eqn solution';
+	'y=ode(1.e-8*[1;1;1],0,0:0.003:50,''loren'');';
+	'[n1,n2]=size(y);';
+	'wid=xget(''white'');';
+	'q=1:(n2/wid); //select color for each link';
+	'ds=xget(''dashes'');';
+	'';
+	'param3d(y(1,:),y(2,:),y(3,:),35,45,''X@Y@Z'',[2,4]);';
+	'';
+	'I=35:5:160;';
+	'realtimeinit(0.1);';
+	'for i=1:size(I,''*'')';
+	'  realtime(i)';
+	'  xset(''wwpc'');  //erase';
+	'  for j=1:wid;';
+	'    xset(''dashes'',j);';
+	'    tt= ((j-1)*(n2/wid)+1):(j*(n2/wid));';
+	'    param3d(y(1,tt),y(2,tt),y(3,tt),I(i),45,''X@Y@Z'',[0,0]);';
+	'  end';
+	'  xset(''wshow'');  //show';
+	'end'];
+
+execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
+
+// Restore the graphic context
+xset('pixmap',kp);
+
+mode(-1);

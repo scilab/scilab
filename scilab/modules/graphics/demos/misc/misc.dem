@@ -1,0 +1,64 @@
+mode(-1);
+// Copyright INRIA
+xbasc();
+drawlater();
+mode(1);
+ncolor=228;
+
+// First plot
+
+subplot(2,2,1);
+
+h=hotcolormap(ncolor);
+xset('colormap',h);
+grayplot();
+
+// Second plot
+
+subplot(2,2,2);
+h1=((1:ncolor)'/ncolor)*[1 0 0];
+xset('colormap',h1);
+plot3d1();
+
+// Third plot
+
+subplot(2,2,3);
+h2=graycolormap(ncolor);
+xset('colormap',h2);
+grayplot();
+
+// Fourth plot
+
+subplot(2,2,4);
+deff('[x,y,z]=knot(u,v)',['vv=ones(v)';'uu=ones(u);';
+    'x=(5.*cos(u)+cos(u).*cos(v))';
+    'y=(5.*sin(u)+sin(u).*cos(v))';
+    'z=(uu.*sin(v))';])
+nx=60;Nx=(0:nx)/nx ;ny=20;Ny=(0:ny)/ny;
+[xx,yy,zz]=eval3dp(knot,2*%pi*Nx,2*%pi*Ny);
+XXX=[-xx xx];YYY=[-yy zz];ZZZ=[-zz yy];
+kk1=[1:size(zz,2)];
+
+ncolor=60;
+hh=hotcolormap(ncolor);
+xset('colormap',hh) ;
+kk1=modulo(kk1,60);kk2=kk1;
+KKK=list(ZZZ,[kk1 kk2]);
+plot3d(XXX,YYY,KKK,35,70," @ @ ",[2,1,4],[-6,6,-6,6,-6,6]);
+drawnow();
+
+// Change the window colormap
+xpause(2.d6);
+xset('colormap',h);
+xbasr(xget('window'));
+xpause(2d6);
+xset('colormap',h1);
+xbasr(xget('window'));
+xpause(2d6);
+xset('colormap',h2);
+xbasr(xget('window'));
+xpause(2d6);
+xset('colormap',hh) ;
+xbasr(xget('window'));
+xset('default');
+xsetech([0 0 1 1])

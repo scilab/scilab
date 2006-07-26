@@ -1,0 +1,14 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+//
+// Using fec to smooth a grayplot 
+// ==========================================
+
+mode(0);
+
+xbasc();
+Sfgrayplot();
+
+mode(-1);

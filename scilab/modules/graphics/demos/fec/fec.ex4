@@ -1,0 +1,39 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+//
+//MESH Creation and visualisation of a linear on triangles function 
+// ==========================================
+
+mode(0);
+
+path=get_absolute_file_path('fec.ex4');
+getf(path+'fec_demo.sci');
+xbasc();
+
+// compute the mesh
+N=20;n=1:N;
+x=cos(n*2*%pi/N);
+y=sin(n*2*%pi/N);
+
+noeul=[(1:(N))', x', y',zeros(N,1);(N+1),0,0,0];
+
+trianl=[];
+for i=1:(N-1), trianl=[trianl;i,i,i+1,N+1,0]; end
+trianl=[trianl;N,N,1,N+1,0];
+
+// Set the colormap
+
+xset("colormap",jetcolormap(128));
+
+new_style = get("figure_style")=="new";
+
+if new_style then, drawlater(), end
+colorbar(1,N+1);
+rect=[-1.2,-1.2,1.2,1.2];
+fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
+meshvisu(3,rect);
+if new_style then, drawnow(), end
+
+mode(0);

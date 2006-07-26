@@ -1,0 +1,26 @@
+
+mode(-1)
+oldln=lines()
+lines(0)
+
+function xdemo(info,str)
+	x_message([info;str]);
+	set('figure_style','new');
+	xbasc();
+	execstr(str);
+endfunction
+
+exec('SCI/demos/graphics/dessin-1.dem');
+
+nn=prod(size(str_l));
+
+while %t then
+	num=tk_choose(info_l,'Choose a demo    ');
+	if num==0 then
+		lines(oldln(1));
+		set figure_style new;
+		return;
+	else
+		xdemo(" ",str_l(num));
+	end
+end

@@ -1,0 +1,38 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+//
+// A small example of MESH Creation 
+// and visualisation of a linear on triangles function
+// ==========================================
+
+mode(0)
+
+path=get_absolute_file_path('fec.ex1');
+getf(path+'fec_demo.sci');
+xbasc();
+xset("colormap",jetcolormap(128));
+new_style = get("figure_style")=="new";
+
+N=20;
+n=1:N;
+x=cos(n*2*%pi/N);
+y=sin(n*2*%pi/N);
+noeuds=N;
+noeul=[(1:(N))',x',y',0*ones(N,1)];
+noeul=[noeul;(N+1),0,0,0];
+trianl=[];
+for i=1:(N-1),trianl=[trianl;i,i,i+1,N+1,0];end
+trianl=[trianl;N,N,1,N+1,0];
+triang=N;
+rect=[-1.2,-1.2,1.2,1.2];
+if new_style then, drawlater(), end
+fec(noeul(:,2),noeul(:,3),trianl,(1:N+1)',"030"," ",rect);
+meshvisu(3,rect);
+if new_style then, drawnow(), end
+xselect();
+
+mode(-1)
+
+

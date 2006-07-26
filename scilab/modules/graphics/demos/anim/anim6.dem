@@ -1,0 +1,38 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+// ==========================================
+
+mode(0);
+
+// Hide the toolbar
+toolbar(0,'off');
+
+// Save the graphic context
+kp = xget('pixmap');
+
+string_to_display = [
+	'path=get_absolute_file_path(''anim6.dem'');';
+	'getf(path+''anim6.sci'');';
+	'';
+	'xselect();  //raise the graphic window';
+	'xset(''pixmap'',1)';
+	'';
+	'n=10;';
+	'r=1*ones(1,n);';
+	'm=1*ones(1,n);';
+	'j=1*ones(1,n);';
+	'g=9.81;';
+	'y0=0*ones(2*n,1);';
+	'yt=read(path+''yt.wrt'',20,201);  //load data';
+	'chainap(yt); //draw the animation'];
+
+execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
+
+// Restore the graphic context
+xset('pixmap',kp);
+
+mode(-1);

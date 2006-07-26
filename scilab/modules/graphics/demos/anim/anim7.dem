@@ -1,0 +1,28 @@
+// ==========================================
+// Copyright INRIA
+// Copyright Enpc
+// last modified : 14th, December 2005
+// ==========================================
+
+mode(0);
+
+// Hide the toolbar
+toolbar(0,'off');
+
+// Save the graphic context
+kp = xget('pixmap');
+
+string_to_display = [
+	'path=get_absolute_file_path(''anim7.dem'');';
+	'getf(path+''riemann.sci'');';
+	'demo_riemann();'];
+
+execstr(string_to_display);
+xset("pixmap",0);
+x_message(string_to_display);
+
+
+// Restore the graphic context
+xset('pixmap',kp);
+
+mode(-1);
