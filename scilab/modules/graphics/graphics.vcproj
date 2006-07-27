@@ -257,14 +257,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intgget.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intgset.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\matdes.c"
 				>
 			</File>
@@ -351,6 +343,14 @@
 			</File>
 			<File
 				RelativePath=".\src\c\RecSave.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_get.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_set.c"
 				>
 			</File>
 			<File
