@@ -28,7 +28,7 @@
 #include "Interaction.h" /* for callback funtions */
 #include "StringMatrix.h"
 #ifdef WITH_TK
-#include "../tclsci/includes/GedManagement.h"
+#include "../../tclsci/includes/GedManagement.h"
 #endif
 
 
