@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/help-tools/help.dtd">
 <MAN>
 	<LANGUAGE>eng</LANGUAGE>
 	<TITLE>datenum</TITLE>
 	<TYPE>Scilab Function</TYPE>
-	<DATE>08-february-2006</DATE>
+ <DATE>$LastChangedDate$</DATE>
 	
 	<SHORT_DESCRIPTION name="datenum">Convert to serial date number</SHORT_DESCRIPTION>
 	
