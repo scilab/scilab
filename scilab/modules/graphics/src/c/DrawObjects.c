@@ -31,7 +31,7 @@
 #include "MALLOC.h"
 
 #ifdef WITH_TK
-#include "../tclsci/includes/GedManagement.h"
+#include "../../tclsci/includes/GedManagement.h"
 #endif
 
 #if _MSC_VER
