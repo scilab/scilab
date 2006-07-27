@@ -387,7 +387,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="bcg.h"
+				RelativePath=".\includes\bcg.h"
 				>
 			</File>
 			<File
@@ -439,7 +439,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\InitObjects.h"
+				RelativePath=".\src\c\InitObjects.h"
 				>
 			</File>
 			<File
