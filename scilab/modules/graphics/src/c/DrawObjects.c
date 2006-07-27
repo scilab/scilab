@@ -12093,7 +12093,7 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
 
   /* the distance between the aabb and the axis is offsets[0] if the axis is vertical, */
   /* offest[1] if horizontal and something in between otherwise */
-  distance = abs( offsets[0] * centerDir[0] ) + abs( offsets[1] * centerDir[1] ) ;
+  distance = Abs( offsets[0] * centerDir[0] ) + Abs( offsets[1] * centerDir[1] ) ;
 
   axisMiddle[0] = ( axisStart[0] + axisEnd[0] ) / 2.0 ;
   axisMiddle[1] = ( axisStart[1] + axisEnd[1] ) / 2.0 ;
