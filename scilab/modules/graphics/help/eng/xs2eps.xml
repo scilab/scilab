@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/help-tools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>xs2eps</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>Mai 2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="xs2eps">save graphics to a Postscript file.</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xs2eps(win_num,filen [,colored] [,orientation])</CALLING_SEQUENCE_ITEM>

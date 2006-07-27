@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/help-tools/help.dtd">
 <MAN>
 	
 	<LANGUAGE>eng</LANGUAGE>
 	<TITLE>pie</TITLE>
 	<TYPE>Scilab Function</TYPE>
-	<DATE>2005</DATE>
+ <DATE>$LastChangedDate$</DATE>
 	
 	<SHORT_DESCRIPTION name="pie">draw a pie</SHORT_DESCRIPTION>
 	

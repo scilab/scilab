@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/help-tools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>alufunctions</TITLE>
   <TYPE>Scilab keyword</TYPE>
-  <DATE>April 1993</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="alufunctions">pixel drawing functions</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>

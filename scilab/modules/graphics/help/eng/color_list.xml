@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/help-tools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>color_list</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>April 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="color_list"> list of named colors</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>You will find below the names of the colors known by Scilab. The RGB values are given after the name. Note

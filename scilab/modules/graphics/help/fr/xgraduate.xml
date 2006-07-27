@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../../../man/manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/help-tools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>xgraduate  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>November 1993  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="xgraduate"> graduation des axes   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)  </CALLING_SEQUENCE_ITEM>
