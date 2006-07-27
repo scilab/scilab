@@ -44,7 +44,7 @@
 #endif
 
 
-#include "Math.h"
+#include "core_math.h"
 #include "periFig.h"
 #include "color.h"
 #include "bcg.h" /* NG */

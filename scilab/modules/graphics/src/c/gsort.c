@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "Math.h"
+#include "core_math.h"
 
 /* REORGANISATION TEMPORAIRE */
 #include "../../../../routines/os_specific/men_Sutils.h"

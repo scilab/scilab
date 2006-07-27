@@ -9,7 +9,7 @@
  ------------------------------------------------------------------------*/
 
 #include <string.h> /* in case of dbmalloc use */
-#include "Math.h"
+#include "core_math.h"
 
 #include "MALLOC.h"
 

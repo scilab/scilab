@@ -42,7 +42,7 @@
 #define GXset 15
 #endif
 
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "periPos.h"
 #include "color.h"

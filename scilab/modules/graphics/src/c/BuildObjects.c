@@ -114,9 +114,7 @@ ConstructStatusBar (sciPointObj * pparentfigure)
  * @memo This function creates the parents window (manager) and the elementaries structures
  */
 /************ 18/01/2002 ***********/
-sciPointObj *
-ConstructFigure (XGC)
-     struct BCG *XGC;
+sciPointObj * ConstructFigure (struct BCG *XGC)
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;

@@ -43,11 +43,11 @@
 #include "periMac.h"
 #else 
 #ifdef _MSC_VER
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "periWin.h"
 #else
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "periX11.h"
 #endif
@@ -151,10 +151,7 @@ hash (str, len)
 #ifdef __GNUC__
 __inline
 #endif
-const struct funreplace *
-xcall_in_word_set (str, len)
-     register const char *str;
-     register unsigned int len;
+const struct funreplace * xcall_in_word_set (register const char *str,register unsigned int len)
 {
   static const struct funreplace wordlist[] =
     {

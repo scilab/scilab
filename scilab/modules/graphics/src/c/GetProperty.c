@@ -3611,9 +3611,7 @@ sciGetSelectedSubWin (sciPointObj * pparent)
  * @param logscale: flag for logarithmic window
  * @return the pointer to the existing SubWindow, or Null if no one is existing
  */
-sciPointObj *
-sciIsExistingSubWin (WRect)
-     double WRect[4];
+sciPointObj * sciIsExistingSubWin (double WRect[4])
 {
   sciPointObj *pparentfigure;
   sciSons *psonstmp;

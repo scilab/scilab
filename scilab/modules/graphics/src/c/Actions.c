@@ -4,7 +4,7 @@
  *    jpc@cermics.enpc.fr 
  --------------------------------------------------------------------------*/
 
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "GetProperty.h"
 #include "SetProperty.h"

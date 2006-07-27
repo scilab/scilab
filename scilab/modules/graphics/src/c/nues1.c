@@ -1,6 +1,6 @@
 #include <math.h>
 #include "machine.h"
-#include "Math.h"
+#include "core_math.h"
 
 
 static int nnuees __PARAMS((double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr));

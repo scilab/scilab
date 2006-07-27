@@ -35,7 +35,7 @@
 #endif
 
 #include <stdio.h>
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "Rec.h"
 

@@ -10,7 +10,7 @@
  *    This file contains all functions used to Draw the content of a window.
  *    The main functions is sciDrawObj that draws the objects recursively.
  ------------------------------------------------------------------------/-*/
-#include <math.h>
+
 
 #include <stdio.h> 
 #include <string.h>
@@ -18,6 +18,7 @@
 #include <stdarg.h>
 #include <time.h>
 
+#include "core_math.h"
 #include "Graphics.h" 
 #include "DrawObjects.h"
 #include "GetProperty.h"
@@ -326,6 +327,7 @@ void updateScale3d( sciPointObj * pobj    ,
     /* get current window size */
     C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     getscale2d(WRect,FRect,logf,ARect);
+
     wmax=linint((double)wdim[0] * WRect[2]);
     hmax=linint((double)wdim[1] * WRect[3]); 
   }

@@ -8,10 +8,9 @@
  * Axis drawing for 2d plots 
  *--------------------------------------------------------------------------*/
 
-#include <math.h>
 #include <string.h>
 #include <stdio.h>
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "PloEch.h"
 #include "Axes.h"

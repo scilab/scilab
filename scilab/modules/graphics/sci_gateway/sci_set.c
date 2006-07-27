@@ -45,9 +45,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels);
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
  *-----------------------------------------------------------*/
-int gset(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int gset(char *fname,unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
   unsigned long hdl; 
@@ -498,8 +496,7 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
 
       if(ppsubwin->logflags[0]=='l')
 	{
-	  for(i=0;i< prod;i++)
-	    ppsubwin->axes.u_xgrads[i] = log10(stk(ptrindex[0])[i]);
+	  for(i=0;i< prod;i++) ppsubwin->axes.u_xgrads[i] = log10(stk(ptrindex[0])[i]);
 	}
       else
 	{

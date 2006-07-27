@@ -15,7 +15,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 
 /* Add those lines for FD algo on Theticks */

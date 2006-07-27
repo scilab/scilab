@@ -23,6 +23,8 @@
 #include "intcommongraphics.h"
 
 #include "MALLOC.h"
+
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef WITH_TK
 extern int GetTclCurrentFigure(void);

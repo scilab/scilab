@@ -7,7 +7,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "PloEch.h"
 

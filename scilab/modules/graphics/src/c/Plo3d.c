@@ -7,7 +7,7 @@
 #include <string.h> /* in case of dbmalloc use */
 #include <math.h>
 #include <stdio.h>
-#include "Math.h"
+#include "core_math.h"
 #include "Graphics.h" 
 #include "PloEch.h"
 #include "GetProperty.h"
