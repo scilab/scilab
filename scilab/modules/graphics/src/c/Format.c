@@ -12,15 +12,11 @@
  *                : change [xmi,xmax] for pretty graduation 
  *--------------------------------------------------------------------------*/
 
-#include <math.h>
 #include <string.h>
 #include <stdio.h>
 #include "core_math.h"
 #include "Graphics.h" 
-
-/* Add those lines for FD algo on Theticks */
-#define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
-#define  ABS(a)  ((a) < 0.0 ? -(a) : (a))
+#include "machine.h"
 
 static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
 static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
@@ -564,7 +560,7 @@ void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *sc
   double fmin, fmax, sgmin, sgmax, sclmax,sclmin, arguc, arguf, scl;
   flexpo1(xminv,&fmin,&sgmin,&sclmin);
   flexpo1(xmaxv,&fmax,&sgmax,&sclmax);
-    if ( ABS(*xmaxv) > ABS(*xminv)) 
+    if ( Abs(*xmaxv) > Abs(*xminv)) 
     {scl=sclmax;}
   else
     {scl=sclmin;}
@@ -642,9 +638,9 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
   
   
   
-  nlow= ROUND(*xminv/ width);
+  nlow = round( *xminv / width ) ;
   low=nlow* width;
-  nup = ROUND(*xmaxv/ width);
+  nup = round( *xmaxv / width ) ;
   up = nup * width;
   
   if ( low > *xminv )
@@ -880,6 +876,3 @@ int GradEqual(const double grads[],const int *ngrads)
   return 1;
 }
 
-
-#undef ROUND
-#undef ABS

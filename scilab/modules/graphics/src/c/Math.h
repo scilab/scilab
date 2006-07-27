@@ -13,11 +13,9 @@
 
 #ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
 #endif
 
-#include "MALLOC.H"  /* malloc */
+#include "MALLOC.h"  /* malloc */
 
 
 #ifdef _MSC_VER 

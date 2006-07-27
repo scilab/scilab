@@ -9,7 +9,7 @@
 
 #include "sciMatrix.h"
 #include "string.h"
-#include "sci_mem_alloc.h"
+#include "MALLOC.h"
 
 /*-------------------------------------------------------------------------------------------*/
 sciMatrix * emptyMatrix( void )

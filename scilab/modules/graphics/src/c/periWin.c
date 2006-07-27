@@ -26,8 +26,9 @@
 #include "../../../../routines/wsci/wcommon.h"
 #include "../../../../routines/wsci/wgraph.h"
 #include "../../../../routines/wsci/wtext.h"
-#include "Events.h"
 
+
+#include "Events.h"
 #include "bcg.h"
 #include "periWin.h" 
 #include "version.h"
@@ -41,8 +42,6 @@
 
 #include "MALLOC.h"
 
-
-/*#define M_PI	3.14159265358979323846*/
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 

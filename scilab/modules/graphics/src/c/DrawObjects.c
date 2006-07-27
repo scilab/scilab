@@ -39,8 +39,6 @@
 extern HDC TryToGetDC(HWND hWnd);
 #endif
 
-#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
-
 extern int GetScreenDPI(int *ixres, int *iyres);
 int WindowsPrintScreen = 0;
 int Printer_XRes = 0;
@@ -12133,5 +12131,3 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
 
 }
 /*------------------------------------------------------------------------------------------*/
-
-#undef round
