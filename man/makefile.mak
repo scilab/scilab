@@ -1,6 +1,6 @@
-all:: check eng fr sound javasci tclsci metanet time graphics
+all:: check sound javasci tclsci metanet time graphics eng fr 
 
-build:: eng fr sound javasci tclsci metanet time graphics
+build:: sound javasci tclsci metanet time graphics eng fr 
 
 check:
   @Makesubdirs.bat
