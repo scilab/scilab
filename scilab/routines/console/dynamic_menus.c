@@ -283,17 +283,3 @@ int GetSaveHistoryAfterNcommands(void)
 }
 /*-----------------------------------------------------------------------------------*/
 
-int C2F(intbanner) _PARAMS((char *fname))
-{
-	Rhs=Max(Rhs,0);
-	CheckRhs(0,0) ;
-	CheckLhs(0,1) ;
-
-	banner();
-
-	LhsVar(1) = 0;
-	C2F(putlhsvar)();	
-	
-	return 0;
-}
-/*-----------------------------------------------------------------------------------*/

@@ -5,11 +5,25 @@
 #include "machine.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intbanner) _PARAMS((char *fname));
+int C2F(intbanner) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_banner) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intbanner)(fname);
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(intbanner) _PARAMS((char *fname))
+{
+	Rhs=Max(Rhs,0);
+	CheckRhs(0,0) ;
+	CheckLhs(0,1) ;
+
+	banner();
+
+	LhsVar(1) = 0;
+	C2F(putlhsvar)();	
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
