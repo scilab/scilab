@@ -51,8 +51,6 @@
 #pragma comment(lib,"../../libs/signal_f.lib")
 #pragma comment(lib,"../../libs/slicot_f.lib")
 #pragma comment(lib,"../../libs/sparse_f.lib")
-#pragma comment(lib,"../../libs/system2_f.lib")
-#pragma comment(lib,"../../libs/system_f.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
