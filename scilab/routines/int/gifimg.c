@@ -1,4 +1,7 @@
-#include "../gd/gd.h"
+
+/* MODIFICATION TEMPORAIRE */
+#include "../../modules/graphics/src/gd/gd.h"
+
 #include "../machine.h"
 
 extern void sciprint __PARAMS ((char *fmt,...));

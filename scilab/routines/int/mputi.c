@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #endif
 #include "../machine.h"
-#include "../fileio/misc.h"
+
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/fileio/src/misc.h"
 
 struct soundstream ftf;
 extern FILE *GetFile();

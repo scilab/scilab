@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #endif
 #include "../machine.h"
-#include "../fileio/misc.h"
+
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/fileio/src/misc.h"
 
 int SWAP(char type[],integer *fd); /* Defined at the end of this file */
 
