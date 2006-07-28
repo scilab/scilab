@@ -193,10 +193,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\fromjava.c"
 				>
 			</File>
@@ -307,10 +303,6 @@
 			</File>
 			<File
 				RelativePath=".\CallScilab.h"
-				>
-			</File>
-			<File
-				RelativePath=".\fromc.h"
 				>
 			</File>
 			<File
