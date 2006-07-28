@@ -8,9 +8,6 @@
 #include <string.h>
 #include "stack-c.h"
 
-/* REORGANISATION TEMPORAIRE */
-#include "../../../../routines/system/msgstore.h"
-
 /* Table of constant values */
 
 static integer cx0 = 0;

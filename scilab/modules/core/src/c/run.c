@@ -13,7 +13,7 @@
 #endif
 
 #include <time.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 #undef Lstk
 #undef Infstk
 

@@ -8,15 +8,12 @@
 	#endif
 #endif
 
+/* REORGANISATION TEMPORAIRE */
 #ifdef _MSC_VER
-#include "../wsci/wtext.h"
+#include "../../../../routines/wsci/wtext.h"
 #endif
 
-#ifdef _MSC_VER
-	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+#include "MALLOC.h"
 #include "sciquit.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define TRUE  1

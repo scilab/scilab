@@ -7,9 +7,9 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../machine.h"
-#include "../stack-c.h"
-#include "../version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
 
 int C2F(sciquit)(void);
 int ExitScilab(void);

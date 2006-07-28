@@ -2,7 +2,7 @@
  * End of line may be \Cr\lf (Dos) \Lf (Unix) \Cr (Mac)
  */
 #include <stdio.h>
-#include "../machine.h"
+#include "machine.h"
 
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
 #define SEEK_SET 0

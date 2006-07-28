@@ -433,10 +433,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\str2sci.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sum.c"
 				>
 			</File>

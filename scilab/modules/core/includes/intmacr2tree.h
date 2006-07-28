@@ -9,28 +9,28 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
-#include "../machine.h"
-#include "../stack-c.h" /* stack-def.h, stack1.h, stack2.h, stack3.h included */
+#include "machine.h"
+#include "stack-c.h" /* stack-def.h, stack1.h, stack2.h, stack3.h included */
 
 /**********************/
 /* External functions */
 /**********************/
 
-/* Defined in SCI/routines/scicos/str2sci.c */
+/* Defined in SCI/modules/core/src/c/str2sci.c */
 extern void str2sci(char** x,int n,int m); /* Write a C-string in Scilab stack */
 
-/* Defined in SCI/routines/scicos/itosci.f */
+/* Defined in SCI/modules/core/src/fortran/itosci.f */
 extern void C2F(itosci)(int *intptr,int *nbrows,int *nbcols); /* Write a int in Scilab stack */
 
-/* Defined in SCI/routines/scicos/dtosci.f */
+/* Defined in SCI/modules/core/src/fortran/dtosci.f */
 extern void C2F(dtosci)(double *dbleptr,int *nbrows,int *nbcols); /* Write a double in Scilab stack */
 
-/* Defined in SCI/routines/system/cvname.f */
+/* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
-/* Defined in SCI/routines/default/Funtab.c */
+/* Defined in SCI/modules/core/src/c/Funtab.c */
 extern int C2F(funtab)(int *id, int *fptr, int *job); 
 /* *job==1: Find id-name associated to function pointer */
 /* *job==2: Find function pointer associated to id-name */

@@ -182,6 +182,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CallScilab.c"
+				>
+			</File>
+			<File
+				RelativePath=".\cvstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\fromc.c"
 				>
 			</File>
@@ -202,6 +210,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getval.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_core.c"
 				>
 			</File>
@@ -210,11 +222,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inisci-c.c"
+				>
+			</File>
+			<File
+				RelativePath=".\InitScilab.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\intgetmd5.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\intgetmemory.c"
+				>
+			</File>
+			<File
+				RelativePath=".\intmacr2tree.c"
 				>
 			</File>
 			<File
@@ -227,6 +251,22 @@
 			</File>
 			<File
 				RelativePath=".\msgstore.c"
+				>
+			</File>
+			<File
+				RelativePath=".\parse.c"
+				>
+			</File>
+			<File
+				RelativePath=".\readline.c"
+				>
+			</File>
+			<File
+				RelativePath=".\realmain.c"
+				>
+			</File>
+			<File
+				RelativePath=".\run.c"
 				>
 			</File>
 			<File
@@ -478,7 +518,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scicurdir.c"
+				>
+			</File>
+			<File
+				RelativePath=".\Scierror.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scimem.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sciquit.c"
 				>
 			</File>
 			<File
@@ -493,6 +545,10 @@
 				RelativePath=".\stack3.c"
 				>
 			</File>
+			<File
+				RelativePath=".\str2sci.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -500,6 +556,10 @@
 			>
 			<File
 				RelativePath="callinterf.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallScilab.h"
 				>
 			</File>
 			<File
@@ -535,6 +595,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\InitScilab.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\intgetmd5.h"
 				>
 			</File>
@@ -543,11 +607,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\intmacr2tree.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\machine.h"
 				>
 			</File>
 			<File
 				RelativePath=".\md5.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\realmain.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Scierror.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sciquit.h"
 				>
 			</File>
 			<File

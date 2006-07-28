@@ -1,6 +1,6 @@
 #include <string.h>
-#include "../stack-c.h"
-#include "../machine.h"
+#include "stack-c.h"
+#include "machine.h"
 
 void str2sci(char** x,int n,int m)
 {

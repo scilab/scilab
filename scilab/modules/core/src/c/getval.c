@@ -127,7 +127,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
-#include "../stack-c.h"
+#include <stdlib.h>
+#include "stack-c.h"
 
 /* Table of constant values */
 #define EXPMAX 309

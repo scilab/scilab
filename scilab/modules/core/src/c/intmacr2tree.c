@@ -4,11 +4,7 @@
 /* Copyright INRIA                                */
 /* V.C. - 2004                                    */
 /**************************************************/
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h"  /* malloc */
-#else
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
-#endif
+#include "MALLOC.h"
 
 #include "intmacr2tree.h"
 

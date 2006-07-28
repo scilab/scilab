@@ -12,9 +12,9 @@
 #include <Windows.h>
 #endif
 
-#include "../machine.h"
-#include "../stack-c.h"
-#include "../version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
 
 void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 int Get_no_startup_flag(void);

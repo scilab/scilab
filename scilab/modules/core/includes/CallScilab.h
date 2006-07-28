@@ -10,9 +10,9 @@
 #endif
 #include <stdio.h>
 #include <string.h>
-#include "../machine.h"
-#include "../stack-c.h"
-#include "../version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
 /*-----------------------------------------------------------------------------------*/
 #define TRUE 1
 #define FALSE 0

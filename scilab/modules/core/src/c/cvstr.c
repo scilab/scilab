@@ -1,5 +1,5 @@
-#include "../stack-c.h"
-#include "../graphics/Math.h"
+#include "stack-c.h"
+#include "core_math.h"
 #define TRUE_ 1
 #define FALSE_ 0
 
@@ -139,7 +139,7 @@ integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
 } 
 
 
-#include "../machine.h" 
+#include "machine.h" 
 
 static integer taba2s[128] = 
 { 100,101,102,103,104,105,106,107,108,-40,

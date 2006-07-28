@@ -5,7 +5,7 @@
 /* *------------------------------------------------------------------ */
 #include <string.h>
 #include <stdio.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 #undef Lstk
 #undef Infstk
 

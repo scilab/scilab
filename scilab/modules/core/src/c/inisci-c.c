@@ -7,15 +7,11 @@
 
 #include <string.h>
 #include <stdlib.h> /* getenv ! */
-#include "../machine.h" 
-#include "../os_specific/Os_specific.h"
-#include "../graphics/Math.h" 
+#include "machine.h" 
+#include "Os_specific.h"
+#include "core_math.h" 
 
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h"  /* malloc */
-#else
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
-#endif
+#include "MALLOC.h"
 
 /*************************************************************************************************/
 #ifndef BOOL
