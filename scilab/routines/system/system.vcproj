@@ -213,10 +213,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intstacksize.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intulink.c"
 				>
 			</File>
@@ -303,10 +299,6 @@
 			</File>
 			<File
 				RelativePath="..\system2\intmacr2tree.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intstacksize.h"
 				>
 			</File>
 			<File
