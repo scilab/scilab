@@ -229,10 +229,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intwhat.c"
-				>
-			</File>
-			<File
 				RelativePath=".\Lapack.c"
 				>
 			</File>
@@ -327,10 +323,6 @@
 			</File>
 			<File
 				RelativePath=".\intwarning.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intwhat.h"
 				>
 			</File>
 			<File
