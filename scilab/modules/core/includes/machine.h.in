@@ -2,6 +2,8 @@
 #ifndef MACHINE_H 
 #define MACHINE_H 
 
+#include <math.h>
+
 /* Define for using dld for sunos */
 #undef SUNOSDLD
 
@@ -84,7 +86,10 @@
 /* Define some functions */
 
 #if !defined(HAVE_EXP10)
-#define exp10(x) pow((double) 10.0,x)
+/* #define exp10(x) pow( (double)10.0, (x) ) */
+/* much faster than using pow */
+#define log_10_ 2.3025850929940456840179914546844 /* log(10) */
+#define exp10(x) exp( (log_10_) * (x) )
 #endif
 
 #if !defined(HAVE_GETWD)
