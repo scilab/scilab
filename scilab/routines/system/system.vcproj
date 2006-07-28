@@ -245,10 +245,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\storeversion.c"
-				>
-			</File>
-			<File
 				RelativePath=".\str2sci.c"
 				>
 			</File>
