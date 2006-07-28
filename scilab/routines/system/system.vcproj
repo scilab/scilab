@@ -193,10 +193,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getval.c"
 				>
 			</File>
@@ -299,10 +295,6 @@
 			</File>
 			<File
 				RelativePath=".\CallScilab.h"
-				>
-			</File>
-			<File
-				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File

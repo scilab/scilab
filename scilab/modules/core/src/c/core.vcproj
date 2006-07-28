@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fromjava.c"
+				>
+			</File>
+			<File
 				RelativePath=".\FTables.c"
 				>
 			</File>
@@ -500,6 +504,10 @@
 			</File>
 			<File
 				RelativePath=".\fromc.h"
+				>
+			</File>
+			<File
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
