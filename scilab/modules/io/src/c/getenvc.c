@@ -2,12 +2,11 @@
 /* returns setenv defined variable when getenv fails */
 #include <stdio.h>
 #include <string.h>
-
-#include "../graphics/Math.h"
-#include "Os_specific.h"
-
+#include "core_math.h"
+#include "machine.h"
+/*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
-
+/*-----------------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
   char *getenv(const char *),*local;
@@ -30,4 +29,5 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 #endif
   return;
 }
+/*-----------------------------------------------------------------------------------*/
 

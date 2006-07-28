@@ -193,10 +193,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getenvc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\GetExceptionCode.c"
 				>
 			</File>
