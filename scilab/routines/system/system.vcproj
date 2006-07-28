@@ -217,10 +217,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\msgstore.c"
-				>
-			</File>
-			<File
 				RelativePath=".\parse.c"
 				>
 			</File>
@@ -291,10 +287,6 @@
 			</File>
 			<File
 				RelativePath="..\system2\intmacr2tree.h"
-				>
-			</File>
-			<File
-				RelativePath="msgstore.h"
 				>
 			</File>
 			<File

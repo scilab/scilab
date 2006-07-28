@@ -226,6 +226,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\msgstore.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_addinter.c"
 				>
 			</File>

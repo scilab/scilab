@@ -1,12 +1,6 @@
 #include <string.h>
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-#include "../stack-c.h"
-/*-----------------------------------------------------------------------------------*/ 
-#include "msgstore.h"
+#include "MALLOC.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define MEM_LACK 3
 #define MAX_LINES 2
