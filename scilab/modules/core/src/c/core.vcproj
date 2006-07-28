@@ -194,7 +194,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\history.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\intgetmd5.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\intgetmemory.c"
+				>
+			</File>
+			<File
+				RelativePath=".\md5.c"
 				>
 			</File>
 			<File
@@ -495,11 +507,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\history.c"
+				RelativePath=".\history.h"
 				>
 			</File>
 			<File
-				RelativePath=".\history.h"
+				RelativePath="..\..\includes\intgetmd5.h"
 				>
 			</File>
 			<File
@@ -508,6 +520,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\machine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\md5.h"
 				>
 			</File>
 			<File

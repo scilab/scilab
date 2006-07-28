@@ -55,11 +55,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 #undef BYTE_ORDER	/* 1 = big-endian, -1 = little-endian, 0 = unknown */
 #ifdef ARCH_IS_BIG_ENDIAN

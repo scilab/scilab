@@ -221,10 +221,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intgetmd5.c"
-				>
-			</File>
-			<File
 				RelativePath="..\system2\intmacr2tree.c"
 				>
 			</File>
@@ -246,10 +242,6 @@
 			</File>
 			<File
 				RelativePath=".\Lapack.c"
-				>
-			</File>
-			<File
-				RelativePath=".\md5.c"
 				>
 			</File>
 			<File
@@ -334,10 +326,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intgetmd5.h"
-				>
-			</File>
-			<File
 				RelativePath="..\system2\intmacr2tree.h"
 				>
 			</File>
@@ -355,10 +343,6 @@
 			</File>
 			<File
 				RelativePath=".\intwhat.h"
-				>
-			</File>
-			<File
-				RelativePath=".\md5.h"
 				>
 			</File>
 			<File
