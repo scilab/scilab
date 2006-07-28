@@ -9,7 +9,7 @@
 /* matqr 4 for backward compatibility */
 
 #define  IN_matio  5  
-#include "../../../../routines/interf/io.fundef"
+#include "../../io/sci_gateway/io.fundef"
 
 #define  IN_matelm  6
 #include "../../../../routines/calelm/calelm.fundef"  

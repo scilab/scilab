@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="interf"
-	ProjectGUID="{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}"
+	Name="io"
+	ProjectGUID="{80C0F142-184B-4E08-A8EE-5E71437CF904}"
 	>
 	<Platforms>
 		<Platform
@@ -40,11 +40,10 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE;WIN32"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
+				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
-				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile="$(ConfigurationName)/"
@@ -67,7 +66,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../../../libs/io.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -84,7 +83,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def interf.def &gt;nul&#x0D;&#x0A;copy interf.def ..\..\..\libs\interf.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				Description="Create io.def"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def io.def &gt;nul&#x0D;&#x0A;copy io.def ..\..\..\..\..\libs\io.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -116,13 +116,12 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../routines/f2c;../../tcl/include/X11;../../tcl/include"
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
+				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="1"
-				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile="$(ConfigurationName)/"
@@ -144,7 +143,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../../../libs/io.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -161,7 +160,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def interf.def &gt;nul&#x0D;&#x0A;copy interf.def ..\..\..\libs\interf.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				Description="Create io.def"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def io.def &gt;nul&#x0D;&#x0A;copy io.def ..\..\..\..\..\libs\io.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -173,95 +173,127 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\cs2st.c"
+				RelativePath="..\..\sci_gateway\c\gw_io.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ctest.c"
+				RelativePath="..\..\sci_gateway\c\sci_deff.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dassl.c"
+				RelativePath="..\..\sci_gateway\c\sci_diary.c"
 				>
 			</File>
 			<File
-				RelativePath=".\hmops.c"
+				RelativePath="..\..\sci_gateway\c\sci_disp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intarpack.c"
+				RelativePath="..\..\sci_gateway\c\sci_exec.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intfilestat.c"
+				RelativePath="..\..\sci_gateway\c\sci_execstr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intgetmemory.c"
+				RelativePath="..\..\sci_gateway\c\sci_file.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intinterp.c"
+				RelativePath="..\..\sci_gateway\c\sci_fileinfo.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intlapack.c"
+				RelativePath="..\..\sci_gateway\c\sci_getenv.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intorand.c"
+				RelativePath="..\..\sci_gateway\c\sci_getf.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intqld.c"
+				RelativePath="..\..\sci_gateway\c\sci_getio.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intreadxls.c"
+				RelativePath="..\..\sci_gateway\c\sci_getpid.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intsetenv.c"
+				RelativePath="..\..\sci_gateway\c\sci_host.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intshowalluimenushandles.c"
+				RelativePath="..\..\sci_gateway\c\sci_lib.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intslicot.c"
+				RelativePath="..\..\sci_gateway\c\sci_load.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intUImenu.c"
+				RelativePath="..\..\sci_gateway\c\sci_mgetl.c"
 				>
 			</File>
 			<File
-				RelativePath=".\matdsr.c"
+				RelativePath="..\..\sci_gateway\c\sci_oldload.c"
 				>
 			</File>
 			<File
-				RelativePath=".\otherspecfun.c"
+				RelativePath="..\..\sci_gateway\c\sci_oldsave.c"
 				>
 			</File>
 			<File
-				RelativePath=".\stack1.c"
+				RelativePath="..\..\sci_gateway\c\sci_print.c"
 				>
 			</File>
 			<File
-				RelativePath=".\stack2.c"
+				RelativePath="..\..\sci_gateway\c\sci_rat.c"
 				>
 			</File>
 			<File
-				RelativePath=".\stack3.c"
+				RelativePath="..\..\sci_gateway\c\sci_read.c"
 				>
 			</File>
 			<File
-				RelativePath=".\stcreate.c"
+				RelativePath="..\..\sci_gateway\c\sci_read4b.c"
 				>
 			</File>
 			<File
-				RelativePath=".\strelm-c.c"
+				RelativePath="..\..\sci_gateway\c\sci_readb.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_save.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_setenv.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_unix.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_write.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_write4b.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_writeb.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_xls_open.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_xls_read.c"
 				>
 			</File>
 		</Filter>
@@ -270,116 +302,12 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\intgetmemory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\intshowalluimenushandles.h"
-				>
-			</File>
-			<File
-				RelativePath="matdsr.h"
-				>
-			</File>
-			<File
-				RelativePath="stack1.h"
-				>
-			</File>
-			<File
-				RelativePath="stack2.h"
-				>
-			</File>
-			<File
-				RelativePath="stack3.h"
+				RelativePath="..\..\includes\gw_io.h"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\bva.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\def.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\dsRC.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\feval.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\fmlelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\imp.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\interp.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\list.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\logelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\lstelmi.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\new.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\odc.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\ode.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\otherspecfun.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\polaut.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\polelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\qz.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\ric.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\specfun.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\spelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\strelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\usr.fundef"
+			RelativePath="..\..\sci_gateway\io.fundef"
 			>
 		</File>
 	</Files>
