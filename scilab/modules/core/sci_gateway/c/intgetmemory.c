@@ -1,4 +1,4 @@
-#include "../stack-c.h"
+#include "stack-c.h"
 #include "intgetmemory.h"
 /*-----------------------------------------------------------------------------------
 * INRIA 2005 

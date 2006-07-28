@@ -9,8 +9,8 @@
 #include <string.h>
 #endif
 
-#include "../machine.h"
-#include "../stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 
 
 int getfreememory();

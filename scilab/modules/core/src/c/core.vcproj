@@ -190,6 +190,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\intgetmemory.c"
+				>
+			</File>
+			<File
 				RelativePath=".\mexlib.c"
 				>
 			</File>
@@ -480,6 +484,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_core.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\intgetmemory.h"
 				>
 			</File>
 			<File
