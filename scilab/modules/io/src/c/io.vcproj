@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\intsetenv.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_deff.c"
 				>
 			</File>

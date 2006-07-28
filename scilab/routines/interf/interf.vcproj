@@ -209,14 +209,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intreadxls.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intsetenv.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intshowalluimenushandles.c"
 				>
 			</File>
