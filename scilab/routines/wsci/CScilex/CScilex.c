@@ -3,8 +3,10 @@
 /***********************************************************************/
 #include <Windows.h>
 #include "stdio.h"
-#include "../DetectFramework2/DetectFramework.h"
-#include "../GetWindowsVersion/GetWindowsVersion.h"
+
+#include "../../../libs/DetectFramework2/DetectFramework.h"
+#include "../../../libs/GetWindowsVersion/GetWindowsVersion.h"
+
 #include "../../os_specific/win_mem_alloc.h" /* MALLOC */
 /***********************************************************************/
 typedef int (*MYPROC) (int , char **);

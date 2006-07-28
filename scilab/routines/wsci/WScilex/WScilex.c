@@ -2,8 +2,8 @@
 /* Copyright (C) 2005 INRIA Allan CORNET */
 /***********************************************************************/
 #include <Windows.h>
-#include "../DetectFramework2/DetectFramework.h"
-#include "../GetWindowsVersion/GetWindowsVersion.h"
+#include "../../../libs/DetectFramework2/DetectFramework.h"
+#include "../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 /***********************************************************************/
 typedef int (*MYPROC) (HINSTANCE, HINSTANCE ,LPSTR szCmdLine, int iCmdShow);
 /***********************************************************************/
