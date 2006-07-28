@@ -17,4 +17,6 @@
 {"fscanfMat",   IN_matfileio,   17, 3},
 {"fprintfMat",	IN_matfileio,	18,	3},
 {"NumTokens",	IN_matfileio,	19,	3},
+{"xls_open",	IN_matfileio,	20,	1},
+{"xls_read",	IN_matfileio,	21,	1},
 

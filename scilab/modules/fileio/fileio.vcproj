@@ -189,15 +189,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_fileio.c"
+				RelativePath=".\sci_gateway\gw_fileio.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\intreadxls.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\logger.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\gw_fileio.c"
 				>
 			</File>
 			<File
@@ -221,6 +221,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_fileio.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xls_open.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xls_read.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\xls.c"
 				>
 			</File>
@@ -238,15 +250,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_fileio.h"
+				RelativePath=".\includes\gw_fileio.h"
 				>
 			</File>
 			<File
 				RelativePath=".\src\logger.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\gw_fileio.h"
 				>
 			</File>
 			<File
@@ -265,7 +273,15 @@
 				RelativePath=".\src\pldstr.h"
 				>
 			</File>
+			<File
+				RelativePath=".\includes\sci_fileio.h"
+				>
+			</File>
 		</Filter>
+		<File
+			RelativePath=".\sci_gateway\fileio.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

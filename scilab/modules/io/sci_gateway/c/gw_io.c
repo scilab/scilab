@@ -37,8 +37,6 @@ extern int C2F(sci_mgetl) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_fileinfo) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_getio) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_xls_open) _PARAMS((char *fname,unsigned long fname_len));
-extern int C2F(sci_xls_read) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intexec)();
 extern int C2F(intexecstr)();
 extern int C2F(intgetf)();
@@ -77,8 +75,6 @@ static IoTable Tab[]=
 {C2F(sci_fileinfo),"fileinfo"},
 {C2F(sci_getio),"getio"},
 {C2F(sci_setenv),"setenv"},
-{C2F(sci_xls_open),"xls_open"},
-{C2F(sci_xls_read),"xls_read"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_io)()

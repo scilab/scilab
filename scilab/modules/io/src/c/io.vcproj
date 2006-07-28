@@ -288,14 +288,6 @@
 				RelativePath="..\..\sci_gateway\c\sci_writeb.c"
 				>
 			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_xls_open.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_xls_read.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

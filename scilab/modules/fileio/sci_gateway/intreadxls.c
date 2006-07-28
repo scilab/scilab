@@ -1,14 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../machine.h"
-
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-#include "../stack-c.h"
+#include "machine.h"
+#include "MALLOC.h"
+#include "stack-c.h"
 
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
@@ -86,7 +81,7 @@ int C2F(intreadxls)(char *fname, long lfn)
   return 0;
 }
 
-#include "../fileio/ole.h"
+#include "ole.h"
 static char *xls_basename (name)
 char *name;
 {
