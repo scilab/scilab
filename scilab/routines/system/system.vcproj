@@ -189,10 +189,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\diary.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getval.c"
 				>
 			</File>
