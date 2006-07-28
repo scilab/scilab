@@ -25,8 +25,9 @@ extern void reset_history(void);
   #define STRICT
 #endif
 
+/* REORGANISATION TEMPORAIRE */
 #ifdef	_MSC_VER
-  #include "../wsci/wcommon.h" /* for BOOL */
+  #include "../../../../routines/wsci/wcommon.h" /* for BOOL */
 #else
   typedef int BOOL;
   extern char *getenv();
@@ -42,6 +43,7 @@ extern void reset_history(void);
 extern void write_scilab  __PARAMS((char *s));
 /*-----------------------------------------------------------------------------------*/
 #define MAXBUF	1024
+#define HISTORY_ID 3
 /*-----------------------------------------------------------------------------------*/
 typedef struct hist_
 {
@@ -76,5 +78,10 @@ int C2F(savehistory) _PARAMS((char *fname));
 char * getfilenamehistory(void);
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */
 /*-----------------------------------------------------------------------------------*/
-
+void GetCommentDateSession(char *line,int BeginSession);
+extern char *get_sci_data_strings(int n);
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
+#ifndef  WITH_READLINE
+int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
+#endif
 #endif 

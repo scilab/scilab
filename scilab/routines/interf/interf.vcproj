@@ -241,18 +241,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\stack1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\stack2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\stack3.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>

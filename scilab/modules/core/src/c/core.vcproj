@@ -487,6 +487,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\history.c"
+				>
+			</File>
+			<File
+				RelativePath=".\history.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\intgetmemory.h"
 				>
 			</File>

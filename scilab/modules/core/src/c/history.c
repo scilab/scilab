@@ -4,13 +4,11 @@
 
 #include "history.h"
 
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h"  /* malloc */
-#else
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
-#endif
-#include  "../stack-c.h"
-#define HISTORY_ID 3
+
+#include "MALLOC.h"  /* malloc */
+
+#include  "stack-c.h"
+
 
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
@@ -27,8 +25,7 @@ static int HistorySizeInMemory=0;
 
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 
-extern char *get_sci_data_strings(int n);
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
+
 /*-----------------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
@@ -213,45 +210,6 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot)
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function savehistory  */
 
-int C2F(savehistory) _PARAMS((char *fname))
-{
-  
-  char  line[MAXBUF];
-  char *Path;
-  int l1, m1, n1, out_n;
-  
-  Rhs=Max(Rhs,0);
-  CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
-	
-  if (Rhs == 0)
-  {
-    Path=get_sci_data_strings(HISTORY_ID);
-	C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-	write_history (line);
-  }
-  else
-  {
-	if ( GetType(1) == 1 ) 
-	{
-		GetRhsVar(1,"i",&m1,&n1,&l1);
-		savehistoryafterncommands(*istk(l1));
-	}
-	else if ( GetType(1) == 10 )
-	{
-		GetRhsVar(1,"c",&m1,&n1,&l1);
-		Path=cstk(l1);
-
-		C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
-		write_history (line);
-	}
-  }
-
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
-}
-
 /*-----------------------------------------------------------------------------------*/
 /* save history in filemane: */
 
@@ -376,22 +334,6 @@ void reset_history(void)
 
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function resethistory  */
-int C2F(resethistory) _PARAMS((char *fname))
-{
-  char Commentline[MAXBUF];	
-
-  Rhs=Max(Rhs,0);
-  CheckRhs(0,0) ;
-  CheckLhs(0,1) ;
-  reset_history();
-
-  GetCommentDateSession(Commentline,TRUE);		
-  AddHistory (Commentline);
-
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
-}
 
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function loadhistory  */
@@ -461,57 +403,11 @@ static void read_history(char *filename)
 
 #ifndef  WITH_READLINE
 
-static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
+int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
 
-int C2F(gethistory) _PARAMS((char *fname))
-{
-
-  static int l1, m1, n1;	
-  int indice=1,GotoLine;
-  sci_hist *Parcours = history;
-
-
-  Rhs=Max(Rhs,0);
-  CheckRhs(0,1) ;
-  CheckLhs(1,1) ;
-
-  if (!history)   goto empty;
-
-  if (Rhs == 1) {
-    GetRhsVar(1,"i",&m1,&n1,&l1);
-    GotoLine=Max(1,*istk(l1)); 
-  }
-  else {
-    GotoLine=1; 
-  }
-
-  /* looking for the top of the hystory */
-  if (Parcours) Parcours=GoFirstKnot(Parcours);
-
-  /* get the first requested record */
-  while  ( Parcours->next ) {	
-    if ( indice == GotoLine ) break;
-    Parcours=GoNextKnot(Parcours);
-    indice++;
-  }
-  if (!Parcours->next) goto empty;
-
-  if(!CreSmatFromHist(fname, Rhs+1, Parcours)) return 0;
-  LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
-  return 0;
-
- empty:
-  m1=0;
-  n1=0;
-  CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
-  LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
-  return 0;
-}	
  
 /*-----------------------------------------------------------------------------------*/
-static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
+int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
 {
   int ix1, il, nnchar, kij, ilp, lw;
   int pos;
