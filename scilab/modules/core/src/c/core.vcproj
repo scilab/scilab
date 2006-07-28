@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getmemory.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_core.c"
 				>
 			</File>
@@ -480,6 +484,10 @@
 			</File>
 			<File
 				RelativePath="FTables0.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getmemory.h"
 				>
 			</File>
 			<File

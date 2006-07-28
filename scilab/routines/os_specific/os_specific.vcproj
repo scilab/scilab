@@ -201,10 +201,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getmemory.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getpidc.c"
 				>
 			</File>
@@ -255,10 +251,6 @@
 			</File>
 			<File
 				RelativePath=".\GetExceptionCode.h"
-				>
-			</File>
-			<File
-				RelativePath=".\getmemory.h"
 				>
 			</File>
 			<File

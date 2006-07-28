@@ -9,7 +9,7 @@
 #include <Windows.h>
 #endif
 
-#include "../stack-c.h"
+#include "stack-c.h"
 
 #include "../os_specific/Os_specific.h"
 

@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\intfilestat.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_deff.c"
 				>
 			</File>

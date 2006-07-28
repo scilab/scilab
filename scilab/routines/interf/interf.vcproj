@@ -193,10 +193,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intfilestat.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intinterp.c"
 				>
 			</File>
