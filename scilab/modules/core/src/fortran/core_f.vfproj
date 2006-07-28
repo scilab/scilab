@@ -98,7 +98,8 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_useascommand.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_whereis.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_who.f"/>
-		<File RelativePath="userf2.f"/></Filter>
+		<File RelativePath="userf2.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\where.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd">
 		<File RelativePath="..\..\includes\callinter.h"/>
 		<File RelativePath="..\..\includes\stack.h"/></Filter>

@@ -1,6 +1,6 @@
       subroutine intrat
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer tops
       double precision eps,xxx

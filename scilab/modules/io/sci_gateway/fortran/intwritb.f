@@ -1,6 +1,6 @@
       subroutine intwritb
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer top2
       integer mode(2)
       logical opened

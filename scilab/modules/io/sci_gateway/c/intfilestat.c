@@ -11,7 +11,7 @@
 
 #include "stack-c.h"
 
-#include "../os_specific/Os_specific.h"
+#include "../../core/src/c/Os_specific.h"
 
 int C2F(intfilestat)(fname)
 char * fname;

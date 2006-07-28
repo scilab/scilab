@@ -2,7 +2,7 @@
 c     interface of exec function
 
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer flag,semi,typ
       integer mode(2),retu(6)

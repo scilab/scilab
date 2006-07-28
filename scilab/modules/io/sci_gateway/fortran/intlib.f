@@ -1,5 +1,5 @@
       subroutine intlib
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer percen,mode(2),id(nlgh)
       logical opened,eptover
       integer iadr,sadr

@@ -4,7 +4,7 @@ c     cette routine est issue de la fin du sous programme error
 c     Copyright INRIA
 c     Revised and corrected by Francois VOGEL, July/August 2004
 c     (bugs 908, 922 and 911 are fixed by this version)
-      include '../stack.h'
+      include 'stack.h'
       integer iadr,sadr
       integer p,lpts(6),lcts,r,vol,rios
       logical first

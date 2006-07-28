@@ -1,6 +1,6 @@
       subroutine oldload
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer id(nsiz),mode(2),h(nsiz)
       integer top2,job,semi
@@ -81,7 +81,7 @@ c
 
       subroutine oldsave
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer id(nsiz),mode(2)
       integer top2,job,semi

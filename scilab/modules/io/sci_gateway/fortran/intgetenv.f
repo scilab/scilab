@@ -3,7 +3,7 @@ c     =============================
 c     getenv('varname' [,'rep'])
       character*(*) fname
       logical checkrhs,checklhs,getsmat,checkval,cresmat2,bufstore
-      include '../stack.h'
+      include 'stack.h'
       rhs = max(0,rhs)
       lbuf = 1
       if(.not.checkrhs(fname,1,2)) return

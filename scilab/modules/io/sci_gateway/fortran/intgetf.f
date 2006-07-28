@@ -1,7 +1,7 @@
       subroutine intgetf
 c     
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer mode(2)
       integer nocomp,profile

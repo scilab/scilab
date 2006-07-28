@@ -1,6 +1,6 @@
       subroutine intgetio(fname)
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer mode(2)
       integer iadr,sadr

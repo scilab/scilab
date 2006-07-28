@@ -1,6 +1,6 @@
       subroutine intprint
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer flag,top2,tops
       integer mode(2)

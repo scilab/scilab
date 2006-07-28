@@ -1,6 +1,6 @@
       subroutine intgetpid
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
 c
       iadr(l)=l+l-1

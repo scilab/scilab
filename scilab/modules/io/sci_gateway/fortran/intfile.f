@@ -1,7 +1,7 @@
       subroutine intfile
 c     interface for builtin file
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer status,access,form,recl,old,new,scratc,unknow
       integer sequen,direct,forma1,unform

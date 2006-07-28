@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeStaticLibrary" ProjectCreator="Intel Fortran" Keyword="Static Library" Version="9.10" ProjectIdGuid="{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}">
+	<Platforms>
+		<Platform Name="Win32"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def io_f.def &gt;nul
+copy io_f.def ..\..\..\..\..\libs\io_f.def &gt;nul
+del *.def &gt;nul
+cd .." Description="Create io_f.def"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../../core/includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/io_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def io_f.def &gt;nul
+copy io_f.def ..\..\..\..\..\libs\io_f.def &gt;nul
+del *.def &gt;nul
+cd .." Description="Create io_f.def"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../libs/io_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\..\sci_gateway\fortran\intdeff.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intdiary.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intdisp.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intexec.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intexecstr.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intgetenv.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intgetf.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intgetio.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intgetpid.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\inthost.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intmgetl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intprint.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intrat.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intread.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intread4b.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intreadb.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intwritb.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intwrite.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intwrite4b.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\oldloadsave.f"/></Filter>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
+		<File RelativePath="..\..\sci_gateway\io.fundef"/></Files>
+	<Globals/></VisualStudioProject>

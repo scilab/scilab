@@ -1,6 +1,6 @@
       subroutine intread
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer top2
       integer ftyp,fmttyp,mode(2)

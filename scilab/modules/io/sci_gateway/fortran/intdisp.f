@@ -1,6 +1,6 @@
       subroutine intdisp
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer topk,id(nlgh)
       integer iadr,sadr
       logical eptover

@@ -1,7 +1,7 @@
       subroutine intexecstr
 c     Copyright INRIA/ENPC
 c     Bug 1054 corrected by Francois VOGEL, October 2004
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer retu(6),comma,eol,topk,mode(2)
       logical eptover,getsmat,checklhs,checkrhs,checkval

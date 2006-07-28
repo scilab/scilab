@@ -50,32 +50,11 @@ cd .."/>
 		<File RelativePath="..\insertfield.f"/>
 		<File RelativePath="..\int2d.f"/>
 		<File RelativePath="..\int3d.f"/>
-		<File RelativePath="..\intdeff.f"/>
-		<File RelativePath="..\intdiary.f"/>
-		<File RelativePath="..\intdisp.f"/>
-		<File RelativePath="..\intexec.f"/>
-		<File RelativePath="..\intexecstr.f"/>
-		<File RelativePath="..\intfile.f"/>
 		<File RelativePath="..\intg.f"/>
-		<File RelativePath="..\intgetenv.f"/>
-		<File RelativePath="..\intgetf.f"/>
-		<File RelativePath="..\intgetio.f"/>
-		<File RelativePath="..\intgetpid.f"/>
-		<File RelativePath="..\inthost.f"/>
 		<File RelativePath="..\intl_e.f"/>
 		<File RelativePath="..\intl_i.f"/>
-		<File RelativePath="..\intlib.f"/>
 		<File RelativePath="..\intlinmeq.f"/>
 		<File RelativePath="..\intlsqrsolve.f"/>
-		<File RelativePath="..\intmgetl.f"/>
-		<File RelativePath="..\intprint.f"/>
-		<File RelativePath="..\intrat.f"/>
-		<File RelativePath="..\intread.f"/>
-		<File RelativePath="..\intread4b.f"/>
-		<File RelativePath="..\intreadb.f"/>
-		<File RelativePath="..\intwritb.f"/>
-		<File RelativePath="..\intwrite.f"/>
-		<File RelativePath="..\intwrite4b.f"/>
 		<File RelativePath="..\isany.f"/>
 		<File RelativePath="..\issymmetric.f"/>
 		<File RelativePath="..\lapackf.f"/>
@@ -99,10 +78,8 @@ cd .."/>
 		<File RelativePath="..\matopt.f"/>
 		<File RelativePath="..\matqz.f"/>
 		<File RelativePath="..\matric.f"/>
-		<File RelativePath="..\matsys.f"/>
 		<File RelativePath="..\misops.f"/>
 		<File RelativePath="..\newsave.f"/>
-		<File RelativePath="..\oldloadsave.f"/>
 		<File RelativePath="..\polaut.f"/>
 		<File RelativePath="..\polelm.f"/>
 		<File RelativePath="..\polops.f"/>
@@ -112,7 +89,6 @@ cd .."/>
 		<File RelativePath="..\strops.f"/>
 		<File RelativePath="..\v2cunit.f"/>
 		<File RelativePath="..\v2unit.f"/>
-		<File RelativePath="..\where.f"/>
 		<File RelativePath="..\xawelm.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>

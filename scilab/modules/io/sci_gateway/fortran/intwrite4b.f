@@ -3,7 +3,7 @@ c     --------------------
 c     write binaire real*4
 c     --------------------
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer mode(2),top2
 
       logical opened

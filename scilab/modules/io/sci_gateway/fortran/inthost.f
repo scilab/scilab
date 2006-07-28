@@ -1,6 +1,6 @@
       subroutine inthost
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c
       integer iadr,sadr
 c

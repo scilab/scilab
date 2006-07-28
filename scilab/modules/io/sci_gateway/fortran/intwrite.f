@@ -1,6 +1,6 @@
       subroutine intwrite
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer    lch
       parameter (lch=1024)
       character chaine*(lch)

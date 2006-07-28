@@ -1,6 +1,6 @@
       subroutine intdeff
 c     Copyright INRIA/ENPC
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer mode(2),top0
       integer nocomp,profile
