@@ -3,8 +3,8 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	// =========================================================================================
 	// Authors : Jean-Philippe CHANCELIER, Pierre MARECHAL
 	// Copyright INRIA/Enpc
-	//
-	// dirs is a set of directories 
+	// 
+	// dirs is a set of directories
 	// for which html manuals are to be generated 
 	// + and index and toc file 
 	// titles are associated title strings (optional or [])
@@ -19,8 +19,6 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//
 	//   - add_default_language : Complete the on-line help with the default language. replace the missing
 	//                    help files by copying the corresponding files from the default language
-	// 
-	//   - del_default_language : 
 	//
 	//   - whatis       : A whatis.htm file is generated in each directory using information given 
 	//                    in the "SHORT_DESCRIPTION" tag of each xml file and the given title.
@@ -37,182 +35,450 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//   - all          : All the previous steps
 	// =========================================================================================
 	
-	curdir=pwd()
+	global LANGUAGE %helps
+	
+	//------------------------------------------------------------------------------------------
+	// Sauvegarde du chemin courant et de la variable %helps
+	//------------------------------------------------------------------------------------------
+	
+	current_directory = pwd();
+	saved_helps = %helps;
 	
 	help=utillib.help;
 	
-	//to load the subfunction change_old_man
-	//this is required to produce the whatis.htm files
+	//to load the subfunction change_old_man this is required to produce the whatis.htm files
 	//associated with old style manuals
+	change_old_man();
 	
-	change_old_man()
+	//------------------------------------------------------------------------------------------
 	
-	global LANGUAGE %helps
-	select LANGUAGE 
-		case 'eng' then H= 'Help chapter' 
-		case 'fr'  then H= 'Chapitre de help'
+	[lhs,rhs]=argn(0);
+	
+	// Trop de paramètres
+	// -----------------------------------------------------------------------------------------
+	
+	if rhs > 6 then
+		error(39);
+		%helps = saved_helps;
+		chdir(current_directory);
+		return;
 	end
 	
-	//------------------------------------------------------------------------------------------
-	// get man_dirs, il s'agit des directory des répertoires d'origine
-	//------------------------------------------------------------------------------------------
+	// Cas par défaut : construction de l'aide en ligne de Scilab
+	// -----------------------------------------------------------------------------------------
 	
-	initial_help_directory = initial_help_chapters(LANGUAGE);
-	
-	//------------------------------------------------------------------------------------------
-	//patch because scicos is not written in xml
-	//------------------------------------------------------------------------------------------
-	
-	scs=grep(initial_help_directory,'scicos');
-	
-	if size(scs,'*') == 1 then
-		initial_help_directory(scs)=[];
-	end
-	
-	man_dirs = initial_help_directory(:,1);
-	man_titles= initial_help_directory(:,2);
-	
-	if man_dirs == [] then 
-		error('I cannot find man dirs');
-		return 
-	end
-	
-	[lhs,rhs]=argn(0)
-	
-	if rhs > 6 then error(39),return; end
-	
-	if rhs <= 3 then step='all'; end
-	if rhs <= 2 then xsl= 'html-rev.xsl'; end
-	if rhs <= 1 then titles= H + emptystr(dirs);end
-	if rhs <= 0 then dirs = man_dirs ;end
-	if titles==[] then titles= H+ emptystr(dirs);end
-	
-	// default values
-	
-	if dirs == [] then
+	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
-		dirs = man_dirs;
-		titles= man_titles;
+		dirs_to_build = %helps;
 		
-		for k=1:size(dirs,'*');
-			select LANGUAGE
-			case 'eng' then
+		//----------------------------------------------------------------------------------
+		// Patch because scicos is not written in xml
+		//----------------------------------------------------------------------------------
+		scs = grep(dirs_to_build,'scicos');
+		if size(scs,'*') == 1 then dirs_to_build(scs)=[]; end
+		// End of patch --------------------------------------------------------------------
+		
+		dirs = dirs_to_build(:,1);
+		titles = dirs_to_build(:,2);
+		directory_language = [];
+		default_language = [];
+		language_system = [];
+		
+		select LANGUAGE
+		
+		case 'eng' then
+			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			for k=1:size(dirs,'*')
 				directory_language = [directory_language;"eng"];
-			case 'fr' then
+				language_system = [language_system;%F];
+			end
+		
+		case 'fr' then
+			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			for k=1:size(dirs,'*')
 				directory_language = [directory_language;"fr"];
 				default_language = [default_language;"eng"];
+				language_system = [language_system;%T];
 			end
 		end
+		
+		step = "all";
+	
+	// Cas ou seulement le ou les répertoires sont précisés
+	// -----------------------------------------------------------------------------------------
+	
+	elseif (rhs == 1) & (dirs <> []) then
+		
+		step = "all";
+		language_system = [];
+		titles = [];
+		
+		select LANGUAGE
+		
+		case 'eng' then
+			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			for k=1:size(dirs,'*')
+				titles = [titles;"Help chapter ("+dirs(k)+")"];
+				language_system = [language_system;%F];
+			end
+		case 'fr' then
+			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			for k=1:size(dirs,'*')
+				titles = [titles;"Chapitre de help ("+dirs(k)+")"];
+				language_system = [language_system;%F];
+			end
+		end
+		
+	// Cas ou seulement le ou les répertoires ainsi que le ou les titres sont précisés
+	// -----------------------------------------------------------------------------------------
+	
+	elseif rhs == 2 then
+		
+		step = "all";
+		language_system = [];
+		
+		for k=1:size(dirs,'*')
+			language_system = [language_system;%F];
+		end
+		
+		select LANGUAGE
+		
+		case 'eng' then
+			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			
+		case 'fr' then
+			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+		
+		end
+
+	// Cas le ou les répertoires ainsi que le ou les titres sont précisés
+	// ainsi que le fichier xsl
+	// -----------------------------------------------------------------------------------------
+	
+	elseif rhs == 3 then
+		
+		step = "all";
+		language_system = [];
+		
+		for k=1:size(dirs,'*')
+			language_system = [language_system;%F];
+		end
+		
+		if ~exists("xsl") | xsl == [] | xsl == "" then
+			select LANGUAGE
+			
+			case 'eng' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				
+			case 'fr' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			
+			end
+		end
+		
+	// Cas les répertoires,les titres,le fichier xsl et le step sont précisé
+	// -----------------------------------------------------------------------------------------
+	
+	elseif rhs == 4 then
+		
+		language_system = [];
+		
+		for k=1:size(dirs,'*')
+			language_system = [language_system;%F];
+		end
+		
+		if ~exists("all") | all == [] | all == "" then step = "all"; end
+		
+		if ~exists("xsl") | xsl == [] | xsl == "" then
+			select LANGUAGE
+			
+			case 'eng' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				
+			case 'fr' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			
+			end
+		end
+	
+	// Cas les répertoires,les titres,le fichier xsl, le step ainsi que la langue du répertoire
+	// sont précisées
+	// -----------------------------------------------------------------------------------------
+	
+	elseif rhs == 5 then
+		
+		language_system = [];
+		
+		for k=1:size(dirs,'*')
+			language_system = [language_system;%F];
+		end
+		
+		if ~exists("all") | all == [] | all == "" then step = "all"; end
+		
+		if ~exists("xsl") | xsl == [] | xsl == "" then
+			select LANGUAGE
+			
+			case 'eng' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				
+			case 'fr' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			
+			end
+		end
+	
+	// Cas où tous est précisée
+	// -----------------------------------------------------------------------------------------
+	
+	elseif rhs == 6 then
+		
+		language_system = [];
+		
+		for k=1:size(dirs,'*')
+			if isdir(pathconvert(dirs(k)+"/../"+default_language(k),%f,%f)) then
+				language_system = [language_system;%T];
+			end
+		end
+		
+		if ~exists("all") | all == [] | all == "" then step = "all"; end
+		
+		if ~exists("xsl") | xsl == [] | xsl == "" then
+			select LANGUAGE
+			
+			case 'eng' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				
+			case 'fr' then
+				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			
+			end
+		end
+		
 	end
+	
+	// On transforme le ou les chemins donnés en chemin absolu
+	// -----------------------------------------------------------------------------------------
+	
+	for k=1:size(dirs,'*');
+		chdir(dirs(k));
+		if MSDOS then
+			dirs(k) = getlongpathname(pwd());
+		else
+			dirs(k) = pwd();
+		end
+		chdir(current_directory);
+	end
+	
+	//------------------------------------------------------------------------------------------
+	// On etablit la liste des répertoires nécéssitants d'être reconstruit
+	//------------------------------------------------------------------------------------------
+	
+	need_to_be_build_tab = [];
+	
+	for k=1:size(dirs,'*');
+		if language_system(k) then
+			need_to_be_build_tab = [need_to_be_build_tab;need_to_be_build(dirs(k),directory_language(k),default_language(k))];
+		else
+			need_to_be_build_tab = [need_to_be_build_tab;need_to_be_build(dirs(k))];
+		end
+	end
+	
+	if ~or(need_to_be_build_tab) then
+		mprintf("   HTML files are up-to-date\n");
+		return;
+	end
+	
+	
+	// Nombre de répertoire ayant besoin d'une modification
+	// -----------------------------------------------------------------------------------------
+	
+	nb_dir = size( find(need_to_be_build_tab == %T) , '*' );
 	
 	//------------------------------------------------------------------------------------------
 	// Complete the on-line help with the default language
 	//------------------------------------------------------------------------------------------
 	
-	if (step == 'all' | step == 'add_default_language') & ( rhs == 6 ) then
-		for k=1:size(dirs,'*');
-			mprintf('Completing %s with files transtated into the default language\n',dirs(k));
-			complete_with_default_language(dirs(k),directory_language(k),default_language(k));
+	if step == 'all' | step == 'add_default_language' then
+		
+		displaydone = 0;
+		
+		for k=1:size(dirs,'*')
+			if need_to_be_build_tab(k) & language_system(k) then
+				default_language_path = pathconvert(dirs(k)+"/../"+default_language(k),%f,%f);
+				if nb_dir > 1 then
+					if displaydone == 0 then
+						mprintf("\nCopying missing files copied from\n");
+						displaydone = 1;
+					end
+					mprintf("\t%s\n",default_language_path);
+				else
+					mprintf("\nCopying missing from %s\n",default_language_path);
+				end
+				complete_with_default_language(dirs(k),directory_language(k),default_language(k));
+			end
 		end
 	end
 	
 	//------------------------------------------------------------------------------------------
-	// build all the whatis 
+	// build all the whatis
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'whatis' then 
+		displaydone = 0;
 		for k=1:size(dirs,'*');
-			mprintf('Creating whatis.htm in %s\n',dirs(k));
-			dirs(k)=pathconvert(dirs(k),%f,%t)
-			chdir(dirs(k));
-			if titles(k) == H then 
-				titles(k) = titles(k)+' ('+dirs(k)+')';
+			if need_to_be_build_tab(k) then
+				if nb_dir > 1 then
+					if displaydone == 0 then
+						mprintf("\nCreating whatis.htm\n");
+						displaydone = 1;
+					end
+					mprintf("\t%s\n",dirs(k));
+				else
+					mprintf("\nCreating whatis.htm in %s\n",dirs(k));
+				end
+				dirs(k)=pathconvert(dirs(k),%f,%f);
+				chdir(dirs(k));
+				gener_whatis(titles(k));
 			end
-			gener_whatis(titles(k))
-			chdir('../')
 		end
 	end
-  
+	
 	//------------------------------------------------------------------------------------------
 	// the perform the  html generation
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'html' then 
+		
 		dirs=stripblanks(dirs)
+		
 		for k=1:size(dirs,'*');
-			mprintf('Processing chapter %s\n',dirs(k));
-			chdir(dirs(k));
-			global %helps;
-			nk=length(dirs(k))
-			if or(part(dirs(k),nk)==['/','\']) then nk=nk-1,end
-			if and(%helps<>part(dirs(k),1:nk)) then
-				saved_helps=%helps;
-				%helps=[%helps;'./',"Temp"];
-				%helps=saved_helps;
-			end
-	
-			xml = listfiles('*.xml');
-			if xml <> [] then 
-				for k1=1:size(xml,'*')  // loop on .xml files 
-					xmlfiletohtml(xml(k1),xsl)
+			if need_to_be_build_tab(k) then
+				
+				mprintf("\nProcessing chapter %s\n",dirs(k));
+				
+				chdir(dirs(k));
+				
+				// On vérifie l'existence du fichier xls
+				
+				if fileinfo(xsl) == [] then
+					error("cannot open xsl file"+xsl);
+					chdir(current_directory);
+					%helps = saved_helps;
+					return;
 				end
+				
+				// On ajoute le répertoire dont on construit le whatis.htm
+				// à %helps ce qui le rajoute au chemins de recherche.
+				saved_help = %helps;
+				add_help_chapter(titles(k),dirs(k));
+				
+				xml = listfiles('*.xml');
+				
+				if xml <> [] then 
+					for k1=1:size(xml,'*')  // loop on .xml files 
+						if language_system(k) then
+							ok = xmlfiletohtml(xml(k1),xsl,directory_language(k),default_language(k));
+						else
+							ok = xmlfiletohtml(xml(k1),xsl);
+						end
+						
+						if ~ok then
+							chdir(current_directory);
+							%helps = saved_helps;
+							return;
+						end
+					end
+				end
+				
+				%helps = saved_help;
 			end
-			chdir('../')
 		end
 	end
 	
-	chdir(curdir)
+	chdir(current_directory);
 	
-// 	//------------------------------------------------------------------------------------------
-// 	// now the index
-// 	//------------------------------------------------------------------------------------------
-// 	
-// 	if step=='all' | step == 'index' then 
-// 		mprintf('Creating index.htm \n');
-// 		if rhs <= 0 then 
-// 			gener_index() 
-// 		else
-// 			gener_index(dirs,titles)
-// 		end
-// 	end
-// 	
-// 	//------------------------------------------------------------------------------------------
-// 	// now the contents
-// 	//------------------------------------------------------------------------------------------
-// 	
-// 	if step=='all' | step == 'contents' then 
-// 		mprintf('Creating contents.htm  \n');
-// 		if rhs <= 0 then 
-// 			gener_contents() 
-// 		else
-// 			gener_contents(dirs)
-// 		end
-// 	end
-// 	
-// 	//------------------------------------------------------------------------------------------
-// 	// now help workshop (Only under Windows and only if
-// 	// we build the scilab man (SCI/man/fr and SCI/man/eng )
-// 	//------------------------------------------------------------------------------------------
-// 	
-// 	if MSDOS then
-// 		if step=='all' | step == 'hw' then
-// 			if (strindex(dirs(1),'\eng\') <> []) | (strindex(dirs(1),'\fr\') <> []) then
-// 				mprintf('Creating sciman.hh* \n');
-// 				gener_hh(dirs,titles)
-// 			end
-// 		end
-// 	end
+	//------------------------------------------------------------------------------------------
+	// now the index
+	//------------------------------------------------------------------------------------------
+	
+	if step=='all' | step == 'index' then 
+		index_file = pathconvert(SCI+"/modules/help-tools/index_"+LANGUAGE+".htm",%f,%t);
+		mprintf("\nCreating %s\n",index_file);
+		gener_index(dirs,titles);
+	end
+	
+	//------------------------------------------------------------------------------------------
+	// now the contents
+	//------------------------------------------------------------------------------------------
+	
+	if step=='all' | step == 'contents' then 
+		contents_file = pathconvert(SCI+"/modules/help-tools/contents_"+LANGUAGE+".htm",%f,%t);
+		mprintf("\nCreating %s\n",contents_file);
+		if rhs <= 0 then 
+			gener_contents() 
+		else
+			gener_contents(dirs)
+		end
+	end
+	
+	//------------------------------------------------------------------------------------------
+	// now help workshop (Only under Windows and only if
+	// we build the scilab man (SCI/man/fr and SCI/man/eng )
+	//------------------------------------------------------------------------------------------
+	
+	if MSDOS then
+		if step=='all' | step == 'hw' then
+			if (strindex(dirs(1),'\eng\') <> []) | (strindex(dirs(1),'\fr\') <> []) then
+				mprintf("\nCreating sciman.hh* \n");
+				gener_hh(dirs,titles)
+			end
+		end
+	end
 	
 	//------------------------------------------------------------------------------------------
 	// Delete the xml files translated into the default language 
 	//------------------------------------------------------------------------------------------
 	
-	if (step=='all' | step == 'add_default_language') & ( rhs == 6 ) then
-		for k=1:size(dirs,'*');
-			mprintf('Deleting files transtated into the default language in %s\n',dirs(k));
-			del_default_language_xml_files(dirs(k),directory_language(k))
+	if (step=='all' | step == 'add_default_language') then
+		displaydone = 0;
+		for k=1:size(dirs,'*')
+			if need_to_be_build_tab(k) & language_system(k) then
+				
+				default_language_path = pathconvert(dirs(k)+"/../"+default_language(k),%f,%f);
+				
+				if nb_dir > 1 then
+					if displaydone == 0 then
+						mprintf("\nDeleting files copied from\n");
+						displaydone = 1;
+					end
+					mprintf("\t%s\n",default_language_path);
+				else
+					mprintf("\nDeleting files copied from %s\n",default_language_path);
+				end
+				del_default_language_xml_files(dirs(k),directory_language(k));
+			end
 		end
 	end
+	
+	//------------------------------------------------------------------------------------------
+	// Création du fichier "directory/.last_successful_build"
+	//------------------------------------------------------------------------------------------
+	
+	if step == 'all' then
+		for k=1:size(dirs,'*');
+			if need_to_be_build_tab(k) then
+				dateToPrint = msprintf("last_successful_build_value = %d",getdate('s'));
+				mputl(dateToPrint,pathconvert(dirs(k)+"/.last_successful_build",%f,%f));
+			end
+		end
+	end
+	
+	//------------------------------------------------------------------------------------------
+	// On remet l'environement initial
+	//------------------------------------------------------------------------------------------
+	
+	chdir(current_directory);
+	%helps = saved_helps;
 	
 endfunction
 
@@ -251,12 +517,13 @@ function gener_whatis(wtitle)
 	end
   
 	head=["<html>"
-		"<head>"
-		"	<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
-		"	<title>"+whatis_title+"</title>"
-		"</head>"
-		"<body bgcolor=""#FFFFFF"">"
-		"<dl>"];
+		"	<head>"
+		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
+		"		<title>"+whatis_title+"</title>"
+		"	</head>"
+		""
+		"	<body bgcolor=""#FFFFFF"">"
+		"		<dl>"];
   
 	l=0;
 	line=[]
@@ -285,65 +552,68 @@ function gener_whatis(wtitle)
 				desc=stripblanks(part(tt,i1(1)+1:i2(2)-1));
 				l=l+1; fname=part(path,[1:length(path)-4])+".htm";
 				fname=strsubst(fname,'//','/');
-				line(l)="<dd><A HREF="""+fname+""">"+name+"</A> - "+desc+"</dd>";
+				line(l)="			<dd><A HREF="""+fname+""">"+name+"</A> - "+desc+"</dd>";
 			end
 		end
 	end
-
-    // fix bug 1978
-    //  first trim the htm file name, for instance this element of matrix "line":
-    //  "<dd><A HREF=""if.htm"">if</A> - conditional execution</dd>"
-    //  becomes the following element of matrix "trimmed":
-    // "if</A> - conditional execution</dd>"
-    trimmed=emptystr(line);
-    for i=1:size(line,"r")
-      r=strindex(line(i),".htm"">")+6;
-      trimmed(i)=part(line(i),r:length(line(i)));
-    end
-    //  now sort the trimmed array, and keep the k indices describing how it was sorted
-    [trimmed,k] = gsort(trimmed,'g','i');
-    //  finally apply the indices k to the original matrix "line"
-    line=line(k(:))
-    // end of fix for bug 1978
-
-	text = [head;line;"</dl></body></html>"];
+	
+	//------------------------------------------------------------------------------------------
+	// Fix bug 1978
+	// first trim the htm file name, for instance this element of matrix "line":
+	//        "<dd><A HREF=""if.htm"">if</A> - conditional execution</dd>"
+	// becomes the following element of matrix "trimmed":
+	//        "if</A> - conditional execution</dd>"
+	//------------------------------------------------------------------------------------------
+	
+	trimmed=emptystr(line);
+	for i=1:size(line,"r")
+		r=strindex(line(i),".htm"">")+6;
+		trimmed(i)=part(line(i),r:length(line(i)));
+	end
+	
+	//  now sort the trimmed array, and keep the k indices describing how it was sorted
+	[trimmed,k] = gsort(trimmed,'g','i');
+	
+	//  finally apply the indices k to the original matrix "line"
+	line=line(k(:))
+	
+	// end of fix for bug 1978
+	//------------------------------------------------------------------------------------------
+	
+	text = [head
+		line
+		"		</dl>"
+		"	</body>"
+		"</html>"]
 	
 	mputl(text,"whatis.htm");
 	
 endfunction
 
 
-
-function gener_index(dirs,txt)
+function gener_index(dirs,titles)
 
 	//------------------------------------------------------------------------------------------
 	// use %helps to generate an index file 
 	//------------------------------------------------------------------------------------------
 	
+	// On ajoute le ou les répertoire 
+	
+	saved_help = %helps;
+	
+	[lhs,rhs]=argn(0)
+	 
+	if rhs == 2 then
+		for k=1:size(dirs,'*')
+			add_help_chapter(titles(k),dirs(k));
+		end
+	end
+	
+	dirs = %helps(:,1);
+	titles = %helps(:,2);
+	
 	lines(0);
 	
-	if MSDOS then
-		if ( strindex(%helps(1,1),'\eng\') <> [] ) then
-			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'w');
-		elseif ( strindex(%helps(1,1),'\fr\') <> [] ) then
-			manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'w');
-		end
-	else
-		if ( strindex(%helps(1,1),'/eng/') <> [] ) then
-			manpath = pathconvert(getlongpathname(SCI)+'/man/eng/',%t,%f,'u');
-		elseif ( strindex(%helps(1,1),'/fr/') <> [] ) then
-			manpath = pathconvert(getlongpathname(SCI)+'/man/fr/',%t,%f,'u');
-		end
-	end
-	
-	find_links=find_links;
-	sep="/";// if MSDOS then sep="\",end
-	[lhs,rhs]=argn(0) 
-	if rhs <= 0 then 
-	        dirs=%helps(:,1)
-		txt=%helps(:,2)
-	end
-  
 	line=["<html>"
 		"	<head>"
 		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
@@ -361,37 +631,37 @@ function gener_index(dirs,txt)
 	//------------------------------------------------------------------------------------------
 
 	for k=1:size(dirs,'*')
-		w=dirs(k)+sep+"whatis.htm";
-		if fileinfo(w)==[] then 
-			error('file '+w+' not found');
-			return 
-		end 
+		
+		w = pathconvert(dirs(k)+"/whatis.htm",%f,%f);
+		w = strsubst(w,pathconvert(SCI,%f,%t),"../../");
+		w = pathconvert(w,%f,%t);
+		
+// 		if fileinfo(w) ==[] then
+// 			error("file "+w+" not found");
+// 			return 
+// 		end 
+		
 		l=l+1;
-		w=strsubst(w,'\','/');
-		w=strsubst(w,'//','/');
 		
-		if MSDOS then
-			w=pathconvert(getlongpathname(w),%f,%f,'w');
-		else
-			w=pathconvert(getlongpathname(w),%f,%f,'u');
-		end
-		
-		w = strsubst(w,manpath,'');
-		
-		line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"		
+		w=pathconvert(getlongpathname(w),%f,%f);
+		line(l)="			<dd><A HREF="""+w+""">"+titles(k)+"</A></dd>";
 	end
-	line = [line;"		</dl>"
+	
+	line = [line;
+		"		</dl>"
 		"	</body>"
 		"</html>"]
-  
-	mputl(line,"index.htm")
+	
+	mputl(line,pathconvert(SCI+"/modules/help-tools/index_"+LANGUAGE+".htm",%f,%t));
+	
+	%helps = saved_help;
 	
 endfunction
 
 
 
 function flag = gener_links()
-
+	
 	//------------------------------------------------------------------------------------------	
 	// returns %t if new files were created
 	//------------------------------------------------------------------------------------------
@@ -417,12 +687,13 @@ endfunction
 
 
 function gener_contents(dirs1)
-
+	
 	//------------------------------------------------------------------------------------------
 	// contents.htm 
 	//------------------------------------------------------------------------------------------
-  
-	[lhs,rhs]=argn(0) 
+	
+	[lhs,rhs]=argn(0)
+	 
 	if rhs <= 0 then 
 		dirs = dirname(%helps(:,1));
 		base = basename(%helps(:,1));
@@ -430,13 +701,14 @@ function gener_contents(dirs1)
 		dirs = dirname(dirs1)
 		base = basename(dirs1)
 	end
-
+	
 	//------------------------------------------------------------------------------------------
 	// help in the std man directory
 	//------------------------------------------------------------------------------------------
+	
 	std= grep(dirs,SCI)
 	n=size(dirs,'*')
-
+	
 	//------------------------------------------------------------------------------------------	
 	// help in the non std man directory
 	//------------------------------------------------------------------------------------------
@@ -446,7 +718,7 @@ function gener_contents(dirs1)
 	
 	full_whatis=[];
 	full_whatis_name=[];
-
+	
 	if std<>[] then 
 		for k=std
 			d = dirs(k)+'/'+base(k);
@@ -469,7 +741,7 @@ function gener_contents(dirs1)
 			end 
 		end
 	end
-  
+	
 	if nstd<>[] then 
 		for k=nstd
 			d = dirs(k)+'/'+base(k);
@@ -502,24 +774,27 @@ function gener_contents(dirs1)
 	full_whatis=full_whatis(sk);
 	
 	select LANGUAGE 
-		case 'fr' then type_title =  "<H2>Fonctions Scilab</H2>";
-		case 'eng' then type_title =  "<H2>Scilab functions</H2>";
+		case 'fr' then type_title =  "		<H2>Fonctions Scilab</H2>";
+		case 'eng' then type_title =  "		<H2>Scilab functions</H2>";
 	end
   
 	full_whatis=["<html>"
-		"<head>"
-		"	<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
-		"	<title>Scilab General Index</title>"
-		"</head>"
-		"<body bgcolor=""#FFFFFF"">";
+		"	<head>"
+		"		<meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
+		"		<title>Scilab General Index</title>"
+		"	</head>"
+		"	<body bgcolor=""#FFFFFF"">";
 		type_title;
+		"		<dl>"
 		full_whatis;
-		"</body></html>"
+		"		<dl>"
+		"	</body>"
+		"</html>"
 		];
 	
-	mputl(full_whatis,'contents.htm')
+	mputl(full_whatis,pathconvert(SCI+"/modules/contents_"+LANGUAGE+".htm",%f,%t));
   
-endfunction 
+endfunction
 
 
 
@@ -549,12 +824,12 @@ function gener_hh(dirs,titles)
 	
 	// help in the std man directory 
 	n=size(dirs,'*')
-
+	
 	items=[];
 	names=[];
-
+	
 	// just for the std directories 
-
+	
 	for k=1:n
 		// look for .xml files
 		files = listfiles(base(k)+'/*.xml');
@@ -688,10 +963,6 @@ endfunction
 
 
 
-
-
-
-
 function complete_with_default_language(directory,directory_language,default_language)
 	
 	//------------------------------------------------------------------------------------------
@@ -707,7 +978,7 @@ function complete_with_default_language(directory,directory_language,default_lan
 	//------------------------------------------------------------------------------------------
 	
 	// Directory traitée
-	directory = pathconvert(directory,%f,%t);
+	directory = pathconvert(directory,%f,%f);
 	
 	//------------------------------------------------------------------------------------------
 	// Nettoyage du répertoire
@@ -717,7 +988,7 @@ function complete_with_default_language(directory,directory_language,default_lan
 	//   2. Tous les fichiers de la forme .list_<language>
 	//------------------------------------------------------------------------------------------
 	
-	if listfiles(directory+"/.list_"+directory_language) <> [] then
+	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		del_default_language_xml_files(directory,directory_language);
 		mdelete(directory+"/.list_*");
 	end
@@ -738,7 +1009,7 @@ function complete_with_default_language(directory,directory_language,default_lan
 	
 	// Tous les fichiers contenus dans <directory>/../<default_language> pour commencer
 	// On afinnera par la suite
-	default_language_xml_files = basename(listfiles(directory+"/../"+default_language+"/*.xml"));
+	default_language_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
 	
 	// On supprime de "default_language_xml_files" tous les élément contenus dans 
 	// "directory_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
@@ -749,18 +1020,19 @@ function complete_with_default_language(directory,directory_language,default_lan
 	end
 	
 	// Création du fichier
-	mputl(default_language_xml_files,directory+"/.list_"+default_language);
+	mputl(default_language_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
 	
 	//------------------------------------------------------------------------------------------
 	// Copie des fichiers additionnels
 	//------------------------------------------------------------------------------------------
 	
 	for i=1:size(default_language_xml_files,'*');
-		tmp_file = mgetl(directory+"/../"+default_language+"/"+default_language_xml_files(i)+".xml");
-		mputl(tmp_file,directory+"/"+default_language_xml_files(i)+".xml");
+		tmp_file = mgetl(pathconvert(directory+"/../"+default_language+"/"+default_language_xml_files(i)+".xml",%f,%f));
+		mputl(tmp_file,pathconvert(directory+"/"+default_language_xml_files(i)+".xml",%f,%f));
 	end
 	
 endfunction
+
 
 function del_default_language_xml_files(directory,directory_language)
 	
@@ -779,10 +1051,10 @@ function del_default_language_xml_files(directory,directory_language)
 	// Directory traitée
 	directory = pathconvert(directory,%f,%t);
 	
-	if listfiles(directory+"/.list_"+directory_language) <> [] then
+	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		
 		// Récupération de la liste des fichiers xml copiés depuis le répertoire de la langue par défaut
-		directory_language_xml_files = mgetl(directory+"/.list_"+directory_language);
+		directory_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
 		
 		// Liste de tous les fichiers xml contenu dans le répertoire
 		all_files = basename(listfiles(directory+"/*.xml"));
@@ -795,9 +1067,93 @@ function del_default_language_xml_files(directory,directory_language)
 		
 		// Destruction des fichiers restant dans all_files
 		for i=1:size(all_files,'*');
-			mdelete(directory+"/"+all_files(i)+".xml");
+			mdelete(pathconvert(directory+"/"+all_files(i)+".xml",%f,%f));
 		end
 	end
 	
 endfunction
 
+
+function result = need_to_be_build(directory,directory_language,default_language)
+	
+	//------------------------------------------------------------------------------------------
+	// Author : Pierre MARECHAL
+	// Scilab Team
+	// Copyright INRIA
+	// Date : 27, july 2006
+	//
+	// Cette fonction a pour but de déterminer si le répertoire a besoin d'être reconstruit ou
+	// pas. 
+	//
+	// On détermine la date de dernière modification la plus récente parmi les date de dernière
+	// modification suivantes :
+	//     -  date de dernière modification du répertoire "directory".
+	//     -  dates de dernière modification des fichiers XML du répertoire "directory".
+	//     -  date de dernière modification du répertoire "directory/../<default_language>"
+	//        si le système de multilinguisme est utilisé
+	//      - dates de dernière modification des fichiers XML du répertoire 
+	//        "directory/../<default_language>" si le système de multilinguisme est utilisé
+	//
+	// Ensuite cette valeur est comparée à la valeur contenue dans le fichier 
+	// "directory/.last_successful_build". Si elle est plus grande, need_to_be_build renvoie %T
+	//
+	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais été 
+	// construite donc need_to_be_build renvoie %T
+	// 
+	//------------------------------------------------------------------------------------------
+	
+	[lhs,rhs]=argn(0);
+	
+	if fileinfo(pathconvert(directory+"/.last_successful_build",%f,%f)) == [] then
+		result = %T;
+		return;
+	else
+		exec(pathconvert(directory+"/.last_successful_build",%f,%f),-1);
+		
+		// ---------------------------------------------------------------------------------
+		
+		directory_info = fileinfo(directory);
+		max_change_date = directory_info(6);
+		
+		xml_file_list = listfiles(directory+"/*.xml");
+		
+		for i=1:size(xml_file_list,'*');
+			file_date = fileinfo(xml_file_list(i));
+			if file_date(6) > max_change_date then
+				max_change_date = file_date(6);
+			end
+		end
+		
+		if max_change_date > last_successful_build_value then
+			result = %T;
+			return;
+		else
+			if rhs == 3 then
+				
+				default_language_directory_info = fileinfo(pathconvert(directory+"/../"+default_language,%f,%f));
+				
+				if default_language_directory_info(6) > max_change_date then
+					max_change_date = default_language_directory_info(6);
+				end
+				
+				xml_default_language_file_list = listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f));
+				
+				for i=1:size(xml_default_language_file_list,'*');
+					file_date = fileinfo(xml_default_language_file_list(i));
+					if file_date(6) > max_change_date then
+						max_change_date = file_date(6);
+					end
+				end
+			end
+			
+			if max_change_date > last_successful_build_value then
+				result = %T;
+				return;
+			else
+				result = %F;
+				return;
+			end
+		end
+	end
+	
+endfunction

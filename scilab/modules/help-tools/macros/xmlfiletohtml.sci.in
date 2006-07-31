@@ -1,21 +1,53 @@
-function xmlfiletohtml(path,xsl)
+function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 
-	// Copyright Enpc (Jean-Philippe Chancelier)
-	// given a path on a Scilab help xml file  (assumed to respect 
-	// SCI/man/man-rev.dtd ) this function generates the corresponding htm
-	// file using the /man/<LANGUAGE>/html-rev.xsl xsl file
+	// =========================================================================================
+	// 
+	// Authors : Jean-Philippe CHANCELIER, Pierre MARECHAL
+	// Copyright INRIA/Enpc
+	//
+	// given a path on a Scilab help xml file (assumed to respect 
+	// SCI/help-tools/help.dtd) this function generates the corresponding htm
+	// file using the wanted xsl file
+	// 
+	// Private function !!!
+	// =========================================================================================
+	
+	// path    :     absolute path of the XML file
+	// xsl     :     abolute path of the xsl path
 	
 	generate_cmd='@MANGENERATOR@';
 	
-	[lhs,rhs]=argn(0);
-	if rhs < 2 then xsl= 'html-rev.xsl';end //the xsl file name;
+	[lhs,rhs] = argn(0);
+	
 	global LANGUAGE %helps
-	path=pathconvert(path,%f,%t) // convert path to host convention
+	
+	path = pathconvert(path,%f,%t) // convert path to host convention
+	
+	xmlfile = path;
+	needToBeCopied = %F;
+	
+	if rhs == 4 then
+		
+		if fileinfo(".list_"+default_language) <> [] then
+			default_language_xml_files = mgetl(".list_"+default_language);
+		end
+		
+		if find( default_language_xml_files == basename(path) ) <> [] then
+			xmlfile = "../"+default_language+"/"+path;
+			needToBeCopied = %T;
+		end
+	end
 	
 	//proceed if xml file is newest than htm file
-	if newest(path,strsubst(path,".xml",".htm"))==1 then
+	
+	if newest(xmlfile,strsubst(path,".xml",".htm"))==1 then
 		
-		mprintf('  Processing file %s.xml\n',basename(path));
+		if needToBeCopied then
+			tmp_file = mgetl(xmlfile);
+			mputl(tmp_file,path);
+		end
+		
+		mprintf("\tProcessing file %s.xml\n",basename(path));
 		
 		// build .xml2 file where LINK tags references are solved
 		find_links(path,path+"2");
@@ -24,9 +56,10 @@ function xmlfiletohtml(path,xsl)
 		out=strsubst(path,'.xml','.htm')
 		
 		// form the html generator command line instruction
+		
 		if  MSDOS then 
 			// sabcmd does not like c:/.. path replace it by file://c:/..
-			xsl='file://'+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
+			xsl='file://'+xsl;
 			generate_cmd='""'+WSCI+'\Win-util\sablotron\sabcmd'+'""'
 			if basename(in)+".xml2"<>in then
 				in='file://'+in;
@@ -37,7 +70,6 @@ function xmlfiletohtml(path,xsl)
 			instr=generate_cmd+' '+xsl+' '+in+' '+out
 			RM='del /s '
 		else
-			xsl=pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 			if generate_cmd=='xsltproc' then 
 				instr=generate_cmd+' -o '+out+' '+xsl+' '+in
 			else
@@ -48,9 +80,17 @@ function xmlfiletohtml(path,xsl)
 		
 		//run html generator
 		if execstr('unix_s('+sci2exp(instr)+')','errcatch')<>0 then 
-			write(%io(2),'     Warning '+path+' does not follow the dtd','(a)')
+			write(%io(2),"Warning "+path+" does not follow the dtd","(a)");
+			ok = %F;
+		else
+			ok = %T;
 		end
 		
-		unix_s(RM+path+"2")
+		unix_s(RM+path+"2");
+		
+		if needToBeCopied then
+			unix_s(RM+path);
+		end
 	end
+	
 endfunction

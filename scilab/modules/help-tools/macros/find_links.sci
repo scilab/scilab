@@ -1,6 +1,8 @@
 function flag=find_links(filein,fileout)
 	
 	// return %t if a LINK were found
+	// Adapt the dtd link
+	
 	
 	[lhs,rhs]=argn(0)
 	
@@ -11,6 +13,10 @@ function flag=find_links(filein,fileout)
 	if MSDOS then sep='\',else sep='/',end
 	
 	txt=mgetl(filein);
+	
+	dtd_line = grep(convstr(txt,'u'),"<!DOCTYPE MAN SYSTEM");
+	txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/help-tools/help.dtd"">";
+	
 	d=grep(txt,"<LINK>");
 	
 	if d==[] then mputl(txt,fileout); return; end
