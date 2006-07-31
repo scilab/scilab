@@ -12,15 +12,6 @@ c     (bugs 908, 922 and 911 are fixed by this version)
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
-      if (rhs .ge. 0) then
-         call error(39)
-         return
-      endif
-      if (lhs .ne. 2) then
-         call error(41)
-         return
-      endif
-
 c     preserve datas
       call icopy(6,lpt,1,lpts,1)
       lcts=lct(8)

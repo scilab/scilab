@@ -9,6 +9,18 @@ extern int C2F(where)();
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_where) _PARAMS((char *fname,unsigned long fname_len))
 {
+	if (Rhs > 0)
+	{
+		Scierror(39,"incorrect number of arguments.\n");
+		return 0;
+	}
+
+	if (Lhs != 2)
+	{
+		Scierror(41,"incompatible LHS.\n");
+		return 0;
+	}
+
  	C2F(where)();
 	return 0;
 }
