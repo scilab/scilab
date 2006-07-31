@@ -22,9 +22,7 @@ IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int lign
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne);
 IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne);
 
-#ifndef EXPORT_MALLOC_DLL
-	#undef Top
-#endif
+#undef Top
 
 #ifdef MALLOC
 #undef MALLOC
@@ -57,8 +55,6 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 #endif
 #define SCISTACKFREE(x) if (x  != NULL) MyVirtualFree((char *) x,__FILE__,__LINE__);
 
-#ifndef EXPORT_MALLOC_DLL
-	#define Top C2F(vstk).top
-#endif
+#define Top C2F(vstk).top
 
 #endif /* __WIN_MEM_ALLOC__ */
