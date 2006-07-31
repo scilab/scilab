@@ -1,6 +1,6 @@
 
 /* MODIFICATION TEMPORAIRE */
-#include "../../modules/graphics2/src/gd/gd.h"
+#include "../../modules/graphics/src/gd/gd.h"
 
 #include "../machine.h"
 

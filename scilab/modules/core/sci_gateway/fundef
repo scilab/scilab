@@ -15,7 +15,7 @@
 #include "../../../../routines/calelm/calelm.fundef"  
 	
 #define  IN_matdes  7
-#include "../../../../routines/graphics/graphics.fundef"	
+#include "../../graphics/sci_gateway/graphics.fundef"	
   
 #define  IN_matqz  8
 #include "../../../../routines/interf/qz.fundef"  

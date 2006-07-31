@@ -1,3 +1,4 @@
+
 #Copyright INRIA
 #2004
 #Author: F.Leray
@@ -233,7 +234,7 @@ proc LemonTree::kids(widget) {w node} {
 # BWidget comes with:}
 
 #  set path $BWIDGET::LIBRARY/images
-set path "$env(SCIPATH)/tcl/ged/images"
+set path "$env(SCIPATH)/modules/graphics/tcl/ged/images"
 #set path "/home/leray/scilab/tcl/ged/images"
 # foreach {type name} {dir folder file file array copy} {
 #     set LemonTree::icon($type) [image create photo -file $path/$name.gif]

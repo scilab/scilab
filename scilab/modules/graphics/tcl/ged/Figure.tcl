@@ -10,24 +10,29 @@ cd $pwd
 
 variable DEMODIR2i
 
-lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+lappend ::auto_path [file dirname  "$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.7.0"]
 namespace inscope :: package require BWidget
 package require BWidget
 
+set sourcedir [file join "$env(SCIPATH)" "modules" "tclsci" "tcl" "utils"]
+set sourcedir2 [file join "$env(SCIPATH)" "modules" "graphics" "tcl" "ged"]
 
-set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
-set sourcedir2 [file join "$env(SCIPATH)" "tcl" "ged"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
 source [file join $sourcedir Balloon.tcl]
 source [file join $sourcedir2 ObjectsBrowser.tcl]
 
+
+
+
 package require combobox 2.3
 catch {namespace import combobox::*}
 
 #package require lemonTree
 catch {namespace import LemonTree::*}
+
+
 
 global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION msdos
 set ged_listofpref "MAIN_WINDOW_POSITION TICK_WINDOW_POSITION"

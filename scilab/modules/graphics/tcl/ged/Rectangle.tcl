@@ -11,12 +11,12 @@ cd $pwd
 
 variable DEMODIR
 
-lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
+lappend ::auto_path [file dirname  "$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.7.0"]
 namespace inscope :: package require BWidget
 package require BWidget
 
-set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
-set sourcedir2 [file join "$env(SCIPATH)" "tcl" "ged"]
+set sourcedir [file join "$env(SCIPATH)" "modules" "tclsci" "tcl" "utils"]
+set sourcedir2 [file join "$env(SCIPATH)" "modules" "graphics" "tcl" "ged"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]

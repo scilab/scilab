@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -173,119 +173,119 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\Actions.c"
+				RelativePath=".\src\c\Actions.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Alloc.c"
+				RelativePath=".\src\c\Alloc.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Axes.c"
+				RelativePath=".\src\c\Axes.c"
 				>
 			</File>
 			<File
-				RelativePath=".\BuildObjects.c"
+				RelativePath=".\src\c\BuildObjects.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Champ.c"
+				RelativePath=".\src\c\Champ.c"
 				>
 			</File>
 			<File
-				RelativePath=".\clipping.c"
+				RelativePath=".\src\c\clipping.c"
 				>
 			</File>
 			<File
-				RelativePath=".\CloneObjects.c"
+				RelativePath=".\src\c\CloneObjects.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Contour.c"
+				RelativePath=".\src\c\Contour.c"
 				>
 			</File>
 			<File
-				RelativePath=".\DestroyObjects.c"
+				RelativePath=".\src\c\DestroyObjects.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dr1Call.c"
+				RelativePath=".\src\c\dr1Call.c"
 				>
 			</File>
 			<File
-				RelativePath=".\DrawObjects.c"
+				RelativePath=".\src\c\DrawObjects.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Events.c"
+				RelativePath=".\src\c\Events.c"
 				>
 			</File>
 			<File
-				RelativePath=".\FeC.c"
+				RelativePath=".\src\c\FeC.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Format.c"
+				RelativePath=".\src\c\Format.c"
 				>
 			</File>
 			<File
-				RelativePath=".\GetProperty.c"
+				RelativePath=".\src\c\GetProperty.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Gray.c"
+				RelativePath=".\src\c\Gray.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gsort.c"
+				RelativePath=".\src\c\gsort.c"
 				>
 			</File>
 			<File
-				RelativePath=".\gw_graphics.c"
+				RelativePath=".\sci_gateway\gw_graphics.c"
 				>
 			</File>
 			<File
-				RelativePath=".\HandleManagement.c"
+				RelativePath=".\src\c\HandleManagement.c"
 				>
 			</File>
 			<File
-				RelativePath=".\InitObjects.c"
+				RelativePath=".\src\c\InitObjects.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Interaction.c"
+				RelativePath=".\src\c\Interaction.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intgget.c"
+				RelativePath=".\sci_gateway\sci_get.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intgset.c"
+				RelativePath=".\sci_gateway\sci_set.c"
 				>
 			</File>
 			<File
-				RelativePath=".\matdes.c"
+				RelativePath=".\sci_gateway\matdes.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Math.c"
+				RelativePath=".\src\c\math_graphics.c"
 				>
 			</File>
 			<File
-				RelativePath=".\nues1.c"
+				RelativePath=".\src\c\nues1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\periFig.c"
+				RelativePath=".\src\c\periFig.c"
 				>
 			</File>
 			<File
-				RelativePath=".\periGif.c"
+				RelativePath=".\src\c\periGif.c"
 				>
 			</File>
 			<File
-				RelativePath=".\periPos.c"
+				RelativePath=".\src\c\periPos.c"
 				>
 			</File>
 			<File
@@ -302,83 +302,83 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\Plo2d.c"
+				RelativePath=".\src\c\Plo2d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo2d1.c"
+				RelativePath=".\src\c\Plo2d1.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo2d2.c"
+				RelativePath=".\src\c\Plo2d2.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo2d3.c"
+				RelativePath=".\src\c\Plo2d3.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo2d4.c"
+				RelativePath=".\src\c\Plo2d4.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo2dEch.c"
+				RelativePath=".\src\c\Plo2dEch.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo2dn.c"
+				RelativePath=".\src\c\Plo2dn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo3d.c"
+				RelativePath=".\src\c\Plo3d.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Plo3dn.c"
+				RelativePath=".\src\c\Plo3dn.c"
 				>
 			</File>
 			<File
-				RelativePath=".\qsort.c"
+				RelativePath=".\src\c\qsort.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Rec.c"
+				RelativePath=".\src\c\Rec.c"
 				>
 			</File>
 			<File
-				RelativePath=".\RecLoad.c"
+				RelativePath=".\src\c\RecLoad.c"
 				>
 			</File>
 			<File
-				RelativePath=".\RecSave.c"
+				RelativePath=".\src\c\RecSave.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sciCall.c"
+				RelativePath=".\src\c\sciCall.c"
 				>
 			</File>
 			<File
-				RelativePath=".\sciMatrix.c"
+				RelativePath=".\src\c\sciMatrix.c"
 				>
 			</File>
 			<File
-				RelativePath=".\SetProperty.c"
+				RelativePath=".\src\c\SetProperty.c"
 				>
 			</File>
 			<File
-				RelativePath=".\StringMatrix.c"
+				RelativePath=".\src\c\StringMatrix.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Vect2Matrix.c"
+				RelativePath=".\src\c\Vect2Matrix.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Xcall.c"
+				RelativePath=".\src\c\Xcall.c"
 				>
 			</File>
 			<File
-				RelativePath=".\Xcall1.c"
+				RelativePath=".\src\c\Xcall1.c"
 				>
 			</File>
 		</Filter>
@@ -387,132 +387,132 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="bcg.h"
+				RelativePath=".\includes\bcg.h"
 				>
 			</File>
 			<File
-				RelativePath=".\BuildObjects.h"
+				RelativePath=".\includes\BuildObjects.h"
 				>
 			</File>
 			<File
-				RelativePath=".\clipping.h"
+				RelativePath=".\includes\clipping.h"
 				>
 			</File>
 			<File
-				RelativePath=".\CloneObjects.h"
+				RelativePath=".\includes\CloneObjects.h"
 				>
 			</File>
 			<File
-				RelativePath="color.h"
+				RelativePath=".\includes\color.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DestroyObjects.h"
+				RelativePath=".\includes\DestroyObjects.h"
 				>
 			</File>
 			<File
-				RelativePath=".\DrawObjects.h"
+				RelativePath=".\includes\DrawObjects.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Events.h"
+				RelativePath=".\includes\Events.h"
 				>
 			</File>
 			<File
-				RelativePath=".\GetProperty.h"
+				RelativePath=".\includes\GetProperty.h"
 				>
 			</File>
 			<File
-				RelativePath="giffonts.h"
+				RelativePath=".\includes\giffonts.h"
 				>
 			</File>
 			<File
-				RelativePath="Graphics.h"
+				RelativePath=".\includes\Graphics.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gw_graphics.h"
+				RelativePath=".\includes\gw_graphics.h"
 				>
 			</File>
 			<File
-				RelativePath=".\HandleManagement.h"
+				RelativePath=".\includes\HandleManagement.h"
 				>
 			</File>
 			<File
-				RelativePath=".\InitObjects.h"
+				RelativePath=".\includes\InitObjects.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intcommongraphics.h"
+				RelativePath=".\includes\intcommongraphics.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Interaction.h"
+				RelativePath=".\includes\Interaction.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intgget.h"
+				RelativePath=".\includes\sci_get.h"
 				>
 			</File>
 			<File
-				RelativePath=".\intgset.h"
+				RelativePath=".\includes\sci_set.h"
 				>
 			</File>
 			<File
-				RelativePath="Math.h"
+				RelativePath=".\includes\math_graphics.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ObjectStructure.h"
+				RelativePath=".\includes\ObjectStructure.h"
 				>
 			</File>
 			<File
-				RelativePath="periFig.h"
+				RelativePath=".\includes\periFig.h"
 				>
 			</File>
 			<File
-				RelativePath="periGif.h"
+				RelativePath=".\includes\periGif.h"
 				>
 			</File>
 			<File
-				RelativePath="periPos.h"
+				RelativePath=".\includes\periPos.h"
 				>
 			</File>
 			<File
-				RelativePath="periWin.h"
+				RelativePath=".\includes\periWin.h"
 				>
 			</File>
 			<File
-				RelativePath="PloEch.h"
+				RelativePath=".\includes\PloEch.h"
 				>
 			</File>
 			<File
-				RelativePath="Rec.h"
+				RelativePath=".\includes\Rec.h"
 				>
 			</File>
 			<File
-				RelativePath="scigraphic.h"
+				RelativePath=".\includes\scigraphic.h"
 				>
 			</File>
 			<File
-				RelativePath=".\sciMatrix.h"
+				RelativePath=".\includes\sciMatrix.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SetProperty.h"
+				RelativePath=".\includes\SetProperty.h"
 				>
 			</File>
 			<File
-				RelativePath=".\StringMatrix.h"
+				RelativePath=".\includes\StringMatrix.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Vect2Matrix.h"
+				RelativePath=".\includes\Vect2Matrix.h"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\graphics.fundef"
+			RelativePath=".\sci_gateway\graphics.fundef"
 			>
 		</File>
 	</Files>

@@ -3,8 +3,6 @@ function ged(k,win)
 
   global ged_current_figure
   global ged_cur_fig_handle
-  global SCI_GRAPHICS_MODULE_PATH ;
-  SCI_GRAPHICS_MODULE_PATH = "../" + get_absolute_file_path('ged.sci') ;
   
   ged_current_figure=xget('window')
   xset('window',win) 
@@ -97,7 +95,7 @@ function ged(k,win)
       seteventhandler("")
   end
   xset('window',ged_current_figure)
-  clearglobal SCI_GRAPHICS_MODULE_PATH ;
+
 endfunction
 
 
@@ -351,7 +349,7 @@ endfunction
 function ged_Compound(h)
   global ged_handle;ged_handle=h;
   TCL_SetVar("curvis",h.visible)
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Compound.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Compound.tcl')
 endfunction
 
 
@@ -374,7 +372,7 @@ function ged_figure(h)
   TCL_SetVar("curpdm",h.pixel_drawing_mode)
   TCL_SetVar("curautoresize",h.auto_resize)
   TCL_SetVar("currotation_style",h.rotation_style)
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Figure.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Figure.tcl')
 endfunction
 
 
@@ -558,7 +556,7 @@ function ged_axes(h)
     TCL_SetVar("dbzmax",string(h.data_bounds(2,3)))
   end
  
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Axes.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Axes.tcl')
 endfunction
 
 function ged_rectangle(h)
@@ -625,7 +623,7 @@ function ged_rectangle(h)
     TCL_SetVar("Wval",string(h.data(4)))
     TCL_SetVar("Hval",string(h.data(5)))
   end
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Rectangle.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Rectangle.tcl')
 endfunction
 
 function ged_polyline(h)
@@ -690,7 +688,7 @@ function ged_polyline(h)
       case "3d"
       TCL_SetVar("nbcol",string(3));
     end
-    TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Polyline.tcl')
+    TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Polyline.tcl')
 endfunction
 
 
@@ -751,7 +749,7 @@ function ged_plot3d(h)
     d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
     TCL_SetVar("curdata_color",d);
   end
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Plot3d.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Plot3d.tcl')
 endfunction
 
 
@@ -814,7 +812,7 @@ function ged_fac3d(h)
   end
 
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Fac3d.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Fac3d.tcl')
 endfunction
 
 
@@ -870,7 +868,7 @@ function ged_text(h)
   TCL_SetVar("textBoxHeight", string( h.text_box(2) ) ) ;
   TCL_SetVar("curAlignment",string(h.alignment) ) ;
   
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Text.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Text.tcl')
 endfunction
 
 
@@ -886,7 +884,7 @@ function ged_legend(h)
   TCL_SetVar("curfontsize",string(h.font_size))
   TCL_SetVar("curtext",h.text)
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Legend.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Legend.tcl')
 endfunction
 
 
@@ -953,7 +951,7 @@ function ged_arc(h)
     TCL_SetVar("A1val",string(h.data(6)))
     TCL_SetVar("A2val",string(h.data(7)))
   end
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Arc.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Arc.tcl')
 endfunction
 
 
@@ -1010,7 +1008,7 @@ function ged_segs(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Segs.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Segs.tcl')
 endfunction
 
 
@@ -1054,7 +1052,7 @@ function ged_champ(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Champ.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Champ.tcl')
 endfunction
 
 function ged_fec(h)
@@ -1093,7 +1091,7 @@ function ged_fec(h)
 //  end
 //  TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Fec.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Fec.tcl')
 endfunction
 
 
@@ -1110,7 +1108,7 @@ function ged_grayplot(h)
   d="["+strcat(string(size(h.data.z)),'x')+" double array]"
   TCL_SetVar("curdata_z",d);
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Grayplot.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Grayplot.tcl')
 
 endfunction
 
@@ -1121,7 +1119,7 @@ function ged_matplot(h)
   d="["+strcat(string(size(h.data)),'x')+" double array]"
   TCL_SetVar("curdata",d);
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Matplot.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Matplot.tcl')
 
 endfunction
 
@@ -1163,7 +1161,7 @@ function ged_axis(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI_GRAPHICS_MODULE_PATH+'/tcl/ged/Axis.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Axis.tcl')
 endfunction
 
 
