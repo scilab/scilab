@@ -10,8 +10,8 @@
   #include <stdio.h>
 #endif
 
-#include "../machine.h"
-#include "../stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 
 typedef int (*sound_interf) __PARAMS((char *fname,unsigned long fname_len));
 

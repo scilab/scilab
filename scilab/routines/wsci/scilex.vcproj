@@ -89,7 +89,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/LD "
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_DEBUG;STRICT;Skip_f2c_Undefs;_POSIX_SOURCE;MSDOS"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="4"

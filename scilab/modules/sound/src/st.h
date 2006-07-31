@@ -248,7 +248,7 @@ extern int errno;
 char *version();			/* return version number */
 /* ummmm??? */
 
-#include "../machine.h" 
+#include "machine.h" 
 
 #if defined(__alpha)|defined(__ia64__)
 int wavread __PARAMS((ft_t ft, int *buf, long int len));

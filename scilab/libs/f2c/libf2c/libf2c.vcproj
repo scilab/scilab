@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11,../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="_LIB;STRICT;Skip_f2c_Undefs;_POSIX_SOURCE;MSDOS;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -127,7 +127,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;Skip_f2c_Undefs;_POSIX_SOURCE;MSDOS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

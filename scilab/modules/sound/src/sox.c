@@ -20,7 +20,7 @@
 
 #include <ctype.h>
 #include <errno.h>
-#include "../machine.h"
+#include "machine.h"
 #include "sox.h" 
 /*-----------------------------------------------------------------------------------*/ 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )

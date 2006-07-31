@@ -37,4 +37,10 @@
 #define TCL_ERROR32 "Tcl Command > %d characters \r\n"
 #define TCL_ERROR33 "Invalid parameter(s) type (Style).\r\n"
 #define TCL_ERROR34 "Invalid Handle. it must be > 0.\r\n"
+#define TCL_ERROR35 "Incorrect TCL_LIBRARY environment variable"
+#define TCL_ERROR36 "Incorrect TK_LIBRARY environment variable"
+#define TCL_ERROR37 "TCL_LIBRARY has been redefined to "
+#define TCL_ERROR38 "TK_LIBRARY has been redefined to "
+
+
 #endif  /* TCL_ERRORSH */

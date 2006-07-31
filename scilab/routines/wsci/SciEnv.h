@@ -10,18 +10,12 @@
 #include <windows.h>
 #include <Winuser.h>
 
-#ifdef WITH_TK
-	#include "tcl.h"
-	#include "tk.h"
-#endif
-
 #include "..\version.h"
 #include "wcommon.h"
 #include "FilesAssociations.h"
 /*-----------------------------------------------------------------------------------*/
 /* Les Definitions */
 /*-----------------------------------------------------------------------------------*/
-
 #define LCCEXE		"\\lcc\\bin\\lcc.exe" 
 #define LCCBIN		"\\lcc\\bin" 
 #define LCCINCLUDE	"\\lcc\\include" 
@@ -35,11 +29,13 @@ BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);
 BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 BOOL Set_SCI_PATH(char *DefaultPath);
 BOOL Set_HOME_PATH(char *DefaultPath);
-BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath);
-BOOL Set_TK_LIBRARY_PATH(char *DefaultPath);
+
 BOOL Set_LCC_PATH(char *DefaultPath);
 BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
 BOOL IsTheGoodShell(void);
 BOOL Set_Shell(void);
+/*-----------------------------------------------------------------------------------*/
+extern BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath);
+extern BOOL Set_TK_LIBRARY_PATH(char *DefaultPath);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __SCIENV_H__ */

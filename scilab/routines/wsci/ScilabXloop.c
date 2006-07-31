@@ -20,10 +20,8 @@
 
 
 #ifdef WITH_TK
-#include "tcl.h"
 extern void flushTKEvents ();
 int TclEventsLoop(void);
-extern int  tcl_check_one_event(void);
 static int BasicScilab = 0;
 #endif
 

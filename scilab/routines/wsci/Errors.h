@@ -24,8 +24,6 @@
 #define MSG_ERROR19 "Incorrect SCI path. Please verify your SCI environment variable.\n"
 #define MSG_ERROR20 "ERROR"
 #define MSG_ERROR21 "Incorrect HOME path. Please verify your HOME environment variable.\n"
-#define MSG_ERROR22 "Incorrect TCL_LIBRARY environment variable"
-#define MSG_ERROR23 "Incorrect TK_LIBRARY environment variable"
 #define MSG_ERROR24 "No PATH environment ..."
 #define MSG_ERROR25 "Stdout pipe creation failed\n"
 #define MSG_ERROR26 "Redirecting STDOUT failed\r\n"
@@ -86,7 +84,5 @@
 #define MSG_ERROR80 "Error no window num.\n"
 #define MSG_ERROR81 "SCI has been redefined to "
 #define MSG_ERROR82 "HOME has been redefined."
-#define MSG_ERROR83 "TCL_LIBRARY has been redefined to "
-#define MSG_ERROR84 "TK_LIBRARY has been redefined to "
 
 #endif /*_ERRORSH_*/

@@ -13,7 +13,7 @@ MAKE=nmake /f Makefile.mak
 # and to scilab full path when used after compilation 
 # for dynamic linking
 USE_MT=-MT 
-TCLTK=$(SCIDIR1)\tcl
+TCLTK=$(SCIDIR1)\modules\tclsci\src\tcltk
 TCLSCI=libs/tclsci.lib 
 TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
 TKLIBSBIN=$(TKLIBS)

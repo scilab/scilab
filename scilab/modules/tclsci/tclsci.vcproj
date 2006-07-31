@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;../../tcl/include;../../tcl/include/X11"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;src/tcltk/include;src/tcltk/include/X11"
 				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;../../tcl/include;../../tcl/include/X11"
+				AdditionalIncludeDirectories="includes;../../libs/MALLOC/includes;../core/includes;src/tcltk/include;src/tcltk/include/X11"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -173,6 +173,10 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
+			<File
+				RelativePath=".\src\EnvTclTk.c"
+				>
+			</File>
 			<File
 				RelativePath=".\src\GedManagement.c"
 				>
@@ -287,6 +291,10 @@
 			</File>
 			<File
 				RelativePath=".\src\tksynchro.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\with_tk.c"
 				>
 			</File>
 		</Filter>
