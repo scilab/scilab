@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Quantization </TITLE>
+<META NAME="description" CONTENT="Quantization ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4046"
+  HREF="QUANT_f.htm#SECTION005413100000000000000">Library</A>
+<LI><A NAME="tex2html4047"
+  HREF="QUANT_f.htm#SECTION005413200000000000000">Description</A>
+<LI><A NAME="tex2html4048"
+  HREF="QUANT_f.htm#SECTION005413300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html4049"
+  HREF="QUANT_f.htm#SECTION005413400000000000000">Default properties</A>
+<LI><A NAME="tex2html4050"
+  HREF="QUANT_f.htm#SECTION005413500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html4051"
+  HREF="QUANT_f.htm#SECTION005413600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005413000000000000000"></A><A NAME="QUANT_f"></A>
+<BR>
+Quantization 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=QUANT_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img96.gif"
+ ALT="\epsfig{file=QUANT_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005413100000000000000">
+Library</A>
+</font></H3>
+Non_linear
+
+<H3><font color="blue"><A NAME="SECTION005413200000000000000">
+Description</A>
+</font></H3>
+This block outputs the quantization of the input according to a choice
+of methods:
+
+<OL>
+<LI>Round  method:  
+<P></P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.gif"
+ ALT="$\displaystyle y(i)$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="284" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img98.gif"
+ ALT="$\displaystyle =Step*(int(u(i)/Step+0.5)-0.5)$"></TD>
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="96" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img99.gif"
+ ALT="$\displaystyle \texttt{if} u(i)&lt;0 .$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.gif"
+ ALT="$\displaystyle y(i)$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="284" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img100.gif"
+ ALT="$\displaystyle =Step*(int(u(i)/Step-0.5)+0.5)$"></TD>
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="109" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img101.gif"
+ ALT="$\displaystyle \texttt{if}  u(i)&gt;=0 .$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+</LI>
+<LI>Truncation method:
+<P></P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.gif"
+ ALT="$\displaystyle y(i)$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="241" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img102.gif"
+ ALT="$\displaystyle =Step*(int(u(i)/Step+0.5))$"></TD>
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="96" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img99.gif"
+ ALT="$\displaystyle \texttt{if} u(i)&lt;0 .$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.gif"
+ ALT="$\displaystyle y(i)$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="241" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img103.gif"
+ ALT="$\displaystyle =Step*(int(u(i)/Step-0.5))$"></TD>
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="109" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img101.gif"
+ ALT="$\displaystyle \texttt{if}  u(i)&gt;=0 .$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+</LI>
+<LI>Floor method:  
+<P></P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.gif"
+ ALT="$\displaystyle y(i)$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="245" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img104.gif"
+ ALT="$\displaystyle =Step*(int(u(i)/Step+0.5)) .$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+</LI>
+<LI>Ceil method:  
+<P></P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.gif"
+ ALT="$\displaystyle y(i)$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="241" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img103.gif"
+ ALT="$\displaystyle =Step*(int(u(i)/Step-0.5))$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+</LI>
+</OL>
+
+<H3><font color="blue"><A NAME="SECTION005413300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Step</TD>
+<TD ALIGN="CENTER">0.1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Quantization Type (1-4)</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Step:scalar, Quantization step 
+</LI>
+<LI>Quantization Type : scalar with possible values 1,2,3 or 4 
+  <DL>
+<DT><STRONG>1</STRONG></DT>
+<DD>Round method 
+	
+</DD>
+<DT><STRONG>2</STRONG></DT>
+<DD>Truncation method 
+	
+</DD>
+<DT><STRONG>3</STRONG></DT>
+<DD>Floor method 
+	
+</DD>
+<DT><STRONG>4</STRONG></DT>
+<DD>Ceil method 
+  
+</DD>
+</DL>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION005413400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / -1
+</LI>
+<LI>number/sizes of outputs: 1 / -1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>qzrnd</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005413500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/nonlinear/QUANT_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005413600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine qzrnd(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c
+c     Gives quantized signal by round method
+c     rpar(i) quantization step used for i input
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+
+      integer i
+c
+      do 15 i=1,nu
+         if (u(i).lt.0.0d0)then
+            y(i)=rpar(i)*(ANINT(u(i)/rpar(i)+0.5d0)-0.5d0)
+         else
+            y(i)=rpar(i)*(ANINT(u(i)/rpar(i)-0.5d0)+0.5d0)
+         endif
+ 15   continue
+      return
+      end
+</PRE>
+<HR>
+
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

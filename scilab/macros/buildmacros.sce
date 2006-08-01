@@ -23,25 +23,19 @@ CurrentDirectory=pwd();
  "m2sci",
  "pvm"];
  
- if MSDOS then
-   Directories=[Directories;"SCI/modules/graphics/macros"];
-   Directories=[Directories;"SCI/modules/metanet/macros"];
-   Directories=[Directories;"SCI/modules/sound/macros"];
-   Directories=[Directories;"SCI/modules/tclsci/macros"];
-   Directories=[Directories;"SCI/modules/time/macros"];
- else
-   Directories=[Directories;"xdess"];
-   Directories=[Directories;"metanet"];
-   Directories=[Directories;"sound"];
-   Directories=[Directories;"time"];
-   Directories=[Directories;"tksci"];
- end
+ 
+ Directories=[Directories;"SCI/modules/graphics/macros"];
+ Directories=[Directories;"SCI/modules/metanet/macros"];
+ Directories=[Directories;"SCI/modules/sound/macros"];
+ Directories=[Directories;"SCI/modules/tclsci/macros"];
+ Directories=[Directories;"SCI/modules/time/macros"];
+ 
  
 if %scicos then
 Directories=[Directories;
- "scicos";
- "scicos_blocks"];
-
+ "SCI/modules/scicos/macros";
+ "SCI/modules/scicos/macros/scicos";
+ "SCI/modules/scicos/macros/scicos_blocks";];
 end
 
 Dim=size(Directories);

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lincos</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>14-Apr-2005</DATE>
+  <SHORT_DESCRIPTION name="lincos">  Constructs by linearization a
+  linear state-space model from a general dynamical system described
+  by a scicos diagram
+  </SHORT_DESCRIPTION> 
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>sys= lincos(scs_m [,x0,u0 [,param] ])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>scs_m</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a Scicos data structure
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : column vector. Continuous state around which linearization to be done (default 0)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>u0</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : column vector. Input around which linearization to be done (default 0)
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>param</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : param: list with two elements (default list(1.d-6,0))
+   param(1): scalar. Perturbation level for linearization; the following variation is used
+             del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i.
+   param(2): scalar. Time t.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>sys</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : state-space system
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      Construct a linear state-space system by linearizing a model
+      given as a Scicos diagram.
+     </P>
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+     <P>
+      The output is a Scilab data structure of type continuous-time state-space linear system.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+ 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> steadycos</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> scicos_simulate</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Ramine Nikoukhah'>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

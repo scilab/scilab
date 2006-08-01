@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Derivative </TITLE>
+<META NAME="description" CONTENT="Derivative ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html5228"
+  HREF="DERIV.htm#SECTION005816100000000000000">Library</A>
+<LI><A NAME="tex2html5229"
+  HREF="DERIV.htm#SECTION005816200000000000000">Description</A>
+<LI><A NAME="tex2html5230"
+  HREF="DERIV.htm#SECTION005816300000000000000">Default properties</A>
+<LI><A NAME="tex2html5231"
+  HREF="DERIV.htm#SECTION005816400000000000000">Interfacing function</A>
+<LI><A NAME="tex2html5232"
+  HREF="DERIV.htm#SECTION005816500000000000000">Computational function (type 4)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005816000000000000000"></A><A NAME="DERIV"></A>
+<BR>
+Derivative 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=DERIV.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img164.gif"
+ ALT="\epsfig{file=DERIV.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005816100000000000000">
+Library</A>
+</font></H3>
+Linear
+
+<H3><font color="blue"><A NAME="SECTION005816200000000000000">
+Description</A>
+</font></H3>
+The Derivative block approximates the derivative of its input by computing:
+<!-- MATH
+ \begin{displaymath}
+\frac{\Delta u}{\Delta t}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="33" HEIGHT="56" ALIGN="MIDDLE" BORDER="0"
+ SRC="img165.gif"
+ ALT="$\displaystyle \frac{\Delta u}{\Delta t}$">
+</DIV><P></P> 
+
+<H3><font color="blue"><A NAME="SECTION005816300000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / -1
+</LI>
+<LI>number/sizes of outputs: 1 / -1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>deriv</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005816400000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/linear/DERIV.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005816500000000000000">
+Computational function (type 4)</A>
+</font></H3>
+<BR>
+<PRE>
+#include "scicos_block.h"
+#include &lt;math.h&gt;
+
+#if WIN32
+#define NULL    0
+#endif
+
+void deriv(scicos_block *block,int flag)
+{ 
+  double* rw;
+  double t,dt;
+  int i;
+  if (flag == 4){/* the workspace is used to store previous values */
+    if ((*block-&gt;work=
+	 scicos_malloc(sizeof(double)*2*(1+block-&gt;insz[0])))== NULL ) {
+      set_block_error(-16);
+      return;
+    }
+    rw=*block-&gt;work; 
+    t=get_scicos_time();
+    rw[0]=t;
+    rw[1]=t;
+    for(i=0;i&lt;block-&gt;insz[0];++i){
+      rw[2+2*i]=0;
+      rw[3+2*i]=0;
+    }
+  }else  if (flag == 5){
+    scicos_free(*block-&gt;work);
+  }else  if (flag == 1) {
+    rw=*block-&gt;work;
+    t=get_scicos_time();
+    if(t&gt;rw[1]) {
+      rw[0]=rw[1];
+      for(i=0;i&lt;block-&gt;insz[0];++i)  {rw[2+2*i]=rw[3+2*i];}
+    }
+    rw[1]=t;
+    for(i=0;i&lt;block-&gt;insz[0];++i) {
+      rw[3+2*i]=block-&gt;inptr[0][i];
+    }
+    dt=rw[1]-rw[0];
+
+    if(dt!=0.0) {
+      for(i=0;i&lt;block-&gt;insz[0];++i)
+	block-&gt;outptr[0][i]=(rw[3+2*i]-rw[2+2*i])/dt;
+    }
+  }
+}
+  </PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

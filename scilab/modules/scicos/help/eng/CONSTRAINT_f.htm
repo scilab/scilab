@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Constraint </TITLE>
+<META NAME="description" CONTENT="Constraint ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4759"
+  HREF="CONSTRAINT_f.htm#SECTION005711100000000000000">Library</A>
+<LI><A NAME="tex2html4760"
+  HREF="CONSTRAINT_f.htm#SECTION005711200000000000000">Description</A>
+<LI><A NAME="tex2html4761"
+  HREF="CONSTRAINT_f.htm#SECTION005711300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html4762"
+  HREF="CONSTRAINT_f.htm#SECTION005711400000000000000">Default properties</A>
+<LI><A NAME="tex2html4763"
+  HREF="CONSTRAINT_f.htm#SECTION005711500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html4764"
+  HREF="CONSTRAINT_f.htm#SECTION005711600000000000000">Computational function (type 10001)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005711000000000000000"></A><A NAME="CONSTRAINT_f"></A>
+<BR>
+Constraint 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CONSTRAINT_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img133.gif"
+ ALT="\epsfig{file=CONSTRAINT_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005711100000000000000">
+Library</A>
+</font></H3>
+Others
+
+<H3><font color="blue"><A NAME="SECTION005711200000000000000">
+Description</A>
+</font></H3>
+Solves implicit equations by providing free output and forcing input
+to be zero. This is an implicit block (beta testing stage).
+<P>
+
+<H3><font color="blue"><A NAME="SECTION005711300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set Constraint block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Set number of constraints</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Set number of constraints: indicate the number of constraints
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION005711400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: yes
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 1 / 1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: yes
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>constraint</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005711500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/misc/CONSTRAINT_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005711600000000000000">
+Computational function (type 10001)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine constraint(flag,nevprt,t,res,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c
+      double precision t,xd(*),x(*),z(*),res(*),tvec(*),rpar(*)
+      double precision u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+c
+      common /dbcos/ idb
+c     
+      if (flag.eq.0) then
+         do 12 i=1,nu
+            res(i)=xd(i)-u(i)
+            res(i+nu)=xd(i)
+ 12      continue
+      elseif(flag.eq.1) then
+         do 14 i=1,ny
+            y(i)=xd(i+nu)
+ 14      continue
+c      elseif(flag.eq.6.or.flag.eq.7) then
+c         do 12 i=1,nu
+c 12      continue
+      endif
+      end
+</PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

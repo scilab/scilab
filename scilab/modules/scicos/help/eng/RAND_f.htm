@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Random generator </TITLE>
+<META NAME="description" CONTENT="Random generator ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2806"
+  HREF="RAND_f.htm#SECTION00514100000000000000">Library</A>
+<LI><A NAME="tex2html2807"
+  HREF="RAND_f.htm#SECTION00514200000000000000">Description</A>
+<LI><A NAME="tex2html2808"
+  HREF="RAND_f.htm#SECTION00514300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html2809"
+  HREF="RAND_f.htm#SECTION00514400000000000000">Default properties</A>
+<LI><A NAME="tex2html2810"
+  HREF="RAND_f.htm#SECTION00514500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html2811"
+  HREF="RAND_f.htm#SECTION00514600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00514000000000000000"></A><A NAME="RAND_f"></A>
+<BR>
+Random generator 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=RAND_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="108" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.gif"
+ ALT="\epsfig{file=RAND_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00514100000000000000">
+Library</A>
+</font></H3>
+Sources
+
+<H3><font color="blue"><A NAME="SECTION00514200000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This block is a random wave generator: each output component takes
+piecewise constant random values. Every time an event is received on
+the input event port, the outputs take new independent random
+values. output port size is given by the size of  <B>A</B>  and  <B> B</B>  vectors     
+
+<H3><font color="blue"><A NAME="SECTION00514300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set Random generator block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">flag = 1 : Normal distribution A is mean and B
+	    deviation</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">A and B must be vector with equal sizes</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">seed is the seed of random number generator (integer<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$ &lt;$">2**31)</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">flag</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+<TR><TD ALIGN="CENTER">A</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+<TR><TD ALIGN="CENTER">B</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">seed</TD>
+<TD ALIGN="CENTER">7560437</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>flag:0 or 1. 0 for uniform distribution on  <IMG
+ WIDTH="83" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.gif"
+ ALT="$ [A,A+B ]$"> and 1 for
+  normal distribution.   
+</LI>
+<LI>A: scalar 
+</LI>
+<LI>B: scalar
+</LI>
+<LI>seed: seed value for a sequence of random number.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00514400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 0 / 
+</LI>
+<LI>number/sizes of outputs: 1 / 1
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>rndblk</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00514500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/sources/RAND_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00514600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine rndblk(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c
+c     ipar(1) 
+c            0 : uniform
+c            1 : normal
+c     rpar(1:ny)=mean
+c     rpar(ny+1:2*ny)=deviation
+c     rpar(2*ny+1)=dt 
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+c
+      double precision urand,sr,si,t1
+
+      integer halt
+      common /coshlt/ halt
+c     
+      if(flag.eq.1.or.flag.eq.6) then
+      do 10 i=1,ny
+         y(i)=rpar(i)+rpar(ny+i)*z(i+1)
+ 10   continue
+      elseif(flag.eq.2.or.flag.eq.4) then
+c     uniform
+         if(ipar(1).eq.0) then
+            iy=int(z(1))
+            do 20 i=1,nz-1
+               z(i+1)=urand(iy)
+ 20         continue
+         else
+            iy=int(z(1))
+c     normal
+            do 30 i=1,nz-1
+ 75            sr=2.0d+0*urand(iy)-1.0d+0
+               si=2.0d+0*urand(iy)-1.0d+0
+               t1 = sr*sr+si*si
+               if (t1 .gt. 1.0d+0) go to 75
+               z(i+1) = sr*sqrt(-2.0d+0*log(t1)/t1)
+ 30         continue
+         endif
+         z(1)=iy
+c         if(ntvec.eq.1) tvec(1)=t+rpar(2*(nz-1)+1)
+      endif
+      return
+      end
+</PRE>
+<HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

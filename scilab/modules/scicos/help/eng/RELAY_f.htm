@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Relay </TITLE>
+<META NAME="description" CONTENT="Relay ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3588"
+  HREF="RELAY_f.htm#SECTION00537100000000000000">Library</A>
+<LI><A NAME="tex2html3589"
+  HREF="RELAY_f.htm#SECTION00537200000000000000">Description</A>
+<LI><A NAME="tex2html3590"
+  HREF="RELAY_f.htm#SECTION00537300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3591"
+  HREF="RELAY_f.htm#SECTION00537400000000000000">Default properties</A>
+<LI><A NAME="tex2html3592"
+  HREF="RELAY_f.htm#SECTION00537500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3593"
+  HREF="RELAY_f.htm#SECTION00537600000000000000">Computational function (type 2)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00537000000000000000"></A><A NAME="RELAY_f"></A>
+<BR>
+Relay 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=RELAY_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img66.gif"
+ ALT="\epsfig{file=RELAY_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00537100000000000000">
+Library</A>
+</font></H3>
+Branching
+
+<H3><font color="blue"><A NAME="SECTION00537200000000000000">
+Description</A>
+</font></H3>
+This block routes one of the regular inputs to the unique regular
+output. the choice of which input is to be routed is done, initially
+by the "initial connected input" parameter. Then, every time an input
+event arrives on the i-th input event port, the i-th regular input
+port is routed to the regular output.   
+
+<H3><font color="blue"><A NAME="SECTION00537300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">number of inputs</TD>
+<TD ALIGN="CENTER">2</TD>
+</TR>
+<TR><TD ALIGN="CENTER">initial connected input</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>number of inputs: a scalar. Number of regular and event inputs. 
+</LI>
+<LI>initial connected input: an integer. It must be between 1 and
+  the number of inputs.  
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00537400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: yes
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 2 / -1  -1
+</LI>
+<LI>number/sizes of outputs: 1 / -1
+</LI>
+<LI>number/sizes of activation inputs: 2 / 1  1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>relay</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00537500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/branching/RELAY_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00537600000000000000">
+Computational function (type 2)</A>
+</font></H3>
+<BR>
+<PRE>/* Copyright INRIA */
+#include "../machine.h"
+
+void 
+relay(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
+integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
+double x[],xd[],z[],tvec[],rpar[];
+double *inptr[],*outptr[],*t;
+
+{
+
+    int k;
+    double *y;
+    double *u;
+    int nev,ic;
+    ic=(int)z[0];
+    if ((*flag)&lt;3) {
+      if ((*nevprt)&gt;0) {
+	ic=-1;
+	nev=*nevprt;
+	while (nev&gt;=1) {
+	  ic=ic+1;
+	  nev=nev/2;
+	}
+      }
+      if ((*flag)==2) {z[0]=ic;return ;}
+      if (*nin&gt;1) {
+	y=(double *)outptr[0];
+	u=(double *)inptr[ic];
+	for (k=0;k&lt;outsz[0];k++)
+	  *(y++)=*(u++);  
+      }
+      else {
+	y=(double *)outptr[ic];
+	u=(double *)inptr[0];
+	for (k=0;k&lt;outsz[0];k++)
+	  *(y++)=*(u++);  
+      }
+    }
+}
+
+</PRE>
+<HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Multi display scope </TITLE>
+<META NAME="description" CONTENT="Multi display scope ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3168"
+  HREF="CMSCOPE.htm#SECTION00522100000000000000">Library</A>
+<LI><A NAME="tex2html3169"
+  HREF="CMSCOPE.htm#SECTION00522200000000000000">Description</A>
+<LI><A NAME="tex2html3170"
+  HREF="CMSCOPE.htm#SECTION00522300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3171"
+  HREF="CMSCOPE.htm#SECTION00522400000000000000">Default properties</A>
+<LI><A NAME="tex2html3172"
+  HREF="CMSCOPE.htm#SECTION00522500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3173"
+  HREF="CMSCOPE.htm#SECTION00522600000000000000">Computational function (type 4)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00522000000000000000"></A><A NAME="CMSCOPE"></A>
+<BR>
+Multi display scope 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CMSCOPE.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.gif"
+ ALT="\epsfig{file=CMSCOPE.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00522100000000000000">
+Library</A>
+</font></H3>
+Sinks
+
+<H3><font color="blue"><A NAME="SECTION00522200000000000000">
+Description</A>
+</font></H3>
+When you start a simulation, Scicos open Scope windows.  The Scope
+block displays its input with respect to simulation time. The Scope
+block can have multiple axes (one per port); all axes have a common
+time range with independent y-axes. The Scope allows you to adjust the
+amount of time and the range of input values displayed. 
+
+<H3><font color="blue"><A NAME="SECTION00522300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set Scope parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Input ports sizes</TD>
+<TD ALIGN="CENTER">1 1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Drawing colors (<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="$ &gt;$">0) or mark (<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$ &lt;$">0)</TD>
+<TD ALIGN="CENTER">1 3 5 7 9 11 13 15</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output window number</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output window position</TD>
+<TD ALIGN="CENTER">[]</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output window sizes</TD>
+<TD ALIGN="CENTER">[]</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Ymin vector</TD>
+<TD ALIGN="CENTER">-1 -5</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Ymax vector</TD>
+<TD ALIGN="CENTER">1 5</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Refresh period</TD>
+<TD ALIGN="CENTER">30</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Buffer size</TD>
+<TD ALIGN="CENTER">2</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Accept herited events 0/1</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Name of Scope (label&amp;Id)</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Input ports sizes: It allows multiple  input ports. 
+</LI>
+<LI>Drawing colors : a vector of integers. The i-th element is the color
+  number (<IMG
+ WIDTH="31" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$ &gt;0$">) or dash type (<IMG
+ WIDTH="31" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img37.gif"
+ ALT="$ &lt;0$">) used to draw the evolution of the i-th
+  input port signal. See  <B>plot2d</B>  for color (dash type) definitions. 
+</LI>
+<LI>Output window number: The number of graphic window used for 
+  the display. It is often good to use high values to avoid conflict 
+  with palettes and Super Block windows. If default value is used <B>  (1)</B>, Scicos define the output window number.  
+</LI>
+<LI>Output window position: a 2 vector specifying the coordinates
+  of the upper left corner of the graphic window. Answer [] for 
+  default window position.    
+</LI>
+<LI>Output window sizes:a 2 vector specifying the coordinates of
+  the upper left corner of the graphic window. Answer [] for default 
+  window position.   
+</LI>
+<LI>Ymin vector: Minimum  values of the input; used to set up the Y-axis
+  of the plot in the graphics window. 
+</LI>
+<LI>Ymax vector: Maximum values of the input; used to set up the Y-axis
+  of the plot in the graphics window.  
+</LI>
+<LI>Refresh period:  Maximum value on the X-axis (time). The plot
+  is redrawn when time reaches a multiple of this value.
+</LI>
+<LI>Buffer size: To improve efficiency it is possible to buffer the
+  input data. The drawing is only done after each  <B>Buffer size</B>
+  call to the block.   
+</LI>
+<LI>Accept herited events 0/1:if 0  <B>CSCOPE_f</B>  draws a new point
+  only when an event occurs on its event input port. if 1  <B>CSCOPE_f</B>
+  draws a new point when an event occurs on its event input port and
+  when it's regular input changes due to an event on an other upstrem
+  block (herited events).   
+</LI>
+<LI>Name of Scope : Name/label of the block.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00522400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 2 / 1  1
+</LI>
+<LI>number/sizes of outputs: 0 / 
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>cmscope</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00522500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/sinks/CMSCOPE.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00522600000000000000">
+Computational function (type 4)</A>
+</font></H3>
+<BR>
+<PRE>#include "scicos_block.h"
+#include &lt;math.h&gt;
+#include "../machine.h"
+
+#if WIN32
+#define NULL    0
+#endif
+
+static int c__1 = 1;
+static int c__0 = 0;
+static int c_n1 = -1;
+static int c__3 = 3;
+static double c_b103 = 0.;
+
+void cmscope(scicos_block *block,int flag)
+{
+  double t;
+  double *z__;
+  double *rpar;
+  int *ipar, nipar,nu;
+  
+
+
+  static int cur = 0;
+  static int verb = 0;
+  
+  int i__1, i__2, i__3,nwid,kk,i,j,sum;
+  
+  int kfun;  
+  
+  static double rect[4];
+  static int kwid;
+  extern int C2F(getlabel)();
+  extern int C2F(dset)();
+  static int i__, k, n, v;
+  static double frect[4], tsave;
+  static int n1, n2;
+  extern int C2F(plot2d)(), C2F(setscale2d)();
+  static int na;
+  extern int C2F(dr)();
+  static double dt, dv;
+  static int it, nxname;
+  extern int C2F(sciwin)(), C2F(dr1)(), C2F(scicosclip)();
+  static char buf[40];
+  static int wid, iwd;
+  static double per;
+  static int nax[4], ilt, iwp;
+
+  /*     Scicos block simulator */
+  /*     ipar(1) = win_num */
+  /*     ipar(2) = number of subwindows (input ports) */
+  /*     ipar(3) = buffer size */
+  /*     ipar(4:5) : window position */
+  /*     ipar(6:7) : window dimension */
+  /*     ipar(8:7+ipar(2)) = input port sizes */
+  /*     ipar(8+ipar(2):7+ipar(2)+nu) = line type for ith curve */
+  /*     rpar(1)=dt */
+  /*     rpar(2)=periode */
+  /*     rpar(3)=ymin_1 */
+  /*     rpar(4)=ymax_1 */
+  /*     ... */
+  /*     rpar(2*k+1)=ymin_k */
+  /*     rpar(2*k+2)=ymax_k */
+
+  nu=block-&gt;insz[0];
+  rpar=block-&gt;rpar;
+  ipar=block-&gt;ipar;
+  nipar=block-&gt;nipar;
+  t=get_scicos_time();
+
+  --ipar;
+  --rpar;
+
+  wid = ipar[1];
+  if(wid==-1){
+    wid=20000+get_block_number();
+  }
+  nwid = ipar[2];
+  n = ipar[3];
+  per = rpar[2];
+  dt = rpar[1];
+
+  if (flag == 2) {
+    z__=*block-&gt;work; 
+    --z__;
+    k = (int) z__[1];
+    if (k &gt; 0) {
+      n1 = (int) (z__[k + 1] / per);
+      if (z__[k + 1] &lt; 0.) {
+	--n1;
+      }
+    } else {
+      n1 = 0;
+    }
+
+    tsave = t;
+    if (dt &gt; 0.) {
+      t = z__[k + 1] + dt;
+    }
+
+    n2 = (int) (t / per);
+    if (t &lt; 0.) {
+      --n2;
+    }
+
+    /*     add new point to the buffer */
+    ++k;
+    z__[k + 1] = t;
+    kk=0;
+    for (i=0;i&lt;block-&gt;nin;++i){
+      for (j = 0; j &lt;block-&gt;insz[i] ; ++j) {
+	z__[n + 1 + kk * n + k] =block-&gt;inptr[i][j] ;
+	++kk;
+      }
+    }
+    z__[1] = (double) k;
+    if (n1 == n2 &amp;&amp; k &lt; n) {
+      t = tsave;
+      return ;
+    }
+
+    /*     plot 1:K points of the buffer */
+    C2F(dr1)("xget\000", "window\000", &amp;verb, &amp;cur, &amp;na, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv,
+	     &amp;dv, &amp;dv);
+    if (cur != wid) {
+      C2F(dr1)("xset\000", "window\000", &amp;wid, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv,
+	       &amp;dv, &amp;dv);
+    }
+    C2F(dr1)("xset\000", "use color\000", &amp;c__1, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;
+	     v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    C2F(dr1)("xset\000", "dashes\000", &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;v, 
+	     &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    C2F(dr1)("xsetdr\000", "Rec\000", &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;
+	     dv);
+    ilt = ipar[2] + 8;
+    it = 0;
+    /*     loop on input ports */
+    if (k &gt; 0) {
+      i__1 = nwid;
+      for (kwid = 1; kwid &lt;= i__1; ++kwid) {
+	rect[0] = per * n1;
+	rect[1] = rpar[(kwid &lt;&lt; 1) + 1];
+	rect[2] = per * (n1 + 1);
+	rect[3] = rpar[(kwid &lt;&lt; 1) + 2];
+	frect[0] = 0.;
+	frect[1] = (kwid - 1) * (1. / nwid);
+	frect[2] = 1.;
+	frect[3] = 1. / nwid;
+	C2F(setscale2d)(frect, rect, "nn\000");
+	C2F(scicosclip)(&amp;c__1);
+	/*     loop on input port elements */
+	i__2 = ipar[kwid + 7];
+	for (i__ = 1; i__ &lt;= i__2; ++i__) {
+	  C2F(dr1)("xpolys\000", "v\000", &amp;v, &amp;v, &amp;ipar[ilt + it], &amp;
+		   c__1, &amp;k, &amp;v, &amp;z__[2], &amp;z__[n + 2 + it * n], &amp;dv, 
+		   &amp;dv);
+	  ++it;
+	}
+	C2F(scicosclip)(&amp;c__0);
+      }
+    }
+    /*     shift buffer left */
+    z__[2] = z__[k + 1];
+    sum=0;
+    for (i=0;i&lt;block-&gt;nin;++i){
+      sum=sum+block-&gt;insz[i];
+    }    i__1 = sum;
+    for (i__ = 1; i__ &lt;= i__1; ++i__) {
+      z__[n + 1 + (i__ - 1) * n + 1] = z__[n + 1 + (i__ - 1) * n + k];
+    }
+    z__[1] = 1.;
+    if (n1 != n2) {
+      /*     clear window */
+      nax[0] = 2;
+      nax[1] = 10;
+      nax[2] = 2;
+      nax[3] = 10;
+      C2F(dr1)("xclear\000", "v\000", &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;dv,
+	       &amp;dv);
+      C2F(dr1)("xset\000", "use color\000", &amp;c__1, &amp;c__0, &amp;c__0, &amp;c__0, &amp;
+	       c__0, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+      C2F(dr)("xstart\000", "v\000", &amp;wid, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;
+	      dv, &amp;dv);
+      C2F(dr1)("xset\000", "dashes\000", &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, 
+	       &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+      i__1 = nwid;
+      for (kwid = 1; kwid &lt;= i__1; ++kwid) {
+	rect[0] = per * (n1 + 1);
+	rect[1] = rpar[(kwid &lt;&lt; 1) + 1];
+	rect[2] = per * (n1 + 2);
+	rect[3] = rpar[(kwid &lt;&lt; 1) + 2];
+	frect[0] = 0.;
+	frect[1] = (kwid - 1) * (1. / nwid);
+	frect[2] = 1.;
+	frect[3] = 1. / nwid;
+	C2F(setscale2d)(frect, rect, "nn\000");
+	C2F(plot2d)(rect, &amp;rect[1], &amp;c__1, &amp;c__1, &amp;c_n1, "011", "xlines", rect, 
+		    nax);
+      }
+    }
+    t = tsave;
+
+  } else if (flag == 4) {
+    sum=0;
+    for (i=0;i&lt;block-&gt;nin;++i){
+      sum=sum+block-&gt;insz[i];
+    }
+    if ((*block-&gt;work=
+	 scicos_malloc(sizeof(double)*(1+ipar[3]*(1+sum))))== NULL ) {
+      set_block_error(-16);
+      return;
+    }
+    z__=*block-&gt;work; 
+    --z__;
+    z__[1]=-1.0;
+    nax[0] = 2;
+    nax[1] = 10;
+    nax[2] = 2;
+    nax[3] = 10;
+    n1 = (int) (t / per);
+    if (t &lt;= 0.) {
+      --n1;
+    }
+    C2F(sciwin)();
+    C2F(dr1)("xget\000", "window\000", &amp;verb, &amp;cur, &amp;na, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv,
+	     &amp;dv, &amp;dv);
+    if (cur != wid) {
+      C2F(dr1)("xset\000", "window\000", &amp;wid, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv,
+	       &amp;dv, &amp;dv);
+    }
+    iwp = 4;
+    if (ipar[iwp] &gt;= 0) {
+      C2F(dr1)("xset\000", "wpos\000", &amp;ipar[iwp], &amp;ipar[iwp + 1], &amp;v, &amp;v, &amp;
+	       v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    }
+    iwd = 6;
+    if (ipar[iwd] &gt;= 0) {
+      C2F(dr1)("xset\000", "wdim\000", &amp;ipar[iwd], &amp;ipar[iwd + 1], &amp;v, &amp;v, &amp;
+	       v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    }
+    C2F(dr1)("xsetdr\000", "Rec\000", &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;
+	     dv);
+    C2F(dr1)("xset\000", "use color\000", &amp;c__1, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;
+	     v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    C2F(dr1)("xset\000", "alufunction\000", &amp;c__3, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0,
+	     &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    C2F(dr1)("xclear\000", "v\000", &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;
+	     dv);
+    C2F(dr)("xstart\000", "v\000", &amp;wid, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;
+	    dv);
+    C2F(dr1)("xset\000", "dashes\000", &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;v, 
+	     &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    nxname = 40;
+    kfun=get_block_number();
+    C2F(getlabel)(&amp;kfun, buf, &amp;nxname);
+    if (nxname &gt; 39) {
+      nxname = 39;
+    }
+    i__1 = nxname;
+    *(buf+i__1)=*"\000";
+    if ((nxname == 1 &amp;&amp; *(unsigned char *)buf == ' ') || nxname == 0) {
+    } else {
+      C2F(dr)("xname\000", buf, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    }
+    i__1 = nwid;
+    for (kwid = 1; kwid &lt;= i__1; ++kwid) {
+      rect[0] = per * (n1 + 1);
+      rect[1] = rpar[(kwid &lt;&lt; 1) + 1];
+      rect[2] = per * (n1 + 2);
+      rect[3] = rpar[(kwid &lt;&lt; 1) + 2];
+      frect[0] = 0.;
+      frect[1] = (kwid - 1) * (1. / nwid);
+      frect[2] = 1.;
+      frect[3] = 1. / nwid;
+      C2F(setscale2d)(frect, rect, "nn\000");
+      C2F(plot2d)(rect, &amp;rect[1], &amp;c__1, &amp;c__1, &amp;c_n1, "011", buf, rect, nax);
+    }
+    
+    z__[1] = 0.;
+    z__[2] = t;
+    i__1 = sum * n;
+    C2F(dset)(&amp;i__1, &amp;c_b103, &amp;z__[3], &amp;c__1);
+  } else if (flag == 5) {
+    z__=*block-&gt;work; 
+    --z__;
+    k = (int) z__[1];
+    if (k &lt;= 1) {
+      scicos_free(*block-&gt;work);
+      return ;
+    }
+    C2F(dr1)("xget\000", "window\000", &amp;verb, &amp;cur, &amp;na, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv,
+	     &amp;dv, &amp;dv);
+    if (cur != wid) {
+      C2F(dr1)("xset\000", "window\000", &amp;wid, &amp;v, &amp;v, &amp;v, &amp;v, &amp;v, &amp;dv, &amp;dv,
+	       &amp;dv, &amp;dv);
+    }
+    C2F(dr1)("xset\000", "use color\000", &amp;c__1, &amp;c__0, &amp;c__0, &amp;c__0, &amp;c__0, &amp;
+	     v, &amp;dv, &amp;dv, &amp;dv, &amp;dv);
+    
+    ilt = ipar[2] + 8;
+    it = 0;
+    n1 = (int) (t / per);
+    if (t &lt;= 0.) {
+      --n1;
+    }
+    /*     loop on input ports */
+    i__1 = nwid;
+    for (kwid = 1; kwid &lt;= i__1; ++kwid) {
+      rect[0] = per * (n1 + 1);
+      rect[1] = rpar[(kwid &lt;&lt; 1) + 1];
+      rect[2] = per * (n1 + 2);
+      rect[3] = rpar[(kwid &lt;&lt; 1) + 2];
+      frect[0] = 0.;
+      frect[1] = (kwid - 1) * (1. / nwid);
+      frect[2] = 1.;
+      frect[3] = 1. / nwid;
+      F2C(setscale2d)(frect, rect, "nn\000");
+      F2C(scicosclip)(&amp;c__1);
+      /*     loop on input port elements */
+      i__2 = ipar[kwid + 7];
+      for (i__ = 1; i__ &lt;= i__2; ++i__) {
+	i__3 = k - 1;
+	C2F(dr1)("xpolys\000", "v\000", &amp;v, &amp;v, &amp;ipar[ilt + it], &amp;c__1, &amp;
+		 i__3, &amp;v, &amp;z__[2], &amp;z__[n + 2 + it * n], &amp;dv, &amp;dv);
+	++it;
+      }
+      C2F(scicosclip)(&amp;c__0);
+    }
+  scicos_free(*block-&gt;work);
+  }
+} 
+</PRE>
+<HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

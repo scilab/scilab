@@ -1,7 +1,7 @@
 function scicos_play(fil)
 // Copyright INRIA
 funcprot(0)
-load SCI/macros/scicos/lib
+load SCI/modules/scicos/macros/scicos/lib
 
 global LineCount
 

@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Continuous state-space system </TITLE>
+<META NAME="description" CONTENT="Continuous state-space system ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html5159"
+  HREF="CLSS_f.htm#SECTION005812100000000000000">Library</A>
+<LI><A NAME="tex2html5160"
+  HREF="CLSS_f.htm#SECTION005812200000000000000">Description</A>
+<LI><A NAME="tex2html5161"
+  HREF="CLSS_f.htm#SECTION005812300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html5162"
+  HREF="CLSS_f.htm#SECTION005812400000000000000">Default properties</A>
+<LI><A NAME="tex2html5163"
+  HREF="CLSS_f.htm#SECTION005812500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html5164"
+  HREF="CLSS_f.htm#SECTION005812600000000000000">Computational function (type 1)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005812000000000000000"></A><A NAME="CLSS_f"></A>
+<BR>
+Continuous state-space system 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=CLSS_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img152.gif"
+ ALT="\epsfig{file=CLSS_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005812100000000000000">
+Library</A>
+</font></H3>
+Linear
+
+<H3><font color="blue"><A NAME="SECTION005812200000000000000">
+Description</A>
+</font></H3>
+This block realizes a continuous-time linear state-space system.  
+<P></P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img153.gif"
+ ALT="$\displaystyle \dot x$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="91" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img154.gif"
+ ALT="$\displaystyle =Ax+Bu$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(4.1)</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="14" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img155.gif"
+ ALT="$\displaystyle y$"></TD>
+<TD NOWRAP ALIGN="LEFT"><IMG
+ WIDTH="126" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img156.gif"
+ ALT="$\displaystyle =C*x+D*u$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(4.2)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+The system is defined by the <IMG
+ WIDTH="96" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img141.gif"
+ ALT="$ (A,B,C,D)$"> matrices and the initial state
+<IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img142.gif"
+ ALT="$ x_0$">. The dimensions must be compatible.   
+
+<H3><font color="blue"><A NAME="SECTION005812300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set continuous linear system parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">A matrix</TD>
+<TD ALIGN="CENTER">-1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">B matrix</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">C matrix</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">D matrix</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Initial state</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI><IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img157.gif"
+ ALT="$ A$"> matrix: square matrix. The <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img157.gif"
+ ALT="$ A$"> matrix 
+</LI>
+<LI>B matrix: the <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img158.gif"
+ ALT="$ B $"> matrix,  []  if system has no input 
+</LI>
+<LI>C matrix: the  <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img159.gif"
+ ALT="$ C$"> matrix ,  []  if system has no output 
+</LI>
+<LI>D matrix: the <IMG
+ WIDTH="19" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img160.gif"
+ ALT="$ D$"> matrix,  []  if system has no  D  term.
+</LI>
+<LI>Initial state: A vector/scalar initial state of the system. 
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION005812400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: yes
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 1 / 1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: yes
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>csslti</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005812500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/linear/CLSS_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005812600000000000000">
+Computational function (type 1)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine csslti(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+c     Scicos block simulator
+c     continuous state space linear system simulator
+c     rpar(1:nx*nx)=A
+c     rpar(nx*nx+1:nx*nx+nx*nu)=B
+c     rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C
+c     rpar(nx*nx+nx*nu+nx*ny+1:nx*nx+nx*nu+nx*ny+ny*nu)=D
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+c
+      la=1
+      lb=nx*nx+la
+      lc=lb+nx*nu
+
+      if(flag.eq.1.or.flag.eq.6) then
+c     y=c*x+d*u     
+         ld=lc+nx*ny
+         call dmmul(rpar(lc),ny,x,nx,y,ny,ny,nx,1)
+         call dmmul1(rpar(ld),ny,u,nu,y,ny,ny,nu,1)
+c         if(t.gt.64.0) write(6,'(e15.8,10(e10.3,x))') t,x(1),x(2),
+c     $        u(1),y(1) 
+      elseif(flag.eq.0) then
+c     xd=a*x+b*u
+         call dmmul(rpar(la),nx,x,nx,xd,nx,nx,nx,1)
+         call dmmul1(rpar(lb),nx,u,nu,xd,nx,nx,nu,1)
+c         if(t.gt.64.0) write(6,'(e15.8,10(e10.3,x))') t,x(1),x(2),
+c     $        xd(1),xd(2),u(1)
+      endif
+      return
+      end
+</PRE>
+<HR>
+
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

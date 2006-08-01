@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Activation scope </TITLE>
+<META NAME="description" CONTENT="Activation scope ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3292"
+  HREF="EVENTSCOPE_f.htm#SECTION00529100000000000000">Library</A>
+<LI><A NAME="tex2html3293"
+  HREF="EVENTSCOPE_f.htm#SECTION00529200000000000000">Description</A>
+<LI><A NAME="tex2html3294"
+  HREF="EVENTSCOPE_f.htm#SECTION00529300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3295"
+  HREF="EVENTSCOPE_f.htm#SECTION00529400000000000000">Default properties</A>
+<LI><A NAME="tex2html3296"
+  HREF="EVENTSCOPE_f.htm#SECTION00529500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3297"
+  HREF="EVENTSCOPE_f.htm#SECTION00529600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00529000000000000000"></A><A NAME="EVENTSCOPE_f"></A>
+<BR>
+Activation scope 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=EVENTSCOPE_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img45.gif"
+ ALT="\epsfig{file=EVENTSCOPE_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00529100000000000000">
+Library</A>
+</font></H3>
+Sinks
+
+<H3><font color="blue"><A NAME="SECTION00529200000000000000">
+Description</A>
+</font></H3>
+This block realizes the visualization of the input event signals.  
+
+<H3><font color="blue"><A NAME="SECTION00529300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set Scope parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Number of event inputs</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">colors c (<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="$ &gt;$">0) or mark (<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$ &lt;$">0)</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output window number</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output window position</TD>
+<TD ALIGN="CENTER">[]</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output window sizes</TD>
+<TD ALIGN="CENTER">[600;400]</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Refresh period</TD>
+<TD ALIGN="CENTER">30</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Number of event inputs: an integer giving the number of event
+  input ports colors : a vector of integers. The i-th element is the
+  color number (<IMG
+ WIDTH="45" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.gif"
+ ALT="$ &gt;=0$">) or dash type (<IMG
+ WIDTH="31" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img37.gif"
+ ALT="$ &lt;0$">) used to draw the evolution of
+  the i-th input port signal. See  <B>xset</B>  for color (dash type)
+  definitions.  
+
+<P>
+</LI>
+<LI>colors c : an integer. It is the color number (<IMG
+ WIDTH="31" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.gif"
+ ALT="$ &gt;0$">) or dash
+  type (<IMG
+ WIDTH="31" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img37.gif"
+ ALT="$ &lt;0$">) used to draw the evolution of the input port signal. See
+  <B>plot2d</B>  for color (dash type) definitions.  
+</LI>
+<LI>Output window number:The number of graphic window used for the
+  display. It is often good to use high values to avoid conflict with
+  palettes and Super Block windows. If you have more than one scope,
+  make sure they don't have the same window numbers (unless
+  superposition of the curves is desired). Output window position : a
+  2 vector specifying the coordinates of the upper left corner of the
+  graphic window. Answer [] for default window position.  
+
+<P>
+</LI>
+<LI>Output window position:
+
+<P>
+</LI>
+<LI>Output window sizes:a 2 vector specifying the width and height
+  of the graphic window. Answer [] for default window dimensions.  
+</LI>
+<LI>Refresh period:Maximum value on the X-axis (time). The plot is
+  redrawn when time reaches a multiple of this value.  
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00529400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 0 / 
+</LI>
+<LI>number/sizes of outputs: 0 / 
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>evscpe</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00529500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/sinks/EVENTSCOPE_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00529600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine evscpe(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c     Event scope
+c     ipar(1) = win_num
+c     ipar(2) = 0/1 color flag
+c     ipar(3:10) = color
+c     ipar(nipar-3:nipar-2) = window position
+c     ipar(nipar-1:nipar)= window position
+c
+c     rpar(1)=periode
+c
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+c
+      double precision ymin,ymax,per,rect(4),xx(2),yy(2)
+      integer verb,cur,na,v,wid,nax(4)
+      character*40 strf,buf
+      double precision dv
+      double precision frect(4)
+      character*(4) logf
+      character*4 name
+
+      integer kfun
+      common /curblk/ kfun
+      data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
+      data cur/0/,verb/0/
+
+c      data yy / 0.00d0,0.80d0/
+c     
+c     
+      call dr1('xgetdr'//char(0),name,v,v,v,v,v,v,
+     $     dv,dv,dv,dv)
+      if(name(1:3).ne.'Rec') then
+         call dr1('xsetdr'//char(0),'Rec'//char(0),v,v,v,v,v,v,
+     $        dv,dv,dv,dv)
+      endif
+
+c     
+      if(flag.eq.2) then
+         per=rpar(1)
+         wid=ipar(1)
+         if(t/per.ge.z(1)) then
+            z(1)=int(t/per)+1.0d0
+c     clear window
+            nax(1)=2
+            nax(2)=10
+            nax(3)=2
+            nax(4)=10
+            call dr1('xget'//char(0),'window'//char(0),verb,cur,na,
+     $		v,v,v,
+     $          dv,dv,dv,dv)
+            if(cur.ne.wid) then
+               call dr1('xset'//char(0),'window'//char(0),wid,v,v,v,v,v,
+     $              dv,dv,dv,dv)
+            endif
+
+            call dr1('xclear'//char(0),'v'//char(0),v,v,v,v,v,v,
+     $           dv,dv,dv,dv)
+            call dr1('xset'//char(0),'use color'//char(0),ipar(2),0,0,
+     &amp;           0,0,v,dv,dv,dv,dv)
+            call dr('xstart'//char(0),'v'//char(0),wid,v,v,v,v,v,
+     $           dv,dv,dv,dv)
+            buf='t@ @input and output'
+            strf='011'//char(0)
+            rect(1)=per*(z(1)-1.0d0)
+            rect(2)=0.0d0
+            rect(3)=per*z(1)
+            rect(4)=1.0d0
+            call dr1('xset'//char(0),'dashes'//char(0),0,0,0,
+     &amp;           0,0,v,dv,dv,dv,dv)
+            call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax)
+         endif
+c
+         call dr1('xget'//char(0),'window'//char(0),verb,cur,na,
+     $		v,v,v,
+     $          dv,dv,dv,dv)
+         if(cur.ne.wid) then
+            call dr1('xset'//char(0),'window'//char(0),wid,v,v,v,v,v,
+     $           dv,dv,dv,dv)
+         endif
+         call dr1('xset'//char(0),'use color'//char(0),ipar(2),0,0,
+     &amp;        0,0,v,dv,dv,dv,dv)
+         buf='xlines'//char(0)
+         xx(1)=t
+         xx(2)=t 
+
+c  ------------------------------------------------------
+         yy(1)=0.0
+         yy(2)=0.8
+         i=1
+         nx=1
+ 10      if (iand(nevprt,nx) .ne. 0)  then
+            call dr1('xpolys'//char(0),'v'//char(0),v,v,
+     $           ipar(2+i),1,2,v,xx,yy,dv,dv)
+            yy(1)=(yy(1)+yy(2))/2
+         endif
+         i=i+1
+         nx=nx*2
+         if(nx.le.nevprt) goto 10
+         yy(1)=0.0
+c ----------------------------------------------------------
+      elseif(flag.eq.4) then
+         wid=ipar(1)
+         ymin=0.0d0
+         ymax=1.0d0
+         per=rpar(1)
+         nax(1)=2
+         nax(2)=10
+         nax(3)=2
+         nax(4)=10
+         n1=int(t)/per
+         if(t.le.0.0d0) n1=n1-1
+         call sciwin()
+         call dr1('xget'//char(0),'window'//char(0),verb,cur,na,
+     $        v,v,v,
+     $        dv,dv,dv,dv)
+         if(cur.ne.wid) then
+            call dr1('xset'//char(0),'window'//char(0),wid,v,v,v,v,v,
+     $           dv,dv,dv,dv)
+         endif
+c         
+         rect(1)=per*(1+n1)
+         rect(2)=ymin
+         rect(3)=per*(2+n1)
+         rect(4)=ymax
+         call  setscale2d(frect,rect,'nn'//char(0))
+         
+         iwp=nipar-3
+         if(ipar(iwp).ge.0) then
+            call dr1('xset'//char(0),'wpos'//char(0),ipar(iwp),
+     $           ipar(iwp+1),v,v,v,v,dv,dv,dv,dv)
+         endif
+         iwd=nipar-1
+         if(ipar(iwd).ge.0) then
+            call dr1('xset'//char(0),'wdim'//char(0),ipar(iwd),
+     $           ipar(iwd+1),v,v,v,v,dv,dv,dv,dv)
+         endif
+c
+
+         call dr1('xset'//char(0),'use color'//char(0),ipar(2),0,0,
+     &amp;        0,0,v,dv,dv,dv,dv)
+         call dr1('xset'//char(0),'alufunction'//char(0),3,0,0,
+     &amp;        0,0,v,dv,dv,dv,dv)
+         
+         call dr1('xclear'//char(0),'v'//char(0),v,v,v,v,v,v,
+     $        dv,dv,dv,dv)
+         call dr('xstart'//char(0),'v'//char(0),wid,v,v,v,v,v,
+     $        dv,dv,dv,dv)
+         buf='t@ @input and output'
+         strf='011'//char(0)
+         call dr1('xset'//char(0),'dashes'//char(0),0,0,0,
+     &amp;        0,0,v,dv,dv,dv,dv)
+         call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax)
+         nxname=40
+         call getlabel(kfun,buf,nxname)
+         if(nxname.gt.39) nxname=39
+         buf(nxname+1:nxname+1)=char(0)
+         if ((nxname.eq.1.and.buf(1:1).eq.' ').or.(nxname.eq.0)) then
+         else
+            call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
+         endif
+         call sxevents()
+         z(1)=0.0d0
+      endif
+
+      call dr1('xsetdr'//char(0),name,v,v,v,v,v,v,
+     $     dv,dv,dv,dv)
+ 
+      end
+</PRE>
+<HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

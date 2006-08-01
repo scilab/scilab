@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Write to file </TITLE>
+<META NAME="description" CONTENT="Write to file ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3327"
+  HREF="WFILE_f.htm#SECTION005211100000000000000">Library</A>
+<LI><A NAME="tex2html3328"
+  HREF="WFILE_f.htm#SECTION005211200000000000000">Description</A>
+<LI><A NAME="tex2html3329"
+  HREF="WFILE_f.htm#SECTION005211300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3330"
+  HREF="WFILE_f.htm#SECTION005211400000000000000">Default properties</A>
+<LI><A NAME="tex2html3331"
+  HREF="WFILE_f.htm#SECTION005211500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3332"
+  HREF="WFILE_f.htm#SECTION005211600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005211000000000000000"></A><A NAME="WFILE_f"></A>
+<BR>
+Write to file 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=WFILE_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="108" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.gif"
+ ALT="\epsfig{file=WFILE_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005211100000000000000">
+Library</A>
+</font></H3>
+Sinks
+
+<H3><font color="blue"><A NAME="SECTION005211200000000000000">
+Description</A>
+</font></H3>
+This block allows user to save data in a file, in formatted and binary
+mode. Each call to the block corresponds to a record in the file. Each
+record has the following form:  <!-- MATH
+ $[t,V1,...,Vn]$
+ -->
+<IMG
+ WIDTH="105" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.gif"
+ ALT="$ [t,V1,...,Vn]$"> where  <IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.gif"
+ ALT="$ t$"> is the value
+of time when block is called and <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.gif"
+ ALT="$ V_i$"> is the ith input value.    
+
+<H3><font color="blue"><A NAME="SECTION005211300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set WFILE block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Input size</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output file name</TD>
+<TD ALIGN="CENTER">foo</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Output Format</TD>
+<TD ALIGN="CENTER">(7(e10.3,1x))</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Buffer size</TD>
+<TD ALIGN="CENTER">2</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Input size:a scalar. This fixes the input size 
+</LI>
+<LI>Output file name:a character string defining the path of the file 
+</LI>
+<LI>Output Format:a character string defining the Fortran format
+  to use or nothing for an unformatted (binary) write. If given, the
+  format must began by a left parenthesis and end by a right
+  parenthesis. example: (e10.3).  
+</LI>
+<LI>Buffer size: To improve efficiency it is possible to buffer
+  the input data. Write on the file is only done after each <B>Buffer
+  size </B> calls to the block.  
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION005211400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 0 / 
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>writef</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005211500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/sinks/WFILE_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005211600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine writef(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c     write input to a binary or formatted file
+c     ipar(1) = lfil : file name length
+c     ipar(2) = lfmt : format length (0) if binary file
+c     ipar(3)          unused
+c     ipar(4) = N : buffer length
+c     ipar(5:4+lfil) = character codes for file name
+c     ipar(5+lfil:4+lfil+lfmt) = character codes for format if any
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+
+      include '../stack.h'
+      integer i,n
+      integer mode(2)
+c     
+      N=ipar(4)
+      K=int(z(1))
+      lunit=int(z(2))
+c
+      if(flag.eq.2.and.nevprt.gt.0) then
+c     add new point to the buffer
+         K=K+1
+         z(2+K)=t
+         do 01 i=1,nu
+            z(2+N+(i-1)*N+K)=u(i)
+ 01      continue
+         z(1)=K
+         if(K.lt.N) return
+c     write on the file
+         if (ipar(2).gt.0) then
+c     .     formatted write
+            call cvstr(ipar(2),ipar(5+ipar(1)),buf,1)
+            do 10 j=1,K
+               write(lunit,buf(1:ipar(2)),err=100)
+     $              (z(2+N+(i-1)*N+j),i=0,nu)
+ 10         continue
+         else
+c     .     unformatted write
+            do 11 j=1,K
+               write(lunit,err=100) (z(2+N+(i-1)*N+j),i=0,nu)
+ 11         continue
+         endif
+         z(1)=0.0d0
+      elseif(flag.eq.4) then
+c     file opening
+         lfil=ipar(1)
+         call cvstr(lfil,ipar(5),buf,1)
+         lfmt=ipar(2)
+         lunit=0
+         if(lfmt.gt.0) then
+            mode(1)=003
+            mode(2)=0
+            call clunit(lunit,buf(1:lfil),mode)
+            if(err.gt.0) goto 100
+         else
+            mode(1)=103
+            mode(2)=0
+            call clunit(lunit,buf(1:lfil),mode)
+            if(err.gt.0) goto 100
+         endif
+         z(1)=0
+         z(2)=lunit
+         z(3)=t
+         call dset(nu*N,0.0d0,z(4),1)
+      elseif(flag.eq.5) then
+         if(lunit.eq.0) then
+            return
+         endif
+         if(K.ge.1) then
+c     write on the file
+            lfmt=ipar(2)
+            if (lfmt.gt.0) then
+c     .        formatted write
+               call cvstr(lfmt,ipar(5+ipar(1)),buf,1)
+               do 20 j=1,K
+                  write(lunit,buf(1:lfmt)) (z(2+N+(i-1)*N+j),i=0,nu)
+ 20            continue
+            else
+c     .        unformatted write
+               do 21 j=1,K
+                  write(lunit) (z(2+N+(i-1)*N+j),i=0,nu)
+ 21            continue
+            endif
+         endif
+         lfil=ipar(1)
+         call clunit(-lunit,buf(1:lfil),mode)
+         if(err.gt.0) goto 100
+         z(2)=0.0d0
+      endif
+      return
+ 100  continue
+      err=0
+      call basout(io,wte,'File '//buf(1:lfil)//' Cannot be opened')
+      iflag=-1
+      end
+</PRE>
+<HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

@@ -151,7 +151,7 @@ BOOL FileExist(char *filename)
 /*************************************************************************************************/
 BOOL ExistModelicac(void)
 {
-	#define ModelicacName "/bin/modelicac.exe"
+	#define ModelicacName "/modules/scicos/bin/modelicac.exe"
 
 	BOOL bOK=FALSE;
 	char *SCIPATH = (char*)getenv ("SCI");
@@ -181,7 +181,7 @@ BOOL ExistJavaSciWin(void)
 /*************************************************************************************************/
 BOOL ExistScicos(void)
 {
-	#define ScicosMacrosDirectory "/macros/scicos"
+	#define ScicosMacrosDirectory "/modules/scicos/macros/scicos"
 
 	BOOL bOK=FALSE;
 	char *SCIPATH = (char*)getenv ("SCI");

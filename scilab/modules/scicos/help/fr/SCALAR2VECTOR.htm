@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Scalar to vector </TITLE>
+<META NAME="description" CONTENT="Scalar to vector ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3678"
+  HREF="SCALAR2VECTOR.htm#SECTION005312100000000000000">Library</A>
+<LI><A NAME="tex2html3679"
+  HREF="SCALAR2VECTOR.htm#SECTION005312200000000000000">Description</A>
+<LI><A NAME="tex2html3680"
+  HREF="SCALAR2VECTOR.htm#SECTION005312300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3681"
+  HREF="SCALAR2VECTOR.htm#SECTION005312400000000000000">Default properties</A>
+<LI><A NAME="tex2html3682"
+  HREF="SCALAR2VECTOR.htm#SECTION005312500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3683"
+  HREF="SCALAR2VECTOR.htm#SECTION005312600000000000000">Computational function (type 4)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005312000000000000000"></A><A NAME="SCALAR2VECTOR"></A>
+<BR>
+Scalar to vector 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=SCALAR2VECTOR.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="242" ALIGN="BOTTOM" BORDER="0"
+ SRC="img71.gif"
+ ALT="\epsfig{file=SCALAR2VECTOR.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005312100000000000000">
+Library</A>
+</font></H3>
+Branching
+
+<H3><font color="blue"><A NAME="SECTION005312200000000000000">
+Description</A>
+</font></H3>
+A scalar input is replicated to form a vector output of desired
+size. The output size need not be specified.
+<P>
+
+<H3><font color="blue"><A NAME="SECTION005312300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">size of output (-1: if don't know)</TD>
+<TD ALIGN="CENTER">-1</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>size of output : integer giving the size of output where each
+entry is equal to the  input
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION005312400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 1 / -1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>scalar2vector</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005312500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/branching/SCALAR2VECTOR.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005312600000000000000">
+Computational function (type 4)</A>
+</font></H3>
+<BR>
+<PRE>#include "scicos_block.h"
+#include &lt;math.h&gt;
+
+void scalar2vector(scicos_block *block,int flag)
+{
+  int i;
+  if(flag==1){
+    for(i=0;i&lt;block-&gt;outsz[0];++i){
+      block-&gt;outptr[0][i]=block-&gt;inptr[0][0];
+    }
+  }
+}
+</PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

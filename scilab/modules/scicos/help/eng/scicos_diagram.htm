@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Scicos Diagram</TITLE>
+<META NAME="description" CONTENT="Scicos Diagram">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1004"
+  HREF="scicos_diagram.htm#SECTION00311100000000000000">scicos_diagram (<EM>diagram</EM>)</A>
+<LI><A NAME="tex2html1005"
+  HREF="scicos_diagram.htm#SECTION00311200000000000000">scicos_params (<EM>params</EM>)</A>
+<LI><A NAME="tex2html1006"
+  HREF="scicos_diagram.htm#SECTION00311300000000000000">default_options (<EM>scsopt</EM>)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00311000000000000000">
+Scicos Diagram</A>
+</H2>
+
+<H3><font color="blue"><A NAME="SECTION00311100000000000000">
+scicos_diagram (<EM>diagram</EM>)</A>
+</font></H3>
+
+<UL>
+<LI><B><font color="maroon">props:</font></B> Scilab object <EM>params</EM>
+</LI>
+<LI><B><font color="maroon">objs:</font></B> block or link or deleted object data structure. Deleted object data structure is marked list('Deleted'). 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>list()</code>
+</FONT>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00311200000000000000">
+scicos_params (<EM>params</EM>)</A>
+</font></H3>
+
+<UL>
+<LI><B><font color="maroon">wpar:</font></B>viewing parameters: [w,h,Xshift,Yshift].
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[600,450,0,0,600,450]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">title:</font></B> vector of 2 character string, the first one is the diagram
+	title and default name of save file name, the second one is the path of
+	the directory of the file name.
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>["Untitled", "./"]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">tol:</font></B>1 x 4 vector [atol,rtol,ttol,maxt], where atol, rtol are respectively absolute and relative tolerances for the ode solver, ttol is the minimal distance between to different events time and maxt is maximum integration time interval for a single call to the ode solver. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[0.0001,1.000E-06,1.000E-10,100001,0,0]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">tf:</font></B>real scalar, final time for simulation. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>100000</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">context:</font></B> vector of character strings, Scilab instructions used to define Scilab variables used in block definitions as symbolic parameters. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">void1:</font></B>unused field. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">options:</font></B> Scilab object <EM>scsopt</EM>
+</LI>
+<LI><B><font color="maroon">void2:</font></B>unused field. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">void3:</font></B>unused field. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">doc:</font></B> user defined diagram documentation structure. 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>list()</code>
+</FONT>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00311300000000000000">
+default_options (<EM>scsopt</EM>)</A>
+</font></H3>
+
+<UL>
+<LI><B><font color="maroon">3D:</font></B> list(With3D,Color3D) . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>list(%t,33)</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">Background:</font></B>vector of two color index: The  Scicos window background
+	and Scicos window foreground color indices . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[8,1]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">Link:</font></B>vector of two color index: The  regular linkand
+	the event link  default colors.
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[1,5]</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">ID:</font></B> ? . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>list([5,1],[4,1])</code>
+</FONT>
+</LI>
+<LI><B><font color="maroon">Cmap:</font></B> Complementary colormap added for Scicos  . 
+
+<P>
+Default value: 
+<FONT SIZE="-1"><code>[0.8,0.8,0.8]</code>
+</FONT>
+</LI>
+</UL>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

@@ -356,7 +356,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "routines\console
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "man\BuildHelp.vcproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "ocaml\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "modules\scicos\src\ocaml\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmex", "routines\default\libmex\libmex.vcproj", "{0AEC8745-BB5B-4E66-A59A-7251412C3605}"
 	ProjectSection(ProjectDependencies) = postProject

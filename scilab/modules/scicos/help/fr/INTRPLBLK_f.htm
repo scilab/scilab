@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Interpolation </TITLE>
+<META NAME="description" CONTENT="Interpolation ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3905"
+  HREF="INTRPLBLK_f.htm#SECTION00545100000000000000">Library</A>
+<LI><A NAME="tex2html3906"
+  HREF="INTRPLBLK_f.htm#SECTION00545200000000000000">Description</A>
+<LI><A NAME="tex2html3907"
+  HREF="INTRPLBLK_f.htm#SECTION00545300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3908"
+  HREF="INTRPLBLK_f.htm#SECTION00545400000000000000">Default properties</A>
+<LI><A NAME="tex2html3909"
+  HREF="INTRPLBLK_f.htm#SECTION00545500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3910"
+  HREF="INTRPLBLK_f.htm#SECTION00545600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00545000000000000000"></A><A NAME="INTRPLBLK_f"></A>
+<BR>
+Interpolation 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=INTRPLBLK_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img85.gif"
+ ALT="\epsfig{file=INTRPLBLK_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00545100000000000000">
+Library</A>
+</font></H3>
+Non_linear
+
+<H3><font color="blue"><A NAME="SECTION00545200000000000000">
+Description</A>
+</font></H3>
+The output of this block is a function of the input obtained by linear
+interpolation. This block has a single scalar input and a single
+scalar output port. The <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img81.gif"
+ ALT="$ X$"> coord. and <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img82.gif"
+ ALT="$ Y$"> coord. give respectively the <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img81.gif"
+ ALT="$ X$">
+coordinate and the <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img82.gif"
+ ALT="$ Y$"> coordinate of the data points to be
+interpolated. <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img81.gif"
+ ALT="$ X$"> coord must be strictly increasing.   
+
+<H3><font color="blue"><A NAME="SECTION00545300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set Interpolation block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">X coord.</TD>
+<TD ALIGN="CENTER">[0;1]</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Y coord.</TD>
+<TD ALIGN="CENTER">[0;1]</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>X coord.:A vector (strictly increasing). 
+</LI>
+<LI>Y coord.:A vector (same size as <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img81.gif"
+ ALT="$ X$"> coord). 
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00545400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 1 / 1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>intrpl</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00545500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/nonlinear/INTRPLBLK_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00545600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine intrpl(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u1,nu1,y1,ny1)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c     ipar(1) : the number of input
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*)
+      double precision y1,u1
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*),i
+      integer nipar
+c
+c    
+      do 100 i=2,nrpar/2
+         if (u1.le.rpar(i)) goto 200 
+ 100  continue
+      i=nrpar/2
+ 200  continue
+      y1=rpar(nrpar/2+i-1) + ((rpar(nrpar/2+i)-rpar(nrpar/2+i-1))/
+     $     (rpar(i)-rpar(i-1)))*(u1-rpar(i-1))
+      return
+      end
+
+</PRE>
+<HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

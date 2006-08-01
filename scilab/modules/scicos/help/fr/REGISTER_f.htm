@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Shift register </TITLE>
+<META NAME="description" CONTENT="Shift register ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html5052"
+  HREF="REGISTER_f.htm#SECTION00586100000000000000">Library</A>
+<LI><A NAME="tex2html5053"
+  HREF="REGISTER_f.htm#SECTION00586200000000000000">Description</A>
+<LI><A NAME="tex2html5054"
+  HREF="REGISTER_f.htm#SECTION00586300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html5055"
+  HREF="REGISTER_f.htm#SECTION00586400000000000000">Default properties</A>
+<LI><A NAME="tex2html5056"
+  HREF="REGISTER_f.htm#SECTION00586500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html5057"
+  HREF="REGISTER_f.htm#SECTION00586600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00586000000000000000"></A><A NAME="REGISTER_f"></A>
+<BR>
+Shift register 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=REGISTER_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img146.gif"
+ ALT="\epsfig{file=REGISTER_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00586100000000000000">
+Library</A>
+</font></H3>
+Linear
+
+<H3><font color="blue"><A NAME="SECTION00586200000000000000">
+Description</A>
+</font></H3>
+This block realizes a shift register. At every input event, the
+register is shifted one step.    
+
+<H3><font color="blue"><A NAME="SECTION00586300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set delay parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Register initial condition</TD>
+<TD ALIGN="CENTER">0;0;0;0;0;0;0;0;0;0</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Register initial condition: A column vector. It contains the
+  initial state of the register.  
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00586400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 1 / 1
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>delay</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00586500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/linear/REGISTER_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00586600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine delay(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+c     Scicos block simulator
+c     Ouputs nx*dt delayed input
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+c
+      if(flag.eq.1.or.flag.eq.4.or.flag.eq.6) then
+         y(1)=z(1)
+      elseif(flag.eq.2) then
+c     .  shift buffer   
+         do 10 i=1,nz-1
+            z(i)=z(i+1)
+ 10      continue
+c     .  add new point to the buffer
+         z(nz)=u(1)
+      endif
+      end
+</PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

@@ -5,7 +5,6 @@ mode(-1);  // silent execution mode
 // clean database when restarted ======================================
 predef('clear'); //unprotect all variables 
 clear  // erase all variables 
-clear  scicos_pal // explicitly clear %helps scicos_pal variables
 clearglobal();
 
 // Set stack size   ===================================================
@@ -56,15 +55,6 @@ load('SCI/macros/mtlb/lib')
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/arma/lib')
-
-// temporaire
-if ~MSDOS then 
-  load('SCI/macros/time/lib')
-  load('SCI/macros/metanet/lib')
-  load('SCI/macros/tksci/lib')
-  load('SCI/macros/sound/lib')
-  load('SCI/macros/xdess/lib')
-end
 load('SCI/macros/robust/lib')
 load('SCI/macros/auto/lib')
 load('SCI/macros/optim/lib')
@@ -169,28 +159,14 @@ else
 end
 clear LCC 
 
-if %scicos then
-  clear  scicos_pal // explicitly clear %helps scicos_pal variables
-  // De	fine Scicos data tables ===========================================
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-       ~isdef("scicos_pal_libs") ) then
-    [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
-     %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
-    clear initial_scicos_tables
-  end
-  //======================================================================
-end
-
-if MSDOS then
  exec SCI/modules/graphics/etc/graphics.start;
  exec SCI/modules/Javasci/etc/javasci.start;
  exec SCI/modules/metanet/etc/metanet.start;
  exec SCI/modules/sound/etc/sound.start;
  exec SCI/modules/tclsci/etc/tclsci.start;
  exec SCI/modules/time/etc/time.start;
-end
+ exec SCI/modules/scicos/etc/scicos.start;
+
 
 
 // Protect variable previously defined  ================================

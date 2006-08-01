@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Read AU sound file </TITLE>
+<META NAME="description" CONTENT="Read AU sound file ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2893"
+  HREF="READAU_f.htm#SECTION00519100000000000000">Library</A>
+<LI><A NAME="tex2html2894"
+  HREF="READAU_f.htm#SECTION00519200000000000000">Description</A>
+<LI><A NAME="tex2html2895"
+  HREF="READAU_f.htm#SECTION00519300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html2896"
+  HREF="READAU_f.htm#SECTION00519400000000000000">Default properties</A>
+<LI><A NAME="tex2html2897"
+  HREF="READAU_f.htm#SECTION00519500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html2898"
+  HREF="READAU_f.htm#SECTION00519600000000000000">Computational function (type 2)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00519000000000000000"></A><A NAME="READAU_f"></A>
+<BR>
+Read AU sound file 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=READAU_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="81" ALIGN="BOTTOM" BORDER="0"
+ SRC="img18.gif"
+ ALT="\epsfig{file=READAU_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00519100000000000000">
+Library</A>
+</font></H3>
+Sources
+
+<H3><font color="blue"><A NAME="SECTION00519200000000000000">
+Description</A>
+</font></H3>
+Read from an audio file in .au format.
+<P>
+
+<H3><font color="blue"><A NAME="SECTION00519300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set READAU block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Input file name</TD>
+<TD ALIGN="CENTER">test.au</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Buffer size</TD>
+<TD ALIGN="CENTER">20</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Swap mode 0/1</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Input file name: the name of the .au file
+</LI>
+<LI>Buffer size: how much buffer to use.
+</LI>
+<LI>Swap mode 0/1: whether or not to swap
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00519400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 0 / 
+</LI>
+<LI>number/sizes of outputs: 1 / 1
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: yes
+</LI>
+<LI>name of computational function: <EM>readau</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00519500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/sources/READAU_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00519600000000000000">
+Computational function (type 2)</A>
+</font></H3>
+<BR>
+<PRE>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt; 
+#include &lt;string.h&gt; 
+#include "../machine.h"
+extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+extern void sciprint __PARAMS((char *fmt,...));
+extern void mget2 __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
+void 
+readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
+     /*
+     ipar[1]   = lfil : file name length
+     ipar[2:4] = fmt  : numbers type ascii code
+     ipar[5]   = void
+     ipar[6]   = n : buffer length in number of records
+     ipar[7]   = maxvoie : record size
+     ipar[8]   = swap
+     ipar[9]   = first : first record to read
+     ipar[10:9+lfil] = character codes for file name
+     */
+integer *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar;
+integer insz[],*nin,outsz[],*nout;
+double x[],xd[],z[],tvec[],rpar[];
+double *inptr[],*outptr[],*t;
+
+{
+  char str[100],type[4];
+  int job = 1,three=3;
+  FILE *fd;
+  int n, k, kmax, /*no, lfil,*/ m, i, irep,/* nm,*/ ierr;
+  double *buffer,*record;
+  long offset;
+  double y;
+  /*  div_t divt;*/int quot, rem;
+  double SCALE=0.000030517578125;
+  /*  int ETAB[8]={0, 132, 396, 924, 1980, 4092, 8316, 16764}; */
+  int ETAB[8];
+  int mu;
+  int sig;
+  int e;
+  int f;
+/*  double ff;*/
+
+  ETAB[0]=0; ETAB[1]=132; ETAB[2]= 396; ETAB[3]=924; ETAB[4]=1980;
+  ETAB[5]=4092; ETAB[6]=8316; ETAB[7]=16764;
+
+  --ipar;
+  --z;
+  fd=(FILE *)(long)z[3];
+  buffer = (z+4);
+    
+  /*
+    k    : record counter within the buffer
+    kmax :  number of records in the buffer
+  */
+
+  if (*flag==1) {
+    n    = ipar[6];
+    k    = (int)z[1];
+    /* copy current record to output */
+    record=buffer+(k-1)*ipar[7];
+
+    for (i=0;i&lt;*nout;i++)
+      {
+	mu=(int) record[i];
+
+	mu=255-mu;
+	if(mu&gt;127)
+	  sig=1;
+	else
+	  sig=0;
+	/* comment out for SUNOS SS 8/10/99 
+	divt=div(mu,16);
+	e=divt.quot-8*sig+1;
+	f=divt.rem;
+	*/
+	quot=mu/16;rem=mu-16*quot;
+	e=quot-8*sig+1;
+	f=rem;
+
+	y=ldexp((double)(f),(e+2));
+	/* ff=(double)(e+2);
+	   y=((double) f) * pow(two, ff); */
+
+	e=ETAB[e-1];
+
+	y=SCALE*(1-2*sig)*(e+y);
+
+	*outptr[i]=y;
+      }
+    if (*nevprt&gt;0) {
+      /*     discrete state */
+      kmax =(int) z[2];
+      if (k&gt;=kmax&amp;&amp;kmax==n) {
+	/*     read a new buffer */
+	m=ipar[6]*ipar[7];
+	F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
+	for (i=2;i&gt;=0;i--)
+	  if (type[i]!=' ') { type[i+1]='\0';break;}
+	ierr=0;
+	mget2(fd,ipar[8],buffer,m,type,&amp;ierr);
+	if (ierr&gt;0) {
+	  sciprint("Read error!\n");
+	  fclose(fd);
+	  z[3] = 0.0;
+	  *flag = -1;
+	  return;
+	}
+	else if (ierr&lt;0) { /* EOF reached */
+	  kmax=-(ierr+1)/ipar[7];
+	}
+	else
+	  kmax=ipar[6];
+
+	z[1] = 1.0;
+	z[2] = kmax;
+      }
+      else if (k&lt;kmax) 
+	z[1] = z[1]+1.0;
+    }
+  }
+  else if (*flag==4) {
+    F2C(cvstr)(&amp;(ipar[1]),&amp;(ipar[10]),str,&amp;job,strlen(str));
+    str[ipar[1]] = '\0';
+    fd = fopen(str,"rb");
+    if (!fd ) {
+      sciprint("Could not open the file!\n");
+      *flag = -1;
+      return;
+    }
+    z[3]=(long)fd;
+    /* skip first records */
+    if (ipar[9]&gt;1) {
+      F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
+      for (i=2;i&gt;=0;i--)
+	  if (type[i]!=' ') { type[i+1]='\0';break;}
+      offset=(ipar[9]-1)*ipar[7]*sizeof(char);
+      irep = fseek(fd,offset,0) ;
+      if ( irep != 0 ) 
+	{
+	  sciprint("Read error\r\n");
+	  *flag = -1;
+	  fclose(fd);
+	  z[3] = 0.0;
+	  return;
+	}
+    }
+    /* read first buffer */
+    m=ipar[6]*ipar[7];
+    F2C(cvstr)(&amp;three,&amp;(ipar[2]),type,&amp;job,strlen(type));
+    for (i=2;i&gt;=0;i--)
+	  if (type[i]!=' ') { type[i+1]='\0';break;}
+    mget2(fd,ipar[8],buffer,m,type,&amp;ierr);
+    if (ierr&gt;0) {
+      sciprint("Read error!\n");
+      *flag = -1;
+      fclose(fd);
+      z[3] = 0.0;
+      return;
+    }
+    else if (ierr&lt;0) { /* EOF reached */
+      kmax=-(ierr+1)/ipar[7];
+    }
+    else
+      kmax=ipar[6];
+
+    z[1] = 1.0;
+    z[2] = kmax;
+  }
+  else if (*flag==5) {
+    if(z[3]==0) return;
+    fclose(fd);
+    z[3] = 0.0;
+  }
+  return;
+}
+</PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Event variable delay </TITLE>
+<META NAME="description" CONTENT="Event variable delay ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4375"
+  HREF="EVTVARDLY.htm#SECTION005511100000000000000">Library</A>
+<LI><A NAME="tex2html4376"
+  HREF="EVTVARDLY.htm#SECTION005511200000000000000">Description</A>
+<LI><A NAME="tex2html4377"
+  HREF="EVTVARDLY.htm#SECTION005511300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html4378"
+  HREF="EVTVARDLY.htm#SECTION005511400000000000000">Default properties</A>
+<LI><A NAME="tex2html4379"
+  HREF="EVTVARDLY.htm#SECTION005511500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html4380"
+  HREF="EVTVARDLY.htm#SECTION005511600000000000000">Computational function (type 4)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION005511000000000000000"></A><A NAME="EVTVARDLY"></A>
+<BR>
+Event variable delay 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=EVTVARDLY.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="172" ALIGN="BOTTOM" BORDER="0"
+ SRC="img118.gif"
+ ALT="\epsfig{file=EVTVARDLY.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION005511100000000000000">
+Library</A>
+</font></H3>
+Events
+
+<H3><font color="blue"><A NAME="SECTION005511200000000000000">
+Description</A>
+</font></H3>
+Similar to an event delay but the delay time is read on the regular
+input port.
+<P>
+
+<H3><font color="blue"><A NAME="SECTION005511300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set parameter of variable event delay</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Initial event firing time (<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.gif"
+ ALT="$ &lt;$">0 if absent)</TD>
+<TD ALIGN="CENTER">-1</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Initial event firing time : time an intial activation is
+programmed on the output event port. If set to a value less than zero,
+no event is programmed.
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION005511400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: no
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / 1
+</LI>
+<LI>number/sizes of outputs: 0 / 
+</LI>
+<LI>number/sizes of activation inputs: 1 / 1
+</LI>
+<LI>number/sizes of activation outputs: 1 / 1
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>evtvardly</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION005511500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/events/EVTVARDLY.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION005511600000000000000">
+Computational function (type 4)</A>
+</font></H3>
+<BR>
+<PRE>#include "scicos_block.h"
+#include &lt;math.h&gt;
+
+void evtvardly(scicos_block *block,int flag)
+{ 
+  if (flag==3){
+    block-&gt;evout[0]=block-&gt;inptr[0][0];
+  }
+}
+</PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

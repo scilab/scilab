@@ -1,0 +1,34 @@
+// ====================================================================
+// scicos module initialisation file 
+// Copyright INRIA 2006
+// ====================================================================
+clear  scicos_pal // explicitly clear %helps scicos_pal variables
+//Load  functions librarie
+load('SCI/modules/scicos/macros/lib')
+// ====================================================================
+//add help chapter
+global LANGUAGE
+path=get_absolute_file_path('scicos.start');
+path=getshortpathname(path);
+path=strsubst(path,'\','/');
+if (LANGUAGE=='fr') then
+  path=strsubst(path,'/etc/','/help/fr');
+  add_help_chapter("Scicos",path);
+end
+
+if (LANGUAGE=='eng') then
+  path=strsubst(path,'/etc/','/help/eng');
+  add_help_chapter("Scicos",path)
+end
+clear path get_absolute_file_path add_help_chapter LANGUAGE;
+// Define Scicos data tables ===========================================
+ clear  scicos_pal // explicitly clear %helps scicos_pal variables
+ if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+      ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+      ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+      ~isdef("scicos_pal_libs") ) then
+   [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
+   %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables();
+   clear initial_scicos_tables
+end
+// Define Scicos data tables ===========================================

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Log </TITLE>
+<META NAME="description" CONTENT="Log ">
+<META NAME="keywords" CONTENT="main">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="main.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3940"
+  HREF="LOGBLK_f.htm#SECTION00547100000000000000">Library</A>
+<LI><A NAME="tex2html3941"
+  HREF="LOGBLK_f.htm#SECTION00547200000000000000">Description</A>
+<LI><A NAME="tex2html3942"
+  HREF="LOGBLK_f.htm#SECTION00547300000000000000">Dialog Box</A>
+<LI><A NAME="tex2html3943"
+  HREF="LOGBLK_f.htm#SECTION00547400000000000000">Default properties</A>
+<LI><A NAME="tex2html3944"
+  HREF="LOGBLK_f.htm#SECTION00547500000000000000">Interfacing function</A>
+<LI><A NAME="tex2html3945"
+  HREF="LOGBLK_f.htm#SECTION00547600000000000000">Computational function (type 0)</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00547000000000000000"></A><A NAME="LOGBLK_f"></A>
+<BR>
+Log 
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=LOGBLK_f.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="img88.gif"
+ ALT="\epsfig{file=LOGBLK_f.eps,width=90.00pt}">
+</DIV>
+<H3><font color="blue"><A NAME="SECTION00547100000000000000">
+Library</A>
+</font></H3>
+Non_linear
+
+<H3><font color="blue"><A NAME="SECTION00547200000000000000">
+Description</A>
+</font></H3>
+This block realizes  <!-- MATH
+ $y(i)=log(u(i))/log(a)$
+ -->
+<IMG
+ WIDTH="177" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.gif"
+ ALT="$ y(i)=log(u(i))/log(a)$"> . The input and output port
+sizes are determined by the context.  
+
+<H3><font color="blue"><A NAME="SECTION00547300000000000000">
+Dialog Box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set log block parameters</TD>
+<TD></TD>
+</TR>
+<TR><TD ALIGN="CENTER">Basis (<IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.gif"
+ ALT="$ &gt;$">1)</TD>
+<TD ALIGN="CENTER">%e</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<UL>
+<LI>Basis : A real scalar greater than 1.   
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00547400000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI>always active: no
+</LI>
+<LI>direct-feedthrough: yes
+</LI>
+<LI>zero-crossing: no
+</LI>
+<LI>mode: no
+</LI>
+<LI>number/sizes of inputs: 1 / -1
+</LI>
+<LI>number/sizes of outputs: 1 / -1
+</LI>
+<LI>number/sizes of activation inputs: 0 / 
+</LI>
+<LI>number/sizes of activation outputs: 0 / 
+</LI>
+<LI>continuous-time state: no
+</LI>
+<LI>discrete-time state: no
+</LI>
+<LI>name of computational function: <EM>logblk</EM>
+</LI>
+</UL>
+<H3><font color="blue"><A NAME="SECTION00547500000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>scilab/macros/scicos_blocks/nonlinear/LOGBLK_f.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00547600000000000000">
+Computational function (type 0)</A>
+</font></H3>
+<BR>
+<PRE>      subroutine logblk(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
+     &amp;     rpar,nrpar,ipar,nipar,u,nu,y,ny)
+c     Copyright INRIA
+
+
+c     Scicos block simulator
+c     y=log(u)/log(rpar(1))
+c
+      double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
+      integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
+      integer nipar,nu,ny
+
+c
+      if(flag.eq.1) then
+         do 15 i=1,nu
+            if(u(i).gt.0.0d0) then
+               y(i)=log(u(i))/log(rpar(1))
+            else
+               flag=-2
+               return
+            endif
+ 15      continue
+      endif
+      if(flag.eq.6) then
+         do 20 i=1,nu
+            if(u(i).gt.0.0d0) then
+               y(i)=log(u(i))/log(rpar(1))
+            endif
+ 20      continue
+      endif
+
+      end
+</PRE>
+<BR><HR>
+<ADDRESS>
+Ramine Nikoukhah
+2004-06-22
+</ADDRESS>
+</BODY>
+</HTML>

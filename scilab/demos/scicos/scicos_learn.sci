@@ -2,7 +2,7 @@ function scicos_learn(fil)
 // Copyright INRIA
 funcprot(0);
 comm='//'
-load SCI/macros/scicos/lib
+load SCI/modules/scicos/macros/scicos/lib
 
 
 
