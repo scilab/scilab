@@ -3,3 +3,14 @@
 // of a scilab session for tclsci module
 // Copyright INRIA 2006
 // ====================================================================
+// delete help chapter
+global LANGUAGE
+
+if LANGUAGE == 'fr' then
+	del_help_chapter("Interface Tcl/Tk");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Tcl/Tk Interface");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================

@@ -3,4 +3,14 @@
 // of a scilab session for graphics module
 // Copyright INRIA 2006
 // ====================================================================
+// delete help chapter
+global LANGUAGE
 
+if LANGUAGE == 'fr' then
+	del_help_chapter("Bibliothèque graphique");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Graphics Library");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================

@@ -3,23 +3,21 @@
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/tclsci/macros/lib')
+load('SCI/modules/tclsci/macros/lib');
 // ====================================================================
 //add help chapter
 global LANGUAGE
-path=get_absolute_file_path('tclsci.start');
-path=getshortpathname(path);
-path=strsubst(path,'\','/');
-if (LANGUAGE=='fr') then
-  path=strsubst(path,'/etc/','/help/fr');
-  add_help_chapter("Interface Tcl/Tk",path);
+
+path = get_absolute_file_path('tclsci.start');
+path = getshortpathname(path);
+
+if LANGUAGE == 'fr' then
+	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("Interface Tcl/Tk",path);
+elseif LANGUAGE == 'eng' then
+	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("Tcl/Tk Interface",path);
 end
 
-if (LANGUAGE=='eng') then
-  path=strsubst(path,'/etc/','/help/eng');
-  add_help_chapter("Tcl/Tk Interface",path)
-end
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
-// ====================================================================
-
 // ====================================================================

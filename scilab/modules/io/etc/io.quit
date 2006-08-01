@@ -3,4 +3,14 @@
 // of a scilab session for io module
 // Copyright INRIA 2006
 // ====================================================================
+// delete help chapter
+global LANGUAGE
 
+if LANGUAGE == 'fr' then
+	del_help_chapter("Entrées/Sorties");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Input/Output functions");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================

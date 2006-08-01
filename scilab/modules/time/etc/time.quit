@@ -3,4 +3,14 @@
 // of a scilab session for time module
 // Copyright INRIA 2006
 // ====================================================================
+// delete help chapter
+global LANGUAGE
 
+if LANGUAGE == 'fr' then
+	del_help_chapter("Heure et date");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Time and Date");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================
