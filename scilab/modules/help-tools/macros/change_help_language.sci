@@ -53,5 +53,7 @@ function change_help_language(language)
 			end
 		end
 	end
+	
+	chdir(current_directory);
 
 endfunction
