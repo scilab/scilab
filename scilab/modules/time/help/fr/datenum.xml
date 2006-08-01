@@ -5,7 +5,7 @@
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>datenum</TITLE>
 	<TYPE>Fonction Scilab</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	
 	<SHORT_DESCRIPTION name="datenum">Convertie une date en un nombre</SHORT_DESCRIPTION>
 	

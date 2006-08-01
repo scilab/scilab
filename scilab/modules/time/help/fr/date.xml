@@ -4,7 +4,7 @@
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>date</TITLE>
 	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	<SHORT_DESCRIPTION name="date"> date courante sous forme d&apos;une chaîne de caractères</SHORT_DESCRIPTION>
 	
 	<CALLING_SEQUENCE>

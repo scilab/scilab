@@ -4,7 +4,7 @@
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>weekday</TITLE>
 	<TYPE>Fonction Scilab</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	
 	<SHORT_DESCRIPTION name="weekday">Retourne le jour de la semaine</SHORT_DESCRIPTION>
 	

@@ -4,7 +4,7 @@
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>calendar</TITLE>
 	<TYPE>Fonction Scilab</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	<SHORT_DESCRIPTION name="calendar">Calendrier</SHORT_DESCRIPTION>
 	
 	<CALLING_SEQUENCE>

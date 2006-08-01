@@ -4,7 +4,7 @@
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>now</TITLE>
 	<TYPE>Fonction Scilab</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	
 	<SHORT_DESCRIPTION name="now">Retourne la date courrante sous la forme d'un vecteur de date</SHORT_DESCRIPTION>
 	

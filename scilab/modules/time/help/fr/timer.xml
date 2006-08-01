@@ -4,7 +4,7 @@
 	<LANGUAGE>fr</LANGUAGE>
 	<TITLE>timer</TITLE>
 	<TYPE>Scilab Function</TYPE>
- <DATE>$LastChangedDate$</DATE>
+	<DATE>$LastChangedDate$</DATE>
 	<SHORT_DESCRIPTION name="timer">temps CPU consommé</SHORT_DESCRIPTION>
 	
 	<CALLING_SEQUENCE>
