@@ -1,7 +1,7 @@
 function del_help_chapter(helptitle)
 	
 	// =========================================================================================
-	// Modified by Pierre MARECHAL
+	// Author : Pierre MARECHAL
 	// Scilab team
 	// Copyright INRIA
 	// Date : August 1st 2006
