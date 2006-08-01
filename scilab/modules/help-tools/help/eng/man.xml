@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>man</TITLE>
+  <TYPE>Scilab Format</TYPE>
+  <DATE>Jan 2003</DATE>
+  <SHORT_DESCRIPTION name="man"> on line help XML file description format</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    The on line help source files are written in XML.
+  </P>
+    <P>
+    Source files (with extension .xml) can be found in the
+    <VERB>&lt;SCIDIR&gt;/man/&lt;language&gt;/*</VERB> directories. The file name is usually
+    associated to a keyword (corresponding to a function name most of the cases) it describes.
+  </P>
+  </DESCRIPTION>
+  <SECTION label="A few words about XML">
+        <P>An XML file resembles to an HTML file but with both a more rigid and free syntax.
+     Free because you may build your own tags: the set of tags together with its rules
+     must be described somewhere, generally in another file (<VERB>&lt;SCIDIR&gt;/man/manrev.dtd</VERB> 
+     for scilab),
+     and rigid because, once the tags and rules are defined (which are called the Definition
+     Type Document: DTD) , you must respect its (in particular to every open tags 
+     <VERB>&lt;MY_TAG&gt;</VERB> must correspond a closed  <VERB>&lt;/MY_TAG&gt;</VERB>).</P>
+        <P> 
+     The DTD manrev.dtd is written in SGML and precises the exact syntax required by a 
+     scilab XML help page. So if you know this language you may red this file. 
+     The following annotated example (see the next section) shows you some possibilities 
+     offered by this DTD and may be enough to write simple help pages.
+     </P>
+        <P>
+     Once an XML page is written and conforms to the DTD, it may be transformed in
+     HTML to be red by your favorite browser or by the tcltk scilab browser
+     (see section browser choice in this page). The XML -&gt; HTML translation is controled
+     by a set of rules written in the (XML) file <VERB>&lt;SCIDIR&gt;/man/language/html.xsl</VERB>.
+     Those rules are currently more or less restricted to fit the tcltk scilab browser
+     features (which may display correctly only basic HTML): if you use a real HTML
+     browser and want a better appearance you have to modify this file.
+     </P>
+  </SECTION>
+  <SECTION label="How to write a simple xml scilab help page: the lazzy way">
+       <P>
+         If one want to write the xml file associated to a new scilab function
+	he or she may use the Scilab function <LINK>help_skeleton</LINK> to produce
+	the skeleton of the xml file. In most cases the user will not be
+	required to know xml syntax. 
+       </P>
+  </SECTION>
+   <SECTION label="How to write a simple xml scilab help page: an example">
+        <P>
+     Here is a simple annotated XML scilab help page which describes an hypothetic foo scilab
+     function. In the following, the XML file is displayed in a <TT>type writer font</TT>
+     and cut-out in several parts, each part being preceded by some associated explanations.
+     The entire XML file <VERB>foo.xml</VERB> is in the <VERB>&lt;SCIDIR&gt;/man/eng/utility</VERB>
+     directory and the result may be displayed by clicking on <LINK>foo</LINK>.
+     (you may found others examples in the <VERB>&lt;SCIDIR&gt;/examples/man-examples-xml</VERB> 
+     directory). <BD>Finally</BD> note that some tag pairs <VERB>&lt;TAG&gt;</VERB>, 
+     <VERB>&lt;/TAG&gt;</VERB> have been renamed here <VERB>&lt;ATAG&gt;</VERB>, 
+     <VERB>&lt;/ATAG&gt;</VERB>. This is because some scilab scripts which do some work
+     on or from the xml files don't verify if a tag is inside a <VERB>VERBATIM</VERB> entry.
+     </P>
+        <P>
+      The 3 first lines of the file are mandatory, the second precises the path to the
+      DTD file and the third, formed by the <VERB>&lt;MAN&gt;</VERB> tag, begin the 
+      hierarchical description (the file must finish with the <VERB>&lt;/MAN&gt;</VERB> tag). 
+      The 4 followings entries : <VERB>LANGUAGE</VERB>, <VERB>TITLE</VERB>, 
+      <VERB>TYPE</VERB> and  <VERB>DATE</VERB>, are also mandatory (in this order) the text 
+      corresponding to  <VERB>&lt;TYPE&gt;</VERB> being generally 'Scilab function' 
+      (most of the cases) but may be simply  'Scilab keyword' or 'Scilab data type', ..., 
+      depending of what explains the help page. 
+   </P>
+        <VERBATIM>
+<![CDATA[
+       <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+       <!DOCTYPE MAN SYSTEM "<SCIDIR>/man/manrev.dtd">
+       <MAN>
+          <LANGUAGE>eng</LANGUAGE>
+          <TITLE>foo</TITLE>
+          <TYPE>Scilab function</TYPE>
+          <DATE>Jan 2003</DATE>
+   ]]>
+        </VERBATIM>
+        <P>
+   The first of these 2 following entries (<VERB>SHORT_DESCRIPTION</VERB>)
+   is mandatory and important since the words of the short description text, are used by the
+   <LINK>apropos</LINK> command to search help pages from a keyword: the short description
+   is used to build the <VERB>whatis.html</VERB> file corresponding to your toolbox and 
+   the <VERB>apropos keyword</VERB> command looks in all the whatis files and then proposes
+   the links to every page containing the word <VERB>keyword</VERB> in its  short description
+   (in fact the actual associated tags are <VERB>&lt;SHORT_DESCRIPTION&gt;</VERB> and 
+   <VERB>&lt;/SHORT_DESCRIPTION&gt;</VERB> and not <VERB>&lt;ASHORT_DESCRIPTION&gt;</VERB>
+   and <VERB>&lt;/ASHORT_DESCRIPTION&gt;</VERB>).
+   The next entry (<VERB>CALLING_SEQUENCE</VERB>) must be used if you describe a function 
+   (but is not strictly mandatory). If your function have several calling sequences
+   use several <VERB>CALLING_SEQUENCE_ITEM</VERB> entries.
+   </P>
+        <VERBATIM>
+<![CDATA[
+          <ASHORT_DESCRIPTION name="foo">foo short description</ASHORT_DESCRIPTION>
+          <CALLING_SEQUENCE>
+              <CALLING_SEQUENCE_ITEM>[y] = foo(x)</CALLING_SEQUENCE_ITEM>
+          </CALLING_SEQUENCE>
+   ]]>
+        </VERBATIM>
+        <P>
+   The following entry (<VERB>PARAM</VERB>) is not strictly mandatory but is
+   the good one to describe each parameters (input and output) in case of a function.
+   </P>
+        <VERBATIM>
+<![CDATA[
+          <PARAM>
+             <PARAM_INDENT>
+                <PARAM_ITEM>
+                   <PARAM_NAME>x</PARAM_NAME>
+                   <PARAM_DESCRIPTION>
+                      <SP>: what may be x</SP>
+                   </PARAM_DESCRIPTION> 
+                </PARAM_ITEM>
+                <PARAM_ITEM>
+                   <PARAM_NAME>y</PARAM_NAME>
+                   <PARAM_DESCRIPTION>
+                      <SP>: what may be y</SP>
+                   </PARAM_DESCRIPTION> 
+                </PARAM_ITEM>
+             </PARAM_INDENT>
+          </PARAM>
+   ]]>
+        </VERBATIM>
+        <P>
+   The <VERB>DESCRIPTION</VERB> entry is perhaps the most significant one (but not strictly 
+   mandatory) and may be more sophisticated than in this example (for instance you may have    
+   <VERB>DESCRIPTION_ITEM</VERB> sub-entries). Here you see how to write several paragraphes
+   (each one enclosed between the <VERB>&lt;P&gt;</VERB> and <VERB>&lt;/P&gt;</VERB> tags),
+   how to emphasis a variable or a function name (by enclosing it between the 
+   <VERB>&lt;VERB&gt;</VERB> and <VERB>&lt;/VERB&gt;</VERB> tags), how to
+   emphasis a part of text (<VERB>&lt;EM&gt;</VERB> or <VERB>&lt;BD&gt;</VERB>
+   and <VERB>&lt;TT&gt;</VERB> to put it in a type writer font)), and finally, how to put a link onto 
+   another help page  (in fact the actual associated tags are <VERB>&lt;LINK&gt;</VERB> and 
+   <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB>
+   and <VERB>&lt;/ALINK&gt;</VERB>).
+   </P>
+        <VERBATIM>
+<![CDATA[
+         <DESCRIPTION>
+             <P>
+                A first paragraph which explains what computes the foo function.
+                If you want to emphasis a parameter name then you use the following
+                tag <VERB>x</VERB>, if you want to emphasis a part of text
+                <EM>inclose it inside theses tags</EM> and use theses ones
+                <BD>to have a bold font</BD> and finally <TT>for a type writer style</TT>.
+             </P>
+             <P>
+                A second paragraph... Here is an example of a link to another page :
+                <ALINK>man</ALINK>.
+             </P>
+         </DESCRIPTION>
+   ]]>
+        </VERBATIM>
+        <P>
+  Here is how to write your own entry, for instance to describe some outside remarks
+  and/or notes about your wonderful function.  
+  </P>
+        <VERBATIM>
+<![CDATA[
+         <SECTION label='Notes'>
+             <P>
+                Here is a list of notes :
+             </P>
+             <ITEM label='first'><SP>blablabla...</SP></ITEM>
+             <ITEM label='second'><SP>toto is the french foo...</SP></ITEM>
+         </SECTION>
+   ]]>
+        </VERBATIM>
+        <P>
+  An important entry is the <VERB>EXAMPLE</VERB> one which is reserved to show scilab
+  uses of your function (begin with simple ones !). Note that you must close this entry
+  with  <VERB>]]&gt;&lt;/EXAMPLE&gt;</VERB> and not like here with <VERB>}}&gt;&lt;/EXAMPLE&gt;</VERB>
+  (once again this is a bad trick to avoid some interpretation problems).</P>
+        <VERBATIM>
+<![CDATA[
+         <EXAMPLE><![CDATA[
+             deff("y=foo(x)","y=x"); // define the foo function as the identity function
+             foo("toto")
+      }}></EXAMPLE>
+   ]]>
+        </VERBATIM>
+        <P>
+  This last part explains how to put the links onto others related help pages 
+  (as said before the good tags are in fact <VERB>&lt;LINK&gt;</VERB> and 
+  <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB> and 
+  <VERB>&lt;/ALINK&gt;</VERB> ) and finally how to reveal your name if you want 
+  (use one <VERB>AUTHOR_ITEM</VERB> entry by author). Perhaps it is a good idea 
+  to put an email adress if you look for bug reports !</P>
+        <VERBATIM>
+<![CDATA[
+         <SEE_ALSO>
+           <SEE_ALSO_ITEM> <ALINK>man</ALINK> </SEE_ALSO_ITEM>
+           <SEE_ALSO_ITEM> <ALINK>apropos</ALINK> </SEE_ALSO_ITEM>
+         </SEE_ALSO>
+
+         <AUTHOR>
+           <AUTHOR_ITEM>B. P.</AUTHOR_ITEM>
+         </AUTHOR>
+       </MAN>
+   ]]>
+        </VERBATIM>
+  </SECTION>
+  <SECTION label="How to create an help chapter">
+    <P> Create a directory and write down a set of xml files build as described
+    above. Then start Scilab and execute <VERB>xmltohtml(dir)</VERB>, where
+      <VERB>dir</VERB> is a character string giving the path of the directory
+      (see <LINK>xmltohtml</LINK> for more details) .</P>
+  </SECTION>
+
+
+  <SECTION label="How to make Scilab know a new help chapter">
+    <P>This can be done by the function <LINK>add_help_chapter</LINK>.</P>
+  </SECTION>
+
+  
+  <EXAMPLE><![CDATA[
+    function y=foo(a,b,c),y=a+2*b+c,endfunction
+    path=help_skeleton('foo',TMPDIR)
+    scipad(path)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>apropos</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>help</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>help_skeleton</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

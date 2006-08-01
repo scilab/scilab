@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>foo</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>Jan 2003</DATE>
+  <SHORT_DESCRIPTION name="foo">foo short description</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y] = foo(x)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: what may be x</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: what may be y</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      A first paragraph which explains what computes the foo function.
+      If you want to emphasis a parameter name then you use the following
+      tag <VERB>x</VERB>, if you want to emphasis a part of text
+      <EM>inclose it inside theses tags</EM> and use theses ones
+      <BD>to have a bold font</BD> and finally <TT>for a type writer style</TT>.
+    </P>
+    <P>
+      A second paragraph... Here is an example of a link to another page :
+      <LINK>man</LINK>.
+    </P>
+    <ITEMIZE label="list of notes">
+      <ITEM label="first">
+        <SP>simple paragraph</SP>
+      </ITEM>
+      <ITEM label="second">
+        <SP>toto is the french foo... </SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff("y=foo(x)","y=x"); // define the foo function as the identity function
+foo("toto")
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>man</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>apropos</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>B. P.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
