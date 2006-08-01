@@ -157,9 +157,9 @@ function ilib_link_gen_Make_win32(names,files,libs,Makename,libname,ldflags, ...
   if cc<>"" then 
     mfprintf(fd,"CC="+cc+ "\n");
   end
-  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
+  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules\"" -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
-  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"""+...
+  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules\"" -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   " -Dmexfunction=mex$* "+ fflags +"\n"); 
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\config\\Makedll.incl \n");
@@ -186,8 +186,8 @@ function ilib_link_gen_Make_lcc(names,files,libs,Makename,libname,ldflags,cflags
   end
   mfprintf(fd,"CC=lcc\n");
   mfprintf(fd,"LINKER=lcclnk\n");
-  //mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/routines"" -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
-  mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/routines"" -I""$(SCIDIR)/routines/f2c"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 
+  //mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/modules/core/includes"" -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
+  mfprintf(fd,"CFLAGS=-I""$(SCIDIR)/modules/core/includes"" -I""$(SCIDIR)/libs/f2c"" -Dmexfunction_=mex$*_ -DmexFunction=mex_$* -DWIN32 -DSTRICT -DFORDLL -D__STDC__ "+ cflags +" \n"); 
   mfprintf(fd,"LINKER_FLAGS=-dll -nounderscores\n");
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
   mfprintf(fd,"O=.obj\n");

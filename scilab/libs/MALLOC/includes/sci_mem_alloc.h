@@ -3,6 +3,8 @@
 #ifndef __SCI_MEM_ALLOC__
 #define __SCI_MEM_ALLOC__
 
+#undef Top
+
 #if _MSC_VER
 #include <stdlib.h>
 #endif
@@ -57,5 +59,7 @@
 	#define REALLOC(x,y) realloc((char *) x,(unsigned) y)
 	#define CALLOC(x,y) calloc( x,(unsigned) y)
 #endif	
+
+#define Top C2F(vstk).top
 
 #endif /* __SCI_MEM_ALLOC__ */

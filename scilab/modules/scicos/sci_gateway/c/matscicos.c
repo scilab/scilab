@@ -1,0 +1,90 @@
+#include "matscicos.h"
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2005 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/
+#if _MSC_VER
+#include <Windows.h>
+#include "win_mem_alloc.h"
+extern char *GetExceptionString(DWORD ExceptionCode);
+extern BOOL ExistScicos(void);
+#endif
+/*-----------------------------------------------------------------------------------*/
+/* interface for the previous function Table */ 
+/*-----------------------------------------------------------------------------------*/ 
+extern int inttimescicos _PARAMS((char *fname,unsigned long l));
+extern int intduplicate _PARAMS((char *fname,unsigned long l));
+extern int intdiffobjs _PARAMS((char *fname,unsigned long l));
+extern int intxproperty _PARAMS((char *fname,unsigned long l));
+extern int intphasesim _PARAMS((char *fname,unsigned long l));
+extern int intsetxproperty _PARAMS((char *fname,unsigned long l));
+extern int intcpass2 _PARAMS((char *fname,unsigned long l));
+extern int intsetblockerror _PARAMS((char *fname,unsigned long l));
+extern int inttree2 _PARAMS((char *fname,unsigned long l));
+extern int inttree3 _PARAMS((char *fname,unsigned long l));
+extern int inttree4 _PARAMS((char *fname,unsigned long l));
+extern int intscicosimc _PARAMS((char *fname, unsigned long l));
+extern int intgetscicosvarsc _PARAMS((char *fname, unsigned long l));
+extern int intcurblkc _PARAMS((char *fname, unsigned long l));
+extern int intbuildouttb _PARAMS((char *fname));
+/*-----------------------------------------------------------------------------------*/ 
+static intcscicosTable Tab[]={
+  {inttimescicos,"scicos_time"},
+  {intduplicate,"duplicate"},
+  {intdiffobjs,"diffobjs"},
+  {intxproperty,"pointer_xproperty"},
+  {intphasesim,"phase_simulation"},
+  {intsetxproperty,"set_xproperty"},
+  {intcpass2,"scicos_cpass2"},
+  {intsetblockerror,"set_blockerror"},
+  {inttree2,"ctree2"},
+  {inttree3,"ctree3"},
+  {inttree4,"ctree4"},
+  {intscicosimc,"scicosim"},
+  {intgetscicosvarsc,"getscicosvars"},
+  {intcurblkc,"curblockc"},
+  {intbuildouttb,"buildouttb"},
+};
+static int SCICOS_ON=1;
+static int NotFirstTimeinScicosGateway=0;
+/*-----------------------------------------------------------------------------------*/ 
+int C2F(intcscicos)()
+{  
+	Rhs = Max(0, Rhs);
+	if (!NotFirstTimeinScicosGateway)
+	{
+		#if _MSC_VER
+		SCICOS_ON=ExistScicos();
+		#endif
+		NotFirstTimeinScicosGateway++;
+	}
+	if (SCICOS_ON)
+	{
+		#if _MSC_VER
+			#ifndef _DEBUG
+				_try
+				{
+					(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+				}
+				_except (EXCEPTION_EXECUTE_HANDLER)
+				{
+					char *ExceptionString=GetExceptionString(GetExceptionCode());
+					sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+					if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+				}
+			#else
+				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			#endif
+		#else
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		#endif
+		C2F(putlhsvar)();
+	}
+	else
+	{
+		Scierror(999,"Scicos isn't installed\n");
+	}
+	
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 

@@ -5,7 +5,7 @@ if tt==[] then
   textmp=[
 	  '#include <math.h>';
 	  '#include <stdlib.h>';
-	  '#include <scicos/scicos_block.h>';
+	  '#include <scicos/includes/scicos_block.h>';
 	  'void '+funam+'(scicos_block *block,int flag)';
 	 ];
   ttext=[];

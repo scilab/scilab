@@ -2213,8 +2213,8 @@ function Makename=gen_make_unix(name,files,libs,Makename)
      "LIBRARY =  lib"+name
      "OTHERLIBS = "+libs
      "include $(SCIDIR)/Makefile.incl";
-     "CFLAGS = $(CC_OPTIONS) -I$(SCIDIR)/routines/"
-     "FFLAGS = $(FC_OPTIONS) -I$(SCIDIR)/routines/" 
+     "CFLAGS = $(CC_OPTIONS) -I$(SCIDIR)/modules/core/includes"
+     "FFLAGS = $(FC_OPTIONS) -I$(SCIDIR)/modules/core/includes" 
      "include $(SCIDIR)/config/Makeso.incl"
      "standalone: $(OBJSSTAN) $(OTHERLIBS) "
       ascii(9)+"f77 $(FFLAGS) -o $@  $(OBJSSTAN) $(OTHERLIBS) $(SCILIBS)"];
@@ -2243,12 +2243,12 @@ WSCI=strsubst(SCI,'/','\')
      "CC=cl"
      "LINKER=link"
      "LINKER_FLAGS=/NOLOGO /machine:ix86"
-     "INCLUDES=-I"""+WSCI+"\routines\f2c""" 
+     "INCLUDES=-I"""+WSCI+"\libs\f2c""" 
      "CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES)" 
      "CC_OPTIONS = $(CC_COMMON) -Od  -GB -Gd -W3"
      "CC_LDFLAGS = "
-     "CFLAGS = $(CC_OPTIONS) -DFORDLL -I"""+WSCI+"\routines"""
-     "FFLAGS = $(FC_OPTIONS) -DFORDLL -I"""+WSCI+"\routines"""
+     "CFLAGS = $(CC_OPTIONS) -DFORDLL -I"""+WSCI+"\modules\core\includes"""
+     "FFLAGS = $(FC_OPTIONS) -DFORDLL -I"""+WSCI+"\modules\core\includes"""
      ""
      "all :: $(LIBRARY).dll"
      " "
@@ -2723,9 +2723,9 @@ function Code=make_decl()
 	'#include <stdio.h>';
 	'#include <memory.h>';
 	'#include <string.h>';
-	'#include '"'+SCI+'/routines/machine.h'"';
+	'#include '"'+SCI+'/modules/core/includes/machine.h'"';
 	'#include '"'+SCI+'/routines/os_specific/link.h'"';
-	'#include '"'+SCI+'/routines/scicos/scicos.h'"';	
+	'#include '"'+SCI+'/modules/scicos/includes/scicos.h'"';	
 	' ';
         cformatline('void '+rdnom+'main0(scicos_block *,double *, double *, int );',70);
         cformatline('void '+rdnom+'main1(scicos_block *,double *, double * );',70);
@@ -3098,9 +3098,9 @@ function Code=make_standalone()
 //Les fonction zdoit, cdoit, doit sont pas utilisée pour le moment
 x=cpr.state.x;
 nX=size(x,'*');
-txt1=mgetl(SCI+'/routines/machine.h');
+txt1=mgetl(SCI+'/modules/core/includes/machine.h');
 mputl(txt1,rpat+'/machine.h');
-txt2=mgetl(SCI+'/routines/scicos/scicos_block.h');
+txt2=mgetl(SCI+'/modules/scicos/includes/scicos_block.h');
 mputl(txt2,rpat+'/scicos_block.h');
 
 modptr=cpr.sim.modptr;

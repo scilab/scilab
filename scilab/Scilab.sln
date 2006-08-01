@@ -273,12 +273,12 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "randlib_f", "routines\randl
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos", "routines\scicos\scicos.vcproj", "{B7A0273E-8E71-4663-8497-0895945ED54D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos", "modules\scicos\src\c\scicos.vcproj", "{B7A0273E-8E71-4663-8497-0895945ED54D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scicos_f", "routines\scicos\scicos_f\scicos_f.vfproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scicos_f", "modules\scicos\src\fortran\scicos_f.vfproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection

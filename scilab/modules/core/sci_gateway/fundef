@@ -132,7 +132,7 @@
 
 #define  IN_intcos  45  
 #define  IN_intcscicos 46
-#include "../../../../routines/scicos/scicos.fundef"
+#include "../../scicos/sci_gateway/scicos.fundef"
 
 #define  IN_intwintools 47
 #include "../../../../routines/wintools/wintools.fundef"
