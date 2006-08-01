@@ -257,14 +257,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\sci_get.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\sci_set.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\matdes.c"
 				>
 			</File>
@@ -351,6 +343,18 @@
 			</File>
 			<File
 				RelativePath=".\src\c\RecSave.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_get.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_readxbm.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_set.c"
 				>
 			</File>
 			<File
@@ -451,14 +455,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_get.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_set.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\math_graphics.h"
 				>
 			</File>
@@ -488,6 +484,18 @@
 			</File>
 			<File
 				RelativePath=".\includes\Rec.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_get.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_readxbm.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_set.h"
 				>
 			</File>
 			<File

@@ -94,3 +94,4 @@
 {"tohome",                   IN_matdes,  92,  2 },
 {"UImenu",                   IN_matdes,  93,  2 },
 {"showalluimenushandles",    IN_matdes,  94,  2 },
+{"readxbm2",				 IN_matdes,  95,  2 },				
