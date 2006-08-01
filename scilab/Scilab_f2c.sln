@@ -317,7 +317,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "control_f2c", "routines\con
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calelm_f2c", "routines\calelm\calelm_f\calelm_f2c.vcproj", "{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlas_f2c_DLL", "routines\blas\blas_f\atlas_DLL_f2c.vcproj", "{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atlas_f2c_DLL", "libs\blas\blas_f\atlas_DLL_f2c.vcproj", "{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1} = {6638C3BC-D85D-414D-8AC3-9BD514CA23E1}
 	EndProjectSection
