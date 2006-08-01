@@ -34,21 +34,21 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	#endif
 
 	/* to be sure that it's windows format */
-	/* c:\progra~1\scilab-3.1\tcl\tcl8.4 */
+	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
 		fprintf(stderr,"\n%s%s%s.\n",TCL_ERROR35,TCL_ERROR37,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		wsprintf (env, "TCL_LIBRARY=%s\\modules\\tclsci\\src\\tcltk\\tcl%d.%d",CopyOfDefaultPath,major,minor);
+		wsprintf (env, "TCL_LIBRARY=%s\\modules\\tclsci\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
 
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 	else
 	{
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		wsprintf (env, "TCL_LIBRARY=%s\\modules\\tclsci\\src\\tcltk\\tcl%d.%d",CopyOfDefaultPath,major,minor);
+		wsprintf (env, "TCL_LIBRARY=%s\\modules\\tclsci\\tcl\\tcl%d.%d",CopyOfDefaultPath,major,minor);
 		
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
@@ -84,14 +84,14 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	#endif
 
 	/* to be sure that it's windows format */
-	/* c:\progra~1\scilab-3.1\tcl\tk8.4 */
+	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
 		fprintf(stderr,"\n%s%s%s.\n",TCL_ERROR35,TCL_ERROR38,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		wsprintf (env, "TK_LIBRARY=%s\\modules\\tclsci\\src\\tcltk\\tk%d.%d",CopyOfDefaultPath,major,minor);
+		wsprintf (env, "TK_LIBRARY=%s\\modules\\tclsci\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
 
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		
@@ -99,7 +99,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	else
 	{
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
-		wsprintf (env, "TK_LIBRARY=%s\\modules\\tclsci\\src\\tcltk\\tk%d.%d",CopyOfDefaultPath,major,minor);
+		wsprintf (env, "TK_LIBRARY=%s\\modules\\tclsci\\tcl\\tk%d.%d",CopyOfDefaultPath,major,minor);
 
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
