@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../../../../../modules/help-tools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>example_1_function_3</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>01-08-2006</DATE>
+  <SHORT_DESCRIPTION name="example_1_function_3">example_1_function_3 description</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>a = example_1_function_3(b,c)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>
+            "b" parameter description
+         </SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>c</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>
+            "c" parameter description
+         </SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>
+            "a" parameter description
+         </SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+        <P>
+          example_1_function_3 full description
+        </P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE>
+    <![CDATA[
+// Comments
+b = 2;
+c = 3;
+a = example_1_function_3(b,c);
+    ]]>
+  </EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>example_1_function_1</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>example_1_function_2</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>
+      Scilab Team
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
