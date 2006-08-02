@@ -9,11 +9,11 @@
 <xsl:template match="MAN">
  <html>
  <head>
- <title><xsl:for-each select="./SHORT_DESCRIPTION"><xsl:value-of select="@name"/></xsl:for-each>
- </title>
+ <title><xsl:for-each select="./SHORT_DESCRIPTION"><xsl:value-of select="@name"/></xsl:for-each></title>
  </head>
  <body bgcolor="#FFFFFF">
  <center><xsl:value-of select="./TYPE"/></center>
+ <div align="right">Last update : <xsl:value-of select="./DATE"/></div>
  <xsl:for-each select="./SHORT_DESCRIPTION">
    <p><b><xsl:value-of select="@name"/></b> - <xsl:apply-templates/></p>
  </xsl:for-each>

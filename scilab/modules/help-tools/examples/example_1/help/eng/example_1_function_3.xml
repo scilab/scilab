@@ -5,7 +5,7 @@
   <TITLE>example_1_function_3</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>01-08-2006</DATE>
-  <SHORT_DESCRIPTION name="example_1_function_3">example_1_function_3 description</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="example_1_function_3">"example_1_function_3" description</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>a = example_1_function_3(b,c)</CALLING_SEQUENCE_ITEM>

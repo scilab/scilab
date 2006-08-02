@@ -1,75 +1,170 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xmltohtml</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>25-Aug-2003</DATE>
-  <SHORT_DESCRIPTION name="xmltohtml">converts xml Scilab help files
-  to html</SHORT_DESCRIPTION>
-  <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>xmltohtml(dirs [,titles [,xsl [,step]]])</CALLING_SEQUENCE_ITEM>
-  </CALLING_SEQUENCE>
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>dirs</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of strings: a set of directory paths  for which html
-       manuals are to be generated or <VERB>[] </VERB></SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>titles</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: vector of strings: titles associated to directory paths or []</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>xsl</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, name of xsl file used for translation</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>step</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: string, should be  &quot;whatis&quot;, &quot;index&quot;, &quot;html&quot;,&quot;contents&quot;, or &quot;all&quot;</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-  <DESCRIPTION>
-    <P>
-converts xml Scilab help files contained in a set of directories  into
-html files.</P>
-    <P>
-In a first step (&quot;whatis&quot;) a whatis.htm file is generated in each directory using
-information given in the &quot;SHORT_DESCRIPTION&quot; tag of each xml file and
-the given title.</P>
-    <P>
-In a second step (&quot;index&quot;) the tags LINK are analysed, and xmltohtml tries to
-resolve  the references using the already known help files defined in
-the <VERB>%helps</VERB> variable.</P>
-    <P>
-The third step (&quot;html&quot;) it translates the xml file to html using external program
-xsltproc and the given  xsl file which should be located in
-<VERB>SCIDIR/man/LANGUAGE/</VERB>
-The generated html files are located together with the
-corresponding xml ones.</P>
-    <P>
-the last step (&quot;contents&quot;) produces a contents.xml file</P>
-    <P>
-if dirs is  [] then already defined help directories
-(see <VERB>%helps(:,1)</VERB>)  are assumed and titles are searched in <VERB>%helps(:,2)</VERB>. So
-<VERB>xmltohtml([])</VERB> updates currents html files</P>
-  </DESCRIPTION>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>help</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>help_skeleton</LINK>
-    </SEE_ALSO_ITEM>
-  </SEE_ALSO>
+	
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>xmltohtml</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>$LastChangedDate: 2006-07-27 10:52:33 +0200 (jeu., 27 juil. 2006) $</DATE>
+	<SHORT_DESCRIPTION name="xmltohtml">converts xml Scilab help files to html</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>xmltohtml(dirs [,titles [,xsl [,step [,dir_language [default_language]]]]])</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<PARAM>
+		<PARAM_INDENT>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>dirs</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: vector of strings: a set of directory paths for which html manuals are to be generated or <VERB>[] </VERB></SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>titles</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: vector of strings: titles associated to directory paths or []</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>xsl</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: string, name of xsl file used for translation</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>step</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: string, should be  &quot;whatis&quot;, &quot;index&quot;, &quot;html&quot;,&quot;contents&quot;, or &quot;all&quot;</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>dir_language</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: vector of strings: languages associated to directory paths or []</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+			<PARAM_ITEM>
+				<PARAM_NAME>default_language</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: vector of strings: default languages associated to directory paths or []</SP>
+				</PARAM_DESCRIPTION>
+			</PARAM_ITEM>
+			
+		</PARAM_INDENT>
+	</PARAM>
+	
+	<DESCRIPTION>
+		<P>
+			converts xml Scilab help files contained in a set of directories  into
+			html files.
+		</P>
+		
+		<P>
+			In a first step (&quot;whatis&quot;) a whatis.htm file is generated in each directory using
+			information given in the &quot;SHORT_DESCRIPTION&quot; tag of each xml file and
+			the given title.
+		</P>
+		
+		<P>
+			In a second step (&quot;index&quot;) the tags LINK are analysed, and xmltohtml tries to
+			resolve  the references using the already known help files defined in
+			the <VERB>%helps</VERB> variable.
+		</P>
+		
+		<P>
+			The third step (&quot;html&quot;) it translates the xml file to html using external program
+			xsltproc and the given  xsl file which should be located in
+			<VERB>SCIDIR/man/LANGUAGE/</VERB>
+			The generated html files are located together with the
+			corresponding xml ones.
+		</P>
+		
+		<P>
+			the last step (&quot;contents&quot;) produces a contents.xml file
+		</P>
+		
+		<P>
+			if dirs is  [] then already defined help directories
+			(see <VERB>%helps(:,1)</VERB>)  are assumed and titles are searched in <VERB>%helps(:,2)</VERB>. So
+			<VERB>xmltohtml([])</VERB> updates currents html files
+		</P>
+		
+	</DESCRIPTION>
+	
+	  <EXAMPLE>
+<![CDATA[
+
+// example_1/
+// `-- help
+//     |-- eng
+//     |   |-- example_1_function_1.xml
+//     |   |-- example_1_function_2.xml
+//     |   `-- example_1_function_3.xml
+//     `-- fr
+//         |-- example_1_function_1.xml
+//         `-- example_1_function_3.xml
+
+my_module_path = pathconvert(SCI+'/modules/help-tools/examples/example_1',%f,%f)
+
+  // Build the french help
+  // ===================================================================================
+my_french_help_dir    =  my_module_path+'/help/fr';
+my_french_xsl_file    =  pathconvert(SCI+'/modules/help-tools/help_fr.xsl',%f,%f)
+my_french_help_title  =  'Example 1 [fr]';
+xmltohtml(my_french_help_dir,my_french_help_title,my_french_xsl_file,'all','fr','eng');
+
+
+  // Build the english help
+  // ===================================================================================
+my_english_help_dir   =  my_module_path+'/help/eng';
+my_english_xsl_file   =  pathconvert(SCI+'/modules/help-tools/help_eng.xsl',%f,%f)
+my_english_help_title =  'Example 1 [eng]';
+xmltohtml(my_english_help_dir,my_english_help_title,my_english_xsl_file,'all');
+
+
+  // Add french and english help chapters
+  // ===================================================================================
+add_help_chapter(my_french_help_title,my_french_help_dir);
+add_help_chapter(my_english_help_title,my_english_help_dir);
+
+
+  // See the result in the help browser
+  // ===================================================================================
+help();
+
+
+  // Del french and english help chapters
+  // ===================================================================================
+del_help_chapter(my_french_help_title);
+del_help_chapter(my_english_help_title);]]>
+
+	</EXAMPLE>
+	
+	<SEE_ALSO>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>help</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>help_skeleton</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>add_help_chapter</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>del_help_chapter</LINK>
+		</SEE_ALSO_ITEM>
+		
+	</SEE_ALSO>
+
 </MAN>
