@@ -38,7 +38,7 @@ int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
 
 		if(m < 0)
 		{
-			Scierror(999,"Incorrect xbm file\n");
+			Scierror(999,"Incorrect gif file\n");
 			return 0;
 		}
 
@@ -79,7 +79,7 @@ int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
 	}
 	else
 	{
-		Scierror(999,"requires a xbm filename.\n");
+		Scierror(999,"requires a gif filename.\n");
 		return 0;
 	}
 
