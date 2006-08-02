@@ -354,6 +354,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_readgif.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_readxbm.c"
 				>
 			</File>
@@ -492,6 +496,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_get.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_readgif.h"
 				>
 			</File>
 			<File

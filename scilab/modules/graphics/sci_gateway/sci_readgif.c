@@ -2,13 +2,13 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "sci_readxbm.h"
+#include "sci_readgif.h"
 #include "MALLOC.h"
 #include "../src/gd/gd.h"
-extern void C2F(readxbmimg)(char * string,gdImagePtr *imgptr,int *m,int *n,int *ncol);
+extern void C2F(readgifimg)(char * string,gdImagePtr *imgptr,int *m,int *n,int *ncol);
 extern void C2F(deallocategifimg)(gdImagePtr *im);
 /*-----------------------------------------------------------------------------------*/ 
-int sci_readxbm _PARAMS((char *fname,unsigned long fname_len))
+int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
 {
 	integer m1,n1,l1;
 
@@ -17,7 +17,7 @@ int sci_readxbm _PARAMS((char *fname,unsigned long fname_len))
 
 	if (GetType(1) == sci_strings)
 	{
-		char *FilenameXBM=NULL;
+		char *FilenameGIF=NULL;
 		gdImagePtr imgptr;
 		int m,n,ncol;
 		int ml1,nl1;
@@ -27,9 +27,9 @@ int sci_readxbm _PARAMS((char *fname,unsigned long fname_len))
 		int* ArrayTmpL2=NULL;
 		
 		GetRhsVar(1,"c",&m1,&n1,&l1);
-		FilenameXBM=cstk(l1);
+		FilenameGIF=cstk(l1);
 
-		C2F(readxbmimg)(FilenameXBM,&imgptr,&m,&n,&ncol);
+		C2F(readgifimg)(FilenameGIF,&imgptr,&m,&n,&ncol);
 		ml1=m;
 		nl1=n;
 

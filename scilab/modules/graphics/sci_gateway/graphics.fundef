@@ -95,3 +95,4 @@
 {"UImenu",                   IN_matdes,  93,  2 },
 {"showalluimenushandles",    IN_matdes,  94,  2 },
 {"readxbm",					 IN_matdes,  95,  2 },				
+{"readgif",					 IN_matdes,  96,  2 },				

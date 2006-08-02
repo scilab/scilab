@@ -107,6 +107,7 @@ extern int intshowalluimenushandles       _PARAMS(( char * fname, unsigned long 
 extern int sciRelocateHandle              _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sciSwapHandles                 _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sci_readxbm	                  _PARAMS(( char * fname, unsigned long fname_len ) ) ;
+extern int sci_readgif	                  _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
 	{scichamp,"champ"},	
@@ -198,14 +199,15 @@ static MatdesTable Tab[]={
 	{scinewaxes,"newaxes"},
     {sciRelocateHandle,"relocate_handle"},
     {sciSwapHandles,"swap_handles"},
-        /* NG end */
+     /* NG end */
 	{scixsort,"gsort"},
 	{int_gtkhelp,"help_gtk"},
 	{ClearScreenConsole,"clc"},
 	{HomeFunction,"tohome"},
 	{intUImenu,"UImenu"},
 	{intshowalluimenushandles,"showalluimenushandles"},
-	{sci_readxbm,"readxbm"}
+	{sci_readxbm,"readxbm"},
+	{sci_readgif,"readgif"}
 };
 
 /*-----------------------------------------------------------------------------------*/ 
