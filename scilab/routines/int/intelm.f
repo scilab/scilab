@@ -60,20 +60,15 @@ c     %i_max
 c     %i_min
          call i_mini
       elseif(fin.eq.21) then
-c         call readgif
-      elseif(fin.eq.22) then
-         call readxbm
-      elseif(fin.eq.23) then
          call i_p
-      elseif(fin.eq.24) then
+      elseif(fin.eq.22) then
          call i_convert
-      elseif(fin.eq.25) then
+      elseif(fin.eq.23) then
          call i_matrix
-      elseif(fin.eq.26) then
+      elseif(fin.eq.24) then
          call i_prod
-      elseif(fin.eq.27) then
+      elseif(fin.eq.25) then
          call i_cumprod
-
       endif
       return
       end

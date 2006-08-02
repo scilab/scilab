@@ -205,7 +205,7 @@ static MatdesTable Tab[]={
 	{HomeFunction,"tohome"},
 	{intUImenu,"UImenu"},
 	{intshowalluimenushandles,"showalluimenushandles"},
-	{sci_readxbm,"readxbm2"}
+	{sci_readxbm,"readxbm"}
 };
 
 /*-----------------------------------------------------------------------------------*/ 

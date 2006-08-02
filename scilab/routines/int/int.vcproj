@@ -337,10 +337,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gifimg.c"
-				>
-			</File>
-			<File
 				RelativePath=".\i_nextj.c"
 				>
 			</File>

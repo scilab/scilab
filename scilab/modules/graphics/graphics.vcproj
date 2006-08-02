@@ -233,6 +233,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\gifimg.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Gray.c"
 				>
 			</File>
