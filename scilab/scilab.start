@@ -70,7 +70,6 @@ if with_texmacs() then load('SCI/macros/texmacs/lib'),end
 clear with_texmacs
 load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
-load('SCI/macros/pvm/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
 SCI=getenv('SCI');
@@ -115,6 +114,19 @@ global %helps
 %helps=initial_help_chapters(LANGUAGE)
 clear initial_help_chapters //%helps
 
+
+
+
+
+ exec SCI/modules/graphics/etc/graphics.start;
+ exec SCI/modules/Javasci/etc/javasci.start;
+ exec SCI/modules/metanet/etc/metanet.start;
+ exec SCI/modules/sound/etc/sound.start;
+ exec SCI/modules/tclsci/etc/tclsci.start;
+ exec SCI/modules/time/etc/time.start;
+ exec SCI/modules/scicos/etc/scicos.start;
+ exec SCI/modules/pvm/etc/pvm.start;
+
 // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
 global demolist
@@ -158,16 +170,6 @@ else
   LCC=%f
 end
 clear LCC 
-
- exec SCI/modules/graphics/etc/graphics.start;
- exec SCI/modules/Javasci/etc/javasci.start;
- exec SCI/modules/metanet/etc/metanet.start;
- exec SCI/modules/sound/etc/sound.start;
- exec SCI/modules/tclsci/etc/tclsci.start;
- exec SCI/modules/time/etc/time.start;
- exec SCI/modules/scicos/etc/scicos.start;
-
-
 
 // Protect variable previously defined  ================================
 predef('all') 

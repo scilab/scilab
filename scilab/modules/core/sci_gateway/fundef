@@ -121,7 +121,7 @@
 
 #ifdef WITH_PVM
 #define  IN_pvm  42
-#include "../../../../routines/pvm/pvm.fundef"
+#include "../../pvm/sci_gateway/pvm.fundef"
 #endif
 
 #define  IN_intelm  43

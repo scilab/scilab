@@ -39,8 +39,8 @@ function %helps=initial_help_chapters(language)
 				"sparse";];
 	
 	
-	if %scicos then dirs=[dirs;"scicos"];,end;
-	if %pvm then 	dirs=[dirs;"pvm"];,end;
+
+
 	
 	
 	sep="/";
@@ -74,8 +74,6 @@ function %helps=initial_help_chapters(language)
 			"Sparse solvers";];
 			
 	
-			if %scicos then helpstmp=[helpstmp;"Scicos: Bloc diagram editor and simulator"];,end;
-			if %pvm then helpstmp=[helpstmp;"PVM parallel toolbox"];,end;
 			
 			%helps=[%helps,helpstmp];
 			clear helpstmp;
@@ -105,9 +103,7 @@ function %helps=initial_help_chapters(language)
 			"Aide à la conversion Matlab vers Scilab";
 			"Solveurs creux";
 			];
-			
-			if %scicos then helpstmp=[helpstmp;"Scicos : éditeur et simulateur de blocs diagrammes"];,end;
-			if %pvm then helpstmp=[helpstmp;"Calcul parallèle avec PVM"];,end;
+		
 			
 			%helps=[%helps,helpstmp];
 			clear helpstmp;

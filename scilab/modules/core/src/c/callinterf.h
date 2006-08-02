@@ -60,8 +60,8 @@ extern void    /* 40  */ C2F(gw_tclsci)();
 extern void    /* 41  */ C2F(lstelmi)();
 
 #ifdef WITH_PVM
-extern void    /* 42  */ C2F(intpvm)();
-#define PVMINTERF C2F(intpvm)
+extern void    /* 42  */ C2F(gw_pvm)();
+#define PVMINTERF C2F(gw_pvm)
 #else 
 #define PVMINTERF C2F(NoPvm)
 #endif

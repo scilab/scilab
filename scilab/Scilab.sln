@@ -253,12 +253,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "poly_f", "routines\poly\pol
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm", "routines\pvm\pvm.vcproj", "{63352867-3983-48E3-94FE-DD8F0D6E921F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
-	EndProjectSection
-EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "pvm_f", "routines\pvm\pvm_f\pvm_f.vfproj", "{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm", "modules\pvm\pvm.vcproj", "{63352867-3983-48E3-94FE-DD8F0D6E921F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -327,8 +322,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xdr", "modules\graphics\src
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm3-make", "pvm3\pvm3-make\pvm3-make.vcproj", "{7C349E84-E25E-496F-93EC-14C0F42FDE3B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CScilex", "routines\wsci\CScilex\CScilex.vcproj", "{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -636,8 +629,6 @@ Global
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release|Win32.Build.0 = Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release|Win32.ActiveCfg = Release|Win32
-		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release|Win32.ActiveCfg = Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug|Win32.ActiveCfg = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug|Win32.Build.0 = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release|Win32.ActiveCfg = Release|Win32
@@ -690,8 +681,6 @@ Global
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug|Win32.Build.0 = Debug|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release|Win32.ActiveCfg = Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release|Win32.Build.0 = Release|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release|Win32.ActiveCfg = Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug|Win32.ActiveCfg = Debug|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug|Win32.Build.0 = Debug|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release|Win32.ActiveCfg = Release|Win32

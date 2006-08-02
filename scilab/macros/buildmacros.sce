@@ -21,9 +21,9 @@ CurrentDirectory=pwd();
  "sparse",
  "gui",
  "m2sci",
- "pvm"];
+ ];
  
- 
+ Directories=[Directories;"SCI/modules/pvm/macros"];
  Directories=[Directories;"SCI/modules/graphics/macros"];
  Directories=[Directories;"SCI/modules/metanet/macros"];
  Directories=[Directories;"SCI/modules/sound/macros"];
