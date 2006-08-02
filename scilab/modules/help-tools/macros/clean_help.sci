@@ -1,4 +1,4 @@
-function ok = clean_help(dirs)
+function clean_help(dirs)
 	
 	// =========================================================================================
 	// Author : Pierre MARECHAL
@@ -72,30 +72,33 @@ function ok = clean_help(dirs)
 	// Nettoyage des index et contents
 	// -----------------------------------------------------------------------------------------
 	
-	select LANGUAGE
-	
-	case 'eng' then
-		if fileinfo(SCI+pathconvert("/modules/help-tools/index_eng.htm",%f,%f)) <> [] then
-			mprintf(".");
-			mdelete(SCI+pathconvert("/modules/help-tools/index_eng.htm",%f,%f));
-		end
+	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
-		if fileinfo(SCI+pathconvert("/modules/help-tools/contents_eng.htm",%f,%f)) <> [] then
-			mprintf(".");
-			mdelete(SCI+pathconvert("/modules/help-tools/contents_eng.htm",%f,%f));
-		end
+		select LANGUAGE
 		
-	case 'fr' then
-		if fileinfo(SCI+pathconvert("/modules/help-tools/index_fr.htm",%f,%f)) <> [] then
-			mprintf(".");
-			mdelete(SCI+pathconvert("/modules/help-tools/index_fr.htm",%f,%f));
+		case 'eng' then
+			if fileinfo(SCI+pathconvert("/modules/help-tools/index_eng.htm",%f,%f)) <> [] then
+				mprintf(".");
+				mdelete(SCI+pathconvert("/modules/help-tools/index_eng.htm",%f,%f));
+			end
+			
+			if fileinfo(SCI+pathconvert("/modules/help-tools/contents_eng.htm",%f,%f)) <> [] then
+				mprintf(".");
+				mdelete(SCI+pathconvert("/modules/help-tools/contents_eng.htm",%f,%f));
+			end
+			
+		case 'fr' then
+			if fileinfo(SCI+pathconvert("/modules/help-tools/index_fr.htm",%f,%f)) <> [] then
+				mprintf(".");
+				mdelete(SCI+pathconvert("/modules/help-tools/index_fr.htm",%f,%f));
+			end
+			
+			if fileinfo(SCI+pathconvert("/modules/help-tools/contents_fr.htm",%f,%f)) <> [] then
+				mprintf(".");
+				mdelete(SCI+pathconvert("/modules/help-tools/contents_fr.htm",%f,%f));
+			end
+			
 		end
-		
-		if fileinfo(SCI+pathconvert("/modules/help-tools/contents_fr.htm",%f,%f)) <> [] then
-			mprintf(".");
-			mdelete(SCI+pathconvert("/modules/help-tools/contents_fr.htm",%f,%f));
-		end
-		
 	end
 	
 	mprintf("\n");
