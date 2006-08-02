@@ -1,9 +1,9 @@
 /*-----------------------------------------------------------------------------------*/
-/* INRIA 2005 */
+/* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __GW_CSCICOS__
-#define __GW_CSCICOS__
+#ifndef __GW_SCICOS__
+#define __GW_SCICOS__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -14,12 +14,12 @@
 #include "stack-c.h"
 
 
-typedef int (*scicosc_interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*scicos_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
-  scicosc_interf f;    /** function **/
+  scicos_interf f;    /** function **/
   char *name;      /** its name **/
-} intcscicosTable;
+} intscicosTable;
 
-#endif /*  __GW_CSCICOS__ */
+#endif /*  __GW_SCICOS__ */
 /*-----------------------------------------------------------------------------------*/
