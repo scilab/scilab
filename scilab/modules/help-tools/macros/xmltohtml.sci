@@ -75,7 +75,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		// Patch because scicos is not written in xml
 		//----------------------------------------------------------------------------------
 		scs = grep(dirs_to_build,'scicos');
-		if size(scs,'*') == 1 then dirs_to_build(scs)=[]; end
+		if size(scs,'*') == 1 then dirs_to_build(scs,:)=[]; end
 		// End of patch --------------------------------------------------------------------
 		
 		dirs = dirs_to_build(:,1);
@@ -792,7 +792,7 @@ function gener_contents(dirs1)
 		"</html>"
 		];
 	
-	mputl(full_whatis,pathconvert(SCI+"/modules/contents_"+LANGUAGE+".htm",%f,%t));
+	mputl(full_whatis,pathconvert(SCI+"/modules/help-tools/contents_"+LANGUAGE+".htm",%f,%t));
   
 endfunction
 
