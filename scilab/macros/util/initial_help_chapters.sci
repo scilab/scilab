@@ -35,7 +35,6 @@ function %helps=initial_help_chapters(language)
 				"statistics";
 				"dcd";
 				"identification";
-				"mtlb";
 				"sparse";];
 	
 	
@@ -70,7 +69,6 @@ function %helps=initial_help_chapters(language)
 			"Statistic basics";
 			"Cumulative Distribution Functions; Inverses, grand";
 			"Identification";
-			"Matlab to Scilab conversion tips";
 			"Sparse solvers";];
 			
 	
@@ -100,7 +98,6 @@ function %helps=initial_help_chapters(language)
 			"Statistiques";
 			"Fonctions de distributions statistiques";
 			"Identification";
-			"Aide à la conversion Matlab vers Scilab";
 			"Solveurs creux";
 			];
 		

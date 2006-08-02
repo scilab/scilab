@@ -1,0 +1,16 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for m2sci module
+// Copyright INRIA 2006
+// ====================================================================
+// delete help chapter
+global LANGUAGE
+
+if LANGUAGE == 'fr' then
+	del_help_chapter("Aide à la conversion Matlab vers Scilab");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Matlab to Scilab Conversion Tips");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================

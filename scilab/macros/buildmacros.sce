@@ -10,7 +10,6 @@ CurrentDirectory=pwd();
  "calpol",
  "elem",
  "int",
- "mtlb",
  "optim",
  "robust",
  "sci2for",
@@ -20,9 +19,11 @@ CurrentDirectory=pwd();
  "texmacs",
  "sparse",
  "gui",
- "m2sci",
- ];
+  ];
  
+ Directories=[Directories;"SCI/modules/m2sci/macros"];
+ Directories=[Directories;"SCI/modules/m2sci/macros/m2sci"];
+ Directories=[Directories;"SCI/modules/m2sci/macros/mtlb"];
  Directories=[Directories;"SCI/modules/pvm/macros"];
  Directories=[Directories;"SCI/modules/graphics/macros"];
  Directories=[Directories;"SCI/modules/metanet/macros"];

@@ -51,7 +51,7 @@ clear verbose
 // use MSDOS syntax?
 MSDOS = (getos() == "Windows")
 
-load('SCI/macros/mtlb/lib')
+
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/arma/lib')
@@ -117,7 +117,7 @@ clear initial_help_chapters //%helps
 
 
 
-
+ exec SCI/modules/m2sci/etc/m2sci.start;
  exec SCI/modules/graphics/etc/graphics.start;
  exec SCI/modules/Javasci/etc/javasci.start;
  exec SCI/modules/metanet/etc/metanet.start;
