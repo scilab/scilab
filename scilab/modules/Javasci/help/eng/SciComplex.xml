@@ -41,7 +41,7 @@
     <P><VERB>public void toString()</VERB> : convert complex to a string</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[ // See SCI/examples/Callsci/CallsciJava directory]]></EXAMPLE>
+  <EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

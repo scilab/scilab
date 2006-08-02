@@ -45,7 +45,7 @@
     <P><VERB>public double GetImaginaryPartElement(int indr, int indc)</VERB> : Get a specific element of scilab object</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[ // See SCI/examples/Callsci/CallsciJava directory]]></EXAMPLE>
+<EXAMPLE><![CDATA[ // See SCI/modules/Javasci/examples directory]]></EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

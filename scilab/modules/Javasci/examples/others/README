@@ -1,10 +1,10 @@
 Execute scilab :
---> cd SCI/examples/callsci/callsciJava/others
+--> cd SCI/modules/Javasci/examples/others
 --> exec('builder.sce');
 
 exit from scilab
 
-make (from /examples/callsci/callsciJava/others)
+make (from SCI/modules/Javasci/examples/others)
 
 export SCIDIR=<your current scilab path>
 export SCI=<your current scilab path>
@@ -17,8 +17,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCIDIR/bin:.
 export CLASSPATH=$CLASSPATH:$SCIDIR/bin:.
 
 Could be recquired :
-export TK_LIBRARY=$SCIDIR/tcl/tk8.4
-export TCL_LIBRARY=$SCIDIR/tcl/tcl8.4
+export TK_LIBRARY=$SCIDIR/modules/tclsci/tcl/tk8.4
+export TCL_LIBRARY=$SCIDIR/modules/tclsci/tcl/tcl8.4
 
 Under solaris platforms:
 xrdb $SCIDIR/X11_defaults/Xscilab  (usually, xrdb can be found in /usr/openwin/bin/ directory)
