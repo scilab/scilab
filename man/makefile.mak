@@ -1,6 +1,6 @@
-all:: check sound javasci tclsci metanet time graphics pvm eng fr 
+all:: check sound javasci tclsci metanet time graphics pvm m2sci eng fr 
 
-build:: sound javasci tclsci metanet time graphics pvm eng fr 
+build:: sound javasci tclsci metanet time graphics pvm m2sci eng fr 
 
 check:
   @Makesubdirs.bat
@@ -50,7 +50,12 @@ graphics :
 pvm :	
 	@cd ..\modules\pvm\help
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
-	@cd ..\..\..\man	
+	@cd ..\..\..\man
+	
+m2sci :	
+	@cd ..\modules\m2sci\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man			
 
 distclean::	
 clean::
@@ -63,7 +68,6 @@ clean::
 	-del eng\gui\*.htm /s
 	-del eng\identification\*.htm /s
 	-del eng\linear\*.htm /s
-	-del eng\mtlb\*.htm /s
 	-del eng\nonlinear\*.htm /s
 	-del eng\polynomials\*.htm /s
 	-del eng\programming\*.htm /s
@@ -81,11 +85,9 @@ clean::
 	-del fr\elementary\*.htm /s
 	-del fr\fileio\*.htm /s
 	-del fr\functions\*.htm /s
-	-del fr\graphics\*.htm /s
 	-del fr\gui\*.htm /s
 	-del fr\identification\*.htm /s
 	-del fr\linear\*.htm /s
-	-del fr\mtlb\*.htm /s
 	-del fr\nonlinear\*.htm /s
 	-del fr\polynomials\*.htm /s
 	-del fr\programming\*.htm /s
