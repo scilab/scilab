@@ -70,13 +70,13 @@ extern void    /* 43  */ C2F(intelm)();
 extern void    /* 44  */ C2F(intlapack)();
 
 #if WITHOUT_SCICOS
-	#define SCICOSINTERF1 C2F(Nointscicos)
-	#define SCICOSINTERF2 C2F(Nointcscicos)
+	#define SCICOSINTERF1 C2F(Nogw_scicos)
+	#define SCICOSINTERF2 C2F(Nogw_cscicos)
 #else
-	extern void    /* 45  */ C2F(intscicos)();
-	#define SCICOSINTERF1 C2F(intscicos)
-	extern void    /* 46  */ C2F(intcscicos)();
-	#define SCICOSINTERF2 C2F(intcscicos)
+	extern void    /* 45  */ C2F(gw_scicos)();
+	#define SCICOSINTERF1 C2F(gw_scicos)
+	extern void    /* 46  */ C2F(gw_cscicos)();
+	#define SCICOSINTERF2 C2F(gw_cscicos)
 #endif
 
 extern void    /* 47  */ C2F(intwintools)();

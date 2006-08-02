@@ -44,13 +44,13 @@ void C2F(NoPvm)(void)
   return;
 }
 
-void C2F(Nointscicos)(void)
+void C2F(Nogw_scicos)(void)
 {
 	sciprint("scicos interfaces not loaded \n");
 	C2F(error)(&c_local);
 	return;
 }
-void C2F(Nointcscicos)(void)
+void C2F(Nogw_cscicos)(void)
 {
 	sciprint("scicos interfaces not loaded \n");
 	C2F(error)(&c_local);

@@ -1,4 +1,4 @@
-#include "matscicos.h"
+#include "gw_cscicos.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2005 */
 /* Allan CORNET */
@@ -48,7 +48,7 @@ static intcscicosTable Tab[]={
 static int SCICOS_ON=1;
 static int NotFirstTimeinScicosGateway=0;
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(intcscicos)()
+int C2F(gw_cscicos)()
 {  
 	Rhs = Max(0, Rhs);
 	if (!NotFirstTimeinScicosGateway)

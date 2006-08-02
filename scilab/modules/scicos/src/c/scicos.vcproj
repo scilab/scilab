@@ -285,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\gw_cscicos.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hystheresis.c"
 				>
 			</File>
@@ -297,8 +301,26 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intcscicos.c"
+				RelativePath="..\..\sci_gateway\c\intcscicos.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(InputName)1.obj"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(IntDir)\$(InputName)1.obj"
+						XMLDocumentationFileName="$(IntDir)\$(InputName)1.xdc"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\integral_func.c"
@@ -310,10 +332,6 @@
 			</File>
 			<File
 				RelativePath=".\logicalop.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\matscicos.c"
 				>
 			</File>
 			<File
@@ -506,15 +524,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\gw_cscicos.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\import.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\intcscicos.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\matscicos.h"
 				>
 			</File>
 			<File
