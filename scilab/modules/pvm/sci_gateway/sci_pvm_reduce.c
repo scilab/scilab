@@ -1,0 +1,39 @@
+/*-----------------------------------------------------------------------------------*/
+/* PVM functions interfaces */
+/* Copyright (c) 1997 by Inria Lorraine.  All Rights Reserved */
+/* Jean-Philippe Chancelier July 2002  */
+/* Modified by Allan Cornet  INRIA 2006 */
+/*-----------------------------------------------------------------------------------*/ 
+#include "sci_pvm_reduce.h"
+/*-----------------------------------------------------------------------------------*/ 
+extern void pvm_error_check(char *fname,int err);
+/*-----------------------------------------------------------------------------------*/ 
+/******************************************
+ * SCILAB function : pvm_reduce 
+ ******************************************/
+int intspvm_reduce(char *fname)
+{
+  int m1,n1,l1,mn1,m2,n2,l2,m3,n3,l3,un=1,m4,n4,l4,mn4,res;
+  int m5,n5,l5;
+  CheckRhs(5,5);
+  CheckLhs(1,2);
+  /*  checking variable func */
+  GetRhsVar(1,"c",&m1,&n1,&l1);mn1=m1*n1;
+  /*  checking variable data */
+  GetRhsVar(2,"d",&m2,&n2,&l2);
+  /*  checking variable msgtag */
+  GetRhsVar(3,"i",&m3,&n3,&l3);
+  CheckScalar(3,m3,n3);
+  /*  checking variable group */
+  GetRhsVar(4,"c",&m4,&n4,&l4);mn4=m4*n4;
+  /*  checking variable rootginst */
+  GetRhsVar(5,"i",&m5,&n5,&l5);
+  CheckScalar(5,m5,n5);
+  CreateVar(6,"i",&un,&un,&res);
+  C2F(scipvmreduce)(cstk(l1),&mn1,stk(l2),&m2,&n2,istk(l3),cstk(l4),&mn4,istk(l5),istk(res));
+  LhsVar(1)= 2;
+  LhsVar(2)= 6;
+  pvm_error_check(fname,*istk(res));
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
