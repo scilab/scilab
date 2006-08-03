@@ -36,8 +36,8 @@ global TMPDIR
     // order to prevent flushing of events by Scilab to Tcl during the
     // launch of Scipad
 //    TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
-//                  "/tcl/scipadsources/scipad.tcl""""}"")} ""seq"" ")
-    TCL_EvalStr("source """+SCI+"/tcl/scipadsources/scipad.tcl""","scipad")
+//                  "/modules/scipad/tcl/scipad.tcl""""}"")} ""seq"" ")
+    TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
     nfiles=argn(2)
     if nfiles>0 then
       for i=1:nfiles

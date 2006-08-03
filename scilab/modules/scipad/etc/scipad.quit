@@ -1,0 +1,28 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for scipad module
+// Copyright INRIA 2006
+// ====================================================================
+// delete help chapter
+global LANGUAGE
+
+if LANGUAGE == 'fr' then
+	del_help_chapter("Scipad");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Scipad");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================
+ if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"-nogui") then
+	 if with_tk() then
+  	 TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+  	 if TCL_GetVar("isscipadinterp")<>'0' then 
+    	 TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
+    	 if TCL_GetVar("isscipadopen")<>'0' then
+      	 TCL_EvalStr('scipad eval {catch {exitapp} }')
+    	 end
+  	 end
+	 end	
+ end
+// ====================================================================

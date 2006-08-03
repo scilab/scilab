@@ -215,7 +215,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 		strcpy(oldpiece,"\\r\\n");
 		strcpy(newpiece,"\r\n");
 		StringWithoutSomeChars=Replace(StringError,oldpiece,newpiece);
-		FREE(StringError);
+//		FREE(StringError); // Temporaire
 		StringError=StringWithoutSomeChars;
 	}
 

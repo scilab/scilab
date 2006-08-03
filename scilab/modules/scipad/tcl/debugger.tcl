@@ -42,7 +42,7 @@
 #
 #######################################################################
 
-set sourced [file join "$env(SCIPATH)" "tcl" "scipadsources"]
+set sourced [file join "$env(SCIPATH)" "modules" "scipad" "tcl"]
 source [file join $sourced db_states.tcl]
 source [file join $sourced db_bptsmanagement.tcl]
 source [file join $sourced db_actbptmanagement.tcl]

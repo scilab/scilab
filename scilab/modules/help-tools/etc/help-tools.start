@@ -13,7 +13,7 @@ path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Gestion de l'aide en ligne",path);
+	add_help_chapter("Gestion de l''aide en ligne",path);
 elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
 	add_help_chapter("Online help management",path);

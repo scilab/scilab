@@ -12,7 +12,7 @@ if { [info exists pad] } {
 
     set pad .scipad
 
-    set sourcedir [file join "$env(SCIPATH)" "tcl" "scipadsources"]
+    set sourcedir [file join "$env(SCIPATH)" "modules" "scipad" "tcl"]
 
     # load first some debug settings
     source [file join $sourcedir scipaddebug1.tcl]

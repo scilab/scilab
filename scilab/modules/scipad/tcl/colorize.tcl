@@ -42,7 +42,7 @@
 
 proc load_words {} {
     global words chset env
-    set ownpath "$env(SCIPATH)/tcl/scipadsources"
+    set ownpath "$env(SCIPATH)/modules/scipad/tcl"
 # empty initialization of the keyword arrays, for the 
 #  detached invocation of scipad (and for early-bird colorization requests)    
     set chset(scilab.command) {}

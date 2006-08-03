@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+ <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+ <MAN>
+   <LANGUAGE>eng</LANGUAGE>
+   <TITLE>edit_error</TITLE>
+   <TYPE>Scilab Function  </TYPE>
+   <DATE>16-Nov-2004</DATE>
+   <SHORT_DESCRIPTION name="edit_error"> opens in SciPad the source of the last recorded error</SHORT_DESCRIPTION>
+
+   <CALLING_SEQUENCE>
+   <CALLING_SEQUENCE_ITEM>answ = edit_error(clearerror)</CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE>
+
+   <PARAM>
+   <PARAM_INDENT>
+
+     <PARAM_ITEM>
+     <PARAM_NAME>clearerror</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+        <SP>
+        : boolean - if true the error condition is cleared, if false it is kept (as in
+          <LINK>lasterror</LINK>)
+        </SP>
+     </PARAM_DESCRIPTION>
+     </PARAM_ITEM>
+
+     <PARAM_ITEM>
+     <PARAM_NAME>answ</PARAM_NAME>
+     <PARAM_DESCRIPTION>
+        <SP>
+        : a string stating which source file is open (or why no file was open)
+        </SP>
+     </PARAM_DESCRIPTION>
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+   </PARAM>
+  
+   <DESCRIPTION>
+      <P>
+       This function opens in SciPad the source of the function which caused the last recorded
+       error, and highlights the offending line.
+      </P>
+      <P>
+       This function works only for functions which are defined in libraries, i.e.
+       not for internal functions, nor with functions defined online, nor loaded with
+       individual <LINK>getf</LINK> or <LINK>getd</LINK>. This is since Scilab presently
+       retains only the path to libraries and not to individual function sources.
+      </P>
+      <P>
+       Correspondance between the function name foo and function filename foo.sci
+       is tacitly assumed.
+      </P>
+   </DESCRIPTION>
+
+   <EXAMPLE><![CDATA[
+    acosh abc
+    edit_error
+   ]]></EXAMPLE>
+
+   <SEE_ALSO>
+     <SEE_ALSO_ITEM> <LINK>scipad</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>lasterror</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>errclear</LINK> </SEE_ALSO_ITEM>
+   </SEE_ALSO>
+
+
+   <AUTHORS>
+     <AUTHORS_ITEM>Enrico Segre</AUTHORS_ITEM>
+   </AUTHORS>
+ </MAN>

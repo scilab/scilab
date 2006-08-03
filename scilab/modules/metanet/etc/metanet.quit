@@ -14,3 +14,7 @@ end
 
 clear del_help_chapter LANGUAGE;
 // ====================================================================
+ if exists('ge_check_before_quit') then
+   ge_check_before_quit()
+ end
+// ====================================================================

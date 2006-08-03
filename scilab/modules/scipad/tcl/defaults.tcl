@@ -113,7 +113,7 @@ catch {source $preffilename}
 package require msgcat
 namespace import -force msgcat::*
 ::msgcat::mclocale "$lang"
-::msgcat::mcload [file join "$env(SCIPATH)" "tcl" "scipadsources" "msg_files"]
+::msgcat::mcload [file join "$env(SCIPATH)" "modules" "scipad" "tcl" "msg_files"]
 
 # drag and drop capability using TkDnD
 if { [catch {package require tkdnd}] == 0 } {
