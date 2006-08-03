@@ -27,7 +27,7 @@
 #include "../../../../routines/interf/new.fundef"  
 
 #define  IN_matopt  11  
-#include "../../../../routines/optim/optim.fundef"
+#include "../../optimization/sci_gateway/optim.fundef"
 
 #define  IN_matode  12
 #include "../../../../routines/interf/ode.fundef"  
