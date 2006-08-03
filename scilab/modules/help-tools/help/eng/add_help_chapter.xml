@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>add_help_chapter</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>18-Sep-2003</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="add_help_chapter"> Add an entry in the helps list</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>add_help_chapter(title,path)</CALLING_SEQUENCE_ITEM>

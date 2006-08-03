@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>man</TITLE>
   <TYPE>Scilab Format</TYPE>
-  <DATE>Jan 2003</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="man"> on line help XML file description format</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
@@ -79,7 +79,7 @@
           <LANGUAGE>eng</LANGUAGE>
           <TITLE>foo</TITLE>
           <TYPE>Scilab function</TYPE>
-          <DATE>Jan 2003</DATE>
+          <DATE>$LastChangedDate$</DATE>
    ]]>
         </VERBATIM>
         <P>

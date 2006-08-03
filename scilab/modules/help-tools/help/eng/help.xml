@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>help</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>January 2002</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="help"> on-line help command</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>help(key)</CALLING_SEQUENCE_ITEM>

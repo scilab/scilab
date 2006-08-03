@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>%helps  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="%helps"> variable contenant les noms des répertoires des chapitres d&apos;aide  </SHORT_DESCRIPTION>
   <DESCRIPTION>
   <P>

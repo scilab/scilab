@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>help_skeleton</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>21-May-2003</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="help_skeleton">build the skeleton of the
   xml help file associated to a Scilab function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
