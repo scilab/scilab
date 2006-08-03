@@ -331,19 +331,19 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CScilex", "routines\wsci\CS
 		{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E} = {6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forwin", "macros\Proj_Forwin\Forwin.vcproj", "{500443BC-F67D-442B-8713-8E2A03BB3C8D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forwin", "tools\forwin\Forwin.vcproj", "{500443BC-F67D-442B-8713-8E2A03BB3C8D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengatsce", "macros\Proj_Gengatsce\Gengatsce.vcproj", "{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengatsce", "tools\gengatsce\Gengatsce.vcproj", "{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensomex", "macros\Proj_Gensomex\Gensomex.vcproj", "{495C9E8A-439A-426E-AA2C-0B22653875F9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensomex", "tools\gensomex\Gensomex.vcproj", "{495C9E8A-439A-426E-AA2C-0B22653875F9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensosce", "macros\Proj_Gensosce\Gensosce.vcproj", "{B50F726C-8536-4DAC-8CEF-D97706ACACCC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gensosce", "tools\gensosce\Gensosce.vcproj", "{B50F726C-8536-4DAC-8CEF-D97706ACACCC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lib", "macros\Proj_Lib\Lib.vcproj", "{798D5602-CF39-4B2F-B780-0EF282E7CEA0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lib", "tools\lib\Lib.vcproj", "{798D5602-CF39-4B2F-B780-0EF282E7CEA0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Name", "macros\Proj_Name\Name.vcproj", "{6F1E57AB-01D9-488D-9E7A-A5065848D693}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Name", "tools\name\Name.vcproj", "{6F1E57AB-01D9-488D-9E7A-A5065848D693}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomake", "macros\Proj_Tomake\Tomake.vcproj", "{B5945471-7E91-43B1-8728-37E37ADB7EE2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tomake", "tools\tomake\Tomake.vcproj", "{B5945471-7E91-43B1-8728-37E37ADB7EE2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "routines\console\console\console.vcproj", "{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}"
 EndProject
