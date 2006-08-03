@@ -36,6 +36,16 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 			xmlfile = "../"+default_language+"/"+path;
 			needToBeCopied = %T;
 		end
+	
+	elseif rhs == 1 then
+		
+		select LANGUAGE
+		
+		case 'eng' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
+		case 'fr' then
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
+		end
 	end
 	
 	//proceed if xml file is newest than htm file
@@ -91,6 +101,8 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		if needToBeCopied then
 			unix_s(RM+path);
 		end
+	else
+		ok = %T;
 	end
 	
 endfunction

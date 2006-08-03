@@ -1,4 +1,4 @@
-function flag=find_links(filein,fileout)
+function flag = find_links(filein,fileout)
 	
 	// return %t if a LINK were found
 	// Adapt the dtd link
@@ -13,14 +13,17 @@ function flag=find_links(filein,fileout)
 	
 	txt=mgetl(filein);
 	
-	
 	//------------------------------------------------------------------------------------------
 	// Gestion de la DTD
 	//------------------------------------------------------------------------------------------
 	
 	dtd_line = grep(convstr(txt,'u'),"<!DOCTYPE MAN SYSTEM");
-	txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/helptools/help.dtd"">";
 	
+	if MSDOS then
+		txt(dtd_line) = "<!DOCTYPE MAN SYSTEM ""file://"+SCI+"\modules\helptools\help.dtd"">";
+	else
+		txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/helptools/help.dtd"">";
+	end
 	
 	//------------------------------------------------------------------------------------------
 	// Gestion de la date (<DATE>$LastChangedDate: 2006-07-27 10:51:33 +0200 (jeu, 27 jui 2006) $</DATE>)
@@ -34,7 +37,6 @@ function flag=find_links(filein,fileout)
 		end_date = start_date + 10;
 		txt(date_line) = "    <DATE>"+part(txt(date_line),start_date:end_date)+"</DATE>";
 	end
-	
 	
 	//------------------------------------------------------------------------------------------
 	// Gestion des liens
