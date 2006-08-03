@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>leastsq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="leastsq"> 
+    Solves non-linear least squares problems  
+  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[fopt,[xopt,[grdopt]]]=leastsq(fun, x0)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[fopt,[xopt,[grdopt]]]=leastsq(fun, dfun, x0)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[fopt,[xopt,[grdopt]]]=leastsq(fun, cstr, x0)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[fopt,[xopt,[grdopt]]]=leastsq(fun, dfun, cstr, x0)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[fopt,[xopt,[grdopt]]]=leastsq(fun, dfun, cstr, x0, algo)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[fopt,[xopt,[grdopt]]]=leastsq([imp], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fopt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: value of the function <EM>f(x)=||fun(x)||^2</EM> at <VERB>xopt</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xopt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: best value of <VERB>x</VERB> found to minimize <EM>||fun(x)||^2</EM></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>grdopt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: gradient of <EM>f</EM> at <VERB>xopt</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  a scilab function or a list defining a function from <EM>R^n</EM> to <EM>R^m</EM> 
+                 (see more details in DESCRIPTION).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector (initial guess of the variable to be minimized).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dfun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  a scilab function or a string defining the Jacobian matrix of <VERB>fun</VERB>
+                 (see more details in DESCRIPTION).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cstr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: bound constraints on <VERB>x</VERB>. They must be introduced by the string keyword <TT>'b'</TT>
+                followed by the lower bound <TT>binf</TT> then by the upper bound <TT>bsup</TT> (so 
+                <VERB>cstr</VERB> appears as <VERB>'b',binf,bsup</VERB> in the calling sequence). Those bounds
+                are real vectors with same dimension than <VERB>x0</VERB> (-%inf and +%inf may be used for
+                dimension which are unrestricted).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>algo</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string with possible values: <TT>'qn'</TT> or <TT>'gc'</TT> or <TT>'nd'</TT>. 
+                These strings stand for quasi-Newton (default),  conjugate gradient or non-differentiable 
+                respectively. Note that <TT>'nd'</TT> does not accept bounds on <VERB>x</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>imp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar argument used to set the trace mode. <VERB>imp=0</VERB> nothing (except errors) 
+                is reported, <VERB>imp=1</VERB> initial and final reports, <VERB>imp=2</VERB> adds a 
+                report per iteration, <VERB>imp&gt;2</VERB> add reports on linear search. Warning, most
+                of these reports are written on the Scilab standard output.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>df0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar. Guessed decreasing of <EM>||fun||^2</EM> at first iteration. 
+                (<TT>df0=1</TT> is the default value).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mem</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, number of variables used to approximate the Hessean (second derivatives)
+                of <EM>f</EM> when <VERB>algo</VERB><TT>='qn'</TT>. Default value is around 6.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>stop</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  sequence of optional parameters controlling the  convergence of the algorithm. They 
+                 are introduced by the keyword <TT>'ar'</TT>, the sequence being of the form
+                 <VERB>'ar',nap, [iter [,epsg   [,epsf [,epsx]]]]</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>nap</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: maximum number of calls to <VERB>fun</VERB> allowed.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>iter</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: maximum number of iterations allowed.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>epsg</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: threshold on gradient norm.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>epsf</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: threshold controlling decreasing of <VERB>f</VERB></SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>epsx</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: threshold controlling variation of <VERB>x</VERB>. This vector (possibly matrix) 
+                      of same size as <VERB>x0</VERB> can be used to scale <VERB>x</VERB>.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+
+  <DESCRIPTION>
+    <P>
+     <EM>fun</EM> being a function from <EM>R^n</EM> to <EM>R^m</EM> this routine tries to minimize w.r.t.
+     <EM>x</EM>, the function:
+   </P>
+        <VERBATIM><![CDATA[
+                           _m_     
+                      2    \      2
+     f(x) = ||fun(x)||  =  /   fun (x)
+                           ---    i
+                           i=1     
+          ]]></VERBATIM>
+    <SP> which is the sum of the squares of the components of <EM>fun</EM>. Bound constraints may be
+     imposed on <VERB>x</VERB>.</SP>
+  </DESCRIPTION>   
+
+  <SECTION label="How to provide fun and dfun">
+    <P><VERB>fun</VERB> can be either a usual scilab function (case 1) or a fortran or a C routine linked
+            to scilab (case 2). For most problems the definition of <EM>fun</EM> will need 
+            supplementary parameters and this can be done in both cases.</P>
+         <ITEMIZE>
+          <ITEM label="case 1:">
+            <SP> when <VERB>fun</VERB> is a Scilab function, its calling sequence must be:
+          <TT>y=fun(x [,opt_par1,opt_par2,...])</TT>. When <VERB>fun</VERB> needs optional parameters it
+           must appear as <TT>list(fun,opt_par1,opt_par2,...)</TT> in the calling sequence of
+           <VERB>leastsq</VERB>.</SP>
+          </ITEM>
+          <ITEM label="case 2:">
+            <SP> when <VERB>fun</VERB> is defined by a Fortran or C routine it must appear as
+                <TT>list(fun_name,m [,opt_par1,opt_par2,...])</TT> in the calling
+                sequence of <VERB>leastsq</VERB>, <TT>fun_name</TT> (a string) being the name 
+                of the routine which must be linked to Scilab (see <LINK>link</LINK>). The generic 
+                calling sequences for this routine are:</SP> 
+            <VERBATIM><![CDATA[
+In Fortran:    subroutine fun(m, n, x, params, y)
+               integer m,n
+               double precision x(n), params(*), y(m)
+
+In C:          void fun(int *m, int *n, double *x, double *params, double *y)
+         ]]></VERBATIM>
+            <SP>where <VERB>n</VERB> is the dimension of vector <VERB>x</VERB>, <VERB>m</VERB> the dimension of 
+            vector <VERB>y</VERB> (which must store the evaluation of <EM>fun</EM> 
+            at <EM>x</EM>) and <VERB>params</VERB> is a vector which contains the optional parameters 
+            <EM>opt_par1, opt_par2, ...</EM> (each parameter may be a vector, for instance if <EM>opt_par1</EM> 
+            has 3 components, the description of <EM>opt_par2</EM> begin from <TT>params(4)</TT> (fortran case),
+            and from  <TT>params[3]</TT> (C case), etc... Note that even if <VERB>fun</VERB> doesn't need
+            supplementary parameters you must anyway write the fortran code with a <TT>params</TT> argument
+            (which is then unused in the subroutine core).</SP>
+          </ITEM>
+         </ITEMIZE>
+
+        <P>In many cases it is adviced to provide the Jacobian matrix <VERB>dfun</VERB> (<EM>dfun(i,j)=dfi/dxj</EM>) 
+           to the optimizer (which uses a finite difference approximation otherwise) and as for <VERB>fun</VERB> it may 
+           be given as a usual scilab function or as a  fortran or a C routine linked to scilab.</P> 
+        <ITEMIZE>
+          <ITEM label="case 1:">
+            <SP> when <VERB>dfun</VERB> is a scilab function, its calling sequence must be:
+          <TT>y=dfun(x [, optional parameters])</TT> (notes that even if <VERB>dfun</VERB> needs optional 
+              parameters it must appear simply as <TT>dfun</TT> in the calling sequence of
+           <VERB>leastsq</VERB>).</SP>
+          </ITEM>
+          <ITEM label="case 2:">
+            <SP> when <VERB>dfun</VERB> is defined by a Fortran or C routine it must appear as
+                <TT>dfun_name</TT> (a string) in the calling sequence of <VERB>leastsq</VERB> 
+                (<TT>dfun_name</TT> being the name of the routine which must be linked to Scilab). 
+                The calling sequences for this routine are nearly the same than for <VERB>fun</VERB>:</SP> 
+            <VERBATIM><![CDATA[
+In Fortran:    subroutine dfun(m, n, x, params, y)
+               integer m,n
+               double precision x(n), params(*), y(m,n)
+
+In C:          void fun(int *m, int *n, double *x, double *params, double *y)
+         ]]></VERBATIM>
+            <SP>in the C case <EM>dfun(i,j)=dfi/dxj</EM> must be stored in <TT>y[m*(j-1)+i-1]</TT>.</SP>
+          </ITEM>
+        </ITEMIZE>
+
+  </SECTION>
+
+  <SECTION label="Remarks">
+    <P> Like <LINK>datafit</LINK>, <VERB>leastsq</VERB> is a front end onto the <LINK>optim</LINK>
+       function. If you want to try the Levenberg-Marquard method instead, use <LINK>lsqrsolve</LINK>.
+    </P>
+    <P> A least squares problem may be solved directly with the <LINK>optim</LINK> function ;
+        in this case the function <LINK>NDcost</LINK> may be useful to compute the derivatives
+        (see the <LINK>NDcost</LINK> help page which provides a simple example for parameters 
+        identification of a differential equation).
+    </P>
+  </SECTION>
+ 
+  <EXAMPLE>
+<![CDATA[// We will show different calling possibilities of leastsq on one (trivial) example
+// which is non linear but doesn't really need to be solved with leastsq (applying
+// log linearizes the model and the problem may be solved with linear algebra). 
+// In this example we look for the 2 parameters x(1) and x(2) of a simple
+// exponential decay model (x(1) being the unknow initial value and x(2) the
+// decay constant): 
+function y = yth(t, x)
+   y  = x(1)*exp(-x(2)*t) 
+endfunction  
+
+// we have the m measures (ti, yi):
+m = 10;
+tm = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5]';
+ym = [0.79, 0.59, 0.47, 0.36, 0.29, 0.23, 0.17, 0.15, 0.12, 0.08]';
+wm = ones(m,1); // measure weights (here all equal to 1...)
+
+// and we want to find the parameters x such that the model fits the given 
+// datas in the least square sense:
+// 
+//  minimize  f(x) = sum_i  wm(i)^2 ( yth(tm(i),x) - ym(i) )^2   
+
+// initial parameters guess
+x0 = [1.5 ; 0.8];
+
+// in the first examples, we define the function fun and dfun 
+// in scilab language
+function e = myfun(x, tm, ym, wm)
+   e = wm.*( yth(tm, x) - ym )
+endfunction
+
+function g = mydfun(x, tm, ym, wm)
+   v = wm.*exp(-x(2)*tm)
+   g = [v , -x(1)*tm.*v]
+endfunction
+
+// now we could call leastsq:
+
+// 1- the simplest call
+[f,xopt, gropt] = leastsq(list(myfun,tm,ym,wm),x0)
+
+// 2- we provide the Jacobian
+[f,xopt, gropt] = leastsq(list(myfun,tm,ym,wm),mydfun,x0)
+
+// a small graphic (before showing other calling features)
+tt = linspace(0,1.1*max(tm),100)';
+yy = yth(tt, xopt);
+xbasc()
+plot2d(tm, ym, style=-2)
+plot2d(tt, yy, style = 2)
+legend(["measure points", "fitted curve"]);
+xtitle("a simple fit with leastsq")
+
+// 3- how to get some informations (we use imp=1)
+[f,xopt, gropt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0)
+
+// 4- using the conjugate gradient (instead of quasi Newton)
+[f,xopt, gropt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0,"gc")
+
+// 5- how to provide bound constraints (not useful here !)
+xinf = [-%inf,-%inf]; xsup = [%inf, %inf];
+[f,xopt, gropt] = leastsq(list(myfun,tm,ym,wm),"b",xinf,xsup,x0) // without Jacobian
+[f,xopt, gropt] = leastsq(list(myfun,tm,ym,wm),mydfun,"b",xinf,xsup,x0) // with Jacobian 
+
+// 6- playing with some stopping parameters of the algorithm
+//    (allows only 40 function calls, 8 iterations and set epsg=0.01, epsf=0.1)
+[f,xopt, gropt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0,"ar",40,8,0.01,0.1)
+
+
+// 7 and 8: now we want to define fun and dfun in fortran then in C
+//          Note that the "compile and link to scilab" method used here
+//          is believed to be OS independant (but there are some requirements, 
+//          in particular you need a C and a fortran compiler, and they must 
+//          be compatible with the ones used to build your scilab binary).
+ 
+// 7- fun and dfun in fortran
+
+// 7-1/ Let 's Scilab write the fortran code (in the TMPDIR directory):
+f_code = [ ...
+"      subroutine myfun(m,n,x,param,f)"
+"*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)"
+"      implicit none"
+"      integer n,m"
+"      double precision x(n), param(*), f(m)"
+"      integer i"
+"      do i = 1,m"
+"         f(i) = param(2*m+i)*( x(1)*exp(-x(2)*param(i)) - param(m+i) )"
+"      enddo"
+"      end ! subroutine fun"
+""
+"      subroutine mydfun(m,n,x,param,df)"
+"*     param(i) = tm(i), param(m+i) = ym(i), param(2m+i) = wm(i)"
+"      implicit none"
+"      integer n,m"
+"      double precision x(n), param(*), df(m,n)"
+"      integer i"
+"      do i = 1,m"
+"         df(i,1) =  param(2*m+i)*exp(-x(2)*param(i))"
+"         df(i,2) = -x(1)*param(i)*df(i,1)"
+"      enddo"
+"      end ! subroutine dfun"];
+mputl(f_code,TMPDIR+'/myfun.f')
+
+// 7-2/ compiles it. You need a fortran compiler !
+names = ["myfun" "mydfun"]
+flibname = ilib_for_link(names,"myfun.o",[],"f",TMPDIR+"/Makefile");
+
+// 7-3/ link it to scilab (see link help page)
+link(flibname,names,"f") 
+
+// 7-4/ ready for the leastsq call: be carreful don't forget to
+//      give the dimension m after the routine name !
+[f,xopt, gropt] = leastsq(list("myfun",m,tm,ym,wm),x0)  // without Jacobian
+[f,xopt, gropt] = leastsq(list("myfun",m,tm,ym,wm),"mydfun",x0) // with Jacobian
+
+
+// 8- last example: fun and dfun in C
+
+// 8-1/ Let 's Scilab write the C code (in the TMPDIR directory):
+c_code = [...
+"#include <math.h>"
+"void myfunc(int *m,int *n, double *x, double *param, double *f)"
+"{"
+"  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
+"  int i;"
+"  for ( i = 0 ; i < *m ; i++ )"
+"    f[i] = param[2*(*m)+i]*( x[0]*exp(-x[1]*param[i]) - param[(*m)+i] );"
+"  return;"
+"}"
+""
+"void mydfunc(int *m,int *n, double *x, double *param, double *df)"
+"{"
+"  /*  param[i] = tm[i], param[m+i] = ym[i], param[2m+i] = wm[i] */"
+"  int i;"
+"  for ( i = 0 ; i < *m ; i++ )"
+"    {"
+"      df[i] = param[2*(*m)+i]*exp(-x[1]*param[i]);"
+"      df[i+(*m)] = -x[0]*param[i]*df[i];"
+"    }"
+"  return;"
+"}"];
+mputl(c_code,TMPDIR+'/myfunc.c')
+
+// 8-2/ compiles it. You need a C compiler !
+names = ["myfunc" "mydfunc"]
+clibname = ilib_for_link(names,"myfunc.o",[],"c",TMPDIR+"/Makefile");
+
+// 8-3/ link it to scilab (see link help page)
+link(clibname,names,"c") 
+
+// 8-4/ ready for the leastsq call
+[f,xopt, gropt] = leastsq(list("myfunc",m,tm,ym,wm),"mydfunc",x0)
+   ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lsqrsolve</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>NDcost</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>datafit</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>quapro</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>linpro</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

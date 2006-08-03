@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>qld</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>june 2005</DATE>
+  <SHORT_DESCRIPTION name="qld"> linear quadratic programming solver</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x,lagr]=qld(Q,p,C,b,ci,cs,me [,tol])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x,lagr,info]=qld(Q,p,C,b,ci,cs,me [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real positive definite symmetric matrix (dimension <VERB>n x n</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real (column) vector (dimension <VERB> n</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (dimension <VERB> (me + md) x n</VERB>) </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: RHS column vector (dimension <VERB> (me + md)</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ci</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of lower-bounds (dimension <VERB>n</VERB>). If
+	    there are no lower bound constraints, put <VERB>ci = []</VERB>. If
+	    some components of <VERB>x</VERB> are bounded from below, set the
+	    other (unconstrained) values of <VERB>ci</VERB> to a very  large
+	    negative  number (e.g. <VERB>ci(j) =
+	      -number_properties('huge')</VERB>.</SP> 
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of upper-bounds. (Same remarks as above).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>me</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of equality constraints (i.e. <VERB>C(1:me,:)*x = b(1:me)</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:Floatting point number, required précision.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optimal solution found.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+   
+      <PARAM_ITEM>
+        <PARAM_NAME>lagr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of Lagrange multipliers.  If lower and upper-bounds
+	    <VERB>ci,cs</VERB> are provided, <VERB>lagr</VERB> has  <VERB>n +
+	      me + md</VERB> components and <VERB>lagr(1:n)</VERB> is the
+	    Lagrange  vector associated with the bound constraints and
+	    <VERB>lagr (n+1 : n + me + md)</VERB> is the Lagrange vector
+	    associated  with the linear constraints. (If an upper-bound
+	    (resp. lower-bound) constraint <VERB>i</VERB> is active
+	    <VERB>lagr(i)</VERB> is &gt; 0 (resp. &lt;0). If no bounds are
+	    provided, <VERB>lagr</VERB> has only <VERB>me + md</VERB>
+	    components.</SP> 
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>info</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, return the execution status instead of sending
+	  errors.</SP>
+	<P>info==1 : Too many iterations needed</P>
+	<P>info==2 : Accuracy insufficient to statisfy convergence criterion</P>
+	<P>info==5 : Length of working array is too short</P>
+ 	<P>info==10: The constraints are inconsistent</P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>Minimize <VERB> 0.5*x'*Q*x + p'*x</VERB></P>
+    <P>under the constraints</P>
+    <VERBATIM>
+<![CDATA[
+ C(j,:) x = b(j),  j=1,...,me
+ C(j,:) x <= b(j), j=me+1,...,me+md
+ ci <= x <= cs
+   ]]>
+    </VERBATIM>
+    <P>This function requires  <VERB>Q</VERB> to be positive definite, if it is
+      not the case, one may use the <LINK>quapro</LINK> function.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Find x in R^6 such that:
+//C1*x = b1 (3 equality constraints i.e me=3)
+C1= [1,-1,1,0,3,1;
+    -1,0,-3,-4,5,6;
+     2,5,3,0,1,0];
+b1=[1;2;3];
+//C2*x <= b2 (2 inequality constraints)
+C2=[0,1,0,1,2,-1;
+    -1,0,2,1,1,0];
+b2=[-1;2.5];
+//with  x between ci and cs:
+ci=[-1000;-10000;0;-1000;-1000;-1000];cs=[10000;100;1.5;100;100;1000];
+//and minimize 0.5*x'*Q*x + p'*x with
+p=[1;2;3;4;5;6]; Q=eye(6,6);
+//No initial point is given;
+C=[C1;C2] ; //
+b=[b1;b2] ;  //
+me=3;
+[x,lagr]=qld(Q,p,C,b,ci,cs,me)
+//Only linear constraints (1 to 4) are active (lagr(1:6)=0):
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>quapro</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM label="K.Schittkowski">, University of Bayreuth, Germany</AUTHORS_ITEM>
+    <AUTHORS_ITEM label=" A.L. Tits and J.L. Zhou"> , University of Maryland</AUTHORS_ITEM>
+  </AUTHORS>
+  <USED_FUNCTIONS>
+    <P>ql0001.f in routines/optim directory</P>
+  </USED_FUNCTIONS>
+
+</MAN>

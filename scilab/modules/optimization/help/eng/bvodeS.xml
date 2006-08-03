@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bvodeS</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2005</DATE>
+  <SHORT_DESCRIPTION name="bvodeS">simplified call of bvode</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,
+         [ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin,
+          collpnt,subint,iprint,ireg,ifail])
+    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  array of points at which approximations of the solution will be computed.
+    The points x(i) must be given in increasing order.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: array of orders for the differential equations given in <VERB>fsub</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  number of differential equations, length of <VERB>m</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: left end of solution interval, where a&lt;=x(1).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  right end of solution interval, where x($)&lt;=b.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fsub</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  name of a Scilab function for evaluating the rhs of the differential 
+       equation system to be solved; fsub also may be a list for parameter transfer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gsub</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:   name of a Scilab function for evaluating the boundary conditions for the
+       given differential equation system; gsub may also be a list as for fsub.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zeta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: array of points at which the boundary or side conditions are given in 
+       increasing order. Each point must occur as often as boundary or side 
+       conditions are given there. Each side condition point other than a or b must
+       be included in the array fixpnt.
+       The length of zeta should be sum(m).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  array of all derivatives of the solution functions up to the order
+    m(i)-1 for the i-th function. (See the examples below.) The length of z should
+    be sum(m).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin,
+          collpnt,subint,iprint,ireg,ifail</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: These optional arguments may be called by name in any order in the
+form argument=name. The meaning of ystart to ireg is given in the <LINK>bvode</LINK> help page.
+The Scilab functions <VERB>dfsub</VERB> and <VERB>dgsub</VERB> for evaluating the Jacobians may also be lists
+for parameter transfer. The function <VERB>ystart</VERB> is called <VERB>guess</VERB> in bvode.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ifail</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  if ifail=1, all parameters needed for the call of bvode are displayed.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+This interface program simplifies the call of <LINK>bvode</LINK>, a program for the numerical
+solution of multi-point boundary value problems for mixed order systems of ordinary
+differential equations. The Scilab program bvode is adapted from the fortran program
+colnew. See the paper by U. Asher, J. Christiansen, and R.D. Russel:
+Collocation software for boundary-value ODE's, ACM Trans. Math. Soft. 7:209-222, 1981.
+The following examples should demonstrate not only how such systems can be solved 
+with the help of bvodeS, but also should emphazise some important problems which occur 
+with boundary value problems for ordinary ode's.
+</P>
+  </DESCRIPTION>
+
+
+  <EXAMPLE>
+<![CDATA[// 1. Modified example from help bvode. 
+
+// DE:  y1''''(x)=(1-6*x*x*y1'''(x)-6*x*y1''(x))/(y2(x)^3)
+//         y2'(x)=1
+// z=[y1 ; y1' ; y1'' ; y1''' ; y2]
+// BV: y1(1)=0 y1''(1)=0 
+// BV: y1(2)=1 y1''(2)=0 y2(2)=2
+
+function RhS=fsub(x,z)
+  RhS=[(1-6*x*x*z(4)-6*x*z(3))/(z(5)^3);1]
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1) z(3) z(1)-1 z(3) z(5)-2]
+  g=g(i)
+endfunction
+
+function [z,lhS]=ystart(x)
+  z=zeros(5,1);z(5)=1;
+  lhS=[0;1];
+endfunction
+
+n=2;
+m=[4 1];
+N=100;
+a=1; b=2;
+zeta=[a a b b b];
+x=linspace(a,b,N);
+
+ltol=4; // We want to change the default error for y1'''.
+tol=1e-12;
+tic()
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ystart);
+// Try tol=1e-14 etc.
+toc()
+
+function z=yex(x) // True solution
+  z=zeros(5,1);
+  z(1)=0.25*(10*log(2)-3)*(1-x)+0.5*(1/x+(3+x)*log(x)-x)+(x-1)
+  z(2)=-0.25*(10*log(2)-3)+0.5*(-1/x^2+(3+x)/x+log(x)-1)+1
+  z(3)=0.5*(2/x^3+1/x-3/x^2)
+  z(4)=0.5*(-6/x^4-1/x/x+6/x^3)
+  z(5)=x
+endfunction
+
+zex=[];for xx=x, zex=[zex yex(xx)]; end
+scf(0); clf();
+plot2d(x,abs(z-zex)',style=[1 2 3 5 6])
+xtitle('Absolute error','x',' ')
+legend(['z1(x)';'z2(x)';'z3(x)';'z4(x)';'z5(x)'])
+
+// example #2. An eigenvalue problem
+
+// y''(x)=-la*y(x)
+// BV: y(0)=y'(0); y(1)=0
+// Eigenfunctions and eigenvalues are y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
+// where s(n) are the zeros of f(s,n)=s+atan(s)-(n+1)*pi, n=0,1,2,...
+// To get a third boundary condition, we choose y(0)=1
+// (With y(x) also c*y(x) is a solution for each constant c.)
+// We solve the following ode system:
+// y''=-la*y
+// la'=0
+// BV: y(0)=y'(0), y(0)=1; y(1)=0
+// z=[y(x) ; y'(x) ; la]
+
+function rhs=fsub(x,z)
+  rhs=[-z(3)*z(1);0]
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1)-z(2) z(1)-1 z(1)]
+  g=g(i)
+endfunction
+
+// The following start function is good for the first 8 eigenfunctions.
+function [z,lhs]=ystart(x,z,la0)
+  z=[1;0;la0]
+  lhs=[0;0]
+endfunction
+
+a=0;b=1;
+m=[2;1];
+n=2;
+zeta=[a a b];
+N=101;
+x=linspace(a,b,N)';
+
+// We have s(n)-(n+1/2)*pi -> 0 for n to infinity.
+la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+
+clf()
+plot2d(x,[z(1,:)' z(2,:)'],style=[5 1],axesflag=5) 
+xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
+legend(['y(x)';'y''(x)'])
+
+
+// example #3. A boundary value problem with more than one solution.
+
+// DE: y''(x)=-exp(y(x))
+// BV: y(0)=0; y(1)=0
+// This boundary value problem has more than one solution.
+// It is demonstrated how to find two of them with the help of
+// some preinformation of the solutions y(x) to build the function ystart.
+// z=[y(x);y'(x)]
+
+a=0;b=1;m=2;n=1;
+zeta=[a b];
+N=101;
+tol=1e-8*[1 1];
+x=linspace(a,b,N);
+
+function rhs=fsub(x,z),rhs=-exp(z(1));endfunction
+
+function g=gsub(i,z)
+  g=[z(1) z(1)]
+  g=g(i)
+endfunction
+
+function [z,lhs]=ystart(x,z,M) 
+  //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+  z=[M;0]
+  //lhs=[-exp(4*x*(1-x)*M)]
+  lhs=0
+endfunction
+
+for M=[1 4]
+   if M==1
+      z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   else
+      z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   end
+end
+
+// Integrating the ode yield e.g. the two solutions yex and yex1. 
+
+function y=f(c),y=c.*(1-tanh(sqrt(c)/4).^2)-2;endfunction 
+c=fsolve(2,f);
+
+function y=yex(x,c)
+  y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+endfunction 
+
+function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
+c1=fsolve(0.1,f1);
+
+function y=yex1(x,c1)
+  y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+endfunction 
+
+disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
+disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+
+clf();
+subplot(2,1,1)
+plot2d(x,z(1,:),style=[5])
+xtitle('Two different solutions','x',' ') 
+subplot(2,1,2)
+plot2d(x,z1(1,:),style=[5])
+xtitle(' ','x',' ')
+
+
+// example #4. A multi-point boundary value problem.
+
+// DE y'''(x)=1
+// z=[y(x);y'(x);y''(x)]
+// BV: y(-1)=2 y(1)=2
+// Side condition: y(0)=1 
+
+a=-1;b=1;c=0;
+// The side condition point c must be included in the array fixpnt.
+n=1;
+m=[3];
+
+function rhs=fsub(x,z)
+  rhs=1
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1)-2 z(1)-1 z(1)-2]
+  g=g(i)
+endfunction
+
+N=10;
+zeta=[a c b];
+x=linspace(a,b,N);
+
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
+          
+function y=yex(x)
+y=x.^3/6+x.^2-x./6+1
+endfunction
+
+disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>bvode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dassl</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Rainer von Seggern</AUTHOR>
+
+</MAN>

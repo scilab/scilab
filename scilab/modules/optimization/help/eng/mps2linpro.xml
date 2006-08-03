@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mps2linpro</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>MAY 1998</DATE>
+  <SHORT_DESCRIPTION name="mps2linpro"> convert lp problem given in MPS format to linpro format</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>lp = mps2linpro(mps)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[p,C,b,ci,cs,mi] = mps2linpro(mps)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>mps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: either a character string, path of the MPS file, or an mps data structure returned by <VERB>readmps</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a linpro data tlist with following fields:</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>p</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real (column) vector (dimension <VERB> n</VERB>)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>C</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real matrix (dimension <VERB> (mi + md) x n</VERB>) (If no constraints are given, you can set <VERB>C = []</VERB>)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>b</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: RHS vector (dimension <VERB>1 x (mi + md)</VERB>)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>ci</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: (column) vector of lower-bounds (dimension <VERB> n</VERB>). If there are no lower bound constraints, put <VERB>ci = []</VERB>. If some components of <VERB>x</VERB> are bounded from below, set the other (unconstrained) values of <VERB>ci</VERB> to a very  large negative  number (e.g. <VERB>ci(j) = -(% eps)^(-1)</VERB>.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>cs</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: (column) vector of upper-bounds. (Same remarks as above).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>mi</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: number of equality constraints (i.e. <VERB>C(1:mi,:)*x = b(1:mi)</VERB>)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    mps2linpro forms Linear programing data compatible with linpro out of
+    MPS data format.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>linpro</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>readmps</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

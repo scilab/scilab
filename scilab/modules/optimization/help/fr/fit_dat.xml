@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fit_dat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Feb 1998</DATE>
+  <SHORT_DESCRIPTION name="fit_dat"> Parameter identification based on measured data</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[p,err]=fit_dat(G,p0,Z [,W] [,pmin,pmax] [,DG])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Scilab function (e=G(p,z), e: nex1, p: npx1, z: nzx1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>p0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: initial guess (size npx1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix [z_1,z_2,...z_n] where z_i (nzx1) is the ith measurement</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>W</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: weighting matrix of size nexne (optional; default 1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pmin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: lower bound on p (optional; size npx1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: upper bound on p (optional; size npx1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>DG</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: partial of G wrt p (optional; S=DG(p,z), S: nexnp)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>fit_dat</VERB> is used for fitting data to a model.
+    For a given function G(p,z), this function finds the best vector 
+    of parameters p for approximating G(p,z_i)=0 for a set of measurement
+    vectors z_i. Vector p is found by minimizing
+    <VERB>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff('y=FF(x)','y=a*(x-b)+c*x.*x')
+X=[];Y=[];
+a=34;b=12;c=14;for x=0:.1:3, Y=[Y,FF(x)+100*(rand()-.5)];X=[X,x];end
+Z=[Y;X];
+deff('e=G(p,z)','a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),e=y-FF(x)')
+[p,err]=fit_dat(G,[3;5;10],Z)
+xset('window',0)
+xbasc();
+plot2d(X',Y',-1) 
+plot2d(X',FF(X)',5,'002')
+a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
+
+a=34;b=12;c=14;
+deff('s=DG(p,z)','y=z(1),x=z(2),s=-[x-p(2),-p(1),x*x]')
+[p,err]=fit_dat(G,[3;5;10],Z,DG)
+xset('window',1)
+xbasc();
+plot2d(X',Y',-1) 
+plot2d(X',FF(X)',5,'002')
+a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>datafit</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

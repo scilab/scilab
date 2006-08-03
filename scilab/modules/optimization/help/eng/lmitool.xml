@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lmitool</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lmitool"> tool for solving linear matrix inequations</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>lmitool()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>lmitool(filename)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>txt=lmitool(probname,varlist,datalist)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>filename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string referring to a <VERB>.sci</VERB> function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>probname</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string containing the name of the problem</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>varlist</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string containing the names of the unknown matrices (separated by commas if there are more than one)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>datalist</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  a string containing the names of  data matrices (separated by commas if there are more than one)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string providing information on what the user should do next</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>lmitool()</VERB> or <VERB>lmitool(filename)</VERB> is used to define 
+    interactively a LMI problem.
+    In the non interactive mode,
+    <VERB>txt=lmitool(probname,varlist,datalist)</VERB>
+    generates a file in the current directory. The name of this file 
+    is obtained by adding <VERB>.sci</VERB> to the end of <VERB>probname</VERB>. 
+    This file is the skeleton of a solver function and the corresponding 
+    evaluation function needed by <VERB>lmisolver</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lmisolver</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

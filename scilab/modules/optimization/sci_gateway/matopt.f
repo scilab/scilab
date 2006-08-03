@@ -1,6 +1,6 @@
       subroutine matopt
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       double precision zero,df0,zng,dxmin
       double precision epsg,epsg1,epsf,dzs
@@ -1549,7 +1549,7 @@ c     Scilab fsolve function
 c     ---------------------------
       character*(*) fname
 c      implicit undefined (a-z)
-      include '../stack.h'
+      include 'stack.h'
       integer topk,kres,kjac,kx,m1,n1,lr1,lr,lw,gettype
       logical checklhs,checkrhs,getrmat,getexternal,cremat,jac
       logical type,getscalar

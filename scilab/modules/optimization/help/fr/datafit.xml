@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>datafit</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Feb 1999</DATE>
+  <SHORT_DESCRIPTION name="datafit"> Parameter identification based on measured data</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[p,err]=datafit([imp,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>     [work],[stop],['in'])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>imp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar argument used to set the trace mode. <VERB>imp=0</VERB> nothing (execpt errors) is reported, <VERB>imp=1</VERB> initial and final reports, <VERB>imp=2</VERB> adds a report per iteration, <VERB>imp&gt;2</VERB> add reports on linear search. Warning, most of these reports are written on the Scilab standard output.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: function descriptor (e=G(p,z), e: ne x 1, p: np x 1, z: nz x 1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>DG</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: partial of G wrt p function descriptor (optional; S=DG(p,z), S: ne x np)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix [z_1,z_2,...z_n] where z_i (nz x 1) is the ith measurement</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>W</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: weighting matrix of size ne x ne (optional; defaut no ponderation)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>contr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and <VERB>bsup</VERB> real vectors with same dimension as <VERB>p0</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower and upper bounds on <VERB>p</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>p0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: initial guess (size np x 1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>algo</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>'qn'</VERB> or <VERB>'gc'</VERB> or <VERB>'nd'</VERB> . This string stands for quasi-Newton (default),  conjugate gradient or non-differentiable respectively.  Note that <VERB>'nd'</VERB> does not accept bounds on <VERB>x</VERB> ).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>df0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first iteration. (<VERB>df0=1</VERB> is the default value).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mem :  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>integer, number of variables used to approximate the  Hessian, (<VERB>algo='gc' or 'nd'</VERB>). Default value is around 6.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>stop</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  sequence of optional parameters controlling the  convergence of the algorithm. <VERB> stop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;ar&quot;  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: reserved keyword for stopping rule selection defined as follows:</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>nap</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: maximum number of calls to <VERB>fun</VERB> allowed.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>iter</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: maximum number of iterations allowed.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>epsg</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: threshold on gradient norm.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>epsf</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: threshold controlling decreasing of <VERB>f</VERB></SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>epsx</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: threshold controlling variation of <VERB>x</VERB>. This vector (possibly matrix) of same size as <VERB>x0</VERB> can be used to scale <VERB>x</VERB>.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>&quot;in&quot;  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: reserved  keyword for initialization of parameters used when <VERB>fun</VERB> in given as a Fortran routine (see below).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Column vector, optimal solution found</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar, least square error.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>datafit</VERB> is used for fitting data to a model.
+    For a given function <VERB>G(p,z)</VERB>, this function finds the best vector 
+    of parameters <VERB>p</VERB> for approximating <VERB>G(p,z_i)=0</VERB> for a set of measurement
+    vectors <VERB>z_i</VERB>. Vector <VERB>p</VERB> is found by minimizing
+    <VERB>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</VERB></P>
+    <P><VERB>datafit</VERB> is an improved version of <VERB>fit_dat</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//generate the data
+function y=FF(x,p),y=p(1)*(x-p(2))+p(3)*x.*x,endfunction
+X=[];Y=[];
+pg=[34;12;14] //parameter used to generate data
+for x=0:.1:3, Y=[Y,FF(x,pg)+100*(rand()-.5)];X=[X,x];end
+Z=[Y;X];
+
+
+//The criterion function
+function e=G(p,z),
+   y=z(1),x=z(2);
+   e=y-FF(x,p),
+endfunction
+
+//Solve the problem
+p0=[3;5;10]	
+[p,err]=datafit(G,Z,p0);
+
+scf(0);clf()
+plot2d(X,FF(X,pg),5) //the curve without noise
+plot2d(X,Y,-1)  // the noisy data
+plot2d(X,FF(X,p),12) //the solution
+
+
+//the gradient of the criterion function
+function s=DG(p,z),
+   a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),
+   s=-[x-b,-a,x*x]
+endfunction
+
+[p,err]=datafit(G,DG,Z,p0);
+scf(1);clf()
+plot2d(X,FF(X,pg),5) //the curve without noise
+plot2d(X,Y,-1)  // the noisy data
+plot2d(X,FF(X,p),12) //the solution
+
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+   <SEE_ALSO_ITEM>
+      <LINK>lsqrsolve</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>leastsq</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

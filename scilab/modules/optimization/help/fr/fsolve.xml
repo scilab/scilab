@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fsolve  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>August 1993  </DATE>
+  <SHORT_DESCRIPTION name="fsolve"> résout un système d&apos;équations non-linéaires  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>x0  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : vecteur réel (vecteur initial).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>fct  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>fjac  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : scalaire. Tolérance : l&apos;algorithme s&apos;arrête lorsque l&apos;erreur relative estimée entre x et la solution est inférieure à tol (<VERB>tol=1.d-10</VERB> par défaut).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x :  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    vecteur réel (solution estimée).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>v :  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    vecteur réel (valeur de la fonction en x).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>info  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : indicateur d&apos;arrêt de l&apos;algorithme
+	  </SP>
+
+	  <PARAM_INDENT>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>0  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : paramètres d&apos;entrée incorrects
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>1  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : l&apos;erreur relative estimée entre x et la solution est inférieure à tol
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>2  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : nombre d&apos;appels à fct
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>3  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : tol est trop petit. L&apos;algorithme stationne.
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>4  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : les itérations n&apos;améliorent pas assez la solution.
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+
+	  </PARAM_INDENT>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Résout un système de n équations non linéaires à n inconnues avec un algorithme du type
+      méthode hybride de Powell. La Jacobienne peut être fournie (c&apos;est fortement conseillé).
+    </P>
+    <VERBATIM><![CDATA[
+      0 = fct(x) 
+      ]]></VERBATIM>
+    <P>
+      <VERB>fct</VERB> est une fonction &quot;externe&quot;
+      Cette fonction renvoie <VERB>v=fct(x)</VERB> pour <VERB>x</VERB> donné.
+    </P>
+    <P>
+      La séquence d&apos;appel de <VERB>fct</VERB> est :
+    </P>
+    <VERBATIM><![CDATA[
+      [v]=fct(x).
+      ]]></VERBATIM>
+    <P>
+      Si <VERB>fct</VERB> est une chaîne de caractères, elle désigne le nom d&apos;une subroutine Fortran ou C liée dynamiquement à Scilab, avec comme liste d&apos;appel Fortran :
+    </P>
+    <VERBATIM><![CDATA[
+      fct(n,x,v,iflag)
+      integer n,iflag
+      double precision x(n),v(n)
+      ]]></VERBATIM>
+    <P>
+      ou alors pour une routine C : 
+    </P>
+    <VERBATIM><![CDATA[
+      fct(int *n, double x[],double v[],int *iflag)
+      ]]></VERBATIM>
+    <P>
+    </P>
+    <P>
+      (voir <VERB>link</VERB>).
+    </P>
+    <P>
+      <VERB>jac</VERB> est une fonction &quot;externe&quot; aussi.
+      Cette fonction renvoie <VERB>v=d(fct)/dx (x)</VERB> pour <VERB>x</VERB> donné.
+    </P>
+    <P>
+      La séquence d&apos;appel de <VERB>jac</VERB> est :
+    </P>
+    <VERBATIM><![CDATA[
+      [v]=jac(x).
+      ]]></VERBATIM>
+    <P>
+      Si <VERB>jac</VERB> est une chaîne de caractères, elle désigne le nom d&apos;une subroutine Fortran ou C liée dynamiquement à Scilab. Les séquences d&apos;appel sont les mêmes que pour fct (attention v doit être un tableau n x n).
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    // un exemple simple
+    a=[1,7;2,8];b=[10;11];
+    deff('[y]=fsol1(x)','y=a*x+b');
+    deff('[y]=fsolj1(x)','y=a');
+    [xres]=fsolve([100;100],fsol1);
+    a*xres+b
+    [xres]=fsolve([100;100],fsol1,fsolj1);
+    a*xres+b
+    // voir routines/default/Ex-fsolve.f
+    [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
+    a*xres+b
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>quapro</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>linpro</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>optim</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -10,17 +10,16 @@ CurrentDirectory=pwd();
  "calpol",
  "elem",
  "int",
- "optim",
  "robust",
  "sci2for",
  "signal",
  "statistics",
  "tdcs",
- "texmacs",
  "sparse",
  "gui",
   ];
   
+ Directories=[Directories;"SCI/modules/optimization/macros"];    
  Directories=[Directories;"SCI/modules/helptools/macros"];   
  Directories=[Directories;"SCI/modules/scipad/macros"];  
  Directories=[Directories;"SCI/modules/maple/macros"];

@@ -2,7 +2,7 @@
 #ifndef __SPD_H__
 #define __SPD_H__
 
-#include "../machine.h"
+#include "machine.h"
 
 #define SQR(x) ((x)*(x))
 #define MAX(x,y)  ((x) > (y) ? (x) : (y))

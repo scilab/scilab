@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('optlib','SCI/macros/optim');
+genlib('optlib','SCI/modules/optimization/macros');
 //------------------------------------

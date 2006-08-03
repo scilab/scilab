@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fsolve</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>August 1993</DATE>
+  <SHORT_DESCRIPTION name="fsolve"> find a zero of a system of n nonlinear functions</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector (initial value of function argument).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fct</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (i.e function or list or string).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fjac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (i.e function or list or string).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar. precision tolerance: termination occurs when the algorithm estimates that the relative error between x and the solution is at most tol. (<VERB>tol=1.d-10</VERB> is the default value).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x :  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real vector (final value of function argument, estimated zero).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v :  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real vector (value of function at x).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>info</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  termination indicator</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>0</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: improper input parameters.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>1</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: algorithm estimates that the relative error between x and the solution  is at most tol.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>2</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: number of calls to fcn reached</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>3</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: tol is too small. No further improvement in the approximate solution  x is possible.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>4</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: iteration is not making good progress.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    find a zero of a system of
+    n nonlinear functions in n variables by a modification
+    of the powell hybrid method. Jacobian may be provided.</P>
+    <VERBATIM>
+<![CDATA[
+0 = fct(x) w.r.t x.
+   ]]>
+    </VERBATIM>
+    <P><VERB>fct</VERB> is an &quot;external&quot;.
+    This external returns <VERB>v=fct(x)</VERB> given <VERB>x</VERB>.</P>
+    <P>
+    The simplest calling sequence for <VERB>fct</VERB> is:</P>
+    <VERBATIM>
+<![CDATA[
+[v]=fct(x).
+   ]]>
+    </VERBATIM>
+    <P>
+    If <VERB>fct</VERB> is a character string, it refers to a C or Fortran routine
+    which must be linked to Scilab. Fortran calling sequence must be</P>
+    <VERBATIM>
+<![CDATA[
+fct(n,x,v,iflag)
+integer n,iflag
+double precision x(n),v(n)
+   ]]>
+    </VERBATIM>
+    <P>
+    and C Calling sequence must be</P>
+    <VERBATIM>
+<![CDATA[
+fct(int *n, double x[],double v[],int *iflag)
+   ]]>
+    </VERBATIM>
+    <P>
+    Incremental  link is possible (help <VERB>link</VERB>).</P>
+    <P><VERB>jac</VERB> is an &quot;external&quot;.
+    This external returns <VERB>v=d(fct)/dx (x)</VERB> given <VERB>x</VERB>.</P>
+    <P>
+    The simplest calling sequence for <VERB>jac</VERB> is:</P>
+    <VERBATIM>
+<![CDATA[
+[v]=jac(x).
+   ]]>
+    </VERBATIM>
+    <P>
+    If <VERB>jac</VERB> is a character string, it refers to a to a C or Fortran routine
+    which must be linked to Scilab calling sequences are the same as those
+    for fct. Note however that v must be a nxn array.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// A simple example with fsolve 
+a=[1,7;2,8];b=[10;11];
+deff('[y]=fsol1(x)','y=a*x+b');
+deff('[y]=fsolj1(x)','y=a');
+[xres]=fsolve([100;100],fsol1);
+a*xres+b
+[xres]=fsolve([100;100],fsol1,fsolj1);
+a*xres+b
+// See routines/default/Ex-fsolve.f
+[xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
+a*xres+b
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>quapro</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>linpro</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

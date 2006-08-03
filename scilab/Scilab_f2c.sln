@@ -116,7 +116,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "metanet", "modules\metanet\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optim", "routines\optim\optim.vcproj", "{425B887B-9FC5-4CD2-B632-DBFC000E3E25}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optim", "modules\optimization\src\c\optim.vcproj", "{425B887B-9FC5-4CD2-B632-DBFC000E3E25}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -283,7 +283,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MALLOC", "libs\MALLOC\MALLO
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "poly_f2c", "routines\poly\poly_f\poly_f2c.vcproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optim_f2c", "routines\optim\optim_f\optim_f2c.vcproj", "{1D219098-007C-4F76-9AE6-271ABBB7D393}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optim_f2c", "modules\optimization\src\fortran\optim_f2c.vcproj", "{1D219098-007C-4F76-9AE6-271ABBB7D393}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "metanet_f2c", "modules\metanet\src\fortran\metanet_f2c.vcproj", "{1D5E735D-176E-4C6D-B980-3C2EC7051F90}"
 EndProject
