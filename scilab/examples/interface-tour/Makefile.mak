@@ -60,14 +60,14 @@ $(LIBRARY)_gateway.c:
 	@echo "-- Generating the C function $(LIBRARY)_gateway.c";
 	@echo #include "mex.h"  > $(LIBRARY)_gateway.c
 	@echo /*  */ >> $(LIBRARY)_gateway.c
-	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
+	@"$(SCIDIR1)\tools\tomake\Tomake" @<< @<< @<<
 extern Gatefunc %s;\n
 <<
 $(CINTERFACES:.obj=)
 <<
 $(LIBRARY)_gateway.c
 <<
-	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
+	@"$(SCIDIR1)\tools\tomake\Tomake" @<< @<< @<<
 extern Gatefunc C2F(%s);\n
 <<
 $(FORTRANINTERFACES:.obj=)
@@ -76,14 +76,14 @@ $(LIBRARY)_gateway.c
 <<
 	@echo /*  */ >> $(LIBRARY)_gateway.c
 	@echo static GenericTable Tab[]={  >> $(LIBRARY)_gateway.c
-	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
+	@"$(SCIDIR1)\tools\tomake\Tomake" @<< @<< @<<
 {(Myinterfun)sci_gateway, %s,"error msg"},\n
 <<
 $(CINTERFACES:.obj=)
 <<
 $(LIBRARY)_gateway.c
 <<
-	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
+	@"$(SCIDIR1)\tools\tomake\Tomake" @<< @<< @<<
 {(Myinterfun)sci_gateway, C2F(%s),"error msg"},\n
 <<
 $(FORTRANINTERFACES:.obj=)
@@ -102,7 +102,7 @@ $(LIBRARY)_gateway.c
 $(LIBRARY).sce:
 	@echo -- Generating the Scilab script $(LIBRARY).sce;
 	@echo scilab_functions =[... > $(LIBRARY).sce
-	@"$(SCIDIR1)\macros\Tomake" @<< @<< @<<
+	@"$(SCIDIR1)\tools\tomake\Tomake" @<< @<< @<<
 "%s";\n
 <<
 $(FUNCTIONS)
