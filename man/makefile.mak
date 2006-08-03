@@ -1,6 +1,6 @@
-all:: check sound javasci tclsci metanet time graphics pvm m2sci eng fr 
+all:: check sound javasci tclsci metanet time graphics pvm m2sci maple scipad eng fr 
 
-build:: sound javasci tclsci metanet time graphics pvm m2sci eng fr 
+build:: sound javasci tclsci metanet time graphics pvm m2sci  maple scipad eng fr 
 
 check:
   @Makesubdirs.bat
@@ -56,6 +56,16 @@ m2sci :
 	@cd ..\modules\m2sci\help
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
 	@cd ..\..\..\man			
+	
+maple :	
+	@cd ..\modules\maple\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man				
+	
+scipad :	
+	@cd ..\modules\scipad\help
+	@..\..\..\bin\scilex -nb -nouserstartup -nwni -l eng -e exec('helpbuilder.sce');exit;
+	@cd ..\..\..\man					
 
 distclean::	
 clean::
