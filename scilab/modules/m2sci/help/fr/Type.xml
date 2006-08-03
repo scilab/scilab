@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>Type</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Type">Créé un arbre contenant les données d'inférence de type</SHORT_DESCRIPTION>
 

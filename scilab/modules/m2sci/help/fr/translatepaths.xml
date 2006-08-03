@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>translatepaths</TITLE>
   <TYPE>Fonction Scilab</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="translatepaths"> convertit un ensemble de répertoires contenant des M-files vers Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>translatepaths(dirs_path [,res_path])  </CALLING_SEQUENCE_ITEM>

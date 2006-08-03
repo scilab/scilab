@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>get_contents_infer</TITLE>
   <TYPE>M2SCI Function</TYPE>
-  <DATE>Octobre 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="get_contents_infer">Search for informations
   in a "M2SCi tlist" contents</SHORT_DESCRIPTION>

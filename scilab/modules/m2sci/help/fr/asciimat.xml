@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>asciimat</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Avril 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="asciimat">conversion d'une matrice de chaînes ASCII</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>a=asciimat(txt)  </CALLING_SEQUENCE_ITEM>

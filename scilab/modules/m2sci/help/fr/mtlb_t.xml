@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_t</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_t">Fonction d'émulation de la transposition de Matlab</SHORT_DESCRIPTION>
 

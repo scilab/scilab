@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>Funcall</TITLE>
   <TYPE>M2SCI Function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Funcall">Create a tree representing a function call</SHORT_DESCRIPTION>
 

@@ -5,7 +5,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_uint8</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Avril 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_uint8">Fonction d'émulation de la fonction Matlab uint8</SHORT_DESCRIPTION>
 

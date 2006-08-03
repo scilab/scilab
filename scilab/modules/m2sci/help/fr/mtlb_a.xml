@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_a</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_a">Fonction d'émulation de l'addition Matlab</SHORT_DESCRIPTION>
 

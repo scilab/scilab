@@ -5,7 +5,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_all</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_all">Matlab all emulation function</SHORT_DESCRIPTION>
 

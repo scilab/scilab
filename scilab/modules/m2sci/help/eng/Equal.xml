@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>Equal</TITLE>
   <TYPE>M2SCI Function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Equal">Create a tree representing an instruction</SHORT_DESCRIPTION>
 

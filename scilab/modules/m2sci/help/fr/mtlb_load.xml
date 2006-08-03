@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_load</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Août 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_load">Fonction d'émulation de la fonction Matlab load</SHORT_DESCRIPTION>
 

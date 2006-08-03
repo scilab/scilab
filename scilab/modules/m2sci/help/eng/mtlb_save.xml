@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_save</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>October 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_save"> save variables on file with matlab4 format.  </SHORT_DESCRIPTION>
 

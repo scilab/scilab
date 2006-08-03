@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>Contents</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>October 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Contents">Créé un arbre contenant les
   données d'inférence du contenu d'une variable</SHORT_DESCRIPTION>

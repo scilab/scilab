@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_dir</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>June 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_dir">Matlab dir emulation function</SHORT_DESCRIPTION>
 

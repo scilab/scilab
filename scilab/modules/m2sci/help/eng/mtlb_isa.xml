@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_isa</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>May 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_isa">Matlab isa emulation function</SHORT_DESCRIPTION>
 

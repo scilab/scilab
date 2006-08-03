@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_box</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Juin 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_box">Fonction d'émulation de la fonction Matlab box</SHORT_DESCRIPTION>
 

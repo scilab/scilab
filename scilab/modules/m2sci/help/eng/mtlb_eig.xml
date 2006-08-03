@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_eig</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_eig">Matlab eig emulation function</SHORT_DESCRIPTION>
 

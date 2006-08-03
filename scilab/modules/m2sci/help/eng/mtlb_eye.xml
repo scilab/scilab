@@ -6,7 +6,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_eye</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>April 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_eye">Matlab eye emulation function</SHORT_DESCRIPTION>
 

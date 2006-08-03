@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_realmin</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Octobre 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_realmin">Fonction d'émulation de la fonction Matlab realmin</SHORT_DESCRIPTION>
 

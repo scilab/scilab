@@ -5,7 +5,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_max</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Avril 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_max">Fonction d'émulation de la fonction Matlab max</SHORT_DESCRIPTION>
 

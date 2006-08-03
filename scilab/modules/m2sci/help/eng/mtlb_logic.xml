@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_logic</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   
   <SHORT_DESCRIPTION name="mtlb_logic">Matlab logical operators emulation function</SHORT_DESCRIPTION>
   

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>Contents</TITLE>
   <TYPE>M2SCI Function</TYPE>
-  <DATE>October 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Contents">Create a tree containing contents inference data</SHORT_DESCRIPTION>
 

@@ -5,7 +5,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_cumprod</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_cumprod">Fonction d'émulation de la fonction Matlab cumprod</SHORT_DESCRIPTION>
 

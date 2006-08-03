@@ -5,7 +5,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_tril</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>April 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_tril">Matlab tril emulation function</SHORT_DESCRIPTION>
 

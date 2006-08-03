@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>Variable</TITLE>
   <TYPE>M2SCI Function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Variable">Create a tree representing a variable</SHORT_DESCRIPTION>
 

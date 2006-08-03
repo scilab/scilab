@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>About_M2SCI_tools</TITLE>
   <TYPE>Documentation</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="About_M2SCI_tools">Generally speaking about tools to convert Matlab files to Scilab...</SHORT_DESCRIPTION>
 

@@ -5,7 +5,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_int16</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>April 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_int16">Matlab int16 emulation function</SHORT_DESCRIPTION>
 

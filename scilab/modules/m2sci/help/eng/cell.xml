@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>May 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="cell"> create an empty cell</SHORT_DESCRIPTION>
 

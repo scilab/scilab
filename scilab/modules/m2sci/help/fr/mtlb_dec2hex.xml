@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_dec2hex</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Juin 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_dec2hex">Fonction d'émulation de la fonction Matlab dec2hex</SHORT_DESCRIPTION>
 

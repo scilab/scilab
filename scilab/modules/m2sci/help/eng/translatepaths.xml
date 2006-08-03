@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>translatepaths</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="translatepaths"> convert a set of Matlab M-files directories to Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>translatepaths(dirs_path [,res_path])  </CALLING_SEQUENCE_ITEM>

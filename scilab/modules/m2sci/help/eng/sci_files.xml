@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>sci_files</TITLE>
   <TYPE>Documentation</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="sci_files">How to write conversion functions</SHORT_DESCRIPTION>
 

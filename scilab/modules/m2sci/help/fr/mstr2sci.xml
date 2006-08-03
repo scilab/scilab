@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mstr2sci</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Avril 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="mstr2sci">conversion d'une matrice de chaînes en matrice de caractères</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>a=mstr2sci(txt)  </CALLING_SEQUENCE_ITEM>

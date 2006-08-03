@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_s</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   
   <SHORT_DESCRIPTION name="mtlb_s">Fonction d'émulation de la soustraction Matlab</SHORT_DESCRIPTION>
   

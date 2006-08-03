@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mfile2sci</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="mfile2sci"> Matlab M-file to Scilab conversion function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprint]]]]]])  </CALLING_SEQUENCE_ITEM>

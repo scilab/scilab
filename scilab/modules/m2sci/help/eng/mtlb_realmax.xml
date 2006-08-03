@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_realmax</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>October 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_realmax">Matlab realmax emulation function</SHORT_DESCRIPTION>
 

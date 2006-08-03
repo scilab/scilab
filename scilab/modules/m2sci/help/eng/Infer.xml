@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>Infer</TITLE>
   <TYPE>M2SCI Function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="Infer">Create a tree containing inference data</SHORT_DESCRIPTION>
 

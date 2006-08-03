@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_isletter</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>July 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_isletter">Matlab isletter emulation function</SHORT_DESCRIPTION>
 

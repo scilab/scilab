@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_eval</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>April 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_eval">Fonction d'émulation de la fonction Matlab eval</SHORT_DESCRIPTION>
 

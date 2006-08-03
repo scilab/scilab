@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_conv</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Juin 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_conv">Fonction d'émulation de la fonction Matlab conv</SHORT_DESCRIPTION>
 

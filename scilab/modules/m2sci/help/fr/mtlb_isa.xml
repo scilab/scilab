@@ -4,7 +4,7 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_isa</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mai 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_isa">Fonction d'émulation de la fonction Matlab isa</SHORT_DESCRIPTION>
 

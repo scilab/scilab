@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_beta</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>June 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_beta">Matlab beta emulation function</SHORT_DESCRIPTION>
 

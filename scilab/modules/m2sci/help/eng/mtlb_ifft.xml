@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_ifft</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>July 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_ifft">Matlab ifft emulation function</SHORT_DESCRIPTION>
 

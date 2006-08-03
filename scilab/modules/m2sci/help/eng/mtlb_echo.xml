@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_echo</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>September 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_echo">Matlab echo emulation function</SHORT_DESCRIPTION>
 
