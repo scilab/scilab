@@ -1,8 +1,8 @@
 //------------------------------------
-// Allan CORNET INRIA 2005
+// Allan CORNET INRIA 2006
 //------------------------------------
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('texmacslib','SCI/macros/texmacs');
+genlib('texmacslib','SCI/modules/texmacs/macros/texmacs');
 //------------------------------------

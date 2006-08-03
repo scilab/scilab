@@ -66,8 +66,6 @@ load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
-if with_texmacs() then load('SCI/macros/texmacs/lib'),end
-clear with_texmacs
 load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
 // Create some configuration variables ================================
@@ -105,24 +103,20 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear  larg L
 
-//Scilab Help Chapters, ===============================================
-global %helps
-%helps=initial_help_chapters(LANGUAGE)
-clear initial_help_chapters //%helps
 
- exec SCI/modules/helptools/etc/helptools.start;
- exec SCI/modules/scipad/etc/scipad.start;
- exec SCI/modules/maple/etc/maple.start;
- exec SCI/modules/m2sci/etc/m2sci.start;
- exec SCI/modules/graphics/etc/graphics.start;
- exec SCI/modules/Javasci/etc/javasci.start;
- exec SCI/modules/metanet/etc/metanet.start;
- exec SCI/modules/sound/etc/sound.start;
- exec SCI/modules/tclsci/etc/tclsci.start;
- exec SCI/modules/time/etc/time.start;
- exec SCI/modules/scicos/etc/scicos.start;
- exec SCI/modules/pvm/etc/pvm.start;
-
+ exec("SCI/modules/helptools/etc/helptools.start",-1);
+ exec("SCI/modules/scipad/etc/scipad.start",-1);
+ exec("SCI/modules/maple/etc/maple.start",-1);
+ exec("SCI/modules/m2sci/etc/m2sci.start",-1);
+ exec("SCI/modules/graphics/etc/graphics.start",-1);
+ exec("SCI/modules/Javasci/etc/javasci.start",-1);
+ exec("SCI/modules/metanet/etc/metanet.start",-1);
+ exec("SCI/modules/sound/etc/sound.start",-1);
+ exec("SCI/modules/tclsci/etc/tclsci.start",-1);
+ exec("SCI/modules/time/etc/time.start",-1);
+ exec("SCI/modules/scicos/etc/scicos.start",-1);
+ exec("SCI/modules/pvm/etc/pvm.start",-1);
+ exec("SCI/modules/texmacs/etc/texmacs.start",-1);
 // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
 global demolist
