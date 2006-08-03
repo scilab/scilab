@@ -6,7 +6,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	// Copyright INRIA/Enpc
 	//
 	// given a path on a Scilab help xml file (assumed to respect 
-	// SCI/help-tools/help.dtd) this function generates the corresponding htm
+	// SCI/helptools/help.dtd) this function generates the corresponding htm
 	// file using the wanted xsl file
 	// 
 	// Private function !!!
@@ -42,9 +42,9 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'eng' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 		end
 	end
 	

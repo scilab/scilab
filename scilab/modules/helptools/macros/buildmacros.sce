@@ -7,4 +7,4 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 
-genlib('help_toolslib','SCI/modules/help-tools/macros');
+genlib('helptoolslib','SCI/modules/helptools/macros');

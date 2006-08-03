@@ -56,7 +56,7 @@ function txt=help_skeleton(funname,path,language)
 		
 		txt=[
 			"<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>" 
-			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/help-tools/help.dtd"">"
+			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/helptools/help.dtd"">"
 			"<MAN>"
 			"  <LANGUAGE>fr</LANGUAGE>"
 			"  <TITLE>"+funname+"</TITLE>"
@@ -152,7 +152,7 @@ function txt=help_skeleton(funname,path,language)
 		
 		txt=[
 			"<?xml version=""1.0"" encoding=""UTF-8""?>" 
-			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/help-tools/help.dtd"">"
+			"<!DOCTYPE MAN SYSTEM ""file://"+pathconvert(SCI,%f,%f)+"/modules/helptools/help.dtd"">"
 			"<MAN>"
 			"  <LANGUAGE>eng</LANGUAGE>"
 			"  <TITLE>"+funname+"</TITLE>"

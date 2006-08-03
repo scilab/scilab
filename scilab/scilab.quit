@@ -9,7 +9,7 @@
 
 	exec SCI/modules/scipad/etc/scipad.quit;
 	exec SCI/modules/metanet/etc/metanet.quit;
-	exec SCI/modules/help-tools/etc/help-tools.quit;
+	exec SCI/modules/helptools/etc/helptools.quit;
 
 
 // save history file ==================================================

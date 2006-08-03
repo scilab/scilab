@@ -21,7 +21,7 @@ CurrentDirectory=pwd();
  "gui",
   ];
   
- Directories=[Directories;"SCI/modules/help-tools/macros"];   
+ Directories=[Directories;"SCI/modules/helptools/macros"];   
  Directories=[Directories;"SCI/modules/scipad/macros"];  
  Directories=[Directories;"SCI/modules/maple/macros"];
  Directories=[Directories;"SCI/modules/m2sci/macros"];

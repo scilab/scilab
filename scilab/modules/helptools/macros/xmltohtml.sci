@@ -87,14 +87,14 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'eng' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				directory_language = [directory_language;"eng"];
 				language_system = [language_system;%F];
 			end
 		
 		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				directory_language = [directory_language;"fr"];
 				default_language = [default_language;"eng"];
@@ -116,13 +116,13 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'eng' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Help chapter ("+dirs(k)+")"];
 				language_system = [language_system;%F];
 			end
 		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 			for k=1:size(dirs,'*')
 				titles = [titles;"Chapitre de help ("+dirs(k)+")"];
 				language_system = [language_system;%F];
@@ -144,10 +144,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 		select LANGUAGE
 		
 		case 'eng' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 			
 		case 'fr' then
-			xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+			xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 		
 		end
 
@@ -168,10 +168,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'eng' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 				
 			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 			
 			end
 		end
@@ -193,10 +193,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'eng' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 				
 			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 			
 			end
 		end
@@ -219,10 +219,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'eng' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 				
 			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 			
 			end
 		end
@@ -246,10 +246,10 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 			select LANGUAGE
 			
 			case 'eng' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_eng.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_eng.xsl",%f,%f);
 				
 			case 'fr' then
-				xsl = pathconvert(SCI+"/modules/help-tools/help_fr.xsl",%f,%f);
+				xsl = pathconvert(SCI+"/modules/helptools/help_fr.xsl",%f,%f);
 			
 			end
 		end
@@ -402,7 +402,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'index' then 
-		index_file = pathconvert(SCI+"/modules/help-tools/index_"+LANGUAGE+".htm",%f,%t);
+		index_file = pathconvert(SCI+"/modules/helptools/index_"+LANGUAGE+".htm",%f,%t);
 		mprintf("\nCreating %s\n",index_file);
 		gener_index(dirs,titles);
 	end
@@ -412,7 +412,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	//------------------------------------------------------------------------------------------
 	
 	if step=='all' | step == 'contents' then 
-		contents_file = pathconvert(SCI+"/modules/help-tools/contents_"+LANGUAGE+".htm",%f,%t);
+		contents_file = pathconvert(SCI+"/modules/helptools/contents_"+LANGUAGE+".htm",%f,%t);
 		mprintf("\nCreating %s\n",contents_file);
 		if rhs <= 0 then 
 			gener_contents() 
@@ -652,7 +652,7 @@ function gener_index(dirs,titles)
 		"	</body>"
 		"</html>"]
 	
-	mputl(line,pathconvert(SCI+"/modules/help-tools/index_"+LANGUAGE+".htm",%f,%t));
+	mputl(line,pathconvert(SCI+"/modules/helptools/index_"+LANGUAGE+".htm",%f,%t));
 	
 	%helps = saved_help;
 	
@@ -792,7 +792,7 @@ function gener_contents(dirs1)
 		"</html>"
 		];
 	
-	mputl(full_whatis,pathconvert(SCI+"/modules/help-tools/contents_"+LANGUAGE+".htm",%f,%t));
+	mputl(full_whatis,pathconvert(SCI+"/modules/helptools/contents_"+LANGUAGE+".htm",%f,%t));
   
 endfunction
 

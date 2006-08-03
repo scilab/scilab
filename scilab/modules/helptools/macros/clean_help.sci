@@ -77,25 +77,25 @@ function clean_help(dirs)
 		select LANGUAGE
 		
 		case 'eng' then
-			if fileinfo(SCI+pathconvert("/modules/help-tools/index_eng.htm",%f,%f)) <> [] then
+			if fileinfo(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f)) <> [] then
 				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/help-tools/index_eng.htm",%f,%f));
+				mdelete(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f));
 			end
 			
-			if fileinfo(SCI+pathconvert("/modules/help-tools/contents_eng.htm",%f,%f)) <> [] then
+			if fileinfo(SCI+pathconvert("/modules/helptools/contents_eng.htm",%f,%f)) <> [] then
 				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/help-tools/contents_eng.htm",%f,%f));
+				mdelete(SCI+pathconvert("/modules/helptools/contents_eng.htm",%f,%f));
 			end
 			
 		case 'fr' then
-			if fileinfo(SCI+pathconvert("/modules/help-tools/index_fr.htm",%f,%f)) <> [] then
+			if fileinfo(SCI+pathconvert("/modules/helptools/index_fr.htm",%f,%f)) <> [] then
 				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/help-tools/index_fr.htm",%f,%f));
+				mdelete(SCI+pathconvert("/modules/helptools/index_fr.htm",%f,%f));
 			end
 			
-			if fileinfo(SCI+pathconvert("/modules/help-tools/contents_fr.htm",%f,%f)) <> [] then
+			if fileinfo(SCI+pathconvert("/modules/helptools/contents_fr.htm",%f,%f)) <> [] then
 				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/help-tools/contents_fr.htm",%f,%f));
+				mdelete(SCI+pathconvert("/modules/helptools/contents_fr.htm",%f,%f));
 			end
 			
 		end

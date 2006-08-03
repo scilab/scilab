@@ -19,7 +19,7 @@ function flag=find_links(filein,fileout)
 	//------------------------------------------------------------------------------------------
 	
 	dtd_line = grep(convstr(txt,'u'),"<!DOCTYPE MAN SYSTEM");
-	txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/help-tools/help.dtd"">";
+	txt(dtd_line) = "<!DOCTYPE MAN SYSTEM """+SCI+"/modules/helptools/help.dtd"">";
 	
 	
 	//------------------------------------------------------------------------------------------

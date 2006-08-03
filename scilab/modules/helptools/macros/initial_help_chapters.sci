@@ -19,7 +19,7 @@ function %helps=initial_help_chapters(language)
 			"/home/pmarecha/scilab_trunk/modules/Javasci/help/eng"    "Javasci [eng]";
 			"/home/pmarecha/scilab_trunk/modules/maple/help/eng"      "Maple [eng]";
 			"/home/pmarecha/scilab_trunk/modules/tclsci/help/eng"     "Tclsci [eng]";
-			"/home/pmarecha/scilab_trunk/modules/help-tools/help/eng" "Help-tools [eng]";
+			"/home/pmarecha/scilab_trunk/modules/helptools/help/eng" "Help-tools [eng]";
 			"/home/pmarecha/scilab_trunk/modules/sound/help/eng"      "Sound [eng]"];
 			
 	
@@ -30,7 +30,7 @@ function %helps=initial_help_chapters(language)
 		  "/home/pmarecha/scilab_trunk/modules/Javasci/help/fr"          "Javasci [fr]";
 		  "/home/pmarecha/scilab_trunk/modules/maple/help/fr"            "Maple [fr]";
 		  "/home/pmarecha/scilab_trunk/modules/tclsci/help/fr"           "Tclsci [fr]";
-		  "/home/pmarecha/scilab_trunk/modules/help-tools/help/fr"       "Help-tools [fr]";
+		  "/home/pmarecha/scilab_trunk/modules/helptools/help/fr"       "Help-tools [fr]";
 		  "/home/pmarecha/scilab_trunk/modules/sound/help/fr"            "Sound [fr]"];
 	
 	end
