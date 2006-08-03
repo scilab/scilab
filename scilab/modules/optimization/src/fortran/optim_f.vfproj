@@ -99,7 +99,6 @@ cd .."/>
 		<File RelativePath="majour.f"/>
 		<File RelativePath="majysa.f"/>
 		<File RelativePath="majz.f"/>
-		<File RelativePath="..\..\sci_gateway\matopt.f"/>
 		<File RelativePath="n1fc1.f"/>
 		<File RelativePath="n1fc1a.f"/>
 		<File RelativePath="n1fc1o.f"/>
@@ -134,7 +133,7 @@ cd .."/>
 		<File RelativePath="satur.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_fsolve.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_optim.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_quadro.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_quapro.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_semidef.f"/>
 		<File RelativePath="shanph.f"/>
 		<File RelativePath="strang.f"/>

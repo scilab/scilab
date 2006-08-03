@@ -20,7 +20,7 @@ extern void    /* 07  */ C2F(gw_graphics)();
 extern void    /* 08  */ C2F(matqz)();
 extern void    /* 09  */ C2F(matric)();
 extern void    /* 10  */ C2F(matnew)();
-extern void    /* 11  */ C2F(matopt)();
+extern void    /* 11  */ C2F(gw_optim)();
 extern void    /* 12  */ C2F(matode)();
 extern void    /* 13  */ C2F(gw_core)();
 extern void    /* 14  */ C2F(matusr)();
@@ -94,7 +94,7 @@ static OpTab Interfaces[] ={
 	/* 08  */ {C2F(matqz)},
 	/* 09  */ {C2F(matric)},
 	/* 10  */ {C2F(matnew)},
-	/* 11  */ {C2F(matopt)},
+	/* 11  */ {C2F(gw_optim)},
 	/* 12  */ {C2F(matode)},
 	/* 13  */ {C2F(gw_core)},
 	/* 14  */ {C2F(matusr)},

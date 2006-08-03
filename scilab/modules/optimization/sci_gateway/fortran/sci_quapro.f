@@ -2,7 +2,7 @@ c     --------------------------
 c     Copyright INRIA
 c     --------------------------
 c
-	subroutine sciquadro(fname)
+	subroutine sciquapro(fname)
 			
 	character*(*) fname
       include 'stack.h'
@@ -344,3 +344,4 @@ c     Remise en place de la pile
       return
       
       end
+      
