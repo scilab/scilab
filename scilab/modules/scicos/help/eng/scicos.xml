@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scicos</TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>14-Apr-2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="scicos">  Block diagram editor and GUI for
   the hybrid simulator <LINK>scicosim</LINK> </SHORT_DESCRIPTION> 
 

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scicos_simulate</TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>14-Apr-2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="scicos_simulate"> Function for running scicos simulation in batch mode.</SHORT_DESCRIPTION>
 
 

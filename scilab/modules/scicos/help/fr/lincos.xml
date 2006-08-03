@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>lincos</TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>14-Apr-2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="lincos">  Constructs by linearization a
   linear state-space model from a general dynamical system described
   by a scicos diagram

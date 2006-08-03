@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scicosim</TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>14-Apr-2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="scicosim">  Scicos (batch) simulation function </SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
