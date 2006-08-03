@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_get_timer</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>January 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_get_timer"> Gets the  system's notion  of  the current time.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[time] = pvm_get_timer()  </CALLING_SEQUENCE_ITEM>

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_reduce</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>May 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_reduce"> Performs a reduce operation over members of the specified group</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[buff, info] = pvm_reduce(func, buff, msgtag, group, rootginst)  </CALLING_SEQUENCE_ITEM>

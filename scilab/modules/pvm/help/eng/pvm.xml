@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm</TITLE>
   <TYPE>Scilab description</TYPE>
-  <DATE>Jan 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm"> communications with other applications using Parallel Virutal Machine</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_start</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>May 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_start"> Start the PVM daemon</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[info] = pvm_start([&quot;hostfile&quot;])  </CALLING_SEQUENCE_ITEM>

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvmd3</TITLE>
   <TYPE>pvm daemon</TYPE>
-  <DATE>January 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvmd3"> PVM  daemon</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>

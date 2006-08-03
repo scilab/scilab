@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_spawn</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>January 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_spawn"> Starts new Scilab processes.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[tids, numt] = pvm_spawn(task,  ntask, [nw], [where])  </CALLING_SEQUENCE_ITEM>

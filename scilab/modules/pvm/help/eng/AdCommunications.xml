@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>Advanced</TITLE>
   <TYPE>Scilab description</TYPE>
-  <DATE>January 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="AdCommunications"> advanced communication toolbox for parallel programming</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>

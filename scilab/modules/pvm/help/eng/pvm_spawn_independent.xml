@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_spawn_independent</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>January 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_spawn_independent"> Starts new PVM processes.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[tids, numt] = pvm_spawn_independent(task,  ntask, [where])  </CALLING_SEQUENCE_ITEM>

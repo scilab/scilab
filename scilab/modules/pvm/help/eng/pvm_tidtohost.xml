@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_tidtohost</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>May 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_tidtohost"> returns the host of the specified PVM process.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[dtid] = pvm_tidtohost(tid)  </CALLING_SEQUENCE_ITEM>

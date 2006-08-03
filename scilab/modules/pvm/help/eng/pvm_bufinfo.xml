@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_bufinfo</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>May 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_bufinfo"> Returns information about a message buffer.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[bytes, msgtag, tid, info] = pvm_bufinfo(bufid)  </CALLING_SEQUENCE_ITEM>

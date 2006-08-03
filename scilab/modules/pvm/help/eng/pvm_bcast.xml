@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>pvm_bcast</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>May 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="pvm_bcast"> broacasts a message to all members of a group</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[info] = pvm_bcast(group, buff, msgtag)  </CALLING_SEQUENCE_ITEM>
