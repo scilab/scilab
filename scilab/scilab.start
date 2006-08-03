@@ -57,7 +57,6 @@ load('SCI/macros/tdcs/lib')
 load('SCI/macros/arma/lib')
 load('SCI/macros/robust/lib')
 load('SCI/macros/auto/lib')
-load('SCI/macros/optim/lib')
 load('SCI/macros/signal/lib')
 load('SCI/macros/algebre/lib')
 load('SCI/macros/statistics/lib')
@@ -104,7 +103,9 @@ end
 clear  larg L
 
 
+
  exec("SCI/modules/helptools/etc/helptools.start",-1);
+ exec("SCI/modules/optimization/etc/optimization.start",-1);
  exec("SCI/modules/scipad/etc/scipad.start",-1);
  exec("SCI/modules/maple/etc/maple.start",-1);
  exec("SCI/modules/m2sci/etc/m2sci.start",-1);
