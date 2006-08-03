@@ -7,21 +7,10 @@
  // Close multimedia files open with scilab
  if MSDOS then mcisendstring('close all'),end;
 
- if exists('ge_check_before_quit') then
-   ge_check_before_quit()
- end
+	exec SCI/modules/scipad/etc/scipad.quit;
+	exec SCI/modules/metanet/etc/metanet.quit;
+	exec SCI/modules/help-tools/etc/help-tools.quit;
 
- if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"-nogui") then
-	 if with_tk() then
-  	 TCL_EvalStr("set isscipadinterp [interp exists scipad]")
-  	 if TCL_GetVar("isscipadinterp")<>'0' then 
-    	 TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
-    	 if TCL_GetVar("isscipadopen")<>'0' then
-      	 TCL_EvalStr('scipad eval {catch {exitapp} }')
-    	 end
-  	 end
-	 end	
- end
 
 // save history file ==================================================
 if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
