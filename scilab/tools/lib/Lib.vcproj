@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="Name"
-	ProjectGUID="{6F1E57AB-01D9-488D-9E7A-A5065848D693}"
+	Name="Lib"
+	ProjectGUID="{798D5602-CF39-4B2F-B780-0EF282E7CEA0}"
 	>
 	<Platforms>
 		<Platform
@@ -36,7 +36,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Name.tlb"
+				TypeLibraryName="$(ConfigurationName)/Lib.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -67,11 +67,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Name.exe"
+				OutputFile="Lib.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Name.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Lib.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -123,7 +123,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Name.tlb"
+				TypeLibraryName="$(ConfigurationName)/Lib.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -157,10 +157,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Name.exe"
+				OutputFile="Lib.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Name.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Lib.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -198,27 +198,8 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\Name.c"
+				RelativePath=".\Lib.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter

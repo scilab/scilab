@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="Lib"
-	ProjectGUID="{798D5602-CF39-4B2F-B780-0EF282E7CEA0}"
+	Name="Gensosce"
+	ProjectGUID="{B50F726C-8536-4DAC-8CEF-D97706ACACCC}"
 	>
 	<Platforms>
 		<Platform
@@ -36,7 +36,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Lib.tlb"
+				TypeLibraryName="$(ConfigurationName)/Gensosce.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -67,11 +67,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Lib.exe"
+				OutputFile="Gensosce.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Lib.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Gensosce.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -123,7 +123,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Lib.tlb"
+				TypeLibraryName="$(ConfigurationName)/Gensosce.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -157,10 +157,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Lib.exe"
+				OutputFile="Gensosce.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Lib.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Gensosce.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -198,27 +198,8 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\Lib.c"
+				RelativePath=".\Gensosce.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter

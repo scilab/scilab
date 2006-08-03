@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="Gensosce"
-	ProjectGUID="{B50F726C-8536-4DAC-8CEF-D97706ACACCC}"
+	Name="Gengatsce"
+	ProjectGUID="{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}"
 	>
 	<Platforms>
 		<Platform
@@ -36,7 +36,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Gensosce.tlb"
+				TypeLibraryName="$(ConfigurationName)/Gengatsce.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -67,11 +67,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Gensosce.exe"
+				OutputFile="Gengatsce.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Gensosce.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Gengatsce.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -123,7 +123,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Gensosce.tlb"
+				TypeLibraryName="$(ConfigurationName)/Gengatsce.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -157,10 +157,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Gensosce.exe"
+				OutputFile="Gengatsce.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Gensosce.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Gengatsce.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -198,27 +198,8 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\Gensosce.c"
+				RelativePath=".\Gengatsce.c"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						PreprocessorDefinitions=""
-						BasicRuntimeChecks="3"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="2"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
