@@ -18,6 +18,13 @@ elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
 	add_help_chapter("PVM parallel Toolbox",path);
 end
-
+// ====================================================================
+if MSDOS then
+  if %pvm then
+  	configure_pvm()
+  	clear configure_pvm
+  end
+end
+// ====================================================================
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

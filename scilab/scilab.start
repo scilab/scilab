@@ -81,10 +81,6 @@ if MSDOS then
   SCI=strsubst(getshortpathname(SCI),'\','/');
   // path of scilab main directory for Windows
   WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
-  if %pvm then
-  	configure_pvm()
-  	clear configure_pvm
-  end
   clear pathconvert
 else
   if getenv('PRINTERS','ndef')=="ndef" then
@@ -116,7 +112,7 @@ clear initial_help_chapters //%helps
 
 
 
-
+ exec SCI/modules/maple/etc/maple.start;
  exec SCI/modules/m2sci/etc/m2sci.start;
  exec SCI/modules/graphics/etc/graphics.start;
  exec SCI/modules/Javasci/etc/javasci.start;
