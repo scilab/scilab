@@ -22,9 +22,10 @@
  *         modulo 2^32) 
  *
  */
-
-#include "../graphics/Math.h" /* to use sciprint */
 #include <math.h>             /* to use floor    */
+
+#include "machine.h" /* to use sciprint */
+extern void sciprint __PARAMS((char *fmt,...));
 
 /* The Marsaglia 's macros : */
 #define znew  (z=36969*(z&65535)+(z>>16))

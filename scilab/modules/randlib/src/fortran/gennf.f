@@ -37,7 +37,7 @@ C     Directly generates ratio of noncentral numerator chisquare variate
 C     to central denominator chisquare variate.
 C
 C**********************************************************************
-      include '../stack.h'
+      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION dfd,dfn,xnonc
 C     ..

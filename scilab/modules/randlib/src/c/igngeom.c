@@ -44,7 +44,7 @@
  *     Bruno Pincon (<Bruno.Pincon@iecn.u-nancy.fr>)
  *
  */
-#include "../stack-c.h"
+#include "stack-c.h"
 #include <math.h>
 
 /* the external functions used  here : */

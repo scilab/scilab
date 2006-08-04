@@ -30,7 +30,7 @@ C
 C     Directly generates ratio of chisquare variates
 C
 C**********************************************************************
-      include '../stack.h'
+      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION dfd,dfn
 C     ..

@@ -51,9 +51,10 @@
  */
 
 #include <math.h>
-#include "../graphics/Math.h" /* to use sciprint */
+#include "machine.h" /* to use sciprint */
 #include "grand.h"            /* to check prototypes */
 
+extern void sciprint __PARAMS((char *fmt,...));
 int set_state_mt_simple(double s);
 
 

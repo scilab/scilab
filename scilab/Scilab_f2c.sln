@@ -126,7 +126,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pvm", "modules\pvm\pvm.vcpr
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "routines\randlib\randlib.vcproj", "{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "modules\randlib\src\c\randlib.vcproj", "{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
@@ -295,7 +295,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_f2c", "routines\sign
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scicos_f2c", "modules\scicos\src\fortran\scicos_f2c.vcproj", "{566E524B-D327-4416-A865-9C83503FAB7B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib_f2c", "routines\randlib\randlib_f\randlib_f2c.vcproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib_f2c", "modules\randlib\src\fortran\randlib_f2c.vcproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os_specific_f2c", "routines\os_specific\os_specific_f\os_specific_f2c.vcproj", "{972C50F5-FE25-4FCF-A43F-D5934DAEE634}"
 EndProject

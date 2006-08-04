@@ -60,7 +60,7 @@ See Also:	README		for a brief description
 */
 #include <math.h>             /* to use floor    */
 #include "others_generators.h"
-#include "../graphics/Math.h" /* to use sciprint */
+#include "machine.h" /* to use sciprint */
 
 
 #define N  37           /* size of table        */

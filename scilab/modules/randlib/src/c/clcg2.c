@@ -27,7 +27,7 @@
  *
  */
 
-#include "../graphics/Math.h" /* to use sciprint */
+#include "machine.h" 
 #include <math.h>
 
 

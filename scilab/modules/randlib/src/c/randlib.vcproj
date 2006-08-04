@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/randlib.lib"
+				OutputFile="../../../../libs/randlib.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib.def &gt;nul&#x0D;&#x0A;copy randlib.def ..\..\..\libs\randlib.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib.def &gt;nul&#x0D;&#x0A;copy randlib.def ..\..\..\..\..\libs\randlib.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -144,7 +144,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/randlib.lib"
+				OutputFile="../../../../libs/randlib.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib.def &gt;nul&#x0D;&#x0A;copy randlib.def ..\..\..\libs\randlib.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def randlib.def &gt;nul&#x0D;&#x0A;copy randlib.def ..\..\..\..\..\libs\randlib.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -181,7 +181,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\clcg4.h"
+				>
+			</File>
+			<File
 				RelativePath=".\fsultra.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\grand.h"
 				>
 			</File>
 			<File
@@ -197,7 +205,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Rand.c"
+				RelativePath="..\..\includes\others_generators.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\Rand.c"
 				>
 			</File>
 			<File
@@ -209,25 +221,9 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath="clcg4.h"
-				>
-			</File>
-			<File
-				RelativePath="grand.h"
-				>
-			</File>
-			<File
-				RelativePath="others_generators.h"
-				>
-			</File>
-			<File
-				RelativePath="ultra.h"
-				>
-			</File>
 		</Filter>
 		<File
-			RelativePath=".\randlib.fundef"
+			RelativePath="..\..\sci_gateway\randlib.fundef"
 			>
 		</File>
 	</Files>
