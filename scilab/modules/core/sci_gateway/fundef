@@ -106,7 +106,7 @@
 #include "../../../../routines/dcd/dcd.fundef"
 
 #define  IN_randlib  38
-#include "../../../../routines/randlib/randlib.fundef"
+#include "../../randlib/sci_gateway/randlib.fundef"
 
 #define  IN_otherspecfun  39
 #include "../../../../routines/interf/otherspecfun.fundef" 

@@ -181,15 +181,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\clcg4.h"
-				>
-			</File>
-			<File
 				RelativePath=".\fsultra.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\grand.h"
+				RelativePath="..\..\sci_gateway\gw_randlib.c"
 				>
 			</File>
 			<File
@@ -205,11 +201,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\others_generators.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\Rand.c"
+				RelativePath="..\..\sci_gateway\sci_grand.c"
 				>
 			</File>
 			<File
@@ -221,6 +213,18 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\clcg4.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\grand.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\others_generators.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\sci_gateway\randlib.fundef"
