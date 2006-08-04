@@ -44,8 +44,6 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 	current_directory = pwd();
 	saved_helps = %helps;
 	
-	help=utillib.help;
-	
 	//to load the subfunction change_old_man this is required to produce the whatis.htm files
 	//associated with old style manuals
 	change_old_man();
