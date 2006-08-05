@@ -19,7 +19,6 @@
 #define MSG_ERROR14 "parameter(s) type incorrect.\r\n"
 #define MSG_ERROR15 "2 parameters required.\r\n"
 #define MSG_ERROR16 "Error.\r\n"
-#define MSG_ERROR17 "Cannot query value of this type.\r\n"
 #define MSG_ERROR18 "Two arguments required\r\n"
 #define MSG_ERROR19 "Incorrect SCI path. Please verify your SCI environment variable.\n"
 #define MSG_ERROR20 "ERROR"

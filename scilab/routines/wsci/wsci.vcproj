@@ -210,10 +210,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\DDE.c"
-				>
-			</File>
-			<File
 				RelativePath=".\DragnDrop.c"
 				>
 			</File>
@@ -280,10 +276,6 @@
 			</File>
 			<File
 				RelativePath=".\ihmcolor.c"
-				>
-			</File>
-			<File
-				RelativePath=".\interfdde.C"
 				>
 			</File>
 			<File
@@ -688,10 +680,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\DDE.h"
-				>
-			</File>
-			<File
 				RelativePath=".\DragnDrop.h"
 				>
 			</File>
@@ -737,10 +725,6 @@
 			</File>
 			<File
 				RelativePath=".\ihmcolor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\interfdde.h"
 				>
 			</File>
 			<File

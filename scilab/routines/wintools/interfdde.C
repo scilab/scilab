@@ -1,13 +1,10 @@
 /* Allan CORNET */
 /* INRIA 2004 */
 #include "interfdde.h"
-
-#include "Messages.h"
-#include "Warnings.h"
-#include "Errors.h"
-
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
-
+/*-----------------------------------------------------------------------------------*/
+#define MSG_ERROR14 "parameter(s) type incorrect.\r\n"
+#define MSG_ERROR15 "2 parameters required.\r\n"
 /*-----------------------------------------------------------------------------------*/
 int	InterfaceWindowsDDEopen _PARAMS((char *fname))
 {

@@ -173,6 +173,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\DDE.c"
+				>
+			</File>
+			<File
 				RelativePath=".\intabout.c"
 				>
 			</File>
@@ -190,6 +194,10 @@
 			</File>
 			<File
 				RelativePath=".\intdos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\interfdde.C"
 				>
 			</File>
 			<File
@@ -240,11 +248,19 @@
 				RelativePath=".\matwintools.c"
 				>
 			</File>
+			<File
+				RelativePath=".\registry.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\DDE.h"
+				>
+			</File>
 			<File
 				RelativePath=".\intabout.h"
 				>
@@ -263,6 +279,10 @@
 			</File>
 			<File
 				RelativePath=".\intdos.h"
+				>
+			</File>
+			<File
+				RelativePath=".\interfdde.h"
 				>
 			</File>
 			<File
