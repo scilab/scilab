@@ -6,38 +6,39 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def scicos_f.def &gt;nul
 copy scicos_f.def ..\..\..\..\..\libs\scicos_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/scicos_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def scicos_f.def &gt;nul
 copy scicos_f.def ..\..\..\..\..\libs\scicos_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" SwitchesHaveChanged="true" MustRebuild="true" OutputFile="../../../../libs/scicos_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" SwitchesHaveChanged="true" MustRebuild="true" OutputFile="../../../../libs/scicos_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="affich.f"/>
 		<File RelativePath="constraint.f"/>
 		<File RelativePath="csslti.f"/>
 		<File RelativePath="cstblk.f"/>
+		<File RelativePath="ddaskr.f"/>
 		<File RelativePath="delay.f"/>
 		<File RelativePath="delayv.f"/>
 		<File RelativePath="demux.f"/>
@@ -69,6 +70,7 @@ cd .."/>
 		<File RelativePath="list2vars.f"/>
 		<File RelativePath="logblk.f"/>
 		<File RelativePath="lookup.f"/>
+		<File RelativePath="lsodar2.f"/>
 		<File RelativePath="lsplit.f"/>
 		<File RelativePath="lusat.f"/>
 		<File RelativePath="maxblk.f"/>
