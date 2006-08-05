@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <windows.h>
-#include "../stack-def.h"
+#include "stack-def.h"
 
 #ifdef round
 	#undef round

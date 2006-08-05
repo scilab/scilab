@@ -3,13 +3,8 @@
 /* Copyright (Allan CORNET) INRIA 2005 */
 /*-----------------------------------------------------------------------------------*/
 #include<stdio.h>
-#ifdef _MSC_VER
-#include <windows.h>
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-#include "../machine.h"
+#include "MALLOC.h" /* MALLOC */
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 extern BOOL IsAFile(char *chainefichier);

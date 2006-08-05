@@ -10,13 +10,12 @@
 #include <string.h> 
 #include <stdio.h>
 
-#include "../graphics/Math.h"
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-#include "men_Sutils.h"
+#include "core_math.h"
+#include "MALLOC.h" /* MALLOC */
+
+/*REORGANISATION TEMPORAIRE */
+#include "../../../routines/os_specific/men_Sutils.h"
+
 #include "link.h"
 
 
@@ -26,8 +25,8 @@
 #include <malloc.h>
 #endif
 
-#include "../machine.h"
-#include "../stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));

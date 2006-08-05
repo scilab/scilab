@@ -1,5 +1,5 @@
 /* Copyright INRIA/ENPC */
-#include "../machine.h"
+#include "machine.h"
 
 #ifdef __STDC__
 #include <stdlib.h>

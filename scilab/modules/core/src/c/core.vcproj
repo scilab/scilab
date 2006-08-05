@@ -174,6 +174,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\addinter.c"
+				>
+			</File>
+			<File
 				RelativePath=".\banier.c"
 				>
 			</File>
@@ -239,6 +243,10 @@
 			</File>
 			<File
 				RelativePath=".\intmacr2tree.c"
+				>
+			</File>
+			<File
+				RelativePath=".\link.c"
 				>
 			</File>
 			<File
@@ -555,6 +563,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\addinter.h"
+				>
+			</File>
+			<File
 				RelativePath="callinterf.h"
 				>
 			</File>
@@ -608,6 +620,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\intmacr2tree.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\link.h"
 				>
 			</File>
 			<File

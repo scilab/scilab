@@ -3,21 +3,22 @@
 #include <string.h> 
 #include <stdio.h>
 #if defined(THINK_C)
-#include "::graphics:Math.h"
+#include "core_math.h"
 #else
-#include "../graphics/Math.h"
+#include "core_math.h"
 #endif
-#include "men_Sutils.h"
+
+/*REORGANISATION TEMPORAIRE */
+#include "../../../routines/os_specific/men_Sutils.h"
+
 #include "link.h"
 #include "addinter.h" 
-#include "Os_specific.h"
 
-#include "../stack-def.h"
-#ifdef _MSC_VER
- #include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
- #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+/*REORGANISATION TEMPORAIRE */
+#include "../../../routines/os_specific/Os_specific.h"
+
+#include "stack-def.h"
+#include "MALLOC.h" /* MALLOC */
 
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));

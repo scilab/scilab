@@ -9,8 +9,8 @@
 
 #include "machine.h"
 
-/* REORGANISATION TEMPORAIRE */
-#include "../../../../routines/os_specific/addinter.h" /* for DynInterfStart */
+
+#include "addinter.h" /* for DynInterfStart */
 #include "../../../../routines/os_specific/Os_specific.h" /* for DynInterfStart */
 
 static  jmp_buf jmp_env; 

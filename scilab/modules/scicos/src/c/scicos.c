@@ -11,8 +11,8 @@
 
 #include "machine.h"
 
-/* REORGANISATION TEMPORAIRE */
-#include "../../../../routines/os_specific/link.h"
+
+#include "link.h"
 
 
 #include "scicos.h"

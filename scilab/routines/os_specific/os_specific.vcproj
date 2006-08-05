@@ -173,10 +173,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\addinter.c"
-				>
-			</File>
-			<File
 				RelativePath=".\cluni0.c"
 				>
 			</File>
@@ -197,10 +193,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getpidc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\inffic.c"
 				>
 			</File>
@@ -209,19 +201,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\link.c"
-				>
-			</File>
-			<File
 				RelativePath=".\men_Sutils.c"
-				>
-			</File>
-			<File
-				RelativePath=".\setenvc.c"
-				>
-			</File>
-			<File
-				RelativePath=".\systemc.c"
 				>
 			</File>
 			<File
@@ -242,15 +222,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="addinter.h"
-				>
-			</File>
-			<File
 				RelativePath=".\GetExceptionCode.h"
-				>
-			</File>
-			<File
-				RelativePath="link.h"
 				>
 			</File>
 			<File

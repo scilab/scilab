@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getpidc.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_io.c"
 				>
 			</File>
@@ -298,6 +302,14 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_writeb.c"
+				>
+			</File>
+			<File
+				RelativePath=".\setenvc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\systemc.c"
 				>
 			</File>
 		</Filter>
