@@ -3,6 +3,8 @@
 #ifndef __WIN_MEM_ALLOC__
 #define __WIN_MEM_ALLOC__
 
+#undef Top
+
 #include <Windows.h>
 
 #ifdef _MSC_VER
@@ -22,7 +24,7 @@ IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int lign
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne);
 IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne);
 
-#undef Top
+
 
 #ifdef MALLOC
 #undef MALLOC

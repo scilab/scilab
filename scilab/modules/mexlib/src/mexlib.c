@@ -34,28 +34,27 @@
  *     values = vector of doubles or int8-16-32 or char
  --------------------------------------------------------------------------*/
 
-#include "../stack-c.h"
-#include "../calelm/calelm.h"
+#include "stack-c.h"
 
-#include "../mex.h"
+/*REORGANIZATION TEMPORAIRE*/
+#include "../../../routines/calelm/calelm.h"
+
+#include "mex.h"
 #include <string.h>
 #include <stdio.h>
-#if defined  sgi && ! defined  __STDC__
-#define __STDC__
-#endif
  
-#ifdef __STDC__
+
 #include <stdarg.h>
-#else
-#include <varargs.h>
-#endif 
 
 #ifdef _MSC_VER
 	#include <stdlib.h> /*pour exit()*/
 #endif
 
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 
+#if _MSC_VER
+	#define __STDC__ 
+#endif
 
 static char *the_current_mex_name;
 

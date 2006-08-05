@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="libmx"
-	ProjectGUID="{CEF88C5F-6820-46D4-BCCD-44D5581481C5}"
-	RootNamespace="libmx"
+	Name="libmex"
+	ProjectGUID="{0AEC8745-BB5B-4E66-A59A-7251412C3605}"
+	RootNamespace="libmex"
 	Keyword="Win32Proj"
 	>
 	<Platforms>
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -49,9 +49,10 @@
 				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
-				WarningLevel="3"
+				WarningLevel="0"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -61,17 +62,17 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmxtemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmx.def &gt;nul&#x0D;&#x0A;del libmxtemp.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmextemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmex.def &gt;nul&#x0D;&#x0A;del libmextemp.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/libmx.dll"
+				OutputFile="../../../../bin/libmex.dll"
 				LinkIncremental="2"
-				ModuleDefinitionFile="libmx.def"
+				ModuleDefinitionFile="libmex.def"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/libmx.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/libmex.pdb"
 				SubSystem="2"
-				ImportLibrary="$(OutDir)/libmx.lib"
+				ImportLibrary="$(OutDir)/libmex.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -123,16 +124,15 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -142,19 +142,19 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmxtemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmx.def &gt;nul&#x0D;&#x0A;del libmxtemp.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmextemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmex.def &gt;nul&#x0D;&#x0A;del libmextemp.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/libmx.dll"
+				OutputFile="../../../../bin/libmex.dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="libmx.def"
+				ModuleDefinitionFile="libmex.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				OptimizeForWindows98="1"
-				ImportLibrary="$(OutDir)/libmx.lib"
+				ImportLibrary="$(OutDir)/libmex.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -202,35 +202,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\callinter.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\machine.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\mex.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack-abs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack-c.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack-def.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\version.h"
+				RelativePath="..\..\includes\mex.h"
 				>
 			</File>
 		</Filter>
@@ -241,22 +213,15 @@
 			>
 		</Filter>
 		<File
-			RelativePath="..\..\..\bin\atlas.lib"
-			>
-			<FileConfiguration
-				Name="Release|Win32"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\..\bin\lapack.lib"
+			RelativePath="..\..\..\..\bin\Atlas.lib"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\bin\LibScilab.lib"
+			RelativePath="..\..\..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\bin\LibScilab.lib"
 			>
 		</File>
 	</Files>

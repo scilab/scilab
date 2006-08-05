@@ -39,7 +39,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -48,9 +48,10 @@
 				AssemblerListingLocation="$(ConfigurationName)/"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
-				WarningLevel="3"
+				WarningLevel="0"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -60,11 +61,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmattemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmat.def &gt;nul&#x0D;&#x0A;del libmattemp.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmattemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmat.def &gt;nul&#x0D;&#x0A;del libmattemp.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/libmat.dll"
+				OutputFile="../../../../bin/libmat.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="libmat.def"
 				GenerateDebugInformation="true"
@@ -122,16 +123,17 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
-				WarningLevel="3"
+				WarningLevel="0"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
+				CompileAs="1"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -141,11 +143,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmattemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmat.def &gt;nul&#x0D;&#x0A;del libmattemp.def &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def ..\libmattemp.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;copy *.def libmat.def &gt;nul&#x0D;&#x0A;del libmattemp.def &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/libmat.dll"
+				OutputFile="../../../../bin/libmat.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="libmat.def"
 				GenerateDebugInformation="true"
@@ -201,35 +203,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\callinter.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\machine.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\mex.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack-abs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack-c.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack-def.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\stack.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\version.h"
+				RelativePath="..\..\includes\mex.h"
 				>
 			</File>
 		</Filter>
@@ -240,22 +214,15 @@
 			>
 		</Filter>
 		<File
-			RelativePath="..\..\..\bin\atlas.lib"
-			>
-			<FileConfiguration
-				Name="Release|Win32"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-				/>
-			</FileConfiguration>
-		</File>
-		<File
-			RelativePath="..\..\..\bin\lapack.lib"
+			RelativePath="..\..\..\..\bin\Atlas.lib"
 			>
 		</File>
 		<File
-			RelativePath="..\..\..\bin\LibScilab.lib"
+			RelativePath="..\..\..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\bin\LibScilab.lib"
 			>
 		</File>
 	</Files>
