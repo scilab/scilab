@@ -4,7 +4,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include <windows.h> 
 /*-----------------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../bin/glib-2.0.lib")
 #pragma comment(lib,"../../bin/libxml2.lib")
 #pragma comment(lib,"../../bin/iconv.lib")
 #pragma comment(lib,"../../bin/hashtable.lib")

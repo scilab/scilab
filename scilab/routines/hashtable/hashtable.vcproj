@@ -204,6 +204,14 @@
 				RelativePath=".\hashtable.c"
 				>
 			</File>
+			<File
+				RelativePath=".\hashtable_itr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\hashtable_utility.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -211,6 +219,18 @@
 			>
 			<File
 				RelativePath=".\hashtable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\hashtable_itr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\hashtable_private.h"
+				>
+			</File>
+			<File
+				RelativePath=".\hashtable_utility.h"
 				>
 			</File>
 		</Filter>

@@ -4,20 +4,20 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "localization.h"
-#ifdef _MSC_VER
-	#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-	#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+
 /*-----------------------------------------------------------------------------------*/ 
 #define LENGTH_OUTPUT 1024
 static int count=0;//count the number of the #text and type==3 node 
-static gchar *tag=NULL;
-static gchar *string=NULL;
+static char *tag=NULL;
+static char *string=NULL;
+
+static char *Key_String=NULL;
+static char *Key_Value=NULL;
 
 static char strBufOut[LENGTH_OUTPUT];
 
-static GHashTable *Table_Scilab_Errors=NULL;
+static struct hashtable *Table_Scilab_Errors=NULL;
 
 static char *Replace(char *s1, char *s2, char *s3);
 /*-----------------------------------------------------------------------------------*/ 
@@ -49,10 +49,12 @@ char* ConvertEncoding(char *encodingFrom, char *encodingTo, const char* inputStr
   return strBufOut;
 }
 /*-----------------------------------------------------------------------------------*/ 
-void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding) 
+void ProcessNode(xmlTextReaderPtr reader, struct hashtable *table, char *encoding) 
 {
 	if(xmlTextReaderNodeType(reader)==3)//to get all nodes whose type is 3(#text node)
 	{
+
+		
 		const char *node_value;
 		count++;
 		
@@ -67,18 +69,24 @@ void ProcessNode(xmlTextReaderPtr reader, GHashTable *table, char *encoding)
 		
 		if((count%2)!=0)//odd, tag
 		{
-			tag=(gchar *)MALLOC(strlen(node_value)+1);
-			strcpy(tag,node_value);
+			Key_String=(char *)MALLOC(strlen(node_value)+1);
+			strcpy(Key_String,node_value);
 		}
 		else//even, string
 		{
-	
-			string=(gchar *)MALLOC(strlen(node_value)+1);
-			strcpy(string,node_value);
-			g_hash_table_replace(table, g_strdup(tag), g_strdup(string));
-			FREE(tag); tag=NULL;
-			FREE(string); string=NULL;
+			struct key_string *k;
+			struct value_string *v;
 
+			Key_Value=(char *)MALLOC(strlen(node_value)+1);
+			strcpy(Key_Value,node_value);
+
+			k=(struct key_string*)MALLOC(sizeof(struct key_string));
+			v=(struct value_string*)MALLOC(sizeof(struct value_string));
+
+			k->Key_String=Key_String;
+			v->Value_String=Key_Value;
+		
+			InsertHashtable_string(table,k, v);
 		}
 	}
 }
@@ -128,7 +136,7 @@ char *GetXmlFileEncoding(const char *filename)
 
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, GHashTable *table)
+IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, struct hashtable *table)
 {
 	int bOK=0;
     xmlTextReaderPtr reader;
@@ -173,7 +181,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, GHashTabl
 	
 }
 /*-----------------------------------------------------------------------------------*/ 
-IMPORT_EXPORT_LOCALIZATION_DLL GHashTable *GetHashTableScilabErrors(void)
+IMPORT_EXPORT_LOCALIZATION_DLL struct hashtable *GetHashTableScilabErrors(void)
 {
 	return Table_Scilab_Errors;
 }
@@ -181,7 +189,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL GHashTable *GetHashTableScilabErrors(void)
 IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH)
 {
 	char *FileLanguage=NULL;
-	Table_Scilab_Errors=CreateHashtable();
+	Table_Scilab_Errors=CreateHashtable_string();
 
 	FileLanguage=(char*)MALLOC( (strlen(SCIPATH)+strlen("/localization/errors.xml")+1)*sizeof(char));
 	strcpy(FileLanguage,SCIPATH);
@@ -206,7 +214,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 	strcpy(newpiece,"\\r\\n");
 	StringWithoutSomeChars=Replace( Tag,oldpiece,newpiece);
 
-	StringError=SearchHash(Table_Scilab_Errors,StringWithoutSomeChars);//show the string we need
+	StringError=SearchHashtable_string(Table_Scilab_Errors,StringWithoutSomeChars);//show the string we need
 	FREE(StringWithoutSomeChars);
 	
 	if (StringError)
@@ -215,7 +223,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 		strcpy(oldpiece,"\\r\\n");
 		strcpy(newpiece,"\r\n");
 		StringWithoutSomeChars=Replace(StringError,oldpiece,newpiece);
-//		FREE(StringError); // Temporaire
+		FREE(StringError);
 		StringError=StringWithoutSomeChars;
 	}
 

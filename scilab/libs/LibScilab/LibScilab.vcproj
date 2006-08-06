@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="LibScilab"
 	ProjectGUID="{64BC155E-292F-484F-9404-76EE6AE67A43}"
+	RootNamespace="LibScilab"
 	>
 	<Platforms>
 		<Platform
@@ -374,11 +375,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\routines\wsci\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico"
+				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File

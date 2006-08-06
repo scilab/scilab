@@ -202,6 +202,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\hashtable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\localization.c"
 				>
 			</File>
@@ -210,6 +214,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\hashtable.h"
+				>
+			</File>
 			<File
 				RelativePath=".\localization.h"
 				>

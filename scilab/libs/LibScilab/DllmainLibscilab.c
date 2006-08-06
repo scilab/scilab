@@ -5,6 +5,7 @@
 #include <windows.h> 
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
+
 	#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\ifconsol.lib")
 	#pragma comment(lib,"C:\\PROGRA~1\\Intel\\Compiler\\Fortran\\9.1\\IA32\\Lib\\libifport.lib")
 	#if _DEBUG
