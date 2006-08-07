@@ -38,9 +38,9 @@
 
 /* REORGANISATION TEMPORAIRE */
 #include "../../../../routines/calelm/calelm.h"
-#include "../../../../routines/mex.h"
-/* REORGANISATION TEMPORAIRE */
 
+
+#include "../../mexlib/includes/mex.h"
 #include <string.h>
 #include <stdio.h>
 #if defined  sgi && ! defined  __STDC__

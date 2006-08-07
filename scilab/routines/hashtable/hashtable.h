@@ -47,8 +47,8 @@ struct hashtable;
  *      static int                  keys_equal_fn ( void *key1, void *key2 );
  *
  *      h = create_hashtable(16, hash_from_key_fn, keys_equal_fn);
- *      k = (struct some_key *)     malloc(sizeof(struct some_key));
- *      v = (struct some_value *)   malloc(sizeof(struct some_value));
+ *      k = (struct some_key *)     MALLOC(sizeof(struct some_key));
+ *      v = (struct some_value *)   MALLOC(sizeof(struct some_value));
  *
  *      (initialise k and v to suitable values)
  * 
