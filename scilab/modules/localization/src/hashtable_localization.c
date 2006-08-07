@@ -2,7 +2,7 @@
 /* CORNET Allan */
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/ 
-#include "hashtable.h"
+#include "hashtable_localization.h"
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/ 
 /* see http://www.cse.yorku.ca/~oz/hash.html */

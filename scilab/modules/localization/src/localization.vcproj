@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;../glib-2.0&quot;;../libxml2"
+				AdditionalIncludeDirectories="../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
 				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -69,11 +69,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\bin\localization.dll"
+				OutputFile="..\..\..\bin\localization.dll"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
-				ImportLibrary="..\..\bin\localization.lib"
+				ImportLibrary="..\..\..\bin\localization.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -129,7 +129,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="&quot;../glib-2.0&quot;;../libxml2"
+				AdditionalIncludeDirectories="../includes;../../core/includes;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml"
 				PreprocessorDefinitions="EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -158,11 +158,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\..\bin\localization.dll"
+				OutputFile="..\..\..\bin\localization.dll"
 				ModuleDefinitionFile=""
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\bin\localization.lib"
+				ImportLibrary="..\..\..\bin\localization.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -202,7 +202,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\hashtable.c"
+				RelativePath=".\hashtable_localization.c"
 				>
 			</File>
 			<File
@@ -215,7 +215,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\hashtable.h"
+				RelativePath=".\hashtable_localization.h"
 				>
 			</File>
 			<File

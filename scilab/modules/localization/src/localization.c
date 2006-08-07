@@ -4,7 +4,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "localization.h"
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/ 
 #define LENGTH_OUTPUT 1024
@@ -191,9 +191,9 @@ IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH
 	char *FileLanguage=NULL;
 	Table_Scilab_Errors=CreateHashtable_string();
 
-	FileLanguage=(char*)MALLOC( (strlen(SCIPATH)+strlen("/localization/errors.xml")+1)*sizeof(char));
+	FileLanguage=(char*)MALLOC( (strlen(SCIPATH)+strlen("/modules/localization/xml/errors.xml")+1)*sizeof(char));
 	strcpy(FileLanguage,SCIPATH);
-	strcat(FileLanguage,"/localization/errors.xml");
+	strcat(FileLanguage,"/modules/localization/xml/errors.xml");
 
 	AppendXmlFile(FileLanguage, Table_Scilab_Errors);
 
