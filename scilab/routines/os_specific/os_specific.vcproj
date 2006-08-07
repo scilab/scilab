@@ -201,10 +201,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\men_Sutils.c"
-				>
-			</File>
-			<File
 				RelativePath=".\texmacs.c"
 				>
 			</File>
@@ -223,10 +219,6 @@
 			>
 			<File
 				RelativePath=".\GetExceptionCode.h"
-				>
-			</File>
-			<File
-				RelativePath="men_Sutils.h"
 				>
 			</File>
 			<File

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>strcat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="strcat"> catenate character strings</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>txt=strcat(vstr [,strp])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>vstr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>strp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, default value is the emptystr <VERB>&quot;&quot;</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>txt=strcat(vstr)</VERB>
+    catenates character strings : <VERB>txt=vstr(1)+...+vstr(n)</VERB></P>
+    <P><VERB>txt=strcat(vstr,strp)</VERB> 
+    returns <VERB>txt=strs(1)+strp+...+strp+strs(n)</VERB>.
+    The plus symbol does the same:
+    <VERB>&quot;a&quot;+&quot;b&quot;</VERB> is the same as <VERB>strcat([&quot;a&quot;,&quot;b&quot;])</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+strcat(string(1:10),',')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strings</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

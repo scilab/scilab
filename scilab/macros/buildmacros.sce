@@ -18,7 +18,8 @@ CurrentDirectory=pwd();
  "sparse",
  "gui",
   ];
-  
+
+ Directories=[Directories;"SCI/modules/string/macros"];      
  Directories=[Directories;"SCI/modules/optimization/macros"];    
  Directories=[Directories;"SCI/modules/helptools/macros"];   
  Directories=[Directories;"SCI/modules/scipad/macros"];  

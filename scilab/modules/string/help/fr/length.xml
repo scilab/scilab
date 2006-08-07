@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>length</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="length"> length of object</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>n=length(M)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix (usual or polynomial or character string) or list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer or integer matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    For usual or polynomial matrix <VERB>n</VERB> is the integer equal to number of rows times
+    number of columns of <VERB>M</VERB>. (Also valid for <VERB>M</VERB> a boolean matrix)</P>
+    <P>
+    For matrices made of character strings (and in particular for a character string)
+    <VERB>length</VERB> returns in <VERB>n</VERB> the length of entries of the matrix of character strings <VERB>M</VERB>.</P>
+    <P>
+    The length of a list is the number of elements in the list (also given by <VERB>size</VERB>).</P>
+    <P><VERB>length('123')</VERB> is <VERB>3</VERB>. <VERB>length([1,2;3,4])</VERB> is <VERB>4</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>size</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>part</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="part"> extraction of strings</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[c]=part(mp,v)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>mp,c</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Let <VERB>s[k]</VERB> stands for the <VERB>k</VERB> character of string <VERB>s</VERB> ( 
+    or the white space character if <VERB>k &gt;length(s)</VERB>).</P>
+    <P><VERB>part</VERB> returns <VERB>c</VERB>, a matrix of character strings, such that 
+    <VERB>c(i,j)</VERB> is the string <VERB>&quot;s[v(1)]...s[v(n)]&quot;</VERB> ( <VERB>s=mp(i,j)</VERB> ).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+c=part(['a','abc','abcd'],[1,1,2])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>length</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

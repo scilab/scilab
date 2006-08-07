@@ -102,9 +102,11 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear  larg L
 
-
-
  exec("SCI/modules/helptools/etc/helptools.start",-1);
+ 
+ 
+ 
+ exec("SCI/modules/string/etc/string.start",-1);
  exec("SCI/modules/optimization/etc/optimization.start",-1);
  exec("SCI/modules/scipad/etc/scipad.start",-1);
  exec("SCI/modules/maple/etc/maple.start",-1);

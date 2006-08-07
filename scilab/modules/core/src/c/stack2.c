@@ -14,8 +14,7 @@
 #include "MALLOC.h"
 #include "stack-c.h" 
 
-/* REORGANISATION TEMPORAIRE */
-#include "../../../../routines/os_specific/men_Sutils.h" 
+#include "../../../string/includes/men_Sutils.h" 
 
 extern void sciprint __PARAMS((char *fmt,...));
 

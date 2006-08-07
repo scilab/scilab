@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>strsubst</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="strsubst"> substitute  a character string by another in a  character string.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>str=strsubst(str1,str2,str3)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>str1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of character string. The strings where to search occurrences of <VERB>str2</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The string to search in <VERB>str1</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str3</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The replacement string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of character string. The result of the substitution on  <VERB>str2</VERB> by  <VERB>str3</VERB> in  <VERB>str1</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>strsubst</VERB> replaces all occurrences of <VERB>str2</VERB> in <VERB>str1</VERB> by <VERB>str3</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+strsubst('SCI/demos/scicos','SCI','.')
+strsubst('SCI/demos/scicos','/',' ')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strings</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

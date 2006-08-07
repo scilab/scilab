@@ -7,7 +7,9 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
-#include "../os_specific/men_Sutils.h"
+#/* REORGANISATION TEMPORAIRE */
+#include "../../modules/string/includes/men_Sutils.h"
+
 #include "libinter.h"
 #include "cerro.h"
 #include "sparse.h"

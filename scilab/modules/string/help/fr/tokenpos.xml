@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tokenpos</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="tokenpos"> returns the tokens positions in a character string.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>kdf=tokenpos(str [,delimiter])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The string where to search the tokens.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>delimiter</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) a character or a vector of characters. The tokens delimeters.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>kdf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two columns matrix, first column gives the index of the beginning of the tokens, the second gives the index of the last character of the tokens.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>kdf=tokenpos(str [,delimiter]) </VERB> searches the tokens included in the
+    string <VERB>str</VERB>. The <VERB>delimiter</VERB> default value is [&quot; &quot;,&lt;Tab&gt;]
+    where &lt;Tab&gt; stands for <VERB>ascii(9)</VERB>. It returns the indices of the
+    first and last characters of each found tokens.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+str='This is a character string';
+kdf=tokenpos(str)
+first=part(str,kdf(1,1):kdf(1,2))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>strindex</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tokens</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

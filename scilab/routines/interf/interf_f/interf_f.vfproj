@@ -6,32 +6,32 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" OpenMPConditionalCompilation="false" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" Diagnostics="diagnosticsDisableAll" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def interf_f.def &gt;nul
 copy interf_f.def ..\..\..\..\libs\interf_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../modules/core/includes" OpenMPConditionalCompilation="false" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" Diagnostics="diagnosticsDisableAll" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/interf_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/interf_f.lib" SuppressStartupBanner="true" IgnoreAllDefaultLibraries="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def interf_f.def &gt;nul
 copy interf_f.def ..\..\..\..\libs\interf_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../modules/core/includes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/interf_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/interf_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\bva.f"/>
@@ -82,26 +82,10 @@ cd .."/>
 		<File RelativePath="..\polaut.f"/>
 		<File RelativePath="..\polelm.f"/>
 		<File RelativePath="..\polops.f"/>
-		<File RelativePath="..\sci_ascii.f"/>
-		<File RelativePath="..\sci_code2str.f"/>
-		<File RelativePath="..\sci_convstr.f"/>
-		<File RelativePath="..\sci_emptystr.f"/>
-		<File RelativePath="..\sci_grep.f"/>
-		<File RelativePath="..\sci_length.f"/>
-		<File RelativePath="..\sci_part.f"/>
-		<File RelativePath="..\sci_sort.f"/>
-		<File RelativePath="..\sci_str2code.f"/>
-		<File RelativePath="..\sci_strcat.f"/>
-		<File RelativePath="..\sci_strindex.f"/>
-		<File RelativePath="..\sci_string.f"/>
-		<File RelativePath="..\sci_strsplit.f"/>
-		<File RelativePath="..\sci_strsubst.f"/>
-		<File RelativePath="..\sci_tokens.f"/>
 		<File RelativePath="..\specfun.f"/>
 		<File RelativePath="..\stack0.f"/>
 		<File RelativePath="..\strelm.f"/>
 		<File RelativePath="..\strops.f"/>
-		<File RelativePath="..\strord.f"/>
 		<File RelativePath="..\v2cunit.f"/>
 		<File RelativePath="..\v2unit.f"/>
 		<File RelativePath="..\xawelm.f"/></Filter>

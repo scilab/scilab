@@ -29,7 +29,12 @@ int system ();
 #include "wcommon.h"
 #include <commdlg.h>
 #include "../graphics/Graphics.h"
-#include "../os_specific/men_Sutils.h"
+
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/string/includes/men_Sutils.h"
+
+
+
 extern TW textwin;
 
 /* limits */

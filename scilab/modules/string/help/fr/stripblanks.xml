@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>stripblanks</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="stripblanks"> strips leading and trailing
+  blanks (and tabs) of strings</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>txt=stripblanks(txt[,tabs])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string or matrix of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tabs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: if TRUE then tabs are also stripped (default value is FALSE)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    stripblanks strips leading and trailing blanks (and tabs) of strings</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a='  123   ';
+'!'+a+'!'
+'!'+stripblanks(a)+'!'
+a=['  123   ',' xyz']
+strcat(stripblanks(a))
+ ]]>
+  </EXAMPLE>
+</MAN>

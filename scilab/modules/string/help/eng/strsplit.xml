@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>strsplit</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>31-Jan-2006</DATE>
+  <SHORT_DESCRIPTION name="strsplit"> split a string into a vector of strings</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>v = strsplit(str,ind)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>str</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a string
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>ind</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a vector of stricly increasing indices in the interval <VERB>[1 length(str)-1] </VERB>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>v</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : the resulting column vector of strings (dimension <VERB>size(ind,'*')+1 </VERB>).
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+    <SP><VERB>v = strsplit(str,ind)</VERB> splits the string <VERB>str</VERB> into
+    a vector of strings at the points given by the indices in <VERB>ind</VERB>
+    (after each characters pointed to by the index in ind).</SP>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    S='strsplit splits a string into a vector of strings';
+    strsplit(S,[15 25 30])
+    ind=strindex(S,' ')
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> strcat</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> tokens</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='S. Steer'>
+     INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+
+</MAN>

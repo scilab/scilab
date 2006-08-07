@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>grep</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="grep"> find matches of a string in a vector of strings</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>row=grep(str1,str2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[row,which]=grep(str1,str2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>str1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of strings.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string or character string vector . The string(s) to search in <VERB>str1</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>row</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of  indices: row where a match has been found or an empty matrix if no match found.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>which</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of indices: index of str2 string found or an empty matrix if no match found.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Foreach entry of <VERB>str1</VERB>,   <VERB>grep</VERB> searches if at least a string in
+    <VERB>str2</VERB> matches a substring. <VERB>str1</VERB>  entries index where  at least a match has been
+    found are returned in the <VERB>row</VERB> argument. while optionnal
+    <VERB>which</VERB> argument gives the index of first string of  <VERB>str2</VERB> found.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+txt=['find matches of a string in a vector of strings'
+     'search position of a character string in an other string'
+     'Compare Strings'];
+
+grep(txt,'strings')
+grep(txt,['strings' 'Strings'])
+
+[r,w]=grep(txt,['strings' 'Strings'])
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>strindex</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

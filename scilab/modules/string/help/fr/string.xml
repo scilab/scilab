@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>string</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="string"> conversion to string</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>string(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[out,in,text]=string(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix or function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    converts a matrix into a matrix of strings.</P>
+    <P>
+    If <VERB>x</VERB> is a function  <VERB>[out,in,text]=string(x)</VERB>  returns
+    three vectors strings : <VERB>out</VERB> is the vector of output variables,
+    <VERB>in</VERB> is the vector of input variables, and <VERB>text</VERB> is
+    the (column) vector of the source code of the function.</P>
+    <P>
+    If  <VERB>x</VERB> is a <VERB>lib</VERB> variable, text is a character string column
+    vector. The first element contains the path of library file and the 
+    other the name of functions it defines.</P>
+    <P>
+    Character strings are defined as <VERB>'string'</VERB> (between quotes) or
+    <VERB>&quot;string&quot;</VERB> (between doublequotes);
+    matrices of strings are defined as usual constant matrices.</P>
+    <P>
+    Concatenation of strings is made by the <VERB>+</VERB> operation.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+string(rand(2,2))
+deff('y=mymacro(x)','y=x+1')
+[out,in,text]=string(mymacro)
+x=123.356; 'Result is '+string(x)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>part</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>length</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>quote</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strsubst</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strcat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strindex</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sci2exp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

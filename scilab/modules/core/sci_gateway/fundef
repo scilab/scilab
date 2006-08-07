@@ -57,7 +57,7 @@
 #include "../../../../routines/interf/polaut.fundef"
 
 #define  IN_strelm  21 
-#include "../../../../routines/interf/strelm.fundef" 
+#include "../../string/sci_gateway/string.fundef" 
 	
 #define  IN_fmlelm  22
 #include "../../../../routines/interf/fmlelm.fundef"  

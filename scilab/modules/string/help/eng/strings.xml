@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>strings</TITLE>
+  <TYPE>Scilab Object</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="strings"> Scilab Object, character strings</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Strings are defined as <VERB>'string'</VERB> (between quotes) or 
+    <VERB>&quot;string&quot;</VERB> (between doublequotes);
+    matrices of strings are defined as usual constant matrices.</P>
+    <P>
+    Concatenation of two strings is made by a <VERB>+</VERB> : <VERB>string1+string2</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+['this','is'; 'a 2x2','matrix']
+"matrix"=="mat"+"rix"
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>part</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>length</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strcat</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

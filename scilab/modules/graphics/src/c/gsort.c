@@ -7,7 +7,7 @@
 #include <math.h>
 #include "math_graphics.h"
 
-#include "../../../routines/os_specific/men_Sutils.h"
+#include "../../../string/includes/men_Sutils.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern void sciqsort();

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>emptystr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="emptystr"> zero length string</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=emptystr()   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=emptystr(a)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=emptystr(m,n)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: any type of matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m,n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns a matrix of zero length character strings</P>
+    <P>
+    With no input argument returns a zero length character string.</P>
+    <P>
+    With a matrix for input argument returns  a zero length character strings 
+    matrix of the same size.</P>
+    <P>
+    With two integer arguments returns a mxn zero length character strings 
+    matrix</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=emptystr();for k=1:10, x=x+','+string(k);end
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>part</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>length</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

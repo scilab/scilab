@@ -12,10 +12,7 @@
 
 #include "core_math.h"
 #include "MALLOC.h" /* MALLOC */
-
-/*REORGANISATION TEMPORAIRE */
-#include "../../../routines/os_specific/men_Sutils.h"
-
+#include "../../../string/includes/men_Sutils.h"
 #include "link.h"
 
 

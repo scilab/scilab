@@ -18,7 +18,9 @@
 /* #include "../wsci/wgnuplib.h"*/
 #include "../wsci/wresource.h"
 #include "../wsci/wcommon.h"
-#include "../os_specific/men_Sutils.h"
+
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/string/includes/men_Sutils.h"
 
 #include "../stack-def.h" /* for IMPORT */
 #include <prsht.h>      /* includes the property sheet functionality*/

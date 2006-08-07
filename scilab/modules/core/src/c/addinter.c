@@ -8,8 +8,7 @@
 #include "core_math.h"
 #endif
 
-/*REORGANISATION TEMPORAIRE */
-#include "../../../routines/os_specific/men_Sutils.h"
+#include "../../../string/includes/men_Sutils.h"
 
 #include "link.h"
 #include "addinter.h" 
