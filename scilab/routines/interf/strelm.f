@@ -1,12 +1,10 @@
-      subroutine strelm
+      subroutine gwstring
 c     ==================================================================
-c     ==
 c     
 c     evaluation des fonctions elementaires sur les chaines de
 c     caracteres
 c     
 c     ==================================================================
-c     ==
 c     
 c     Copyright INRIA
       INCLUDE '../stack.h'
@@ -17,24 +15,12 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c     
-      if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' strelm '//buf(1:4))
-      endif
 c     
 c     functions/fin
 c     1       2       3       4       5           6       7       8   
 c     length    part   string  convstr  emptystr str2code code2str sort
 c     9         10       11        12    13    14     15
 c     strcat    strindex strsubst ascii  grep tokens  strsplit
-
-c     
-c      if ( fin.eq.8)  then 
-c         call intssort(id)
-c      else 
-c         call cstrelm()
-c      endif
-c      return 
 
       goto (10,20,25,50,60,70,80,90,100,110,120,125,130, 135,140) fin
 c     

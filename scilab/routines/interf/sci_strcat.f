@@ -15,7 +15,7 @@ c
 c     strcat(tr [,ins])
 c
       if (rhs.eq.3) then 
-         call cstrelm() 
+         call intstrcat('strcat') 
          return 
       endif
 
