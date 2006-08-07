@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+	<entry>
+		<tag>%s: argument %d should be a real or complex matrix\r\n</tag>
+		<string>%s: argument %d doit etre une matrice reelle ou complexe.</string>
+		
+		<tag>Tcl Error  : Tcl_CreateInterp\r\n</tag>
+		<string>Tcl Erreur  : Tcl_CreateInterp\r\n</string>
+
+		<tag>Tcl Error  : Tcl_Init\r\n</tag>
+		<string>Tcl Erreur  : Tcl_Init\r\n</string>
+
+		<tag>Tcl Error  : Tk_Init\r\n</tag>
+		<string>Tcl Erreur  : Tk_Init\r\n</string>
+
+		<tag>Tcl Error %s\r\n</tag>
+		<string>Tcl Erreur %s\r\n</string>
+
+		<tag>parameter must be >= 0\r\n</tag>
+		<string>Le parametre doit etre >= 0\r\n</string>
+
+		<tag>Invalid parameter type: must be an integer\r\n</tag>
+		<string>Type du parametre invalide: doit etre un entier\r\n</string>
+
+		<tag>Invalid parameter type: must be an integer\r\n</tag>
+		<string>Type du parametre invalide: doit etre un entier\r\n</string>
+
+		<tag>Invalid parameter(s) type.\r\n</tag>
+		<string>Parametre(s) invalide(s).\r\n</string>
+
+		<tag>Argument type incorrect: Must be a string\r\n</tag>
+		<string>Type d'argument incorrect: doit etre une chaine de caracteres.\r\n</string>
+
+		<tag>%s, ScilabEval error at line %i \r\n%s\r\n</tag>
+		<string>%s, ScilabEval erreur a la ligne %i \r\n%s\r\n</string>
+
+		<tag>%s, %s at line %i \r\n%s\r\n</tag>
+		<string>%s, %s a la ligne %i \r\n%s\r\n</string>
+
+		<tag>Argument type incorrect: Must be a string or vector of strings\r\n</tag>
+		<string>Argument type incorrect: Must be a string or vector of strings\r\n</string>
+
+		<tag>%s: Error main TCL interpreter not initialized\r\n</tag>
+		<string>%s: Error main TCL interpreter not initialized\r\n</string>
+
+		<tag>%s: Argument type must be character string\r\n</tag>
+		<string>%s: L'argument doit etre une chaine de caracteres.\r\n</string>
+
+		<tag>Tcl Error: GetTclCurrentFigure.\r\n</tag>
+		<string>Tcl Error: GetTclCurrentFigure.\r\n</string>
+
+		<tag>Tcl Error: SetTclCurrentFigure.\r\n</tag>
+		<string>Tcl Error: SetTclCurrentFigure.\r\n</string>
+
+		<tag>%s: No such slave interpreter.\r\n</tag>
+		<string>%s: No such slave interpreter.\r\n</string>
+
+		<tag>TCL_GetVar: Could not read Tcl Var \r\n</tag>
+		<string>TCL_GetVar: Could not read Tcl Var \r\n</string>
+
+		<tag>%s: Could not create a slave interpreter.\r\n</tag>
+		<string>%s: Could not create a slave interpreter.\r\n</string>
+
+		<tag>You have started Scilab in a mode in which TCL/TK is not initialized.\r\n</tag>
+		<string>You have started Scilab in a mode in which TCL/TK is not initialized.\r\n</string>
+
+		<tag>Handle must be an integer.\r\n</tag>
+		<string>Handle must be an integer.\r\n</string>
+
+		<tag>Field parameter must be a string.\r\n</tag>
+		<string>Field parameter must be a string.\r\n</string>
+
+		<tag>TCL_SetVar: Error TCL interpreter not initialized\r\n</tag>
+		<string>TCL_SetVar: Error TCL interpreter not initialized\r\n</string>
+
+		<tag>%s: Invalid argument type.\r\n</tag>
+		<string>%s: Invalid argument type.\r\n</string>
+
+		<tag>%s: %s interpreter already exist.\r\n</tag>
+		<string>%s: %s interpreter already exist.\r\n</string>
+
+		<tag>TCL_EvalScilabCmd: No more memory\r\n</tag>
+		<string>TCL_EvalScilabCmd: No more memory\r\n</string>
+
+		<tag>ScilabEval: at least one argument is required\r\n</tag>
+		<string>ScilabEval: at least one argument is required\r\n</string>
+
+		<tag>Unknown property %s\r\n</tag>
+		<string>Unknown property %s\r\n</string>
+
+		<tag>Error property not found.\r\n</tag>
+		<string>Error property not found.\r\n</string>
+
+		<tag>Tcl Command > %d characters \r\n</tag>
+		<string>Tcl Command > %d characters \r\n</string>
+
+		<tag>Invalid parameter(s) type (Style).\r\n</tag>
+		<string>Invalid parameter(s) type (Style).\r\n</string>
+
+		<tag>Invalid Handle. it must be > 0.\r\n</tag>
+		<string>Handle invalide. doit etre > 0.\r\n</string>
+
+	</entry>
+</root>
+
