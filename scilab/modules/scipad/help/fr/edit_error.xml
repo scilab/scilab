@@ -4,7 +4,7 @@
    <LANGUAGE>eng</LANGUAGE>
    <TITLE>edit_error</TITLE>
    <TYPE>Scilab Function  </TYPE>
-   <DATE>16-Nov-2004</DATE>
+   <DATE>$LastChangedDate$</DATE>
    <SHORT_DESCRIPTION name="edit_error"> opens in SciPad the source of the last recorded error</SHORT_DESCRIPTION>
 
    <CALLING_SEQUENCE>

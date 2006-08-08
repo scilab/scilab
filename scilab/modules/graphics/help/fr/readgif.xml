@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>readgif</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-02 10:51:33 +0200 (mer, 2 aou. 2006) $</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="readgif"> read a gif graphic file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[cmap,pixels]=readgif(filen)  </CALLING_SEQUENCE_ITEM>

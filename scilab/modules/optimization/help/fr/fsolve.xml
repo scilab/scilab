@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>fsolve  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>August 1993  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="fsolve"> résout un système d&apos;équations non-linéaires  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])  </CALLING_SEQUENCE_ITEM>

@@ -4,7 +4,7 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>readxbm</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate: 2006-08-02 10:51:33 +0200 (mer, 2 aou. 2006) $</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="readxbm"> read a xbm graphic file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[cmap,pixels]=readxbm(filen)  </CALLING_SEQUENCE_ITEM>
