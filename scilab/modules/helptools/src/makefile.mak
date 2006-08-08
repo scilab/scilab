@@ -1,10 +1,7 @@
-all:: check build
+all:: build
 
 build:: makehelp
 
-check:
-  @Makesubdirs.bat
-  
 makehelp	:
 	@..\..\..\bin\scilex -nb -nouserstartup -nwni -e xmltohtml();exit;
 	

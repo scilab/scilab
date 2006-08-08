@@ -212,12 +212,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmat", "modules\mexlib\sr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SetupAtlas", "Win-util\SetupAtlas\SetupAtlas.vcproj", "{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xmlint", "Win-util\xmlint\xmlint.vcproj", "{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CheckHelp", "modules\helptools\src\CheckHelp\CheckHelp.vcproj", "{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA} = {DE0A9A62-5A35-4F99-86CE-69B0C36792BA}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wintools", "modules\wintools\wintools.vcproj", "{3FF921DF-3084-4F09-BD14-362F60B0D037}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -589,10 +584,6 @@ Global
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug|Win32.Build.0 = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release|Win32.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release|Win32.Build.0 = Release|Win32
-		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Debug|Win32.Build.0 = Debug|Win32
-		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release|Win32.ActiveCfg = Release|Win32
-		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release|Win32.Build.0 = Release|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release|Win32.ActiveCfg = Debug|Win32
 		{3FF921DF-3084-4F09-BD14-362F60B0D037}.Debug|Win32.ActiveCfg = Debug|Win32
