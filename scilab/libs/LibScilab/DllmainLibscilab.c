@@ -6,16 +6,16 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
 
-	#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/ifconsol.lib")
-	#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/libifport.lib")
+	#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/ifconsol.lib")
+	#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/libifport.lib")
 	#if _DEBUG
-		#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/libifcoremdd.lib")
-		#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/libmmdd.lib")
+		#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/libifcoremdd.lib")
+		#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/libmmdd.lib")
 	#else
-		#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/libifcoremd.lib")
-		#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/libmmd.lib")
+		#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/libifcoremd.lib")
+		#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/libmmd.lib")
 	#endif
-	#pragma comment(lib,"C:/PROGRA~1/Intel/Compiler/Fortran/9.1/IA32/Lib/libirc.lib")
+	#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/libirc.lib")
 #endif
 /*  On Windows x64 Default path are differents (32 bits):
 	#pragma comment(lib,"C:/PROGRA~2/Intel/Compiler/Fortran/9.1/IA32/Lib/ifconsol.lib")

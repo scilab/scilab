@@ -128,7 +128,7 @@
 #include "../../../../routines/int/int.fundef"
 
 #define  IN_intlapack  44
-#include "../../../../routines/lapack/lapack.fundef"
+#include "../../../../routines/interf/lapack.fundef"
 
 #define  IN_intcos  45  
 #define  IN_intcscicos 46
