@@ -127,7 +127,7 @@ function check_help(dirs)
 						end
 						
 						if MSDOS then
-							stat = unix(SCI+"\modules\helptools\bin\xmllint --noout --valid "+xml(k2)+" > NUL 2>&1");
+							stat = unix(SCI+"\modules\helptools\bin\xmllint\xmllint --noout --valid "+xml(k2)+" > NUL 2>&1");
 						else
 							stat = unix("xmllint --noout --valid "+xml(k2)+" > /dev/null 2>&1");
 						end
@@ -146,7 +146,7 @@ function check_help(dirs)
 							mclose(logfile_id);
 							
 							if MSDOS then
-								unix(SCI+"\modules\helptools\bin\xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+								unix(SCI+"\modules\helptools\bin\xmllint\xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
 							else
 								unix("xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
 							end
