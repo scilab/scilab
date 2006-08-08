@@ -60,7 +60,7 @@
 #include "../../string/sci_gateway/string.fundef" 
 	
 #define  IN_fmlelm  22
-#include "../../../../routines/interf/fmlelm.fundef"  
+#include "../../symbolic/sci_gateway/symbolic.fundef"  
 
 #define  IN_logelm  23
 #include "../../../../routines/interf/logelm.fundef"

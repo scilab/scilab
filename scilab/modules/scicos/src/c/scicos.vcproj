@@ -596,6 +596,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\scicos.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

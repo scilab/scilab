@@ -5,7 +5,7 @@ c
       subroutine sciaddfsubf(fname)
 c     ----------------------------
       character*(*) fname
-      include '../stack.h'
+      include 'stack.h'
       
       logical iseye,isnum
       integer lparen,rparen,star,plus,minus,blanc,slash,bslash,symb
