@@ -1,52 +1,57 @@
-function clean_help(dirs)
+function check_help(dirs)
 	
 	// =========================================================================================
-	// Author : Pierre MARECHAL
+	// Authors : Pierre MARECHAL
 	// Scilab team
 	// Copyright INRIA
-	// Date : August 2st 2006
 	// 
-	// dirs is a set of directories for which html manuals are to be deleted
+	// dirs is a set of directories for which html manuals are to be generated
 	// =========================================================================================
 	
 	global LANGUAGE %helps
 	
-	ok = %F;
+	//------------------------------------------------------------------------------------------
+	// Sauvegarde du chemin courant et de la variable %helps
+	//------------------------------------------------------------------------------------------
 	
-	// Vérification des paramètres
-	// -----------------------------------------------------------------------------------------
+	current_directory = pwd();
+	saved_helps = %helps;
+	
+	//------------------------------------------------------------------------------------------
+	
 	[lhs,rhs]=argn(0);
-	if rhs > 1 then error(39); end
 	
-	if exists('dirs') then
-		if type(dirs) <> 10 then error(55,1); end
+	// Trop de paramètres
+	// -----------------------------------------------------------------------------------------
+	
+	if rhs > 1 then
+		error(39);
+		%helps = saved_helps;
+		chdir(current_directory);
+		return;
 	end
 	
-	// Sauvegarde du chemin dans lequel l'on se trouve
-	// -----------------------------------------------------------------------------------------
-	current_directory = pwd();
-	
-	// Cas par défaut : Nettoyage des répertoires cités dans %helps
+	// Cas par défaut : Vérification de l'aide en ligne de Scilab
 	// -----------------------------------------------------------------------------------------
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
-		dirs_to_clean = %helps;
+		dirs_to_build = %helps;
 		
 		//----------------------------------------------------------------------------------
 		// Patch because scicos is not written in xml
 		//----------------------------------------------------------------------------------
-		scs = grep(dirs_to_clean,'scicos');
-		if size(scs,'*') == 1 then dirs_to_clean(scs,:)=[]; end
+		scs = grep(dirs_to_build,'scicos');
+		if size(scs,'*') == 1 then dirs_to_build(scs,:)=[]; end
 		// End of patch --------------------------------------------------------------------
 		
-		dirs = dirs_to_clean(:,1);
+		dirs = dirs_to_build(:,1);
 	end
 	
 	// On transforme le ou les chemins donnés en chemin absolu
 	// -----------------------------------------------------------------------------------------
 	
-	for k=1:size(dirs,'*')
+	for k=1:size(dirs,'*');
 		chdir(dirs(k));
 		if MSDOS then
 			dirs(k) = getlongpathname(pwd());
@@ -56,51 +61,73 @@ function clean_help(dirs)
 		chdir(current_directory);
 	end
 	
-	// Nettoyage des répertoires un par un
-	// -----------------------------------------------------------------------------------------
+	// 
+	//------------------------------------------------------------------------------------------
 	
-	mprintf("deleting files ");
+	logfile = pathconvert(TMPDIR+"/check_help.log",%f,%f);
 	
-	for k=1:size(dirs,'*')
-		files_to_delete = listfiles([dirs(k)+"/*.htm";dirs(k)+"/.list*";dirs(k)+"/.last_successful_build*"]);
-		for i=1:size(files_to_delete,'*')
-			mprintf(".");
-			mdelete(files_to_delete(i));
+	logfile_id = mopen(logfile,"w");
+	mclose(logfile_id);
+	
+	nb_badfiles = 0;
+	badfiles = [];
+	
+	
+	for k1=1:size(dirs,'*')
+		
+		// Etablissement de la liste des fichiers XML
+		//----------------------------------------------------------------------------------
+		
+		chdir(dirs(k1));
+		xml = listfiles('*.xml');
+		
+		// Boucle sur les fichiers XML
+		//----------------------------------------------------------------------------------
+		
+		if xml <> [] then 
+			for k2=1:size(xml,'*')
+				
+				if k2 == 1 then
+					mprintf("%s\n",dirs(k1));
+				end
+				
+				// mprintf(".");
+				
+				stat = unix("xmllint --noout --valid "+xml(k2)+" > /dev/null 2>&1");
+				
+				if stat <> 0 then
+					nb_badfiles = nb_badfiles+1;
+					badfile = pathconvert(dirs(k1)+"/"+xml(k2),%f,%f);
+					badfiles = [badfiles;badfile];
+					logfile_id = mopen(logfile,"a+");
+					mfprintf(logfile_id,"\n----------------------------------------------------------------------\n");
+					mfprintf(logfile_id,"%s\n",badfile);
+					mfprintf(logfile_id,"----------------------------------------------------------------------\n");
+					mclose(logfile_id);
+					unix("xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+				end
+				
+				// if k2 == size(xml,'*') then
+				//	mprintf("\n");
+				// end
+			end
 		end
 	end
 	
-	// Nettoyage des index et contents
-	// -----------------------------------------------------------------------------------------
-	
-	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
-		
-		select LANGUAGE
-		
-		case 'eng' then
-			if fileinfo(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f)) <> [] then
-				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/helptools/index_eng.htm",%f,%f));
-			end
-			
-			if fileinfo(SCI+pathconvert("/modules/helptools/contents_eng.htm",%f,%f)) <> [] then
-				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/helptools/contents_eng.htm",%f,%f));
-			end
-			
-		case 'fr' then
-			if fileinfo(SCI+pathconvert("/modules/helptools/index_fr.htm",%f,%f)) <> [] then
-				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/helptools/index_fr.htm",%f,%f));
-			end
-			
-			if fileinfo(SCI+pathconvert("/modules/helptools/contents_fr.htm",%f,%f)) <> [] then
-				mprintf(".");
-				mdelete(SCI+pathconvert("/modules/helptools/contents_fr.htm",%f,%f));
-			end
-			
+	if nb_badfiles == 1 then
+		mprintf("\nBad syntax in 1 file :\n");
+		for k=1:size(badfiles,'*')
+			mprintf("\t- %s\n",badfiles(k));
 		end
+		scipad(logfile);
+	elseif nb_badfiles > 0 then
+		mprintf("\nBad syntax in %d files :\n",nb_badfiles);
+		for k=1:size(badfiles,'*')
+			mprintf("\t- %s\n",badfiles(k));
+		end
+		scipad(logfile);
+	else
+		mprintf("\nAll xml files are correct\n");
 	end
-	
-	mprintf("\n");
 	
 endfunction
