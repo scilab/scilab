@@ -1,5 +1,6 @@
 {"addf",		IN_fmlelm,	1,	0},	
-{"ldivf",		IN_fmlelm,	4,	2},	
-{"mulf",		IN_fmlelm,	3,	0},	
-{"rdivf",		IN_fmlelm,	5,	0},	
 {"subf",		IN_fmlelm,	2,	0},	
+{"mulf",		IN_fmlelm,	3,	0},	
+{"ldivf",		IN_fmlelm,	4,	2},	
+{"rdivf",		IN_fmlelm,	5,	0},	
+
