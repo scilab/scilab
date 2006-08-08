@@ -57,9 +57,12 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 	k->Key_String=MALLOC((strlen(key)+1)*sizeof(char));
 	strcpy(k->Key_String,key);
 	kElem=hashtable_search(hash_table,k);
-
 	FREE(k);
-	return kElem->Key_String;
+	if (kElem) 
+	{
+		return kElem->Key_String;
+	}
+	return NULL;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v)
