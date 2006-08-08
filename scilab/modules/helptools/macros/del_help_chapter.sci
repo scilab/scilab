@@ -29,8 +29,6 @@ function del_help_chapter(helptitle)
 	// -----------------------------------------------------------------------------------------
 	k1 = find( %helps(:,2) == helptitle);
 	
-	disp(k1);
-	
 	if k1 <> [] then
 		%helps(k1,:) = [];
 	end
