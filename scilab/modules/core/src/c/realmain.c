@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "realmain.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F (settmpdir)(void);
 extern void sci_clear_and_exit(int n);

@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_graphics.h"
 #include <string.h>
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);
