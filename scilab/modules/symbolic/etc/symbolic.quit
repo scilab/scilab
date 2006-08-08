@@ -7,7 +7,7 @@
 global LANGUAGE
 
 if LANGUAGE == 'fr' then
-	del_help_chapter("Symbolique");
+	del_help_chapter("Calculs formels");
 elseif LANGUAGE == 'eng' then
 	del_help_chapter("Symbolic");
 end

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>subf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="subf">  symbolic subtraction</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[&quot;c&quot;]=subf(&quot;a&quot;,&quot;b&quot;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>&quot;a&quot;,&quot;b&quot;,&quot;c&quot;  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the character string <VERB>c</VERB>=<VERB>&quot;a-b&quot;</VERB>
+    Trivial simplifications such as <VERB>subf(&quot;0&quot;,&quot;a&quot;)</VERB> or
+    <VERB>subf(&quot;1&quot;,&quot;2&quot;)</VERB> are performed.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+subf('0','a')
+subf('2','1')
+subf('a','0')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mulf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ldivf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rdivf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>eval</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

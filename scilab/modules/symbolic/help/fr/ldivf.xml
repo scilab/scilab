@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ldivf  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="ldivf"> division à gauche symbolique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>ldivf(&apos;d&apos;,&apos;c&apos;)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Renvoie la chaîne de caractères <VERB>&apos;c\d&apos;</VERB>
+    Des simplifications triviales du type <VERB>&apos;1\c&apos; = &apos;c&apos;</VERB> sont effectuées.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ldivf('1','1')
+ldivf('a','0')
+ldivf('a','x')
+ldivf('2','4')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rdivf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>addf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mulf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mulf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mulf">  symbolic multiplication</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mulf('d','c')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    returns the string <VERB>'c*d'</VERB>
+    Trivial simplifications such as <VERB>'1*c' = 'c'</VERB> are performed.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+mulf('1','a')
+mulf('0','a')
+'a'+'b'   //Caution...
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rdivf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>subf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
