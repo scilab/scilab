@@ -135,7 +135,7 @@
 #include "../../scicos/sci_gateway/scicos.fundef"
 
 #define  IN_intwintools 47
-#include "../../../../routines/wintools/wintools.fundef"
+#include "../../wintools/sci_gateway/wintools.fundef"
 
 #define  IN_inttime 48
 #include "../../time/sci_gateway/time.fundef"
