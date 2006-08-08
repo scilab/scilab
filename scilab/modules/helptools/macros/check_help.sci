@@ -4,6 +4,8 @@ function check_help(dirs)
 	// Authors : Pierre MARECHAL
 	// Scilab team
 	// Copyright INRIA
+	//
+	// Date : 08/08/2006
 	// 
 	// dirs is a set of directories for which html manuals are to be generated
 	// =========================================================================================
@@ -21,7 +23,6 @@ function check_help(dirs)
 	
 	if rhs > 1 then
 		error(39);
-		chdir(current_directory);
 		return;
 	end
 	
@@ -30,7 +31,9 @@ function check_help(dirs)
 	
 	if (rhs <= 0) | ((rhs == 1) & (dirs == [])) then
 		
+		global %helps;
 		dirs_to_build = %helps;
+		clear %helps;
 		
 		//----------------------------------------------------------------------------------
 		// Patch because scicos is not written in xml
@@ -123,7 +126,11 @@ function check_help(dirs)
 							mprintf("%s\n",dirs(k1));
 						end
 						
-						stat = unix("xmllint --noout --valid "+xml(k2)+" > /dev/null 2>&1");
+						if MSDOS then
+							stat = unix(SCI+"\modules\helptools\bin\xmllint --noout --valid "+xml(k2)+" > NUL 2>&1");
+						else
+							stat = unix("xmllint --noout --valid "+xml(k2)+" > /dev/null 2>&1");
+						end
 						
 						if stat <> 0 then
 							
@@ -137,7 +144,12 @@ function check_help(dirs)
 							mfprintf(logfile_id,"%s\n",badfile);
 							mfprintf(logfile_id,"----------------------------------------------------------------------\n");
 							mclose(logfile_id);
-							unix("xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+							
+							if MSDOS then
+								unix(SCI+"\modules\helptools\bin\xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+							else
+								unix("xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+							end
 						end
 					end
 				end
@@ -156,22 +168,24 @@ function check_help(dirs)
 	
 	if nb_badfiles == 1 then
 		mprintf("\nBad syntax in 1 file :\n");
-		for k=1:size(badfiles,'*')
-			mprintf("\t- %s\n",badfiles(k));
-		end
-		scipad(logfile);
-	
 	elseif nb_badfiles > 0 then
 		mprintf("\nBad syntax in %d files :\n",nb_badfiles);
-		for k=1:size(badfiles,'*')
-			mprintf("\t- %s\n",badfiles(k));
-		end
-		scipad(logfile);
-	
 	else
 		mprintf("\nAll xml files are correct\n");
 	end
 	
+	
+	if nb_badfiles > 0 then
+		for k=1:size(badfiles,'*')
+			mprintf("\t- %s\n",badfiles(k));
+		end
+		
+		if grep(sciargs(),"-nw") == [] then
+			scipad(logfile);
+		else
+			mprintf("\n\tSee %s\n",logfile);
+		end
+	end
 	
 	// On remet l'environement initial
 	//------------------------------------------------------------------------------------------
