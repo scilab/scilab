@@ -79,7 +79,6 @@ cd .."/>
 		<File RelativePath="..\misops.f"/>
 		<File RelativePath="..\newsave.f"/>
 		<File RelativePath="..\polaut.f"/>
-		<File RelativePath="..\polelm.f"/>
 		<File RelativePath="..\polops.f"/>
 		<File RelativePath="..\sci_bezout.f"/>
 		<File RelativePath="..\sci_coeff.f"/>

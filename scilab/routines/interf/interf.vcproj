@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_polynomials.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
@@ -229,6 +233,74 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_bezout.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_cleanp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_coeff.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_degree.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_diag.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_div.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_eval.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_poly.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_prod.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_roots.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_sfact.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_simp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_simp_mode.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_sum.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_tril.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_triu.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_varn.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -237,6 +309,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\gw_polynomials.h"
+				>
+			</File>
 			<File
 				RelativePath=".\intshowalluimenushandles.h"
 				>
