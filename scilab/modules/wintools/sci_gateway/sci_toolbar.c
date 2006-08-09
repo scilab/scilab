@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "inttoolbar.h"
+#include "sci_toolbar.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -11,7 +11,7 @@
   extern int GetStateToolBarWin32(int WinNum);
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(inthidetoolbar) _PARAMS((char *fname))
+int C2F(sci_hidetoolbar) _PARAMS((char *fname))
 {
  static int l1, m1, n1;	
 
@@ -38,7 +38,7 @@ int C2F(inthidetoolbar) _PARAMS((char *fname))
  return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(inttoolbar) _PARAMS((char *fname))
+int C2F(sci_toolbar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int bOK=FALSE;

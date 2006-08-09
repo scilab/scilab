@@ -2,14 +2,14 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intsetlanguagemenu.h"
+#include "sci_setlanguagemenu.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 #endif
   extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
-int C2F(intsetlanguagemenu) _PARAMS((char *fname))
+int C2F(sci_setlanguagemenu) _PARAMS((char *fname))
 {
 	#define LANGUAGE_MAX 1024 
 	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 

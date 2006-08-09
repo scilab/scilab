@@ -22,8 +22,8 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(inthidetoolbar) _PARAMS((char *fname));
-int C2F(inttoolbar) _PARAMS((char *fname));
+int C2F(sci_hidetoolbar) _PARAMS((char *fname));
+int C2F(sci_toolbar) _PARAMS((char *fname));
 
 #endif /* __INTTOOLBAR__ */
 /*-----------------------------------------------------------------------------------*/ 

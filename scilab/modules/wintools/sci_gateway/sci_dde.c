@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intdde.h"
+#include "sci_dde.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   extern int InterfaceWindowsDDEopen _PARAMS((char *fname));
@@ -13,7 +13,7 @@
   extern int InterfaceWindowsDDEIsOpen _PARAMS((char *fname));
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(intddeopen) _PARAMS((char *fname))
+int C2F(sci_ddeopen) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsDDEopen(fname);
@@ -25,7 +25,7 @@ int C2F(intddeopen) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intddeclose) _PARAMS((char *fname))
+int C2F(sci_ddeclose) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsDDEclose(fname);
@@ -37,7 +37,7 @@ int C2F(intddeclose) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intddeexec) _PARAMS((char *fname))
+int C2F(sci_ddeexec) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsDDEexec(fname);
@@ -49,7 +49,7 @@ int C2F(intddeexec) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intddepoke) _PARAMS((char *fname))
+int C2F(sci_ddepoke) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsDDEpoke(fname);
@@ -61,7 +61,7 @@ int C2F(intddepoke) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intddereq) _PARAMS((char *fname))
+int C2F(sci_ddereq) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsDDEreq(fname);
@@ -73,7 +73,7 @@ int C2F(intddereq) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intddeisopen) _PARAMS((char *fname))
+int C2F(sci_ddeisopen) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsDDEIsOpen(fname);

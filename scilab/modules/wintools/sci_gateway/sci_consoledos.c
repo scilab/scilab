@@ -2,16 +2,12 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intconsoledos.h"
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+#include "sci_consoledos.h"
+#include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
-int C2F(intconsoledos) _PARAMS((char *fname))
+int C2F(sci_consoledos) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	char *Output=NULL;

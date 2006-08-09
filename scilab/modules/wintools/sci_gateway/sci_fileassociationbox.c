@@ -2,11 +2,11 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intfileassociationbox.h"
+#include "sci_fileassociationbox.h"
 /*-----------------------------------------------------------------------------------*/
 extern void Callback_FILESASSOCIATIONBOX(void);
 /*-----------------------------------------------------------------------------------*/
-int C2F(intfilesassociationbox) _PARAMS((char *fname,unsigned long l))
+int C2F(sci_filesassociationbox) _PARAMS((char *fname,unsigned long l))
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0) ;

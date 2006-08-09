@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTABOUT__
-#define __INTABOUT__
+#ifndef __INTTOPRINT__
+#define __INTTOPRINT__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -22,7 +22,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(intabout) _PARAMS((char *fname))
-;
-#endif /* __INTABOUT__ */
+
+int C2F(sci_toprint) _PARAMS((char *fname));
+#endif /* __INTTOPRINT__ */
 /*-----------------------------------------------------------------------------------*/ 

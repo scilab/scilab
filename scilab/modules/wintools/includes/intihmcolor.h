@@ -23,7 +23,7 @@
 #define FALSE 0
 
 
-int C2F(intsettextcolor) _PARAMS((char *fname));
-int C2F(intsettextbackgroundcolor) _PARAMS((char *fname));
+int C2F(sci_settextcolor) _PARAMS((char *fname));
+int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname));
 #endif /* __INTIHMCOLOR__ */
 /*-----------------------------------------------------------------------------------*/ 

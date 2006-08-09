@@ -5,7 +5,7 @@
 #include "intpathname.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-int C2F(intgetlongpathname) _PARAMS((char *fname))
+int C2F(sci_getlongpathname) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int bOK=FALSE;
@@ -66,7 +66,7 @@ int C2F(intgetlongpathname) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intgetshortpathname) _PARAMS((char *fname))
+int C2F(sci_getshortpathname) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int bOK=FALSE;

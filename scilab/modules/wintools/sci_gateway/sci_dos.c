@@ -2,7 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intdos.h"
+#include "sci_dos.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #define BUFSIZE 4096
@@ -36,7 +36,7 @@ static pipeinfo pipeErr= {INVALID_HANDLE_VALUE, NULL,0};
 #endif
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
-int C2F(intdos) _PARAMS((char *fname,unsigned long l))
+int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 {
 	int m1,n1,l1;
 	int *Status=NULL;
@@ -178,7 +178,7 @@ int C2F(intdos) _PARAMS((char *fname,unsigned long l))
 }
 #else
 /*-----------------------------------------------------------------------------------*/
-int C2F(intdos) _PARAMS((char *fname,unsigned long l))
+int C2F(sci_dos) _PARAMS((char *fname,unsigned long l))
 {
 	int m1,n1,l1;
 	int *Status=NULL;

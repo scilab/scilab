@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTTOPRINT__
-#define __INTTOPRINT__
+#ifndef __INTCONSOLEDOS__
+#define __INTCONSOLEDOS__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -14,6 +14,9 @@
 #include "stack-c.h"
 #include "version.h"
 
+#ifdef _MSC_VER
+#include "WinConsole.h"
+#endif
 
 #ifndef NULL
   #define NULL 0
@@ -22,7 +25,7 @@
 #define TRUE  1
 #define FALSE 0
 
+int C2F(sci_consoledos) _PARAMS((char *fname));
 
-int C2F(inttoprint) _PARAMS((char *fname));
-#endif /* __INTTOPRINT__ */
+#endif /* __INTCONSOLEDOS__ */
 /*-----------------------------------------------------------------------------------*/ 

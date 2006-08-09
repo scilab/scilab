@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "inttoprint.h"
+#include "sci_toprint.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
@@ -15,7 +15,7 @@
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 /* Print from scilab (Windows) for Scipad and figure */
-int C2F(inttoprint) _PARAMS((char *fname))
+int C2F(sci_toprint) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

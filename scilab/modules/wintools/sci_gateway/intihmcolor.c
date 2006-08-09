@@ -16,7 +16,7 @@ extern int IsAScalar(int RhsNumber);
 	extern BOOL IsWindowInterface(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(intsettextcolor) _PARAMS((char *fname))
+int C2F(sci_settextcolor) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
@@ -91,7 +91,7 @@ int C2F(intsettextcolor) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intsettextbackgroundcolor) _PARAMS((char *fname))
+int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTWINOPEN__
-#define __INTWINOPEN__
+#ifndef __INTMCISENDSTRING__
+#define __INTMCISENDSTRING__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -22,7 +22,12 @@
 #define TRUE  1
 #define FALSE 0
 
+int C2F(sci_mcisendstring) _PARAMS((char *fname));
+#if _MSC_VER
+	int mcisendstringWindowsfunction _PARAMS((char *fname));
+#else
+	int mcisendstringUnixfunction _PARAMS((char *fname));
+#endif
 
-int C2F(intwinopen) _PARAMS((char *fname));
-#endif /* __INTWINOPEN__ */
+#endif /* __INTMCISENDSTRING__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -2,13 +2,13 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intabout.h"
+#include "sci_about.h"
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
   extern void Callback_ABOUT(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(intabout) _PARAMS((char *fname))
+int C2F(sci_about) _PARAMS((char *fname))
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0) ;

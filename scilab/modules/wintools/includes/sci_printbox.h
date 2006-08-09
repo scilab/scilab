@@ -2,12 +2,11 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTFILEASSOCIATIONBOX__
-#define __INTFILEASSOCIATIONBOX__
+#ifndef __INTPRINTBOX__
+#define __INTPRINTBOX__
 
 #ifdef _MSC_VER
-  #include "FilesAssociationBox.h"
-  #include "wgnuplib.h"
+  #include <windows.h>
 #endif
 
 #include <stdio.h>
@@ -24,6 +23,11 @@
 #define FALSE 0
 
 
-int C2F(intfilesassociationbox) _PARAMS((char *fname,unsigned long l));
-#endif /* __INTFILEASSOCIATIONBOX__ */
+int C2F(sci_printsetupbox) _PARAMS((char *fname));
+#if _MSC_VER
+	HDC GetPrinterDC(void);
+	char GetPrinterOrientation(void);
+	char* GetPrinterName(void);
+#endif
+#endif /* __INTPRINTBOX__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -2,11 +2,12 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTCLIPBOARD__
-#define __INTCLIPBOARD__
+#ifndef __INTFILEASSOCIATIONBOX__
+#define __INTFILEASSOCIATIONBOX__
 
 #ifdef _MSC_VER
-  #include <windows.h>
+  #include "FilesAssociationBox.h"
+  #include "wgnuplib.h"
 #endif
 
 #include <stdio.h>
@@ -22,6 +23,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(intclipboard) _PARAMS((char *fname,unsigned long l));
-#endif /* __INTCLIPBOARD__ */
+
+int C2F(sci_filesassociationbox) _PARAMS((char *fname,unsigned long l));
+#endif /* __INTFILEASSOCIATIONBOX__ */
 /*-----------------------------------------------------------------------------------*/ 

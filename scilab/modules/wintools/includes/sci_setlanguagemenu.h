@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTCONSOLEDOS__
-#define __INTCONSOLEDOS__
+#ifndef __INTSETLANGUAGEMENU__
+#define __INTSETLANGUAGEMENU__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -14,9 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-#ifdef _MSC_VER
-#include "WinConsole.h"
-#endif
 
 #ifndef NULL
   #define NULL 0
@@ -25,7 +22,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(intconsoledos) _PARAMS((char *fname));
+int C2F(sci_setlanguagemenu) _PARAMS((char *fname));
 
-#endif /* __INTCONSOLEDOS__ */
+#endif /* __INTSETLANGUAGEMENU__ */
 /*-----------------------------------------------------------------------------------*/ 

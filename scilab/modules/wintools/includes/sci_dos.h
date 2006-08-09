@@ -22,7 +22,7 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(intdos) _PARAMS((char *fname,unsigned long l));
+int C2F(sci_dos) _PARAMS((char *fname,unsigned long l));
 
 #endif /* __INTDOS__ */
 /*-----------------------------------------------------------------------------------*/ 

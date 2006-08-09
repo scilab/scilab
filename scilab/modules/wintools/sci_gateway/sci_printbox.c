@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intprintbox.h"
+#include "sci_printbox.h"
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
@@ -10,7 +10,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* Open Print DialogBox*/
-int C2F(intprintsetupbox) _PARAMS((char *fname))
+int C2F(sci_printsetupbox) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

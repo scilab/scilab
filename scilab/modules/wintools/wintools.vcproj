@@ -181,23 +181,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intabout.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intclipboard.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intconsoledos.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intdde.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intdos.c"
+				RelativePath=".\sci_gateway\gw_wintools.c"
 				>
 			</File>
 			<File
@@ -205,15 +189,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intfileassociationbox.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\intihmcolor.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intmcisendstring.c"
 				>
 			</File>
 			<File
@@ -225,35 +201,59 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intprintbox.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intsetlanguagemenu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\inttoolbar.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\inttoprint.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intwinopen.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\intwinqueryreg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\matwintools.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\registry.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_about.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_clipboard.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_consoledos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_dde.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_dos.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_fileassociationbox.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_mcisendstring.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_printbox.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_setlanguagemenu.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_toolbar.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_toprint.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_winopen.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_winqueryreg.c"
 				>
 			</File>
 		</Filter>
@@ -262,23 +262,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\includes\intabout.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intclipboard.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intconsoledos.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intdde.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intdos.h"
+				RelativePath=".\includes\gw_wintools.h"
 				>
 			</File>
 			<File
@@ -286,15 +270,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intfileassociationbox.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\intihmcolor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\intmcisendstring.h"
 				>
 			</File>
 			<File
@@ -306,31 +282,55 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intprintbox.h"
+				RelativePath=".\includes\sci_about.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intsetlanguagemenu.h"
+				RelativePath=".\includes\sci_clipboard.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\inttoolbar.h"
+				RelativePath=".\includes\sci_consoledos.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\inttoprint.h"
+				RelativePath=".\includes\sci_dde.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intwinopen.h"
+				RelativePath=".\includes\sci_dos.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intwinqueryreg.h"
+				RelativePath=".\includes\sci_fileassociationbox.h"
 				>
 			</File>
 			<File
-				RelativePath=".\includes\matwintools.h"
+				RelativePath=".\includes\sci_mcisendstring.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_printbox.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_setlanguagemenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_toolbar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_toprint.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_winopen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_winqueryreg.h"
 				>
 			</File>
 		</Filter>

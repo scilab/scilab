@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTSETLANGUAGEMENU__
-#define __INTSETLANGUAGEMENU__
+#ifndef __INTCLIPBOARD__
+#define __INTCLIPBOARD__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -22,7 +22,6 @@
 #define TRUE  1
 #define FALSE 0
 
-int C2F(intsetlanguagemenu) _PARAMS((char *fname));
-
-#endif /* __INTSETLANGUAGEMENU__ */
+int C2F(sci_clipboard) _PARAMS((char *fname,unsigned long l));
+#endif /* __INTCLIPBOARD__ */
 /*-----------------------------------------------------------------------------------*/ 

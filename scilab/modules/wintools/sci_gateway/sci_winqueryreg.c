@@ -2,7 +2,7 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intwinqueryreg.h"
+#include "sci_winqueryreg.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 #define MSG_WERROR1 "parameter(s) type incorrect.\r\n"
@@ -17,7 +17,7 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 /*-----------------------------------------------------------------------------------*/
 int InterfaceWindowsQueryRegistry _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
-int C2F(intwinqueryreg) _PARAMS((char *fname))
+int C2F(sci_winqueryreg) _PARAMS((char *fname))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsQueryRegistry(fname);

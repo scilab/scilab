@@ -2,10 +2,10 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
-#include "intwinopen.h"
+#include "sci_winopen.h"
 /* Open Web Browser*/
 /*-----------------------------------------------------------------------------------*/
-int C2F(intwinopen) _PARAMS((char *fname))
+int C2F(sci_winopen) _PARAMS((char *fname))
 {
 	#ifndef _MSC_VER
 	#define FILENAME_MAX 4096 

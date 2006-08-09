@@ -2,8 +2,8 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __INTPRINTBOX__
-#define __INTPRINTBOX__
+#ifndef __INTWINOPEN__
+#define __INTWINOPEN__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -23,11 +23,6 @@
 #define FALSE 0
 
 
-int C2F(intprintsetupbox) _PARAMS((char *fname));
-#if _MSC_VER
-	HDC GetPrinterDC(void);
-	char GetPrinterOrientation(void);
-	char* GetPrinterName(void);
-#endif
-#endif /* __INTPRINTBOX__ */
+int C2F(sci_winopen) _PARAMS((char *fname));
+#endif /* __INTWINOPEN__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -10,7 +10,7 @@
 #endif
 /*-----------------------------------------------------------------------------------*/
 
-int C2F(intoemtochar) _PARAMS((char *fname))
+int C2F(sci_oemtochar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int bOK=FALSE;
@@ -54,7 +54,7 @@ int C2F(intoemtochar) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intchartooem) _PARAMS((char *fname))
+int C2F(sci_chartooem) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int bOK=FALSE;

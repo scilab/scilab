@@ -79,7 +79,7 @@ extern void    /* 44  */ C2F(intlapack)();
 	#define SCICOSINTERF2 C2F(gw_cscicos)
 #endif
 
-extern void    /* 47  */ C2F(intwintools)();
+extern void    /* 47  */ C2F(gw_wintools)();
 extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
 
@@ -130,7 +130,7 @@ static OpTab Interfaces[] ={
   /* 44  */ {C2F(intlapack)},
   /* 45  */ {SCICOSINTERF1},  
   /* 46  */ {SCICOSINTERF2},
-	/* 47  */ {C2F(intwintools)},
+	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */	{C2F(gw_sound)}
 };
