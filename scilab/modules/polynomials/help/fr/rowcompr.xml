@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>rowcomprX  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="rowcompr"> compression de lignes d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[X,rk,Ac]=rowcompr(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée de polynômes (base unimodulaire à gauche)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rk  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : rang normal de <VERB>A</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Ac  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : <VERB>Ac=X*A</VERB>, matrice de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Compression de lignes de la matrice de polynômes <VERB>A </VERB>.
+  </P>
+  <P>
+    <VERB>X</VERB> est une base de polynômes unimodulaire à gauche qui compresse les lignes
+    de <VERB>A</VERB>. <VERB>rk</VERB> est le rang normal de A.
+  </P>
+  <P>
+    Attention : élimination des termes &quot;petits&quot; (à utiliser avec précaution).
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>colcompr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

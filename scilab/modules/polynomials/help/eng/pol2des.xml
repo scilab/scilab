@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pol2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pol2des"> polynomial matrix to descriptor form</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[N,B,C]=pol2des(Ds)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ds</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>N, B, C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: three real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given the polynomial matrix <VERB>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</VERB>,
+    <VERB>pol2des</VERB> returns three  matrices <VERB>N, B, C</VERB>, with <VERB>N</VERB> nilpotent 
+    such that:</P>
+    <P>
+      <VERB>Ds = C (s*N-eye())^-1 B</VERB>
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+G=[1,s;1+s^2,3*s^3];[N,B,C]=pol2des(G);
+G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tf2des</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.;   </AUTHOR>
+</MAN>

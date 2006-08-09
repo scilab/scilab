@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>determ</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="determ"> determinant of polynomial matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>res=determ(W [,k])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>W</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real square polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (upper bound for the degree of the determinant of W)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the determinant of a real polynomial matrix 
+    (computation made by FFT if W size is greater than 2*2).</P>
+    <P><VERB>res=determ(W [,k])</VERB><VERB>k</VERB> is an integer larger than the actual degree of the determinant
+    of <VERB>W</VERB>.</P>
+    <P>
+    The default value of <VERB>k</VERB> is the smallest power of 2 which is larger
+    than <VERB>n*maxi(degree(W))</VERB>.</P>
+    <P>
+    Method (Only if W size is greater than 2*2) : evaluate the determinant of <VERB>W</VERB> for the Fourier frequencies
+    and apply inverse FFT to the coefficients of the determinant.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+w=s*rand(10,10);
+determ(w)
+det(coeff(w,1))*s^10
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>det</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>detr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>coffg</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

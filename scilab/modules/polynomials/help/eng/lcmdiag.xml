@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lcm</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lcmdiag"> least common multiple diagonal factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[N,D]=lcmdiag(H)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[N,D]=lcmdiag(H,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>H</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: rational matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>N</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: diagonal polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string: <VERB>'row'</VERB> or <VERB>'col'</VERB> (default)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[N,D]=lcmdiag(H,'row')</VERB> computes a factorization <VERB>D*H=N</VERB>,
+    i.e.  <VERB>H=D^(-1)*N</VERB>  where D is a diagonal matrix with D(k,k)=lcm of 
+    kth row of H('den').</P>
+    <P><VERB>[N,D]=lcmdiag(H)</VERB> or <VERB>[N,D]=lcmdiag(H,'col)</VERB> returns
+    <VERB>H=N*D^(-1)</VERB> with diagonal D and D(k,k)=lcm of kth col of H('den')</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+H=[1/s,(s+2)/s/(s+1)^2;1/(s^2*(s+2)),2/(s+2)];
+[N,D]=lcmdiag(H);
+N/D-H
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lcm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gcd</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bezout</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

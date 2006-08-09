@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>RESIDU</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="residu"> residue</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[V]=residu(P,Q1,Q2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P, Q1, Q2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomials or matrix polynomials with real or complex coefficients.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>V=residu(P,Q1,Q2)</VERB> returns the matrix <VERB>V</VERB>
+    such that <VERB>V(i,j)</VERB> is the sum of the residues of the
+    rational fraction <VERB>P(i,j)/(Q1(i,j)*Q2(i,j))</VERB> calculated
+    at the zeros of <VERB>Q1(i,j)</VERB>.</P>
+    <P><VERB>Q1(i,j)</VERB> and <VERB>Q2(i,j)</VERB> must not have any common root.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+H=[s/(s+1)^2,1/(s+2)];N=numer(H);D=denom(H);
+w=residu(N.*horner(N,-s),D,horner(D,-s));  //N(s) N(-s) / D(s) D(-s)
+sqrt(sum(w))  //This is H2 norm
+h2norm(tf2ss(H))
+//
+p=(s-1)*(s+1)*(s+2)*(s+10);a=(s-5)*(s-1)*(s*s)*((s+1/2)**2);
+b=(s-3)*(s+2/5)*(s+3);
+residu(p,a,b)+531863/4410    //Exact
+z=poly(0,'z');a=z^3+0.7*z^2+0.5*z-0.3;b=z^3+0.3*z^2+0.2*z+0.1;
+atild=gtild(a,'d');btild=gtild(b,'d');
+residu(b*btild,z*a,atild)-2.9488038   //Exact
+a=a+0*%i;b=b+0*%i;
+real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pfss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>roots</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gtild</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> F.Delebecque INRIA</AUTHOR>
+</MAN>

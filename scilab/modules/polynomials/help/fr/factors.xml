@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>factors  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="factors"> factorisation réelle de polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[lnum,g]=factors(pol [,&apos;flag&apos;])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[lnum,lden,g]=factors(rat [,&apos;flag&apos;])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rat=factors(rat,&apos;flag&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>pol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rat  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : fraction rationnelle (<VERB>rat=pol1/pol2</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lnum  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : liste de polynômes (de degrés 1 ou 2)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lden  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : liste de polynômes (de degrés 1 ou 2)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères, <VERB>&apos;c&apos;</VERB> ou <VERB>&apos;d&apos;</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    renvoie les facteurs du polynôme <VERB>pol</VERB> dans la liste <VERB>lnum</VERB>
+    et le &quot;gain&quot; g.
+  </P>
+  <P>
+    On a pol = g multiplié par le produit des termes de la liste <VERB>lnum</VERB>
+    (si <VERB>flag</VERB> n&apos;est pas donné). Si <VERB>flag=&apos;c&apos;</VERB>, on a <VERB>|pol(i omega)|</VERB> = <VERB>|g*prod(lnum_j(i omega)|</VERB>.
+    Si <VERB>flag=&apos;d&apos;</VERB> alors
+    on a <VERB>|pol(exp(i omega))|</VERB> = <VERB>|g*prod(lnum_i(exp(i omega))|</VERB>.
+    Si l&apos;argument de <VERB>factors</VERB> est une fraction rationnelle 1x1 <VERB>rat=pol1/pol2</VERB>, 
+    les facteurs du numérateur <VERB>pol1</VERB> et le dénominateur <VERB>pol2</VERB> 
+    sont renvoyés dans les listes <VERB>lnum</VERB> et <VERB>lden</VERB>, respectivement.
+  </P>
+  <P>
+    Le &quot;gain&quot; est renvoyé dans <VERB>g</VERB>, c&apos;est à dire
+    rat = g multiplié par (produit des termes dans lnum) / (produit des termes dans lden).
+  </P>
+  <P>
+    Si <VERB>flag</VERB> vaut <VERB>&apos;c&apos;</VERB> (resp. <VERB>&apos;d&apos;</VERB>), les racines de <VERB>pol</VERB> 
+    sont réfléchies par rapport à l&apos;axe imaginaire (resp. le cercle unité), i.e. 
+    les facteurs dans <VERB>lnum</VERB> sont des polynômes stables.
+    Idem si <VERB>factors</VERB> est appelé avec des arguments rationnels :
+    les termes dans <VERB>lnum</VERB> et <VERB>lden</VERB> sont des polynômes stables si
+    <VERB>flag</VERB> est donné. <VERB>R2=factors(R1,&apos;c&apos;)</VERB> ou <VERB>R2=factors(R1,&apos;d&apos;)</VERB>
+    avec <VERB>R1</VERB> une fraction rationnelle ou une liste <VERB>syslin</VERB> SISO : la sortie <VERB>R2</VERB> est rationnelle avec un numérateur et un dénominateur stables et
+    de même module que <VERB>R1</VERB> sur l&apos;axe imaginaire (<VERB>&apos;c&apos;</VERB>)
+    ou le cercle unité (<VERB>&apos;d&apos;</VERB>).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

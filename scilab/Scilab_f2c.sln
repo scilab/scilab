@@ -276,7 +276,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetWindowsVersion", "libs\G
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MALLOC", "libs\MALLOC\MALLOC.vcproj", "{6A84AD8C-BA18-4A3F-9C72-EC3DF0939E9E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "poly_f2c", "routines\poly\poly_f\poly_f2c.vcproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "poly_f2c", "modules\polynomials\src\fortran\poly_f2c.vcproj", "{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optim_f2c", "modules\optimization\src\fortran\optim_f2c.vcproj", "{1D219098-007C-4F76-9AE6-271ABBB7D393}"
 EndProject

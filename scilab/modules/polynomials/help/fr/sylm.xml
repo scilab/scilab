@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>sylmX  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="sylm"> matrice de Sylvester  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[S]=sylm(a,b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a,b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : deux polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>S  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>sylm(a,b)</VERB> renvoie la matrice de Sylvester associée aux polynômes
+    <VERB>a</VERB> et <VERB>b</VERB>, i.e. la matrice <VERB>S</VERB> telle que :
+  </P>
+  <P>
+    <VERB>coeff( a*x + b*y )&apos; = S * [coeff(x)&apos;;coeff(y)&apos;]</VERB>.
+  </P>
+  <P>
+    La dimension de <VERB>S</VERB> est égale à <VERB>degree(a)+degree(b)</VERB>.
+  </P>
+  <P>
+    Si <VERB>a</VERB> et <VERB>b</VERB> sont premiers entre eux alors
+  </P>
+  <P>
+    <VERB>rank(sylm(a,b))=degree(a)+degree(b))</VERB> et les instructions
+  </P>
+  <VERBATIM><![CDATA[
+  u = sylm(a,b) \ eye(na+nb,1)
+  x = poly(u(1:nb),'z','coeff')
+  y = poly(u(nb+1:na+nb),'z','coeff')
+   ]]></VERBATIM>
+  <P>
+    calculent les facteurs de Bezout <VERB>x</VERB> ainsi que <VERB>y</VERB> de degré minimum tels que 
+    <VERB>a*x+b*y = 1</VERB>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

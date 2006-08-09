@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SIMP_MODE</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>July 1996</DATE>
+  <SHORT_DESCRIPTION name="simp_mode"> toggle rational simplification</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mod=simp_mode()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>simp_mode(mod)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>mod</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    rational simplification is called after nearly each operations on 
+    rationals. It is possible to toggle simplification on or off using
+    <VERB>simp_mode</VERB> function.</P>
+    <P><VERB>simp_mod(%t)</VERB> set rational simplification mode on</P>
+    <P><VERB>simp_mod(%f)</VERB> set rational simplification mode off</P>
+    <P><VERB>mod=simp_mod()</VERB> returns in mod the current rational
+    simplification mode</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+mod=simp_mode()
+simp_mode(%f);hns=s/s
+simp_mode(%t);hns=s/s
+simp_mode(mod);
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>simp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

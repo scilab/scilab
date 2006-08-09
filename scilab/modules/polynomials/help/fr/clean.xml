@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>clean  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="clean"> nettoie une matrice (arrondi à zéro des termes très petits)    </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[B]=clean(A [,epsa [,epsr]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : une matrice (scalaire, polynômes, creuse, ...) 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>epsa,epsr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombres réels (valeurs par défaut resp. 1.d-10 et 1.d-10)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction élimine (force à zéro) les coefficients 
+    de valeur absolue &lt; <VERB>epsa</VERB> et de valeur relative &lt; <VERB>epsr</VERB> 
+    (relative par rapport à la  norme 1 des coefficients)
+    dans un polynôme (éventuellement matrice de polynôme ou rationnelle).
+  </P>
+  <P>
+    Les valeurs par défaut sont <VERB>epsa=1.d-10</VERB> et <VERB>epsr=1.d-10</VERB>.
+  </P>
+  <P>
+    Pour une matrice constante (non polynomiale) <VERB>clean(A,epsa)</VERB> force à zéro
+    les termes de <VERB>A</VERB> plus petits que <VERB>epsa</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=poly(0,'x');
+w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
+w*inv(w)
+clean(w*inv(w))
+ ]]></EXAMPLE>
+</MAN>

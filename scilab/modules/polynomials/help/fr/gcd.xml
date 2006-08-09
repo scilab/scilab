@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>gcd  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="gcd"> calcul de PGCD  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[pgcd,U]=gcd(p)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ligne de polynômes <VERB>p=[p1,..,pn] ou d'entiers (type égal à 8)</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Calcule le PGCD des termes de <VERB>p</VERB> et une matrice unimodulaire (avec le polynôme inverse) <VERB>U</VERB>, de degré minimal tels que
+  </P>
+  <P>
+    <VERB>p*U=[0 ... 0 pgcd]</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+//cas des polynômes
+s=poly(0,'s');
+p=[s,s*(s+1)^2,2*s^2+s^3];
+[pgcd,u]=gcd(p);
+p*u
+//cas des entiers
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>bezout</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>hermit</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

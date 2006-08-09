@@ -42,7 +42,7 @@
 #include "../../metanet/sci_gateway/metanet.fundef"  
 
 #define  IN_polelm  16
-#include "../../../../routines/interf/polelm.fundef"  
+#include "../../polynomials/sci_gateway/polynomials.fundef"  
 
 #define  IN_lstelm  17
 #include "../../../../routines/interf/list.fundef"  

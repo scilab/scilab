@@ -5,8 +5,8 @@ mode(-1)
 load('SCI/macros/util/lib')
 load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
-load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
+load('SCI/modules/polynomials/macros/lib')
 
 if ~isdef('genmoc_verbose') then 
   genmoc_verbose=%f

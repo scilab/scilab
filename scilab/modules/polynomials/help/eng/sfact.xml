@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SFACT</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sfact"> discrete time spectral factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>F=sfact(P)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Finds <VERB>F</VERB>, a spectral factor of
+    <VERB>P</VERB>. <VERB>P</VERB> is a polynomial matrix such that
+    each root of <VERB>P</VERB> has a mirror image w.r.t the unit
+    circle. Problem is singular if a root is on the unit circle.</P>
+    <P><VERB>sfact(P)</VERB> returns a polynomial matrix
+    <VERB>F(z)</VERB> which is antistable and such that</P>
+    <P>
+      <VERB>P = F(z)* F(1/z) *z^n</VERB>
+    </P>
+    <P>
+    For scalar polynomials a specific algorithm is implemented.
+    Algorithms are adapted from Kucera's book.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Simple polynomial example
+z=poly(0,'z');
+p=(z-1/2)*(2-z)
+w=sfact(p);
+w*numer(horner(w,1/z))
+//matrix example
+F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
+P=F1*gtild(F1,'d');  //P is symmetric
+F=sfact(P)    
+roots(det(P))  
+roots(det(gtild(F,'d')))  //The stable roots
+roots(det(F))             //The antistable roots
+clean(P-F*gtild(F,'d'))
+//Example of continuous time use
+s=poly(0,'s');
+p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);
+//p(s) = polynomial in s^2 , looks for stable f such that p=f(s)*f(-s) 
+w=horner(p,(1-s)/(1+s));  // bilinear transform w=p((1-s)/(1+s))
+wn=numer(w);              //take the numerator
+fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); //Factor and back transform
+f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normalization
+roots(f)    //f is stable
+clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s) 
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gtild</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fspecg</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

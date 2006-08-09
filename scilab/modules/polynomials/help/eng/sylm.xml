@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sylmX</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sylm"> Sylvester matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[S]=sylm(a,b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a,b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two polynomials</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>sylm(a,b)</VERB> gives the Sylvester matrix associated to polynomials
+    <VERB>a</VERB> and <VERB>b</VERB>, i.e. the matrix <VERB>S</VERB> such that:</P>
+    <P><VERB>coeff( a*x + b*y )' = S * [coeff(x)';coeff(y)']</VERB>.</P>
+    <P>
+    Dimension of <VERB>S</VERB> is equal to <VERB>degree(a)+degree(b)</VERB>.</P>
+    <P>
+    If <VERB>a</VERB> and <VERB>b</VERB> are coprime polynomials then</P>
+    <P><VERB>rank(sylm(a,b))=degree(a)+degree(b))</VERB> and the instructions</P>
+    <VERBATIM>
+<![CDATA[
+  u = sylm(a,b) \ eye(na+nb,1)
+  x = poly(u(1:nb),'z','coeff')
+  y = poly(u(nb+1:na+nb),'z','coeff')
+   ]]>
+    </VERBATIM>
+    <P>
+    compute Bezout factors <VERB>x</VERB> and <VERB>y</VERB> of minimal degree 
+    such that <VERB>a*x+b*y = 1</VERB></P>
+  </DESCRIPTION>
+</MAN>

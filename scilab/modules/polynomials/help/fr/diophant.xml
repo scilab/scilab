@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>diophant  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="diophant"> équation diophantienne de Bezout  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x,err]=diophant(p1p2,b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p1p2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de polynômes <VERB>p1p2 = [p1 p2]</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de polynômes  [x1;x2]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB> diophant</VERB> résout l&apos;équation de Bezout :
+  </P>
+  <P>
+    <VERB>p1*x1+p2*x2=b</VERB> où <VERB>p1p2</VERB> est un vecteur de polynômes.
+    Si l&apos;équation n&apos;est pas soluble 
+  </P>
+  <P>
+    sinon <VERB>err=0</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s');p1=(s+3)^2;p2=(1+s);
+x1=s;x2=(2+s);
+[x,err]=diophant([p1,p2],p1*x1+p2*x2);
+p1*x1+p2*x2-p1*x(1)-p2*x(2)
+ ]]></EXAMPLE>
+</MAN>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>determ  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="determ"> déterminant d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>res=determ(W [,k])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>W  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (borne supérieure pour le degré du déterminant de W)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>res=determ(W [,k])</VERB> renvoie le déterminant d&apos;une
+    matrice réelle de polynômes (calculs fait par FFT si la taille de W
+    est supérieure à 2*2).
+  </P>
+  <P>
+    <VERB>k</VERB> est un entier plus grand que le degré effectif du
+    déterminant.  de <VERB>W</VERB>.
+  </P>
+  <P>
+    La valeur par défaut de <VERB>k</VERB> est la plus petite
+    puissance de 2 plus grande que <VERB>n*maxi(degree(W))</VERB>.
+  </P>
+  <P>
+    Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <VERB>W</VERB> aux
+    fréquences de Fourier et FFT inverse appliquée aux coefficients du
+    déterminant.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s');
+w=s*rand(10,10);
+determ(w)
+det(coeff(w,1))*s^10
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>detr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. Delebecque  </AUTHOR>
+</MAN>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ldiv  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="ldiv"> division longue d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x]=ldiv(n,d,k)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>n,d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : deux matrices réelles de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>x=ldiv(n,d,k)</VERB> donne les <VERB>k</VERB> premiers coefficients de la division longue
+    de <VERB>n</VERB> par <VERB>d</VERB> i.e. le développement de Taylor de la matrice rationnelle
+    <VERB>[nij(z)/dij(z)]</VERB> à l&apos;infini.
+  </P>
+  <P>
+    Les coefficients du développement de <VERB>nij/dij</VERB> sont stockés dans  
+    <VERB>x((i-1)*n+k,j)  k=1:n</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+wss=ssrand(1,1,3);[a,b,c,d]=abcd(wss);
+wtf=ss2tf(wss);
+x1=ldiv(numer(wtf),denom(wtf),5)
+x2=[c*b;c*a*b;c*a^2*b;c*a^3*b;c*a^4*b]
+wssbis=markp2ss(x1',5,1,1);
+wtfbis=clean(ss2tf(wssbis))
+x3=ldiv(numer(wtfbis),denom(wtfbis),5)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>arl2</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>markp2ss</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pdiv</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

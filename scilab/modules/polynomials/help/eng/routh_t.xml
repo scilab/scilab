@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>routh_tX</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="routh_t"> Routh's table</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r=routh_t(h [,k]).  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square rational matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>r=routh_t(h,k)</VERB> computes Routh's table of denominator of the
+    system described by transfer matrix SISO <VERB>h</VERB> with the
+    feedback by the gain <VERB>k</VERB>.</P>
+    <P>
+    If  <VERB>k=poly(0,'k')</VERB> we will have a polynomial matrix with dummy variable 
+    <VERB>k</VERB>, formal expression of the Routh table.</P>
+  </DESCRIPTION>
+</MAN>

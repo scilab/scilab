@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bezout</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="bezout"> Bezout equation for polynomials or integers</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[thegcd,U]=bezout(p1,p2)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>p1, p2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real polynomials or two integer scalars (type equal to 8)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[thegcd,U]=bezout(p1,p2)</VERB> computes GCD <VERB>thegcd</VERB> of <VERB>p1</VERB> and <VERB>p2</VERB> and in addition a (2x2) 
+    unimodular matrix <VERB>U</VERB> such that:</P>
+    <P>
+      <VERB>[p1,p2]*U = [thegcd,0]</VERB>
+    </P>
+    <P>
+    The lcm of <VERB>p1</VERB> and <VERB>p2</VERB> is given by:</P>
+    <P><VERB>p1*U(1,2)</VERB> (or <VERB>-p2*U(2,2)</VERB>)</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// polynomial case
+x=poly(0,'x');
+p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
+[thegcd,U]=bezout(p1,p2) 
+det(U)
+clean([p1,p2]*U)
+thelcm=p1*U(1,2)
+lcm([p1,p2])
+// integer case
+i1=int32(2*3^5); i2=int32(2^3*3^2);
+[thegcd,U]=bezout(i1,i2) 
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+lcm(V)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>roots</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>simp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>clean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lcm</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> S. Steer INRIA</AUTHOR>
+</MAN>

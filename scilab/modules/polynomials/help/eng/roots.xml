@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ROOTS</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="roots"> roots of polynomials</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x]=roots(p)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x]=roots(p,'e')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial with real or complex coefficients  or vector of the
+	    polynomial coefficients in decreasing degree order (Matlab
+	    compatibility).</SP> 
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>x=roots(p)</VERB> returns in the complex vector <VERB>x</VERB> the roots of the 
+    polynomial <VERB>p</VERB>. For real polynomials of degree &lt;=100 the fast
+      RPOLY algorithm is used. In the other cases the roots are computed as the
+      eigenvalues of the associated companion matrix. Use
+      <VERB>x=roots(p,'e')</VERB> to force this algorithm in any cases.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+p=poly([0,10,1+%i,1-%i],'x');
+roots(p)
+A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
+spec(A) 
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>companion</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>Serge Steer (INRIA)</AUTHORS_ITEM>
+  </AUTHORS>
+  <BIBLIO>
+    <SP>The RPOLY algorithm is described in ACM TOMS 1 (1975) 178-189</SP>
+  </BIBLIO>
+  <USED_FUNCTIONS>
+    <SP>The rpoly.f source codes can be found in the directory routines/control
+      of a Scilab source distribution. The
+      eigenvalue computation is perfomed using DGEEV and ZGEEV LAPACK codes. </SP>
+  </USED_FUNCTIONS>
+</MAN>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>SIMP</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="simp"> rational simplification</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[N1,D1]=simp(N,D)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>H1=simp(H)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>N,D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real polynomials or real matrix polynomials</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>H</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: rational matrix (i.e matrix with entries <VERB>n/d</VERB> ,<VERB>n</VERB> and <VERB>d</VERB> real polynomials)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[n1,d1]=simp(n,d)</VERB> calculates two polynomials <VERB>n1</VERB> and <VERB>d1</VERB>
+    such that <VERB>n1/d1 = n/d</VERB>.</P>
+    <P>
+    If <VERB>N</VERB> and <VERB>D</VERB> are polynomial matrices the calculation
+    is performed element-wise.</P>
+    <P><VERB>H1=simp(H)</VERB> is also valid (each entry of <VERB>H</VERB> is 
+    simplified in <VERB>H1</VERB>).</P>
+    <P>
+    Caution:</P>
+    <P>
+    -no threshold is given i.e. <VERB>simp</VERB> cannot forces a
+    simplification.</P>
+    <P>
+    -For linear dynamic systems which include integrator(s) simplification
+    changes the static gain. (<VERB>H(0)</VERB> for continuous systems or <VERB>H(1)</VERB> for
+    discrete systems)</P>
+    <P>
+    -for complex data, <VERB>simp</VERB> returns its input(s).</P>
+    <P>
+    -rational simplification is called after nearly each operations on 
+    rationals. It is possible to toggle simplification on or off using
+    <VERB>simp_mode</VERB> function.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+
+simp_mode(%F);hns=s/s
+simp_mode(%T);hns=s/s
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>roots</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>trfmod</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>clean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>simp_mode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>factors</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="factors"> numeric real factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[lnum,g]=factors(pol [,'flag'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[lnum,lden,g]=factors(rat [,'flag'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>rat=factors(rat,'flag')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>pol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real polynomial</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rat</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real rational polynomial (<VERB>rat=pol1/pol2</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lnum</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list of polynomials (of degrees 1 or 2)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lden</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list of polynomials (of degrees 1 or 2)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string <VERB>'c'</VERB> or <VERB>'d'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the factors of polynomial <VERB>pol</VERB> in the list <VERB>lnum</VERB>
+    and the &quot;gain&quot; g.</P>
+    <P>
+    One has pol= g times product of entries of the list <VERB>lnum</VERB>
+    (if <VERB>flag</VERB> is not given). If <VERB>flag='c'</VERB> is given, then
+    one has <VERB>|pol(i omega)|</VERB> = <VERB>|g*prod(lnum_j(i omega)|</VERB>.
+    If <VERB>flag='d'</VERB> is given, then
+    one has <VERB>|pol(exp(i omega))|</VERB> = <VERB>|g*prod(lnum_i(exp(i omega))|</VERB>.
+    If argument of <VERB>factors</VERB> is a 1x1 rational <VERB>rat=pol1/pol2</VERB>, 
+    the factors of the numerator <VERB>pol1</VERB> and the denominator <VERB>pol2</VERB> 
+    are returned in the lists <VERB>lnum</VERB> and <VERB>lden</VERB> respectively.</P>
+    <P>
+    The &quot;gain&quot; is returned as <VERB>g</VERB>,i.e. one has:
+    rat= g times (product entries in lnum) / (product entries in lden).</P>
+    <P>
+    If <VERB>flag</VERB> is <VERB>'c'</VERB> (resp. <VERB>'d'</VERB>), the roots of <VERB>pol</VERB> 
+    are refected wrt the imaginary axis (resp. the unit circle), i.e. 
+    the factors in <VERB>lnum</VERB> are stable polynomials.</P>
+    <P>
+    Same thing if <VERB>factors</VERB> is invoked with a rational arguments:
+    the entries in <VERB>lnum</VERB> and <VERB>lden</VERB> are stable polynomials if
+    <VERB>flag</VERB> is given. <VERB>R2=factors(R1,'c')</VERB> or <VERB>R2=factors(R1,'d')</VERB>
+    with <VERB>R1</VERB> a rational function or SISO <VERB>syslin</VERB> list then the 
+    output <VERB>R2</VERB> is a transfer with stable numerator and denominator and
+    with same magnitude as <VERB>R1</VERB> along the imaginary axis (<VERB>'c'</VERB>)
+    or unit circle (<VERB>'d'</VERB>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>simp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

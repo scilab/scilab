@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>invr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="invr"> inversion d&apos;une matrice rationnelle (ou polynomiale)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>F = invr(H)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>H  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme ou matrice de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>F  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme ou matrice de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Si <VERB>H</VERB> est une matrice de polynômes ou de fractions rationnelles, <VERB>invr</VERB>
+    calcule <VERB>H^(-1)</VERB> avec l&apos;algorithme de Leverrier (voir code de la fonction).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s')
+H=[s,s*s+2;1-s,1+s]; invr(H)
+[Num,den]=coffg(H);Num/den
+H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inv</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

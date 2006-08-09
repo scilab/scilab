@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>htrianr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="htrianr"> triangularisation d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Ar,U,rk]=htrianr(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Ar  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>U  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice unimodulaire de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rk  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier, le rang normal de <VERB>A</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    triangularisation de la matrice de polynômes <VERB>A</VERB>.
+  </P>
+  <P>
+    <VERB>A</VERB> de taille <VERB>[m,n]</VERB>, <VERB>m &lt;= n</VERB>.
+  </P>
+  <P>
+    <VERB>Ar=A*U</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=poly(0,'x');
+M=[x;x^2;2+x^3]*[1,x-2,x^4];
+[Mu,U,rk]=htrianr(M)
+det(U)
+M*U(:,1:2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>hrmt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcompr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

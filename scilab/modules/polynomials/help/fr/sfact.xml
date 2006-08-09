@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>SFACT  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="sfact"> factorisation spectrale en temps discret  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>F=sfact(P)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de polynômes réels
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Trouve <VERB>F</VERB>, un facteur spectral de <VERB>P</VERB>. <VERB>P</VERB> est une
+    matrice de polynômes telle que chaque racine de <VERB>P</VERB> a une image miroir
+    par rapport au cercle unité. Le problème est singulier si une racine se trouve sur le cercle unité.
+  </P>
+  <P>
+    <VERB>sfact(P)</VERB>  renvoie une matrice de polynômes <VERB>F(z)</VERB> antistable et telle que
+  </P>
+  <P>
+    <VERB>P = F(z)* F(1/z) *z^n</VERB>
+  </P>
+  <P>
+    Pour les polynômes scalaires un algorithme spécifique est utilisé.
+    Les algorithmes sont tirés du livre de Kucera.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// polynôme simple
+z=poly(0,'z');
+p=(z-1/2)*(2-z)
+w=sfact(p);
+w*numer(horner(w,1/z))
+// exemple matriciel
+F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
+P=F1*gtild(F1,'d');  // P est symétrique
+F=sfact(P)    
+roots(det(P))  
+roots(det(gtild(F,'d')))  // Les racines stables
+roots(det(F))             // Les racines antistables
+clean(P-F*gtild(F,'d'))
+// Utilisation en temps continu
+s=poly(0,'s');
+p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);
+// p(s) = polynôme dans s^2, cherche un f stable tel que p=f(s)*f(-s) 
+w=horner(p,(1-s)/(1+s));  // transformation bilinéaire w=p((1-s)/(1+s))
+wn=numer(w);              // prend le numérateur
+fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); // Factorisation et transformation inverse
+f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      // normalisation
+roots(f)    // f est stable
+clean(f*gtild(f,'c')-p)    //f(s)*f(-s) est égal à p(s) 
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fspecg</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

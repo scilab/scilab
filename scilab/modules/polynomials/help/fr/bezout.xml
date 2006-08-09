@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>bezout  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="bezout"> équation de Bezout pour les polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[pgcd,U]=bezout(p1,p2)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p1, p2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : deux polynômes réels ou deux entiers (type égal à 8)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>[thegcd,U]=bezout(p1,p2)</VERB> calcule le PGCD <VERB>pgcd</VERB> de <VERB>p1</VERB> et <VERB>p2</VERB> et de plus une matrice
+    unimodulaire (2x2) <VERB>U</VERB> telle que :
+  </P>
+  <P>
+    <VERB>[p1,p2]*U = [pgcd,0]</VERB>
+  </P>
+  <P>
+    Le PPCM de <VERB>p1</VERB> et <VERB>p2</VERB> est donné par
+  </P>
+  <P>
+    <VERB>p1*U(1,2)</VERB> (ou <VERB>-p2*U(2,2)</VERB>)
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// cas des polynômes
+x=poly(0,'x');
+p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
+[pgcd,U]=bezout(p1,p2) 
+det(U)
+clean([p1,p2]*U)
+ppcm=p1*U(1,2)
+lcm([p1,p2])
+// cas des entiers
+i1=int32(2*3^5); i2=int32(2^3*3^2);
+[thegcd,U]=bezout(i1,i2) 
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+[thegcd,U]=gcd(V)
+V*U
+lcm(V)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

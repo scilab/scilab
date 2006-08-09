@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>systmat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="systmat"> system matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Sm]=systmat(Sl);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list) or descriptor system</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix pencil</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    System matrix of the linear system <VERB>Sl</VERB> (<VERB>syslin</VERB> list) 
+    in state-space form (utility function).</P>
+    <VERBATIM>
+<![CDATA[
+ Sm = [-sI + A   B;
+      [    C     D]
+   ]]>
+    </VERBATIM>
+    <P>
+    For a descriptor system (<VERB>Sl=list('des',A,B,C,D,E)</VERB>), <VERB>systmat</VERB> returns:</P>
+    <VERBATIM>
+<![CDATA[
+ Sm = [-sE + A   B;
+      [    C     D]
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sm2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sm2ss</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

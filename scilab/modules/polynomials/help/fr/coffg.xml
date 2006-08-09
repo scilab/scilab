@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>coffg  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="coffg"> inverse d&apos;une matrice de polynômes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Ns,d]=coffg(Fs)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>Fs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée de polynômes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>coffg</VERB> calcule <VERB>Fs^-1</VERB> par la méthode des cofacteurs, où <VERB>Fs</VERB> est une matrice de polynômes.
+  </P>
+  <P>
+    inverse de <VERB>Fs</VERB> = <VERB>Ns/d</VERB>
+  </P>
+  <P>
+    <VERB>d</VERB> = dénominateur commun; <VERB>Ns</VERB> = numérateur (une matrice de polynômes).
+  </P>
+  <P>
+    (pour les grandes matrices, s&apos;armer de patience... les résultats sont en général fiables)
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s')
+a=[ s, s^2+1; s  s^2-1];
+[a1,d]=coffg(a);
+(a1/d)-inv(a)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>determ</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>detr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>invr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>penlaur</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; ;   </AUTHOR>
+</MAN>
