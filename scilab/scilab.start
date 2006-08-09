@@ -105,7 +105,7 @@ clear  larg L
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
  
- 
+ exec("SCI/modules/wintools/etc/wintools.start",-1);
  exec("SCI/modules/string/etc/string.start",-1);
  exec("SCI/modules/optimization/etc/optimization.start",-1);
  exec("SCI/modules/scipad/etc/scipad.start",-1);
@@ -120,7 +120,7 @@ clear  larg L
  exec("SCI/modules/scicos/etc/scicos.start",-1);
  exec("SCI/modules/pvm/etc/pvm.start",-1);
  exec("SCI/modules/texmacs/etc/texmacs.start",-1);
-// Define Initial demo tables, ========================================
+ // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
 global demolist
 demolist=initial_demos_tables()
