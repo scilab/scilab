@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>console</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>28-Fev-2005</DATE>
+
+  <SHORT_DESCRIPTION name="console">montre ou cache la console (pour
+  Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>state1=console(state2)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>state1=toolbar()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>state1</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: retourne l'etat de la console 'on' ou 'off'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>state2</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: 'on' ou 'off' fixe l'etat de la console</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>montre ou cache la console (pour Windows).</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[console('off')
+state=console()
+console()
+
+]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

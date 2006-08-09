@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>getlongpathname</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Fevrier 2005</DATE>
+
+  <SHORT_DESCRIPTION name="getlongpathname">retourne le chemin au format nom
+  long (Seulement pour Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>longpath=getlongpathname(shortpath)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[longpath,bOK]=getlongpathname(shortpath)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>shortpath</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Une chaine de caracteres contenant le chemin au format
+          court</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>longpath</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Une chaine de caracteres contenant le chemin au format
+          long.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>bOK</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: retourne %T si le chemin a ete converti ou %F dans le cas
+          contraire.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>La primitive getlongpathname convertie le chemin au format court en un
+    nom de chemin au format long.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[[longpath,bOK]=getlongpathname(SCI) 
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getshortpathname</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

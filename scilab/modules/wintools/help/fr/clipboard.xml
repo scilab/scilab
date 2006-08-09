@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>clipboard</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Aout 2004</DATE>
+
+  <SHORT_DESCRIPTION name="clipboard">Copie ou colle une chaine de caracteres
+  dans le presse-papier (Windows).</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>clipboard('copy',data)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>str=clipboard('paste')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard('do','paste')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard('do','copy')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard('do','empty')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'EMF')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'DIB')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>clipboard('copy',data)</VERB> copie le contenu de data dans le
+    presse-papier. Si data n'est pas une chaine de caracteres, sci2exp est
+    utilisé pour convertir data en chaine de caracteres.</P>
+
+    <P><VERB>str = clipboard('paste') </VERB>retourne le contenu du
+    presse-papier dans la variable str, ou [] si le contenu du presse-papier
+    ne peut etre converti en chaine de caracteres.</P>
+
+    <P><VERB>clipboard('do','paste') , clipboard('do','copy') ,
+    clipboard('do','empty')</VERB> effectue l'action equivalente au menu
+    Coller, Copier et Vider le presse-papier.</P>
+
+    <P>Note : <VERB>clipboard(...) </VERB>ne fonctionne que pour Windows et
+    qu'en mode interface graphique.</P>
+
+    <P><VERB>clipboard(winnum,'EMF')</VERB> copie, au format EMF, dans le
+    presse papier le graphe correspondant au numero de la fenetre
+    associée.</P>
+
+    <P><VERB>clipboard(winnum,'DIB')</VERB>copie, au format DIB, dans le
+    presse papier le graphe correspondant au numero de la fenetre
+    associée.</P>
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

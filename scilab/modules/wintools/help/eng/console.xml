@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>console</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>28-Feb-2005</DATE>
+
+  <SHORT_DESCRIPTION name="console">show or hide console (Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>state1=console(state2)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>state1=toolbar()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>state1</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: returns console's state 'on' or 'off'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>state2</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: 'on' or 'off' set console's state</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>show or hide console (Windows).</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[console('off')
+state=console()
+console()
+]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

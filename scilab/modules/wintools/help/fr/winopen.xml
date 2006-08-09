@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>winopen</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Aout 2004</DATE>
+
+  <SHORT_DESCRIPTION name="winopen">Ouvre le fichier avec l'application
+  appropriée (Windows seulement)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>winopen('filename')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>winopen('filename')</VERB> ouvre le fichier avec l'application
+    appropriée de Microsoft Windows. winopen effectue la même action que si
+    vous double-cliquez sur l'icone dans l'explorateur de Windows.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>unix</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

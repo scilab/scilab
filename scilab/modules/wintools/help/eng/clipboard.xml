@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>clipboard</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>August 2004</DATE>
+
+  <SHORT_DESCRIPTION name="clipboard">Copy and paste strings to and from the
+  system clipboard (Windows).</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>clipboard('copy',data)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>str=clipboard('paste')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard('do','paste')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard('do','copy')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard('do','empty')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'EMF')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>clipboard(winnum,'DIB')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>clipboard('copy',data)</VERB> sets the clipboard contents to
+    data. If data is not a character array, the clipboard uses sci2exp to
+    convert it to a string.</P>
+
+    <P><VERB>str = clipboard('paste')</VERB> returns the current contents of
+    the clipboard as a string or as an empty string (' '), if the current
+    clipboard contents cannot be converted to a string.</P>
+
+    <P><VERB>clipboard('do','paste')</VERB>,
+    <VERB>clipboard('do','copy')</VERB>, <VERB>clipboard('do','empty')</VERB>
+    performs a paste, copy or empty clipboard.</P>
+
+    <P>Note that <VERB>clipboard(...) </VERB>works only Windows platforms when
+    Scilab used in window mode.</P>
+
+    <P><VERB>clipboard(winnum,'EMF')</VERB> copy a graphic windows identified
+    by his window's number in the clipboard to EMF format. </P>
+
+    <P><VERB>clipboard(winnum,'DIB') </VERB>copy a graphic windows identified
+    by his window's number in the clipboard to DIB format.</P>
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

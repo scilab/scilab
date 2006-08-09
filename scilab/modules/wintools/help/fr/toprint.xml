@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>toprint</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>4-August-2005</DATE>
+
+  <SHORT_DESCRIPTION name="toprint">Send text or figure to the printer
+  (Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>toprint('filename')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>toprint(['line1','line2',...],'page
+    header')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>toprint(num)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>toprint(num,output)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>toprint('filename') send text file to the printer.</P>
+
+    <P>bOK=toprint('filename') send text file to the printer. bOK is %T if
+    file exist.</P>
+
+    <P>toprint(['line1','line2',...],'page header')</P>
+
+    <P>toprint(num) send the figure with figure_id=num to the printer.</P>
+
+    <P>toprint(num,output) send the figure with figure_id=num to the
+    printer.With ouput='pos' or 'gdi' ('gdi' by default)</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[toprint(['Test','toprint primitive'],'Scilab page header');
+scf(4);
+plot();
+toprint(4);
+toprint(4,'pos');
+
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>printsetupbox</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

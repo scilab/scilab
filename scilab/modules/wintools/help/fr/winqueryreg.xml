@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>winqueryreg</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>19-Aout-2004</DATE>
+
+  <SHORT_DESCRIPTION name="winqueryreg">Obtenir une clef de la base des
+  registres de Microsoft Windows</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('name', 'rootkey',
+    'subkey')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey', 'subkey',
+    'valname')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey',
+    'subkey')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>value = winqueryreg('name', 'rootkey', 'subkey') retourne les clefs
+    contenues dans rootkey\subkey dans une matrice de chaines de caracteres.
+    Le premier argument doit etre la chaine de caracteres, 'name'.</P>
+
+    <P>Si la valeur contenue dans la base des registres est une chaine de
+    caracteres, winqueryreg retourne une chaine de caracteres. Si la valeur
+    est un entier sur 32 bits, winqueryreg retourne la valeur comme un entier
+    (int32).</P>
+
+    <P>value = winqueryreg('rootkey', 'subkey', 'valname') retourne la valeur
+    pour la clef valname dans rootkey\subkey.</P>
+
+    <P>value = winqueryreg('rootkey', 'subkey') retourne la valeur "par
+    défaut" de la clef rootkey\subkey.</P>
+
+    <P><VERB>Note</VERB> : Les arguments 'name' et 'rootkey' sont
+    "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[if MSDOS then
+  winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
+  lines(-1);
+  mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
+  len=size(mousechar);
+  for k=1:len(1)
+    setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
+     if (mousechar(k)=='') then mousechar(k)='default';,end
+     str = sprintf('%s = %s', mousechar(k), string(setting));
+     disp(str);
+  end
+end]]></EXAMPLE>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

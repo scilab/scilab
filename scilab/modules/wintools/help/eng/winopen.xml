@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>winopen</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>August 2004</DATE>
+
+  <SHORT_DESCRIPTION name="winopen">Open file in appropriate application
+  (Windows only)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>winopen('filename')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>winopen('filename')</VERB> opens filename in the appropriate
+    Microsoft Windows application. The winopen function uses the appropriate
+    Windows shell command, and performs the same action as if you double-click
+    the file in the Windows Explorer. If filename is not in the current
+    directory, specify the absolute path for filename.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>unix</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

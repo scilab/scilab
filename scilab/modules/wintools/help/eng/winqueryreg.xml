@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>winqueryreg</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>19-August-2004</DATE>
+
+  <SHORT_DESCRIPTION name="winqueryreg">Get item from Microsoft Windows
+  registry</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('name',
+    'rootkey','subkey')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey',
+    'subkey','valname')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>value =
+    winqueryreg('rootkey','subkey')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>value = winqueryreg('name', 'rootkey', 'subkey') returns the key names
+    in <VERB>rootkey\subkey</VERB> in a matrix of strings. The first argument
+    is the literal quoted string, 'name'.</P>
+
+    <P>If the value retrieved from the registry is a string, winqueryreg
+    returns a string. If the value is a 32-bit integer, winqueryreg returns
+    the value as an integer (int32).</P>
+
+    <P>value = winqueryreg('rootkey', 'subkey', 'valname') returns the value
+    for key valname in <VERB>rootkey\subkey</VERB>.</P>
+
+    <P>value = winqueryreg('rootkey', 'subkey') returns a value in
+    <VERB>rootkey\subkey</VERB> that has no value name property.</P>
+
+    <P><VERB>Note</VERB> : The literal name argument and the rootkey argument
+    are case-sensitive. The subkey and valname arguments are not.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[if MSDOS then
+  winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
+  lines(-1);
+  mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
+  len=size(mousechar);
+  for k=1:len(1)
+     setting = winqueryreg('HKEY_CURRENT_USER','control panel\mouse', mousechar(k));
+     if (mousechar(k)=='') then mousechar(k)='default';,end
+     str = sprintf('%s = %s', mousechar(k), string(setting));
+     disp(str);
+  end
+end]]></EXAMPLE>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

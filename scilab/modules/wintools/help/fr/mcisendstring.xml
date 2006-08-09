@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>mcisendstring</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>May 2005</DATE>
+
+  <SHORT_DESCRIPTION name="mcisendstring">sends a command string to an MCI
+  device (Windows only).</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mcisendstring(mcistring)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>bOK=mcisendstring(mcistring)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[bOK,CodeError]=mcisendstring(mcistring)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[bOK,CodeError,StringError]=mcisendstring(mcistring)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>mcistring</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : a command string to send to an MCI device</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>bOK</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : returns %T or %F</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>CodeError</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : returns error code (0 --&gt; if bOK == %T)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>StringError</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : returns MCI interpreter message ('OK' --&gt; if bOK ==
+          %T)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>The mciSendString primitive sends a command string to an MCI device.
+    The device that the command is sent to is specified in the command
+    string.</P>
+
+    <P>see on http://msdn.microsoft.com/library/default.asp and search
+    "Windows Multimedia SDK open"</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[mcisendstring("open ""d:\audio.mp3"" type MPEGVideo alias MP3_Device") 
+mcisendstring("play MP3_Device") 
+mcisendstring("close MP3_Device") 
+  
+
+mcisendstring("open ""d:\video.avi"" type avivideo alias AVI_Device") 
+mcisendstring("play AVI_Device from 0") 
+mcisendstring("close AVI_Device") 
+
+]]></EXAMPLE>
+
+  <AUTHOR>Allan Cornet</AUTHOR>
+</MAN>
