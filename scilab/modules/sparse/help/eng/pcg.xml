@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pcg</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 2004</DATE>
+  <SHORT_DESCRIPTION name="pcg">precondioned conjugate gradient </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A, b [, tol [, maxit [, M [, M2 [, x]]]]]) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A, b, key=value,...)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT> 
+      <PARAM_ITEM>
+	<PARAM_NAME>A</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: symmetric positive definite full or sparse matrix of size nxn 
+	    or a function returning <VERB>A*x</VERB> for each given <VERB>x</VERB></SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>b</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: right hand side vector (size: nx1)</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: error tolerance (default: 1000*%eps)</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>maxi</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: maximum number of iterations (default: n)</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: preconditioner: full or sparse matrix or function returning
+	    <VERB>M\x</VERB> (default: none)</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>M2</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: preconditioner: full or sparse matrix or function returning
+	    <VERB>M2\x</VERB> for each <VERB>x</VERB> (default: none)</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x0</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: initial guess vector (default: zeros(n,1))</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>x</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: solution vector</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>flag</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: 0 if <VERB>pcg</VERB> converged to the desired
+	    tolerance within <VERB>maxi</VERB> iterations, 1 else</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>err</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: final relative norm of the residual</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>iter</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: number of iterations performed</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>res</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: vector of the residual norms</SP>
+	</PARAM_DESCRIPTION>
+      </PARAM_ITEM> 
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <SP> Solves the linear system <VERB>Ax=b</VERB> using the conjugate
+      gradient method with or without preconditioning. The preconditionning
+      should be defined by a symmetric positive definite matrix <VERB>M</VERB>,
+      or two matrices <VERB>M1</VERB> and <VERB>M2</VERB> such that
+      <VERB>M=M1*M2</VERB>. in the case the function solves <VERB>inv(M)*A*x =
+	inv(M)*b</VERB> for <VERB>x</VERB>. <VERB>M</VERB>, <VERB>M1</VERB> and
+      <VERB>M2</VERB> can be Scilab functions with calling sequence <VERB>y=Milx(x)</VERB> which
+      computes  the corresponding left division  <VERB>y=Mi\x</VERB>. </SP>  
+    <SP> The <VERB>A</VERB> matrix must be a symmetric positive definite 
+      matrix (full or sparse) or a function  with calling sequence <VERB>y=Ax(x)</VERB> which
+      computes <VERB>y=A*x</VERB></SP>
+  </DESCRIPTION>
+
+  <EXAMPLE>
+<![CDATA[
+ //Well conditionned problem
+ A=[ 94  0   0   0    0   28  0   0   32  0  
+     0   59  13  5    0   0   0   10  0   0  
+     0   13  72  34   2   0   0   0   0   65 
+     0   5   34  114  0   0   0   0   0   55 
+     0   0   2   0    70  0   28  32  12  0  
+     28  0   0   0    0   87  20  0   33  0  
+     0   0   0   0    28  20  71  39  0   0  
+     0   10  0   0    32  0   39  46  8   0  
+     32  0   0   0    12  33  0   8   82  11 
+     0   0   65  55   0   0   0   0   11  100];
+
+  b=ones(10,1);
+  [x, fail, err, iter, res]=pcg(A,b,1d-12,15);
+  mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+
+
+  //Ill contionned one
+ A=[ 894     0   0     0   0   28  0   0   1000  70000
+      0      5   13    5   0   0   0   0   0     0    
+      0      13  72    34  0   0   0   0   0     6500 
+      0      5   34    1   0   0   0   0   0     55   
+      0      0   0     0   70  0   28  32  12    0    
+      28     0   0     0   0   87  20  0   33    0    
+      0      0   0     0   28  20  71  39  0     0    
+      0      0   0     0   32  0   39  46  8     0    
+      1000   0   0     0   12  33  0   8   82    11   
+      70000  0   6500  55  0   0   0   0   11    100];
+ 
+  [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
+  mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+
+   //sparse matrix
+   A=sparse(A);
+   [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+
+   //using a function
+   function y=Atimesx(x,A),y=A*x, endfunction
+
+   //A passed by the calling context
+   [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+
+   // A passed as an argument
+   [x, fail, err, iter, res]=pcg(list(Atimesx,A),b,maxIter=30,tol=1d-12);
+   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+ ]]>
+  </EXAMPLE>
+  
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>backslash</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>qmr</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>gmres</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    Sage Group (IRISA, 2004)
+  </AUTHOR>
+</MAN>

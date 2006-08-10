@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>spcompack</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>JUN 1997</DATE>
+  <SHORT_DESCRIPTION name="spcompack"> converts a compressed adjacency representation</SHORT_DESCRIPTION>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xadj</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector of length (n+1).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xlindx</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector of length n+1 (pointers).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lindx</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>adjncy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+Utility fonction spcompak is used to convert a compressed adjacency
+representation into standard adjacency representation.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// A is the sparse matrix:
+A=[1,0,0,0,0,0,0;
+   0,1,0,0,0,0,0;
+   0,0,1,0,0,0,0;
+   0,0,1,1,0,0,0;
+   0,0,1,1,1,0,0;
+   0,0,1,1,0,1,0;
+   0,0,1,1,0,1,1];
+A=sparse(A);
+//For this matrix, the standard adjacency representation is given by:
+xadj=[1,2,3,8,12,13,15,16];
+adjncy=[1, 2, 3,4,5,6,7, 4,5,6,7, 5, 6,7, 7];
+//(see sp2adj).
+// increments in vector xadj give the number of non zero entries in each column
+// ie there is 2-1=1 entry in the column 1
+//    there is 3-2=1 entry in the column 2
+//    there are 8-3=5 entries in the column 3
+//              12-8=4                      4
+//etc
+//The row index of these entries is given by the adjncy vector
+// for instance, 
+// adjncy (3:7)=adjncy(xadj(3):xadj(4)-1)=[3,4,5,6,7] 
+// says that the 5=xadj(4)-xadj(3) entries in column 3 have row
+// indices 3,4,5,6,7.
+//In the compact representation, the repeated sequences in adjncy
+//are eliminated.
+//Here in adjncy the sequences 4,5,6,7  and 7 are eliminated.
+//The standard structure (xadj,adjncy) takes the compressed form (lindx,xlindx)
+lindx=[1, 2, 3,4,5,6,7, 5, 6,7];
+xlindx=[1,2,3,8,9,11];
+//(Columns 4 and 7 of A are eliminated).
+//A can be reconstructed from (xadj,xlindx,lindx).
+[xadj,adjncy,anz]= sp2adj(A);
+adjncy-spcompack(xadj,xlindx,lindx)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sp2adj</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>adj2sp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spget</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

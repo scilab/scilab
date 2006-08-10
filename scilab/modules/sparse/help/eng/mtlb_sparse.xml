@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_sparse</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1999</DATE>
+  <SHORT_DESCRIPTION name="mtlb_sparse">  convert sparse matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Y=mtlb_sparse(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: sparse matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: sparse matrix in Matlab format</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>Y=mtlb_sparse(X)</VERB> is used to convert <VERB>X</VERB>, a Scilab sparse matrix, to 
+    Matlab format. <VERB>Y</VERB> is the a variable with type 7,
+    i.e. <VERB>type(Y)</VERB> is equal to 7.
+    This function should be used in mexfiles (a Matlab mexfile containing sparse
+    matrices can be used only if the Scilab sparse matrices are converted
+    to that format). The functions <VERB>full</VERB> and <VERB>spget</VERB>  work
+    with this format.</P>
+    <P>
+     Other operations and functions using this format
+    can be overloaded with Scilab functions using the prefix &quot;%msp&quot;. 
+    For instance the function 
+    <VERB>%msp_p(x)</VERB> (see SCIDIR/macros/percent directory) is used to
+    display such &quot;type 7&quot; objects.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+X=sparse(rand(2,2)); Y=mtlb_sparse(X);
+Y, full(Y), [ij,v,mn]=spget(Y)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>full</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spget</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ludel  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="ludel"> libération de la mémoire allouée à des facteurs LU creux  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>ludel(hand)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>hand  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : pointeur vers des facteurs L,U creux déjà calculés (sortie de lufact)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction est à utiliser conjointement avec <VERB>lufact</VERB>. Elle libère la mémoire allouée pour le stockage des facteurs L,U creux renvoyés par <VERB>lufact</VERB>.
+  </P>
+  <P>
+    La suite de commandes <VERB>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</VERB>
+    résout le système linéaire creux <VERB>A*x = b</VERB> et libère les facteurs creux dont <VERB>p</VERB> est le pointeur.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

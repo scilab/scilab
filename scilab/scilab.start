@@ -64,7 +64,6 @@ load('SCI/macros/util/lib')
 load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/percent/lib')
-load('SCI/macros/sparse/lib')
 load('SCI/macros/gui/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
@@ -103,7 +102,7 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
- 
+ exec("SCI/modules/sparse/etc/sparse.start",-1);
  //exec("SCI/modules/arpack/etc/arpack.start",-1);
  exec("SCI/modules/polynomials/etc/polynomials.start",-1);
  exec("SCI/modules/wintools/etc/wintools.start",-1);

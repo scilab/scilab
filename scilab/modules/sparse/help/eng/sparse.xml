@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sparse</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="sparse"> sparse matrix definition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sp=sparse(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>sp=sparse(ij,v [,mn])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex full (or sparse) matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ij</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two columns integer matrix (indices of non-zeros entries)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector with two entries (row-dimension, column-dimension)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: sparse matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>sparse</VERB> is used to build a sparse matrix. Only non-zero entries
+    are stored.</P>
+    <P><VERB>sp = sparse(X)</VERB>  converts a full matrix to sparse form by
+     squeezing out any zero elements. (If <VERB>X</VERB> is already sparse
+    <VERB>sp</VERB> is <VERB>X</VERB>).</P>
+    <P><VERB>sp=sparse(ij,v [,mn])</VERB>  builds an <VERB>mn(1)</VERB>-by-<VERB>mn(2)</VERB>
+    sparse matrix with <VERB>sp(ij(k,1),ij(k,2))=v(k)</VERB>. 
+    <VERB>ij</VERB> and <VERB>v</VERB> must have the same column dimension.
+    If optional <VERB>mn</VERB> parameter is not given the <VERB>sp</VERB>
+    matrix dimensions are the max value of <VERB>ij(:,1)</VERB> and <VERB>ij(:,2)</VERB>
+    respectively.</P>
+    <P>
+    Operations (concatenation, addition, etc,) with sparse matrices are
+    made using the same syntax as for full matrices.</P>
+    <P>
+    Elementary functions are also available (<VERB>abs,maxi,sum,diag,...</VERB>)
+    for sparse matrices.</P>
+    <P>
+    Mixed operations (full-sparse) are allowed. Results are full or sparse
+    depending on the operations.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+size(sp)
+x=rand(2,2);abs(x)-full(abs(sparse(x)))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>full</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sprand</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>speye</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lufact</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>spget</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="spget"> retrieves entries of sparse matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ij,v,mn]=spget(sp)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex sparse matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ij</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two columns integer matrix (indices of non-zeros entries)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector with two entries (row-dimension, column-dimension)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>spget</VERB> is used to convert the internal representation of sparse
+    matrices into the standard <VERB>ij, v</VERB> representation.</P>
+    <P>
+    Non zero entries of <VERB>sp</VERB> are located in rows and columns
+    with indices in <VERB>ij</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+sp=sparse([1,2;4,5;3,10],[1,2,3])
+[ij,v,mn]=spget(sp);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sparse</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sprand</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>speye</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lufact</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>readmps</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>MAY 1998</DATE>
+  <SHORT_DESCRIPTION name="readmps"> reads a file in MPS format</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM> mps= readmps (file-name,bounds [,maxsizes]);   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file-name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:
+    character string, path of the MPS file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>bounds</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2-vector
+    <VERB>[lowbound,upbound]</VERB> , default lower ans upper bounds</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>maxsizes</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 3-vector <VERB>[maxm,maxn,maxnza]</VERB>
+  Maximum number of contraints and variables, maximum number of
+  nonzeros entries in the LP constraint matrix. If omitted readmps
+  reads the file once just to compute these numbers.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tlist with following fields</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>irobj</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: integer (index of the objective row).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>namec</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: character string (Name of the objective).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>nameb</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: character string (Name of the right hand side).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>namran</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: character string (Name of the ranges section).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>nambnd</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: character string (Name of the bounds section).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>name</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: character string (Name of the  LP problem).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>rownames</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: character string column vector (Name of the rows). 
+          colnames : character string row vector (Name of the columns).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>rowstat</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: integer vector,  row types:</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>1</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>row type is &quot;=&quot;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>2</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>:  row type is &quot;&gt;=&quot;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>3</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>:  row type is &quot;&lt;=&quot;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>4</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>:  objective row</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>5</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>:  other free row</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>rowcode</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real matrix <VERB>[hdrowcd,lnkrow]</VERB> with</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>hdrowcd</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: real vector (Header to the linked list of rows with the same codes).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>lnkrow</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: integer vector (Linked list of rows with the same codes).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>colcode</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real matrix <VERB>[hdcolcd,lnkcol]</VERB> with</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>hdcolcd</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: integer vector (Header to the linked list of columns with the same codes).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>lnkcol</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: integer vector (Linked list of columns with the same codes).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>rownmbs</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: integer vector (Row numbers of nonzeros in columns of matrix A.)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>colpnts</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: integer vector (Pointers to the beginning of columns of matrix A).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>acoeff</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real vector (Array of nonzero elements for each column).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>rhs</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:real vector ( Right hand side of the linear program).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>ranges</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real vector of constraint ranges.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>bounds</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real matrix <VERB>[lbounds,ubounds]</VERB> with</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>ubounds</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: full column vector of upper bounds</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>lbounds</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: full column vector of lower bounds</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>stavar</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: full column vector of variable status</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>0</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>:standard (non negative) variable</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>1</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: upper bounded variable</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>2</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: lower bounded variable</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>3</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: lower and upper bounded variable</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>4</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: minus infinity type variable  i.e -inf&lt;x&lt;=u</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>5</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: plus infinity type variable  i.e l&lt;=x&lt; inf</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>6</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: fixed type variable  i.e l=x=u</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>-k</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: free variable</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>readmps</VERB>.
+    Utility function: reads a file containing description of an LP problem
+    given  in MPS format. It is an
+    interface with the program <VERB>rdmps1.f</VERB> of hopdm (J. Gondzio).
+    For a description of the variables, see the file rdmps1.f.</P>
+    <P>
+    MPS format is a standard ASCII medium for LP codes.  
+    MPS format is described in more detail in Murtagh's book:</P>
+    <P>
+    Murtagh B. (1981). Advanced Linear Programming, McGrew-Hill,
+    New York, 1981.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+
+//Let the LP problem:
+//objective:
+//   min     XONE + 4 YTWO + 9 ZTHREE
+//constraints:
+//  LIM1:    XONE +   YTWO            < = 5
+//  LIM2:    XONE +            ZTHREE > = 10
+// MYEQN:         -   YTWO  +  ZTHREE   = 7
+//Bounds
+//  0 < = XONE < = 4
+// -1 < = YTWO < = 1
+
+//Generate MPS file 
+txt=['NAME          TESTPROB'
+     'ROWS'
+     ' N  COST'
+     ' L  LIM1'
+     ' G  LIM2'
+     ' E  MYEQN'
+     'COLUMNS'
+     '    XONE      COST                 1   LIM1                 1'
+     '    XONE      LIM2                 1'
+     '    YTWO      COST                 4   LIM1                 1'
+     '    YTWO      MYEQN               -1'
+     '    ZTHREE    COST                 9   LIM2                 1'
+     '    ZTHREE    MYEQN                1'
+     'RHS'
+     '    RHS1      LIM1                 5   LIM2                10'
+     '    RHS1      MYEQN                7'
+     'BOUNDS'
+     ' UP BND1      XONE                 4'
+     ' LO BND1      YTWO                -1'
+     ' UP BND1      YTWO                 1'
+     'ENDATA'];
+mputl(txt,TMPDIR+'/test.mps')
+//Read the MPS file
+P=readmps(TMPDIR+'/test.mps',[0 10^30])
+//Convert it to linpro format
+LP=mps2linpro(P)
+//Solve it with linpro
+[x,lagr,f]=linpro(LP(2:$))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mps2linpro</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

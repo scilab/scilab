@@ -14,10 +14,10 @@ CurrentDirectory=pwd();
  "signal",
  "statistics",
  "tdcs",
- "sparse",
- "gui",
+  "gui",
   ];
   
+ Directories=[Directories;"SCI/modules/sparse/macros"];
  Directories=[Directories;"SCI/modules/polynomials/macros"];      
  Directories=[Directories;"SCI/modules/string/macros"];      
  Directories=[Directories;"SCI/modules/optimization/macros"];    

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>lufact  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="lufact"> factorisation LU d&apos;une matrice creuse  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[hand,rk]=lufact(A,prec)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle carrée creuse
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>hand  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : pointeur vers des facteurs L,U creux
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rk  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (rang de A)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>prec  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur à 2 composantes <VERB>prec=[eps,reps]</VERB> (tolérances absolue et relative).
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>[hand,rk]=lufact(A)</VERB> calcule la factorisation LU d&apos;une matrice creuse <VERB>A</VERB>.
+    <VERB>hand</VERB> (variable non affichable) est utilisé par <VERB>lusolve</VERB> (pour la résolution d&apos;un système linéaire Ax=B) et <VERB>luget</VERB> (pour récupérer L et U à partir du pointeur <VERB>hand</VERB>).
+    <VERB>hand</VERB> doit être détruit après utilisation (par luget ou lusolve) : <VERB>ludel(hand)</VERB>;
+  </P>
+  <P>
+    La matrice A n&apos;est pas obligatoirement de rang plein mais doit être carrée
+    (puisque A est supposée creuse on peut lui ajouter des lignes ou des colonnes nulles pour la rendre carrée).
+  </P>
+ 
+<DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='eps :'> 
+  <SP>
+    La valeur absolue qu&apos;un élément de A doit avoir pour être utilisé comme pivot,  sauf éventuellement en dernier recours. Ce nombre doit être significativement plus petit que le plus petit élément diagonal attendu dans la matrice. La valeur par défaut est <VERB>%eps</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='reps :'> 
+  <SP>
+    Ce nombre donne le seuil relatif pour les pivots. Il doit être compris entre zéro et un. S&apos;il vaut un, la méthode se comporte comme un pivot total, qui est très lent et qui a tendance à remplir la matrice. S&apos;il est proche de zéro,  la méthode de pivotage est de type Markowitz stricte sans utilisation de seuil.  Ce seuil est utilisé pour éliminer les pivots qui causeraient une croissance excessive des termes de la matrice. La croissance des éléments est source d&apos;erreurs d&apos;arrondi, et peut avoir lieu même si la matrice est bien conditionnée. Prendre reps grand réduit cette croissance excessive, et donc les erreurs d&apos;arrondi, mais le prendre trop grand risque d&apos;augmenter le temps d&apos;exécution, ainsi que le remplissage de la matrice. La précision peut donc ainsi être dégradée à cause du nombre élevé d&apos;opérations à effectuer à cause du remplissage. Une valeur correcte semble être 0.001 qui est la valeur par défaut (cette valeur par défaut est aussi utilisée si reps&gt;1 ou reps&lt;0). Cette valeur doit être augmentée et la factorisation doit être recommencée si la croissance s&apos;avère trop importante. Changer le seuil sur les pivots n&apos;améliore pas les performances pour les matrices où la croissance est faible, comme c&apos;est souvent le cas pour les matrices mal conditionnées. La valeur par défaut de reps a été choisie pour un usage de lufact avec des matrices à diagonale à peu près dominante (matrices provenant de problèmes de type éléments finis). Pour ces matrices un pivotage diagonal donne les meilleurs résultats.  Pour les matrices à diagonale non dominante, on obtient de meilleurs résultats en prenant un seuil plus élevé, comme 0.01 ou 0.1.
+</SP>
+  </DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=rand(5,5);b=rand(5,1);A=sparse(a);
+[h,rk]=lufact(A);
+x=lusolve(h,b);a*x-b
+ludel(h)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lusolve</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -31,7 +31,7 @@ cd .."/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/string_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../libs/string_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\sci_ascii.f"/>
@@ -49,6 +49,7 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_strsplit.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_strsubst.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_tokens.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\strops.f"/>
 		<File RelativePath="strord.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
