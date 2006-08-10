@@ -173,11 +173,119 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\gw_sparse.c"
+				>
+			</File>
+			<File
 				RelativePath=".\lu.c"
 				>
 			</File>
 			<File
 				RelativePath=".\mspelm.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_bfinit.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_blkfc1i.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_blkslvi.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_fadj2sp.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_full.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_inpnvi.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_ludel.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lufact.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_luget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lusolve.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_mfull.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_msparse.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_mspget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_nnz.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_ordmmd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_readmps.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_sfinit.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_sparse.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spchol.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spclean.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spcompa.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spmatrix.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spmax.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spmin.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_symfcti.c"
 				>
 			</File>
 			<File
@@ -213,6 +321,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\gw_sparse.h"
+				>
+			</File>
 			<File
 				RelativePath="sp.h"
 				>

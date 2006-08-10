@@ -74,7 +74,7 @@
 #include "../../../../routines/interf/imp.fundef"	  
 
 #define  IN_spelm  27
-#include "../../../../routines/interf/spelm.fundef"  
+#include "../../../../routines/sparse/spelm.fundef"  
 
 #define  IN_intslicot  28
 #include "../../../../routines/slicot/slicot.fundef"

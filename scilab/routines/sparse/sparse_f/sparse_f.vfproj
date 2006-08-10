@@ -6,32 +6,32 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def sparse_f.def &gt;nul
 copy sparse_f.def ..\..\..\..\libs\sparse_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" Preprocess="preprocessYes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/></Configuration>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def sparse_f.def &gt;nul
 copy sparse_f.def ..\..\..\..\libs\sparse_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/sparse_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\blkfc1.f"/>
@@ -86,6 +86,27 @@ cd .."/>
 		<File RelativePath="..\ordmmd.f"/>
 		<File RelativePath="..\rdmps1.f"/>
 		<File RelativePath="..\rdmpsz.f"/>
+		<File RelativePath="..\sci_bfinit.f"/>
+		<File RelativePath="..\sci_blkfc1i.f"/>
+		<File RelativePath="..\sci_blkslvi.f"/>
+		<File RelativePath="..\sci_fadj2sp.f"/>
+		<File RelativePath="..\sci_full.f"/>
+		<File RelativePath="..\sci_inpnvi.f"/>
+		<File RelativePath="..\sci_ludel.f"/>
+		<File RelativePath="..\sci_lufact.f"/>
+		<File RelativePath="..\sci_luget.f"/>
+		<File RelativePath="..\sci_lusolve.f"/>
+		<File RelativePath="..\sci_nnz.f"/>
+		<File RelativePath="..\sci_ordmmd.f"/>
+		<File RelativePath="..\sci_sfinit.f"/>
+		<File RelativePath="..\sci_sparse.f"/>
+		<File RelativePath="..\sci_spchol.f"/>
+		<File RelativePath="..\sci_spclean.f"/>
+		<File RelativePath="..\sci_spcompa.f"/>
+		<File RelativePath="..\sci_spget.f"/>
+		<File RelativePath="..\sci_spmatrix.f"/>
+		<File RelativePath="..\sci_spmax.f"/>
+		<File RelativePath="..\sci_symfcti.f"/>
 		<File RelativePath="..\sp2col.f"/>
 		<File RelativePath="..\spcho1.f"/>
 		<File RelativePath="..\spcho2.f"/>
