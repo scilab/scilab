@@ -111,7 +111,6 @@ cd .."/>
 		<File RelativePath="..\spcho1.f"/>
 		<File RelativePath="..\spcho2.f"/>
 		<File RelativePath="..\spcompack.f"/>
-		<File RelativePath="..\spelm.f"/>
 		<File RelativePath="..\spextr.f"/>
 		<File RelativePath="..\spextr1.f"/>
 		<File RelativePath="..\spif.f"/>
