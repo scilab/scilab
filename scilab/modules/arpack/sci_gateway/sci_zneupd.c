@@ -1,0 +1,84 @@
+#include <math.h>
+#include <string.h>
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+#define MAX(x,y)	(((x)>(y))?(x):(y))
+#define CHAR(x)         (cstk(x))
+#define INT(x)  	(istk(x))
+#define DOUBLE(x)	( stk(x))
+#define CMPLX(x)	(zstk(x))
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(zneupd)();
+/*-----------------------------------------------------------------------------------*/
+int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len))
+{ 
+  int RVEC,     mRVEC,     nRVEC,      pRVEC;
+  int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
+  int SELECT,   mSELECT,   nSELECT,    pSELECT;
+  int D,        mD,        nD,         pD;
+  int Z,        mZ,        nZ,         pZ;
+  int SIGMA,    mSIGMA,    nSIGMA,     pSIGMA;
+  int WORKev,   mWORKev,   nWORKev,    pWORKev;
+  int BMAT,     mBMAT,     nBMAT,      pBMAT;
+  int N,        mN,        nN,         pN;
+  int WHICH,    mWHICH,    nWHICH,     pWHICH;
+  int NEV,      mNEV,      nNEV,       pNEV;
+  int TOL,      mTOL,      nTOL,       pTOL;
+  int RESID,    mRESID,    nRESID,     pRESID;
+  int NCV,      mNCV,      nNCV,       pNCV;
+  int V,        mV,        nV,         pV;
+  int IPARAM,   mIPARAM,   nIPARAM,    pIPARAM;
+  int IPNTR,    mIPNTR,    nIPNTR,     pIPNTR;
+  int WORKD,    mWORKD,    nWORKD,     pWORKD;
+  int WORKL,    mWORKL,    nWORKL,     pWORKL;
+  int RWORK,    mRWORK,    nRWORK,     pRWORK;
+  int INFO,     mINFO,     nINFO,      pINFO;
+
+  int minlhs=1, minrhs=21, maxlhs=9, maxrhs=21;
+  int LDZ, LDV, LWORKL;
+
+  CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
+  /*                                                  VARIABLE = NUMBER   */
+  GetRhsVar( 1, "i", &mRVEC,   &nRVEC,   &pRVEC);         RVEC  =  1;
+  GetRhsVar( 2, "c", &mHOWMANY,&nHOWMANY,&pHOWMANY);   HOWMANY  =  2;
+  GetRhsVar( 3, "i", &mSELECT, &nSELECT, &pSELECT);     SELECT  =  3;
+  GetRhsVar( 4, "z", &mD,      &nD,      &pD);               D  =  4;
+  GetRhsVar( 5, "z", &mZ,      &nZ,      &pZ) ;              Z  =  5;
+  GetRhsVar( 6, "z", &mSIGMA,  &nSIGMA,  &pSIGMA);        SIGMA =  6;
+  GetRhsVar( 7, "z", &mWORKev, &nWORKev, &pWORKev);      WORKev =  7;
+  GetRhsVar( 8, "c", &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  8;
+  GetRhsVar( 9, "i", &mN,      &nN,      &pN);             N    =  9;  
+  GetRhsVar(10, "c", &mWHICH,  &nWHICH,  &pWHICH);       WHICH  = 10; 
+  GetRhsVar(11, "i", &mNEV,    &nNEV,    &pNEV);            NEV = 11;
+  GetRhsVar(12, "d", &mTOL,    &nTOL,    &pTOL);            TOL = 12; 
+  GetRhsVar(13, "z", &mRESID,  &nRESID,  &pRESID);        RESID = 13;
+  GetRhsVar(14, "i", &mNCV,    &nNCV,    &pNCV);            NCV = 14;
+  GetRhsVar(15, "z", &mV,      &nV,      &pV);               V  = 15;
+  GetRhsVar(16, "i", &mIPARAM, &nIPARAM, &pIPARAM);      IPARAM = 16;
+  GetRhsVar(17, "i", &mIPNTR,  &nIPNTR,  &pIPNTR);       IPNTR  = 17;
+  GetRhsVar(18, "z", &mWORKD,  &nWORKD,  &pWORKD);       WORKD  = 18;
+  GetRhsVar(19, "z", &mWORKL,  &nWORKL,  &pWORKL);       WORKL  = 19;
+  GetRhsVar(20, "d", &mRWORK,  &nRWORK,  &pRWORK);       RWORK  = 20;
+  GetRhsVar(21, "i", &mINFO,   &nINFO,   &pINFO);          INFO = 21;
+
+  LWORKL = mWORKL*nWORKL;   LDV=MAX(1,*istk(pN)); LDZ=LDV;
+
+  C2F(zneupd)(istk(pRVEC), cstk(pHOWMANY), istk(pSELECT), zstk(pD), 
+              zstk(pZ), &LDZ, zstk(pSIGMA), zstk(pWORKev),
+              cstk(pBMAT), istk(pN), cstk(pWHICH), istk(pNEV), 
+              stk(pTOL), zstk(pRESID), istk(pNCV), zstk(pV), 
+              &LDV, istk(pIPARAM), istk(pIPNTR), zstk(pWORKD), 
+              zstk(pWORKL), &LWORKL, stk(pRWORK), istk(pINFO), 
+              1L, 1L, 2L);
+
+  if (*istk(pINFO) < 0) {
+    C2F(errorinfo)("zneupd", istk(pINFO), 6L);
+    return 0;
+  }
+  LhsVar(1)=D;     LhsVar(2)=Z;  LhsVar(3)=RESID; 
+  LhsVar(4)=IPARAM; LhsVar(5)=IPNTR;   
+  LhsVar(6)=WORKD; LhsVar(7)=WORKL; 
+  LhsVar(8)=RWORK; LhsVar(9)=INFO;
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/

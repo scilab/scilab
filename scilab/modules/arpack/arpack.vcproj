@@ -177,7 +177,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intarpack.c"
+				RelativePath=".\sci_gateway\sci_dnaupd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_dneupd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_dsaupd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_dseupd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_znaupd.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_zneupd.c"
 				>
 			</File>
 		</Filter>
