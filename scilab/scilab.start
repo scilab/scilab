@@ -104,6 +104,7 @@ clear  larg L
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
  
+ //exec("SCI/modules/arpack/etc/arpack.start",-1);
  exec("SCI/modules/polynomials/etc/polynomials.start",-1);
  exec("SCI/modules/wintools/etc/wintools.start",-1);
  exec("SCI/modules/string/etc/string.start",-1);

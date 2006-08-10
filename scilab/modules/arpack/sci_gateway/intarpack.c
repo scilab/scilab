@@ -1,57 +1,25 @@
 #include <math.h>
 #include <string.h>
-
-
-
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-
-#include "../stack-c.h"
-
-#if _MSC_VER
-extern char *GetExceptionString(DWORD ExceptionCode);
-#endif
-
-
+#include "MALLOC.h"
+#include "stack-c.h"
+/*-----------------------------------------------------------------------------------*/
 #define MAX(x,y)	(((x)>(y))?(x):(y))
-
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))
 #define DOUBLE(x)	( stk(x))
 #define CMPLX(x)	(zstk(x))
 
-typedef int (*GatefuncS) __PARAMS((char *fname, int l)); 
-typedef int mxArray;
-typedef int (*GatefuncH) __PARAMS((int nlhs,mxArray *plhs[],int nrhs, mxArray *prhs[]));
-typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
-typedef int (*GT) ();
-
-typedef struct table_struct {
-  Myinterfun f;    /** interface **/
-  GT F;     /** function **/
-  char *name;      /** its name **/
-} GenericTable;
-
-
-extern int sci_gateway __PARAMS((char *fname, GatefuncS F));
-
-extern int  C2F(dsaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
-
-extern int  C2F(dnaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
-
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(dsaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
+extern int C2F(dnaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
 extern int C2F(dseupd) __PARAMS((int *rvec, char *howmny, int *select, double *d, double *z, int *ldz, double *sigma, char *bmat, int *n, char *which, int *nev ,double *tol, double *resid, int *ncv, double *v ,int *ldv, int *iparam,int *ipntr, double *workd,double *workl,int *lworkl,int *info, unsigned long rvec_length, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_len));
-
 extern int C2F(dneupd) __PARAMS((int *rvec, char *howmny, int *select, double *dr, double *di, double *z, int *ldz, double *sigmar, double *sigmai, double *workev, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_length));
-
 #if _MSC_VER
 extern int C2F(znaupd)();
 extern int C2F(zneupd)();
 #endif
-int intdsaupd(fname)
-     char* fname;
+/*-----------------------------------------------------------------------------------*/
+int C2F(intdsaupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int IDO,   mIDO,   nIDO,    pIDO;
   int BMAT,  mBMAT,  nBMAT,   pBMAT;
@@ -108,9 +76,8 @@ int intdsaupd(fname)
   LhsVar(6)=WORKD;  LhsVar(7)=WORKL; LhsVar(8)=INFO;
   return 0;
 }
-
-int intdnaupd(fname)
-     char* fname;
+/*-----------------------------------------------------------------------------------*/
+int C2F(intdnaupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int IDO,   mIDO,   nIDO,    pIDO;
   int BMAT,  mBMAT,  nBMAT,   pBMAT;
@@ -167,9 +134,8 @@ int intdnaupd(fname)
   LhsVar(6)=WORKD;  LhsVar(7)=WORKL; LhsVar(8)=INFO;
   return 0;
 }
-
-int intznaupd(fname)
-     char* fname;
+/*-----------------------------------------------------------------------------------*/
+int C2F(intznaupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int IDO,   mIDO,   nIDO,    pIDO;
   int BMAT,  mBMAT,  nBMAT,   pBMAT;
@@ -226,9 +192,8 @@ int intznaupd(fname)
   LhsVar(6)=WORKD;  LhsVar(7)=WORKL; LhsVar(8)=RWORK; LhsVar(9)=INFO;
   return 0;
 }
-
-int intdseupd(fname)
-     char* fname;
+/*-----------------------------------------------------------------------------------*/
+int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
@@ -298,9 +263,8 @@ int intdseupd(fname)
   LhsVar(7)=WORKD;  LhsVar(8)=WORKL; LhsVar(9)=INFO;
   return 0;
 }
-
-int intdneupd(fname)
-     char* fname;
+/*-----------------------------------------------------------------------------------*/
+int C2F(intdneupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
@@ -374,9 +338,8 @@ int intdneupd(fname)
   LhsVar(7)=IPNTR;  LhsVar(8)=WORKD; LhsVar(9)=WORKL; LhsVar(10)=INFO;
   return 0;
 }
-
-int intzneupd(fname)
-     char* fname;
+/*-----------------------------------------------------------------------------------*/
+int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
@@ -447,40 +410,4 @@ int intzneupd(fname)
   LhsVar(8)=RWORK; LhsVar(9)=INFO;
   return 0;
 }
-
-static GenericTable Tab[]={
-  {(Myinterfun) sci_gateway, intdsaupd,"dsaupd"},
-  {(Myinterfun) sci_gateway, intdnaupd,"dnaupd"},
-  {(Myinterfun) sci_gateway, intznaupd,"znaupd"},
-  {(Myinterfun) sci_gateway, intdseupd,"dseupd"},
-  {(Myinterfun) sci_gateway, intdneupd,"dneupd"},
-  {(Myinterfun) sci_gateway, intzneupd,"zneupd"},
-};
- 
-int C2F(intarpack)()
-{
-	Rhs = Max(0, Rhs);
-	
-	#if _MSC_VER
-		#ifndef _DEBUG
-		_try
-		{
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
-		}
-		_except (EXCEPTION_EXECUTE_HANDLER)
-		{
-			char *ExceptionString=GetExceptionString(GetExceptionCode());
-			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
-		}
-		#else
-			(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
-		#endif
-	#else
-		(*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);
-	#endif
-
-	return 0;
-}
-
-
+/*-----------------------------------------------------------------------------------*/

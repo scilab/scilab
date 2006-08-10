@@ -97,7 +97,7 @@
 #include "../../fileio/sci_gateway/fileio.fundef"  
 
 #define  IN_intarpack  35
-#include "../../../../routines/arpack/arpack.fundef"
+#include "../../arpack/sci_gateway/arpack.fundef"
 
 #define  IN_specfun  36
 #include "../../../../routines/interf/specfun.fundef"  
