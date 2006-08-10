@@ -46,7 +46,6 @@
 #pragma comment(lib,"../../libs/metanet_f.lib")
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/os_specific_f.lib")
-#pragma comment(lib,"../../libs/poly_f.lib")
 #pragma comment(lib,"../../libs/randlib_f.lib")
 #pragma comment(lib,"../../libs/scicos_f.lib")
 #pragma comment(lib,"../../libs/signal_f.lib")
