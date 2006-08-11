@@ -8,7 +8,7 @@ load('SCI/modules/sparse/macros/lib');
 //add help chapter
 global LANGUAGE
 
-path = get_absolute_file_path('polynomials.start');
+path = get_absolute_file_path('sparse.start');
 path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then

@@ -21,7 +21,7 @@
 #if defined(THINK_C)
 #include "::sparse:spConfig.h" 
 #else
-#include "../../../routines/sparse/spConfig.h"
+#include "../../sparse/includes/spConfig.h"
 #endif
 
 #include "bcg.h"

@@ -4,7 +4,8 @@
  *    newGraph Library header
  *    Matthieu PHILIPPE, INRIA 2001-2002
  *    Djalel ABDEMOUCHE, INRIA 2002-2004
- *    Fabrice Leray,     INRIA 2004-xxxx
+ *    Fabrice Leray,     INRIA 2004-2006
+ *    Jean-Baptiste Sylvi INRIA 2006-xxxx
  *    Comment:
  *    This file contains all functions used to Draw the content of a window.
  *    The main functions is sciDrawObj that draws the objects recursively.
@@ -21,7 +22,8 @@
 #if defined(THINK_C)
 #include "::sparse:spConfig.h" 
 #else
-#include "../sparse/spConfig.h"
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/sparse/includes/spConfig.h"
 #endif
 
 #include "bcg.h"

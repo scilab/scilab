@@ -6,7 +6,8 @@
  */
 
 #define spINSIDE_SPARSE
-#include "../sparse/spConfig.h"
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/sparse/includes/spConfig.h"
 #include "../machine.h"
 
 
