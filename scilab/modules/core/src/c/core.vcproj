@@ -250,6 +250,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\matus2.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matusr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\md5.c"
 				>
 			</File>
@@ -259,6 +267,10 @@
 			</File>
 			<File
 				RelativePath=".\msgstore.c"
+				>
+			</File>
+			<File
+				RelativePath=".\msgstxt.c"
 				>
 			</File>
 			<File
@@ -555,6 +567,10 @@
 			</File>
 			<File
 				RelativePath=".\str2sci.c"
+				>
+			</File>
+			<File
+				RelativePath=".\userf2.c"
 				>
 			</File>
 		</Filter>

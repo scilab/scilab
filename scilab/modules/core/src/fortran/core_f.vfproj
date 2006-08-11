@@ -133,8 +133,6 @@ cd .."/>
 		<File RelativePath="macro.f"/>
 		<File RelativePath="majmin.f"/>
 		<File RelativePath="matc.f"/>
-		<File RelativePath="matus2.f"/>
-		<File RelativePath="matusr.f"/>
 		<File RelativePath="matz.f"/>
 		<File RelativePath="matzs.f"/>
 		<File RelativePath="mkindx.f"/>
@@ -142,7 +140,6 @@ cd .."/>
 		<File RelativePath="mname.f"/>
 		<File RelativePath="mrknmd.f"/>
 		<File RelativePath="msgs.f"/>
-		<File RelativePath="msgstxt.f"/>
 		<File RelativePath="namstr.f"/>
 		<File RelativePath="nextj.f"/>
 		<File RelativePath="print.f"/>
@@ -215,7 +212,6 @@ cd .."/>
 		<File RelativePath="termf.f"/>
 		<File RelativePath="tradsl.f"/>
 		<File RelativePath="typ2cod.f"/>
-		<File RelativePath="userf2.f"/>
 		<File RelativePath="varfunptr.f"/>
 		<File RelativePath="whatln.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
