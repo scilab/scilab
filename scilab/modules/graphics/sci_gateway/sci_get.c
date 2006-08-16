@@ -1411,80 +1411,112 @@ int sciGet(sciPointObj *pobj,char *marker)
       /*       /\* switch to manual mode for label position *\/ */
       /*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
     }
-  else if (strcmp(marker,"auto_ticks") == 0)
+  else if ( strcmp(marker,"auto_ticks") == 0 )
+  {
+    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
     {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	char ** foo = (char **) NULL;
-	int i;
+	    char ** foo = NULL;
+	    int i;
 
-	numrow   = 1;numcol   = 3;
-	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
-	  strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
-
-	for(i=0;i<numcol;i++)
-	  if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] == TRUE)
-	    {
-	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
-		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
-	      strcpy(foo[i],"on");
-	    }
-	  else
-	    {
-	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
-		strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
-	      strcpy(foo[i],"off");
-	    }    
-
-	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
-
-        /* free the foo */
-        for ( i = 0 ; i < numcol ; i++ )
-        {
-          FREE( foo[i] ) ;
-        }
-        FREE( foo ) ;
-
+	    numrow = 1 ;
+      numcol = 3 ;
+	    if( ( foo = MALLOC( numcol * sizeof(char *) ) ) == NULL ) 
+      {
+	      strcpy(error_message,"No memory left for allocating temporary auto_ticks") ;
+        return -1 ;
       }
-      else
-	{strcpy(error_message,"auto_ticks property does not exist for this handle");return -1;}
+
+	    for( i = 0 ; i < numcol ; i++ )
+      {
+	      if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] )
+	      {
+	        if( ( foo[i] = MALLOC( 3 * sizeof(char) ) ) == NULL )
+          {
+		        strcpy(error_message,"No memory left for allocating temporary auto_ticks") ;
+            return -1 ;
+          }
+	        strcpy(foo[i],"on");
+	      }
+	      else
+	      {
+	        if( ( foo[i] = MALLOC( 4 * sizeof(char) ) ) == NULL )
+          {
+		        strcpy(error_message,"No memory left for allocating temporary auto_ticks") ;
+            return -1 ;
+          }
+	        strcpy(foo[i],"off");
+	      }
+      }
+
+	    CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
+
+      /* free the foo */
+      for ( i = 0 ; i < numcol ; i++ )
+      {
+        FREE( foo[i] ) ;
+      }
+      FREE( foo ) ;
+
     }
-  else if (strcmp(marker,"axes_reverse") == 0)
+    else
+	  {
+      strcpy(error_message,"auto_ticks property does not exist for this handle") ;
+      return -1 ;
+    }
+  }
+  else if ( strcmp(marker,"axes_reverse") == 0 )
+  {
+    if ( sciGetEntityType(pobj) == SCI_SUBWIN )
     {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	char ** foo = (char **) NULL;
-	int i;
+	    char ** foo = NULL;
+	    int i;
 
-	numrow   = 1;numcol   = 3;
-	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
-	  strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
+	    numrow = 1 ;
+      numcol = 3 ;
+	    if( ( foo = MALLOC( numcol * sizeof(char *) ) ) ==NULL )
+      {
+	      strcpy(error_message,"No memory left for allocating temporary reverse") ;
+        return -1;
+      }
+    
+	    for(i=0;i<numcol;i++)
+      {
+	      if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] )
+	      {
+	        if( ( foo[i] = MALLOC( 3 * sizeof(char) ) ) == NULL )
+          {
+		        strcpy(error_message,"No memory left for allocating temporary reverse") ;
+            return -1;
+          }
+	        strcpy(foo[i],"on");
+	      }
+	      else
+	      {
+	        if( ( foo[i] = MALLOC( 4 * sizeof(char) ) ) ==NULL )
+          {
+		        strcpy(error_message,"No memory left for allocating temporary reverse") ;
+            return -1 ;
+          }
+	        strcpy(foo[i],"off");
+	      }
+      }
 
-	for(i=0;i<numcol;i++)
-	  if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] == TRUE)
-	    {
-	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
-		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
-	      strcpy(foo[i],"on");
-	    }
-	  else
-	    {
-	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
-		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
-	      strcpy(foo[i],"off");
-	    }    
+	    CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
 
-	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
-
-        /* free the foo */
-        for ( i = 0 ; i < numcol ; i++ )
-        {
-          FREE( foo[i] ) ;
-        }
-        FREE( foo ) ;
+      /* free the foo */
+      for ( i = 0 ; i < numcol ; i++ )
+      {
+        FREE( foo[i] ) ;
+      }
+      FREE( foo ) ;
         
-      }
-      else
-	{strcpy(error_message,"reverse property does not exist for this handle");return -1;}
     }
+    else
+	  {
+      strcpy(error_message,"reverse property does not exist for this handle") ;
+      return -1 ;
+    }
+  }
   else if (strcmp(marker,"view") == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
@@ -1681,89 +1713,129 @@ int sciGet(sciPointObj *pobj,char *marker)
 	{strcpy(error_message,"ytics_coord property does not exist for this handle");return -1;}
     }
   else if (strcmp(marker,"tics_labels") == 0)
+  {
+    char ** foo =  NULL ;
+    int i ;
+    int N ;
+    if ( sciGetEntityType (pobj) == SCI_AXES ) 
     {
-      char **foo = (char **) NULL;
-      int i;
-      int N;
-      if (sciGetEntityType (pobj) == SCI_AXES) 
-	{
-	  numrow=1;
-	  numcol= Max(pAXES_FEATURE (pobj)->nx,pAXES_FEATURE (pobj)->ny);
-	  str = pAXES_FEATURE (pobj)->str;
-	  if (str==NULL){
+      numrow = 1 ;
+      numcol = Max( pAXES_FEATURE (pobj)->nx, pAXES_FEATURE (pobj)->ny ) ;
+      str = pAXES_FEATURE (pobj)->str ;
+      
+      if (str == NULL )
+      {
 
-	    /* 	    for (i=0;i<numcol;i++){ */
-	    if(pAXES_FEATURE (pobj)->format==NULL)
-	      {
-		/* we need to compute a c_format */
-		char c_format[5];
-		double *vector = NULL;
+    	  if( pAXES_FEATURE(pobj)->format == NULL )
+        {
+	        /* we need to compute a c_format */
+	        char c_format[5];
+	        double * vector = NULL ;
 
-		if(ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,1) != 0){
-		  Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
-		  return 0;
-		}
+          /* vector is allocated here */
+	        if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &N, 1 ) != 0 )
+          {
+	          Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+	          return 0;
+	        }
+          
+	        ComputeC_format( pobj, c_format ) ;
+          
+	        if( ( foo = MALLOC( N * sizeof(char *) ) ) == NULL )
+          {
+	          strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
+            return -1 ;
+          }
+	        for( i = 0 ; i < N ; i++ )
+          {
+	          if( ( foo[i] = MALLOC( 257 * sizeof(char) ) ) == NULL)
+            {
+	            strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
+              return -1 ;
+            }
+	        }
 
-		ComputeC_format(pobj,c_format);
+	        for( i = 0 ; i < N ; i++ )
+          {
+	          if( pAXES_FEATURE(pobj)->nx < numcol )
+            {
+	            sprintf(foo[i],c_format,vector[i]) ;
+            }
+	          else
+            {
+	            sprintf(foo[i],c_format,vector[i]);
+            }
+	        }
+	        FREE(vector) ;
+          vector = NULL;
+        }
+        else
+        {
+	        double * vector = NULL;
 
-		if((foo=malloc(N*(sizeof(char *))))==NULL){
-		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
-		for(i=0;i<N;i++){
-		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
-		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
-		}
+	        if(ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,1) != 0)
+          {
+	          Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+	          return 0;
+	        }
 
-		for(i=0;i<N;i++){
-		  if(pAXES_FEATURE (pobj)->nx<numcol) 
-		    sprintf(foo[i],c_format,vector[i]);
-		  else
-		    sprintf(foo[i],c_format,vector[i]);
-		}
-		FREE(vector); vector = (double *) NULL;
-	      }
-	    else
-	      {
-		double *vector = NULL;
+	        if( ( foo = MALLOC( N * sizeof(char *) ) ) == NULL )
+          {
+	          strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
+            return -1 ;
+          }
+	  
+          for( i = 0 ; i < N ; i++ )
+          {
+	          if( ( foo[i] = MALLOC( 257 * sizeof(char) ) ) == NULL )
+            {
+	            strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
+              return -1 ;
+            }
+	        }
 
-		if(ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,1) != 0){
-		  Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
-		  return 0;
-		}
+	        for( i = 0 ; i < N ; i++ )
+          {
+	          if( pAXES_FEATURE(pobj)->nx < numcol )
+            {
+	            sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i])  ;
+            }
+	          else
+            {
+	            sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i]);
+            }
+	        }
+	        FREE(vector) ;
+          vector = NULL;
+        }
 
-		if((foo=malloc(N*(sizeof(char *))))==NULL){
-		  strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
-		for(i=0;i<N;i++){
-		  if((foo[i]=malloc(256*(sizeof(char)+1)))==NULL){
-		    strcpy(error_message,"No memory left for allocating temporary tics_labels");return -1;}
-		}
+        /* I recompute the nb_tics_labels */
+        pAXES_FEATURE (pobj)->nb_tics_labels = N;
 
-		for(i=0;i<N;i++){
-		  if(pAXES_FEATURE (pobj)->nx<numcol) 
-		    sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i]);
-		  else
-		    sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i]);
-		}
-		FREE(vector); vector = (double *) NULL;
-	      }
-	    /* 	    } */
+        CreateVarFromPtr(Rhs+1,"S",&numrow,&N,foo);
 
-	    /* I recompute the nb_tics_labels */
-	    pAXES_FEATURE (pobj)->nb_tics_labels = N;
-
-	    CreateVarFromPtr(Rhs+1,"S",&numrow,&N,foo);
-
-	    if(foo != NULL)
-	      for(i=0;i<N;i++) { FREE(foo[i]); foo[i] = NULL;}
-	    FREE(foo); foo = NULL;
-	  }
-	  else{ /* str has been previously set once */
-	    N = pAXES_FEATURE (pobj)->nb_tics_labels;
-	    CreateVarFromPtr(Rhs+1,"S",&numrow,&N,str);
-	  }
-	}
+        if(foo != NULL)
+        {
+          for( i = 0 ; i < N ; i++ )
+          {            
+            FREE(foo[i]) ;
+            foo[i] = NULL ;
+          }
+          FREE(foo) ;
+          foo = NULL ;
+        }
+      }
       else
-	{strcpy(error_message,"tics_labels property does not exist for this handle");return -1;}
+      { /* str has been previously set once */
+        N = pAXES_FEATURE (pobj)->nb_tics_labels;
+        CreateVarFromPtr(Rhs+1,"S",&numrow,&N,str);
+      }
     }
+    else
+    {
+      strcpy(error_message,"tics_labels property does not exist for this handle") ; return -1 ;
+    }
+  }
   else if ((strcmp(marker,"box") == 0))
   {
     if ( sciGetEntityType ( pobj ) == SCI_SUBWIN )
@@ -1816,27 +1888,42 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"grid property does not exist for this handle");return -1;}
     }
-  else if (strcmp(marker,"axes_visible") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      char ** foo = (char **) NULL;
+  else if (strcmp(marker,"axes_visible") == 0)
+  {
+    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
+    {
+      char ** foo = NULL;
       int i;
 
-      numrow   = 1;numcol   = 3;
-      if((foo=malloc(numcol*(sizeof(char *))))==NULL){
-	strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
+      numrow = 1;
+      numcol = 3;
+      if((foo=MALLOC(numcol*(sizeof(char *))))==NULL)
+      {
+	      strcpy( error_message, "No memory left for allocating temporary axes_visible" ) ;
+        return -1 ;
+      }
+
       for(i=0;i<numcol;i++)
-	if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] == TRUE)
-	  {
-	    if((foo[i]=malloc(3*(sizeof(char))))==NULL){
-	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
-	    strcpy(foo[i],"on");
-	  }
-	else
-	  {
-	    if((foo[i]=malloc(4*(sizeof(char))))==NULL){
-	      strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
-	    strcpy(foo[i],"off");
-	  }    
+      {
+	      if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] )
+	      {
+	        if( ( foo[i] = MALLOC( 3 * sizeof(char) ) ) == NULL )
+          {
+	          strcpy(error_message,"No memory left for allocating temporary axes_visible") ;
+            return -1 ;
+          }
+	        strcpy(foo[i],"on");
+	      }
+	      else
+	      {
+	        if((foo[i]=MALLOC(4*(sizeof(char))))==NULL)
+          {
+	          strcpy(error_message,"No memory left for allocating temporary axes_visible") ;
+            return -1 ;
+          }
+	        strcpy(foo[i],"off");
+        }
+      }
 
       CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
         
@@ -1849,7 +1936,10 @@ int sciGet(sciPointObj *pobj,char *marker)
       
     }
     else
-      {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;}
+    {
+       strcpy(error_message,"axes_visible property does not exist for this handle") ;
+       return -1 ;
+    }
   }
   else if (strcmp(marker,"hiddencolor") == 0) 
     {
