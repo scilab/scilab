@@ -327,10 +327,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\spelm.fundef"
-			>
-		</File>
-		<File
 			RelativePath=".\usr.fundef"
 			>
 		</File>
