@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iirlp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="iirlp"> Lp IIR filter optimization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[cost,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1X2 vector of the module and argument of the poles and the zeros of the filters</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string : <VERB>'a'</VERB>  for amplitude, 'gd' for group delay; default case for amplitude and group delay.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omega</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: frequencies where the filter specifications are given</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wa,wt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: weighting functions for the amplitude and the group delay</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lambda</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: weighting (with <VERB>1-lambda</VERB>) of the costs (<VERB>'a'</VERB> and <VERB>'gd'</VERB> for getting the global cost.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ad, td</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: desired amplitude and group delay</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cost, grad</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: criterium and gradient values</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    optimization of IIR filters for the Lp criterium for the
+    amplitude and/or the group delay. (Rabiner &amp; Gold pp270-273).</P>
+  </DESCRIPTION>
+</MAN>

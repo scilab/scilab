@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>analpf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="analpf"> create analog low-pass filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive integer : filter order</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fdesign</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string : filter design method : <VERB>'butt'</VERB> or <VERB>'cheb1'</VERB> or <VERB>'cheb2'</VERB> or <VERB>'ellip'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2-vector of error values for cheb1, cheb2 and ellip filters where only <VERB>rp(1)</VERB> is used for cheb1 case, only <VERB>rp(2)</VERB> is used for cheb2 case, and <VERB>rp(1)</VERB> and <VERB>rp(2)</VERB> are both used for ellip case.  <VERB>0&lt;rp(1),rp(2)&lt;1</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>for cheb1 filters <VERB>1-rp(1)&lt;ripple&lt;1</VERB> in passband</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>for cheb2 filters <VERB>0&lt;ripple&lt;rp(2)</VERB> in stopband</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>for ellip filters <VERB>1-rp(1)&lt;ripple&lt;1</VERB> in passband <VERB>0&lt;ripple&lt;rp(2)</VERB> in stopband</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omega</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: cut-off frequency of low-pass filter in Hertz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>hs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: rational polynomial transfer function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pols</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: poles of transfer function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zers</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: zeros of transfer function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gain</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: gain of transfer function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Creates analog low-pass filter with cut-off frequency at omega.</P>
+    <P>
+      <VERB>hs=gain*poly(zers,'s')/poly(pols,'s')</VERB>
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Evaluate magnitude response of continuous-time system 
+hs=analpf(4,'cheb1',[.1 0],5)
+fr=0:.1:15;
+hf=freq(hs(2),hs(3),%i*fr);
+hm=abs(hf);
+plot(fr,hm)
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

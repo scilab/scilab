@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>kalm</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="kalm"> Kalman update</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>f,g,h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: current system matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>q, r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: covariance matrices of dynamics and observation noise</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0,p0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: state estimate and error variance at t=0 based on data up to t=-1</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: current observation Output from the function is:</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x1,p1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: updated estimate and error covariance at t=1 based on data up to t=0</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: updated estimate and error covariance at t=0  based on data up to t=0</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    function which gives the Kalman update and error variance</P>
+  </DESCRIPTION>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

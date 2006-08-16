@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>corr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="corr"> correlation, covariance</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[cov,Mean]=corr(x,[y],nlags)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[w,xu]=corr('updt',x1,[y1],w0)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[w,xu]=corr('updt',x2,[y2],w,xu)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> ...  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[wk]=corr('updt',xk,[yk],w,xu)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector, default value x.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nlags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, number of correlation coefficients desired.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xmacro</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a scilab external (see below).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ymacro</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a scilab external (see below), default value xmacro</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer, total size of the sequence (see below).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sect</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: size of sections of the sequence (see below).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>yi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector,default value xi.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cov</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector, the correlation coefficients</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Mean</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number or vector,  the mean of x and if given y</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Computes
+  </P>
+    <VERBATIM>
+<![CDATA[
+                n - m 
+                 ====
+                 \                                                 1
+        cov(m) =  >        (x(k)  - xmean) (y(m+k)      - ymean) * ---
+                 /                                                  n
+                 ====
+                 k = 1
+   ]]>
+    </VERBATIM>
+    <P>
+    for   m=0,..,<VERB>nlag-1</VERB> and two vectors <VERB>x=[x(1),..,x(n)]</VERB>
+     <VERB>y=[y(1),..,y(n)]</VERB>
+  </P>
+    <P>
+    Note that if x and y sequences are differents corr(x,y,...) is
+    different with corr(y,x,...)
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Short sequences">
+        <SP><VERB>[cov,Mean]=corr(x,[y],nlags)</VERB> returns the first nlags
+    correlation coefficients and Mean = <VERB>mean(x)</VERB>
+    (mean of <VERB>[x,y]</VERB> if <VERB>y</VERB> is an argument).
+    The sequence <VERB>x</VERB> (resp. <VERB>y</VERB>) is assumed real, and <VERB>x</VERB> 
+    and <VERB>y</VERB> are of same dimension n.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="Long sequences">
+        <SP><VERB>[cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)</VERB> Here <VERB>xmacro</VERB> is either</SP>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM>
+            <P> 
+        a function of type <VERB>[xx]=xmacro(sect,istart)</VERB> which
+        returns a vector <VERB>xx</VERB> of dimension
+        <VERB>nsect</VERB> containing the part of the sequence with
+        indices from <VERB>istart</VERB> to
+        <VERB>istart+sect-1</VERB>.</P>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <P>
+        a fortran subroutine or C procedure which performs the same
+        calculation. (See the source code of <VERB>dgetx</VERB> for an
+        example). <VERB>n</VERB> = total size of the
+        sequence. <VERB>sect</VERB> = size of sections of the
+        sequence. <VERB>sect</VERB> must be a power of
+        2. <VERB>cov</VERB> has dimension
+        <VERB>sect</VERB>. Calculation is performed by FFT.</P>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="Updating method">
+        <VERBATIM>
+<![CDATA[
+    [w,xu]=corr('updt',x1,[y1],w0)
+    [w,xu]=corr('updt',x2,[y2],w,xu)
+     ...
+    wk=corr('updt',xk,[yk],w,xu)
+    ]]>
+        </VERBATIM>
+        <P>
+    With this calling sequence the calculation is updated at each
+    call to <VERB>corr</VERB>.</P>
+        <VERBATIM>
+<![CDATA[
+    w0 = 0*ones(1,2*nlags);
+    nlags = power of 2.
+    ]]>
+        </VERBATIM>
+        <P><VERB>x1,x2,...</VERB> are parts of <VERB>x</VERB> such that
+    <VERB>x=[x1,x2,...]</VERB> and sizes of <VERB>xi</VERB> a power of
+    2.  To get <VERB>nlags</VERB> coefficients a final fft must be
+    performed <VERB>c=fft(w,1)/n</VERB>; <VERB>cov=c(1nlags)</VERB>
+    (<VERB>n</VERB> is the size of <VERB>x (y)</VERB>).  Caution: this
+    calling sequence assumes that <VERB>xmean = ymean = 0</VERB>.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed');rand('normal');
+y=[.8*sin(x)+.8*sin(2*x)+rand(x);.8*sin(x)+.8*sin(1.99*x)+rand(x)];
+c=[];
+for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end;
+c=matrix(c,2,128);cov=[];
+for j=1:64,cov=[cov;c(:,(j-1)*2+1:2*j)];end;
+rand('unif')
+//
+rand('normal');x=rand(1,256);y=-x;
+deff('[z]=xx(inc,is)','z=x(is:is+inc-1)');
+deff('[z]=yy(inc,is)','z=y(is:is+inc-1)');
+[c,mxy]=corr(x,y,32);
+x=x-mxy(1)*ones(x);y=y-mxy(2)*ones(y);  //centring
+c1=corr(x,y,32);c2=corr(x,32);
+norm(c1+c2,1)
+[c3,m3]=corr('fft',xx,yy,256,32);
+norm(c1-c3,1)
+[c4,m4]=corr('fft',xx,256,32);
+norm(m3,1),norm(m4,1)
+norm(c3-c1,1),norm(c4-c2,1)
+x1=x(1:128);x2=x(129:256);
+y1=y(1:128);y2=y(129:256);
+w0=0*ones(1:64);   //32 coeffs
+[w1,xu]=corr('u',x1,y1,w0);w2=corr('u',x2,y2,w1,xu);
+zz=real(fft(w2,1))/256;c5=zz(1:32);
+norm(c5-c1,1)
+[w1,xu]=corr('u',x1,w0);w2=corr('u',x2,w1,xu);
+zz=real(fft(w2,1))/256;c6=zz(1:32);
+norm(c6-c2,1)
+rand('unif')
+// test for Fortran or C external 
+//
+deff('[y]=xmacro(sec,ist)','y=sin(ist:(ist+sec-1))');
+x=xmacro(100,1);
+[cc1,mm1]=corr(x,2^3);
+[cc,mm]=corr('fft',xmacro,100,2^3);
+[cc2,mm2]=corr('fft','corexx',100,2^3);
+[maxi(abs(cc-cc1)),maxi(abs(mm-mm1)),maxi(abs(cc-cc2)),maxi(abs(mm-mm2))]
+
+deff('[y]=ymacro(sec,ist)','y=cos(ist:(ist+sec-1))');
+y=ymacro(100,1);
+[cc1,mm1]=corr(x,y,2^3);
+[cc,mm]=corr('fft',xmacro,ymacro,100,2^3);
+[cc2,mm2]=corr('fft','corexx','corexy',100,2^3);
+[maxi(abs(cc-cc1)),maxi(abs(mm-mm1)),maxi(abs(cc-cc2)),maxi(abs(mm-mm2))]
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>fft</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

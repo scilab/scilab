@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>%asn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="%asn"> elliptic integral</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y]=%asn(x,m)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: upper limit of integral (<VERB>x&gt;0</VERB>) (can be a vector)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: parameter of integral (<VERB>0&lt;m&lt;1</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: value of the integral</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates the elliptic integral</P>
+    <P>
+    If <VERB>x</VERB> is a vector, <VERB>y</VERB> is a vector of same dimension as <VERB>x</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+m=0.8;z=%asn(1/sqrt(m),m);K=real(z);Ktilde=imag(z);
+x2max=1/sqrt(m);
+x1=0:0.05:1;x2=1:((x2max-1)/20):x2max;x3=x2max:0.05:10;
+x=[x1,x2,x3];
+y=%asn(x,m);
+rect=[0,-Ktilde,1.1*K,2*Ktilde];
+plot2d(real(y)',imag(y)',1,'011',' ',rect)
+//
+deff('y=f(t)','y=1/sqrt((1-t^2)*(1-m*t^2))');
+intg(0,0.9,f)-%asn(0.9,m)  //Works for real case only!
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

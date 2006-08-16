@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>chepol</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="chepol"> Chebychev polynomial</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Tn]=chepol(n,var)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer : polynomial order</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>var</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string : polynomial variable</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Tn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial in the variable <VERB>var</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Recursive implementation of Chebychev polynomial.
+    <VERB>Tn=2*poly(0,var)*chepol(n-1,var)-chepol(n-2,var)</VERB> with
+    <VERB>T0=1</VERB> and <VERB>T1=poly(0,var)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+chepol(4,'x')
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

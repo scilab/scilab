@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>frmag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="frmag"> magnitude of FIR and IIR filters</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[xm,fr]=frmag(num[,den],npts)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>npts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (number of points in frequency response)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: mvector of magnitude of frequency response at the points <VERB>fr</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: points in the frequency domain where magnitude is evaluated</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>num</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: if <VERB>den</VERB> is omitted vector coefficients/polynomial/rational polynomial of filter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>num</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: if <VERB>den</VERB> is given vector coefficients/polynomial of filter numerator</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>den</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector coefficients/polynomial of filter denominator</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    calculates the magnitude of the frequency responses of
+    FIR and IIR filters. The filter description can be
+    one or two vectors of coefficients, one or two polynomials,
+    or a rational polynomial.</P>
+  </DESCRIPTION>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

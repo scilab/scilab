@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>trans</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="trans"> low-pass to other filter transform</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>hzt=trans(hz,tr_type,frq)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>hzt=trans(pd,zd,gd,tr_type,frq)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>hz</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: given fiter transfert function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+  
+      <PARAM_ITEM>
+        <PARAM_NAME>pd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Vector of given fiter poles</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Vector of given fiter zeros</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar: the given fiter gain</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tr_type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, the type of transformation, see description for possible values </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>frq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2-vector of discrete cut-off frequencies (i.e.,<VERB>0&lt;frq&lt;.5</VERB>). For lp and hp filters only frq(1) is used. For bp and sb filters frq(1) is the lower cut-off frequency and frq(2) is the upper cut-off frequency. </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>hzt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: transformed filter transfert function.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    function for transforming standardized low-pass filter given its
+      poles-zeros_gain representation into
+    one of the following filters:
+    </P>
+    <P>
+      low-pass ('lp'), the cutoff frequency is given by the first entry of frq,
+      the second one is ignored
+    </P>
+    <P>
+      high-pass ('hp'),  the cutoff frequency is given by the first entry of frq,
+      the second one is ignored
+    </P>
+    <P>
+      
+      band-pass ('bp'), the frequency range is given by frq(1) and frq(2)
+    </P>
+    <P>
+      stop-band ('sb') , the frequency range is given by frq(1) and frq(2).
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+clf()
+
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+subplot(311)
+gainplot(Hlp,1d-3,0.48)
+legend('original low pass')
+
+
+Hbp=trans(Hlp,'bp',[0.01 0.1]);
+subplot(312)
+gainplot(Hbp,1d-3,0.48)
+legend('band pass')
+
+
+Hsb=trans(Hlp,'sb',[0.01 0.1])
+subplot(313)
+gainplot(Hsb,1d-3,0.48)
+legend('stop band')
+
+
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>C. Bunks ;   </AUTHOR>
+</MAN>

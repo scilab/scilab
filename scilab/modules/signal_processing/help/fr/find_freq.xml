@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>find_freq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="find_freq"> parameter compatibility for elliptic filter design</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[m]=find_freq(epsilon,A,n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>epsilon</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: passband ripple</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: stopband attenuation</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: filter order</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: frequency needed for construction of elliptic filter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Search for m such that <VERB>n=K(1-m1)K(m)/(K(m1)K(1-m))</VERB>
+    with</P>
+    <P><VERB>m1=(epsilon*epsilon)/(A*A-1)</VERB>;</P>
+    <P>
+    If <VERB>m = omegar^2/omegac^2</VERB>, the parameters
+    <VERB>epsilon,A,omegac,omegar</VERB> and <VERB>n</VERB> are then
+    compatible for defining a prototype elliptic filter.
+    Here, <VERB>K=%k(m)</VERB> is the complete elliptic integral with parameter <VERB>m</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>%k</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

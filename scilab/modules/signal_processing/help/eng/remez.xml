@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>REMEZ</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="remez"> Remez's algorithm</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[an]=remez(nc,fg,ds,wt)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, number of cosine functions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fg,ds,wt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: grid of frequency points in [0,.5)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ds</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: desired magnitude on grid <VERB>fg</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: weighting function on error on grid <VERB>fg</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    minimax approximation of a frequency domain magnitude response.
+    The approximation takes the form</P>
+    <VERBATIM>
+<![CDATA[
+ h = sum[a(n)*cos(wn)]
+   ]]>
+    </VERBATIM>
+    <P>
+    An FIR, linear-phase filter
+    can be obtained from the the output of <VERB>remez</VERB> by using the
+    following commands:</P>
+    <VERBATIM>
+<![CDATA[
+                 hn(1:nc-1)=an(nc:-1:2)/2;
+                 hn(nc)=an(1);
+                 hn(nc+1:2*nc-1)=an(2:nc)/2;
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB>an</VERB> = cosine filter coefficients</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>remezb</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

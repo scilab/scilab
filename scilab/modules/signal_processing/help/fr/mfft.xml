@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mfft</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mfft"> multi-dimensional fft</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[xk]=mfft(x,flag,dim)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>x(i,j,k,...)</VERB> input signal in the form of a row vector whose values are arranged so that the i index runs the quickest, followed by the j index, etc.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (-1) FFT or (1) inverse FFT</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: dimension vector which gives the number of values of <VERB>x</VERB> for each of its indices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: output of multidimensional fft in same format as for <VERB>x</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    FFT for a multi-dimensional signal</P>
+    <P>
+    For example for a three dimensional vector which has three points
+    along its first dimension, two points along its second
+    dimension and three points along its third dimension the row
+    vector is arranged as follows</P>
+    <VERBATIM>
+<![CDATA[
+     x=[x(1,1,1),x(2,1,1),x(3,1,1),
+        x(1,2,1),x(2,2,1),x(3,2,1),
+              x(1,1,2),x(2,1,2),x(3,1,2),
+              x(1,2,2),x(2,2,2),x(3,2,2),
+                    x(1,1,3),x(2,1,3),x(3,1,3),
+                    x(1,2,3),x(2,2,3),x(3,2,3)]
+   ]]>
+    </VERBATIM>
+    <P>
+    and the <VERB>dim</VERB> vector is: <VERB>dim=[3,2,3]</VERB></P>
+  </DESCRIPTION>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

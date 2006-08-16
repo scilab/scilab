@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pspect</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pspect"> cross-spectral estimate between 2 series</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: data if vector, amount of input data if scalar</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: data if vector, amount of input data if scalar</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sec_step</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: offset of each data window</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sec_leng</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: length of each data window</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wtype</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: window type <VERB>(re,tr,hm,hn,kr,ch)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wpar</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optional parameters  for <VERB>wtype='kr', wpar&gt;0</VERB>  for <VERB>wtype='ch', 0&lt;wpar(1)&lt;.5, wpar(2)&gt;0</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: power spectral estimate in the interval <VERB>[0,1]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cwp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: unspecified Chebyshev window parameter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Cross-spectral estimate between <VERB>x</VERB> and <VERB>y</VERB> if both are given
+    and auto-spectral estimate of <VERB>x</VERB> otherwise.
+    Spectral estimate obtained using the modified periodogram method.</P>
+  </DESCRIPTION>
+  <SECTION label="Reference">
+    <P>
+     Digital Signal Processing by Oppenheim and Schafer</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+rand('normal');rand('seed',0);
+x=rand(1:1024-33+1);
+//make low-pass filter with eqfir
+nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
+h=eqfir(nf,bedge,des,wate);
+//filter white data to obtain colored data 
+h1=[h 0*ones(1:maxi(size(x))-1)];
+x1=[x 0*ones(1:maxi(size(h))-1)];
+hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
+//plot magnitude of filter
+//h2=[h 0*ones(1:968)];hf2=fft(h2,-1);hf2=real(hf2.*conj(hf2));
+//hsize=maxi(size(hf2));fr=(1:hsize)/hsize;plot(fr,log(hf2));
+//pspect example
+sm=pspect(100,200,'tr',y);smsize=maxi(size(sm));fr=(1:smsize)/smsize;
+plot(fr,log(sm));
+rand('unif');
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cspect</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

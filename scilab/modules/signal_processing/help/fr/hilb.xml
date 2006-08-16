@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>hilb</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hilb"> Hilbert transform</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[xh]=hilb(n[,wtype][,par])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: odd integer : number of points in filter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wtype</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string : window type <VERB>('re','tr','hn','hm','kr','ch')</VERB> (default <VERB>='re'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>par</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: window parameter for <VERB>wtype='kr' or 'ch'</VERB> default <VERB>par=[0 0]</VERB> see the function window for more help</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xh</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Hilbert transform</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the first n points of the
+    Hilbert transform centred around the origin.</P>
+    <P>
+    That is, <VERB>xh=(2/(n*pi))*(sin(n*pi/2))^2</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+plot(hilb(51))
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

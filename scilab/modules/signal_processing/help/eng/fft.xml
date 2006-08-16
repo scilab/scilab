@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>fft</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="fft">fast Fourier transform.</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="ifft">fast Fourier transform.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x=fft(a ,-1) or x=fft(a)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>x=fft(a,1) or x=ifft(a)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>x=fft(a,-1,dim,incr)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>x=fft(a,1,dim,incr)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector. Real or complex matrix (2-dim
+          fft)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector, matrix or multidimensionnal
+          array.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>incr</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Short syntax ">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="direct">
+            <P><VERB>x=fft(a,-1)</VERB> or <VERB>x=fft(a)</VERB> gives a
+            direct transform.</P>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM label="single variate">
+                <P>If <VERB>a</VERB> is a vector a single variate direct FFT
+                is computed that is:</P>
+
+                <P>x(k)=sum over m from 1 to n of
+                a(m)*exp(-2i*pi*(m-1)*(k-1)/n)</P>
+
+                <P>for k varying from 1 to n (n=size of vector
+                <VERB>a</VERB>).</P>
+
+                <P>(the <VERB>-1</VERB> argument refers to the sign of the
+                exponent..., NOT to "inverse"),</P>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM label="multivariate">
+                <P>If <VERB>a</VERB> is a matrix or or a multidimensionnal
+                array a multivariate direct FFT is performed.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="inverse">
+            <P><VERB>a=fft(x,1)</VERB> or <VERB>a=ifft(x)</VERB>performs the
+            inverse transform normalized by <VERB>1/n</VERB>.</P>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM label="single variate">
+                <P>If <VERB>a</VERB> is a vector a single variate inverse FFT
+                is computed</P>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM label="multivariate">
+                <P>If <VERB>a</VERB> is a matrix or or a multidimensionnal
+                array a multivariate inverse FFT is performed.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Long syntax for multidimensional FFT">
+        <P><VERB>x=fft(a,-1,dim,incr)</VERB> allows to perform an
+        multidimensional fft.</P>
+
+        <P>If a is a real or complex vector implicitly indexed by
+        <VERB>j1,j2,..,jp</VERB> i.e. <VERB>a(j1,j2,..,jp)</VERB> where
+        <VERB>j1</VERB> lies in <VERB>1:dim(1),</VERB> <VERB>j2</VERB> in
+        <VERB>1:dim(2),...</VERB> one gets a p-variate FFT by calling p times
+        <VERB>fft</VERB> as follows</P>
+
+        <VERBATIM>incrk=1; x=a; for k=1:p x=fft(x ,-1,dim(k),incrk)
+        incrk=incrk*dim(k) end</VERBATIM>
+
+        <P>where <VERB>dimk</VERB> is the dimension of the current variable
+        w.r.t which one is integrating and <VERB>incrk</VERB> is the increment
+        which separates two successive <VERB>jk</VERB> elements in
+        <VERB>a</VERB>.</P>
+
+        <P>In particular,if <VERB>a</VERB> is an mxn matrix,
+        <VERB>x=fft(a,-1)</VERB> is equivalent to the two instructions:</P>
+
+        <P><VERB>a1=fft(a,-1,m,1)</VERB> and
+        <VERB>x=fft(a1,-1,n,m)</VERB>.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+  //Comparison with explicit formula
+  //----------------------------------
+  a=[1;2;3];n=size(a,'*');
+  norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
+  norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1)) 
+ 
+  //Frequency components of a signal
+  //----------------------------------
+  // build a noides signal sampled at 1000hz  containing to pure frequencies 
+  // at 50 and 70 Hz
+  sample_rate=1000;
+  t = 0:1/sample_rate:0.6;
+  N=size(t,'*'); //number of samples
+  s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+  
+  y=fft(s);
+  //the fft response is symetric we retain only the first N/2 points
+  f=sample_rate*(0:(N/2))/N; //associated frequency vector
+  n=size(f,'*')
+  clf()
+  plot2d(f,abs(y(1:n)))
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>corr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

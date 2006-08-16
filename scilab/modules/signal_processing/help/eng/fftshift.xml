@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fftshift</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="fftshift"> rearranges the fft output, moving the zero frequency to the center of the spectrum</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=fftshift(x [,job])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>job</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, dimension selection, or string 'all'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    if <VERB>x</VERB> results of an fft computation <VERB>y= fftshift(x)</VERB> or <VERB>y= fftshift(x,&quot;all&quot;)</VERB> moves the zero frequency component to the center
+    of the spectrum, which is sometimes a more convenient form.</P>
+    <P>
+    If <VERB>x</VERB> is a vector of size n, y is the vector <VERB>x([n/2+1:n,1:n/2])</VERB></P>
+    <P>
+    If <VERB>x</VERB> is an <VERB>m</VERB> by <VERB>n</VERB>  matrix <VERB>y</VERB> is the matrix
+    <VERB>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</VERB>.</P>
+    <VERBATIM>
+<![CDATA[
+  [x11 x12]                  [x22 x21]
+x=[       ]        gives   y=[       ]
+  [x21 x22]                  [x12 x11]
+   ]]>
+    </VERBATIM>
+    <P><VERB>y= fftshift(x,n)</VERB>  make the swap only along the <VERB>n</VERB>th dimension</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//make a signal
+t=0:0.1:1000;
+x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+//compute the fft
+y=fft(x,-1);
+//display 
+xbasc();
+subplot(2,1,1);plot2d(abs(y))
+subplot(2,1,2);plot2d(fftshift(abs(y)))
+
+//make a 2D image
+t=0:0.1:30;
+x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+//compute the fft
+y=fft(x,-1);
+//display 
+xbasc();
+xset('colormap',hotcolormap(256))
+subplot(2,1,1);Matplot(abs(y))
+subplot(2,1,2);Matplot(fftshift(abs(y)))
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>fft</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>zpch2</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="zpch2"> Chebyshev analog filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[zeros,poles,gain]=zpch2(n,A,omegar)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer : filter order</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : attenuation in stop band (<VERB>A&gt;1</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omegar</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : cut-off frequency in Hertz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zeros</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: resulting filter zeros</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>poles</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: resulting filter poles</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gain</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Resulting filter gain</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Poles and zeros of a type 2 Chebyshev analog filter
+    gain is the gain of the filter</P>
+    <VERBATIM>
+<![CDATA[
+H(s)=gain*poly(zeros,'s')/poly(poles,'s')
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

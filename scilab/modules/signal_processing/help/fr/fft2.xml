@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>fft2</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>November 2005</DATE>
+
+  <SHORT_DESCRIPTION name="fft2">two-dimension fast Fourier
+  transform</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=fft2(x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y=fft2(x,n,m)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a vector/matrix/array (Real or Complex)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a vector/matrix/array (Real or Complex)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integer, number of rows.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: integer, number of columns.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <VERBATIM>This functions performs the two-dimension discrete Fourier
+    transform.</VERBATIM>
+
+    <P><VERB>y=fft2(x)</VERB>: y and x have the same size</P>
+
+    <P><VERB>y=fft2(x,m,n):</VERB> If <VERB>m</VERB> (respectively
+    <VERB>n</VERB>) is less than the rows number (respectively columns) of
+    <VERB>x</VERB> then the <VERB>x</VERB> rows number (resp. columns) is
+    truncated, else if m (resp. <VERB>n</VERB>) is more than the rows number
+    (resp. columns) of <VERB>x</VERB> then <VERB>x</VERB> rows are completed
+    by zero (resp. columns) .</P>
+
+    <P>if <VERB>x</VERB> is a matrix then <VERB>y</VERB> is a matrix, if
+    <VERB>x</VERB> is a hypermatrix then <VERB>y</VERB> is a hypermatrix, with
+    the size of the first dimension of <VERB>y</VERB> is equal to
+    <VERB>m</VERB>, the size of the second dimension of <VERB>y</VERB> is
+    equal to <VERB>n</VERB>, the size of the ith dimension of <VERB>y</VERB>
+    (for i&gt;2, case hypermatrix) equal to the size of the ith dimension of
+    <VERB>x</VERB>. (i.e size(y,1)=m, size(y,2)=n, size(y,i)=size(x,i) for
+    i&gt;2)</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+//Comparison with explicit formula
+a=[1 2 3 ;4 5 6 ;7 8 9 ;10 11 12]  
+m=size(a,1)
+n=size(a,2)
+// fourier transform along the rows
+for i=1:n
+a1(:,i)=exp(-2*%i*%pi*(0:m-1)'.*.(0:m-1)/m)*a(:,i) 
+end
+// fourier transform along the columns
+for j=1:m
+a2temp=exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*(a1(j,:)).' 
+a2(j,:)=a2temp.'
+end
+norm(a2-fft2(a))
+
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>fft</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

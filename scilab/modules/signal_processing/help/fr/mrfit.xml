@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mrfit</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mrfit"> frequency response fit</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sys=mrfit(w,mag,order)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[num,den]=mrfit(w,mag,order)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>sys=mrfit(w,mag,order,weight)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[num,den]=mrfit(w,mag,order,weight)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>w</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive real vector of frequencies (Hz)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector of frequency responses magnitude (same size as <VERB>w</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>order</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (required order, degree of <VERB>den</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>weight</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive real vector (default value <VERB>ones(w)</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>num,den</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: stable polynomials</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>sys=mrfit(w,mag,order,weight)</VERB> returns a bi-stable transfer function
+    <VERB>G(s)=sys=num/den</VERB>, of of given <VERB>order</VERB> such that 
+    its frequency response magnitude <VERB>abs(G(w(i)))</VERB> 
+    matches <VERB>mag(i)</VERB> i.e. <VERB>abs(freq(num,den,%i*w))</VERB> should be 
+    close to <VERB>mag</VERB>.
+    <VERB>weight(i)</VERB> is the weigth given to <VERB>w(i)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+w=0.01:0.01:2;s=poly(0,'s');
+G=syslin('c',2*(s^2+0.1*s+2),(s^2+s+1)*(s^2+0.3*s+1)); // syslin('c',Num,Den);
+fresp=repfreq(G,w);
+mag=abs(fresp);
+Gid=mrfit(w,mag,4);
+frespfit=repfreq(Gid,w);
+plot2d([w',w'],[mag(:),abs(frespfit(:))])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cepstrum</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frfit</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>freq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>calfrq</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

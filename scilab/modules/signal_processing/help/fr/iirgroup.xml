@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iirgroup</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="iirgroup"> group delay Lp IIR filter optimization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of the module of the poles and the zeros of the filters</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>theta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of the argument of the poles and the zeros of the filters</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omega</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: frequencies where the filter specifications are given</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: weighting function for and the group delay</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>td</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: desired group delay</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lt, grad</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: criterium and gradient values</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    optimization of IIR filters for the Lp criterium for the
+    the group delay. (Rabiner &amp; Gold pp270-273).</P>
+  </DESCRIPTION>
+</MAN>

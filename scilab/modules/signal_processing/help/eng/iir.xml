@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="iir"> iir digital filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[hz]=iir(n,ftype,fdesign,frq,delta)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: filter order (pos. integer)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ftype</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string  specifying the filter type  <VERB>'lp','hp','bp','sb'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fdesign</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string specifying the analog filter design  <VERB>='butt','cheb1','cheb2','ellip'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>frq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2-vector of discrete cut-off frequencies (i.e.,
+  <VERB>0&lt;frq&lt;.5</VERB>). For <VERB>lp</VERB> and
+  <VERB>hp</VERB> filters only <VERB>frq(1)</VERB> is used. For
+  <VERB>bp</VERB> and <VERB>sb</VERB> filters <VERB>frq(1)</VERB> is
+  the lower cut-off frequency and <VERB>frq(2)</VERB> is the upper
+  cut-off frequency</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>delta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <P>
+    : 2-vector of error values for <VERB>cheb1, cheb2</VERB>, and
+  <VERB>ellip</VERB> filters where only <VERB>delta(1)</VERB> is used
+  for <VERB>cheb1</VERB> case, only <VERB>delta(2)</VERB> is used for
+  <VERB>cheb2</VERB> case, and <VERB>delta(1)</VERB> and
+  <VERB>delta(2)</VERB> are both used for <VERB>ellip</VERB>
+  case. <VERB>0&lt;delta(1),delta(2)&lt;1</VERB></P>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>for <VERB>cheb1</VERB> filters <VERB>1-delta(1)&lt;ripple&lt;1</VERB> in passband</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>for <VERB>cheb2</VERB> filters <VERB>0&lt;ripple&lt;delta(2)</VERB> in stopband</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>-  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>for <VERB>ellip</VERB> filters <VERB>1-delta(1)&lt;ripple&lt;1</VERB> in passband and <VERB>0&lt;ripple&lt;delta(2)</VERB> in stopband</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    function which designs an iir digital filter using analog filter designs.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot2d(fr',hzm')
+xtitle('Discrete IIR filter band pass  0.15<fr<0.25 ',' ',' ');
+q=poly(0,'q');     //to express the result in terms of the ...
+hzd=horner(hz,1/q) //delay operator q=z^-1
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>eqfir</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>eqiir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

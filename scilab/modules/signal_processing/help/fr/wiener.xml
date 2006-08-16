@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>wiener</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="wiener">  Wiener estimate</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>f, g, h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: system matrices in the interval <VERB>[t0,tf]</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>f</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>=<VERB>[f0,f1,...,ff]</VERB>, and <VERB>fk</VERB> is a nxn matrix</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>g</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>=<VERB>[g0,g1,...,gf]</VERB>, and <VERB>gk</VERB> is a nxn matrix</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>h</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>=<VERB>[h0,h1,...,hf]</VERB>, and <VERB>hk</VERB> is a mxn matrix</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>q, r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: covariance matrices of dynamics and observation noise</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>q</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>=<VERB>[q0,q1,...,qf]</VERB>, and <VERB>qk</VERB> is a nxn matrix</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>r</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>=<VERB>[r0,r1,...,rf]</VERB>, and <VERB>gk</VERB> is a mxm matrix</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0, p0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: initial state estimate and error variance</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: observations in the interval <VERB>[t0,tf]</VERB>. <VERB>y=[y0,y1,...,yf]</VERB>, and <VERB>yk</VERB> is a column m-vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Smoothed state estimate <VERB>xs= [xs0,xs1,...,xsf]</VERB>, and <VERB>xsk</VERB> is a column n-vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Error covariance of smoothed estimate <VERB>ps=[p0,p1,...,pf]</VERB>, and <VERB>pk</VERB> is a nxn matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Filtered state estimate <VERB>xf= [xf0,xf1,...,xff]</VERB>, and <VERB>xfk</VERB> is a column n-vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Error covariance of filtered estimate <VERB>pf=[p0,p1,...,pf]</VERB>, and <VERB>pk</VERB> is a nxn matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    function which gives the Wiener estimate using
+    the forward-backward Kalman filter formulation</P>
+  </DESCRIPTION>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

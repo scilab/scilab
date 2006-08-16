@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rpem</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rpem"> RPEM estimation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[w1,[v]]=rpem(w0,u0,y0,[lambda,[k,[c]]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a,b,c</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>w0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>list(theta,p,phi,psi,l)</VERB> where:</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>theta</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: [a,b,c] is a real vector of order <VERB>3*n</VERB></SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>p</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: (3*n x 3*n) real matrix.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>phi,psi,l</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real vector of dimension <VERB>3*n</VERB></SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+    During the first call on can take:
+  </P>
+          <VERBATIM>
+<![CDATA[
+theta=phi=psi=l=0*ones(1,3*n). p=eye(3*n,3*n)
+   ]]>
+          </VERBATIM>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector of inputs (arbitrary size) (if no input take <VERB>u0=[ ]</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of outputs (same dimension as <VERB>u0</VERB> if <VERB>u0</VERB> is not empty). (<VERB>y0(1)</VERB> is not used by rpem).</SP>
+          <P>
+    If the time domain is <VERB>(t0,t0+k-1)</VERB> the <VERB>u0</VERB> vector contains the inputs 
+  </P>
+          <P><VERB>u(t0),u(t0+1),..,u(t0+k-1)</VERB> and <VERB>y0</VERB> the outputs 
+  </P>
+          <P>
+            <VERB>y(t0),y(t0+1),..,y(t0+k-1)</VERB>
+          </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Recursive estimation of parameters in an ARMAX model.
+    Uses Ljung-Soderstrom recursive prediction error method.
+    Model considered is the following:
+  </P>
+    <VERBATIM>
+<![CDATA[
+y(t)+a(1)*y(t-1)+...+a(n)*y(t-n)=
+b(1)*u(t-1)+...+b(n)*u(t-n)+e(t)+c(1)*e(t-1)+...+c(n)*e(t-n)
+   ]]>
+    </VERBATIM>
+    <P>
+  </P>
+    <P>
+    The effect of this command is to update the estimation of
+    unknown parameter <VERB>theta=[a,b,c]</VERB> with
+  </P>
+    <P><VERB>a=[a(1),...,a(n)], b=[b(1),...,b(n)], c=[c(1),...,c(n)]</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SECTION label="Optional parameters">
+    <ITEMIZE>
+      <ITEM label="lambda">
+        <SP>: optional parameter (forgetting constant) choosed close to 1 as convergence occur:</SP>
+        <P><VERB>lambda=[lambda0,alfa,beta]</VERB> evolves according to :</P>
+        <VERBATIM>
+<![CDATA[
+lambda(t)=alfa*lambda(t-1)+beta 
+   ]]>
+        </VERBATIM>
+        <P>
+    with <VERB>lambda(0)=lambda0</VERB></P>
+        <P><VERB>k</VERB> : contraction factor to be chosen close to 1 as convergence occurs.</P>
+        <P><VERB>k=[k0,mu,nu]</VERB> evolves according to:</P>
+        <VERBATIM>
+<![CDATA[
+k(t)=mu*k(t-1)+nu 
+   ]]>
+        </VERBATIM>
+        <P>
+    with <VERB>k(0)=k0</VERB>.</P>
+        <P><VERB>c</VERB> : large parameter.(<VERB>c=1000</VERB> is the default value).</P>
+      </ITEM>
+    </ITEMIZE>
+  </SECTION>
+  <SECTION label="Output parameters:">
+    <P><VERB>w1</VERB>: update for <VERB>w0</VERB>.</P>
+    <P><VERB>v</VERB>: sum of squared prediction errors on <VERB>u0, y0</VERB>.(optional).</P>
+    <P>
+    In particular <VERB>w1(1)</VERB> is the new estimate of <VERB>theta</VERB>. If a new sample <VERB>u1, y1</VERB> is available the update is obtained by:</P>
+    <P><VERB>[w2,[v]]=rpem(w1,u1,y1,[lambda,[k,[c]]])</VERB>. Arbitrary large series can thus be treated.</P>
+  </SECTION>
+</MAN>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>yulewalk</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="yulewalk">  least-square filter design</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Hz = yulewalk(N,frq,mag)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>N</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (order of desired filter)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>frq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real row vector (non-decreasing order), frequencies.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: non negative real row vector (same size as frq), desired magnitudes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Hz</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: filter <VERB>B(z)/A(z)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Hz = yulewalk(N,frq,mag) finds the N-th order iir filter</P>
+    <VERBATIM>
+<![CDATA[
+                  n-1         n-2            
+      B(z)   b(1)z     + b(2)z    + .... + b(n)
+H(z)= ---- = ---------------------------------
+                n-1       n-2
+      A(z)    z   + a(2)z    + .... + a(n)
+   ]]>
+    </VERBATIM>
+    <P>
+    which matches the magnitude frequency response given by vectors frq and mag.
+    Vectors frq and mag specify the frequency and magnitude of the desired
+    frequency response. The frequencies in frq must be between 0.0 and 1.0,
+    with 1.0 corresponding to half the sample rate. They must be in
+    increasing order and start with 0.0 and end with 1.0.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
+fs=1000;fhz = f*fs/2;  
+xbasc(0);xset('window',0);plot2d(fhz',H');
+xtitle('Desired Frequency Response (Magnitude)')
+[frq,repf]=repfreq(Hz,0:0.001:0.5);
+xbasc(1);xset('window',1);plot2d(fs*frq',abs(repf'));
+xtitle('Obtained Frequency Response (Magnitude)')
+ ]]>
+  </EXAMPLE>
+</MAN>

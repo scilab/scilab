@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>remezb</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="remezb"> Minimax approximation of magnitude response</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[an]=remezb(nc,fg,ds,wt)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Number of cosine functions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Grid of frequency points in [0,.5)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ds</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Desired magnitude on grid <VERB>fg</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Weighting function on error on grid <VERB>fg</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>an</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Cosine filter coefficients</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Minimax approximation of a frequency domain
+    magnitude response. The approximation takes
+    the form <VERB>h = sum[a(n)*cos(wn)]</VERB>
+    for n=0,1,...,nc. An FIR, linear-phase filter
+    can be obtained from the the output of the function
+    by using the following commands</P>
+    <VERBATIM>
+<![CDATA[
+         hn(1:nc-1)=an(nc:-1:2)/2;
+         hn(nc)=an(1);
+         hn(nc+1:2*nc-1)=an(2:nc)/2;
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// Choose the number of cosine functions and create a dense grid 
+// in [0,.24) and [.26,.5)
+nc=21;ngrid=nc*16;
+fg=.24*(0:ngrid/2-1)/(ngrid/2-1);
+fg(ngrid/2+1:ngrid)=fg(1:ngrid/2)+.26*ones(1:ngrid/2);
+// Specify a low pass filter magnitude for the desired response
+ds(1:ngrid/2)=ones(1:ngrid/2);
+ds(ngrid/2+1:ngrid)=zeros(1:ngrid/2);
+// Specify a uniform weighting function
+wt=ones(fg);
+// Run remezb
+an=remezb(nc,fg,ds,wt)
+// Make a linear phase FIR filter 
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+// Plot the filter's magnitude response
+plot(.5*(0:255)/256,frmag(hn,256));
+//////////////
+// Choose the number of cosine functions and create a dense grid in [0,.5)
+nc=21; ngrid=nc*16;
+fg=.5*(0:(ngrid-1))/ngrid;
+// Specify a triangular shaped magnitude for the desired response
+ds(1:ngrid/2)=(0:ngrid/2-1)/(ngrid/2-1);
+ds(ngrid/2+1:ngrid)=ds(ngrid/2:-1:1);
+// Specify a uniform weighting function
+wt=ones(fg);
+// Run remezb
+an=remezb(nc,fg,ds,wt)
+// Make a linear phase FIR filter 
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+// Plot the filter's magnitude response
+plot(.5*(0:255)/256,frmag(hn,256));
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>eqfir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

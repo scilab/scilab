@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ell1mag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ell1mag"> magnitude of elliptic filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[v]=ell1mag(eps,m1,z)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>eps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: passband ripple=<VERB>1/(1+eps^2)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: stopband ripple=<VERB>1/(1+(eps^2)/m1)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: sample vector of values in the complex plane</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: elliptic filter values at sample points</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Function used for squared magnitude of an elliptic filter.
+    Usually <VERB>m1=eps*eps/(a*a-1)</VERB>. Returns 
+    <VERB>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</VERB> for <VERB>s=%sn(z,m1)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff('[alpha,beta]=alpha_beta(n,m,m1)',...
+'if 2*int(n/2)=n then, beta=K1; else, beta=0;end;...
+alpha=%k(1-m1)/%k(1-m);')
+epsilon=0.1;A=10;  //ripple parameters
+m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
+m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
+%k(1-m1)*%k(m)/(%k(m1)*%k(1-m))-n   //Check...
+[alpha,beta]=alpha_beta(n,m,m1)
+alpha*%asn(1,m)-n*%k(m1)      //Check
+sample=0:0.01:20;
+//Now we map the positive real axis into the contour...
+z=alpha*%asn(sample/omegac,m)+beta*ones(sample);
+plot(sample,ell1mag(epsilon,m1,z))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>buttmag</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

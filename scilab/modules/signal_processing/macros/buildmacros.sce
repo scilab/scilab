@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('siglib','SCI/macros/signal');
+genlib('siglib','SCI/modules/signal_processing/macros');
 //------------------------------------

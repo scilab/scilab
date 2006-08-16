@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>srfaur</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="srfaur"> square-root algorithm</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h, f, g</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: convenient matrices of the state-space model.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: E(yk*yk').</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of iterations.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: estimate of the solution after n iterations.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>s, t, l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: intermediate matrices for  successive iterations;</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rt, tt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: gain matrices of the filter model after <VERB>n</VERB> iterations.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>p, s, t, l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: may be given as input if more than one recursion is desired (evaluation of intermediate values of <VERB>p</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    square-root algorithm for the algebraic Riccati equation.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//GENERATE SIGNAL
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed',0);rand('normal');
+y=[1;1]*sin(x)+[sin(2*x);sin(1.9*x)]+rand(2,1024);
+//COMPUTE CORRELATIONS
+c=[];for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end
+c=matrix(c,2,128);
+//FINDING H,F,G with 6 states
+hk=hank(20,20,c);
+[H,F,G]=phc(hk,2,6);
+//SOLVING RICCATI EQN
+r0=c(1:2,1:2);
+[P,s,t,l,Rt,Tt]=srfaur(H,F,G,r0,200);
+//Make covariance matrix exactly symetric
+Rt=(Rt+Rt')/2
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>phc</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>faurre</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lindquist</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cspect</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cspect"> spectral estimation (correlation method)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[sm,cwp]=cspect(nlags,ntp,wtype,x,y,wpar)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: data if vector, amount of input data if scalar</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: data if vector, amount of input data if scalar</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nlags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of correlation lags (positive integer)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ntp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of transform points (positive integer)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wtype</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string : <VERB>'re','tr','hm','hn','kr','ch'</VERB> (window type)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>wpar</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optional window parameters for <VERB>wtype='kr', wpar&gt;0</VERB> and for <VERB>wtype='ch', 0 &lt; wpar(1) &lt; .5, wpar(2) &gt; 0</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: power spectral estimate in the interval [0,1]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cwp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: calculated value of unspecified Chebyshev window parameter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Spectral estimation using the  correlation method.
+    Cross-spectral estimate of <VERB>x</VERB> and <VERB>y</VERB> is calculated when both
+    <VERB>x</VERB> and <VERB>y</VERB> are given. Auto-spectral estimate of <VERB>x</VERB> is calculated
+    if <VERB>y</VERB> is not given.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+rand('normal');rand('seed',0);
+x=rand(1:1024-33+1);
+//make low-pass filter with eqfir
+nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
+h=eqfir(nf,bedge,des,wate);
+//filter white data to obtain colored data 
+h1=[h 0*ones(1:maxi(size(x))-1)];
+x1=[x 0*ones(1:maxi(size(h))-1)];
+hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
+sm=cspect(100,200,'tr',y);
+smsize=maxi(size(sm));fr=(1:smsize)/smsize;
+plot(fr,log(sm))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pspect</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>C. Bunks ;  Digital Signal Processing by Oppenheim and Schafer</AUTHOR>
+</MAN>

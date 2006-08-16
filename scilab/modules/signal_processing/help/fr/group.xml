@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>group</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="group"> group delay for digital filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[tg,fr]=group(npts,a1i,a2i,b1i,b2i)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>npts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer : number of points desired in calculation of group delay</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a1i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: in coefficient, polynomial, rational polynomial, or cascade polynomial form this variable is the transfer function of the filter. In coefficient polynomial form this is a vector of coefficients (see below).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a2i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: in coeff poly form this is a vector of coeffs</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b1i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: in coeff poly form this is a vector of coeffs</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b2i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: in coeff poly form this is a vector of coeffs</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: values of group delay evaluated on the grid fr</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: grid of frequency values where group delay is evaluated</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculate the group delay of a digital filter
+    with transfer function h(z).</P>
+    <P>
+    The filter specification can be in coefficient form,
+    polynomial form, rational polynomial form, cascade
+    polynomial form, or in coefficient polynomial form.</P>
+    <P>
+    In the coefficient polynomial form the transfer function is
+    formulated by the following expression</P>
+    <P>
+      <VERB>h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)</VERB>
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+z=poly(0,'z');
+h=z/(z-.5);
+[tg,fr]=group(100,h);
+plot(fr,tg)
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>C. B.  </AUTHOR>
+</MAN>

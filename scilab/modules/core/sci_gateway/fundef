@@ -48,7 +48,7 @@
 #include "../../../../routines/interf/list.fundef"  
 
 #define  IN_sigelm  18  
-#include "../../../../routines/signal/signal.fundef"
+#include "../../signal_processing/sci_gateway/signal.fundef"
 
 #define  IN_intinterp  19
 #include "../../../../routines/interf/interp.fundef"  

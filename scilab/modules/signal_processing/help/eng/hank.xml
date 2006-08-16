@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>hank</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hank"> covariance to hankel matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[hk]=hank(m,n,cov)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of bloc-rows</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of bloc-columns</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cov</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: sequence of covariances; it must be given as :[R0 R1 R2...Rk]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>hk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: computed hankel matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    this function builds the hankel matrix of size <VERB>(m*d,n*d)</VERB>
+    from the covariance sequence of a vector process</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Example of how to use the hank macro for 
+//building a Hankel matrix from multidimensional 
+//data (covariance or Markov parameters e.g.)
+//
+//This is used e.g. in the solution of normal equations
+//by classical identification methods (Instrumental Variables e.g.)
+//
+//1)let's generate the multidimensional data under the form :
+//  C=[c_0 c_1 c_2 .... c_n]
+//where each bloc c_k is a d-dimensional matrix (e.g. the k-th correlation 
+//of a d-dimensional stochastic process X(t) [c_k = E(X(t) X'(t+k)], ' 
+//being the transposition in scilab)
+//
+//we take here d=2 and n=64
+//
+c=rand(2,2*64)
+//
+//generate the hankel matrix H (with 4 bloc-rows and 5 bloc-columns)
+//from the data in c
+//
+H=hank(4,5,c);
+//
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>toeplitz</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>G. Le Vey</AUTHOR>
+</MAN>

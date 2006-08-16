@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>buttmag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="buttmag">  response of Butterworth filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[h]=buttmag(order,omegac,sample)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>order</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer : filter order</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omegac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : cut-off frequency in Hertz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sample</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of frequency where <VERB>buttmag</VERB> is evaluated</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Butterworth filter values at sample points</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    squared magnitude response of a Butterworth filter
+    <VERB>omegac</VERB> = cutoff frequency ; <VERB>sample</VERB> = sample of frequencies</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//squared magnitude response of Butterworth filter
+h=buttmag(13,300,1:1000);
+mag=20*log(h)'/log(10);
+plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
+ ]]>
+  </EXAMPLE>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>zpell</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="zpell"> lowpass elliptic filter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[zeros,poles,gain]=zpell(epsilon,A,omegac,omegar)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>epsilon</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : ripple of filter in pass band (<VERB>0&lt;epsilon&lt;1</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : attenuation of filter in stop band (<VERB>A&gt;1</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omegac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : pass band cut-off frequency in Hertz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>omegar</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real : stop band cut-off frequency in Hertz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zeros</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: resulting zeros of filter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>poles</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: resulting poles of filter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gain</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: resulting gain of filter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Poles and zeros of prototype lowpass elliptic filter.
+    <VERB>gain</VERB> is the gain of the filter</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ell1mag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>eqiir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.   </AUTHOR>
+</MAN>

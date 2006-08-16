@@ -11,12 +11,12 @@ CurrentDirectory=pwd();
  "int",
  "robust",
  "sci2for",
- "signal",
  "statistics",
  "tdcs",
-  "gui",
+ "gui",
   ];
   
+ Directories=[Directories;"SCI/modules/signal_processing/macros"];  
  Directories=[Directories;"SCI/modules/sparse/macros"];
  Directories=[Directories;"SCI/modules/polynomials/macros"];      
  Directories=[Directories;"SCI/modules/string/macros"];      

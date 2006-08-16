@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cepstrum</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cepstrum"> cepstrum calculation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>fresp = cepstrum(w,mag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>w</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive real vector of frequencies (rad/sec)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector of magnitudes (same size as <VERB>w</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fresp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: complex vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>fresp = cepstrum(w,mag)</VERB> returns a frequency response <VERB>fresp(i)</VERB>
+    whose magnitude at frequency <VERB>w(i)</VERB> equals <VERB>mag(i)</VERB>  and such
+    that the phase of <VERB>freq</VERB> corresponds to a stable and minimum phase
+    system. <VERB>w</VERB> needs not to be sorted, but  minimal entry should not be
+    close to zero and all the entries of <VERB>w</VERB> should be different.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+w=0.1:0.1:5;mag=1+abs(sin(w));
+fresp=cepstrum(w,mag);
+plot2d([w',w'],[mag(:),abs(fresp)])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>frfit</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

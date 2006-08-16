@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>%sn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="%sn"> Jacobi 's elliptic function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y]=%sn(x,m)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a point inside the fundamental rectangle  defined by the elliptic integral; <VERB>x</VERB> is a vector of complex numbers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: parameter of the elliptic integral (<VERB>0&lt;m&lt;1</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: result</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Jacobi 's sn elliptic function with parameter <VERB>m</VERB>: the inverse 
+    of the elliptic integral for the parameter <VERB>m</VERB>.</P>
+    <P>
+    The amplitude am is computed in fortran and 
+    the addition formulas for elliptic functions are applied</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+m=0.36;
+K=%k(m);
+P=4*K; //Real period
+real_val=0:(P/50):P;
+plot(real_val,real(%sn(real_val,m)))
+xbasc();
+KK=%k(1-m);
+Ip=2*KK;
+ima_val1=0:(Ip/50):KK-0.001;
+ima_val2=(KK+0.05):(Ip/25):(Ip+KK);
+z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
+plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
+xgrid(3)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>%asn</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>%k</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

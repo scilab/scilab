@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>faurre</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="faurre"> filter computation by simple Faurre algorithm</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,R,T]=faurre(n,H,F,G,R0)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: number of iterations.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>H, F, G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: estimated triple from the covariance sequence of <VERB>y</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>R0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: E(yk*yk')</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: solution of the Riccati equation after n iterations.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>R, T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: gain matrix of the filter.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function computes iteratively the minimal solution of the algebraic
+    Riccati equation and gives the matrices <VERB>R</VERB> and <VERB>T</VERB> of the 
+    filter model.
+    The algorithm tries to compute the solution P as the growing limit of a
+    sequence of matrices Pn such that</P>
+    <VERBATIM>
+<![CDATA[
+                                     -1
+Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
+       -1
+P0=G*R0 *G'
+   ]]>
+    </VERBATIM>
+    <P>
+    Note that this method may not converge,especially when F has poles
+    near the unit circle. Use preferably the srfaur function.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>srfaur</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lindquist</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>phc</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>G. Le V.  </AUTHOR>
+</MAN>

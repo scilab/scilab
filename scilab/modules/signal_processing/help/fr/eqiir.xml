@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>eqiir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="eqiir"> Design of iir filters</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>ftype</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: filter type (<VERB>'lp','hp','sb','bp'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>approx</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: design approximation (<VERB>'butt','cheb1','cheb2','ellip'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>om</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 4-vector of cutoff frequencies (in radians)  <VERB>om=[om1,om2,om3,om4]</VERB>, <VERB>0 &lt;= om1 &lt;= om2 &lt;= om3 &lt;= om4 &lt;= pi</VERB>.  When <VERB>ftype</VERB>='lp' or 'hp', <VERB>om3</VERB> and <VERB>om4</VERB> are not used  and may be set to 0.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>deltap</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: ripple in the passband. <VERB>0&lt;= deltap &lt;=1</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>deltas</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: ripple in the stopband. <VERB>0&lt;= deltas &lt;=1</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cells</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: realization of the filter as second order cells</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fact</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: normalization constant</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zzeros</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: zeros in the z-domain</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zpoles</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: poles in the z-domain</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Design of iir filter interface with eqiir (syredi)</P>
+    <P>
+    The filter obtained is <VERB>h(z)=fact</VERB>*product of the elements of
+    <VERB>cells</VERB>.</P>
+    <P>
+    That is <VERB>hz=fact*prod(cells(2))./prod(cells(3))</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+[cells,fact,zzeros,zpoles]=...
+eqiir('lp','ellip',[2*%pi/10,4*%pi/10],0.02,0.001)
+transfer=fact*poly(zzeros,'z')/poly(zpoles,'z')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>eqfir</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>iir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
