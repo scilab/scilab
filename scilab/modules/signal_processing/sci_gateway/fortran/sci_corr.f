@@ -3,7 +3,7 @@ c     INRIA
 c     =======================================
       subroutine scicorr(fname)
 c     implicit undefined (a-z)
-      include '../stack.h'
+      include 'stack.h'
       character*(*) fname
       logical checkrhs,getrmat,getsmat,getscalar
       logical cremat,getexternal,getmat

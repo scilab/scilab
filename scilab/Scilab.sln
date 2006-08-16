@@ -285,7 +285,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "scicos_f", "modules\scicos\
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "signal_f", "routines\signal\signal_f\signal_f.vfproj", "{959384FC-016C-4B01-B848-1B18D26B6CC4}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "signal_f", "modules\signal_processing\src\fortran\signal_f.vfproj", "{959384FC-016C-4B01-B848-1B18D26B6CC4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection

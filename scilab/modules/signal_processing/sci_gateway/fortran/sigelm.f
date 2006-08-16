@@ -2,7 +2,7 @@
 c     Copyright INRIA
 c ================================== ( Inria    ) =============
 c     basic signal processing routines
-      include '../stack.h'
+      include 'stack.h'
 c
       double precision adelp,adels,fact,zzi(16),zzr(16),zpi(16),zpr(16)
       double precision alpha,beta,u,y,eps,eps1,v

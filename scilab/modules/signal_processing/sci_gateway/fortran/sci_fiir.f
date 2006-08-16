@@ -1,9 +1,9 @@
 c     =======================================
 c     INRIA
 c     =======================================
-      subroutine sciffir(fname)
+      subroutine scifiir(fname)
 c     implicit undefined (a-z)
-      include '../stack.h'
+      include 'stack.h'
       character*(*) fname
       return
       end
