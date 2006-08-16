@@ -68,7 +68,18 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int lign
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne)
 {
-	HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
+	_try
+	{
+		HeapFree(GetProcessHeap(),HEAP_NO_SERIALIZE,lpAddress);
+	}
+	_except (EXCEPTION_EXECUTE_HANDLER)
+	{
+		#ifdef _DEBUG
+		char MsgError[1024];
+		wsprintf(MsgError,"FREE Error File %s Line %d ",fichier,ligne);
+		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
+		#endif
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne)
