@@ -13,9 +13,7 @@ static char *env=NULL;
 
 int UpdateEnvVar=0;
 /*-----------------------------------------------------------------------------------*/
-#ifdef WITH_TK
-	extern int setenvtcl(char *string,char *value);
-#endif
+extern int setenvtcl(char *string,char *value);
 /*-----------------------------------------------------------------------------------*/
 /* returns 0 if there is a problem else 1 */
 int setenvc(char *string,char *value)
@@ -39,10 +37,7 @@ int setenvc(char *string,char *value)
   if ( putenv(env) ) ret=FALSE;
   else 
     {
-#ifdef WITH_TK
       setenvtcl(string,value);
-#endif
-
       ret=TRUE;
       UpdateEnvVar=1;
     }
