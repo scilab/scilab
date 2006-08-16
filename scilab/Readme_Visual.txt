@@ -38,6 +38,15 @@ Settings for Visual Studio 2005 Pro with Intel fortran
 -- Scilab Win64 build on a Windows 32 bits (Intel cross compiler) (/trunk/scilab/VS-2005-settings/fortran-on-Win32.vssettings)
 -- Scilab Win64 build on a Windows 64 bits (/trunk/scilab/VS-2005-settings/fortran-on-Win64.vssettings)
 
+On some visual studio .NET 2005 , .vssetting are "volatile" modifications and are removed after it has been applied.
+In this case, do :
+Tools --> Options --> Projects and Solutions --> VC++ Directories
+Select "Library files" in "Show directories for"
+and add
+C:\Program Files (x86)\Intel\Compiler\Fortran\9.1\IA32\Lib    for Win32 build on XP 64 bits
+C:\Program Files\Intel\Compiler\Fortran\9.1\IA32\Lib          for Win32 build on XP 32 bits
+C:\Program Files (x86)\Intel\Compiler\Fortran\9.1\em64t\Lib   for x64 build on XP 64 bits
+C:\Program Files\Intel\Compiler\Fortran\9.1\em64t\Lib   			for x64 build on XP 32 bits
 
 click on scilab.sln (to launch Visual) or devenv scilab.sln /build "Release" (via command line, to build scilab)
 
