@@ -27,7 +27,7 @@ extern void    /* 14  */ C2F(matusr)();
 extern void    /* 15  */ C2F(gw_metanet)();
 extern void    /* 16  */ C2F(gw_polynomials)();
 extern void    /* 17  */ C2F(lstelm)();
-extern void    /* 18  */ C2F(sigelm)();
+extern void    /* 18  */ C2F(gw_signal)();
 extern void    /* 19  */ C2F(intinterp)();
 extern void    /* 20  */ C2F(polaut)();
 extern void    /* 21  */ C2F(gw_string)();
@@ -101,7 +101,7 @@ static OpTab Interfaces[] ={
 	/* 15  */ {C2F(gw_metanet)},
 	/* 16  */ {C2F(gw_polynomials)},
 	/* 17  */ {C2F(lstelm)},
-	/* 18  */ {C2F(sigelm)},
+	/* 18  */ {C2F(gw_signal)},
 	/* 19  */ {C2F(intinterp)},
 	/* 20  */ {C2F(polaut)},
 	/* 21  */ {C2F(gw_string)},
