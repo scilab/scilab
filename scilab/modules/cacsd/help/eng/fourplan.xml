@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fourplan</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fourplan"> augmented plant to four plants</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P11,P12,P21,P22]=fourplan(P,r)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (linear system)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimension of <VERB>P22</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P11,P12,P21,P22</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> lists.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Utility function.</P>
+    <P><VERB>P</VERB> being partitioned as follows:</P>
+    <VERBATIM>
+<![CDATA[
+P=[ P11 P12;
+    P21 P22]  
+   ]]>
+    </VERBATIM>
+    <P>
+    with <VERB>size(P22)=r</VERB> this function returns the four linear systems <VERB>P11,P12,P21,P22</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lqg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqg2stan</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqe</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lft</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

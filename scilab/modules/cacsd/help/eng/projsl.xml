@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>projsl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="projsl"> linear system projection</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[slp]=projsl(sl,Q,M)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl,slp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> lists</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q,M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrices (projection factorization)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>slp</VERB>= projected model of <VERB>sl</VERB> where <VERB>Q*M</VERB> is the full rank 
+    factorization of the projection.</P>
+    <P>
+    If <VERB>(A,B,C,D)</VERB> is the representation of <VERB>sl</VERB>, the projected model
+    is given by <VERB>(M*A*Q,M*B,C*Q,D)</VERB>.</P>
+    <P>
+    Usually, the projection <VERB>Q*M</VERB> is obtained as the spectral projection
+    of an appropriate auxiliary matrix <VERB>W</VERB> e.g. <VERB>W</VERB> = product
+    of (weighted) gramians or product of Riccati equations.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
+[Q,M]=pbig(A,0,'c');  //keeping unstable poles
+slred=projsl(sl,Q,M);spec(slred('A'))
+sl('D')=rand(2,2);  //making proper system
+trzeros(sl)  //zeros of sl
+wi=inv(sl);  //wi=inverse in state-space
+[q,m]=psmall(wi('A'),2,'d');  //keeping small zeros (poles of wi) i.e. abs(z)<2
+slred2=projsl(sl,q,m);
+trzeros(slred2)  //zeros of slred2 = small zeros of sl
+//  Example keeping second order modes
+A=diag([-1,-2,-3]);
+sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
+[Q,M]=pbig(W,nk2(2)-%eps,'c');    //keeping 2 eigenvalues of W
+slr=projsl(sl,Q,M);  //reduced model
+hankelsv(slr)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pbig</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.;   </AUTHOR>
+</MAN>

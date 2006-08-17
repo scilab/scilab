@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>zeropen</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="zeropen"> zero pencil</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Z,U]=zeropen(Sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a linear system (<VERB>syslin</VERB> list in state-space form <VERB>[A,B,C,D]</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix pencil <VERB>Z=s*E-A</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square orthogonal matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>Z = sE - F</VERB>  is the zero pencil of the linear system <VERB>Sl</VERB> with 
+    matrices <VERB>[A,B,C,D]</VERB>. Utility function.</P>
+    <P>
+    With <VERB>U</VERB> row compression of <VERB>[B;D]</VERB> i.e, <VERB>U*[B;D]=[0;*]</VERB>; one has:</P>
+    <VERBATIM>
+<![CDATA[
+U*[-sI+A |B;   [ Z |0;      
+      C  |D] = [ * |*]
+   ]]>
+    </VERBATIM>
+    <P>
+    The zeros of <VERB>Z</VERB> are the zeros of <VERB>Sl</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>systmat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>kroneck</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

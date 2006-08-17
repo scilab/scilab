@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>st_ility</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="st_ility"> stabilizability test</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ns, [nc, [,U [,Slo] ]]]=st_ility(Sl [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (linear system)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ns</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer (dimension of stabilizable subspace)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer (dimension of controllable subspace <VERB>nc &lt;= ns</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: basis such that its <VERB>ns</VERB> (resp. <VERB>nc</VERB>) first components span the stabilizable (resp. controllable) subspace</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Slo</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: threshold for controllability detection (see contr)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB> Slo=( U'*A*U, U'*B, C*U, D, U'*x0 )</VERB> (<VERB>syslin</VERB> list)
+    displays the stabilizable form of <VERB>Sl</VERB>. Stabilizability means
+    <VERB>ns=nx</VERB> (dim. of <VERB>A</VERB> matrix).</P>
+    <VERBATIM>
+<![CDATA[
+         [*,*,*]            [*]
+U'*A*U = [0,*,*]     U'*B = [0]
+         [0,0,*]            [0]
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB> (A11,B1) </VERB> (dim(A11)= <VERB>nc</VERB>) is controllable and <VERB>A22</VERB> 
+    (dim(A22)=<VERB>ns-nc</VERB>) is stable.
+    &quot;Stable&quot; means real part of eigenvalues negative for a continuous
+    linear system, and magnitude of eigenvalues lower than one for a
+    discrete-time system (as defined by <VERB>syslin</VERB>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([0.9,-2,3]);B=[0;0;1];Sl=syslin('c',A,B,[]);
+[ns,nc,U]=st_ility(Sl);
+U'*A*U
+U'*B
+[ns,nc,U]=st_ility(syslin('d',A,B,[]));
+U'*A*U
+U'*B
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>dt_ility</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stabil</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ssrand</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer INRIA 1988</AUTHOR>
+</MAN>

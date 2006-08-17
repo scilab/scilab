@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>repfreq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="repfreq"> frequency response</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[ [frq,] repf]=repfreq(sys [,frq])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[ frq,repf,splitf]=repfreq(sys,fmin,fmax [,step])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[ frq,repf,splitf]=repfreq(sys [,frq])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sys</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list : SIMO linear system</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fmin,fmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real numbers (lower and upper frequency bounds)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>frq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector of frequencies (Hz)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>step</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: logarithmic discretization step</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>splitf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of indexes of critical frequencies.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>repf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of the complex frequency response</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>repfreq</VERB> returns the frequency response calculation of a linear
+    system. If <VERB>sys(s)</VERB> is the transfer function of <VERB>Sys</VERB>, <VERB>repf(k)</VERB> 
+    equals <VERB>sys(s)</VERB> evaluated at <VERB>s= %i*frq(k)*2*%pi</VERB> for continuous time systems and 
+    at <VERB>exp(2*%i*%pi*dt*frq(k))</VERB> for discrete time systems (<VERB>dt</VERB> is the sampling period).</P>
+    <P><VERB>db(k)</VERB> is the magnitude of <VERB>repf(k)</VERB> expressed in dB i.e.
+    <VERB>db(k)=20*log10(abs(repf(k)))</VERB> and <VERB>phi(k)</VERB> is the phase
+    of <VERB>repf(k)</VERB> expressed in degrees.</P>
+    <P>
+    If <VERB>fmin,fmax,step</VERB> are input parameters, the response is calculated
+    for the vector of frequencies <VERB>frq</VERB> given by:
+    <VERB>frq=[10.^((log10(fmin)):step:(log10(fmax))) fmax];</VERB></P>
+    <P>
+    If <VERB>step</VERB> is not given, the output parameter <VERB>frq</VERB> is calculated by <VERB>frq=calfrq(sys,fmin,fmax)</VERB>.</P>
+    <P>
+    Vector <VERB>frq</VERB> is splitted into regular parts with the <VERB>split</VERB> vector.
+    <VERB>frq(splitf(k):splitf(k+1)-1)</VERB> has no critical frequency. 
+    <VERB>sys</VERB> has a pole in the range <VERB>[frq(splitf(k)),frq(splitf(k)+1)]</VERB> and 
+    no poles outside.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([-1,-2]);B=[1;1];C=[1,1];
+Sys=syslin('c',A,B,C);
+frq=0:0.02:5;w=frq*2*%pi; //frq=frequencies in Hz ;w=frequencies in rad/sec;
+[frq1,rep] =repfreq(Sys,frq);
+[db,phi]=dbphi(rep);
+Systf=ss2tf(Sys)    //Transfer function of Sys
+x=horner(Systf,w(2)*sqrt(-1))    // x is Systf(s) evaluated at s = i w(2)
+rep=20*log(abs(x))/log(10)   //magnitude of x in dB
+db(2)    // same as rep
+ang=atan(imag(x),real(x));   //in rad.
+ang=ang*180/%pi              //in degrees
+phi(2)
+repf=repfreq(Sys,frq);
+repf(2)-x
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>bode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>freq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>calfrq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nyquist</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dbphi</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. S.  </AUTHOR>
+</MAN>

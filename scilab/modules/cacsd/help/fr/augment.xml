@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>augment</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="augment"> augmented plant</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,r]=augment(G)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[P,r]=augment(G,flag1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[P,r]=augment(G,flag1,flag2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), the nominal plant</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: one of the following (upper case) character string: <VERB> 'S' </VERB>, <VERB> 'R' </VERB>, <VERB> 'T' </VERB> <VERB> 'SR' </VERB>, <VERB> 'ST' </VERB>, <VERB> 'RT' </VERB> <VERB> 'SRT' </VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: one of the following character string: <VERB> 'o' </VERB> (stands for 'output', this is the default value) or <VERB>'i'</VERB> (stands for 'input').</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), the ``augmented'' plant</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimension of <VERB>P22 = G</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    If <VERB>flag1='SRT'</VERB> (default value), returns the &quot;full&quot; augmented plant</P>
+    <VERBATIM>
+<![CDATA[
+    [ I | -G]   -->'S'
+    [ 0 |  I]   -->'R'
+P = [ 0 |  G]   -->'T'
+    [-------]
+    [ I | -G]
+   ]]>
+    </VERBATIM>
+    <P><VERB> 'S' </VERB>, <VERB> 'R' </VERB>, <VERB> 'T' </VERB> refer to the first three (block) rows
+    of <VERB>P</VERB> respectively.</P>
+    <P>
+    If one of these letters is absent in <VERB>flag1</VERB>, the corresponding
+    row in <VERB>P</VERB> is missing.</P>
+    <P>
+    If <VERB>G</VERB> is given in state-space form, the returned <VERB>P</VERB> is minimal.
+    <VERB>P</VERB> is calculated by: <VERB>[I,0,0;0,I,0;-I,0,I;I,0,0]*[I,-G;0,I;I,0]</VERB>.</P>
+    <P>
+    The augmented plant associated with input sensitivity functions, namely</P>
+    <VERBATIM>
+<![CDATA[
+    [ I | -I]   -->'S'  (input sensitivity)
+    [ G | -G]   -->'R'  (G*input sensitivity)
+P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
+    [-------]
+    [ G | -G]
+   ]]>
+    </VERBATIM>
+    <P>
+    is obtained by the command <VERB>[P,r]=augment(G,flag,'i')</VERB>. For
+    state-space <VERB>G</VERB>, this <VERB>P</VERB>
+    is calculated by: <VERB>[I,-I;0,0;0,I;0,0]+[0;I;0;I]*G*[I,-I]</VERB>
+    and is thus generically minimal.</P>
+    <P>
+    Note that weighting functions can be introduced by left-multiplying
+    <VERB>P</VERB> by a diagonal system of appropriate dimension, e.g.,
+    <VERB> P = sysdiag(W1,W2,W3,eye(G))*P</VERB>.</P>
+    <P>
+    Sensitivity functions can be calculated by <VERB>lft</VERB>. One has:</P>
+    <P>
+    For output sensitivity functions [P,r]=augment(P,'SRT'):
+    lft(P,r,K)=[inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];</P>
+    <P>
+    For input sensitivity functions [P,r]=augment(P,'SRT','i'):
+    lft(P,r,K)=[inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+G*K)];</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+G=ssrand(2,3,2); //Plant
+K=ssrand(3,2,2); //Compensator
+[P,r]=augment(G,'T');
+T=lft(P,r,K);   //Complementary sensitivity function
+Ktf=ss2tf(K);Gtf=ss2tf(G);
+Ttf=ss2tf(T);T11=Ttf(1,1);
+Oloop=Gtf*Ktf;
+Tn=Oloop*inv(eye(Oloop)+Oloop);
+clean(T11-Tn(1,1));
+//
+[Pi,r]=augment(G,'T','i');
+T1=lft(Pi,r,K);T1tf=ss2tf(T1); //Input Complementary sensitivity function
+Oloop=Ktf*Gtf;
+T1n=Oloop*inv(eye(Oloop)+Oloop);
+clean(T1tf(1,1)-T1n(1,1))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lft</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sensi</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

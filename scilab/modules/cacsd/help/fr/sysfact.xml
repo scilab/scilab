@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sysfact</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sysfact"> system factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[S,Series]=sysfact(Sys,Gain,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sys</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list containing the matrices <VERB>[A,B,C,D]</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Gain</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string <VERB>'post'</VERB> or <VERB>'pre'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Series</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    If <VERB>flag</VERB> equals <VERB>'post'</VERB>, <VERB>sysfact</VERB> returns in <VERB>S</VERB> the linear 
+    system with ABCD matrices <VERB>(A+B*Gain, B , Gain, I)</VERB>, and   <VERB>Series</VERB>, 
+    a minimal realization of the series system <VERB>Sys*S</VERB>.
+    If <VERB>flag</VERB> equals <VERB>'pre'</VERB>,  <VERB>sysfact</VERB> returns  the linear system
+    <VERB>(A+Gain*C, Gain , C, I)</VERB> and <VERB>Series</VERB>, a minimal realization of the 
+    series system <VERB>S*Sys</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Kalman filter
+Sys=ssrand(3,2,4);Sys('D')=rand(3,2);
+S=sysfact(Sys,lqr(Sys),'post');
+ww=minss(Sys*S);
+ss2tf(gtild(ww)*ww),Sys('D')'*Sys('D')
+//Kernel
+Sys=ssrand(2,3,4);
+[X,d,F,U,k,Z]=abinv(Sys);
+ss2tf(Sys*Z)
+ss2tf(Sys*sysfact(Sys,F,'post')*U)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lqr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqe</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

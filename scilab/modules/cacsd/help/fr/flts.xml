@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>flts</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="flts"> time response (discrete time, sampled system)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y [,x]]=flts(u,sl [,x0])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[y]=flts(u,sl [,past])    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix (input vector)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list (linear system <VERB>syslin</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector (initial state ; default value=<VERB>0</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>past</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix (of the past ; default value=<VERB>0</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrices (state and output)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    State-space form:</P>
+    <P><VERB>sl</VERB> is a <VERB>syslin</VERB> list containing the matrices of the 
+    following linear system</P>
+    <P><VERB>sl=syslin('d',A,B,C,D)</VERB> (see <VERB>syslin</VERB>):</P>
+    <VERBATIM>
+<![CDATA[
+  x[t+1] = A x[t] + B u[t]
+  y[t] = C x[t] + D u[t]
+   ]]>
+    </VERBATIM>
+    <P>
+    or, more generally, if <VERB>D</VERB> is a polynomial matrix (<VERB>p = degree(D(z))</VERB>) :</P>
+    <P>
+    Transfer form:</P>
+    <P><VERB> y=flts(u,sl[,past])</VERB>. Here <VERB>sl</VERB> is a linear system in 
+    transfer matrix  representation i.e</P>
+    <P><VERB>sl=syslin('d',transfer_matrix)</VERB> (see <VERB>syslin</VERB>).</P>
+    <P>
+    is the matrix of past values of u and y.</P>
+    <P>
+    nd is the maximum of degrees of lcm's of each row of the denominator
+    matrix of sl.</P>
+    <VERBATIM>
+<![CDATA[
+u=[u0 u1 ... un]  (input)
+y=[y0 y1 ... yn]  (output)
+   ]]>
+    </VERBATIM>
+    <P>
+    p is the difference between maximum degree of numerator and 
+    maximum degree of denominator</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+sl=syslin('d',1,1,1);u=1:10;
+y=flts(u,sl); 
+plot2d2("onn",(1:size(u,'c'))',y')
+[y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
+y-[y1,y2]
+
+//With polynomial D:
+z=poly(0,'z');
+D=1+z+z^2; p =degree(D);
+sl=syslin('d',1,1,1,D);
+y=flts(u,sl);[y1,x1]=flts(u(1:5),sl);
+y2=flts(u(5-p+1:10),sl,x1);  // (update)
+y-[y1,y2]
+
+//Delay (transfer form): flts(u,1/z)
+// Usual responses
+z=poly(0,'z');
+h=(1-2*z)/(z^2+0.3*z+1)
+u=zeros(1,20);u(1)=1;
+imprep=flts(u,tf2ss(h));   //Impulse response
+plot2d2("onn",(1:size(u,'c'))',imprep')
+u=ones(1,20);
+stprep=flts(u,tf2ss(h));   //Step response
+plot2d2("onn",(1:size(u,'c'))',stprep')
+//
+// Other examples
+A=[1 2 3;0 2 4;0 0 1];B=[1 0;0 0;0 1];C=eye(3,3);Sys=syslin('d',A,B,C);
+H=ss2tf(Sys); u=[1;-1]*(1:10);
+//
+yh=flts(u,H); ys=flts(u,Sys);
+norm(yh-ys,1)    
+//hot restart
+[ys1,x]=flts(u(:,1:4),Sys);ys2=flts(u(:,5:10),Sys,x);
+norm([ys1,ys2]-ys,1)
+//
+yh1=flts(u(:,1:4),H);yh2=flts(u(:,5:10),H,[u(:,2:4);yh(:,2:4)]);
+norm([yh1,yh2]-yh,1)
+//with D<>0
+D=[-3 8;4 -0.5;2.2 0.9];
+Sys=syslin('d',A,B,C,D);
+H=ss2tf(Sys); u=[1;-1]*(1:10);
+rh=flts(u,H); rs=flts(u,Sys);
+norm(rh-rs,1)
+//hot restart
+[ys1,x]=flts(u(:,1:4),Sys);ys2=flts(u(:,5:10),Sys,x);
+norm([ys1,ys2]-rs,1)
+//With H:
+yh1=flts(u(:,1:4),H);yh2=flts(u(:,5:10),H,[u(:,2:4); yh1(:,2:4)]);
+norm([yh1,yh2]-rh)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ltitr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dsimul</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rtitr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

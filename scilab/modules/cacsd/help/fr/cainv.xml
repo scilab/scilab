@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cainv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cainv">  Dual of abinv</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list containing the matrices <VERB>[A,B,C,D]</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number or vector (possibly complex, location of closed loop poles)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>beta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number or vector (possibly complex, location of closed loop poles)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) character string <VERB>'ge'</VERB> (default) or <VERB>'st'</VERB> or <VERB>'pp'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix of size nx (dim of state space).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dims</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer row vector <VERB>dims=[nd1,nu1,dimS,dimSg,dimN]</VERB>  (5 entries, nondecreasing order).If <VERB>flag='st'</VERB>, (resp. <VERB>'pp'</VERB>), <VERB>dims</VERB> has 4 (resp. 3) components.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>J</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (output injection)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix of size ny (dim of output space).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (normal rank of <VERB>Sl</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: non-singular linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>cainv</VERB> finds a bases <VERB>(X,Y)</VERB> (of state space and output space resp.)
+    and output injection matrix <VERB>J</VERB> such that the matrices of Sl in 
+    bases (X,Y) are displayed as:</P>
+    <VERBATIM>
+<![CDATA[
+
+                  [A11,*,*,*,*,*]                [*]
+                  [0,A22,*,*,*,*]                [*]
+   X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
+                  [0,0,0,A44,*,*]                [0]
+                  [0,0,0,0,A55,*]                [0]
+                  [0,0,0,0,0,A66]                [0]
+
+          Y*C*X = [0,0,C13,*,*,*]          Y*D = [*]
+                  [0,0,0,0,0,C26]                [0]
+
+
+   ]]>
+    </VERBATIM>
+    <P>
+    The partition of <VERB>X</VERB> is defined by the vector 
+    <VERB>dims=[nd1,nu1,dimS,dimSg,dimN]</VERB> and the partition of <VERB>Y</VERB>
+    is determined by <VERB>k</VERB>.</P>
+    <P>
+    Eigenvalues of <VERB>A11</VERB> <VERB>(nd1 x nd1)</VERB> are unstable.
+    Eigenvalues of <VERB>A22</VERB> <VERB>(nu1-nd1 x nu1-nd1)</VERB> are stable.</P>
+    <P>
+    The pair <VERB>(A33, C13)</VERB> <VERB>(dimS-nu1 x dimS-nu1, k x dimS-nu1)</VERB> is observable, 
+    and eigenvalues of <VERB>A33</VERB> are set to <VERB>alfa</VERB>.</P>
+    <P>
+    Matrix <VERB>A44</VERB> <VERB>(dimSg-dimS x dimSg-dimS)</VERB> is unstable.
+    Matrix <VERB>A55</VERB> <VERB>(dimN-dimSg,dimN-dimSg)</VERB> is stable</P>
+    <P>
+    The pair <VERB>(A66,C26)</VERB> <VERB>(nx-dimN x nx-dimN)</VERB> is observable, 
+    and eigenvalues of <VERB>A66</VERB> set to <VERB>beta</VERB>.</P>
+    <P>
+    The <VERB>dimS</VERB> first columns of <VERB>X</VERB> span S= smallest (C,A) invariant
+    subspace which contains Im(B), <VERB>dimSg</VERB> first columns of <VERB>X</VERB>
+    span Sg the maximal &quot;complementary detectability subspace&quot; of <VERB>Sl</VERB></P>
+    <P>
+    The <VERB>dimN</VERB> first columns of <VERB>X</VERB> span the maximal
+    &quot;complementary observability subspace&quot; of <VERB>Sl</VERB>. 
+    (<VERB>dimS=0</VERB> if B(ker(D))=0).</P>
+    <P>
+    If <VERB>flag='st'</VERB> is given, a five blocks partition of the matrices is 
+    returned and <VERB>dims</VERB> has four components. If <VERB>flag='pp'</VERB> is 
+    given a four blocks partition is returned (see abinv).</P>
+    <P>
+    This function can be used to calculate an unknown input observer:</P>
+    <VERBATIM>
+<![CDATA[
+// DDEP: dot(x)=A x + Bu + Gd
+//           y= Cx   (observation)
+//           z= Hx    (z=variable to be estimated, d=disturbance)
+//  Find: dot(w) = Fw + Ey + Ru such that
+//          zhat = Mw + Ny
+//           z-Hx goes to zero at infinity
+//  Solution exists iff Ker H contains Sg(A,C,G) inter KerC (assuming detectability)
+//i.e. H is such that:
+// For any W which makes a column compression of [Xp(1:dimSg,:);C]
+// with Xp=X' and [X,dims,J,Y,k,Z]=cainv(syslin('c',A,G,C));
+// [Xp(1:dimSg,:);C]*W = [0 | *] one has
+// H*W = [0 | *]  (with at least as many aero columns as above).
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>abinv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dt_ility</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ui_observer</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

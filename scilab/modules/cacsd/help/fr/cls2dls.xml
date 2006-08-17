@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cls2dls</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cls2dls"> bilinear transform</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[sl1]=cls2dls(sl,T [,fp])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl,sl1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear systems (<VERB>syslin</VERB> lists)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number, the sampling period</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: prevarping frequency in hertz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    given <VERB>sl=[A,B,C,D]</VERB> (<VERB>syslin</VERB> list),a continuous time system 
+    <VERB>cls2dls</VERB> returns the sampled system obtained by the 
+    bilinear transform <VERB>s=(2/T)*(z-1)/(z+1)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');z=poly(0,'z');
+sl=syslin('c',(s+1)/(s^2-5*s+2));  //Continuous-time system in transfer form
+slss=tf2ss(sl);  //Now in state-space form
+sl1=cls2dls(slss,0.2);  //sl1= output of cls2dls
+sl1t=ss2tf(sl1) // Converts in transfer form
+sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Macglov</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="macglov"> Mac Farlane Glover problem</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,r]=macglov(Sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), ``augmented'' plant</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 vector, dimension of <VERB>P22</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[P,r]=macglov(Sl)</VERB> returns the standard plant
+    <VERB>P</VERB> for the Glover-McFarlane problem.</P>
+    <P>
+    For this problem ro_optimal = 1-hankel_norm(<VERB>[N,M]</VERB>)
+    with <VERB>[N,M]=lcf(sl)</VERB> (Normalized coprime factorization) i.e.</P>
+    <P>
+    gama_optimal = <VERB>1/sqrt(ro_optimal)</VERB></P>
+  </DESCRIPTION>
+  <AUTHOR>F. Delebecque INRIA</AUTHOR>
+</MAN>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dt_ility</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="dt_ility"> detectability test</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[k, [n [,U [,Sld ] ] ]]=dt_ility(Sl [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: dimension of unobservable subspace</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: dimension of unstable, unobservable subspace (<VERB> k&lt;=n</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sld</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: threshold for controllability test.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Detectability test for <VERB>sl</VERB>, a linear system in state-space
+    representation. 
+    <VERB>U</VERB> is a basis whose <VERB>k</VERB> first columns span the
+    unstable, unobservable subspace of <VERB>Sl</VERB> (intersection
+    of unobservable subspace of <VERB>(A,C)</VERB> and unstable subspace
+    of <VERB>A</VERB>). Detectability means <VERB>k=0</VERB>.</P>
+    <P><VERB>Sld = (U'*A*U,U'*B,C*U,D)</VERB> displays the &quot;detectable part&quot;
+    of <VERB>Sl=(A,B,C,D)</VERB>, i.e.</P>
+    <VERBATIM>
+<![CDATA[
+         [*,*,*]
+U'*A*U = [0,*,*]
+         [0,0,*]
+ 
+C*U = [0,0,*]
+   ]]>
+    </VERBATIM>
+    <P>
+    with <VERB>(A33,C3)</VERB> observable (dimension <VERB>nx-n</VERB>), <VERB>A22</VERB> stable 
+    (dimension <VERB>n-k</VERB>) and <VERB>A11</VERB> unstable (dimension <VERB>k</VERB>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[2,1,1;0,-2,1;0,0,3];
+C=[0,0,1];
+X=rand(3,3);A=inv(X)*A*X;C=C*X;
+W=syslin('c',A,[],C);
+[k,n,U,W1]=dt_ility(W);
+W1("A")
+W1("C")
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>contr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>st_ility</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unobs</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stabil</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

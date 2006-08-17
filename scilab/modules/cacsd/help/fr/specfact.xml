@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>specfact</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="specfact"> spectral factor</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[W0,L]=specfact(A,B,C,D)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    Given a spectral density matrix <VERB>phi(s)</VERB>:</P>
+    <VERBATIM>
+<![CDATA[
+                 -1                   -1
+     R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
+   ]]>
+    </VERBATIM>
+    <P><VERB>specfact</VERB> computes  <VERB>W0</VERB> and <VERB>L</VERB> such 
+    that  <VERB>W(s)=W0+L*(s*I-A)^-1*B</VERB>  is a
+    spectral factor of of <VERB>PHI(s)</VERB>, i.e.</P>
+    <P>
+      <VERB>phi(s)=W'(-s)*W(s)</VERB>
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
+W1=syslin('c',A,B,C,D);
+phi=gtild(W1,'c')+W1;
+phis=clean(ss2tf(phi))
+clean(phis-horner(phis,-s)');   //check this is 0...
+[A,B,C,D]=abcd(W1);
+[W0,L]=specfact(A,B,C,D);
+W=syslin('c',A,B,L,W0)
+Ws=ss2tf(W);
+horner(Ws,-s)*Ws
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gtild</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sfact</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fspecg</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.   </AUTHOR>
+</MAN>

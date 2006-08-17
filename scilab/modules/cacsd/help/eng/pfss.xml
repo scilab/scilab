@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pfss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pfss"> partial fraction decomposition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>elts=pfss(Sl)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>elts=pfss(Sl,rmax)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>elts=pfss(Sl,'cord')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>elts=pfss(Sl,rmax,'cord')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP><VERB>syslin</VERB> list (state-space or transfer linear system)
+  rmax : real number controlling the conditioning of block
+  diagoanalization cord : character string <VERB>'c'</VERB>
+  or <VERB>'d'</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Partial fraction decomposition of the linear system <VERB>Sl</VERB> (in state-space 
+    form, transfer matrices are automatically converted to state-space form
+    by <VERB>tf2ss</VERB>):</P>
+    <P><VERB>elts</VERB> is the list of linear systems which add up to <VERB>Sl</VERB>
+    i.e. <VERB>elts=list(S1,S2,S3,...,Sn)</VERB> with:</P>
+    <P><VERB>Sl = S1 + S2 +... +Sn</VERB>.</P>
+    <P>
+    Each <VERB>Si</VERB> contains some poles of <VERB/>S according to the 
+    block-diagonalization of the <VERB>A</VERB> matrix of <VERB>S</VERB>.</P>
+    <P>
+    For non proper systems the polynomial part of <VERB>Sl</VERB> is put
+    in the last entry of <VERB>elts</VERB>.</P>
+    <P>
+    If <VERB>Sl</VERB> is given in transfer form, it is first converted into state-space
+    and each subsystem <VERB>Si</VERB> is then converted in transfer form.</P>
+    <P>
+    The A matrix is of the state-space is put into block diagonal form
+    by function <VERB>bdiag</VERB>. The optional parameter <VERB>rmax</VERB> is sent to
+    <VERB>bdiag</VERB>. If <VERB>rmax</VERB> should be set to a large number to enforce
+    block-diagonalization.</P>
+    <P>
+    If the optional flag <VERB>cord='c'</VERB> is given the elements in <VERB>elts</VERB>
+    are sorted according to the real part (resp. magnitude if <VERB>cord='d'</VERB>)
+    of the eigenvalues of A matrices.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+W=ssrand(1,1,6);
+elts=pfss(W); 
+W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
+clean(ss2tf(W)-W1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pbig</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>coffg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dtsi</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.;   </AUTHOR>
+</MAN>

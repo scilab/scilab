@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rowregul</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rowregul"> removing poles and zeros at infinity</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Stmp,Ws]=rowregul(Sl,alfa,beta)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl,Stmp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> lists</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa,beta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real numbers (new pole and zero positions)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    computes a postfilter <VERB>Ws</VERB> such that <VERB>Stmp=Ws*Sl</VERB> is proper and 
+    with full rank <VERB>D</VERB> matrix.</P>
+    <P>
+    Poles at infinity of <VERB>Sl</VERB> are moved to <VERB>alfa</VERB>;</P>
+    <P>
+    Zeros at infinity of <VERB>Sl</VERB> are moved to <VERB>beta</VERB>;</P>
+    <P><VERB>Sl</VERB> is a assumed to be a right invertible linear system (<VERB>syslin</VERB> list)
+    in state-space representation with possibly a polynomial <VERB>D</VERB> matrix.</P>
+    <P>
+    This function is the dual of colregul (see function code).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=%s;
+w=[1/s,0;s/(s^3+2),2/s];
+Sl=tf2ss(w);
+[Stmp,Ws]=rowregul(Sl,-1,-2);
+Stmp('D')     // D matrix of Stmp
+clean(ss2tf(Stmp))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>invsyslin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>colregul</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D. , R. N. ;   </AUTHOR>
+</MAN>

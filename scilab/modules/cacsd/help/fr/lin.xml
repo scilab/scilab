@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lin"> linearization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[A,B,C,D]=lin(sim,x0,u0)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[sl]=lin(sim,x0,u0)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0, u0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vectors of compatible dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B,C,D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    linearization of the non-linear system <VERB>[y,xdot]=sim(x,u)</VERB>
+    around <VERB>x0,u0</VERB>.</P>
+    <P><VERB>sim</VERB> is a function which computes <VERB>y</VERB> and <VERB>xdot</VERB>.</P>
+    <P>
+    The output is a linear system (<VERB>syslin</VERB> list) <VERB>sl</VERB> or the 
+    four matrices <VERB>(A,B,C,D)</VERB></P>
+    <P>
+    For example, if <VERB>ftz</VERB> is the function passed to ode e.g.</P>
+    <VERBATIM>
+<![CDATA[
+[zd]=ftz(t,z,u)
+   ]]>
+    </VERBATIM>
+    <P>
+    and if we assume that <VERB>y=x</VERB></P>
+    <P><VERB>[z]=ode(x0,t0,tf,list(ftz,u)</VERB> compute <VERB>x(tf)</VERB>.</P>
+    <P>
+    If <VERB>simula</VERB> is the following function:</P>
+    <VERBATIM>
+<![CDATA[
+deff('[y,xd]=simula(x,u)','xd=ftz(tf,x,u); y=x;');
+   ]]>
+    </VERBATIM>
+    <P>
+    the tangent linear system <VERB>sl</VERB> can be obtained by:</P>
+    <VERBATIM>
+<![CDATA[
+[A,B,C,D]=lin(simula,z,u)
+sl = syslin('c',A,B,C,D,x0)
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff('[y,xdot]=sim(x,u)','xdot=[u*sin(x);-u*x^2];y=xdot(1)+xdot(2)')
+sl=lin(sim,1,2);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>derivat</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

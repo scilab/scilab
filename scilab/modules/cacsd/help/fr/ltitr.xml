@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ltitr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ltitr"> discrete time response (state space)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X]=ltitr(A,B,U,[x0])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[xf,X]=ltitr(A,B,U,[x0])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real  matrices of appropriate dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U,X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real  matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0,xf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors (default value=0 for <VERB>x0</VERB>))</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    calculates the time response of the discrete time system</P>
+    <VERBATIM>
+<![CDATA[
+         x[t+1] = Ax[t] + Bu[t].
+   ]]>
+    </VERBATIM>
+    <P>
+    The inputs <VERB>ui</VERB>'s are the columns of the <VERB>U</VERB> matrix</P>
+    <VERBATIM>
+<![CDATA[
+        U=[u0,u1,...,un];
+   ]]>
+    </VERBATIM>
+    <P><VERB>x0</VERB> is the vector of initial state (default value : 0) ;</P>
+    <P><VERB>X</VERB> is the matrix of outputs (same number of columns as <VERB>U</VERB>).</P>
+    <VERBATIM>
+<![CDATA[
+        X=[x0,x1,x2,...,xn] 
+   ]]>
+    </VERBATIM>
+    <P><VERB>xf</VERB> is the vector of final state <VERB>xf=X[n+1]</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=eye(2,2);B=[1;1];
+x0=[-1;-2];
+u=[1,2,3,4,5];
+x=ltitr(A,B,u,x0)
+x1=A*x0+B*u(1)
+x2=A*x1+B*u(2)
+x3=A*x2+B*u(3) //....
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rtitr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>flts</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ctr_gram</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ctr_gram"> controllability gramian</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Gc]=ctr_gram(A,B [,dom])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Gc]=ctr_gram(sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real matrices of appropriate dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dom</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string (<VERB>'c'</VERB> (default value) or <VERB>'d'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system, <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Controllability gramian of <VERB>(A,B)</VERB> or <VERB>sl</VERB> (a <VERB>syslin</VERB> 
+    linear system).</P>
+    <P><VERB>dom</VERB> character string giving the time domain : <VERB>&quot;d&quot;</VERB> for a
+    discrete time system and <VERB>&quot;c&quot;</VERB> for continuous time (default case).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([-1,-2,-3]);B=rand(3,2);
+Wc=ctr_gram(A,B)
+U=rand(3,3);A1=U*A/U;B1=U*B;
+Wc1=ctr_gram(A1,B1)    //Not invariant!
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>equil1</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>obs_gram</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cont_mat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cont_frm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contrss</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer INRIA 1988</AUTHOR>
+</MAN>

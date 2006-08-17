@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ric_desc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ric_desc"> Riccati equation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>X=ric_desc(H [,E))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[X1,X2,zero]=ric_desc(H [,E])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>H,E</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real square matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X1,X2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real square matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zero</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Riccati solver with hamiltonian matrices as inputs.</P>
+    <P>
+    In the continuous time case calling sequence is <VERB>ric_descr(H)</VERB> (one input):</P>
+    <P>
+    Riccati equation is:</P>
+    <VERBATIM>
+<![CDATA[
+  (Ec)   A'*X + X*A + X*R*X -Q = 0.
+   ]]>
+    </VERBATIM>
+    <P>
+    Defining the hamiltonian matrix <VERB>H</VERB> by:</P>
+    <VERBATIM>
+<![CDATA[
+ H = [A  R;
+      Q -A']
+   ]]>
+    </VERBATIM>
+    <P>
+    with the calling sequence <VERB>[X1,X2,zero]=ric_descr(H)</VERB>, the 
+    solution <VERB>X</VERB> is given by <VERB>X=X1/X2</VERB>.</P>
+    <P><VERB>zero</VERB> = L1 norm of rhs of (<VERB>Ec</VERB>)</P>
+    <P>
+    The solution <VERB>X</VERB> is also given by <VERB>X=riccati(A,Q,R,'c'))</VERB></P>
+    <P>
+    In the discrete-time case calling sequence is <VERB>ric_descr(H,E)</VERB> (two inputs):</P>
+    <P>
+    The Riccati equation is:</P>
+    <VERBATIM>
+<![CDATA[
+   (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
+   ]]>
+    </VERBATIM>
+    <P>
+    Defining <VERB>G=B/R*B'</VERB> and the hamiltonian pencil <VERB>(E,H)</VERB> by:</P>
+    <VERBATIM>
+<![CDATA[
+      E=[eye(n,n),G;               H=[A, 0*ones(n,n);
+         0*ones(n,n),A']             -C, eye(n,n)];
+   ]]>
+    </VERBATIM>
+    <P>
+    with the calling sequence <VERB>[X1,X2,err]=ric_descr(H,E)</VERB>, the 
+    solution <VERB>X</VERB> is given by <VERB>X=X1/X2</VERB>.</P>
+    <P><VERB>zero</VERB>= L1 norm of rhs of (<VERB>Ed</VERB>)</P>
+    <P>
+    The solution <VERB>X</VERB> is also given by <VERB>X=riccati(A,G,C,'d')</VERB>  
+    with <VERB>G=B/R*B'</VERB></P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>riccati</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

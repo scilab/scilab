@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fspecg</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fspecg"> stable factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[gm]=fspecg(g).  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>g,gm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> lists (linear systems in state-space representation)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns <VERB>gm</VERB> with <VERB>gm</VERB> and <VERB>gm^-1</VERB> stable such that:</P>
+    <VERBATIM>
+<![CDATA[
+gtild(g)*g = gtild(gm)*gm
+   ]]>
+    </VERBATIM>
+    <P><VERB>g</VERB> and <VERB>gm</VERB> are continuous-time linear systems in state-space form.</P>
+    <P>
+    Imaginary-axis poles are forbidden.</P>
+  </DESCRIPTION>
+</MAN>

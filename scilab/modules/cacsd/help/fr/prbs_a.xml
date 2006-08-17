@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>prbs_a</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="prbs_a"> pseudo random binary sequences generation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[u]=prbs_a(n,nc,[ids])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    generation of pseudo random binary sequences
+    <VERB> u=[u0,u1,...,u_(n-1)];</VERB>
+    u takes values in {-1,1} and changes at most nc times its sign.
+    ids can be used to fix the date at which u must change its sign 
+    ids is then an integer vector with values in <VERB>[1:n]</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+u=prbs_a(50,10);
+plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
+ ]]>
+  </EXAMPLE>
+</MAN>

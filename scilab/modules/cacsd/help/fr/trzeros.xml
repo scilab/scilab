@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>trzeros</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="trzeros"> transmission zeros and normal rank</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[tr]=trzeros(Sl)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[nt,dt,rk]=trzeros(Sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: complex vectors</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (normal rank of Sl)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Called with one output argument, <VERB>trzeros(Sl)</VERB> returns the 
+    transmission zeros of the linear system <VERB>Sl</VERB>.</P>
+    <P><VERB>Sl</VERB> may have a polynomial (but square) <VERB>D</VERB> matrix.</P>
+    <P>
+    Called with 2 output arguments, <VERB>trzeros</VERB> returns the 
+    transmission zeros of the linear system <VERB>Sl</VERB> as <VERB>tr=nt./dt</VERB>;</P>
+    <P>
+    (Note that some components of <VERB>dt</VERB> may be zeros)</P>
+    <P>
+    Called with 3 output arguments, <VERB>rk</VERB>  is the normal rank of <VERB>Sl</VERB></P>
+    <P>
+    Transfer matrices are converted to state-space.</P>
+    <P>
+    If <VERB>Sl</VERB> is a (square) polynomial matrix <VERB>trzeros</VERB> returns the 
+    roots of its determinant.</P>
+    <P>
+    For usual state-space system <VERB>trzeros</VERB> uses the state-space 
+    algorithm of Emami-Naeni &amp; Van Dooren.</P>
+    <P>
+    If <VERB>D</VERB> is invertible the transmission zeros are the eigenvalues
+    of the &quot;<VERB>A</VERB> matrix&quot; of the inverse system : <VERB>A - B*inv(D)*C</VERB>;</P>
+    <P>
+    If <VERB>C*B</VERB> is invertible the transmission zeros are the eigenvalues
+    of <VERB>N*A*M</VERB> where <VERB>M*N</VERB> is a full rank factorization of 
+    <VERB>eye(A)-B*inv(C*B)*C</VERB>;</P>
+    <P>
+    For systems with a polynomial <VERB>D</VERB> matrix zeros are 
+    calculated as the roots of the determinant of the system matrix.</P>
+    <P>
+    Caution: the computed zeros are not always reliable, in particular
+    in case of repeated zeros.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+W1=ssrand(2,2,5);trzeros(W1)    //call trzeros
+roots(det(systmat(W1)))         //roots of det(system matrix)
+s=poly(0,'s');W=[1/(s+1);1/(s-2)];W2=(s-3)*W*W';[nt,dt,rk]=trzeros(W2);
+St=systmat(tf2ss(W2));[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(St);
+St1=Q*St*Z;rowf=(Qd(1)+Qd(2)+1):(Qd(1)+Qd(2)+Qd(3));
+colf=(Zd(1)+Zd(2)+1):(Zd(1)+Zd(2)+Zd(3));
+roots(St1(rowf,colf)), nt./dt     //By Kronecker form
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gspec</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>kroneck</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

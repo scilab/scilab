@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dcf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="dcf"> double coprime factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[N,M,X,Y,NT,MT,XT,YT]=dcf(G,[polf,polc,[tol]])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (continuous-time linear system)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>polf, polc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: respectively the poles of <VERB>XT</VERB> and <VERB>YT</VERB> and the poles of <VERB>N</VERB>  and <VERB>M</VERB> (default values =<VERB>-1</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real threshold for detecting stable poles (default value <VERB>100*%eps</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>N,M,XT,YT,NT,MT,X,Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear systems represented by <VERB>syslin</VERB> lists</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns eight stable systems <VERB>(N,M,X,Y,NT,MT,XT,YT) </VERB>
+    for the doubly coprime factorization</P>
+    <P><VERB>G</VERB> must be stabilizable and detectable.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>copfac</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

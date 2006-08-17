@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>parrot</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="parrot"> Parrot's problem</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>K=parrot(D,r)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>D,K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1X2 vector (dimension of the 2,2 part of <VERB>D</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given a matrix <VERB>D</VERB> partionned as <VERB>[D11 D12; D21 D22]</VERB>
+    where <VERB>size(D22)=r=[r1,r2]</VERB>
+    compute a matrix <VERB>K</VERB> such that
+    largest singular value of <VERB>[D11 D12; D21 D22+K]</VERB>
+    is minimal (Parrot's problem)</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>h_inf_st</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

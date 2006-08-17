@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>stabil</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="stabil"> stabilization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>F=stabil(A,B,alfa)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>K=stabil(Sys,alfa,beta)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square real matrix (<VERB>nx x nx</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real matrix (<VERB>nx x nu</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa, beta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real or complex vector (in conjugate pairs) or real number.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (<VERB>nx x nu</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sys</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list) (<VERB>m</VERB> inputs, <VERB>p</VERB> outputs).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>p</VERB> inputs, <VERB>m</VERB> outputs)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>F=stabil(A,B,alfa)</VERB> returns a gain matrix <VERB>F</VERB> such that
+    <VERB>A+B*F</VERB> is stable if pair <VERB>(A,B)</VERB> is stabilizable. 
+    Assignable poles are set to <VERB>alfa(1),alfa(2),...</VERB>.
+    If <VERB>(A,B)</VERB> is not stabilizable a warning is given
+    and assignable poles are set to <VERB>alfa(1),alfa(2),...</VERB>.
+    If <VERB>alfa</VERB> is a number all eigenvalues are set to this
+    <VERB>alfa</VERB> (default value is <VERB>alfa=-1</VERB>).</P>
+    <P><VERB>K=stabil(Sys,alfa,beta)</VERB> returns <VERB>K</VERB>, a compensator for <VERB>Sys</VERB>
+    such that <VERB>(A,B)</VERB>-controllable eigenvalues are set to 
+    <VERB>alfa</VERB> and <VERB>(C,A)</VERB>-observable eigenvalues are set to <VERB>beta</VERB>.</P>
+    <P>
+    All assignable closed loop poles (which are given by the 
+    eigenvalues of <VERB>Aclosed=h_cl(Sys,K)</VERB> are set to <VERB>alfa(i)</VERB>'s
+    and <VERB>beta(j)</VERB>'s.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// Gain:
+Sys=ssrand(0,2,5,list('st',2,3,3));
+A=Sys('A');B=Sys('B');F=stabil(A,B);
+spec(A) //2 controllable modes 2 unstable uncontrollable modes
+//and one stable uncontrollable mode
+spec(A+B*F) //the two controllable modes are set to -1.
+// Compensator:
+Sys=ssrand(3,2,5,list('st',2,3,3)); //3 outputs, 2 inputs, 5 states
+//2 controllables modes, 3 controllable or stabilizable modes.
+K=stabil(Sys,-2,-3);  //Compensator for Sys.
+spec(Sys('A'))
+spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>st_ility</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ppol</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

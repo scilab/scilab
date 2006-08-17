@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tf2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="tf2des"> transfer function to descriptor</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>S=tf2des(G)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>S=tf2des(G,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list) with possibly polynomial <VERB>D</VERB> matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string <VERB>&quot;withD&quot;</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Transfer function to descriptor form: <VERB>S=list('d',A,B,C,D,E)</VERB></P>
+    <VERBATIM>
+<![CDATA[
+  E*xdot = A*x+B*u
+  y = C*x + D*u
+   ]]>
+    </VERBATIM>
+    <P>
+    Note that <VERB>D=0</VERB> if the optional parameter flag=<VERB>&quot;withD&quot;</VERB> is not
+    given. Otherwise a maximal rank <VERB>D</VERB> matrix is returned in the fifth
+    entry of the list <VERB>S</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);des2tf(S1)
+S2=tf2des(G,"withD");des2tf(S2)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pol2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tf2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>des2tf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

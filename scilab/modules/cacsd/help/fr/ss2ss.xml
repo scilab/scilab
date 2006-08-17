@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ss2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ss2ss"> state-space to state-space conversion, feedback, injection</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list) in state-space form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square (non-singular) matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl1, right, left</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear systems (syslin lists) in state-space form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (state feedback gain)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (output injection gain)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns the linear system <VERB>Sl1=[A1,B1,C1,D1]</VERB>
+    where <VERB>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D</VERB>.
+  </P>
+    <P>
+    Optional parameters <VERB>F</VERB> and <VERB>G</VERB> are state feedback
+    and output injection respectively. 
+  </P>
+    <P>
+    For example,
+    <VERB>Sl1=ss2ss(Sl,T,F)</VERB> returns <VERB>Sl1</VERB> with:
+  </P>
+    <P>
+    and <VERB>right</VERB> is a non singular linear system such that <VERB>Sl1=Sl*right</VERB>.
+  </P>
+    <P><VERB>Sl1*inv(right)</VERB> is a factorization of <VERB>Sl</VERB>.
+  </P>
+    <P><VERB>Sl1=ss2ss(Sl,T,0*F,G)</VERB> returns <VERB>Sl1</VERB> with:
+  </P>
+    <P>
+    and <VERB>left</VERB> is a non singular linear system such that <VERB>Sl1=left*Sl</VERB> (<VERB>right=Id</VERB> if <VERB>F=0</VERB>).
+  </P>
+    <P>
+    When both <VERB>F</VERB> and <VERB>G</VERB> are given, <VERB>Sl1=left*Sl*right</VERB>.
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>When <VERB>flag</VERB> is used and <VERB>flag=1</VERB> an output injection  as follows is used 
+    and then a feedback is performed, <VERB>F</VERB> must be of size <VERB>(m+p,n)</VERB></SP>
+        <P>
+    ( x is in R^n , y in R^p, u in R^m ). 
+  </P>
+        <P><VERB>right</VERB> and <VERB>left</VERB> have the following property:
+  </P>
+        <VERBATIM>
+<![CDATA[
+  Sl1 =  left*sysdiag(sys,eye(p,p))*right 
+   ]]>
+        </VERBATIM>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>When <VERB>flag</VERB> is used and <VERB>flag=2</VERB> a feedback
+  (<VERB>F</VERB> must be of  size <VERB>(m,n)</VERB>) is performed
+  and then the above output injection is applied. <VERB>right</VERB>
+  and <VERB>left</VERB> have  the following property:</SP>
+        <VERBATIM>
+<![CDATA[
+  Sl1 = left*sysdiag(sys*right,eye(p,p)))
+   ]]>
+        </VERBATIM>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
+Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
+trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
+// output injection [ A + GC, (B+GD,-G)]
+//                  [   C   , (D   , 0)]
+p=1,m=2,n=2; sys=ssrand(p,m,n);
+
+// feedback (m,n)  first and then output injection.
+
+F1=rand(m,n);
+G=rand(n,p);
+[sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,2);
+
+// Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
+
+res=clean(ss2tf(sys1) - ss2tf(left*sysdiag(sys*right,eye(p,p))))
+
+// output injection then feedback (m+p,n) 
+F2=rand(p,n); F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+
+// Sl1 equiv left*sysdiag(sys,eye(p,p))*right 
+
+res=clean(ss2tf(sys2)-ss2tf(left*sysdiag(sys,eye(p,p))*right))
+
+// when F2= 0; sys1 and sys2 are the same 
+F2=0*rand(p,n);F=[F1;F2];
+[sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
+
+res=clean(ss2tf(sys2)-ss2tf(sys1))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>projsl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>feedback</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

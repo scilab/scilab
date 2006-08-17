@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>equil1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="equil1"> balancing (nonnegative) pair of matrices</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[T [,siz]]=equil1(P,Q [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P, Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two non-negative symmetric matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: nonsingular matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>siz</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of three integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: threshold</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>equil1</VERB> computes <VERB>t</VERB> such that:</P>
+    <P><VERB>P1=T*P*T'</VERB>  and <VERB>Q1=inv(T)'*Q*inv(T)</VERB> are as follows:</P>
+    <P><VERB>P1 = diag(S1,S2,0,0)</VERB>  and <VERB>Q1 = diag(S1,0,S3,0)</VERB> with
+    <VERB>S1,S2,S3</VERB> positive and diagonal matrices with respective 
+    dimensions <VERB>siz=[n1,n2,n3]</VERB></P>
+    <P><VERB>tol</VERB> is a threshold for rank determination in SVD</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+S1=rand(2,2);S1=S1*S1';
+S2=rand(2,2);S2=S2*S2';
+S3=rand(2,2);S3=S3*S3';
+P=sysdiag(S1,S2,zeros(4,4));
+Q=sysdiag(S1,zeros(2,2),S3,zeros(2,2));
+X=rand(8,8);
+P=X*P*X';Q=inv(X)'*Q*inv(X);
+[T,siz]=equil1(P,Q);
+P1=clean(T*P*T')
+Q1=clean(inv(T)'*Q*inv(T))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>balreal</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>minreal</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>equil</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hankelsv</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer 1987</AUTHOR>
+</MAN>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gcare</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gcare"> control Riccati equation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X,F]=gcare(Sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: symmetric matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Generalized Control Algebraic Riccati Equation (GCARE).
+    <VERB>X</VERB> = solution , <VERB>F</VERB> = gain.</P>
+    <P>
+    The GCARE for <VERB>Sl=[A,B,C,D]</VERB> is:</P>
+    <VERBATIM>
+<![CDATA[
+(A-B*Si*D'*C)'*X+X*(A-B*Si*D'*C)-X*B*Si*B'*X+C'*Ri*C=0
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB>S=(eye()+D'*D)</VERB>, <VERB>Si=inv(S)</VERB>, <VERB>R=(eye()+D*D')</VERB>, <VERB>Ri=inv(R)</VERB> 
+    and <VERB>F=-Si*(D'*C+B'*X)</VERB> is such that <VERB>A+B*F</VERB> is stable.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gfare</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

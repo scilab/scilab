@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>equil</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="equil"> balancing of pair of symmetric matrices</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>T=equil(P,Q)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P, Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two positive definite symmetric matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: nonsingular matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>equil</VERB> returns <VERB>t</VERB> such that:</P>
+    <P><VERB>T*P*T'</VERB> and  <VERB>inv(T)'*Q*inv(T)</VERB>  are both equal to a same 
+    diagonal and positive matrix.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+P=rand(4,4);P=P*P';
+Q=rand(4,4);Q=Q*Q';
+T=equil(P,Q)
+clean(T*P*T')
+clean(inv(T)'*Q*inv(T))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>equil1</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>balanc</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ctr_gram</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

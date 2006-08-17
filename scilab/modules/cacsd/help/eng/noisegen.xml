@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>noisegen</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="noisegen"> noise generation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>b=noisegen(pas,Tmax,sig)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    generates a Scilab function <VERB>[b]=Noise(t)</VERB>
+    where <VERB>Noise(t)</VERB> is a piecewise constant function 
+    ( constant on  <VERB>[k*pas,(k+1)*pas]</VERB> ). The value on each constant 
+    interval are random values from  i.i.d  Gaussian variables of 
+    standard deviation sig. The function is constant for <VERB>t&lt;=0</VERB> and 
+    <VERB>t&gt;=Tmax</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+noisegen(0.5,30,1.0);
+x=-5:0.01:35;
+y=feval(x,Noise);
+plot(x,y);
+ ]]>
+  </EXAMPLE>
+</MAN>

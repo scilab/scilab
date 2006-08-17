@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>FREQ</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="freq"> frequency response</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x]=freq(A,B,C [,D],f)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x]=freq(NUM,DEN,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A, B, C, D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real matrices of respective dimensions <VERB>nxn, nxp, mxn, mxp</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>NUM,DEN</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial matrices of dimension <VERB>mxp</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>x=freq(A,B,C [,D],f)</VERB> returns a real or complex <VERB>mxp*t</VERB> matrix
+    such that:</P>
+    <P><VERB>x(:,k*p:(k+1)*p)= C*inv(f(k)*eye()-A)*B + D</VERB>.</P>
+    <P>
+    Thus, for <VERB>f</VERB> taking values along the imaginary axis or
+    on the unit circle <VERB>x</VERB> is the continuous or discrete time 
+    frequency response of <VERB>(A,B,C,D)</VERB>.</P>
+    <P><VERB>x=freq(NUM,DEN,f)</VERB> returns a real or complex matrix <VERB>x</VERB> such
+    that columns <VERB>k*(p-1)+1</VERB> to <VERB>k*p</VERB> of <VERB>x</VERB> contain the matrix  
+    <VERB>NUM(f(k))./DEN(f(k))</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+sys=(s+1)/(s^3-5*s+4)
+rep=freq(sys("num"),sys("den"),[0,0.9,1.1,2,3,10,20])
+[horner(sys,0),horner(sys,20)]
+//
+Sys=tf2ss(sys);
+[A,B,C,D]=abcd(Sys);
+freq(A,B,C,[0,0.9,1.1,2,3,10,20])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>repfreq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

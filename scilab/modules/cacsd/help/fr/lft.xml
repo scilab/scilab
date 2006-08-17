@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lft</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lft"> linear fractional transformation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P1]=LFT(P,K)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[P1]=LFT(P,r,K)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[P1,r1]=LFT(P,r,P#,r#)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), the ``augmented'' plant, implicitly partitioned into four blocks (two input ports and two output ports).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), the controller (possibly an ordinary gain).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimension of <VERB>P22</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P#  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), implicitly partitioned into four blocks (two input ports and two output ports).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r#  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimension of <VERB>P#22</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Linear fractional transform between two standard plants
+    <VERB>P</VERB> and <VERB>P#</VERB> in state space form or in
+    transfer form (<VERB>syslin</VERB> lists).</P>
+    <P>
+      <VERB>r= size(P22) r#=size(P22#)</VERB>
+    </P>
+    <P><VERB>LFT(P,r, K)</VERB> is the linear fractional transform
+    between <VERB>P</VERB> and a controller <VERB>K</VERB>
+    (<VERB>K</VERB> may be a gain or a controller in state space form
+    or in transfer form);</P>
+    <P><VERB>LFT(P,K)</VERB> is <VERB>LFT(P,r,K)</VERB> with
+    <VERB>r</VERB>=size of <VERB>K</VERB> transpose;</P>
+    <P>
+      <VERB>P1= P11+P12*K* (I-P22*K)^-1 *P21</VERB>
+    </P>
+    <P><VERB>[P1,r1]=LFT(P,r,P#,r#)</VERB> returns the generalized (2
+    ports) lft of <VERB>P</VERB> and <VERB>P#</VERB>.</P>
+    <P><VERB>P1</VERB> is the pair two-port interconnected plant and the
+    partition of <VERB>P1</VERB> into 4 blocks in given by
+    <VERB>r1</VERB> which is the dimension of the <VERB>22</VERB>
+    block of <VERB>P1</VERB>.</P>
+    <P><VERB>P</VERB> and <VERB>R</VERB> can be PSSDs i.e. may admit a
+    polynomial <VERB>D</VERB> matrix.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+P=[1/s, 1/(s+1); 1/(s+2),2/s]; K= 1/(s-1);
+lft(P,K)
+lft(P,[1,1],K)
+P(1,1)+P(1,2)*K*inv(1-P(2,2)*K)*P(2,1)   //Numerically dangerous!
+ss2tf(lft(tf2ss(P),tf2ss(K)))
+lft(P,-1)
+f=[0,0;0,1];w=P/.f; w(1,1)
+//Improper plant (PID control)
+W=[1,1;1,1/(s^2+0.1*s)];K=1+1/s+s
+lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sensi</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>augment</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>feedback</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sysdiag</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

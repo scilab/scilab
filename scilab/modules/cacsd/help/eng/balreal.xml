@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>balreal</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="balreal"> balanced realization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[slb [,U] ] = balreal(sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl,slb</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear systems (<VERB>syslin</VERB> lists)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Balanced realization of linear system <VERB>sl=[A,B,C,D]</VERB>. <VERB>sl</VERB>
+    can be a continuous-time or discrete-time state-space system. 
+    sl is assumed stable.</P>
+    <VERBATIM>
+<![CDATA[
+slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
+   ]]>
+    </VERBATIM>
+    <P>
+    is the balanced realization.</P>
+    <P><VERB>slb</VERB> is returned as a <VERB>syslin</VERB> list.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
+sl=syslin('c',A,B,C);
+[slb,U]=balreal(sl);
+Wc=clean(ctr_gram(slb))
+W0=clean(obs_gram(slb))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ctr_gram</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>obs_gram</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hankelsv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>equil</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>equil1</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

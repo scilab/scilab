@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>des2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="des2ss"> descriptor to state-space</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Sl]=des2ss(A,B,C,D,E [,tol])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Sl]=des2ss(Des)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B,C,D,E</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices of appropriate dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Des</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real parameter (threshold) (default value <VERB>100*%eps</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Descriptor to state-space transform.</P>
+    <P><VERB>Sl=des2ss(A,B,C,D,E)</VERB> returns 
+    a linear system <VERB>Sl</VERB> equivalent to the descriptor system 
+    <VERB>(E,A,B,C,D)</VERB>.</P>
+    <P>
+    For index one <VERB>(E,A)</VERB> pencil, explicit formula is used and
+    for higher index pencils <VERB>rowshuff</VERB> is used.</P>
+    <P><VERB>Sl=des2ss(Des)</VERB> with <VERB>Des=list('des',A,B,C,D,E)</VERB> returns
+    a linear system <VERB>Sl</VERB> in state-space form with possibly 
+    a polynomial <VERB>D</VERB> matrix.</P>
+    <P>
+    A generalized Leverrier algorithm is used.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);S2=tf2des(G,"withD");
+W1=des2ss(S1);W2=des2ss(S2);
+clean(ss2tf(W1))
+clean(ss2tf(W2))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>des2tf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>glever</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rowshuff</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

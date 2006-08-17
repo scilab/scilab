@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>linmeq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="linmeq"> Sylvester and Lyapunov equations solver</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>task</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer option to determine the equation type:</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>=1</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:  solve the Sylvester equation (1a) or (1b);</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=2</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:  solve the Lyapunov equation (2a) or (2b);</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=3</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: solve for the Cholesky factor op(X) the Lyapunov equation (3a) or (3b).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) integer vector of length 3 or 2 containing options.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>task</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>= 1 : flag has length 3</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(1)</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 0 : solve the continuous-time equation (1a); otherwise, solve the discrete-time equation (1b).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(2)  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 1 : A is (quasi) upper triangular;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(2)  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 2 : A is upper Hessenberg;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>otherwise</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>A is in general form.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(3)  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 1 : B is (quasi) upper triangular;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(3)  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 2 : B is upper Hessenberg;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>otherwise,  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>B is in general form.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>task</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>= 2 : flag has length 2</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(1)</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: if 0 solve continuous-time equation
+            (2a), otherwise, solve discrete-time equation (2b).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(2) </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 1 : A is (quasi) upper triangular     otherwise, A is in general form.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>task</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>= 3 : flag has length 2</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(1)  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 0 : solve continuous-time equation (3a); otherwise, solve discrete-time equation (3b).</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>flag(2)  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>= 1 : A is (quasi) upper triangular; otherwise, A is in general form.</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+     Default:    flag(1) = 0, flag(2) = 0 (, flag(3) = 0).
+    </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>trans</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) integer specifying a transposition option.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>0 : solve the equations (1) - (3) with op(M) = M.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>1 : solve the equations (1) - (3) with op(M) = M'.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>2 : solve the equations (1) with op(A) = A';  op(B) = B;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>3 : solve the equations (1) with op(A) = A;   op(B) = B'.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+     Default:    trans = 0.
+    </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>schur</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) integer specifying whether the Hessenberg-Schur or Schur method should be used. Available for task = 1.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>= 1 : Hessenberg-Schur method (one matrix is reduced</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>to Schur form).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>= 2 : Schur method (two matrices are reduced to Schur</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>form).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+    Default:    schur = 1.
+  </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sep</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) estimator of Sep(op(A),-op(A)') for (2.a) or Sepd(A,A') for (2.b).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    linmeq  function for solving Sylvester and Lyapunov equations
+    using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD, 
+    SB04RD, SB03MD, and SB03OD.
+  </P>
+    <VERBATIM>
+<![CDATA[
+       [X] = linmeq(1,A,B,C,flag,trans,schur)
+   [X,sep] = linmeq(2,A,C,flag,trans)
+       [X] = linmeq(2,A,C,flag,trans)
+       [X] = linmeq(3,A,C,flag,trans)
+   ]]>
+    </VERBATIM>
+    <P>
+    linmeq solves various Sylvester and Lyapunov matrix equations:
+  </P>
+    <VERBATIM>
+<![CDATA[
+        op(A)*X + X*op(B) = C,                           (1a)
+
+        op(A)*X*op(B) + X = C,                           (1b)
+
+        op(A)'*X + X*op(A) = C,                          (2a)
+
+        op(A)'*X*op(A) - X = C,                          (2b)
+
+        op(A)'*(op(X)'*op(X)) + (op(X)'*op(X))*op(A) =
+                              -  op(C)'*op(C),           (3a)
+
+        op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
+                                    - op(C)'*op(C),      (3b)
+   ]]>
+    </VERBATIM>
+    <P>
+    where op(M) = M, or M'.
+  </P>
+  </DESCRIPTION>
+  <SECTION label="Comments">
+    <ITEMIZE>
+      <ITEM label="1.">
+        <SP>For equation (1a) or (1b), when schur = 1, the Hessenberg-Schur
+method is used, reducing one matrix to Hessenberg form and the other
+one to a real Schur form. Otherwise, both matrices are reduced to real
+Schur forms. If one or both matrices are already reduced to
+Schur/Hessenberg forms, this could be specified by flag(2) and
+flag(3). For general matrices, the Hessenberg-Schur method could be
+significantly more efficient than the Schur method.</SP>
+      </ITEM>
+      <ITEM label="2.">
+        <SP>For equation (2a) or (2b), matrix C is assumed symmetric.</SP>
+      </ITEM>
+      <ITEM label="3.">
+        <SP>For equation (3a) or (3b), matrix A must be stable or convergent, respectively.</SP>
+      </ITEM>
+      <ITEM label="4.">
+        <SP>For equation (3a) or (3b), the computed matrix X is the Cholesky factor of the solution, i.e., the real solution is op(X)'*op(X), where X is an upper triangular matrix.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </SECTION>
+  <SECTION label="Revisions">
+    <P>
+    V. Sima, Katholieke Univ. Leuven, Belgium, May 1999, May, Sep. 2000. V. Sima, University of Bucharest, Romania, May 2000.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+//(1a)
+n=40;m=30;
+A=rand(n,n);C=rand(n,m);B=rand(m,m);
+X = linmeq(1,A,B,C);
+norm(A*X+X*B-C,1)
+//(1b)
+flag=[1,0,0]
+X = linmeq(1,A,B,C,flag);
+norm(A*X*B+X-C,1)
+//(2a)
+A=rand(n,n);C=rand(A);C=C+C';
+X = linmeq(2,A,C);
+norm(A'*X + X*A -C,1)
+//(2b)
+X = linmeq(2,A,C,[1 0]);
+norm(A'*X*A -X-C,1)
+//(3a)
+A=rand(n,n);
+A=A-(max(real(spec(A)))+1)*eye(); //shift eigenvalues
+C=rand(A);
+X=linmeq(3,A,C);
+norm(A'*X'*X+X'*X*A +C'*C,1)
+//(3b)
+A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
+      0.02, 0.14, 0.12,-0.10,-0.02,-0.14;     
+     -0.10, 0.12, 0.05, 0.03,-0.04,-0.04;     
+      0.02,-0.10, 0.03,-0.06, 0.08, 0.11;      
+     -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;   
+      0.12,-0.14,-0.04, 0.11,-0.07, 0.04]    
+
+C=rand(A);
+X=linmeq(3,A,C,[1 0]);
+norm(A'*X'*X*A - X'*X +C'*C,1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sylv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lyap</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>H. Xu, TU Chemnitz, FR Germany, Dec. 1998.  </AUTHOR>
+</MAN>

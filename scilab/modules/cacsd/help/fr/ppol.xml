@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>PPOL</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ppol"> pole placement</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[K]=ppol(A,B,poles)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices of dimensions <VERB>nxn</VERB> and <VERB>nxm</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>poles</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector of dimension <VERB>n</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (negative feedback gain)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>K=ppol(A,B,poles)</VERB> returns a mxn gain matrix <VERB>K</VERB> such that
+    the eigenvalues of <VERB>A-B*K</VERB> are <VERB>poles</VERB>.
+    The pair <VERB>(A,B)</VERB> must be controllable. Complex number in <VERB>poles</VERB> must appear in conjugate pairs.</P>
+    <P>
+    An output-injection gain <VERB>F</VERB> for <VERB>(A,C)</VERB> is obtained as follows:</P>
+    <P>
+      <VERB>Ft=ppol(A',C',poles);  F=Ft'</VERB>
+    </P>
+    <P>
+    The algorithm is by P.H. Petkov.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(3,3);B=rand(3,2);
+F=ppol(A,B,[-1,-2,-3]);
+spec(A-B*F)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>canon</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stabil</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

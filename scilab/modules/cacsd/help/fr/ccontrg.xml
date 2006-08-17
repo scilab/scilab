@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ccontrg</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ccontrg"> central H-infinity controller</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[K]=ccontrg(P,r,gamma);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (linear system in state-space representation)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimension of the 2,2 part of <VERB>P</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gamma</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns a realization <VERB>K</VERB> of the central controller for the
+    general standard problem in state-space form.</P>
+    <P>
+    Note that gamma must be &gt; gopt (ouput of <VERB>gamitg</VERB>)</P>
+    <P>
+    P contains the parameters of plant realization <VERB>(A,B,C,D)</VERB>
+    (<VERB>syslin</VERB> list) with</P>
+    <VERBATIM>
+<![CDATA[
+B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
+                            ( C2 )          ( D21  D22)
+   ]]>
+    </VERBATIM>
+    <P><VERB>r(1)</VERB> and <VERB>r(2)</VERB> are the dimensions of <VERB>D22</VERB> (rows x columns)</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gamitg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>h_inf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>P. Gahinet (INRIA);   </AUTHOR>
+</MAN>

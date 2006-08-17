@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>g_margin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="g_margin"> gain margin</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[gm [,fr]]=g_margin(h)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list representing a linear system in  state-space or transfer form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns <VERB>gm</VERB>, the gain margin in dB of <VERB>h</VERB> 
+    (SISO plant) and <VERB>fr</VERB>, the achieved corresponding frequency in hz.
+    The gain margin is values of the system gain at points where the
+    nyquist plot crosses the negative real axis.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+h=syslin('c',-1+%s,3+2*%s+%s^2)
+[g,fr]=g_margin(h)
+[g,fr]=g_margin(h-10)
+nyquist(h-10)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>p_margin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>black</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>chart</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nyquist</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

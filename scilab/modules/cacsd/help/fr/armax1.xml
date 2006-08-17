@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>armax1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="armax1"> armax identification</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[arc,resid]=armax1(r,s,q,y,u [,b0f])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: output signal</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: input signal</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r,s,q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: auto regression orders with r &gt;=0, s &gt;=-1.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b0f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optional parameter. Its default value is 0 and it means that the coefficient b0 must be identified. if bof=1 the b0 is supposed to be zero and is not identified</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>arc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is tlist with type &quot;ar&quot; and fields a,  b,  d,  ny,  nu,  sig</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>a</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: is the vector [1,a1,...,a_r]</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>b</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: is the vector [b0,......,b_s]</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>d</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: is the vector [1,d1,....,d_q]</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>sig</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:   resid=[ sig*echap(1),....,];</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    armax1 is used to identify the coefficients of a 1-dimensional 
+    ARX process:</P>
+    <VERBATIM>
+<![CDATA[
+   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+   e(t) is a 1-dimensional white noise with variance 1.
+   A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+   B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+   D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
+   ]]>
+    </VERBATIM>
+    <P>
+    for the method, see Eykhoff in trends and progress in system identification) page 96.
+    with 
+            z(t)=[y(t-1),..,y(t-r),u(t),...,
+                  u(t-s),e(t-1),...,e(t-q)] 
+    and
+            coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
+            y(t)= coef'* z(t) + sig*e(t).</P>
+    <P>
+    a sequential version of the AR estimation where e(t-i) is replaced 
+    by an estimated value is used (RLLS). With q=0 this method is exactly
+    a sequential version of armax</P>
+  </DESCRIPTION>
+  <AUTHOR>J.-Ph.C; ;   </AUTHOR>
+</MAN>

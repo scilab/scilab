@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dscr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="dscr">  discretization of linear system</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[sld [,r]]=dscr(sl,dt [,m])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list containing <VERB>[A,B,C,D]</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number, sampling period</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: covariance of the input noise (continuous time)(default value=0)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: covariance of the output noise (discrete time) given if <VERB>m</VERB> is  given as input</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sld</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: sampled (discrete-time) linear system, <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Discretization of linear system. <VERB>sl</VERB> is a continuous-time system:</P>
+    <P><VERB>dx/dt=A*x+B*u (+ noise)</VERB>.</P>
+    <P><VERB>sld</VERB> is the discrete-time system obtained by 
+    sampling <VERB>sl</VERB> with the sampling period <VERB>dt</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+Sys=syslin('c',[1,1/(s+1);2*s/(s^2+2),1/s])
+ss2tf(dscr(tf2ss(Sys),0.1))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>flts</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dsimul</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

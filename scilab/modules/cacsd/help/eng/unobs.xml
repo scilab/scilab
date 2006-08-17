@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>UNOBS</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="unobs"> unobservable subspace</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[n,[U]]=unobs(A,C,[tol])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A, C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tolerance used when evaluating ranks (QR factorizations).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: dimension of unobservable subspace.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal change of basis which puts <VERB>(A,B)</VERB> in canonical form.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[n,[U]]=unobs(A,C,[tol])</VERB> gives the unobservable form of an <VERB>(A,C)</VERB> 
+    pair.
+    The <VERB>n</VERB> first columns of <VERB>U</VERB> make a basis for the unobservable
+    subspace.</P>
+    <P>
+    The <VERB>(2,1)</VERB> block (made of last <VERB>nx-n</VERB> rows and <VERB>n</VERB> first 
+    columns) of <VERB>U'*A*U</VERB> is zero and and the <VERB>n</VERB> first columns 
+    of <VERB>C*U</VERB> are zero.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([1,2,3]);C=[1,0,0];
+unobs(A,C)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>contr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contrss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>canon</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cont_mat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spantwo</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dt_ility</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

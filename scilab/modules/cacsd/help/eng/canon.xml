@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>canon</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="canon"> canonical controllable form</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Ac,Bc,U,ind]=canon(A,B)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ac,Bc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: canonical form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: current basis (square nonsingular matrix)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ind</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers, controllability indices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    gives the canonical controllable form of the pair <VERB>(A,B)</VERB>.</P>
+    <P>
+      <VERB>Ac=inv(U)*A*U, Bc=inv(U)*B</VERB>
+    </P>
+    <P>
+    The vector <VERB>ind</VERB> is made of the <VERB>epsilon_i</VERB>'s indices
+    of the pencil <VERB>[sI - A ,  B]</VERB> (decreasing order).
+    For example with <VERB>ind=[3,2]</VERB>, <VERB>Ac</VERB> and <VERB>Bc</VERB> are as follows:</P>
+    <VERBATIM>
+<![CDATA[
+      [*,*,*,*,*]           [*]
+      [1,0,0,0,0]           [0]
+Ac=   [0,1,0,0,0]        Bc=[0]
+      [*,*,*,*,*]           [*]
+      [0,0,0,1,0]           [0]
+   ]]>
+    </VERBATIM>
+    <P>
+    If <VERB>(A,B)</VERB> is controllable, by an appropriate choice 
+    of <VERB>F</VERB> the <VERB>*</VERB> entries of <VERB>Ac+Bc*F</VERB> 
+    can be arbitrarily set to desired values (pole placement).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[1,2,3,4,5;
+   1,0,0,0,0;
+   0,1,0,0,0;
+   6,7,8,9,0;
+   0,0,0,1,0];
+B=[1,2;
+   0,0;
+   0,0;
+   2,1;
+   0,0];
+X=rand(5,5);A=X*A*inv(X);B=X*B;    //Controllable pair 
+[Ac,Bc,U,ind]=canon(A,B);  //Two indices --> ind=[3.2];
+index=1;for k=1:size(ind,'*')-1,index=[index,1+sum(ind(1:k))];end
+Acstar=Ac(index,:);Bcstar=Bc(index,:);
+s=poly(0,'s');
+p1=s^3+2*s^2-5*s+3;p2=(s-5)*(s-3);   
+//p1 and p2 are desired closed-loop polynomials with degrees 3,2
+c1=coeff(p1);c1=c1($-1:-1:1);c2=coeff(p2);c2=c2($-1:-1:1);
+Acstardesired=[-c1,0,0;0,0,0,-c2];  
+//Acstardesired(index,:) is companion matrix with char. pol=p1*p2
+F=Bcstar\(Acstardesired-Acstar);   //Feedbak gain
+Ac+Bc*F         // Companion form 
+spec(A+B*F/U)   // F/U is the gain matrix in original basis.
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>obsv_mat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cont_mat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ctr_gram</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contrss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ppol</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>contr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stabil</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>des2tf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="des2tf"> descriptor to transfer function conversion</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[S]=des2tf(sl)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=des2tf(sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list (linear system in descriptor form)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Bfs, Bis</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two polynomial matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>chis</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: rational matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given the linear system in descriptor form i.e.
+    <VERB>Sl=list('des',A,B,C,D,E)</VERB>, <VERB>des2tf</VERB> converts <VERB>sl</VERB> into
+    its transfer function representation:</P>
+    <VERBATIM>
+<![CDATA[
+S=C*(s*E-A)^(-1)*B+D
+   ]]>
+    </VERBATIM>
+    <P>
+    Called with 3 outputs arguments <VERB>des2tf</VERB> returns
+    <VERB>Bfs</VERB> and <VERB>Bis</VERB> two polynomial matrices, and <VERB>chis</VERB>
+    polynomial such that:</P>
+    <VERBATIM>
+<![CDATA[
+S=Bfs/chis - Bis
+   ]]>
+    </VERBATIM>
+    <P><VERB>chis</VERB> is the determinant of <VERB>(s*E-A)</VERB> (up to a xcative constant);</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+G=[1/(s+1),s;1+s^2,3*s^3];
+Descrip=tf2des(G);Tf1=des2tf(Descrip)
+Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
+[A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>glever</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>pol2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tf2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2tf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>des2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rowshuff</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

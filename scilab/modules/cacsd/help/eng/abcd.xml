@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>abcd</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="abcd"> state-space matrices</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[A,B,C,D]=abcd(sl)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list) in state-space or transfer form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B,C,D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices of appropriate dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the <VERB>A,B,C,D</VERB> matrices from a linear system <VERB>Sl</VERB>.</P>
+    <P>
+    Utility function. For transfer matrices <VERB>Sl</VERB> is converted
+    into state-space form by <VERB>tf2ss</VERB>.</P>
+    <P>
+    The matrices <VERB>A,B,C,D</VERB> are the elements <VERB>2</VERB> to <VERB>5</VERB> of
+    the <VERB>syslin</VERB> list <VERB>Sl</VERB>, i.e. <VERB>[A,B,C,D] = Sl(2:5)</VERB> .</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([1,2,3]);B=[1;1;1];C=[2,2,2];
+sys=syslin('c',A,B,C);
+sys("A")
+sys("C")
+[A1,B1,C1,D1]=abcd(sys);
+A1
+systf=ss2tf(sys);
+[a,b,c,d]=abcd(systf)
+spec(a)
+c*b-C*B
+c*a*b-C*A*B
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ssrand</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

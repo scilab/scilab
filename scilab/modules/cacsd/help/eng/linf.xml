@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>linf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="linf"> infinity norm</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>linf(g [,eps],[tol])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is a <VERB>syslin</VERB> linear system.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>eps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is error tolerance on n.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: threshold for imaginary axis poles.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the L_infinity norm of <VERB>g</VERB>.</P>
+    <VERBATIM>
+<![CDATA[
+    n=sup [sigmax(g(jw)] 
+       w
+   ]]>
+    </VERBATIM>
+    <P>
+    (sigmax largest singular value).</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>h_norm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>linfn</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

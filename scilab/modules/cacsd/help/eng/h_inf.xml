@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>H_inf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="h_inf"> H-infinity (central) controller</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Sk,ro]=h_inf(P,r,romin,romax,nmax)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list : continuous-time linear system (``augmented'' plant given in state-space form  or in transfer form)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: size of the <VERB>P22</VERB> plant i.e. 2-vector <VERB>[#outputs,#inputs]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>romin,romax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a priori bounds on <VERB>ro</VERB> with <VERB>ro=1/gama^2</VERB>; (<VERB>romin=0</VERB>  usually)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, maximum number of iterations in the gama-iteration.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>h_inf</VERB> computes H-infinity optimal controller for the 
+    continuous-time plant <VERB>P</VERB>.</P>
+    <P>
+    The partition of <VERB>P</VERB> into four sub-plants is given through
+    the 2-vector <VERB>r</VERB> which is the size of the <VERB>22</VERB> part of <VERB>P</VERB>.</P>
+    <P><VERB>P</VERB> is given in state-space 
+    e.g. <VERB>P=syslin('c',A,B,C,D)</VERB> with <VERB>A,B,C,D</VERB> = constant matrices
+    or <VERB>P=syslin('c',H)</VERB> with <VERB>H</VERB> a transfer matrix.</P>
+    <P><VERB>[Sk,ro]=H_inf(P,r,romin,romax,nmax)</VERB> returns
+    <VERB>ro</VERB> in <VERB>[romin,romax]</VERB> and the central
+    controller <VERB>Sk</VERB> in the same representation as
+    <VERB>P</VERB>.</P>
+    <P>
+    (All calculations are made in state-space, i.e conversion to
+    state-space is done by the function, if necessary).</P>
+    <P>
+    Invoked with three LHS parameters,</P>
+    <P><VERB>[Sk,rk,ro]=H_inf(P,r,romin,romax,nmax)</VERB> returns
+    <VERB>ro</VERB> and the Parameterization of all stabilizing
+    controllers:</P>
+    <P>
+    a stabilizing controller <VERB>K</VERB> is obtained by
+    <VERB>K=lft(Sk,r,PHI)</VERB> where <VERB>PHI</VERB> is a linear
+    system with dimensions <VERB>r'</VERB> and satisfy:</P>
+    <P><VERB>H_norm(PHI) &lt; gamma</VERB>.  <VERB>rk (=r)</VERB> is the
+    size of the <VERB>Sk22</VERB> block and <VERB>ro = 1/gama^2</VERB>
+    after <VERB>nmax</VERB> iterations.</P>
+    <P>
+    Algorithm is adapted from Safonov-Limebeer. Note that <VERB>P</VERB> is assumed to be 
+    a continuous-time plant.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gamitg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ccontrg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>leqr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.Delebecque INRIA (1990)  </AUTHOR>
+</MAN>

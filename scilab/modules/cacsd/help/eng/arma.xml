@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>arma</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="arma"> Scilab arma library</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Armax processes can be coded with Scilab tlist of type <VERB>'ar'</VERB>. 
+    <VERB>armac</VERB> is used to build <VERB>Armax</VERB> scilab object. An <VERB>'ar'</VERB> 
+    tlist contains the fields <VERB>['a','b','d','ny','nu','sig']</VERB>. 
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="armac">
+        <SP>: this function creates a Scilab tlist which code an  Armax
+  process    <VERB> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</VERB></SP>
+        <VERBATIM>
+<![CDATA[
+-->ar=armac([1,2],[3,4],1,1,1,sig);
+ 
+-->ar('a')   
+ ans  =
+ 
+!   1.    2. !
+-->ar('sig')
+ ans  =
+ 
+    1.  
+   ]]>
+        </VERBATIM>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="armap(ar [,out])">
+        <SP>: Display the armax equation associated with <VERB>ar</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="armap_p(ar [,out])">
+        <SP>: Display the armax equation associated with <VERB>ar</VERB>  using polynomial matrix display.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="[A,B,D]=armap2p(ar)">
+        <SP>: extract polynomial matrices from ar representation</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="armax">
+        <SP>: is used to identify the coefficients of a n-dimensional  ARX process   <VERB>A(z^-1)y= B(z^-1)u + sig*e(t)</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="armax1">
+        <SP>: armax1 is used to identify the coefficients of a 1-dimensional  ARX process    
+         <VERB>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="arsimul">
+        <SP>: armax trajectory simulation.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="arspec">
+        <SP>: Spectral power estimation of armax processes.  Test of  mese and arsimul</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="exar1">
+        <SP>: An  Example of ARMAX identification ( K.J. Astrom) The armax process is described by :     a=[1,-2.851,2.717,-0.865]     b=[0,1,1,1]     d=[1,0.7,0.2]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="exar2">
+        <SP>: ARMAX example ( K.J. Astrom). A simulation of a bi dimensional version of the example of exar1.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="exar3">
+        <SP>: Spectral power estimation of arma processes from Sawaragi et all where a value of m=18 is used. Test of  mese and arsimul</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="gbruit">
+        <SP>: noise generation</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="narsimul">
+        <SP>: armax simulation ( using rtitr)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="odedi">
+        <SP>: Simple tests of ode and arsimul. Tests the option 'discret' of ode</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prbs_a">
+        <SP>: pseudo random binary sequences generation</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="reglin">
+        <SP>: Linear regression</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <AUTHOR>J.P.C ; ;   </AUTHOR>
+</MAN>

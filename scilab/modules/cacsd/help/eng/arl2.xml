@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ARL2</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="arl2"> SISO model realization by L2 transfer approximation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>h=arl2(y,den0,n [,imp])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>h=arl2(y,den0,n [,imp],'all')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[den,num,err]=arl2(y,den0,n [,imp])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[den,num,err]=arl2(y,den0,n [,imp],'all')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or polynomial in <VERB>z^-1</VERB>, it contains the coefficients of the Fourier's series of the rational system to approximate (the impulse response)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>den0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a polynomial which gives an initial guess of the solution, it may be <VERB>poly(1,'z','c')</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the degree of approximating transfer function (degree of den)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>imp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer in <VERB>(0,1,2)</VERB> (verbose mode)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: transfer function <VERB>num/den</VERB> or transfer matrix (column vector) when flag <VERB>'all'</VERB> is given.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>den</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial or vector of polynomials, contains the denominator(s) of the solution(s)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>num</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial or vector of polynomials, contains the numerator(s) of the solution(s)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real constant or vector , the l2-error achieved for each solutions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[den,num,err]=arl2(y,den0,n [,imp]) </VERB> finds a pair of polynomials
+    <VERB>num</VERB> and <VERB>den</VERB> such that the transfer function <VERB>num/den</VERB>
+    is stable and its impulse response approximates (with a minimal l2
+    norm) the vector <VERB>y</VERB> assumed to be completed by an infinite number
+    of zeros.</P>
+    <P>
+    If <VERB>y(z)  =  y(1)(1/z)+y(2)(1/z^2)+ ...+ y(ny)(1/z^ny)</VERB></P>
+    <P>
+    then l2-norm of <VERB>num/den - y(z)</VERB> is <VERB>err</VERB>.</P>
+    <P><VERB>n</VERB> is the degree of the polynomial <VERB>den</VERB>.</P>
+    <P>
+    The <VERB>num/den</VERB>  transfer function is a L2 approximant of the
+    Fourier's series of the rational system.</P>
+    <P>
+    Various intermediate results are printed according to <VERB>imp</VERB>.</P>
+    <P><VERB>[den,num,err]=arl2(y,den0,n [,imp],'all') </VERB>  returns in the
+    vectors of polynomials <VERB>num</VERB> and <VERB>den</VERB>  a set of local
+    optimums for the problem. The solutions are sorted with increasing
+    errors <VERB>err</VERB>. In this case <VERB>den0</VERB> is already assumed to be 
+    <VERB>poly(1,'z','c')</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+v=ones(1,20);
+xbasc();
+plot2d1('enn',0,[v';zeros(80,1)],2,'051',' ',[1,-0.5,100,1.5])
+
+[d,n,e]=arl2(v,poly(1,'z','c'),1)
+plot2d1('enn',0,ldiv(n,d,100),2,'000')
+[d,n,e]=arl2(v,d,3)
+plot2d1('enn',0,ldiv(n,d,100),3,'000')
+[d,n,e]=arl2(v,d,8)
+plot2d1('enn',0,ldiv(n,d,100),5,'000')
+
+[d,n,e]=arl2(v,poly(1,'z','c'),4,'all')
+plot2d1('enn',0,ldiv(n(1),d(1),100),10,'000')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ldiv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>imrep2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>time_id</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frep2tf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

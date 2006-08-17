@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>p_margin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="p_margin"> phase margin</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[phm,fr]=p_margin(h)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>phm=p_margin(h)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: SISO linear system (<VERB>syslin</VERB> list).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>phm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: phase margin (in degree)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: corresponding frequency (hz)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The phase margin is the values of the phase at points where the
+    nyquist plot of <VERB>h</VERB> crosses the unit circle.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+h=syslin('c',-1+%s,3+2*%s+%s^2)
+[p,fr]=p_margin(h)  
+[p,fr]=p_margin(h+0.7)  
+nyquist(h+0.7)
+t=(0:0.1:2*%pi)';plot2d(sin(t),cos(t),-3,'000')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>chart</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>black</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>g_margin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nyquist</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. S.  </AUTHOR>
+</MAN>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ddp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ddp"> disturbance decoupling</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Closed,F,G]=ddp(Sys,zeroed,B1,D1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sys</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list containing the matrices <VERB>(A,B2,C,D2)</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>zeroed</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector, indices of outputs of <VERB>Sys</VERB> which are zeroed.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>B1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>D1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix. <VERB>B1</VERB> and <VERB>D1</VERB> have the same number of columns.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string <VERB>'ge'</VERB> or <VERB>'st'</VERB> (default) or <VERB>'pp'</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector (loc. of closed loop poles)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>beta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector (loc. of closed loop poles)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Exact disturbance decoupling (output nulling algorithm).
+    Given a linear system, and a subset of outputs, z, which are to
+    be zeroed, characterize the inputs w of Sys such that the 
+    transfer function from w to z is zero.
+    <VERB>Sys</VERB> is a linear system {A,B2,C,D2} with one input and two outputs 
+    ( i.e.  Sys: u--&gt;(z,y) ), part the following system defined from <VERB>Sys</VERB>
+    and <VERB>B1,D1</VERB>:</P>
+    <VERBATIM>
+<![CDATA[
+  xdot =  A x + B1  w + B2  u
+     z = C1 x + D11 w + D12 u
+     y = C2 x + D21 w + D22 u
+   ]]>
+    </VERBATIM>
+    <P>
+    outputs of Sys are partitioned into (z,y) where z is to be zeroed,
+    i.e. the matrices C and D2 are:</P>
+    <VERBATIM>
+<![CDATA[
+     C=[C1;C2]         D2=[D12;D22]
+     C1=C(zeroed,:)    D12=D2(zeroed,:)
+   ]]>
+    </VERBATIM>
+    <P>
+    The matrix <VERB>D1</VERB> is partitioned similarly as <VERB>D1=[D11;D21]</VERB>
+    with <VERB>D11=D1(zeroed,:)</VERB>.
+    The control is u=Fx+Gw and one  looks for matriced <VERB>F,G</VERB> such that the 
+    closed loop system: w--&gt;z given by</P>
+    <VERBATIM>
+<![CDATA[
+  xdot= (A+B2*F)  x + (B1 + B2*G) w
+    z = (C1+D12F) x + (D11+D12*G) w
+   ]]>
+    </VERBATIM>
+    <P>
+    has zero transfer transfer function.</P>
+    <P><VERB>flag='ge'</VERB> : no stability constraints.
+    <VERB>flag='st'</VERB> : look for stable closed loop system (A+B2*F stable).
+    <VERB>flag='pp'</VERB> : eigenvalues of A+B2*F are assigned to <VERB>alfa</VERB> and 
+    <VERB>beta</VERB>.</P>
+    <P>
+    Closed is a realization of the <VERB>w--&gt;y</VERB> closed loop system</P>
+    <VERBATIM>
+<![CDATA[
+  xdot= (A+B2*F)  x + (B1 + B2*G) w
+    y = (C2+D22*F) x + (D21+D22*G) w
+   ]]>
+    </VERBATIM>
+    <P>
+    Stability (resp. pole placement) requires stabilizability 
+    (resp. controllability) of (A,B2).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+rand('seed',0);nx=6;nz=3;nu=2;ny=1;
+A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B2=[1,2;0,3;0,4;0,5;0,0;0,0];
+C1=[zeros(nz,nz),eye(nz,nz)];D12=[0,1;0,2;0,3];
+Sys12=syslin('c',A,B2,C1,D12);
+C=[C1;rand(ny,nx)];D2=[D12;rand(ny,size(D12,2))];
+Sys=syslin('c',A,B2,C,D2);
+[A,B2,C1,D12]=abcd(Sys12);  //The matrices of Sys12.
+alfa=-1;beta=-2;flag='ge';
+[X,dims,F,U,k,Z]=abinv(Sys12,alfa,beta,flag);
+clean(X'*(A+B2*F)*X)
+clean(X'*B2*U)
+clean((C1+D12*F)*X)
+clean(D12*U);
+//Calculating an ad-hoc B1,D1
+G1=rand(size(B2,2),3);
+B1=-B2*G1;
+D11=-D12*G1;
+D1=[D11;rand(ny,size(B1,2))];
+
+[Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',alfa,beta);
+closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
+ss2tf(closed)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>abinv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ui_observer</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>imrep2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="imrep2ss"> state-space realization of an impulse response</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[sl]=imrep2ss(v [,deg])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector coefficients of impulse response, <VERB>v(:,k)</VERB> is the kth sample</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>deg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (order required)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Impulse response to linear system conversion (one input).
+    <VERB>v</VERB> must have an even number of columns.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+H=[1/(s+0.5);2/(s-0.4)]   //strictly proper
+np=20;w=ldiv(H('num'),H('den'),np);
+rep=[w(1:np)';w(np+1:2*np)'];   //The impulse response
+H1=ss2tf(imrep2ss(rep))
+z=poly(0,'z');
+H=(2*z^2-3.4*z+1.5)/(z^2-1.6*z+0.8)     //Proper transfer function
+u=zeros(1,20);u(1)=1;
+rep=rtitr(H('num'),H('den'),u);   //Impulse rep. 
+//   <=> rep=ldiv(H('num'),H('den'),20)
+w=z*imrep2ss(rep)   //Realization with shifted impulse response 
+// i.e strictly proper to proper
+H2=ss2tf(w);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>frep2tf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arl2</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>time_id</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>markp2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ldiv</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

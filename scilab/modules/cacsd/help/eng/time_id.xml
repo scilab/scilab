@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>time_id</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="time_id"> SISO least square identification</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[H [,err]]=time_id(n,u,y)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: order of transfer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: one of the following</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>u1</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: a vector of inputs to the system</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;impuls&quot;  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: if y is an impulse response</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;step&quot;  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: if y is a step response.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of response.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>H</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: rational function with degree n denominator and  degree n-1 numerator if y(1)==0 or rational function with degree n denominator and  numerator if y(1)&lt;&gt;0.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>||y - impuls(H,npt)||^2</VERB>, where <VERB>impuls(H,npt)</VERB> are the <VERB>npt</VERB> first coefficients of impulse response of <VERB>H</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Identification of discrete time response. If <VERB>y</VERB> is strictly
+    proper (<VERB>y(1)=0</VERB>) then <VERB>time_id</VERB> computes the least square
+    solution of the linear equation:  <VERB>Den*y-Num*u=0</VERB> with the
+    constraint  <VERB>coeff(Den,n):=1</VERB>. if <VERB>y(1)~=0</VERB> then the algorithm
+    first computes the proper part solution and then add  y(1) to the solution</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+z=poly(0,'z');
+h=(1-2*z)/(z^2-0.5*z+5)
+rep=[0;ldiv(h('num'),h('den'),20)]; //impulse response
+H=time_id(2,'impuls',rep)
+//  Same example with flts and u
+u=zeros(1,20);u(1)=1;
+rep=flts(u,tf2ss(h));        //impulse response
+H=time_id(2,u,rep)
+//  step response
+u=ones(1,20);
+rep=flts(u,tf2ss(h));     //step response.
+H=time_id(2,'step',rep)
+H=time_id(3,u,rep)    //with u as input and too high order required
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>imrep2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arl2</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frep2tf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Serge Steer INRIA</AUTHOR>
+</MAN>

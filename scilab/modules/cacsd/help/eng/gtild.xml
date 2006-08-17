@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gtild</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gtild"> tilde operation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Gt=gtild(G)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Gt=gtild(G,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: either a polynomial or a linear system (<VERB>syslin</VERB> list) or a rational matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Gt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: same as G</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string: either <VERB>'c'</VERB> or <VERB>'d'</VERB> (optional parameter).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    If <VERB>G</VERB> is a polynomial matrix (or a polynomial), <VERB>Gt=gtild(G,'c')</VERB>
+    returns the polynomial matrix <VERB>Gt(s)=G(-s)'</VERB>.</P>
+    <P>
+    If <VERB>G</VERB> is a polynomial matrix (or a polynomial),  <VERB>Gt=gtild(G,'d')</VERB> 
+    returns the polynomial matrix <VERB>Gt=G(1/z)*z^n</VERB> where n is the maximum
+    degree of <VERB>G</VERB>.</P>
+    <P>
+    For continuous-time systems represented in state-space by a <VERB>syslin</VERB> list,
+    <VERB>Gt = gtild(G,'c')</VERB> returns a state-space representation
+    of <VERB>G(-s)'</VERB> i.e the <VERB>ABCD</VERB> matrices of <VERB>Gt</VERB> are
+    <VERB>A',-C', B', D'</VERB>. If <VERB>G</VERB> is improper (<VERB> D= D(s)</VERB>) 
+    the <VERB>D</VERB> matrix of <VERB>Gt</VERB> is <VERB>D(-s)'</VERB>.</P>
+    <P>
+    For  discrete-time systems represented in state-space by a <VERB>syslin</VERB> list,
+    <VERB>Gt = gtild(G,'d')</VERB> returns a state-space representation
+    of <VERB>G(-1/z)'</VERB> i.e the (possibly improper) state-space 
+    representation of <VERB>-z*C*inv(z*A-B)*C + D(1/z) </VERB>.</P>
+    <P>
+    For rational matrices, <VERB>Gt = gtild(G,'c')</VERB> returns the rational
+    matrix <VERB>Gt(s)=G(-s)</VERB> and <VERB>Gt = gtild(G,'d')</VERB> returns the
+    rational matrix <VERB>Gt(z)= G(1/z)'</VERB>.</P>
+    <P>
+    The parameter <VERB>flag</VERB> is necessary when <VERB>gtild</VERB> is called with
+    a polynomial argument.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Continuous time
+s=poly(0,'s');G=[s,s^3;2+s^3,s^2-5]
+Gt=gtild(G,'c')
+Gt-horner(G,-s)'   //continuous-time interpretation
+Gt=gtild(G,'d');
+Gt-horner(G,1/s)'*s^3  //discrete-time interpretation
+G=ssrand(2,2,3);Gt=gtild(G);   //State-space (G is cont. time by default)
+clean((horner(ss2tf(G),-s))'-ss2tf(Gt))   //Check
+// Discrete-time 
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss('dt')='d'; //discrete-time
+Gss(5)=[1,2;0,1];   //With a constant D matrix
+G=ss2tf(Gss);Gt1=horner(G,1/z)';
+Gt=gtild(Gss);
+Gt2=clean(ss2tf(Gt)); clean(Gt1-Gt2)  //Check
+//Improper systems
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss(7)='d'; //discrete-time
+Gss(5)=[z,z^2;1+z,3];    //D(z) is polynomial 
+G=ss2tf(Gss);Gt1=horner(G,1/z)';  //Calculation in transfer form
+Gt=gtild(Gss);    //..in state-space 
+Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //Check
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>factors</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

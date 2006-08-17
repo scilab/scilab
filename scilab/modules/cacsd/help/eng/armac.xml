@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>armac</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="armac"> Scilab description of an armax process</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ar]=armac(a,b,d,ny,nu,sig)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a=[Id,a1,..,a_r]  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is a matrix of size (ny,r*ny)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b=[b0,.....,b_s]  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is a matrix of size (ny,(s+1)*nu)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>d=[Id,d1,..,d_p]  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is a matrix of size (ny,p*ny);</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ny</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: dimension of the output  y</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nu</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: dimension of the output  u</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sig</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of size (ny,ny)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function creates a description as a tlist of an  ARMAX process</P>
+    <P><VERB>ar</VERB> is defined by</P>
+    <VERBATIM>
+<![CDATA[
+ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
+   ]]>
+    </VERBATIM>
+    <P>
+    and thus the coefficients of <VERB>ar</VERB> can be retrieved by e.g.
+    <VERB> ar('a') </VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=[1,-2.851,2.717,-0.865].*.eye(2,2)
+b=[0,1,1,1].*.[1;1];
+d=[1,0.7,0.2].*.eye(2,2);
+sig=eye(2,2);
+ar=armac(a,b,d,2,1,sig)
+// extract polynomial matrices from ar representation 
+[A,B,D]=arma2p(ar);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>arma</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax1</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arsimul</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arma2p</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tlist</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

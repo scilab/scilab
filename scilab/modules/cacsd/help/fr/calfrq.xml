@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>calfrq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="calfrq"> frequency response discretization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[frq,split]=calfrq(h,[fmin,fmax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: SISO linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fmin,fmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalars (min and max frequencies)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>frq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector (discretization of interval)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>split</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of frq splitting points indexes</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    frequency response discretization ; <VERB>frq</VERB> is the discretization of  
+    <VERB>[fmin,fmax]</VERB> 
+    such that the peaks in the frequency response are well represented.</P>
+    <P>
+    Default values for <VERB>fmin</VERB> and <VERB>fmax</VERB> are
+    <VERB>1.d-3</VERB>, <VERB>1.d+3</VERB> if <VERB>h</VERB> is continuous-time
+    or <VERB>1.d-3</VERB>, <VERB>1/(2*h('dt'))</VERB> if <VERB>h</VERB> is discrete-time.</P>
+    <P>
+    Singularities are located between <VERB>frq(split(k))</VERB> and <VERB>frq(split(k)+1)</VERB>
+    for <VERB>k&gt;1</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225)) 
+[f1,spl]=calfrq(h1,0.01,1000);
+rf=repfreq(h1,f1);
+plot2d(real(rf)',imag(rf)')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>bode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>black</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nyquist</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>freq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>repfreq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>logspace</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

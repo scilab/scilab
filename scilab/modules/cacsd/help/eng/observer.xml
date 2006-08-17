@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>onserver</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="observer"> observer design</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Obs=observer(Sys,J)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Obs,U,m]=observer(Sys [,flag,alfa])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sys</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (linear system)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>J</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: nx x ny constant matrix (output injection matrix)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character strings (<VERB>'pp'</VERB> or <VERB>'st'</VERB> (default))</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: location of closed-loop poles (optional parameter, default=-1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Obs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), the observer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix (see <VERB>dt_ility</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (dimension of unstable unobservable (<VERB>st</VERB>)  or unobservable  (<VERB>pp</VERB>) subspace)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>Obs=observer(Sys,J)</VERB> returns the observer 
+    <VERB>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</VERB> obtained from <VERB>Sys</VERB> 
+    by a <VERB>J</VERB> output injection. (td is the time domain of <VERB>Sys</VERB>).
+    More generally, <VERB>observer</VERB> returns in <VERB>Obs</VERB> an observer for 
+    the observable part of linear system 
+    <VERB>Sys</VERB>: <VERB>dotx=A x + Bu, y=Cx + Du</VERB>  represented by a <VERB>syslin</VERB> list.
+    <VERB>Sys</VERB> has <VERB>nx</VERB> state variables, <VERB>nu</VERB> inputs and <VERB>ny</VERB> outputs.
+    <VERB>Obs</VERB> is a linear system with matrices <VERB>[Ao,Bo,Identity]</VERB>, 
+    where <VERB>Ao</VERB> is <VERB>no x no</VERB>, <VERB>Bo</VERB> is <VERB>no x (nu+ny)</VERB>, <VERB> Co</VERB> is
+    <VERB>no x no</VERB> and <VERB>no=nx-m</VERB>.</P>
+    <P>
+    Input to <VERB>Obs</VERB> is <VERB>[u,y]</VERB> and output of <VERB>Obs</VERB> is:</P>
+    <P>
+    xhat=estimate of x modulo unobservable subsp. (case <VERB>flag='pp'</VERB>)
+    or</P>
+    <P>
+    xhat=estimate of x modulo unstable unobservable subsp. (case <VERB>flag='st'</VERB>)</P>
+    <P>
+    case <VERB>flag='st'</VERB>:
+    z=H*x can be estimated with stable observer iff <VERB>H*U(:,1:m)=0</VERB>
+    and assignable poles of the observer are set to <VERB>alfa(1),alfa(2),...</VERB></P>
+    <P>
+    case <VERB>flag='pp'</VERB>:
+    z=H*x can be estimated with given error spectrum iff <VERB>H*U(:,1:m)=0</VERB> 
+    all poles of the observer are assigned and set to <VERB>alfa(1),alfa(2),...</VERB></P>
+    <P>
+    If H satifies the constraint: <VERB>H*U(:,1:m)=0</VERB>  (ker(H) contains unobs-subsp.
+    of Sys) one has H*U=[0,H2] and the observer for 
+    z=H*x is H2*Obs with H2=H*U(:,m+1:nx) i.e. Co, the C-matrix of the
+    observer for H*x, is Co=H2.</P>
+    <P>
+    In the particular case where the pair <VERB>(A,C)</VERB> of <VERB>Sys</VERB> is 
+    observable, one has <VERB>m=0</VERB> and the linear system <VERB>U*Obs</VERB> (resp.
+    <VERB>H*U*Obs</VERB>) is an observer for <VERB>x</VERB> (resp. <VERB>Hx</VERB>). 
+    The error spectrum is <VERB>alpha(1),alpha(2),...,alpha(nx)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
+//nx=5 states, nu=1 input, ny=1 output, 
+//un=3 unobservable states, us=2 of them unstable.
+[Obs,U,m]=observer(Sys);  //Stable observer (default)
+W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
+Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
+Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])  
+//Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
+//this transfer must equal Sys2, the u-->z transfer  (H2=eye).
+
+//Assume a Kalman model
+//dotx = A x + B u + G w
+// y   = C x + D u + H w + v
+//with Eww' = QN, Evv' = RN, Ewv' = NN
+//To build a Kalman observer:
+//1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;
+//               H*QN*G'+NN*G'   H*QN*H'+RN];
+//the covariance matrix of the noise vector [Gw;Hw+v]
+//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e 
+//with e a unit white noise.
+// [W,Wt]=fullrf(BigR);
+//B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+//C2=C;
+//P21=syslin('c',A,B1,C2,D21);
+//3-Compute the Kalman gain
+//L = lqe(P21);
+//4- Build an observer for the plant [A,B,C,D];
+//Plant = syslin('c',A,B,C,D);
+//Obs = observer(Plant,L);
+//Test example:
+A=-diag(1:4);
+B=ones(4,1);
+C=B'; D= 0; G=2*B; H=-3; QN=2;
+RN=5; NN=0;
+BigR = [G*QN*G'         G*QN*H'+G*NN;
+        H*QN*G'+NN*G'   H*QN*H'+RN];
+[W,Wt]=fullrf(BigR);
+B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+C2=C;
+P21=syslin('c',A,B1,C2,D21);
+L = lqe(P21);
+Plant = syslin('c',A,B,C,D);
+Obs = observer(Plant,L);
+spec(Obs.A)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>dt_ility</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unobs</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stabil</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

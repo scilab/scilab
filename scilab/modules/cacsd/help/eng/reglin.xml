@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>reglin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="reglin"> Linear regression</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[a,b,sig]=reglin(x,y)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    solve the regression problem y=a*x+ b in the least square sense. 
+    <VERB>sig</VERB> is the standard deviation of the residual. <VERB>x</VERB> and <VERB>y</VERB>
+    are two matrices of size <VERB>x(p,n)</VERB> and <VERB>y(q,n)</VERB>, where  <VERB>n</VERB>
+    is the number of samples.</P>
+    <P>
+    The estimator <VERB>a</VERB> is a matrix of size <VERB>(q,p)</VERB> and <VERB>b</VERB> is a
+    vector of size <VERB>(q,1)</VERB></P>
+    <VERBATIM>
+<![CDATA[
+// simulation of data for a(3,5) and b(3,1)
+x=rand(5,100);
+aa=testmatrix('magi',5);aa=aa(1:3,:);
+bb=[9;10;11]
+y=aa*x +bb*ones(1,100)+ 0.1*rand(3,100);
+// identification 
+[a,b,sig]=reglin(x,y);
+maxi(abs(aa-a))
+maxi(abs(bb-b))
+// an other example : fitting a polynom 
+f=1:100; x=[f.*f; f];
+y= [ 2,3]*x+ 10*ones(f) + 0.1*rand(f);
+[a,b]=reglin(x,y)
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pinv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>leastsq</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

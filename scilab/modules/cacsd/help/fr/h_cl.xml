@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>h_cl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="h_cl"> closed loop matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Acl]=h_cl(P,r,K)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Acl]=h_cl(P22,K)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P, P22</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), augmented plant or nominal plant respectively</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimensions of 2,2 part of <VERB>P</VERB> (<VERB>r=[rows,cols]=size(P22)</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list), controller</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Acl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given the standard plant <VERB>P</VERB> (with <VERB>r=size(P22)</VERB>) and the controller
+    <VERB>K</VERB>, this function returns the closed loop matrix <VERB>Acl</VERB>.</P>
+    <P>
+    The poles of <VERB>Acl</VERB> must be stable for the internal stability 
+    of the closed loop system.</P>
+    <P><VERB>Acl</VERB> is the <VERB>A</VERB>-matrix of the linear system <VERB>[I -P22;-K I]^-1</VERB> i.e.
+    the <VERB>A</VERB>-matrix of <VERB>lft(P,r,K)</VERB></P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lft</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

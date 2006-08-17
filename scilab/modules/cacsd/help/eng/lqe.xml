@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lqe</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lqe"> linear quadratic estimator (Kalman Filter)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[K,X]=lqe(P21)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P21</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K, X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>lqe</VERB> returns the Kalman gain for the filtering
+    problem in continuous or discrete time.</P>
+    <P><VERB>P21</VERB> is a <VERB>syslin</VERB> list representing the system <VERB>P21=[A,B1,C2,D21] P21=syslin('c',A,B1,C2,D21) or P21=syslin('d',A,B1,C2,D21)</VERB></P>
+    <P>
+    The input to <VERB>P21</VERB> is a white noise with variance:</P>
+    <VERBATIM>
+<![CDATA[
+     [B1 ]               [Q  S]
+BigV=[   ] [ B1' D21'] = [    ]
+     [D21]               [S' R]
+   ]]>
+    </VERBATIM>
+    <P><VERB>X</VERB> is the solution of the stabilizing Riccati 
+    equation and <VERB>A+K*C2</VERB> is stable.</P>
+    <P>
+    In continuous time:</P>
+    <VERBATIM>
+<![CDATA[
+(A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'=0
+   ]]>
+    </VERBATIM>
+    <VERBATIM>
+<![CDATA[
+K=-(X*C2'+S)*inv(R)
+   ]]>
+    </VERBATIM>
+    <P>
+    In discrete time:</P>
+    <VERBATIM>
+<![CDATA[
+X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
+   ]]>
+    </VERBATIM>
+    <P>
+      <VERB>K=-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')</VERB>
+    </P>
+    <P><VERB>xhat(t+1)= E(x(t+1)| y(0),...,y(t))</VERB> (one-step predicted <VERB>x</VERB>)
+    satisfies the recursion:</P>
+    <VERBATIM>
+<![CDATA[
+xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Assume the equations
+//.
+//x = Ax + Ge
+//y = Cx + v
+//with
+//E ee' = Q_e,    Evv' = R,    Eev' = N 
+//
+//This is equivalent to
+//.
+//x = Ax  + B1 w
+//y = C2x + D21 w
+//with E { [Ge ]  [Ge v]' } = E { [B1w ] [B1w D21w]' } = bigR =
+//         [ v ]                  [D21w]    
+//
+//[B1*B1'  B1*D21';
+// D21*B1'  D21*D21']  
+//=
+//[G*Q_e*G' G*N;
+// N*G' R]
+
+//To find (B1,D21) given (G,Q_e,R,N) form bigR =[G*Q_e*G' G*N;N'*G' R].
+//Then [W,Wt]=fullrf(bigR);  B1=W(1:size(G,1),:);
+//D21=W(($+1-size(C2,1)):$,:)
+//
+//P21=syslin('c',A,B1,C2,D21);
+//[K,X]=lqe(P21);
+
+//Example:
+nx=5;ne=2;ny=3;
+A=-diag(1:nx);G=ones(nx,ne);
+C=ones(ny,nx); Q_e(ne,ne)=1; R=diag(1:ny); N=zeros(ne,ny);
+bigR =[G*Q_e*G' G*N;N'*G' R];
+[W,Wt]=fullrf(bigR);B1=W(1:size(G,1),:);
+D21=W(($+1-size(C,1)):$,:);
+C2=C;
+P21=syslin('c',A,B1,C2,D21);
+[K,X]=lqe(P21);
+//Riccati check:
+S=G*N;Q=B1*B1';
+(A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'
+
+//Stability check:
+spec(A+K*C)
+ ]]>
+  </EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lqr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>observer</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.   </AUTHOR>
+</MAN>

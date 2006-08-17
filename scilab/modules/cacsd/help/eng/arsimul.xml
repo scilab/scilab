@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>arsimul</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="arsimul"> armax simulation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[z]=arsimul(a,b,d,sig,u,[up,yp,ep])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[z]=arsimul(ar,u,[up,yp,ep])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>ar</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an armax process. See armac.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the matrix  <VERB>[Id,a1,...,a_r]</VERB>     of dimension (n,(r+1)*n)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the matrix <VERB>[b0,......,b_s]</VERB>      of dimension (n,(s+1)*m)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>d</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the matrix <VERB>[Id,d_1,......,d_t]</VERB>  of dimension (n,(t+1)*n)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is a matrix  (m,N), which gives the entry u(:,j)=u_j</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sig</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is a  (n,n) matrix  e_{k} is an n-dimensional Gaussian process with variance I</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>up, yp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optional parameter which describe the past.  <VERB>up=[ u_0,u_{-1},...,u_{s-1}]</VERB>; 
+          <VERB>yp=[ y_0,y_{-1},...,y_{r-1}];</VERB>   <VERB>ep=[ e_0,e_{-1},...,e_{r-1}]</VERB>; 
+          if they are omitted, the past value are supposed to be zero</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>z=[y(1),....,y(N)]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    simulation of an n-dimensional armax process 
+    <VERB>A(z^-1) z(k)= B(z^-1)u(k) + D(z^-1)*sig*e(k)</VERB>
+    </P>
+    <VERBATIM>
+       A(z)= Id+a1*z+...+a_r*z^r;  ( r=0  =&gt; A(z)=Id)
+       B(z)= b0+b1*z+...+b_s z^s;  ( s=-1 =&gt; B(z)=[])
+       D(z)= Id+d1*z+...+d_t z^t;  ( t=0  =&gt; D(z)=Id)
+    </VERBATIM>
+    <P>
+    z et e are in  <VERB>R^n</VERB> et u in <VERB>R^m</VERB></P>
+  </DESCRIPTION>
+  <SECTION label="Method">
+    <P>
+    a state-space representation is constructed and ode with the option  &quot;discr&quot; is used to compute z</P>
+  </SECTION>
+  <AUTHOR>J-Ph.C.</AUTHOR>
+</MAN>

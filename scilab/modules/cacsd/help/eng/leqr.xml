@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lqr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="leqr"> H-infinity LQ gain (full state)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[K,X,err]=leqr(P12,Vx)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P12</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Vx</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: symmetric nonnegative matrix (should be small enough)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K,X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real number (l1 norm of LHS of Riccati equation)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>leqr</VERB>  computes the linear suboptimal H-infinity LQ full-state gain
+    for the plant <VERB>P12=[A,B2,C1,D12]</VERB> in continuous or discrete time.</P>
+    <P><VERB>P12</VERB> is a <VERB>syslin</VERB> list (e.g. <VERB>P12=syslin('c',A,B2,C1,D12)</VERB>).</P>
+    <VERBATIM>
+<![CDATA[
+      [C1' ]               [Q  S]
+      [    ]  * [C1 D12] = [    ]
+      [D12']               [S' R]
+   ]]>
+    </VERBATIM>
+    <P><VERB>Vx</VERB> is related to the variance matrix of the noise <VERB>w</VERB> perturbing <VERB>x</VERB>;
+    (usually <VERB>Vx=gama^-2*B1*B1'</VERB>).</P>
+    <P>
+    The gain <VERB>K</VERB> is such that <VERB>A + B2*K</VERB> is stable.</P>
+    <P><VERB>X</VERB> is the stabilizing solution of the Riccati equation.</P>
+    <P>
+    For a continuous plant:</P>
+    <VERBATIM>
+<![CDATA[
+(A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*(B2*inv(R)*B2'-Vx)*X+Q-S*inv(R)*S'=0
+   ]]>
+    </VERBATIM>
+    <VERBATIM>
+<![CDATA[
+K=-inv(R)*(B2'*X+S)
+   ]]>
+    </VERBATIM>
+    <P>
+    For a discrete time plant:</P>
+    <VERBATIM>
+<![CDATA[
+X-(Abar'*inv((inv(X)+B2*inv(R)*B2'-Vx))*Abar+Qbar=0
+   ]]>
+    </VERBATIM>
+    <VERBATIM>
+<![CDATA[
+K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
+   ]]>
+    </VERBATIM>
+    <P>
+    with <VERB>Abar=A-B2*inv(R)*S'</VERB> and <VERB>Qbar=Q-S*inv(R)*S'</VERB></P>
+    <P>
+    The 3-blocks matrix pencils associated with these Riccati equations are:</P>
+    <VERBATIM>
+<![CDATA[
+               discrete                        continuous
+   |I  -Vx  0|   | A    0    B2|       |I   0   0|   | A    Vx    B2|
+  z|0   A'  0| - |-Q    I    -S|      s|0   I   0| - |-Q   -A'   -S |
+   |0   B2' 0|   | S'   0     R|       |0   0   0|   | S'   -B2'   R|
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lqr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.;   </AUTHOR>
+</MAN>

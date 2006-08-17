@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>CONTR</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="contr"> controllability, controllable subspace, staircase</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>n=contr(A,B [,tol])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[n,U]=contr(A,B [,tol])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A, B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tolerance parameter</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  dimension of controllable subspace.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal change of basis which puts <VERB>(A,B)</VERB> in canonical form.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>V</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix, change of basis in the control space.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: block Hessenberg matrix <VERB>Ac=U'*A*V</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Bc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is <VERB>U'*B*V</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ind</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: p integer vector associated with controllability indices  (dimensions of subspaces <VERB>B, B+A*B,...=ind(1),ind(1)+ind(2),...</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[n,[U]]=contr(A,B,[tol])</VERB> gives the controllable form of an <VERB>(A,B)</VERB> 
+    pair.(<VERB>dx/dt = A x + B u</VERB> or <VERB>x(n+1) = A x(n) +b u(n)</VERB>).
+    The <VERB>n</VERB> first columns of <VERB>U</VERB> make a basis for the controllable
+    subspace.</P>
+    <P>
+    If <VERB>V=U(:,1:n)</VERB>, then <VERB>V'*A*V</VERB> and  <VERB>V'*B</VERB> give the controllable part
+    of the <VERB>(A,B)</VERB> pair.</P>
+    <P>
+    The pair <VERB>(Bc, Ac)</VERB> is in staircase controllable form.</P>
+    <VERBATIM>
+<![CDATA[
+                        |B |sI-A      *  . . .  *      *       |
+                        | 1|    11       .      .      .       |
+                        |  |  A    sI-A    .    .      .       |
+                        |  |   21      22    .  .      .       |
+                        |  |        .     .     *      *       |
+     [U'BV|sI - U'AU] = |0 |     0    .     .                  |
+                        |  |            A     sI-A     *       |
+                        |  |             p,p-1    pp           |
+                        |  |                                   |
+                        |0 |         0          0   sI-A       |
+                        |  |                            p+1,p+1|
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SECTION label="Reference">
+    <P>
+    Slicot library (see ab01od in SCIDIR/routines/slicot).</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
+A=W("A");B=W("B");
+[n,U]=contr(A,B);n
+A1=U'*A*U;
+spec(A1(n+1:$,n+1:$))  //uncontrollable modes
+spec(A+B*rand(3,5))    
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>canon</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cont_mat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unobs</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stabil</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>st_ility</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>frep2tf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="frep2tf"> transfer function realization from frequency response</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>frq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of frequencies in Hz.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>repf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of frequency response</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dg</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: degree of linear system</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dom</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: time domain (<VERB>'c'</VERB> or <VERB>'d'</VERB> or <VERB>dt</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tols</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of size 3 giving the relative and absolute tolerance  and the maximum number of iterations (default values are <VERB>rtol=1.e-2; atol=1.e-4, N=10</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>weight</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of weights on frequencies</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: SISO transfer function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: error (for example if <VERB>dom='c'</VERB> <VERB>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Frequency response to  transfer function conversion. The order of <VERB>h</VERB>
+    is a priori given in <VERB>dg</VERB> which must be provided.
+    The following linear system is solved in the least square sense.</P>
+    <VERBATIM>
+<![CDATA[
+ weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB>phi_k= 2*%i*%pi*frq</VERB> when <VERB>dom='c'</VERB> and <VERB>phi_k=exp(2*%i*%pi*dom*frq</VERB> if not. If the <VERB>weight</VERB> vector is not given a default 
+    penalization is used (when <VERB>dom='c'</VERB>).</P>
+    <P>
+    A stable and minimum phase system can be obtained by using function <VERB>factors</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+h=syslin('c',(s-1)/(s^3+5*s+20))
+frq=0:0.05:3;repf=repfreq(h,frq);
+clean(frep2tf(frq,repf,3))
+
+Sys=ssrand(1,1,10); 
+frq=logspace(-3,2,200);
+[frq,rep]=repfreq(Sys,frq);  //Frequency response of Sys
+[Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sys2 obtained from freq. resp of Sys
+[frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
+xbasc();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
+[sort(spec(Sys('A'))),sort(roots(Sys2('den')))] //poles
+
+dom=1/1000; // Sampling time 
+z=poly(0,'z');
+h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
+[Sys2,err]=frep2tf(frq,repf,3,dom);
+[frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
+xbasc();plot2d1("onn",frq',abs([repf;rep2])');
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>imrep2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arl2</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>time_id</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frfit</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

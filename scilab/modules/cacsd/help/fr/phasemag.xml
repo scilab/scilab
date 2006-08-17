@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>phasemag</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="phasemag">phase and magnitude
+  computation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[phi,db]=phasemag(z [,mod])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>z</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: matrix or row vector of complex numbers.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>mod</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>mod='c'</PARAM_NAME>
+
+              <PARAM_DESCRIPTION>
+                <SP>: "continuous" representation between -infinity and +360
+                degrees (default)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+
+            <PARAM_ITEM>
+              <PARAM_NAME>mod='m'</PARAM_NAME>
+
+              <PARAM_DESCRIPTION>
+                <SP>: representation between -360 and 0 degrees</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>phi</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: phases (in degree) of <VERB>z</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>db</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: magnitude (in Db)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>phasemag</VERB> computes the phases and magnitudes of the entries
+    of a complex matrix. For <VERB>mod='c'</VERB><VERB>phasemag</VERB>
+    computes <VERB>phi(:,i+1)</VERB> to minimize the distance with
+    <VERB>phi(:,i)</VERB>, i.e. it tries to obtain a "continuous
+    representation" of the phase.</P>
+
+    <P>To obtain the phase between -%pi and %pi use
+    <VERB>phi=atan(imag(z),real(z))</VERB></P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+s=poly(0,'s');
+h=syslin('c',1/((s+5)*(s+10)*(100+6*s+s*s)*(s+.3)));
+[frq,rf]=repfreq(h,0.1,20,0.005);
+scf();
+plot2d(frq',phasemag(rf,'c')');
+scf();
+plot2d(frq',phasemag(rf,'m')');
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>repfreq</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gainplot</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>atan</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>bode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

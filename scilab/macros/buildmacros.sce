@@ -5,17 +5,15 @@ CurrentDirectory=pwd();
  Directories=["util",
  "percent",
  "algebre",
- "arma",
- "auto",
  "elem",
  "int",
- "robust",
  "sci2for",
  "statistics",
  "tdcs",
  "gui",
   ];
   
+ Directories=[Directories;"SCI/modules/cacsd/macros"];    
  Directories=[Directories;"SCI/modules/signal_processing/macros"];  
  Directories=[Directories;"SCI/modules/sparse/macros"];
  Directories=[Directories;"SCI/modules/polynomials/macros"];      

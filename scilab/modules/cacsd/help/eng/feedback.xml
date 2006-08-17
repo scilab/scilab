@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>abcd</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="feedback"> feedback operation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Sl=Sl1/.Sl2</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl1,Sl2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear systems (<VERB>syslin</VERB> list) in state-space or transfer form, or ordinary gain matrices.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system (<VERB>syslin</VERB> list) in state-space or transfer form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The feedback operation is denoted by <VERB> /. </VERB> (slashdot).
+    This command returns <VERB>Sl=Sl1*(I+Sl2*Sl1)^-1</VERB>, i.e the (negative) 
+    feedback of <VERB>Sl1</VERB> and <VERB>Sl2</VERB>. <VERB>Sl</VERB> is the transfer
+    <VERB> v -&gt; y</VERB> for <VERB> y = Sl1 u</VERB>, <VERB>u = v - Sl2 y</VERB>.</P>
+    <P>
+    The result is the same as <VERB>Sl=LFT([0,I;I,-Sl2],Sl1)</VERB>.</P>
+    <P>
+    Caution: do not use with decimal point (e.g. <VERB>1/.1</VERB> is ambiguous!)</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+S1=ssrand(2,2,3);S2=ssrand(2,2,2);
+W=S1/.S2;
+ss2tf(S1/.S2)
+//Same operation by LFT:
+ss2tf(lft([zeros(2,2),eye(2,2);eye(2,2),-S2],S1))
+//Other approach: with constant feedback
+BigS=sysdiag(S1,S2); F=[zeros(2,2),eye(2,2);-eye(2,2),zeros(2,2)];
+Bigclosed=BigS/.F;
+W1=Bigclosed(1:2,1:2);   //W1=W (in state-space).
+ss2tf(W1)
+//Inverting
+ss2tf(S1*inv(eye()+S2*S1))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lft</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sysdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>augment</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>obscont</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

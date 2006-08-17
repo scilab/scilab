@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lqg2stan</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lqg2stan"> LQG to standard problem</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,r]=lqg2stan(P22,bigQ,bigR)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P22</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (nominal plant) in state-space form</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>bigQ</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>[Q,S;S',N]</VERB> (symmetric) weighting matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>bigR</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>[R,T;T',V]</VERB> (symmetric) covariance matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>1</VERB>x<VERB>2</VERB> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <VERB>P</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (augmented plant)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>lqg2stan</VERB>  returns the augmented plant for linear LQG (H2) controller 
+    design.</P>
+    <P><VERB>P22=syslin(dom,A,B2,C2)</VERB> is the nominal plant; it can be in continuous 
+    time (<VERB>dom='c'</VERB>) or discrete time (<VERB>dom='d'</VERB>).</P>
+    <VERBATIM>
+<![CDATA[
+  . 
+  x = Ax + w1 + B2u
+  y = C2x + w2
+   ]]>
+    </VERBATIM>
+    <P>
+    for continuous time plant.</P>
+    <VERBATIM>
+<![CDATA[
+  x[n+1]= Ax[n] + w1 + B2u
+      y = C2x + w2
+   ]]>
+    </VERBATIM>
+    <P>
+    for discrete time plant.</P>
+    <P>
+    The (instantaneous) cost function is <VERB>[x' u'] bigQ [x;u]</VERB>.</P>
+    <P>
+    The covariance of <VERB>[w1;w2]</VERB> is <VERB>E[w1;w2] [w1',w2'] = bigR</VERB></P>
+    <P>
+    If <VERB>[B1;D21]</VERB> is a factor of <VERB>bigQ</VERB>, <VERB>[C1,D12]</VERB>
+    is a factor of <VERB>bigR</VERB> and <VERB>[A,B2,C2,D22]</VERB> is
+    a realization of P22, then <VERB>P</VERB> is a realization of
+    <VERB>[A,[B1,B2],[C1,-C2],[0,D12;D21,D22]</VERB>.
+    The (negative) feedback computed by <VERB>lqg</VERB> stabilizes <VERB>P22</VERB>,
+    i.e. the poles of <VERB>cl=P22/.K</VERB> are stable.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+[P,r]=lqg2stan(P22,bigQ,bigR);K=lqg(P,r);  //K=LQG-controller
+spec(h_cl(P,r,K))      //Closed loop should be stable
+//Same as Cl=P22/.K; spec(Cl('A'))
+s=poly(0,'s')
+lqg2stan(1/(s+2),eye(2,2),eye(2,2))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lqg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqe</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>obscont</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>h_inf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>augment</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fstabst</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>feedback</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

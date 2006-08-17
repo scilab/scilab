@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>abinv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="abinv">  AB invariant subspace</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X,dims,F,U,k,Z]=abinv(Sys,alfa,beta,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sys</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list containing the matrices <VERB>[A,B,C,D]</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) real number or vector (possibly complex, location of closed loop poles)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>beta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) real number or vector (possibly complex, location of closed loop poles)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) character string <VERB>'ge'</VERB> (default) or <VERB>'st'</VERB> or <VERB>'pp'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix of size nx (dim of state space).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dims</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer row vector <VERB>dims=[dimR,dimVg,dimV,noc,nos]</VERB> with <VERB>dimR&lt;=dimVg&lt;=dimV&lt;=noc&lt;=nos</VERB>. If <VERB>flag='st'</VERB>, (resp. <VERB>'pp'</VERB>), <VERB>dims</VERB> has 4 (resp. 3) components.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix (state feedback)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (normal rank of <VERB>Sys</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: non-singular linear system (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Output nulling subspace (maximal unobservable subspace) for
+    <VERB>Sys</VERB> = linear system defined by a syslin list containing
+    the matrices [A,B,C,D] of <VERB>Sys</VERB>.
+    The vector <VERB>dims=[dimR,dimVg,dimV,noc,nos]</VERB> gives the dimensions
+    of subspaces defined as columns of <VERB>X</VERB> according to partition given
+    below.
+    The <VERB>dimV</VERB> first columns of <VERB>X</VERB> i.e <VERB>V=X(:,1:dimV)</VERB>, 
+    span the AB-invariant subspace of <VERB>Sys</VERB> i.e the unobservable subspace of 
+    <VERB>(A+B*F,C+D*F)</VERB>. (<VERB>dimV=nx</VERB>  iff C^(-1)(D)=X).</P>
+    <P>
+    The <VERB>dimR</VERB> first columns of <VERB>X</VERB> i.e. <VERB>R=X(:,1:dimR)</VERB> spans  
+    the controllable part of <VERB>Sys</VERB> in <VERB>V</VERB>, <VERB>(dimR&lt;=dimV)</VERB>. (<VERB>dimR=0</VERB>
+    for a left invertible system). <VERB>R</VERB> is the maximal controllability
+    subspace of <VERB>Sys</VERB> in <VERB>kernel(C)</VERB>.</P>
+    <P>
+    The <VERB>dimVg</VERB> first columns of <VERB>X</VERB> spans 
+    <VERB>Vg</VERB>=maximal AB-stabilizable subspace of <VERB>Sys</VERB>. <VERB>(dimR&lt;=dimVg&lt;=dimV)</VERB>.</P>
+    <P><VERB>F</VERB> is a decoupling feedback: for <VERB>X=[V,X2] (X2=X(:,dimV+1:nx))</VERB> one has 
+    <VERB>X2'*(A+B*F)*V=0 and (C+D*F)*V=0</VERB>.</P>
+    <P>
+    The zeros od <VERB>Sys</VERB> are given by : <VERB>X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)</VERB>
+    i.e. there are <VERB>dimV-dimR</VERB> closed-loop fixed modes.</P>
+    <P>
+    If the optional parameter <VERB>alfa</VERB> is given as input, 
+    the <VERB>dimR</VERB> controllable modes of <VERB>(A+BF)</VERB> in <VERB>V</VERB> 
+    are set to <VERB>alfa</VERB> (or to <VERB>[alfa(1), alfa(2), ...]</VERB>.
+    (<VERB>alfa</VERB> can be a vector (real or complex pairs) or a (real) number).
+    Default value <VERB>alfa=-1</VERB>.</P>
+    <P>
+    If the optional real parameter <VERB>beta</VERB> is given as input, 
+    the <VERB>noc-dimV</VERB> controllable modes of <VERB>(A+BF)</VERB> &quot;outside&quot; <VERB>V</VERB> 
+    are set to <VERB>beta</VERB> (or <VERB>[beta(1),beta(2),...]</VERB>). Default value <VERB>beta=-1</VERB>.</P>
+    <P>
+    In the <VERB>X,U</VERB> bases, the matrices 
+    <VERB>[X'*(A+B*F)*X,X'*B*U;(C+D*F)*X,D*U]</VERB> 
+    are displayed as follows:</P>
+    <VERBATIM>
+<![CDATA[
+
+[A11,*,*,*,*,*]  [B11 * ]
+[0,A22,*,*,*,*]  [0   * ]
+[0,0,A33,*,*,*]  [0   * ]
+[0,0,0,A44,*,*]  [0  B42]
+[0,0,0,0,A55,*]  [0   0 ]
+[0,0,0,0,0,A66]  [0   0 ]
+
+[0,0,0,*,*,*]    [0  D2]
+   ]]>
+    </VERBATIM>
+    <P>
+    where the X-partitioning is defined by <VERB>dims</VERB> and 
+    the U-partitioning is defined by <VERB>k</VERB>.</P>
+    <P><VERB>A11</VERB> is <VERB>(dimR x dimR)</VERB> and has its eigenvalues set to <VERB>alfa(i)'s</VERB>.
+    The pair <VERB>(A11,B11)</VERB> is controllable and <VERB>B11</VERB> has <VERB>nu-k</VERB> columns. 
+    <VERB>A22</VERB> is a stable <VERB>(dimVg-dimR x dimVg-dimR)</VERB> matrix.
+    <VERB>A33</VERB> is an unstable <VERB>(dimV-dimVg x dimV-dimVg)</VERB> matrix (see <VERB>st_ility</VERB>).</P>
+    <P><VERB>A44</VERB> is <VERB>(noc-dimV x noc-dimV)</VERB> and has its eigenvalues set to <VERB>beta(i)'s</VERB>.
+    The pair <VERB>(A44,B42)</VERB> is controllable. 
+    <VERB>A55</VERB> is a stable <VERB>(nos-noc x nos-noc)</VERB> matrix.
+    <VERB>A66</VERB> is an unstable <VERB>(nx-nos x nx-nos)</VERB> matrix (see <VERB>st_ility</VERB>).</P>
+    <P><VERB>Z</VERB> is a column compression of <VERB>Sys</VERB> and <VERB>k</VERB> is
+    the normal rank of <VERB>Sys</VERB> i.e <VERB>Sys*Z</VERB> is a column-compressed linear
+    system. <VERB>k</VERB> is the column dimensions of <VERB>B42,B52,B62</VERB> and <VERB>D2</VERB>.
+    <VERB>[B42;B52;B62;D2]</VERB> is full column rank and has rank <VERB>k</VERB>.</P>
+    <P>
+    If <VERB>flag='st'</VERB> is given, a five blocks partition of the matrices is 
+    returned and <VERB>dims</VERB> has four components. If <VERB>flag='pp'</VERB> is 
+    given a four blocks partition is returned. In case <VERB>flag='ge'</VERB> one has
+    <VERB>dims=[dimR,dimVg,dimV,dimV+nc2,dimV+ns2]</VERB> where <VERB>nc2</VERB> 
+    (resp. <VERB>ns2</VERB>) is the dimension of the controllable (resp. 
+    stabilizable) pair <VERB>(A44,B42)</VERB> (resp. (<VERB>[A44,*;0,A55],[B42;0])</VERB>).
+    In case <VERB>flag='st'</VERB> one has <VERB>dims=[dimR,dimVg,dimVg+nc,dimVg+ns]</VERB>
+    and in case <VERB>flag='pp'</VERB> one has <VERB>dims=[dimR,dimR+nc,dimR+ns]</VERB>.
+    <VERB>nc</VERB> (resp. <VERB>ns</VERB>) is here the dimension of the controllable
+    (resp. stabilizable) subspace of the blocks 3 to 6 (resp. 2 to 6).</P>
+    <P>
+    This function can be used for the (exact) disturbance decoupling problem.</P>
+    <VERBATIM>
+<![CDATA[
+DDPS:
+   Find u=Fx+Rd=[F,R]*[x;d] which rejects Q*d and stabilizes the plant:
+
+    xdot = Ax+Bu+Qd
+       y = Cx+Du+Td
+
+DDPS has a solution if Im(Q) is included in Vg + Im(B) and stabilizability
+assumption is satisfied. 
+Let G=(X(:,dimVg+1:$))'= left annihilator of Vg i.e. G*Vg=0;
+B2=G*B; Q2=G*Q; DDPS solvable iff [B2;D]*R + [Q2;T] =0 has a solution.
+The pair F,R  is the solution  (with F=output of abinv).
+Im(Q2) is in Im(B2) means row-compression of B2=>row-compression of Q2
+Then C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+nu=3;ny=4;nx=7;
+nrt=2;ngt=3;ng0=3;nvt=5;rk=2;
+flag=list('on',nrt,ngt,ng0,nvt,rk);
+Sys=ssrand(ny,nu,nx,flag);alfa=-1;beta=-2;
+[X,dims,F,U,k,Z]=abinv(Sys,alfa,beta);
+[A,B,C,D]=abcd(Sys);dimV=dims(3);dimR=dims(1);
+V=X(:,1:dimV);X2=X(:,dimV+1:nx);
+X2'*(A+B*F)*V
+(C+D*F)*V
+X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)
+trzeros(Sys)
+spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
+clean(ss2tf(Sys*Z))
+// 2nd Example
+nx=6;ny=3;nu=2;
+A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];
+C=[zeros(ny,ny),eye(ny,ny)];D=[0,1;0,2;0,3];
+sl=syslin('c',A,B,C,D);//sl=ss2ss(sl,rand(6,6))*rand(2,2);
+[A,B,C,D]=abcd(sl);  //The matrices of sl.
+alfa=-1;beta=-2;
+[X,dims,F,U,k,Z]=abinv(sl,alfa,beta);dimVg=dims(2);
+clean(X'*(A+B*F)*X)
+clean(X'*B*U)
+clean((C+D*F)*X)
+clean(D*U)
+G=(X(:,dimVg+1:$))';
+B2=G*B;nd=3;
+R=rand(nu,nd);Q2T=-[B2;D]*R;
+p=size(G,1);Q2=Q2T(1:p,:);T=Q2T(p+1:$,:);
+Q=G\Q2;   //a valid [Q;T] since 
+[G*B;D]*R + [G*Q;T]  // is zero
+closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
+ss2tf(closed)       // Closed loop is zero
+spec(closed('A'))   //The plant is not stabilizable!
+[ns,nc,W,sl1]=st_ility(sl);
+[A,B,C,D]=abcd(sl1);A=A(1:ns,1:ns);B=B(1:ns,:);C=C(:,1:ns);
+slnew=syslin('c',A,B,C,D);  //Now stabilizable
+//Fnew=stabil(slnew('A'),slnew('B'),-11);
+//slnew('A')=slnew('A')+slnew('B')*Fnew;
+//slnew('C')=slnew('C')+slnew('D')*Fnew;
+[X,dims,F,U,k,Z]=abinv(slnew,alfa,beta);dimVg=dims(2);
+[A,B,C,D]=abcd(slnew);
+G=(X(:,dimVg+1:$))';
+B2=G*B;nd=3;
+R=rand(nu,nd);Q2T=-[B2;D]*R;
+p=size(G,1);Q2=Q2T(1:p,:);T=Q2T(p+1:$,:);
+Q=G\Q2;   //a valid [Q;T] since 
+[G*B;D]*R + [G*Q;T]  // is zero
+closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
+ss2tf(closed)       // Closed loop is zero
+spec(closed('A'))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cainv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>st_ility</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ssrand</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ddp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

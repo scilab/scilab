@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fstabst</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fstabst"> Youla's parametrization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[J]=fstabst(P,r)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (linear system)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1x2 row vector, dimension of <VERB>P22</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>J</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list (linear system in state-space representation)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Parameterization of all stabilizing feedbacks.</P>
+    <P><VERB>P</VERB> is partitioned as follows:</P>
+    <VERBATIM>
+<![CDATA[
+P=[ P11 P12;
+    P21 P22]  
+   ]]>
+    </VERBATIM>
+    <P>
+    (in state-space or transfer form: automatic conversion in state-space is
+    done for the computations)</P>
+    <P><VERB>r</VERB> = size of  <VERB>P22</VERB> subsystem, (2,2) block of <VERB>P</VERB></P>
+    <VERBATIM>
+<![CDATA[
+          J =[ J11 J12;
+               J21 J22]
+   ]]>
+    </VERBATIM>
+    <P><VERB>K</VERB> is a stabilizing controller for <VERB>P</VERB> (i.e. <VERB>P22</VERB>) iff 
+    <VERB>K=lft(J,r,Q)</VERB> with <VERB>Q</VERB> stable.</P>
+    <P>
+    The central part of <VERB>J</VERB> , <VERB>J11</VERB> is the lqg regulator for <VERB>P</VERB></P>
+    <P>
+    This <VERB>J</VERB> is such that defining <VERB>T</VERB> as the 2-port <VERB>lft</VERB> of <VERB>P</VERB>
+    and <VERB>J</VERB> : <VERB>[T,rt]=lft(P,r,J,r)</VERB> one has that <VERB>T12</VERB> is inner
+    and <VERB>T21</VERB> is co-inner.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+[P,r]=lqg2stan(P22,bigQ,bigR);
+J=fstabst(P,r);
+Q=ssrand(nu,ny,1);Q('A')=-1;  //Stable Q
+K=lft(J,r,Q);
+A=h_cl(P,r,K); spec(A)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>obscont</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lft</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lqg2stan</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

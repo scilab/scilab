@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lqgltr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lqg_ltr"> LQG with loop transform recovery</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[kf,kc]=lqg_ltr(sl,mu,ro)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: linear system in state-space form (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mu,ro</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real positive numbers chosen ``small enough''</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>kf,kc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: controller and observer Kalman gains.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns the Kalman gains for:</P>
+    <VERBATIM>
+<![CDATA[
+           x = a*x + b*u + l*w1   
+  (sl)
+           y = c*x + mu*I*w2
+
+           z = h*x
+   ]]>
+    </VERBATIM>
+    <P>
+    Cost function:</P>
+    <VERBATIM>
+      /+oo
+                   |
+          J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
+           lqg     |
+                   / 0
+    </VERBATIM>
+    <P>
+    The lqg/ltr approach looks for <VERB>L,mu,H,ro</VERB> such that:
+    J(lqg) = J(freq) where</P>
+    <VERBATIM>
+
+                  /+oo        *  *           *
+          J    =  | tr[S  W  W  S ] + tr[T  T]dw
+           freq   |
+                  /0
+    </VERBATIM>
+    <P>
+    and</P>
+    <VERBATIM>
+<![CDATA[
+ S = (I + G*K)^(-1)  
+ T = G*K*(I+G*K)^(-1)
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

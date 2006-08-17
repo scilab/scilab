@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>markp2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="markp2ss"> Markov parameters to state-space</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[sl]=markp2ss(markpar,n,nout,nin)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>markpar</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n,nout,nin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    given a set of <VERB>n</VERB> Markov parameters stacked in the (row)-matrix 
+    <VERB>markpar</VERB> of size <VERB>nout</VERB>X<VERB>(n*nin) markp2ss</VERB>
+    returns a state-space linear system <VERB>sl</VERB> (<VERB>syslin</VERB> list) 
+    such that with <VERB>[A,B,C,D]=abcd(sl)</VERB>:</P>
+    <VERBATIM>
+<![CDATA[
+   C*B = markpar(1:nout,1:nin),
+   C*A*B =markpar(1:nout,nin+1:2*nin),....
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+W=ssrand(2,3,4);   //random system with 2 outputs and 3 inputs
+[a,b,c,d]=abcd(W);
+markpar=[c*b,c*a*b,c*a^2*b,c*a^3*b,c*a^4*b];
+S=markp2ss(markpar,5,2,3);
+[A,B,C,D]=abcd(S);
+Markpar=[C*B,C*A*B,C*A^2*B,C*A^3*B,C*A^4*B];
+norm(markpar-Markpar,1)
+//Caution... c*a^5*b is not C*A^5*B !
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>frep2tf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tf2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>imrep2ss</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

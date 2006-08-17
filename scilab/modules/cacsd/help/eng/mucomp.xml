@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mucomp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mucomp"> mu (structured singular value) calculation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[BOUND, D, G] = mucomp(Z, K, T)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the complex n-by-n matrix for which the structured singular value is to be computed</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the vector of length m containing the block structure of the uncertainty.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the vector of length m indicating the type of each block. T(I) = 1 if the corresponding block is real T(I) = 2 if the corresponding block is complex.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>BOUND</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the upper bound on the structured singular value.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>D, G</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vectors of length n containing the diagonal entries of the diagonal matrices D and G, respectively, 
+           such that the matrix <VERB> Z'*D^2*Z + sqrt(-1)*(G*Z-Z'*G) - bound^2*D^2 </VERB> is negative semidefinite.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+     To compute an upper bound on the structured singular value for a given square complex matrix and given block structure of the uncertainty.</P>
+  </DESCRIPTION>
+  <SECTION label="Reference">
+    <P>
+    Slicot routine AB13MD.</P>
+  </SECTION>
+</MAN>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>armax</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="armax"> armax identification</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[arc,la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: output process  y(ny,n); ( ny: dimension of y , n : sample size)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: input process   u(nu,n); ( nu: dimension of u , n : sample size)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r and s</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: auto-regression orders r &gt;=0 et s &gt;=-1</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b0f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optional parameter. Its default value is 0 and it means that the coefficient b0 must be identified. if bof=1 the b0 is supposed to be zero and is not identified</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>prf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optional parameter for display control. If prf =1, the default value,  a display of the identified Arma is given.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>arc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab arma object (see armac)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>la</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the list(a,a+eta,a-eta) ( la = a in dimension 1) ; where eta is the estimated standard deviation.  , a=[Id,a1,a2,...,ar] where each ai is a matrix of size (ny,ny)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lb</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the list(b,b+etb,b-etb) (lb =b in dimension 1) ; where etb is the estimated standard deviation. b=[b0,.....,b_s] where each bi is a matrix of size (nu,nu)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sig</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the estimated standard deviation of the noise and resid=[ sig*e(t0),....] (</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    armax is used to identify the coefficients of a n-dimensional 
+    ARX process</P>
+    <VERBATIM>
+<![CDATA[
+   A(z^-1)y= B(z^-1)u + sig*e(t)
+   ]]>
+    </VERBATIM>
+    <P>
+    where e(t) is a n-dimensional white noise with variance I.
+    sig  an nxn matrix and A(z) and B(z):</P>
+    <VERBATIM>
+<![CDATA[
+A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+   ]]>
+    </VERBATIM>
+    <P>
+    for the method see Eykhoff in trends and progress in system identification, page 96.
+    with  
+     z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] 
+    and
+     coef= [-a1,..,-ar,b0,...,b_s] 
+    we can write 
+    y(t)= coef* z(t) + sig*e(t) and the algorithm minimises 
+    sum_{t=1}^N ( [y(t)- coef'z(t)]^2)
+    where t0=maxi(maxi(r,s)+1,1))).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//-Ex1- Arma model : y(t) = 0.2*u(t-1)+0.01*e(t-1)
+ny=1,nu=1,sig=0.01;
+Arma=armac(1,[0,0.2],[0,1],ny,nu,sig)  //defining the above arma model
+u=rand(1,1000,'normal');     //a random input sequence u
+y=arsimul(Arma,u); //simulation of a y output sequence associated with u.
+Armaest=armax(0,1,y,u);   //Identified model given u and y.
+Acoeff=Armaest('a');    //Coefficients of the polynomial A(x)
+Bcoeff=Armaest('b')     //Coefficients of the polynomial B(x)
+Dcoeff=Armaest('d');    //Coefficients of the polynomial D(x)
+[Ax,Bx,Dx]=arma2p(Armaest)   //Results in polynomial form. 
+
+//-Ex2- Arma1: y_t -0.8*y_{t-1} + 0.2*y_{t-2} =  sig*e(t)
+ny=1,nu=1;sig=0.001;
+// First step: simulation the Arma1 model, for that we define
+// Arma2: y_t -0.8*y_{t-1} + 0.2*y_{t-2} = sig*u(t)
+// with normal deviates for u(t).  
+Arma2=armac([1,-0.8,0.2],sig,0,ny,nu,0);
+//Definition of the Arma2 arma model (a model with B=sig and without noise!)
+u=rand(1,10000,'normal');  // An input sequence for Arma2
+y=arsimul(Arma2,u); // y = output of Arma2 with input u 
+//                     can be seen as output of Arma1.
+// Second step: identification. We look for an Arma model
+// y(t) + a1*y(t-1) + a2 *y(t-2) =  sig*e(t)
+Arma1est=armax(2,-1,y,[]);
+[A,B,D]=arma2p(Arma1est)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>imrep2ss</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>time_id</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>arl2</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>armax</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frep2tf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>J-Ph. Chancelier.  </AUTHOR>
+</MAN>

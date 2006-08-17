@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sm2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sm2des"> system matrix to descriptor</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Des]=sm2des(Sm);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial matrix (pencil system matrix)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Des</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: descriptor system (<VERB>list('des',A,B,C,D,E)</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Utility function: converts the system matrix:</P>
+    <VERBATIM>
+<![CDATA[
+ Sm = [-sE + A   B;
+      [    C     D]
+   ]]>
+    </VERBATIM>
+    <P>
+    to descriptor system <VERB>Des=list('des',A,B,C,D,E)</VERB>).</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2des</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sm2ss</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

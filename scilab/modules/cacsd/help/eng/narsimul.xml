@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>narsimul</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="narsimul"> armax simulation ( using rtitr)   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[z]=narsimul(a,b,d,sig,u,[up,yp,ep])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[z]=narsimul(ar,u,[up,yp,ep])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    ARMAX simulation. Same as arsimul but the method is different 
+    the simulation is made with rtitr</P>
+  </DESCRIPTION>
+  <AUTHOR>J-Ph. Chancelier ENPC Cergrene; ;   </AUTHOR>
+</MAN>
