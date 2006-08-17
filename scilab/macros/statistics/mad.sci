@@ -22,21 +22,25 @@ function [s2]=mad(x,orien)
 //
 //date: 1999-06-11
 //
+// corrected by bruno pincon (2006-08-16) (fix for bug 2092)
+//
+  [lhs,rhs]=argn()
+  if rhs < 1 | rhs > 2 then
+     error('mad requires one or two inputs.')
+  end
+  
   if x==[] then s2=%nan, return, end
-  [lhs,rhs]=argn(0)
+  
   [nrow,ncol] = size(x);
   if rhs==1 then
     s2=sum(abs(x-mean(x)))/(nrow*ncol)
-    return
-  elseif rhs==2 then
-    if orien=='r'|orien==1 then
+  else // rhs == 2
+    if orien=='r' | orien==1 then
       s2=sum(abs(x-(ones(nrow,1)*mean(x,1))),1)/nrow
-    elseif orien=='c'|orien==1 then
+    elseif orien=='c' | orien==2 then
       s2=sum(abs(x-(mean(x,2)*ones(1,ncol))),2)/ncol
     else 
       error('The second input parameter must be ''r'', ''c'', 1 or 2')
     end
-  else
-    error('mad requires one or two inputs.')
   end
 endfunction
