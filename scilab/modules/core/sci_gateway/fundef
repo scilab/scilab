@@ -77,7 +77,7 @@
 #include "../../sparse/sci_gateway/sparse.fundef"  
 
 #define  IN_intslicot  28
-#include "../../../../routines/slicot/slicot.fundef"
+#include "../../cacsd/sci_gateway/slicot.fundef"
 
 #define  IN_matodc  29  
 #include "../../../../routines/interf/odc.fundef"	
