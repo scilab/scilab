@@ -287,10 +287,6 @@
 			>
 		</File>
 		<File
-			RelativePath=".\new.fundef"
-			>
-		</File>
-		<File
 			RelativePath=".\odc.fundef"
 			>
 		</File>
@@ -303,15 +299,7 @@
 			>
 		</File>
 		<File
-			RelativePath=".\polaut.fundef"
-			>
-		</File>
-		<File
 			RelativePath=".\polelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\qz.fundef"
 			>
 		</File>
 		<File

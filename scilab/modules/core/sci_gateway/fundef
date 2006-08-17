@@ -18,13 +18,13 @@
 #include "../../graphics/sci_gateway/graphics.fundef"	
   
 #define  IN_matqz  8
-#include "../../cacsd/sci_gateway/qz.fundef"  
+#include "../../cacsd/sci_gateway/cacsd1.fundef"  
 
 #define  IN_matric 9
 #include "../../../../routines/interf/ric.fundef"  
 
 #define  IN_matnew  10
-#include "../../cacsd/sci_gateway/new.fundef"  
+#include "../../cacsd/sci_gateway/cacsd2.fundef"  
 
 #define  IN_matopt  11  
 #include "../../optimization/sci_gateway/optim.fundef"
@@ -54,7 +54,7 @@
 #include "../../../../routines/interf/interp.fundef"  
 
 #define  IN_polaut  20
-#include "../../cacsd/sci_gateway/polaut.fundef"
+#include "../../cacsd/sci_gateway/cacsd3.fundef"
 
 #define  IN_strelm  21 
 #include "../../string/sci_gateway/string.fundef" 
