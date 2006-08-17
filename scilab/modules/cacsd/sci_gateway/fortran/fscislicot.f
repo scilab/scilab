@@ -1,5 +1,5 @@
       subroutine intmb03od(fname)
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       character fname*(*)
       logical createvar, getrhsvar, checklhs, checkrhs
 c     
@@ -148,7 +148,7 @@ c     [Q,R,JPVT,RANK,SVAL]=rankqr(A,[RCOND,JPVT])
       end
 
       subroutine intzb03od(fname)
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       character fname*(*)
       logical createvar, getrhsvar, checklhs, checkrhs
 c     
@@ -304,7 +304,7 @@ c     [bound,D,G] = mucomp(Z,K,T)
 c     [bound,D] = mucomp(Z,K,T)
 c     bound = mucomp(Z,K,T)
 
-      include '../stack.h'
+      include 'stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
       character fname*(*)
@@ -693,7 +693,7 @@ c     'type' is 'continuous' or 'discrete'
 c     'method' is 'schr' or 'sign' for continuous-time systems
 c             and 'schr' or 'invf' for discrete-tyme systems 
 
-      include '../stack.h'
+      include 'stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
 
@@ -852,7 +852,7 @@ c
 
 c     [Ak,Bk,Ck,Dk,RCOND]=hinf(A,B,C,D,ncon,nmeas,gamma)
 
-      include '../stack.h'
+      include 'stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
       character fname*(*)
@@ -991,7 +991,7 @@ c
 
 c     [Ak,Bk,Ck,Dk,RCOND]=dhinf(A,B,C,D,ncon,nmeas,gamma)
 
-      include '../stack.h'
+      include 'stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
       character fname*(*)

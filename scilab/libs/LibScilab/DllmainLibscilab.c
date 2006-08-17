@@ -54,6 +54,7 @@
 #pragma comment(lib,"../../libs/string_f.lib")
 #pragma comment(lib,"../../libs/symbolic_f.lib")
 #pragma comment(lib,"../../libs/polynomials_f.lib")
+#pragma comment(lib,"../../libs/cacsd_f.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)

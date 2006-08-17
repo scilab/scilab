@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="interf"
-	ProjectGUID="{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}"
+	Name="cacsd"
+	ProjectGUID="{D5DD1407-3926-4F6C-AD7B-3A6B2DE56049}"
 	>
 	<Platforms>
 		<Platform
@@ -40,8 +40,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE;WIN32"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
+				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../../../libs/cacsd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def interf.def &gt;nul&#x0D;&#x0A;copy interf.def ..\..\..\libs\interf.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def cacsd.def &gt;nul&#x0D;&#x0A;copy cacsd.def ..\..\..\..\..\libs\cacsd.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -116,8 +116,8 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
+				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -144,7 +144,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/interf.lib"
+				OutputFile="../../../../libs/cacsd.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt; nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def interf.def &gt;nul&#x0D;&#x0A;copy interf.def ..\..\..\libs\interf.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def cacsd.def &gt;nul&#x0D;&#x0A;copy cacsd.def ..\..\..\..\..\libs\cacsd.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -173,55 +173,15 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\cs2st.c"
+				RelativePath="..\..\sci_gateway\c\intslicot.c"
 				>
 			</File>
 			<File
-				RelativePath=".\ctest.c"
+				RelativePath="..\..\sci_gateway\c\sci_contr.c"
 				>
 			</File>
 			<File
-				RelativePath=".\dassl.c"
-				>
-			</File>
-			<File
-				RelativePath=".\hmops.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intinterp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intlapack.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intorand.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intqld.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intshowalluimenushandles.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intUImenu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\matdsr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\otherspecfun.c"
-				>
-			</File>
-			<File
-				RelativePath=".\stcreate.c"
+				RelativePath="..\..\sci_gateway\c\sci_rankqr.c"
 				>
 			</File>
 		</Filter>
@@ -229,101 +189,9 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\intshowalluimenushandles.h"
-				>
-			</File>
-			<File
-				RelativePath="matdsr.h"
-				>
-			</File>
-			<File
-				RelativePath="stack1.h"
-				>
-			</File>
-			<File
-				RelativePath="stack2.h"
-				>
-			</File>
-			<File
-				RelativePath="stack3.h"
-				>
-			</File>
 		</Filter>
 		<File
-			RelativePath=".\bva.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\def.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\dsRC.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\feval.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\imp.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\interp.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\list.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\logelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\lstelmi.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\new.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\odc.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\ode.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\otherspecfun.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\polaut.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\polelm.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\qz.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\ric.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\specfun.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\usr.fundef"
+			RelativePath="..\..\sci_gateway\slicot.fundef"
 			>
 		</File>
 	</Files>

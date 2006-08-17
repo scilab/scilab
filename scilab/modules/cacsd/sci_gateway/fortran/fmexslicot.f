@@ -93,7 +93,7 @@ C **********************************************************************
 C
       SUBROUTINE findbd( NLHS, PLHS, NRHS, PRHS )
 C     ADDED FOR SCILAB ==========================
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       LOGICAL CREATEVAR
 C     ===========================================
 C
@@ -773,7 +773,7 @@ C **********************************************************************
 C
       SUBROUTINE sorder( NLHS, PLHS, NRHS, PRHS )
 C     ADDED FOR SCILAB ==========================
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       LOGICAL CREATEVAR
 C     ===========================================
 C
@@ -1345,7 +1345,7 @@ C **********************************************************************
 C
       SUBROUTINE sident  ( NLHS, PLHS, NRHS, PRHS )
 C     ADDED FOR SCILAB ==========================
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       LOGICAL CREATEVAR
 C     ===========================================
 C
