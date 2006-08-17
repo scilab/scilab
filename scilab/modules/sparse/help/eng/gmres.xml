@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
 	<LANGUAGE>eng</LANGUAGE>
 	<TITLE>gmres </TITLE>
 	<TYPE>Scilab Function  </TYPE>
-	<DATE>March 2000  </DATE>
+	<DATE>$LastChangedDate$</DATE>
 	<SHORT_DESCRIPTION name="gmres"> Generalized Minimum RESidual method</SHORT_DESCRIPTION>
 	<CALLING_SEQUENCE>
 		<CALLING_SEQUENCE_ITEM>[x,flag,err,iter,res] = gmres(A,b,rstr,tol,maxi,M,x0)  </CALLING_SEQUENCE_ITEM>
