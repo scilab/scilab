@@ -6,9 +6,9 @@
   <TYPE>Scilab keyword</TYPE>
   <DATE>Aug 2005</DATE>
   <SHORT_DESCRIPTION name="try"> mot clé de début du block try dans une
-    instruction de contrŽôle try-catch </SHORT_DESCRIPTION>
+    instruction de contrôle try-catch </SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="catch">  mot clé de début du block catch dans une
-    instruction de contrŽôle try-catch </SHORT_DESCRIPTION>
+    instruction de contrôle try-catch </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>try </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
@@ -17,11 +17,11 @@
     <CALLING_SEQUENCE_ITEM>end</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
-    <P>L'instruction de contrŽôle <VERB>try</VERB>-<VERB>catch</VERB> peut être
+    <P>L'instruction de contrôle <VERB>try</VERB>-<VERB>catch</VERB> peut être
       utilisée pour controler les conséquence d'une erreur d'éxécution en permettant
       l'éxécution de code spécifique en cas d'erreur.</P>
 
-    <P>Quand une instruction de contrŽôle <VERB>try</VERB>-<VERB>catch</VERB>
+    <P>Quand une instruction de contrôle <VERB>try</VERB>-<VERB>catch</VERB>
       est exécutée, normalement seules les instructions comprises entre les mots
       clés  <VERB>try</VERB> et <VERB>catch</VERB> sont exécutées. Cependant,
       si une erreur se produit pendant l'exécution de ces instructions,
