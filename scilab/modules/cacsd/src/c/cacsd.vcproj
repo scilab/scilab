@@ -191,6 +191,18 @@
 			>
 		</Filter>
 		<File
+			RelativePath="..\..\sci_gateway\cacsd1.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\cacsd2.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\cacsd3.fundef"
+			>
+		</File>
+		<File
 			RelativePath="..\..\sci_gateway\slicot.fundef"
 			>
 		</File>
