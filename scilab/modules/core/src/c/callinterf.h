@@ -37,7 +37,7 @@ extern void    /* 24  */ C2F(matus2)();
 extern void    /* 25  */ C2F(xawelm)();
 extern void    /* 26  */ C2F(matimp)();
 extern void    /* 27  */ C2F(gw_sparse)();
-extern void    /* 28  */ C2F(intslicot)();
+extern void    /* 28  */ C2F(gw_slicot)();
 extern void    /* 29  */ C2F(matodc)();
 extern void    /* 30  */ C2F(defint)();
 extern void    /* 31  */ C2F(feval)();
@@ -111,7 +111,7 @@ static OpTab Interfaces[] ={
 	/* 25  */ {C2F(xawelm)},
 	/* 26  */ {C2F(matimp)},
 	/* 27  */ {C2F(gw_sparse)},
-	/* 28  */ {C2F(intslicot)},
+	/* 28  */ {C2F(gw_slicot)},
 	/* 29  */ {C2F(matodc)},
 	/* 30  */ {C2F(defint)},
 	/* 31  */ {C2F(feval)},

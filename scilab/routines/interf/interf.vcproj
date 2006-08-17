@@ -225,6 +225,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_contr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_rankqr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>

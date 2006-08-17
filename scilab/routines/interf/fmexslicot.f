@@ -5,7 +5,7 @@ C            input and output trajectories, using SLICOT routine IB01CD.
 C
 C RELEASE 4.0, WGS COPYRIGHT 2000.
 C
-C Matlab call:  
+C scilab call:  
 C   [(x0)(,B(,D))(,V)(,rcnd)] = findBD(jobx0,comuse(,job),A(,B),C(,D),Y
 C                                      (,U,tol,printw,ldwork))
 C
@@ -547,7 +547,7 @@ C
       IF(.NOT.CREATEVAR(NBVARS+1,'d',N,1,X0)) RETURN
       IF(.NOT.CREATEVAR(NBVARS+1,'d',LDY,L,Y)) RETURN
 C
-C Copy inputs from MATLAB workspace to locally allocated arrays.
+C Copy inputs from scilab workspace to locally allocated arrays.
 C      
       IP =IPS 
       IF (NRHS.GE.IP )THEN 
@@ -586,7 +586,7 @@ C
          WRITE (TEXT ,'(''INFO = '',I4,'' ON EXIT FROM IB01CD'')')INFO 
       ELSE 
 C
-C Copy output to MATLAB workspace.
+C Copy output to scilab workspace.
 C
          IP =1
          IF (TASK.EQ.1 .OR.(TASK.EQ.0 .AND.CUSE.EQ.2 ))THEN 
@@ -645,7 +645,7 @@ C            discrete-time system using SLICOT routine IB01AD.
 C
 C RELEASE 4.0, WGS COPYRIGHT 2000.
 C
-C Matlab call:
+C scilab call:
 C   [R(,n,sval,rcnd)] = order(meth,alg,jobd,batch,conct,s,Y(,U,tol,
 C                             printw,ldwork,R))
 C
@@ -1168,7 +1168,7 @@ C
       IF(.NOT.CREATEVAR(NBVARS+1,'d',LDWORK,1,DWORK)) RETURN
       CALL DSET(LDR*NCOL,0.0d0,stk(R),1)
 C
-C Copy inputs from MATLAB workspace to locally allocated arrays.
+C Copy inputs from scilab workspace to locally allocated arrays.
 C      
       CALL MXCOPYPTRTOREAL8 (MXGETPR (PRHS (7)),stk(Y),NSMP *L )
 
@@ -1203,7 +1203,7 @@ C
          GO TO 20
       END IF 
 C
-C Copy output to MATLAB workspace.
+C Copy output to scilab workspace.
 C
       IF (LDR.GT.NR )CALL DLACPY ('FULL',NR ,NR ,stk(R),LDR ,stk(R),NR )
       IF ((IALG.EQ.2 .OR.ICNC.EQ.1 ).AND.IBCH.LE.2 )THEN 
@@ -1261,7 +1261,7 @@ C            using SLICOT routine IB01BD.
 C
 C RELEASE 4.0, WGS COPYRIGHT 2000.
 C
-C Matlab call:  
+C scilab call:  
 C   [(A,C)(,B(,D))(,K,Q,Ry,S,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,A,
 C                                            C,printw))
 C
@@ -1724,7 +1724,7 @@ C
       IF(.NOT.CREATEVAR(NBVARS+1,'b',LBWORK,1,BWORK)) RETURN
       IF(.NOT.CREATEVAR(NBVARS+1,'d',LDK,L,K)) RETURN
 C
-C Copy inputs from MATLAB workspace to locally allocated arrays.
+C Copy inputs from scilab workspace to locally allocated arrays.
 C      
       CALL MXCOPYPTRTOREAL8 (MXGETPR (PRHS (6)),stk(R),LDR *NCOL )
       IF (TASK.GE.2 .AND.IJOB.GE.3 )THEN 
@@ -1746,7 +1746,7 @@ C
          WRITE (TEXT ,'(''INFO = '',I4,'' ON EXIT FROM IB01BD'')')INFO 
       ELSE 
 C
-C Copy output to MATLAB workspace.
+C Copy output to scilab workspace.
 C
          IF (IJOB.LE.2 )THEN 
             PLHS (1)=MXCREATEFULL (N ,N ,0)
