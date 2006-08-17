@@ -12,15 +12,8 @@
 #ifndef __SCI_OBJECT_STRUCTURE__
 #define __SCI_OBJECT_STRUCTURE__
 
-
 #ifdef _MSC_VER
 #include <windows.h>
-#include <windowsx.h>
-#ifndef __GNUC__XXX
-#include <commctrl.h>
-#endif
-#include <winuser.h>
-#include "../../../routines/wsci/wgnuplib.h"
 #endif
 
 /*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h

@@ -25,6 +25,7 @@
  *   Allan CORNET INRIA 2005
  */
 
+#include <windows.h>
 
 #ifdef __DLL__ 
 /** XXXXX #define EXPORT extern "C" __declspec (dllexport) **/

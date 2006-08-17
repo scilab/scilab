@@ -11,6 +11,8 @@
 #ifndef _MSC_VER
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
+#else
+#include "../../../routines/wsci/wgnuplib.h"
 #endif 
 
 #ifndef CoordModePrevious 
