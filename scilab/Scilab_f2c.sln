@@ -284,7 +284,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "metanet_f2c", "modules\meta
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sparse_f2c", "modules\sparse\src\fortran\sparse_f2c.vcproj", "{13082624-97F9-47DB-A9A1-AD7D6BF3856A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slicot_f2c", "routines\slicot\slicot_f\slicot_f2c.vcproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slicot_f2c", "modules\cacsd\src\slicot\slicot_f\slicot_f2c.vcproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_f2c", "modules\signal_processing\src\fortran\signal_f\signal_f2c.vcproj", "{959384FC-016C-4B01-B848-1B18D26B6CC4}"
 EndProject

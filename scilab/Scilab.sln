@@ -291,7 +291,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "signal_f", "modules\signal_
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "slicot_f", "routines\slicot\slicot_f\slicot_f.vfproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "slicot_f", "modules\cacsd\src\slicot\slicot_f\slicot_f.vfproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
