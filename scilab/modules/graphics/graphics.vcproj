@@ -370,6 +370,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_param3d.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_plot2d.c"
 				>
 			</File>
@@ -540,6 +544,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_get.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_param3d.h"
 				>
 			</File>
 			<File
