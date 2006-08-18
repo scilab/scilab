@@ -6,36 +6,35 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" OpenMPConditionalCompilation="false" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" OutputCarriageControl="outputCCNone" RuntimeChecks="rtChecksNone" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def control_f.def &gt;nul
 copy control_f.def ..\..\..\..\libs\control_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" OpenMPConditionalCompilation="false" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" OutputCarriageControl="outputCCNone" RuntimeChecks="rtChecksNone" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/control_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/control_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def control_f.def &gt;nul
 copy control_f.def ..\..\..\..\libs\control_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/control_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/control_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\balanc.f"/>
-		<File RelativePath="..\balbak.f"/>
 		<File RelativePath="..\bdiag.f"/>
 		<File RelativePath="..\calsca.f"/>
 		<File RelativePath="..\cbal.f"/>
@@ -54,22 +53,14 @@ cd .."/>
 		<File RelativePath="..\dlslv.f"/>
 		<File RelativePath="..\exch.f"/>
 		<File RelativePath="..\fout.f"/>
-		<File RelativePath="..\fxshfr.f"/>
 		<File RelativePath="..\giv.f"/>
 		<File RelativePath="..\hqror2.f"/>
 		<File RelativePath="..\inva.f"/>
-		<File RelativePath="..\newest.f"/>
-		<File RelativePath="..\nextk.f"/>
 		<File RelativePath="..\orthes.f"/>
 		<File RelativePath="..\ortran.f"/>
 		<File RelativePath="..\pade.f"/>
-		<File RelativePath="..\quad.f"/>
-		<File RelativePath="..\quadit.f"/>
-		<File RelativePath="..\quadsd.f"/>
-		<File RelativePath="..\realit.f"/>
 		<File RelativePath="..\riccpack.f"/>
 		<File RelativePath="..\rilac.f"/>
-		<File RelativePath="..\rpoly.f"/>
 		<File RelativePath="..\scaleg.f"/>
 		<File RelativePath="..\scapol.f"/>
 		<File RelativePath="..\split.f"/>
