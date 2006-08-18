@@ -6,15 +6,10 @@
  */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../machine.h"
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h"  /* malloc */
-#else
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
-#endif
-
-#include "../stack-c.h"
-#include "../version.h"
+#include "machine.h"
+#include "stack-c.h"
+#include "version.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 #ifndef NULL
 #define NULL 0
