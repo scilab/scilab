@@ -181,7 +181,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\gw_cacsd3.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_slicot.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_arl2.c"
 				>
 			</File>
 			<File
@@ -209,6 +217,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_ldiv.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_ltitr.c"
 				>
 			</File>
@@ -218,6 +230,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_rankqr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_residu.c"
 				>
 			</File>
 			<File
@@ -239,6 +255,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_cacsd2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\gw_cacsd3.h"
 				>
 			</File>
 		</Filter>
