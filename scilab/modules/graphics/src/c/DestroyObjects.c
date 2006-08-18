@@ -217,8 +217,27 @@ sciDelGraphicObj (sciPointObj * pthis)
   return 0;
 }
 
+/*-----------------------------------------------------------------------------*/
+/**
+ * erase a graphic window if necessary.
+ */
+int C2F(scigerase)( void )
+{
+  integer verb=0,lstr,v,na,win;
+  double dv;
+  char str[4];
+  C2F(xgetg)("auto clear",str,&lstr,11L,4L);
+  if (strcmp(str,"on") == 0) {
+    C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
+    C2F(dr1)("xclear",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
+    C2F(dr1)("xstart",C2F(cha1).buf,&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
+  }
+  return 0;
+} 
+/*-----------------------------------------------------------------------------*/
+
 /**DestroyFigure
- * @memo This function destroies the parents window (manager) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
+ * This function destroies the parents window (manager) and the elementaries structures and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int

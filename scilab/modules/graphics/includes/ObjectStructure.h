@@ -13,13 +13,16 @@
 #define __SCI_OBJECT_STRUCTURE__
 
 #ifdef _MSC_VER
+#undef Top /* REORGANISATION TEMPORAIRE */
 #include <windows.h>
+#define Top C2F(vstk).top
 #endif
 
 /*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h
   sauf pour les callback (il faudrait creer une fonction et l'appeler) */
 #include "stack-c.h"
 #include "StringMatrix.h"
+#include "machine.h"
 
 
 #ifndef _MSC_VER
@@ -85,8 +88,7 @@
 
 #ifndef _MSC_VER
 typedef unsigned short HMENU;
-typedef void *HFONT;                                         
-typedef int BOOL;                                       
+typedef void *HFONT;
 typedef unsigned long DWORD;
 #endif
 

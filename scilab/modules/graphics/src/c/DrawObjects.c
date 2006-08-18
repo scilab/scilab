@@ -12073,7 +12073,7 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
                          /* it is orthogonal with the axis direction */
   double axisMiddle[2] ; /* middle of the axis = ( axisStart + axisEnd ) / 2 */
   int    bbox[4][2]    ; /* real bounding box of the label */
-  int    corners[4][2] ; /* the four corners of the boundign box */
+  double corners[4][2] ; /* the four corners of the boundign box */
   double centerDist    ; /* final distance between the center and the axis */
   int wantedBlPoint[2] ; /* the position we want for the bottom left point of the axis */
   double distance      ;
@@ -12093,7 +12093,7 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
 
   /* the distance between the aabb and the axis is offsets[0] if the axis is vertical, */
   /* offest[1] if horizontal and something in between otherwise */
-  distance = abs( offsets[0] * centerDir[0] ) + abs( offsets[1] * centerDir[1] ) ;
+  distance = Abs( (double)offsets[0] * centerDir[0] ) + Abs( (double)offsets[1] * centerDir[1] ) ;
 
   axisMiddle[0] = ( axisStart[0] + axisEnd[0] ) / 2.0 ;
   axisMiddle[1] = ( axisStart[1] + axisEnd[1] ) / 2.0 ;

@@ -107,11 +107,28 @@ ConstructStatusBar (sciPointObj * pparentfigure)
 }
 
 
-
-
+/*-----------------------------------------------------------------------------*/
+/**
+ * Create a new graphic window if any is selected.
+ */
+int C2F(sciwin)( void )
+{
+  integer verb = 0 ;
+  integer win  = 0 ;
+  integer v    = 1 ;
+  integer na       ;
+  double  dv       ;
+  C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+  C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
+  if (version_flag() == 0) { 
+    return sciSwitchWindow(&win); 
+  }
+  return 0;
+} 
+/*-----------------------------------------------------------------------------*/
 
 /**ConstructFigure
- * @memo This function creates the parents window (manager) and the elementaries structures
+ * This function creates the parents window (manager) and the elementaries structures
  */
 /************ 18/01/2002 ***********/
 sciPointObj *

@@ -1,37 +1,40 @@
 /*------------------------------------------------------------------------
  *    Graphic library 2001-2002
  *    Old Graphics Fonctions 
- *    Author Djalel ABDEMOUCHE
+ *    Author Djalel ABDEMOUCHE, Jean-Baptiste Silvy
  *-------------------------------------------------------------------*/
 
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
 #include "Graphics.h" 
+#include "dr1Call.h"
+
 /*------------------------------------------------
  * Xrect
  *-----------------------------------------------*/   
-void Xrect (fname,fname_len,x,y,width,height)
-     char *fname; 
-     unsigned long fname_len; 
-     double *x,*y,*width,*height;
+void Xrect ( char          * fname    ,
+             unsigned long   fname_len,
+             double        * x        ,
+             double        * y        ,
+             double        * width    ,
+             double        * height    )
 { 
      integer v; 
-    
      C2F(dr1)(fname,"v",&v,&v,&v,&v,&v,&v,x,y,width,height,fname_len,2L); 
-    
 }
-
 
 /*------------------------------------------------
  * Xarc
  *-----------------------------------------------*/   
-void Xarc (fname,fname_len,a1,a2,x,y,width,height)
-     char *fname; 
-     unsigned long fname_len; 
-     double *x,*y,*width,*height; 
-     integer *a1,*a2;
-
+void Xarc ( char          * fname        ,
+            unsigned long   fname_len,
+            integer       * a1           ,
+            integer       * a2           ,
+            double        * x            ,
+            double        * y            ,
+            double        * width        ,
+            double        * height        )
 { 
      integer v; 
      
@@ -41,28 +44,27 @@ void Xarc (fname,fname_len,a1,a2,x,y,width,height)
 /*------------------------------------------------
  * Xrects
  *-----------------------------------------------*/   
-void Xrects (fname,fname_len,vect1,n,vect2)
-     char *fname; 
-     unsigned long fname_len; 
-     integer n,*vect1;
-     double *vect2; 
+void Xrects ( char          * fname    ,
+              unsigned long   fname_len,
+              integer       * vect1    ,
+              integer         n        ,
+              double        * vect2     )
 { 
      integer v;
      double dv; 
     
      C2F(dr1)(fname,"v",&v,vect1,&n,&v,&v,&v,vect2,&dv,&dv,&dv,fname_len,2L);
-      
 }
 
   
 /*------------------------------------------------
  * Xarcs
  *-----------------------------------------------*/   
-void Xarcs (fname,fname_len,vect1,n,vect2)
-     char *fname; 
-     unsigned long fname_len; 
-     integer n,*vect1;
-     double *vect2; 
+void Xarcs ( char          * fname    ,
+             unsigned long   fname_len,
+             integer       * vect1    ,
+             integer         n        ,
+             double        * vect2     )
 { 
      integer v;
      double dv; 
@@ -74,27 +76,27 @@ void Xarcs (fname,fname_len,vect1,n,vect2)
 /*------------------------------------------------
  * Xfarcs
  *-----------------------------------------------*/   
-void Xfarcs (fname,fname_len,vect1,n,vect2)
-     char *fname; 
-     unsigned long fname_len; 
-     integer n,*vect1;
-     double *vect2; 
+void Xfarcs( char          * fname    ,
+             unsigned long   fname_len,
+             integer       * vect1    ,
+             integer         n        ,
+             double        * vect2     )
 { 
      integer v;
      double dv; 
  
      C2F(dr1)(fname,"v",&v,vect1,&n,&v,&v,&v,vect2,&dv,&dv,&dv,fname_len,2L);
-      
 }
 
 /*------------------------------------------------
  * xpoly(xv,yv,dtype,[close])
  *-----------------------------------------------*/   
-void Xpoly (fname,fname_len,n,close,x,y)
-     char *fname; 
-     unsigned long fname_len; 
-     double *x,*y;
-     integer n,close; 
+void Xpoly ( char          * fname    ,
+             unsigned long   fname_len,
+             integer         n        ,
+             integer         close    ,
+             double        * x        ,
+             double        * y         )
 { 
      integer v; 
      double dv;
@@ -105,10 +107,11 @@ void Xpoly (fname,fname_len,n,close,x,y)
 /*------------------------------------------------
  * xfpoly(xv,yv,[close])
  *-----------------------------------------------*/   
-void Xfpoly (rempl,closed,x,y)
-     integer rempl,closed; 
-     double *x,*y;
-{ 
+void Xfpoly ( integer   rempl ,
+              integer   closed,
+              double  * x     ,
+              double  * y      )
+{
      integer v; 
      double dv;
    
@@ -118,10 +121,11 @@ void Xfpoly (rempl,closed,x,y)
 /*------------------------------------------------
  * xpolys(xpols,ypols,[draw])
  *-----------------------------------------------*/   
-void Xpolys (vect,n,m,x,y)
-     integer n,m; 
-     integer *vect;
-     double *x,*y;
+void Xpolys ( integer * vect,
+              integer   n   ,
+              integer   m   ,
+              double  * x   ,
+              double  * y    )
 { 
      integer v; 
      double dv;
@@ -133,10 +137,13 @@ void Xpolys (vect,n,m,x,y)
 /*------------------------------------------------
  * xfpolys(xpols,ypols,[fill])
  *-----------------------------------------------*/   
-void Xfpolys (vect,val1,val2,n,m,x,y)
-     integer val1,val2,n,m; 
-     integer *vect;
-     double *x,*y;
+void Xfpolys ( integer * vect,
+               integer   val1,
+               integer   val2,
+               integer   n   ,
+               integer   m   ,
+               double  * x   ,
+               double  * y   )
 { 
      integer v; 
      double dv;
@@ -147,10 +154,12 @@ void Xfpolys (vect,val1,val2,n,m,x,y)
 /*-----------------------------------------------------------
  *   xsegs(xv,yv,[style])
  *-----------------------------------------------------------*/
-void Xsegs (style,flag,n,x,y,arsize)
-     integer *style,flag,n; 
-     double *x,*y;
-     double arsize;
+void Xsegs ( integer * style,
+             integer   flag ,
+             integer   n    ,
+             double  * x    ,
+             double  * y    ,
+             double    arsize )
 { 
      integer v; 
      double dv;    
@@ -163,12 +172,13 @@ void Xsegs (style,flag,n,x,y,arsize)
 /*------------------------------------------------
  *  xstring(x,y,str,[angle,box])
  *-----------------------------------------------*/   
-void Xstring (fname,fname_len,str,x,y,angle,box)
-     char *fname; 
-     unsigned long fname_len; 
-     integer str;
-     double angle,*box;
-     double x,y;
+void Xstring ( char          * fname    ,
+               unsigned long   fname_len,
+               integer         str      ,
+               double          x        ,
+               double          y        ,
+               double          angle    ,
+               double        * box       )
 { 
      integer v; 
      double dv;
@@ -180,9 +190,7 @@ void Xstring (fname,fname_len,str,x,y,angle,box)
 /*------------------------------------------------
  *  Xtitle(str)
  *-----------------------------------------------*/   
-void Xtitle (str,n)
-     char *str;
-     int n;
+void Xtitle ( char * str, int n )
 { 
      integer v; 
      double dv;
@@ -195,13 +203,21 @@ void Xtitle (str,n)
               format, fontsize,textcolor, 
               ticscolor, logflag, seg_flag)
  *-----------------------------------------------*/   
-void Xdrawaxis (dir,tics,x,nx,y,ny,val,sub_int,format,fontsize,textcolor,ticscolor,flag,seg_flag)
-     char dir,tics ,flag; 
-     double *x,*y;
-     char **val,*format;
-     int *nx,*ny,sub_int;
-     int fontsize,textcolor,ticscolor,seg_flag;
-{ 
+void Xdrawaxis ( char      dir      ,
+                 char      tics     ,
+                 double  * x        ,
+                 int     * nx       ,
+                 double  * y        ,
+                 int     * ny       ,
+                 char   ** val      ,
+                 int       sub_int  ,
+                 char    * format   ,
+                 int       fontsize ,
+                 int       textcolor,
+                 int       ticscolor,
+                 char      flag     ,
+                 int       seg_flag  )
+{
   int fontstyle = 0;
      sci_axis(dir,tics,x,nx,y,ny,val,sub_int,format,fontsize,textcolor,fontstyle,ticscolor,flag,seg_flag); 
      
@@ -210,10 +226,15 @@ void Xdrawaxis (dir,tics,x,nx,y,ny,val,sub_int,format,fontsize,textcolor,ticscol
 /*------------------------------------------------
  *  plot2d(x,y,[style,strf,leg,rect,nax]) 
  *-----------------------------------------------*/   
-void Xplot2d (x,y,n1,n2,style,strflag,legend,brect,aaint)
-     double x[],y[],brect[];
-     integer *n1,*n2,style[],aaint[];
-     char legend[],strflag[];
+void Xplot2d ( double    x[]      ,
+               double    y[]      ,
+               integer * n1       ,
+               integer * n2       ,
+               integer   style[]  ,
+               char      strflag[],
+               char      legend[] ,
+               double    brect[]  ,
+               integer   aaint[]   )
 { 
   
      C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,4L, bsiz);
@@ -224,47 +245,56 @@ void Xplot2d (x,y,n1,n2,style,strflag,legend,brect,aaint)
 /*------------------------------------------------
  *  grayplot(x,y,z,[strf,rect,nax])
  *-----------------------------------------------*/   
-void Xgrayplot (x,y,z,n1,n2,strflag,brect,aaint)
-     double x[],y[],z[],brect[];
-     integer *n1,*n2,aaint[];
-     char strflag[];
+void Xgrayplot ( double    x[]      ,
+                 double    y[]      ,
+                 double    z[]      ,
+                 integer * n1       ,
+                 integer * n2       ,
+                 char      strflag[],
+                 double    brect[]  ,
+                 integer   aaint[]   )
 { 
-  
-     C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, 0,bsiz);
-     
+  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, 0,bsiz);
 }
 /*------------------------------------------------
  *  matplot(z,[strf,rect,nax]) 
  *-----------------------------------------------*/   
-void Xmatplot (z,n1,n2,strflag,brect,aaint)
-     double z[],brect[];
-     integer *n1,*n2,aaint[];
-     char strflag[];
-{ 
-  
-     C2F(xgray1)(z,n1,n2,strflag, brect, aaint, 0,bsiz);
-     
+void Xmatplot ( double    z[]      ,
+                integer * n1       ,
+                integer * n2       ,
+                char      strflag[],
+                double    brect[]  ,
+                integer   aaint[]   )
+{
+  C2F(xgray1)(z,n1,n2,strflag, brect, aaint, 0,bsiz);
 }
 /*------------------------------------------------
  *  Matplot1 (z,xrect) 
  *-----------------------------------------------*/   
-void Xmatplot1 (z,n1,n2,xrect) 
-     double z[],xrect[];
-     integer *n1,*n2;
+void Xmatplot1 ( double    z[],
+                 integer * n1 ,
+                 integer * n2 ,
+                 double    xrect[] ) 
 { 
-    
-     C2F(xgray2)(z, n1, n2,xrect);
-     
-         
+  C2F(xgray2)(z, n1, n2,xrect);
 }
 /*------------------------------------------------
  *  3D Plotting of surfaces given by z=f(x,y)
  *-----------------------------------------------*/   
-void Xplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
-     double x[],y[],z[];
-     double *theta,*alpha,*ebox;
-     integer *isfac,*n,*m,*iflag,*izcol,*zcol;
-     char *fname,*legend;
+void Xplot3d ( char    * fname ,
+               integer * isfac ,
+               integer * izcol ,
+               double    x[]   ,
+               double    y[]   ,
+               double    z[]   ,
+               integer * zcol  ,
+               integer * m     ,
+               integer * n     ,
+               double  * theta ,
+               double  * alpha ,
+               char    * legend,
+               integer * iflag ,
+               double  * ebox   )
 { 
     
 
@@ -296,26 +326,36 @@ void Xplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
 /*------------------------------------------------
  * xnumb(x,y,nums,[angles,box]) : 
  *-----------------------------------------------*/   
-void Xnumb (fname,n,flag,x,y,angle,box)
-     char *fname; 
-     integer flag;
-     double *x,*y,*angle,*box;
+void Xnumb ( char    * fname,
+             integer   n    ,
+             integer   flag ,
+             double  * x    ,
+             double  * y    ,
+             double  * angle,
+             double  * box   )
 { 
      integer v; 
     
      C2F(dr1)("xnum","xv",&v,&v,&v,&v,&n,&flag,x,y,angle,box,5L,3L);  
-    
 }
 
 /*------------------------------------------------
  * fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,extremes_col, with_mesh]);
  *-----------------------------------------------*/   
-void Xfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,ColOut,WithMesh)
-     double x[],y[],brect[],noeud[],Zminmax[]; 
-     integer *n,*m,aaint[],Colminmax[],ColOut[];
-     int WithMesh;
-     double *fun;
-     char legend[],strflag[];
+void Xfec ( double    x[]        ,
+            double    y[]        ,
+            double    noeud[]    ,
+            double  * fun        ,
+            integer * n          ,
+            integer * m          ,
+            char      strflag[]  ,
+            char      legend[]   ,
+            double    brect[]    ,
+            integer   aaint[]    ,
+            double    Zminmax[]  ,
+            integer   Colminmax[],
+            integer   ColOut[]   ,
+            int       WithMesh    )
 { 
     
      C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,

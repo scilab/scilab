@@ -23,13 +23,13 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
+#include "SimpleAlgos.h"
 
 
 #include "MALLOC.h" /* MALLOC */
 
 extern void initsubwin();
 void compute_data_bounds(int cflag, char dataflag,double *x,double *y,integer n1,integer n2,double *drect);
-extern double  sciFindLogMinSPos(double *x, int n);
 void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,double  *y, integer n1,integer n2, double *drect);
 BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
@@ -327,7 +327,7 @@ void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,do
       drect[1] =  Maxi(x1,size_x); 
     }
     else { /* log. case */
-      drect[0] =  sciFindLogMinSPos(x1,size_x); 
+      drect[0] =  sciFindStPosMin(x1,size_x); 
       drect[1] =  Maxi(x1,size_x); 
     }
     
@@ -350,7 +350,7 @@ void compute_data_bounds2(int cflag,char dataflag, char * logflags, double *x,do
       drect[3] =  Maxi(y,size_y); 
     }
     else{/* log. case */
-      drect[2] =  sciFindLogMinSPos(y,size_y); 
+      drect[2] =  sciFindStPosMin(y,size_y); 
       drect[3] =  Maxi(y,size_y); 
     }
 

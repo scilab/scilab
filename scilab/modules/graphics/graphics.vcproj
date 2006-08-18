@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\DefaultCommandArg.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\DestroyObjects.c"
 				>
 			</File>
@@ -226,6 +230,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\Format.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GetCommandArg.c"
 				>
 			</File>
 			<File
@@ -350,7 +358,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_demo.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_get.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_plot2d.c"
 				>
 			</File>
 			<File
@@ -375,6 +391,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\SetProperty.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\SimpleAlgos.c"
 				>
 			</File>
 			<File
@@ -419,7 +439,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\DefaultCommandArg.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\DestroyObjects.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\dr1Call.h"
 				>
 			</File>
 			<File
@@ -428,6 +456,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Events.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\GetCommandArg.h"
 				>
 			</File>
 			<File
@@ -495,7 +527,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_demo.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_get.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_plot2d.h"
 				>
 			</File>
 			<File
@@ -511,6 +551,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sciCall.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\scigraphic.h"
 				>
 			</File>
@@ -520,6 +564,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\SetProperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\SimpleAlgos.h"
 				>
 			</File>
 			<File

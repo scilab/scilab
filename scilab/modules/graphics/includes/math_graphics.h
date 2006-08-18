@@ -1,7 +1,8 @@
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
- *    jpc@cereve.enpc.fr 
+ *    Copyright (C) 1998-2000 Enpc
+ *    Copyright INRIA 2006
+ *    Authors : Jean-Philippe Chancelier, Jean-Baptiste Silvy
  --------------------------------------------------------------------------*/
 
 #ifndef __SCIMATH_H__

@@ -22,6 +22,9 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 #include "intcommongraphics.h"
+#include "GetCommandArg.h"
+#include "DefaultCommandArg.h"
+#include "sci_demo.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -87,9 +90,7 @@ extern void Xplot2d  _PARAMS((double *x,double *y,integer *n1,integer *n2,intege
 extern void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax));
 /*-----------------------------------------------------------------------------------*/
 int sciseteventhandler(char *fname,unsigned long fname_len);
-double  sciFindLogMinSPos(double *x, int n);
 void SetTKGraphicalMode(BOOL SetTKMode);
-int sci_demo (char *fname,char *code,integer *flagx);
 int C2F(scigerase)();
 int scixg2psofig_G(char *fname,char *dr,unsigned long fname_len,unsigned long dr_len);
 int scicontour2d_G(char *fname,int (*func) (),unsigned long fname_len);
@@ -106,42 +107,10 @@ int sciplot3d_G(char *fname,
 int scichamp_G(char *fname,int (*func) (),unsigned long fname_len);
 int scisetposfig(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
-static int get_style(char *fname,int pos, int n1,rhs_opts opts[]);
-static int get_rect(char *fname,int pos,rhs_opts opts[]);
-static int get_strf(char *fname,int pos,rhs_opts opts[]);
-static int get_legend(char *fname,int pos,rhs_opts opts[]);
-static int get_labels(char *fname,int pos,rhs_opts opts[]);
-static int get_nax(int pos,rhs_opts opts[]);
-static int get_zminmax(char *fname,int pos,rhs_opts opts[]);
-static int get_colminmax(char *fname,int pos,rhs_opts opts[]);
-static int get_colout(char *fname,int pos,rhs_opts opts[]);
-static int get_with_mesh(char *fname,int pos,rhs_opts opts[]);
-static int get_logflags(char *fname,int pos,rhs_opts opts[]);
-static int get_optional_double_arg();
-static int get_optional_int_arg();
-/*-----------------------------------------------------------------------------------*/
-#define sciGetStyle(pos,n1,opts) if ( get_style(fname,pos,n1,opts) == 0) return 0;
-#define GetRect(pos,opts) if ( get_rect(fname,pos,opts) == 0) return 0;
-#define GetStrf(pos,opts) if ( get_strf(fname,pos,opts) == 0) return 0;
-#define GetLegend(pos,opts) if ( get_legend(fname,pos,opts) == 0) return 0;
-#define GetLabels(pos,opts) if ( get_labels(fname,pos,opts) == 0) return 0;
-#define GetNax(pos,opts) if ( get_nax(pos,opts)==0 ) return 0;
-#define GetZminmax(pos,opts) if ( get_zminmax(fname,pos,opts) == 0) return 0;
-#define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
-#define GetColOut(pos,opts) if ( get_colout(fname,pos,opts)==0 ) return 0;
-#define GetWithMesh(pos,opts) if ( get_with_mesh(fname,pos,opts)==0 ) return 0;
-#define GetLogflags(pos,opts) if ( get_logflags(fname,pos,opts) == 0) return 0;
-#define GetOptionalDoubleArg(pos,name,value,sz,opts) if ( get_optional_double_arg(fname,pos,name,value,sz,opts) == 0) return 0;
-#define GetOptionalIntArg(pos,name,value,sz,opts) if ( get_optional_int_arg(fname,pos,name,value,sz,opts) == 0) return 0;
-/*-----------------------------------------------------------------------------------*/
 #ifndef NULL
 #define NULL 0
 #endif 
 #define NUMSETFONC 38
-#define DEFSTRF "081" 
-#define DEFSTRFN "099" 
-#define DEFLOGFLAGS "gnn" 
-#define SciWin() if(C2F(sciwin)() !=0) { Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
 /*-----------------------------------------------------------------------------------*/
 char *pmodes[] =
   { 
@@ -213,32 +182,23 @@ static BOOL TKModeON=FALSE;
 static char error_message[70];
 static int * Style;
 
-static double def_rect[4]  = {0.,0.,0.0,0.0}; 
 static double *Rect ; 
 
-static char def_strf[]  = DEFSTRF;
 static char *Strf ; 
 
-static char def_legend[]  = "X@Y@Z";
 static char *Legend ; 
 
-static double def_zminmax[2]  = {0.,0.};
 static double *Zminmax ; 
 
-static int def_nax[]={2,10,2,10};
 static int *Nax;
 static BOOL flagNax = FALSE; /* F.Leray : to know weither or not we use Nax */
 
-static int def_colminmax[]={0,0};
 static int *Colminmax;
 
-static int def_colout[]={-1,-1};
 static int *ColOut;
 
-static BOOL def_with_mesh=FALSE;
 static BOOL WithMesh;
 
-static char def_logflags[]  = DEFLOGFLAGS;
 static char *Logflags; 
 static char logflags[3];
 
@@ -246,240 +206,11 @@ extern int xinitxend_flag;
 
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
+
 /*-----------------------------------------------------------------------------------*/
 /* Graphic subroutines interface */
 /*-----------------------------------------------------------------------------------*/
 
-
-/*-----------------------------------------------------------------------------------*/
-/*plot2d(x,y,[style,strf,leg,rect,nax]) */
-/*-----------------------------------------------------------------------------------*/
-int sciplot2d(char *fname,unsigned long fname_len)
-{
-  static char str[]="x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2]);";
-
-  integer m1, n1, l1, m2, n2, l2, lt;
-  int test,i,j,iskip;
-  int frame_def=8;
-  int *frame=&frame_def;
-  int axes_def=1;
-  int *axes=&axes_def;
-
-  /* F.Leray 18.05.04 : log. case test*/
-  int size_x,size_y;
-  double xd[2];
-  double *x1;
-  char dataflag;
-
-  static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
-			    {-1,"frameflag","?",0,0,0},
-			    {-1,"leg","?",0,0,0},
-			    {-1,"logflag","?",0,0,0},
-			    {-1,"nax","?",0,0,0},
-			    {-1,"rect","?",0,0,0},
-			    {-1,"strf","?",0,0,0},
-			    {-1,"style","?",0,0,0},
-			    {-1,NULL,NULL,0,0}};
-  if (Rhs == 0) 
-    {
-      sci_demo(fname,str,&one);
-      return 0;
-    }
-
-  CheckRhs(1,9);
-
-  iskip=0;
-  if ( get_optionals(fname,opts) == 0) return 0;
-
-  if (GetType(1)==10) {
-    /* logflags */
-    GetLogflags(1,opts);
-    iskip=1;
-  }
-
-  if (Rhs == 1+iskip)       /** plot2d([loglags,] y); **/
-    {
-      if ( FirstOpt() <= Rhs) {
-	sciprint("%s: misplaced optional argument, first must be at position %d\r\n",fname,3+iskip);
-	Error(999); 
-	return(0);
-      }
-
-      GetRhsVar(1+iskip, "d", &m2, &n2, &l2);
-      /* if (m2 * n2 == 0) { LhsVar(1) = 0; return 0;} */
-      CreateVar(2+iskip,"d",  &m2, &n2, &l1);
-      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
-      m1 = m2;  n1 = n2;
-      for (i = 0; i < m2 ; ++i) 
-	for (j = 0 ; j < n2 ;  ++j)
-	  *stk( l1 + i + m2*j) = (double) i+1;
-    }
-
-  if (Rhs >= 2+iskip) {
-    if ( FirstOpt() < 3+iskip) {
-      sciprint("%s: misplaced optional argument, first must be at position %d\r\n", fname,3+iskip);
-      Error(999); 
-      return(0);
-    }
-
-    /** plot2d([loglags,] x,y,....); **/
-
-    /* x */
-    GetRhsVar(1+iskip, "d", &m1, &n1, &l1);
-
-    /* y */
-    GetRhsVar(2+iskip, "d", &m2, &n2, &l2);
-    /* if (m2 * n2 == 0) {m1 = 1; n1 = 0;}  */
-
-    test = (m1*n1 == 0)||
-      ((m1 == 1 || n1 == 1) && (m2 == 1 || n2 ==1) && (m1*n1 == m2*n2))  ||
-      ((m1 == m2) && (n1 == n2)) ||
-      ((m1 == 1 && n1 == m2) || (n1 == 1 && m1 == m2));
-    CheckDimProp(1+iskip,2+iskip,!test);
-
-    if (m1*n1 == 0) { /* default x=1:n */
-      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
-      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
-      for (i = 0; i < m2 ; ++i) 
-	for (j = 0 ; j < n2 ;  ++j)
-	  *stk( lt + i + m2*j) = (double) i+1;
-      m1 = m2;
-      n1 = n2;
-      l1 = lt;
-    }
-    else if ((m1 == 1 || n1 == 1) && (m2 != 1 && n2 != 1) ) {
-      /* a single x vector for mutiple columns for y */
-      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
-      for (i = 0; i < m2 ; ++i) 
-	for (j = 0 ; j < n2 ;  ++j)
-	  *stk( lt + i + m2*j) = *stk(l1 +i);
-      m1 = m2;
-      n1 = n2;
-      l1 = lt;
-    }
-    else if ((m1 == 1 && n1 == 1) && (n2 != 1) ) {
-      /* a single y row vector  for a single x */
-      CreateVar(Rhs+1,"d",  &m1, &n2, &lt);
-      for (j = 0 ; j < n2 ;  ++j)
-	*stk( lt + j ) = *stk(l1);
-      n1 = n2;
-      l1 = lt;
-    }
-    else {
-      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
-      if (m1 == 1 && n1 > 1) { m1 = n1; n1 = 1;}
-    }
-  }
-
-  if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
-    {
-      sciprint("%s: bad argument specified in input\r\n", fname);
-      Error(999); 
-      return(0);
-    }
-
-  sciGetStyle(3+iskip,n1,opts);
-  GetStrf(4+iskip,opts);
-  GetLegend(5+iskip,opts);
-  GetRect(6+iskip,opts);
-  GetNax(7+iskip,opts);
-  if (iskip==0) GetLogflags(8,opts);
-
-  SciWin(); 
-  C2F(scigerase)();
-
-  if (Strf == def_strf) {
-    char strfl[4];
-    if (version_flag() == 0)
-      strcpy(strfl,DEFSTRFN);
-    else
-      strcpy(strfl,DEFSTRF);
-    Strf = strfl;
-    if (Rect != def_rect)
-      strfl[1] = '7';
-    if (Legend != def_legend)
-      strfl[0] = '1';
-    if(version_flag() != 0){
-      if (Nax != def_nax) /* F.Leray 12.10.04 1. If rect does not exist, there is a pb here... */
-	strfl[1] = '1';   /*                  2. Where is the link between Nax and Rect ??? */
-    }
-    GetOptionalIntArg(9,"frameflag",&frame,1,opts);
-    if(frame != &frame_def) 
-      strfl[1] = (char)(*frame+48);
-    GetOptionalIntArg(9,"axesflag",&axes,1,opts);
-    if(axes != &axes_def) 
-      strfl[2] = (char)(*axes+48);
-  }
-
-  /* NG beg */
-  if (version_flag() == 0){
-    /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
-       Rect case :
-       - if the min bound is strictly posivite, we can use log. mode
-       - if not, send error message 
-       x/y min/max case:
-       - we find the first strictly positive min bound in Plo2dn.c ?? */
-
-    switch (Strf[1])  {
-    case '0': 
-      /* no computation, the plot use the previous (or default) scale */
-      break;
-    case '1' : case '3' : case '5' : case '7':
-      /* based on Rect arg */ 
-      if(Rect[0] > Rect[2] || Rect[1] > Rect[3])
-	{sciprint("Error:  Impossible status min > max in x or y rect data\n");return -1;}
-
-      if(Rect[0] <= 0. && Logflags[1] =='l') /* xmin */
-	{sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;}
-
-      if(Rect[1] <= 0. && Logflags[2] =='l') /* ymin */
-	{sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;}
-
-      break;
-    case '2' : case '4' : case '6' : case '8': case '9':
-      /* computed from the x/y min/max */
-      if ( (int)strlen(Logflags) < 1) dataflag='g' ; else dataflag=Logflags[0];
-
-      switch ( dataflag ) {
-      case 'e' : 
-	xd[0] = 1.0; xd[1] = (double)m1;
-	x1 = xd;size_x = (m1 != 0) ? 2 : 0 ;
-	break; 
-      case 'o' : 
-	x1 = stk(l1);size_x = m1;
-	break;
-      case 'g' : 
-      default  : 
-	x1 = stk(l1);size_x = (n1*m1) ;
-	break; 
-      }
-
-      if (size_x != 0) 
-	if(Logflags[1] == 'l' && sciFindLogMinSPos(stk(l1),size_x) < 0.)
-	  {sciprint("Error: at least one x data must be strictly positive to compute the bounds and use logarithmic mode\n");return -1;}
-
-      size_y = (n1*m1) ;
-
-      if (size_y != 0) 
-	if(Logflags[2] == 'l' && sciFindLogMinSPos(stk(l2),size_y) < 0.)
-	  {sciprint("Error: at least one y data must be strictly positive to compute the bounds and use logarithmic mode\n");return -1;}
-
-      break;
-    }
-
-    Objplot2d (1,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax,flagNax);
-    /*sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure())); F.Leray 25.03.04 */
-  } 
-  else { /* NG end */
-    if (Logflags != def_logflags) 
-      C2F(plot2d1)(Logflags,stk(l1),stk(l2),&n1,&m1,Style,Strf,Legend,Rect,Nax,
-		   4L,strlen(Strf),strlen(Legend));
-    else 
-      Xplot2d (stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect, Nax); /* NG */
-  }
-  LhsVar(1)=0;
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 /*  contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev]) */
 /*-----------------------------------------------------------------------------------*/
@@ -537,12 +268,12 @@ int scicontour(char *fname,unsigned long fname_len)
   } else {
     flagx = 1;  nz = m4 * n4;
   }
-  GetOptionalDoubleArg(5,"theta",&theta,1,opts);
-  GetOptionalDoubleArg(6,"alpha",&alpha,1,opts);
-  GetLabels(7,opts);
-  GetOptionalIntArg(8,"flag",&iflag,3,opts);
-  GetOptionalDoubleArg(9,"ebox",&ebox,6,opts);
-  GetOptionalDoubleArg(10,"zlev",&zlev,1,opts);
+  GetOptionalDoubleArg(fname,5,"theta",&theta,1,opts);
+  GetOptionalDoubleArg(fname,6,"alpha",&alpha,1,opts);
+  GetLabels(fname,7,opts,&Legend);
+  GetOptionalIntArg(fname,8,"flag",&iflag,3,opts);
+  GetOptionalDoubleArg(fname,9,"ebox",&ebox,6,opts);
+  GetOptionalDoubleArg(fname,10,"zlev",&zlev,1,opts);
   SciWin();
   C2F(scigerase)();
   C2F(contour)(stk(l1), stk(l2), stk(l3), &m3, &n3, &flagx, &nz, stk(l4), theta, alpha,
@@ -594,16 +325,16 @@ int sciparam3d(char *fname,unsigned long fname_len)
   CheckSameDims(2,3,m2,n2,m3,n3);
 
   SciWin();
-  GetOptionalDoubleArg(4,"theta",&theta,1,opts);
-  GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
-  GetLabels(6,opts);
+  GetOptionalDoubleArg(fname,4,"theta",&theta,1,opts);
+  GetOptionalDoubleArg(fname,5,"alpha",&alpha,1,opts);
+  GetLabels(fname,6,opts,&Legend);
 
   if (version_flag() == 0) iflag_def[1]=8;
   else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
   ifl=&(iflag_def[1]);
-  GetOptionalIntArg(7,"flag",&ifl,2,opts);
+  GetOptionalIntArg(fname,7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
-  GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
+  GetOptionalDoubleArg(fname,8,"ebox",&ebox,6,opts);
 
   C2F(scigerase)();
   ix1 = m1 * n1;
@@ -699,16 +430,16 @@ int sciparam3d1(char *fname,unsigned long fname_len)
   if (m3 == 1 && n3 > 1) {m3 = n3;n3 = 1;}
   CheckSameDims(1,3,m1,n1,m3,n3); 
 
-  GetOptionalDoubleArg(4,"theta",&theta,1,opts);
-  GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
-  GetLabels(6,opts);
+  GetOptionalDoubleArg(fname,4,"theta",&theta,1,opts);
+  GetOptionalDoubleArg(fname,5,"alpha",&alpha,1,opts);
+  GetLabels(fname,6,opts,&Legend);
   if (version_flag() == 0) iflag_def[1]=8;
   else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
   ifl=&(iflag_def[1]);
-  GetOptionalIntArg(7,"flag",&ifl,2,opts);
+  GetOptionalIntArg(fname,7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
 
-  GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
+  GetOptionalDoubleArg(fname,8,"ebox",&ebox,6,opts);
 
   if (m1 == 1 && n1 > 1) { m1 = n1;    n1 = 1; }
   SciWin();
@@ -890,30 +621,30 @@ int scigrayplot(char *fname,unsigned long fname_len)
   CheckDimProp(2,3,m2 * n2 != n3);
   CheckDimProp(1,3,m1 * n1 != m3);
 
-  GetStrf(4,opts);
-  GetRect(5,opts);
-  GetNax(6,opts);
+  GetStrf(fname,4,opts,&Strf);
+  GetRect(fname,5,opts,&Rect);
+  GetNax(6,opts,&Nax,&flagNax);
 
   SciWin();
   C2F(scigerase)();
 
-  if (Strf == def_strf) {
+  if ( isDefStrf( Strf ) ) {
     char strfl[4];
     if (version_flag() == 0)
       strcpy(strfl,DEFSTRFN);
     else
       strcpy(strfl,DEFSTRF);
     Strf = strfl;
-    if (Rect != def_rect)
+    if ( !isDefRect( Rect ) )
       strfl[1]='7';
     if(version_flag() != 0){
-      if (Nax != def_nax)
+      if ( !isDefNax( Nax ))
 	strfl[1]='1';
     }
-    GetOptionalIntArg(7,"frameflag",&frame,1,opts);
+    GetOptionalIntArg(fname,7,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
-    GetOptionalIntArg(7,"axesflag",&axes,1,opts);
+    GetOptionalIntArg(fname,7,"axesflag",&axes,1,opts);
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
@@ -960,30 +691,30 @@ int scimatplot(char *fname,unsigned long fname_len)
   }
   GetRhsVar(1, "d", &m1, &n1, &l1);
   if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
-  GetStrf(2,opts);
-  GetRect(3,opts);
-  GetNax(4,opts);
+  GetStrf(fname,2,opts,&Strf);
+  GetRect(fname,3,opts,&Rect);
+  GetNax(4,opts,&Nax,&flagNax);
 
   SciWin();
   C2F(scigerase)();
 
-  if (Strf == def_strf) {
+  if ( isDefStrf( Strf ) ) {
     char strfl[4];
     if (version_flag() == 0)
       strcpy(strfl,DEFSTRFN);
     else
       strcpy(strfl,DEFSTRF);
     Strf = strfl;
-    if (Rect != def_rect)
+    if ( !isDefRect( Rect ) )
       strfl[1]='7';
     if(version_flag() != 0){
-      if (Nax != def_nax)
+      if ( !isDefNax( Nax ))
 	strfl[1]='1';
     }
-    GetOptionalIntArg(5,"frameflag",&frame,1,opts);
+    GetOptionalIntArg(fname,5,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
-    GetOptionalIntArg(5,"axesflag",&axes,1,opts);
+    GetOptionalIntArg(fname,5,"axesflag",&axes,1,opts);
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
@@ -3117,31 +2848,31 @@ int scifec(char *fname,unsigned long fname_len)
 
   if (m1 * n1 == 0 || m3 == 0) { LhsVar(1)=0;     return 0;} 
 
-  GetStrf(5,opts);
-  GetLegend(6,opts);
-  GetRect(7,opts);
-  GetNax(8,opts);
-  GetZminmax(9,opts);
-  GetColminmax(10,opts);
-  GetColOut(11,opts);
-  GetWithMesh(12,opts);
+  GetStrf(fname,5,opts,&Strf);
+  GetLegend(fname,6,opts,&Legend);
+  GetRect(fname,7,opts,&Rect);
+  GetNax(8,opts,&Nax,&flagNax);
+  GetZminmax(fname,9,opts,&Zminmax);
+  GetColminmax(fname,10,opts,&Colminmax);
+  GetColOut(fname,11,opts,&ColOut);
+  GetWithMesh(fname,12,opts,&WithMesh);
 
   SciWin();
   C2F(scigerase)();
 
-  if (Strf == def_strf) {
+  if ( isDefStrf ( Strf ) ) {
     char strfl[4];
     if (version_flag() == 0)
       strcpy(strfl,DEFSTRFN);
     else
       strcpy(strfl,DEFSTRF);
     Strf = strfl;
-    if (Rect != def_rect)
+    if ( !isDefRect( Rect ))
       strfl[1]='7';
-    if (Legend != def_legend)
+    if ( !isDefLegend( Legend ) )
       strfl[0]='1';
     if(version_flag() != 0){
-      if (Nax != def_nax)
+      if ( !isDefNax( Nax ) )
 	strfl[1]='1';
     }
   }
@@ -3912,21 +3643,21 @@ int scichamp_G(char *fname,int (*func) (),unsigned long fname_len)
   CheckDimProp(1,3,m1 * n1 != m3); 
   if (m3 * n3 == 0) { LhsVar(1) = 0; return 0;} 
 
-  GetOptionalDoubleArg(5,"arfact",&arfact,1,opts);
-  GetRect(6,opts);
-  GetStrf(7,opts);
+  GetOptionalDoubleArg(fname,5,"arfact",&arfact,1,opts);
+  GetRect(fname,6,opts,&Rect);
+  GetStrf(fname,7,opts,&Strf);
 
   SciWin();
   C2F(scigerase)();
 
-  if (Strf == def_strf) {
+  if ( isDefStrf( Strf ) ) {
     char strfl[4];
     if (version_flag() == 0)
       strcpy(strfl,DEFSTRFN);
     else
       strcpy(strfl,DEFSTRF);
     Strf = strfl;
-    if (Rect != &(def_rect[0])) {Strf[1]='5';} 
+    if ( isDefRect( Rect ) ) {Strf[1]='5';} 
   }
 
 
@@ -4035,11 +3766,11 @@ int sciplot3d_G(char *fname,
   if (version_flag() == 0) iflag_def[1]=8;
   else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
 
-  GetOptionalDoubleArg(4,"theta",&theta,1,opts);
-  GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
-  GetLabels(6,opts);
-  GetOptionalIntArg(7,"flag",&iflag,3,opts);
-  GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
+  GetOptionalDoubleArg(fname,4,"theta",&theta,1,opts);
+  GetOptionalDoubleArg(fname,5,"alpha",&alpha,1,opts);
+  GetLabels(fname,6,opts,&Legend);
+  GetOptionalIntArg(fname,7,"flag",&iflag,3,opts);
+  GetOptionalDoubleArg(fname,8,"ebox",&ebox,6,opts);
 
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
     if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
@@ -4170,7 +3901,7 @@ int sciplot2d1_G(char *fname,int ptype,int (*func)
 
   if (GetType(1)==10) {
     /* logflags */
-    GetLogflags(1,opts);
+    GetLogflags(fname,1,opts,&Logflags);
     iskip=1;
   }
 
@@ -4255,31 +3986,31 @@ int sciplot2d1_G(char *fname,int ptype,int (*func)
     }
   }
 
-  sciGetStyle(3+iskip,n1,opts);
-  GetStrf(4+iskip,opts);
-  GetLegend(5+iskip,opts);
-  GetRect(6+iskip,opts);
-  GetNax(7+iskip,opts);
-  if (iskip==0) GetLogflags(8,opts);
+  sciGetStyle(fname,3+iskip,n1,opts,&Style);
+  GetStrf(fname,4+iskip,opts,&Strf);
+  GetLegend(fname,5+iskip,opts,&Legend);
+  GetRect(fname,6+iskip,opts,&Rect);
+  GetNax(7+iskip,opts,&Nax,&flagNax);
+  if (iskip==0) GetLogflags(fname,8,opts,&Logflags);
 
   SciWin();
   C2F(scigerase)();
 
-  if (Strf == def_strf) {
+  if ( isDefStrf( Strf ) ) {
     char strfl[4];
     if (version_flag() == 0)
       strcpy(strfl,DEFSTRFN);
     else
       strcpy(strfl,DEFSTRF);
     Strf = strfl;
-    if (Rect != def_rect)
+    if ( !isDefRect( Rect ) )
       strfl[1]='7';
-    if (Legend != def_legend)
+    if ( !isDefLegend( Legend ) )
       strfl[0]='1';
-    GetOptionalIntArg(9,"frameflag",&frame,1,opts);
+    GetOptionalIntArg(fname,9,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
-    GetOptionalIntArg(9,"axesflag",&axes,1,opts);
+    GetOptionalIntArg(fname,9,"axesflag",&axes,1,opts);
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
@@ -4363,32 +4094,32 @@ int scicontour2d_G(char *fname,int (*func) (),unsigned long fname_len)
     }
 
 
-  sciGetStyle(5,nz,opts);
-  GetStrf(6,opts);    
-  GetLegend(7,opts);
-  GetRect(8,opts);
-  GetNax(9,opts);
+  sciGetStyle(fname,5,nz,opts,&Style);
+  GetStrf(fname,6,opts,&Strf);
+  GetLegend(fname,7,opts,&Legend);
+  GetRect(fname,8,opts,&Rect);
+  GetNax(9,opts,&Nax,&flagNax);
 
   SciWin();
   C2F(scigerase)();
 
-  if (Strf == def_strf) {
+  if ( isDefStrf( Strf ) ) {
     char strfl[4];
     if (version_flag() == 0)
       strcpy(strfl,DEFSTRFN);
     else
       strcpy(strfl,DEFSTRF);
     Strf = strfl;
-    if (Rect != def_rect)
+    if ( !isDefRect( Rect ) )
       strfl[1] = '7';
-    if (Legend != def_legend)
+    if ( !isDefLegend( Legend ) )
       strfl[0] = '1';
-    if (Nax != def_nax)
+    if ( !isDefNax( Nax ) )
       strfl[1] = '1';
-    GetOptionalIntArg(9,"frameflag",&frame,1,opts);
+    GetOptionalIntArg(fname,9,"frameflag",&frame,1,opts);
     if(frame != &frame_def) 
       strfl[1] = (char)(*frame+48);
-    GetOptionalIntArg(9,"axesflag",&axes,1,opts);
+    GetOptionalIntArg(fname,9,"axesflag",&axes,1,opts);
     if(axes != &axes_def) 
       strfl[2] = (char)(*axes+48);
   }
@@ -5318,568 +5049,7 @@ int scixclearsubwin(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 /* erase a graphic window if necessary */
 /*-----------------------------------------------------------------------------------*/
-int C2F(scigerase)()
-{
-  integer verb=0,lstr,v,na,win;
-  double dv;
-  char str[4];
-  C2F(xgetg)("auto clear",str,&lstr,11L,4L);
-  if (strcmp(str,"on") == 0) {
-    C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-    C2F(dr1)("xclear",C2F(cha1).buf,&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
-    C2F(dr1)("xstart",C2F(cha1).buf,&win,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,bsiz);
-  }
-  return 0;
-} 
-/*-----------------------------------------------------------------------------------*/
-/* get_style */
-/*-----------------------------------------------------------------------------------*/
-static int get_style(char *fname,int pos, int n1,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt,un=1,ix,i,l1;
 
-  Nbvars=Max(Nbvars,Rhs);
-
-
-  if (pos < first_opt) /* regular argument  */
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "i", &m, &n, &l);
-	if (m * n < n1) {
-	  Scierror(999,"%s: style is too small (%d < %d)\r\n",fname,m*n,n1);
-	  return 0;
-	}
-	if (n1==1&&m*n==1) {
-	  ix = 2;
-	  CreateVar(Nbvars+1,"i",&un,&ix,&l1);
-	  *istk(l1)=*istk(l);
-	  *istk(l1+1)=1;
-	  l=l1;
-	}
-	Style=istk(l);
-      }
-      else /* zero type argument --> default value */
-	{
-	  ix = Max(n1,2);
-	  CreateVar(Nbvars+1,"i",&un,&ix,&l);
-	  for (i = 0 ; i < n1 ; ++i)  *istk(l + i) = i+1;
-	  if (n1 == 1)  *istk(l +1) = 1;
-	  Style=istk(l);
-	}
-    }
-  else if ((kopt=FindOpt("style",opts))) { /* named argument: style=value */
-    GetRhsVar(kopt, "i", &m, &n, &l);
-    if (m * n < n1) {
-      Scierror(999,"%s: style is too small (%d < %d)\r\n",fname,m*n,n1);
-      return 0;
-    }
-    if (n1==1&&m*n==1) {
-      ix = 2;
-      CreateVar(Nbvars+1,"i",&un,&ix,&l1);
-      *istk(l1)=*istk(l);
-      *istk(l1+1)=1;
-      l=l1;
-    }
-    Style=istk(l);
-  }
-  else /* unspecified argument --> default value */
-    {
-      ix = Max(n1,2);
-      CreateVar(Nbvars+1,"i",&un,&ix,&l);
-      for (i = 0 ; i < n1 ; ++i)  *istk(l + i) = i+1;
-      if (n1 == 1)  *istk(l +1) = 1;
-      Style=istk(l);
-    }
-  return 1;
-}
-/*-----------------------------------------------------------------------------------*/
-/* get_rect */
-/*-----------------------------------------------------------------------------------*/
-static int get_rect(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt,i;
-
-  if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "d", &m, &n, &l);
-	if (m * n != 4) { 
-	  Scierror(999,"%s: rect has wrong size (%d), 4 expected \r\n",fname,m*n); 
-	  return 0;
-	}
-	Rect = stk(l);
-	
-	for(i=0;i<4;i++)
-	  if(finite(Rect[i]) == 0){
-	    Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected \r\n",fname,m*n); 
-	    return 0;
-	  }
-      }
-      else 
-	{
-	  /** global value can be modified  **/
-	  /*   def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=10.0; */  /* F.Leray 29.04.04 */
-	  def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=0.0;
-	  Rect = def_rect ;
-	}
-    }
-  else if ((kopt=FindOpt("rect",opts))) {/* named argument: rect=value */
-    GetRhsVar(kopt, "d", &m, &n, &l);
-    if (m * n != 4) { 
-      Scierror(999,"%s: rect has wrong size (%d), 4 expected \r\n",fname,m*n); 
-      return 0;
-    }
-    Rect = stk(l);
-    
-    for(i=0;i<4;i++)
-      if(finite(Rect[i]) == 0){
-	Scierror(999,"%s: rect has Nan or Inf values, 4 finite values expected \r\n",fname,m*n); 
-	return 0;
-      }
-  }
-  else
-    {
-      /** global value can be modified  **/
-      /*   def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=10.0; */ /* F.Leray 29.04.04 */
-      def_rect[0] = def_rect[1] = 0.0; def_rect[2]=def_rect[3]=0.0;
-      Rect = def_rect ;
-    }
-  /*if ((Rect != def_rect)&&(Strf !=def_strf)) {
-    }*/
-    
-  return 1;
-}
-/*-----------------------------------------------------------------------------------*/
-static int get_strf(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt)
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "c", &m, &n, &l);
-	if (m * n != 3) { 
-	  Scierror(999,"%s: strf has wrong size (%d), 3 expected \r\n",fname,m*n); 
-	  return 0;
-	}
-	Strf = cstk(l); 
-      }
-      else
-	{
-	  /* def value can be changed */
-	  strcpy(def_strf,DEFSTRF);  Strf = def_strf ;
-	}
-    }
-  else if ((kopt=FindOpt("strf",opts))) {
-    GetRhsVar(kopt, "c", &m, &n, &l);
-    if (m * n != 3) { 
-      Scierror(999,"%s: strf has wrong size (%d), 3 expected \r\n",fname,m*n); 
-      return 0;
-    }
-    Strf = cstk(l); 
-  }
-  else
-    {
-      /* def value can be changed */
-      
-      if (version_flag() == 0){
-	strcpy(def_strf,DEFSTRFN);  Strf = def_strf ;
-      }
-      else {
-	strcpy(def_strf,DEFSTRF);  Strf = def_strf ;
-      }
-    }
-  return 1;
-}
-
-/*-----------------------------------------------------------------------------------*/
-static int get_legend(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "c", &m, &n, &l);
-	Legend = cstk(l); 
-      }
-      else
-	{
-	  Legend = def_legend ;
-	}
-    }
-  else if ((kopt=FindOpt("leg",opts))) {
-    GetRhsVar(kopt, "c", &m, &n, &l);
-    Legend = cstk(l); 
-  }
-  else
-    {
-      Legend = def_legend ;
-    }
-  return 1;
-}
-/*-----------------------------------------------------------------------------------*/
-/**
- * @memo retrieve the labels from the command line  and store them into Legend
- */
-static int get_labels(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-  { 
-    if (VarType(pos)) {
-      GetRhsVar(pos, "c", &m, &n, &l);
-      Legend = cstk(l); 
-    }
-    else
-    {
-      if ( version_flag() == 0 )
-      {
-        /* jb silvy 03/2006 */
-        /* do not change the legend if one already exists */
-        sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
-        if ( sciGetLegendDefined( pSubWin ) )
-        {
-          Legend = NULL ;
-        }
-        else
-        {
-          Legend = def_legend ;
-        }
-      }
-      else
-      {
-        Legend = def_legend ;
-      }
-    }
-  }
-  else if ((kopt=FindOpt("leg",opts))) {
-    GetRhsVar(kopt, "c", &m, &n, &l);
-    Legend = cstk(l); 
-  }
-  else
-  {
-    if ( version_flag() == 0 )
-    {
-      /* jb silvy 03/2006 */
-      /* do not change the legend if one already exists */
-      sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
-      if ( sciGetLegendDefined( pSubWin ) )
-      {
-        Legend = NULL ;
-      }
-      else
-      {
-        Legend = def_legend ;
-      }
-    }
-    else
-    {
-      Legend = def_legend ;
-    }
-  }
-  return 1;
-}
-
-/*-----------------------------------------------------------------------------------*/
-static int get_nax(int pos,rhs_opts opts[])
-{
-  int i,m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) {
-    if (VarType(pos)) {
-      GetRhsVar(pos, "i", &m, &n, &l);
-      CheckLength(pos,m*n,4);
-      for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),0); /*POLPOTH09042001*/
-      Nax=istk(l);
-      flagNax = TRUE;
-    }
-    else
-      {
-	Nax=def_nax;
-	flagNax = FALSE;
-      }
-  }
-  else if ((kopt=FindOpt("nax",opts))) {
-    GetRhsVar(kopt, "i", &m, &n, &l);
-    CheckLength(kopt,m*n,4);
-    for (i = 0 ; i < 4; ++i) *istk(l+i) = Max((integer) *istk(l+i),0); /*POLPOTH09042001*/
-    Nax=istk(l);
-    flagNax = TRUE;
-  }
-  else 
-    {
-      Nax=def_nax;
-      flagNax = FALSE;
-    } 
-  return 1;
-}
-
-
-/*-----------------------------------------------------------------------------------*/
-static int get_zminmax(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-        GetRhsVar(pos, "d", &m, &n, &l);
-	if (m * n != 2) { 
-	  Scierror(999,"%s: zminmax has wrong size (%d), 2 expected \r\n",fname,m*n); 
-	  return 0;
-	}
-	Zminmax = stk(l); 
-      }
-      else 
-	{
-	  /** global value can be modified  **/
-	  def_zminmax[0] = def_zminmax[1] = 0.0;
-	  Zminmax = def_zminmax ;
-	}
-    }
-  else if ((kopt=FindOpt("zminmax",opts))) {/* named argument: rect=value */
-    GetRhsVar(kopt, "d", &m, &n, &l);
-    if (m * n != 2) { 
-      Scierror(999,"%s: zminmax has wrong size (%d), 2 expected \r\n",fname,m*n); 
-      return 0;
-    }
-    Zminmax = stk(l); 
-  }
-  else
-    {
-      /** global value can be modified  **/
-      def_zminmax[0] = def_zminmax[1] = 0.0;
-      Zminmax = def_zminmax ;
-    }
-    
-  return 1;
-}
-
-/*-----------------------------------------------------------------------------------*/
-static int get_colminmax(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    {
-      if (VarType(pos)) 
-	{
-	  GetRhsVar(pos, "i", &m, &n, &l);
-	  CheckLength(pos,m*n,2);
-	  Colminmax=istk(l);
-	}
-      else
-	{
-	  /** global value can be modified  **/
-	  def_colminmax[0] = def_colminmax[1] = 0;
-	  Colminmax=def_colminmax;
-	}
-    }
-  else if ((kopt=FindOpt("colminmax",opts))) 
-    {
-      GetRhsVar(kopt, "i", &m, &n, &l);
-      CheckLength(kopt,m*n,2);
-      Colminmax=istk(l);
-    }
-  else 
-    {
-      /** global value can be modified  **/
-      def_colminmax[0] = def_colminmax[1] = 0;
-      Colminmax=def_colminmax;
-    } 
-  return 1;
-}
-
-/*-----------------------------------------------------------------------------------*/
-static int get_colout(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    {
-      if (VarType(pos)) 
-	{
-	  GetRhsVar(pos, "i", &m, &n, &l);
-	  CheckLength(pos,m*n,2);
-	  ColOut = istk(l);
-	}
-      else
-	{
-	  /** global value can be modified  **/
-	  def_colout[0] = def_colout[1] = -1;
-	  ColOut = def_colout;
-	}
-    }
-  else if ((kopt=FindOpt("colout",opts))) 
-    {
-      GetRhsVar(kopt, "i", &m, &n, &l);
-      CheckLength(kopt,m*n,2);
-      ColOut=istk(l);
-    }
-  else 
-    {
-      /** global value can be modified  **/
-      def_colout[0] = def_colout[1] = -1;
-      ColOut = def_colout;
-    } 
-  return 1;
-}
-/*-----------------------------------------------------------------------------------*/
-static int get_with_mesh(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    {
-      if (VarType(pos)) 
-	{
-	  GetRhsVar(pos, "b", &m, &n, &l);
-	  CheckLength(pos,m*n,1);
-	  WithMesh = *(istk(l));
-	}
-      else
-	{
-	  /** global value can be modified  **/
-	  def_with_mesh = FALSE;
-	  WithMesh = def_with_mesh;
-	}
-    }
-  else if ((kopt=FindOpt("mesh",opts))) 
-    {
-      GetRhsVar(kopt, "b", &m, &n, &l);
-      CheckLength(kopt,m*n,1);
-      WithMesh = *(istk(l));
-    }
-  else 
-    {
-      /** global value can be modified  **/
-      def_with_mesh = FALSE;
-      WithMesh = def_with_mesh;
-    } 
-  return 1;
-}
-
-/*-----------------------------------------------------------------------------------*/
-static int get_logflags(char *fname,int pos,rhs_opts opts[])
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-  
-  if (pos < first_opt) /* regular argument  */
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "c", &m, &n, &l);
-	if ((m * n != 2)&&(m * n != 3)) {
-	  Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\r\n",fname,m*n);
-	  return 0;
-	}
-	if (m * n == 2) {
-	  if ((*cstk(l)!='l'&&*cstk(l)!='n')||(*cstk(l+1)!='l'&&*cstk(l+1)!='n')){
-	    Err=pos;
-	    Error(116);
-	    return 0;
-	  }
-	  logflags[0]='g';logflags[1]=*cstk(l);logflags[2]=*cstk(l+1);
-	  Logflags=logflags;}
-	else {
-	  if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
-	      (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
-	      (*cstk(l+2)!='l'&&*cstk(l+2)!='n')){
-	    Err=pos;
-	    Error(116);
-	    return 0;
-	  }
-	  Logflags=cstk(l);
-	}
-      }
-      else /* zero type argument --> default value */
-	{
-	  Logflags=def_logflags;
-	}
-    }
-  else if ((kopt=FindOpt("logflag",opts))) { /* named argument: style=value */
-    GetRhsVar(kopt,"c", &m, &n, &l);
-    if ((m * n != 2)&&(m * n != 3)) {
-      Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\r\n",fname,m * n);
-      return 0;
-    }
-    if (m * n == 2) {
-      if ((*cstk(l)!='l'&&*cstk(l)!='n')||(*cstk(l+1)!='l'&&*cstk(l+1)!='n')){
-	Err=kopt;
-	Error(116);
-	return 0;
-      }
-      logflags[0]='g';logflags[1]=*cstk(l);logflags[2]=*cstk(l+1);
-      Logflags=logflags;}
-    else {
-      if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
-	  (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
-	  (*cstk(l+2)!='l'&&*cstk(l+2)!='n')){
-	Err=kopt;
-	Error(116);
-	return 0;
-      }
-      
-      Logflags=cstk(l);
-    }
-  }
-  else /* unspecified argument --> default value */
-    {
-      Logflags=def_logflags;
-    }
-  return 1;
-}
-
-
-/*-----------------------------------------------------------------------------------*/
-static int get_optional_double_arg(fname,pos,name,value,sz,opts) 
-     char *fname, *name;
-     int pos,sz;
-     double **value;
-     rhs_opts opts[];
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "d", &m, &n, &l);
-	CheckLength(pos,m*n,sz)
-	  *value = stk(l);
-      }
-    }
-  else if ((kopt=FindOpt(name,opts))) {
-    GetRhsVar(kopt,"d", &m, &n, &l);
-    CheckLength(kopt,m*n,sz)
-      *value = stk(l);
-  }
-  return 1;
-}
-/*-----------------------------------------------------------------------------------*/
-static int get_optional_int_arg(fname,pos,name,value,sz,opts) 
-     char *fname, *name;
-     int pos,sz;
-     int **value;
-     rhs_opts opts[];
-{
-  int m,n,l,first_opt=FirstOpt(),kopt;
-
-  if (pos < first_opt) 
-    { 
-      if (VarType(pos)) {
-	GetRhsVar(pos, "i", &m, &n, &l);
-	CheckLength(pos,m*n,sz)
-	  *value = istk(l);
-      }
-    }
-  else if ((kopt=FindOpt(name,opts))) {
-    GetRhsVar(kopt,"i", &m, &n, &l);
-    CheckLength(kopt,m*n,sz)
-      *value = istk(l);
-  }
-  return 1;
-}
 /*-----------------------------------------------------------------------------------*/
 /*     convertion d'entier vers double */
 /*     d et s peuvent en fait pointer sur le meme tableau */
@@ -5914,20 +5084,6 @@ BOOL IsTKGraphicalMode(void)
 {
   return TKModeON;
 }
-/*-----------------------------------------------------------------------------------*/
-/* set or create a graphic window */
-/*-----------------------------------------------------------------------------------*/
-int C2F(sciwin)()
-{
-  integer verb=0,win=0,v=1,na;
-  double dv;
-  C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  if (version_flag() == 0) { 
-    return sciSwitchWindow(&win); 
-  }
-  return 0;
-} 
 /*-----------------------------------------------------------------------------------*/
 int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
 	     long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, 
@@ -5972,80 +5128,6 @@ int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
     }
   return 1;
 }
-/*-----------------------------------------------------------------------------------*/
-
-
-int sci_demo (char *fname,char *code,integer *flagx)
-{
-	int mlhs=0,mrhs=1,ibegin=1, l1, m1=strlen(code), n1=1;
-	static char name[] = "execstr" ;
-	Nbvars=0;
-	
-	CreateVar(1, "c", &m1, &n1, &l1);
-	strcpy(cstk(l1),code);
-	
-	/* back conversion to Scilab coding */
-	Convert2Sci(1);
-	
-	/* execute the Scilab execstr function */
-	if ( *flagx == 1){
-		sciprint("\r\n");
-		sciprint("Demo of %s()\r\n",fname);
-		sciprint("========================================");
-		sciprint("\r\n");
-		sciprint("%s\r\n",code);
-		sciprint("\r\n");
-	}
-	
-	C2F(recu).krec=-1; /* added to avoid recursion errors */
-	SciString(&ibegin,name,&mlhs,&mrhs);
-	
-	/* check if an error has occured while running a_function */
-	LhsVar(1) = 0; 
-	return 0;
-}
-
-
-/*-----------------------------------------------------------------------------------*/
-/* In case of a Logarithmic scale, we pick up the Min Strictly Positive */
-double  sciFindLogMinSPos(double *x, int n) 
-{
-  int i;
-  double XMIN;
-  double * xtmp;
-  int compteur = 0;  
-
-  if ( (xtmp = MALLOC(n*sizeof(double))) == NULL)
-    { 
-      Scistring(" xtmp allocation failed \n");
-      return -1;
-    }  
-  
-  /* 1. sort the positive value and store them into xtmp 
-     2. pick up the lowest value inside xtmp (<=> lowest positive value inside x) */
-  for(i=0;i<n;i++)
-    if(x[i] > 0.){
-      xtmp[compteur] = x[i];
-      compteur++;
-    }
-
-  if(compteur != 0){
-    XMIN = xtmp[0];
-    for(i=0;i<compteur;i++)
-      if(XMIN > xtmp[i]) XMIN = xtmp[i];
-     
-    FREE(xtmp);
-    return XMIN;
-  }
-  else{
-    FREE(xtmp);
-     
-    return -1.;
-  }
-}
-
-
-
 /*-----------------------------------------------------------------------------------*/
 int ComputeC_format(sciPointObj * pobj, char * c_format)
 {

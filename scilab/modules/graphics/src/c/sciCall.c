@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------
  *    Graphic library 2001-2002
  *    Graphic subroutines interface
- *    Author Djalel ABDEMOUCHE
+ *    Authors: Djalel ABDEMOUCHE, Jean-Baptiste Silvy
  --------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
@@ -20,6 +20,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "sciCall.h"
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 
@@ -32,13 +33,17 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
  * ensuite il reste qu'appeler la fonction du dessin de l'objet 
  *-----------------------------------------------*/
 
-void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flagstring)
-     double *x,*y,*width,*height;
-     int *foreground, *background;
-     BOOL isfilled, isline;
-     int n;
-     long *hdl;
-     BOOL flagstring;
+void Objrect ( double * x         ,
+               double * y         ,
+               double * width     ,
+               double * height    ,
+               int    * foreground,
+               int    * background,
+               BOOL     isfilled  ,
+               BOOL     isline    ,
+               int      n         ,
+               long   * hdl       ,
+               BOOL     flagstring )
 {
   sciPointObj * newObj = NULL ;
   BOOL redraw = FALSE ;
@@ -74,12 +79,17 @@ void Objrect (x,y,width,height,foreground,background,isfilled,isline,n,hdl,flags
  * Objarc : 
  *-----------------------------------------------*/
 
-void Objarc (angle1,angle2,x,y,width,height,foreground,background,isfilled,isline,hdl)
-    int *angle1,*angle2;
-    double *x,*y,*width,*height;
-    int *foreground, *background;
-    BOOL isfilled,isline;
-    long *hdl;
+void Objarc( int    * angle1    ,
+             int    * angle2    ,
+             double * x         ,
+             double * y         ,
+             double * width     ,
+             double * height    ,
+             int    * foreground,
+             int    * background,
+             BOOL     isfilled  ,
+             BOOL     isline    ,
+             long   * hdl        )
 { 
   BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
@@ -111,11 +121,12 @@ void Objarc (angle1,angle2,x,y,width,height,foreground,background,isfilled,islin
  * Objpoly : 
  *-----------------------------------------------*/
 
-void Objpoly (x,y,n,closed,mark,hdl)
-    integer n,closed;
-    double *x,*y;
-    long *hdl;
-    int mark;
+void Objpoly ( double  * x     ,
+               double  * y     ,
+               integer   n     ,
+               integer   closed,
+               int       mark  ,
+               long    * hdl    )
 { 
   BOOL redraw = FALSE ;
   sciPointObj *psubwin, *pobj;
@@ -149,10 +160,12 @@ void Objpoly (x,y,n,closed,mark,hdl)
  * Objfpoly : 
  *-----------------------------------------------*/
 
-void Objfpoly (x,y,n,style,hdl,shading)
-     integer n, *style, shading;
-     double *x,*y;
-     long * hdl;
+void Objfpoly ( double  * x    ,
+                double  * y    ,
+                integer   n    ,
+                integer * style,
+                long    * hdl  ,
+                integer   shading )
 { 
   BOOL redraw = FALSE ;
   int fillcolor, contourcolor;
@@ -203,11 +216,13 @@ void Objfpoly (x,y,n,style,hdl,shading)
 /*-----------------------------------------------------------
  *   Objsegs :
  *-----------------------------------------------------------*/
-void Objsegs (style,flag,n1,x,y,arsize)
-     integer *style,flag,n1;
-     double *x,*y;
-     double arsize;
-{ 
+void Objsegs ( integer * style,
+               integer   flag ,
+               integer   n1   ,
+               double  * x    ,
+               double  * y    ,
+               double    arsize )
+{
   BOOL redraw = FALSE ;
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
@@ -234,19 +249,23 @@ void Objsegs (style,flag,n1,x,y,arsize)
  *-----------------------------------------------------------*/
 
 /* box is an OUTPUT re-used inside matdes.c in scixstring */
-void Objstring(fname,nbRow,nbCol,x,y,angle,box,autoSize, userSize,hdl,centerPos,foreground,background,isboxed,isline,isfilled, alignment)
-     char ** fname;
-     int nbRow ;
-     int nbCol ;
-     double x,y,*angle ;
-     double userSize[2] ;
-     double box[4] ;
-     long *hdl;
-     int *foreground, *background;
-     BOOL isboxed,isline,isfilled;
-     BOOL centerPos ;
-     BOOL autoSize ;
-     sciTextAlignment alignment ;
+void Objstring( char            ** fname      ,
+                int                nbRow      ,
+                int                nbCol      ,
+                double             x          ,
+                double             y          ,
+                double           * angle      ,
+                double             box[4]     ,
+                BOOL               autoSize   ,
+                double             userSize[2],
+                long             * hdl        ,
+                BOOL               centerPos  ,
+                int              * foreground ,
+                int              * background ,
+                BOOL               isboxed    ,
+                BOOL               isline     ,
+                BOOL               isfilled   ,
+                sciTextAlignment   alignment   )
 {
   BOOL redraw = FALSE ;
   integer v;
@@ -301,10 +320,9 @@ void Objstring(fname,nbRow,nbCol,x,y,angle,box,autoSize, userSize,hdl,centerPos,
  * Objtitle:
  *-----------------------------------------------------------*/
 
-void Objtitle(str,n,hdl)
-     char* str;
-     int n;
-     long *hdl;
+void Objtitle( char * str,
+               int    n  ,
+               long * hdl )
 { 
   BOOL redraw = FALSE ;
   redraw = checkRedrawing() ;
@@ -328,12 +346,18 @@ void Objtitle(str,n,hdl)
  *  plot2d 
  *-----------------------------------------------*/   
 
-void Objplot2d (ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax)
-     double x[],y[],brect[];
-     int ptype;
-     integer *n1,*n2,style[],aaint[];
-     char legend[],strflag[],logflags[];
-     BOOL flagNax;
+void Objplot2d ( int       ptype     ,
+                 char      logflags[],
+                 double    x[]       ,
+                 double    y[]       ,
+                 integer * n1        ,
+                 integer * n2        ,
+                 integer   style[]   ,
+                 char      strflag[] ,
+                 char      legend[]  ,
+                 double    brect[]   ,
+                 integer   aaint[]   ,
+                 BOOL      flagNax    )
 {
   plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax,4L,bsiz);
 }
@@ -341,25 +365,29 @@ void Objplot2d (ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNa
 /*------------------------------------------------
  *  grayplot
  *-----------------------------------------------*/   
-void Objgrayplot (x,y,z,n1,n2,strflag,brect,aaint,flagNax) 
-     double x[],y[],z[],brect[];
-     integer *n1,*n2,aaint[];
-     char strflag[];
-     BOOL flagNax;
+void Objgrayplot ( double    x[]      ,
+                   double    y[]      ,
+                   double    z[]      ,
+                   integer * n1       ,
+                   integer * n2       ,
+                   char      strflag[],
+                   double    brect[]  ,
+                   integer   aaint[]  ,
+                   BOOL      flagNax   ) 
 { 
- 
-  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );
-         
+  C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );       
 }
 
 /*------------------------------------------------
  *  Matplot
  *-----------------------------------------------*/   
-void Objmatplot (z,n1,n2,strflag,brect,aaint,flagNax) 
-     double z[],brect[];
-     integer *n1,*n2,aaint[];
-     char strflag[];
-     BOOL flagNax;
+void Objmatplot (double    z[]      ,
+                 integer * n1       ,
+                 integer * n2       ,
+                 char      strflag[],
+                 double    brect[]  ,
+                 integer    aaint[]  ,
+                 BOOL      flagNax   ) 
 { 
   C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
 }
@@ -367,9 +395,10 @@ void Objmatplot (z,n1,n2,strflag,brect,aaint,flagNax)
 /*------------------------------------------------
  *  Matplot1
  *-----------------------------------------------*/   
-void Objmatplot1 (z,n1,n2,xrect) 
-     double z[],xrect[];
-     integer *n1,*n2;
+void Objmatplot1 ( double    z[],
+                   integer * n1 ,
+                   integer * n2 ,
+                   double    xrect[] ) 
 { 
   C2F(xgray2)(z, n1, n2,xrect);
 }
@@ -377,13 +406,28 @@ void Objmatplot1 (z,n1,n2,xrect)
 /*------------------------------------------------
  *  plot3d 
  *-----------------------------------------------*/   
-void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m1,n1,m2,n2,m3,n3,m3n,n3n)
-     double x[],y[],z[];
-     double *theta,*alpha,*ebox;
-     integer *isfac,*n,*m,*iflag,*izcol;
-     double *zcol;
-     integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;/*Adding F.Leray 12.03.04 and 19.03.04*/
-     char *fname,*legend; 
+void Objplot3d ( char    * fname ,
+                 integer * isfac ,
+                 integer * izcol ,
+                 double    x[]   ,
+                 double    y[]   ,
+                 double    z[]   ,
+                 double  * zcol  ,
+                 integer * m     ,
+                 integer * n     ,
+                 double  * theta ,
+                 double  * alpha ,
+                 char    * legend,
+                 integer * iflag ,
+                 double  * ebox  ,
+                 integer * m1    , /*Adding F.Leray 12.03.04 and 19.03.04*/
+                 integer * n1    ,
+                 integer * m2    ,
+                 integer * n2    ,
+                 integer * m3    ,
+                 integer * n3    ,
+                 integer * m3n   ,
+                 integer * n3n    )
      /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
      /* legends has not the same meaning than inside plot2dn (there, it is really the legends of the plotted curves)*/
 {
@@ -761,12 +805,22 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
  * Objaxis:
  *-----------------------------------------------------------*/
 
-void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag,seg,nb_tics_labels)
-     char dir,tics ,*format,flag,*val[]; 
-     double *x,*y;
-     int *nx,*ny;
-     int subint,font,textcol,ticscol, seg,nb_tics_labels;
-{ 
+void Objdrawaxis ( char     dir    ,
+                   char     tics   ,
+                   double * x      ,
+                   int    * nx     ,
+                   double * y      ,
+                   int    * ny     ,
+                   char   * val[]  ,
+                   int      subint ,
+                   char   * format ,
+                   int      font   ,
+                   int      textcol,
+                   int      ticscol,
+                   char     flag   ,
+                   int      seg    ,
+                   int      nb_tics_labels )
+{
   BOOL redraw = FALSE ;
   redraw = checkRedrawing() ;
   sciSetCurrentObj (ConstructAxes 
@@ -789,11 +843,14 @@ void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag
  * Objnumb:
  *-----------------------------------------------------------*/
 
-void Objnumb(fname,fname_len,n,flag,x,y,angle,box)
-     char *fname; 
-     unsigned long fname_len; 
-     integer n,flag;
-     double x,y,*angle,*box;
+void Objnumb( char          * fname    ,
+              unsigned long   fname_len,
+              integer         n        ,
+              integer         flag     ,
+              double          x        ,
+              double          y        ,
+              double        * angle    ,
+              double        * box       )
 { 
   /*** faire une macro scilab sur xstring ****/
 
@@ -803,13 +860,22 @@ void Objnumb(fname,fname_len,n,flag,x,y,angle,box)
 /*------------------------------------------------
  * fec
  *-----------------------------------------------*/   
-void Objfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,ColOut,WithMesh,flagNax)
-     double x[],y[],brect[],noeud[],Zminmax[];
-     integer *n,*m,aaint[],Colminmax[],ColOut[];
-     char legend[],strflag[];
-     double *fun;
-     BOOL WithMesh, flagNax;
-{ 
+void Objfec ( double    x[]        ,
+              double    y[]        ,
+              double    noeud[]    ,
+              double  * fun        ,
+              integer * n          ,
+              integer * m          ,
+              char      strflag[]  ,
+              char      legend[]   ,
+              double    brect[]    ,
+              integer   aaint[]    ,
+              double    Zminmax[]  ,
+              integer   Colminmax[],
+              integer   ColOut[]   ,
+              BOOL      WithMesh   ,
+              BOOL      flagNax     )
+{
   C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
 	   Zminmax,Colminmax,ColOut,WithMesh,flagNax,4L,bsiz);
 }
