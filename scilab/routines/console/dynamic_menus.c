@@ -63,10 +63,10 @@ extern integer C2F (ismenu) __PARAMS((void));
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
 
-static int SaveHistoryAfterNcommands=0;
+
 static int wait_for_input_end=0; 
 
-extern int NumberOfCommands;
+
 
 
 typedef struct commandRec
@@ -260,26 +260,4 @@ int iswaitingforinputend()
   wait_for_input_end=0;
   return iwait;
 }
-
-/*-----------------------------------------------------------------------------------*/
-int savehistoryafterncommands(int N)
-{
-	int SaveHistoryAfterNcommandsTemp=0;
-
-  	SaveHistoryAfterNcommandsTemp=N;
-		
-	if (SaveHistoryAfterNcommandsTemp>=0)
-	{
-		SaveHistoryAfterNcommands=SaveHistoryAfterNcommandsTemp;
-		NumberOfCommands=0;
-	}
-
-	return 0;	
-}
-/*-----------------------------------------------------------------------------------*/
-int GetSaveHistoryAfterNcommands(void)
-{
-	return SaveHistoryAfterNcommands;
-}
-/*-----------------------------------------------------------------------------------*/
 

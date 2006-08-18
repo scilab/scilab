@@ -25,7 +25,8 @@ static int HistorySizeInMemory=0;
 
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 
-
+static int SaveHistoryAfterNcommands=0;
+extern int NumberOfCommands;
 /*-----------------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
@@ -568,4 +569,25 @@ static int CreSmatFromHist(char *fname, int number, int from_line, int count)
 } 
 
 #endif 
+/*-----------------------------------------------------------------------------------*/
+int savehistoryafterncommands(int N)
+{
+	int SaveHistoryAfterNcommandsTemp=0;
+
+	SaveHistoryAfterNcommandsTemp=N;
+
+	if (SaveHistoryAfterNcommandsTemp>=0)
+	{
+		SaveHistoryAfterNcommands=SaveHistoryAfterNcommandsTemp;
+		NumberOfCommands=0;
+	}
+
+	return 0;	
+}
+/*-----------------------------------------------------------------------------------*/
+int GetSaveHistoryAfterNcommands(void)
+{
+	return SaveHistoryAfterNcommands;
+}
+/*-----------------------------------------------------------------------------------*/
 
