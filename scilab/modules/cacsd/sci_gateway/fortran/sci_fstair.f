@@ -3,7 +3,7 @@ c     Copyright INRIA
 c     --------------------------
       subroutine intfstair(fname)
 
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       character*(*) fname
       double precision t,eps

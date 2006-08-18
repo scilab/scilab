@@ -2,14 +2,14 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../machine.h"
-#include "../stack-c.h"
+#include "machine.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intereduc) _PARAMS((char *fname));
+extern int C2F(scigspec) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_ereduc) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_gspec) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intereduc)(fname);
+	C2F(scigspec)(fname);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

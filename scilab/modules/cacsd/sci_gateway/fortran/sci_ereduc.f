@@ -5,7 +5,7 @@ c     --------------------------
 c     SCILAB function : ereduc
 c     --------------------------
 
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       character*(*) fname
       double precision t,eps
