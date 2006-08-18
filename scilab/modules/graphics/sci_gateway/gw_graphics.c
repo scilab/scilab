@@ -12,7 +12,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 extern int scichamp      _PARAMS((char *fname, unsigned long fname_len));
-extern int scicontour    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_contour   _PARAMS((char *fname, unsigned long fname_len));
 extern int sciparam3d    _PARAMS((char *fname, unsigned long fname_len));
 extern int sciplot3d     _PARAMS((char *fname, unsigned long fname_len));
 extern int sciplot3d1    _PARAMS((char *fname, unsigned long fname_len));
@@ -113,7 +113,7 @@ extern int sci_readgif	                  _PARAMS(( char * fname, unsigned long f
 static MatdesTable Tab[]={
 	{scichamp,"champ"},	
 	{scichamp1,"champ1"},
-	{scicontour,"contour"},
+	{sci_contour,"contour"},
 	{scidriver,"driver"},
 	{scifec,"scifec"},
 	{scigeom3d,"geom3d"},
