@@ -6,34 +6,69 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def cacsd_f.def &gt;nul
 copy cacsd_f.def ..\..\..\..\..\libs\cacsd_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/cacsd_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/cacsd_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def cacsd_f.def &gt;nul
 copy cacsd_f.def ..\..\..\..\..\libs\cacsd_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../libs/cacsd_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../libs/cacsd_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="arl2.f"/>
+		<File RelativePath="arl2a.f"/>
+		<File RelativePath="calcsc.f"/>
+		<File RelativePath="deg1l2.f"/>
+		<File RelativePath="degl2.f"/>
+		<File RelativePath="dfrmg.f"/>
+		<File RelativePath="dgeco.f"/>
+		<File RelativePath="dhetr.f"/>
+		<File RelativePath="domout.f"/>
+		<File RelativePath="dqrdc.f"/>
+		<File RelativePath="dqrsl.f"/>
+		<File RelativePath="dqrsm.f"/>
+		<File RelativePath="dzdivq.f"/>
+		<File RelativePath="ereduc.f"/>
+		<File RelativePath="expan.f"/>
+		<File RelativePath="feq.f"/>
+		<File RelativePath="front.f"/>
+		<File RelativePath="fstair.f"/>
+		<File RelativePath="hessl2.f"/>
+		<File RelativePath="hhdml.f"/>
+		<File RelativePath="jacl2.f"/>
+		<File RelativePath="lq.f"/>
+		<File RelativePath="modul.f"/>
+		<File RelativePath="mzdivq.f"/>
+		<File RelativePath="onface.f"/>
+		<File RelativePath="optml2.f"/>
+		<File RelativePath="outl2.f"/>
+		<File RelativePath="phi.f"/>
+		<File RelativePath="polmc.f"/>
+		<File RelativePath="qhesz.f"/>
+		<File RelativePath="qitz.f"/>
+		<File RelativePath="qvalz.f"/>
+		<File RelativePath="ricd.f"/>
+		<File RelativePath="rootgp.f"/>
+		<File RelativePath="rtitr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_dhinf.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_findbd.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_freq.f"/>
@@ -48,6 +83,17 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_sorder.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_tzer.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_zrankqr.f"/>
+		<File RelativePath="shrslv.f"/>
+		<File RelativePath="ssxmc.f"/>
+		<File RelativePath="sszer.f"/>
+		<File RelativePath="storl2.f"/>
+		<File RelativePath="tild.f"/>
+		<File RelativePath="watfac.f"/>
+		<File RelativePath="wdegre.f"/>
+		<File RelativePath="wesidu.f"/>
+		<File RelativePath="wgeco.f"/>
+		<File RelativePath="wgefa.f"/>
+		<File RelativePath="wgesl.f"/>
 		<File RelativePath="ZB03OD.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
