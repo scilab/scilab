@@ -161,6 +161,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\prompt.c"
+				>
+			</File>
+			<File
 				RelativePath="..\zzledt.c"
 				>
 			</File>

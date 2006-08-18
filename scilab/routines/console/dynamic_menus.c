@@ -1,10 +1,10 @@
-/*------------------------------------------------------------------------
- *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+/*-----------------------------------------------------------------------------------*/
+/*
+ *	Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
  *    Changed: steer, jpc 2004 
- *--------------------------------------------------------------------------*/
-
-
+ */
+/*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "../machine.h"
 #ifdef _MSC_VER
@@ -13,20 +13,17 @@
 #include "../os_specific/sci_mem_alloc.h"  /* malloc */
 #endif
 
-
 #include "../stack-c.h"
 #include "../version.h"
-
-
+/*-----------------------------------------------------------------------------------*/
 #ifndef NULL
 #define NULL 0
 #endif
 
 #define TRUE  1
 #define FALSE 0
-
-
-/*---------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*
  *  Command queue functions
  *  This function is used to store Scilab command in a queue 
  *  ( the queue is checked in the Scilab Event Loop )
@@ -39,79 +36,71 @@
  *           int StoreCommand( char *command)
  *           integer C2F(ismenu)()
  *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)  
- *---------------------------------------------------------------------*/
-
-#ifdef _MSC_VER
-extern BOOL IsToThePrompt(void);
-#endif /*_MSC_VER*/
-
-extern void banner(void);
-
-extern void write_scilab  __PARAMS((char *s));
-extern int get_is_reading  __PARAMS((void));
-extern void sciprint __PARAMS((char *fmt,...));
-
-
+ */
+/*-----------------------------------------------------------------------------------*/
 typedef int (*Scig_command_handler) __PARAMS((char *));
-extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
+typedef struct commandRec
+{
+	char              *command;		/* command info one string two integers */
+	int               flag; /* 1 if the command execution cannot be interrupted */
+	struct commandRec *next;
+} CommandRec, *CommandRecPtr;
+/*-----------------------------------------------------------------------------------*/
 int  scig_command_handler_none (char *command);
+extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
 extern int StoreCommand  __PARAMS((char *command));  
 extern int StoreCommand1  __PARAMS((char *command, int flag));  
-
 extern int GetCommand  __PARAMS((char *str));  
 extern integer C2F (ismenu) __PARAMS((void));  
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
-
-
+extern void write_scilab  __PARAMS((char *s));
+extern int get_is_reading  __PARAMS((void));
+extern void sciprint __PARAMS((char *fmt,...));
+#ifdef _MSC_VER
+extern BOOL IsToThePrompt(void);
+#endif /*_MSC_VER*/
+/*-----------------------------------------------------------------------------------*/
 static int wait_for_input_end=0; 
-
-
-
-
-typedef struct commandRec
-{
-  char              *command;		/* command info one string two integers */
-  int               flag; /* 1 if the command execution cannot be interrupted */
-  struct commandRec *next;
-} CommandRec, *CommandRecPtr;
-
 static CommandRec *commandQueue = NULL;
 static Scig_command_handler scig_command_handler = scig_command_handler_none;
-
-
-/*-------------------------------------------------*
+/*-----------------------------------------------------------------------------------*/
+/*
  * changing the default command handler 
- *-------------------------------------------------*/
-
-int  scig_command_handler_none (char *command) {return 0;}
-
+ */
+/*-----------------------------------------------------------------------------------*/
+int  scig_command_handler_none (char *command)
+{
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
 Scig_command_handler set_scig_command_handler (Scig_command_handler f)
 {
   Scig_command_handler old = scig_command_handler;
   scig_command_handler = f;
   return old;
 }
-
+/*-----------------------------------------------------------------------------------*/
 void reset_scig_command_handler ()
 {
   scig_command_handler = scig_command_handler_none;
 }
-
-/*---------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*
  * try to execute a command or add it to the end of command queue 
- *----------------------------------------------------------------*/
+ */
+/*-----------------------------------------------------------------------------------*/
 int StoreCommand ( char *command)
 {
 	return (StoreCommand1 (command, 0)); /* jpc 1->0 */
 }
-
-/*---------------------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*
  * try to execute a command or add it to the end of command queue
  * flag = 0 : the command is not shown in scilab window
  * flag = 1 : the command is shown in scilab window (if at prompt) 
- *----------------------------------------------------------------*/
-
+ */
+/*-----------------------------------------------------------------------------------*/
 int StoreCommand1 (char *command,int flag)
 {
 #ifdef _MSC_VER
@@ -174,12 +163,12 @@ void SetCommandflag(int flag)
     p->flag=flag;
   }
 }
-
-/*-------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*
  * Gets info on the first queue element 
  * and remove it from the queue 
- -------------------------------------------------*/
-
+ */
+/*-----------------------------------------------------------------------------------*/
 int GetCommand ( char *str)
 {
   int flag;
@@ -204,12 +193,12 @@ int GetCommand ( char *str)
     }
   return flag;
 }
-
-/*-------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*
  * Checks if there's something on the 
  * commandQueue 
- *-------------------------------------------------*/
-
+ */
+/*-----------------------------------------------------------------------------------*/
 integer C2F(ismenu)()
 {
   /* Do not manage comands while compiling scilab function */
@@ -218,11 +207,11 @@ integer C2F(ismenu)()
   else 
     return(1);
 }
-
-/*-------------------------------------------------
+/*-----------------------------------------------------------------------------------*/
+/*
  * menu/button info for Scilab 
- *-------------------------------------------------*/
-
+ */
+/*-----------------------------------------------------------------------------------*/
 int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
 {
   int flag;
@@ -240,19 +229,12 @@ int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
     }
   return flag;
 }
-
-
-/*-------------------------------------------------
- * ??????????????? 
- *-------------------------------------------------*/
-
-
+/*-----------------------------------------------------------------------------------*/
 void C2F(waitforinputend)( int *flag)
 {
   wait_for_input_end=*flag;
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 int iswaitingforinputend()
 {
   int iwait;
@@ -260,4 +242,4 @@ int iswaitingforinputend()
   wait_for_input_end=0;
   return iwait;
 }
-
+/*-----------------------------------------------------------------------------------*/

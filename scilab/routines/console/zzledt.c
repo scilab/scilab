@@ -1025,28 +1025,4 @@ int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len))
 
 
 #endif /* The win32 version is defined in the wsci directory **/
-#include <stdio.h>
-#include <string.h>
-/************************************************************************
- * setprlev : set the current prompt string
- ***********************************************************************/
-
-void C2F(setprlev)( int *pause)
-{
-  if ( *pause == 0 ) 
-    sprintf(Sci_Prompt,"-->");
-  else if ( *pause > 0 )
-    sprintf(Sci_Prompt,"-%d->",*pause);
-  else
-    sprintf(Sci_Prompt,">>");
-}
-
-void GetCurrentPrompt(char *CurrentPrompt)
-{
-	if (CurrentPrompt)
-	{
-		strcpy(CurrentPrompt,Sci_Prompt);
-	}
-}
-
 #endif
