@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_cacsd1.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
@@ -221,6 +225,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_ereduc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_fstair.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gschur.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gspec.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -229,6 +249,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\gw_cacsd1.h"
+				>
+			</File>
 			<File
 				RelativePath=".\intshowalluimenushandles.h"
 				>
