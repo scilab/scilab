@@ -109,6 +109,12 @@
 
 typedef int integer;
 
+/* define boolean type */
+typedef int BOOL ;
+#undef TRUE
+#define TRUE 1
+#undef FALSE
+#define FALSE 0
 
 /*  params.h */
 #ifdef __STDC__
