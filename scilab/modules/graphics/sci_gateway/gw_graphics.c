@@ -69,7 +69,7 @@ extern int scixs2ps      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixs2fig     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixsort      _PARAMS((char *fname, unsigned long fname_len));
 extern int sciwinsid     _PARAMS((char *fname, unsigned long fname_len));
-extern int sciparam3d1                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixstringb                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scimatplot                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour2d1                 _PARAMS((char *fname, unsigned long fname_len));
@@ -122,7 +122,7 @@ static MatdesTable Tab[]={
 	{scigray2plot,"Matplot1"}, 
 	{sci_contour2d1,"contour2di"},
 	{sci_param3d,"param3d"},
-	{sciparam3d1,"param3d1"},
+	{sci_param3d1,"param3d1"},
 	{scixstringb,"xstringb"},
 	{sci_plot2d,"plot2d"},
 	{sciplot2d1_1,"plot2d1"},
