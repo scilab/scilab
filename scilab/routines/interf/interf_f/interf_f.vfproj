@@ -76,6 +76,10 @@ cd .."/>
 		<File RelativePath="..\misops.f"/>
 		<File RelativePath="..\newsave.f"/>
 		<File RelativePath="..\polaut.f"/>
+		<File RelativePath="..\sci_ereduc.f"/>
+		<File RelativePath="..\sci_fstair.f"/>
+		<File RelativePath="..\sci_gschur.f"/>
+		<File RelativePath="..\sci_gspec.f"/>
 		<File RelativePath="..\specfun.f"/>
 		<File RelativePath="..\stack0.f"/>
 		<File RelativePath="..\v2cunit.f"/>
