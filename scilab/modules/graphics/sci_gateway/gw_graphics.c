@@ -13,7 +13,7 @@ extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 extern int scichamp      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour   _PARAMS((char *fname, unsigned long fname_len));
-extern int sciparam3d    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_param3d   _PARAMS((char *fname, unsigned long fname_len));
 extern int sciplot3d     _PARAMS((char *fname, unsigned long fname_len));
 extern int sciplot3d1    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_plot2d    _PARAMS((char *fname, unsigned long fname_len));
@@ -72,7 +72,7 @@ extern int sciwinsid     _PARAMS((char *fname, unsigned long fname_len));
 extern int sciparam3d1                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scixstringb                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scimatplot                     _PARAMS((char *fname, unsigned long fname_len));
-extern int scicontour2d1                  _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_contour2d1                 _PARAMS((char *fname, unsigned long fname_len));
 extern int scic2dex                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scigray2plot                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgraduate                   _PARAMS((char *fname, unsigned long fname_len));
@@ -120,8 +120,8 @@ static MatdesTable Tab[]={
 	{scigrayplot,"grayplot"},
 	{scimatplot,"Matplot"},
 	{scigray2plot,"Matplot1"}, 
-	{scicontour2d1,"contour2di"},
-	{sciparam3d,"param3d"},
+	{sci_contour2d1,"contour2di"},
+	{sci_param3d,"param3d"},
 	{sciparam3d1,"param3d1"},
 	{scixstringb,"xstringb"},
 	{sci_plot2d,"plot2d"},

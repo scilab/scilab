@@ -16,7 +16,7 @@
 #include "dr1Call.h"
 
 /*------------------------------------------------------------------------*/
-int sciparam3d( char * fname, unsigned long fname_len )
+int sci_param3d( char * fname, unsigned long fname_len )
 {
   integer izcol, isfac;
   static double  ebox_def[6]= { 0,1,0,1,0,1};

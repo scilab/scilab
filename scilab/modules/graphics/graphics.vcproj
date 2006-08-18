@@ -362,6 +362,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_contour2d1.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_demo.c"
 				>
 			</File>
@@ -536,6 +540,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_contour.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_contour2d1.h"
 				>
 			</File>
 			<File
