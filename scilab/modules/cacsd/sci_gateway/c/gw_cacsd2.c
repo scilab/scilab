@@ -31,7 +31,7 @@ static Cacsd2Table Tab[]=
 	{C2F(sci_rtitr),"rtitr"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(matnew)()
+int C2F(gw_cacsd2)()
 {  
 #if _MSC_VER
 	#ifndef _DEBUG

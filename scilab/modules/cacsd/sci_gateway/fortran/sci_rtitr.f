@@ -5,7 +5,7 @@ c
       subroutine scirtitr(fname)
 c     ----------------------------
       character*(*) fname
-      include '../stack.h'
+      include 'stack.h'
       double precision dnrm2,tol,atol,eps,gi,rcond,ur,ui,vr,vi,xr,xi
       integer p,ind,q,job,ido,n,top1
       integer iadr,sadr
