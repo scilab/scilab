@@ -173,6 +173,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\basout.c"
+				>
+			</File>
+			<File
 				RelativePath=".\cluni0.c"
 				>
 			</File>
