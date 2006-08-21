@@ -57,7 +57,7 @@ extern int scixgetmouse                   _PARAMS((char *fname, unsigned long fn
 extern int scixinfo                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixtitle                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixtitle                      _PARAMS((char *fname, unsigned long fname_len));
-extern int scixgrid                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixsave                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixload                       _PARAMS((char *fname, unsigned long fname_len));
@@ -150,7 +150,7 @@ static MatdesTable Tab[]={
 	{scixget,"xget"},
 	{scixgetech,"xgetech"},
 	{scixgetmouse,"xgetmouse"},
-	{scixgrid,"xgrid"},
+	{sci_xgrid,"xgrid"},
 	{scixinfo,"xinfo"},
 	{scixinit,"xinit"},
 	{scixlfont,"xlfont"},

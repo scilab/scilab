@@ -211,23 +211,8 @@ extern sciPointObj *paxesmdl;
 /* Graphic subroutines interface */
 /*-----------------------------------------------------------------------------------*/
 
-/* xgrid([style]) */
-/*-----------------------------------------------------------------------------------*/
-int scixgrid(char *fname,unsigned long fname_len)
-{
-  integer style = 1,m1,n1,l1;
-  CheckRhs(-1,1);
-  if (Rhs == 1) {
-    GetRhsVar(1,"d",&m1,&n1,&l1);
-    CheckScalar(1,m1,n1);
-    style = (integer) *stk(l1);
-  }
-  SciWin();
-  C2F(xgrid)(&style); /* test on version_flag() inside Plo2.c F.Leray 07.05.04 */
-  LhsVar(1)=0;
-  return 0;
-} 
-/*-----------------------------------------------------------------------------------*/
+/*  */
+
 /* xpoly(xv,yv,dtype,[close]) */
 /*-----------------------------------------------------------------------------------*/
 int scixpoly(char *fname,unsigned long fname_len)

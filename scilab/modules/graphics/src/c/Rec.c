@@ -14,6 +14,7 @@
 #include "Graphics.h" 
 #include "Rec.h"
 #include "PloEch.h"
+#include "Plo2d.h"
 
 
 #include "MALLOC.h" /* MALLOC */

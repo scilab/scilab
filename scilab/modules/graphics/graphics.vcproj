@@ -462,6 +462,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xgrid.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xsegs.c"
 				>
 			</File>
@@ -603,6 +607,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\Plo2d.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\Plo3d.h"
 				>
 			</File>
@@ -716,6 +724,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xfarcs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xgrid.h"
 				>
 			</File>
 			<File

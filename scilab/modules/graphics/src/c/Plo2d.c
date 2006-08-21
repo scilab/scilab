@@ -24,8 +24,6 @@
 
 #include "MALLOC.h" /* MALLOC */
 
-extern int version_flag();
-
 /*--------------------------------------------------------------------
  *  C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
@@ -66,11 +64,17 @@ extern int version_flag();
  * lstr* : unused ( but used by Fortran ) 
  *--------------------------------------------------------------------------*/
   
-int C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
-     double x[],y[],brect[];
-     integer *n1,*n2,style[],aaint[];
-     char legend[],strflag[];
-     integer lstr1,lstr2;
+int C2F(plot2d)(double    x[]      ,
+                double    y[]      ,
+                integer * n1       ,
+                integer * n2       ,
+                integer   style[]  ,
+                char      strflag[],
+                char      legend[] ,
+                double    brect[]  ,
+                integer   aaint[]  ,
+                integer   lstr1    ,
+                integer   lstr2     )
 {
   int n;
   integer *xm,*ym;
@@ -115,8 +119,7 @@ int C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  * add a grid to a 2D plot
  *--------------------------------------------------------------------*/
 
-int C2F(xgrid)(style)
-     integer *style;
+int C2F(xgrid)( integer * style )
 {
   integer closeflag=0,n=2,vx[2],vy[2],i,j;
   double pas;

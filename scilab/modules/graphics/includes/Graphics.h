@@ -91,12 +91,9 @@ extern double Mini  __PARAMS((double *vect,integer));
 extern double Maxi  __PARAMS((double *vect,integer));
 
 	/* Plo2d.c */
-
-extern int C2F(xgrid)  __PARAMS((integer *)); 
 extern void AxisDraw  __PARAMS((double *,integer *,integer *,integer *,integer *,double,double,double,double,char *,char *)); 
 extern void FrameBounds  __PARAMS((char *,double *,double *,integer *,integer *,integer *,char *,double *,double *,integer *,integer *)); 
 extern void Legends  __PARAMS(( integer *,integer *,char *)); 
-extern int C2F(plot2d)  __PARAMS((double *,double *,integer *,integer *,integer *,char *,char *,double *,integer *,integer,integer)); 
 
 /* Plo2d1.c */
 
