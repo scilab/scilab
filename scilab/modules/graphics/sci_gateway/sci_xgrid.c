@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_grid.c                                                       */
+/* file: sci_xgrid.c                                                      */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* desc : interface for xgrid routine                                      */
+/* desc : interface for xgrid routine                                     */
 /*------------------------------------------------------------------------*/
 
 #include "sci_xgrid.h"
