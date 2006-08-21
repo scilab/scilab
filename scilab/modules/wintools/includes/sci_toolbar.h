@@ -14,11 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-  #define NULL 0
-#endif
-
 int C2F(sci_hidetoolbar) _PARAMS((char *fname));
 int C2F(sci_toolbar) _PARAMS((char *fname));
 

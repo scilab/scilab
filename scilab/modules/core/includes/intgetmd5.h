@@ -14,12 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-#define NULL 0
-#endif
-
-
 int C2F(intgetmd5) __PARAMS((char *fname,unsigned long fname_len));
 
 #endif /* __INTGETMD5__ */

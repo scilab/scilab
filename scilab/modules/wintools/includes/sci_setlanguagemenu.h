@@ -14,11 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-  #define NULL 0
-#endif
-
 int C2F(sci_setlanguagemenu) _PARAMS((char *fname));
 
 #endif /* __INTSETLANGUAGEMENU__ */

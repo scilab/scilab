@@ -15,12 +15,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-  #define NULL 0
-#endif
-
-
 int C2F(sci_filesassociationbox) _PARAMS((char *fname,unsigned long l));
 #endif /* __INTFILEASSOCIATIONBOX__ */
 /*-----------------------------------------------------------------------------------*/ 

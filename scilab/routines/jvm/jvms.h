@@ -13,10 +13,6 @@
 #include <string.h>
 #include "../machine.h"
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-/*-----------------------------------------------------------------------------------*/ 
 IMPORT_EXPORT_LIBJVM_DLL int StartJVMs(char *SCILAB_PATH);
 IMPORT_EXPORT_LIBJVM_DLL int TerminateJVMs(void);
 /*-----------------------------------------------------------------------------------*/ 

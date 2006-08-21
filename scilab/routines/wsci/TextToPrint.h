@@ -23,10 +23,6 @@
 #include "Warnings.h"
 #include "Errors.h"
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 /* EzCreateFont */
 /* Fonts Properties */
 #define EZ_ATTR_BOLD 1

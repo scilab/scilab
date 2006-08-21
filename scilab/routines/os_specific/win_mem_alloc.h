@@ -17,6 +17,11 @@
 
 #include <Windows.h>
 
+#ifdef NULL
+	#undef NULL
+#endif
+#define NULL 0
+
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne);
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int ligne);
 IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne);

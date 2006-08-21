@@ -14,10 +14,6 @@
 #include "../version.h"
 #include "wgnuplib.h"
 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 
 BOOL SetIhmSystemDefaultTextBackgroundColor(void);
 BOOL SetIhmSystemDefaultTextColor(void);

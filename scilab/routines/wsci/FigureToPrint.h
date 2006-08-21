@@ -21,10 +21,6 @@
 
 
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 int CopyPrint (struct BCG *ScilabGC);
 void PrintPs (struct BCG *ScilabGC);

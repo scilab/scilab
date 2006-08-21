@@ -16,10 +16,6 @@
 #include "Errors.h"
 
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 MW InitMWStruct(void);
 LPMW GetMENUWinScilab(void);
 LPSTR GetszMenuName(void);

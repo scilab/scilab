@@ -18,11 +18,6 @@
 #include "WinConsole.h"
 #endif
 
-#ifndef NULL
-  #define NULL 0
-#endif
-
-
 int C2F(sci_consoledos) _PARAMS((char *fname));
 
 #endif /* __INTCONSOLEDOS__ */

@@ -11,10 +11,6 @@
 #include "version.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
-#ifndef NULL
-#define NULL 0
-#endif
-/*-----------------------------------------------------------------------------------*/
 /*
  *  Command queue functions
  *  This function is used to store Scilab command in a queue 

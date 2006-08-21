@@ -22,10 +22,6 @@
 #include "Errors.h"
 
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 void SetDefaultShowToolBar(BOOL valShowToolBar);
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);

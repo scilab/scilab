@@ -12,10 +12,6 @@
 #endif
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-/*-----------------------------------------------------------------------------------*/ 
 int StartJVM_CONSOLE(char *SCILAB_PATH);
 int TerminateJVM_CONSOLE(void);
 IMPORT_EXPORT_LIBJVM_DLL JavaVM *Get_jvm_CONSOLE(void);

@@ -23,6 +23,11 @@
 #undef REALLOC
 #endif
 
+#ifdef NULL
+	#undef NULL
+#endif
+#define NULL 0
+
 #ifndef _MSC_VER
  extern void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
  extern void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);

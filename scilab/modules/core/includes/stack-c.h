@@ -98,10 +98,6 @@ static int c_local;
 #define TRUE_ 1
 #define FALSE_ 0
 
-#ifndef NULL
-#define NULL 0
-#endif
-
 #define iadr(l) ((l)+(l)-1)
 #define sadr(l) (((l)/2)+1)
 #define cadr(l) ((l)+(l)+(l)+(l)-3)

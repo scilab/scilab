@@ -24,10 +24,6 @@
 
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
-#ifndef NULL
-  #define NULL 0
-#endif
-/*-----------------------------------------------------------------------------------*/
 extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 extern int XTKsocket;

@@ -32,11 +32,6 @@
 	#define IMPORT_DLL   extern
 #endif
 
-#ifndef NULL
-  #define NULL 0
-#endif
-
-
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int JVM_Create_SciGUIConsole_Object(JNIEnv *env);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int Events_Loop_SciGUIConsole(JNIEnv *env);

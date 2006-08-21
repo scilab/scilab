@@ -23,6 +23,11 @@
 #undef REALLOC
 #endif
 
+#ifdef NULL
+	#undef NULL
+#endif
+#define NULL 0
+
 #if _MSC_VER
 	#ifdef EXPORT_MALLOC_DLL
 		#define IMPORT_EXPORT_MALLOC_DLL __declspec(dllexport)

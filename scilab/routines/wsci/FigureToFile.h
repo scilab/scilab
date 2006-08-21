@@ -20,10 +20,6 @@
 #include "Errors.h"
 
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 #ifndef MAXSTR
 #define MAXSTR 255
 #endif

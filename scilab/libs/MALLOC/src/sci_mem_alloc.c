@@ -2,14 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 /* Allan CORNET */
 /* INRIA 2005 */
-
-#ifndef NULL
-#define NULL 0
-#endif
-
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne)
 {

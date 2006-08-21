@@ -108,11 +108,6 @@ int sciplot3d_G(char *fname,
 int scichamp_G(char *fname,int (*func) (),unsigned long fname_len);
 int scisetposfig(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
-#ifndef NULL
-#define NULL 0
-#endif 
-
-/*-----------------------------------------------------------------------------------*/
 char *pmodes[] =
   { 
     "clear", 

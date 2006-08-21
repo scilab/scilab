@@ -14,13 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-  #define NULL 0
-#endif
-
-
-
 int C2F(sci_settextcolor) _PARAMS((char *fname));
 int C2F(sci_settextbackgroundcolor) _PARAMS((char *fname));
 #endif /* __INTIHMCOLOR__ */

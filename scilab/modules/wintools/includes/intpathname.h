@@ -14,12 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-  #define NULL 0
-#endif
-
-
 #define MAX_PATH_LONG 32767
 #define MAX_PATH_SHORT 260
 

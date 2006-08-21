@@ -16,10 +16,6 @@
 
 
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 TW InitTWStruct(void);
 LPTW GetTextWinScilab(void);
 

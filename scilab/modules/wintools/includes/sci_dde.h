@@ -14,12 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-
-#ifndef NULL
-  #define NULL 0
-#endif
-
-
 int	InterfaceWindowsDDEopen _PARAMS((char *fname));
 int	InterfaceWindowsDDEclose _PARAMS((char *fname));
 int	InterfaceWindowsDDEexec _PARAMS((char *fname));

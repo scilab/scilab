@@ -24,10 +24,6 @@
 #ifndef __DETECTFRAMEWORK__
 #define __DETECTFRAMEWORK__
 
-#ifndef NULL
-  #define NULL 0
-#endif
-
 IMPORT_EXPORT_DETECTFRAMEWORK_DLL int DetectFrameWorkNET2(void);
 
 #endif /* __DETECTFRAMEWORK__ */
