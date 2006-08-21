@@ -1,15 +1,15 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xarcs.h                                                       */
+/* file: sci_xarcs.h                                                      */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* desc : interface for xarcs routine                                      */
+/* desc : interface for xarcs routine                                     */
 /*------------------------------------------------------------------------*/
 
 #ifndef _INT_XARCS_H_
 #define _INT_XARCS_H_
 
 /**
-* interface function for the xarc routine.
+* interface function for the xarcs routine.
 *
 * @param[in] fname     name of the routine (ie xarcs)
 * @param[in] fname_len length of fname
