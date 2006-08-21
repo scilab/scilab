@@ -33,7 +33,7 @@ extern int sci_xchange                    _PARAMS((char *fname, unsigned long fn
 extern int sci_xclea                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scirect                        _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xclear                     _PARAMS((char *fname, unsigned long fname_len));
-extern int scixclick                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xclick                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixend                        _PARAMS((char *fname, unsigned long fname_len));
 extern int scixfpoly                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixfpolys                     _PARAMS((char *fname, unsigned long fname_len));
@@ -138,7 +138,7 @@ static MatdesTable Tab[]={
 	{sci_xchange,"xchange"},
 	{sci_xclea,"xclea"},
 	{sci_xclear,"xclear"},
-	{scixclick,"xclick"},
+	{sci_xclick,"xclick"},
 	{scidelw,"xdel"},
 	{scixend,"xend"},
 	{sci_xarc,"xfarc"},
