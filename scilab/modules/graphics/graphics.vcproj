@@ -374,6 +374,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_geom3d.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_get.c"
 				>
 			</File>
@@ -539,6 +543,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\Plo3d.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\PloEch.h"
 				>
 			</File>
@@ -560,6 +568,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_draw.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_geom3d.h"
 				>
 			</File>
 			<File
