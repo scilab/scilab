@@ -12,7 +12,7 @@
 * interface function for the xpolys routine :
 * xpolys(xpols,ypols,[draw])
 *
-* @param[in] fname     name of the routine (ie xpoly)
+* @param[in] fname     name of the routine (ie xpolys)
 * @param[in] fname_len length of fname
 * @return 0 if success, -1 otherwise
 */

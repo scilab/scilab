@@ -211,18 +211,6 @@ extern sciPointObj *paxesmdl;
 /* Graphic subroutines interface */
 /*-----------------------------------------------------------------------------------*/
 
-/* xselect */
-/*-----------------------------------------------------------------------------------*/
-int scixselect(char *fname,unsigned long fname_len)
-{
-  integer v;
-  double dv;
-  CheckRhs(-1,0);
-  C2F(dr1)("xselect","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,8L,2L);
-  LhsVar(1)=0;
-  return 0;
-}
-
 /*-----------------------------------------------------------------------------------*/
 /* xset(choice-name,x1,x2,x3,x4,x5) */
 /* or   xset() */

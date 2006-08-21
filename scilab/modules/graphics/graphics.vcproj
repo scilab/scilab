@@ -478,6 +478,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xselect.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\sciCall.c"
 				>
 			</File>
@@ -748,6 +752,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xsegs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xselect.h"
 				>
 			</File>
 			<File
