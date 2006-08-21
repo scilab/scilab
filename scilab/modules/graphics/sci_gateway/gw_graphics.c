@@ -24,7 +24,7 @@ extern int sciplot2d1_4                   _PARAMS((char *fname, unsigned long fn
 extern int sci_grayplot                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_driver                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarc                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixarcs                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xarcs                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scirects                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sciarrows                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixsegs                       _PARAMS((char *fname, unsigned long fname_len));
@@ -132,7 +132,7 @@ static MatdesTable Tab[]={
 	{sciplot3d1,"plot3d1"},
 	{sciwinsid,"winsid"},
 	{sci_xarc,"xarc"},
-	{scixarcs,"xarcs"},
+	{sci_xarcs,"xarcs"},
 	{sciarrows,"xarrows"},
 	{nscixaxis,"drawaxis"},
 	{scixchange,"xchange"},
