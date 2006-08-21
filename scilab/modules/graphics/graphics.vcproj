@@ -430,6 +430,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xarrows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xfarcs.c"
 				>
 			</File>
@@ -652,6 +656,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xarcs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xarrows.h"
 				>
 			</File>
 			<File
