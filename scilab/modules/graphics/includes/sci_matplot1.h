@@ -9,7 +9,7 @@
 #define _INT_MATPLOT1_H_
 
 /**
-* interface function for the matplot routine :
+* interface function for the matplot1 routine :
 *
 * @param[in] fname      name of the routine (ie matplot1)
 * @param[in] fname_len length of fname
