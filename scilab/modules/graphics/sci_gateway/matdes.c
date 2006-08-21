@@ -212,83 +212,8 @@ extern sciPointObj *paxesmdl;
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
-/*  grayplot(x,y,z,[strf,rect,nax]) */
-/*-----------------------------------------------------------------------------------*/
-int scigrayplot(char *fname,unsigned long fname_len)
-{
-  int frame_def=8;
-  int *frame=&frame_def;
-  int axes_def=1;
-  int *axes=&axes_def;
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
-			    {-1,"frameflag","?",0,0,0},
-			    {-1,"nax","?",0,0,0},
-			    {-1,"rect","?",0,0,0},
-			    {-1,"strf","?",0,0,0},
-			    {-1,NULL,NULL,0,0}};
+/*  */
 
-  if (Rhs <= 0) {
-    sci_demo(fname, "t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);",&one);
-    return 0;
-  }
-  CheckRhs(3,7);
-
-  if ( get_optionals(fname,opts) == 0) return 0;
-  if ( FirstOpt() < 4) {
-    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
-	     fname,4);
-    Error(999); 
-    return(0);
-  }
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  CheckVector(1,m1,n1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
-  CheckVector(2,m2,n2);
-  GetRhsVar(3, "d", &m3, &n3, &l3);
-  if (m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-
-  CheckDimProp(2,3,m2 * n2 != n3);
-  CheckDimProp(1,3,m1 * n1 != m3);
-
-  GetStrf(fname,4,opts,&Strf);
-  GetRect(fname,5,opts,&Rect);
-  GetNax(6,opts,&Nax,&flagNax);
-
-  SciWin();
-  C2F(scigerase)();
-
-  if ( isDefStrf( Strf ) ) {
-    char strfl[4];
-    if (version_flag() == 0)
-      strcpy(strfl,DEFSTRFN);
-    else
-      strcpy(strfl,DEFSTRF);
-    Strf = strfl;
-    if ( !isDefRect( Rect ) )
-      strfl[1]='7';
-    if(version_flag() != 0){
-      if ( !isDefNax( Nax ))
-	strfl[1]='1';
-    }
-    GetOptionalIntArg(fname,7,"frameflag",&frame,1,opts);
-    if(frame != &frame_def) 
-      strfl[1] = (char)(*frame+48);
-    GetOptionalIntArg(fname,7,"axesflag",&axes,1,opts);
-    if(axes != &axes_def) 
-      strfl[2] = (char)(*axes+48);
-  }
-
-
-
-  /* NG beg */
-  if (version_flag() == 0)
-    Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax, flagNax);
-  else /* NG end */
-    Xgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, Strf, Rect, Nax);
-  LhsVar(1)=0;
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 /* scimatplot */
 /*-----------------------------------------------------------------------------------*/
