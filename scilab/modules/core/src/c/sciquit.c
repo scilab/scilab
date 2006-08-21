@@ -16,9 +16,6 @@
 #include "MALLOC.h"
 #include "sciquit.h"
 /*-----------------------------------------------------------------------------------*/ 
-#define TRUE  1
-#define FALSE 0
-/*-----------------------------------------------------------------------------------*/ 
 extern int C2F(deletewin)(integer *number);
 extern char *get_sci_data_strings(int n);
 extern int Get_no_startup_flag(void);

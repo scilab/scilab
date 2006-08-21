@@ -19,10 +19,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
-
 int C2F(sci_winopen) _PARAMS((char *fname));
 #endif /* __INTWINOPEN__ */
 /*-----------------------------------------------------------------------------------*/ 

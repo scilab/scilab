@@ -12,14 +12,6 @@
 typedef int BOOL;
 #endif
 
-#ifndef TRUE
- #define TRUE 1
-#endif
-
-#ifndef FALSE
- #define FALSE 0
-#endif
-
 /*-----------------------------------------------------------------------------------*/
 static char DefaultScilabStartup[]="SCI/scilab.start";
 static char DefaultScilabQuit[]="SCI/scilab.quit";

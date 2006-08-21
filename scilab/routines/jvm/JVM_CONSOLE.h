@@ -15,12 +15,6 @@
 #ifndef NULL
   #define NULL 0
 #endif
-#ifndef TRUE 
-	#define TRUE  1
-#endif 
-#ifndef FALSE
-	#define FALSE 0
-#endif
 /*-----------------------------------------------------------------------------------*/ 
 int StartJVM_CONSOLE(char *SCILAB_PATH);
 int TerminateJVM_CONSOLE(void);

@@ -19,9 +19,6 @@
 #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 int C2F(initscilab)(void);
 
 #endif /* __INITSCILAB__ */

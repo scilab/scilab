@@ -10,9 +10,6 @@ int C2F(intwarning) __PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/ 
-#define TRUE  1
-#define FALSE 0
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intwarning)(fname,fname_len);

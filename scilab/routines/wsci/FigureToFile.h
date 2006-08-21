@@ -24,9 +24,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 #ifndef MAXSTR
 #define MAXSTR 255
 #endif

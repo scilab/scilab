@@ -11,9 +11,6 @@ extern void C2F(isciulink)(integer *i) ;
 /*-----------------------------------------------------------------------------------*/
 int C2F(intulink) __PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
-#define TRUE  1
-#define FALSE 0
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_ulink) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intulink)(fname,fname_len);

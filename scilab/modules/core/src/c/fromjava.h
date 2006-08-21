@@ -5,6 +5,7 @@
 #ifndef __FROMJAVA__
 #define __FROMJAVA__
 
+#include "machine.h"
 
 void SetFromJavaToON(void);
 int IsFromJava(void);

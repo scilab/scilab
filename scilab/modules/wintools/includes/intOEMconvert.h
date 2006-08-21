@@ -19,8 +19,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
 
 int C2F(sci_oemtochar) _PARAMS((char *fname));
 int C2F(sci_chartooem) _PARAMS((char *fname));

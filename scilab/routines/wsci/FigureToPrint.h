@@ -25,9 +25,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 int CopyPrint (struct BCG *ScilabGC);
 void PrintPs (struct BCG *ScilabGC);

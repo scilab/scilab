@@ -26,9 +26,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 void SetDefaultShowToolBar(BOOL valShowToolBar);
 void HideGraphToolBar(struct BCG * ScilabGC);
 void ShowGraphToolBar(struct BCG * ScilabGC);

@@ -21,9 +21,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 #if defined (__STDC__) || defined (_MSC_VER)
 	int  Scierror __PARAMS((int iv,char *fmt,...));
 #else

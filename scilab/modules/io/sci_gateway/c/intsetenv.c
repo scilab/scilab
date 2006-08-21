@@ -45,8 +45,6 @@ int	C2F(intsetenv) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int ReturnValueSetenv(int value)
 {
-	#define TRUE  1
-	#define FALSE 0
 	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
 

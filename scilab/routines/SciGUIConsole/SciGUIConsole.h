@@ -36,8 +36,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
 
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int JVM_Create_SciGUIConsole_Object(JNIEnv *env);
 IMPORT_EXPORT_SCIGUICONSOLE_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env);

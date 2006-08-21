@@ -20,9 +20,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 int C2F(sci_timer) _PARAMS((char *fname,unsigned long fname_len));
 
 #endif /* __SCI_TIMER__ */

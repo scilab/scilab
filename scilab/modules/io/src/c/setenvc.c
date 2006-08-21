@@ -18,9 +18,6 @@ extern int setenvtcl(char *string,char *value);
 /* returns 0 if there is a problem else 1 */
 int setenvc(char *string,char *value)
 {
-#define TRUE  1
-#define FALSE 0
-
   int ret=0;
   char* env;
 

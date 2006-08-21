@@ -28,9 +28,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 IMPORT_EXPORT_DETECTFRAMEWORK_DLL int DetectFrameWorkNET2(void);
 
 #endif /* __DETECTFRAMEWORK__ */

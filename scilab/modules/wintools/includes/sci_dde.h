@@ -19,8 +19,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
 
 int	InterfaceWindowsDDEopen _PARAMS((char *fname));
 int	InterfaceWindowsDDEclose _PARAMS((char *fname));

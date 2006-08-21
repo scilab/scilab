@@ -27,9 +27,6 @@
   #define NULL 0
 #endif
 
-#define TRUE  1
-#define FALSE 0
-
 /* EzCreateFont */
 /* Fonts Properties */
 #define EZ_ATTR_BOLD 1

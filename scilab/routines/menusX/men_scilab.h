@@ -11,12 +11,6 @@
 
 #if defined(THINK_C)
 #define Widget int
-#ifndef TRUE
- #define TRUE 1
-#endif
-#ifndef FALSE
- #define FALSE 0
-#endif
 #else
 #include <X11/Xatom.h>
 #include <X11/Intrinsic.h>
