@@ -454,6 +454,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xend.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xfarcs.c"
 				>
 			</File>
@@ -704,6 +708,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xclick.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xend.h"
 				>
 			</File>
 			<File

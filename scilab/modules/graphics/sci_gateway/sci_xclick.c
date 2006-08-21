@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xclick.h                                                     */
+/* file: sci_xclick.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xclick routine                                    */

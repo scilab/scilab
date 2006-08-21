@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xclear.h                                                     */
+/* file: sci_xclear.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xclear routine                                    */

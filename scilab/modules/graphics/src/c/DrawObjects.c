@@ -58,8 +58,7 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
 static Vertices * pHead = (Vertices *) NULL;
 static Vertices * pHead2 = (Vertices *) NULL;
 
-int xinitxend_flag = 0;
-/* sciClipTab ptabclip[15]; */
+int xinitxend_flag = 0 ;
 
 static double xz1,yz1;
 #define TX3D(x1,y1,z1) inint(xz1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
