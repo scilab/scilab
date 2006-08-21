@@ -27,7 +27,7 @@ extern int sci_xarc                       _PARAMS((char *fname, unsigned long fn
 extern int sci_xarcs                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scirects                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarrows                    _PARAMS((char *fname, unsigned long fname_len));
-extern int scixsegs                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xsegs                      _PARAMS((char *fname, unsigned long fname_len));
 extern int nscixaxis                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixchange                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixclea                       _PARAMS((char *fname, unsigned long fname_len));
@@ -161,7 +161,7 @@ static MatdesTable Tab[]={
 	{scirects,"xrects"},
 	{scixs2fig,"xg2fig"},
 	{scixsave,"xsave"},
-	{scixsegs,"xsegs"},
+	{sci_xsegs,"xsegs"},
 	{scixselect,"xselect"},
 	{scixset,"xset"},
 	{scixsetech,"xsetech"},

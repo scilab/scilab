@@ -18,4 +18,4 @@
 */
 int sci_xarrows( char * fname, unsigned long fname_len ) ;
 
-#endif /* _INT_XFARCS_H_ */
+#endif /* _INT_XARROWS_H_ */
