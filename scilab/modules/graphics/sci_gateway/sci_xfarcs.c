@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xfarcs.h                                                     */
+/* file: sci_xfarcs.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xfarcs routine                                    */

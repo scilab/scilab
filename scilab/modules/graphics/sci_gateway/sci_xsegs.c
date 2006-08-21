@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xsegs.h                                                      */
+/* file: sci_xsegs.c                                                      */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xsegs routine                                     */

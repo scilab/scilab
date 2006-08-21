@@ -442,6 +442,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xclea.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xfarcs.c"
 				>
 			</File>
@@ -680,6 +684,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xchange.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xclea.h"
 				>
 			</File>
 			<File

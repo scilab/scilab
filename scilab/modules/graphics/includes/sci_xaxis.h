@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xaxis.h                                                      */
+/* file: sci_xaxis.c                                                      */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xaxis routine                                     */

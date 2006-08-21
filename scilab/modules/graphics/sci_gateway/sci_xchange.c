@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xchange.h                                                    */
+/* file: sci_xchange.c                                                    */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xchange routine                                   */

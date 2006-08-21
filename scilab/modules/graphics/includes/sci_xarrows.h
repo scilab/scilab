@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xarrows.h                                                    */
+/* file: sci_xarrows.c                                                    */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xarrows routine                                   */
