@@ -446,6 +446,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xclear.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xfarcs.c"
 				>
 			</File>
@@ -688,6 +692,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xclea.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xclear.h"
 				>
 			</File>
 			<File
