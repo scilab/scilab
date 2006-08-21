@@ -42,7 +42,7 @@ extern int scixinit                       _PARAMS((char *fname, unsigned long fn
 extern int scixlfont                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixnumb                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xpoly                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixpolys                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xpolys                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixselect                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixset                        _PARAMS((char *fname, unsigned long fname_len));
 extern int scixstring                     _PARAMS((char *fname, unsigned long fname_len));
@@ -156,7 +156,7 @@ static MatdesTable Tab[]={
 	{scixlfont,"xlfont"},
 	{scixload,"xload"},
 	{sci_xpoly,"xpoly"},
-	{scixpolys,"xpolys"},
+	{sci_xpolys,"xpolys"},
 	{scirect,"xrect"},
 	{scirects,"xrects"},
 	{scixs2fig,"xg2fig"},

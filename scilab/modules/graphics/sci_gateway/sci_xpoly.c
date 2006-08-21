@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xpoly.h                                                      */
+/* file: sci_xpoly.c                                                      */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xpoly routine                                     */

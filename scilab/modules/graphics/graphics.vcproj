@@ -470,6 +470,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xpolys.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xsegs.c"
 				>
 			</File>
@@ -736,6 +740,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xpoly.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xpolys.h"
 				>
 			</File>
 			<File
