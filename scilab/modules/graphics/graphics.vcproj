@@ -370,6 +370,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_draw.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_get.c"
 				>
 			</File>
@@ -552,6 +556,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_demo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_draw.h"
 				>
 			</File>
 			<File

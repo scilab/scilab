@@ -10,7 +10,7 @@
 
 #include <string.h> /* in case of dbmalloc use */
 #include "math_graphics.h"
-
+#include "Graphics.h"
 
 #include "MALLOC.h" /* MALLOC */
 

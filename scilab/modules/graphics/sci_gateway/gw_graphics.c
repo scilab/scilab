@@ -73,7 +73,6 @@ extern int sci_param3d1                   _PARAMS((char *fname, unsigned long fn
 extern int scixstringb                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scimatplot                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour2d1                 _PARAMS((char *fname, unsigned long fname_len));
-extern int scic2dex                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scigray2plot                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgraduate                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname                       _PARAMS((char *fname, unsigned long fname_len));
@@ -90,7 +89,7 @@ extern int glue                           _PARAMS((char *fname, unsigned long fn
 extern int unglue                         _PARAMS((char *fname, unsigned long fname_len));
 extern int drawnow                        _PARAMS((char *fname, unsigned long fname_len));
 extern int drawlater                      _PARAMS((char *fname, unsigned long fname_len));
-extern int draw                           _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_draw                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixs2gif                      _PARAMS((char *fname,unsigned long fname_len));
 extern int scixs2ppm                      _PARAMS((char *fname,unsigned long fname_len));
 extern int ClearScreenConsole             _PARAMS((char *fname, unsigned long fname_len));
@@ -191,15 +190,15 @@ static MatdesTable Tab[]={
 	{unglue,"unglue"}, 
 	{drawnow,"drawnow"},
 	{drawlater,"drawlater"},  
-	{draw,"draw"},
+	{sci_draw,"draw"},
 	{addcb,"addcb"},
 	{copy,"copy"},
 	{sci_delete,"delete"},
 	{gget,"get"},
 	{gset,"set"},
 	{scinewaxes,"newaxes"},
-    {sciRelocateHandle,"relocate_handle"},
-    {sciSwapHandles,"swap_handles"},
+  {sciRelocateHandle,"relocate_handle"},
+  {sciSwapHandles,"swap_handles"},
      /* NG end */
 	{scixsort,"gsort"},
 	{int_gtkhelp,"help_gtk"},

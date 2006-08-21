@@ -7,7 +7,7 @@
 #define   __INTCOMMONGRAPHICS__
 /*-----------------------------------------------------------------------------------*/
 #include "stack-c.h"
-#include "matdes.h"
+#include "HandleManagement.h"
 /*-----------------------------------------------------------------------------------*/
 extern char *pmodes[];
 

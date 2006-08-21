@@ -15,6 +15,17 @@
 #ifndef __SCI_HANDLE_MANAGEMENT__
 #define __SCI_HANDLE_MANAGEMENT__
 
+/* to retreive handles on the stack */
+#if _MSC_VER
+#if _MSC_VER <=1200
+#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+
 /* Handle functions */
 extern void sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue);
 extern sciHandleTab * sciGetpendofhandletab(); /* HANDLE MANAGEMENT */

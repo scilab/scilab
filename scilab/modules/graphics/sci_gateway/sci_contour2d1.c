@@ -5,6 +5,8 @@
 /* desc : interface for contour2d1 routine                                */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "sci_contour2d1.h"
 #include "Graphics.h"
 #include "GetCommandArg.h"
