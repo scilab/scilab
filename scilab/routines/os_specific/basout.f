@@ -1,7 +1,8 @@
+c     ====================================           
       subroutine basout(io,lunit,string)
 c     gestion des sorties sur le "standard output" de scilab.
-c
 c     Copyright INRIA
+c     ====================================           
       include '../stack.h'
       character*(*) string
       character ch*1
@@ -18,16 +19,15 @@ c              nombre maxi de ligne atteint,gestion du more
                lct(1)=0
                if (iflag.eq.0) then 
 c                 scilab n'a pas de  fenetre propre
-                  write(wte, '('' more ?'',$)')
+                  call writewtemore()
                   ch=' '
-                  read(rte,'(a1)') ch 
+                  call readrtechar(ch)
                   if(ch.ne.' ') ich=1
                else
 c                 scilab a une  fenetre  en propre
                   call xscimore(ich)
                endif
                if(ich.eq.1) then
-                  if (iflag.eq.0) write(wte,'(a)')
                   lct(1)=-1
                   io=-1
                   return
@@ -37,7 +37,7 @@ c                 scilab a une  fenetre  en propre
             endif
          endif
          if(iflag.eq.0) then
-            write(lunit,'(a)') string
+            call writelunitstring(lunit,string)
          else
             call xscistring(string,len(string))
          endif
@@ -48,27 +48,24 @@ c        sortie sur fichier
          if (lunit.eq.wio)  then
             call diary(string,len(string))
          else
-            write(lunit,'(a)') string
+            call writelunitstring(lunit,string)
          endif
       endif
       end
-
-      subroutine basou1(lunit,string)
-c     gestion des sorties sur le "standard output" de scilab.
-c     la ligne editee n'est pas suivie de retour a la ligne
+c     ====================================
+      subroutine readrtechar(onechar)
       include '../stack.h'
-      character*(*) string
-      if (lunit.eq.wte) then 
-         call xscion(iflag)
-         if (iflag.eq.0) then 
-            write(lunit,'(a,$)') string
-            if(lunit.eq.wte.and.wio.ne.0) write(wio,'(a,$)') string
-         else
-            call xscisncr(string,len(string))
-            if(wio.ne.0) write(wio,'(a,$)') string
-         endif
-      else
-         write(lunit,'(a,$)') string
-      endif
+      character onechar*1
+      read(rte,'(a1)') onechar
       end
-
+c     ====================================     
+      subroutine writelunitstring(lunit,string)
+      character*(*) string
+      write(lunit,'(a)') string      
+      end
+c     ====================================           
+      subroutine writewtemore()
+      include '../stack.h'
+      write(wte, '('' more ?'',$)')
+      end
+c     ====================================           
