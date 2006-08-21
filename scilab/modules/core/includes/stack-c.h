@@ -12,6 +12,8 @@
 #define Max(x,y)	(((x)>(y))?(x):(y))
 #endif
 
+#include <string.h>
+
 #include "stack-def.h"
 
 /*-------------------------------------------------

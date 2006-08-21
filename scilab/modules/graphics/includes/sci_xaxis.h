@@ -9,7 +9,7 @@
 #define _INT_XAXIS_H_
 
 /**
-* interface function for the xarrows routine .
+* interface function for the xarrows routine.
 *
 * @param[in] fname     name of the routine (ie xaxis)
 * @param[in] fname_len length of fname

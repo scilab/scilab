@@ -211,48 +211,6 @@ extern sciPointObj *paxesmdl;
 /* Graphic subroutines interface */
 /*-----------------------------------------------------------------------------------*/
 
-/* [x1,y1,rect]=xchange(x,y,dir) */
-/*-----------------------------------------------------------------------------------*/
-int scixchange(char *fname,unsigned long fname_len)
-{
-  integer m1,n1,l1,m2,n2,l2,m3,n3 ,l3,l4,quatre=4,l5,i;
-  CheckRhs(3,3);
-  CheckLhs(1,3);
-
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
-  GetRhsVar(3,"c",&m3,&n3,&l3);
-  CheckSameDims(1,2,m1,n1,m2,n2);
-
-  SciWin();
-  if ( strcmp(cstk(l3),"i2f") == 0) 
-    {
-      GetRhsVar(1,"i",&m1,&n1,&l1);
-      GetRhsVar(2,"i",&m2,&n2,&l2);
-      CreateVar(3,"d",&m1,&n1,&l3);
-      CreateVar(4,"d",&m1,&n1,&l4);
-      C2F(echelle2d)(stk(l3),stk(l4),istk(l1),istk(l2),&m1,&n1,"i2f",3L);
-    }
-  else 
-    {
-      CreateVar(3,"i",&m1,&n1,&l3);
-      CreateVar(4,"i",&m1,&n1,&l4);
-      C2F(echelle2d)(stk(l1),stk(l2),istk(l3),istk(l4),&m1,&n1,"f2i",3L);
-    }
-  CreateVar(5,"d",&one,&quatre,&l5);
-  for (i=0; i < quatre ; i++) *stk(l5+i) =  Cscale.WIRect1[i];
-  LhsVar(1)=3;
-  LhsVar(2)=4;
-  LhsVar(3)=5;
-  return 0;
-}
-
-
-
-
-
-
-
 
 /*-----------------------------------------------------------------------------------*/
 /* xclea(x,y,w,h) etendu a xclea([x,y,w,h]) */
