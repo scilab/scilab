@@ -386,6 +386,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_matplot.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_param3d.c"
 				>
 			</File>
@@ -584,6 +588,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_grayplot.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_matplot.h"
 				>
 			</File>
 			<File

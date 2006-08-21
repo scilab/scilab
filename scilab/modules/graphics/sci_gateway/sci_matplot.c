@@ -1,0 +1,112 @@
+/*------------------------------------------------------------------------*/
+/* file: sci_matplot.h                                                    */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
+/* desc : interface for matplot routine                                   */
+/*------------------------------------------------------------------------*/
+
+#include "sci_matplot.h"
+#include "GetCommandArg.h"
+#include "DefaultCommandArg.h"
+#include "sci_demo.h"
+#include "BuildObjects.h"
+#include "DestroyObjects.h"
+#include "GetProperty.h"
+#include "Graphics.h"
+#include "sciCall.h"
+#include "dr1Call.h"
+
+/*-----------------------------------------------------------------------------------*/
+int sci_matplot(char *fname,unsigned long fname_len)
+{
+  integer m1, n1, l1;
+  int frame_def=8;
+  int *frame=&frame_def;
+  int axes_def=1;
+  int *axes=&axes_def;
+  static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
+  {-1,"frameflag","?",0,0,0},
+  {-1,"nax","?",0,0,0},
+  {-1,"rect","?",0,0,0},
+  {-1,"strf","?",0,0,0},
+  {-1,NULL,NULL,0,0}};
+
+  char   * strf    = NULL  ;
+  double * rect    = NULL  ;
+  int    * nax     = NULL  ;
+  BOOL     flagNax = FALSE ;
+
+  if ( Rhs <= 0 )
+  {
+    int one = 1 ;
+    sci_demo(fname,"m=[1,2;3,4];Matplot(m);", &one);
+    return 0;
+  }
+  CheckRhs(1,5);
+
+  if ( get_optionals(fname,opts) == 0 ) { return 0 ; }
+  if ( FirstOpt() < 2)
+  {
+    sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+      fname,2);
+    Error(999); 
+    return(0);
+  }
+  GetRhsVar(1, "d", &m1, &n1, &l1);
+  if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
+  GetStrf(fname,2,opts,&strf);
+  GetRect(fname,3,opts,&rect);
+  GetNax(4,opts,&nax,&flagNax);
+
+  SciWin();
+  SciGerase() ;
+
+  if ( isDefStrf( strf ) ) {
+    char strfl[4];
+    if (version_flag() == 0)
+    {
+      strcpy(strfl,DEFSTRFN) ;
+    }
+    else
+    {
+      strcpy(strfl,DEFSTRF) ;
+    }
+    strf = strfl;
+    if ( !isDefRect( rect ) )
+    {
+      strfl[1]='7';
+    }
+    if( version_flag() != 0 )
+    {
+      if ( !isDefNax( nax ))
+      {
+        strfl[1] = '1' ;
+      }
+    }
+    GetOptionalIntArg(fname,5,"frameflag",&frame,1,opts);
+    if(frame != &frame_def)
+    {
+      strfl[1] = (char)(*frame+48);
+    }
+    GetOptionalIntArg(fname,5,"axesflag",&axes,1,opts);
+    if(axes != &axes_def)
+    {
+      strfl[2] = (char)(*axes+48);
+    }
+  }
+
+
+  /* NG beg */
+  if ( version_flag() == 0 )
+  {
+    Objmatplot( stk(l1), &m1, &n1, strf, rect, nax, flagNax ) ;
+  }
+  else
+  {
+    Xmatplot( stk(l1), &m1, &n1, strf, rect, nax ) ;
+  }
+  /* NG end */
+  LhsVar(1)=0;
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
