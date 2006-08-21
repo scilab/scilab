@@ -422,6 +422,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xarc.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\sciCall.c"
 				>
 			</File>
@@ -632,6 +636,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_set.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xarc.h"
 				>
 			</File>
 			<File

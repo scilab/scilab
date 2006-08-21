@@ -181,7 +181,6 @@ extern int C2F(fac3d3)  __PARAMS((double *,double *,double *,integer *cvect,inte
 extern int C2F(param3d)  __PARAMS((double *,double *,double *,integer *,double *teta,double *,char *,integer *,double *,integer)); 
 extern int C2F(param3d1)  __PARAMS((double *,double *,double *,integer *,integer *,integer *,integer *colors,double *teta,double *,char *,integer *,double *,integer )); 
 extern int C2F(box3d)  __PARAMS((double *,double *,double *)); 
-extern int C2F(geom3d)  __PARAMS((double *,double *,double *,integer *n)); 
 extern void SetEch3d  __PARAMS((double *,double *,double *,double *,double *teta,double *)); 
 extern void SetEch3d1  __PARAMS((double *,double *,double *,double *,double *teta,double *,integer flag)); 
 extern void DrawAxis  __PARAMS((double *,double *,integer *Indices,integer style)); 
