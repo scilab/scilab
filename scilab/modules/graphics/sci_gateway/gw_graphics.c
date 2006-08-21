@@ -76,7 +76,7 @@ extern int sci_contour2d1                 _PARAMS((char *fname, unsigned long fn
 extern int sci_matplot1                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgraduate                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixaxis                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xaxis                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sciseteventhandler             _PARAMS((char *fname, unsigned long fname_len));
 extern int int_gtkhelp                    _PARAMS((char *fname, unsigned long fname_len));
 extern int gset                           _PARAMS((char *fname, unsigned long fname_len));
@@ -171,7 +171,7 @@ static MatdesTable Tab[]={
 	{scixtitle,"xtitle"},
 	{scixgraduate,"xgraduate"},
 	{scixname,"xname"},
-	{scixaxis,"xaxis"},
+	{sci_xaxis,"xaxis"},
 	{sciseteventhandler,"seteventhandler"},
 	{scixs2gif,"xs2gif"},
 	{scixs2ppm,"xs2ppm"},
