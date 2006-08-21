@@ -212,33 +212,6 @@ extern sciPointObj *paxesmdl;
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
-/* Matplot1 */
-/*-----------------------------------------------------------------------------------*/
-int scigray2plot(char *fname,unsigned long fname_len)
-{
-  integer m1, n1, l1,m2,n2,l2;
-  if (Rhs <= 0) {
-    sci_demo(fname,"plot2d([0,10],[0,10],0);a=ones(50,50);a= 3*tril(a)+2*a;Matplot1(a,[4,4,9,9]);", &one);
-    return 0;
-  }
-
-  CheckRhs(2,2);
-  GetRhsVar(1, "d", &m1, &n1, &l1);
-  GetRhsVar(2, "d", &m2, &n2, &l2);
-  CheckLength(2,m2*n2,4);
-  if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
-  SciWin();
-
-  /* NG beg */
-  if (version_flag() == 0)
-    Objmatplot1 (stk(l1), &m1, &n1,stk(l2));
-  else
-    Xmatplot1 (stk(l1), &m1, &n1,stk(l2)); /* NG end */
-  LhsVar(1)=0;
-  return 0;
-} 
-
-/*-----------------------------------------------------------------------------------*/
 /* driver(driver_name) or  current_driver=driver() */
 /*-----------------------------------------------------------------------------------*/
 int scidriver(char *fname,unsigned long fname_len)

@@ -390,6 +390,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_matplot1.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_param3d.c"
 				>
 			</File>
@@ -592,6 +596,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_matplot.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_matplot1.h"
 				>
 			</File>
 			<File
