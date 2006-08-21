@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -10,7 +10,7 @@
   <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="swap_handles">Permute deux handle dans la
-  hiÃ©rarchie graphique.</SHORT_DESCRIPTION>
+  hiérarchie graphique.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>swap_handle( handle1, handle2
@@ -43,13 +43,13 @@
     inversement.</P>
 
     <P>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-    existe des restrictions quant Ã &#160; l'utilisation de la routine. Il est
+    existe des restrictions quant à &#160; l'utilisation de la routine. Il est
     par exemple impossible de permuter un handle polyline et un handle axes,
     ils ne seraient alors plus compatible avec leur nouveaux parents. Pour
-    plus d'information Ã &#160; ce sujet, on peut se reporter Ã &#160; la page
+    plus d'information à &#160; ce sujet, on peut se reporter à &#160; la page
     <LINK>graphics_entities</LINK> .</P>
 
-    <P>La routine peut-Ãªtre utilisÃ©e pour modifier les indices des enfants
+    <P>La routine peut-être utilisée pour modifier les indices des enfants
     d'un handle.</P>
   </DESCRIPTION>
 
@@ -65,7 +65,7 @@ rect = gce() ;
 xarc( 0.5, 0.5, 0.5, 0.5, 0, 64 * 360 ) ;
 circle = gce() ;
 
-// creation d'une flÃ¨che
+// creation d'une flèche
 xpoly([0,1],[0,1]) ;
 arrow = gce() ;
 arrow.polyline_style = 4 ;
@@ -83,10 +83,10 @@ swap_handles( arrow, circle ) ;
 axes.children
 
 //------------------//
-//  DeuxiÃ¨me exemple //
+//  Deuxième exemple //
 //------------------//
 
-// creation de deux fenÃªtres
+// creation de deux fenêtres
 plot2d ;
 axes1 = gca() ;
 
@@ -95,7 +95,7 @@ fec ;
 axes2 = gca() ;
 
 // parmutation de leurs axes respectifs
-// Onpeut noter que les axes hÃ©ritent de la color map de leur nouvelle fenÃªtre.
+// Onpeut noter que les axes héritent de la color map de leur nouvelle fenêtre.
 swap_handles( axes1, axes2 ) ;
 
 
