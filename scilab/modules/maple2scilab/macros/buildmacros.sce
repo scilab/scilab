@@ -7,5 +7,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('maplelib','SCI/modules/maple/macros');
+genlib('maplelib','SCI/modules/maple2scilab/macros');
 //------------------------------------

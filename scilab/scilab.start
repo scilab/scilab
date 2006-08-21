@@ -107,7 +107,7 @@ clear  larg L
  exec("SCI/modules/string/etc/string.start",-1);
  exec("SCI/modules/optimization/etc/optimization.start",-1);
  exec("SCI/modules/scipad/etc/scipad.start",-1);
- exec("SCI/modules/maple/etc/maple.start",-1);
+ exec("SCI/modules/maple2scilab/etc/maple.start",-1);
  exec("SCI/modules/m2sci/etc/m2sci.start",-1);
  exec("SCI/modules/graphics/etc/graphics.start",-1);
  exec("SCI/modules/Javasci/etc/javasci.start",-1);
