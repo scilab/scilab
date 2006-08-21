@@ -29,14 +29,6 @@
 #include "MALLOC.h" /* MALLOC */
 
 
-/*#include "GraphicGlobals.h"*/
-
-/* Global variables */
-/* #include "Global_PENDOFHANDLETAB.h" */
-/* #include "Global_pfiguremdl.h" */
-/* #include "Global_paxesmdl.h" */
-/* #include "Global_cf_type.h" */
-
 extern sciHandleTab *PENDOFHANDLETAB;
 
 extern int xinitxend_flag;
@@ -44,14 +36,14 @@ extern int xinitxend_flag;
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 
-extern int versionflag; /* just used for version_flag() function */
+int versionflag = 1 ; /* just used for version_flag() function */
 extern int cf_type;
 
 /* extern sciClipTab ptabclip[15]; */
 static BOOL modereplay = FALSE;
 
 /**sciGetPointerToFeature
- * @memo Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
+ * Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
  */
 void *
 sciGetPointerToFeature (sciPointObj * pobj)
@@ -4558,13 +4550,14 @@ int version_flag()
 { 
   double *XGC,dv=0;
   struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
-  int v=0;
+  int v = 0;
 
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc=(struct BCG *)XGC;
-  /*  if (CurrentScilabXgc==(struct BCG *)NULL) return 1; */
-  if (CurrentScilabXgc==(struct BCG *)NULL) 
+  CurrentScilabXgc = XGC;
+  if (CurrentScilabXgc == NULL )
+  {
     return versionflag; /* default versionflag is returned */
+  }
   
   return CurrentScilabXgc->graphicsversion;
 }

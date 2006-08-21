@@ -226,6 +226,8 @@ extern int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
 extern int sciInitIsSelected( sciPointObj * pObj, BOOL is3d ) ;
 extern int sciSetIsSelected(  sciPointObj * pObj, BOOL is3d ) ;
 
+void setVersionFlag( int newFlag ) ;
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

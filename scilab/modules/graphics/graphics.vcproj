@@ -482,6 +482,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xset.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\sciCall.c"
 				>
 			</File>
@@ -759,6 +763,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_xset.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sciCall.h"
 				>
 			</File>
@@ -784,6 +792,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Vect2Matrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\XsetXgetParameters.h"
 				>
 			</File>
 		</Filter>

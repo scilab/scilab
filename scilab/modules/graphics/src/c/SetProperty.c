@@ -44,6 +44,8 @@ BOOL modereplay = FALSE;
 
 extern int cf_type;
 
+extern int versionflag ;
+
 /*------------------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
 /* Modify the viewing angles of a subwindow                                           */
@@ -4888,5 +4890,15 @@ int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
     return 1 ;
   }
   return sciInitIs3d( pObj, is3d ) ;
+}
+/*--------------------------------------------------------------------------------------------*/
+/**
+ * Set the version flag.
+ * @param[in] newversion If 1 we set the old graphic mode and if 0 the new one.
+ *                       Don't use other values than 0 and 1.
+ */
+void setVersionFlag( int newFlag )
+{
+  versionflag = newFlag ;
 }
 /*--------------------------------------------------------------------------------------------*/
