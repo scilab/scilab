@@ -474,6 +474,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_xfpolys.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xgrid.c"
 				>
 			</File>
@@ -792,6 +796,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xfpoly.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xfpolys.c"
 				>
 			</File>
 			<File
