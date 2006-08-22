@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xlfontt.h                                                      */
+/* file: sci_xlfont.h                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* desc : interface for xlfont routine                                     */
+/* desc : interface for xlfont routine                                    */
 /*------------------------------------------------------------------------*/
 
 #ifndef _INT_XLFONT_H_

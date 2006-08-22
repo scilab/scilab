@@ -167,44 +167,8 @@ extern sciPointObj *paxesmdl;
 /* xget */ 
 
 
-/* scixnumb(x,y,nums,[box,angles]) : NO MORE USED */
-/*-----------------------------------------------------------------------------------*/
-int scixnumb(char *fname,unsigned long fname_len)
-{
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,m5,n5,l5;
-  integer flagx=0,mn3;
-  SciWin();
+/*  */
 
-  CheckRhs(3,5);
-
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
-  GetRhsVar(3,"d",&m3,&n3,&l3);
-  CheckSameDims(1,2,m1,n1,m2,n2);
-  CheckSameDims(2,3,m2,n2,m3,n3);
-  mn3=m3*n3;
-  if ( mn3 == 0) {   LhsVar(1)=0;  return 0;}
-
-  if (Rhs >= 4) {GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); flagx = (integer) *stk(l4);}
-  if (Rhs >= 5) {
-    GetRhsVar(5,"d",&m5,&n5,&l5); CheckSameDims(1,5,m1,n1,m5,n5);
-  }
-  else {
-    int i;
-    CreateVar(Rhs+1,"d",&m3,&n3,&l5);
-    for ( i=0 ; i < mn3 ; i++ ) *stk(l5+i) = 0.0;
-  } 
-  /* NG beg */
-  if (version_flag() == 0)
-    Objnumb(fname,fname_len,mn3,flagx,stk(l1),stk(l2),stk(l3),stk(l5));
-  else
-    Xnumb(fname,mn3,flagx,stk(l1),stk(l2),stk(l3),stk(l5));
-  /* NG end */
-  LhsVar(1)=0;
-  return 0;
-
-} 
-/*-----------------------------------------------------------------------------------*/
 /* [wrect,frect,logflag,arect]=xgetech() */
 /*-----------------------------------------------------------------------------------*/
 int scixgetech(char *fname,unsigned long fname_len)
