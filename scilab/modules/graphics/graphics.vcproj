@@ -378,6 +378,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_fec.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_geom3d.c"
 				>
 			</File>
@@ -716,6 +720,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_driver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_fec.h"
 				>
 			</File>
 			<File

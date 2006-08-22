@@ -51,7 +51,7 @@ extern int sci_xtape                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xsetech                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xgetech                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_geom3d                     _PARAMS((char *fname, unsigned long fname_len));
-extern int scifec                         _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_fec                        _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgetmouse                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xinfo                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xtitle                     _PARAMS((char *fname, unsigned long fname_len));
@@ -113,7 +113,7 @@ static MatdesTable Tab[]={
 	{scichamp1,"champ1"},
 	{sci_contour,"contour"},
 	{sci_driver,"driver"},
-	{scifec,"scifec"},
+	{sci_fec,"scifec"},
 	{sci_geom3d,"geom3d"},
 	{sci_grayplot,"grayplot"},
 	{sci_matplot,"Matplot"},
