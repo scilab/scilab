@@ -30,6 +30,9 @@ extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int IsFromC(void);
 extern int ExitScilab(void);
 extern BOOL GetWITH_GUI(void);
+extern void SetWITH_GUI(BOOL ON);
+extern int C2F(getwins)();
+
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 extern char *GetScilabDirectory(BOOL UnixStyle);

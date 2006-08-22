@@ -7,7 +7,7 @@ c traitement de l'erreur fortran ou du break
 c
 c     Copyright INRIA
       integer  n
-      include '../stack.h'
+      include 'stack.h'
       logical iflag,interruptible
       common /basbrk/ iflag,interruptible
       integer  ilk,k,l,lunit,nc,mode(2)

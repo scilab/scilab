@@ -13,7 +13,7 @@
 #endif 
 
 #include <time.h>
-#include "../machine.h"
+#include "machine.h"
 
 #if defined(THINK_C)
 	#include <Threads.h> 

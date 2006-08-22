@@ -1,7 +1,8 @@
 /* copyright Enpc: Jean-Philippe Chancelier  */
 
 #include "../stack-c.h" 
-#include "../os_specific/Os_specific.h" /* isanan */ 
+/* REOGANISATION TEMPORAIRE */
+#include "../../modules/core/includes/Os_specific.h" /* isanan */ 
 
 #ifdef _MSC_VER 
 /* vc++ pbs with nan and comparisons */ 

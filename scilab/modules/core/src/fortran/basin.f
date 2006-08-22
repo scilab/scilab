@@ -4,7 +4,7 @@ c     gestion de la standard input
 c ================================== ( Inria ) =============
 c
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     --- for myback 
       integer lrecl,bkflag
       parameter (lrecl=512) 
@@ -67,7 +67,7 @@ c     this routine mimin the same behaviour without
 c     using backspace 
 C     this routine is only used in getfun where lrecl 
 C     is also set 
-      include '../stack.h'
+      include 'stack.h'
       integer lrecl,bkflag
       parameter (lrecl=512) 
       character bckbuf*(lrecl)

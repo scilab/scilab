@@ -12,9 +12,7 @@
 
 #include "link.h"
 #include "addinter.h" 
-
-/*REORGANISATION TEMPORAIRE */
-#include "../../../routines/os_specific/Os_specific.h"
+#include "Os_specific.h"
 
 #include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */

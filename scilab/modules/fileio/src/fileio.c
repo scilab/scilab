@@ -21,15 +21,9 @@
 
 #include <ctype.h>  /* isdigit */
 #include "core_math.h"
-
-
-
 #include "MALLOC.h" /* MALLOC */
-
 #include "stack-c.h"
-
-/* REORGANISATION TEMPORAIRE */
-#include "../../../routines/os_specific/Os_specific.h"
+#include "../../core/includes/Os_specific.h"
 /*-----------------------------------------------------------------------------------*/
 typedef union {
   char * c;

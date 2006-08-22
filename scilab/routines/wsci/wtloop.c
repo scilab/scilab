@@ -45,8 +45,10 @@
 //#include "plot.h"
 #include "wresource.h"
 #include "wcommon.h"
-#include "../os_specific/Os_specific.h" 
+
 #include "../stack-c.h" 
+/* REORGANISATIION TEMPORAIRE */
+#include "../../modules/core/includes/Os_specific.h" /* isanan */ 
 
 #include "Messages.h"
 #include "Warnings.h"

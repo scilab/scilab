@@ -5,7 +5,8 @@
 #include "men_scilab.h"
 #endif
 
-#include "../os_specific/Os_specific.h"
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/core/includes/Os_specific.h" /* isanan */ 
 
 #ifdef _MSC_VER
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */

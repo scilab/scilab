@@ -6,7 +6,7 @@ c
 c ================================== ( Inria    ) =============
 c
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       character*(*) fmt
       double precision v(*)
       integer ierr,lunit

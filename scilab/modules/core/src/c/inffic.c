@@ -1,11 +1,8 @@
 /* Copyright INRIA/ENPC */
 #include <string.h>
+#include "machine.h"
+#include "core_math.h"
 
-#if defined(THINK_C)
-#include "::graphics:Math.h"
-#else
-#include "../graphics/Math.h"
-#endif
 
 #define MAXDATA 5 
 

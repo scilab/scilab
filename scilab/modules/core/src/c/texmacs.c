@@ -1,6 +1,6 @@
 #include <stdio.h> 
-#include "../machine.h" /* for C2F */
-#include "../stack-def.h" /* for paus */
+#include "machine.h" /* for C2F */
+#include "stack-def.h" /* for paus */
 
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')

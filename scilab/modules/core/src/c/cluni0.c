@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../graphics/Math.h"
+#include "core_math.h"
 #include "Os_specific.h"
 
 #define MAX_ENV 256 

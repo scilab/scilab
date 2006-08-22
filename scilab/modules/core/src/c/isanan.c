@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "../machine.h"
+#include "machine.h"
 #include "Os_specific.h"
 
 

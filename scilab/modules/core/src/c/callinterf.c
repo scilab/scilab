@@ -11,7 +11,7 @@
 
 
 #include "addinter.h" /* for DynInterfStart */
-#include "../../../../routines/os_specific/Os_specific.h" /* for DynInterfStart */
+#include "Os_specific.h" /* for DynInterfStart */
 
 static  jmp_buf jmp_env; 
 

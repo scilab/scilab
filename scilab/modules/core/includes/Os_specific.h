@@ -2,7 +2,7 @@
 #ifndef SUNSCI_PROTO
 #define  SUNSCI_PROTO
 
-#include "../machine.h" 
+#include "machine.h" 
 
 typedef long int ftnlen ;
 

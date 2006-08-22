@@ -194,11 +194,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\cluni0.c"
+				>
+			</File>
+			<File
+				RelativePath=".\csignal.c"
+				>
+			</File>
+			<File
 				RelativePath=".\cvstr.c"
 				>
 			</File>
 			<File
 				RelativePath=".\dynamic_menus.c"
+				>
+			</File>
+			<File
+				RelativePath=".\flags.c"
 				>
 			</File>
 			<File
@@ -215,6 +227,10 @@
 			</File>
 			<File
 				RelativePath=".\Funtab.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getarg.c"
 				>
 			</File>
 			<File
@@ -238,6 +254,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inffic.c"
+				>
+			</File>
+			<File
 				RelativePath=".\inisci-c.c"
 				>
 			</File>
@@ -255,6 +275,10 @@
 			</File>
 			<File
 				RelativePath=".\intmacr2tree.c"
+				>
+			</File>
+			<File
+				RelativePath=".\isanan.c"
 				>
 			</File>
 			<File
@@ -586,6 +610,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\texmacs.c"
+				>
+			</File>
+			<File
+				RelativePath=".\timer.c"
+				>
+			</File>
+			<File
+				RelativePath=".\tmpdir.c"
+				>
+			</File>
+			<File
 				RelativePath=".\userf2.c"
 				>
 			</File>
@@ -668,6 +704,10 @@
 			</File>
 			<File
 				RelativePath=".\md5.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Os_specific.h"
 				>
 			</File>
 			<File

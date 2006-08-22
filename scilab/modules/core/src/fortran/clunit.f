@@ -33,7 +33,7 @@ c
 c ====================================================================
 c
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       integer       lunit,mode(*)
       character*(*) name
 c
