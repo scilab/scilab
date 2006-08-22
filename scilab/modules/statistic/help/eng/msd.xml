@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>msd</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="msd"> mean squared deviation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=msd(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=msd(x,'r') or m=msd(x,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=msd(x,'c') or m=msd(x,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function computes the  mean squared deviation of  the values of a
+    vector or matrix <VERB> x</VERB>.</P>
+    <P>
+    For  a vector or a matrix  <VERB> x</VERB>, <VERB>  y=msd(x) </VERB> returns in the
+    scalar <VERB> y</VERB> the mean squared deviation of all the entries of <VERB> x</VERB>.</P>
+    <P><VERB> y=msd(x,'r') </VERB>   (or, equivalently, <VERB>  y=msd(x,1) </VERB>)  is the
+    rowwise mean squared  deviation. It returns  in each entry of the  row
+    vector  <VERB> y</VERB> the  mean squared deviation  of each column of <VERB> x </VERB>.</P>
+    <P><VERB> y=msd(x,'c')  </VERB> (or,  equivalently,  <VERB> m=msd(x,2)  </VERB>) is the
+    columnwise mean squared  deviation.  It returns in  each entry  of the
+    column vector <VERB> y</VERB> the mean squared deviation of  each row of <VERB> x</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
+m=msd(x)
+m=msd(x,'r')
+m=msd(x,'c')
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

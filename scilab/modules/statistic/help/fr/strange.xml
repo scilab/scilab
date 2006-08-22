@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>strange</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>August 2000</DATE>
+  <SHORT_DESCRIPTION name="strange"> range</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[r]=strange(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[r]=strange(x,'r') (or, equivalently, [r]=strange(x,1))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[r]=strange(x,'c') (or, equivalently, [r]=strange(x,2))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The  range  is the  distance   between  the largest  and
+    smaller value,   [r]=strange(x) computes   the  range of
+    vector or matrix x.</P>
+    <P>
+    [r]=strange(x,'r')  (or   equivalently [r]=strange(x,1))
+    give a row vector with the range of each column.</P>
+    <P>
+    [r]=strange(x,'c') (or  equivalently   [r]=strange(x,2))
+    give a column vector with the range of each row.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</P>
+  </SECTION>
+  <AUTHOR>Carlos klimann</AUTHOR>
+</MAN>

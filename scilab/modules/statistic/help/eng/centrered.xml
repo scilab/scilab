@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>wcenter</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>March 2001</DATE>
+  <SHORT_DESCRIPTION name="wcenter">  center and weight</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=wcenter(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=wcenter(x,'r') or s=wcenter(x,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=wcenter(x,'c') or s=wcenter(x,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>x: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This  function computes  <VERB>s</VERB>,  the weigthed and centred 
+    version of the numerical matrix <VERB>x</VERB>.</P>
+    <P>
+    For  a vector  or a  matrix  <VERB>x</VERB>, <VERB>s=wcenter(x)</VERB>
+    returns in  the <VERB>(i,j)</VERB> coefficient of  the matrix 
+    <VERB>s</VERB>   the  value  <VERB>(x(i,j)-xbar)/sigma</VERB>,   where  
+    <VERB>xbar</VERB> is the  mean of the values of  the coefficients of
+    <VERB>x</VERB> and <VERB>sigma</VERB> his standard deviation.</P>
+    <P><VERB>s=wcenter(x,'r')</VERB>     (or,     equivalently,    
+    <VERB>s=wcenter(x,1)</VERB>)  is the  rowwise centre  reduction of
+    the  values  of <VERB>x</VERB>.   It  returns  in  the entry  <VERB>s(i,j)</VERB> 
+    the value <VERB>(x(i,j)-xbarv(j))/sigmav(j)</VERB> with
+    <VERB>xbarv(j)</VERB>  the mean  of the  values of  the  <VERB>j</VERB>
+    column and  <VERB>sigmav(j)</VERB> the standard  deviation of the
+    <VERB>j</VERB> column of <VERB>x</VERB>.</P>
+    <P><VERB>s=wcenter(x,'c')</VERB>     (or,     equivalently, 
+    <VERB>s=wcenter(x,2)</VERB>) is the columnwise centre reduction of
+    the  values  of <VERB>x</VERB>.   It  returns  in  the entry  
+    <VERB>s(i,j)</VERB> the value <VERB>(x(i,j)-xbarh(i))/sigmah(i)</VERB> with
+    <VERB>xbarh(i)</VERB> the mean of the  values of the <VERB>i</VERB> row
+    and <VERB>sigmah(i)</VERB> the  standard deviation of the <VERB>i</VERB>
+    row of <VERB>x</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=[0.2113249 0.0002211 0.6653811;
+   0.7560439 0.3303271 0.6283918]
+s=wcenter(x)
+s=wcenter(x,'r')
+s=wcenter(x,'c')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>center</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+</MAN>

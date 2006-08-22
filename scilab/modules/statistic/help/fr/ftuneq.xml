@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ftuneq</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="ftuneq"> Fischer ratio for samples of unequal size.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>f=ftuneq(sample1[,sample2[,sample3]...]])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[f,p]=ftuneq(sample1[,sample2[,sample3]...]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sample1, sample2, sample3,...  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix of any type</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function computes the F ratio for samples of unequal
+    size.</P>
+    <P>
+    &quot;The most  efficient design is  to make all  samples the
+    same  size n.   However when  this is  nor  feasible, it
+    still  is possible  to modify  the  ANOVA calculations.&quot;
+    Note  that  the  definition  of  xbarbar  is  no  longer
+    mean(xbar), but  rather a weighted  average with weights
+    ni.  Additionnally  it gives (in  p) the p-value  of the
+    computed Fischer ratio.</P>
+    <P>
+    Given a number  a of samples each of  them composed of n_i
+    (i from 1  to a) observations this fonction  computes in f
+    the Fischer  ratio (it is  the ratio between nr  times the
+    variance  of the  means of  samples  and the  mean of  the
+    variances of each sample).</P>
+    <P><VERB> f=ftest(samples) </VERB> computes the Fischer ratio of the
+    nc samples whose  values are in the columns  of the matrix
+    <VERB>samples</VERB>. Each one of these samples is composed of nr
+    values. (The  Fischer ratio is the ratio  between nr times
+    the  variance of  the means  of  samples and  the mean  of
+    variances of each sample)</P>
+    <P><VERB> [f,p]=ftest(samples) </VERB> gives in p the p-value of the
+    computed Fischer ratio f.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Wonacott, T.H. &amp;  Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+samples=[46 55 54;53 54 50; 49 58 51;50 61 51;46 52 49]
+[f,p]=ftest(samples)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ftuneq</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+</MAN>

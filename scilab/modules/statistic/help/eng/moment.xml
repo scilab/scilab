@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>moment</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="moment">  non central moments of all orders</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mom=moment(x,ord)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mom=moment(x,ord,'r') or mom=moment(x,ord,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mom=moment(x,ord,'c') or mom=moment(x,ord,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ord</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    moment<VERB>(x,ord)</VERB> is the non central moment or order ord
+    of the elements of <VERB>x</VERB>.</P>
+    <P>
+    If a third  argument of  type string  <VERB>'r'</VERB>  (or <VERB> 1</VERB>) or <VERB>'c'</VERB> (or <VERB>  2</VERB>) is used,   we get in  the
+    first  case,  a  row  vector   <VERB>   mom</VERB>   such  that
+    <VERB>mom(j)</VERB> contains  the  non  central  moment of  order
+    <VERB>ord</VERB> of     the    <VERB>j</VERB>     column    of  <VERB>x</VERB>.
+    <VERB>moment(x,ord,'c')</VERB> is used in   the same way  for the
+    non central moments in the rows.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
+mom=moment(x,3)
+mom=moment(x,2,'r')
+mom=moment(x,3,'c')
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

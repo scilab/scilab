@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nancumsum</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>17-Sep-2003</DATE>
+  <SHORT_DESCRIPTION name="nancumsum">  Thos function returns
+  the cumulative sum of the values of a matrix</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>s = nancumsum(x,orient)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: x is a numerical vector or matrix.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>orient</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: is an optional parameter. The possible values are
+        '*', 1, 2, 'r' or 'c'.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>s</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: numerical scalar or vector. It contains the cumulative
+       sum of the values of x, ignoring the NAN's.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+<P>
+   This function returns in scalar or vector s the cumulative
+   sum  of the  values (ignoring  the  NANs) of  a vector  or
+   matrix (real or complex) x.
+</P>
+<P>
+   This function  for a vector or a  matrix x, s=nancumsum(x)
+   (or, equivalently  s=nancumsum(x,'*') returns in  scalar s
+   the cumulative sum (ignoring  the NANs) of all the entries
+   of x taken columnwise.
+</P>
+<P>
+   s=nancumsum(x,'r')  (or,  equivalently,  s=nancumsum(x,1))
+   returns in  the cols(x) sized vector s  the cumulative sum
+   (ignoring    the    NANs)    of    the    rows    of    x:
+   s(:,i)=nancumsum(x(:,i))
+</P>
+<P>
+   s=nancumsum(x,'c')  (or,  equivalently,  s=nancumsum(x,2))
+   returns in  the rows(x) sized vector s  the cumulative sum
+   (ignoring     NANs)    of     the     columns    of     x:
+   s(i,:)=nancumsum(x(i,:))
+</P>
+<P>
+   For the  last two cases,  if a row  or column is  in whole
+   composed of NAN, the corresponding place of s will contain
+   a NAN.
+</P>
+
+
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=[1 2 3;4 5 6]
+s=nancumsum(a)
+s=nancumsum(a,'r')
+s=nancumsum(a,'c')
+
+ ]]>
+  </EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> nansum</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> cumsum</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>
+    Carlos Klimann
+  </AUTHOR>
+</MAN>

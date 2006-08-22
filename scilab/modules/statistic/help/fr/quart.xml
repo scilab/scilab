@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>quart</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="quart"> computation of quartiles
+  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=quart(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=quart(x,'r') or m=quart(x,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=quart(x,'c') or m=quart(x,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+For a vector  or a matrix x,  [q]=quart(x,y)
+returns in the vector q the quartiles of x.
+
+[q]=quart(x,'r')        (or,         equivalently,
+[q]=quart(x,1)) are the   rowwise percentiles.  It
+returns in  each  column of    the matrix  q   the
+quartiles  of   data   in the   corresponding column  of
+x.</P>
+    <P>
+[q]=quart(x,'c')        (or,         equivalently,
+[q]=quart(x,2)) are the  columnwise quartiles.  It
+returns in each row of  the matrix q the quartiles
+of data in the corresponding row of x.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+
+x=[6 7 0 7 10 4 2 2 7 1;
+   6 0 5 5 5 2 0 6 8 10;
+   8 6 4 3 5 9 8 3 4 7;
+   1 3 2 7 6 1 1 4 8 2;
+   6 3 5 1 6 5 9 9 5 5;
+   1 6 4 4 5 4 0 8 1 8;
+   7 1 3 7 8 0 2 8 10 8;
+   3 6 1 9 8 5 5 3 2 1;
+   5 7 6 2 10 8 7 4 0 8;
+   10 3 3 4 8 6 9 4 8 3]
+q=quart(x)
+q=quart(x,'r')
+q=quart(x,'c')
+
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

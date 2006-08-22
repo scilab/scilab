@@ -55,7 +55,6 @@ MSDOS = (getos() == "Windows")
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/algebre/lib')
-load('SCI/macros/statistics/lib')
 load('SCI/macros/util/lib')
 load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
@@ -98,6 +97,9 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
+ 
+ 
+ exec("SCI/modules/statistics/etc/statistics.start",-1);
  exec("SCI/modules/cacsd/etc/cacsd.start",-1);
  exec("SCI/modules/signal_processing/etc/signal.start",-1);
  exec("SCI/modules/sparse/etc/sparse.start",-1);

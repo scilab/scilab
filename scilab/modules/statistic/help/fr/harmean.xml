@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>harmean</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>March 2001</DATE>
+  <SHORT_DESCRIPTION name="harmean"> harmonic mean</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>hm=harmean(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>hm=harmean(x,'r')(or,  equivalently,   hm=harmean(x,1))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>hm=harmean(x,'c')(or,   equivalently,  hm=harmean(x,2))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function  computes the harmonic  mean of a  vector or
+    matrix <VERB> x</VERB>.  For a vector or matrix  <VERB> x</VERB>, <VERB>
+    hm=harmean(x)  </VERB>  returns  in  scalar  <VERB>  hm</VERB>  the
+    harmonic mean of all the entries of <VERB> x</VERB>.</P>
+    <P><VERB>   hm=harmean(x,'r')   </VERB>   (or,   equivalently,   <VERB>
+    hm=harmean(x,1)  </VERB> ) returns  in each  entry of  the row
+    vector <VERB> hm</VERB> the  harmonic mean of each column of <VERB>
+    x</VERB>.</P>
+    <P><VERB>   hm=harmean(x,'c')   </VERB>   (or,   equivalently,   <VERB>
+    hm=harmean(x,2) </VERB> ) returns  in each entry of the column
+    vector <VERB> hm</VERB> the harmonic mean of each  row of <VERB> x
+    </VERB>.</P>
+  </DESCRIPTION>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

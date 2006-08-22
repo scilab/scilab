@@ -8,11 +8,11 @@ CurrentDirectory=pwd();
  "elem",
  "int",
  "sci2for",
- "statistics",
  "tdcs",
  "gui",
   ];
   
+ Directories=[Directories;"SCI/modules/statistics/macros"];      
  Directories=[Directories;"SCI/modules/cacsd/macros"];    
  Directories=[Directories;"SCI/modules/signal_processing/macros"];  
  Directories=[Directories;"SCI/modules/sparse/macros"];

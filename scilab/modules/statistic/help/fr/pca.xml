@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pca</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>19-Sep-2003</DATE>
+  <SHORT_DESCRIPTION name="pca">  Principal components analysis</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[lambda,facpr,comprinc] = pca(x,N)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>x</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>:  is a nxp (n  individuals, p variables) real matrix</SP>
+
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>N</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+
+      <SP> : is a 2x1 integer vector. Its coefficients point to
+         the eigenvectors  corresponding to the  eigenvalues
+         of the correlation  matrix pxp  ordered by  decreasing
+         values of eigenvalues.  If  N is  missing, we suppose
+         N=[1 2].</SP>
+
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>lambda</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: is  a px2  numerical  matrix.  In the  first
+         column we  find the eigenvalues of  V, where V
+         is the correlation pxp matrix and in the second
+         column are the ratios of the corresponding 
+         eigenvalue over the sum of eigenvalues.</SP>
+
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>facpr</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+      <SP> : are the  principal  factors: eigenvectors  of
+         V. Each column is an eigenvector element of the
+         dual of R^p.</SP>
+
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>comprinc</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: are the  principal components.  Each column
+         (c_i=Xu_i)  of   this  nxn  matrix   is  the
+         M-orthogonal projection of  individuals onto
+         principal  axis.  Each one of this  columns
+         is a linear combination  of the variables
+         x1,   ...,xp  with   maximum   variance  under
+         condition u'_iM^(-1)u_i=1</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+<P>
+   This  function  performs  several  computations  known  as
+   "principal  component analysis".  It  includes drawing  of
+"correlations  circle", i.e.  in the  horizontal  axis the
+correlation   values   r(c1;xj)   and  in   the   vertical
+r(c2;xj). It is an extension of the pca function.
+</P>
+<P>
+The  idea  behind this  method  is  to  represent in  an
+approximative  manner a  cluster of  n individuals  in a
+smaller  dimensional subspace.  In order  to do  that, it
+projects the cluster onto a subspace.  The choice of the
+k-dimensional projection subspace is  made in such a way
+that  the distances  in  the projection  have a  minimal
+deformation: we are looking for a k-dimensional subspace
+such that the squares of the distances in the projection
+is  as  big  as  possible  (in  fact  in  a  projection,
+distances can only stretch).  In other words, inertia of
+the projection  onto the k dimensional  subspace must be
+maximal.
+</P>
+  </DESCRIPTION>
+
+  <AUTHOR>
+    Carlos Klimann
+  </AUTHOR>
+
+  <BIBLIO>
+    <P>Saporta, Gilbert, Probabilites,  Analyse des
+Donnees et Statistique, Editions Technip, Paris, 1990.</P>
+  </BIBLIO>
+
+
+</MAN>

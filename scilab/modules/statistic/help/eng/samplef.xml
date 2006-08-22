@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>samplef</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>18-Sep-2003</DATE>
+  <SHORT_DESCRIPTION name="samplef">  sample with replacement from a population
+  and frequences of his values.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>s = samplef(n,X,f,orient)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>n</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: positive integer (size of sample)</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>X</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: matrix. Samples will be extracted from this matrix</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>f</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: positive integer matrix with same type than X. It indicates frequences
+       of corresponding values of X.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>orient</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: Optional parameter. Admissible values are 1, 2, 'r' or 'c'</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>s</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>:  vector or matrix containing sample</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+<P>
+   This function gives s, a  vector of lenght n.  It contains
+   a  sample of  n  extractions, with  replacement, from  the
+   vector  (or  matrix)  X,  each element  counted  with  the
+   frequence given by the corresponding value in vector f.
+</P>
+<P>
+   s=samplef(n,X,f)   (or  s=samplef(n,X,f,'*'))   returns  a
+   vector s whose values are a random sample of n values from
+   X,   each  value   with  a   probability  to   be  sampled
+   proportional  to the corresponding  value of  f, extracted
+   with replacement, from X.  f must have same lenght than X.
+</P>
+<P>
+   s=samplef(n,X,f,'r')           (or,          equivalently,
+   s=samplef(n,X,f,1))    returns    a    matrix   of    type
+   size(X,'r')xn.  It contains a random sample of n rows from
+   X, each row with  a probability to be sampled proportional
+   to   the  corresponding   value  of   f,   extracted  with
+   replacement, from the  rows of X. The lenght  of f must be
+   equal to the number of rows of X.
+</P>
+<P>
+   s=samplef(n,X,f,'c')           (or,          equivalently,
+   s=samplef(n,X,f,2))    returns    a    matrix   of    type
+   nxsize(X,'c').  It  contains a random sample  of n columns
+   from  X, each  column  with a  probability  to be  sampled
+   proportional  to the corresponding  value of  f, extracted
+   with replacement, from the columns  of X.  The lenght of f
+   must be equal to the number of columns of X.
+</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   a=[3 7 9;22 4 2]
+   f1=[10 1 1 1 1 1]
+   f2=[1 ; 15]
+   f3=[10 1 1]
+   s=samplef(15,a,f1)
+   s=samplef(15,a,f2,'r')
+   s=samplef(15,a,f3,'c')
+
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sample</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>samwr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>
+   Carlos Klimann
+  </AUTHOR>
+</MAN>

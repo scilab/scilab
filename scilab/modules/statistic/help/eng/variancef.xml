@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>variancef</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="variancef"> standard deviation of the values of a  vector or matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=variancef(x,fre)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=variancef(x,fre,'r') or s=variancef(x,fre,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>s=variancef(x,fre,'c') or s=variancef(x,fre,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This  function computes the variance  of the values of a
+    vector  or matrix <VERB>x</VERB>,  each of  them counted with a
+    frequency  signaled by  the corresponding values  of the
+    integer vector or matrix <VERB>fre</VERB> with the same type of
+    <VERB>x</VERB>.</P>
+    <P>
+    For a vector  or matrix <VERB>x</VERB>, <VERB>s=variancef(x,fre)</VERB> (or
+    <VERB>s=variancef(x,fre,'*')</VERB>)  returns in scalar <VERB>s</VERB>  the
+    variance of all  the   entries of <VERB>x</VERB>, each    value
+    counted  with   the    multiplicity  indicated by    the
+    corresponding value of <VERB>fre</VERB>.</P>
+    <P><VERB>s=variancef(x,fre,'r')</VERB>(or,                equivalently,
+    <VERB>s=variancef(x,fre,1)</VERB>) returns in each  entry of the row
+    vector  <VERB>s</VERB> of  type  1xsize(x,'c') the  variance of
+    each column of  <VERB>x</VERB>,   each value counted  with  the
+    multiplicity  indicated by  the  corresponding value  of
+    <VERB>fre</VERB>.</P>
+    <P><VERB>s=variancef(x,fre,'c')</VERB>(or,                equivalently,
+    <VERB>s=variancef(x,fre,2)</VERB>)  returns  in  each   entry of the
+    column vector <VERB>s</VERB> of type size(x,'c') x1 the variance
+    of  each row  of  <VERB>x</VERB>, each value  counted  with the
+    multiplicity indicated  by  the  corresponding value  of
+    <VERB>fre</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.9546254 0.6283918]
+fre=[1 2 3;3 4 3]
+m=variancef(x,fre)
+m=variancef(x,fre,'r')
+m=variancef(x,fre,'c')
+
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

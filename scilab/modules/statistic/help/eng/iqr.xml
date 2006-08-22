@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iqr</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>August 2000</DATE>
+  <SHORT_DESCRIPTION name="iqr"> interquartile range</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>q=iqr(x) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>q=iqr(x,'r') (or, equivalently,
+  q=iqr(x,1)) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>q=iqr(x,'c') (or, equivalently,
+  q=iqr(x,2)) </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function computes  the interquartile range IQR= upper
+    quartile - lower  quartile of a  vector or a  matrix <VERB> x </VERB>.</P>
+    <P>
+    For a vector  or  a matrix <VERB>  x</VERB>  , <VERB>  q=iqr(x)</VERB>
+    returns in the scalar <VERB> q</VERB> the interquartile range of
+    all the entries of <VERB> x</VERB>.</P>
+    <P><VERB> q=iqr(x,'r') </VERB>   (or, equivalently, 
+    <VERB>q=iqr(x,1)</VERB>) is  the  rowwise interquartile range.  It  returns in
+    each entry  of the row vector  <VERB> q</VERB> the interquartile
+    range of each column of <VERB> x</VERB>.</P>
+    <P><VERB>  q=iqr(x,'c')  </VERB> (or,  equivalently, 
+    <VERB>q=iqr(x,2)</VERB>) is the columnwise  interquartile range. It returns in
+    each     entry of  the    column  vector  <VERB>   q</VERB> the
+    interquartile range of each row of <VERB> x</VERB>.</P>
+  </DESCRIPTION>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+     Wonacott, T.H.Wonacott, R.J.; Introductory Statistics, J.Wiley-Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

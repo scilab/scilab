@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nanmedian</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="nanmedian"> median of the  values of a numerical vector or matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>m=nanmedian(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>m=nanmedian(x,'r') (or m=nanmedian(x,1))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>m=nanmedian(x,'c') (or m=nanmedian(x,2))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    For   a   vector    or   a  matrix   <VERB>    x</VERB>,   <VERB>
+    [m]=nanmedian(x)</VERB>  returns in the vector  <VERB>  m</VERB> the
+    median of the  values (ignoring the NANs)  of vector <VERB> x
+    </VERB>.</P>
+    <P><VERB>[m]=nanmedian(x,'r')</VERB>       (or,        equivalently,
+    <VERB>[m]=nanmedian(x,1)</VERB>) are  the  rowwise  medians.   It
+    returns in each position of  the row vector  <VERB> m</VERB> the
+    medians of data  (ignoring the NANs) in  the corresponding
+    column of <VERB> x</VERB>.</P>
+    <P><VERB>[m]=nanmedian(x,'c')</VERB>      (or,   equivalently,   <VERB>
+    [m]=nanmedian(x,2)</VERB>)  are the  columnwise  madians.   It
+    returns in each position of the column vector <VERB> m</VERB> the
+    medians of data (ignoring  the NANs) in the  corresponding
+    row of <VERB> x</VERB>.</P>
+    <P>
+    In Labostat, NAN values stand for missing values in tables.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
+m=nanmedian(x)
+m=nanmedian(x,1)
+m=nanmedian(x,2)
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

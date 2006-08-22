@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nanmean</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="nanmean"> mean  (ignoring  Nan's)</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>m=nanmean(val)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>m=nanmean(val,'r') (or m=nanmean(val,1))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>m=nanmean(val,'c') (or m=nanmean(val,2))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>val</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:   real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function returns in scalar <VERB> m</VERB> the mean of the
+    values (ignoring  the NANs) of a  vector or matrix <VERB> val
+    </VERB>.</P>
+    <P>
+    For a vector or matrix <VERB> val</VERB> , <VERB> m=nanmean(val) </VERB>
+    or <VERB> m=nanmean(val,'*') </VERB> returns  in scalar <VERB> m</VERB>
+    the mean of all the entries (ignoring the NANs) of <VERB> val
+    </VERB>.</P>
+    <P><VERB>m=nanmean(val,'r')</VERB>    (or,    equivalently,    <VERB>
+    m=nanmean(val,1)  </VERB>)  returns in each   entry of the row
+    vector <VERB> m</VERB> of type  1xsize(val,'c') the mean of each
+    column of <VERB> val</VERB> (ignoring the NANs).</P>
+    <P><VERB>m=nanmeanf(val,'c')  </VERB>     (or,  equivalently,  <VERB>
+    m=nanmean(val,2) </VERB>) returns  in each entry of the column
+    vector <VERB> m</VERB> of type  size(val,'c')x1 the mean of each
+    row of <VERB> val</VERB> (ignoring the NANs).</P>
+    <P>
+    In Labostat, NAN values stand for missing values in tables.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
+m=nanmean(x)
+m=nanmean(x,1)
+m=nanmean(x,2)
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+  <BIBLIO>
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>
+  </BIBLIO>
+</MAN>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>labostat</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="labostat">    Statistical toolbox for Scilab</SHORT_DESCRIPTION>
+  <SECTION label="Contents">
+    <VERBATIM>
+<![CDATA[
+centre: centering variables
+centrered: centering and reducing variables
+cmoment: central moments of all orders
+correl: correlation
+covar: covariance
+ftest: fischer test and his p-value
+geomean: geometric mean
+harmean: harmonic mean
+iqr: interquartile range
+mad: mean absolute deviation
+meanf:  arithmetic mean of a vector or matrix with a table of frequences
+median: 50th percentile of a sample
+mn: arithmetic mean of a vector or matrix
+moment: moments of all orders
+msd:  mean squared  deviation
+mvvacov : multivariable matrix of variance-covariance
+nand2mean: estimate of the difference of means of two independent samples
+nanmax:  maximum ignoring NaNs
+nanmean: mean ignoring NaNs
+nanmeanf:  mean with frequency table ignoring NaNs
+nanmedian: 50th percentile of a sample ignoring NaNs
+nanmin: minimum ignoring NANs
+nanstdev:  standard deviation ignoring NaNs
+nanstdevf: standard deviation with frequency table ignoring NaNs
+nansum: sum ignoring NaNs
+nfreq: frequency of the values of a sample
+pca: principal component analysys
+pctl: vector of  percentiles of a sample in decreasing order
+perctl: vector of  percentiles of a sample in decreasing order
+quart: quartils
+stdev: standard deviation
+stdevf: standard deviation with frequences 
+strange: distance between largest and smallest value
+tabul: frequences of values
+var: variance
+varf: variance with frequence table
+   ]]>
+    </VERBATIM>
+  </SECTION>
+  <SECTION label="References">
+    <P>
+     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.</P>
+    <P>
+     Saporta,  Gilbert, Probabilites, Analyse  des Donnees  et Statistique, Editions Technip, Paris, 1990.</P>
+  </SECTION>
+</MAN>

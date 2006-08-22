@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>samwr</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>18-Sep-2003</DATE>
+  <SHORT_DESCRIPTION name="samwr"> Sampling without replacement </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>s = samwr(sizam,numsamp,X)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>sizam</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: integer. Size of a sample. It must be less or equal than
+        size of X.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>numsamp</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: integer. Number of samples to be extracted.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>X</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: column vector. It contains the population.</SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>s</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>: matrix of type sizsam  x numsamp. It contains
+         numsamp  random samples  (the  columns) each  of
+         sizam  (size(X,'*'))  extractions,  without
+         replacement, from the column vector X.</SP>
+ 
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+   <P>Gives samples without replacement from a column vector.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    a=[0.33 1.24 2.1 1.03]
+    s=samwr(4,12,a)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> sample</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> samplef</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    Carlos Klimann
+  </AUTHOR>
+
+
+</MAN>

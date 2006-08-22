@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>st_deviation  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>January 1998  </DATE>
+  <SHORT_DESCRIPTION name="st_deviation"> écart-type des termes d&apos;une matrice  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="stdev"> écart-type des termes d&apos;une matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=st_deviation(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;r&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=st_deviation(x,&apos;c&apos;)
+    </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=stdev(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=stdev(x,'r')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=stdev(x,'c')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice réelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire ou vecteur
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    st_deviation calcule l&apos;estimateur sans biais de l&apos;écart-type (normalisé par N-1, ou N est le nombre d&apos;échantillons).
+  </P>
+  <P>
+    Pour un vecteur ou une matrice <VERB>x</VERB>, <VERB>y=st_deviation(x)</VERB> renvoie dans <VERB>y</VERB> l&apos;écart-type des termes de <VERB>x</VERB>.
+  </P>
+  <P>
+    <VERB>y=st_deviation(x,&apos;r&apos;)</VERB> (ou <VERB>y=st_deviation(x,1)</VERB>) est l&apos;écart-type suivant l&apos;indice de ligne. Chaque composante du vecteur ligne <VERB>y</VERB> contient l&apos;écart-type de chaque colonne de <VERB>x</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    <VERB>y=st_deviation(x,&apos;c&apos;)</VERB> (ou <VERB>y=st_deviation(x,2)</VERB>) est l&apos;écart-type selon l&apos;indice de colonne. Chaque composante du vecteur colonne <VERB>y</VERB> contient l&apos;écart-type de chaque ligne de <VERB>x</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2,10;7,7.1,7.01];
+st_deviation(A)
+st_deviation(A,'r')
+st_deviation(A,'c')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>  
+   <SEE_ALSO_ITEM> <LINK>median</LINK> </SEE_ALSO_ITEM>  
+   <SEE_ALSO_ITEM> <LINK>mean</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nanstdev</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stdevf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

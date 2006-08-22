@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nand2mean</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="nand2mean"> difference of the means of
+  two independent samples</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[dif]=nand2mean(sample1,sample2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[dif]=nand2mean(sample1,sample2,conf)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sample1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sample2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>conf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real scalar between 0 and 1</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This  function computes   an  estimate  (dif(1)) for   the
+    difference of the means of two independent samples (arrays
+    sample1  and sample2) and gives  the half amplitude of the
+    range of variability of dif  with an indicated  confidence
+    level (dif(2)). The choice of the normal or t fonctions as
+    the  probability fonction depends on  the sizes of sample1
+    and sample2.  We suppose that  the underlying variances of
+    both populations are equal. NAN values are not counted.</P>
+    <P>
+    In Labostat, NAN values stand for missing values in tables.</P>
+    <P>
+    In absence of the confidence  parameter a confidence level
+    of 95% is assumed.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Wonacott,  T.H. &amp; Wonacott, R.J.; Introductory Statistics, 5th edition, J.Wiley &amp; Sons, 1990.</P>
+  </SECTION>
+</MAN>

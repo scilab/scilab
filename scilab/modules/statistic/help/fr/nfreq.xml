@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>nfreq</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>January 2000</DATE>
+  <SHORT_DESCRIPTION name="nfreq"> frequence of the values in a vector or matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>m=nfreq(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Frequence of the  values in a real or  complex vector or a
+    real or complex matrix <VERB>x</VERB>.</P>
+    <P>
+    For a real  or complex vector or a  real or complex matrix
+    <VERB>x</VERB>,  <VERB>m=freq(x)</VERB> returns in  the first  column of
+    the  <VERB>size(x,'*')x2</VERB>  matrix  <VERB>m</VERB>  the  values  of
+    <VERB>x</VERB>  and  in the  second  column  of  this matrix  the
+    frequences of the corresponding values.</P>
+    <P>
+Note that the  <LINK>tabul</LINK> function is more efficient, applies
+also to vector of strings and returns a sorted <VERB>m</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=[2 8 0 3 7 6 8 7 9 1]
+m=nfreq(x)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tabul</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dsearch</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>histplot</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+</MAN>

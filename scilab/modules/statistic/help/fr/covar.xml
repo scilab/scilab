@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>covar</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="covar">  covariance of two variables</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=covar(x,y,fre)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fre</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of type length(x) x length(y)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>covar(x,y,fre)</VERB>  computes the covariance of two variables x and y.
+    fre is a matrix of dimensions  length(x) x length(y). In fre the element
+    of indices (i,j) corresponds to the value or number or frequences of
+    x_i&amp;y_j.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+x=[10 20 30 40]
+y=[10 20 30 40]
+fre=[.20 .04 .01  0;
+     .10 .36 .09  0;
+       0 .05 .10  0;
+       0   0   0 .05]
+s=covar(x,y,fre)
+ ]]>
+  </EXAMPLE>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+</MAN>

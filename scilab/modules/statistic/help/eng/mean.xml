@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>mean</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>Januray 1998</DATE>
+
+  <SHORT_DESCRIPTION name="mean">mean (row mean, column mean) of vector/matrix
+  entries</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=mean(x)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y=mean(x,'r')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y=mean(x,'c')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>y=mean(x,'m')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: scalar or vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>For a vector or a matrix <VERB>x</VERB>, <VERB>y=mean(x)</VERB> returns
+    in the scalar <VERB>y</VERB> the mean of all the entries of
+    <VERB>x</VERB>.</P>
+
+    <P><VERB>y=mean(x,'r')</VERB> (or, equivalently, <VERB>y=mean(x,1)</VERB>)
+    is the rowwise mean. It returns a row vector: <VERB>y(j)=
+    mean(x(:,j))</VERB></P>
+
+    <P><VERB>y=mean(x,'c')</VERB> (or, equivalently, <VERB>y=mean(x,2)</VERB>)
+    is the columnwise mean. It returns a column vector: <VERB>y(i)=
+    mean(x(i,:))</VERB></P>
+
+    <P><VERB>y=mean(x,'m')</VERB> is the mean along the first non singleton
+    dimension of x (for compatibility with Matlab).</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+A=[1,2,10;7,7.1,7.01];
+mean(A)
+mean(A,'r')
+mean(A,'c')
+A=matrix(1:12,[1,1,2,3,2]);
+// in this case mean(A,'m') is equivalent to mean(A,3), the first non singleton dimension of A
+y=mean(A,'m')
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sum</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>median</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>st_deviation</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

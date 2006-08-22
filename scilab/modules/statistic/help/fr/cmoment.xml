@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cmoment</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="cmoment">  central moments of all orders</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mom=cmoment(x,ord)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mom=cmoment(x,ord,'r') or mom=cmoment(x,ord,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mom=cmoment(x,ord,'c') or mom=cmoment(x,ord,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ord</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    cmoment<VERB>(x,ord)</VERB> is the central moment or order ord of
+    the elements of <VERB>x</VERB>.
+    If a  third argument  of type string  <VERB>'r'</VERB> (or  <VERB> 1
+    </VERB>) or  <VERB>'c'</VERB> (or <VERB> 2</VERB>)  is used, we  get  in the
+    first   case,   a  row   vector   <VERB> mom</VERB>  such   that
+    <VERB>mom(j)</VERB>   contains  the   central  moment   of  order
+    <VERB>ord</VERB>     of     the     <VERB>j</VERB>     column     of
+    <VERB>x</VERB>. <VERB>cmoment(x,ord,'c')</VERB>  is used in  the same way
+    for the central moments in the rows.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+x=[0.2113249 0.0002211 0.6653811;
+   0.7560439 0.3303271 0.6283918]
+mom=cmoment(x,3)
+mom=cmoment(x,2,'r')
+mom=cmoment(x,3,'c')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sum</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>median</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>st_deviation</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>moment</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nanmean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nanmeanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stdev</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>stdevf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>variance</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>variancef</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nanstdev</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+</MAN>

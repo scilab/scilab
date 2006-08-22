@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>regress</TITLE>
+  <TYPE>  </TYPE>
+  <DATE>February 2001</DATE>
+  <SHORT_DESCRIPTION name="regress"> regression coefficients of two variables</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>coefs=regress(x,y)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function  computes the regresion  coefficients of two
+    variables <VERB>x</VERB>  and <VERB>y</VERB>, both  numerical vectors of
+    same number  of elements  <VERB>n</VERB>. <VERB>coefs=[a b]</VERB>  be a
+    1x2 matrix such that  <VERB>Y=a+bX</VERB> will be the equation of
+    the ordinary least square approximation to our data.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+x=[0.5608486 0.6623569 0.7263507 0.1985144 0.5442573 0.2320748 0.2312237]
+y=[0.3616361 0.2922267 0.5664249 0.4826472 0.3321719 0.5935095 0.5015342]
+coefs=regress(x,y)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>covar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> Carlos Klimann</AUTHOR>
+</MAN>
