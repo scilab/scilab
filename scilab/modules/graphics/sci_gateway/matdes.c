@@ -91,7 +91,6 @@ extern void Xplot2d  _PARAMS((double *x,double *y,integer *n1,integer *n2,intege
 extern void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax));
 /*-----------------------------------------------------------------------------------*/
 int sciseteventhandler(char *fname,unsigned long fname_len);
-void SetTKGraphicalMode(BOOL SetTKMode);
 int C2F(scigerase)();
 int scixg2psofig_G(char *fname,char *dr,unsigned long fname_len,unsigned long dr_len);
 int scicontour2d_G(char *fname,int (*func) (),unsigned long fname_len);
@@ -168,35 +167,7 @@ extern sciPointObj *paxesmdl;
 
 /* xget */ 
 
-/* xinit([driver-name]) */
-/*-----------------------------------------------------------------------------------*/
-int scixinit(char *fname,unsigned long fname_len)
-{
-  integer m1,n1,l1,v,v1=-1;
-  double dv;
-  CheckRhs(-1,1);
-
-  if (Rhs <= 0 )
-    {
-      C2F(dr1)("xinit"," ",&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,2L);
-      if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
-    } 
-  else 
-    {
-      char *param1=NULL;
-      GetRhsVar(1,"c",&m1,&n1,&l1);
-
-      param1=cstk(l1);
-      if (param1[0]=='.') SetTKGraphicalMode(TRUE);
-      C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
-      if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
-
-    }
-  LhsVar(1)=0; return 0;
-}
-
-
-/*-----------------------------------------------------------------------------------*/
+/*  */
 /* xlfont(font-name,font-id) */
 /* fonts=xlfont() */
 /* Warning sz dimensions must be compatible with periX11.c FONTNUMBER */
@@ -2518,16 +2489,6 @@ int C2F(simple2d)(integer *n,double *dx,float *s)
   for (ix = *n-1 ; ix >= 0; --ix)  dx[ix] = (double) s[ix];
   return 0;
 } 
-/*-----------------------------------------------------------------------------------*/
-void SetTKGraphicalMode(BOOL SetTKMode)
-{
-  TKModeON=SetTKMode;
-}
-/*-----------------------------------------------------------------------------------*/
-BOOL IsTKGraphicalMode(void)
-{
-  return TKModeON;
-}
 /*-----------------------------------------------------------------------------------*/
 int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
 	     long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, 

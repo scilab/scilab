@@ -490,6 +490,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xinit.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xpoly.c"
 				>
 			</File>
@@ -816,6 +820,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xinit.h"
 				>
 			</File>
 			<File
