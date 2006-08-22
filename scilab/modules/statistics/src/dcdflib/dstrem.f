@@ -32,7 +32,7 @@ C     (Values calculated using Maple)
 C     Otherwise computes difference explicitly
 C
 C**********************************************************************
-      include '../stack.h'
+      include 'stack.h'
 C     .. Parameters ..
       DOUBLE PRECISION hln2pi
       PARAMETER (hln2pi=0.91893853320467274178D0)

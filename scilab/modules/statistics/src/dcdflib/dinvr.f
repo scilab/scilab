@@ -59,7 +59,7 @@ C**********************************************************************
 C     Modified by S. Steer INRIA 1998,to replace ASSIGN instruction by
 c     Computed GOTO
 C**********************************************************************
-      include '../stack.h'
+      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION fx,x,zabsst,zabsto,zbig,zrelst,zrelto,zsmall,
      +                 zstpmu

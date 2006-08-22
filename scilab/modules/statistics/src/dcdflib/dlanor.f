@@ -32,7 +32,7 @@ C
 C      ABS(X) must be >= 5 else there is an error stop.
 C
 C**********************************************************************
-      include '../stack.h'
+      include 'stack.h'
 C     .. Parameters ..
       DOUBLE PRECISION dlsqpi
       PARAMETER (dlsqpi=0.91893853320467274177D0)
