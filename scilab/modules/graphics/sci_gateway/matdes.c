@@ -188,7 +188,7 @@ extern sciPointObj *paxesmdl;
 /* or  */
 /* xsetech() */
 
-/* xfpoly(xv,yv,[close]) */
+/*  */
 /*-----------------------------------------------------------------------------------*/
 int scixfpoly(char *fname,unsigned long fname_len)
 {

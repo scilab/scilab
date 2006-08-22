@@ -470,6 +470,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xfpoly.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xgrid.c"
 				>
 			</File>
@@ -784,6 +788,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xfarcs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xfpoly.h"
 				>
 			</File>
 			<File
