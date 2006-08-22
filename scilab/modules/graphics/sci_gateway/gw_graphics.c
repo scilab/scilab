@@ -49,7 +49,7 @@ extern int sci_xstring                    _PARAMS((char *fname, unsigned long fn
 extern int sci_xstringl                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_StringBox                  _PARAMS((char *fname, unsigned long fname_len)) ;
 extern int sci_xtape                      _PARAMS((char *fname, unsigned long fname_len));
-extern int scixsetech                     _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xsetech                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgetech                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_geom3d                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scifec                         _PARAMS((char *fname, unsigned long fname_len));
@@ -164,7 +164,7 @@ static MatdesTable Tab[]={
 	{sci_xsegs,"xsegs"},
 	{sci_xselect,"xselect"},
 	{sci_xset,"xset"},
-	{scixsetech,"xsetech"},
+	{sci_xsetech,"xsetech"},
 	{sci_xstring,"xstring"},
 	{sci_xstringl,"xstringl"},
 	{sci_xtape,"xtape"},

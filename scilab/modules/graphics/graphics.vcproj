@@ -494,6 +494,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xsetech.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xstring.c"
 				>
 			</File>
@@ -800,6 +804,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xset.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xsetech.h"
 				>
 			</File>
 			<File

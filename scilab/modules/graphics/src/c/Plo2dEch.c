@@ -380,7 +380,7 @@ static integer curwin()
 
 static void show_scales __PARAMS((ScaleList *listptr));
 
-void ShowScales()
+void ShowScales( void )
 { 
   sciprint("-----------scales-------------\r\n");
   show_scales(The_List);
@@ -465,10 +465,11 @@ int C2F(setscale2d)(WRect,FRect,logscale,l1)
  *  
  *-------------------------------------------*/
 
-int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
-     double FRect[4], WRect[4],ARect[4];
-     char *logscale;
-     integer l1;
+int C2F(Nsetscale2d)( double    WRect[4],
+                      double    ARect[4],
+                      double    FRect[4],
+                      char    * logscale,
+                      integer   l1       )
 {
   /* if some arguments are null pointer we set them to 
    * the corresponding Cscale value. 

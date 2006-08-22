@@ -49,6 +49,14 @@ extern WCScaleList Cscale;
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #endif 
 
+void ShowScales( void ) ;
+
+int C2F(Nsetscale2d)( double    WRect[4],
+                      double    ARect[4],
+                      double    FRect[4],
+                      char    * logscale,
+                      integer   l1       ) ;
+
 extern int XScale(double x);
 extern int XLogScale(double x);
 
