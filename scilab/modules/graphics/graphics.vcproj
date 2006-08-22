@@ -494,6 +494,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xlfont.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xpoly.c"
 				>
 			</File>
@@ -824,6 +828,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xinit.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xlfont.h"
 				>
 			</File>
 			<File
