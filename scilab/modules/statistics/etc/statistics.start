@@ -1,14 +1,14 @@
 // ====================================================================
-// statitic module initialisation file 
+// statitics module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/statitic/macros/lib');
+load('SCI/modules/statistics/macros/lib');
 // ====================================================================
 //add help chapter
 global LANGUAGE
 
-path = get_absolute_file_path('statistic.start');
+path = get_absolute_file_path('statistics.start');
 path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then
@@ -16,7 +16,7 @@ if LANGUAGE == 'fr' then
 	add_help_chapter("Statistiques",path);
 elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("Statistic",path);
+	add_help_chapter("Statistics",path);
 end
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;

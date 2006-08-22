@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('statslib','SCI/macros/statistics');
+genlib('statslib','SCI/modules/statistics/macros');
 //------------------------------------
