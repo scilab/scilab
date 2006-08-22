@@ -177,19 +177,9 @@ extern sciPointObj *paxesmdl;
 
 /* xtape */
 
-/* xinfo(string) */
-/*-----------------------------------------------------------------------------------*/
-int scixinfo(char *fname,unsigned long fname_len)
-{
-  double dv;
-  integer m1,n1,l1,v;
-  CheckRhs(1,1);
-  GetRhsVar(1,"c",&m1,&n1,&l1);
-  C2F(dr)("xinfo",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
-  LhsVar(1) =0;
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
+/*  */
+
+
 /* xsetech(wrect=[...],frect=[..],logflag="..", arect=[...]) */
 /* or */
 /* xsetech(wrect,[frect,logflag]) */
