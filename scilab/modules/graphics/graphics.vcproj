@@ -422,6 +422,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_StringBox.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xarc.c"
 				>
 			</File>
@@ -716,6 +720,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_set.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_StringBox.h"
 				>
 			</File>
 			<File

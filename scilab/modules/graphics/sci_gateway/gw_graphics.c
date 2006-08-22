@@ -47,7 +47,7 @@ extern int sci_xselect                    _PARAMS((char *fname, unsigned long fn
 extern int sci_xset                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstring                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstringl                   _PARAMS((char *fname, unsigned long fname_len));
-extern int sciStringBox                   _PARAMS((char *fname, unsigned long fname_len)) ;
+extern int sci_StringBox                  _PARAMS((char *fname, unsigned long fname_len)) ;
 extern int scixtape                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixsetech                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgetech                     _PARAMS((char *fname, unsigned long fname_len));
@@ -183,7 +183,7 @@ static MatdesTable Tab[]={
 	{ShowWindowFunction,"show_window"},
 	{scizoomrect,"zoom_rect"},
 	{sciunzoom,"unzoom"},
-	{sciStringBox,"StringBox"},
+	{sci_StringBox,"StringBox"},
 	/* NG beg */
 	{move,"move"},
 	{glue,"glue"},
