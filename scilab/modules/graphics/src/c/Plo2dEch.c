@@ -574,10 +574,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 }
 
 /* used to send values to Scilab */
-
-int getscale2d(WRect,FRect,logscale,ARect)
-     double FRect[4],WRect[4],ARect[4];
-     char *logscale;
+int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[4] )
 {
   integer i;
   static double ten=10.0;

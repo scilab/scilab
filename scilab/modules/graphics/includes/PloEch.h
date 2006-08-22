@@ -57,6 +57,8 @@ int C2F(Nsetscale2d)( double    WRect[4],
                       char    * logscale,
                       integer   l1       ) ;
 
+int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[4] ) ;
+
 extern int XScale(double x);
 extern int XLogScale(double x);
 

@@ -482,6 +482,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xgetech.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xgrid.c"
 				>
 			</File>
@@ -816,6 +820,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xget.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xgetech.h"
 				>
 			</File>
 			<File
