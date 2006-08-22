@@ -52,4 +52,6 @@ static char * KeyTab_[NUMSETFONC + 1] = {
   " ", /* added */
 };
 
+extern void C2F(msgs)( int * i, int * v ) ;
+
 #endif /* _XSET_XGET_PARAMETERS_H_ */

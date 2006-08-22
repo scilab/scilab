@@ -20,8 +20,6 @@
 #include "XsetXgetParameters.h"
 #include "Graphics.h"
 
-extern void C2F(msgs)(int *i, int *v) ; /* I did not find where it is defined */
-
 /*-----------------------------------------------------------------------------------*/
 int sci_xset( char *fname, unsigned long fname_len )
 {
