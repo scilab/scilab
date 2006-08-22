@@ -46,7 +46,7 @@ extern void    /* 32  */ C2F(bva)();
 extern void    /* 34  */ C2F(gw_fileio)();
 extern void    /* 35  */ C2F(intarpack)();
 extern void    /* 36  */ C2F(specfun)();
-extern void    /* 37  */ C2F(dcd)();
+extern void    /* 37  */ C2F(gw_statistics)();
 extern void    /* 38  */ C2F(gw_randlib)();
 extern void    /* 39  */ C2F(otherspfunlib)();
 
@@ -120,7 +120,7 @@ static OpTab Interfaces[] ={
 	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(intarpack)},
 	/* 36  */ {C2F(specfun)},
-	/* 37  */ {C2F(dcd)},
+	/* 37  */ {C2F(gw_statistics)},
   /* 38  */ {C2F(gw_randlib)},
   /* 39  */ {C2F(otherspfunlib)},
   /* 40  */ {TCLINTERF},

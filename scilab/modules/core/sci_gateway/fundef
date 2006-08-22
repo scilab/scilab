@@ -103,7 +103,7 @@
 #include "../../../../routines/interf/specfun.fundef"  
 
 #define  IN_dcd  37
-#include "../../statistics/sci_gateway/dcd.fundef"
+#include "../../statistics/sci_gateway/statistics.fundef"
 
 #define  IN_randlib  38
 #include "../../randlib/sci_gateway/randlib.fundef"

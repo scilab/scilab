@@ -173,11 +173,59 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\c\DcdInterf.c"
+				RelativePath=".\CdfBase.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\gw_statistics.c"
 				>
 			</File>
 			<File
 				RelativePath=".\ipmpar1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfbet.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfbin.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfchi.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfchn.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdff.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdffnc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfgam.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfnbn.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfnor.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdfpoi.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_cdft.c"
 				>
 			</File>
 		</Filter>
@@ -185,7 +233,15 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\gw_statistics.h"
+				>
+			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\statistics.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
