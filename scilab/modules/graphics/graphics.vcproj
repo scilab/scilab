@@ -490,6 +490,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xstringb.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xtitle.c"
 				>
 			</File>
@@ -776,6 +780,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xstring.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xstringb.h"
 				>
 			</File>
 			<File

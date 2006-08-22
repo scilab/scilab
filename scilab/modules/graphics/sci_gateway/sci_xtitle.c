@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_xtitle.h                                                     */
+/* file: sci_xtitle.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for xtitle routine                                    */
