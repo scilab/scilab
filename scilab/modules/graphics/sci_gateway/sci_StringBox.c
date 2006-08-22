@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_StringBox.h                                                  */
+/* file: sci_StringBox.c                                                  */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : interface for StringBox routine                                 */
