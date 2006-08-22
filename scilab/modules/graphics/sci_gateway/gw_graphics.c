@@ -46,7 +46,7 @@ extern int sci_xpolys                     _PARAMS((char *fname, unsigned long fn
 extern int sci_xselect                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xset                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstring                    _PARAMS((char *fname, unsigned long fname_len));
-extern int scixstringl                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xstringl                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sciStringBox                   _PARAMS((char *fname, unsigned long fname_len)) ;
 extern int scixtape                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixsetech                     _PARAMS((char *fname, unsigned long fname_len));
@@ -55,7 +55,7 @@ extern int sci_geom3d                     _PARAMS((char *fname, unsigned long fn
 extern int scifec                         _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgetmouse                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixinfo                       _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xtitle                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xtitle                     _PARAMS((char *fname, unsigned long fname_len));
 extern int scixtitle                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
@@ -70,7 +70,7 @@ extern int scixs2fig                      _PARAMS((char *fname, unsigned long fn
 extern int scixsort                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sciwinsid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xstringb                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xstringb                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_matplot                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour2d1                 _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_matplot1                   _PARAMS((char *fname, unsigned long fname_len));
@@ -166,7 +166,7 @@ static MatdesTable Tab[]={
 	{sci_xset,"xset"},
 	{scixsetech,"xsetech"},
 	{sci_xstring,"xstring"},
-	{scixstringl,"xstringl"},
+	{sci_xstringl,"xstringl"},
 	{scixtape,"xtape"},
 	{sci_xtitle,"xtitle"},
 	{scixgraduate,"xgraduate"},
