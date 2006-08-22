@@ -41,11 +41,11 @@ extern int scixget                        _PARAMS((char *fname, unsigned long fn
 extern int scixinit                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixlfont                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixnumb                       _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xpoly                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xpoly                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xpolys                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xselect                    _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xset                        _PARAMS((char *fname, unsigned long fname_len));
-extern int scixstring                     _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xset                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xstring                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scixstringl                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sciStringBox                   _PARAMS((char *fname, unsigned long fname_len)) ;
 extern int scixtape                       _PARAMS((char *fname, unsigned long fname_len));
@@ -165,7 +165,7 @@ static MatdesTable Tab[]={
 	{sci_xselect,"xselect"},
 	{sci_xset,"xset"},
 	{scixsetech,"xsetech"},
-	{scixstring,"xstring"},
+	{sci_xstring,"xstring"},
 	{scixstringl,"xstringl"},
 	{scixtape,"xtape"},
 	{scixtitle,"xtitle"},
