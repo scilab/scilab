@@ -3,8 +3,8 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "../machine.h"
-#include "../stack-def.h"
+#include "machine.h"
+#include "stack-def.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(xscimore)();
 extern int C2F(writewtemore)();

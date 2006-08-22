@@ -173,10 +173,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\basout.c"
-				>
-			</File>
-			<File
 				RelativePath=".\cluni0.c"
 				>
 			</File>
@@ -190,10 +186,6 @@
 			</File>
 			<File
 				RelativePath=".\getarg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\GetExceptionCode.c"
 				>
 			</File>
 			<File
@@ -221,10 +213,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\GetExceptionCode.h"
-				>
-			</File>
 			<File
 				RelativePath="Os_Specific.h"
 				>

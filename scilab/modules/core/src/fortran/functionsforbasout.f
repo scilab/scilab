@@ -3,7 +3,7 @@ c     INRIA 2006
 c     Allan CORNET
 c     ====================================
       subroutine readrtechar(onechar)
-      include '../stack.h'
+      include 'stack.h'
       character onechar*1
       read(rte,'(a1)') onechar
       end
@@ -15,7 +15,7 @@ c     ====================================
       end
 c     ====================================           
       subroutine writewtemore()
-      include '../stack.h'
+      include 'stack.h'
       write(wte, '('' more ?'',$)')
       end
 c     ====================================           

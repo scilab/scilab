@@ -182,6 +182,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\basout.c"
+				>
+			</File>
+			<File
 				RelativePath=".\callinterf.c"
 				>
 			</File>
@@ -211,6 +215,10 @@
 			</File>
 			<File
 				RelativePath=".\Funtab.c"
+				>
+			</File>
+			<File
+				RelativePath=".\GetExceptionCode.c"
 				>
 			</File>
 			<File
@@ -616,6 +624,10 @@
 			</File>
 			<File
 				RelativePath="FTables0.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\GetExceptionCode.h"
 				>
 			</File>
 			<File
