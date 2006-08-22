@@ -9,6 +9,7 @@
 #include "stack-c.h"
 #include "Graphics.h" 
 #include "dr1Call.h"
+#include "Plo2d.h"
 
 /*------------------------------------------------
  * Xrect
