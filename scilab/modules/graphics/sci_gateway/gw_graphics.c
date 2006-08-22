@@ -55,7 +55,7 @@ extern int sci_geom3d                     _PARAMS((char *fname, unsigned long fn
 extern int scifec                         _PARAMS((char *fname, unsigned long fname_len));
 extern int scixgetmouse                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixinfo                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixtitle                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xtitle                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scixtitle                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
@@ -168,7 +168,7 @@ static MatdesTable Tab[]={
 	{sci_xstring,"xstring"},
 	{scixstringl,"xstringl"},
 	{scixtape,"xtape"},
-	{scixtitle,"xtitle"},
+	{sci_xtitle,"xtitle"},
 	{scixgraduate,"xgraduate"},
 	{scixname,"xname"},
 	{sci_xaxis,"xaxis"},
