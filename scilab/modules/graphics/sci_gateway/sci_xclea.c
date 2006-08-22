@@ -7,7 +7,7 @@
 
 #include "sci_xclea.h"
 #include "stack-c.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 #include "BuildObjects.h"
 
 /*-----------------------------------------------------------------------------------*/

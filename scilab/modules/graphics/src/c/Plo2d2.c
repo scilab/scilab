@@ -10,6 +10,7 @@
 #include "math_graphics.h"
 #include "Graphics.h" 
 #include "PloEch.h"
+#include "Xcall1.h"
 
 extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 

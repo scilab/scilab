@@ -1,6 +1,7 @@
 #include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
+#include "Xcall1.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -195,9 +196,9 @@ in_word_set (str, len)
 }
 
 
-int C2F(dr1)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
-	    integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
-	    integer lx0, integer lx1)
+int C2F(dr1)( char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
+	            integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
+	            integer lx0, integer lx1)
 { 
   const struct funreplace *fr;
   fr=in_word_set(x0,strlen(x0));

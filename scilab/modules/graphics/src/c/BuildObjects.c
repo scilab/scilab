@@ -34,6 +34,7 @@
 #include "SetProperty.h"
 #include "CloneObjects.h"
 #include "StringMatrix.h"
+#include "Xcall1.h"
 
 #include "MALLOC.h" /* MALLOC */
 

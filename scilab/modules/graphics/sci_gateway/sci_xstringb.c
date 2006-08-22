@@ -15,7 +15,7 @@
 #include "GetProperty.h"
 #include "MALLOC.h"
 #include "sciCall.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xstringb(char *fname,unsigned long fname_len)

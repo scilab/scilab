@@ -31,7 +31,8 @@
 #include "bcg.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "Graphics.h" 
+#include "Graphics.h"
+#include "Xcall1.h"
 #include "math_graphics.h" /* GET_NB_DIGITS */
 
 #include "MALLOC.h"

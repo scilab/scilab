@@ -8,6 +8,7 @@
 #include "clipping.h"
 #include "math_graphics.h"
 #include "GetProperty.h"
+#include "Xcall1.h"
 
 /*-------------------------------------------------------------------------------------*/
 /* Functions taken from periX11.c used here to work on every plateform                 */

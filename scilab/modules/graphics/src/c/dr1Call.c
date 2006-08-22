@@ -10,6 +10,7 @@
 #include "Graphics.h" 
 #include "dr1Call.h"
 #include "Plo2d.h"
+#include "Xcall1.h"
 
 /*------------------------------------------------
  * Xrect

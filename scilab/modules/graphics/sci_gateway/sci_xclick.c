@@ -8,7 +8,7 @@
 #include <string.h>
 
 #include "sci_xclick.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 

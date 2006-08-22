@@ -11,7 +11,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "Scierror.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xtape( char *fname,unsigned long fname_len )

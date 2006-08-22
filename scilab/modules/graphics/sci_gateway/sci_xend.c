@@ -11,7 +11,7 @@
 #include "DestroyObjects.h"
 #include "stack-c.h"
 #include "ObjectStructure.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 

@@ -22,6 +22,7 @@
 #include "DestroyObjects.h"
 
 #include "intcommongraphics.h"
+#include "Xcall1.h"
 
 
 #include "MALLOC.h" /* MALLOC */

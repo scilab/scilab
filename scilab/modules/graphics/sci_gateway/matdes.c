@@ -26,6 +26,7 @@
 #include "DefaultCommandArg.h"
 #include "sci_demo.h"
 #include "XsetXgetParameters.h"
+#include "Xcall1.h"
 
 
 #include "MALLOC.h" /* MALLOC */

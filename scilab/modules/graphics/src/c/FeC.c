@@ -21,6 +21,7 @@ for entities handling
 #include "SetProperty.h"
 #include "BuildObjects.h"
 #include "DrawObjects.h"
+#include "Xcall1.h"
 
 extern int version_flag(void); /* NG */
 

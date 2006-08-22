@@ -9,6 +9,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "DrawObjects.h"
+#include "Xcall1.h"
 
 extern int xinitxend_flag;
 

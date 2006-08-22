@@ -9,7 +9,7 @@
 
 #include "sci_xset.h"
 #include "stack-c.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "ObjectStructure.h"
@@ -18,6 +18,7 @@
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
+#include "Graphics.h"
 
 extern void C2F(msgs)(int *i, int *v) ; /* I did not find where it is defined */
 
@@ -88,8 +89,8 @@ int sci_xset( char *fname, unsigned long fname_len )
   * only once 
   */
   isdc = 0;
-  if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) C2F(sedeco)(&isdc);
-  if (strcmp(cstk(l1),"window") != 0) SciWin();
+  if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) { C2F(sedeco)(&isdc); }
+  if (strcmp(cstk(l1),"window") != 0) { SciWin(); }
   isdc = 1;
   if (strcmp(cstk(l1),"colormap") == 0 || strcmp(cstk(l1),"default") == 0) C2F(sedeco)(&isdc);
   if (strcmp(cstk(l1),"wdim") == 0 || strcmp(cstk(l1),"wpdim") == 0) {

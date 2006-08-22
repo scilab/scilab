@@ -27,6 +27,7 @@
 #include "SetProperty.h"
 #include "Interaction.h" /* for callback funtions */
 #include "StringMatrix.h"
+#include "Xcall1.h"
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
 #endif

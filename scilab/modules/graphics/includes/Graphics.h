@@ -231,7 +231,6 @@ extern int C2F(xsaveplots)  __PARAMS((integer *winnumber,char *,integer lxv));
 
 /* Xcall.c */
 
-extern int C2F(dr)  __PARAMS((char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *,integer ,integer )); 
 extern void C2F(SetDriver)  __PARAMS((char * ,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
 
 extern void GetDriver1  __PARAMS((char *,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
@@ -245,7 +244,6 @@ extern int C2F(inttest) __PARAMS((int *));
 extern int C2F(xsetg) __PARAMS((char *str,char *str1,integer lx0,integer lx1));
 extern int C2F(xgetg) __PARAMS((char *str,char *str1,integer *len,integer lx0,integer lx1));
 extern char *getFPF __PARAMS((void));
-extern int C2F(dr1)  __PARAMS((char * ,char *,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *,integer ,integer )); 
 
 /* periFig.c */
 

@@ -12,8 +12,7 @@
 #include "PloEch.h"
 
 #include "GetProperty.h"
-
-extern int version_flag();
+#include "Xcall1.h"
 
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 

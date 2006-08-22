@@ -843,6 +843,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\Xcall1.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\XsetXgetParameters.h"
 				>
 			</File>

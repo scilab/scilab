@@ -9,7 +9,7 @@
 
 #include "sci_driver.h"
 #include "stack-c.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_driver(char *fname,unsigned long fname_len)

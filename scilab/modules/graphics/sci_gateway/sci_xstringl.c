@@ -10,7 +10,7 @@
 #include "sci_xstringl.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "Graphics.h"
+#include "Xcall1.h"
 #include "MALLOC.h"
 
 /*-----------------------------------------------------------------------------------*/
