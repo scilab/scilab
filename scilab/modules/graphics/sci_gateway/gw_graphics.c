@@ -102,7 +102,7 @@ extern int sciunzoom                      _PARAMS((char *fname,unsigned long fna
 extern int intxs2bmp                      _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2emf                      _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu                      _PARAMS((char *fname,unsigned long fname_len));
-extern int scinewaxes                     _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_newaxes                     _PARAMS((char *fname,unsigned long fname_len));
 extern int intshowalluimenushandles       _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sciRelocateHandle              _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sciSwapHandles                 _PARAMS(( char * fname, unsigned long fname_len ) ) ;
@@ -196,7 +196,7 @@ static MatdesTable Tab[]={
 	{sci_delete,"delete"},
 	{gget,"get"},
 	{gset,"set"},
-	{scinewaxes,"newaxes"},
+	{sci_newaxes,"newaxes"},
   {sciRelocateHandle,"relocate_handle"},
   {sciSwapHandles,"swap_handles"},
      /* NG end */

@@ -398,6 +398,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_newaxes.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_param3d.c"
 				>
 			</File>
@@ -708,6 +712,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_matplot1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_newaxes.h"
 				>
 			</File>
 			<File
