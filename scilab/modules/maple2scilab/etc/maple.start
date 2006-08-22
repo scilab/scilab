@@ -3,7 +3,7 @@
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/maple/macros/lib');
+load('SCI/modules/maple2scilab/macros/lib');
 // ====================================================================
 //add help chapter
 global LANGUAGE
