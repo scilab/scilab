@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>x_choices  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="x_choices"> boîte de dialogue permettant de choisir des articles parmi plusieurs options  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>rep=x_choices(title,items)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>title  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de chaînes de caractères. Titre général
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>items  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : une liste d&apos;articles <VERB>items=list(item1,...,itemn)</VERB>, où chaque <VERB>item</VERB> est aussi une liste du type suivant : <VERB>item=list(&apos;label&apos;,default_choice,choices)</VERB>. <VERB>default_choice</VERB> est un entier donnant le numéro du choix par défaut et <VERB>choices</VERB> est un vecteur ligne de chaînes de caractères donnant les choix possibles.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rep  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un entier donnant le numéro du choix pour chaque article. Si le bouton &quot;Cancel&quot; est pressé  <VERB>rep</VERB> vaut <VERB>[]</VERB> en sortie.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Sélectionne des articles multiples et renvoie dans <VERB>rep</VERB> les numéros des articles sélectionnés.
+  </P>
+  <P>
+    Taper <VERB>x_choices()</VERB> pour voir un exemple.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+l1=list('choix 1',1,['article c1','article c2','article c3']);
+l2=list('choix 2',2,['article d1','article d2','article d3']);
+l3=list('choix 3',3,['article e1','article e2']);
+rep=x_choices('Menu d''articles',list(l1,l2,l3));
+ ]]></EXAMPLE>
+</MAN>

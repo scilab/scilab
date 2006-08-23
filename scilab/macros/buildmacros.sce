@@ -9,9 +9,9 @@ CurrentDirectory=pwd();
  "int",
  "sci2for",
  "tdcs",
- "gui",
   ];
   
+ Directories=[Directories;"SCI/modules/gui/macros"];        
  Directories=[Directories;"SCI/modules/statistics/macros"];      
  Directories=[Directories;"SCI/modules/cacsd/macros"];    
  Directories=[Directories;"SCI/modules/signal_processing/macros"];  

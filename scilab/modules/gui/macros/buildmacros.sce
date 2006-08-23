@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('guilib','SCI/macros/gui');
+genlib('guilib','SCI/modules/gui/macros');
 //------------------------------------

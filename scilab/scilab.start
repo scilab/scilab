@@ -59,7 +59,6 @@ load('SCI/macros/util/lib')
 load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/percent/lib')
-load('SCI/macros/gui/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
 SCI=getenv('SCI');
@@ -98,7 +97,7 @@ clear  larg L
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
  
- 
+ exec("SCI/modules/gui/etc/gui.start",-1);
  exec("SCI/modules/statistics/etc/statistics.start",-1);
  exec("SCI/modules/cacsd/etc/cacsd.start",-1);
  exec("SCI/modules/signal_processing/etc/signal.start",-1);

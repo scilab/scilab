@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>setmenu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>December 1995</DATE>
+  <SHORT_DESCRIPTION name="setmenu"> interactive button or menu activation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>setmenu(button [,nsub])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>setmenu(gwin,button [,nsub])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>button</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The button name</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gwin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer. The number of graphic window where the button is  installed</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nsub</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer. The number of submenu to de-activate (if any). If button has no sub-menu, <VERB>nsub</VERB> is ignored</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The function allows the user to make active  buttons or menus created by
+    <VERB>addmenu</VERB> in the main or graphics windows command panels.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+addmenu('foo')   //New button made in main scilab window
+unsetmenu('foo')   //button foo cannot be activated (grey string)
+setmenu('foo')     //button foo can be activated (black string)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>delmenu</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unsetmenu</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addmenu</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

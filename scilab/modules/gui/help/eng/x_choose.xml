@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>x_choose</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="x_choose"> interactive Xwindow choice</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[num]=x_choose(items,title [,button])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>items</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of string,  items to choose</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>title</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of string, comment for the dialog</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>button</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  string, text to appear in the button. Default value is 'Cancel'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>num</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, choosen item number or 0 if dialog resumed with &quot;Cancel&quot; button</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns in <VERB>num</VERB> the number of the chosen item.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+n=x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
+n=x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>x_choices</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>x_mdialog</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getvalue</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unix_g</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

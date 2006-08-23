@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>delmenu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>December 1995</DATE>
+  <SHORT_DESCRIPTION name="delmenu"> interactive button or menu deletion</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>delmenu(button)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>delmenu(gwin,button)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>button</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The button name. On Windows operating systems (not X_window), an &amp; should be placed before the character in the name used for keyboard shortcut; this character is underlined on the GUI.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gwin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer. The number of graphic window where the button is required to be installed</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The function allows the user to delete  buttons or menus create by
+    <VERB>addmenu</VERB> in the main or graphics windows command panels. 
+    Predefined buttons on Scilab graphic windows can also be deleted.</P>
+    <P>
+    If possible, it is better to delete first the latest created button
+    for a given window to avoid gaps in  command panels.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+addmenu('foo')
+delmenu('foo')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>setmenu</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>unsetmenu</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addmenu</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>x_mdialog</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="x_mdialog">boîte de dialogue pour la saisie de
+  paramètres</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>result=x_mdialog(title,labels,default_inputs_vector)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>title</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur colonne de chaînes de caractères. Titre général</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>labels</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n vecteurs colonnes de chaînes de caractères,
+          <VERB>labels(i)</VERB> est l'intitulé du i-ème paramètre à &#160;
+          saisir</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>default_input_vector</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n vecteurs colonnes de chaînes de caractères,
+          <VERB>default_input_vector(i)</VERB> la valeur initiale du i-ème
+          paramètre</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>labelsv</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur de n chaînes de caractères, <VERB>labelsv(i)</VERB>
+          est la légende de la i-ème ligne de la matrice de paramètres</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>labelsh</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur de m chaînes de caractères, <VERB>labelsh(j)</VERB>
+          est la légende de la j-ième colonne de la matrice de paramètres</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>default_input_matrix</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: matrice n x m de chaînes de caractères,
+          <VERB>default_input_matrix(i,j)</VERB> est la valeur initiale du
+          terme (i,j) de la matrice à &#160; saisir</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>result</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: matrice n x m de chaînes de caractères si le bouton "Ok" a été
+          pressé ou [] si c'est le bouton "Cancel".</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Boîte de dialogue pour la saisie de paramètres</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ txt=['module';'frequence';'phase    '];
+ sig=x_mdialog('choisir le signal sinusoidal',txt,['1';'10';'0'])
+ mag=evstr(sig(1))
+ frq=evstr(sig(2))
+ ph=evstr(sig(3))
+
+ rep=x_mdialog(['Simulation d''un systeme';'avec un regulateur PI'],...
+                      ['gain P';'gain I'],[' ';' '])
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>editvar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>x_dialog</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>x_choose</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>x_message</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getvalue</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>editvar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

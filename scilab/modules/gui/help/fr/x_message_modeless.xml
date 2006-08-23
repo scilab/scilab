@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>x_message_modeless  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="x_message_modeless"> boîte de dialogue non modale  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>x_message_modeless(strings)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>strings  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de chaînes de caractères à afficher 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Pour afficher un message (information, ...). la fonction
+    rend la main immédiatement. La boîte de dialogue est supprimée quand le bouton &quot;Ok&quot; est pressé.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ x_message_modeless(['Ceci est un message non modal'
+                     'Scilab peut continuer a travailler'
+                     ' '
+                     'Cliquer sur ""Ok"" pour fermer le message'])
+ x_message_modeless('Voici un deuxieme message')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>x_dialog</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_mdialog</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_message</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

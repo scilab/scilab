@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>x_mdialog</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="x_mdialog">Xwindow dialog</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>result=x_mdialog(title,labels,default_inputs_vector)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>title</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of strings, dialog general comment</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>labels</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n column vector of strings, <VERB>labels(i)</VERB> is the
+          label of the ith required value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>default_input_vector</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n column vector of strings,
+          <VERB>default_input_vector(i)</VERB> is the initial value of the ith
+          required value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>labelsv</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n vector of strings, <VERB>labelsv(i)</VERB> is the label of
+          the ith line of the required matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>labelsh</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: m vector of strings, <VERB>labelsh(j)</VERB> is the label of
+          the jth column of the required matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>default_input_matrix</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n x m matrix of strings,
+          <VERB>default_input_matrix(i,j)</VERB> is the initial value of the
+          (i,j) element of then required matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>result</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: n x m matrix of string if returned with "Ok" button or [] if
+          returned with "Cancel" button</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>X-window vector/matrix interactive input function</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+ txt=['magnitude';'frequency';'phase    '];
+ sig=x_mdialog('enter sine signal',txt,['1';'10';'0'])
+ mag=evstr(sig(1))
+ frq=evstr(sig(2))
+ ph=evstr(sig(3))
+
+ rep=x_mdialog(['System Simulation';'with PI regulator'],...
+                      ['P gain';'I gain '],[' ';' '])
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>editvar</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>x_dialog</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>x_choose</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>x_message</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getvalue</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>editvar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

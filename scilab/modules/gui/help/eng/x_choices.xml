@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>x_choices</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="x_choices"> interactive Xwindow choices through toggle buttons</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rep=x_choices(title,items)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>title</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of strings, title for the popup window.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>items</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a list of items <VERB>items=list(item1,...,itemn)</VERB>, where each <VERB>item</VERB> is also a list  of the following type : <VERB>item=list('label',default_choice,choices)</VERB>. <VERB>default_choice</VERB> is an integer which gives the default toggle on entry and <VERB>choices</VERB> is a  row vector of strings which gives the possible choices.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rep</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer vector which gives for each item the number of the  selected toggle. If user exits dialog with &quot;cancel&quot; button <VERB>rep</VERB> is set to <VERB>[]</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Select items through toggle lists and return in <VERB>rep</VERB> the selected 
+    items</P>
+    <P>
+    Type <VERB>x_choices()</VERB> to see an example.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+l1=list('choice 1',1,['toggle c1','toggle c2','toggle c3']);
+l2=list('choice 2',2,['toggle d1','toggle d2','toggle d3']);
+l3=list('choice 3',3,['toggle e1','toggle e2']);
+rep=x_choices('Toggle Menu',list(l1,l2,l3));
+ ]]>
+  </EXAMPLE>
+</MAN>

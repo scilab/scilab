@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>x_dialog  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="x_dialog"> boîte de dialogue  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>result=x_dialog(labels,valueini)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>labels  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de chaînes de caractères. Commentaire de la boîte
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>valueini  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de n chaînes de caractères. Valeurs suggérées 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>result  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur de n chaînes de caractères si le bouton &quot;Ok&quot; est pressé ou [] si &quot;Cancel&quot; a été pressé.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Crée une boîte de dialogue à plusieurs lignes. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+gain=evstr(x_dialog('valeur du gain ?','0.235'))
+x_dialog(['Methode';'entrer la periode d''echantillonnage'],'1')
+m=evstr(x_dialog('entrer une matrice 3x3',['[0 0 0';'0 0 0';'0 0 0]']))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>x_mdialog</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_matrix</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
