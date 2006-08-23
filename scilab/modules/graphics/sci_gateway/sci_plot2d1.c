@@ -1,0 +1,261 @@
+/*------------------------------------------------------------------------*/
+/* file: sci_plot2d1.c                                                    */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
+/* desc : interface for plot2d1, plot2d2, plot2d3 and plot2d4 routines    */
+/*------------------------------------------------------------------------*/
+
+#include "sci_plot2d1.h"
+#include "stack-c.h"
+#include "sci_demo.h"
+#include "Plo2d1.h"
+#include "GetCommandArg.h"
+#include "BuildObjects.h"
+#include "DestroyObjects.h"
+#include "DefaultCommandArg.h"
+#include "Graphics.h"
+#include "GetProperty.h"
+#include "sciCall.h"
+
+/*-----------------------------------------------------------------------------------*/
+int sci_plot2d1_1 (char *fname,unsigned long fname_len)
+{
+  return sci_plot2d1_G("plot2d1",1,C2F(plot2d1),fname_len);/* NG */
+}
+/*-----------------------------------------------------------------------------------*/
+int sci_plot2d1_2 (char *fname,unsigned long fname_len)
+{
+  return sci_plot2d1_G("plot2d2",2,C2F(plot2d2),fname_len); /* NG */
+}
+/*-----------------------------------------------------------------------------------*/
+int sci_plot2d1_3 (char *fname,unsigned long fname_len)
+{
+  return sci_plot2d1_G("plot2d3",3,C2F(plot2d3),fname_len);/* NG */
+}
+/*-----------------------------------------------------------------------------------*/
+int sci_plot2d1_4 (char *fname,unsigned long fname_len)
+{
+  return sci_plot2d1_G("plot2d4",4,C2F(plot2d4),fname_len);/* NG */
+}
+/*-----------------------------------------------------------------------------------*/
+int sci_plot2d1_G( char * fname, int ptype, int (*func) (), unsigned long fname_len )
+{
+  int frame_def=8;
+  int *frame=&frame_def;
+  int axes_def=1;
+  int *axes=&axes_def;
+  integer iskip,test;
+  integer m1,n1,l1, m2, n2, l2, lt, i, j ;
+  int one = 1 ;
+
+  static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
+                            {-1,"frameflag","?",0,0,0},
+                            {-1,"leg","?",0,0,0},
+                            {-1,"logflag","?",0,0,0},
+                            {-1,"nax","?",0,0,0},
+                            {-1,"rect","?",0,0,0},
+                            {-1,"strf","?",0,0,0},
+                            {-1,"style","?",0,0,0},
+                            {-1,NULL,NULL,0,0}       };
+
+  int    * style    = NULL  ;
+  double * rect     = NULL  ;
+  int    * nax      = NULL  ;
+  BOOL     flagNax  = FALSE ;
+  char   * strf     = NULL  ;
+  char   * legend   = NULL  ;
+  char   * logFlags = NULL  ;
+
+  if (Rhs <= 0) {
+    /* lauch the default routines depending on the name of the calling funtion */
+    if ( strcmp( fname, "plot2d2" ) == 0 )
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d2(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    else if ( strcmp( fname, "plot2d3" ) == 0 )
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d3(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    else if ( strcmp( fname, "plot2d4" ) == 0 )
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d4(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    else
+    {
+      char demo[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
+      sci_demo( fname, demo, &one ) ;
+    }
+    /* sci_demo(fname,str,&one); */
+    return 0;
+  }
+  CheckRhs(1,9); /* to allow plot2dxx(y) */
+
+
+  iskip=0;
+  if ( get_optionals(fname,opts) == 0) return 0;
+
+  if (GetType(1)==10) {
+    /* logflags */
+    GetLogflags(fname,1,opts,&logFlags);
+    iskip=1;
+  }
+
+  /* added to support plot2dxx([logflags],y) */
+  if ( Rhs == 1 + iskip )
+  {
+    if ( FirstOpt() <= Rhs)
+    {
+      sciprint("%s: misplaced optional argument, first must be at position %d\r\n",fname,3+iskip);
+      Error(999); 
+      return(0);
+    }
+
+    GetRhsVar(1+iskip, "d", &m2, &n2, &l2);
+    CreateVar(2+iskip,"d",  &m2, &n2, &l1);
+    if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
+    m1 = m2;  n1 = n2;
+    for (i = 0; i < m2 ; ++i) 
+      for (j = 0 ; j < n2 ;  ++j)
+        *stk( l1 + i + m2*j) = (double) i+1;
+  }
+
+
+  if (Rhs >= 2+iskip)
+  {
+    if ( FirstOpt() < 3+iskip) 
+    {
+      sciprint("%s: misplaced optional argument, first must be at position %d \r\n",
+        fname,3+iskip);
+      Error(999); 
+      return(0);
+    }
+
+
+    /* x */
+    GetRhsVar(1+iskip, "d", &m1, &n1, &l1);
+    if (iskip==1) 
+    {
+      if (logFlags[0]=='e')
+      {
+        m1 = 0 ;
+        n1 = 0 ;
+      }
+    }
+
+    /* y */
+    GetRhsVar(2+iskip, "d", &m2, &n2, &l2);
+    /* if (m2 * n2 == 0) { m1 = 0; n1 = 0;}  */
+
+    test = (m1*n1 == 0) /* x = [] */
+      /* x,y vectors of same length */  
+      || ((m1 == 1 || n1 == 1) && (m2 == 1 || n2 ==1) && (m1*n1 == m2*n2))
+      || ((m1 == m2) && (n1 == n2)) /* size(x) == size(y) */
+      /* x vector size(y)==[size(x),.] */
+      || ((m1 == 1 && n1 == m2) || (n1 == 1 && m1 == m2)); 
+
+    CheckDimProp(1+iskip,2+iskip,!test);
+
+    if (m1*n1 == 0) 
+    { /* default x=1:n */
+      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
+      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
+      for (i = 0; i < m2 ; ++i)
+      {
+        for (j = 0 ; j < n2 ;  ++j)
+        {
+          *stk( lt + i + m2*j) = (double) i+1;
+        }
+      }
+      m1 = m2;
+      n1 = n2;
+      l1 = lt;
+    }
+    else if ((m1 == 1 || n1 == 1) && (m2 != 1 && n2 != 1) ) {
+      /* a single x vector for mutiple columns for y */
+      CreateVar(Rhs+1,"d",  &m2, &n2, &lt);
+      for (i = 0; i < m2 ; ++i)
+      {
+        for (j = 0 ; j < n2 ;  ++j)
+        {
+          *stk( lt + i + m2*j) = *stk(l1 +i);
+        }
+      }
+      m1 = m2;
+      n1 = n2;
+      l1 = lt;
+    }
+    else if ((m1 == 1 && n1 == 1) && (n2 != 1) ) {
+      /* a single y row vector  for a single x */
+      CreateVar(Rhs+1,"d",  &m1, &n2, &lt);
+      for (j = 0 ; j < n2 ;  ++j)
+      {
+        *stk( lt + j ) = *stk(l1);
+      }
+      n1 = n2;
+      l1 = lt;
+    }
+    else {
+      if (m2 == 1 && n2 > 1) { m2 = n2; n2 = 1;}
+      if (m1 == 1 && n1 > 1) { m1 = n1; n1 = 1;}
+    }
+  }
+
+  sciGetStyle(fname,3+iskip,n1,opts,&style);
+  GetStrf(fname,4+iskip,opts,&strf);
+  GetLegend(fname,5+iskip,opts,&legend);
+  GetRect(fname,6+iskip,opts,&rect);
+  GetNax(7+iskip,opts,&nax,&flagNax);
+  if (iskip==0) GetLogflags(fname,8,opts,&logFlags);
+
+  SciWin();
+  C2F(scigerase)();
+
+  if ( isDefStrf( strf ) ) {
+    char strfl[4];
+    if (version_flag() == 0)
+    {
+      strcpy(strfl,DEFSTRFN);
+    }
+    else
+    {
+      strcpy(strfl,DEFSTRF);
+    }
+    strf = strfl;
+    if ( !isDefRect( rect ) )
+    {
+      strfl[1]='7';
+    }
+    if ( !isDefLegend( legend ) )
+    {
+      strfl[0]='1';
+    }
+    GetOptionalIntArg(fname,9,"frameflag",&frame,1,opts);
+    if(frame != &frame_def)
+    {
+      strfl[1] = (char)(*frame+48);
+    }
+    GetOptionalIntArg(fname,9,"axesflag",&axes,1,opts);
+    if(axes != &axes_def)
+    {
+      strfl[2] = (char)(*axes+48);
+    }
+  }
+
+
+  /* NG beg */
+  if (version_flag() == 0){
+    if(ptype == 0) { ptype = 1 ; }
+    Objplot2d (ptype,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend,rect, nax, flagNax);
+  }
+  else /* NG end */
+  {
+    (*func)(logFlags,stk(l1),stk(l2),&n1,&m1,style,strf,legend,rect,nax,
+    4L,strlen(strf),strlen(legend));
+  }
+  LhsVar(1)=0;
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/

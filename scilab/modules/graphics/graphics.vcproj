@@ -430,6 +430,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_plot2d1.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_plot3d.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_readgif.c"
 				>
 			</File>
@@ -755,6 +763,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\Plo2d1.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\Plo3d.h"
 				>
 			</File>
@@ -840,6 +852,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_plot2d.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_plot2d1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_plot3d.h"
 				>
 			</File>
 			<File

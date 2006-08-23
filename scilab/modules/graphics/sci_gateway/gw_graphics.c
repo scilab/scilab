@@ -14,13 +14,12 @@ extern int GetWITH_GUI(void);
 extern int sci_champ                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d                    _PARAMS((char *fname, unsigned long fname_len));
-extern int sciplot3d                      _PARAMS((char *fname, unsigned long fname_len));
-extern int sciplot3d1                     _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_plot3d                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_plot2d                     _PARAMS((char *fname, unsigned long fname_len));
-extern int sciplot2d1_1                   _PARAMS((char *fname, unsigned long fname_len));
-extern int sciplot2d1_2                   _PARAMS((char *fname, unsigned long fname_len));
-extern int sciplot2d1_3                   _PARAMS((char *fname, unsigned long fname_len));
-extern int sciplot2d1_4                   _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_plot2d1_1                  _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_plot2d1_2                  _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_plot2d1_3                  _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_plot2d1_4                  _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_grayplot                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_driver                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarc                       _PARAMS((char *fname, unsigned long fname_len));
@@ -123,12 +122,12 @@ static MatdesTable Tab[]={
 	{sci_param3d1,"param3d1"},
 	{sci_xstringb,"xstringb"},
 	{sci_plot2d,"plot2d"},
-	{sciplot2d1_1,"plot2d1"},
-	{sciplot2d1_2,"plot2d2"},
-	{sciplot2d1_3,"plot2d3"},
-	{sciplot2d1_4,"plot2d4"},
-	{sciplot3d,"plot3d"},
-	{sciplot3d1,"plot3d1"},
+	{sci_plot2d1_1,"plot2d1"},
+	{sci_plot2d1_2,"plot2d2"},
+	{sci_plot2d1_3,"plot2d3"},
+	{sci_plot2d1_4,"plot2d4"},
+	{sci_plot3d,"plot3d"},
+	{sci_plot3d,"plot3d1"},
 	{sci_winsid,"winsid"},
 	{sci_xarc,"xarc"},
 	{sci_xarcs,"xarcs"},
