@@ -165,30 +165,8 @@ extern sciPointObj *paxesmdl;
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
-/* xdel([win-ids]) */
-/*-----------------------------------------------------------------------------------*/
-int scidelw(char *fname,unsigned long fname_len)
-{ 
-  integer verb=0,na,v,m1,n1,l1,win;
-  double dv;
-  CheckRhs(-1,1);
-  if (Rhs >= 1) {
-    int i;
-    GetRhsVar(1,"d",&m1,&n1,&l1); 
-    for ( i=0; i < m1*n1 ; i++ ) 
-      {
-	win = (integer) *stk(l1+i);
-	C2F(deletewin)(&win); 
-      }
-  } else {
-    C2F(dr)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-    C2F(deletewin)(&win);
-  }
-  LhsVar(1)=0;
-  return 0;
-} 
+/*  */
 
-/*-----------------------------------------------------------------------------------*/
 /* [s,v]= gsort(x,[str1,str2]) */
 /*       str1 = 'g','r','c','lc','lr', */
 /*       str2 = 'i' | 'd' */

@@ -13,7 +13,7 @@
 #include "RecSaveLoad.h"
 
 /*-----------------------------------------------------------------------------------*/
-int scixload(char *fname,unsigned long fname_len)
+int sci_xload(char *fname,unsigned long fname_len)
 {
   double dv;
   integer m1,n1,l1,m2,n2,l2,wid,v=1;

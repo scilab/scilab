@@ -59,9 +59,9 @@ extern int scixtitle                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsave                      _PARAMS((char *fname, unsigned long fname_len));
-extern int scixload                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xload                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scichamp1                      _PARAMS((char *fname, unsigned long fname_len));
-extern int scidelw                        _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xdel                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scicontour2d                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixg2ps                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixs2ps                       _PARAMS((char *fname, unsigned long fname_len));
@@ -138,7 +138,7 @@ static MatdesTable Tab[]={
 	{sci_xclea,"xclea"},
 	{sci_xclear,"xclear"},
 	{sci_xclick,"xclick"},
-	{scidelw,"xdel"},
+	{sci_xdel,"xdel"},
 	{sci_xend,"xend"},
 	{sci_xarc,"xfarc"},
 	{sci_xfarcs,"xfarcs"},
@@ -153,7 +153,7 @@ static MatdesTable Tab[]={
 	{sci_xinfo,"xinfo"},
 	{sci_xinit,"xinit"},
 	{sci_xlfont,"xlfont"},
-	{scixload,"xload"},
+	{sci_xload,"xload"},
 	{sci_xpoly,"xpoly"},
 	{sci_xpolys,"xpolys"},
 	{scirect,"xrect"},

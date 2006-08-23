@@ -466,6 +466,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xdel.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xend.c"
 				>
 			</File>
@@ -824,6 +828,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xclick.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xdel.h"
 				>
 			</File>
 			<File
