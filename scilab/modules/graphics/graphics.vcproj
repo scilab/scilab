@@ -546,6 +546,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xsort.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xstring.c"
 				>
 			</File>
@@ -656,6 +660,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Graphics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\gsort.h"
 				>
 			</File>
 			<File
@@ -908,6 +916,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xsetech.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xsort.h"
 				>
 			</File>
 			<File
