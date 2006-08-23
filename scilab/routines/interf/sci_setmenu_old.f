@@ -1,6 +1,16 @@
 C     ================================================================
 C     INRIA
 C     ================================================================
+      subroutine scisetmenu(fname)
+      external setmen
+      call scisetum("setmenu_old",setmen)
+      end
+C     ================================================================
+      subroutine sciunsetmenu(fname)
+      external unsmen
+      call scisetum("unsetmenu_old",unsmen)
+      end
+C     ================================================================
       subroutine scisetum(fname,func)
 C     ================================================================
 C     SCILAB function :  setmenu, unsetmenu,
