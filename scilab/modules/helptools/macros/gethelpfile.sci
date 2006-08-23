@@ -28,8 +28,6 @@ function path=gethelpfile(key)
 		end
 	end
 	path=genhelpfromfunc(key)
-	disp "PATH 2 =";
-	disp(path);
 endfunction
 
 
