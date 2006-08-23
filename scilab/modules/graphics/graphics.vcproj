@@ -518,6 +518,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xsave.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xsegs.c"
 				>
 			</File>
@@ -707,6 +711,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\RecSave.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_contour.h"
 				>
 			</File>
@@ -864,6 +872,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xpolys.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xsave.h"
 				>
 			</File>
 			<File
