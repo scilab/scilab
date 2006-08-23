@@ -28,7 +28,7 @@ extern int sci_xarcs                      _PARAMS((char *fname, unsigned long fn
 extern int scirects                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarrows                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsegs                      _PARAMS((char *fname, unsigned long fname_len));
-extern int nscixaxis                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_drawaxis                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xchange                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xclea                      _PARAMS((char *fname, unsigned long fname_len));
 extern int scirect                        _PARAMS((char *fname, unsigned long fname_len));
@@ -77,7 +77,7 @@ extern int sci_xgraduate                  _PARAMS((char *fname, unsigned long fn
 extern int sci_xname                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xaxis                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sciseteventhandler             _PARAMS((char *fname, unsigned long fname_len));
-extern int int_gtkhelp                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_help_gtk                   _PARAMS((char *fname, unsigned long fname_len));
 extern int gset                           _PARAMS((char *fname, unsigned long fname_len));
 extern int gget                           _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_delete                     _PARAMS((char *fname, unsigned long fname_len));
@@ -133,7 +133,7 @@ static MatdesTable Tab[]={
 	{sci_xarc,"xarc"},
 	{sci_xarcs,"xarcs"},
 	{sci_xarrows,"xarrows"},
-	{nscixaxis,"drawaxis"},
+	{sci_drawaxis,"drawaxis"},
 	{sci_xchange,"xchange"},
 	{sci_xclea,"xclea"},
 	{sci_xclear,"xclear"},
@@ -200,7 +200,7 @@ static MatdesTable Tab[]={
   {sciSwapHandles,"swap_handles"},
      /* NG end */
 	{sci_xsort,"gsort"},
-	{int_gtkhelp,"help_gtk"},
+	{sci_help_gtk,"help_gtk"},
 	{ClearScreenConsole,"clc"},
 	{HomeFunction,"tohome"},
 	{intUImenu,"UImenu"},

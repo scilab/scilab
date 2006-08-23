@@ -374,6 +374,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_drawaxis.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_driver.c"
 				>
 			</File>
@@ -391,6 +395,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\sci_grayplot.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_help_gtk.c"
 				>
 			</File>
 			<File
@@ -771,6 +779,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_drawaxis.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_driver.h"
 				>
 			</File>
@@ -788,6 +800,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_grayplot.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_help_gtk.h"
 				>
 			</File>
 			<File
