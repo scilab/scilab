@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-/*REORGANISATION TEMPORAIRE */
-#include "../../../routines/wsci/wresource.h"
-#include "../../../routines/wsci/wcommon.h"
+
+#include "wsci/wresource.h"
+#include "wsci/wcommon.h"
 
 #include "../../string/includes/men_Sutils.h"
 

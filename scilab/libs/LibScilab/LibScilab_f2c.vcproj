@@ -232,103 +232,103 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\3DROT.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\3DROT.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\ARROW.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\ARROW.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Bin.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Bin.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\CHDIR.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\CHDIR.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\CIRCLE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\CIRCLE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\CONSOLE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\CONSOLE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\COPY.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\COPY.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Cos.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Cos.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Cosf.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Cosf.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Dem.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Dem.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\DOUBLEARROW.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\DOUBLEARROW.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\exit24.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\exit24.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\fonts.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\fonts.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\GED.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\GED.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Graph.ICO"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Graph.ICO"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\HELP.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\HELP.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\LINE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\LINE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\metanet24.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\metanet24.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\NEW.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\NEW.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\OPEN.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\OPEN.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\PASTE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\PASTE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\POLYLINE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\POLYLINE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\PRINT.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\PRINT.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\RECTANGLE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\RECTANGLE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Rscilab.rc"
+				RelativePath="..\..\modules\gui\src\c\wsci\Rscilab.rc"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -350,63 +350,63 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Sav.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Sav.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\SAVE.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\SAVE.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Sce.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Sce.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Sci.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Sci.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Scicos.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Scicos.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scicos24.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scicos24.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\scilab24.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab24.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\scilab_logo.bmp"
+				RelativePath="..\..\modules\gui\src\c\wsci\scilab_logo.bmp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Text.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Text.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Tst.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Tst.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\UNZOOM.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\UNZOOM.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\Vide.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\Vide.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\routines\wsci\Icones Scilab\ZOOM.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\ZOOM.ico"
 				>
 			</File>
 		</Filter>
@@ -415,7 +415,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\routines\wsci\resource.h"
+				RelativePath="..\..\modules\gui\src\c\wsci\resource.h"
 				>
 			</File>
 		</Filter>

@@ -7,8 +7,7 @@
  */
 #include <windows.h>
 #include "wmen_scilab.h"
-/*REORGANISATION TEMPORAIRE */
-#include "../../../routines/wsci/resource.h"
+#include "../../../gui/src/c/wsci/resource.h"
 
 extern HINSTANCE hdllInstance;
 extern MADialog MAD;

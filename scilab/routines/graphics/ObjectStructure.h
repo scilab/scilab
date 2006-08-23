@@ -20,7 +20,7 @@
 #include <commctrl.h>
 #endif
 #include <winuser.h>
-#include "../wsci/wgnuplib.h"
+#include "../../modules/gui/src/c/wsci/wgnuplib.h"
 #endif
 
 /*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h

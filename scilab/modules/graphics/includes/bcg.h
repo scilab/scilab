@@ -12,7 +12,7 @@
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
 #else
-#include "../../../routines/wsci/wgnuplib.h"
+#include "../../gui/src/c/wsci/wgnuplib.h"
 #endif 
 
 #ifndef CoordModePrevious 

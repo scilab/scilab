@@ -8,9 +8,9 @@
 	#endif
 #endif
 
-/* REORGANISATION TEMPORAIRE */
+
 #ifdef _MSC_VER
-#include "../../../../routines/wsci/wtext.h"
+#include "wtext.h"
 #endif
 
 #include "MALLOC.h"

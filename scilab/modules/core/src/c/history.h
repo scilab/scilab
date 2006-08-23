@@ -25,9 +25,9 @@ extern void reset_history(void);
   #define STRICT
 #endif
 
-/* REORGANISATION TEMPORAIRE */
+
 #ifdef	_MSC_VER
-  #include "../../../../routines/wsci/wcommon.h" /* for BOOL */
+  #include "wcommon.h" /* for BOOL */
 #else
   typedef int BOOL;
   extern char *getenv();

@@ -14,17 +14,20 @@
 #define STRICT
 #endif 
 
+#include <Windows.h>
+#include <commctrl.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdarg.h>
 
-#include "../../../../routines/wsci/wresource.h"
-#include "../../../../routines/wsci/resource.h"
-#include "../../../../routines/wsci/wcommon.h"
-#include "../../../../routines/wsci/wgraph.h"
-#include "../../../../routines/wsci/wtext.h"
+#include "../../gui/src/c/wsci/wresource.h"
+#include "../../gui/src/c/wsci/resource.h"
+#include "../../gui/src/c/wsci/wcommon.h"
+#include "../../gui/src/c/wsci/wgraph.h"
+#include "../../gui/src/c/wsci/wtext.h"
 #include "Events.h"
 
 #include "bcg.h"
@@ -36,7 +39,7 @@
 #include "machine.h"
 #include "clipping.h"
 
-
+#include "math_graphics.h"
 
 #include "MALLOC.h" /* MALLOC */
 
