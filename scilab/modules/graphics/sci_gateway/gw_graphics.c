@@ -67,13 +67,13 @@ extern int scixg2ps                       _PARAMS((char *fname, unsigned long fn
 extern int scixs2ps                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixs2fig                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsort                      _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_winsid                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_winsid                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstringb                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_matplot                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour2d1                 _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_matplot1                   _PARAMS((char *fname, unsigned long fname_len));
-extern int scixgraduate                   _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xgraduate                  _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xaxis                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sciseteventhandler             _PARAMS((char *fname, unsigned long fname_len));
@@ -168,7 +168,7 @@ static MatdesTable Tab[]={
 	{sci_xstringl,"xstringl"},
 	{sci_xtape,"xtape"},
 	{sci_xtitle,"xtitle"},
-	{scixgraduate,"xgraduate"},
+	{sci_xgraduate,"xgraduate"},
 	{scixname,"xname"},
 	{sci_xaxis,"xaxis"},
 	{sciseteventhandler,"seteventhandler"},

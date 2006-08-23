@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include "math_graphics.h"
 #include "Graphics.h" 
+#include "Format.h"
 
 /* Add those lines for FD algo on Theticks */
 #define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))

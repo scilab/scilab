@@ -502,6 +502,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xgraduate.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xgrid.c"
 				>
 			</File>
@@ -648,6 +652,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Events.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\Format.h"
 				>
 			</File>
 			<File
@@ -880,6 +888,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xgetmouse.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xgraduate.h"
 				>
 			</File>
 			<File
