@@ -430,6 +430,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_set_posfig_dim.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_StringBox.c"
 				>
 			</File>
@@ -820,6 +824,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_set.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_set_posfig_dim.h"
 				>
 			</File>
 			<File

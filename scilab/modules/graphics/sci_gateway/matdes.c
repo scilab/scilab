@@ -170,20 +170,8 @@ extern sciPointObj *paxesmdl;
 
 /*  : give a name to current graphic window */
 
-/* set_posfig_dim(width,height) : give a name to current graphic window */
-/*-----------------------------------------------------------------------------------*/
-int scisetposfig(char *fname,unsigned long fname_len)
-{
-  integer m1,n1,l1,m2,n2,l2;
-  CheckRhs(2,2);
-  CheckLhs(1,1);
-  GetRhsVar(1,"i",&m1,&n1,&l1);
-  GetRhsVar(2,"i",&m2,&n2,&l2);
-  setposfig(istk(l1),istk(l2));
-  LhsVar(1)=0;
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
+/*  : give a name to current graphic window */
+
 /* /\* dir = 'u','r','d','l'  [default -> 'l' ]  */
 /*    /\* fontsize =             [default -> -1   ]  */
 /*    /\* format_n = format to use for numbers (unused if strings)  */

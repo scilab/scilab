@@ -94,7 +94,7 @@ extern int scixs2ppm                      _PARAMS((char *fname,unsigned long fna
 extern int ClearScreenConsole             _PARAMS((char *fname, unsigned long fname_len));
 extern int ShowWindowFunction             _PARAMS((char *fname, unsigned long fname_len));
 extern int HomeFunction                   _PARAMS((char *fname, unsigned long fname_len));
-extern int scisetposfig                   _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_set_posfig_dim             _PARAMS((char *fname,unsigned long fname_len));
 extern int XSaveNative                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scizoomrect                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sciunzoom                      _PARAMS((char *fname,unsigned long fname_len));
@@ -177,7 +177,7 @@ static MatdesTable Tab[]={
 	{scixs2ps,"xs2ps"},
 	{intxs2bmp,"xs2bmp"},
 	{intxs2emf,"xs2emf"},
-	{scisetposfig,"set_posfig_dim"},
+	{sci_set_posfig_dim,"set_posfig_dim"},
 	{XSaveNative,"xsnative"},
 	{ShowWindowFunction,"show_window"},
 	{scizoomrect,"zoom_rect"},
