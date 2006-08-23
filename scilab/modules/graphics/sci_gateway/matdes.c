@@ -190,8 +190,7 @@ int scichamp1 (char *fname,unsigned long fname_len)
 }
 /*-----------------------------------------------------------------------------------*/
 /* champ */
-/* champ(x,y,fx,fy,[arfact=1.0,rect=[xMin,yMin,xMax,yMax],flag]) */
-/* champ1(x,y,fx,fy,[arfact=1.0,rect=[xMin,yMin,xMax,yMax],flag]) */
+/* 
 /*-----------------------------------------------------------------------------------*/
 int scichamp_G(char *fname,int (*func) (),unsigned long fname_len)
 {

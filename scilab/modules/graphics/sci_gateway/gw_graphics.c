@@ -11,7 +11,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
-extern int scichamp                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_champ                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_contour                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sciplot3d                      _PARAMS((char *fname, unsigned long fname_len));
@@ -60,7 +60,7 @@ extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsave                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xload                      _PARAMS((char *fname, unsigned long fname_len));
-extern int scichamp1                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_champ1                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xdel                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scicontour2d                   _PARAMS((char *fname, unsigned long fname_len));
 extern int scixg2ps                       _PARAMS((char *fname, unsigned long fname_len));
@@ -109,8 +109,8 @@ extern int sci_readxbm	                  _PARAMS(( char * fname, unsigned long f
 extern int sci_readgif	                  _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
-	{scichamp,"champ"},	
-	{scichamp1,"champ1"},
+	{sci_champ,"champ"},	
+	{sci_champ1,"champ1"},
 	{sci_contour,"contour"},
 	{sci_driver,"driver"},
 	{sci_fec,"scifec"},
