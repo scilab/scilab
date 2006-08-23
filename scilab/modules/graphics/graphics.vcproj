@@ -510,6 +510,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xload.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xpoly.c"
 				>
 			</File>
@@ -711,7 +715,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\RecSave.h"
+				RelativePath=".\includes\RecSaveLoad.h"
 				>
 			</File>
 			<File
@@ -864,6 +868,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xlfont.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xload.h"
 				>
 			</File>
 			<File

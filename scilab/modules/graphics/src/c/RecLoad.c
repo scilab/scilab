@@ -39,6 +39,7 @@
 #include "Graphics.h" 
 #include "Rec.h"
 #include "Xcall1.h"
+#include "RecSaveLoad.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -749,9 +750,7 @@ static LoadTable LoadCTable[] ={
 #define __STDC__
 #endif 
 
-int C2F(xloadplots)(fname1,lvx)
-     char *fname1;
-     integer lvx;
+int C2F(xloadplots)( char * fname1, integer lvx)
 {
   integer verb=0,cur,na;
   char name[4],*type;

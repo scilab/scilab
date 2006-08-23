@@ -13,6 +13,7 @@
 #include "Graphics.h" 
 #include "Rec.h"
 #include "Xcall1.h"
+#include "RecSaveLoad.h"
 
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
 extern void  xdrstdio_create();
