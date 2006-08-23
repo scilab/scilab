@@ -526,6 +526,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xname.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xpoly.c"
 				>
 			</File>
@@ -912,6 +916,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xload.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xname.h"
 				>
 			</File>
 			<File

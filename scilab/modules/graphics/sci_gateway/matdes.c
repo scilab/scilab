@@ -168,30 +168,8 @@ extern sciPointObj *paxesmdl;
 /* */
 /* rajouter ds le man XXXX */
 
-/* name('name') : give a name to current graphic window */
-/*-----------------------------------------------------------------------------------*/
-int scixname(char *fname,unsigned long fname_len)
-{
-  double dv;
-  integer v,m1,n1,l1;
-  CheckRhs(1,1);
-  CheckLhs(1,1);
-  GetRhsVar(1,"c",&m1,&n1,&l1);
-  SciWin();
-  if ( version_flag() == 0 )
-  {
-    sciSetName( sciGetCurrentFigure(), cstk(l1), m1 ) ;
-    /*C2F(dr)("xname",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,bsiz);*/
-  }
-  else
-  {
-    C2F(dr1)("xname",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,bsiz);
-  }
+/*  : give a name to current graphic window */
 
-  LhsVar(1)=0;
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
 /* set_posfig_dim(width,height) : give a name to current graphic window */
 /*-----------------------------------------------------------------------------------*/
 int scisetposfig(char *fname,unsigned long fname_len)
