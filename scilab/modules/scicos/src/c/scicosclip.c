@@ -3,6 +3,7 @@
 #include "core_math.h" 
 #include "../../graphics/includes/Graphics.h"
 #include "../../graphics/includes/PloEch.h"
+#include "../../graphics/includes/Xcall1.h"
 
 void C2F(scicosclip)(int *n)
 {
