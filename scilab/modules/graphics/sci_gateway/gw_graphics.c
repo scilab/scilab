@@ -67,7 +67,7 @@ extern int scixg2ps                       _PARAMS((char *fname, unsigned long fn
 extern int scixs2ps                       _PARAMS((char *fname, unsigned long fname_len));
 extern int scixs2fig                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsort                      _PARAMS((char *fname, unsigned long fname_len));
-extern int sciwinsid                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_winsid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xstringb                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_matplot                    _PARAMS((char *fname, unsigned long fname_len));
@@ -129,7 +129,7 @@ static MatdesTable Tab[]={
 	{sciplot2d1_4,"plot2d4"},
 	{sciplot3d,"plot3d"},
 	{sciplot3d1,"plot3d1"},
-	{sciwinsid,"winsid"},
+	{sci_winsid,"winsid"},
 	{sci_xarc,"xarc"},
 	{sci_xarcs,"xarcs"},
 	{sci_xarrows,"xarrows"},

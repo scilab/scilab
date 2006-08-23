@@ -434,6 +434,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_winsid.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xarc.c"
 				>
 			</File>
@@ -707,6 +711,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\periScreen.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\periWin.h"
 				>
 			</File>
@@ -804,6 +812,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_StringBox.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_winsid.h"
 				>
 			</File>
 			<File

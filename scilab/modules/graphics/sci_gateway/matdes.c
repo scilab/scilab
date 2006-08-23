@@ -163,33 +163,8 @@ extern sciPointObj *paxesmdl;
 
 /* 
 
-/* x=winsid() */
-/*-----------------------------------------------------------------------------------*/
-int sciwinsid(char *fname,unsigned long fname_len)
-{
-  integer iflag =0,ids,num,un=1,l1;
+/*  */
 
-  CheckRhs(-1,0) ;  /* NG beg */
-  /*  if (version_flag() == 0) */
-  /*    { */
-  /*     sciGetIdFigure (&ids,&num,&iflag); */
-  /*     CreateVar(1,"i",&un,&num,&l1); */
-  /*     iflag = 1;  */
-  /*     sciGetIdFigure (istk(l1),&num,&iflag); */
-  /*     LhsVar(1) = 1;  */
-  /*    }/\* NG end*\/ */
-  /*  else */
-  /*    { */
-  C2F(getwins)(&num,&ids ,&iflag);
-  CreateVar(1,"i",&un,&num,&l1);
-  iflag = 1; 
-  C2F(getwins)(&num,istk(l1),&iflag);
-  LhsVar(1)=1;
-  /*     }  */
-
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
 /* [xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma) */
 /* rajouter ds le man XXXX */
 /*-----------------------------------------------------------------------------------*/

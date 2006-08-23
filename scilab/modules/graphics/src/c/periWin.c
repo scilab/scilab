@@ -3830,8 +3830,7 @@ struct BCG *GetWinXgc(listptr, i)
  * flag == 0 ==> just get the Number Num 
  ***************************/
 
-void C2F(getwins)(Num,Ids,flag)
-     integer *Num,Ids[],*flag;
+void C2F(getwins)( integer * Num, integer Ids[] , integer * flag)
 {
   WindowList *listptr = The_List;
   *Num = 0;
