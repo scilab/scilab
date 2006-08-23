@@ -1,18 +1,18 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_param3d.h                                                    */
+/* file: sci_contour2di.h                                                 */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* desc : interface for contour2d1 routine                                */
+/* desc : interface for contour2di routine                                */
 /*------------------------------------------------------------------------*/
 
 #include <string.h>
 
-#include "sci_contour2d1.h"
+#include "sci_contour2di.h"
 #include "Graphics.h"
 #include "GetCommandArg.h"
 
 /*-----------------------------------------------------------------------------------*/
-int sci_contour2d1( char * fname, unsigned long fname_len )
+int sci_contour2di( char * fname, unsigned long fname_len )
 {
   int flagx=0,nz=10; /* default number of level curves : 10 */
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,l5;
