@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>winclose</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="winclose"> close windows created by sciGUI</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>winclose(winIds)</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+<PARAM>
+<PARAM_INDENT>
+<PARAM_ITEM>
+ <PARAM_NAME>winIds</PARAM_NAME>
+ <PARAM_DESCRIPTION>
+	<SP>: matrix of integer greater than 0, window identificator.</SP>
+</PARAM_DESCRIPTION>
+</PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P><VERB>winclose(winIds)</VERB> close windows created by sciGUI.</P>
+
+</DESCRIPTION>
+
+<EXAMPLE>
+<![CDATA[//CREATE SOME WINDOWS
+win1=waitbar('This is an example');
+win2=waitbar('HELLO!');
+winclose([win1,win2]);]]>
+</EXAMPLE>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>

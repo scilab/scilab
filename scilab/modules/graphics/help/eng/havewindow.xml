@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>havewindow</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1994</DATE>
+  <SHORT_DESCRIPTION name="havewindow"> return scilab window mode</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>havewindow()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    returns %t if scilab has it own window and %f if not, i.e.
+    if scilab has been invoked by &quot;scilab -nw&quot;. (<VERB>nw</VERB> stands
+    for &quot;no-window&quot;.</P>
+  </DESCRIPTION>
+</MAN>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getvalue  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>November 1993  </DATE>
+  <SHORT_DESCRIPTION name="getvalue"> boîte de dialogue de saisie de paramètres   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>desc  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : vecteur colonne de chaînes de caractères, 
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>labels  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : vecteur colonne de n chaînes de caractères, <VERB>labels(i)</VERB> est l&apos;entête du i-ème paramètre
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>typ  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : <VERB>list(typ_1,dim_1,..,typ_n,dim_n)</VERB>
+	  </SP>
+	  <PARAM_INDENT>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>typ_i  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : définit le type de la ième valeur. typ_i peut prendre l&apos;une des valeurs :
+		</SP>
+		<PARAM_INDENT>
+		  <PARAM_ITEM>
+		    <PARAM_NAME>&quot;mat&quot;  </PARAM_NAME>
+		    <PARAM_DESCRIPTION>
+		      <SP>
+			: matrice
+		      </SP>
+		    </PARAM_DESCRIPTION> 
+		  </PARAM_ITEM>
+		  <PARAM_ITEM>
+		    <PARAM_NAME>&quot;col&quot;  </PARAM_NAME>
+		    <PARAM_DESCRIPTION>
+		      <SP>
+			: vecteur colonne
+		      </SP>
+		    </PARAM_DESCRIPTION> 
+		  </PARAM_ITEM>
+		  <PARAM_ITEM>
+		    <PARAM_NAME>&quot;row&quot;  </PARAM_NAME>
+		    <PARAM_DESCRIPTION>
+		      <SP>
+			: vecteur ligne
+		      </SP>
+		    </PARAM_DESCRIPTION> 
+		  </PARAM_ITEM>
+		  <PARAM_ITEM>
+		    <PARAM_NAME>&quot;vec&quot;  </PARAM_NAME>
+		    <PARAM_DESCRIPTION>
+		      <SP>
+			: vecteur
+		      </SP>
+		    </PARAM_DESCRIPTION> 
+		  </PARAM_ITEM>
+		  <PARAM_ITEM>
+		    <PARAM_NAME>&quot;str&quot;  </PARAM_NAME>
+		    <PARAM_DESCRIPTION>
+		      <SP>
+			: chaîne de caractères
+		      </SP>
+		    </PARAM_DESCRIPTION> 
+		  </PARAM_ITEM>
+		  <PARAM_ITEM>
+		    <PARAM_NAME>&quot;lis&quot;  </PARAM_NAME>
+		    <PARAM_DESCRIPTION>
+		      <SP>
+			: liste
+		      </SP>
+		    </PARAM_DESCRIPTION> 
+		  </PARAM_ITEM>
+		</PARAM_INDENT>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+	    <PARAM_ITEM>
+	      <PARAM_NAME>dim_i  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : définit les dimensions de la i-ème valeur. Ce doit être un entier
+		  ou un vecteur de deux entiers. -1 signifie que les dimensions ne sont
+		  pas définies.
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+
+	    <PARAM_ITEM>
+	      <PARAM_NAME>ini  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : vecteur colonne de n chaînes de caractères, <VERB>ini(i)</VERB>
+		  donne la valeur par défaut du i-ème paramètre
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+
+	    <PARAM_ITEM>
+	      <PARAM_NAME>ok  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : booléen, %t (vrai) si le bouton &quot;Ok&quot; a été pressé, %f
+		  (faux) pour le bouton &quot;Cancel&quot;
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+
+	    <PARAM_ITEM>
+	      <PARAM_NAME>xi  </PARAM_NAME>
+	      <PARAM_DESCRIPTION>
+		<SP>
+		  : contient le i-ème paramètre si ok=%t. Si la liste des arguments de
+		  sortie contient un <VERB>xi</VERB> de plus que nécessaire, la valeur
+		  du dernier <VERB>xi</VERB> contient le vecteur des chaînes de
+		  caractères correspondant aux paramètres choisis.
+		</SP>
+	      </PARAM_DESCRIPTION> 
+	    </PARAM_ITEM>
+	  </PARAM_INDENT>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Cette fonction est une interface vers la fonction <VERB>x_mdialog</VERB>
+      avec contrôle d&apos;erreur, vérification de taille et de type des
+      paramètres, évaluation des expressions Scilab, etc.
+    </P>
+  </DESCRIPTION>
+  <SECTION label='REMARQUES'>
+    <P>
+      Toute expression Scilab valide peut être utilisée pour entrer un
+      paramètre; pour les matrices  et les vecteurs <VERB>getvalues</VERB>
+      ajoute [ ] autour des valeurs rentrées avant leur évaluation.
+    </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+    labels=["module";"frequence";"phase    "];
+    [ok,mag,freq,ph]=getvalue("signal sinusoidal",labels,...
+    list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>x_mdialog</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_matrix</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>x_dialog</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer ; ;   </AUTHOR>
+</MAN>

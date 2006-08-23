@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getvalue</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>November 1993</DATE>
+  <SHORT_DESCRIPTION name="getvalue"> xwindow dialog for data acquisition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>desc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of strings, dialog general comment</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>labels</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: n column vector of strings, <VERB>labels(i)</VERB> is the label of  the ith required value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>typ</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: <VERB>list(typ_1,dim_1,..,typ_n,dim_n)</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>typ_i</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: defines the type of the ith value, may have the following values:</SP>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>&quot;mat&quot;  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: for constant matrix</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>&quot;col&quot;  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: for constant column vector</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>&quot;row&quot;  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: for constant row vector</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>&quot;vec&quot;  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: for  constant vector</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>&quot;str&quot;  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: for string</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>&quot;lis&quot;  </PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: for list</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>dim_i</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: defines the size of the ith value it must be a integer or a 2-vector of integer, -1 stands for undefined dimension</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ini</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: n column vector of strings, <VERB>ini(i)</VERB> gives the suggested response for the ith required value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ok</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: boolean ,%t if ok button pressed, %f if cancel button pressed</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: contains the ith value if ok=%t. If left hand side has one more <VERB>xi</VERB> than required values the last  <VERB>xi</VERB> contains the vector of answered strings.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function encapsulate <VERB>x_mdialog</VERB> function with error checking,
+    evaluation of numerical response, ...</P>
+  </DESCRIPTION>
+  <SECTION label="Remarks">
+    <P>
+    All valid expressions can be used as answers; for matrices  and vectors <VERB>getvalues</VERB> automatically adds [ ] around the given answer before numeric evaluation.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+labels=["magnitude";"frequency";"phase    "];
+[ok,mag,freq,ph]=getvalue("define sine signal",labels,...
+     list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>x_mdialog</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>x_matrix</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>x_dialog</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer ; ;   </AUTHOR>
+</MAN>

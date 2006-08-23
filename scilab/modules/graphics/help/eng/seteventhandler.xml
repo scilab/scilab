@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>seteventhandler</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
+  <SHORT_DESCRIPTION name="seteventhandler"> set an event handler for
+  the current graphic window</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>seteventhandler(sfun_name)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>seteventhandler('')   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sfun_name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The name of the Scilab function which is
+  intended to handle the events</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The function allows the user to set a particular event handler for
+    the current graphic window. <VERB>seteventhandler('') </VERB>
+    removes the handler.
+    </P>
+    <P>
+    The event handler is defined by a Scilab function whose calling
+    sequence must be <VERB>function sfun_name(win,x,y,ibut)</VERB>, where
+    </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+        <P><VERB>win</VERB> represents the number of the window where the
+    event had occured.
+   </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+        <P><VERB>x,y</VERB> are the coordinates of the pointer (in pixels), when the event
+    has occured
+    </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+        <P><VERB>ibut</VERB>is the event type:</P>
+        <ITEMIZE>
+          <ITEM label="ibut==0">
+            <SP>: Left mouse button has been pressed</SP>
+          </ITEM>
+	  <ITEM label="ibut==1">
+            <SP>: Middle mouse button has been pressed</SP>
+          </ITEM>
+	  <ITEM label="ibut==2">
+            <SP>: Right mouse button has been pressed</SP>
+	    <P></P>
+          </ITEM>
+
+	  <ITEM label="ibut==3">
+            <SP>: Left mouse button has been clicked</SP>
+          </ITEM>
+	  <ITEM label="ibut==4">
+            <SP>: Middle mouse button has been clicked</SP>
+          </ITEM>
+	  <ITEM label="ibut==5">
+            <SP>: Right mouse button has been clicked</SP>
+	    <P></P>
+          </ITEM>
+
+	  <ITEM label="ibut==10">
+            <SP>: Left mouse button has been double-clicked</SP>
+          </ITEM>
+	  <ITEM label="ibut==11">
+            <SP>: Middle mouse button has been double-clicked</SP>
+          </ITEM>
+	  <ITEM label="ibut==12">
+            <SP>: Right mouse button has been double-clicked</SP>
+	    <P></P>
+          </ITEM>
+
+          <ITEM label="ibut==-5">
+            <SP>: Left mouse button has been released</SP>
+          </ITEM>
+          <ITEM label="ibut==-4">
+            <SP>: Middle mouse button has been released</SP>
+          </ITEM>
+          <ITEM label="ibut==-3">
+            <SP>: Right mouse button has been released</SP>
+	    <P></P>
+          </ITEM>
+
+          <ITEM label="ibut==-1">
+            <SP>: pointer has moved</SP>
+	    <P></P>
+          </ITEM>
+
+          <ITEM label="ibut &gt; =32">
+            <SP>: key with ascii code ascii(ibut) has been pressed</SP>
+          </ITEM>
+          <ITEM label="ibut &lt; =-32">
+            <SP>: key with ascii code ascii(-ibut)   has been released</SP>
+	    <P></P>
+          </ITEM>
+	
+          <ITEM label="ibut &gt; =1000+32">
+            <SP>: key with ascii code ascii(ibut-1000) has been pressed while CTRL
+	    key pressed</SP>
+          </ITEM>
+          <ITEM label="ibut==-1000">
+            <SP>: graphic window has been closed</SP>
+          </ITEM>
+        </ITEMIZE>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+   function my_eventhandler(win,x,y,ibut)
+      if ibut==-1000 then return,end
+      [x,y]=xchange(x,y,'i2f')
+       xinfo(msprintf('Event code %d at mouse position is (%f,%f)',ibut,x,y))
+   endfunction
+   plot2d()
+   seteventhandler('my_eventhandler')
+   //now:
+   //   -  move the mouse over the graphic window
+   //   -  press and release keys shifted or not with Ctrl pressed or not
+   //   -  press button, wait a little release
+   //   -  press and release button
+   //   -  double-click button
+
+
+   seteventhandler('') //suppress the event handler
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addmenu</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xgetmouse</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xclick</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xchange</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

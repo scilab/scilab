@@ -68,7 +68,7 @@
 #define  IN_matus2  24  
 
 #define  IN_xawelm  25
-#include "../../../../routines/menusX/menusX.fundef"  
+#include "../../gui/sci_gateway/gui.fundef"  
 
 #define  IN_matimp  26
 #include "../../../../routines/interf/imp.fundef"	  
