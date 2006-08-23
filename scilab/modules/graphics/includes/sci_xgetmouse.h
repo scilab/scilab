@@ -1,0 +1,21 @@
+/*------------------------------------------------------------------------*/
+/* file: sci_xgetmouse.h                                                  */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
+/* desc : interface for sci_xgetmouse routine                             */
+/*------------------------------------------------------------------------*/
+
+#ifndef _INT_XGETMOUSE_H_
+#define _INT_XGETMOUSE_H_
+
+/**
+* interface function for the xgetmouse routine :
+* [rep,win] = xgetmouse([flag],[sel])
+*
+* @param[in] fname     name of the routine (ie xgetmouse)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_xgetmouse( char * fname, unsigned long fname_len ) ;
+
+#endif /* _INT_XGETMOUSE_H_ */

@@ -490,6 +490,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xgetmouse.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xgrid.c"
 				>
 			</File>
@@ -832,6 +836,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xgetech.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xgetmouse.h"
 				>
 			</File>
 			<File
