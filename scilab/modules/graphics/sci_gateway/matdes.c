@@ -163,22 +163,7 @@ extern sciPointObj *paxesmdl;
 
 
 
-/*-----------------------------------------------------------------------------------*/
-int sciunzoom(char *fname,unsigned long fname_len)
-{
-  CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
 
-  if ( Rhs == 0 )
-    unzoom();
-  else {
-    int m,n,l,i;
-    GetRhsVar(1,"h",&m,&n,&l); 
-    for (i=0;i<m*n;i++) unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle((long) *hstk(l+i))); /** Correction Bug 1476 + Warning Windows **/
-  }
-  LhsVar(1)=0; 
-  return 0;
-} 
 
 
 /*-----------------------------------------------------------------------------------*/

@@ -94,7 +94,7 @@ extern int HomeFunction                   _PARAMS((char *fname, unsigned long fn
 extern int sci_set_posfig_dim             _PARAMS((char *fname,unsigned long fname_len));
 extern int XSaveNative                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_zoom_rect                  _PARAMS((char *fname, unsigned long fname_len));
-extern int sciunzoom                      _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_unzoom                     _PARAMS((char *fname,unsigned long fname_len));
 extern int sci_xs2bmp                     _PARAMS((char *fname,unsigned long fname_len));
 extern int sci_xs2emf                     _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu                      _PARAMS((char *fname,unsigned long fname_len));
@@ -178,7 +178,7 @@ static MatdesTable Tab[]={
 	{XSaveNative,"xsnative"},
 	{ShowWindowFunction,"show_window"},
 	{sci_zoom_rect,"zoom_rect"},
-	{sciunzoom,"unzoom"},
+	{sci_unzoom,"unzoom"},
 	{sci_StringBox,"StringBox"},
 	/* NG beg */
 	{move,"move"},

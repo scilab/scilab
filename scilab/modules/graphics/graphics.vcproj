@@ -466,6 +466,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_unzoom.c"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_winsid.c"
 				>
 			</File>
@@ -940,6 +944,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_StringBox.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_unzoom.h"
 				>
 			</File>
 			<File

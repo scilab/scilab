@@ -1,33 +1,35 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_zoom_rect.c                                                  */
+/* file: sci_unzoom.h                                                  */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy, Jean-Philipe Chancelier  */
-/* desc : interface for zoom_rect routine                                 */
+/* desc : interface for unzoom routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_zoom_rect.h"
+#include "sci_unzoom.h"
 #include "stack-c.h"
 #include "PloEch.h"
+#include "GetProperty.h"
 
 /*-----------------------------------------------------------------------------------*/
-int sci_zoom_rect(char *fname,unsigned long fname_len)
+int sci_unzoom(char *fname,unsigned long fname_len)
 {
-  int m,n,l;
-  int x_pixel=0,y_pixel=0;
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
-  if (Rhs <= 0) 
+
+  if ( Rhs == 0 )
   {
-    zoom();
+    unzoom();
   }
   else
   {
-    GetRhsVar(1,"d",&m,&n,&l); 
-    CheckLength(1,4,m*n);
-    zoom_box(stk(l),&x_pixel,&y_pixel);
+    int m,n,l,i;
+    GetRhsVar(1,"h",&m,&n,&l); 
+    for (i=0;i<m*n;i++)
+    {
+      unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle((long) *hstk(l+i))); /** Correction Bug 1476 + Warning Windows **/
+    }
   }
-
   LhsVar(1)=0; 
   return 0;
-} 
+}
 /*-----------------------------------------------------------------------------------*/

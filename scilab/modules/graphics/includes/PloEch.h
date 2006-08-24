@@ -6,6 +6,8 @@
 #ifndef _SCI_ECH
 #define _SCI_ECH
 
+#include "ObjectStructure.h"
+
 typedef struct wcscalelist 
 {
   int flag ;                            /* zero when this is a default scale */
@@ -61,6 +63,9 @@ int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[
 
 int zoom( void ) ;
 int zoom_box( double * bbox, int * x_pixel, int * y_pixel ) ;
+
+void unzoom( void ) ;
+void unzoom_one_axes( sciPointObj * psousfen ) ;
 
 extern int XScale(double x);
 extern int XLogScale(double x);
