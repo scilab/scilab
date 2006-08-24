@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_unzoom.h                                                  */
+/* file: sci_unzoom.h                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy, Jean-Philipe Chancelier  */
 /* desc : interface for unzoom routine                                    */
