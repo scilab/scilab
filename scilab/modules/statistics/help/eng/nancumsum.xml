@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>nancumsum</TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>17-Sep-2003</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="nancumsum">  Thos function returns
   the cumulative sum of the values of a matrix</SHORT_DESCRIPTION>
 
