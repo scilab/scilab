@@ -12,12 +12,13 @@
  *                : change [xmi,xmax] for pretty graduation 
  *--------------------------------------------------------------------------*/
 
-#include <math.h>
 #include <string.h>
 #include <stdio.h>
 #include "math_graphics.h"
 #include "Graphics.h" 
 #include "Format.h"
+#include "MALLOC.h"
+#include "GetProperty.h"
 
 /* Add those lines for FD algo on Theticks */
 #define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
@@ -881,6 +882,270 @@ int GradEqual(const double grads[],const int *ngrads)
   return 1;
 }
 
+/*-----------------------------------------------------------------------------------*/
+int ComputeC_format(sciPointObj * pobj, char * c_format)
+{
+  int i,j;
+  char pos;
+  char xy_type;
+  double *x = NULL;
+  double *y = NULL;
+  int *nx = NULL;
+  int *ny = NULL;
+  char * format = NULL;
+  sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  int  xpassed = 0, ypassed = 0, Nx, Ny, x3, y3;
+
+
+  if(sciGetEntityType(pobj) != SCI_AXES){
+    sciprint("Error: ComputeFormat must be used with SCI_AXES objects\n");
+    return -1;
+  }
+
+  pos = pAXES_FEATURE(pobj)->dir;
+  xy_type = pAXES_FEATURE (pobj)->tics;
+  /* Allocating space before re-copying values to not polluate the good values 
+  that will be used inside Axes.c */
+  if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  }
+
+  if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  }
+
+  if((nx=MALLOC(sizeof(int)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  }  
+
+  if((ny=MALLOC(sizeof(int)))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  } 
+
+  if((format=MALLOC(5*(sizeof(char ))+1))==NULL){
+    sciprint("Memory allocation failed in ComputeFormat\n");
+    return -1;
+  } 
+
+  nx[0] = pAXES_FEATURE (pobj)->nx;
+  for(i=0;i<(*nx);i++)  x[i] = pAXES_FEATURE(pobj)->vx[i];  
+
+  ny[0] = pAXES_FEATURE (pobj)->ny;
+  for(i=0;i<(*ny);i++)  y[i] = pAXES_FEATURE(pobj)->vy[i];
+
+  format = pAXES_FEATURE (pobj)->format;
+
+  /* Algo. here */
+  if(xy_type == 'i') {  
+    switch ( pos ) {
+    case 'u' : case 'd' :  
+      if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
+        while (x[3]>10)  x[3]=floor(x[3]/2); 
+      else{
+        if(x[3] > 12){ /* F.Leray arbitrary value=12 for the moment */
+          x3=(int)x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+          for(j=x3-1;j>1;j--)
+            if(x3%j == 0){
+              x[3]=j; 
+              xpassed = 1;
+            }
+            if(xpassed != 1) x[3] = 1;
+        }
+      }
+
+      break;
+    case 'r' : case 'l' :
+      if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+        while (y[3]>10)  y[3]=floor(y[3]/2);
+      else{
+        if(y[3] > 12){
+          y3=(int)y[3];
+          for(j=y3-1;j>1;j--)
+            if(y3%j == 0){
+              y[3]=j;
+              ypassed = 1;
+            }
+            if(ypassed != 1) y[3] = 1;
+        }
+      }
+    }
+  }
+
+
+  /** Real to Pixel values **/
+  switch ( xy_type ) 
+  {
+  case 'v' : Nx= *nx; Ny= *ny; break;
+  case 'r' :
+    switch ( pos ) {
+  case 'u' : case 'd' : Nx = (int) x[2]+1; break;
+  case 'r' : case 'l' : Ny = (int) y[2]+1; break;
+    }
+    break;
+  case 'i' : 
+    switch ( pos ) {
+  case 'u' : case 'd' : Nx = (int) x[3]+1; break; 
+  case 'r' : case 'l' : Ny = (int) y[3]+1; break;
+    }
+    break;
+  default: 
+    sciprint("Sci_Axis: wrong type argument xy_type\r\n");
+  }
+  switch (pos ) 
+  {
+  case 'u' : 
+  case 'd' :
+    /** Horizontal axes **/
+    /*   barlength =  (integer) (Cscale.WIRect1[3]/50.0); */
+    /** compute a format **/
+    /*   if (str == NULL && format == NULL )   */
+    if (format == NULL )  
+      switch (xy_type ) {
+  case 'v' : ChoixFormatE1(c_format,x,Nx);break;
+  case 'r' : ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);break;
+  case 'i' : 
+    ChoixFormatE (c_format,
+      (x[0] * exp10(x[2])),
+      (x[1] * exp10(x[2])),
+      ((x[1] * exp10(x[2])) - (x[0] * exp10(x[2])))/x[3]); break; /* Adding F.Leray 06.05.04 */
+
+    }
+    break;
+    /** the horizontal segment **/
+  case 'r' : 
+  case 'l' :
+
+    /** Vertical axes **/
+    /*   barlength =  (integer) (Cscale.WIRect1[2]/75.0); */
+    /*   if (str == NULL &&  format == NULL )   */
+    if (format == NULL ) 
+      switch (xy_type ) {
+  case 'v' : ChoixFormatE1(c_format,y,Ny);break;
+  case 'r' : ChoixFormatE(c_format,y[0],y[1],(y[1]-y[0])/y[2]);break;
+  case 'i' : 
+    ChoixFormatE (c_format,
+      (y[0] * exp10(y[2])),
+      (y[1] * exp10(y[2])),
+      ((y[1] * exp10(y[2])) - (y[0] * exp10(y[2])))/y[3]); break; /* Adding F.Leray 06.05.04 */
+    }
+    /** the vertical segment **/
+    break;
+  }
+
+  /* c_format should be filled now */
+
+  FREE(x); x = NULL;
+  FREE(y); y = NULL;
+  FREE(nx); nx = NULL;
+  FREE(ny); ny = NULL;
+  FREE(format); format = NULL;
+
+  return 0;
+
+}
+/*-----------------------------------------------------------------------------------*/
+int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim )
+{
+  int i;
+  sciAxes * ppaxes = pAXES_FEATURE (pobj);
+  double * val = NULL; /* reprensents ppaxes->x or ppaxes->y */
+  int nval;
+
+  int n;
+
+  /* draw an horizontal axis : YES (horizontal axis) or NO (vertical axis) */
+  BOOL ishoriz = (ppaxes->nx > ppaxes->ny)? TRUE : FALSE; 
+
+  if(ishoriz == TRUE){
+    val  = ppaxes->vx;
+    nval = ppaxes->nx; 
+  }
+  else{
+    val  = ppaxes->vy;
+    nval = ppaxes->ny;
+  }
+
+  if(xy_type == 'v')
+  {
+    *N = n = nval;
+
+    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
+      sciprint("No memory left for allocating temporary tics_labels\n");
+      return -1;
+    }
+
+    for(i=0;i<n;i++)
+      (*vector)[i] = val[i];
+  }
+  else if(xy_type == 'r')
+  {
+    double step = 0;
+
+    *N = n = (int)val[2]+1; /* intervals number is given by  ppaxes->x or ppaxes->y */
+
+    if(checkdim){
+      if(nval != 3)
+        sciprint("Warning: tics_coord must be changed, xy_type is 'r' and tics_coord dimension is not 3\n");
+
+      if(nval < 3){
+        sciprint("Error: tics_coord must be changed FIRST, xy_type is 'r' and tics_coord dimension < 3\n");
+        *vector = (double *) NULL;
+        return -1;
+      }
+    }
+
+    if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
+      sciprint("No memory left for allocating temporary tics_labels");
+      return -1;
+    }
+
+    step = (val[1] - val[0])/(n-1);
+
+    for(i=0;i<n-1;i++)
+      (*vector)[i] = val[0] + i*step;
+
+    (*vector)[n-1] = val[1]; /* xmax */
+
+  }
+  else if(xy_type == 'i')
+  {
+    double step = 0;
+
+    *N = n = (int)val[3]+1;
+
+    if(checkdim){
+      if(nval != 4)
+        sciprint("Warning: tics_coord must be changed, xy_type is 'i' and tics_coord dimension is not 4\n");
+
+      if(nval < 4){
+        sciprint("Error: tics_coord must be changed FIRST, xy_type is 'i' and tics_coord dimension < 4\n");
+        *vector = (double *) NULL;
+        return -1;
+      }
+    }
+
+    if((*vector =(double *)  MALLOC(n*sizeof(double ))) == NULL){
+      sciprint("No memory left for allocating temporary tics_labels");
+      return -1;
+    }
+
+    step = (val[1]*exp10(val[2]) - val[0]*exp10(val[2]))/val[3];
+
+
+    for(i=0;i<n-1;i++)
+      (*vector)[i] = val[0]*exp10(val[2]) + i*step;
+
+    (*vector)[n-1] = val[1]*exp10(val[2]); /* xmax */
+
+  }
+
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
 
 #undef ROUND
 #undef ABS

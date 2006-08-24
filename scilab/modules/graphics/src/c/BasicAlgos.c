@@ -1,12 +1,12 @@
 /*------------------------------------------------------------------------*/
-/* file: SimpleAlgos.c                                                    */
+/* file: BasicAlgos.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
 /* desc : Several basic algorithm which can be used in several places in  */
 /*        the code.                                                       */
 /*------------------------------------------------------------------------*/
 
-#include "SimpleAlgos.h"
+#include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin( double x[], int n )
@@ -32,4 +32,11 @@ double sciFindStPosMin( double x[], int n )
   /* if we have found at least one positive value in x, min strictly positive */
   return min ;
 }
+/*------------------------------------------------------------------------*/
+int C2F(entier2d)( integer * n, double * dx,integer * s )
+{
+  integer ix;
+  for (ix = *n -1 ; ix >= 0; --ix) { dx[ix] = (double) s[ix]; }
+  return 0;
+}  
 /*------------------------------------------------------------------------*/

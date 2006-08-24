@@ -23,7 +23,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
-#include "SimpleAlgos.h"
+#include "BasicAlgos.h"
 
 
 #include "MALLOC.h" /* MALLOC */

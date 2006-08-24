@@ -967,3 +967,51 @@ int updateMerge( sciPointObj * pSubwin )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------------*/
+void AllGraphWinDelete( void )
+{
+  if (version_flag() == 0) /*  New Graphic Mode */
+  {
+    integer iflag=0,num=0;
+    int *ArrayWGraph=NULL;
+
+    sciGetIdFigure (ArrayWGraph,&num,&iflag);
+
+    if (num > 0) 
+    {
+      int i=0;
+      ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
+
+      iflag = 1;
+      sciGetIdFigure (ArrayWGraph,&num,&iflag);
+
+      for (i=0;i<num;i++)
+      {
+        C2F (deletewin) (&ArrayWGraph[i]);
+        FREE (ArrayWGraph);
+      }
+      ArrayWGraph=NULL;
+    }
+  }
+  else /* Old Graphics mode */
+  {	
+    integer iflag = 0, num, *ids = (integer *) 0;
+
+    C2F (getwins) (&num, ids, &iflag);
+    if (num > 0)
+    {
+      ids = MALLOC ((unsigned) num * sizeof (integer));
+    }
+
+    iflag = 1;
+
+    if (ids != NULL)
+    {
+      int i;
+      C2F (getwins) (&num, ids, &iflag);
+      for (i = 0; i < num; i++)
+        C2F (deletewin) (&ids[i]);
+      FREE (ids);
+    }
+  }
+}
+/*-----------------------------------------------------------------------------------------*/

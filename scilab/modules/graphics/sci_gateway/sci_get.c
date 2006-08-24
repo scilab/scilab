@@ -20,6 +20,7 @@
 #include "DestroyObjects.h"
 #include "StringMatrix.h"
 #include "Xcall1.h"
+#include "Format.h"
 
 #include "intcommongraphics.h"
 

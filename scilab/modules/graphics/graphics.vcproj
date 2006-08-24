@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\BasicAlgos.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\BuildObjects.c"
 				>
 			</File>
@@ -402,7 +406,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_drawnow.c"
+				RelativePath=".\sci_gateway\sci_drawnow.c"
 				>
 			</File>
 			<File
@@ -502,7 +506,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_winsid.c"
+				RelativePath=".\sci_gateway\sci_winsid.c"
 				>
 			</File>
 			<File
@@ -702,10 +706,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\SimpleAlgos.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\StringMatrix.c"
 				>
 			</File>
@@ -730,6 +730,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\includes\BasicAlgos.h"
+				>
+			</File>
 			<File
 				RelativePath=".\includes\bcg.h"
 				>
@@ -1216,10 +1220,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\SetProperty.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\SimpleAlgos.h"
 				>
 			</File>
 			<File

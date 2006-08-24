@@ -31,6 +31,7 @@
 
 #include "math_graphics.h"
 #include "graphicSession.h"
+#include "Format.h"
 
 #include "MALLOC.h" /* MALLOC */
 

@@ -106,7 +106,6 @@ extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 extern void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG); /* DRAWINGS */
 extern int labels2D_draw(sciPointObj * psubwin); /* DRAWINGS */
 
-extern int ComputeC_format(sciPointObj * pobj, char * c_format); /* DRAWINGS */ /* inside matdes.c */
 extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input); /* DRAWINGS */
 extern int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input);
 extern int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */

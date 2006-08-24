@@ -15,7 +15,7 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 #include "GetProperty.h"
-#include "SimpleAlgos.h"
+#include "BasicAlgos.h"
 #include "sciCall.h"
 #include "dr1Call.h"
 #include "DefaultCommandArg.h"

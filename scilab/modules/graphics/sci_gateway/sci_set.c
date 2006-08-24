@@ -23,6 +23,7 @@
 
 #include "intcommongraphics.h"
 #include "Xcall1.h"
+#include "Format.h"
 
 
 #include "MALLOC.h" /* MALLOC */
