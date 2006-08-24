@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdfbet</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfbet"> cumulative distribution function Beta distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdfbet(&quot;PQ&quot;,X,Y,A,B)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[X,Y]=cdfbet(&quot;XY&quot;,A,B,P,Q)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[A]=cdfbet(&quot;A&quot;,B,P,Q,X,Y)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[B]=cdfbet(&quot;B&quot;,P,Q,X,Y,A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,X,Y,A,B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: five real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The integral from 0 to X of the beta distribution (Input range: [0, 1].)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 1-P</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X,Y (Y=1-X)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Upper limit of integration of beta density (Input range: [0,1],  Search range: [0,1]) A,B : The two parameters of the beta density (input range: (0, +infinity), Search range: [1D-300,1D300] )</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the beta distribution given
+    values for the others (The beta density is proportional to 
+    <VERB>t^(A-1) * (1-t)^(B-1)</VERB>.</P>
+    <P>
+    Cumulative distribution function  (P)  is calculated directly by
+    code associated with the following reference.</P>
+    <P>
+    DiDinato, A. R. and Morris,  A.   H.  Algorithm 708: Significant
+    Digit Computation of the Incomplete  Beta  Function Ratios.  ACM
+    Trans. Math.  Softw. 18 (1993), 360-373.</P>
+    <P>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cdfnor  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="cdfnor"> fonction de répartition de la distribution normale  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,Q]=cdfnor(&quot;PQ&quot;,X,Mean,Std)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[X]=cdfnor(&quot;X&quot;,Mean,Std,P,Q)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Mean]=cdfnor(&quot;Mean&quot;,Std,P,Q,X)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Std]=cdfnor(&quot;Std&quot;,P,Q,X,Mean)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q,X,Mean,Std  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : six vecteurs réels de même taille.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : L&apos;intégrale de -infini à X de la densité normale En entrée : (0,1].
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Borne supérieure d&apos;intégration En entrée : ( -infini, +infini)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Mean  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : moyenne de la densité En entrée : (-infini, +infini)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Sd  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : écart-type de la densité En entrée : (0, +infini).
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Étant donnés les autres, calcule un paramètre de la distribution normale.
+  </P>
+  <P>
+    Une version légèrement modifiée de ANORM :
+  </P>
+  <P>
+    Cody, W.D. (1993). &quot;ALGORITHM 715: SPECFUN - A Portable FORTRAN
+    Package of Special Function Routines and Test Drivers&quot;
+    acm Transactions on Mathematical Software. 19, 22-32.
+  </P>
+  <P>
+    est utilisée.
+  </P>
+  <P>
+    Les fonctions rationnelles des pages 90-95 de 
+  </P>
+  <P>
+    Kennedy and Gentle,
+    Statistical  Computing,  Marcel  Dekker, NY,  1980 
+  </P>
+  <P>
+    sont utilisées comme valeurs de départ pour les itérations de Newton calculant l&apos;inverse de la distribution.  Aucune recherche n&apos;est donc nécessaire pour aucun des paramètres.
+  </P>
+  <P>
+    Pour X &lt; -15, le développement asymptotique de la loi normale est utilisé comme valeur de départ pour trouver l&apos;inverse. Il s&apos;agit de la formule 26.2.12 de Abramowitz et Stegun.
+  </P>
+  <P>
+    La densité normale est proportionnelle à
+    exp( - 0.5 * (( X - MEAN)/SD)**2)
+  </P>
+  <P>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </P>
+  </DESCRIPTION>
+</MAN>

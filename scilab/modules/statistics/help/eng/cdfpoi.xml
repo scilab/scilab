@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdfpoi</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfpoi"> cumulative distribution function poisson distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdfpoi(&quot;PQ&quot;,S,Xlam)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[S]=cdfpoi(&quot;S&quot;,Xlam,P,Q)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Xlam]=cdfpoi(&quot;Xlam&quot;,P,Q,S);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,S,Xlam</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: four real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  The cumulation from 0 to S of the poisson density. Input range: [0,1].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:Upper limit of cumulation of the Poisson. Input range: [0, +infinity). Search range: [0,1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Xlam</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  Mean of the Poisson distribution. Input range: [0, +infinity). Search range: [0,1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the Poisson
+    distribution given values for the others.</P>
+    <P>
+    Formula   26.4.21  of   Abramowitz  and   Stegun,   Handbook  of
+    Mathematical Functions (1966) is used  to reduce the computation
+    of  the cumulative distribution function to that  of computing a
+    chi-square, hence an incomplete gamma function.</P>
+    <P>
+    Cumulative  distribution function  (P) is  calculated  directly.
+    Computation of other parameters involve a seach for a value that
+    produces  the desired value of  P.   The  search relies  on  the
+    monotinicity of P with the other parameter.</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

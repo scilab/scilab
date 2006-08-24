@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdfchi</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfchi"> cumulative distribution function chi-square distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdfchi(&quot;PQ&quot;,X,Df)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[X]=cdfchi(&quot;X&quot;,Df,P,Q);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Df]=cdfchi(&quot;Df&quot;,P,Q,X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,Xn,Df</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: four real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  The integral from 0 to X of the chi-square distribution. Input range: [0, 1].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Upper limit of integration of the non-central chi-square distribution. Input range: [0, +infinity). Search range: [0,1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Df</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  Degrees of freedom of the chi-square distribution. Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the chi-square
+    distribution given values for the others.</P>
+    <P>
+    Formula    26.4.19   of Abramowitz  and     Stegun, Handbook  of
+    Mathematical Functions   (1966) is used   to reduce the chi-square
+    distribution to the incomplete distribution.</P>
+    <P>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

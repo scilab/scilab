@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdff"> cumulative distribution function F distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdff(&quot;PQ&quot;,F,Dfn,Dfd)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[F]=cdff(&quot;F&quot;,Dfn,Dfd,P,Q);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Dfn]=cdff(&quot;Dfn&quot;,Dfd,P,Q,F);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Dfd]=cdff(&quot;Dfd&quot;,P,Q,F,Dfn)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,F,Dfn,Dfd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: five real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  The integral from 0 to F of the f-density. Input range: [0,1].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Upper limit of integration of the f-density. Input range: [0, +infinity). Search range: [0,1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Dfn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Degrees of freedom of the numerator sum of squares. Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Dfd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Degrees of freedom of the denominator sum of squares. Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the F distribution
+    given values for the others.</P>
+    <P>
+    Formula   26.6.2   of   Abramowitz   and   Stegun,  Handbook  of
+    Mathematical  Functions (1966) is used to reduce the computation
+    of the  cumulative  distribution function for the  F  variate to
+    that of an incomplete beta.</P>
+    <P>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</P>
+    <P>
+    The value of the  cumulative  F distribution is  not necessarily
+    monotone in  either degrees of freedom.  There  thus may  be two
+    values  that  provide a given CDF  value.   This routine assumes
+    monotonicity and will find an arbitrary one of the two values.</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

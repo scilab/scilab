@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdfnor</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfnor"> cumulative distribution function normal distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdfnor(&quot;PQ&quot;,X,Mean,Std)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[X]=cdfnor(&quot;X&quot;,Mean,Std,P,Q)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Mean]=cdfnor(&quot;Mean&quot;,Std,P,Q,X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Std]=cdfnor(&quot;Std&quot;,P,Q,X,Mean)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,X,Mean,Std</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: six real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The integral from -infinity to X of the normal density. Input range: (0,1].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:Upper limit of integration of the normal-density. Input range: ( -infinity, +infinity)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Mean</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  The mean of the normal density. Input range: (-infinity, +infinity)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Sd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  Standard Deviation of the normal density. Input range: (0, +infinity).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the normal
+    distribution given values for the others.</P>
+    <P>
+    A slightly modified version of ANORM from
+    Cody, W.D. (1993). &quot;ALGORITHM 715: SPECFUN - A Portabel FORTRAN
+    Package of Special Function Routines and Test Drivers&quot;
+    acm Transactions on Mathematical Software. 19, 22-32.
+    is used to calulate the  cumulative standard normal distribution.</P>
+    <P>
+    The rational functions from pages  90-95  of Kennedy and Gentle,
+    Statistical  Computing,  Marcel  Dekker, NY,  1980 are  used  as
+    starting values to Newton's Iterations which compute the inverse
+    standard normal.  Therefore no  searches  are necessary for  any
+    parameter.</P>
+    <P>
+    For X &lt; -15, the asymptotic expansion for the normal is used  as
+    the starting value in finding the inverse standard normal.
+    This is formula 26.2.12 of Abramowitz and Stegun.</P>
+    <P>
+    The normal density is proportional to
+    exp( - 0.5 * (( X - MEAN)/SD)**2)</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

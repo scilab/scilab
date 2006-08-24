@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cdff  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="cdff"> fonction de répartition de la distribution de Fisher  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,Q]=cdff(&quot;PQ&quot;,F,Dfn,Dfd)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[F]=cdff(&quot;F&quot;,Dfn,Dfd,P,Q);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Dfn]=cdff(&quot;Dfn&quot;,Dfd,P,Q,F);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Dfd]=cdff(&quot;Dfd&quot;,P,Q,F,Dfn)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q,F,Dfn,Dfd  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : 5 vecteurs réels de même taille.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  Intégrale de 0 à F de la densité En entrée : [0,1].
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>F  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Borne supérieure d&apos;intégration En entrée : [0, +infini). En recherche : [0,1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Dfn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Degrés de liberté de la somme des carrés au numérateur En entrée : (0, +infini). En recherche : [ 1E-300, 1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Dfd  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Degrés de liberté de la somme des carrés au dénominateur En entrée : (0, +infini). En recherche : [ 1E-300, 1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Étant donnés les autres, calcule un paramètre de la distribution de Fisher.
+  </P>
+  <P>
+    La formule  26.6.2  de   Abramowitz  et  Stegun,   Handbook   of
+    Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d&apos;une loi beta incomplète.
+  </P>
+  <P>
+    Le calcul des autres paramètres implique une recherche d&apos;une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </P>
+  <P>
+    La valeur de la fonction de répartition de la distribution de Fisher n&apos;est pas monotone.  
+    Il peut y avoir deux valeurs du paramètre donnant une valeur de donnée de la fonction de répartition.  
+    Cette fonction suppose qu&apos;elle est monotone et renvoie arbitrairement une des deux valeurs.
+  </P>
+  <P>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </P>
+  </DESCRIPTION>
+</MAN>

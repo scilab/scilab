@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdffnc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdffnc"> cumulative distribution function non-central f-distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdffnc(&quot;PQ&quot;,F,Dfn,Dfd,Pnonc)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[F]=cdffnc(&quot;F&quot;,Dfn,Dfd,Pnonc,P,Q);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Dfn]=cdffnc(&quot;Dfn&quot;,Dfd,Pnonc,P,Q,F);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Dfd]=cdffnc(&quot;Dfd&quot;,Pnonc,P,Q,F,Dfn)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Pnonc]=cdffnc(&quot;Pnonc&quot;,P,Q,F,Dfn,Dfd);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,F,Dfn,Dfd,Pnonc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: six real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>The integral from 0 to F of the non-central f-density. Input range: [0,1-1E-16).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Upper limit of integration of the non-central f-density. Input range: [0, +infinity). Search range: [0,1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Dfn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Degrees of freedom of the numerator sum of squares. Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Dfd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Degrees of freedom of the denominator sum of squares. Must be in range: (0, +infinity). Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Pnonc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The non-centrality parameter Input range: [0,infinity) Search range: [0,1E4]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the Non-central F
+    distribution given values for the others.</P>
+    <P>
+    Formula  26.6.20   of   Abramowitz   and   Stegun,  Handbook  of
+    Mathematical  Functions (1966) is used to compute the cumulative
+    distribution function.</P>
+    <P>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</P>
+    <P>
+    The computation time  required for this  routine is proportional
+    to the noncentrality  parameter  (PNONC).  Very large  values of
+    this parameter can consume immense  computer resources.  This is
+    why the search range is bounded by 10,000.</P>
+    <P>
+    The  value  of the  cumulative  noncentral F distribution is not
+    necessarily monotone in either degrees  of freedom.  There  thus
+    may be two values that provide a given  CDF value.  This routine
+    assumes monotonicity  and will find  an arbitrary one of the two
+    values.</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cdfbet  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="cdfbet"> fonction de répartition de la distribution Beta  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,Q]=cdfbet(&quot;PQ&quot;,X,Y,A,B)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[X,Y]=cdfbet(&quot;XY&quot;,A,B,P,Q)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[A]=cdfbet(&quot;A&quot;,B,P,Q,X,Y)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[B]=cdfbet(&quot;B&quot;,P,Q,X,Y,A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q,X,Y,A,B  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : cinq vecteurs réels de même taille.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : L&apos;intégrale de 0 à X de la distribution beta (En entrée : [0, 1].)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Q  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : 1-P
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X,Y (Y=1-X)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Borne supérieure d&apos;intégration  (En entrée : [0,1],  En recherche : [0,1]) A,B : Les deux paramètres de la densité (En entrée: (0,+infini), En recherche : [1D-300,1D300] ) 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Étant donnés les autres, calcule un paramètre de la distribution beta 
+    (la distribution Beta est proportionnelle à <VERB>t^(A-1) * (1-t)^(B-1)</VERB>).
+  </P>
+  <P>
+    La fonction de répartition  (P)  est calculée directement par le code associé à la référence
+  </P>
+  <P>
+    DiDinato, A. R. and Morris,  A.   H.  Algorithm 708: Significant
+    Digit Computation of the Incomplete  Beta  Function Ratios.  ACM
+    Trans. Math.  Softw. 18 (1993), 360-373.
+  </P>
+  <P>
+    Le calcul des autres paramètres implique une recherche d&apos;une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </P>
+  <P>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </P>
+  </DESCRIPTION>
+</MAN>

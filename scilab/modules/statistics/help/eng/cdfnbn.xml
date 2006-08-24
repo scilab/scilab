@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>cdfnbn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfnbn"> cumulative distribution function  negative binomial distribution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[P,Q]=cdfnbn(&quot;PQ&quot;,S,Xn,Pr,Ompr)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[S]=cdfnbn(&quot;S&quot;,Xn,Pr,Ompr,P,Q)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Xn]=cdfnbn(&quot;Xn&quot;,Pr,Ompr,P,Q,S)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Pr,Ompr]=cdfnbn(&quot;PrOmpr&quot;,P,Q,S,Xn)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q,S,Xn,Pr,Ompr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: six real vectors of the same size.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The cumulation from 0 to S of the  negative binomial distribution. Input range: [0,1].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The upper limit of cumulation of the binomial distribution. There are F or fewer failures before the XNth success. Input range: [0, +infinity). Search range: [0, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Xn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:   The number of successes. Input range: [0, +infinity). Search range: [0, 1E300]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Pr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:   The probability of success in each binomial trial. Input range: [0,1]. Search range: [0,1].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ompr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:   1-PR Input range: [0,1]. Search range: [0,1] PR + OMPR = 1.0</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Calculates any one parameter of the negative binomial
+    distribution given values for the others.</P>
+    <P>
+    The  cumulative  negative   binomial  distribution  returns  the
+    probability that there  will be  F or fewer failures before  the
+    XNth success in binomial trials each of which has probability of
+    success PR.</P>
+    <P>
+    The individual term of the negative binomial is the probability of
+    S failures before XN successes and is
+    Choose <VERB>( S, XN+S-1 ) * PR^(XN) * (1-PR)^S</VERB></P>
+    <P>
+    Formula   26.5.26   of   Abramowitz  and  Stegun,  Handbook   of
+    Mathematical Functions (1966) is used  to  reduce calculation of
+    the cumulative distribution  function to that of  an  incomplete
+    beta.</P>
+    <P>
+    Computation of other parameters involve a seach for a value that
+    produces  the desired  value  of P.   The search relies  on  the
+    monotinicity of P with the other parameter.</P>
+    <P>
+    From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</P>
+  </DESCRIPTION>
+</MAN>

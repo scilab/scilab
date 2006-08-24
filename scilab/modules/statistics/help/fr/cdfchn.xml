@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cdfchn  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="cdfchn"> fonction de répartition de la distribution du chi-deux non centrée   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,Q]=cdfchn(&quot;PQ&quot;,X,Df,Pnonc)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[X]=cdfchn(&quot;X&quot;,Df,Pnonc,P,Q);  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Df]=cdfchn(&quot;Df&quot;,Pnonc,P,Q,X)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Pnonc]=cdfchn(&quot;Pnonc&quot;,P,Q,X,Df)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q,X,Df,Pnonc  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : 5 vecteurs réels de même taille.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  L&apos;intégrale de 0 à X de la distribution.  En entrée : [0, 1-1E-16).
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Borne supérieure d&apos;intégration En entrée : [0, +infini). En recherche : [0,1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Df  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Degrés de liberté de la densité En entrée : (0, +infini). En recherche : [ 1E-300, 1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Pnonc  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : paramètre de décentrage En entrée : [0, +infini). En recherche : [0,1E4]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Étant donnés les autres, calcule un paramètre de la distribution du chi-deux non-centré.
+  </P>
+  <P>
+    La formule  26.4.25  de  &quot;Abramowitz   and   Stegun,  Handbook  of
+    Mathematical  Functions (1966)&quot; est utilisée pour le calcul de la fonction de répartition.
+  </P>
+  <P>
+    Le calcul des autres paramètres implique une recherche d&apos;une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </P>
+  <P>
+    Le temps de calcul est proportionnel au paramètre de décentrage.
+    La plage de recherche est bornée par 10,000 pour limiter le temps de calcul (pouvant devenir énorme pour des grandes valeurs de Pnonc).
+  </P>
+  <P>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </P>
+  </DESCRIPTION>
+</MAN>

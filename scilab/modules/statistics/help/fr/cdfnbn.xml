@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cdfnbn  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="cdfnbn"> fonction de répartition de la distribution binomiale négative  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,Q]=cdfnbn(&quot;PQ&quot;,S,Xn,Pr,Ompr)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[S]=cdfnbn(&quot;S&quot;,Xn,Pr,Ompr,P,Q)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Xn]=cdfnbn(&quot;Xn&quot;,Pr,Ompr,P,Q,S)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Pr,Ompr]=cdfnbn(&quot;PrOmpr&quot;,P,Q,S,Xn)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q,S,Xn,Pr,Ompr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : six vecteurs réels de même taille.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : La somme de 0 à S de la distribution binomiale négative En entrée : [0,1].
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>S  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : Borne supérieure de la somme Il y a F (ou moins) échecs avant le Xième succès. En entrée : [0, +infini). En recherche : [0, 1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Xn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  Le nombre de succès. En entrée : [0, +infini). En recherche : [0, 1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Pr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  La probabilité de succès pour chaque essai binomial En entrée : [0,1]. En recherche : [0,1].
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Ompr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :   1-PR En entrée : [0,1]. En recherche : [0,1] PR + OMPR = 1.0 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Étant donnés les autres, calcule un paramètre de la distribution binomiale négative.
+  </P>
+  <P>
+    Cette distribution renvoie la probabilité d&apos;avoir
+    F échecs ou moins avant un succès dans des essais binomiaux, où la probabilité de succès est PR.
+  </P>
+  <P>
+    Les termes individuels sont égaux à la probabilité de
+    S échecs avant XN succès qui est égale à
+    Choisir( S, XN+S-1 ) * PR^(XN) * (1-PR)^S
+  </P>
+  <P>
+    La formule  26.5.26  de   Abramowitz  et  Stegun,   Handbook   of
+    Mathematical Functions  (1966) est utilisée pour réduire le calcul de la fonction de répartition de la distribution à celle d&apos;une loi beta incomplète.
+  </P>
+  <P>
+    Le calcul des autres paramètres implique une recherche d&apos;une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </P>
+  <P>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </P>
+  </DESCRIPTION>
+</MAN>

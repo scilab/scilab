@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cdfgam  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Dec 1997  </DATE>
+  <SHORT_DESCRIPTION name="cdfgam"> fonction de répartition de la distribution gamma  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,Q]=cdfgam(&quot;PQ&quot;,X,Shape,Scale)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[X]=cdfgam(&quot;X&quot;,Shape,Scale,P,Q)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Shape]=cdfgam(&quot;Shape&quot;,Scale,P,Q,X)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[Scale]=cdfgam(&quot;Scale&quot;,P,Q,X,Shape)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q,X,Shape,Scale  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : 5 vecteurs réels de même taille.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  L&apos;intégrale de 0 à X de la distribution gamma En entrée : [0,1].
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  Borne supérieure d&apos;intégration En entrée : [0, +infini). En recherche : [0,1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Shape  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  Le paramètre de forme de la distribution En entrée : (0, +infini). En recherche : [1E-300,1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Scale  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    :  le paramètre d&apos;échelle de la distribution En entrée : (0, +infini). En recherche : (1E-300,1E300]
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Étant donnés les autres, calcule un paramètre de la distribution gamma.
+  </P>
+  <P>
+    La fonction de répartition (P) est calculée directement par
+    le code associé à
+  </P>
+  <P>
+    DiDinato, A. R. and Morris, A. H. Computation of the  incomplete
+    gamma function  ratios  and their  inverse.   ACM  Trans.  Math.
+    Softw. 12 (1986), 377-393.
+  </P>
+  <P>
+    Le calcul des autres paramètres implique une recherche d&apos;une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+  </P>
+  <P>
+    La distribution gamma est proportionnelle à
+    <VERB>T**(SHAPE - 1) * EXP(- SCALE * T)</VERB>
+  </P>
+  <P>
+    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Functions, Inverses, and Other Parameters (February, 1994)
+    Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.
+  </P>
+  </DESCRIPTION>
+</MAN>
