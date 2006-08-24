@@ -181,31 +181,6 @@ extern sciPointObj *paxesmdl;
 
 
 
-/*-----------------------------------------------------------------------------------*/
-int drawlater(char *fname,unsigned long fname_len)
-{  
-  sciPointObj *pfigure = NULL;
-  /*   integer m,n,l,i; */
-
-  SciWin(); 
-  CheckRhs(0,0);
-  CheckLhs(0,1); 
-
-  if (version_flag() == 0)
-    {
-      if (Rhs <= 0) {
-	pfigure = sciGetCurrentFigure ();
-	pFIGURE_FEATURE(pfigure)->auto_redraw = FALSE;
-
-	LhsVar(1) = 0;
-	return 0;
-      }
-    }
-
-  LhsVar(1) = 0;
-  return 0;
-
-}
 
 /*-----------------------------------------------------------------------------------*/
 int scixclearsubwin(char *fname,unsigned long fname_len)
