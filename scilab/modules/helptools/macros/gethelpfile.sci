@@ -19,8 +19,6 @@ function path=gethelpfile(key)
 					if findword(lkey,key)<>[] then
 						i=strindex(lwhatis,"HREF="); j=strindex(lwhatis,">")
 						path=%helps(k,1)+sep+part(lwhatis,i+6:j(2)-2)
-						disp "PATH 1 =";
-						disp(path);
 						return
 					end
 				end
