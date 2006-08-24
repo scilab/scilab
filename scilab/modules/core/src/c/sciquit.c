@@ -15,6 +15,7 @@
 
 #include "MALLOC.h"
 #include "sciquit.h"
+#include "../../../graphics/includes/DestroyObjects.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(deletewin)(integer *number);
 extern char *get_sci_data_strings(int n);
@@ -23,7 +24,6 @@ extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F (tmpdirc) (void);
 extern int IsFromC(void);
 extern int IsFromJava(void);
-extern void AllGraphWinDelete(void);
 extern void C2F(freegmem)(void);
 extern void C2F(freemem)(void);
 

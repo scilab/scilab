@@ -482,6 +482,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_relocate_handle.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_set.c"
 				>
 			</File>
@@ -992,6 +996,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_readxbm.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_relocate_handle.h"
 				>
 			</File>
 			<File
