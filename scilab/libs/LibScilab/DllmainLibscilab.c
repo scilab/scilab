@@ -36,7 +36,6 @@
 #ifndef USE_F2C
 #pragma comment(lib,"../../libs/integ_f.lib")
 #pragma comment(lib,"../../libs/interf_f.lib")
-#pragma comment(lib,"../../libs/intersci_f.lib")
 #pragma comment(lib,"../../libs/int_f.lib")
 #pragma comment(lib,"../../libs/calelm_f.lib")
 #pragma comment(lib,"../../libs/control_f.lib")

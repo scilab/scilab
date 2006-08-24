@@ -173,7 +173,15 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\erro.c"
+				>
+			</File>
+			<File
 				RelativePath=".\libinter.c"
+				>
+			</File>
+			<File
+				RelativePath=".\out.c"
 				>
 			</File>
 		</Filter>
