@@ -60,9 +60,9 @@ extern int sci_xsave                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xload                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_champ1                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xdel                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixg2ps                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixs2ps                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixs2fig                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xg2ps                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xs2ps                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xs2fig                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsort                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_winsid                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_param3d1                   _PARAMS((char *fname, unsigned long fname_len));
@@ -86,8 +86,8 @@ extern int unglue                         _PARAMS((char *fname, unsigned long fn
 extern int drawnow                        _PARAMS((char *fname, unsigned long fname_len));
 extern int drawlater                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_draw                       _PARAMS((char *fname, unsigned long fname_len));
-extern int scixs2gif                      _PARAMS((char *fname,unsigned long fname_len));
-extern int scixs2ppm                      _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_xs2gif                     _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_xs2ppm                     _PARAMS((char *fname,unsigned long fname_len));
 extern int ClearScreenConsole             _PARAMS((char *fname, unsigned long fname_len));
 extern int ShowWindowFunction             _PARAMS((char *fname, unsigned long fname_len));
 extern int HomeFunction                   _PARAMS((char *fname, unsigned long fname_len));
@@ -98,7 +98,7 @@ extern int sciunzoom                      _PARAMS((char *fname,unsigned long fna
 extern int intxs2bmp                      _PARAMS((char *fname,unsigned long fname_len));
 extern int intxs2emf                      _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu                      _PARAMS((char *fname,unsigned long fname_len));
-extern int sci_newaxes                     _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_newaxes                    _PARAMS((char *fname,unsigned long fname_len));
 extern int intshowalluimenushandles       _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sciRelocateHandle              _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sciSwapHandles                 _PARAMS(( char * fname, unsigned long fname_len ) ) ;
@@ -142,7 +142,7 @@ static MatdesTable Tab[]={
 	{sci_xfpoly,"xfpoly"},
 	{sci_xfpolys,"xfpolys"},
 	{scirect,"xfrect"},
-	{scixg2ps,"xg2ps"},
+	{sci_xg2ps,"xg2ps"},
 	{scixget,"xget"},
 	{sci_xgetech,"xgetech"},
 	{sci_xgetmouse,"xgetmouse"},
@@ -155,7 +155,7 @@ static MatdesTable Tab[]={
 	{sci_xpolys,"xpolys"},
 	{scirect,"xrect"},
 	{scirects,"xrects"},
-	{scixs2fig,"xg2fig"},
+	{sci_xs2fig,"xg2fig"},
 	{sci_xsave,"xsave"},
 	{sci_xsegs,"xsegs"},
 	{sci_xselect,"xselect"},
@@ -169,9 +169,9 @@ static MatdesTable Tab[]={
 	{sci_xname,"xname"},
 	{sci_xaxis,"xaxis"},
 	{sciseteventhandler,"seteventhandler"},
-	{scixs2gif,"xs2gif"},
-	{scixs2ppm,"xs2ppm"},
-	{scixs2ps,"xs2ps"},
+	{sci_xs2gif,"xs2gif"},
+	{sci_xs2ppm,"xs2ppm"},
+	{sci_xs2ps,"xs2ps"},
 	{intxs2bmp,"xs2bmp"},
 	{intxs2emf,"xs2emf"},
 	{sci_set_posfig_dim,"set_posfig_dim"},

@@ -14,6 +14,7 @@
 #include "Xcall1.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
+#include "graphicSession.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xend(char *fname,unsigned long fname_len)
@@ -28,7 +29,7 @@ int sci_xend(char *fname,unsigned long fname_len)
   CheckRhs(-1,0);
   if( version_flag() == 0 )
   {
-    xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
+    closeGraphicSession() ;   /* we DO draw now into the file/memory (depending on the driver type) */
     figure = sciGetCurrentFigure();
     sciDrawObj(figure);
   }
@@ -44,5 +45,6 @@ int sci_xend(char *fname,unsigned long fname_len)
   LhsVar(1)=0;
   return 0;
 }
+
 
 /*-----------------------------------------------------------------------------------*/

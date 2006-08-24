@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "FigureToFile.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "../../../modules/graphics/includes/xs2file.h"
 /*-----------------------------------------------------------------------------------*/
 #define stricmp _stricmp
 /*-----------------------------------------------------------------------------------*/
@@ -44,7 +45,7 @@ void SavePs (struct BCG *ScilabGC)
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			wininfo (MSG_SCIMSG96);
 			dos2win32 (filename, filename1);
-			scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
+			scig_toPs (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
 			ori = (ls.land == 1) ? 'l' : 'p';
 			ScilabPsToEps (ori, filename1, filename);
 			wininfo (MSG_SCIMSG97);
@@ -67,7 +68,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (Ext) {FREE(Ext);Ext=NULL;}
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
-			scig_tops (ScilabGC->CurWindow, ls.colored, filename, "Pos");
+			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "Pos");
 			wininfo (MSG_SCIMSG98);
 			SetCursor (LoadCursor (NULL, IDC_CROSS));
 		}
@@ -87,7 +88,7 @@ void SavePs (struct BCG *ScilabGC)
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			wininfo (MSG_SCIMSG99);
 			dos2win32 (filename, filename1);
-			scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
+			scig_toPs (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
 			ori = (ls.land == 1) ? 'l' : 'p';
 			ScilabPsToTeX (ori, filename1, filename, 1.0, 1.0);
 			wininfo (MSG_SCIMSG100);
@@ -110,7 +111,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (Ext) {FREE(Ext);Ext=NULL;}
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
-			scig_tops (ScilabGC->CurWindow, ls.colored, filename, "Fig");
+			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "Fig");
 			wininfo (MSG_SCIMSG101);
 			SetCursor (LoadCursor (NULL, IDC_CROSS));
 		}
@@ -130,7 +131,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (Ext) {FREE(Ext);Ext=NULL;}
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
-			scig_tops (ScilabGC->CurWindow, ls.colored, filename, "GIF");
+			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "GIF");
 			wininfo (MSG_SCIMSG102);
 			SetCursor (LoadCursor (NULL, IDC_CROSS));
 		}
@@ -151,7 +152,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (Ext) {FREE(Ext);Ext=NULL;}
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
-			scig_tops (ScilabGC->CurWindow, ls.colored, filename, "PPM");
+			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "PPM");
 			wininfo (MSG_SCIMSG103);
 			SetCursor (LoadCursor (NULL, IDC_CROSS));
 		}

@@ -47,6 +47,11 @@
  
  extern void C2F(getwins)( integer * Num, integer Ids[] , integer * flag) ;
 
+ extern void getcolordef( integer * screenc ) ;
+ extern void setcolordef( integer   screenc ) ;
+
+ extern int SwitchWindow( integer * intnum ) ;
+
 #endif /* __PERIWIN_H__ */
 
 

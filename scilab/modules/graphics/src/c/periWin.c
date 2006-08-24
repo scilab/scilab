@@ -4260,14 +4260,12 @@ static void SetGraphicsVersion()
 /*-----------------------------------------------------------------------------------*/
 /* returns the current color status */
 
-void getcolordef(screenc)
-     integer *screenc;
+void getcolordef( integer * screenc )
 {
   *screenc= screencolor;
 }
 /*-----------------------------------------------------------------------------------*/
-void setcolordef(screenc)
-     integer screenc;
+void setcolordef( integer screenc )
 {
   screencolor = screenc;
 }

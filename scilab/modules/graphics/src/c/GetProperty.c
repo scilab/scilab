@@ -32,8 +32,6 @@
 
 extern sciHandleTab *PENDOFHANDLETAB;
 
-extern int xinitxend_flag;
-
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 

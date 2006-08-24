@@ -30,6 +30,7 @@
 #include "Xcall1.h"
 
 #include "math_graphics.h"
+#include "graphicSession.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -58,8 +59,6 @@ extern int index_vertex;
 int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z);
 static Vertices * pHead = (Vertices *) NULL;
 static Vertices * pHead2 = (Vertices *) NULL;
-
-int xinitxend_flag = 0 ;
 
 static double xz1,yz1;
 #define TX3D(x1,y1,z1) inint(xz1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
@@ -6611,7 +6610,7 @@ sciDrawObj (sciPointObj * pobj)
   
   /* driver test */
   
-  if((GetDriverId() != 0) && (xinitxend_flag == 1)){
+  if((GetDriverId() != 0) && ( isGraphicSessionOpened() )){
     /*     printf("I DO NOTHING !!\n"); */
     return -1;
   }

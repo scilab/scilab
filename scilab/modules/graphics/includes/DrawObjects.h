@@ -31,7 +31,6 @@
 
 void wininfo  __PARAMS((char *fmt,...));
 
-extern int xinitxend_flag  ;
 
 extern void GPopupResize();
 /* static struct BCG *tmpScilabXgc; */

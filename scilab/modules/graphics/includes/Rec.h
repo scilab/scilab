@@ -190,4 +190,6 @@ struct listplot {
 
 extern struct listplot *ListPFirst ;
 
+void UseColorFlag(int flag) ;
+
 #endif 

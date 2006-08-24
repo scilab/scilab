@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "FigureToPrint.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "../../../modules/graphics/includes/xs2file.h"
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 extern int WindowsPrintScreen;
@@ -170,7 +171,7 @@ void PrintPs (struct BCG *ScilabGC)
 
 	dos2win32 (filename, filename1);
 
-	scig_tops (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
+	scig_toPs (ScilabGC->CurWindow, ls.colored, filename1, "Pos");
 
 	ori =GetPrinterOrientation();
 

@@ -20,4 +20,9 @@ int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,
 
 int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1) ;
 
+void GetDriver1(char *str, integer *v2,integer * v3,integer * v4, integer *v5,integer * v6,
+                integer * v7,double * dv1,double * dv2,double * dv3,double * dv4) ;
+
+int GetDriverId( void ) ;
+
 #endif /* _XCALL1_H_ */

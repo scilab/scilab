@@ -85,7 +85,6 @@ extern void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,int
 /*-----------------------------------------------------------------------------------*/
 int sciseteventhandler(char *fname,unsigned long fname_len);
 int C2F(scigerase)();
-int scixg2psofig_G(char *fname,char *dr,unsigned long fname_len,unsigned long dr_len);
 int scicontour2d_G(char *fname,int (*func) (),unsigned long fname_len);
 int sciplot2d1_G(char *fname, int ptype,
 		 int (*func) __PARAMS((char *,double *,double *,integer *,integer *,
@@ -157,48 +156,6 @@ extern sciPointObj *paxesmdl;
 /* Graphic subroutines interface */
 /*-----------------------------------------------------------------------------------*/
 
-/*-----------------------------------------------------------------------------------*/
-int scixs2ps(char *fname,unsigned long fname_len)
-{
-  return scixg2psofig_G(fname,"Pos",fname_len,3);
-}
-/*-----------------------------------------------------------------------------------*/
-int scixg2ps(char *fname,unsigned long fname_len)
-{
-  return scixg2psofig_G(fname,"Pos",fname_len,3);
-}
-/*-----------------------------------------------------------------------------------*/
-int scixs2fig(char *fname,unsigned long fname_len)
-{
-  return scixg2psofig_G(fname,"Fig",fname_len,3);
-}
-/*-----------------------------------------------------------------------------------*/
-int scixs2gif(char *fname,unsigned long fname_len)
-{
-  return scixg2psofig_G(fname,"GIF",fname_len,3);
-}
-/*-----------------------------------------------------------------------------------*/
-int scixs2ppm(char *fname,unsigned long fname_len)
-{
-  return scixg2psofig_G(fname,"PPM",fname_len,3);
-}
-/*-----------------------------------------------------------------------------------*/
-int scixg2psofig_G(char *fname,char *dr,unsigned long fname_len,unsigned long dr_len)
-{
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,flagx = -1,iwin;
-  CheckRhs(2,3);
-
-  /* the window number */ 
-  GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); iwin  = (integer) *stk(l1);
-  /* the file name */ 
-  GetRhsVar(2,"c",&m2,&n2,&l2);
-  /* color or n & b */ 
-  if (Rhs >= 3) {GetRhsVar(3,"d",&m3,&n3,&l3); CheckScalar(3,m3,n3); flagx = (integer) *stk(l3); }
-  /* nouveau graphique ?????*/
-  C2F(xg2psofig)(cstk(l2),&m2,&iwin,&flagx,dr,bsiz,dr_len);
-  LhsVar(1)=0;
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 int intxs2bmp(char *fname,unsigned long fname_len)
 {

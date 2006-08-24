@@ -245,6 +245,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\graphicSession.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Gray.c"
 				>
 			</File>
@@ -514,6 +518,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xg2ps.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xget.c"
 				>
 			</File>
@@ -559,6 +567,22 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\sci_xpolys.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xs2fig.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xs2gif.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xs2ppm.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_xs2ps.c"
 				>
 			</File>
 			<File
@@ -637,6 +661,10 @@
 				RelativePath=".\src\c\Xcall1.c"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\xs2file.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -704,6 +732,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Graphics.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\graphicSession.h"
 				>
 			</File>
 			<File
@@ -939,6 +971,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_xg2ps.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_xget.h"
 				>
 			</File>
@@ -984,6 +1020,22 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xpolys.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2fig.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2gif.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2ppm.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xs2ps.h"
 				>
 			</File>
 			<File
@@ -1060,6 +1112,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Xcall1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\xs2file.h"
 				>
 			</File>
 			<File
