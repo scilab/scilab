@@ -5,7 +5,8 @@
 #include "MALLOC.h"
 #include "sci_calendar.h"
 /*-----------------------------------------------------------------------------------*/
-int IsAScalar(int RhsNumber);
+extern int IsAScalar(int RhsNumber);
+/*-----------------------------------------------------------------------------------*/
 static int isBissextile (unsigned annee);
 static unsigned months_to_days (unsigned mois);
 static long years_to_days (unsigned annee);
@@ -91,22 +92,6 @@ int C2F(sci_calendar) _PARAMS((char *fname,unsigned long fname_len))
 
 	if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int IsAScalar(int RhsNumber)
-{
-	int bOK=0;
-
-	if ( GetType(RhsNumber) == sci_matrix )
-	{
-		static int l1,n1,m1;
-		GetRhsVar(RhsNumber,"d",&m1,&n1,&l1);
-		if ( (m1 == 1) && (n1 == 1) )
-		{
-			bOK=1;
-		}
-	}
-	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
 static int isBissextile (unsigned annee)

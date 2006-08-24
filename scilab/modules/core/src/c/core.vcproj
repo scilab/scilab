@@ -282,6 +282,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\IsAScalar.c"
+				>
+			</File>
+			<File
 				RelativePath=".\link.c"
 				>
 			</File>
