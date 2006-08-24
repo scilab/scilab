@@ -44,6 +44,7 @@ extern int C2F(intsave)();
 extern int C2F(intload)();
 extern int C2F(intdisp)();
 extern int C2F(intexec)();
+extern int C2F(sci_getrelativefilename) _PARAMS((char *fname,unsigned long l));
 /*-----------------------------------------------------------------------------------*/
 static IoTable Tab[]=
 {
@@ -75,6 +76,7 @@ static IoTable Tab[]=
 {C2F(sci_fileinfo),"fileinfo"},
 {C2F(sci_getio),"getio"},
 {C2F(sci_setenv),"setenv"},
+{C2F(sci_getrelativefilename),"getrelativefilename"},
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_io)()

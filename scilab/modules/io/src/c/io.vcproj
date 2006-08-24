@@ -237,6 +237,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_getrelativefilename.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_host.c"
 				>
 			</File>
@@ -319,6 +323,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\gw_io.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_getrelativefilename.h"
 				>
 			</File>
 		</Filter>
