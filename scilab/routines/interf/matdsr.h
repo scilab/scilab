@@ -2,7 +2,9 @@
 #define MATDSR_H
 
 #include "../control/control.h" 
-#include "../calelm/calelm.h" 
+
+/* REORGANISATION TEMPORAIRE */
+#include "../../modules/elementaries_functions/includes/calelm.h" 
 
 extern int C2F(matdsr)  _PARAMS((void));
 extern int C2F(intbdiagr)  _PARAMS((char *fname, unsigned long fname_len));

@@ -35,9 +35,7 @@
  --------------------------------------------------------------------------*/
 
 #include "stack-c.h"
-
-/*REORGANIZATION TEMPORAIRE*/
-#include "../../../routines/calelm/calelm.h"
+#include "../../elementaries_functions/includes/calelm.h"
 
 #include "mex.h"
 #include <string.h>

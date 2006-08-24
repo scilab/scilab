@@ -1,7 +1,5 @@
 #include "stack-c.h"
-
-/*REORGANISATION TEMPORAIRE */
-#include "../../../routines/calelm/calelm.h"
+#include "../../elementaries_functions/includes/calelm.h"
 
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))

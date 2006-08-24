@@ -2,11 +2,7 @@
 #include <math.h>
 
 #include "machine.h"
-
-
-/* REORGANISATION TEMPORAIRE */
-#include "../../../../routines/calelm/calelm.h"
-
+#include "../../elementaries_functions/includes/calelm.h"
 #include "scicos.h"
  
 /*------------------------------------------------

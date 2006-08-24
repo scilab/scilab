@@ -12,7 +12,7 @@
 #include "../../io/sci_gateway/io.fundef"
 
 #define  IN_matelm  6
-#include "../../../../routines/calelm/calelm.fundef"  
+#include "../../elementaries_functions/sci_gateway/elementaries_functions.fundef"  
 	
 #define  IN_matdes  7
 #include "../../graphics/sci_gateway/graphics.fundef"	
