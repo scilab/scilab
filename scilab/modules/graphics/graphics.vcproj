@@ -502,6 +502,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_swap_handles.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_unglue.c"
 				>
 			</File>
@@ -1016,6 +1020,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_StringBox.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_swap_handles.h"
 				>
 			</File>
 			<File
