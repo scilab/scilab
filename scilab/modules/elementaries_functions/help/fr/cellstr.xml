@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>cellstr</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>May 2004</DATE>
+
+  <SHORT_DESCRIPTION name="cellstr">convert strings vector (or strings matrix)
+  into a cell of strings</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>c=cellstr(s)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: strings vector, or strings matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>returns a cell array of strings</P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+        <SP>If <VERB>s </VERB>is a line vector of strings then
+        <VERB>cellstr(s)</VERB> returns a <VERB>(one-by-one)</VERB> cell which
+        contains one component (the concatenation of all columns components of
+        <VERB>s )</VERB></SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM>
+        <SP>If <VERB>s</VERB> is a column vector of strings then
+        <VERB>cellstr(s)</VERB> convert s into a cell which have the same size
+        : <VERB>(size(s,1)-by-one)</VERB> cell of strings</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM>
+        <SP>If <VERB>s</VERB> is a matrix of strings then for each row<VERB> i
+        </VERB>of <VERB>s</VERB>, <VERB>cellstr(s)</VERB> concatenates all the
+        components of the ith rows of the matrix <VERB>s</VERB> (i.e s(i,1),
+        s(i,2), s(i,3),...) and returns a (<VERB>size(s,1)-by-one)</VERB> cell
+        of strings</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+cellstr("foo")
+cellstr(["sci","lab"])
+cellstr(["abc","def",'gh';"i","j","klm"])
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cell</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

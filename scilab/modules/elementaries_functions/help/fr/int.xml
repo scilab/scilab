@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>int  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="int"> arrondi vers zéro ou troncature  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[y]=int(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice d&apos;entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>int(X)</VERB> renvoie une matrice d&apos;entiers dont les éléments sont les arrondis vers zéro des éléments de x. Cette fonction est la même que la fonction <VERB>fix</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>round</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>floor</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ceil</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fix</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

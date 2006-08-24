@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ssrand</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ssrand"> random system generator</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sl=ssrand(nout,nin,nstate)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[sl,U]=ssrand(nout,nin,nstate,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nout</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (number of output)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (number of input)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nstate</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (dimension of state-space)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list made of one character string and one or several integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list (<VERB>syslin</VERB> list)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>square <VERB>(nstate x nstate)</VERB> nonsingular matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>sl=ssrand(nout,nin,nstate)</VERB> returns a random strictly proper 
+    (<VERB>D=0</VERB>) state-space system of size <VERB>[nout,nint]</VERB> represented 
+    by a <VERB>syslin</VERB> list and with <VERB>nstate</VERB> state variables.</P>
+    <P><VERB>[sl,U]=ssrand(nout,nin,nstate,flag)</VERB> returns a test linear system
+    with given properties specified by <VERB>flag</VERB>.
+    <VERB>flag</VERB> can be one of the following:</P>
+    <VERBATIM>
+<![CDATA[
+flag=list('co',dim_cont_subs)  
+flag=list('uo',dim_unobs_subs)
+flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
+flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
+flag=list('on',nr,ng,ng0,nv,rk)
+flag=list('ui',nw,nwu,nwui,nwuis,rk)
+   ]]>
+    </VERBATIM>
+    <P>
+    The complete description of the <VERB>Sys</VERB> is given in the code
+    of the <VERB>ssrand</VERB> function (in <VERB>SCIDIR/macros/util</VERB>).
+    For example with <VERB>flag=list('co',dim_cont_subs)</VERB> a non-controllable
+    system is return and <VERB>dim_cont_subs</VERB> is the dimension
+    of the controllable subspace of <VERB>Sys</VERB>.
+    The character strings <VERB>'co','uo','ncno','st','dt','on','ui'</VERB>
+    stand for &quot;controllable&quot;, &quot;unobservable&quot;, &quot;non-controllable-non-observable&quot;,
+    &quot;stabilizable&quot;,&quot;detectable&quot;,&quot;output-nulling&quot;,&quot;unknown-input&quot;.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+//dim_cont_subs<=dim_stab_subs<=dim_stab0  
+//pair (A,B) U-similar to:
+//    [*,*,*,*;     [*;    
+//    [0,s,*,*;     [0;
+//A=  [0,0,i,*;   B=[0;
+//    [0,0,0,u]     [0]
+//     
+// (A11,B1) controllable  s=stable matrix i=neutral matrix u=unstable matrix
+[Sl,U]=ssrand(2,3,8,list('st',2,5,5));
+w=ss2ss(Sl,inv(U)); //undo the random change of basis => form as above
+[n,nc,u,sl]=st_ility(Sl);n,nc
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

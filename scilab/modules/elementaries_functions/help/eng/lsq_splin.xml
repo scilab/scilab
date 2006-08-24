@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lsq_splin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="lsq_splin">weighted least squares cubic spline fitting</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> [y, d] = lsq_splin(xd, yd [, wd], x)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>xd, yd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: vectors of the same size, datas to be fitted by a cubic spline</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>wd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: (optional) a vector of same format than <VERB>xd</VERB> and  <VERB>yd</VERB>, 
+               weights of the least square fit.</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: a strictly increasing (row or column) vector, breakpoints of the
+               cubic spline</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>y, d</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: vectors of same format than <VERB>x</VERB>, the triplet (x,y,d) defines the approximated
+               cubic spline.</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P>
+    This function computes an approximated cubic spline <EM>s</EM> for the datas 
+    <VERB>xd, yd, wd</VERB> (in the following <EM>m</EM> is supposed to be the 
+    length of these vectors) and from a choice of the spline breakpoints <VERB>x</VERB> 
+    (for instance if you want n breakpoints uniformly choosen you may use 
+    <TT>x=linspace(min(xd),max(xd),n))</TT>). If <EM>S</EM> is the space of all
+    cubic splines functions with breakpoints <EM>x1 &lt; x2 &lt; ... &lt; xn</EM> then 
+    the resulting spline <EM>s</EM> is such that:
+    </P>
+        <VERBATIM><![CDATA[
+     _m_                               _m_                       
+     \                           2     \                           2
+     /   wd(k) (s(xd(k)) - yd(k))  <=  /   wd(k) (f(xd(k)) - yd(k))    
+     ---                               ---  
+     k=1                               k=1
+          ]]></VERBATIM>
+     <P> for all <EM>f in S</EM>, i.e. realizes the minimum of the sum of the squared errors 
+         over all functions of <EM>S</EM>.
+    </P>
+    <P>
+    The spline <EM>s</EM> is completly defined by the triplet <VERB>(x,y,d)</VERB> 
+    (<VERB>y</VERB> and <VERB>d</VERB> are the vectors of the spline ordinates and
+    first derivatives at the xi 's : <EM>yi=s(xi)</EM> and <EM>di=s'(xi)</EM>) and 
+    its evaluation at some points must be done by the <LINK>interp</LINK> function.
+    </P>
+    </DESCRIPTION>
+
+    <SECTION label="Remarks">
+    <P> When <VERB>wd</VERB> is not given, all the points have the same weight 1.</P>
+    <P> A point <EM>(xd(k),yd(k))</EM> is considered in the fit if <EM>xd(k) in [x1,xn]
+        and  wd(k) &gt; 0</EM>. In particular you can put a null (or even negative) weight to
+        all data points you want to ignore in the fitting. When the total number of points
+        taken into account in the fit procedure is (strictly) less than 4 an error is issued.  
+    </P>
+    <P> The vector <VERB>xd</VERB> do not need to be in increasing order. 
+    </P>
+    <P> Depending on the number and on the positions of the <EM>xd(k)</EM> 's and on the choice 
+        of the <EM>x(i)</EM> 's there may be several solutions but only one is selected. When this
+        occurs a warning message is displayed in the Scilab command window. This function is intended 
+        to be used when <EM>m</EM> is much larger than <EM>n</EM> and in this case no such problem
+        may occured.
+    </P>
+    </SECTION>
+  <EXAMPLE><![CDATA[
+// this is an artifical example where the datas xd and yd
+// are build from a perturbed sin function
+a = 0; b = 2*%pi;
+sigma = 0.1;  // standard deviation of the gaussian noise
+m = 200;       // number of experimental points
+xd = linspace(a,b,m)';
+yd = sin(xd) + grand(xd,"nor",0,sigma);
+
+n = 6; // number of breakpoints
+x = linspace(a,b,n)';
+
+// compute the spline
+[y, d] = lsq_splin(xd, yd, x);  // use equal weights
+
+// plotting
+ye = sin(xd);
+ys = interp(xd, x, y, d);
+xbasc()
+plot2d(xd,[ye yd ys],style=[2 -2 3], ...
+       leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
+xtitle("a least square spline")
+xselect()
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>interp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>splin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM> C. De Boor, A.H. Morris  (code from the NSWC fortran lib)</AUTHORS_ITEM>
+     <AUTHORS_ITEM> B. Pincon (scilab interface and slight modifications)</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

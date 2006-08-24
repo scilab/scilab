@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>abs  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="abs">  valeur absolue ou module  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=abs(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+	<PARAM_NAME>x  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+    <SP>: vecteur ou matrice (réelle ou complexe)</SP>
+  </PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+  <PARAM_ITEM>
+	<PARAM_NAME>t  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+      <SP>: vecteur ou matrice (réelle ou complexe)</SP>
+  </PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+<P>
+    <VERB>abs(x)</VERB> est la valeur absolue des éléments de <VERB>x</VERB>. 
+Quand
+    <VERB>x</VERB> est complexe, <VERB>abs(x)</VERB> est le module des éléments de <VERB>x</VERB>. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+abs([1,%i,-1,-%i,1+%i])
+ ]]></EXAMPLE>
+</MAN>

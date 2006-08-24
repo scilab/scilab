@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>kron  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="kron"> produit de kronecker (.*.)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>kron(x,y)   </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x.*.y  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Produit tensoriel de Kronecker de deux matrices <VERB>x</VERB> et <VERB>y</VERB>.
+    Identique à <VERB>x.*.y</VERB>. <VERB>x</VERB> et <VERB>y</VERB> peuvent être des matrices creuses.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2;3,4];
+kron(A,A)
+A.*.A
+sparse(A).*.sparse(A)
+A(1,1)=%i;
+kron(A,A)
+ ]]></EXAMPLE>
+</MAN>

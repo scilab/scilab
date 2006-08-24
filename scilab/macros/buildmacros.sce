@@ -2,15 +2,16 @@ lines(0);
 MSDOS=(getos()=='Windows');
 
 CurrentDirectory=pwd();
+
  Directories=["util",
  "percent",
  "algebre",
- "elem",
  "int",
  "sci2for",
  "tdcs",
   ];
   
+ Directories=[Directories;"SCI/modules/elementaries_functions/macros"];        
  Directories=[Directories;"SCI/modules/gui/macros"];        
  Directories=[Directories;"SCI/modules/statistics/macros"];      
  Directories=[Directories;"SCI/modules/cacsd/macros"];    

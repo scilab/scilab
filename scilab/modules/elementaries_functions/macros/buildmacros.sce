@@ -1,9 +1,9 @@
 //------------------------------------
-// Allan CORNET INRIA 2005
+// Allan CORNET INRIA 2006
 //------------------------------------
 MSDOS=(getos()=='Windows');
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('elemlib','SCI/macros/elem');
+genlib('elemlib','SCI/modules/elementaries_functions/macros');
 //------------------------------------

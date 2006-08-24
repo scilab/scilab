@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>atan</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>July 2001</DATE>
+  <SHORT_DESCRIPTION name="atan"> 2-quadrant and 4-quadrant inverse tangent</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>phi=atan(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>phi=atan(y,x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex scalar, vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>phi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex scalar, vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x, y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalars, vectors or matrices of the same size</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>phi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar, vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The first form computes the 2-quadrant inverse tangent, which is the
+    inverse of <VERB>tan(phi)</VERB>.  For real <VERB>x</VERB>, <VERB>phi</VERB> is in the
+    interval (-pi/2, pi/2).  For complex <VERB>x</VERB>, <VERB>atan</VERB> has two
+    singular, branching points <VERB>+%i</VERB>,<VERB>-%i</VERB> and the chosen branch
+    cuts are the two imaginary half-straight lines [i, i*oo) and (-i*oo, -i].</P>
+    <P>
+    The second form computes the 4-quadrant arctangent (atan2 in
+    Fortran), this is, it returns the argument (angle) of the complex
+    number <VERB>x+i*y</VERB>.  The range of <VERB>atan(y,x)</VERB> is (-pi, pi].</P>
+    <P>
+    For real arguments, both forms yield identical values if <VERB>x&gt;0</VERB>.</P>
+    <P>
+    In case of vector or matrix arguments, the evaluation is done
+    element-wise, so that <VERB>phi</VERB> is a vector or matrix of the same size
+    with <VERB>phi(i,j)=atan(x(i,j))</VERB> or <VERB>phi(i,j)=tan(y(i,j),x(i,j))</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// examples with the second form
+x=[1,%i,-1,%i]
+phasex=atan(imag(x),real(x))
+atan(0,-1)
+atan(-%eps,-1)
+
+// branch cuts
+atan(-%eps + 2*%i)
+atan(+%eps + 2*%i)
+atan(-%eps - 2*%i)
+atan(+%eps - 2*%i)
+
+// values at the branching points
+ieee(2)
+atan(%i)
+atan(-%i)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tan</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ieee</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>B.P.</AUTHORS_ITEM>
+    <AUTHORS_ITEM>L.V.D.
+    <EM>(authors of the complex atan function).</EM>
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

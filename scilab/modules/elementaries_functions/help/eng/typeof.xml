@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>typeof</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="typeof"> object type</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[t]=typeof(object)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>object</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Scilab object</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>t=typeof(object)</VERB> returns one of the following strings:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&quot;constant&quot;">
+        <SP>if object is a real or complex constant matrix</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;polynomial&quot;">
+        <SP>if object is a polynomial matrix</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;function&quot;">
+        <SP>if object is a function</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;handle&quot;">
+        <SP>if object is an handle</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;string&quot;">
+        <SP>if object is a matrix made of character strings</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;boolean&quot;">
+        <SP>if object is a boolean matrix</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;list&quot;">
+        <SP>if object is a list</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;rational&quot;">
+        <SP>if object is a rational matrix (transfer matrix)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;state-space&quot;">
+        <SP>if object is a state-space model (see <VERB>syslin</VERB>)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;sparse&quot;">
+        <SP>if object is a (real) sparse matrix.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;boolean sparse&quot;">
+        <SP>if object is a boolean sparse matrix.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="if object is a  tlist or mlist,  t is the first">
+        <SP>string in the first list entry.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+typeof(1)
+typeof(poly(0,'x'))
+
+typeof(1/poly(0,'x'))
+typeof(%t)
+
+w=sprand(100,100,0.001);
+typeof(w)
+typeof(w==w)
+
+deff('y=f(x)','y=2*x');
+typeof(f)
+
+L=tlist(['V','a','b'],18,'Scilab');
+typeof(L)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>type</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>strings</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>and</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="and"> (&amp;) logical and</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>b=and(A),  b=and(A,'*')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>b=and(A,'r'), b=and(A,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>b=and(A,'c'), b=and(A,2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>A&amp;B</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>and(A)</VERB> is the logical AND of elements of 
+    the boolean matrix <VERB>A</VERB>. <VERB>and(A)</VERB> returns <VERB>%T</VERB> (&quot;true&quot;)  iff 
+    all entries of <VERB>A</VERB> are <VERB>%T</VERB>.</P>
+    <P><VERB>y=and(A,'r')</VERB> (or, equivalently, <VERB>y=and(A,1)</VERB>) is the rowwise and. It returns in each 
+    entry of the row vector <VERB>y</VERB> the and of the rows of <VERB>x</VERB> (The and is performed on the 
+    row index : <VERB>y(j)= and(A(i,j),i=1,m)</VERB>).</P>
+    <P><VERB>y=and(A,'c')</VERB> (or, equivalently, <VERB>y=and(A,2)</VERB>) is the columnwise and. It returns 
+    in each entry of the column vector <VERB>y</VERB> the and of the columns of <VERB>x</VERB> 
+    (The and is performed on the column index:  <VERB>y(i)= and(A(i,j),j=1,n)</VERB>)).</P>
+    <P><VERB>A&amp;B</VERB>  gives the element-wise logical <VERB>and</VERB> of the booleans matrices
+     <VERB>A</VERB> and  <VERB>B</VERB> .<VERB>A</VERB> and  <VERB>B</VERB> must be matrices with the same
+     dimensions or one from them must be a single boolean.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>not</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>or</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

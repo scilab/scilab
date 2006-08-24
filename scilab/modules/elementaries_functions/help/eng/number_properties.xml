@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>number_properties</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2001</DATE>
+  <SHORT_DESCRIPTION name="number_properties"> determine floating-point parameters</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>pr = number_properties(prop)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>prop</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or boolean scalar</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function may be used to get the characteristic
+    numbers/properties of the floating point set denoted here by
+    <VERB>F(b,p,emin,emax)</VERB> (usually the 64 bits float numbers set prescribe 
+    by IEEE 754). Numbers of <VERB>F</VERB> are of the form:
+  </P>
+    <VERBATIM>
+<![CDATA[
+     sign * m * b^e
+   ]]>
+    </VERBATIM>
+
+    <P>
+       <VERB>e</VERB> is the exponent and <VERB>m</VERB> the mantissa:
+    </P>
+    
+    <VERBATIM>
+<![CDATA[
+     m = d_1 b^(-1) + d_2 b^(-2) + .... + d_p b^(-p)
+   ]]>
+    </VERBATIM>
+    
+   <P>
+     <VERB>d_i</VERB> the digits are in <VERB>[0, b-1]</VERB> and <VERB>e</VERB> in 
+     <VERB>[emin, emax]</VERB>, the number
+     is said &quot;normalised&quot; if <VERB>d_1 ~= 0</VERB>. The following may be gotten: 
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="prop = &quot;radix&quot;">
+        <SP> then <VERB>pr</VERB> is the radix <VERB>b</VERB> of the set <VERB>F</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;digits&quot;">
+        <SP> then <VERB>pr</VERB> is the number of digits <VERB>p</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;huge&quot;">
+        <SP> then <VERB>pr</VERB> is the max positive float of <VERB>F</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;tiny&quot;">
+        <SP> then <VERB>pr</VERB> is the min positive normalised float of <VERB>F</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;denorm&quot;">
+        <SP> then <VERB>pr</VERB> is a boolean (%t if denormalised numbers are used)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;tiniest&quot;">
+        <SP> then if denorm = %t, <VERB>pr</VERB> is the min positive denormalised number else <VERB>pr</VERB> = tiny</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;eps&quot;">
+        <SP> then <VERB>pr</VERB> is the epsilon machine ( generally (<VERB>b^(1-p))/2</VERB> ) which is the 
+    relative max error between a real <VERB>x</VERB> (such than <VERB>|x|</VERB> in 
+    <VERB>[tiny, huge]</VERB>) and <VERB>fl(x)</VERB>, its floating  point 
+    approximation in <VERB>F</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;minexp&quot;">
+        <SP> then <VERB>pr</VERB> is <VERB>emin</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="prop = &quot;maxexp&quot;">
+        <SP> then <VERB>pr</VERB> is <VERB>emax</VERB></SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="Remarks">
+    <P>
+    This function uses the lapack routine dlamch to get the machine parameters (the names 
+    (radix, digit, huge, etc...) are those recommended  by the LIA 1 standard and are different 
+    from the corresponding lapack's  ones) ; CAUTION: sometimes you can see the following 
+    definition for the epsilon machine : <VERB>eps =  b^(1-p)</VERB> but in this function we 
+    use the traditionnal one (see prop = &quot;eps&quot; before) and so 
+    <VERB>eps = (b^(1-p))/2</VERB> if  normal rounding occurs and <VERB>eps = b^(1-p)</VERB> 
+    if not.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+b = number_properties("radix")
+eps = number_properties("eps")
+   ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>nearfloat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>frexp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Bruno Pincon</AUTHOR>
+</MAN>

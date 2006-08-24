@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>and  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="and (&amp;)"> et logique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>b=and(A),  b=and(A,&apos;*&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>b=and(A,&apos;r&apos;), b=and(A,1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>b=and(A,&apos;c&apos;), b=and(A,2)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>A&amp;B  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>and(A)</VERB> donne la conjonction (et) logique des éléments de la matrice booléenne <VERB>A</VERB>. <VERB>and(A)</VERB> est vrai (<VERB>%t</VERB>) si tous les termes de <VERB>A</VERB> sont <VERB>%t</VERB>. 
+  </P>
+  <P>
+    <VERB>y=and(A,&apos;r&apos;)</VERB> (et <VERB>y=and(A,1)</VERB>) donne la conjonction suivant l&apos;indice de ligne. Chaque élément du vecteur ligne <VERB>y</VERB> contient la conjonction de chaque colonne de <VERB>x</VERB> (<VERB>y(j)= and(A(i,j),i=1,m)</VERB>).
+  </P>
+  <P>
+    <VERB>y=and(A,&apos;c&apos;)</VERB> (et <VERB>y=and(A,2)</VERB>) donne la conjonction suivant l&apos;indice de colonne. Chaque élément du vecteur colonne <VERB>y</VERB> contient la conjonction de chaque ligne de <VERB>x</VERB> 
+    (<VERB>y(i)= and(A(i,j),j=1,n)</VERB>)).
+  </P>
+  <P>
+  </P>
+  <P>
+    <VERB>A&amp;B</VERB>  renvoie la conjonction logique élément par élément des matrices booléennes <VERB>A</VERB> et  <VERB>B</VERB> .<VERB>A</VERB> et  <VERB>B</VERB> doivent être des matrices de même dimensions ou l&apos;une d&apos;elle doit être un simple booléen.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>not</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>or</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

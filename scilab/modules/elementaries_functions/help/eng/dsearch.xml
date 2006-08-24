@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dsearch</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="dsearch">binary search (aka dichotomous search in french)</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ind, occ, info]  = dsearch(X, val [, ch ])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>val</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real (row or column) vector with n components in strictly increasing 
+             order val(1) &lt; val(2) &lt; ... &lt; val(n)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ch</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) a character &quot;c&quot; or &quot;d&quot; (default value &quot;c&quot;)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ind</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector or matrix with the same dimensions than X</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>occ</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real vector with the same format than val (but with n-1 components in the case ch=&quot;c&quot;)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>info</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>This function is useful to search in an ordered table and/or to count the number of components
+       of a vector falling in some classes (a class being an interval or a value).
+    </P>
+    <P>By default or when <VERB>ch=&quot;c&quot;</VERB>, this is the interval case, that is, for 
+       each X(i) search in which of the n-1 intervals it falls, the intervals being defined by:
+    </P>
+        <VERBATIM>
+<![CDATA[            I1 = [val(1), val(2)]
+            Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; ]]>
+</VERBATIM>
+    <P>and:
+    </P>
+    <ITEMIZE>
+       <ITEM label="ind(i)">
+            <SP>: is the interval number of X(i) (0 if X(i) is not in
+              [val(1),val(n)])</SP>
+       </ITEM>
+       <ITEM label="occ(k)">
+            <SP>: is the number of components of X which are in Ik</SP>
+       </ITEM>
+       <ITEM label="info">
+            <SP>: is the number of components of X which are not in [val(1),val(n)]</SP>
+       </ITEM>
+    </ITEMIZE>
+    <P>When <VERB>ch=&quot;d&quot;</VERB> case, this is the discrete case, that is, for 
+       each X(i)  search if it is equal to one val(k) and:
+    </P>
+    <ITEMIZE>
+       <ITEM label="ind(i)">
+            <SP>: is equal to the index of the component of val which matches X(i) 
+               (ind(i) = k if X(i)=val(k)) or 0 if X(i) is not in val.</SP>
+       </ITEM>
+       <ITEM label="occ(k)">
+            <SP>: is the number of components of X equal to val(k)</SP>
+       </ITEM>
+       <ITEM label="info">
+            <SP>: is the number of components of X which are not in the set {val(1),...,val(n)}</SP>
+       </ITEM>
+     </ITEMIZE>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// example #1 (elementary stat for U(0,1))
+m = 50000 ; n = 10;
+X = grand(m,1,"def");
+val = linspace(0,1,n+1)';
+[ind, occ] = dsearch(X, val);
+xbasc() ; plot2d2(val, [occ/m;0])  // no normalisation : y must be near 1/n
+
+
+// example #2 (elementary stat for B(N,p))
+N = 8 ; p = 0.5; m = 50000;
+X = grand(m,1,"bin",N,p); val = (0:N)';
+[ind, occ] = dsearch(X, val, "d");
+Pexp = occ/m; Pexa = binomial(p,N); 
+xbasc() ; hm = 1.1*max(max(Pexa),max(Pexp));
+plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
+        "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
+xtitle(  "binomial distribution B("+string(N)+","+string(p)+") :" ...
+        +" exact probability versus experimental ones")
+
+
+// example #3 (piecewise Hermite polynomial)
+x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
+y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
+d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
+X = linspace(0, 1, 200)';
+ind = dsearch(X, x);
+// define Hermite base functions
+deff("y=Ll(t,k,x)","y=(t-x(k+1))./(x(k)-x(k+1))")   // Lagrange left on Ik
+deff("y=Lr(t,k,x)","y=(t-x(k))./(x(k+1)-x(k))")     // Lagrange right on Ik
+deff("y=Hl(t,k,x)","y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2")
+deff("y=Hr(t,k,x)","y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2")
+deff("y=Kl(t,k,x)","y=(t-x(k)).*Ll(t,k,x).^2")
+deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
+// plot the curve
+Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
+xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
+xtitle("an Hermite piecewise polynomial")
+// NOTE : you can verify by adding these ones : 
+// YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
+   ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>find</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tabul</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>B.P.   </AUTHOR>
+</MAN>

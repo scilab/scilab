@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>splin3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="splin3d">spline gridded 3d interpolation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>tl = splin3d(x, y, z, v, [order])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>x,y,z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: strictly increasing row vectors (each with at least 3 components)
+               defining the 3d interpolation grid</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: nx x ny x nz hypermatrix (nx, ny, nz being the length of <VERB>x</VERB>,
+               <VERB>y</VERB> and <VERB>z</VERB>)</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>order</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: (optionnal) a 1x3 vector [kx,ky,kz] given the order of the tensor 
+               spline in each direction (default [4,4,4], i.e. tricubic spline)</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>tl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: a tlist of type splin3d defining the spline</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P>
+    This function computes a 3d tensor spline <EM>s</EM> which interpolates the 
+    <EM>(xi,yj,zk,vijk)</EM> points, ie, we have <EM>s(xi,yj,zk)=vijk</EM> for all  
+    <EM>i=1,..,nx</EM>, <EM>j=1,..,ny</EM> and   <EM>k=1,..,nz</EM>.
+    The resulting spline <EM>s</EM> is defined by <VERB>tl</VERB> which consists
+    in a B-spline-tensor representation of  <EM>s</EM>.
+    The evaluation of  <EM>s</EM> at some points must be done by the <LINK>interp3d</LINK>
+    function (to compute <EM>s</EM> and its first derivatives) or by the  <LINK>bsplin3val</LINK> 
+    function (to compute an arbitrary derivative of <EM>s</EM>) . Several kind of splines may be computed 
+    by selecting the order of the spline in each direction <VERB>order=[kx,ky,kz]</VERB>.
+    </P>
+    </DESCRIPTION>
+
+    <SECTION label="Remark">
+    <P>
+       This function works under the conditions: 
+    </P>
+        <VERBATIM><![CDATA[
+       nx, ny, nz >= 3
+       2 <= kx < nx
+       2 <= ky < ny
+       2 <= kz < nz]]></VERBATIM>
+    <P>
+       an error being issued when they are not respected.
+    </P>
+    </SECTION>
+  <EXAMPLE><![CDATA[
+// example 1
+func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
+deff("v=f(x,y,z)",func);
+n = 10;  // n x n x n  interpolation points
+x = linspace(0,1,n); y=x; z=x; // interpolation grid
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+tl = splin3d(x,y,z,V,[5 5 5]);
+m = 10000;
+// compute an approximated error
+xp = grand(m,1,"def"); yp = grand(m,1,"def"); zp = grand(m,1,"def");
+vp_exact = f(xp,yp,zp);
+vp_interp = interp3d(xp,yp,zp, tl);
+er = max(abs(vp_exact - vp_interp))
+// now retry with n=20 and see the error
+
+
+// example 2 (see linear_interpn help page which have the
+//            same example with trilinear interpolation)
+getf("SCI/demos/interp/interp_demo.sci") 
+func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+tl = splin3d(x,y,z,V);
+// compute (and display) the 3d spline interpolant on some slices
+m = 41;
+dir = ["z="  "z="  "z="  "x="  "y="];
+val = [ 0.1   0.5   0.9   0.5   0.5];
+ebox = [0 1 0 1 0 1];
+XF=[]; YF=[]; ZF=[]; VF=[];
+for i = 1:length(val)
+   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+   Vm = interp3d(Xm,Ym,Zm, tl);
+   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   Vp = interp3d(Xp,Yp,Zp, tl);
+   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+end
+nb_col = 128;
+vmin = min(VF); vmax = max(VF);
+color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
+xset("colormap",jetcolormap(nb_col));
+xbasc(); xset("hidden3d",xget("background"));
+colorbar(vmin,vmax)
+plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
+xtitle("3d spline interpolation of "+func)
+xselect()
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>linear_interpn</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>interp3d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bsplin3val</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</AUTHORS_ITEM>
+     <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
+

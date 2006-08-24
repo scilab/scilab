@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>logm  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="logm"> logarithme matriciel d&apos;une matrice carrée  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=logm(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>logm(x)</VERB> est le logarithme matriciel de <VERB>x</VERB>.
+    Le résultat est complexe si <VERB>x</VERB> n&apos;est pas positive ou définie positive.
+    Si <VERB>x</VERB> est une matrice symétrique, le calcul est fait en utilisant la forme de Schur. Sinon, <VERB>x</VERB> est supposée diagonalisable. On a 
+    <VERB>expm(logm(x))=x</VERB> 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2;3,4];
+logm(A)
+expm(logm(A))
+A1=A*A';
+logm(A1)
+expm(logm(A1))
+A1(1,1)=%i;
+expm(logm(A1))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>log</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

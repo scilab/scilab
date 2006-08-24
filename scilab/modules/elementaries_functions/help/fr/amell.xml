@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>amell  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="amell"> Fonction am de Jacobi  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[sn]=amell(u,k)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>u  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire ou vecteur réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire ou vecteur réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Calcule la fonction elliptique de Jacobi <VERB>am(u,k)</VERB>
+    où <VERB>k</VERB> est le paramètre et <VERB>u</VERB> l&apos;argument. Si <VERB>u</VERB> 
+    est un vecteur <VERB>sn</VERB> est le vecteur des valeurs calculées (élément par élément).
+    Utilisé dans la fonction <VERB>%sn</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>delip</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>%sn</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>%asn</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

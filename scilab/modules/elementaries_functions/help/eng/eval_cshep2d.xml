@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>eval_cshep2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="eval_cshep2d">bidimensional cubic shepard interpolation evaluation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>xp, yp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: two real vectors (or matrices) of the same size</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>tl_coef</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: a tlist scilab structure (of type cshep2d) defining a cubic Shepard interpolation function
+               (named <VERB>S</VERB> in the following)</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>zp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: vector (or matrix) of the same size than <VERB>xp</VERB> and  <VERB>yp</VERB>, 
+               evaluation of the interpolant <VERB>S</VERB> at these points</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>dzpdx,dzpdy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: vectors (or matrices) of the same size than <VERB>xp</VERB> and  <VERB>yp</VERB>, evaluation
+               of the first derivatives of <VERB>S</VERB> at these points</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>d2zpdxx,d2zpdxy,d2zpdyy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: vectors (or matrices) of the same size than <VERB>xp</VERB> and  <VERB>yp</VERB>, evaluation of the
+               second derivatives of <VERB>S</VERB> at these points</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P>
+    This is the evaluation routine for cubic Shepard interpolation function computed with
+    <LINK>cshep2d</LINK>, that is :
+    </P>
+        <VERBATIM><![CDATA[
+      zp(i) = S(xp(i),yp(i))   
+      dzpdx(i) = dS/dx(xp(i),yp(i))
+      dzpdy(i) = dS/dy(xp(i),yp(i))  
+      d2zpdxx(i) = d2S/dx2(xp(i),yp(i))
+      d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))  
+      d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
+         ]]></VERBATIM>
+    </DESCRIPTION>
+
+    <SECTION label="Remark">
+    <P>
+    The interpolant <EM>S</EM> is C2 (twice continuously differentiable) but is also extended by 
+    zero for <EM>(x,y)</EM> far enough the interpolation points. This leads to a discontinuity
+    in a region far outside the interpolation points, and so, is not cumbersome in practice (in a 
+    general manner, evaluation outside interpolation points (i.e. extrapolation) leads to very 
+    inacurate results).
+    </P>
+    </SECTION>
+
+  <EXAMPLE><![CDATA[
+// see example section of cshep2d
+
+// this example shows the behavior far from the interpolation points ...
+deff("z=f(x,y)","z = 1+ 50*(x.*(1-x).*y.*(1-y)).^2")
+x = linspace(0,1,10);
+[X,Y] = ndgrid(x,x);
+X = X(:); Y = Y(:); Z = f(X,Y);
+S = cshep2d([X Y Z]);
+// evaluation inside and outside the square [0,1]x[0,1]
+m = 40;
+xx = linspace(-1.5,0.5,m);
+[xp,yp] = ndgrid(xx,xx);
+zp = eval_cshep2d(xp,yp,S);
+// compute facet (to draw one color for extrapolation region
+// and another one for the interpolation region)
+[xf,yf,zf] = genfac3d(xx,xx,zp);
+color = 2*ones(1,size(zf,2));
+// indices corresponding to facet in the interpolation region
+ind=find( mean(xf,"r")>0 & mean(xf,"r")<1 & mean(yf,"r")>0 & mean(yf,"r")<1 );
+color(ind)=3;
+xbasc();
+plot3d(xf,yf,list(zf,color), flag=[2 6 4])
+legends(["extrapolation region","interpolation region"],[2 3],1)
+xselect()
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cshep2d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM> Robert J. Renka</AUTHORS_ITEM>
+     <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

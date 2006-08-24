@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>setdiff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="setdiff"> returns components of a vector
+  which do not belong to another one</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>v=setdiff(a,b)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[v,ka]=setdiff(a,b)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of real numbers or strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of real numbers or strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector  of real numbers or strings with same orientation than <VERB>a</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ka</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector  of integers, ka(i) is the location of v(i) in a</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>setdiff(a,b)</VERB> returns a sorted  vector which retains
+    the <VERB>a</VERB> entries which are not in <VERB>b</VERB></P>
+    <P><VERB>[v,ka]=setdiff(a,b)</VERB> returns a sorted  vector which retains
+    the <VERB>a</VERB> entries which are not in <VERB>b</VERB> and the
+    location of these entries in a.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ a = [223;111;2;4;2;2];
+ b = [2;3;21;223;123;22];
+ setdiff(a,b)
+ [v,k]=setdiff(string(a),string(b))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>unique</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sort</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>union</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

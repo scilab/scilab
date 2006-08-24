@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>integrate  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="integrate"> intégration numérique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x]=integrate(expr,v,x0,x1 [,ea [,er]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>expr  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères (expression scilab)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères (variable d&apos;intégration)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x0,x1  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombres réels (bornes d&apos;intégration)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ea  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel (borne sur l&apos;erreur absolue) par défaut : 0
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>er  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel, (borne sur l&apos;erreur relative) par défaut : 1.d-8
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    calcule :
+  </P>
+
+<VERBATIM><![CDATA[
+                       /x1
+                      [
+                  x = I  f(v)dv
+                      ]
+                     /x0
+]]></VERBATIM>
+
+  <P>
+    L&apos;approximation satisfait (on l&apos;espère) l&apos;affirmation suivante sur l&apos;erreur :
+    <VERB>abs(I-x)&lt;= max(ea,er*abs(I))</VERB> où I représente la valeur exacte de l&apos;intégrale.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+integrate('sin(x)','x',0,%pi)
+integrate(['if x==0 then 1,';
+           'else sin(x)/x,end'],'x',0,%pi)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>intg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttrap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intsplin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ind2sub</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>20-Aug-2003</DATE>
+  <SHORT_DESCRIPTION name="ind2sub">linear index to matrix subscript values</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[i1,i2,..] =ind2sub(dims,I)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Mi = ind2sub(dims,I)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>dims</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector: the matrix dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>I</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector: the given linear index</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>i1,i2,..</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the subscript values (same matrix shape as <VERB>I</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Mi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix whose columns contains the subscript values.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>ind2sub</VERB> is used to determine the equivalent subscript values
+  corresponding to a given single index into an array.
+
+  <VERB>[i1,i2,..] = ind2sub(dims,I)</VERB> returns the arrays
+  <VERB>i1</VERB>, <VERB>i2</VERB>, ... containing the equivalent row,
+  column, ... subscripts corresponding to the index matrix
+  <VERB>I</VERB> for a matrix of size <VERB>dims</VERB>.
+  
+  <VERB>Mi=ind2sub(dims,I)</VERB> returns a matrix <VERB>Mi</VERB>
+  whose columns are the arrays <VERB>i1(:)</VERB>, <VERB>i2(:)</VERB>,
+  ...</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+   ind2sub([2,3,2],1:12)
+   [i,j,k]=ind2sub([2,3,2],1:12)
+  ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sub2ind</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>extraction</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>insertion</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    Serge Steer, INRIA
+  </AUTHOR>
+</MAN>

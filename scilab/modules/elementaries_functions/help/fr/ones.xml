@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ones  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="ones"> matrice remplie de 1  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=ones(m1,m2,...)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=ones(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=ones()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>m1, m2,..  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Renvoie une matrice dont tous les termes valent 1.
+  </P>
+ 
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='ones(m1,m2)'>
+   <SP> Renvoie une matrice de taille  <VERB>(m1,m2)</VERB> remplie de 1. </SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='ones(m1,m2,..,mn)'> 
+    <SP>: renvoie une matrice <VERB>(m1,m2,..,mn)</VERB> remplie de 1. </SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='ones(x)'> 
+   <SP> : renvoie une matrice remplie de 1 de même taille que <VERB>x</VERB>. </SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='ones(x)'> 
+    <SP>est aussi valide si <VERB>x</VERB> est une liste de type <VERB>syslin</VERB> (système dynamique linéaire sous forme d&apos;une fonction de transfert ou d&apos;une représentation d&apos;état). </SP>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+  <P>
+    Notez que <VERB>ones(3)</VERB> est équivalent à <VERB>ones(a)</VERB> avec <VERB>a=3</VERB> et donc n&apos;est PAS une matrice 3x3 !
+  </P>
+  <P>
+    ones() est équivalent à ones(1,1).
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ones(3)
+ones(3,3)
+ones(2,3,2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>eye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>zeros</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

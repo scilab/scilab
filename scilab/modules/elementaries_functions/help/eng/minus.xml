@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>minus</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="minus"> (-)  substraction operator, sign changes</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>X-Y</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>-Y</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Substraction</P>
+    <P>
+    For numeric operands substraction as its usual meaning.
+    If one of the operands is a matrix and the other one a scalar the
+    the operation is performed element-wise. if <VERB>Y==[] X</VERB>  is returned;
+    if <VERB>X==[] -Y</VERB>  is returned.</P>
+    <P>
+    Substraction may also be defined for other data types through
+    &quot;soft-coded&quot; operations.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+[1,2]-1
+[]-2
+
+%s-2
+1/%s-2
+"cat"+"enate"
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtlb_mode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

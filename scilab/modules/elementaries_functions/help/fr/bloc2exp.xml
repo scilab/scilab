@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bloc2exp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="bloc2exp"> block-diagram to symbolic expression</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[str]=bloc2exp(blocd)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[str,names]=bloc2exp(blocd)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>blocd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>names</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    given a block-diagram representation of a linear system
+    <VERB>bloc2exp</VERB> returns its symbolic evaluation.
+    The first element of the list <VERB>blocd</VERB> must be the string <VERB>'blocd'</VERB>.
+    Each other element of this list <VERB>(blocd(2),blocd(3),...)</VERB>
+    is itself a list of one the following types :</P>
+    <VERBATIM>
+<![CDATA[
+list('transfer','name_of_linear_system')
+   ]]>
+    </VERBATIM>
+    <VERBATIM>
+<![CDATA[
+list('link','name_of_link',
+               [number_of_upstream_box,upstream_box_port],
+               [downstream_box_1,downstream_box_1_portnumber],
+               [downstream_box_2,downstream_box_2_portnumber],
+               ...)
+   ]]>
+    </VERBATIM>
+    <P>
+    The strings <VERB>'transfer'</VERB> and <VERB>'links'</VERB> are keywords which
+    indicate the type of element in the block diagram.</P>
+    <P>
+    Case 1 :  the second parameter of the list is a character string which 
+    may refer (for a possible further evaluation) 
+    to the Scilab name of a linear system given
+    in state-space representation (<VERB>syslin</VERB> list) or in transfer
+    form (matrix of rationals).</P>
+    <P>
+    To each transfer block is associated an integer.
+    To each input and output of a transfer block is also
+    associated its number, an integer (see examples)</P>
+    <P>
+    Case 2 :  the second kind of element in a block-diagram representation
+    is a link.
+    A link links one output of a block represented by the pair
+    <VERB>[number_of_upstream_box,upstream_box_port]</VERB>, to different
+    inputs of other blocks. Each such input is represented by 
+    the pair <VERB>[downstream_box_i,downstream_box_i_portnumber]</VERB>.</P>
+    <P>
+    The different elements of a block-diagram can be defined
+    in an arbitrary order.</P>
+    <P>
+    For example</P>
+    <P>
+    [1] <VERB>S1*S2</VERB> with unit feedback.</P>
+    <P>
+    There are 3 transfers <VERB>S1</VERB> (number <VERB>n_s1=2</VERB>) , <VERB>S2</VERB> (number <VERB>n_s2=3</VERB>)
+    and an adder (number <VERB>n_add=4</VERB>) with symbolic transfer 
+    function <VERB>['1','1']</VERB>.</P>
+    <P>
+    There are 4 links. The first one (named <VERB>'U'</VERB>) links the input 
+    (port 0 of fictitious block -1, omitted) to port 1 of the adder.
+    The second and third one link respectively (output)port 1 
+    of the adder to (input)port 1 of system <VERB>S1</VERB>, and 
+    (output)port 1 of <VERB>S1</VERB> to (input)port 1 of <VERB>S2</VERB>.
+    The fourth link (named <VERB>'Y'</VERB>) links (output)port 1 of <VERB>S2</VERB> to 
+    the output (port 0 of fictitious block -1, omitted) and to 
+    (input)port 2 of the adder.</P>
+    <VERBATIM>
+<![CDATA[
+//Initialization
+syst=list('blocd'); l=1;
+//
+//Systems
+l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //System 1
+l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //System 2
+l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adder
+//
+//Links
+// Inputs  -1 --> input 1
+l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
+// Internal 
+l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
+l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
+// Outputs // -1 -> output 1
+l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+//Evaluation call
+w=bloc2exp(syst);
+   ]]>
+    </VERBATIM>
+    <P>
+    The result is the character string:
+    <VERB>w=-(s2*s1-eye())\s2*s1</VERB>.</P>
+    <P>
+    Note that invoked with two output arguments,
+    <VERB>[str,names]= blocd(syst)</VERB> returns in <VERB>names</VERB> the list
+    of symbolic names of named links. This is useful to
+    set names to inputs and outputs.</P>
+    <P>
+    [2] second example</P>
+    <VERBATIM>
+<![CDATA[
+//Initialization
+syst=list('blocd'); l=1;
+//
+//System (2x2 blocks plant)
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']);  
+//
+//Controller
+l=l+1;n_k=l;syst(l)=list('transfer','k'); 
+//
+//Links
+l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
+l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
+l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
+l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+//Evaluation call
+w=bloc2exp(syst);
+   ]]>
+    </VERBATIM>
+    <P>
+    In this case the result is a formula equivalent to the usual one:</P>
+    <P>
+      <VERB>P11+P12*invr(eye()-K*P22)*K*P21;</VERB>
+    </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>bloc2ss</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. S., F. D. (INRIA)  </AUTHOR>
+</MAN>

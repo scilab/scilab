@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>tril  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="tril"> partie triangulaire inférieure d&apos;une matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>tril(x [,k])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de tout type
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (0 par défaut)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Partie triangulaire inférieure d&apos;une matrice.
+    <VERB>tril(x,k)</VERB> est composée des termes sous une diagonale :
+    k&gt;0 (diagonale supérieure) et k&lt;0 (diagonale sous la diagonale principale).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s');
+tril([s,s;s,1])
+tril([1/s,1/s;1/s,1])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>triu</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ones</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>eye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>diag</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

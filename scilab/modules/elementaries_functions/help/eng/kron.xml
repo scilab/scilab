@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>kron</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="kron"> Kronecker product (.*.)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>kron(A,B)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>A.*.B</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    <VERB>kron(A,B)</VERB> or  <VERB>A.*.B</VERB> returns the Kronecker tensor 
+    product of two matrices <VERB>A</VERB> and <VERB>B</VERB>. The resulting
+    matrix has the following block form:
+    </P>
+    <VERBATIM><![CDATA[
+              | A(1,1) B ..... A(1,n) B |
+              |   .              .      |
+    A .*. B = |   .              .      |   
+              |   .              .      |
+              | A(m,1) B ..... A(m,n) B |
+    ]]></VERBATIM>
+    <P> If <VERB>A</VERB> is a  <VERB>m x n</VERB> matrix and  <VERB>B</VERB> a  
+       <VERB>p x q</VERB> matrix then <VERB>A.*.B</VERB> is a  
+       <VERB>(m*p) x (n*q)</VERB> matrix.
+    </P>
+    <P><VERB>A</VERB> and <VERB>B</VERB> can be sparse matrices.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[1,2;3,4];
+kron(A,A)
+A.*.A
+sparse(A).*.sparse(A)
+A(1,1)=%i;
+kron(A,A)
+ ]]>
+  </EXAMPLE>
+</MAN>

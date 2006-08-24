@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>interp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="interp">cubic spline evaluation function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y,d</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors of the same size defining a cubic spline or sub-spline function 
+                (called <VERB>s</VERB> in the following)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>out_mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optionnal) string defining the evaluation of <VERB>s</VERB> outside the [x1,xn] interval</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>yp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix of same size than <VERB>xp</VERB>, elementwise evaluation of <VERB>s</VERB>
+                on <VERB>xp</VERB> (yp(i)=s(xp(i) or yp(i,j)=s(xp(i,j))</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>yp1, yp2, yp3</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vectors (or matrices) of same size than <VERB>xp</VERB>, elementwise evaluation of the 
+                successive derivatives of <VERB>s</VERB> on <VERB>xp</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given three vectors <VERB>(x,y,d)</VERB> defining a spline or sub-spline function
+    (see <LINK>splin</LINK>) with <VERB>yi=s(xi), di = s'(xi)</VERB> this function
+    evaluates <VERB>s</VERB> (and <VERB>s', s'', s'''</VERB> if needed) at <VERB>xp(i)</VERB> :
+    </P>
+        <VERBATIM><![CDATA[
+      yp(i) = s(xp(i))    or  yp(i,j) = s(xp(i,j))
+      yp1(i) = s'(xp(i))   or  yp1(i,j) = s'(xp(i,j))
+      yp2(i) = s''(xp(i))   or  yp2(i,j) = s''(xp(i,j))
+      yp3(i) = s'''(xp(i))   or  yp3(i,j) = s'''(xp(i,j))
+         ]]></VERBATIM>
+    <P>
+    The <VERB>out_mode</VERB> parameter set the evaluation rule for extrapolation,
+    i.e. for <VERB>xp(i)</VERB> not in [x1,xn] : 
+    </P>
+    <ITEMIZE label="out_mode">
+      <ITEM label="&quot;by_zero&quot;">
+         <SP>: an extrapolation by zero is done</SP>
+      </ITEM>
+      <ITEM label="&quot;by_nan&quot;">
+         <SP>: extrapolation by Nan</SP>
+      </ITEM>
+      <ITEM label="&quot;C0&quot;">
+         <SP>: the extrapolation is defined as follows :</SP>
+        <VERBATIM><![CDATA[
+      s(x) = y1  for  x < x1
+      s(x) = yn  for  x > xn
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;natural&quot;">
+         <SP>: the extrapolation is defined as follows (<EM>p_i</EM> being the polynomial defining 
+               <VERB>s</VERB> on [x_i,x_{i+1}]) :</SP>
+        <VERBATIM><![CDATA[
+      s(x) = p_1(x)      for  x < x1
+      s(x) = p_{n-1}(x)  for  x > xn
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;linear&quot;">
+         <SP>: the extrapolation is defined as follows :</SP>
+        <VERBATIM><![CDATA[
+      s(x) = y1 + s'(x1)(x-x1)  for  x < x1
+      s(x) = yn + s'(xn)(x-xn)  for  x > xn
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;periodic&quot;">
+         <SP>: <VERB>s</VERB> is extended by periodicity.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+// see the examples of splin and lsq_splin
+
+// an example showing C2 and C1 continuity of spline and subspline
+a = -8; b = 8;
+x = linspace(a,b,20)';
+y = sinc(x);
+dk = splin(x,y);  // not_a_knot
+df = splin(x,y, "fast");
+xx = linspace(a,b,800)';
+[yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
+[yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+xbasc()
+subplot(3,1,1)
+plot2d(xx, [yyk yyf])
+plot2d(x, y, style=-9)
+legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
+        [1 2 -9], "ur",%f)
+xtitle("spline interpolation")
+subplot(3,1,2)
+plot2d(xx, [yy1k yy1f])
+legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
+xtitle("spline interpolation (derivatives)")
+subplot(3,1,3)
+plot2d(xx, [yy2k yy2f])
+legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
+xtitle("spline interpolation (second derivatives)")
+
+// here is an example showing the different extrapolation possibilities
+x = linspace(0,1,11)';
+y = cosh(x-0.5);
+d = splin(x,y);
+xx = linspace(-0.5,1.5,401)';
+yy0 = interp(xx,x,y,d,"C0");
+yy1 = interp(xx,x,y,d,"linear");
+yy2 = interp(xx,x,y,d,"natural");
+yy3 = interp(xx,x,y,d,"periodic");  
+xbasc()
+plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
+xtitle(" different way to evaluate a spline outside its domain")
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>splin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lsq_splin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    B. Pincon
+  </AUTHOR>
+</MAN>

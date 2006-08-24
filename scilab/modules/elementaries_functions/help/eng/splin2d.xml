@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>splin2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="splin2d">bicubic spline gridded 2d interpolation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>C = splin2d(x, y, z, [,spline_type])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: strictly increasing row vectors (with at least 2 components)
+               defining the interpolation grid</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: nx x ny matrix (nx being the length of <VERB>x</VERB> and 
+               ny the length of <VERB>y</VERB>)</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>spline_type </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: (optional) a string selecting the kind of bicubic spline to compute</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: a big vector with the coefficients of the bicubic patches (see details in Remarks)</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P>
+    This function computes a bicubic spline or sub-spline <EM>s</EM> which interpolates the 
+    <EM>(xi,yj,zij)</EM> points, ie, we have <EM>s(xi,yj)=zij</EM> for all  <EM>i=1,..,nx</EM>
+    and <EM>j=1,..,ny</EM>. 
+    The resulting spline <EM>s</EM> is defined by the triplet <VERB>(x,y,C)</VERB> where
+    <VERB>C</VERB> is the vector (of length 16(nx-1)(ny-1)) with the coefficients of each
+    of the (nx-1)(ny-1) bicubic patches : on <EM>[x(i) x(i+1)]x[y(j) y(j+1)]</EM>, <EM>s</EM>
+    is defined by :
+    </P>
+        <VERBATIM><![CDATA[
+             _4_   _4_                       
+             \     \                   k-1       l-1
+    s(x,y) = /     /    C (k,l) (x - xi)  (y - yj)
+             ---   ---   ij
+             k=1   l=1
+          ]]></VERBATIM>
+    <P>
+    The evaluation of  <EM>s</EM> at some points must be done by the <LINK>interp2d</LINK> 
+    function. Several kind of splines may be computed by selecting the appropriate 
+    <VERB>spline_type</VERB> parameter. The method used to compute the bicubic spline
+    (or sub-spline) is the old fashionned one 's, i.e. to compute on each grid point
+    <EM>(xi,yj)</EM> an approximation of the first derivatives <EM>ds/dx(xi,yj)</EM>
+    and <EM>ds/dy(xi,yj)</EM> and of the cross derivative <EM>d2s/dxdy(xi,yj)</EM>.
+    Those derivatives are computed by the mean of 1d spline schemes leading to a C2
+    function (<EM>s</EM> is twice continuously differentiable) or by the mean of a
+    local approximation scheme leading to a C1 function only. This scheme is selected
+    with the <VERB>spline_type</VERB> parameter (see <LINK>splin</LINK> for details) :  
+    </P>
+    <ITEMIZE label="spline_type">
+      <ITEM label="&quot;not_a_knot&quot;">
+        <SP>: this is the default case.</SP>
+      </ITEM>
+      <ITEM label="&quot;natural&quot;">
+      </ITEM>
+      <ITEM label="&quot;periodic&quot;">
+        <SP>: to use if the underlying function is periodic : you must have <EM>z(1,j) = z(nx,j) for
+              all j in [1,ny] and  z(i,1) = z(i,ny) for i in [1,nx]</EM> but this is not verified
+              by the interface.</SP>
+      </ITEM>
+      <ITEM label="&quot;monotone&quot;">
+      </ITEM>
+      <ITEM label="&quot;fast&quot;">
+       </ITEM>
+      <ITEM label="&quot;fast_periodic&quot;">
+       </ITEM>
+      </ITEMIZE>
+    </DESCRIPTION>
+
+    <SECTION label="Remarks">
+    <P>From an accuracy point of view use essentially the <BD>not_a_knot</BD> type or <BD>periodic</BD>
+    type if the underlying interpolated function is periodic.
+    </P>
+    <P>The <BD>natural</BD>, <BD>monotone</BD>, <BD>fast</BD> (or <BD>fast_periodic</BD>) type may
+       be useful in some cases, for instance to limit oscillations (<BD>monotone</BD> being the
+       most powerfull for that).
+    </P>
+    <P>To get the coefficients of the bi-cubic patches in a more friendly way you can use
+     <TT>c = hypermat([4,4,nx-1,ny-1],C)</TT> then the coefficient <EM>(k,l)</EM> of the patch 
+     <EM>(i,j)</EM> (see equation here before) is stored at <TT>c(k,l,i,j)</TT>. Nevertheless
+     the <LINK>interp2d</LINK> function wait for the big vector <VERB>C</VERB> and not for the
+     hypermatrix <VERB>c</VERB> (note that one can easily retrieve <TT>C</TT> from <TT>c</TT> with
+     <TT>C=c(:)</TT>).
+    </P>
+    </SECTION>
+  <EXAMPLE><![CDATA[
+// example 1 : interpolation of cos(x)cos(y)
+n = 7;  // a regular grid with n x n interpolation points
+        // will be used
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+m = 50; // discretisation parameter of the evaluation grid
+xx = linspace(0,2*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz = interp2d(XX,YY, x, y, C);
+emax = max(abs(zz - cos(xx')*cos(yy)));
+xbasc()
+plot3d(xx, yy, zz, flag=[2 4 4])
+[X,Y] = ndgrid(x,y);
+param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
+str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+xtitle("spline interpolation of cos(x)cos(y)"+str)
+
+// example 2 : different interpolation functions on random datas
+n = 6;
+x = linspace(0,1,n); y = x;
+z = rand(n,n);
+np = 50;
+xp = linspace(0,1,np); yp = xp;
+[XP, YP] = ndgrid(xp,yp);
+ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, "not_a_knot"));
+ZP2 = linear_interpn(XP, YP, x, y, z);
+ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
+ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
+xset("colormap", jetcolormap(64))
+xbasc()
+subplot(2,2,1)
+   plot3d1(xp, yp, ZP1, flag=[2 2 4])
+   xtitle("not_a_knot")
+subplot(2,2,2)
+   plot3d1(xp, yp, ZP2, flag=[2 2 4])
+   xtitle("bilinear interpolation")
+subplot(2,2,3)
+   plot3d1(xp, yp, ZP3, flag=[2 2 4])
+   xtitle("natural")
+subplot(2,2,4)
+   plot3d1(xp, yp, ZP4, flag=[2 2 4])
+   xtitle("monotone")
+xselect()
+
+// example 3 : not_a_knot spline and monotone sub-spline
+//             on a step function
+a = 0; b = 1; c = 0.25; d = 0.75;
+// create interpolation grid
+n = 11;
+x = linspace(a,b,n);
+ind = find(c <= x & x <= d); 
+z = zeros(n,n); z(ind,ind) = 1;  // a step inside a square
+// create evaluation grid
+np = 220;
+xp = linspace(a,b, np);
+[XP, YP] = ndgrid(xp, xp);
+zp1 = interp2d(XP, YP, x, x, splin2d(x,x,z));
+zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
+// plot
+xbasc()
+xset("colormap",jetcolormap(128))
+subplot(1,2,1)
+   plot3d1(xp, xp, zp1, flag=[-2 6 4])
+   xtitle("spline (not_a_knot)")
+subplot(1,2,2)
+   plot3d1(xp, xp, zp2, flag=[-2 6 4])
+   xtitle("subspline (monotone)")
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cshep2d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>linear_interpn</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>interp2d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>
+     B. Pincon
+  </AUTHOR>
+</MAN>

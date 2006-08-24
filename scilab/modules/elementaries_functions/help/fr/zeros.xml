@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>zeros  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="zeros"> matrice nulle  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=zeros(m1,m2,...)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=zeros(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=zeros()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>m1, m2,..  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Renvoie une matrice dont tous les termes sont nuls.
+  </P>
+  
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='zeros(m1,m2)'> 
+     <SP>Renvoie une matrice nulle de taille <VERB>(m1,m2)</VERB>.</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='zeros(m1,m2,..,mn)'> 
+    <SP>: renvoie une matrice nulle de taille <VERB>(m1,m2,..,mn)</VERB>.</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='zeros(x)'> 
+    <SP>: renvoie une matrice nulle de même taille que <VERB>x</VERB>.</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='zeros(x)'> 
+    <SP>est aussi valide si <VERB>x</VERB> est une liste de type <VERB>syslin</VERB> (système dynamique linéaire sous forme d&apos;une fonction de transfert ou d&apos;une représentation d&apos;état).</SP>
+  </DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT>
+  <P>
+    Notez que <VERB>zeros(3)</VERB> est équivalent à <VERB>zeros(a)</VERB> avec <VERB>a=3</VERB> et donc n&apos;est PAS une matrice 3x3 !
+  </P>
+  <P>
+    zeros() est équivalent à zeros(1,1).
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+zeros(3)
+zeros(3,3)
+zeros(2,3,2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>eye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ones</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spzeros</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

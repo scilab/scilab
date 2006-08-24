@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>linear_interpn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="linear_interpn">n dimensional linear interpolation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xp1, xp2, .., xpn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors (or matrices) of same size</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x1 ,x2, ..., xn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  strictly increasing row vectors (with at least 2 components)
+               defining the n dimensional interpolation grid</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  vector (case n=1), matrix (case n=2) or hypermatrix (case n &gt; 2) with the
+                 values of the underlying interpolated function at the grid points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>out_mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) string defining the evaluation outside the grid (extrapolation)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>vp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  vector or matrix of same size than <VERB>xp1, ..., xpn</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given a n dimensional grid defined by the n vectors <VERB>x1 ,x2, ..., xn</VERB> and the
+    values <VERB>v</VERB> of a function (says <EM>f</EM>) at the grid points :
+    </P>
+        <VERBATIM><![CDATA[
+      v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
+         ]]></VERBATIM>
+    <P>
+    this function computes the linear interpolant of <EM>f</EM> from the grid (called <EM>s</EM>
+    in the following) at the points which coordinates are defined by the vectors (or matrices) 
+    <VERB>xp1, xp2, ..., xpn</VERB>:
+    </P>
+        <VERBATIM><![CDATA[
+   vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
+
+   or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) in case the xpk are matrices
+         ]]></VERBATIM>
+    <P>
+    The <VERB>out_mode</VERB> parameter set the evaluation rule for extrapolation: if we note 
+    <EM>Pi=(xp1(i),xp2(i),...,xpn(i))</EM> then <VERB>out_mode</VERB> defines the
+    evaluation rule when:
+    </P>
+        <VERBATIM><![CDATA[
+   P(i) not in  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
+         ]]></VERBATIM>
+    <P>
+    The different choices are:
+    </P>
+    <ITEMIZE label="out_mode">
+      <ITEM label="&quot;by_zero&quot;">
+         <SP>: an extrapolation by zero is done</SP>
+      </ITEM>
+      <ITEM label="&quot;by_nan&quot;">
+         <SP>: extrapolation by Nan</SP>
+      </ITEM>
+      <ITEM label="&quot;C0&quot;">
+         <SP>: the extrapolation is defined as follows:</SP>
+        <VERBATIM><![CDATA[
+     s(P) = s(proj(P)) where proj(P) is nearest point from P 
+                       located on the grid boundary.
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;natural&quot;">
+         <SP>: the extrapolation is done by using the nearest n-linear patch from the point.</SP>
+      </ITEM>
+      <ITEM label="&quot;periodic&quot;">
+         <SP>: <VERB>s</VERB> is extended by periodicity.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+// example 1 : 1d linear interpolation
+x = linspace(0,2*%pi,11);
+y = sin(x);
+xx = linspace(-2*%pi,4*%pi,400)';
+yy = linear_interpn(xx, x, y, "periodic");
+xbasc()
+plot2d(xx,yy,style=2)
+plot2d(x,y,style=-9, strf="000")
+xtitle("linear interpolation of sin(x) with 11 interpolation points")
+
+// example 2 : bilinear interpolation
+n = 8;
+x = linspace(0,2*%pi,n); y = x;
+z = 2*sin(x')*sin(y);
+xx = linspace(0,2*%pi, 40);
+[xp,yp] = ndgrid(xx,xx);
+zp = linear_interpn(xp,yp, x, y, z);
+xbasc()
+plot3d(xx, xx, zp, flag=[2 6 4])
+[xg,yg] = ndgrid(x,x);
+param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
+xtitle("Bilinear interpolation of 2sin(x)sin(y)")
+legends("interpolation points",-9,1)
+xselect()
+
+// example 3 : bilinear interpolation and experimentation
+//             with all the outmode features
+nx = 20; ny = 30;
+x = linspace(0,1,nx);
+y = linspace(0,2, ny);
+[X,Y] = ndgrid(x,y);
+z = 0.4*cos(2*%pi*X).*cos(%pi*Y);
+nxp = 60 ; nyp = 120;
+xp = linspace(-0.5,1.5, nxp);
+yp = linspace(-0.5,2.5, nyp);
+[XP,YP] = ndgrid(xp,yp);
+zp1 = linear_interpn(XP, YP, x, y, z, "natural");
+zp2 = linear_interpn(XP, YP, x, y, z, "periodic");
+zp3 = linear_interpn(XP, YP, x, y, z, "C0");
+zp4 = linear_interpn(XP, YP, x, y, z, "by_zero");
+zp5 = linear_interpn(XP, YP, x, y, z, "by_nan");
+xbasc()
+subplot(2,3,1)
+   plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
+   xtitle("initial function 0.4 cos(2 pi x) cos(pi y)")
+subplot(2,3,2)
+   plot3d(xp, yp, zp1, leg="x@y@z", flag = [2 4 4])
+   xtitle("Natural")
+subplot(2,3,3)
+   plot3d(xp, yp, zp2, leg="x@y@z", flag = [2 4 4])
+   xtitle("Periodic")
+subplot(2,3,4)
+   plot3d(xp, yp, zp3, leg="x@y@z", flag = [2 4 4])
+   xtitle("C0")
+subplot(2,3,5)
+   plot3d(xp, yp, zp4, leg="x@y@z", flag = [2 4 4])
+   xtitle("by_zero")
+subplot(2,3,6)
+   plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
+   xtitle("by_nan")
+xselect()
+
+
+// example 4 : trilinear interpolation (see splin3d help
+//             page which have the same example with
+//             tricubic spline interpolation)
+getf("SCI/demos/interp/interp_demo.sci") 
+func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+// compute (and display) the linear interpolant on some slices
+m = 41;
+dir = ["z="  "z="  "z="  "x="  "y="];
+val = [ 0.1   0.5   0.9   0.5   0.5];
+ebox = [0 1 0 1 0 1];
+
+XF=[]; YF=[]; ZF=[]; VF=[];
+for i = 1:length(val)
+   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+   Vm = linear_interpn(Xm,Ym,Zm, x, y, z, V);
+   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   Vp =  linear_interpn(Xp,Yp,Zp, x, y, z, V);
+   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+end
+nb_col = 128;
+vmin = min(VF); vmax = max(VF);
+color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
+xset("colormap",jetcolormap(nb_col));
+xbasc()
+xset("hidden3d",xget("background"))
+colorbar(vmin,vmax)
+plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
+xtitle("tri-linear interpolation of "+func)
+xselect()
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>interpln</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>splin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>splin2d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>splin3d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    B. Pincon
+  </AUTHOR>
+</MAN>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>modulo  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="modulo"> reste arithmétique symétrique modulo m  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="pmodulo"> reste arithmétique positif modulo m  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>i=modulo(n,m)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>i=pmodulo(n,m)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>n</PARAM_NAME>
+  <PARAM_DESCRIPTION><SP>: entier</SP></PARAM_DESCRIPTION>
+
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+ <PARAM_NAME>m</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: entier</SP></PARAM_DESCRIPTION>
+  </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>modulo</VERB> calcule <VERB>i= n (modulo m)</VERB> c&apos;est à dire le reste de <VERB>n</VERB> divisé par <VERB>m</VERB> (<VERB>n</VERB> et <VERB>m</VERB> sont entiers).
+  </P>
+  <P>
+     i = n - m .* int (n ./ m). Ici la réponse peut être négative si <VERB>n</VERB> et/ou <VERB>m</VERB> 
+    sont négatifs.
+  </P>
+  <P>
+    <VERB>pmodulo</VERB> calcule <VERB>i = n - m .* floor (n ./ m)</VERB>, la réponse est positive ou nulle.
+  </P>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+n=[1,2,10,15];m=[2,2,3,5];
+modulo(n,m)
+
+modulo(-3,9)
+pmodulo(-3,9)
+ ]]></EXAMPLE>
+</MAN>

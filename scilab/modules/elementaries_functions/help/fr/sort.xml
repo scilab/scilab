@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>sort  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="sort"> tri par ordre décroissant  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,&apos;r&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,&apos;c&apos;)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>v,s  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur (plein ou creux) ou matrice de nombres réels ou de chaînes de caractères.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice de nombres entiers.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>s=sort(v)</VERB> trie <VERB>v</VERB> par ordre décroissant.
+    Si <VERB>v</VERB> est une matrice, cette instruction produit un tri de la 
+    matrice <VERB>v</VERB> vue comme un vecteur <VERB>v(:)</VERB> (les colonnes sont empilées).
+    <VERB>[s,k]=sort(v)</VERB> donne de plus les indices des termes de
+    <VERB>s</VERB> dans <VERB>v</VERB>, c&apos;est à dire que <VERB>v(k(:)) </VERB> est le vecteur <VERB>s</VERB>.
+  </P>
+  <P>
+    <VERB>s=sort(v,&apos;r&apos;)</VERB> effectue le tri par ordre décroissant de <VERB>v</VERB> suivant l&apos;indice de ligne : chaque colonne de <VERB>s</VERB> est obtenue à partir de la colonne de <VERB>v</VERB> correspondante triée par ordre décroissant.
+    <VERB>[s,k]=sort(v,&apos;r&apos;)</VERB> renvoie de plus dans chaque colonne de <VERB>k</VERB>
+    les indices tels que <VERB>v(k(:,i),i)=s(:,i)</VERB> pour chaque indice de colonne <VERB>i</VERB>.
+  </P>
+  <P>
+    <VERB>s=sort(v,&apos;c&apos;)</VERB> effectue le tri par ordre décroissant de <VERB>v</VERB> suivant l&apos;indice de colonne : chaque ligne de <VERB>s</VERB> est obtenue à partir de la ligne de <VERB>v</VERB> correspondante triée par ordre décroissant.
+  </P>
+  <P>
+    <VERB>[s,k]=sort(v,&apos;c&apos;)</VERB> renvoie de plus dans chaque ligne de <VERB>k</VERB>
+    les indices tels que <VERB>v(i,k(i,:))=s(i,:)</VERB> pour chaque indice de ligne <VERB>i</VERB>.
+  </P>
+  <P>
+    Les matrices ou vecteurs complexes sont triés par rapport au module complexe.
+  </P>
+  <P>
+    <VERB>y=sort(A)</VERB> est valide quand <VERB>A</VERB> est un vecteur creux. le tri suivant les lignes ou les colonnes n&apos;est pas implémenté pour les matrices creuses.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[s,p]=sort(rand(1,10));
+// p est une permutation aléatoire de 1:10
+A=[1,2,5;3,4,2];
+[A_trie,q]=sort(A);A(q(:))-A_trie(:)
+v=1:10;
+sort(v)
+sort(v')
+sort(v,'r')  // ne fait rien pour les vecteurs lignes
+sort(v,'c')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>prod  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="prod"> produit des termes d'une matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=prod(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=prod(x,'r')  ou y=prod(x,1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=prod(x,'c')  ou y=prod(x,2) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=prod(x,'m') </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (réelle ou complexe)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire ou vecteur
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P> Pour un vecteur ou une matrice <VERB>x</VERB>, <VERB>y=prod(x)</VERB>
+      renvoie un scalaire <VERB>y</VERB> égal au produit des termes de
+      <VERB>x</VERB>.</P>
+
+  <P><VERB>y=prod(x,'r')</VERB> (ou <VERB>y=prod(x,1)</VERB>)
+      effectue le produit suivant l'indice de ligne. Chaque composante du
+      vecteur ligne <VERB>y</VERB> contient le produit de la colonne
+      correspondante <VERB>x</VERB>
+      (<VERB>y(j)=prod(x(i,j),i=1,m)</VERB>). </P> 
+
+  <P> <VERB>y=prod(x,'c')</VERB> (ou <VERB>y=prod(x,2)</VERB>)
+      effectue le produit suivant l'indice de colonne. Chaque composante
+      du vecteur colonne <VERB>y</VERB> contient le produit de la ligne
+      correspondante de <VERB>x</VERB> (<VERB>y(i)=
+	prod(x(i,j),j=1,n)</VERB>)).  </P>
+
+  <P> <VERB>y=prod(x,'m')</VERB>
+      effectue le produit suivant la première dimension plus grande que 1
+      (compatibilité avec Matlab). </P>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2;0,100];
+prod(A)
+prod(A,'c')
+prod(A,'r')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>cumprod</LINK> </SEE_ALSO_ITEM>    
+    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

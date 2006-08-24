@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>TOEPLITZ  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="toeplitz"> matrice de Toeplitz  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>A=toeplitz(c [,r])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a,c,r  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice complexe, réelle, polynomiale ou de chaînes de caractères.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Renvoie la matrice de Toeplitz dont la première ligne est <VERB>r</VERB>
+    et la première colonne est <VERB>c</VERB>.
+    <VERB>c(1)</VERB> doit être égal à <VERB>r(1)</VERB>. <VERB>toeplitz(c)</VERB> renvoie la matrice de Toeplitz symétrique.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=toeplitz(1:5);
+//
+T=toeplitz(1:5,1:2:7);T1=[1 3 5 7;2 1 3 5;3 2 1 3;4 3 2 1;5 4 3 2];
+T-T1
+//
+s=poly(0,'s');
+t=toeplitz([s,s+1,s^2,1-s]);
+t1=[s,1+s,s*s,1-s;1+s,s,1+s,s*s;s*s,1+s,s,1+s;1-s,s*s,1+s,s]
+t-t1
+//
+t=toeplitz(['1','2','3','4']);
+t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>matrix</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

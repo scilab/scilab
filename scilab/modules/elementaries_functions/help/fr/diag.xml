@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>diag  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="diag"> extraction de diagonale ou construction d&apos;une matrice à partir d&apos;une diagonale.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[y]=diag(vm, [k])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>vm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (stockage plein ou creux)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (valeur par défaut 0)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Pour <VERB>vm</VERB> un n-vecteur (ligne ou colonne) <VERB>diag(vm)</VERB> renvoie une matrice diagonale
+    avec les composantes de <VERB>vm</VERB> sur la diagonale principale.
+  </P>
+  <P>
+    <VERB>diag(vm,k)</VERB> est une matrice <VERB>(n+abs(k))x(n+abs(k))</VERB> avec les composantes de
+    <VERB>vm</VERB>  sur la kième diagonale.  <VERB>k=0</VERB>  correspond à la diagonale principale
+    <VERB>k&gt;0</VERB>  correspond aux diagonales supérieures et <VERB>k&lt;0</VERB> aux diagonales inférieures.
+  </P>
+  <P>
+  </P>
+  <P>
+    Pour une matrice <VERB>vm</VERB>, <VERB>diag(vm,k)</VERB> est le vecteur colonne dont les composantes sont les termes de la kième 
+    diagonale de <VERB>vm</VERB>.  <VERB>diag(vm)</VERB> est la diagonale principale de <VERB>vm</VERB>.
+    <VERB>diag(diag(x))</VERB>  est une matrice diagonale.
+  </P>
+  <P>
+    Si <VERB>vm</VERB> est une matrice creuse <VERB>diag(vm,k)</VERB> renvoie une matrice creuse. 
+  </P>
+  <P>
+    Pour construire un système linéaire diagonal, utilisez <VERB>sysdiag</VERB>.
+  </P>
+  <P>
+    Notez que <VERB>eye(A).*A</VERB> renvoie une matrice diagonale avec les termes diagonaux de
+    <VERB>A</VERB>. Ceci est valide pour tout type de matrice (constante,
+    polynomiale, rationnelle, système dynamique linéaire, ...).
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+diag([1,2])
+
+A=[1,2;3,4];
+diag(A)  // diagonale principale
+diag(A,1) 
+
+diag(sparse(1:10))  // matrice diagonale creuse
+
+// Construction d'une matrice tridiagonale de taille 2*m+1
+m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sysdiag</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

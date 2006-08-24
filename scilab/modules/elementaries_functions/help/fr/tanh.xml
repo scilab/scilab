@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>tanh  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="tanh"> tangente hyperbolique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=tanh(x)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (réelle ou complexe)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Les éléments de <VERB>t</VERB> sont les tangentes hyperboliques des éléments de <VERB>x</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=[1,%i,-1,-%i]
+tanh(x)
+sinh(x)./cosh(x)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>atanh</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>tan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>tanhm</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

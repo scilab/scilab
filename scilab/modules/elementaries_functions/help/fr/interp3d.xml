@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>interp3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="interp3d">3d spline evaluation function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xp, yp, zp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors or matrices of same size</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tlist of type &quot;splin3d&quot;, defining a 3d tensor spline (called <VERB>s</VERB> 
+                in the following)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>out_mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optionnal) string defining the evaluation of <VERB>s</VERB> outside the grid
+                ([xmin,xmax]x[ymin,ymax]x[zmin,zmax])</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix of same format than <VERB>xp</VERB>, <VERB>yp</VERB> and <VERB>zp</VERB>, 
+                elementwise evaluation of <VERB>s</VERB> on these points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dfpdx, dfpdy, dfpdz</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vectors (or matrices) of same format than <VERB>xp</VERB>, <VERB>yp</VERB> and <VERB>zp</VERB>,
+                elementwise evaluation of the first derivatives of <VERB>s</VERB> on these points.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given a tlist <VERB>tl</VERB> defining a 3d spline function (see <LINK>splin3d</LINK>) this function
+    evaluates <EM>s</EM> (and <EM>ds/dx, ds/dy, ds/dz</EM> if needed) at <EM>(xp(i),yp(i),zp(i))</EM> :
+    </P>
+        <VERBATIM><![CDATA[
+      zp(i) = s(xp(i),yp(i))   
+      dzpdx(i) = ds/dx(xp(i),yp(i),zp(i))
+      dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))  
+      dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
+         ]]></VERBATIM>
+    <P>
+    The <VERB>out_mode</VERB> parameter defines the evaluation rule for extrapolation,
+    i.e. for <EM>(xp(i),yp(i),zp(i)) not in [xmin,xmax]x[ymin,ymax]x[zmin,zmax]</EM>: 
+    </P>
+    <ITEMIZE label="out_mode">
+      <ITEM label="&quot;by_zero&quot;">
+         <SP>: an extrapolation by zero is done</SP>
+      </ITEM>
+      <ITEM label="&quot;by_nan&quot;">
+         <SP>: extrapolation by Nan</SP>
+      </ITEM>
+      <ITEM label="&quot;C0&quot;">
+         <SP>: the extrapolation is defined as follows :</SP>
+        <VERBATIM><![CDATA[
+     s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                           of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;periodic&quot;">
+         <SP>: <VERB>s</VERB> is extended by periodicity.</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+// see the examples of the splin3d help page
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>splin3d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bsplin3val</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM> R.F. Boisvert, C. De Boor (code from the CMLIB fortran lib)</AUTHORS_ITEM>
+     <AUTHORS_ITEM> B. Pincon (scilab interface)</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

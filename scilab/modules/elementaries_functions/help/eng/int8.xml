@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>int8</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 99</DATE>
+  <SHORT_DESCRIPTION name="int8"> conversion to one byte integer representation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="int16"> conversion to 2 bytes integer representation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="int32"> conversion to 4 bytes integer representation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="uint8"> conversion to one byte unsigned integer representation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="uint16"> conversion to 2 bytes unsigned integer representation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="uint32"> conversion to 4 bytes unsigned integer representation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=int8(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=int16(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=int32(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=uint8(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=uint16(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=uint32(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of floats or integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of integers coded on one, two or four bytes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    converts and stores data two one, two or four bytes integers. These
+    data types are specialy useful to store big objects such as images,
+    long signals,...
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="y=int8(X)">
+        <SP>: return numbers in the range [-128,127]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="y=uint8(X)">
+        <SP>: return numbers in the range [0,255]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="y=int16(X)">
+        <SP>: return numbers in the range [-32768,32767]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="y=uint16(X)">
+        <SP>: return numbers in the range [0, 65535]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="y=int32(X)">
+        <SP>: return numbers in the range [-2147483648,2147483647]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="y=uint32(X)">
+        <SP>: return numbers in the range [0, 4294967295]</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+int8([1 -120 127 312])
+uint8([1 -120 127 312])
+
+x=int32(-200:100:400)
+int8(x)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>double</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>inttype</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>iconvert</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>modulo</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="modulo"> symetric arithmetic remainder modulo m</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="pmodulo"> positive arithmetic remainder modulo m</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>i=modulo(n,m)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>i=pmodulo(n,m)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n,m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>modulo</VERB> computes <VERB>i= n (modulo m)</VERB> i.e. remainder
+    of <VERB>n</VERB> divided by <VERB>m</VERB> (<VERB>n</VERB> and <VERB>m</VERB> integers).</P>
+    <P>
+     i = n - m .* int (n ./ m). Here the answer may be negative if <VERB>n</VERB>  or <VERB>m</VERB> 
+    are negative.</P>
+    <P><VERB>pmodulo</VERB> computes  <VERB>i = n - m .* floor (n ./ m)</VERB>, the answer
+    is positive or zero</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+n=[1,2,10,15];m=[2,2,3,5];
+modulo(n,m)
+
+modulo(-3,9)
+pmodulo(-3,9)
+ ]]>
+  </EXAMPLE>
+</MAN>

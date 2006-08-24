@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>permute</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>2005</DATE>
+
+  <SHORT_DESCRIPTION name="permute">permute the dimensions of an
+  array</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=permute(x,dims)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>dims</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar or a vector of positive reals.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar, a vector, a matrix or a mutlti-array.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>y=permute(x,dims) : </VERB></P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+//example 1:
+x=[1 2 3;4 5 6];
+y=permute(x,[2 1]);
+
+//example 2:
+x=matrix(1:12,[2,3,2]);
+y=permute(x,[3 1 2]);
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pertrans</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>quote</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>cat</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Farid Belahcene</AUTHOR>
+</MAN>

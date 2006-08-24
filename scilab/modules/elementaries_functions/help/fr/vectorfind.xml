@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>vectorfind</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>24-Jun-2003</DATE>
+  <SHORT_DESCRIPTION name="vectorfind">finds in a matrix rows or columns
+  matching a vector</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>ind = vectorfind(m,v,job)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a matrix of any  type</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector  of any  type</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>job</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string flag with possible values &quot;r&quot; to look for matching
+       rows or &quot;c&quot; to look for matching columns</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ind</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector containing indices of matching rows or columns</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+   finds in a matrix rows or columns  matching a vector</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+      alr=[1,2,2;
+	   1,2,1;
+	   1,1,2;
+	   1,1,1;
+	   1,2,1];
+      ind = vectorfind(alr,[1,2,1],'r')
+      ind = vectorfind(string(alr),string([1,2,1]),'r')
+  ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK> find</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK> gsort</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    R. Nikoukhah, S. Steer INRIA
+  </AUTHOR>
+</MAN>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cumprod  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="cumprod"> produit cumulatif.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=cumprod(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=cumprod(x,'r') ou y=cumprod(x,1) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=cumprod(x,'c') ou y=cumprod(x,2) </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=cumprod(x,'m') </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (réelle ou complexe)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (réelle ou complexe)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P> Pour un vecteur <VERB>x</VERB>, <VERB>y=cumprod(x)</VERB> renvoie dans
+      <VERB>y</VERB> le produit cumulatif de tous les éléments de
+      <VERB>x</VERB>. Si <VERB>x</VERB> est une matrice, elle est considérée
+      comme un vecteur (les colonnes sont mises bout à bout). </P>
+
+  <P> <VERB>y=cumprod(x,'c')</VERB> (ou <VERB>y=cumprod(x,2)</VERB>)
+      renvoie dans <VERB>y</VERB> le produit cumulatif des éléments des lignes
+      de <VERB>x</VERB>: <VERB> y(i,:)=cumprod(x(i,:))</VERB>. </P>
+
+  <P> <VERB>y=cumprod(x,'r')</VERB> (ou <VERB>y=cumprod(x,2)</VERB>)
+      renvoie dans <VERB>y</VERB> le produit cumulatif des colonnes de
+      <VERB>x</VERB>: <VERB> y(:,i)=cumprod(x(:,i))</VERB>. </P>
+
+  <P> <VERB>y=cumprod(x,'m')</VERB>
+      effectue le produit cumulatif selon la première dimension plus grande que
+      1 (compatibilité avec Matlab). </P>
+
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2;3,4];
+cumprod(A)
+cumprod(A,'r')
+cumprod(A,'c')
+rand('seed',0);
+a=rand(3,4);
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>cumsum</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>prod</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>logm</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="logm"> square matrix logarithm</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=logm(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>logm(x)</VERB> is the matrix logarithm of <VERB>x</VERB>.
+    The result is complex if <VERB>x</VERB> is not positive or definite positive.
+    If <VERB>x</VERB> is a  symmetric matrix, then calculation is made by
+    schur form. Otherwise, <VERB>x</VERB> is assumed diagonalizable. One has
+    <VERB>expm(logm(x))=x</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[1,2;3,4];
+logm(A)
+expm(logm(A))
+A1=A*A';
+logm(A1)
+expm(logm(A1))
+A1(1,1)=%i;
+expm(logm(A1))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>expm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>log</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

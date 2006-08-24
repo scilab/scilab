@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gamma</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1997</DATE>
+  <SHORT_DESCRIPTION name="gamma">  The gamma function.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM> y = gamma(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix with same size than x.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>gamma(x)</VERB> evaluates the gamma function at all the elements of <VERB>x</VERB>.
+    The gamma function is defined by :</P>
+    <VERBATIM>
+<![CDATA[
+                     /+oo
+                     |   x-1  -t
+         gamma(x) =  |  t    e    dt
+                     /0
+     ]]>
+    </VERBATIM>
+    <P>
+     and generalizes the factorial function for real numbers (<VERB>gamma(n+1) = n!</VERB>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// simple examples
+gamma(0.5)
+gamma(6)-prod(1:5)
+
+// the graph of the Gamma function on [a,b]
+a = -3; b = 5;
+x = linspace(a,b,40000)';
+y = gamma(x);
+xbasc()
+c=xget("color")
+xset("color",2)
+plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
+xset("color",c)
+xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
+xselect()
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gammaln</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dlgamma</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>W. J. Cody and L. Stoltz (code from Netlib (specfun))</AUTHOR>
+</MAN>

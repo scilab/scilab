@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>logspace</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="logspace"> logarithmically spaced vector</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>logspace(d1,d2, [n])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>d1,d2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex scalar (special meaning for <VERB>%pi</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (number of values) (default value = 50)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    returns a row vector of <VERB>n</VERB> logarithmically
+    equally spaced points between <VERB>10^d1</VERB> and <VERB>10^d2</VERB>.  If <VERB>d2=%pi</VERB>
+    then the points are between <VERB>10^d1</VERB> and <VERB>pi</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+logspace(1,2,10)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>linspace</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

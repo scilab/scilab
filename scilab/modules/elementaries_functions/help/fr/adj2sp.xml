@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>adj2sp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>JUN 1997</DATE>
+  <SHORT_DESCRIPTION name="adj2sp"> converts adjacency form into  sparse matrix.  </SHORT_DESCRIPTION>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xadj</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector of length (n+1).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>adjncy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  integer vector of length nz containing the row indices     for the corresponding elements in anz</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>anz</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  column vector of length nz, containing the non-zero     elements of A</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row vector with 2 entries, <VERB>mn=size(A)</VERB> (optional).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real or complex sparse matrix (nz non-zero entries)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+
+sp2adj converts an adjacency form representation of a matrix
+into its standard Scilab representation (utility fonction).
+xadj, adjncy, anz = adjacency representation of A i.e:
+
+    </P>
+    <P><VERB>xadj(j+1)-xadj(j)</VERB> = number of non zero entries in row j.
+    <VERB>adjncy</VERB> = column index of the non zeros entries 
+    in row 1, row 2,..., row n.
+    <VERB>anz</VERB> = values of non zero entries in row 1, row 2,..., row n.
+    <VERB>xadj</VERB> is a (column) vector of size n+1 and 
+    <VERB>adjncy</VERB> is an integer (column) vector of size <VERB>nz=nnz(A)</VERB>.
+    <VERB>anz</VERB> is a real vector of size <VERB>nz=nnz(A)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A = sprand(100,50,.05);
+[xadj,adjncy,anz]= sp2adj(A);
+[n,m]=size(A);
+p = adj2sp(xadj,adjncy,anz,[n,m]);
+A-p,
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sp2adj</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spcompack</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

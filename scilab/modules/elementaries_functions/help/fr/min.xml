@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>min  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="min"> minimum  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=min(A)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=min(A,'c')   </CALLING_SEQUENCE_ITEM> 
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=min(A,'r')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=min(A,'m')  </CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=min(A1,A2,...,An)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[m [,k]]=min(list(A1,A2,...,An))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : vecteur ou matrice réelle.
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>A1,...,An  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: un ensemble de vecteurs ou de matrices toutes de même taille.</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P> Pour <VERB>A</VERB>, un vecteur ou une matrice réelle,
+      <VERB>min(A)</VERB> est son plus grand élément. <VERB>[m,k]=min(A)</VERB>
+      donne la position du minimum dans <VERB>A</VERB>. Le deuxième argument
+      peut être la chaîne de caractère <VERB>'r'</VERB> ou
+      <VERB>'c'</VERB> : <VERB>'r'</VERB> permet
+      d'obtenir un vecteur ligne <VERB>m</VERB> tel que <VERB>m(j)</VERB>
+      contient le minimum de la<VERB>j</VERB>-ième colonne de A
+      (<VERB>A(:,j)</VERB>), <VERB>k(j)</VERB> donne le numéro de la ligne qui
+      contient le minimum pour la colonne
+      <VERB>j</VERB>. <VERB>'c'</VERB> est utilisé pour
+      l'opération duale sur les lignes de <VERB>A</VERB>. <VERB>'m'</VERB> est utilisé pour
+      la compatibilité avec Matlab.</P>
+
+    <P> <VERB>m=min(A1,A2,...,An)</VERB>, où tous les <VERB>Aj</VERB> sont des
+      matrices de même taille, renvoie un vecteur ou une matrice <VERB>m</VERB>
+      de taille <VERB>size(m)=size(A1)</VERB> telle que <VERB>m(i)= min(
+	Aj(i)), j=1,...,n</VERB>. <VERB>[m,k]=min(A1,A2,...,An)</VERB> donne de
+      plus le vecteur ou la matrice <VERB>k</VERB>. Pour un <VERB>i</VERB>
+      donné, <VERB>k(i)</VERB> est le numéro de la première <VERB>Aj(i)</VERB>
+      réalisant le minimum. </P>
+
+    <P>  <VERB>[m,k]=min(list(A1,...,An))</VERB> est une syntaxe équivalente de 
+      <VERB>[m,k]=min(A1,A2,...,An)</VERB> </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    [m,n]=min([1,3,1])
+    [m,n]=min([3,1,1],[1,3,1],[1,1,3])
+    [m,n]=min([3,-2,1],1)
+    [m,n]=min(list([3,1,1],[1,3,1],[1,1,3]))
+    [m,n]=min(list(1,3,1))
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sort</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>max</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

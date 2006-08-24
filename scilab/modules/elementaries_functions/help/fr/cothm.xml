@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cothm  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="cothm"> cotangente hyperbolique matricielle  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[t]=cothm(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>cothm(x)</VERB> est la cotangente hyperbolique matricielle de la matrice carrée x.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2;3,4];
+cothm(A)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>coth</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

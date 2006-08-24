@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>squarewave</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Sept 1999</DATE>
+  <SHORT_DESCRIPTION name="squarewave">  generates a square wave with period <VERB>2*%pi</VERB></SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x=squarewave(t [,percent])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector, time discretization</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector, the wave value at each time point in set (-1,+1)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>percent</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real positive scalar, the percent of the period in which the signal is positive. Defaut value is 50</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>squarewave(t)</VERB> generates the vector of the values of the square
+    wave with period 2*%pi at each date given in the <VERB>t</VERB> vector.</P>
+    <P><VERB>squarewave(t,%)</VERB> generates a square wave such that <VERB>%</VERB>  is
+    the percent of the period in which the signal is positive.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+t=(0:0.1:5*%pi)';
+plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cos</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>speye  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>January 1995  </DATE>
+  <SHORT_DESCRIPTION name="speye">  matrice identité creuse  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Isp=speye(nrows,ncols)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>Isp=speye(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>nrows  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (nombre de lignes)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ncols  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (nombre de colonnes)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice creuse
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sp  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice identité creuse
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>Isp=speye(nrows,ncols)</VERB> renvoie une matrice identité creuse <VERB>Isp</VERB> 
+    avec <VERB>nrows</VERB> lignes et <VERB>ncols</VERB> colonnes.
+  </P>
+  <P>
+    <VERB>Isp=speye(A)</VERB> renvoie une matrice identité creuse de même taille que <VERB>A</VERB>. Si <VERB>[m,n]=size(A)</VERB>, les commandes <VERB>speye(m,n)</VERB> et
+    <VERB>speye(A)</VERB> sont équivalentes. En particulier <VERB>speye(3)</VERB> n&apos;est pas 
+    équivalent à <VERB>speye(3,3)</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+eye(3,3)-full(speye(3,3))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>full</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>eye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spzeros</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>spones</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

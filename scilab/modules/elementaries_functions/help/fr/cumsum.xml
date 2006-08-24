@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>cumsum  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="cumsum"> somme cumulative.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=cumsum(x)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=cumsum(x,'r') ou y=cumsum(x,1)</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=cumsum(x,'c') ou y=cumsum(x,2)</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=cumsum(x,'m') </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (entière, réelle ou complexe)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice (entière,réelle ou complexe)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P> Pour un vecteur <VERB>x</VERB>, <VERB>y=cumsum(x)</VERB> renvoie dans
+      <VERB>y</VERB> la somme cumulative de tous les éléments de
+      <VERB>x</VERB>. Si <VERB>x</VERB> est une matrice, elle est considérée
+      comme un vecteur (les colonnes sont mises bout à bout).</P>
+
+  <P> <VERB>y=cumsum(x,&apos;c&apos;)</VERB> (ou <VERB>y=cumsum(x,2)</VERB>)
+      renvoie dans <VERB>y</VERB> la somme cumulative des éléments des lignes
+      de <VERB>x</VERB>: <VERB> y(i,:)=cumsum(x(i,:))</VERB>. </P> 
+
+  <P> <VERB>y=cumsum(x,&apos;r&apos;)</VERB> (ou <VERB>y=cumsum(x,2)</VERB>)
+      renvoie dans <VERB>y</VERB> la somme cumulative des colonnes de
+      <VERB>x</VERB>: <VERB> y(:,i)=cumsum(x(:,i))</VERB>.  </P>
+
+  <P> <VERB>y=cumsum(x,'m')</VERB>
+      effectue la somme cumulative selon la première dimension plus grande que
+      1 (compatibilité avec Matlab). </P>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1,2;3,4];
+cumsum(A)
+cumsum(A,'r')
+cumsum(A,'c')
+a=rand(3,4)+%i;
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>cumprod</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>sum</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>prod</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

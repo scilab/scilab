@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sign</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sign"> sign function</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P><VERB>X=sign(A)</VERB> returns the matrix made
+    of the signs of <VERB>A(i,j)</VERB>.For complex <VERB>A</VERB>, <VERB>sign(A) = A./abs(A)</VERB>.
+    function.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+sign(rand(2,3))
+sign(1+%i)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>abs</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

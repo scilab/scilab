@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>splin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 2004</DATE>
+  <SHORT_DESCRIPTION name="splin">cubic spline interpolation</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> d = splin(x, y [,spline_type [, der]])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>x </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: a strictly increasing (row or column) vector (x must have at least 2 components)</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>y </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: a vector of same format than <VERB>x</VERB></SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>spline_type </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: (optionnal) a string selecting the kind of spline to compute</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>der </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: (optionnal) a vector with 2 components, with the end points derivatives (to 
+               provide when spline_type=&quot;clamped&quot;)</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>d  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: vector of the same format than <VERB>x</VERB> (<VERB>di</VERB> is the derivative of 
+               the spline at <VERB>xi</VERB>)</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P>
+    This function computes a cubic spline or sub-spline <EM>s</EM> which interpolates the 
+    <EM>(xi,yi)</EM> points, ie, we have <EM>s(xi)=yi</EM> for all  <EM>i=1,..,n</EM>. 
+    The resulting spline <EM>s</EM> is completly defined by the triplet <VERB>(x,y,d)</VERB> where
+    <VERB>d</VERB> is the vector with the derivatives at the <VERB>xi</VERB>: <EM>s'(xi)=di</EM>
+    (this is called the <EM>Hermite</EM> form). 
+    The evaluation of the spline at some points must be done by the <LINK>interp</LINK> function.
+    Several kind of splines may be computed by selecting the appropriate <VERB>spline_type</VERB>
+    parameter: 
+    </P>
+    <ITEMIZE label="spline_type">
+      <ITEM label="&quot;not_a_knot&quot;">
+        <SP>: this is the default case, the cubic spline is computed by using the
+             following conditions (considering n points x1,...,xn):</SP>
+        <VERBATIM><![CDATA[
+    s'''(x2-) = s'''(x2+)
+    s'''(x{n-1}-) = s'''(x{n-1}+)
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;clamped&quot;">
+        <SP>: in this case the cubic spline is computed by using the end points
+             derivatives which must be provided as the last argument <VERB>der</VERB>:</SP>
+        <VERBATIM><![CDATA[
+    s'(x1) = der(1)
+    s'(xn) = der(2)
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;natural&quot;">
+        <SP>: the cubic spline is computed by using the conditions:</SP>
+        <VERBATIM><![CDATA[
+    s''(x1) = 0
+    s''(xn) = 0
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;periodic&quot;">
+        <SP>: a periodic cubic spline is computed (<VERB>y</VERB> must verify <EM>y1=yn</EM>)
+              by using the conditions:</SP>
+        <VERBATIM><![CDATA[
+    s'(x1) = s'(xn)
+    s''(x1) = s''(xn)
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;monotone&quot;">
+        <SP>: in this case a sub-spline (<EM>s</EM> is  only one continuously differentiable)
+              is computed by using a local scheme for the <EM>di</EM> such that
+              <EM>s</EM> is monotone on each interval:</SP>
+        <VERBATIM><![CDATA[
+    if y(i) <= y(i+1)  s is increasing on [x(i), x(i+1)] 
+    if y(i) >= y(i+1)  s is decreasing on [x(i), x(i+1)] 
+         ]]></VERBATIM>
+      </ITEM>
+      <ITEM label="&quot;fast&quot;">
+        <SP>: in this case a sub-spline is also computed by using a simple local scheme for 
+              the <EM>di</EM> :  d(i) is the derivative at x(i) of the interpolation polynomial of 
+              (x(i-1),y(i-1)), (x(i),y(i)),(x(i+1),y(i+1)), except for the end points (d1 being
+              computed from the 3 left most points and dn from the 3 right most points).</SP>
+       </ITEM>
+      <ITEM label="&quot;fast_periodic&quot;">
+        <SP>: same as before but use also a centered formula for <EM>d1 = s'(x1) = dn = s'(xn)</EM>
+              by using the periodicity of the underlying function (<VERB>y</VERB> must verify
+              <EM>y1=yn</EM>).</SP>
+       </ITEM>
+      </ITEMIZE>
+    </DESCRIPTION>
+
+    <SECTION label="Remarks">
+    <P>From an accuracy point of view use essentially the <BD>clamped</BD> type if you know the
+       end point derivatives, else use <BD>not_a_knot</BD>. But if the underlying approximated
+       function is periodic use the <BD>periodic</BD> type. Under the good assumptions these
+       kind of splines got an O(h^4) asymptotic behavior of the error. Don't use the 
+       <BD>natural</BD> type unless the underlying function have zero second end points 
+       derivatives.
+    </P>
+    <P>The <BD>monotone</BD>, <BD>fast</BD> (or <BD>fast_periodic</BD>) type may
+       be useful in some cases, for instance to limit oscillations (these kind of
+       sub-splines have an O(h^3) asymptotic behavior of the error).
+    </P>
+    <P>If <EM>n=2</EM> (and <VERB>spline_type</VERB> is not <BD>clamped</BD>) linear interpolation
+       is used. If <EM>n=3</EM> and <VERB>spline_type</VERB> is <BD>not_a_knot</BD>, then
+       a <BD>fast</BD> sub-spline type is in fact computed.
+    </P>
+    </SECTION>
+  <EXAMPLE><![CDATA[
+// example 1
+deff("y=runge(x)","y=1 ./(1 + x.^2)")
+a = -5; b = 5; n = 11; m = 400;
+x = linspace(a, b, n)';
+y = runge(x);
+d = splin(x, y);
+xx = linspace(a, b, m)';
+yyi = interp(xx, x, y, d);
+yye = runge(xx);
+xbasc()
+plot2d(xx, [yyi yye], style=[2 5], leg="interpolation spline@exact function")
+plot2d(x, y, -9)
+xtitle("interpolation of the Runge function")
+
+// example 2 : show behavior of different splines on random datas
+a = 0; b = 1;        // interval of interpolation
+n = 10;              // nb of interpolation  points
+m = 800;             // discretisation for evaluation
+x = linspace(a,b,n)'; // abscissae of interpolation points
+y = rand(x);          // ordinates of interpolation points
+xx = linspace(a,b,m)';
+yk = interp(xx, x, y, splin(x,y,"not_a_knot"));
+yf = interp(xx, x, y, splin(x,y,"fast"));
+ym = interp(xx, x, y, splin(x,y,"monotone"));
+xbasc()
+plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
+       leg="fast@monotone@not a knot spline")
+plot2d(x,y,-9, strf="000")  // to show interpolation points
+xtitle("Various spline and sub-splines on random datas")
+xselect()
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>interp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lsq_splin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+     <AUTHORS_ITEM>B. Pincon</AUTHORS_ITEM>
+     <AUTHORS_ITEM>F. N. Fritsch (pchim.f Slatec routine is used for monotone interpolation)</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

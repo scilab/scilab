@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>trisolve  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="trisolve"> solveur symbolique de système linéaire  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x [,sexp]] = trisolve(A,b [,sexp])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A,b,x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices (resp. vecteurs) de chaînes de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Résout <VERB>A*x = b</VERB> quand <VERB>A</VERB> est une matrice triangulaire supérieure de chaînes de caractères.
+  </P>
+  <P>
+    <VERB>sexp</VERB> est un ensemble d&apos;expressions communes dans <VERB>A</VERB>, <VERB>b</VERB> et <VERB>x</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=['x','y';'0','z'];b=['0';'1'];
+w=trisolve(A,b)
+x=5;y=2;z=4;
+evstr(w)
+inv(evstr(A))*evstr(b)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>trianfml</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>solve</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D, S.S  </AUTHOR>
+</MAN>

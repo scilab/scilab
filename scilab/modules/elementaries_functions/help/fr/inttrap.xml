@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>inttrap  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="inttrap"> intégration approchée de données expérimentales avec la méthode des trapèzes.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>v = inttrap([x,] s)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur des abscisses, classées par ordre croissant. La valeur par défaut est <VERB>1:size(y,&apos;*&apos;)</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>s  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur des ordonnées.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : valeur de l&apos;approximation de l&apos;intégrale
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Calcule une approximation de :
+  </P>
+  <P>
+    où f est donnée sous forme de valeurs expérimentales :
+  </P>
+  <P>
+    <VERB>s(i)=f(x(i))</VERB>  et <VERB>x0=x(1)</VERB>, <VERB>x1=x(n)</VERB>
+  </P>
+  <P>
+    Entre les points, f est approchée linéairement.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+t=0:0.1:%pi
+inttrap(t,sin(t))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>intg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>integrate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intsplin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>splin</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

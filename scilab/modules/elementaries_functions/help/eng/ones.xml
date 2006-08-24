@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ones</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ones"> matrix made of ones</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=ones(m1,m2,...)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=ones(x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=ones()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m1, m2,..  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns a matrix made of ones.
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="ones(m1,m2)">
+        <SP>returns a <VERB>(m1,m2)</VERB> matrix full of ones.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="ones(m1,m2,..,mn)">
+        <SP>: creates a <VERB>(m1,m2,..,mn)</VERB> matrix full of ones.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="ones(x)">
+        <SP>returns a matrix full of ones with the same size that <VERB>x</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="ones(x)">
+        <SP>is also valid for <VERB>x</VERB> a <VERB>syslin</VERB> list.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    Note that <VERB>ones(3)</VERB> is <VERB>ones(a)</VERB> with <VERB>a=3</VERB> i.e it is NOT 
+    a 3x3 matrix!</P>
+    <P>
+    ones() is eqivalent to ones(1,1).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ones(3)
+ones(3,3)
+ones(2,3,2)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>eye</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>zeros</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sort</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sort"> decreasing order sorting</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,'r')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,'c')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector/matrix; sparse vector; character string vector/matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix; sparse vector; character string vector/matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>s=sort(v)</VERB> sorts <VERB>v</VERB>  in decreasing order. 
+    If <VERB>v</VERB> is a matrix, sorting
+    is done columnwise, <VERB>v</VERB> being seen as the stacked vector <VERB>v(:)</VERB>.
+    <VERB>[s,k]=sort(v)</VERB> gives in addition the indices of entries 
+    of <VERB>s</VERB> in <VERB>v</VERB>, i.e. <VERB>v(k(:)) </VERB> is the vector <VERB>s</VERB>.</P>
+    <P><VERB>s=sort(v,'r')</VERB> sorts the rows of <VERB>v</VERB> in decreasing order i.e.
+    each column of <VERB>s</VERB> is obtained from each column of <VERB>v</VERB>
+    by reordering it in decreasing order.
+    <VERB>[s,k]=sort(v,'r')</VERB> returns in addition in each column of <VERB>k</VERB>
+    the indices such that <VERB>v(k(:,i),i)=s(:,i)</VERB> for each column index <VERB>i</VERB>.</P>
+    <P><VERB>s=sort(v,'c')</VERB> sorts the columns of <VERB>v</VERB> in decreasing order i.e.
+    each row of <VERB>s</VERB> is obtained from each row of <VERB>v</VERB>
+    by reordering it in decreasing order.
+    <VERB>[s,k]=sort(v,'c')</VERB> returns in addition in each row of <VERB>k</VERB>
+    the indices such that <VERB>v(i,k(i,:))=s(i,:)</VERB> for each row index <VERB>i</VERB>.</P>
+    <P>
+    Complex matrices or vectors are sorted w.r.t their magnitude.</P>
+    <P><VERB>y=sort(A)</VERB> is valid when <VERB>A</VERB> is a sparse vector. Column/row
+    sorting is not implemented for sparse matrices.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+[s,p]=sort(rand(1,10));
+//p  is a random permutation of 1:10
+A=[1,2,5;3,4,2];
+[Asorted,q]=sort(A);A(q(:))-Asorted(:)
+v=1:10;
+sort(v)
+sort(v')
+sort(v,'r')  //Does nothing for row vectors
+sort(v,'c')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>find</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

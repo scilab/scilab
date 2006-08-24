@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>trianfml</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="trianfml"> symbolic triangularization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[f [,sexp]]=trianfml(f [,sexp])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    Symbolic triangularization of the  matrix <VERB>f</VERB> ; triangularization 
+    is performed by elementary row operations;
+    <VERB>sexp</VERB> is a set of common expressions stored by the algorithm.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=['1','2';'a','b']
+W=trianfml([A,string(eye(2,2))])
+U=W(:,3:4)
+a=5;b=6;
+A=evstr(A)
+U=evstr(U)
+U*A
+evstr(W(:,1:2))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mulf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>solve</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>trisolve</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

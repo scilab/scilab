@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>norm</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="norm"> matrix norms</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y]=norm(x [,flag])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector or matrix (full or sparse storage)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string (type of norm) (default value =2)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    For matrices
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="norm(x)">
+        <SP>: or <VERB>norm(x,2)</VERB> is the largest singular value of <VERB>x</VERB> (<VERB>max(svd(x))</VERB>).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="norm(x,1)">
+        <SP>: The l_1 norm <VERB>x</VERB> (the largest column sum :  <VERB>maxi(sum(abs(x),'r'))</VERB>  ).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="norm(x,'inf'),norm(x,%inf)">
+        <SP>: The infinity norm of <VERB>x</VERB> (the largest row sum :  <VERB>maxi(sum(abs(x),'c'))</VERB>  ).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="norm(x,'fro')">
+        <SP>: Frobenius norm i.e. <VERB>sqrt(sum(diag(x'*x)))</VERB></SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    For vectors
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="norm(v,p)">
+        <SP>: l_p norm (<VERB>sum(v(i)^p))^(1/p)</VERB> .</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="norm(v)">
+        <SP>: <VERB>=norm(v,2)</VERB> : l_2 norm</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="norm(v,'inf')">
+        <SP>: <VERB>max(abs(v(i)))</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[1,2,3];
+norm(A,1)
+norm(A,'inf')
+A=[1,2;3,4]
+max(svd(A))-norm(A)
+
+A=sparse([1 0 0 33 -1])
+norm(A)
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>h_norm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dhnorm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>h2norm</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>abs</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

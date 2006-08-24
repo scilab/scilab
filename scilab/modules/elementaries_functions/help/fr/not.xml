@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>not  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="not (~)"> négation logique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>~A  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>~A</VERB> renvoie la négation élément par élément de la matrice booléenne <VERB>A</VERB>.  
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+~[%t %t %f]
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>and</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>or</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

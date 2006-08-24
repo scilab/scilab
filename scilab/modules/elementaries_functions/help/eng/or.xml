@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>or</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="or"> (|) logical or</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>or(A),  or(A,'*')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>or(A,'r'), or(A,1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>or(A,'c'), or(A,2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>A|B</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>or(A)</VERB>  gives the  <VERB>or</VERB> of the elements of the  boolean 
+    matrix  <VERB>A</VERB>. <VERB>or(A)</VERB> is true (<VERB>%t</VERB>) iff at least one entry of
+    <VERB>A</VERB> is <VERB>%t</VERB>.</P>
+    <P><VERB>y=or(A,'r')</VERB> (or, equivalently, <VERB>y=or(A,1)</VERB>) is the rowwise or. It returns in each 
+    entry of the row vector <VERB>y</VERB> the or of the rows of <VERB>x</VERB> (The or is performed on the 
+    row index : <VERB>y(j)= or(A(i,j),i=1,m)</VERB>).</P>
+    <P><VERB>y=or(A,'c')</VERB> (or, equivalently, <VERB>y=or(A,2)</VERB>) is the columnwise or. It returns 
+    in each entry of the column vector <VERB>y</VERB> the or of the columns of <VERB>x</VERB> 
+    (The or is performed on the column index:  <VERB>y(i)= or(A(i,j),j=1,n)</VERB>)).</P>
+    <P><VERB>A|B</VERB>  gives the element-wise logical <VERB>or</VERB> of the booleans matrices
+     <VERB>A</VERB> and  <VERB>B</VERB> .<VERB>A</VERB> and  <VERB>B</VERB> must be matrices with the same
+     dimensions or one from them must be a single boolean.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+or([%t %t %f])
+[%t %t %f]|[%f %t %t]
+[%t %t %f]|%f
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>and</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>not</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>find</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

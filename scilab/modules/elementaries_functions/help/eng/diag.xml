@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>diag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="diag"> diagonal including or extracting</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y]=diag(vm, [k])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>vm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix (full or sparse storage)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (default value 0)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector or matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    for <VERB>vm</VERB> a (row or column) n-vector <VERB>diag(vm)</VERB> returns a diagonal
+    matrix with entries of <VERB>vm</VERB> along the main diagonal.</P>
+    <P><VERB>diag(vm,k)</VERB> is a  <VERB>(n+abs(k))x(n+abs(k))</VERB> matrix with the entries 
+    of <VERB>vm</VERB>  along the kth diagonal.  <VERB>k=0</VERB>  is the main diagonal 
+    <VERB>k&gt;0</VERB>  is for upper diagonals and <VERB>k&lt;0</VERB> for lower
+    diagonals.</P>
+    <P>
+    For a matrix <VERB>vm</VERB>, <VERB>diag(vm,k)</VERB> is the column vector made of entries
+    of the kth diagonal of <VERB>vm</VERB>.  <VERB>diag(vm)</VERB> is the main diagonal of <VERB>vm</VERB>.
+    <VERB>diag(diag(x))</VERB>  is a diagonal matrix.</P>
+    <P>
+    If  <VERB>vm</VERB> is a sparse matrix <VERB>diag(vm,k)</VERB>  returns a
+    sparse  matrix.</P>
+    <P>
+    To construct a diagonal linear system, use <VERB>sysdiag</VERB>.</P>
+    <P>
+    Note that <VERB>eye(A).*A</VERB> returns a diagonal matrix made with the
+    diagonal entries of <VERB>A</VERB>. This is valid for any matrix (constant,
+    polynomial, rational, state-space linear system,...).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+diag([1,2])
+
+A=[1,2;3,4];
+diag(A)  // main diagonal
+diag(A,1) 
+
+diag(sparse(1:10))  // sparse diagonal matrix
+
+// form a tridiagonal matrix of size 2*m+1
+m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>sysdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sparse</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>interpln</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="interpln"> linear interpolation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y]=interpln(xyd,x)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>xyd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2 row matrix (xy coordinates of points)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector (abscissae)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector (y-axis values)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    given <VERB>xyd</VERB> a set of points in the xy-plane  which increasing abscissae and <VERB>x</VERB> a set of abscissae, this function computes <VERB>y</VERB> the corresponding
+    y-axis values by linear interpolation.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[-3],"011"," ",[-10,-40,50,50]);
+yi=interpln([x;y],-4:45);
+plot2d((-4:45)',yi',[3],"000");
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>splin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>interp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>smooth</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

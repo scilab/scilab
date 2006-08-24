@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>minus  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="minus (-)"> opérateur de soustraction, changement de signe  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>X-Y  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>-Y  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <VERB>syslin</VERB>.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <VERB>syslin</VERB>.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Soustraction
+  </P>
+  <P>
+    Pour les opérandes numériques la signification est celle de la soustraction habituelle. Si l&apos;un des opérandes est une matrice (ou un vecteur) et l&apos;autre un scalaire l&apos;opération est effectuée pour chaque élément de la matrice. Si <VERB>Y==[]</VERB> le résultat est <VERB>X</VERB>. Si <VERB>X==[]</VERB> le résultat est <VERB>-Y</VERB>.
+  </P>
+  <P>
+    La soustraction peut être aussi définie pour d&apos;autres types de données via 
+    la surcharge d&apos;opérateurs (voir overloading).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[1,2]-1
+[]-2
+
+%s-2
+1/%s-2
+"cat"+"enate"
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>overloading</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>addf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mtlb_mode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

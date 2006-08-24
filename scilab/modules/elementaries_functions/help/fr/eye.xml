@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>eye  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="eye"> matrice identité  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>X=eye(m,n)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>X=eye(A)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>X=eye()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A,X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices ou listes de type <VERB>syslin</VERB>.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>m,n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Renvoie, suivant les arguments, une matrice <VERB>m</VERB>x<VERB>n</VERB> avec des 1 sur la diagonale principale ou une matrice identité de même taille que <VERB>A</VERB> .
+  </P>
+  <P>
+    Attention : <VERB>eye(10)</VERB> est équivalent à <VERB>eye(A)</VERB> avec <VERB>A=10</VERB> c&apos;est à dire <VERB>1</VERB>.
+    (Ce n&apos;est pas une matrice identité 10 x 10!).
+  </P>
+  <P>
+    Si <VERB>A</VERB> est un système linéaire représenté par une liste de type <VERB>syslin</VERB>, <VERB>eye(A)</VERB>
+    renvoie une <VERB>eye</VERB> matrice de dimension appropriées : (nombre de sorties x nombre d&apos;entrées).
+  </P>
+  <P>
+    <VERB>eye()</VERB> renvoie une matrice identité de dimension non définie.
+    Ses dimensions sont définies quand cette matrice est ajoutée à une matrice de dimensions fixées.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+eye(2,3)
+A=rand(2,3);eye(A)
+s=poly(0,'s');A=[s,1;s,s+1];eye(A)
+A=[1/s,1;s,2];eye(A);
+A=ssrand(2,2,3);eye(A)
+[1 2;3 4]+2*eye()
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ones</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>zeros</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

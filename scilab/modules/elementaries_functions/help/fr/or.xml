@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>or  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="or |"> disjonction logique  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>or(A),  or(A,&apos;*&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>or(A,&apos;r&apos;), or(A,1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>or(A,&apos;c&apos;), or(A,2)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>A|B  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>or(A)</VERB> donne la disjonction (ou) logique des éléments de la matrice booléenne <VERB>A</VERB>. <VERB>or(A)</VERB> est vrai (<VERB>%t</VERB>) si au moins un terme de <VERB>A</VERB> est <VERB>%t</VERB>. 
+  </P>
+  <P>
+    <VERB>y=or(A,&apos;r&apos;)</VERB> (ou <VERB>y=or(A,1)</VERB>) est la disjonction suivant l&apos;indice de ligne. Chaque élément du vecteur ligne <VERB>y</VERB> contient la disjonction de chaque colonne de <VERB>x</VERB> (<VERB>y(j)= or(A(i,j),i=1,m)</VERB>).
+  </P>
+  <P>
+    <VERB>y=or(A,&apos;c&apos;)</VERB> (ou <VERB>y=or(A,2)</VERB>) est la disjonction suivant l&apos;indice de colonne. Chaque élément du vecteur colonne <VERB>y</VERB> contient la disjonction de chaque ligne de <VERB>x</VERB> 
+    (<VERB>y(i)= or(A(i,j),j=1,n)</VERB>)).
+  </P>
+  <P>
+    <VERB>A|B</VERB> renvoie la disjonction logique élément par élément des matrices booléennes  <VERB>A</VERB> et <VERB>B</VERB>. <VERB>A</VERB> et <VERB>B</VERB> doivent être des matrices de mêmes dimensions ou l&apos;une d&apos;elles doit être un simple booléen.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+or([%t %t %f])
+[%t %t %f]|[%f %t %t]
+[%t %t %f]|%f
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>and</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>not</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

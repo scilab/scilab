@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>frexp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jan 2000  </DATE>
+  <SHORT_DESCRIPTION name="frexp"> calcule la représentation en base 2 (mantisse et exposant) d&apos;un nombre flottant.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[f,e]=frexp(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice ou vecteur réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice ou vecteur réel, habituellement dans l&apos;intervalle 0.5 &lt;= abs(f) &lt; 1.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>e  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice ou vecteur d&apos;entiers satisfaisant l&apos;équation: x = f.*2.^e
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+  </P>
+  <P>
+    Cette fonction correspond à la fonction ANSI C frexp(). Chaque 0 dans <VERB>x</VERB> produit <VERB>f=0</VERB> et <VERB>e=0</VERB>.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[f,e]=frexp([1,%pi,-3,%eps])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>log</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>hat</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ieee</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>log2</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

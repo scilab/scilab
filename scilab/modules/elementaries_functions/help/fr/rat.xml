@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>rat  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="rat"> approximation rationnelle d&apos;un flottant   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[N,D]=rat(x [,tol])  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=rat(x [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice réelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice d&apos;entiers 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice d&apos;entiers 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ou matrice réelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>[N,D] = rat(x,tol)</VERB> renvoie deux matrices entières telles que <VERB>N./D</VERB> est proche de <VERB>x</VERB> au sens où
+    <VERB>abs(N./D - X) &lt;= tol*abs(x)</VERB>. Les approximations rationnelles sont obtenues par troncature d&apos;un développement en fraction continue.   
+    <VERB>tol = 1.e-6*norm(X,1)</VERB> est la valeur de la tolérance par défaut.
+    <VERB>y = rat(x,tol)</VERB> renvoie le quotient <VERB>N./D</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[n,d]=rat(%pi)
+[n,d]=rat(%pi,1.d-12)
+n/d-%pi
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>int</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>round</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

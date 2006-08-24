@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>lstsize  </TITLE>
+  <TYPE>Fonction Scilab </TYPE>
+  <DATE>2002  </DATE>
+  <SHORT_DESCRIPTION name="lstsize"> nombre d'éléments des objets
+  list, tlist et mlist </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>n=lstsize(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+   <PARAM_INDENT>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un object de type list, tlist ou mlist
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>n </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un entier, le nombre d'éléments de la liste
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+   </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+<P>
+   <VERB>lstsize(x)</VERB> retourne le nombre d'élément d'un objet de type list, tlist ou mlist.
+   Cette fonction est plus efficace que la fonction <VERB>size</VERB>
+   et à la même signification pour tous les objets de type  list
+   tandis que <VERB>size</VERB> est surcharge pour les objets de type <VERB>mlist</VERB>.
+ </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+lstsize(list(1,'aqsdf'))
+x=ssrand(3,2,4);
+[ny,nu]=size(x)
+lstsize(x)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>length</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>size</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>list</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>mlist</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

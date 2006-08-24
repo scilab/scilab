@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>cell2mat</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>May 2004</DATE>
+
+  <SHORT_DESCRIPTION name="cell2mat">convert a cell array into a
+  matrix</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x=cell2mat(c)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>c</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: cell, the components of c must have the same type and can be
+          scalars or matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Returns a matrix which is the concatenation of all components of the
+    cell c.</P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="cell2mat(c)">
+        <SP>: all components of c must have the same data type (strings or
+        doubles or integers or booleans). For each row <VERB>i </VERB>of
+        <VERB>c,</VERB> <VERB>cell2mat</VERB> concatenates all the components
+        of the <VERB>ith</VERB> row of the cell <VERB>c</VERB></SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Note that if the components of the cell input c<VERB> </VERB>are
+    strings then <VERB>cell2mat(c)</VERB> returns a column vector of strings
+    concatenation</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
+cell2mat(c)
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cell</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

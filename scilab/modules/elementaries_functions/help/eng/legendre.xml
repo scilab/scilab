@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN
+>
+
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>legendre </TITLE>
+
+  <TYPE>Scilab Function  </TYPE>
+
+  <DATE>November 2003 </DATE>
+
+  <SHORT_DESCRIPTION name="legendre">associated Legendre functions</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> y = legendre(n,m,x [,normflag]) </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: non negative integer or vector of non negative integers regularly spaced with increment equal to 1</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: non negative integer or vector of non negative integers regularly spaced with increment equal to 1</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: real (row) vector (elements of <VERB>x</VERB> must be in the <VERB>(-1,1)</VERB> interval)</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>normflag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+        <SP>: (optional) scalar string</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+  <P>
+    When <VERB>n</VERB> and <VERB>m</VERB> are scalars, 
+    <VERB>legendre(n,m,x)</VERB> evaluates the associated Legendre 
+    function Pnm(x) at all the elements of <VERB>x</VERB>. The definition used 
+    is :
+  </P>
+     <VERBATIM><![CDATA[
+                              m
+               m        m/2  d  
+  Pnm(x) = (-1)  (1-x^2)    --- Pn(x)
+                              m  
+                            dx ]]>
+     </VERBATIM>
+   <P>
+     where <VERB>Pn</VERB> is the Legendre polynomial of degree <VERB>n</VERB>. So 
+     <VERB>legendre(n,0,x)</VERB> evaluates the Legendre polynomial Pn(x) at all 
+     the elements of <VERB>x</VERB>. 
+  </P>
+  <P>
+     When the normflag is equal to &quot;norm&quot; you get a normalized version (without
+    the <VERB>(-1)^m</VERB> factor), precisely :
+  </P>
+     <VERBATIM><![CDATA[
+                     _____________                m
+                    /(2n+1)(n-m)!          m/2   d
+  Pnm(x,"norm") =  /--------------  (1-x^2)     --- Pn(x)
+                 \/     2  (n+m)!                 m
+                                                dx ]]>
+     </VERBATIM>
+  <P>
+     which is useful to compute spherical harmonic functions (see Example 3):
+  </P>
+  <P>
+     For efficiency, one of the two first arguments may be a vector, for instance
+     <VERB>legendre(n1:n2,0,x)</VERB> evaluates all the Legendre polynomials of
+     degree <EM>n1, n1+1, ..., n2</EM> at the elements of <VERB>x</VERB> and
+     <VERB>legendre(n,m1:m2,x)</VERB> evaluates all the Legendre associated 
+     functions Pnm for <EM>m=m1, m1+1, ..., m2</EM> at <VERB>x</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SECTION label='Output format'>
+    <P>
+    In any case, the format of <VERB>y</VERB> is :
+    </P>
+     <VERBATIM><![CDATA[
+        max(length(n),length(m)) x length(x)
+     ]]></VERBATIM>
+    <P>
+    and :
+    </P>
+     <VERBATIM><![CDATA[
+       y(i,j) = P(n(i),m;x(j))   if n is a vector
+       y(i,j) = P(n,m(i);x(j))   if m is a vector
+       y(1,j) = P(n,m;x(j))      if both n and m are scalars
+     ]]></VERBATIM>
+     <P>
+     so that <VERB>x</VERB> is preferably a row vector but any <TT>mx x nx</TT> matrix
+     is excepted and considered as an <TT>1 x (mx * nx)</TT> matrix, reshaped
+     following the column order.
+     </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+// example 1 : plot of the 6 first Legendre polynomials on (-1,1)
+l = nearfloat("pred",1);
+x = linspace(-l,l,200)';
+y = legendre(0:5, 0,  x);
+xbasc()
+plot2d(x,y', leg="p0@p1@p2@p3@p4@p5@p6")
+xtitle("the 6 th first Legendre polynomials")
+
+// example 2 : plot of the associated Legendre functions of degree 5 
+l = nearfloat("pred",1);
+x = linspace(-l,l,200)';
+y = legendre(5, 0:5, x, "norm");
+xbasc()
+plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
+xtitle("the (normalised) associated Legendre functions of degree 5")
+
+// example 3 : define then plot a spherical harmonic
+// 3-1 : define the function Ylm
+function [y] = Y(l,m,theta,phi)
+   // theta may be a scalar or a row vector
+   // phi may be a scalar or a column vector
+   if m >= 0 then
+      y = (-1)^m/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, m, cos(theta), "norm")
+   else
+      y = 1/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, -m, cos(theta), "norm")
+   end      
+endfunction
+
+// 3.2 : define another useful function
+function [x,y,z] = sph2cart(theta,phi,r)
+   // theta row vector      1 x nt
+   // phi   column vector  np x 1
+   // r     scalar or np x nt matrix (r(i,j) the length at phi(i) theta(j)) 
+   x = r.*(cos(phi)*sin(theta));
+   y = r.*(sin(phi)*sin(theta));
+   z = r.*(ones(phi)*cos(theta));
+endfunction
+
+// 3-3 plot Y31(theta,phi)
+l = 3; m = 1;
+theta = linspace(0.1,%pi-0.1,60);
+phi = linspace(0,2*%pi,120)';
+f = Y(l,m,theta,phi);
+[x1,y1,z1] = sph2cart(theta,phi,abs(f));       [xf1,yf1,zf1] = nf3d(x1,y1,z1);
+[x2,y2,z2] = sph2cart(theta,phi,abs(real(f))); [xf2,yf2,zf2] = nf3d(x2,y2,z2);
+[x3,y3,z3] = sph2cart(theta,phi,abs(imag(f))); [xf3,yf3,zf3] = nf3d(x3,y3,z3);
+
+xbasc()
+subplot(1,3,1)
+plot3d(xf1,yf1,zf1,flag=[2 4 4]); xtitle("|Y31(theta,phi)|")
+subplot(1,3,2)
+plot3d(xf2,yf2,zf2,flag=[2 4 4]); xtitle("|Real(Y31(theta,phi))|")
+subplot(1,3,3)
+plot3d(xf3,yf3,zf3,flag=[2 4 4]); xtitle("|Imag(Y31(theta,phi))|")
+ ]]></EXAMPLE>
+
+  <AUTHORS>
+     <AUTHORS_ITEM>Smith, John M. (code dxlegf.f from Slatec)</AUTHORS_ITEM>
+     <AUTHORS_ITEM>B. Pincon (scilab interface)</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
