@@ -414,6 +414,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_glue.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_grayplot.c"
 				>
 			</File>
@@ -430,7 +434,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_move.c"
+				RelativePath=".\sci_gateway\sci_move.c"
 				>
 			</File>
 			<File
@@ -908,6 +912,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_get.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_glue.h"
 				>
 			</File>
 			<File
