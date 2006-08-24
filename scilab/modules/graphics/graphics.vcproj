@@ -574,6 +574,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xrects.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xs2bmp.c"
 				>
 			</File>
@@ -1036,6 +1040,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xrect.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xrects.h"
 				>
 			</File>
 			<File

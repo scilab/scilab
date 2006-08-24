@@ -24,7 +24,7 @@ extern int sci_grayplot                   _PARAMS((char *fname, unsigned long fn
 extern int sci_driver                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarc                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarcs                      _PARAMS((char *fname, unsigned long fname_len));
-extern int scirects                       _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xrects                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xarrows                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xsegs                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_drawaxis                   _PARAMS((char *fname, unsigned long fname_len));
@@ -154,7 +154,7 @@ static MatdesTable Tab[]={
 	{sci_xpoly,"xpoly"},
 	{sci_xpolys,"xpolys"},
 	{sci_xrect,"xrect"},
-	{scirects,"xrects"},
+	{sci_xrects,"xrects"},
 	{sci_xs2fig,"xg2fig"},
 	{sci_xsave,"xsave"},
 	{sci_xsegs,"xsegs"},
