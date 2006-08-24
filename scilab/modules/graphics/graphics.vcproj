@@ -458,6 +458,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_seteventhandler.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_StringBox.c"
 				>
 			</File>
@@ -924,6 +928,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_set_posfig_dim.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_seteventhandler.h"
 				>
 			</File>
 			<File
