@@ -95,8 +95,8 @@ extern int sci_set_posfig_dim             _PARAMS((char *fname,unsigned long fna
 extern int XSaveNative                    _PARAMS((char *fname, unsigned long fname_len));
 extern int scizoomrect                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sciunzoom                      _PARAMS((char *fname,unsigned long fname_len));
-extern int intxs2bmp                      _PARAMS((char *fname,unsigned long fname_len));
-extern int intxs2emf                      _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_xs2bmp                      _PARAMS((char *fname,unsigned long fname_len));
+extern int sci_xs2emf                     _PARAMS((char *fname,unsigned long fname_len));
 extern int intUImenu                      _PARAMS((char *fname,unsigned long fname_len));
 extern int sci_newaxes                    _PARAMS((char *fname,unsigned long fname_len));
 extern int intshowalluimenushandles       _PARAMS(( char * fname, unsigned long fname_len ) ) ;
@@ -172,8 +172,8 @@ static MatdesTable Tab[]={
 	{sci_xs2gif,"xs2gif"},
 	{sci_xs2ppm,"xs2ppm"},
 	{sci_xs2ps,"xs2ps"},
-	{intxs2bmp,"xs2bmp"},
-	{intxs2emf,"xs2emf"},
+	{sci_xs2bmp,"xs2bmp"},
+	{sci_xs2emf,"xs2emf"},
 	{sci_set_posfig_dim,"set_posfig_dim"},
 	{XSaveNative,"xsnative"},
 	{ShowWindowFunction,"show_window"},

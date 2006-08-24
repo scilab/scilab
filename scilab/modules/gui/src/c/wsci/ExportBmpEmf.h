@@ -21,5 +21,7 @@ BOOL HdcToBmpFile(HDC hdc, char *pszflname,POINT DeviceSize);
 BOOL HwndToBmpFile(HWND hwnd, char *pszflname);
 void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 void ExportEMF(struct BCG *ScilabGC,char *pszflname);
+int Interface_XS2BMP(int figurenum,char *filename) ;
+int Interface_XS2EMF(int figurenum,char *filename) ;
 /*-----------------------------------------------------------------------------------*/
 #endif /* __EXPORTBMPEMF__ */
