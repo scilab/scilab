@@ -83,7 +83,7 @@ extern int sci_copy                       _PARAMS((char *fname, unsigned long su
 extern int sci_move                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_glue                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_unglue                     _PARAMS((char *fname, unsigned long fname_len));
-extern int drawnow                        _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_drawnow                    _PARAMS((char *fname, unsigned long fname_len));
 extern int drawlater                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_draw                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xs2gif                     _PARAMS((char *fname,unsigned long fname_len));
@@ -184,7 +184,7 @@ static MatdesTable Tab[]={
 	{sci_move,"move"},
 	{sci_glue,"glue"},
 	{sci_unglue,"unglue"}, 
-	{drawnow,"drawnow"},
+	{sci_drawnow,"drawnow"},
 	{drawlater,"drawlater"},  
 	{sci_draw,"draw"},
 	{sci_addcb,"addcb"},

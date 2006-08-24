@@ -398,6 +398,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_drawnow.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_driver.c"
 				>
 			</File>
@@ -900,6 +904,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_drawaxis.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_drawnow.h"
 				>
 			</File>
 			<File
