@@ -34,7 +34,7 @@ c
 c     
  01   if(sym.ge.ou.and.sym.le.great) then
          call error(40)
-         return101
+         return
       endif
  02   continue
       kount = 1
