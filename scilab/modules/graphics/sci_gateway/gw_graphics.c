@@ -36,7 +36,7 @@ extern int sci_xclick                     _PARAMS((char *fname, unsigned long fn
 extern int sci_xend                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfpoly                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfpolys                    _PARAMS((char *fname, unsigned long fname_len));
-extern int scixget                        _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xget                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xinit                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xlfont                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xpoly                      _PARAMS((char *fname, unsigned long fname_len));
@@ -79,7 +79,7 @@ extern int gset                           _PARAMS((char *fname, unsigned long fn
 extern int gget                           _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_delete                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_addcb                      _PARAMS((char *fname, unsigned long fname_len));
-extern int copy                           _PARAMS((char *fname, unsigned long subwinparenttarget));
+extern int sci_copy                          _PARAMS((char *fname, unsigned long subwinparenttarget));
 extern int move                           _PARAMS((char *fname, unsigned long fname_len));
 extern int glue                           _PARAMS((char *fname, unsigned long fname_len));
 extern int unglue                         _PARAMS((char *fname, unsigned long fname_len));
@@ -143,7 +143,7 @@ static MatdesTable Tab[]={
 	{sci_xfpolys,"xfpolys"},
 	{sci_xrect,"xfrect"},
 	{sci_xg2ps,"xg2ps"},
-	{scixget,"xget"},
+	{sci_xget,"xget"},
 	{sci_xgetech,"xgetech"},
 	{sci_xgetmouse,"xgetmouse"},
 	{sci_xgrid,"xgrid"},
@@ -188,7 +188,7 @@ static MatdesTable Tab[]={
 	{drawlater,"drawlater"},  
 	{sci_draw,"draw"},
 	{sci_addcb,"addcb"},
-	{copy,"copy"},
+	{sci_copy,"copy"},
 	{sci_delete,"delete"},
 	{gget,"get"},
 	{gset,"set"},

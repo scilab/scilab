@@ -378,6 +378,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_copy.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_delete.c"
 				>
 			</File>
@@ -864,6 +868,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_contour2di.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_copy.h"
 				>
 			</File>
 			<File
