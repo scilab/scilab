@@ -362,6 +362,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_addcb.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_champ.c"
 				>
 			</File>
@@ -374,7 +378,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_delete.c"
+				RelativePath=".\sci_gateway\sci_delete.c"
 				>
 			</File>
 			<File
@@ -844,6 +848,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\RecSaveLoad.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_addcb.h"
 				>
 			</File>
 			<File

@@ -78,7 +78,7 @@ extern int sci_help_gtk                   _PARAMS((char *fname, unsigned long fn
 extern int gset                           _PARAMS((char *fname, unsigned long fname_len));
 extern int gget                           _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_delete                     _PARAMS((char *fname, unsigned long fname_len));
-extern int addcb                          _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_addcb                      _PARAMS((char *fname, unsigned long fname_len));
 extern int copy                           _PARAMS((char *fname, unsigned long subwinparenttarget));
 extern int move                           _PARAMS((char *fname, unsigned long fname_len));
 extern int glue                           _PARAMS((char *fname, unsigned long fname_len));
@@ -187,7 +187,7 @@ static MatdesTable Tab[]={
 	{drawnow,"drawnow"},
 	{drawlater,"drawlater"},  
 	{sci_draw,"draw"},
-	{addcb,"addcb"},
+	{sci_addcb,"addcb"},
 	{copy,"copy"},
 	{sci_delete,"delete"},
 	{gget,"get"},
