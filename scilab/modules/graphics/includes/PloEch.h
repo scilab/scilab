@@ -59,6 +59,9 @@ int C2F(Nsetscale2d)( double    WRect[4],
 
 int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[4] ) ;
 
+int zoom( void ) ;
+int zoom_box( double * bbox, int * x_pixel, int * y_pixel ) ;
+
 extern int XScale(double x);
 extern int XLogScale(double x);
 

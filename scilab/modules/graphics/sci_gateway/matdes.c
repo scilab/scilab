@@ -162,24 +162,6 @@ extern sciPointObj *paxesmdl;
 /* scirects */
 
 
-/*-----------------------------------------------------------------------------------*/
-int scizoomrect(char *fname,unsigned long fname_len)
-{
-  int m,n,l;
-  int x_pixel=0,y_pixel=0;
-  CheckRhs(0,1) ;
-  CheckLhs(0,1) ;
-  if (Rhs <= 0) 
-    zoom();
-  else {
-    GetRhsVar(1,"d",&m,&n,&l); 
-    CheckLength(1,4,m*n);
-    zoom_box(stk(l),&x_pixel,&y_pixel);
-  }
-
-  LhsVar(1)=0; 
-  return 0;
-} 
 
 /*-----------------------------------------------------------------------------------*/
 int sciunzoom(char *fname,unsigned long fname_len)

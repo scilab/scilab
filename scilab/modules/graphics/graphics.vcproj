@@ -650,6 +650,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_zoom_rect.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\sciCall.c"
 				>
 			</File>
@@ -1120,6 +1124,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xtitle.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_zoom_rect.h"
 				>
 			</File>
 			<File
