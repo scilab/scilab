@@ -1,0 +1,46 @@
+/*------------------------------------------------------------------------*/
+/* file: sci_move.c                                                       */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
+/* desc : interface for move routine                                      */
+/*------------------------------------------------------------------------*/
+
+#include "sci_move.h"
+#include "BuildObjects.h"
+#include "Interaction.h"
+
+/*-----------------------------------------------------------------------------------*/
+int sci_move( char * fname, unsigned long fname_len )
+{
+  long hdl;
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,n;
+  BOOL opt;
+
+  CheckRhs(1,3);
+  /*  set or create a graphic window */
+  SciWin();
+  opt = FALSE;
+  if (Rhs ==3) {
+    GetRhsVar(3,"c",&m3,&n3,&l3);
+    if (strcmp(cstk(l3),"alone") == 0) { opt = TRUE; }
+    else {
+      Scierror(999,"%s: invalid option \r\n",fname); 
+      return 0;
+    }
+  }
+
+  GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */    
+  GetRhsVar(2,"d",&m2,&n2,&l2);
+  hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
+  n=m2*n2;
+  if (n != 2&&n !=3)
+  { 
+    Scierror(999,"%s: third argument is a vector,[x y] or [x,y,z] \r\n",fname);
+    return 0;
+  }
+  Objmove(&hdl,stk(l2),n,opt);
+
+  LhsVar(1)=0;
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/

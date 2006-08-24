@@ -430,6 +430,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\sci_move.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_newaxes.c"
 				>
 			</File>
@@ -920,6 +924,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_matplot1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_move.h"
 				>
 			</File>
 			<File
