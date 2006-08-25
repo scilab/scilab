@@ -277,10 +277,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\matdes.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
 			</File>
