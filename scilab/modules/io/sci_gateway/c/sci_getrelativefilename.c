@@ -58,6 +58,8 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname))
 		if (result) {FREE(result);result=NULL;}
 		C2F(putlhsvar)();
 	}
+	
+	return 0;
 }
 
 /* ================================================================================== */
