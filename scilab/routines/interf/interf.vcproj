@@ -185,15 +185,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_linear_algebra.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
 			<File
 				RelativePath=".\intinterp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intlapack.c"
 				>
 			</File>
 			<File
@@ -221,6 +221,62 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_backslash.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_balanc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_chol.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_det.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_hess.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_inv.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lsq.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lu.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_qr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_rcond.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_schur.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_slash.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_spec.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_svd.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -229,6 +285,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\gw_linear_algebra.h"
+				>
+			</File>
 			<File
 				RelativePath=".\intshowalluimenushandles.h"
 				>

@@ -1,14 +1,14 @@
       subroutine intzpotrf(fname)
 
-c     U = zpotrf(A)
+c     U = chol(A)
 
-      include 'stack.h'
-      logical getrhsvar,createvar
+      include '../stack.h'
+      logical getrhsvar
       logical checklhs,checkrhs
       complex*16 ZERO
       parameter ( ZERO = (0.0d0,0.0d0) )
       character fname*(*)
-  
+      
       minrhs=1
       maxrhs=1
       minlhs=1
@@ -19,15 +19,27 @@ c
 
       if(.not.getrhsvar(1,'z', M, N, lA)) return
       if(m.ne.n) then
-         buf='zpotrf'//': the matrix must be square'
-         call error(998)
+         err=1
+         call error(20)
+         return
+      endif
+      if (N.eq.0) then
+         lhsvar(1)=1
+         return
+      elseif(N.eq.-1) then
+         if(stk(lA).le.0.0d0) then
+            call error(29)
+            return
+         endif
+         lhsvar(1)=1
+         stk(lA)=sqrt(stk(lA))
          return
       endif
 
       call ZPOTRF( 'U', N, zstk(lA), N, INFO )
 c     SUBROUTINE ZPOTRF( 'U', N, A, LDA, INFO )
       if(info.ne.0) then
-         call errorinfo("zpotrf",info)
+         if(info.gt.0)  call error(29)
          return
       endif
 
@@ -39,11 +51,8 @@ c     SUBROUTINE ZPOTRF( 'U', N, A, LDA, INFO )
  10         continue
  20      continue
       endif
-   
+      
       lhsvar(1)=1
       
 c     
       end
-
-
-
