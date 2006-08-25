@@ -34,7 +34,7 @@ LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
 
 
 # include options 
-INCLUDES=-I"$(SCIDIR)/libs/f2c" $(TCL_INCLUDES) 
+INCLUDES=-I"$(SCIDIR)/libs/f2c" $(TCL_INCLUDES) -I"$(SCIDIR)/modules/mexlib/includes"
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
 
