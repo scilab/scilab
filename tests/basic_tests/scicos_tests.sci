@@ -112,7 +112,7 @@ endfunction
 function r=checkset()
   r=%f
   funcprot(0)
-  getf('SCI/macros/scicos/setvalue.sci')
+  getf('SCI/modules/scicos/macros/scicos/setvalue.sci')
   getvalue=setvalue;
   alreadyran=%f;
   %scicos_prob=%f
@@ -122,7 +122,7 @@ function r=checkset()
       if Blocs(i)=='fortran_block'|Blocs(i)=='c_block' then
 	getf('SCI/macros/scicos/'+Blocs(i)+'.sci')
       else
-	getf('SCI/macros/scicos_blocks/'+Blocs(i)+'.sci')
+	getf('SCI/modules/scicos/macros/scicos_blocks/'+Blocs(i)+'.sci')
       end
       
       execstr('gui='+Blocs(i))
@@ -209,7 +209,7 @@ endfunction
 function r=check_set_ports()
   r=%f
   funcprot(0)
-  getf('SCI/macros/scicos/setvalue.sci')
+  getf('SCI/modules/scicos/macros/scicos/setvalue.sci')
   getvalue=setvalue;
   alreadyran=%f;  %scicos_prob=%f
   for i=1:nb

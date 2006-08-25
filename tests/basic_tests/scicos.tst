@@ -1,4 +1,4 @@
-load SCI/macros/scicos/lib;
+load SCI/modules/scicos/macros/scicos/lib;
 exec(loadpallibs,-1) 
 
 getf SCI/tests/basic_tests/scicos_tests.sci;
