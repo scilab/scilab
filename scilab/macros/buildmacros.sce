@@ -46,7 +46,7 @@ Dim=size(Directories);
 
 for i=1:Dim(1) do 
   chdir(Directories(i));
-  disp('-------- Creation of '+Directories(i)+' (Macros) --------');
+  disp('-- Creation of ['+Directories(i)+'] (Macros) --');
   exec('buildmacros.sce');
   chdir(CurrentDirectory);
 end

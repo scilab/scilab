@@ -15,7 +15,7 @@ CurrentDirectoryScicosBlocks=pwd();
 Dim=size(SubDirectoriesScicosBlocks);
 for i=1:Dim(1) do 
   chdir(SubDirectoriesScicosBlocks(i));
-  disp('-------- Creation of '+SubDirectoriesScicosBlocks(i)+' (Macros) for scicos_blocks --------');
+  disp('-- Creation of ['+SubDirectoriesScicosBlocks(i)+'] (Macros) for scicos_blocks --');
   exec('buildmacros.sce');
   chdir(CurrentDirectoryScicosBlocks);
 end
