@@ -13,7 +13,7 @@
 #include "ObjectStructure.h"
 
 
-int gset(char *fname,unsigned long fname_len);
+int sciset(char *fname,unsigned long fname_len);
 int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow);
 int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow);
 int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow);

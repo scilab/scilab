@@ -2,15 +2,16 @@
 /* Copyright (C) 1998-2000 INRIA/Enpc */
 /* Fabrice LERAY INRIA 2005 */
 /* Allan CORNET INRIA 2005 */
+/* Jean-Baptiste Silvy 2006 */
 /*-----------------------------------------------------------------------------------*/
-#ifndef __INTGGET__
-#define  __INTGGET__
+#ifndef _INT_GET_
+#define  _INT_GET_
 
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
 
-int gget(char *fname,unsigned long fname_len);
+int sci_get(char *fname,unsigned long fname_len);
 
 /*-----------------------------------------------------------------------------------*/
 /* copy the string value into the scilab stack for output */

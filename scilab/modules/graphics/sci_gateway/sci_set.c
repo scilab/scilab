@@ -47,7 +47,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels);
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
  *-----------------------------------------------------------*/
-int gset(fname,fname_len)
+int sci_set(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {

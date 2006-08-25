@@ -47,7 +47,7 @@ int BuildTListForTicks(double * locations, char ** labels, int nbtics);
 double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads);
 BOOL GetHandleVisibilityOnUimenu(sciPointObj * pobj);
 /*-----------------------------------------------------------------------------------*/
-int gget(char *fname,unsigned long fname_len)
+int sci_get(char *fname,unsigned long fname_len)
 {
   integer m1,n1,numrow2,numcol2,l2 ;
   int l1;

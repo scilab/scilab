@@ -75,8 +75,8 @@ extern int sci_xname                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xaxis                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_seteventhandler            _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_help_gtk                   _PARAMS((char *fname, unsigned long fname_len));
-extern int gset                           _PARAMS((char *fname, unsigned long fname_len));
-extern int gget                           _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_set                        _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_get                        _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_delete                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_addcb                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_copy                       _PARAMS((char *fname, unsigned long subwinparenttarget));
@@ -190,8 +190,8 @@ static MatdesTable Tab[]={
 	{sci_addcb,"addcb"},
 	{sci_copy,"copy"},
 	{sci_delete,"delete"},
-	{gget,"get"},
-	{gset,"set"},
+	{sci_get,"get"},
+	{sci_set,"set"},
 	{sci_newaxes,"newaxes"},
         {sci_relocate_handle,"relocate_handle"},
         {sci_swap_handles,"swap_handles"},
