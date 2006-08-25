@@ -1,5 +1,5 @@
  
-load SCI/macros/scicos/lib;
+load SCI/modules/scicos/macros/scicos/lib;
  
  
  
