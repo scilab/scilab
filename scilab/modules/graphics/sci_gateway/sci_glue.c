@@ -10,7 +10,7 @@
 #include "BuildObjects.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
-#include "../../elementaries_functions/includes/calelm.h"
+#include "../../elementaries_functions/includes/elementaries_functions.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )

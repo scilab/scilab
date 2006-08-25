@@ -4,7 +4,7 @@
 #include "../control/control.h" 
 
 /* REORGANISATION TEMPORAIRE */
-#include "../../modules/elementaries_functions/includes/calelm.h" 
+#include "../../modules/elementaries_functions/includes/elementaries_functions.h" 
 
 extern int C2F(matdsr)  _PARAMS((void));
 extern int C2F(intbdiagr)  _PARAMS((char *fname, unsigned long fname_len));

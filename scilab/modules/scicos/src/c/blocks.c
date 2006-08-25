@@ -2,7 +2,7 @@
 #include <math.h>
 
 #include "machine.h"
-#include "../../elementaries_functions/includes/calelm.h"
+#include "../../elementaries_functions/includes/elementaries_functions.h"
 #include "scicos.h"
  
 /*------------------------------------------------

@@ -35,7 +35,7 @@
  --------------------------------------------------------------------------*/
 
 #include "stack-c.h"
-#include "../../elementaries_functions/includes/calelm.h"
+#include "../../elementaries_functions/includes/elementaries_functions.h"
 
 #include "mex.h"
 #include <string.h>
