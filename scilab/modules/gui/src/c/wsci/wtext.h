@@ -71,6 +71,8 @@
 
 #define NOTEXT 0xF0
 
+extern BOOL ConsoleIsMinimized ;
+
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
@@ -136,7 +138,6 @@ void PrintSelection(LPTW lptw,char *Entete);
 void ExitWindow(void);
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
-int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len));
 BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
 BOOL IsToThePrompt(void);

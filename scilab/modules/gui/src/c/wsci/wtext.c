@@ -42,7 +42,7 @@
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-static BOOL ConsoleIsMinimized=FALSE;
+BOOL ConsoleIsMinimized=FALSE;
 static BOOL WriteInKeyBuf=FALSE;
 static void CreateTextClass (LPTW lptw);
 static BOOL RegisterParentWindowClass (LPTW lptw);
@@ -1859,66 +1859,6 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	LeaveCriticalSection(&Sync);
 	DeleteCriticalSection(&Sync);
 	return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len))
-{
-  static int l1, m1, n1;	
-  if (IsWindowInterface())
-  {
-    if (Rhs == 0)
-    	{
-    		sciprint(MSG_ERROR80);
-    	}
-  	else
-  	{
-  		struct BCG *ScilabGC=NULL;
-  		int num_win=-2;
-  		CheckLhs(1,1);
-  		GetRhsVar(1,"i",&m1,&n1,&l1);
-  		num_win=*istk(l1);
-  		LhsVar(1)=0;
-  		ScilabGC = getWindowXgcNumber (num_win);
-  		if (num_win == -1)
-  		{
-  			LPTW lptw=GetTextWinScilab();
-			if ( IsIconic(lptw->hWndParent) )
-			{
-				ShowWindow(lptw->hWndParent,SW_RESTORE);
-				ConsoleIsMinimized=FALSE;
-				
-	
-			}
-			else
-			{
-				ShowWindow(lptw->hWndParent,SW_MINIMIZE);
-				ConsoleIsMinimized=TRUE;
-			} 
-			
-
-  		}
-  		else if (ScilabGC != (struct BCG *) 0)
-		{
-			if ( IsIconic(ScilabGC->hWndParent) )
-			{
-				ShowWindow(ScilabGC->hWndParent,SW_RESTORE);
-			}
-			else
-			{
-				ShowWindow(ScilabGC->hWndParent,SW_MINIMIZE);
-				ForceToActiveWindowParent();
-			}
-			
-			
-  		}
-  		
- 	}
-  }		
-  else
- 	{
- 		sciprint(MSG_WARNING29);
- 	}
-return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 void InvalidateCursor( void ) 

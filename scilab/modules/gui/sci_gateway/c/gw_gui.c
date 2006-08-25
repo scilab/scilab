@@ -21,6 +21,7 @@ extern int C2F(sci_unsetmenu_old) _PARAMS((char *fname,unsigned long fname_len))
 extern int C2F(sci_xgetfile) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len));
 extern int sci_clc( char *fname, unsigned long fname_len ) ;
+extern int sci_show_window( char * fname, unsigned long fname_len ) ;
 
 extern BOOL GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/
@@ -37,7 +38,8 @@ static GuiTable Tab[]=
 	{C2F(sci_unsetmenu_old),"unsetmenu_old"},
 	{C2F(sci_xgetfile),"xgetfile"},
 	{C2F(sci_x_message_modeless),"x_message_modeless"},
-        {sci_clc,"clc"}
+        {sci_clc,"clc"},
+        {sci_show_window,"show_window"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_gui)()

@@ -1,0 +1,75 @@
+/*------------------------------------------------------------------------*/
+/* file: sci_show_window.h                                                */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Allan Cornet, Jean-Baptiste Silvy                            */
+/* desc : interface for show_window routine                               */
+/*------------------------------------------------------------------------*/
+
+#include "sci_show_window.h"
+#include "../src/c/wsci/wtext.h"
+#include "../src/c/wsci/WinConsole.h"
+#include "../src/c/wsci/TextWindows.h"
+#include "../../graphics/includes/WindowList.h"
+
+/*-----------------------------------------------------------------------------------*/
+int sci_show_window( char * fname, unsigned long fname_len )
+{
+  static int l1, m1, n1;	
+  if (IsWindowInterface())
+  {
+    if (Rhs == 0)
+    {
+      sciprint(MSG_ERROR80);
+    }
+    else
+    {
+      struct BCG *ScilabGC=NULL;
+      int num_win=-2;
+      CheckLhs(1,1);
+      GetRhsVar(1,"i",&m1,&n1,&l1);
+      num_win=*istk(l1);
+      LhsVar(1)=0;
+      ScilabGC = getWindowXgcNumber (num_win);
+      if (num_win == -1)
+      {
+        LPTW lptw=GetTextWinScilab();
+        if ( IsIconic(lptw->hWndParent) )
+        {
+          ShowWindow(lptw->hWndParent,SW_RESTORE);
+          ConsoleIsMinimized=FALSE;
+
+
+        }
+        else
+        {
+          ShowWindow(lptw->hWndParent,SW_MINIMIZE);
+          ConsoleIsMinimized=TRUE;
+        } 
+
+
+      }
+      else if (ScilabGC != (struct BCG *) 0)
+      {
+        if ( IsIconic(ScilabGC->hWndParent) )
+        {
+          ShowWindow(ScilabGC->hWndParent,SW_RESTORE);
+        }
+        else
+        {
+          ShowWindow(ScilabGC->hWndParent,SW_MINIMIZE);
+          ForceToActiveWindowParent();
+        }
+
+
+      }
+
+    }
+  }		
+  else
+  {
+    sciprint(MSG_WARNING29);
+  }
+  C2F(putlhsvar)();
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/

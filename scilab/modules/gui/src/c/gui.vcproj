@@ -226,6 +226,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_show_window.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_unsetmenu_old.c"
 				>
 			</File>
@@ -304,6 +308,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_clc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_show_window.h"
 				>
 			</File>
 			<File
