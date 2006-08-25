@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>cdff  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 1997  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="cdff"> fonction de répartition de la distribution de Fisher  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[P,Q]=cdff(&quot;PQ&quot;,F,Dfn,Dfd)  </CALLING_SEQUENCE_ITEM>

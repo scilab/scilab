@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>int8</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>October 99</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="int8"> conversion to one byte integer representation</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="int16"> conversion to 2 bytes integer representation</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="int32"> conversion to 4 bytes integer representation</SHORT_DESCRIPTION>

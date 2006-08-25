@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>int8  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>October 99  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="int8 "> conversion au codage entier à 1 octet  </SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="int16"> conversion au codage entier à 2 octets  </SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="int32"> conversion au codage entier à 4 octets  </SHORT_DESCRIPTION>
