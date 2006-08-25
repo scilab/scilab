@@ -1,5 +1,5 @@
 function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
-
+	
 	// =========================================================================================
 	// 
 	// Authors : Jean-Philippe CHANCELIER, Pierre MARECHAL
@@ -12,7 +12,7 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	// Private function !!!
 	// =========================================================================================
 	
-	// path    :     absolute path of the XML file
+	// path    :     XML file
 	// xsl     :     abolute path of the xsl path
 	
 	generate_cmd='sabcmd';
@@ -20,8 +20,6 @@ function ok = xmlfiletohtml(path,xsl,directory_language,default_language)
 	[lhs,rhs] = argn(0);
 	
 	global LANGUAGE %helps
-	
-	path = pathconvert(path,%f,%t) // convert path to host convention
 	
 	xmlfile = path;
 	needToBeCopied = %F;

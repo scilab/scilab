@@ -1,7 +1,15 @@
+// =============================================================================================
+// find_links
+// Copyright INRIA
+// 
+// Private function !!!
+// =============================================================================================
+
 function flag = find_links(filein,fileout)
 	
-	// return %t if a LINK were found
-	// Adapt the dtd link
+	// - return %t if a LINK were found
+	// - Adapt the dtd link
+	// - Adapt the date
 	
 	[lhs,rhs]=argn(0);
 	
@@ -9,7 +17,11 @@ function flag = find_links(filein,fileout)
 	
 	if rhs<>2 then error(39), end
 	
-	if MSDOS then sep='\',else sep='/',end
+	if MSDOS then
+		sep='\';
+	else 
+		sep='/';
+	end
 	
 	txt=mgetl(filein);
 	
@@ -53,8 +65,8 @@ function flag = find_links(filein,fileout)
 		nlink=size(l1,"*")
 		for i=1:nlink
 			name=part(tt,[l1(1)+6:l2(1)-1])
-			path=get_absolute_file_path(filein)+filein
-			if length(name)<>0 then 
+			path=get_absolute_file_path(filein);
+			if length(name)<>0 then
 				l=getlink(name,path,filein)
 			else
 				l="unknown";
@@ -69,10 +81,14 @@ function flag = find_links(filein,fileout)
 	end
 	
 	mputl(txt,fileout);
-	
 	flag = %t;
 	
 endfunction
+
+
+// =============================================================================================
+// getlink
+// =============================================================================================
 
 function t=getlink(name,absolute_path,path)
 	
@@ -80,74 +96,98 @@ function t=getlink(name,absolute_path,path)
 	
 	name=stripblanks(name)
 	
-	if MSDOS then sep='\',else sep='/',end
-	
-	man=[]
-	
-	for k=1:size(%helps,1)
-		whatis=mgetl(%helps(k,1)+sep+'whatis.htm')
-		f=grep(whatis,name)
-		if f<>[] then
-			for k1=f
-				w=whatis(k1)
-				i=strindex(w,">"); j=strindex(w,"</A>")
-				if j<>[] then 
-					lname=part(w,i(2)+1:j-1)
-					lnames=getwords(lname) 
-					// transforms "toto titi tata" into ["toto" "titi" "tata"]
-					for ii=lnames
-						ok=%F
-						if ii==name then
-							i=strindex(w,"HREF="""); j=strindex(w,""">")
-							if part(%helps(k,1),length(%helps(k,1)))==sep then
-								man=%helps(k,1)+part(w,[i+6:j-1])
-							else
-								man=%helps(k,1)+sep+part(w,[i+6:j-1])
-							end
-						end
-						if man<>[] then break; end
-					end
-					if man<>[] then break; end
-				end
-			end
-		end
-		if man<>[] then break; end
+	if MSDOS then
+		sep='\';
+	else 
+		sep='/';
 	end
 	
-	if man==[] then
+	man_found = [];
+	
+	//------------------------------------------------------------------------------------------
+	// On commmence par chercher dans le répertoire "name" ( cas le plus fréquent ).
+	//------------------------------------------------------------------------------------------
+	
+	if fileinfo(absolute_path+'.list_htm') <> [] then
+		whatis=mgetl(absolute_path+'.list_htm');
+		f=grep(whatis,'- '+name+'==>');
+		if f<>[] then
+			for k1=f 
+				w = whatis(k1);
+				w = strsubst(w,'- '+name+'==>','');
+				man_found = absolute_path + w;
+			end
+		end
+	end
+	
+	//------------------------------------------------------------------------------------------
+	// On recherche maintenant dans les répertoires désignés dans %helps
+	//------------------------------------------------------------------------------------------
+	
+	if man_found == [] then
+					
+		for k=1:size(%helps,1)
+			
+			current_help_path = %helps(k,1)+sep;
+			
+			if fileinfo(current_help_path+'.list_htm') <> [] then
+				
+				whatis=mgetl(current_help_path+'.list_htm');
+				f=grep(whatis,'- '+name+'==>');
+				if f<>[] then
+					for k1=f 
+						w = whatis(k1);
+						w = strsubst(w,'- '+name+'==>','');
+						man_found = current_help_path + w;
+					end
+				end
+				if man_found<>[] then break; end
+		
+			else
+				
+				whatis=mgetl(%helps(k,1)+sep+'whatis.htm')
+				f=grep(whatis,name)
+				if f<>[] then
+					for k1=f
+						w=whatis(k1)
+						i=strindex(w,">"); j=strindex(w,"</A>")
+						if j<>[] then 
+							lname=part(w,i(2)+1:j-1)
+							lnames=getwords(lname) 
+							// transforms "toto titi tata" into ["toto" "titi" "tata"]
+							for ii=lnames
+								ok=%F
+								if ii==name then
+									i=strindex(w,"HREF="""); j=strindex(w,""">")
+									man_found=current_help_path+part(w,[i+6:j-1])
+								end
+								if man_found<>[] then break; end
+							end
+							if man_found<>[] then break; end
+						end
+					end
+				end
+				if man_found<>[] then break; end
+			
+			end // if fileinfo ....
+		
+		end // for k=1:size(%helps,1)
+	
+	end // if  man_found == []
+	
+	if man_found == [] then
 		write(%io(2),"Bad LINK """+name+""" in file "+path);
-		t=[]
+		t=[];
 		return;
 	end
 	
-	t=relative_path(man,absolute_path);
+	t=getrelativefilename(absolute_path,man_found);
 	
 endfunction
 
-
-function p=relative_path(path,relative)
-	// path here are html path thus the 
-	// correct sep is always '/' 
-	path=getshortpathname(path);
-	path=strsubst(path,'\','/');
-	relative=getshortpathname(relative);
-	relative=strsubst(relative,'\','/');
-	cpath=str2code(path)
-	crelative=str2code(relative)
-	n=min(size(cpath,"*"),size(crelative,"*"))
-	ncommon=find((cpath(1:n)==crelative(1:n))==%F)
-	ncommon=ncommon(1)-1
-	strcommon=part(path,[1:ncommon])
-	k=strindex(strcommon,'/')
-	ncommon=k($)
-	ndir=size(strindex(part(relative,[ncommon+1:length(relative)]),'/'),"*")
-	p=""
-	for i=1:ndir
-		p=p+"../"
-	end
-	p=p+part(path,[ncommon+1:length(path)])
-endfunction
-
+// =============================================================================================
+// getwords
+// =============================================================================================
 
 function vnames=getwords(names)
 	v=strindex(names," ")

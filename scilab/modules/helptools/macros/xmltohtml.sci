@@ -364,12 +364,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 					%helps = saved_helps;
 					return;
 				end
-				
-				// On ajoute le répertoire dont on construit le whatis.htm
-				// à %helps ce qui le rajoute au chemins de recherche.
-				saved_help = %helps;
-				add_help_chapter(titles(k),dirs(k));
-				
+					
 				xml = listfiles('*.xml');
 				
 				if xml <> [] then 
@@ -387,8 +382,7 @@ function xmltohtml(dirs,titles,xsl,step,directory_language,default_language)
 						end
 					end
 				end
-				
-				%helps = saved_help;
+			
 			end
 		end
 	end
@@ -485,7 +479,7 @@ endfunction
 function gener_whatis(wtitle)
 
 	//------------------------------------------------------------------------------------------
-	// generate a whatis.htm file 
+	// generate a whatis.htm file and a .list_htm
 	// using *.xml man files
 	//------------------------------------------------------------------------------------------
 	
@@ -524,7 +518,10 @@ function gener_whatis(wtitle)
 		"		<dl>"];
   
 	l=0;
-	line=[]
+	
+	line = [];
+	line2 = [];
+	
 	for k1=1:size(xml,'*')  // loop on .xml files
 		path=xml(k1);
 		txt=mgetl(path);
@@ -551,6 +548,7 @@ function gener_whatis(wtitle)
 				l=l+1; fname=part(path,[1:length(path)-4])+".htm";
 				fname=strsubst(fname,'//','/');
 				line(l)="			<dd><A HREF="""+fname+""">"+name+"</A> - "+desc+"</dd>";
+				line2(l)="- "+name+"==>"+fname;
 			end
 		end
 	end
@@ -585,6 +583,7 @@ function gener_whatis(wtitle)
 		"</html>"]
 	
 	mputl(text,"whatis.htm");
+	mputl(line2,".list_htm");
 	
 endfunction
 
@@ -595,7 +594,7 @@ function gener_index(dirs,titles)
 	// use %helps to generate an index file 
 	//------------------------------------------------------------------------------------------
 	
-	// On ajoute le ou les répertoire 
+	// On ajoute le ou les répertoire
 	
 	saved_help = %helps;
 	
