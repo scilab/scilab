@@ -13,6 +13,8 @@ function a=%hm_matrix(a,varargin)
     sz=round(sz)
   end
   nd1=size(sz,'*')
+  if nd1<=0 then error(60),end
+  if nd1<=2 then a=matrix(a.entries,sz),return,end
   if nd<nd1 then 
     dims(nd+1:nd1)=1
   elseif nd>nd1 then 
@@ -38,9 +40,6 @@ function a=%hm_matrix(a,varargin)
     return
   end
 
-  if size(sz,'*')==2 then
-    a=matrix(a.entries,sz(1),sz(2))
-  else
-    a.dims=int32(matrix(sz,-1,1));
-  end
+  a.dims=int32(matrix(sz,-1,1));
+
 endfunction
