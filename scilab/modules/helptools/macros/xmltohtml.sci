@@ -996,7 +996,11 @@ function complete_with_default_language(directory,directory_language,default_lan
 	//------------------------------------------------------------------------------------------
 	
 	directory_language_xml_files = basename(listfiles(directory+"/*.xml"));
-	mputl(directory_language_xml_files,directory+"/.list_"+directory_language);
+	if directory_language_xml_files <> [] then
+		mputl(directory_language_xml_files,directory+"/.list_"+directory_language);
+	else
+		mputl('',directory+"/.list_"+directory_language);
+	end
 	
 	//------------------------------------------------------------------------------------------
 	// Construction du fichier list_<default_language> contenant la liste des fichiers 
@@ -1017,8 +1021,12 @@ function complete_with_default_language(directory,directory_language,default_lan
 	end
 	
 	// Création du fichier
-	mputl(default_language_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
-	
+	if default_language_xml_files <> [] then
+		mputl(default_language_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
+	else
+		mputl('',pathconvert(directory+"/.list_"+default_language,%f,%f));
+	end
+		
 	//------------------------------------------------------------------------------------------
 	// Copie des fichiers additionnels
 	//------------------------------------------------------------------------------------------
