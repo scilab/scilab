@@ -1384,50 +1384,6 @@ BOOL HasAZoneTextSelected(LPTW lptw)
 	return ValRetour;
 }
 /*-----------------------------------------------------------------------------------*/
-int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
-{
-	if (Rhs == 0) /* aucun parametre On Efface tout l'ecran */
-        {
-		if ( IsWindowInterface() )
-		{
-			LPTW lptw=GetTextWinScilab();
-			ClearCommandWindow(lptw,FALSE);
-		}
-		else
-		{
-			system("cls");	
-		}
-	}
-	else /* on remonte le curseur en effacant du nombre de lignes indiqué */
-	{
-		if ( IsWindowInterface() )
-		{
-			static int l1, m1, n1;
-			int NbrLineToRemove=0;
-					
-			CheckRhs(1,1);
-  			CheckLhs(1,1);
-  			GetRhsVar(1,"i",&m1,&n1,&l1);
-  			NbrLineToRemove=*istk(l1)+2;
-  			LhsVar(1)=0;
-	
-	 		if (NbrLineToRemove>0)
-	 		{
-	 			ClearLinesScreenConsole(NbrLineToRemove);
-			}	
-			else
-	 		{
-	 			sciprint(MSG_ERROR58,NbrLineToRemove);
-	 		}
-		}
-		else
-		{
-			sciprint(MSG_WARNING29);
-		}
-	}
-return 0;	
-}
-/*-----------------------------------------------------------------------------------*/
 void ClearLinesScreenConsole(int NbrOfLines)
 {
 	if (IsWindowInterface())

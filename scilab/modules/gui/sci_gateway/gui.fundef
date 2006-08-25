@@ -8,5 +8,6 @@
 {"setmenu_old",		IN_xawelm,	8,	3},	
 {"unsetmenu_old",	IN_xawelm,	9,	3},	
 {"xgetfile",		IN_xawelm,	10,	2},
-{"x_message_modeless",	IN_xawelm,	11,	1},	
+{"x_message_modeless",	IN_xawelm,	11,	1},
+{"clc",         IN_xawelm,  12,  2 },
 

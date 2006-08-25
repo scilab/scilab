@@ -11,7 +11,7 @@
 /**
 * interface function for the delete routine.
 *
-* @param[in] fname     name of the routine (ie unzoom)
+* @param[in] fname     name of the routine (ie delete)
 * @param[in] fname_len length of fname
 * @return 0 if success, -1 otherwise
 */

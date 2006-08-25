@@ -113,7 +113,6 @@ void ResizeScreenBuffer(LPTW lptw);
 void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);
 void ReorganizeScreenBuffer(LPTW lptw);
-int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
 void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 void ClearLinesScreenConsole(int NbrOfLines);
 void CleanClipboard(LPTW lptw);

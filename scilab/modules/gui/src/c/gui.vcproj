@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_clc.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_delmenu_old.c"
 				>
 			</File>
@@ -296,6 +300,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\men_choice.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_clc.h"
 				>
 			</File>
 			<File
