@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intptriu) _PARAMS((int *job,int *id));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_tril) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_ptril) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
 	int job=0;

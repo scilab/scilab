@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intpsum) _PARAMS((int *id));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_sum) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_psum) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
 	C2F(intpsum)(id);

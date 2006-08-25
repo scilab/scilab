@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intpprod) _PARAMS((int *id));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_prod) _PARAMS((char *fname,unsigned long fname_len))
+int C2F(sci_pprod) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
 	C2F(intpprod)(id);
