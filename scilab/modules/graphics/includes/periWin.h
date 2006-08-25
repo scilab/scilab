@@ -52,6 +52,8 @@
 
  extern int SwitchWindow( integer * intnum ) ;
 
+ void C2F(getwins)( integer * Num, integer Ids[] , integer * flag) ;
+
 #endif /* __PERIWIN_H__ */
 
 

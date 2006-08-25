@@ -121,6 +121,18 @@ typedef struct { double r, i; } doublecomplex;
 #define Lstk(x) (((integer *) C2F(vstk).lstk) + x-1 )
 #define Infstk(x) (((integer *) C2F(vstk).infstk) + x-1 )
 
+/* to retreive handles on the stack */
+#if _MSC_VER
+#if _MSC_VER <=1200
+#define hstk(x) ((C2F(stack).Stk) + x-1 ) 	
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+#else
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+#endif
+
+
 #ifndef FTable_H
 extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int*));  
 #endif 

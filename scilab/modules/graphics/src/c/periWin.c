@@ -44,7 +44,6 @@
 #include "MALLOC.h" /* MALLOC */
 
 
-#define M_PI	3.14159265358979323846
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 

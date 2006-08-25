@@ -100,6 +100,7 @@ unsigned short defcolors[] = {
   255, 215,   0  /* Gold */
 };
 
+int cf_type = 1 ;
 
 #ifdef _MSC_VER
 static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/

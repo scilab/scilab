@@ -1,4 +1,5 @@
 #include "javasci_Scilab.h"
+#include "../../../modules/graphics/includes/periScreen.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA */

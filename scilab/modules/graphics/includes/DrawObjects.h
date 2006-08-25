@@ -56,7 +56,7 @@ double * AllocUserGrads(double * u_xgrads, int nb);
 int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
 char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 
-extern int cf_type; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
+extern int cf_type ; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 
 
 /*******************************************************/

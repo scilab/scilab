@@ -21,8 +21,7 @@
 #include "StringMatrix.h"
 #include "Xcall1.h"
 #include "Format.h"
-
-#include "intcommongraphics.h"
+#include "pixel_mode.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -251,15 +250,15 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   else if (strcmp(marker,"pixel_drawing_mode") == 0) 
     {
-      if (sciGetEntityType (pobj) == SCI_FIGURE) {
-	numrow = 1;
-	i=pFIGURE_FEATURE (pobj)->gmode.xormode;
-	numcol = strlen(pmodes[i]);
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),pmodes[i], numrow*numcol);
+      if ( sciGetEntityType (pobj) == SCI_FIGURE )
+      {
+        sciReturnString( getPixelMode( pFIGURE_FEATURE (pobj)->gmode.xormode ) ) ;
       }
       else
-	{strcpy(error_message,"pixel_drawing_mode do not exist for this handle");return -1;}
+      {
+        strcpy(error_message,"pixel_drawing_mode do not exist for this handle") ;
+        return -1 ;
+      }
 
     }  
   else if (strcmp(marker,"old_style") == 0)

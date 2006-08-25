@@ -3022,7 +3022,9 @@ sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
 int sciInitXorMode( sciPointObj * pobj, int value )
 {
   if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
+  {
     C2F(dr)("xset","alufunction",&(value),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
+  }
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:

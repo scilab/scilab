@@ -314,6 +314,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\src\c\pixel_mode.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Plo2d.c"
 				>
 			</File>
@@ -860,6 +864,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\periWin.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\pixel_mode.h"
 				>
 			</File>
 			<File

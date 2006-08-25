@@ -21,9 +21,9 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 
-#include "intcommongraphics.h"
 #include "Xcall1.h"
 #include "Format.h"
+#include "pixel_mode.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -1352,12 +1352,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"pixel_drawing_mode") == 0) {
     if (sciGetEntityType (pobj) == SCI_FIGURE) {
       v=-1;
-      for (i=0;i<16;i++) {
+      /*for (i=0;i<16;i++) {
 	if (strcmp(cstk(*value),pmodes[i])==0) {v=i;break;}
-      }
-      if (v>=0) 
+      }*/
+      v = getPixelModeIndex( cstk(*value) ) ;
+      if ( v >=0 )
+      {
 	sciSetXorMode((sciPointObj *) pobj, v);
-      else {
+      }
+      else
+      {
 	strcpy(error_message,"Invalid value");  
 	return -1;
       }  
