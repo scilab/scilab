@@ -1,10 +1,17 @@
-function [stk,nwrk,txt,top]=%i2for(nwrk)
+function [stk,nwrk,txt,top]=%i2for(nwrk,rhs,name)
 //
 //!
 // Copyright INRIA
 
-rhs=abs(evstr(op(3)))-2
-sto=stk(top);top=top-1
+//rhs=abs(evstr(op(3)))-2
+  
+vn=find(name==vnms(:,2))
+if vn==[] then  
+  sto=[name '','0','0','0']
+else
+  typ=vtps(vn)
+  sto=[vnms(vn,2), '',typ(1),typ(2),typ(3)]
+end
 sfrom=stk(top);top=top-1
 if sto(3)=='1'|sfrom(3)=='1' then
   typ='1'
@@ -74,5 +81,6 @@ if sto(4)=='0'|sto(5)=='0' then
   sto(5)=read(%io(1),1,1,'(a)')
  
 end
-stk=list(out,'-1',typ,sto(4),sto(5))
+stk;
+stk(top)=list(out,'-1',typ,sto(4),sto(5))
 endfunction
