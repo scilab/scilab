@@ -674,6 +674,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_xsnative.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xsort.c"
 				>
 			</File>
@@ -1200,6 +1204,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xsetech.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_xsnative.h"
 				>
 			</File>
 			<File

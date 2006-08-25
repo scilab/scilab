@@ -90,7 +90,7 @@ extern int sci_xs2gif                     _PARAMS((char *fname, unsigned long fn
 extern int sci_xs2ppm                     _PARAMS((char *fname, unsigned long fname_len));
 extern int HomeFunction                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_set_posfig_dim             _PARAMS((char *fname, unsigned long fname_len));
-extern int XSaveNative                    _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_xsnative                   _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_zoom_rect                  _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_unzoom                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xs2bmp                     _PARAMS((char *fname, unsigned long fname_len));
@@ -173,7 +173,7 @@ static MatdesTable Tab[]={
 	{sci_xs2bmp,"xs2bmp"},
 	{sci_xs2emf,"xs2emf"},
 	{sci_set_posfig_dim,"set_posfig_dim"},
-	{XSaveNative,"xsnative"},
+	{sci_xsnative,"xsnative"},
 	{sci_zoom_rect,"zoom_rect"},
 	{sci_unzoom,"unzoom"},
 	{sci_StringBox,"StringBox"},
