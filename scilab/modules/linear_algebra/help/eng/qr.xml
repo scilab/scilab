@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>qr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="qr"> QR decomposition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Q,R]=qr(X [,&quot;e&quot;])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,R,E]=qr(X [,&quot;e&quot;])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,R,rk,E]=qr(X [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: nonnegative real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square orthogonal or unitary matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>R</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix with same dimensions as <VERB>X</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>E</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: permutation matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (QR-rank of <VERB>X</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="[Q,R] = qr(X)">
+        <SP>produces an upper triangular matrix <VERB>R</VERB> of the same dimension as <VERB>X</VERB> and an orthogonal (unitary in the complex case) matrix <VERB>Q</VERB> so that <VERB>X = Q*R</VERB>. <VERB>[Q,R] = qr(X,&quot;e&quot;)</VERB> produces an &quot;economy size&quot;: If <VERB>X</VERB> is m-by-n with m &gt; n, then only the first n columns of <VERB>Q</VERB>  are computed as well as the first n rows of <VERB>R</VERB>.</SP>
+        <P>
+    From <VERB>Q*R = X</VERB> , it follows that
+    the kth column of the matrix <VERB>X</VERB>, is expressed as a linear combination
+    of the k first columns of <VERB>Q</VERB> (with coefficients <VERB> R(1,k), ..., R(k,k) </VERB>). The  k first columns of <VERB>Q</VERB> make an orthogonal basis
+    of the subspace spanned by the k first comumns of <VERB>X</VERB>. If column <VERB>k</VERB>
+    of <VERB>X</VERB> (i.e. <VERB>X(:,k)</VERB> ) is a linear combination of the first 
+    <VERB>p</VERB> columns of <VERB>X</VERB>, then the entries <VERB>R(p+1,k), ..., R(k,k)</VERB>
+    are zero. It this situation, <VERB>R</VERB> is upper trapezoidal. If <VERB>X</VERB> has
+    rank <VERB>rk</VERB>, rows <VERB>R(rk+1,:), R(rk+2,:), ...</VERB> are zeros.
+  </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="[Q,R,E] = qr(X)">
+        <P>
+    produces a (column) permutation matrix <VERB>E</VERB>, an upper
+    triangular <VERB>R</VERB> with decreasing diagonal elements and an
+    orthogonal (or unitary) <VERB>Q</VERB> so that <VERB>X*E =    Q*R</VERB>. 
+    If <VERB>rk</VERB> is the rank of <VERB>X</VERB>, the
+    <VERB>rk</VERB> first  entries along the main diagonal of
+    <VERB>R</VERB>, i.e. <VERB>R(1,1), R(2,2), ..., R(rk,rk)</VERB>
+    are all different from zero.  <VERB>[Q,R,E] =  qr(X,&quot;e&quot;)</VERB> 
+    produces an &quot;economy size&quot;:
+    If <VERB>X</VERB> is m-by-n with m &gt; n, then only the first n
+    columns of <VERB>Q</VERB>  are computed as well as the first n
+    rows of <VERB>R</VERB>. 
+  </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="[Q,R,rk,E] = qr(X ,tol)">
+        <SP>returns <VERB>rk</VERB> = rank estimate of <VERB>X</VERB> i.e. <VERB>rk</VERB> is the number of diagonal elements in <VERB>R</VERB> which are larger than a given threshold <VERB>tol</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="[Q,R,rk,E] = qr(X) ">
+        <SP>returns <VERB>rk</VERB> = rank estimate of <VERB>X</VERB>
+    i.e. <VERB>rk</VERB> is the number of diagonal elements in
+    <VERB>R</VERB> which are larger than
+    <VERB>tol=R(1,1)*%eps*max(size(R))</VERB>. See <VERB>rankqr</VERB>
+    for a rank revealing QR factorization, using the condition number
+    of <VERB>R</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// QR factorization, generic case
+// X is tall (full rank)
+X=rand(5,2);[Q,R]=qr(X); [Q'*X R]
+//X is fat (full rank)
+X=rand(2,3);[Q,R]=qr(X); [Q'*X R]
+//Column 4 of X is a linear combination of columns 1 and 2:
+X=rand(8,5);X(:,4)=X(:,1)+X(:,2); [Q,R]=qr(X); R, R(:,4)
+//X has rank 2, rows 3 to $ of R are zero:
+X=rand(8,2)*rand(2,5);[Q,R]=qr(X); R
+//Evaluating the rank rk: column pivoting ==> rk first
+//diagonal entries of R are non zero :
+A=rand(5,2)*rand(2,5);
+[Q,R,rk,E] = qr(A,1.d-10);
+norm(Q'*A-R)
+svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rankqr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rank</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>svd</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rowcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>colcomp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>
+    qr decomposition is based  the Lapack routines DGEQRF, DGEQPF,
+    DORGQR for the real matrices and  ZGEQRF, ZGEQPF, ZORGQR for the
+    complex case.</P>
+  </USED_FUNCTIONS>
+</MAN>

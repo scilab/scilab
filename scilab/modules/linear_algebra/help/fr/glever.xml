@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>glever  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="glever"> inverse d&apos;un faisceau de matrices  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=glever(E,A [,s])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>E, A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrices carrées réelles de même dimensions
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>s  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : chaîne de caractères (indéterminée des polynômes, &apos;<VERB>s</VERB>&apos; par défaut )
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>Bfs,Bis  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : deux matrices polynomiales
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>chis  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : polynôme
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Calcul de 
+    </P>
+    <P>
+      (s*E-A)^-1
+    </P>
+    <P>
+      par l&apos;algorithme généralisé de Leverrier pour un faisceau de matrices.
+    </P>
+    <VERBATIM><![CDATA[
+      (s*E-A)^-1 = (Bfs/chis) - Bis.
+      ]]></VERBATIM>
+    <P>
+      <VERB>chis</VERB> = polynôme caractéristique (à une constante multiplicative près).
+    </P>
+    <P>
+      <VERB>Bfs</VERB>  = matrice polynomiale de numérateurs
+    </P>
+    <P>
+      <VERB>Bis</VERB>
+      = matrice polynomiale ( - développement de <VERB>(s*E-A)^-1</VERB> à l&apos;infini).
+    </P>
+    <P>
+      Noter le signe - devant <VERB>Bis</VERB>.
+    </P>
+    <P>
+    </P>
+  </DESCRIPTION>
+  <SECTION label='Attention'>
+    <P>
+      Cette fonction utilise <VERB>cleanp</VERB> pour simplifier <VERB>Bfs,Bis</VERB> et <VERB>chis</VERB>.
+    </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+    s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+    [Bfs,Bis,chis]=glever(F)
+    inv(F)-((Bfs/chis) - Bis)
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rowshuff</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>invr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>pencan</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>penlaur</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D. (1988)  </AUTHOR>
+</MAN>

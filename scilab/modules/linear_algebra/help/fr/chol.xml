@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>chol  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="chol"> Factorisation de Cholesky  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[R]=chol(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>X  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle ou complexe
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Si <VERB>X</VERB> est hermitienne (symétrique dans le cas réel) définie positive, alors <VERB>R = chol(X)</VERB> renvoie une matrice triangulaire supérieure <VERB>R</VERB> telle que <VERB>R&apos;*R = X</VERB>.
+    </P>
+    <P>
+      <VERB>chol(X)</VERB> utilise uniquement la partie triangulaire supérieure de <VERB>X</VERB> dont la
+      partie triangulaire inférieure est supposée être la transposée (transposée conjuguée dans le cas complexe).
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    W=rand(5,5)+%i*rand(5,5);
+    X=W*W';
+    R=chol(X);
+    norm(R'*R-X)
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>spchol</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>
+      La décomposition de Cholesky est basée sur les routines Lapack
+      DPOTRF pour les matrices réelles et  ZPOTRF pour le cas complexe.
+    </P>
+  </USED_FUNCTIONS>
+</MAN>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rowshuff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rowshuff"> shuffle algorithm</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Ws,Fs1]=rowshuff(Fs, [alfa])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Fs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square real pencil <VERB>Fs = s*E-A</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ws</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Fs1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square real pencil <VERB>F1s = s*E1 -A1</VERB> with <VERB>E1</VERB> non-singular</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>alfa</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number (<VERB>alfa = 0</VERB> is the default value)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Shuffle algorithm: Given the pencil <VERB>Fs=s*E-A</VERB>, returns Ws=W(s) 
+    (square polynomial matrix) such that:</P>
+    <P><VERB> Fs1 = s*E1-A1 = W(s)*(s*E-A) </VERB> is a pencil with non singular <VERB>E1</VERB> matrix.</P>
+    <P>
+    This is possible iff the pencil <VERB>Fs = s*E-A</VERB> is regular (i.e. invertible).
+    The degree of <VERB>Ws</VERB> is equal to the index of the pencil.</P>
+    <P>
+    The poles at infinity of <VERB>Fs</VERB> are put to <VERB>alfa</VERB> and the zeros of <VERB>Ws</VERB> are at <VERB>alfa</VERB>.</P>
+    <P>
+    Note that <VERB>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) = (W(s)*(s*E-A))^-1 *W(s)</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+F=randpencil([],[2],[1,2,3],[]);
+F=rand(5,5)*F*rand(5,5);   // 5 x 5 regular pencil with 3 evals at 1,2,3
+[Ws,F1]=rowshuff(F,-1);
+[E1,A1]=pen2ea(F1);
+svd(E1)           //E1 non singular
+roots(det(Ws))
+clean(inv(F)-inv(F1)*Ws,1.d-7)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pencan</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>glever</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>penlaur</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; ; ; ; ;   </AUTHOR>
+</MAN>

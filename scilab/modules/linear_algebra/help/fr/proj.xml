@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>proj  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="proj"> projection  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>P = proj(X1,X2)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X1,X2  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : deux matrices réelles avec un nombre identique de colonnes.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle de projection (<VERB>P^2=P</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>P</VERB> est la projection sur <VERB>X2</VERB> parallèlement à <VERB>X1</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+X1=rand(5,2);X2=rand(5,3);
+P=proj(X1,X2);
+norm(P^2-P,1)
+trace(P)    // il s'agit de dim(X2)
+[Q,M]=fullrf(P);
+svd([Q,X2])   // Im(Q) = Im(X2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>projspec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>orth</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; ;   </AUTHOR>
+</MAN>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>eigenmarkov</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="eigenmarkov"> normalized left and right Markov eigenvectors</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[M,Q]=eigenmarkov(P)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real N x N Markov matrix. Sum of entries in each row should add to one.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix with N columns.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix with N rows.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns normalized left and right eigenvectors
+    associated with the eigenvalue 1 of the Markov transition matrix P.
+    If the multiplicity of this eigenvalue is m and P
+    is N x N, M is a m x N matrix and Q a N x m matrix.
+    M(k,:) is the probability distribution vector associated with the kth
+    ergodic set (recurrent class). M(k,x) is zero if x is not in the
+    k-th recurrent class.
+    Q(x,k) is the probability to end in the k-th recurrent class starting
+    from x. If <VERB>P^k</VERB> converges for large <VERB>k</VERB> (no eigenvalues on the
+    unit circle except 1), then the limit is <VERB>Q*M</VERB> (eigenprojection).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//P has two recurrent classes (with 2 and 1 states) 2 transient states
+P=genmarkov([2,1],2) 
+[M,Q]=eigenmarkov(P);
+P*Q-Q
+Q*M-P^20
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>genmarkov</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>classmarkov</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

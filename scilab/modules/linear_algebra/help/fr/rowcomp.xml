@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>rowcomp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="rowcomp"> compression de lignes, image  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[W,rk]=colcomp(A [,flag [,tol]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: matrice réelle ou complexe</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>flag  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: chaîne de caractères optionnelle qui peut prendre les valeurs
+	    <VERB>'svd'</VERB> ou <VERB>'qr'</VERB>.  La valeur par
+	    défaut est  <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: nombre réel non négatif. La valeur par
+	    défaut est  <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>W  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: matrice carrée régulière (matrice de changement de base) </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>rk  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: entier (rang de&quot;<VERB>A</VERB>).</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>Compression des colonnes de <VERB>A</VERB>. <VERB>Ac = W*A</VERB> est à
+      lignes compressées, c&apos;est à dire
+      <VERB>Ac=[Af;0]</VERB> et les lignes de <VERB>Af</VERB> sont linéairement
+      indépendantes.</P>
+    <P><VERB>flag</VERB> et <VERB>tol</VERB> sont des paramètres optionnels :
+      <VERB>flag = &apos;qr&apos;</VERB> ou <VERB>&apos;svd&apos;</VERB>
+      (<VERB>&apos;svd&apos;</VERB> par défaut). </P>
+    <P><VERB>tol</VERB> = paramètre de tolérance (de l&apos;ordre de
+      <VERB>%eps</VERB> par défaut).</P>
+    <P>Les <VERB>rk</VERB> premières colonnes de <VERB>W&apos;</VERB> forment
+      une base de l&apos;image de <VERB>A</VERB>. </P>
+    <P> Un vecteur non nul <VERB>x</VERB> appartient à Im(<VERB>A</VERB>) si
+      <VERB>W*x</VERB> est à lignes compressées en accord avec <VERB>Ac</VERB>
+      c&apos;est à dire que la norme de ses dernières composantes est  nulle (à
+      la précision machine) par rapport à ses rk premières composantes.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    A=rand(5,2)*rand(2,4);          // 4 vecteurs colonne dont 2 indépendants
+    [X,dim]=rowcomp(A);Xp=X';
+    svd([Xp(:,1:dim),A])            // Im(A) = Im(Xp(:,1:dim)
+    x=A*rand(4,1);                  // x appartient à Im(A)
+    y=X*x  
+    norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fullrfk</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; INRIA  </AUTHOR>
+  <USED_FUNCTIONS>
+    
+    <SP>La fonction <VERB>rowcomp</VERB> est basée sur les décompositions
+      <LINK>svd</LINK> ou <LINK>qr</LINK>.</SP>
+  </USED_FUNCTIONS>
+</MAN>

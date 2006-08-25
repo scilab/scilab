@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lsq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="lsq"> linear least square problems.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>X=lsq(A,B [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Real or complex (m x n) matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex (m x p) matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive scalar,  used to determine the effective rank of A
+	    (defined as the order of the largest leading triangular 
+          submatrix R11 in the QR factorization with pivoting of A,
+          whose estimated condition number &lt;= 1/tol. The tol default value is
+	    set to <VERB>sqrt(%eps)</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+  
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex (n x p) matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>X=lsq(A,B)</VERB> computes the minimum norm least square solution of
+    the equation <VERB>A*X=B</VERB>, while <VERB>X=A \ B</VERB> compute a least square
+    solution with at at most <VERB>rank(A)</VERB>  nonzero components per column.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P><VERB>lsq</VERB> function is  based on the LApack functions DGELSY for
+      real matrices and ZGELSY for complex matrices.</P> 
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+//Build the data
+x=(1:10)';
+
+y1=3*x+4.5+3*rand(x,'normal');
+y2=1.8*x+0.5+2*rand(x,'normal');
+plot2d(x,[y1,y2],[-2,-3])
+//Find the linear regression 
+A=[x,ones(x)];B=[y1,y2];
+X=lsq(A,B);
+
+y1e=X(1,1)*x+X(2,1);
+y2e=X(1,2)*x+X(2,2);
+plot2d(x,[y1e,y2e],[2,3])
+
+//Difference between lsq(A,b) and A\b
+A=rand(4,2)*rand(2,3);//a rank 2 matrix
+b=rand(4,1);
+X1=lsq(A,b)
+X2=A\b
+[A*X1-b, A*X2-b] //the residuals are the same
+   ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>backslash</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>inv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>pinv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rank</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

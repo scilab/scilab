@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>projspec</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="projspec"> spectral operators</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[S,P,D,i]=projspec(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S, P, D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (index of the zero eigenvalue of <VERB>A</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Spectral characteristics of <VERB>A</VERB> at 0.</P>
+    <P><VERB>S</VERB> = reduced resolvent at 0 (<VERB>S</VERB> = -Drazin_inverse(<VERB>A</VERB>)).</P>
+    <P><VERB>P</VERB> = spectral projection at 0.</P>
+    <P><VERB>D</VERB> = nilpotent operator at 0.</P>
+    <P><VERB>index</VERB> = index of the 0 eigenvalue.</P>
+    <P>
+    One has <VERB>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</VERB>
+    around the singularity s=0.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff('j=jdrn(n)','j=zeros(n,n);for k=1:n-1;j(k,k+1)=1;end')
+A=sysdiag(jdrn(3),jdrn(2),rand(2,2));X=rand(7,7);
+A=X*A*inv(X);
+[S,P,D,index]=projspec(A);
+index   //size of J-block
+trace(P)  //sum of dimensions of J-blocks
+A*S-(eye()-P)
+norm(D^index,1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>coff</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; ;   </AUTHOR>
+</MAN>

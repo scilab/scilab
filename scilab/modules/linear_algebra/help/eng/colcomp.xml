@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>colcomp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="colcomp"> column compression, kernel, nullspace</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[W,rk]=colcomp(A [,flag] [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>W</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square non-singular matrix (change of basis)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (rank of <VERB>A</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Column compression of <VERB>A</VERB>: <VERB>Ac = A*W</VERB> is 
+    column compressed i.e</P>
+    <P><VERB>Ac=[0,Af]</VERB> with <VERB>Af</VERB> full column rank, 
+    rank(<VERB>Af</VERB>) = rank(<VERB>A</VERB>) = <VERB>rk</VERB>.</P>
+    <P><VERB>flag</VERB> and <VERB>tol</VERB> are optional parameters: <VERB>flag = 'qr'</VERB> 
+    or <VERB>'svd'</VERB> (default is <VERB>'svd'</VERB>).</P>
+    <P><VERB>tol</VERB> = tolerance parameter (of order <VERB>%eps</VERB> as default value).</P>
+    <P>
+    The <VERB>ma-rk</VERB> first columns of <VERB>W</VERB> span the kernel of <VERB>A</VERB> 
+    when <VERB>size(A)=(na,ma)</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,2)*rand(2,5);
+[X,r]=colcomp(A);
+norm(A*X(:,1:$-r),1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rowcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fullrf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fullrfk</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>kernel</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.;   </AUTHOR>
+</MAN>

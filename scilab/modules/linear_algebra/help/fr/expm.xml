@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>expm  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="expm"> exponentielle de matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>expm(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+  </P>
+  <P>
+    Pour <VERB>X</VERB> une matrice carrée <VERB>expm(X)</VERB> est la matrice
+  </P>
+  <P>
+    expm(X) = I + X + X^2 /2 + ...
+  </P>
+  <P>
+    Le calcul fait appel à une 
+    bloc-diagonalisation préliminaire de <VERB>X</VERB> suivie d&apos;une approximation 
+    de Padé sur chaque bloc.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+X=[1 2;3 4]
+expm(X)
+logm(expm(X))    
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>logm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>bdiag</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>log</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>exp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

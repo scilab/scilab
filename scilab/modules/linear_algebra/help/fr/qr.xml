@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>qr  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="qr"> factorisation QR  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Q,R]=qr(X [,&quot;e&quot;])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,R,E]=qr(X [,&quot;e&quot;])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,R,rk,E]=qr(X [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>X  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle ou complexe
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombre réel positif
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>Q  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice carrée unitaire
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>R  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice de même dimensions que <VERB>X</VERB>
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>E  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice de permutation
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>rk  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : entier (rang de <VERB>X</VERB>)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>[Q,R] = qr(X)</VERB> renvoie une matrice triangulaire supérieure
+      <VERB>R</VERB> de même
+      dimensions que <VERB>X</VERB> et une matrice carrée othogonale
+      (unitaire dans le cas complexe) <VERB>Q</VERB> telles que
+      <VERB>X = Q*R</VERB>.
+
+      <VERB>[Q,R] = qr(X,"e")</VERB>  renvoie une decomposition de
+      taille réduite: si <VERB>X</VERB> est une matrice <VERB>m x
+	n</VERB> avec <VERB>m > n</VERB> alors seulement les
+      <VERB>n</VERB> premières colonnes de <VERB>Q</VERB> sont calculées
+      ainsi que les <VERB>n</VERB> premières lignes de
+      <VERB>R</VERB>.   
+    </P>
+    <P>
+      Il découle de <VERB>Q*R = X</VERB> que la
+      <VERB>k</VERB>ième colonne de <VERB>X</VERB> peut s'exprimer comme
+      une combinaison linéaire des <VERB>k</VERB> premieres colonnes de
+      <VERB>Q</VERB> (avec les coefficients <VERB>R(1,k), ...,
+	R(k,k)</VERB>. Les <VERB>k</VERB> premieres colonnes de
+      <VERB>Q</VERB> forment une base orthogonale du sous espace généré
+      par les Les <VERB>k</VERB> premieres colonnes de
+      <VERB>X</VERB>. Si la colonne <VERB>k</VERB> de <VERB>X</VERB> est
+      une combinaison linéaire des <VERB>p</VERB> premiéres colonnes de
+      <VERB>X</VERB> alors les éléments <VERB>R(p+1,k), ...,
+	R(k,k)</VERB> sont nuls. Dans cette situation <VERB>R</VERB> est
+      une matrice trapézoidale supérieure. Si <VERB>X</VERB> est de rang
+      <VERB>rk</VERB> alors les lignes  <VERB>R(rk+1,:), R(rk+2,:),
+	...</VERB> sont nulles.
+
+    </P>
+    <P>
+      <VERB>[Q,R,E] = qr(X)</VERB> renvoie une matrice de permutations (de
+      colonnes) <VERB>E</VERB>,
+      une matrice triangulaire supérieure <VERB>R</VERB> dont les
+      éléments diagonaux sont classés par ordre décroissant et une
+      matrice unitaire <VERB>Q</VERB> telles que <VERB>X*E = Q*R</VERB>.
+      si <VERB>rk</VERB> est le rang de <VERB>X</VERB> les
+      <VERB>rk</VERB> premiers éléménts diagonaux de <VERB>R</VERB> sont
+      tous non nuls. <VERB>[Q,R,E] = qr(X,"e")</VERB>  renvoie une decomposition de
+      taille réduite: si <VERB>X</VERB> est une matrice <VERB>m x
+	n</VERB> avec <VERB>m > n</VERB> alors seulement les
+      <VERB>n</VERB> premières colonnes de <VERB>Q</VERB> sont calculées
+      ainsi que les <VERB>n</VERB> premières lignes de
+      <VERB>R</VERB>.   
+    </P>
+    <P>
+      <VERB>[Q,R,rk,E] = qr(X [,tol])</VERB>renvoie de plus 
+      <VERB>rk</VERB> =rang estimé de <VERB>X</VERB>. 
+      Plus précisément, 
+      <VERB>rk</VERB> est le nombre d&apos;éléments diagonaux de
+      <VERB>R</VERB> supérieurs à <VERB>tol</VERB>. La valeur par défaut
+      de <VERB>tol</VERB> est <VERB>R(1,1)*%eps*max(size(R))</VERB> 
+    </P>
+    <P>
+      renvoie <VERB>rk</VERB> = rang estimé de <VERB>X</VERB>. Ici,
+      <VERB>rk</VERB> est le nombre d&apos;éléments diagonaux de <VERB>R</VERB>
+      supérieurs à <VERB>R(1,1)*%eps*max(size(R)</VERB>.
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    // QR factorization, generic case
+    // X is tall (full rank)
+    X=rand(5,2);[Q,R]=qr(X); [Q'*X R]
+    //X is fat (full rank)
+    X=rand(2,3);[Q,R]=qr(X); [Q'*X R]
+    //Column 4 of X is a linear combination of columns 1 and 2:
+    X=rand(8,5);X(:,4)=X(:,1)+X(:,2); [Q,R]=qr(X); R, R(:,4)
+    //X has rank 2, rows 3 to $ of R are zero:
+    X=rand(8,2)*rand(2,5);[Q,R]=qr(X); R
+    //Evaluating the rank rk: column pivoting ==> rk first
+    //diagonal entries of R are non zero :
+    A=rand(5,2)*rand(2,5);
+    [Q,R,rk,E] = qr(A,1.d-10);
+    norm(Q'*A-R)
+    svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <SP>La décomposition QR est basée sur les routines Lapack  DGEQRF, DGEQPF,
+      DORGQR pour les matrices réelles et ZGEQRF, ZGEQPF, ZORGQR pour le cas
+      complexe.</SP>
+  </USED_FUNCTIONS>
+</MAN>

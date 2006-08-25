@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>chol</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="chol"> Cholesky factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[R]=chol(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a symmetric positive definite real or complex matrix.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    If <VERB>X</VERB> is positive definite, then <VERB>R = chol(X)</VERB> produces an upper 
+    triangular matrix <VERB>R</VERB> such that <VERB>R'*R = X</VERB>.</P>
+    <P><VERB>chol(X)</VERB> uses only the diagonal and upper triangle of <VERB>X</VERB>.
+    The lower triangular is assumed to be the (complex conjugate) 
+    transpose of the upper.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+ Cholesky decomposition is based on  the Lapack routines
+ DPOTRF for  real matrices and  ZPOTRF for the complex case.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+W=rand(5,5)+%i*rand(5,5);
+X=W*W';
+R=chol(X);
+norm(R'*R-X)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>spchol</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>svd</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fullrf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

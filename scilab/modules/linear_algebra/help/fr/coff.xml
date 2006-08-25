@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>coff  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="coff"> résolvante (méthode des cofacteurs)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[N,d]=coff(M [,var])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>M  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée réelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>var  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères (indéterminée des polynômes)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>N  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de polynômes (de même taille que <VERB>M</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme (polynôme caractéristique de M : <VERB>poly(M,var)</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>coff</VERB> calcule R=<VERB>(s*eye()-M)^-1</VERB> pour <VERB>M</VERB> une matrice réelle. 
+    R est donnée par <VERB>N/d</VERB>.
+  </P>
+  <P>
+    <VERB>N</VERB> = matrice des numérateurs (polynômes).
+  </P>
+  <P>
+    <VERB>d</VERB> = dénominateur commun.
+  </P>
+  <P>
+    <VERB>var</VERB> chaîne de caractères (indéterminée des polynômes, &apos;<VERB>s</VERB>&apos; par défaut)
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+M=[1,2;0,3];
+[N,d]=coff(M)
+N/d
+inv(%s*eye()-M)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ss2tf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>nlev</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

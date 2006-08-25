@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="html.xsl" ?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>schur</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="schur"> [ordered] Schur decomposition of matrix and pencils</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[U,T] = schur(A)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,dim [,T] ]=schur(A,flag)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,dim [,T] ]=schur(A,extern1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[As,Es [,Q,Z]]=schur(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[As,Es [,Q],Z,dim] = schur(A,E,flag)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Z,dim] = schur(A,E,flag)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[As,Es [,Q],Z,dim]= schur(A,E,extern2)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Z,dim]= schur(A,E,extern2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>E</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix with same dimensions as <VERB> A</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string (<VERB>'c'</VERB> or <VERB>'d'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>extern1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an ``external'', see below</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>extern2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an ``external'', see below</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal or unitary square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal or unitary square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal or unitary square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>T</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: upper triangular or quasi-triangular square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>As</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: upper triangular or quasi-triangular square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Es</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: upper triangular  square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Schur forms, ordered Schur forms of matrices and pencils
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="MATRIX SCHUR FORM">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="Usual schur form:">
+            <P><VERB>[U,T] = schur(A)</VERB> produces a Schur matrix
+        <VERB>T</VERB> and a unitary matrix <VERB>U</VERB> so that
+        <VERB>A = U*T*U'</VERB> and <VERB>U'*U =  eye(U)</VERB>. By itself, schur(<VERB>A</VERB>) returns
+        <VERB>T</VERB>. If <VERB>A</VERB> is complex, the Complex
+        Schur Form is returned in matrix
+	<VERB>T</VERB>. The Complex Schur Form is upper triangular with
+	the eigenvalues of <VERB>A</VERB> on the diagonal. If
+	<VERB>A</VERB> is real, the Real Schur Form is returned.  The Real
+	Schur Form has the real eigenvalues on the diagonal and the
+	complex eigenvalues in 2-by-2 blocks on the diagonal.
+      </P>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="Ordered Schur forms">
+            <SP><VERB>[U,dim]=schur(A,'c')</VERB> returns an unitary
+      matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur
+      form.  In addition, the dim first columns of <VERB>U</VERB> make
+      a basis of the eigenspace of <VERB>A</VERB> associated with
+      eigenvalues with negative real parts (stable &quot;continuous
+      time&quot; eigenspace).</SP>
+            <P><VERB>[U,dim]=schur(A,'d')</VERB> returns an unitary
+      matrix <VERB>U</VERB> which transforms <VERB>A</VERB> into schur
+      form.  In addition, the <VERB>dim</VERB> first columns of
+      <VERB>U</VERB> span a basis of the eigenspace of <VERB>A</VERB>
+      associated with eigenvalues with magnitude lower than 1 (stable
+      &quot;discrete time&quot; eigenspace).
+      </P>
+            <P><VERB>[U,dim]=schur(A,extern1)</VERB> returns an unitary matrix
+      <VERB>U</VERB> which transforms <VERB>A</VERB> into schur form.
+      In addition, the <VERB>dim</VERB> first columns of
+      <VERB>U</VERB> span a basis of the eigenspace of <VERB>A</VERB>
+      associated with the eigenvalues which are selected by the
+      external function <VERB>extern1</VERB> (see external for
+      details).  This external can be described by a Scilab function
+      or by C or Fortran procedure: </P>
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM label="a Scilab function">
+                <SP>If <VERB>extern1</VERB> is described by a Scilab function, it
+	  should have the following calling sequence:
+	  <VERB>s=extern1(Ev)</VERB>, where <VERB>Ev</VERB> is an eigenvalue and
+	  <VERB>s</VERB> a boolean.</SP>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM label="a C or Fortran procedure">
+                <SP>If <VERB>extern1</VERB> is described by a C or Fortran function it
+	  should have the following calling sequence:
+	  <VERB>int extern1(double *EvR, double *EvI)</VERB>
+	  where <VERB>EvR</VERB> and <VERB>EvI</VERB> are  eigenvalue real and complex parts.
+	  a true or non zero returned value stands for selected eigenvalue.</SP>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="PENCIL SCHUR FORMS">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="Usual Pencil Schur form">
+            <SP><VERB>[As,Es] = schur(A,E)</VERB> produces a quasi triangular
+      <VERB>As</VERB> matrix and a triangular <VERB>Es</VERB> matrix
+      which are the generalized Schur form of the pair <VERB>A, E</VERB>.</SP>
+            <P><VERB>[As,Es,Q,Z] = schur(A,E)</VERB>
+      returns in addition two unitary matrices
+      <VERB>Q</VERB> and <VERB>Z</VERB> such that
+      <VERB>As=Q'*A*Z</VERB> and <VERB>Es=Q'*E*Z</VERB>.
+      </P>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="Ordered Schur forms:">
+            <SP><VERB>[As,Es,Z,dim] = schur(A,E,'c')</VERB>
+      returns the real generalized
+      Schur form of the pencil <VERB>s*E-A</VERB>. In addition, the dim first columns 
+      of <VERB>Z</VERB> span a basis of the right eigenspace  associated with 
+      eigenvalues with negative real parts (stable &quot;continuous
+      time&quot; generalized eigenspace).</SP>
+            <P>
+              <VERB>[As,Es,Z,dim] = schur(A,E,'d')</VERB>
+            </P>
+            <P>
+      returns the real generalized
+      Schur form of the pencil <VERB>s*E-A</VERB>. In addition, the dim first columns 
+      of <VERB>Z</VERB> make a basis of the right eigenspace  associated with 
+      eigenvalues with magnitude lower than 1 (stable &quot;discrete
+      time&quot; generalized eigenspace).
+      </P>
+            <P>
+              <VERB>[As,Es,Z,dim] = schur(A,E,extern2)</VERB>
+            </P>
+            <P>
+      returns the real generalized Schur form of the pencil <VERB>s*E-A</VERB>. 
+      In addition, the dim first columns 
+      of <VERB>Z</VERB> make a basis of the right eigenspace  associated with 
+      eigenvalues of the pencil which are selected according to a
+      rule which is given by the function <VERB>extern2</VERB>. (see external
+      for details). This external can be described by a Scilab
+      function or by C or Fortran procedure:      </P>
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM label="A Scilab function">
+                <SP>If <VERB>extern2</VERB> is described by a Scilab function, it should
+	  have the following calling sequence:
+	  <VERB>s=extern2(Alpha,Beta)</VERB>, where <VERB>Alpha</VERB> and
+	  <VERB>Beta</VERB> defines a generalized eigenvalue and
+	  <VERB>s</VERB> a boolean.</SP>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM label="C or Fortran procedure">
+                <SP>if external <VERB>extern2</VERB> is described by a C or a
+	  Fortran procedure, it should have the following calling
+	  sequence:</SP>
+                <P>
+                  <VERB>int extern2(double *AlphaR, double *AlphaI, double *Beta)</VERB>
+                </P>
+                <P>
+	  if <VERB>A</VERB> and <VERB>E</VERB> are real and</P>
+                <P>
+                  <VERB>int extern2(double *AlphaR, double *AlphaI, double *BetaR, double *BetaI)</VERB>
+                </P>
+                <P>
+	  if <VERB>A</VERB> or <VERB>E</VERB> are complex.
+	  <VERB>Alpha</VERB>, and <VERB>Beta</VERB> defines the generalized eigenvalue.
+	  a true or non zero returned value stands for selected generalized eigenvalue.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Matrix schur form computations are based on the Lapack routines DGEES and ZGEES.</P>
+    <P>
+    Pencil schur form computations are based on the Lapack routines DGGES and ZGGES.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+//SCHUR FORM OF A MATRIX
+//----------------------
+A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
+[U,T]=schur(A);T
+
+[U,dim,T]=schur(A,'c');
+T(1:dim,1:dim)      //stable cont. eigenvalues
+
+function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
+[U,dim,T]=schur(A,mytest);
+T(1:dim,1:dim)  
+
+// The same function in C (a Compiler is required)
+C=['int mytest(double *EvR, double *EvI) {' //the C code
+   'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
+   'else return 0; }';]
+mputl(C,TMPDIR+'/mytest.c')
+
+
+//build and link
+lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+link(lp,'mytest','c'); 
+
+//run it
+[U,dim,T]=schur(A,'mytest');
+//SCHUR FORM OF A PENCIL
+//----------------------
+F=[-1,%s, 0,   1;
+    0,-1,5-%s, 0;
+    0, 0,2+%s, 0;
+    1, 0, 0, -2+%s];
+A=coeff(F,0);E=coeff(F,1);
+[As,Es,Q,Z]=schur(A,E);
+Q'*F*Z //It is As+%s*Es
+
+
+[As,Es,Z,dim] = schur(A,E,'c')
+function t=mytest(Alpha,Beta),t=real(Alpha)<0,endfunction
+[As,Es,Z,dim] = schur(A,E,mytest)
+
+//the same function in Fortran (a Compiler is required)
+ftn=['integer function mytestf(ar,ai,b)' //the fortran code
+      'double precision ar,ai,b'
+      'mytestf=0'
+      'if(ar.lt.0.0d0) mytestf=1'
+      'end']
+mputl('      '+ftn,TMPDIR+'/mytestf.f')
+
+//build and link
+lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+link(lp,'mytestf','f'); 
+
+//run it
+
+[As,Es,Z,dim] = schur(A,E,'mytestf')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>spec</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ricc</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>pbig</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>psmall</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

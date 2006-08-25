@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>lu  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="lu"> factorisation LU  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[L,U]= lu(A)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[L,U,E]= lu(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice carrée réelle ou complexe (m x n).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>L,U  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrices carrées réelles ou complexes (n x n).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>E  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : une matrice de permutation.
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>[L,U]= lu(A)</VERB> calcule deux matrices <VERB>L</VERB> et
+      <VERB>U</VERB> telles que <VERB>A = L*U</VERB> avec <VERB>U</VERB>
+      triangulaire supérieure et <VERB>L</VERB> triangulaire inférieure
+      à une permutation des lignes près.
+    </P>
+    <P>
+      Si <VERB>A</VERB> est de rang <VERB>k</VERB>, les lignes
+      <VERB>k+1</VERB> à <VERB>n</VERB> de <VERB>U</VERB> sont nulles.
+    </P>
+    <P>
+    </P>
+    <P>
+      <VERB>[L,U,E]= lu(A)</VERB> calcule trois matrices <VERB>L</VERB>,
+      <VERB>U</VERB> et <VERB>E</VERB> telles que <VERB>E*A = L*U</VERB>
+      avec <VERB>U</VERB> triangulaire supérieure, <VERB>L</VERB>
+      triangulaire inférieure et <VERB>E</VERB> une matrice de
+      permutation.
+    </P>
+    <P>
+      Si <VERB>A</VERB> est une matrice réelle, il est possible en
+      utilisant <VERB>lufact</VERB> et <VERB>luget</VERB>
+      d&apos;obtenir les matrices de permutations et quand
+      <VERB>A</VERB> n&apos;est pas inversible la compression des
+      colonnes de la matrice <VERB>L</VERB>.
+    </P>
+  </DESCRIPTION>
+
+
+  <EXAMPLE><![CDATA[
+    a=rand(4,4);
+    [l,u]=lu(a)
+    norm(l*u-a)
+
+
+    [h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
+    [P,L,U,Q]=luget(h);
+    ludel(h)
+    P=full(P);L=full(L);U=full(U);Q=full(Q); 
+    norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
+    ]]></EXAMPLE>
+
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lusolve</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <SP>La décomposition LU est basée sur les routines Lapack  DGETRF pour
+    les matrices réelles et ZGETRF pour le cas complexe. </SP>
+  </USED_FUNCTIONS>
+
+</MAN>

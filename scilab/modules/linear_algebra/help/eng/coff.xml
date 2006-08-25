@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>coff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="coff"> resolvent (cofactor method)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[N,d]=coff(M [,var])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>var</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>N</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial matrix (same size as <VERB>M</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>d</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial (characteristic polynomial <VERB>poly(A,'s')</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>coff</VERB> computes R=<VERB>(s*eye()-M)^-1</VERB> for <VERB>M</VERB> a real matrix. 
+    R is given by <VERB>N/d</VERB>.</P>
+    <P><VERB>N</VERB> = numerator polynomial matrix.</P>
+    <P><VERB>d</VERB> = common denominator.</P>
+    <P><VERB>var</VERB> character string ('<VERB>s</VERB>' if omitted)</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+M=[1,2;0,3];
+[N,d]=coff(M)
+N/d
+inv(%s*eye()-M)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>coffg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ss2tf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>nlev</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

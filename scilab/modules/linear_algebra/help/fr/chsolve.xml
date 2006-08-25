@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>chsolve  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="chsolve"> solveur de Cholesky creux  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sol=chsolve(spcho,rhs)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>spcho  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : liste contenant les facteurs de Cholesky renvoyés par chfact 
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>rhs, sol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : vecteurs
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>sol=chsolve(spcho,rhs)</VERB> calcule la solution de 
+      <VERB>rhs=A*sol</VERB>, où <VERB>A</VERB> est une matrice symétrique
+      définie positive. Cette fonction est basée sur le programme Ng-Peyton
+      (ORNL). Voir le programme Fortran pour une description complète des
+      variables de la liste <VERB>spcho</VERB>. 
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    A=sprand(20,20,0.1);
+    A=A*A'+eye();  
+    spcho=chfact(A);
+    sol=(1:20)';rhs=A*sol;
+    spcho=chfact(A);
+    chsolve(spcho,rhs)
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>chfact</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>sparse</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>luget</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>spchol</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>quaskro</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="randpencil"> random pencil</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>F=randpencil(eps,infi,fin,eta)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>eps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>infi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector, or monic polynomial, or vector of monic polynomial</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>eta</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix pencil <VERB>F=s*E-A</VERB>  (<VERB>s=poly(0,'s')</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Utility function.
+    <VERB>F=randpencil(eps,infi,fin,eta)</VERB> returns a random pencil <VERB>F</VERB>
+    with given Kronecker structure. The structure is given by:
+    <VERB>eps=[eps1,...,epsk]</VERB>: structure of epsilon blocks (size eps1x(eps1+1),....)
+    <VERB>fin=[l1,...,ln]</VERB>  set of finite eigenvalues (assumed real)  (possibly [])
+    <VERB>infi=[k1,...,kp]</VERB> size of J-blocks at infinity
+    <VERB>ki&gt;=1</VERB>  (infi=[] if no J blocks).
+    <VERB>eta=[eta1,...,etap]</VERB>: structure ofeta blocks (size eta1+1)xeta1,...)</P>
+    <P><VERB>epsi</VERB>'s should be &gt;=0, <VERB>etai</VERB>'s should be &gt;=0, <VERB>infi</VERB>'s should 
+    be &gt;=1.</P>
+    <P>
+    If <VERB>fin</VERB> is a (monic) polynomial, the finite block admits the roots of 
+    <VERB>fin</VERB> as eigenvalues.</P>
+    <P>
+    If <VERB>fin</VERB> is a vector of polynomial, they are the finite elementary
+    divisors of <VERB>F</VERB> i.e. the roots of <VERB>p(i)</VERB> are finite
+    eigenvalues of <VERB>F</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+F=randpencil([0,1],[2],[-1,0,1],[3]);
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
+Qd, Zd
+s=poly(0,'s');
+F=randpencil([],[1,2],s^3-2,[]); //regular pencil
+det(F)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>kroneck</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>pencan</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>penlaur</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

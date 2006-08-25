@@ -1,0 +1,16 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for linear_algebra module
+// Copyright INRIA 2006
+// ====================================================================
+// delete help chapter
+global LANGUAGE
+
+if LANGUAGE == 'fr' then
+	del_help_chapter("Algebre Lineaire");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Linear Algebra");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================

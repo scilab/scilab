@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>classmarkov</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="classmarkov"> recurrent and transient classes of Markov matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[perm,rec,tr,indsRec,indsT]=classmarkov(M)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real N x N Markov matrix. Sum of entries in each row should add to one.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>perm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer permutation vector.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rec, tr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector, number (number of states in each recurrent classes, number of transient states).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>indsRec,indsT</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vectors. (Indexes of recurrent and transient states).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns a permutation vector <VERB>perm</VERB> such that</P>
+    <VERBATIM>
+<![CDATA[
+M(perm,perm) = [M11 0 0 0 0   0]
+               [0 M22 0 0     0]
+               [0 0 M33       0]
+               [      ...      ]
+               [0 0       Mrr 0]
+               [* *        *  Q]
+   ]]>
+    </VERBATIM>
+    <P>
+    Each <VERB>Mii</VERB> is a Markov matrix of dimension <VERB>rec(i)  i=1,..,r</VERB>.
+    <VERB>Q</VERB> is sub-Markov matrix of dimension <VERB>tr</VERB>.
+    States 1 to sum(rec) are recurrent and states from r+1 to n
+    are transient. 
+    One has <VERB>perm=[indsRec,indsT]</VERB> where indsRec is a  vector of size sum(rec) 
+    and indsT is a vector of size tr.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//P has two recurrent classes (with 2 and 1 states) 2 transient states
+P=genmarkov([2,1],2,'perm')
+[perm,rec,tr,indsRec,indsT]=classmarkov(P);
+P(perm,perm)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>genmarkov</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>eigenmarkov</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

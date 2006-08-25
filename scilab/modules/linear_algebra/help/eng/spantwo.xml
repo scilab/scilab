@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>spantwo</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="spantwo"> sum and intersection of subspaces</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Xp,dima,dimb,dim]=spantwo(A,B, [tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A, B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real or complex matrices with equal number of rows</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Xp</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square non-singular matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dima, dimb, dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers, dimension of subspaces</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: nonnegative real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given two matrices <VERB>A</VERB> and <VERB>B</VERB> with same number of rows,
+    returns a square matrix <VERB>Xp</VERB> (non singular but not necessarily orthogonal) 
+    such that :</P>
+    <VERBATIM>
+<![CDATA[
+         [A1, 0]    (dim-dimb rows)
+Xp*[A,B]=[A2,B2]    (dima+dimb-dim rows)
+         [0, B3]    (dim-dima rows)
+         [0 , 0]
+   ]]>
+    </VERBATIM>
+    <P>
+    The  first <VERB>dima</VERB>  columns of <VERB>inv(Xp)</VERB> span range(<VERB>A</VERB>).</P>
+    <P>
+    Columns <VERB>dim-dimb+1</VERB> to <VERB>dima</VERB> of <VERB>inv(Xp)</VERB> span the 
+    intersection of range(A) and range(B).</P>
+    <P>
+    The <VERB>dim</VERB> first columns of <VERB>inv(Xp)</VERB> span 
+    range(<VERB>A</VERB>)+range(<VERB>B</VERB>).</P>
+    <P>
+    Columns <VERB>dim-dimb+1</VERB> to <VERB>dim</VERB> of <VERB>inv(Xp)</VERB> span 
+    range(<VERB>B</VERB>).</P>
+    <P>
+    Matrix <VERB>[A1;A2]</VERB> has full row rank (=rank(A)). Matrix <VERB>[B2;B3]</VERB> has
+    full row rank (=rank(B)). Matrix <VERB>[A2,B2]</VERB> has full row rank (=rank(A inter B)). Matrix <VERB>[A1,0;A2,B2;0,B3]</VERB> has full row rank (=rank(A+B)).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[1,0,0,4;
+   5,6,7,8;
+   0,0,11,12;
+   0,0,0,16];
+B=[1,2,0,0]';C=[4,0,0,1]; 
+Sl=ss2ss(syslin('c',A,B,C),rand(A));
+[no,X]=contr(Sl('A'),Sl('B'));CO=X(:,1:no);  //Controllable part
+[uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Unobservable part
+[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Kalman decomposition
+Slcan=ss2ss(Sl,inv(Xp));
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>spanplus</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spaninter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

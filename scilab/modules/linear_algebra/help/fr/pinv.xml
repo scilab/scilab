@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>pinv  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="pinv"> pseudo-inverse  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>pinv(A,[tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle ou complexe
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombre réel
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>X = pinv(A)</VERB>  renvoie une matrice <VERB>X</VERB> de mêmes dimensions que <VERB>A&apos;</VERB> telle que :
+    </P>
+    <P>
+      <VERB>A*X*A = A, X*A*X = X</VERB> avec
+      <VERB>A*X</VERB> et <VERB>X*A</VERB> Hermitiennes.
+    </P>
+    <P>
+      Le calcul est basé sur une décomposition en valeurs singulières et
+      les valeurs singulières plus petites qu&apos;une tolérance donnée
+      sont considérées comme nulles : pour cela utiliser la syntaxe
+      <VERB>X=pinv(A,tol)</VERB>.
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    A=rand(5,2)*rand(2,4);
+    norm(A*pinv(A)*A-A,1)
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <SP>La fonction <VERB>pinv</VERB> est basée sur la decomposition en valeurs
+      singulières (fonction Scilab  <VERB>svd</VERB>).</SP>
+  </USED_FUNCTIONS>
+</MAN>

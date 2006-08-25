@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>colcomp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="colcomp"> compression de colonnes, noyau  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[W,rk]=colcomp(A [,flag] [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>W  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carré régulière (matrice de changement de base)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rk  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (rang de&quot;<VERB>A</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Compression des colonnes de <VERB>A</VERB> : <VERB>Ac = A*W</VERB> est à colonnes compressées, c&apos;est à dire
+  </P>
+  <P>
+    <VERB>Ac=[0,Af]</VERB> et <VERB>Af</VERB> est de rang maximal
+    rank(<VERB>Af</VERB>) = rank(<VERB>A</VERB>) = <VERB>rk</VERB>.
+  </P>
+  <P>
+    <VERB>flag</VERB> et <VERB>tol</VERB> sont des paramètres optionnels : <VERB>flag = &apos;qr&apos;</VERB> 
+    ou <VERB>&apos;svd&apos;</VERB> (<VERB>&apos;svd&apos;</VERB> par défaut).
+  </P>
+  <P>
+    <VERB>tol</VERB> = paramètre de tolérance (de l&apos;ordre de <VERB>%eps</VERB> par défaut).
+  </P>
+  <P>
+    Les <VERB>ma-rk</VERB> premières colonnes de <VERB>W</VERB> forment une base du noyau de <VERB>A</VERB> quand <VERB>size(A)=[na,ma]</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=rand(5,2)*rand(2,5);
+[X,r]=colcomp(A);
+norm(A*X(:,1:$-r),1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fullrfk</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>kernel</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.;   </AUTHOR>
+</MAN>

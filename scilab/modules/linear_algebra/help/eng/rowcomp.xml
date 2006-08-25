@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rowcomp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rowcomp"> row compression, range</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[W,rk]=rowcomp(A [,flag [,tol]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optionnal character string, with possible values
+	    <VERB>'svd'</VERB> or <VERB>'qr'</VERB>. The default value is  <VERB>'svd'</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: optionnal real non negative number. The default value is 
+	    <VERB>sqrt(%eps)*norm(A,1)</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>W</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square non-singular matrix (change of basis)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (rank of <VERB>A</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Row compression of <VERB>A</VERB>. <VERB>Ac = W*A</VERB> is a row compressed matrix: i.e. 
+    <VERB>Ac=[Af;0]</VERB> with <VERB>Af</VERB> full row rank.</P>
+
+    <P><VERB>flag</VERB> and <VERB>tol</VERB> are optional parameters: <VERB>flag='qr'</VERB> 
+    or <VERB>'svd'</VERB> (default <VERB>'svd'</VERB>).</P>
+
+    <P><VERB>tol</VERB> is a tolerance parameter.</P>
+    <P>The <VERB>rk</VERB> first columns of <VERB>W'</VERB> span the range of
+      <VERB>A</VERB>.</P> 
+    <P>The <VERB>rk</VERB> first (top) rows of <VERB>W</VERB> span the row
+      range of <VERB>A</VERB>.</P> 
+    <P>A non zero vector <VERB>x</VERB> belongs to range(<VERB>A</VERB>) iff
+      <VERB>W*x</VERB> is row  compressed in accordance with <VERB>Ac</VERB>
+      i.e the norm of its last components is small w.r.t its first
+      components.</P> 
+  </DESCRIPTION>
+ 
+  <EXAMPLE>
+    <![CDATA[
+    A=rand(5,2)*rand(2,4);              // 4 col. vectors, 2 independent.
+    [X,dim]=rowcomp(A);Xp=X';
+    svd([Xp(:,1:dim),A])                //span(A) = span(Xp(:,1:dim)
+    x=A*rand(4,1);                      //x belongs to span(A)
+    y=X*x  
+    norm(y(dim+1:$))/norm(y(1:dim))     // small
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>colcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fullrf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fullrfk</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; INRIA   </AUTHOR>
+<USED_FUNCTIONS>
+    <SP>The <VERB>rowcomp</VERB> function is based on the <LINK>svd</LINK> or
+    <LINK>qr</LINK> decompositions.</SP>
+</USED_FUNCTIONS>
+
+</MAN>

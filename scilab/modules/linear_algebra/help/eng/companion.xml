@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>companion</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="companion"> companion matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>A=companion(p)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial or vector of polynomials</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns a matrix <VERB>A</VERB> with characteristic polynomial equal
+    to <VERB>p</VERB> if <VERB>p</VERB> is monic. If <VERB>p</VERB> is not monic
+    the characteristic polynomial of <VERB>A</VERB> is equal to
+    <VERB>p/c</VERB> where <VERB>c</VERB> is the coefficient of largest degree
+    in <VERB>p</VERB>.</P>
+    <P>
+    If <VERB>p</VERB> is a vector of monic polynomials, <VERB>A</VERB> is block diagonal,
+    and the characteristic polynomial of the ith block is <VERB>p(i)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+s=poly(0,'s');
+p=poly([1,2,3,4,1],'s','c')
+det(s*eye()-companion(p))
+roots(p)
+spec(companion(p))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>spec</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>randpencil</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

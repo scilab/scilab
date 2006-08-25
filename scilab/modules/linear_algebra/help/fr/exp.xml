@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>exp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="exp"> exponentielle  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>exp(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée réelle ou complexe.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>exp(X)</VERB> renvoie (élément par élément) l&apos;exponentielle des éléments de <VERB>X</VERB>.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=[1,2,3+%i];
+log(exp(x))  // élément par élément
+2^x
+exp(x*log(2))
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>log</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>expm</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

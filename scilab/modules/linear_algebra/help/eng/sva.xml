@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sva</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sva"> singular value approximation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[U,s,V]=sva(A,k)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,s,V]=sva(A,tol)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: nonnegative real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Singular value approximation.</P>
+    <P><VERB>[U,S,V]=sva(A,k)</VERB> with <VERB>k</VERB> an integer
+    &gt;=1, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
+    <VERB>B=U*S*V'</VERB> is the best L2 approximation of
+    <VERB>A</VERB> with rank(<VERB>B</VERB>)=<VERB>k</VERB>.</P>
+    <P><VERB>[U,S,V]=sva(A,tol)</VERB> with <VERB>tol</VERB> a real
+    number, returns <VERB>U,S</VERB> and <VERB>V</VERB> such that
+    <VERB>B=U*S*V'</VERB> such that L2-norm of <VERB>A-B</VERB>
+    is at most <VERB>tol</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,4)*rand(4,5);
+[U,s,V]=sva(A,2);
+B=U*s*V';
+svd(A)
+svd(B)
+clean(svd(A-B))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>svd</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

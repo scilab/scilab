@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>quaskro</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="quaskro"> quasi-Kronecker form</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F,tol)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>F</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix pencil <VERB>F=s*E-A</VERB>  (<VERB>s=poly(0,'s')</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>E,A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real matrices of same dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real number (tolerance, default value=1.d-10)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q,Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two square orthogonal matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Qd,Zd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two vectors of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>numbeps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Quasi-Kronecker form of matrix pencil: <VERB>quaskro</VERB> computes two
+    orthogonal matrices <VERB>Q, Z</VERB> which put the pencil <VERB>F=s*E -A</VERB> into
+    upper-triangular form:</P>
+    <VERBATIM>
+<![CDATA[
+
+           | sE(eps)-A(eps) |        X       |      X     |
+           |----------------|----------------|------------|
+           |        O       | sE(inf)-A(inf) |      X     |
+Q(sE-A)Z = |=================================|============|
+           |                                 |            |
+           |                O                | sE(r)-A(r) |
+
+   ]]>
+    </VERBATIM>
+    <P>
+    The dimensions of the blocks are given by:</P>
+    <P><VERB>eps=Qd(1) x Zd(1)</VERB>, <VERB>inf=Qd(2) x Zd(2)</VERB>,
+    <VERB>r = Qd(3) x Zd(3)</VERB></P>
+    <P>
+    The <VERB>inf</VERB> block contains the infinite modes of
+    the pencil.</P>
+    <P>
+    The <VERB>f</VERB> block contains the finite modes of
+    the pencil</P>
+    <P>
+    The structure of epsilon blocks are given by:</P>
+    <P><VERB>numbeps(1)</VERB> = <VERB>#</VERB> of eps blocks of size 0 x 1</P>
+    <P><VERB>numbeps(2)</VERB> = <VERB>#</VERB> of eps blocks of size 1 x 2</P>
+    <P><VERB>numbeps(3)</VERB> = <VERB>#</VERB> of eps blocks of size 2 x 3     etc...</P>
+    <P>
+    The complete (four blocks) Kronecker form is given by
+    the function <VERB>kroneck</VERB> which calls <VERB>quaskro</VERB> on
+    the (pertransposed) pencil <VERB>sE(r)-A(r)</VERB>.</P>
+    <P>
+    The code is taken from T. Beelen</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>kroneck</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gschur</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gspec</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

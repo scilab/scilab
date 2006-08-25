@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>spaninter</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="spaninter"> subspace intersection</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X,dim]=spaninter(A,B [,tol])    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A, B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real or complex matrices with equal number of rows</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal or unitary square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, dimension of subspace range(<VERB>A</VERB>) inter range(<VERB>B</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    computes the intersection of range(<VERB>A</VERB>) and range(<VERB>B</VERB>).</P>
+    <P>
+    The first <VERB>dim</VERB> columns of <VERB>X</VERB> span this intersection i.e.
+    <VERB>X(:,1:dim)</VERB> is an orthogonal basis for</P>
+    <P>
+    range(<VERB>A</VERB>) inter range(<VERB>B</VERB>)</P>
+    <P>
+    In the <VERB>X</VERB> basis <VERB>A</VERB> and <VERB>B</VERB> are respectively represented by:</P>
+    <P><VERB>X'*A</VERB> and <VERB>X'*B</VERB>.</P>
+    <P><VERB>tol</VERB> is a threshold (<VERB>sqrt(%eps)</VERB> is the default value).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,3)*rand(3,4);     // A is 5 x 4, rank=3
+B=[A(:,2),rand(5,1)]*rand(2,2);
+[X,dim]=spaninter(A,B);
+X1=X(:,1:dim);    //The intersection
+svd(A),svd([X1,A])   // X1 in span(A)
+svd(B),svd([B,X1])   // X1 in span(B)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>spanplus</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spantwo</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; ;   </AUTHOR>
+</MAN>

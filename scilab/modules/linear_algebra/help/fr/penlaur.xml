@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>penlaur</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="penlaur"> Laurent coefficients of matrix pencil</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Si,Pi,Di,order]=penlaur(Fs)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[Si,Pi,Di,order]=penlaur(E,A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Fs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a regular pencil <VERB>s*E-A</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>E, A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real square matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Si,Pi,Di</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: three real square matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>order</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>penlaur</VERB> computes the first Laurent coefficients of <VERB>(s*E-A)^-1</VERB> at
+    infinity.</P>
+    <P><VERB>(s*E-A)^-1 = ... + Si/s - Pi - s*Di + ...</VERB> at <VERB>s</VERB> = infinity.</P>
+    <P><VERB>order</VERB> = order of the singularity (order=index-1).</P>
+    <P>
+    The matrix pencil <VERB>Fs=s*E-A</VERB> should be invertible.</P>
+    <P>
+    For a index-zero pencil, <VERB>Pi, Di,...</VERB> are zero and <VERB>Si=inv(E)</VERB>.</P>
+    <P>
+    For a index-one pencil (order=0),<VERB>Di</VERB> =0.</P>
+    <P>
+    For higher-index pencils, the terms <VERB> -s^2 Di(2), -s^3
+    Di(3),... </VERB> are given by:</P>
+    <P><VERB> Di(2)=Di*A*Di</VERB>, <VERB> Di(3)=Di*A*Di*A*Di</VERB> (up
+    to <VERB>Di(order)</VERB>).</P>
+  </DESCRIPTION>
+  <SECTION label="Remark">
+    <P>
+    Experimental version: troubles when bad conditioning of <VERB>so*E-A</VERB></P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+F=randpencil([],[1,2],[1,2,3],[]);
+F=rand(6,6)*F*rand(6,6);[E,A]=pen2ea(F);
+[Si,Pi,Di]=penlaur(F);
+[Bfs,Bis,chis]=glever(F);
+norm(coeff(Bis,1)-Di,1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>glever</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>pencan</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rowshuff</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. Delebecque INRIA(1988,1990) ;   </AUTHOR>
+</MAN>

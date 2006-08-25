@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>inv  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="inv"> inverse d&apos;une matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>inv(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>X  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice carrée réelle, complexe, polynomiale ou rationnelle,
+	    liste de type &quot;syslin&quot;
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>inv(X)</VERB> est l&apos;inverse de la matrice carrée
+      <VERB>X</VERB>. Un message de mise en garde est affiché si <VERB>X</VERB>
+      est mal équilibrée (termes très petits et termes très grands) ou
+      singulière à la précision machine.
+    </P>
+    <P>
+      Pour les matrices polynomiales ou rationnelles, <VERB>inv(X)</VERB> est
+      équivalent à <VERB>invr(X)</VERB>.
+    </P>
+    <P>
+      Pour les systèmes dynamiques linéaires sous forme de leur représentation
+      d&apos;état (liste de type <VERB>syslin</VERB>), <VERB>inv(X)</VERB> est
+      équivalent à <VERB>invsyslin(X)</VERB>.
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    A=rand(3,3);inv(A)*A
+    //
+    x=poly(0,'x');
+    A=[x,1,x;x^2,2,1+x;1,2,3];inv(A)*A
+    //
+    A=[1/x,2;2+x,2/(1+x)]
+    inv(A)*A
+    //
+    A=ssrand(2,2,3);
+    W=inv(A)*A
+    clean(ss2tf(W))
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>slash</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>pinv</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lufact</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lusolve</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>invr</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>
+      La fonction <VERB>inv</VERB> pour les matrices de  nombres est basée
+      sur les routines Lapack :
+      DGETRF, DGETRI pour les matrices réelles et  ZGETRF, ZGETRI pour le
+      cas complexe.
+      Pour les matrices de polynomes et de fractions rationnelles
+      <VERB>inv</VERB>  est basée sur la fonction Scilab  <VERB>invr</VERB>.
+    </P>
+   </USED_FUNCTIONS>
+</MAN>

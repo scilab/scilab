@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>svd  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="svd ">  décomposition en valeurs singulières  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>s=svd(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,S,V]=svd(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,S,V]=svd(X,0) (obsolete)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,S,V]=svd(X,&quot;e&quot;)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,S,V,rk]=svd(X [,tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>X  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle ou complexe
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>s  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : vecteur réel (valeurs singulières)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>S  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle diagonale (valeurs singulières sur la diagonale)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>U,V  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrices carrées unitaires (vecteurs singuliers).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>tol  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombre réel positif
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>[U,S,V]=svd(X)</VERB> renvoie une matrice diagonale <VERB>S</VERB>, de même
+      dimension que <VERB>X</VERB> avec des éléments diagonaux positifs classés
+      par ordre décroissant, ainsi que deux matrices unitaires <VERB>U</VERB>
+      et <VERB>V</VERB> telles que 
+      <VERB>X = U*S*V&apos;</VERB>.<VERB>[U,S,V]=svd(X,"e")</VERB>
+      renvoie la décomposition réduite : si <VERB>X</VERB> est une
+      matrice <VERB>m x n </VERB> et que <VERB>m > n </VERB> alors
+      seulement les n premières colonnes de <VERB>U</VERB> sont
+      calculées et <VERB>S</VERB> est <VERB>n x n </VERB>.
+    </P>
+    <P>
+      <VERB>s=svd(X)</VERB> renvoie un vecteur <VERB>s</VERB> contenant
+      les valeurs singulières.
+    </P>
+    <P>
+      <VERB>[U,S,V,rk]=svd(X [,tol])</VERB> renvoie de plus
+      <VERB>rk</VERB>, le rang &quot;numérique&quot; de <VERB>X</VERB>
+      c&apos;est à dire le nombre de valeurs singulières plus grandes
+      que <VERB>tol</VERB>.
+    </P>
+    <P>
+      La valeur par défaut de <VERB>tol</VERB> est la même que pour la fonction <VERB>rank</VERB>.
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    X=rand(4,2)*rand(2,4)
+    svd(X)
+    sqrt(spec(X*X'))
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>rank</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>sva</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <SP>
+    la décomposition svd est basée sur les routines  DGESVD pour les
+    matrices réelles et  ZGESVD pour le cas complexe.
+    </SP>
+  </USED_FUNCTIONS>
+</MAN>

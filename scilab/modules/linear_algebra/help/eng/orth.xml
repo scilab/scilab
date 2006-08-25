@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>orth</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="orth"> orthogonal basis</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Q=orth(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>Q=orth(A)</VERB> returns <VERB>Q</VERB>, an orthogonal
+    basis for the span of <VERB>A</VERB>.  Range(<VERB>Q</VERB>) =
+    Range(<VERB>A</VERB>) and <VERB>Q'*Q=eye</VERB>.</P>
+    <P>
+    The number of columns of <VERB>Q</VERB> is the rank of
+    <VERB>A</VERB> as determined by the QR algorithm.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,3)*rand(3,4);
+[X,dim]=rowcomp(A);X=X';
+svd([orth(A),X(:,1:dim)])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rowcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>colcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>range</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

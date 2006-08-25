@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>gspec  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="gspec"> valeurs propres d&apos;un faisceau de matrices (obsolete) </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[al,be]=gspec(A,E)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[al,be,Z]=gspec(A,E)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A, E  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices carrées réelles de mêmes dimensions
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>al, be  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteurs réels
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Z  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée régulière
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+Cette fonction est maintenant un cas particulier de la fonction
+<VERB>spec</VERB>. La syntaxe d'appel doit être remplacée par 
+  </P>
+  <VERBATIM><![CDATA[
+[al,be]=spec(A,E)
+[al,be,Z]=spec(A,E)
+   ]]></VERBATIM>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+   <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

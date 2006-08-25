@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>pbig  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="pbig"> projection sur des sous-espaces propres   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Q,M]=pbig(A,thres,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle carrée
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>thres  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombre réel
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>flag  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : chaîne de caractères (<VERB>&apos;c&apos;</VERB> ou <VERB>&apos;d&apos;</VERB>)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>Q,M  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrices réelles
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      Projection sur des sous-espaces propres de A associés aux valeurs
+      propres avec partie réelle &gt;= <VERB>thres</VERB>
+      (<VERB>flag=&apos;c&apos;</VERB>) ou avec module &gt;=
+      <VERB>thres</VERB> (<VERB>flag=&apos;d&apos;</VERB>).
+    </P>
+    <P>
+      La projection est définie par <VERB>Q*M</VERB>, où <VERB>Q</VERB>
+      est de rang maximal, les lignes de <VERB>M</VERB> sont
+      linéairement indépendantes et <VERB>M*Q=eye</VERB>.
+    </P>
+    <P>
+      Si <VERB>flag=&apos;c&apos;</VERB>, les valeurs propres de
+      <VERB>M*A*Q</VERB> = valeurs propres de <VERB>A</VERB> avec partie
+      réelle &gt;= <VERB>thres</VERB>.
+    </P>
+    <P>
+      Si <VERB>flag=&apos;d&apos;</VERB>, les valeurs propres de
+      <VERB>M*A*Q</VERB> = valeurs propres de <VERB>A</VERB> avec module
+      &gt;= <VERB>thres</VERB>.
+    </P>
+    <P>
+      Si <VERB>flag=&apos;c&apos;</VERB> et si <VERB>[Q1,M1]</VERB> =
+      factorisation de rang maximal (<VERB>fullrf</VERB>) de
+      <VERB>eye()-Q*M</VERB> alors les valeurs propres de
+      <VERB>M1*A*Q1</VERB> = valeurs propres de <VERB>A</VERB> avec
+      partie réelle &lt; <VERB>thres</VERB>.
+    </P>
+    <P>
+      Si <VERB>flag=&apos;d&apos;</VERB> et si <VERB>[Q1,M1]</VERB> =
+      factorisation de rang maximal (<VERB>fullrf</VERB>) de
+      <VERB>eye()-Q*M</VERB> alors les valeurs propres de
+      <VERB>M1*A*Q1</VERB> = valeurs propres de <VERB>A</VERB> avec
+      module &lt; <VERB>thres</VERB>.
+    </P>
+  </DESCRIPTION>
+
+
+  <EXAMPLE><![CDATA[
+    A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
+    [Q,M]=pbig(A,1.5,'d');
+    spec(M*A*Q)
+    [Q1,M1]=fullrf(eye()-Q*M);
+    spec(M1*A*Q1)
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>psmall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>projspec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. Delebecque, INRIA (1988); ;   </AUTHOR>
+  <USED_FUNCTIONS>
+    <SP><VERB>pbig</VERB> est basée sur la forme de Schur ordonnée
+    (fonction Scilab <VERB>schur</VERB>).</SP>
+  </USED_FUNCTIONS>
+</MAN>

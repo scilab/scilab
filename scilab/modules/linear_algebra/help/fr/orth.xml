@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>orth  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="orth"> calcul d&apos;une base orthogonale  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>Q=orth(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Q  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+     <VERB>Q=orth(A)</VERB> renvoie <VERB>Q</VERB>, une base
+    orthogonale de l&apos;image de <VERB>A</VERB>.  Im(<VERB>Q</VERB>)
+    = Im(<VERB>A</VERB>) et <VERB>Q&apos;*Q = I</VERB>.
+  </P>
+  <P>
+    Le nombre de colonnes de <VERB>Q</VERB> est égal au rang de
+    <VERB>A</VERB>, comme déterminé par l&apos;algorithme QR.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=rand(5,3)*rand(3,4);
+[X,dim]=rowcomp(A);X=X';
+svd([orth(A),X(:,1:dim)])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>range</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

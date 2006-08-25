@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>lyap  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="lyap "> Equation de Lyapunov  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X]=lyap(A,C,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A, C  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrices réelles, <VERB>C</VERB> doit être symétrique
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>flag  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : chaîne de caractères, &apos;c&apos; ou &apos;d&apos;
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>X = lyap(A,C,flag)</VERB> résout l&apos;équation matricielle de
+      Lyapunov en temps continu ou discret
+    </P>
+    <VERBATIM><![CDATA[
+      A'*X + X*A = C       ( flag = 'c' )
+      A'*X*A - X = C       ( flag = 'd' )
+      ]]></VERBATIM>
+    <P>
+    Une solution unique existe si <VERB>A</VERB> n'a pas de valeur propre
+    sur l'axe imaginaire (<VERB>flag='c'</VERB>) ou si 1 n'est pas
+    valeur propre de <VERB>A</VERB> (<VERB>flag='d'</VERB>).
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    A=rand(4,4);C=rand(A);C=C+C';
+    X=lyap(A,C,'c');
+    A'*X + X*A -C
+    X=lyap(A,C,'d');
+    A'*X*A - X -C
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ctr_gram</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>obs_gram</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

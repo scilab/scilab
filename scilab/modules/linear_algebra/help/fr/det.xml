@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>det  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="det "> déterminant  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>det(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[e,m]=det(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>X  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle, complexe, polynomiale, rationnelle
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>m  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombre réel ou complexe, mantisse du déterminant en base 10
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>e  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : entier, exposant du déterminant en base 10 
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>det(X)</VERB> ( <VERB>m*10^e</VERB> est le déterminant de la matrice carrée <VERB>X</VERB>.
+    </P>
+    <P>
+      Pour les matrices polynomiales <VERB>det(X)</VERB> est équivalent à <VERB>determ(X)</VERB>.
+    </P>
+    <P>
+      Pour les matrices rationnelles <VERB>det(X)</VERB> est équivalent à <VERB>detr(X)</VERB>.
+    </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    x=poly(0,'x');
+    det([x,1+x;2-x,x^2])
+    w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   // zéros du système linéaire
+    A=rand(3,3);
+    det(A), prod(spec(A))
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>detr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>determ</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>
+      Le calcul du determinant est basé sur les routines Lapack :
+      DGETRF pour les matrices réelles et  ZGETRF pour le cas complexe.
+    </P>
+  </USED_FUNCTIONS>
+</MAN>

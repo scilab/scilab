@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>givens</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="givens"> Givens transformation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>U=givens(xy)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>U=givens(x,y)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,c]=givens(xy)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,c]=givens(x,y)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real or complex numbers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xy</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real or complex size 2 column vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>U</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2x2 unitary matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>c</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real or complex size 2 column vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>U = givens(x, y)</VERB> or <VERB>U = givens(xy)</VERB> with <VERB>xy = [x;y]</VERB>
+    returns a <VERB>2</VERB>x<VERB>2</VERB> unitary matrix <VERB>U</VERB> such that:</P>
+    <P><VERB>U*xy=[r;0]=c</VERB>.</P>
+    <P>
+    Note that <VERB>givens(x,y)</VERB> and <VERB>givens([x;y])</VERB> are equivalent.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[3,4;5,6];
+U=givens(A(:,1));
+U*A
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

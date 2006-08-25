@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sylv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sylv"> Sylvester equation.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sylv(A,B,C,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B,C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: three real matrices of appropriate dimensions.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>character string (<VERB>'c'</VERB> or <VERB>'d'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>X = sylv(A,B,C,'c')</VERB> computes <VERB>X</VERB>, solution
+    of the &quot;continuous time&quot; Sylvester equation</P>
+    <VERBATIM>
+<![CDATA[
+A*X+X*B=C 
+   ]]>
+    </VERBATIM>
+    <P><VERB>X=sylv(A,B,C,'d')</VERB> computes <VERB>X</VERB>, solution
+    of the &quot;discrete time&quot; Sylvester equation</P>
+    <VERBATIM>
+<![CDATA[
+A*X*B-X=C
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(4,4);C=rand(4,3);B=rand(3,3);
+X = sylv(A,B,C,'c');
+norm(A*X+X*B-C)
+X=sylv(A,B,C,'d') 
+norm(A*X*B-X-C)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lyap</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

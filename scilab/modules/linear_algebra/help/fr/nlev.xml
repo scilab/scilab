@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>nlev  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="nlev"> Algorithme de Leverrier   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[num,den]=nlev(A,z [,rmax])    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice réelle carrée
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>z  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : chaîne de caractères
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>rmax  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : paramètre optionnel (voir <VERB>bdiag</VERB>) 
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>[num,den]=nlev(A,z [,rmax])</VERB> calcule
+      <VERB>(z*eye()-A)^(-1)</VERB> par bloc diagonalisation de
+      <VERB>A</VERB> suivie de l&apos;algorithme de Leverrier sur chaque
+      bloc.
+    </P>
+    <P>
+    Cet algorithme est plus efficace que l&apos;algorithme de
+    Leverrier seul, mais il n&apos;est toujours pas parfait !
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    A=rand(3,3);x=poly(0,'x');
+    [NUM,den]=nlev(A,'x')
+    clean(den-poly(A,'x'))
+    clean(NUM/den-inv(x*eye()-A))
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>coff</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>glever</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ss2tf</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>
+      F. Delebecque, INRIA; 
+    </AUTHORS_ITEM>
+    <AUTHORS_ITEM>
+      S. Steer, INRIA;  
+    </AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

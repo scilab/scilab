@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pinv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pinv"> pseudoinverse</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>pinv(A,[tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>X = pinv(A)</VERB> produces a matrix <VERB>X</VERB> of the
+    same dimensions as <VERB>A'</VERB> such that:</P>
+    <P><VERB>A*X*A = A, X*A*X = X</VERB>  and both
+    <VERB>A*X</VERB> and <VERB>X*A</VERB> are Hermitian .</P>
+    <P>
+    The computation is  based  on SVD and  any  singular values 
+    lower than a tolerance are treated   as zero: this  tolerance 
+    is accessed by <VERB>X=pinv(A,tol)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,2)*rand(2,4);
+norm(A*pinv(A)*A-A,1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rank</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>svd</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P><VERB>pinv</VERB> function is  based on the singular value decomposition
+ (Scilab function <VERB>svd</VERB>).</P>
+  </USED_FUNCTIONS>
+</MAN>

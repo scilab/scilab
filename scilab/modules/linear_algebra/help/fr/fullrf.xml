@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fullrf  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fullrf"> factorisation de rang plein  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Q,M,rk]=fullrf(A,[tol])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel (tolérance pour le calcul du rang)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Q,M  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices réelles ou complexes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rk  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier (rang de <VERB>A</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction calcule la factorisation de rang plein de <VERB>A</VERB> : <VERB>fullrf</VERB> renvoie <VERB>Q</VERB> et <VERB>M</VERB> telles que <VERB>A = Q*M</VERB>
+    avec Im(<VERB>Q</VERB>)=Im(<VERB>A</VERB>) et ker(<VERB>M</VERB>)=ker(<VERB>A</VERB>),
+    <VERB>Q</VERB> de rang maximal, et les lignes de <VERB>M</VERB> sont linéairement indépendantes, 
+    <VERB>rk</VERB> = rank(<VERB>A</VERB>) = nombre de colonnes de <VERB>Q</VERB> =  nombre de lignes de <VERB>M</VERB>.
+  </P>
+  <P>
+    <VERB>tol</VERB> = paramètre de tolérance (de l&apos;ordre de <VERB>%eps</VERB> par défaut).
+    Le rang <VERB>rk</VERB> de <VERB>A</VERB> est considéré égal au nombre de ses valeurs singulières plus grandes que <VERB>norm(A)*tol</VERB>.
+  </P>
+  <P>
+    Si A est symétrique, <VERB>fullrf</VERB> renvoie <VERB>M=Q&apos;</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=rand(5,2)*rand(2,5);
+[Q,M]=fullrf(A);
+norm(Q*M-A,1)
+[X,d]=rowcomp(A);Y=X';
+svd([A,Y(:,1:d),Q])        // Im(Q) = Im(A) = Im(Y(:,1:2))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fullrfk</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.  </AUTHOR>
+</MAN>

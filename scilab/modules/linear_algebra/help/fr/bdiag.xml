@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>bdiag  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="bdiag"> bloc-diagonalisation, vecteurs propres généralisés  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Ab [,X [,bs]]]=bdiag(A [,rmax])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>rmax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Ab  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice carrée réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice régulière, réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>bs  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur d&apos;entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+
+  <VERBATIM><![CDATA[
+[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+   ]]></VERBATIM>
+  <P>
+    <VERB>[Ab [,X [,bs]]]=bdiag(A [,rmax])</VERB> calcule la forme
+    bloc-diagonale de <VERB>A</VERB>.  bs précise la structure des
+    blocs (tailles respectives des blocs).  <VERB>X</VERB> est la
+    matrice de changement de base, c&apos;est à dire que <VERB>Ab =
+    inv(X)*A*X </VERB> est bloc-diagonale.
+  </P>
+  <P>
+    <VERB>rmax</VERB> contrôle le conditionnement de <VERB>X</VERB>;
+    la valeur par défaut est la norme l1 de <VERB>A</VERB>.
+  </P>
+  <P>
+    Pour obtenir une forme diagonale (si celle-ci existe) choisissez
+    une valeur élevée de <VERB>rmax</VERB> (<VERB>rmax=1/%eps</VERB>
+    par exemple).  Pour une matrice réelle quelconque, les blocs sont
+    de taille (1x1) ou (2x2) et <VERB>X</VERB> est la matrice des
+    vecteurs propres.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// Cas réel: blocs 1x1 et 2x2
+a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+// Cas complexe : blocs complexes 1x1
+[ab,x,bs]=bdiag(a+%i*0);ab
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>spec</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

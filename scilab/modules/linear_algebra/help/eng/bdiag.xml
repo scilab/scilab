@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>bdiag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="bdiag"> block diagonalization, generalized eigenvectors</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Ab [,X [,bs]]]=bdiag(A [,rmax])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ab</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex non-singular matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>bs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <VERBATIM>
+<![CDATA[
+[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+   ]]>
+    </VERBATIM>
+    <P>
+    performs the block-diagonalization of matrix <VERB>A</VERB>.  bs
+    gives the structure of the blocks (respective sizes of the
+    blocks).  <VERB>X</VERB> is the change of basis i.e 
+    <VERB>Ab = inv(X)*A*X</VERB>is block diagonal.</P>
+    <P><VERB>rmax</VERB> controls the conditioning of <VERB>X</VERB>; the
+    default value is the l1 norm of <VERB>A</VERB>.</P>
+    <P>
+    To get a diagonal form (if it exists) choose a large value for
+    <VERB>rmax</VERB> (<VERB>rmax=1/%eps</VERB> for example).
+    Generically (for real random A) the blocks are (1x1) and (2x2) and
+    <VERB>X</VERB> is the matrix of eigenvectors.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Real case: 1x1 and 2x2 blocks
+a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+//Complex case: complex 1x1 blocks
+[ab,x,bs]=bdiag(a+%i*0);ab
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>schur</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sylv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spec</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

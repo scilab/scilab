@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>RANKQR</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="rankqr">  rank revealing QR factorization</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>RCOND</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number used to determine the effective rank of
+  <VERB>A</VERB>, which is defined as the order of the largest leading
+  triangular submatrix <VERB>R11</VERB> in the QR factorization with
+  pivoting of<VERB>A</VERB>, whose estimated condition number &lt;
+  <VERB>1/RCOND</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>JPVT</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <P>
+    : integer vector on entry, if <VERB>JPVT(i)</VERB> is not 0, the
+ <VERB>i</VERB>-th column of <VERB> A</VERB> is permuted to the front
+ of <VERB>AP</VERB>, otherwise column <VERB>i</VERB> is a free
+ column. On exit, if <VERB>JPVT(i) = k</VERB>, then the
+ <VERB>i</VERB>-th column of <VERB>A*P</VERB> was the
+ <VERB>k</VERB>-th column of <VERB>A</VERB>. 
+  </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>RANK</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the effective rank of <VERB>A</VERB>, i.e., the order of the
+  submatrix <VERB>R11</VERB>.  This is the same as the order of the
+  submatrix <VERB>T1</VERB> in the complete orthogonal factorization
+  of <VERB>A</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>SVAL</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector with 3 components; The estimates of some of the
+  singular values of the triangular factor <VERB>R</VERB>.</SP>
+          <P><VERB>SVAL(1)</VERB> is the largest singular value of
+  <VERB>R(1:RANK,1:RANK)</VERB>;</P>
+          <P><VERB>SVAL(2)</VERB> is the
+  smallest singular value of <VERB>R(1:RANK,1:RANK)</VERB>;</P>
+          <P><VERB>SVAL(3)</VERB> is the smallest singular value of
+  <VERB>R(1:RANK+1,1:RANK+1)</VERB>, if <VERB>RANK</VERB> &lt; <VERB>MIN(M,N)</VERB>, 
+  or of <VERB>R(1:RANK,1:RANK)</VERB>, otherwise.</P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+To compute (optionally) a rank-revealing QR factorization of a real
+general M-by-N real or complex matrix <VERB>A</VERB>, which may be
+rank-deficient, and estimate its effective rank using incremental
+condition estimation.</P>
+    <P>
+The routine uses a QR factorization with column pivoting:</P>
+    <VERBATIM>
+<![CDATA[
+        A * P = Q * R,  where  R = [ R11 R12 ],
+                                   [  0  R22 ]
+]]>
+    </VERBATIM>
+    <P>
+with <VERB>R11</VERB> defined as the largest leading submatrix whose
+estimated condition number is less than <VERB>1/RCOND</VERB>.  The
+order of <VERB>R11</VERB>, <VERB>RANK</VERB>, is the effective rank of
+<VERB>A</VERB>.</P>
+    <P>
+If the triangular factorization is a rank-revealing one (which will be
+the case if the leading columns were well- conditioned), then
+<VERB>SVAL(1)</VERB> will also be an estimate for the largest singular
+value of <VERB>A</VERB>, and <VERB>SVAL(2)</VERB> and
+<VERB>SVAL(3)</VERB> will be estimates for the <VERB>RANK</VERB>-th
+and <VERB>(RANK+1)</VERB>-st singular values of <VERB>A</VERB>,
+respectively.</P>
+    <P>
+By examining these values, one can confirm that the
+rank is well defined with respect to the chosen value of
+<VERB>RCOND</VERB>.  The ratio <VERB>SVAL(1)/SVAL(2)</VERB> is an
+estimate of the condition number of <VERB>R(1:RANK,1:RANK)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,3)*rand(3,7);
+[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rank</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <USED_FUNCTIONS>
+    <P>
+    Slicot library routines MB03OD, ZB03OD.</P>
+  </USED_FUNCTIONS>
+</MAN>

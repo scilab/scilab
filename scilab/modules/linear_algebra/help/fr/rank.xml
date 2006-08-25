@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>rank  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="rank"> rang  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[i]=rank(X)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[i]=rank(X,tol)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel positif
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+   <VERB> rank(X)</VERB> calcule le rang &quot;numérique&quot; de
+   <VERB>X</VERB> c&apos;est à dire le nombre de ses valeurs
+   singulières supérieures à <VERB>norm(size(X),&apos;inf&apos;) *
+   norm(X) * %eps</VERB>.
+  </P>
+  <P>
+    <VERB>rank(X,tol)</VERB> est le nombre de valeurs singulières de
+    <VERB>X</VERB> supérieures à <VERB>tol</VERB>.
+  </P>
+<P>
+    Notez que la valeur par défaut de <VERB>tol</VERB> est
+    proportionnelle à <VERB>norm(X)</VERB>. Par exemple
+  </P>
+  <P>
+    <VERB>rank([1.d-80,0;0,1.d-80])</VERB> vaut 2 !.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+rank([1.d-80,0;0,1.d-80])
+rank([1,0;0,1.d-80])
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>svd</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>qr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lu</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gschur</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gschur"> generalized Schur form (obsolete).  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[As,Es]=gschur(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[As,Es,Q,Z]=gschur(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[As,Es,Z,dim] = gschur(A,E,flag)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[As,Es,Z,dim]= gschur(A,E,extern)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    This function is obsolete and is now included in the <VERB>schur</VERB>
+    function. In most cases the <VERB>gschur</VERB> function will still work as
+    before, but it will be removed in the future release. </P>
+    <P>
+    The first three syntaxes can be replaced by</P>
+    <VERBATIM>
+<![CDATA[
+[As,Es]=schur(A,E)
+[As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE THE TRANPOSITION HERE
+[As,Es,Z,dim] = schur(A,E,flag) 
+   ]]>
+    </VERBATIM>
+    <P>
+    The last syntax requires little more adaptations:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="if">
+        <SP>extern is a scilab function  the new calling sequence
+        should be <VERB>[As,Es,Z,dim]= schur(A,E,Nextern)</VERB> with
+        Nextern defined as follow:</SP>
+        <VERBATIM>
+<![CDATA[
+function t=Nextern(R)
+if R(2)==0 then
+  t=extern([1,R(1),R(3)])==1
+else
+  c=(R(1)+%i*R(2))/R(3)
+  t=extern([2,real(c+c'),real(c*c')])==1
+end
+endfunction
+   ]]>
+        </VERBATIM>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="if">
+        <SP>extern is the name of an external function coded in Fortran or C
+    the new calling sequence should be <VERB>[As,Es,Z,dim]=
+    schur(A,E,'nextern')</VERB> with nextern defined as follow:</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <VERBATIM>
+<![CDATA[
+      logical function nextern(ar,ai,beta)
+      double precision ar,ai,beta
+      integer r,extern
+      if (ai.eq.0.0d0) then
+        r=extern(1,ar,beta,0.0d0,0.0d0)
+      else
+        r=extern(2,0.0d0,0.0d0,2.0d0*ar,ar*ar+ai*ai)
+      endif
+      nextern=r.eq.1
+      end
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>schur</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

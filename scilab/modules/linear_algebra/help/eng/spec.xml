@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>spec</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="spec"> eigenvalues of matrices and pencils</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>evals=spec(A)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[X,diagevals]=spec(A)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>evals=spec(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[al,be]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[al,be,Z]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[al,be]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[al,be,Q,Z]=spec(A,E)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>E</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix with same dimensions as <VERB> A</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>evals</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector, the eigenvalues</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>diagevals</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex diagonal matrix (eigenvalues along the diagonal)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>al</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex vector, al./be gives the eigenvalues</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>be</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector, al./be gives the eigenvalues</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex invertible square matrix, matrix eigenvectors.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex invertible square matrix, pencil left eigenvectors.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex invertible square matrix, pencil right eigenvectors.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="spec(A)">
+        <SP>: <VERB> evals=spec(A)</VERB> returns in  vector <VERB>evals</VERB> the eigenvalues of <VERB>A</VERB>.</SP>
+        <P><VERB> [evals,X] =spec(A)</VERB> returns in  addition the eigenvectors
+    <VERB>A</VERB> (if they exist). See also <VERB>bdiag</VERB></P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="spec(A,B)">
+        <SP>: <VERB>evals=spec(A,E)</VERB> returns the spectrum of the matrix pencil s E - A, i.e. the roots of the polynomial matrix s E - A.</SP>
+        <P><VERB>[al,be] = spec(A,E)</VERB> returns the spectrum of the matrix pencil
+    s E - A, i.e. the roots of the polynomial matrix s E - A.
+    The eigenvalues are given by <VERB>al./be</VERB> and if <VERB>be(i) = 0</VERB> the ith
+    eigenvalue is at infinity. (For <VERB>E = eye(A), al./be</VERB> is <VERB>spec(A)</VERB>).</P>
+        <P><VERB> [al,be,Z] = spec(A,E)</VERB> returns in addition the matrix <VERB>Z</VERB> of 
+    generalized right eigenvectors of the pencil.</P>
+        <P><VERB> [al,be,Q,Z] = spec(A,E)</VERB> returns in addition the matrix <VERB>Q</VERB>
+    and <VERB>Z</VERB> of generalized left and right eigenvectors of the pencil.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+    Matrix eigeinvalues computations are based on the Lapack routines DGEEV and ZGEEV.</P>
+    <P>
+    Pencil eigeinvalues computations are based on the Lapack routines DGGEV and ZGGEV.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+// MATRIX EIGENVALUES
+A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
+spec(A)
+//
+x=poly(0,'x');
+pol=det(x*eye()-A)
+roots(pol)
+//
+[S,X]=bdiag(A);
+clean(inv(X)*A*X)
+
+// PENCIL EIGENVALUES
+A=rand(3,3);
+[al,be,Z] = spec(A,eye(A));al./be
+clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
+A=A+%i*rand(A);E=rand(A);
+roots(det(%s*E-A))   //complex case
+
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>det</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>schur</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>bdiag</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>colcomp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>colcomp  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="kernel"> noyau  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>W=kernel(A [,tol,[,flag])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe (pleine ou creuse)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>flag  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>tol  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nombre réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>W  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice régulière
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>W=kernel(A)</VERB> calcule le noyau de <VERB>A</VERB>. Les colonnes de <VERB>W</VERB> forment une base du noyau de <VERB>A</VERB>. Si A est régulière, alors W=[].
+  </P>
+  <P>
+    <VERB>flag</VERB> et <VERB>tol</VERB> sont des paramètres optionnels : <VERB>flag = &apos;qr&apos;</VERB> 
+    or <VERB>&apos;svd&apos;</VERB> (<VERB>&apos;svd&apos;</VERB> par défaut).
+  </P>
+  <P>
+    <VERB>tol</VERB> = paramètre de tolérance (de l&apos;ordre de <VERB>%eps</VERB> par défaut).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=rand(3,1)*rand(1,3);
+A*kernel(A)
+A=sparse(A);
+clean(A*kernel(A))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fullrfk</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>linsolve</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D.;   </AUTHOR>
+</MAN>

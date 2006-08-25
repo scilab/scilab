@@ -5,12 +5,12 @@ CurrentDirectory=pwd();
 
  Directories=["util",
  "percent",
- "algebre",
  "int",
  "sci2for",
  "tdcs",
   ];
-  
+ 
+ Directories=[Directories;"SCI/modules/linear_algebra/macros"];        
  Directories=[Directories;"SCI/modules/elementaries_functions/macros"];        
  Directories=[Directories;"SCI/modules/gui/macros"];        
  Directories=[Directories;"SCI/modules/statistics/macros"];      

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>glever</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="glever"> inverse of matrix pencil</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=glever(E,A [,s])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>E, A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real square matrices of same dimensions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string (default value '<VERB>s</VERB>')</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Bfs,Bis</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two polynomial matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>chis</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Computation of</P>
+    <P>
+    <VERB>(s*E-A)^-1</VERB></P>
+    <P>
+     by generalized Leverrier's algorithm for a matrix pencil.</P>
+    <VERBATIM>
+<![CDATA[
+(s*E-A)^-1 = (Bfs/chis) - Bis.
+   ]]>
+    </VERBATIM>
+    <P><VERB>chis</VERB> = characteristic polynomial (up to a multiplicative constant).</P>
+    <P><VERB>Bfs</VERB>  = numerator polynomial matrix.</P>
+    <P><VERB>Bis</VERB>
+    = polynomial matrix ( - expansion of <VERB>(s*E-A)^-1</VERB> at infinity).</P>
+    <P>
+    Note the - sign before <VERB>Bis</VERB>.</P>
+  </DESCRIPTION>
+  <SECTION label="Caution">
+    <P>
+    This function uses <VERB>cleanp</VERB> to simplify <VERB>Bfs,Bis</VERB> and <VERB>chis</VERB>.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+[Bfs,Bis,chis]=glever(F)
+inv(F)-((Bfs/chis) - Bis)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rowshuff</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>det</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>invr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>coffg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>pencan</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>penlaur</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D. (1988)  </AUTHOR>
+</MAN>

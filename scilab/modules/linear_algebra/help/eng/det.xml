@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>det</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="det"> determinant</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>det(X)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[e,m]=det(X)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex square matrix, polynomial or rational matrix.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex number, the determinant base 10 mantissae</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>e</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the determinant base 10 exponent</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>det(X)</VERB> ( <VERB>m*10^e</VERB> is the determinant of the square matrix <VERB>X</VERB>.</P>
+    <P>
+    For polynomial matrix <VERB>det(X)</VERB> is equivalent to <VERB>determ(X)</VERB>.</P>
+    <P>
+    For rational matrices <VERB>det(X)</VERB> is equivalent to <VERB>detr(X)</VERB>.</P>
+  </DESCRIPTION>
+  <SECTION label="References">
+    <P>
+     det computations are based on the Lapack routines
+      DGETRF for  real matrices and  ZGETRF for the complex case.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+x=poly(0,'x');
+det([x,1+x;2-x,x^2])
+w=ssrand(2,2,4);roots(det(systmat(w))),trzeros(w)   //zeros of linear system
+A=rand(3,3);
+det(A), prod(spec(A))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>detr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>determ</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

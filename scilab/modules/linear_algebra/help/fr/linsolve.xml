@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>linsolve  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="linsolve"> solveur d&apos;équation linéaire  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x0,kerA]=linsolve(A,b [,x0])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : une matrice réelle <VERB>na x ma</VERB> (éventuellement creuse)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un vecteur <VERB>na x 1</VERB> 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x0  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un vecteur réel
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>kerA  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : une matrice réelle <VERB>ma x k </VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>linsolve</VERB> donne toutes les solutions de <VERB> A*x+b=0</VERB>.
+  </P>
+  <P>
+    <VERB>x0</VERB> est une solution particulière (s&apos;il en existe une) et <VERB>kerA</VERB> est le noyau de <VERB>A</VERB>. Tout vecteur de la forme <VERB>x=x0+kerA*w</VERB> avec <VERB>w</VERB> quelconque vérifie
+    <VERB> A*x+b=0</VERB>.
+  </P>
+  <P>
+    Si un <VERB>x0</VERB> compatible est donné en entrée, <VERB>x0</VERB> est renvoyé. Dans le cas contraire un <VERB>x0</VERB> compatible, s&apos;il en existe un, est renvoyé.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=rand(5,3)*rand(3,8);
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   // b compatible
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   // b incompatible
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  // x est unique
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>inv</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pinv</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>colcomp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>im_inv</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

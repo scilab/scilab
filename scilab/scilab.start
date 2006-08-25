@@ -54,7 +54,6 @@ MSDOS = (getos() == "Windows")
 
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
-load('SCI/macros/algebre/lib')
 load('SCI/macros/util/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/percent/lib')
@@ -95,6 +94,7 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
+ exec("SCI/modules/linear_algebra/etc/linear_algebra.start",-1);
  exec("SCI/modules/elementaries_functions/etc/elementaries_functions.start",-1);
  exec("SCI/modules/gui/etc/gui.start",-1);
  exec("SCI/modules/statistics/etc/statistics.start",-1);

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>householder</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="householder"> Householder orthogonal reflexion matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>u=householder(v [,w])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex column vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>w</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex column vector with same size as <VERB>v</VERB>. Default value is <VERB>eye(v)</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>u</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex column vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    given 2 column vectors <VERB>v</VERB>, <VERB> w</VERB> of same size, <VERB>householder(v,w)</VERB> returns a unitary 
+    column vector <VERB>u</VERB>, such that <VERB> (eye()-2*u*u')*v</VERB> is proportional to <VERB>w</VERB>.
+    <VERB>(eye()-2*u*u')</VERB> is the orthogonal Householder reflexion matrix .</P>
+    <P><VERB>w</VERB> default value is <VERB> eye(v)</VERB>. In this case vector <VERB> (eye()-2*u*u')*v</VERB> is the 
+    vector  <VERB> eye(v)*norm(v)</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>qr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>givens</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

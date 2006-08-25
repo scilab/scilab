@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ereduc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ereduc"> computes  matrix column echelon form by qz transformations</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: m x n matrix with real  entries.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real positive scalar.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>E</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column echelon form matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: m x m unitary matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: n x n unitary matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>stair</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of indexes,</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>*  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP><VERB>ISTAIR(i) = + j</VERB>  if the boundary element <VERB>E(i,j)</VERB> is a   corner point.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>*  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP><VERB>ISTAIR(i) = - j</VERB>   if the boundary element <VERB>E(i,j)</VERB> is not a corner point.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+            <VERB>(i=1,...,M)</VERB>
+          </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rk</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, estimated rank of the matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given an <VERB>m x n</VERB> matrix <VERB>X</VERB> (not necessarily regular) the function 
+    ereduc computes a unitary transformed matrix <VERB>E=Q*X*Z</VERB> which is in 
+    column echelon form (trapezoidal form). Furthermore the rank of
+    matrix <VERB>X</VERB> is determined.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+X=[1 2 3;4 5 6]
+[E,Q,Z ,stair ,rk]=ereduc(X,1.d-15)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>fstair</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</AUTHOR>
+</MAN>

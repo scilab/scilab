@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>psmall</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="psmall"> spectral projection</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Q,M]=psmall(A,thres,flag)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real square matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>thres</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string (<VERB>'c'</VERB> or <VERB>'d'</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q,M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Projection on eigen-subspace associated with eigenvalues with real
+    part &lt; <VERB>thres</VERB> (<VERB>flag='c'</VERB>) or
+    with modulus &lt; <VERB>thres</VERB>
+    (<VERB>flag='d'</VERB>).</P>
+    <P>
+    The projection is defined by <VERB>Q*M</VERB>, <VERB>Q</VERB> is
+    full column rank, <VERB>M</VERB> is full row rank and
+    <VERB>M*Q=eye</VERB>.</P>
+    <P>
+    If <VERB>flag='c'</VERB>, the eigenvalues of
+    <VERB>M*A*Q</VERB> = eigenvalues of <VERB>A</VERB> with real part
+    &lt; <VERB>thres</VERB>.</P>
+    <P>
+    If <VERB>flag='d'</VERB>, the eigenvalues of
+    <VERB>M*A*Q</VERB> = eigenvalues of <VERB>A</VERB> with magnitude
+    &lt; <VERB>thres</VERB>.</P>
+    <P>
+    If <VERB>flag='c'</VERB> and if <VERB>[Q1,M1]</VERB> =
+    full rank factorization (<VERB>fullrf</VERB>) of
+    <VERB>eye()-Q*M</VERB> then eigenvalues of <VERB>M1*A*Q1</VERB> =
+    eigenvalues of <VERB>A</VERB> with real part &gt;=
+    <VERB>thres</VERB>.</P>
+    <P>
+    If <VERB>flag='d'</VERB> and if <VERB>[Q1,M1]</VERB> =
+    full rank factorization (<VERB>fullrf</VERB>) of
+    <VERB>eye()-Q*M</VERB> then eigenvalues of <VERB>M1*A*Q1</VERB> =
+    eigenvalues of <VERB>A</VERB> with magnitude &gt;=
+    <VERB>thres</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
+[Q,M]=psmall(A,2.5,'d');
+spec(M*A*Q)
+[Q1,M1]=fullrf(eye()-Q*M);
+spec(M1*A*Q1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pbig</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>proj</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>projspec</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. Delebecque INRIA. (1988);   </AUTHOR>
+  <USED_FUNCTIONS>
+    <P>
+   This function is  based on the ordered schur form (scilab
+   function <VERB>schur</VERB>).</P>
+  </USED_FUNCTIONS>
+</MAN>

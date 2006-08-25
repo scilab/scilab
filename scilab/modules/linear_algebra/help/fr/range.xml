@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>range  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="range"> Image de A^k  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X,dim]=range(A,k)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>A  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: matrice réelle carrée</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>k  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: entier non négatif, La valeur par défaut est 1</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>X  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: matrice réelle orthonormale.</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>dim</PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>: entier (dimension du sous-espace image)</SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P> Calcul de l&apos;image de <VERB>A^k</VERB>; les <VERB>dim</VERB>
+      premières colonnes de <VERB>X</VERB> forment une base de
+      <VERB>A^k</VERB>. Les dernières lignes de  <VERB>X</VERB> forment une
+      base de l'orthogonal de l'image. </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    A=rand(4,2)*rand(2,4);   // Matrice de rang 2.
+    [X,dim]=range(A,1);dim   // Calcul de l'image
+
+    y1=A*rand(4,1);          // un vecteur dans l'image de A
+    y2=rand(4,1);            // un vecteur qui n'est pas dans l'image
+    norm(X(dim+1:$,:)*y1)    // les derniéres composante sont nulles, y1 est
+    dans l'image
+    norm(X(dim+1:$,:)*y2)    // Les dernieres composantes ne sont pas nulles
+
+    I=X(1:dim,:)'            // I une base de l'image
+    coeffs=X(1:dim,:)*y1     // les composante de y1 dans la base I
+
+    norm(I*coeffs-y1)        // test
+
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fullrfk</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>rowcomp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.; INRIA ;   </AUTHOR>
+  <USED_FUNCTIONS>
+    <SP>La fonction <VERB>range</VERB> est basée sue la fonction <LINK>rowcomp</LINK>
+      qui utilise la décomposition <LINK>svd</LINK>.</SP>
+  </USED_FUNCTIONS>
+
+</MAN>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>im_inv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="im_inv"> inverse image</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[X,dim]=im_inv(A,B [,tol])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[X,dim,Y]=im_inv(A,B, [,tol])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A,B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real or complex matrices with equal number of columns</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal or unitary square matrix of order equal to the  number of columns of <VERB>A</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (dimension of subspace)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: orthogonal matrix of order equal to the number of rows  of <VERB>A</VERB> and <VERB>B</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>[X,dim]=im_inv(A,B)</VERB> computes <VERB>(A^-1)(B)</VERB>
+     i.e vectors whose image through <VERB>A</VERB> are in
+     range(<VERB>B</VERB>)</P>
+    <P>
+    The <VERB>dim</VERB> first columns of <VERB>X</VERB> span
+    <VERB>(A^-1)(B)</VERB></P>
+    <P><VERB>tol</VERB> is a threshold used to test if subspace inclusion;
+    default value is <VERB>tol = 100*%eps</VERB>.
+    If <VERB>Y</VERB> is returned, then <VERB>[Y*A*X,Y*B]</VERB> is partitioned as follows:
+  <VERB>[A11,A12;0,A22]</VERB>,<VERB>[B1;0]</VERB></P>
+    <P>
+    where <VERB>B1</VERB> has full row rank (equals
+    <VERB>rank(B)</VERB>) and <VERB>A22</VERB> has full column rank
+    and has <VERB>dim</VERB> columns.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=[rand(2,5);[zeros(3,4),rand(3,1)]];B=[[1,1;1,1];zeros(3,2)];
+W=rand(5,5);A=W*A;B=W*B;
+[X,dim]=im_inv(A,B)
+svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
+[X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>rowcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spaninter</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>spanplus</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>linsolve</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. Delebecque INRIA</AUTHOR>
+</MAN>

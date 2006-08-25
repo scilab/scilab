@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fullrfk  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="fullrfk"> factorisation de rang plein de A^k  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Q,M]=fullrfk(A,k)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle ou complexe
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>k  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>Q,M  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrices réelles ou complexes
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction calcule la factorisation de rang plein de <VERB>A^k</VERB> : <VERB>fullrfk</VERB> renvoie <VERB>Q</VERB> et <VERB>M</VERB> telles que <VERB>A^k = Q*M</VERB>
+    avec Im(<VERB>Q</VERB>)=Im(<VERB>A^k</VERB>) et ker(<VERB>M</VERB>)=ker(<VERB>A^k</VERB>),
+    <VERB>Q</VERB> de rang maximal, et les lignes de <VERB>M</VERB> sont linéairement indépendantes, 
+  </P>
+  <P>
+    Pour <VERB>k=1</VERB>, <VERB>fullrfk</VERB> est équivalent à <VERB>fullrf</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
+norm(Bk*Ck-A^3,1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fullrf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>range</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D (1990);   </AUTHOR>
+</MAN>

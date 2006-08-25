@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fullrfk</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fullrfk"> full rank factorization of <VERB>A^k</VERB></SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[Bk,Ck]=fullrfk(A,k)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Bk,Ck</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real or complex matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function computes the full rank factorization of <VERB>A^k</VERB> i.e.
+    <VERB>Bk*Ck=A^k</VERB> where <VERB>Bk</VERB> is full column rank and <VERB>Ck</VERB> full row rank.
+    One has range(<VERB>Bk</VERB>)=range(<VERB>A^k</VERB>) and ker(<VERB>Ck</VERB>)=ker(<VERB>A^k</VERB>).</P>
+    <P>
+    For <VERB>k=1</VERB>, <VERB>fullrfk</VERB> is equivalent to <VERB>fullrf</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
+norm(Bk*Ck-A^3,1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>fullrf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>range</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F.D (1990);   </AUTHOR>
+</MAN>
