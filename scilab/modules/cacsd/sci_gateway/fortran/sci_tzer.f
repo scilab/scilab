@@ -20,21 +20,7 @@ c     ----------------------------
       eps=0.1*sqrt(stk(leps))
 c
       err=0
-
-      if(lhs.ne.1.or.rhs.ne.3) then
-         call error(39)
-         return
-      endif
-
 c     calcule de zeros multivariables
-      if(rhs.ne.4) then
-         call error(42)
-         return
-      endif
-      if(lhs.ne.2.and.lhs.ne.3) then
-         call error(41)
-         return
-      endif
 c   matrice d
       id=iadr(lstk(top))
       if(istk(id).ne.1) then
