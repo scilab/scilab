@@ -89,8 +89,7 @@
 /* NG end */
 {"gsort",                    IN_matdes,  88,  1 },
 {"help_gtk",                 IN_matdes,  89,  2 },
-{"tohome",                   IN_matdes,  90,  2 },
-{"UImenu",                   IN_matdes,  91,  2 },
-{"showalluimenushandles",    IN_matdes,  92,  2 },
-{"readxbm",					         IN_matdes,  93,  2 },				
-{"readgif",                  IN_matdes,  94,  2 },				
+{"UImenu",                   IN_matdes,  90,  2 },
+{"showalluimenushandles",    IN_matdes,  91,  2 },
+{"readxbm",					         IN_matdes,  92,  2 },				
+{"readgif",                  IN_matdes,  93,  2 },				

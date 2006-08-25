@@ -11,4 +11,5 @@
 {"x_message_modeless",	IN_xawelm,	11,	1},
 {"clc",         IN_xawelm,  12,  2 },
 {"show_window", IN_xawelm,  13,  2 },
+{"tohome",      IN_xawelm,  14,  2 },
 

@@ -110,7 +110,6 @@ void TextMakeFont (LPTW lptw);
 void TextSelectFont (LPTW lptw);
 int CtrlCHit (LPTW lptw);
 /*--------------------------*/
-void HomeFunction _PARAMS((char *fname, unsigned long fname_len));
 void ResizeScreenBuffer(LPTW lptw);
 void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);

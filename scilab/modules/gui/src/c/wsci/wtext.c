@@ -1585,31 +1585,7 @@ int ReplacePrompt(char *Text,char *prompt)
 	return Retour;
 	
 }
-/*-----------------------------------------------------------------------------------*/
-void HomeFunction _PARAMS((char *fname, unsigned long fname_len))
-{
-	LPTW lptw=GetTextWinScilab();
-	
-	if ( IsWindowInterface() )
-	{
-  		int nYinc = 0;
-  		int cy= 0;
-  	  		
-  		cy = lptw->CursorPos.y * lptw->CharSize.y;
-		nYinc =  cy  - lptw->ScrollPos.y;
-		
-		lptw->ScrollPos.y += nYinc;
-     		ScrollWindow (lptw->hWndText, 0, -nYinc, NULL, NULL);
-      	      		
-      		UpdateWindow (lptw->hWndText);	
-//      		InvalidateRect (lptw->hWndText, NULL, TRUE);
-      		
-      	}
-      	else sciprint(MSG_WARNING31); 
-	
-	
-	
-}
+
 /*-----------------------------------------------------------------------------------*/
 
 /* Redimensionnement dynamique du Screenbuffer */
