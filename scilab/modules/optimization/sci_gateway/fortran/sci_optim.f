@@ -9,12 +9,31 @@ c     --------------------------
       
       character*(*) fname
 	INCLUDE 'stack.h'
-	logical eqid, getscalar
-	character*80   nomsub
+      double precision zero,df0,zng,dxmin
+      double precision epsg,epsg1,epsf,dzs
+      integer top2,topin,topind,topx,top3
+      character*80   nomsub
       common /optim/ nomsub
-      integer impn(nsiz)
+      integer       nizs,nrzs,ndzs
+      common /nird/ nizs,nrzs,ndzs
       external foptim,boptim,fuclid,ctonb,ctcab
+      integer coin,coar,coti,cotd,cosi,cosd,nfac
+c     
+      character*(nlgh+1) namef,namej
+      common/csolve/namef,namej
+c     for semidef
+      double precision abstol,reltol,nu,tv
+      integer sz,upsz
+c
+      integer impn(nsiz)
+      logical eqid, getscalar
       integer iadr, sadr
+c     
+      parameter (nsiz1=nsiz-1)
+      data impn/672732690,nsiz1*673720360/
+      data coin,coar,coti,cotd,cosi,cosd,nfac
+     &     /   5906,6922,4637,3357,4636,3356, 0/
+c     
       
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
