@@ -37,6 +37,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+#include "WindowList.h"
 
 
 #include "win_mem_alloc.h" /* MALLOC */
@@ -1921,7 +1922,7 @@ int ShowWindowFunction _PARAMS((char *fname,unsigned long fname_len))
   		GetRhsVar(1,"i",&m1,&n1,&l1);
   		num_win=*istk(l1);
   		LhsVar(1)=0;
-  		ScilabGC = GetWindowXgcNumber (num_win);
+  		ScilabGC = getWindowXgcNumber (num_win);
   		if (num_win == -1)
   		{
   			LPTW lptw=GetTextWinScilab();

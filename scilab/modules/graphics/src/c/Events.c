@@ -4,6 +4,7 @@
  --------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "bcg.h"
+#include "WindowList.h"
 
 typedef struct but
 { int win; /* graphic window containing the locator */
@@ -45,7 +46,7 @@ int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
   static char buf[256];
   struct BCG *SciGc = (struct BCG *) NULL;
 
-  SciGc = GetWindowXgcNumber(win);
+  SciGc = getWindowXgcNumber(win);
 
   if(SciGc == (struct BCG *) NULL) 
 	  return 0;
@@ -85,7 +86,7 @@ void scig_deletegwin_handler_sci (int win)
   static char buf[256];
   struct BCG *SciGc;
 
-  SciGc = GetWindowXgcNumber(win);
+  SciGc = getWindowXgcNumber(win);
   if (strlen(SciGc->EventHandler)!=0) {
     sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
     StoreCommand1(buf,0);
@@ -227,7 +228,7 @@ void seteventhandler(int *win_num,char *name,int *ierr)
   struct BCG *SciGc;
   /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
   *ierr = 0;
-  SciGc = GetWindowXgcNumber(*win_num);
+  SciGc = getWindowXgcNumber(*win_num);
   if ( SciGc ==  NULL ) {*ierr=1;return;}
   strncpy(SciGc->EventHandler,name,24);
 }

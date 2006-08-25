@@ -5,6 +5,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+#include "WindowList.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
@@ -618,10 +619,10 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 	}
 	else
 	{
-		C2F(getwins)(&num,&ids ,&iflag);
+		getWins(&num,&ids ,&iflag);
 		iflag = 1; 
 		ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
-		C2F(getwins)(&num,ArrayWGraph,&iflag);
+		getWins(&num,ArrayWGraph,&iflag);
 	} 
 			
 	for (i=0;i<num;i++)
@@ -630,7 +631,7 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 			
 		wsprintf(FilenameBMP,"%s%d.bmp",DefaultFilenameTests,NumBMP);
 				
-		ScilabGC = GetWindowXgcNumber (ArrayWGraph[i]);
+		ScilabGC = getWindowXgcNumber (ArrayWGraph[i]);
 
 		if (ScilabGC != (struct BCG *) 0)
 		{

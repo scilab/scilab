@@ -15,7 +15,7 @@ int Interface_XS2BMP(int figurenum,char *filename)
 	int bOK=0;
 	struct BCG *ScilabGC=NULL;
 
-	ScilabGC = GetWindowXgcNumber (figurenum);
+	ScilabGC = getWindowXgcNumber (figurenum);
 	if (ScilabGC != (struct BCG *) 0)
 	{
 		ExportBMP(ScilabGC,filename);
@@ -35,7 +35,7 @@ int Interface_XS2EMF(int figurenum,char *filename)
 	int bOK=0;
 	struct BCG *ScilabGC=NULL;
 
-	ScilabGC = GetWindowXgcNumber (figurenum);
+	ScilabGC = getWindowXgcNumber (figurenum);
 	if (ScilabGC != (struct BCG *) 0)
 	{
 		ExportEMF(ScilabGC,filename);

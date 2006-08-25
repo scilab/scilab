@@ -25,6 +25,7 @@
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "bcg.h"
+#include "WindowList.h"
 
 
 
@@ -1202,7 +1203,7 @@ int sciGetNbFigures( void )
   int nbFigure = 0 ;
   int flag     = 0 ;
   int ids          ;
-  C2F(getwins)( &nbFigure, &ids, &flag ) ;
+  getWins( &nbFigure, &ids, &flag ) ;
   return nbFigure ;
 }
 /*-----------------------------------------------------------------------------------*/

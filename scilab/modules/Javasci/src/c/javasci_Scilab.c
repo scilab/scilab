@@ -1,5 +1,6 @@
 #include "javasci_Scilab.h"
 #include "../../../modules/graphics/includes/periScreen.h"
+#include "../../../modules/graphics/includes/WindowList.h"
 /********************************************************************************************************/
 /* Allan CORNET */
 /* INRIA */
@@ -31,7 +32,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject
 	}/* NG end*/
 	else
 	{
-		C2F(getwins)(&num,&ids ,&iflag);
+		getWins(&num,&ids ,&iflag);
 		if (num > 0) bOK=1;
   } 
  

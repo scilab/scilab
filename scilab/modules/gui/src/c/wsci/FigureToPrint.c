@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "FigureToPrint.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "WindowList.h"
 #include "../../../modules/graphics/includes/xs2file.h"
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
@@ -22,7 +23,7 @@ BOOL FigureToPrint(int figurenumber,BOOL Postscript)
 {
 	BOOL bOK=FALSE;
 	struct BCG *ScilabGC=NULL;
-	ScilabGC = GetWindowXgcNumber (figurenumber);
+	ScilabGC = getWindowXgcNumber (figurenumber);
 
 	if (ScilabGC)
 	{

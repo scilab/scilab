@@ -3,8 +3,9 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
+#include "WindowList.h"
 
-#include "win_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 /*-----------------------------------------------------------------------------------*/
@@ -12,7 +13,6 @@ extern BOOL IsWindowInterface();
 extern void Write_Scilab_Console (char *buf);
 extern void Write_Scilab_Window (char *buf);
 extern void ResetMenu(void);
-extern struct BCG *GetWindowXgcNumber (integer i);
 extern void HideGraphToolBar(struct BCG * ScilabGC);
 extern void ShowGraphToolBar(struct BCG * ScilabGC);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
@@ -528,7 +528,7 @@ int C2F (setmen) (integer * win_num, char *button_name,
     }
   else
     {
-      ScilabGC = GetWindowXgcNumber (*win_num);
+      ScilabGC = getWindowXgcNumber (*win_num);
       if (ScilabGC != (struct BCG *) 0)
 	{
 	  SciSetMenu (ScilabGC->lpmw.hMenu, button_name, *ne, MF_ENABLED);
@@ -549,7 +549,7 @@ int C2F (unsmen) (integer * win_num, char *button_name, integer * entries,
     }
   else
     {
-      ScilabGC = GetWindowXgcNumber (*win_num);
+      ScilabGC = getWindowXgcNumber (*win_num);
       if (ScilabGC != (struct BCG *) 0)
 	{
 	  SciSetMenu (ScilabGC->lpmw.hMenu, button_name, *ne, MF_GRAYED);
@@ -603,7 +603,7 @@ int C2F (chmenu) (integer * win_num, char *old_name, char *new_name)
     }
   else
     {
-      ScilabGC = GetWindowXgcNumber (*win_num);
+      ScilabGC = getWindowXgcNumber (*win_num);
       if (ScilabGC != (struct BCG *) 0)
 	{
 	  SciChMenu (&(ScilabGC->lpmw), old_name, new_name);
@@ -643,7 +643,7 @@ int C2F (delbtn) (integer * win_num, char *button_name)
     }
   else
     {
-      ScilabGC = GetWindowXgcNumber (*win_num);
+      ScilabGC = getWindowXgcNumber (*win_num);
       if (ScilabGC != (struct BCG *) 0)
 	{
 	  SciDelMenu (&(ScilabGC->lpmw), button_name);
@@ -748,7 +748,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
   }
   else
   {
-     ScilabGC = GetWindowXgcNumber (*win_num);
+     ScilabGC = getWindowXgcNumber (*win_num);
      if (ScilabGC != (struct BCG *) 0)
 		{
 			lpmw = &(ScilabGC->lpmw);
@@ -881,7 +881,7 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
 
 static void scig_command_scilabgc (int number, void f (struct BCG *))
 {
-  struct BCG *ScilabGC = GetWindowXgcNumber (number);
+  struct BCG *ScilabGC = getWindowXgcNumber (number);
   if (ScilabGC != NULL && ScilabGC->CWindow && IsWindow (ScilabGC->CWindow))
     f (ScilabGC);
 }
@@ -986,14 +986,14 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
       int i=0;
 
       iflag = 0; 
-      C2F(getwins)(&num,&ids ,&iflag);
+      getWins(&num,&ids ,&iflag);
       sizetab=num;
 
       tab=(integer*)MALLOC(sizeof(integer)*sizetab);
       for(i=0;i<sizetab;i++) tab[i]=0;
 
       iflag = 1; 
-      C2F(getwins)(&num,tab,&iflag);
+      getWins(&num,tab,&iflag);
 
       for(i=0;i<sizetab;i++)
 	{

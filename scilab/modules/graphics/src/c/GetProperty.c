@@ -24,6 +24,7 @@
 #include "BuildObjects.h"
 #include "SetProperty.h"
 #include "Xcall1.h"
+#include "WindowList.h"
 
 #include "PloEch.h"
 
@@ -3675,7 +3676,7 @@ sciPointObj *sciIsExistingFigure(value)
   double dv=0.0; 
 
   if(GetDriverId() == 0) /* driver Win32 or X11 F.Leray 26.08.04 */
-      figGC=GetWindowXgcNumber(*value);
+      figGC=getWindowXgcNumber(*value);
   else
       {
           /* drivers GIF, Pos or Xfig are always the current one (only window number "value" at a given time) (for now) F.Leray 26.08.04 */

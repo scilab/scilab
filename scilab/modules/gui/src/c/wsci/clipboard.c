@@ -5,6 +5,7 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "wgnuplib.h"
+#include "WindowList.h"
 #include "win_mem_alloc.h" /* MALLOC */
 
 /*-----------------------------------------------------------------------------------*/
@@ -467,7 +468,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 					if (num_win>=0)
 					{
 						struct BCG *ScilabGC=NULL;
-						ScilabGC = GetWindowXgcNumber (num_win);
+						ScilabGC = getWindowXgcNumber (num_win);
 
 						if (ScilabGC)
 						{
@@ -527,7 +528,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 				if (num_win>=0)
 				{
 					struct BCG *ScilabGC=NULL;
-					ScilabGC = GetWindowXgcNumber (num_win);
+					ScilabGC = getWindowXgcNumber (num_win);
 
 					if (ScilabGC)
 					{
@@ -641,7 +642,7 @@ int	InterfaceWindowsClipboard(char *fname,unsigned long l)
 	//				if (num_win>=0)
 	//				{
 	//					struct BCG *ScilabGC=NULL;
-	//					ScilabGC = GetWindowXgcNumber (num_win);
+	//					ScilabGC = getWindowXgcNumber (num_win);
 
 	//					if (ScilabGC)
 	//					{

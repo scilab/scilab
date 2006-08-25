@@ -43,6 +43,8 @@
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "WindowList.h"
+
 
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
@@ -164,24 +166,13 @@ static COLORREF DefaultForeground = RGB(0,0,0);
 
 struct BCG MissileXgc ;
 
-/* structure for Window List  */
 
-typedef  struct 
-{
-  struct BCG winxgc;
-  struct WindowList *next;
-} WindowList  ;
-
-static WindowList *The_List  = (WindowList *) NULL;
 static integer deleted_win = -1;
 struct BCG *ScilabXgc = (struct BCG *) 0;
 
 /** functions **/
 
 HWND GetWindowNumber();
-struct BCG *GetWinXgc();
-struct BCG *GetWindowXgcNumber();
-struct BCG *AddNewWindow();
 struct BCG *AddNewWindowToList();
 
 int SwitchWindow(integer *intnum);
@@ -677,7 +668,7 @@ int check_pointer_win(int *x1,int *yy1,int *win)
 {
   RECT lpRect;
   HWND hwnd_window_pointed;
-  WindowList *listptr = The_List;
+  WindowList * listptr = NULL ;
   POINT Point;
   integer iwin = -1;
   /* where if the pointer  */
@@ -688,8 +679,8 @@ int check_pointer_win(int *x1,int *yy1,int *win)
   if (hwnd_window_pointed != NULL)
     {
       iwin = -1;
-      listptr = The_List;
-      while (listptr != (WindowList  *) 0 )
+      listptr = getScilabWindowList() ;
+      while ( listptr != NULL )
 	{
 	  if (hwnd_window_pointed == listptr->winxgc.CWindow 
 	      || hwnd_window_pointed == listptr->winxgc.hWndParent)
@@ -697,7 +688,7 @@ int check_pointer_win(int *x1,int *yy1,int *win)
 	      iwin = listptr->winxgc.CurWindow;
 	      break;
 	    }
-	  listptr =  (WindowList *)listptr->next;
+	  listptr =  listptr->next;
 	}
       /* si la fenetre pointee est une fenetre scilab */
       if ( iwin != -1 )
@@ -718,18 +709,6 @@ int check_pointer_win(int *x1,int *yy1,int *win)
 extern void set_wait_click(int val); 
 extern void set_event_select(int val); 
 /*-----------------------------------------------------------------------------------*/
-int GetWinsMaxId(void)
-{
-  WindowList *listptr = The_List;
-  int Num = -1;
-  while ( listptr != (WindowList  *) 0 ) 
-    {
-      Num = Max(listptr->winxgc.CurWindow,Num);
-      listptr =  (WindowList *)listptr->next;
-    }
-  return(Num);
-}
-/*-----------------------------------------------------------------------------------*/
 void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integer *iwin,integer *iflag,integer *istr,double * dv1, double *dv2,double * dv3,double * dv4)
 {
   integer win;
@@ -744,7 +723,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1, integ
   // ==> xclick renvoie le code -100 pour le bouton ce qui correspond à une fermeture de fenêtre
   deleted_win = -1;
 
-  wincount =  GetWinsMaxId()+1;
+  wincount =  getWinsMaxId() + 1 ;
   if (wincount == 0) 
     {
       *x1=0;
@@ -1274,7 +1253,7 @@ int SwitchWindow(integer *intnum)
   /** trying to get window *intnum **/
   struct BCG *SXgc;
   integer ierr;
-  SXgc = GetWindowXgcNumber(*intnum);
+  SXgc = getWindowXgcNumber(*intnum);
   if ( SXgc != (struct BCG *) 0 ) 
     {
       /** releasing previous hdc **/
@@ -3647,133 +3626,89 @@ static void XDrawPoints(lhdc, points, Npoints)
 
 struct BCG *AddNewWindowToList()
 {
-  return( AddNewWindow(&The_List));
-}
-/*-----------------------------------------------------------------------------------*/
-struct BCG *AddNewWindow(listptr)
-     WindowList **listptr;
-{
+  struct BCG * newWin = addWindowItem() ;
 
-  if ( *listptr == (WindowList *) NULL)
-    {
-      *listptr = (WindowList *) MALLOC (sizeof(WindowList));
-      if ( listptr == 0)
-        {
-          Scistring("AddNewWindow No More Place ");
-          return((struct BCG *) 0);
-        }
-      else
-	{
-	  (*listptr)->winxgc.CWindow = (HWND) NULL;
-	  (*listptr)->winxgc.CurWindow = 0;
-	  (*listptr)->winxgc.in_sizemove = 0;
-	  (*listptr)->winxgc.Red = (float *) 0;
-	  (*listptr)->winxgc.Green = (float *) 0;
-	  (*listptr)->winxgc.Blue = (float *) 0;
-	  (*listptr)->winxgc.Colors = (COLORREF *) 0;
-	  (*listptr)->winxgc.CmapFlag  = 1;
-	  (*listptr)->winxgc.EventHandler[0]='\0'; 
-	  (*listptr)->winxgc.lpgw = &graphwin;
-	  (*listptr)->winxgc.hPen  = (HPEN) 0;
-	  (*listptr)->winxgc.hBrush  = (HBRUSH) 0;
-	  (*listptr)->winxgc.hbmCompat = (HBITMAP) 0;
-	  (*listptr)->winxgc.hdcCompat = (HDC) 0;
-	  (*listptr)->winxgc.CurColor = 32; // Adding here F.Leray set the current color to black (i.e.: 32+1=33)
-	  (*listptr)->next = (struct WindowList *) NULL ;
+  if ( newWin == NULL ) { return NULL ; }
 
-	  /* used by new menus */
-	  (*listptr)->winxgc.IDM_Count=0;
-	  (*listptr)->winxgc.hMenuRoot=NULL;
+  /* initialize the bcg */
+  newWin->CWindow = (HWND) NULL;
+  newWin->CurWindow = 0;
+  newWin->in_sizemove = 0;
+  newWin->Red = (float *) 0;
+  newWin->Green = (float *) 0;
+  newWin->Blue = (float *) 0;
+  newWin->Colors = (COLORREF *) 0;
+  newWin->CmapFlag  = 1;
+  newWin->EventHandler[0]='\0'; 
+  newWin->lpgw = &graphwin;
+  newWin->hPen  = (HPEN) 0;
+  newWin->hBrush  = (HBRUSH) 0;
+  newWin->hbmCompat = (HBITMAP) 0;
+  newWin->hdcCompat = (HDC) 0;
+  newWin->CurColor = 32; // Adding here F.Leray set the current color to black (i.e.: 32+1=33)
+  newWin->IDM_Count=0;
+  newWin->hMenuRoot=NULL;
 
-	  return(&((*listptr)->winxgc));
-	}
-    }
-  else
-    {
-      return( AddNewWindow((WindowList **) &((*listptr)->next)));
-    }
+  return newWin ;
 }
 /*-----------------------------------------------------------------------------------*/
 /** destruction d'une fenetre **/
-void DeleteSGWin(intnum)
-     integer intnum;
+void DeleteSGWin( integer intnum )
 {
   int curwin;
-  if ( ScilabXgc == (struct BCG *) 0) return;
+  if ( ScilabXgc == NULL ) { return ; }
   curwin = ScilabXgc->CurWindow ;
-  DeleteWindowToList(intnum);
+  DeleteWindowToList( intnum ) ;
   /*XXXX: jpc 2000: I also delete the scale list associated to that window */
   del_window_scale(intnum);
   if ( curwin  == intnum )
     {
-      if ( The_List == (WindowList *) NULL)
+      if ( isWindowListEmpty() )
         {
           /** No more graphic window ; **/
-          ScilabXgc = (struct BCG *) 0;
+          ScilabXgc = NULL ;
         }
       else
         {
           /** fix the new current graphic window **/
-          ScilabXgc = &(The_List->winxgc);
-          ResetScilabXgc ();
+          ScilabXgc = getFirstWindow() ;
+          ResetScilabXgc() ;
           get_window_scale(ScilabXgc->CurWindow,NULL);
         }
     }
 }
 /*-----------------------------------------------------------------------------------*/
 /** detruit la fenetre num dans la liste des fenetres */
-void DeleteWindowToList(num)
-     integer num;
+void DeleteWindowToList( integer num )
 {
-  WindowList *L1,*L2;
-  L1 = The_List;
-  L2 = The_List;
-  while ( L1 != (WindowList *) NULL)
+  struct BCG * window = getWindowXgcNumber( num ) ;
+
+  if ( window == NULL ) { return ; }
+
+  deleted_win = num;
+  DestroyWindow(window->hWndParent);
+  DestroyWindow(window->CWindow);
+  DestroyWindow(window->Statusbar);
+  CloseGraphMacros( window ) ;
+  XgcFreeColors( window );
+  if ( window->CurPixmapStatus == 1) 
+  {
+    /** Freeing bitmaps  **/
+    if ( window->hdcCompat)
     {
-      if ( L1->winxgc.CurWindow == num )
-	{
-	  /** destroying windows **/
-	  /** XXXX : if there's a pixmap we must free it **/
-	  deleted_win = num;
-	  DestroyWindow(L1->winxgc.hWndParent);
-	  DestroyWindow(L1->winxgc.CWindow);
-	  DestroyWindow(L1->winxgc.Statusbar);
-	  CloseGraphMacros(&(L1->winxgc));
-          XgcFreeColors(&(L1->winxgc));
-	  if ( L1->winxgc.CurPixmapStatus == 1) 
-	    {
-	      /** Freeing bitmaps  **/
-	      if ( L1->winxgc.hdcCompat)
-		SelectObject (L1->winxgc.hdcCompat, NULL) ;
-	      if ( L1->winxgc.hbmCompat)
-		DeleteObject (L1->winxgc.hbmCompat);
-	      if ( L1->winxgc.hdcCompat)
-		{
-		  DeleteDC(L1->winxgc.hdcCompat);
-		}
-	    }
-	  /** The window was found **/
-	  if ( L1 != L2 )
-	    {
-	      /** Ce n'est pas la premiere fenetre de la liste **/
-	      L2->next= L1->next ;
-	      FREE(L1);
-	      return ;
-	    }
-	  else 
-	    {
-	      /** C'est la premiere fenetre de la liste **/
-	      The_List = (WindowList *) L1->next ;
-	      FREE(L1);
-	      return;
-	    }
-	}
-      else 
-	{
-	  L2 = L1;
-	  L1 = (WindowList *) L1->next;
-	}
+      SelectObject( window->hdcCompat, NULL ) ;
     }
+    if ( window->hbmCompat)
+    {
+      DeleteObject( window->hbmCompat ) ;
+    }
+    if ( window->hdcCompat)
+    {
+      DeleteDC( window->hdcCompat ) ;
+    }
+
+  }
+  removeWindowItem( window ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 /********************************************
@@ -3784,75 +3719,11 @@ HWND GetWindowNumber(wincount)
      int wincount;
 {
   struct BCG *bcg;
-  bcg = GetWindowXgcNumber(wincount);
+  bcg = getWindowXgcNumber(wincount);
   if ( bcg != (struct BCG *) 0)
     return( bcg->CWindow);
   else
     return( (HWND) 0);
-}
-/*-----------------------------------------------------------------------------------*/
-/********************************************
- * returns the graphic context of window i
- * or 0 if this window does not exists
- ********************************************/
-
-struct BCG *GetWindowXgcNumber(i)
-     integer i;
-{
-  return( GetWinXgc(The_List,Max(0,i)));
-}
-/*-----------------------------------------------------------------------------------*/
-struct BCG *GetWinXgc(listptr, i)
-     WindowList *listptr;
-     integer i;
-{
-  if (listptr == (WindowList  *) NULL)
-    {
-      return((struct BCG *) 0);
-    }
-  else
-    {
-      if ((listptr->winxgc.CurWindow) == i)
-        {
-          return( &(listptr->winxgc));
-	}
-      else
-        {
-	  return(GetWinXgc((WindowList *) listptr->next,i));
-        }
-    }
-}
-
-/*-----------------------------------------------------------------------------------*/
-/***************************
- * get ids of scilab windows
- * in array Ids,
- * Num gives the number of windows
- * flag == 1 ==> get the Ids 
- * flag == 0 ==> just get the Number Num 
- ***************************/
-
-void C2F(getwins)( integer * Num, integer Ids[] , integer * flag)
-{
-  WindowList *listptr = The_List;
-  *Num = 0;
-  if ( *flag == 0 )
-    {
-      while ( listptr != (WindowList  *) 0 ) 
-	{
-	  (*Num)++;
-	  listptr = (WindowList *) listptr->next;
-	}
-    }
-  else 
-    {
-      while ( listptr != (WindowList  *) 0 ) 
-	{
-	  Ids[*Num] = listptr->winxgc.CurWindow;
-	  listptr =  (WindowList *)listptr->next;
-	  (*Num)++;
-	}
-    }
 }
 /*-----------------------------------------------------------------------------------*/
 /*--------------------------------------------------------------
@@ -4813,18 +4684,6 @@ int C2F(store_points)(n, vx, vy, onemore)
   if (ReallocVector(n1) == 1)
     {
       for (i = 0; i < n; i++){
-//#ifdef DEBUG
-//	if ( Abs(vx[i]) > int16max )
-//	  {
-//	    wsprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
-//		    (int) vx[i]);
-//	  }
-//	if ( Abs(vy[i]) > int16max )
-//	  {
-//	    wsprintf(stderr,"Warning store_point oustide of 16bits x=%d\n",
-//		    (int) vy[i]);
-//	  }
-//#endif
 	points[i].x = INT_2_16B( vx[i] ) ;
 	points[i].y = INT_2_16B( vy[i] ) ;
       }

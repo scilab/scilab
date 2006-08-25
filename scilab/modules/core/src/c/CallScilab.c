@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "CallScilab.h"
 #include "MALLOC.h"
+#include "../../../graphics/includes/WindowList.h"
 #if _MSC_VER
 #define putenv _putenv
 #endif
@@ -31,7 +32,6 @@ extern int IsFromC(void);
 extern int ExitScilab(void);
 extern BOOL GetWITH_GUI(void);
 extern void SetWITH_GUI(BOOL ON);
-extern int C2F(getwins)();
 
 /*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -233,7 +233,7 @@ int ScilabHaveAGraph(void)
 		}/* NG end*/
 		else
 		{
-			C2F(getwins)(&num,&ids ,&iflag);
+			getWins(&num,&ids ,&iflag);
 			if (num > 0) vInt=1;
 		} 
 	}

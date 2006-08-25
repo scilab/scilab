@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "Toolbar.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "WindowList.h"
 /*-----------------------------------------------------------------------------------*/
 static BOOL DefaultShowToolBar=TRUE;
 /*-----------------------------------------------------------------------------------*/
@@ -232,7 +233,7 @@ int HideToolBarWin32(int WinNum)
 	else
 	{
 		struct BCG *ScilabGC=NULL;
-		ScilabGC = GetWindowXgcNumber (WinNum);
+		ScilabGC = getWindowXgcNumber (WinNum);
 		if (ScilabGC != (struct BCG *) 0)
 		{
 			HideGraphToolBar(ScilabGC);
@@ -281,7 +282,7 @@ int ToolBarWin32(int WinNum,char *onoff)
 	else
 	{
 		struct BCG *ScilabGC=NULL;
-		ScilabGC = GetWindowXgcNumber (WinNum);
+		ScilabGC = getWindowXgcNumber (WinNum);
 		if (ScilabGC != (struct BCG *) 0)
 		{
 			if (strcmp(onoff,"off")==0)
@@ -328,7 +329,7 @@ int GetStateToolBarWin32(int WinNum)
 	else
 	{
 		struct BCG *ScilabGC=NULL;
-		ScilabGC = GetWindowXgcNumber (WinNum);
+		ScilabGC = getWindowXgcNumber (WinNum);
 		if (ScilabGC != (struct BCG *) 0)
 		{
 			bAns=(ScilabGC->lpmw.ShowToolBar);

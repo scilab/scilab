@@ -28,6 +28,7 @@
 #include "Interaction.h" /* for callback funtions */
 #include "StringMatrix.h"
 #include "Xcall1.h"
+#include "WindowList.h"
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
 #endif
@@ -996,7 +997,7 @@ void AllGraphWinDelete( void )
   {	
     integer iflag = 0, num, *ids = (integer *) 0;
 
-    C2F (getwins) (&num, ids, &iflag);
+    getWins(&num, ids, &iflag);
     if (num > 0)
     {
       ids = MALLOC ((unsigned) num * sizeof (integer));
@@ -1007,7 +1008,7 @@ void AllGraphWinDelete( void )
     if (ids != NULL)
     {
       int i;
-      C2F (getwins) (&num, ids, &iflag);
+      getWins(&num, ids, &iflag);
       for (i = 0; i < num; i++)
         C2F (deletewin) (&ids[i]);
       FREE (ids);

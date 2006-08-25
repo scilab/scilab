@@ -10,6 +10,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
+#include "WindowList.h"
 
 extern int xinitxend_flag;
 
@@ -383,7 +384,7 @@ void scig_raise(integer win_num)
     {
       if ((c=GetDriver())=='R' || c == 'X' || c == 'W')
 	{
-	  C2F(getwins)(&n,PI0 ,&iflag);
+	  getWins(&n,PI0 ,&iflag);
 	  if (n>0) /* at least on figure exists, preserve the current one*/
 	    {
 	      C2F (dr)("xget", "window",&verb,&cur,&n,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

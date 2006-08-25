@@ -8,6 +8,8 @@
 #include "sci_winsid.h"
 #include "stack-c.h"
 #include "periScreen.h"
+#undef Top
+#include "WindowList.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_winsid(char *fname,unsigned long fname_len)
@@ -15,10 +17,10 @@ int sci_winsid(char *fname,unsigned long fname_len)
   integer iflag =0,ids,num,un=1,l1;
 
   CheckRhs(-1,0) ;
-  C2F(getwins)(&num,&ids ,&iflag);
+  getWins(&num,&ids ,&iflag);
   CreateVar(1,"i",&un,&num,&l1);
   iflag = 1; 
-  C2F(getwins)(&num,istk(l1),&iflag);
+  getWins(&num,istk(l1),&iflag);
   LhsVar(1)=1;
 
   return 0;

@@ -722,6 +722,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\WindowList.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Xcall.c"
 				>
 			</File>
@@ -1248,6 +1252,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Vect2Matrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\WindowList.h"
 				>
 			</File>
 			<File
