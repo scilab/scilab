@@ -306,6 +306,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\msgout.c"
+				>
+			</File>
+			<File
 				RelativePath=".\msgstore.c"
 				>
 			</File>
