@@ -1,0 +1,131 @@
+c     -------------------------
+c			INRIA     
+c     -------------------------
+c
+c			
+c
+      subroutine errmgr(n,errtyp)
+c     -------------------------
+c     this routines handle errors: recursion stack cleaning, error
+c     recovery, display of calling tree
+c     n      : the error number
+c     errtyp : error type (recoverable:0 or not:1)
+c!
+      include 'stack.h'
+      integer errtyp,n
+c
+      integer sadr
+c
+      integer num,imess,imode,lunit
+      integer l1,ilk,m,lk,km,k,ll,r,p,mode(2),lpts(6),pt0
+      logical first,trace,pflag,erecmode
+c
+c      sadr(l)=(l/2)+1
+c
+      ll=lct(5)
+      first=.true.
+      lunit=wte
+c
+      call errmds(num,imess,imode)
+      trace=.not.((num.lt.0.or.num.eq.n).and.imess.ne.0)
+c
+      erecmode=(num.eq.n.or.num.lt.0).and.imode.ne.0.and.imode.ne.3
+c     
+      pt0=0
+      if(pt.le.pt0) goto 50
+      if(erecmode) then
+c     error recovery mode
+         p=pt+1
+c        . looking if error has occurred in execstr deff getf or comp
+ 20      p=p-1
+         if(p.le.errpt) then
+            pt0=pt
+            goto 50
+         endif
+         if(rstk(p).eq.1001.or.rstk(p).eq.1002) then
+c     .     error has occurred in an external
+            errtyp=0
+            pt0=p
+         elseif(rstk(p).eq.808) then
+c     .     error has occurred in a try instructions
+            errtyp=0
+            pt0=p
+         elseif(rstk(p).eq.501.and.catch.eq.0) then
+            if (rstk(p-1).eq.909) then
+c     .        exec of a function
+               goto 20
+            endif
+c     .     error has occurred in a compiled macro
+            errtyp=0
+            pt0=p
+         elseif(rstk(p).eq.502) then 
+            if(rstk(p-1).eq.903.and.catch.eq.0) then
+c     .     error has occurred in execstr
+               errtyp=0
+               pt0=p
+            elseif(rstk(p-1).eq.904.or.rstk(p-1).eq.901) then
+c     .     error has occurred in comp
+               errtyp=0
+               pt0=p
+            else
+               goto 20
+            endif
+         else
+            goto 20
+         endif
+      endif
+
+
+ 30   continue
+c
+c depilement de l'environnement
+      lct(4)=2
+      pt=pt+1
+ 35   pt=pt-1
+      if(pt.eq.pt0) goto 50
+      r=rstk(pt)
+      goto(36,36,37) r-500
+      if(r.eq.904) then
+         if (ids(2,pt).ne.0) then
+c     .     getf(  'c') case, close the file
+            mode(1)=0
+            call clunit(-ids(2,pt),buf,mode)
+         endif
+      endif
+      goto 35
+c     
+c     on depile une fonction
+ 36   call depfun(lunit,trace,first)
+      goto 35
+c     
+c     on depile un exec ou une pause
+ 37   call depexec(lunit,trace,first,pflag)
+      if(.not.pflag) goto 35
+c     
+ 50   continue
+c     if(pt.gt.0.and.rstk(pt).eq.1001) pt=pt+1
+      if(erecmode) then
+         if(errtyp.eq.0) then
+c     .     recoverable error
+            top=toperr
+            if(err2.eq.0) then
+               err1=n
+            else
+               err1=err2
+            endif
+            err=0
+         else
+            comp(1)=0
+            comp(3)=0
+            err=n
+         endif
+      else
+         comp(1)=0
+         comp(3)=0
+         err=n
+      endif
+      if(trace) call basout(io,lunit,' ')
+c     
+      return
+      end
+c     -------------------------
