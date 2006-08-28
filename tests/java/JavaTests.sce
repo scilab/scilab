@@ -46,9 +46,9 @@ function ExecJava(filename,buildref)
 	end
 
 	if MSDOS then
-	  commandline='..\Java\jre1.5.0_06\bin\java '+fname +' > '+repfilename;
+	  commandline='..\modules\jvm\bin\jre\bin\java '+fname +' > '+repfilename;
 	else
-	  commandline='../Java/jre1.5.0_06/bin/java '+fname +' > '+repfilename;
+	  commandline='../modules/jvm/bin/jre/bin/java '+fname +' > '+repfilename;
 	end
 
 	unix(commandline);
