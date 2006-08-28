@@ -44,7 +44,7 @@ extern void    /* 31  */ C2F(feval)();
 extern void    /* 32  */ C2F(bva)();
 /* 33  */ /* FREE */
 extern void    /* 34  */ C2F(gw_fileio)();
-extern void    /* 35  */ C2F(intarpack)();
+extern void    /* 35  */ C2F(gw_arpack)();
 extern void    /* 36  */ C2F(gw_special_functions1)();
 extern void    /* 37  */ C2F(gw_statistics)();
 extern void    /* 38  */ C2F(gw_randlib)();
@@ -118,7 +118,7 @@ static OpTab Interfaces[] ={
 	/* 32  */ {C2F(bva)},
   /* 33  */ {C2F(matus2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
-	/* 46  */ {C2F(intarpack)},
+	/* 46  */ {C2F(gw_arpack)},
 	/* 36  */ {C2F(gw_special_functions1)},
 	/* 37  */ {C2F(gw_statistics)},
   /* 38  */ {C2F(gw_randlib)},
