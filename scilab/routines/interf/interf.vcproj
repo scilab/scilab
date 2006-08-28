@@ -217,6 +217,34 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_besselh.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_besseli.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_besselj.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_besselk.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_bessely.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_beta.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_legendre.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
