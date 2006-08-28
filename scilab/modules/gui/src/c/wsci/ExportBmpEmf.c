@@ -9,6 +9,7 @@ extern void SetCurrentFigureWindows(integer win);
 extern void Setscig_buzyState(int state);
 extern HDC TryToGetDC(HWND hWnd);
 extern void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
+extern struct BCG * getWindowXgcNumber( integer i );
 /*-----------------------------------------------------------------------------------*/
 int Interface_XS2BMP(int figurenum,char *filename)
 {

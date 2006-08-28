@@ -1,13 +1,14 @@
 /*------------------------------------------------------------------------*/
 /* file: sci_xs2bmp.c                                                     */
 /* Copyright INRIA 2006                                                   */
-/* Authors : Fabrice Leray, Jean-Baptiste Silvy, Allan Cornet             */
+/* Authors :  Allan Cornet                                                */
 /* desc : interface for xs2bmp routine                                    */
 /*------------------------------------------------------------------------*/
 
 #include "sci_xs2bmp.h"
 #include "../../gui/src/c/wsci/ExportBmpEmf.h"
-
+/*-----------------------------------------------------------------------------------*/
+extern int IsAScalar(int RhsNumber);
 /*-----------------------------------------------------------------------------------*/
 int sci_xs2bmp( char * fname, unsigned long fname_len )
 {
