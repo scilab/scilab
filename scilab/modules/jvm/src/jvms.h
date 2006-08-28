@@ -2,29 +2,20 @@
 /* INRIA 2006 */
 /* Allan CORNET*/
 /*-----------------------------------------------------------------------------------*/ 
-#define JRE_PATH "/Java/jre1.5.0_06"
+#ifndef __JVMS__
+#define __JVMS__
 /*-----------------------------------------------------------------------------------*/ 
+#include "jni.h"
+#include "jvm_common.h"
 #ifdef _MSC_VER
-	#ifdef EXPORT_LIBJVM_DLL
-		#define IMPORT_EXPORT_LIBJVM_DLL __declspec(dllexport)
-	#else
-		#define IMPORT_EXPORT_LIBJVM_DLL __declspec(dllimport)
-	#endif
-#else
-	#define IMPORT_EXPORT_LIBJVM_DLL   extern
+  #include <windows.h>
 #endif
+#include <string.h>
+#include "machine.h"
+/*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_LIBJVM_DLL int StartJVMs(char *SCILAB_PATH);
+IMPORT_EXPORT_LIBJVM_DLL int TerminateJVMs(void);
+/*-----------------------------------------------------------------------------------*/ 
+#endif /* __JVMS__ */
+/*-----------------------------------------------------------------------------------*/ 
 
-#ifdef _MSC_VER
-	#define IMPORT_DLL __declspec(dllimport)
-#else
-	#define IMPORT_DLL   extern
-#endif
-/*-----------------------------------------------------------------------------------*/ 
-#ifdef _MSC_VER
-	#define PATH_SEPARATOR ';'
-#else /* UNIX */
-	#define PATH_SEPARATOR ':'
-#endif
-
-#define USER_CLASSPATH "."
-/*-----------------------------------------------------------------------------------*/ 

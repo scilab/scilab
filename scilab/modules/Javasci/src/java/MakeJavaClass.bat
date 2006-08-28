@@ -1,5 +1,5 @@
 @echo off
-SET JAVAC="../../../../Java/jdk1.5.0_06/bin/javac.exe"
+SET JAVAC="../../../jvm/bin/jdk/bin/javac.exe"
 rem Compilation des classes Java d'interfaces
 
 %JAVAC% -classpath ..\..\..\..\bin -d ..\..\..\..\bin BadDataArgumentException.java

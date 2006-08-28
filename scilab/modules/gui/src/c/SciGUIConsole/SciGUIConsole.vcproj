@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../../Java/jdk1.5.0_06/include;../../../../../Java/jdk1.5.0_06/include/win32"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../jvm/bin/jdk/include;../../../../jvm/bin/jdk/include/win32"
 				PreprocessorDefinitions="EXPORT_SCIGUICONSOLE_DLL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -76,7 +76,7 @@
 				OutputFile="..\..\..\..\..\bin\SciGUIConsole.dll"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
-				ImportLibrary="..\..\..\..\..\Java\bin\SciGUIConsole.lib"
+				ImportLibrary="..\..\..\..\..\libs\SciGUIConsole.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -135,7 +135,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../../Java/jdk1.5.0_06/include;../../../../../Java/jdk1.5.0_06/include/win32"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../jvm/bin/jdk/include;../../../../jvm/bin/jdk/include/win32"
 				PreprocessorDefinitions="EXPORT_SCIGUICONSOLE_DLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -170,7 +170,7 @@
 				ModuleDefinitionFile=""
 				OptimizeForWindows98="1"
 				SupportUnloadOfDelayLoadedDLL="true"
-				ImportLibrary="..\..\..\..\..\Java\bin\SciGUIConsole.lib"
+				ImportLibrary="..\..\..\..\..\libs\SciGUIConsole.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -225,6 +225,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\classes\MakeJavaClass.bat"
+			>
+		</File>
+		<File
+			RelativePath=".\classes\SciGUIConsole.java"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
