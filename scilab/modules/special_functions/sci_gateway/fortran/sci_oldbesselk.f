@@ -1,21 +1,21 @@
-c     SCILAB function : besseli, fin = 1
-c     Copyright INRIA
-      subroutine intsbesseli(fname)
+c     SCILAB function : besselk, fin = 3
+      subroutine intsbesselk(fname)
 c     
       character*(*) fname
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr, sadr
       integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
-      double precision infinity
-      double precision alpha,EXPARG
-      data EXPARG/709.0D0/
+      double precision alpha,inf,un
+      data un/1.0d0/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
       rhs = max(0,rhs)
 c     
+      inf=un/(1.0d0-un)
+
       if(.not.checkrhs(fname,2,3)) return
       if(.not.checklhs(fname,1,1)) return
 c     
@@ -90,16 +90,15 @@ c
       nn5=1
       
       do 10 i=0,n2*m2-1
-            call ribesl(stk(lr2+i),alpha,nb,ice,stk(lw5),ncalc)
-            if(ncalc.ne.nb) then
-               if(ncalc.lt.0.and.ice.eq.1) then
-                  call dset(m1*n1,infinity(0.0d0),stk(lw4+i),n2*m2)
-                  goto 10
-               endif
-               call error(24)
-               return
+         if (ice.eq.1.and.abs(stk(lr2+i)).gt.698.0d0) then
+            call dset(m1*n1,0.0D0,stk(lw4+i),n2*m2)
+         else
+            call rkbesl(stk(lr2+i),alpha,nb,ice,stk(lw5),ncalc)
+            if(ncalc.lt.nb) then
+               call dset((nb-ncalc),inf,stk(lw5+ncalc),1)
             endif
             call unsfdcopy(m1*n1,stk(lw5+nb1),1,stk(lw4+i),n2*m2)
+         endif
  10   continue
 c     
       if(lhs .ge. 1) then
@@ -110,4 +109,3 @@ c     --------------output variable: b
       endif
       return
       end
-      

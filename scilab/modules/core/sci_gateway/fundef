@@ -100,7 +100,7 @@
 #include "../../arpack/sci_gateway/arpack.fundef"
 
 #define  IN_specfun  36
-#include "../../../../routines/interf/specfun.fundef"  
+#include "../../special_functions/sci_gateway/special_functions1.fundef"  
 
 #define  IN_dcd  37
 #include "../../statistics/sci_gateway/statistics.fundef"
@@ -109,7 +109,7 @@
 #include "../../randlib/sci_gateway/randlib.fundef"
 
 #define  IN_otherspecfun  39
-#include "../../../../routines/interf/otherspecfun.fundef" 
+#include "../../special_functions/sci_gateway/special_functions2.fundef"  
 
 #ifdef WITH_TK
 #define  IN_tclsci  40

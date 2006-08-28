@@ -40,6 +40,7 @@
 
 #pragma comment(lib,"../../libs/control_f.lib")
 
+#pragma comment(lib,"../../libs/special_functions_f.lib")
 #pragma comment(lib,"../../libs/linear_algebra_f.lib")
 #pragma comment(lib,"../../libs/elementaries_functions_f.lib")
 #pragma comment(lib,"../../libs/gui_f.lib")

@@ -213,74 +213,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\otherspecfun.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_besselh.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_besseli.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_besselj.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_besselk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_bessely.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_beta.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_calerf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_dlgamma.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gamma.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_legendre.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_lgamma.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_oldbesseli.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_oldbesselj.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_oldbesselk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_oldbessely.c"
-				>
-			</File>
-			<File
-				RelativePath=".\specfun.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -295,10 +227,6 @@
 			</File>
 			<File
 				RelativePath="matdsr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\specfun.h"
 				>
 			</File>
 			<File
@@ -359,19 +287,11 @@
 			>
 		</File>
 		<File
-			RelativePath=".\otherspecfun.fundef"
-			>
-		</File>
-		<File
 			RelativePath=".\polelm.fundef"
 			>
 		</File>
 		<File
 			RelativePath=".\ric.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\specfun.fundef"
 			>
 		</File>
 		<File

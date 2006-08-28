@@ -2,7 +2,10 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../stack-c.h"
+#ifdef _MSC_VER
+	#include <Windows.h>
+#endif
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *x,int *id, double *pqa, int *ipqa, int *ierror);
 /*-----------------------------------------------------------------------------------*/

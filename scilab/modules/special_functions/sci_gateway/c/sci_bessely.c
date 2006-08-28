@@ -2,14 +2,14 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(msgs)(int *n, int* ierr);
 extern void C2F(dset)(int *n, double *a,double *x,int *ix);
-extern void  C2F(dbeskv) (double *x,int* nx, double *alpha, int *na, int *kode,double *r, double *w, int *ierr);
-extern void  C2F(zbeskv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
+extern void  C2F(dbesyv) (double *x,int* nx, double *alpha, int *na, int *kode,double *r, double *w, int *ierr);
+extern void  C2F(zbesyv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*-----------------------------------------------------------------------------------*/
-int sci_besselk(char *fname,unsigned long fname_len)
+int sci_bessely(char *fname,unsigned long fname_len)
 /* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
@@ -20,13 +20,14 @@ int sci_besselk(char *fname,unsigned long fname_len)
 
   static int *Lstk    = C2F(vstk).lstk-1;
 
+ 
   CheckRhs(2,3);
-
-  kode = 1;
+  kode = 1; /* ignored for real cases */
   if (Rhs==3) { /* normalized bessel required */
     GetRhsVar(3,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
     kode = (int)*stk(l1)+1;
   }
+
 
   GetRhsVar(1,"d",&m1,&n1,&l1); /* get alpha */
   r1=l1>Lstk[Bot]; /* true if the variable has been passed by reference */
@@ -34,11 +35,11 @@ int sci_besselk(char *fname,unsigned long fname_len)
   GetRhsCVar(2,"d",&it2,&m2,&n2,&l2,&l2i); /* get x */
   r2=l2>Lstk[Bot];/* true if the variable has been passed by reference */
   
-  if (m1*n1 == 0) { /*besseli([],x) */
+  if (m1*n1 == 0) { /*bessely([],x) */
     LhsVar(1)=1;
     return 0;
   }
-  if (m2*n2 == 0) { /*besseli(alpha,[]) */
+  if (m2*n2 == 0) { /*bessely(alpha,[]) */
     LhsVar(1)=2;
     return 0;
   }
@@ -66,8 +67,8 @@ int sci_besselk(char *fname,unsigned long fname_len)
     lpos=2;
   }
 
-  if (m1*n1 == 1) { /*besseli(scalar,matrix) */
-    double wr[2],wi[2];
+  if (m1*n1 == 1) { /*bessely(scalar,matrix) */
+    double wr[3],wi[3];
     mr=m2;
     nr=n2;    
     if (r2) { 
@@ -82,37 +83,39 @@ int sci_besselk(char *fname,unsigned long fname_len)
     nx=m2*n2;
     na=1;
     if (itr==0)
-      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),wr,&ierr);
     else
-      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
   }
-  else if (m2*n2 == 1) { /* besseli(matrix,scalar) */
-    int lwr,lwi;
+  else if (m2*n2 == 1) { /* bessely(matrix,scalar) */
+    int lwr,lwi,nw;
     mr=m1;
     nr=n1;   
     CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
     nx=1;
     na=m1*n1;
-    CreateCVar(lpos+2,"d",&itr,&nx,&na,&lwr,&lwi);
+    nw=3*na;
+    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&lwr,&lwi);
     if (itr==0)
-      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
     else
-      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
 
     LhsVar(1)=lpos+1;
   }
-  else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* besseli(row,col) or besseli(col,row) */
-    int un=1;
+  else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* bessely(row,col) or bessely(col,row) */
+    int un=1,nw;
     mr=m2*n2;
     nr=m1*n1;
     CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
     nx=m2*n2;
     na=m1*n1;
-    CreateCVar(lpos+2,"d",&itr,&un,&na,&lwr,&lwi);
+    nw=3*na;
+    CreateCVar(lpos+2,"d",&itr,&un,&nw,&lwr,&lwi);
     if (itr==0)
-      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),stk(lwr),&ierr);
     else
-      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode, stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
 
     LhsVar(1)=lpos+1;
   }
@@ -133,9 +136,9 @@ int sci_besselk(char *fname,unsigned long fname_len)
     nx=mr*nr;
     na=-1;
     if (itr==0)
-      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+      C2F(dbesyv) (stk(l2),&nx,stk(l1),&na,&kode,stk(lr),wr,&ierr);
     else
-      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
+      C2F(zbesyv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
  
   }
   if (ierr==2) {
@@ -163,8 +166,6 @@ int sci_besselk(char *fname,unsigned long fname_len)
      C2F(msgs)(&ierr,&un);
     }
  }
- 
-
   return 0;
 }  
 /*-----------------------------------------------------------------------------------*/

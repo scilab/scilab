@@ -45,10 +45,10 @@ extern void    /* 32  */ C2F(bva)();
 /* 33  */ /* FREE */
 extern void    /* 34  */ C2F(gw_fileio)();
 extern void    /* 35  */ C2F(intarpack)();
-extern void    /* 36  */ C2F(specfun)();
+extern void    /* 36  */ C2F(gw_special_functions1)();
 extern void    /* 37  */ C2F(gw_statistics)();
 extern void    /* 38  */ C2F(gw_randlib)();
-extern void    /* 39  */ C2F(otherspfunlib)();
+extern void    /* 39  */ C2F(gw_special_functions2)();
 
 #ifdef WITH_TK
 extern void    /* 40  */ C2F(gw_tclsci)();
@@ -119,10 +119,10 @@ static OpTab Interfaces[] ={
   /* 33  */ {C2F(matus2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(intarpack)},
-	/* 36  */ {C2F(specfun)},
+	/* 36  */ {C2F(gw_special_functions1)},
 	/* 37  */ {C2F(gw_statistics)},
   /* 38  */ {C2F(gw_randlib)},
-  /* 39  */ {C2F(otherspfunlib)},
+  /* 39  */ {C2F(gw_special_functions2)},
   /* 40  */ {TCLINTERF},
 	/* 41  */ {C2F(lstelmi)},
 	/* 42  */ {PVMINTERF},

@@ -2,7 +2,7 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(msgs)(int *n, int* ierr);
 extern void  C2F(zbeshv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, int *K, double *rr,double *ri, double *wr, double *wi, int *ierr);

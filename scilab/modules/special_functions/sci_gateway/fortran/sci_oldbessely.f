@@ -2,7 +2,7 @@ c     SCILAB function : bessely, fin = 4
       subroutine intsbessely(fname)
 c     
       character*(*) fname
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr, sadr
       integer topk,rhsk,topl

@@ -1,13 +1,13 @@
-c     SCILAB function : gamma, fin = 6
-      subroutine intslgamma(fname)
+c     SCILAB function : lgamma, fin = 5
+      subroutine intsgamma(fname)
 c     
       character*(*) fname
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr, sadr
       integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
-      double precision dlgama
+      double precision dgammacody
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -27,18 +27,20 @@ c     checking variable x (number 1)
          return
       endif
 
-*** message for Serge : here you well use the Cody 's log(gamma)
-*      So I have only commented the following line (needed if one use the
-*      log(gamma) func from Slatec)
+*** modif bruno : reused Cody 's gamma (waiting final decision...)
+*      So I have commented the following line (needed when using the
+*      gamma func from Slatec)
 c$$$      if (setslatecjmp().ne.0) then
 c$$$         buf='Slatec fatal error'
 c$$$         call error(999)
 c$$$         return
 c$$$      endif
-*** end bruno s' modif      
+      
       do 10 i=0,n1*m1-1
-         stk(lr1+i)=dlgama(stk(lr1+i))
+         stk(lr1+i)=dgammacody(stk(lr1+i))
  10   continue
+***end bruno 's modif
 c     
       return
       end
+      

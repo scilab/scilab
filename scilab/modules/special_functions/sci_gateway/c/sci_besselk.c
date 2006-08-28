@@ -2,20 +2,19 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void C2F(msgs)(int *n, int* ierr);
 extern void C2F(dset)(int *n, double *a,double *x,int *ix);
-extern void  C2F(dbesiv) (double *x,int* nx, double *alpha, int *na, int *kode,double *r, double *w, int *ierr);
-extern void  C2F(zbesiv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
+extern void  C2F(dbeskv) (double *x,int* nx, double *alpha, int *na, int *kode,double *r, double *w, int *ierr);
+extern void  C2F(zbeskv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*-----------------------------------------------------------------------------------*/
-int sci_besseli(char *fname,unsigned long fname_len)
+int sci_besselk(char *fname,unsigned long fname_len)
 /* Author Serge Steer, Copyright INRIA 2005 */
-     
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;
   int r1,r2,na,nx,kode,lpos;
-  int isint, ispos ,i,t;
+  int ispos ,i;
   int un=1,nl2,ierr;
   double zero=0.0;
 
@@ -46,15 +45,9 @@ int sci_besseli(char *fname,unsigned long fname_len)
   /* determine if the result is real or complex */
   itr=it2;
   if (itr==0) {
-    isint=1; ispos=1;
-    for (i=0;i<m1*n1;i++) {
-      t=(int)*stk(l1+i);
-      if (t != *stk(l1+i)) {isint=0;break;}
-    }
-    if (isint==0) {
-      for (i=0;i<m2*n2;i++) {
-	if (*stk(l2+i) < 0.0) {ispos=0;break;}
-      }
+    ispos=1;
+    for (i=0;i<m2*n2;i++) {
+      if (*stk(l2+i) < 0.0) {ispos=0;break;}
     }
     if (ispos==0) itr=1;
   }
@@ -89,39 +82,37 @@ int sci_besseli(char *fname,unsigned long fname_len)
     nx=m2*n2;
     na=1;
     if (itr==0)
-      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
     else
-      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
   }
   else if (m2*n2 == 1) { /* besseli(matrix,scalar) */
-    int lwr,lwi,nw;
+    int lwr,lwi;
     mr=m1;
     nr=n1;   
     CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
     nx=1;
     na=m1*n1;
-    nw=2*na;
-    CreateCVar(lpos+2,"d",&itr,&nx,&nw,&lwr,&lwi);
+    CreateCVar(lpos+2,"d",&itr,&nx,&na,&lwr,&lwi);
     if (itr==0)
-      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
     else
-      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
 
     LhsVar(1)=lpos+1;
   }
   else if ((m1==1 && n2==1)|| (n1==1 && m2==1)) { /* besseli(row,col) or besseli(col,row) */
-    int un=1,nw;
+    int un=1;
     mr=m2*n2;
     nr=m1*n1;
     CreateCVar(lpos+1,"d",&itr,&mr,&nr,&lr,&li);
     nx=m2*n2;
     na=m1*n1;
-    nw=2*na;
-    CreateCVar(lpos+2,"d",&itr,&un,&nw,&lwr,&lwi);
+    CreateCVar(lpos+2,"d",&itr,&un,&na,&lwr,&lwi);
     if (itr==0)
-      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),stk(lwr),&ierr);
     else
-      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),stk(lwr),stk(lwi),&ierr);
 
     LhsVar(1)=lpos+1;
   }
@@ -142,9 +133,9 @@ int sci_besseli(char *fname,unsigned long fname_len)
     nx=mr*nr;
     na=-1;
     if (itr==0)
-      C2F(dbesiv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
+      C2F(dbeskv) (stk(l2),&nx,stk(l1),&na, &kode,stk(lr),wr,&ierr);
     else
-      C2F(zbesiv) (stk(l2),stk(l2i),&nx,stk(l1),&na,&kode,stk(lr),stk(li),wr,wi,&ierr);
+      C2F(zbeskv) (stk(l2),stk(l2i),&nx,stk(l1),&na, &kode,stk(lr),stk(li),wr,wi,&ierr);
  
   }
   if (ierr==2) {

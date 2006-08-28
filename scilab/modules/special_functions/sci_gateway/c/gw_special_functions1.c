@@ -1,10 +1,10 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
-#include "specfun.h"
+#include "gw_special_functions1.h"
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
-	#include "../os_specific/win_mem_alloc.h"
+	#include "MALLOC.h"
 	extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -28,7 +28,7 @@ static SpecialFunctionsTable Tab[]={
   {C2F(sci_calerf),"calerf"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(specfun)(void)
+int C2F(gw_special_functions1)(void)
 {
 	Rhs = Max(0, Rhs);
 

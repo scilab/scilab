@@ -2,7 +2,7 @@
 /* INRIA */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern double F2C(dgammacody)(double *);
 extern double F2C(betaln)(double *, double *);

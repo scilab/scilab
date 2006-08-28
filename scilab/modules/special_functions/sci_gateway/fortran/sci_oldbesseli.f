@@ -1,19 +1,22 @@
-c     SCILAB function : besselj, fin = 2
-      subroutine intsbesselj(fname)
+c     SCILAB function : besseli, fin = 1
+c     Copyright INRIA
+      subroutine intsbesseli(fname)
 c     
       character*(*) fname
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr, sadr
       integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
-      double precision alpha
+      double precision infinity
+      double precision alpha,EXPARG
+      data EXPARG/709.0D0/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
       rhs = max(0,rhs)
 c     
-      if(.not.checkrhs(fname,2,2)) return
+      if(.not.checkrhs(fname,2,3)) return
       if(.not.checklhs(fname,1,1)) return
 c     
 c     checking variable alpha (number 1)
@@ -64,23 +67,39 @@ c     checking variable x (number 2)
             return
          endif
  02      continue
+         
 c
+      if(rhs.eq.3) then
+c     checking variable ize (number 3)
+         if(.not.getscalar(fname,top,top-rhs+3,lr3)) return
+         ice=stk(lr3)
+         if(ice.ne.1.and.ice.ne.2) then 
+            err=3
+            call error(44)
+            return
+         endif
+      else
+         ice=1
+      endif
+c     cross variable size checking
+c     
+
       if(.not.cremat(fname,top+1,0,n2*m2,n1*m1,lw4,lwc4)) return
 
       if(.not.cremat(fname,top+2,0,1,nb,lw5,lwc5)) return
       nn5=1
       
       do 10 i=0,n2*m2-1
-         call rjbesl(stk(lr2+i),alpha,nb,stk(lw5),ncalc)
-         if(ncalc.ne.nb) then
-            if (nbcalc.eq.-1) then
+            call ribesl(stk(lr2+i),alpha,nb,ice,stk(lw5),ncalc)
+            if(ncalc.ne.nb) then
+               if(ncalc.lt.0.and.ice.eq.1) then
+                  call dset(m1*n1,infinity(0.0d0),stk(lw4+i),n2*m2)
+                  goto 10
+               endif
                call error(24)
                return
-            else
-               call msgs(4,0)
             endif
-         endif
-         call unsfdcopy(m1*n1,stk(lw5+nb1),1,stk(lw4+i),n2*m2)
+            call unsfdcopy(m1*n1,stk(lw5+nb1),1,stk(lw4+i),n2*m2)
  10   continue
 c     
       if(lhs .ge. 1) then
@@ -91,4 +110,4 @@ c     --------------output variable: b
       endif
       return
       end
-
+      
