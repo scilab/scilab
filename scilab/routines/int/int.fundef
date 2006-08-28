@@ -7,7 +7,9 @@
 {"uint16",		IN_intelm,	7,	3},
 {"uint8",		IN_intelm,	8,	3},
 {"mgeti",		IN_intelm,	9,	3},
+/* 10 not used */
 {"%i_mput",		IN_intelm,	11,	3},
+/* 12 not used */
 {"%i_abs",		IN_intelm,	13,	3},
 {"%i_diag",		IN_intelm,	14,	3},
 {"%i_triu",		IN_intelm,	15,	3},
