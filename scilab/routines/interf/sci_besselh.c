@@ -7,7 +7,7 @@
 extern void C2F(msgs)(int *n, int* ierr);
 extern void  C2F(zbeshv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, int *K, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*-----------------------------------------------------------------------------------*/
-int intbesselh(char *fname,unsigned long fname_len)
+int sci_besselh(char *fname,unsigned long fname_len)
 /* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,/*l2r,*/l2i,mr,nr,itr,lr,li,lwi,lwr,rhs1;

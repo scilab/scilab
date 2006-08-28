@@ -9,7 +9,7 @@ extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *x
 static double return_an_inf();
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax);
 /*-----------------------------------------------------------------------------------*/
-int intlegendre(char *fname,unsigned long fname_len)
+int sci_legendre(char *fname,unsigned long fname_len)
 {
   /*
    *   Interface onto the (Slatec) dxleg.f code. 

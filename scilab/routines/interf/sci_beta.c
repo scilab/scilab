@@ -7,7 +7,7 @@
 extern double F2C(dgammacody)(double *);
 extern double F2C(betaln)(double *, double *);
 /*-----------------------------------------------------------------------------------*/
-int intbeta(char *fname,unsigned long fname_len)
+int sci_beta(char *fname,unsigned long fname_len)
 {
   /*
    *   z = beta(x, y)

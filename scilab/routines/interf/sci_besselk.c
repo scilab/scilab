@@ -9,7 +9,7 @@ extern void C2F(dset)(int *n, double *a,double *x,int *ix);
 extern void  C2F(dbeskv) (double *x,int* nx, double *alpha, int *na, int *kode,double *r, double *w, int *ierr);
 extern void  C2F(zbeskv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*-----------------------------------------------------------------------------------*/
-int intbesselk(char *fname,unsigned long fname_len)
+int sci_besselk(char *fname,unsigned long fname_len)
 /* Author Serge Steer, Copyright INRIA 2005 */
 {
   int m1,n1,l1,m2,n2,it2,l2,l2r,l2i,mr,nr,itr,lr,li,lwi,lwr;

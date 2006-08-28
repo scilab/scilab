@@ -12,22 +12,22 @@
 #include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern jmp_buf slatec_jmp_env; 
-extern int intbesselh(char *fname,unsigned long fname_len);
-extern int intbesseli(char *fname,unsigned long fname_len);
-extern int intbesselj(char *fname,unsigned long fname_len);
-extern int intbesselk(char *fname,unsigned long fname_len);
-extern int intbessely(char *fname,unsigned long fname_len);
-extern int intbeta(char *fname,unsigned long fname_len);
-extern int intlegendre(char *fname,unsigned long fname_len);
+extern int sci_besselh(char *fname,unsigned long fname_len);
+extern int sci_besseli(char *fname,unsigned long fname_len);
+extern int sci_besselj(char *fname,unsigned long fname_len);
+extern int sci_besselk(char *fname,unsigned long fname_len);
+extern int sci_bessely(char *fname,unsigned long fname_len);
+extern int sci_beta(char *fname,unsigned long fname_len);
+extern int sci_legendre(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 static TabF Tab[]={ 
-  {intlegendre, "legendre"},
-  {intbeta, "beta"},
-  {intbesseli,"besseli"},
-  {intbesselj,"besselj"},
-  {intbesselk,"besselk"},
-  {intbessely,"bessely"},
-  {intbesselh,"besselh"}
+  {sci_legendre, "legendre"},
+  {sci_beta, "beta"},
+  {sci_besseli,"besseli"},
+  {sci_besselj,"besselj"},
+  {sci_besselk,"besselk"},
+  {sci_bessely,"bessely"},
+  {sci_besselh,"besselh"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(otherspfunlib)(void)

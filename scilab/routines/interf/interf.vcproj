@@ -241,7 +241,43 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_calerf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_dlgamma.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gamma.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_legendre.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lgamma.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_oldbesseli.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_oldbesselj.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_oldbesselk.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_oldbessely.c"
+				>
+			</File>
+			<File
+				RelativePath=".\specfun.c"
 				>
 			</File>
 			<File
@@ -259,6 +295,10 @@
 			</File>
 			<File
 				RelativePath="matdsr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\specfun.h"
 				>
 			</File>
 			<File
