@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mput</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mput"> writes  byte or word in a given binary format</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mput(x [,type,fd])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of floating point or integer type numbers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar. The <VERB>fd</VERB> parameter returned by the function.  Default value is -1 which stands for the last (<VERB>mopen</VERB>) opened file.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. Give the binary format used to write all the entries of x.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The <VERB>mput</VERB> function writes data to the output specified by the
+    stream parameter <VERB>fd</VERB>. Data is written at the
+    position at which the file pointer is currently pointing and 
+    advances the indicator appropriately. 
+  </P>
+    <P>
+    The <VERB>type</VERB> parameter is a conversion specifier which may be set to any of the
+    following flag characters (with default value &quot;l&quot;):
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&quot;l&quot;,&quot;i&quot;,&quot;s&quot;,&quot;ul&quot;,&quot;ui&quot;,&quot;us&quot;,&quot;d&quot;,&quot;f&quot;,&quot;c&quot;,&quot;uc&quot;">
+        <SP>: for  writing respectively a long, an int, a short, an unsigned long, an unsigned int, an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files ( in little-endian mode). This default swapping mode can be suppressed by adding a flag in the <VERB>mopen</VERB> function.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;..l&quot; or &quot;..b&quot;">
+        <SP>: It is also possible to write in little-endian or big-endian mode  by adding a 'l' or 'b' character at the end of a type specification. For example &quot;db&quot; will write a double in big-endian mode.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+  filen = 'test.bin';
+  mopen(filen,'wb');
+  mput(1996,'l');mput(1996,'i');mput(1996,'s');mput(98,'c');
+// force little-endian 
+  mput(1996,'ll');mput(1996,'il');mput(1996,'sl');mput(98,'cl');
+// force big-endian 
+  mput(1996,'lb');mput(1996,'ib');mput(1996,'sb');mput(98,'cb');
+//
+  mclose();
+  mopen(filen,'rb');
+  if 1996<>mget(1,'l') then pause,end
+  if 1996<>mget(1,'i') then pause,end
+  if 1996<>mget(1,'s') then pause,end
+  if   98<>mget(1,'c') then pause,end
+  // force little-endian
+  if 1996<>mget(1,'ll') then pause,end
+  if 1996<>mget(1,'il') then pause,end
+  if 1996<>mget(1,'sl') then pause,end
+  if   98<>mget(1,'cl') then pause,end
+  // force big-endian 
+  if 1996<>mget(1,'lb') then pause,end
+  if 1996<>mget(1,'ib') then pause,end
+  if 1996<>mget(1,'sb') then pause,end
+  if   98<>mget(1,'cb') then pause,end
+  //
+  mclose();
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mseek</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtell</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

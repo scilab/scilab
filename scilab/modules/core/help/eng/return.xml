@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>return</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="return"> return or resume execution and copy some local variables</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>return</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x1,..,xn]=return(a1,..,an)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>...</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    In a function <VERB>return</VERB> stops the execution of the function,
+    <VERB>[..]=return(..)</VERB> stops the execution of the function and put the
+    local variables <VERB>ai</VERB> in calling environnement under names
+    <VERB>xi</VERB>.</P>
+    <P>
+    In <VERB>pause</VERB> mode, it allows to return to upper level
+    <VERB>[..]=return(..)</VERB> returns to upper level and put the local variables
+    <VERB>ai</VERB> in calling environnement under names <VERB>xi</VERB>.</P>
+    <P>
+    In an <VERB>execstr</VERB> called by a function <VERB>[..]=return(..)</VERB> stops
+    the execution of the function and put the local variables 
+    <VERB>ai</VERB> in calling environnement under names <VERB>xi</VERB>.</P>
+    <P><VERB>resume</VERB> is equivalent to <VERB>return</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>abort</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>break</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>with_texmacs</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
+  <SHORT_DESCRIPTION name="with_texmacs"> Checks if Scilab has been called by texmacs
+ </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r=with_texmacs()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns <VERB>%t</VERB> if Scilab as been  been called by TeXmacs</P>
+  </DESCRIPTION>
+</MAN>

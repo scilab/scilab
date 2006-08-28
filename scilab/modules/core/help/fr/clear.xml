@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>clear  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="clear"> suppression de variables  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>clear a  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Cette commande supprime des variables non-protégées. Elle supprime de l&apos;environnement les variables dont les noms sont spécifiés.
+    Sans argument <VERB>clear</VERB> supprime toutes les variables sauf celles qui ont été protégées par <VERB>predef</VERB>. La succession des commandes <VERB>predef(0)</VERB> et <VERB>clear</VERB> supprime toutes les variables. 
+  </P>
+  <P>
+    Habituellement, les variables protégées sont les librairies standard et les variables dont le nom commence par le caractère &quot;%&quot;.
+  </P>
+  <P>
+    Notez la syntaxe particulière :  <VERB>clear a</VERB> et non <VERB>clear(a)</VERB>. Notez aussi que <VERB>a=[]</VERB> ne supprime pas <VERB>a</VERB> mais affecte à <VERB>a</VERB> une matrice vide.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>predef</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>who</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

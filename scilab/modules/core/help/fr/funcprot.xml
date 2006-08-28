@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>funcprot</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="funcprot"> switch scilab functions protection mode</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>prot=funcprot()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>funcprot(prot)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>prot</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer with possible values 0,1,2</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Scilab functions are variable, funcprot allows the user to specify
+    what scilab do when such  variables are redefined.
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="*">
+        <SP>If prot==0  nothing special is done</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP>If prot==1  scilab issues a warning message when a function is redefined (default mode)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP>If prot==2 scilab issues an error when a function is redefined</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+funcprot(1)
+deff('[x]=foo(a)','x=a')
+deff('[x]=foo(a)','x=a+1')
+foo=33
+funcprot(0)
+deff('[x]=foo(a)','x=a')
+deff('[x]=foo(a)','x=a+1')
+foo=33
+ ]]>
+  </EXAMPLE>
+</MAN>

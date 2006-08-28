@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>errcatch</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="errcatch"> error trapping</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>errcatch(n [,'action'] [,'option'])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>errcatch()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>action, option</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>errcatch</VERB> gives an &quot;action&quot; (error-handler)  to be 
+    performed when an error of type <VERB>n</VERB> occurs.
+    <VERB>n</VERB> has the following meaning:
+  </P>
+    <P>
+    if <VERB>n&gt;0</VERB>, <VERB>n</VERB> is the error number to trap
+  </P>
+    <P>
+    if <VERB>n&lt;0</VERB>  all errors are to be trapped
+  </P>
+    <P><VERB>action</VERB> is one of the following character strings:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&quot;pause&quot;">
+        <SP>: a pause is executed when trapping the error. This option is useful for debugging purposes. Use <VERB>whereami()</VERB> to get informations on the current context.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;continue&quot;">
+        <SP>: next instruction in the function or exec files is executed, current instruction is ignored. It is possible to check if an error has occured using the <VERB>iserror</VERB> function. Do not forget to clear the error using the <VERB>errclear</VERB> function as soon as possible  This option is useful for error recovery. In many cases, usage of <VERB> errcatch(n,&quot;continue&quot;,..)</VERB> can be replaced by the use of <VERB>execstr</VERB> function.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;kill&quot;">
+        <SP>: default mode, all intermediate functions are killed, scilab goes back to the level 0 prompt.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;stop&quot;">
+        <SP>: interrupts the current Scilab session (useful when  Scilab is called from an external program).</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P><VERB>option</VERB> is the character string <VERB>'nomessage'</VERB> for killing
+    error message.</P>
+    <P>
+    To set back default mode, enter <VERB>errcatch(-1,&quot;kill&quot;)</VERB> or similarly
+    <VERB>errcatch(-1)</VERB>.</P>
+    <P>
+    Then called in a scilab function the <VERB>errcatch</VERB> is automatically
+    reset to the default mode when the function returns.</P>
+
+    <P><VERB>errcatch()</VERB> is an obsolete equivalent of <VERB>errcatch(-1)</VERB>.</P>
+
+  </DESCRIPTION>
+  <SECTION label="Remark">
+    <P>  <VERB>errcatch</VERB> is obsolete. 
+ Use <LINK>try</LINK> or <VERB>execstr(...,'errcatch')</VERB>  instead of <VERB>errcatch</VERB> when
+ possible.</P>
+  </SECTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>try</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errclear</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>iserror</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>whereami</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

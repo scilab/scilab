@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>intppty</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Nov 1999</DATE>
+  <SHORT_DESCRIPTION name="intppty"> set interface argument passing properties</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>funs=intppty()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>intppty(fun)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer an interface number (see funptr)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>funs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector, vector of interface number (see funptr)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The interface programs may be written in 2 different ways for the mode
+    of function argument passing.</P>
+    <P>
+    In the first and default way, the arguments are passed by value.
+    With the following syntax:</P>
+    <VERBATIM>
+<![CDATA[
+foo(A,1+2)
+   ]]>
+    </VERBATIM>
+    <P>
+    the argument associated with <VERB>A</VERB> will be passed by value (a copy
+    of <VERB>A</VERB> is made before <VERB>foo</VERB> is called, and
+    the argument associated with <VERB>1+2</VERB> will be passed by value.</P>
+    <P>
+    In
+    the second way arguments may be passed be reference if there are
+    &quot;named arguments&quot; (no copy of the variable value is
+    done). <VERB>intppty(fun)</VERB> with <VERB>fun&gt;0</VERB> tells Scilab that the
+    interface with number <VERB>fun</VERB> can handle arguments passed by
+    reference. With the following syntax:</P>
+    <VERBATIM>
+<![CDATA[
+foo(A,1+2)
+   ]]>
+    </VERBATIM>
+    <P>
+    the argument associated with <VERB>A</VERB> will be passed by reference, and
+    the argument associated with <VERB>1+2</VERB> will be passed by value.</P>
+    <P>
+    Warning, declaring that the interface with number
+    <VERB>fun</VERB> can handle arguments passed by reference if it is not the
+    case should produce unpredictable results.</P>
+    <P><VERB>intppty(fun)</VERB> with <VERB>fun&lt;0</VERB> suppress this property
+    for the interface <VERB>-fun</VERB>.</P>
+    <P><VERB>intppty()</VERB> returns the vector of interfaces which handle
+    arguments passed by reference.</P>
+    <P>
+    This function may be useful for dynamically loaded interface (see
+    addinter).</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>funptr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

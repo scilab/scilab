@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>type  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="type"> type d&apos;une variable  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[i]=type(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : objet Scilab
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>type(x)</VERB> renvoie un entier donnant le code numérique du type de <VERB>x</VERB> définit comme suit :
+  </P>
+ 
+  <P>
+     1 
+    :  matrice réelle ou complexe
+  </P>
+  <P>
+     2 
+    :  matrice polynomiale
+  </P>
+  <P>
+     4 
+    :  matrice booléenne
+  </P>
+  <P>
+     5
+    :  matrice creuse
+  </P>
+  <P>
+     6
+    :  matrice creuse booléene
+  </P>
+  <P>
+     8
+    :  matrice d&apos;entiers codés sur 1, 2 ou 4 octets
+  </P>
+  <P>
+     9
+    :  matrice de "handle" sur les objets graphiques
+  </P>
+  <P>
+     10 
+    :  matrice de chaînes de caractères
+  </P>
+  <P>
+     11 
+    :  fonction non-compilée
+  </P>
+  <P>
+     13 
+    :  fonction compilée
+  </P>
+  <P>
+     14 
+    :  fonction d&apos;une librairie
+  </P>
+  <P>
+     15 
+    :  liste
+  </P>
+  <P>
+     16 
+    :  liste typée (tlist)
+  </P>
+   <P>
+     17
+    :  mlist
+  </P>
+  <P>
+     128
+    : pointeur
+  </P>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>disp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="disp"> displays variables</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>disp(x1,[x2,...xn])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    displays <VERB>xi</VERB> with the current format. <VERB>xi</VERB>'s are arbitrary
+    objects (matrices of constants, strings, functions, lists, ...)</P>
+    <P>
+    Display of objects defined by <VERB>tlist</VERB> may be overloaded by the
+    definition of a function. This function must have no output argument a
+    single input argument ant it's name is formed as follow
+    <VERB>%&lt;tlist_type&gt;_p</VERB> where <VERB>%&lt;tlist_type&gt;</VERB> stands for the first
+    entry of the tlist type component.</P>
+    <P>
+      The <LINK>lines</LINK> function may be used to control the ouput.
+      </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+disp([1 2],3)
+deff('[]=%t_p(l)','disp(l(3),l(2))')
+disp(tlist('t',1,2))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lines</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>print</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tlist</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

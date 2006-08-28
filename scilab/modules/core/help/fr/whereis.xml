@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>what  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="whereis"> nom de la librairie contenant une fonction  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[librname]=whereis(function-name)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Renvoie une chaîne de caractères contenant le nom de la librairie contenant
+    la fonction <VERB>function-name</VERB>. 
+    Le chemin d&apos;accès à la librairie peut être obtenu avec la fonction <VERB>&quot;librname&quot;</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>lib</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

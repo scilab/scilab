@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ieee  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="ieee"> détermine le mode d&apos;exception IEEE pour les calculs  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mod=ieee()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ieee(mod)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>mod  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : un entier valant 0,1 ou 2
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>ieee()</VERB> renvoie le mode d&apos;exception IEEE courant pour les calculs en virgule flottante.
+    </P>
+    <DESCRIPTION_INDENT>
+
+      <DESCRIPTION_ITEM  label='0'> 
+	<SP>
+	  : les exceptions produisent une erreur
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='1'> 
+	<SP>
+	  : les exceptions produisent un warning
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='2'> 
+	<SP>
+	  :  les exceptions produisent Inf ou Nan
+	</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+      <VERB>ieee(mod)</VERB> choisit le mode d&apos;exception ieee courant pour les calculs en virgule flottante.
+    </P>
+    <P>
+      La valeur initiale au lancement de Scilab est 0.
+    </P>
+
+  </DESCRIPTION>
+  <SECTION label='REMARQUES'>
+    <SP>
+      Certaines exceptions IEEE générées dans certains algorithmes provenant de
+      librairies ne sont pas prises en compte par les modes <VERB>ieee</VERB>
+      pour l&apos;instant.
+    </SP>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+    ieee(1);1/0
+    ieee(2);1/0,log(0)
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>errcatch</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

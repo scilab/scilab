@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fort</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fort"> Fortran or C user routines call</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>// long form 'out' is present</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[y1,...,yk]=fort(&quot;ident&quot;,x1,px1,&quot;tx1&quot;,...,xn,pxn,&quot;txn&quot;,  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>                 &quot;out&quot;,[ny1,my1],py1,&quot;ty1&quot;,...,[nyl,myl],pyl,&quot;tyl&quot;)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>// short form : no 'out' parameter</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[y1,....,yk]=fort(&quot;ident&quot;,x1,...,xn)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>&quot;ident&quot;  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix or string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pxi, pyi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>txi, tyi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string <VERB>&quot;d&quot;</VERB>, <VERB>&quot;r&quot;</VERB>, <VERB>&quot;i&quot;</VERB>  or <VERB>&quot;c&quot;</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Interactive call of Fortran (or C) user program from Scilab. The
+    routine must be previously linked with Scilab. This link may be done:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>with Scilab &quot;<VERB>link</VERB>&quot; command (incremental &quot;soft&quot; linking) during the Scilab session.(see <VERB>link</VERB>)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>by &quot;hard&quot; re-linking. Writing the routine call within Scilab routine <VERB>default/Ex-fort.f</VERB>, adding the entry point in the file <VERB>default/Flist</VERB> and then re_linking Scilab with the command <VERB>make bin/scilex</VERB>  in main Scilab directory.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    There are two forms of calling syntax, a short one and a long one. 
+    The short one will give faster code and an easier calling syntax but 
+    one has to write a small (C or Fortran) interface in order to make the
+    short form possible. The long one make it possible to call a Fortran 
+    routine (or a C one) whitout modification of the code but the syntax is more
+    complex and the interpreted code slower.
+  </P>
+    <P>
+    The meaning of each parameter is described now:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&quot;ident&quot;">
+        <SP>is the name of the called subroutine.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x1,...,xn">
+        <SP>are input variables (real matrices or strings) sent to the routine,</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="px1,...,pxn">
+        <SP>are the respective positions of these variables in the calling sequence of the routine <VERB>&quot;ident&quot;</VERB> and</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="tx1,...,txn">
+        <SP>are their types (<VERB>&quot;r&quot;</VERB>, <VERB>&quot;i&quot;</VERB>, <VERB>&quot;d&quot;</VERB> and <VERB>&quot;c&quot;</VERB>   for real (float) , integer, double precision and strings)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;out&quot;">
+        <SP>is a keyword used to separate input variables from output variables. when this key word is present it is assumes that  the long form will be used and when it is not prsent, the short form is used.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="[ny1, my1]">
+        <SP>are the size (# of rows and columns. For 'c' arguments,<VERB>m1*n1</VERB> is the number of charaters )  of output variables and</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="py1, ...">
+        <SP>are the positions of output variables (possibly equal to <VERB>pxi</VERB> ) in the calling sequence of the routine. The <VERB>pyi</VERB>'s integers must be in increasing order.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;ty1&quot;, ...">
+        <SP>are the Fortran types of output variables. The <VERB>k</VERB>  first output variables are put in <VERB>y1,..., yk</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    If an output variable coincides with an input variable
+    (i.e. <VERB>pyi=pxj</VERB> ) one can pass only its position <VERB>pyi</VERB> .
+    The size and type of <VERB>yi</VERB> are then the same as those of <VERB>xi</VERB>. 
+    If an output variable coincides with an input variable and one specify
+    the dimensions of the output variable <VERB>[myl,nyl]</VERB> must follow the
+    compatibility condition <VERB>mxk*nxk &gt;= myl*nyl</VERB>.</P>
+    <P>
+    In the case of short syntax , <VERB>[y1,....,yk]=fort(&quot;ident&quot;,x1,...,xn)</VERB>,
+    the input parameters <VERB>xi</VERB>'s and the name <VERB>&quot;ident&quot;</VERB> are sent to
+    the interface routine <VERB>Ex-fort</VERB>. This interface routine is then 
+    very similar to an interface (see the source code in the directory <VERB>SCIDIR/default/Ex-fort.f</VERB>).</P>
+    <P>
+    For example the following program:</P>
+    <VERBATIM>
+<![CDATA[
+ subroutine foof(c,a,b,n,m)
+ integer n,m
+ double precision a(*),b,c(*)
+ do 10 i=1,m*n 
+   c(i) = sin(a(i))+b
+ 10 continue
+ end
+
+link("foof.o","foof")
+a=[1,2,3;4,5,6];b= %pi;
+[m,n]=size(a);
+// Inputs:
+// a is in position 2 and double
+// b                3     double
+// n                4     integer
+// m                5     integer
+// Outputs:
+// c is in position 1 and double with size [m,n]
+c=fort("foof",a,2,"d",b,3,"d",n,4,"i",m,5,"i","out",[m,n],1,"d");
+   ]]>
+    </VERBATIM>
+    <P>
+    returns the matrix <VERB>c=2*a+b</VERB>.</P>
+    <P>
+    If your machine is a DEC Alpha, SUN Solaris or SGI you may have to change the 
+    previous command line <VERB>link(&quot;foo.o&quot;,&quot;foo&quot;) </VERB> by one of the followings:</P>
+    <VERBATIM>
+<![CDATA[
+link('foof.o -lfor -lm -lc','foof').
+link('foof.o -lftn -lm -lc','foof').
+link('foof.o -L/opt/SUNWspro/SC3.0/lib/lib77 -lm -lc','foof').
+   ]]>
+    </VERBATIM>
+    <P>
+    The same example coded in  C:</P>
+    <VERBATIM>
+<![CDATA[
+  void fooc(c,a,b,m,n) 
+ double a[],*b,c[];
+ int *m,*n;
+      { double sin();
+ int i;
+ for ( i =0 ; i < (*m)*(*n) ; i++) 
+        c[i] = sin(a[i]) + *b; 
+ }
+
+link("fooc.o","fooc","C") // note the third argument 
+a=[1,2,3;4,5,6];b= %pi;
+[m,n]=size(a);
+c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>c_link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>intersci</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

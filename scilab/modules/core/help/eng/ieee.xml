@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ieee</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="ieee"> set floating point exception mode</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mod=ieee()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ieee(mod)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>mod</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer scalar whose possible values are 0,1,or 2</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>ieee()</VERB> returns the current floating point exception mode.
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="0">
+        <SP>: floating point exception produce an error</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="1">
+        <SP>: floating point exception produce a warning</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="2">
+        <SP>: floating point exception procudes Inf or Nan</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P><VERB>ieee(mod)</VERB> sets the current floating point exception mode.</P>
+    <P>
+    The initial mode value is 0.</P>
+  </DESCRIPTION>
+  <SECTION label="Remarks">
+    <P>
+    Floating point exception arising inside some library algorithms are not yet handled by <VERB>ieee</VERB> modes.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+ieee(1);1/0
+ieee(2);1/0,log(0)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

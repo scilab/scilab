@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getversion</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2000</DATE>
+  <SHORT_DESCRIPTION name="getversion"> get Scilab version name</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>version=getversion()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[version,opts]=getversion()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>version</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>opts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of string with four entries :<VERB>[compiler,pvm,tk,ocaml]</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    return in <VERB>version</VERB> the Scilab version name and in
+    <VERB>opts</VERB> build options which can be used to determine if scilab
+    has been build with pvm, tk or ocaml.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+getversion()
+[version,opts]=getversion()
+ ]]>
+  </EXAMPLE>
+</MAN>

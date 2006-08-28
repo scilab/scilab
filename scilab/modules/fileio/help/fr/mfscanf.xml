@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mfscanf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1999</DATE>
+  <SHORT_DESCRIPTION name="mscanf"> interface to the C scanf function</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mfscanf"> interface to the C fscanf function</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="msscanf"> interface to the C sscanf function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[n,v_1,...v_n]=mfscanf([niter,]fd,format)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>L=mfscanf([niter,] fd,format)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[n,v_1,...v_n]=mscanf([niter,] format)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>L=mscanf([niter,]format)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[n,v_1,...v_m]=msscanf([niter,]str,format)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>L=msscanf([niter,] str,format)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab string describing the format to use to write the
+	    remaining operands.  The format operand follows, as close as
+	    possible, the C printf format operand syntax.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:The fd parameter returned by the function <VERB>mopen</VERB> is
+	    used as a file descriptor (it's a positive integer). The value -1
+	    refers to the  last opened file.</SP> 
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab string or string vector.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>niter</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer, the number of times the format as to
+	    be used.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer, the number of data read or -1 if EOL has been
+	    encountered before any datum has been read.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v_i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Each function reads characters, interprets them according to a
+	    format, and stores the results in its output arguments.  If more
+	    than $n$ output arguments are provided, the last ones
+	    <VERB>v_n+1,...v_m</VERB> are set to empty matrices.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>L</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: if all data are homogeneous they are stored in a unique vector 
+	    which is returned, otherwise subsequences of same data type are 
+	    stored in matrices and an <VERB>mlist</VERB> (with type
+	    <VERB>cblock</VERB>) containing all the built matrices is returned.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      The <VERB>mfscanf</VERB> function reads characters from the stream <VERB>fd</VERB>.</P>
+    <P>
+      The <VERB>mscanf</VERB> function reads characters from Scilab window.</P>
+    <P>
+      The <VERB>msscanf</VERB> function reads characters from the Scilab string <VERB>str</VERB>.</P>
+    <P>
+      The <VERB>niter</VERB> optional argument specifies how many time
+      the format has to used. One iteration produces one line in the
+      output matrix. If <VERB>niter==-1</VERB> the function iterates up
+      to the end of file. The <VERB>niter</VERB> default value is 1.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    //--    Simple use                                        --
+    //----------------------------------------------------------
+    s='1 1.3'  //a string
+    [n,a,b]=msscanf(s,"%i %e")
+    L=msscanf(s,"%i %e")
+
+    //--    Formats samples                                   --
+    //----------------------------------------------------------
+
+    msscanf(" 12\n",'%c%c%c%c') //scan characters
+
+    msscanf('0xabc','%x') //scan with hexadecimal format
+
+    msscanf('012345abczoo','%[0-9abc]%s')  //[] notation
+
+    // reading float and double
+    msscanf('4345.988','%g')-4345.988 // scan as float
+    msscanf('4345.988','%lg')-4345.988 // scan as double
+
+
+    //--    scanning multi-line data files                    --
+    //----------------------------------------------------------
+    //create a file with data
+    u=mopen(TMPDIR+'/foo','w');
+    t=(0:0.1:%pi)';mfprintf(u,"%6.3f %6.3f\n",t,sin(t))
+    mclose(u);
+
+    u=mopen(TMPDIR+'/foo','r'); // open the file for reading
+    //read the file line by line
+    [n,a,b]=mfscanf(u,'%e %e') //first line using mutiple LHS syntax
+    l=mfscanf(u,'%e %e')       //second one using single LHS syntax
+    //use niter to read 5 more lines
+    l=mfscanf(5,u,'%e %e')  
+
+    //use niter=-1 to read up to the end of file
+    l=mfscanf(-1,u,'%e %e')  
+
+    mclose(u); //close the file
+
+
+
+    //--    scanning multi-line  strings vectors              --
+    //----------------------------------------------------------
+
+    //use niter to scan a string vector
+    [n,Names,Ages]=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
+    D=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
+    typeof(D)
+    Names=D(:,1) //strings
+    Age=D(:,2)   //numerical values
+
+
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mseek</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtell</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getenv  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1994  </DATE>
+  <SHORT_DESCRIPTION name="getenv"> renvoie la valeur d&apos;une variable d&apos;environnement  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>env=getenv(str [, rep] )  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>str  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères contenant le nom de la variable d&apos;environnement rep : chaîne de caractères optionnelle. Quand elle est utilisée, <VERB>getenv</VERB> renvoie la valeur <VERB>rep</VERB> quand la variable d&apos;environnement <VERB>str</VERB> n&apos;existe pas. 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>env  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères contenant la valeur de la variable d&apos;environnement
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Renvoie la la valeur d&apos;une variable d&apos;environnement, quand celle-ci existe.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+ getenv('SCI')
+ getenv('FOO','foo') 
+ ]]></EXAMPLE>
+</MAN>

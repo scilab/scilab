@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fprintf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="fprintf"> Emulator of C language fprintf function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>fprintf(file,format,value_1,..,value_n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab string. Specifies a character string combining literal characters with conversion specifications.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>value_i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Specifies the data to be converted according to the format parameter.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of character strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>file</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab string specifying a file name or a logical unit number (see <VERB>file</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P> Obsolete function, use preferabily the <LINK>mfprintf</LINK> function
+      which is much more compatible with the C <VERB>fprintf</VERB> functionalities.</P>
+    <P>
+    The <VERB>fprintf</VERB> function converts, formats, and writes
+    its <VERB>value</VERB> parameters, under control of the <VERB>format</VERB>
+    parameter, to the file specified by its <VERB>file</VERB> parameter.
+  </P>
+    <P>
+    The <VERB>format</VERB> parameter is a character string that contains two
+    types of objects:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Literal characters">
+        <SP>: which are copied to the output stream.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="Conversion specifications">
+        <SP>: each of which causes zero or more items to be fetched from the <VERB>value</VERB> parameter list. see <VERB>printf_conversion</VERB> for details</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    If any <VERB>value</VERB>s remain after the entire <VERB>format</VERB> has been
+    processed, they are ignored.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+u=file('open','results','unknown') //open the result file
+t=0:0.1:2*%pi;
+for tk=t
+ fprintf(u,'time = %6.3f value = %6.3f',tk,sin(tk)) // write a line
+end
+file('close',u) //close the result file
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>print</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>format</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>disp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>printf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sprintf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

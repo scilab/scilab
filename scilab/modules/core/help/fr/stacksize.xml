@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>stacksize  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>October 1995  </DATE>
+  <SHORT_DESCRIPTION name="stacksize"> change la taille de la pile Scilab  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>stacksize(n)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>sz=stacksize()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier, la taille de pile désirée, en nombre de mots double-précision words
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sz  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur à deux composantes [taille_totale taille_utilisée] 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Scilab stocke les variables usuelles dans une pile <VERB>stk</VERB> (pour les variables globales voir <VERB>gstacksize</VERB>).
+     
+  </P>
+  <P>
+    <VERB>stacksize(n)</VERB> permet d&apos;augmenter ou de diminuer la taille de cette pile. La taille maximum dépend de la mémoire (physique ou virtuelle) restante.
+  </P>
+  <P>
+    Avec l&apos;argument <VERB>n</VERB> cette fonction peut maintenant
+    être utilisée n'importe où.
+  </P>
+  <P>
+    <VERB>sz=stacksize()</VERB> renvoie un vecteur à deux composantes contenant la taille
+    totale de la pile et la taille actuellement utilisée. Elle peut être utilisée n&apos;importe où.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>who</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>gstacksize</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

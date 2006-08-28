@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>host  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="host"> exécution d&apos;une commande Unix ou DOS  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>stat=host(command-name)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>command-name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères contenant les commandes à exécuter
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>stat  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un entier
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Envoie la chaîne <VERB>command-name</VERB> à l&apos;interpréteur de commande
+    (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
+    l&apos;interpréteur de commande.
+  </P>
+  <P>
+    <VERB>stat</VERB> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
+    alors le code de sortie de l&apos;interpréteur de commande.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    //creation d'un fontion pour recuperer la path courant
+    function wd=getdir()
+      if MSDOS then 
+        host('cd>'+TMPDIR+'\path');
+      else
+        host('pwd>'+TMPDIR+'/path');
+      end
+      wd=read(TMPDIR+'/path',1,1,'(a)')
+    endfunction
+    //appel de la fonction
+    wd=getdir()
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>edit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>manedit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>unix_g</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>unix_s</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>unix_w</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>unix_x</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

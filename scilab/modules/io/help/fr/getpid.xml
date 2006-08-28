@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getpid  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="getpid"> renvoie le numéro de processus de Scilab  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>id=getpid()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Renvoie le numéro de processus de Scilab sous forme d&apos;un entier.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+d='SD_'+string(getpid())+'_'
+ ]]></EXAMPLE>
+</MAN>

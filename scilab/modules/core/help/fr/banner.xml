@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>banner</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>28-Fev-2005</DATE>
+
+  <SHORT_DESCRIPTION name="banner">affiche la baniere scilab</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>banner()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>affiche la baniere scilab.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[clc();banner()
+]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xls_open</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>14-Mar-2005</DATE>
+  <SHORT_DESCRIPTION name="xls_open">Open an Excel file for reading</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>file_path</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a character string: the path of the Excel file.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>fd</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a number, the logical unit on the Excel stream.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>SST</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : A vector of all character strings which appear in the Excel sheets.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Sheetnames</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a vector of strings: the sheet names.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Sheetpos</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a vector of numbers: the position of the beginning of sheets in the
+	    Excel stream.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <P>This function first analyzes the ole2 data structure associated with the
+      given file to extract the Excel stream which is included in. After
+      that the Excel stream is saved in the <VERB>TMDIR</VERB> directory
+      and opened. The <VERB>fd</VERB> logical unit points to this temporary
+      file. Then the  first sheet in this stream is read to get the global informations
+      like number of sheets, sheet names <VERB>Sheetnames</VERB>, sheet
+      adresses within the stream <VERB>Sheetpos</VERB> and the
+      <VERB>SST</VERB> which contains all the strings used in the following
+      sheets.</P>
+     <P>The <VERB>fd</VERB> and <VERB>Sheetpos</VERB> data have to be passed to
+      <LINK>xls_read</LINK> to read the data sheets.</P>
+     <P>The <LINK>readxls</LINK> function can be used to read all an Excel file
+      in one function with a single function call.</P> 
+    <P> Warning only BIFF8 Excel files (last Excel file version) are handled  </P>
+
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   //Decode ole file, extract and open Excel stream
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/excel/Test1.xls')
+    //Read first data sheet
+    [Value,TextInd] = xls_read(fd,Sheetpos(1))
+    //close the excel stream
+    mclose(fd)
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xls_read</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>readxls</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Pierrick Mode'>
+    INRIA
+    </AUTHORS_ITEM>
+    <AUTHORS_ITEM label='Serge Steer'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>This function is based on the Microsoft ole2 file documentation
+      (http://chicago.sourceforge.net/devel/docs/ole/) and on Excel
+      stream description from OpenOffice (http://sc.openoffice.org/excelfileformat.pdf).</SP>
+  </BIBLIO>
+
+  <USED_FUNCTIONS>
+     <SP>The ripole-0.1.4 procedure (http://www.pldaniels.com/ripole)  is used
+      to extract the excel stream out of the ole file. </SP>
+  </USED_FUNCTIONS>
+</MAN>

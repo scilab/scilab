@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>global</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Mai 1999</DATE>
+  <SHORT_DESCRIPTION name="global"> Define global variable</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>global('nam1',...,'namn')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>global nam1 ... namn</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nam1,..., namn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: valid variable names</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Ordinarily, each Scilab function, has its
+    own local variables and can &quot;read&quot; all variables created in the base
+    workspace or by the calling functions. The <VERB>global</VERB> keyword allow to make
+    variables read/write across functions. Any assignment to that variable,
+    in any function, is available to all the other functions declaring
+    it <VERB>global</VERB>.</P>
+    <P>
+    If the global variable doesn't exist the first time you issue
+    the <VERB>global</VERB> statement, it will be initialized to the empty matrix.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//first: calling environnment and a function share a variable
+global a
+a=1
+deff('y=f1(x)','global a,a=x^2,y=a^2')
+f1(2)
+a
+//second: three functions share variables
+deff('initdata()','global A C ;A=10,C=30')
+deff('letsgo()','global A C ;disp(A) ;C=70')
+deff('letsgo1()','global C ;disp(C)')
+initdata()
+letsgo()
+letsgo1()
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>who</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>isglobal</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>clearglobal</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gstacksize</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>resume</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

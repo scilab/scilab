@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lines</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lines"> rows and columns used for display</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>lines([nl [,nc]])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ncl=lines()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nl : an integer, the number of lines for vertical paging control. If 0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>no vertical paging control is done.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer, the number of column of output. Used for formatting output</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ncl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a 1x2 vector [nc,nl]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>lines</VERB> handles Scilab display paging.</P>
+    <P><VERB>lines()</VERB> returns the vector [# columns, # rows] currently
+    used by Scilab for displaying the results.</P>
+    <P><VERB>lines(nl)</VERB> sets the number of displayed lines (before user is asked
+    for more) to <VERB>nl</VERB>.</P>
+    <P><VERB>lines(0)</VERB> disables vertical paging</P>
+    <P><VERB>lines(nl,nc)</VERB> changes also the size of the output to <VERB>nc</VERB>
+    columns.</P>
+    <P>
+    When Scilab is launched without -nw option, the <VERB>lines</VERB> parameters
+    are automatically set according to the output window size, these
+    parameters are also automaticaly modified when the window is resized.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>disp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>print</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

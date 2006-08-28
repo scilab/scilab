@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>file</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="file"> file management</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>file(action,unit)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[units [,typ [,nams [,mod [,swap]]]]] = file([unit])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file-name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, file name of the file to be opened</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>status</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, The status of the file to be opened</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;new&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: file must not exist new file (default)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;old&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: file must already exists.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;unknown&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: unknown status</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;scratch&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: file is to be deleted at end of session</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>access</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, The type of access to the file</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;sequential&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: sequential access (default)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;direct&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: direct access.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string,</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;formatted&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: for a   formatted file (default)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;unformatted&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: binary record.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>recl</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer,is the size of records in bytes when <VERB>access=&quot;direct&quot;</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>unit</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, logical unit descriptor of the opened file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>units</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector, logical unit descriptor of
+   the opened files. Units 1 5 and 6 are reserved by the system for
+   history file , input and output devices.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>typs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Character string vector, type (C or Fortran) of opened files.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nams</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Character string vector, pathnames of opened files.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mod</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: file opening mode. Formed by three digits abc</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>Fortran files</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>a</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: 0 stands for formatted and 1 for unformatted (binary)</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>b</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>0 stands for sequential acces and 1 for direct access</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>c</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: 0 stands for   &quot;new&quot;, 1 for  &quot;old&quot;, 2 for &quot;scratch&quot; and 3 for  &quot;unknown&quot;</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>C files</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <PARAM_INDENT>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>a</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: is 1 if file has been opened with a &quot;b&quot; (binary) mode</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>b</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: is 1 if file has been opened with a &quot;+&quot; (updating) mode</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                  <PARAM_ITEM>
+                    <PARAM_NAME>c</PARAM_NAME>
+                    <PARAM_DESCRIPTION>
+                      <SP>: 1 stands for &quot;r&quot; (read), 2 stands for &quot;w&quot; (write) and 3 for &quot;a&quot; (append)</SP>
+                    </PARAM_DESCRIPTION>
+                  </PARAM_ITEM>
+                </PARAM_INDENT>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>swap</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: automatic swap switch. swap=1 if automatic swap is on. swap is always 0 for Fortran files.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, error message number (see error), if open fails. If err is omitted an error message is issued.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>action</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is one of the following strings:</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;close&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: closes the file(s) given by the logical unit descriptors given in <VERB>units</VERB></SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;rewind&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: puts the pointer at beginning of file</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;backspace&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: puts the pointer at beginning of last record.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;last&quot;   </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: puts the pointer after last record.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    selects a logical unit <VERB>unit</VERB> and manages the file
+    <VERB>file-name</VERB>.</P>
+    <P><VERB>[unit [,err]]=file('open', file-name [,status] [,access [,recl]][,format])</VERB> 
+    allows to open a file with specified properties and to
+    get the associated unit number <VERB>unit</VERB>. This unit number may be
+    used for further actions on this file or as file descriptor in
+    <VERB>read</VERB>, <VERB>write</VERB>, <VERB>readb</VERB>, <VERB>writb</VERB>,<VERB>save</VERB>,
+    <VERB>load</VERB> function calls.</P>
+    <P><VERB>file(action,unit)</VERB> allows to close the file , or move the current
+    file pointer .</P>
+    <P><VERB>file()</VERB> returns the logical unit descriptors of the opened
+    files. So <VERB>file('close',file() )</VERB> closes all user opened files (C
+    or Fortran type).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+u=file('open',TMPDIR+'/foo','unknown')
+for k=1:4
+  a=rand(1,4)
+  write(u,a)
+end
+file('rewind',u)
+x=read(u,2,4)
+file('close',u)
+//
+u1=file('open',TMPDIR+'/foo','unknown')
+u2=mopen(TMPDIR+'/foo1','wb')
+[units,typs,nams]=file()
+file('close',u1);
+mclose(u2);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>load</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>writb</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>readb</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xgetfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

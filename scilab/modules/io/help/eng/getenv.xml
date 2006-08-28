@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>getenv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1994</DATE>
+  <SHORT_DESCRIPTION name="getenv"> get the value of an environment variable</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>env=getenv(str [, rep] )  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string specifying environment variable name rep : an optional character string. When this optional value  is used, the function <VERB>getenv</VERB> returns the value <VERB>rep</VERB> when the environment variable <VERB>str</VERB> is not found.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>env</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string which contain the environment variable value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Return the value of an environment variable if it exists.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ getenv('SCI')
+ getenv('FOO','foo') 
+ ]]>
+  </EXAMPLE>
+</MAN>

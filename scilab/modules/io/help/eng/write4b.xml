@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>write4b</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="write4b"> fortran file binary write</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>write4b(file-name,a [,rec])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file-name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string or integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rec</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of positive integers. the selected records for direct access. This vector size must be equal to the number of rows of <VERB>a</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    writes in binary format the matrix <VERB>a</VERB> in the file
+    <VERB>'filename'</VERB>. Matrix entries are  stored on 8 byte words</P>
+    <P>
+    For direct record access, file must have been previously opened using
+    <VERB>file</VERB> function to set the record_length. <VERB>file-name</VERB> must be
+    the result of the <VERB>file</VERB> function.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>readb</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read4b</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

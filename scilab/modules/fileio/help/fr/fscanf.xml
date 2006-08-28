@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fscanf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="fscanf"> Converts formatted input read on a file</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM> [v_1,...v_n]=fscanf (file,format)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:Specifies the format conversion.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>file</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:Specifies the input file name or file number.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The fscanf functions read character data on the file specified by the
+    <VERB>file</VERB> argument , interpret it according
+    to a format, and returns the converted results.  </P>
+    <P>
+    The format parameter contains conversion specifications
+    used to interpret the input.
+  </P>
+    <P>
+    The format parameter can contain
+    white-space characters (blanks, tabs, newline, or formfeed)
+    that, except in the following two cases, read the input up to the
+    next nonwhite-space character. Unless there is a match in the control
+    string, trailing white space (including a newline character) is not
+    read.
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>Any character except % (percent sign), which must match the next character of the input stream.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>A conversion specification that directs the conversion of the next input field. see <VERB>scanf_conversion</VERB> for details.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>printf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>scanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>with_javasci</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>2005</DATE>
+
+  <SHORT_DESCRIPTION name="with_javasci">Test si Scilab a ete construit avec
+  l'interface java</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r=with_javasci()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: un booleen</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Retourne <VERB>%t</VERB> si Scilab a ete construit avec l'interface
+    java ou <VERB>%f</VERB> si ce n'est pas le cas.</P>
+  </DESCRIPTION>
+</MAN>

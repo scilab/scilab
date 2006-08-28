@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>print</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="print"> prints variables  in a file</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>print('file-name',x1,[x2,...xn])   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    prints <VERB>xi</VERB> on file <VERB>'file-name'</VERB>
+    with the current format, i.e. the format used by scilab to display
+    the variables. All types of variables may be &quot;<VERB>print</VERB>&quot;'ed</P>
+    <P>
+    Note : <VERB>xi</VERB> must be a named variable, with expressions variable
+    name part of the display is unpredictable.</P>
+    <P><VERB>print(%io(2),...)</VERB> prints on Scilab's window. this syntax may be
+    used to display variables within a macro.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
+print(%io(2),a,p,l)
+write(%io(2),a)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>format</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>printf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>disp</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

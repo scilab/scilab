@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>error</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="error">envoi de message
+  d'erreur</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>error(message [,n])</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>error(n)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>error(n,pos)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>message</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: une chaîne de caractères. Le message à  visualiser.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Un entier, le nombre associé à  l'erreur.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>pos</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Un entier, paramétrant le message (voir
+          <VERB>error_table</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>La fonction <VERB>error</VERB> permet d'envoyer à  l'utilisateur un
+    message d'erreur et de gérer cette erreur. Par défaut <VERB>error</VERB>
+    termine l'éxecution courante et revient au niveau du prompt. Ce défaut
+    peut être changé en utilisant les fonctions <VERB>errcatch</VERB> et
+    <VERB>execstr(...,'errcatch')</VERB>.</P>
+
+    <P><VERB>error(message)</VERB> envoie à  l'utilisateur le message d'erreur
+    donné par la chaîne de caractères <VERB>message</VERB>. Le nombre associé
+    à  l'erreur est assigné à 10000.</P>
+
+    <P><VERB>error(message,n)</VERB> envoie à  l'utilisateur le message
+    d'erreur donné par la chaîne de caractères <VERB>message</VERB>. Le nombre
+    associé à  l'erreur est donné par <VERB>n</VERB>.</P>
+
+    <P>Certains messages d'erreur prédéfinis requièrent un paramètre entier,
+    (position de l'argument dans la liste d'appel de la fonction,...) (voir
+    <VERB>error_table</VERB>). Dans ce cas l'argument <VERB>pos</VERB> doit
+    contenir ce nombre entier : <VERB>error(n,pos)</VERB>. Dans les autres cas
+    l'argument <VERB>pos</VERB> est ignoré.</P>
+
+    <P>Voir la table des erreurs dans <LINK>error_table</LINK> .</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+error('Mon message')
+error(43)
+error(52,3)
+
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>warning</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

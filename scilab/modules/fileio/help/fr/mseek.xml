@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mseek</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mseek"> set current position in binary file.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mseek(n [,fd, flag])       </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:a positive scalar: The offset from origin in number of bytes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar. The <VERB>fd</VERB> parameter returned by the function <VERB>mopen</VERB>. -1 stands for last opened file. Default value is -1.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. specifies the origin. Default value 'set'.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The function <VERB>mseek()</VERB> sets the position of the next input or output operation
+    on  the stream <VERB>fd</VERB>. The new position is at
+    the signed distance given by <VERB>n</VERB> bytes from  the  beginning,  from
+    the current position, or from the end of the file, according  to the 
+    <VERB>flag</VERB> value which can be <VERB>'set'</VERB>, <VERB>'cur'</VERB> or <VERB>'end'</VERB>.</P>
+    <P><VERB>mseek()</VERB> allows the file position indicator to be set  beyond
+    the  end of the existing data in the file.  If data is later
+    written at this point, subsequent reads of data in  the  gap
+    will  return  zero  until  data is actually written into the
+    gap.  <VERB>mseek()</VERB>, by itself, does not extend the  size  of  the
+    file.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+file3='test3.bin'
+fd1= mopen(file3,'wb');
+for i=1:10, mput(i,'d'); end 
+mseek(0);
+mput(678,'d');
+mseek(0,fd1,'end');
+mput(932,'d');
+mclose(fd1)
+fd1= mopen(file3,'rb');
+res=mget(11,'d')
+res1=[1:11]; res1(1)=678;res1($)=932;
+if res1<>res ;write(%io(2),'Bug');end;
+mseek(0,fd1,'set');
+// trying to read more than stored data 
+res1=mget(100,'d',fd1);
+if res1<>res ;write(%io(2),'Bug');end;
+meof(fd1)
+mclearerr(fd1)
+mclose(fd1);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mseek</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtell</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

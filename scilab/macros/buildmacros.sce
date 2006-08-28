@@ -10,6 +10,7 @@ CurrentDirectory=pwd();
  "tdcs",
   ];
  
+ Directories=[Directories;"SCI/modules/core/macros"];        
  Directories=[Directories;"SCI/modules/linear_algebra/macros"];        
  Directories=[Directories;"SCI/modules/elementaries_functions/macros"];        
  Directories=[Directories;"SCI/modules/gui/macros"];        

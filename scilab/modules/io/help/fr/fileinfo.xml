@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fileinfo</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jun 1999</DATE>
+  <SHORT_DESCRIPTION name="fileinfo"> Provides information about a file</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x,ierr]=fileinfo(file)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the file pathname</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer vector of size 6 containing information or an empty matrix if file does not exist.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ierr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: error indicator, 0, if no error has occured</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    x=fileinfo(file) returns
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="x(1)">
+        <SP>: The file size</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(2)">
+        <SP>: The file mode</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(3)">
+        <SP>: The user id</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(4)">
+        <SP>: the group id</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(5)">
+        <SP>: The device number</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(6)">
+        <SP>: The date of last modification</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(7)">
+        <SP>: The date of last change</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(8)">
+        <SP>: The date of last access</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(9)">
+        <SP>: The device type (if inode device)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(10)">
+        <SP>: The blocksize for filesystem I/O</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(11)">
+        <SP>: The  number of blocks allocated</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(12)">
+        <SP>: The inode</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x(13)">
+        <SP>: The number of hard links</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="Reference">
+    <P>
+    This function is an interface to the C function stat.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+w=fileinfo(SCI+'/scilab.start')
+getdate(w(6))
+   ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getdate</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dispfiles</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>newest</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>isdir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>S. Steer INRIA</AUTHOR>
+</MAN>

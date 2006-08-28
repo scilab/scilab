@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>oldload</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="oldload"> load saved variable in 2.4.1 and previous formats</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>oldload('file-name' [,x1,...,xn])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file-name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: arbitrary Scilab variable name(s) given as strings.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The <VERB>oldload</VERB> function is obsolete and is retained only for
+    compatibility purpose.</P>
+    <P>
+    The <VERB>oldload</VERB> command can be used to reload in the Scilab session
+    variables previously saved in a file with the <VERB>save</VERB> command.</P>
+    <P><VERB>oldload('file-name')</VERB> loads the variables saved in file <VERB>'file-name'</VERB>.</P>
+    <P><VERB>oldload('file-name','x','y',...,'z')</VERB> loads only variables <VERB>x,y,...,z</VERB>
+    stored in file <VERB>'file-name'</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=eye(2,2);b=ones(a);
+oldsave(TMPDIR+'/vals.dat',a,b);
+clear a
+clear b
+oldload(TMPDIR+'/vals.dat','a','b');
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

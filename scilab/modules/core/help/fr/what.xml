@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>what</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>octobre 2005</DATE>
+
+  <SHORT_DESCRIPTION name="what">liste des primitives
+  Scilab</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>what()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[primitives,commandes]=what();</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>Liste des primitives et commandes de bas niveau.</P>
+
+    <P></P>
+  </DESCRIPTION>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>

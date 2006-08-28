@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lib</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Nov 2000</DATE>
+  <SHORT_DESCRIPTION name="lib"> library definition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>xlib = lib('lib-dir')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>lib-dir</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>lib-dir</VERB> is a character string defining a directory that contains
+    compiled Scilab function (<VERB>.bin</VERB>) files.</P>
+    <P>
+    In addition to these files <VERB>lib-dir</VERB> must have a file called
+    <VERB>names</VERB>, that contains the names of the functions defined in
+    <VERB>lib-dir</VERB>.  On success, all functions in <VERB>lib-dir</VERB> are
+    available from within Scilab.  They are loaded on demand when called
+    for the first time.</P>
+    <P>
+    Binary files can be created from within Scilab with the command
+    <VERB>save</VERB>.</P>
+    <P>
+    Scilab's standard libraries are defined using <VERB>lib</VERB> on the
+    <VERB>SCIDIR/macros/*</VERB> subdirectories.</P>
+    <P>
+    A library variable
+    usually is saved for later loading, either on-line or from the
+    user-specific startup file (see startup).</P>
+  </DESCRIPTION>
+  <SECTION label="Restrictions">
+    <P>
+    Scilab tacitly assumes that each xxxx.bin file defines a  variable named <VERB>xxxx</VERB>.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+//define some variables
+function z = myplus(x, y), z = x + y,endfunction
+function z = yourplus(x, y), x = x - y,endfunction
+A=1:10;
+
+//create the *.bin files in libdir
+libdir=TMPDIR
+save(libdir + '/myplus.bin', myplus);
+save(libdir + '/yourplus.bin', yourplus);
+save(libdir + '/A.bin', A);
+
+//create the name file
+mputl(['myplus';'yourplus';'A'],TMPDIR+'/names');
+
+//build the library containing myplus and yourplus
+xlib = lib(libdir+'/')
+
+//erase the variables
+clear myplus yourplus A
+
+//Automatic loading and execution
+myplus(1,2)
+
+A
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>library</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>genlib</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>deff</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>whereis</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

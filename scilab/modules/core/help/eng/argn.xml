@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>argn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="argn"> number of arguments in a function call</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[lhs [,rhs] ]=argn()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>lhs=argn(1)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>rhs=argn(2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    This function is used inside a function definition.
+    It gives the number of actual inputs <VERB>rhs</VERB>
+    and output <VERB>lhs</VERB> parameters passed to the function when the function is 
+    called. It is usually used in function definitions to deal with 
+    optional arguments.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>function</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>varargin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

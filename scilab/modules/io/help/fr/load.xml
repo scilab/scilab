@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>load</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="load"> load saved variable</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>load(filename [,x1,...,xn])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>load(fd [,x1,...,xn])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>filename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string containing the path of the file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a file descriptor given by a call to mopen</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xi</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: arbitrary Scilab variable name(s) given as strings.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>The <VERB>load</VERB> command can be used to reload in the Scilab session
+    variables previously saved in a file with the <VERB>save</VERB> command. If
+    the file contains graphic handle variables, the corresponding
+      <LINK>graphics_entities</LINK> are drawn.</P>
+
+    <P><VERB>load(filename)</VERB> loads the variables saved in file given by its
+    path <VERB>filename</VERB>.</P>
+    <P><VERB>load(fd)</VERB> loads the variables saved in file given by its
+    descriptor <VERB>fd</VERB>.</P>
+    <P><VERB>load(filename,'x','y')</VERB> or <VERB>load(fd,'x','y')</VERB> loads only
+    variables <VERB>x,y</VERB>.</P>
+    <P>Even if the binary file format has changed with 2.5 version,
+      <VERB>load(filename,...)</VERB> is able to read old format
+      files. Previous file format can be accessed for a while using function
+      oldsave ans oldload.</P>
+
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=eye(2,2);b=ones(a);
+save('vals.dat',a,b);
+clear a
+clear b
+load('vals.dat','a','b');
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>listvarinfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save_format</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>iserror  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="iserror"> test d&apos;occurrence d&apos;une erreur  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>iserror([n])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Vérifie si l&apos;erreur <VERB>n</VERB> a eu lieu (après un appel à
+    <VERB>errcatch</VERB>). <VERB>iserror</VERB> renvoie <VERB>1</VERB> si l&apos;erreur a eu lieu
+    et <VERB>0</VERB> sinon.
+  </P>
+  <P>
+    <VERB>n&gt;0</VERB> est le numéro de l&apos;erreur; toutes les erreurs sont testées si <VERB>n&lt;0</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>error</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>errcatch</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

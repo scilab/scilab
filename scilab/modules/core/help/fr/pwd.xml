@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>pwd  </TITLE>
+  <TYPE>Scilab command  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="pwd"> affiche le répertoire courant de Scilab  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="getcwd"> renvoie le répertoire courant de Scilab  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>pwd  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x=pwd()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x=getcwd()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+      <VERB>pwd</VERB> renvoie dans <VERB>ans</VERB> le répertoire courant de Scilab.
+      <VERB>x=pwd()</VERB> ou <VERB>x=getcwd()</VERB> renvoie dans <VERB>x</VERB> le répertoire courant de Scilab.
+    </P>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    pwd
+    x=pwd()
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>chdir</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>cd</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

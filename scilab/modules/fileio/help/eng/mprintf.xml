@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mprintf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Aug 1999</DATE>
+  <SHORT_DESCRIPTION name="mfprintf"> converts, formats, and writes  data to a file</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mprintf"> converts, formats, and writes  data to the main scilab window</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="msprintf"> converts, formats, and writes  data in a string</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mfprintf(fd,format,a1,...,an);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mprintf(format,a1,...,an);  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>str=msprintf(format,a1,...,an);  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar, file descriptor given by <VERB>mopen</VERB> (it's a positive integer). The value <VERB>-1</VERB> refers to the default file ( i.e the last opened file).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab string describing  the format to use to write  the  remaining  operands.  The format operand follows, as close as possible,  the C printf format operand syntax.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, string to be scanned.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a1,...,an</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Specifies the data to be converted and printed according to the format parameter.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The <VERB>mprintf</VERB>, <VERB>mfprintf</VERB>, and <VERB>msprintf</VERB> functions are interface for C-coded version of <VERB>printf</VERB>, <VERB>fprintf</VERB> and
+    <VERB>sprintf</VERB> functions.</P>
+    <P>
+    The <VERB>mprintf</VERB> function 
+    writes formatted operands to the standard Scilab output
+    (i.e the Scilab window). The  argument operands are formatted under control
+    of the format operand.</P>
+    <P>
+    The <VERB>mfprintf</VERB> function writes formatted operands to the file
+    specified by the file desciptor 
+    <VERB>fd</VERB>. The  argument operands are formatted under control
+    of the format operand.</P>
+    <P>
+    The <VERB>msprintf</VERB> 
+    writes formatted operands in its returned value (a Scilab string).
+    The  argument operands are formatted under control
+    of the format operand. Note that, in this case, the  escape
+    sequences (<VERB>&quot;\n, \t,..&quot;</VERB>) are treated as a normal sequence of
+    characters.</P>
+    <P>
+    All these functions may be used to output column vectors of numbers
+    and string vectors without an explicit loop on the elements. In that
+    case these functions iterates on the rows. The shortest vector gives
+    the number of time the format has to be iterated.</P>
+    <P>
+    An homogeneous sequence of identical type parameters can be
+    replaced by a matrix</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
+
+msprintf('%5.3f %5.3f',123,0.732)
+msprintf('%5.3f\n%5.3f',123,0.732)
+
+A=rand(5,2);
+// vectorized forms: the format directive needs 
+// two operand, each column of A is used as an operand. 
+// and the mprintf function is applied on each row of A 
+mprintf('%5.3f\t%5.3f\n',A)
+
+colors=['red';'green';'blue';'pink';'black'];
+RGB=[1 0 0;0 1 0;0 0 1;1 0.75 0.75;0 0 0];
+mprintf('%d\t%s\t%f\t%f\t%f\n',(1:5)',colors,RGB)
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mseek</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtell</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

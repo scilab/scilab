@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>getmemory</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>May 2005</DATE>
+
+  <SHORT_DESCRIPTION name="getmemory">returns free and total system memory</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[free, total]=getmemory()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>getmemory()</VERB> returns free system memory  (kilo-octets).</P>
+    <P><VERB>[free, total]=getmemory()</VERB> returns free and total system memory  (kilo-octets).</P>
+  </DESCRIPTION>
+
+ 
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>setenv</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>January 2005</DATE>
+
+  <SHORT_DESCRIPTION name="setenv">set the value of an environment
+  variable</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rep=setenv(name, value )</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>name</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Points to the name of an environment variable . (name is a
+          string)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>value</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Points to the value to be assigned to the environment
+          variable. (value is a string)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>rep</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: Returns %T if it is ok else %F.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>set the value of an environnment variable.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[ 
+ setenv('toto','example')
+ getenv('toto')
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getenv</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

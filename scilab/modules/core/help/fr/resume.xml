@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>resume  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="resume">  sortie d&apos;une fonction ou reprise d&apos;exécution, avec récupération de variables locales  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>resume  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x1,..,xn]=resume(a1,..,an)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Dans une fonction <VERB>resume</VERB> termine son exécution et
+    <VERB>[..]=resume(..)</VERB> renvoie les variables locales
+    <VERB>ai</VERB> dans l&apos;environnement appelant sous les noms <VERB>xi</VERB>.
+  </P>
+  <P>
+  </P>
+  <P>
+    En mode de <VERB>pause</VERB>, cela permet de reprendre l&apos;exécution et
+    <VERB>[..]=resume(..)</VERB> renvoie les variables locales
+    <VERB>ai</VERB> dans l&apos;environnement appelant sous les noms <VERB>xi</VERB>.
+  </P>
+  <P>
+    Utilisé dans l&apos;argument de <VERB>execstr</VERB> appelé dans une fonction <VERB>[..]=resume(..)</VERB> termine l&apos;exécution de la fonction et renvoie les variables locales <VERB>ai</VERB> dans l&apos;environnement appelant sous les noms <VERB>xi</VERB>.
+  </P>
+  <P>
+    <VERB>resume</VERB> est équivalent à <VERB>return</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>abort</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>break</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>macr2tree</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Mars 2004</DATE>
+  <SHORT_DESCRIPTION name="macr2tree">function to tree conversion</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>t=macr2tree(function-name)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>function-name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab macro</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab "tree"</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This primitive converts a compiled Scilab function <VERB>function-name</VERB>
+    into a tree (imbricated tlists)  which codes the internal representation of
+    the function. For use with <VERB>tree2code</VERB>.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+tree=macr2tree(cosh);
+txt=tree2code(tree,%T);
+write(%io(2),txt,'(a)');
+]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tree2code</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

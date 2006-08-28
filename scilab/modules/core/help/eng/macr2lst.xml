@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>macr2lst</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="macr2lst"> function to list conversion</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[txt]=macr2lst(function-name)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    This primitive converts a compiled Scilab function <VERB>function-name</VERB>
+    into a list which codes the internal representation of
+    the function. For use with <VERB>mac2for</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>macrovar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

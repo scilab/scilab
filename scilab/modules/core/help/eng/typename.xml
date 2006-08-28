@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>typename</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="typename"> associates a name to variable type</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[types [ [,names]]=typename()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>typename(name,type)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>types</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer column vector: the types codes of each defined data types.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>names</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of strings: the names associated to type codes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer: the type code of new data type.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string: the name associated to the type code</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The function and operator overloading make use of a formal name
+    associated to data types to form the name of the overloading function
+    (see overloading). The <VERB>typename</VERB> can be used to handle this
+    formal names for hard coded data types (the <VERB>tlist</VERB> or <VERB>mlist</VERB>
+    coded data types formal names are defined in an other way, see <VERB>overloading</VERB>).</P>
+    <P>
+    Called without right hand side argument, <VERB>typename</VERB> returns
+    informations on defined data types.</P>
+    <P>
+    Called with right hand side argument, <VERB>typename</VERB> associates a name
+    to a data type code.</P>
+    <P><VERB>typename('',type)</VERB> suppress the data type given by its code
+    <VERB>type</VERB> out of the table of known data types.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>type</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>typeof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>overloading</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tlist</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mlist</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

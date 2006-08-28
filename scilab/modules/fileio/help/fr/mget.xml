@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mget</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="mget"> reads  byte or word in a given binary format and convert to double</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mgeti"> reads  byte or word in a given binary format return an int type</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x=mget([n,type,fd])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x=mgeti([n,type,fd])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:a positive scalar: The number of items to be read.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar. The <VERB>fd</VERB> parameter returned by the function
+	    <VERB>mopen</VERB>. -1 stands for last opened file. Default value
+	    is -1.</SP> 
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. Give the binary format used to write all the entries of x.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of floating point or integer type numbers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      The <VERB>mget</VERB> function reads data in the input specified by the
+      stream parameter <VERB>fd</VERB> and returns a vector of floating point data.
+      The <VERB>mgeti</VERB> function reads data in the input specified by the
+      stream parameter <VERB>fd</VERB> and returns a vector of integer data.
+    </P>
+    <P>
+      Data is read at the position at which the file pointer is currently
+      pointing and advances the indicator appropriately.
+    </P>
+    <P>
+      The <VERB>type</VERB> parameter is a conversion specifier which may be set to any of the
+      following flag characters (with default value &quot;l&quot;):
+    </P>
+    <P> <BD>WARNING</BD>, when reading binary files under Windows to not forget to open
+      the file with the <VERB>b</VERB> option like
+      <VERB>fd1=mopen(file1,'rb')</VERB> if not the file will be interpreted as
+      text file and the bytes with value <VERB>13</VERB> will be interpreted as
+      newlines and ommitted. </P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&quot;l&quot;, &quot;i&quot;, &quot;s&quot;, &quot;ul&quot;,
+	&quot;ui&quot;, &quot;us&quot;, &quot;d&quot;, &quot;f&quot;,
+	&quot;c&quot;, &quot;uc&quot;"> 
+        <SP>: for reading respectively a long, an int, a short, an unsigned
+	  long, an unsigned int, an unsigned short, a double, a float, a char
+	  and an unsigned char. The bytes which are read are automatically
+	  swapped if necessary (by checking little-endian status). This default
+	  swapping mode can be suppressed by adding a flag in the
+	  <VERB>mopen</VERB> function. Format &quot;l&quot;, &quot;d&quot; and
+	  &quot;f&quot; are valid only with the <VERB>mget</VERB>
+	  function.</SP> 
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;..l&quot; or &quot;..b&quot;">
+        <SP>: It is also possible to read in little-endian or big-endian mode
+	  by adding a 'l' or 'b' character at the end of a type
+	  specification. For example &quot;db&quot; will read a double in
+	  big-endian mode.</SP> 
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    file1 = 'test1.bin';
+    file2 = 'test2.bin';
+    fd1=mopen(file1,'wb');
+    fd2=mopen(file2,'wb');
+    mput(1996,'ull',fd1);
+    mput(1996,'ull',fd2);
+    mclose(fd1);
+    mclose(fd2);
+
+    fd1=mopen(file1,'rb');
+    if 1996<>mget(1,'ull',fd1) ;write(%io(2),'Bug');end;
+    fd2=mopen(file2,'rb');
+    if 1996<>mget(1,'ull',fd2) ;write(%io(2),'Bug');end;
+    mclose(fd1);
+    mclose(fd2);
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mseek</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtell</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>debug  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="debug"> niveau de déboggage  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>debug(level-int)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>level-int=debug()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>level-int  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier  (entre 0 et 4)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Pour les valeurs 0,1,2,3,4 de <VERB>level-int</VERB> , <VERB>debug</VERB> définit différents niveaux de déboggage (pour les experts de Scilab !).
+  </P>
+  </DESCRIPTION>
+</MAN>

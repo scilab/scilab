@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>argn  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="argn"> nombre d&apos;arguments d&apos;appel d&apos;une fonction  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[lhs [,rhs] ]=argn()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>lhs=argn(1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>rhs=argn(2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Cette fonction est utilisée à l&apos;intérieur d&apos;une définition de fonction.
+    Elle donne le nombre effectif (au moment de l&apos;appel) d&apos;arguments d&apos;entrée <VERB>rhs</VERB>
+    et de sortie <VERB>lhs</VERB>. Elle permet d&apos;utiliser des arguments optionnels.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>varargin</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

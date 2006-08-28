@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>with_macros_source</TITLE>
+
+  <TYPE>Fonction Scilab </TYPE>
+
+  <DATE>2006</DATE>
+
+  <SHORT_DESCRIPTION name="with_macros_source">Teste si les sources des macros sont installées</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>r=with_macros_source()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Returns <VERB>%t</VERB> Teste si les sources des macros sont installées retourne alors
+    <VERB>%f</VERB> dans le cas contraire.</P>
+  </DESCRIPTION>
+</MAN>

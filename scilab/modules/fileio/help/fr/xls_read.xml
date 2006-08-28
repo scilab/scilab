@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xls_read</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>14-Mar-2005</DATE>
+  <SHORT_DESCRIPTION name="xls_read">read a sheet in an Excel file</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[Value,TextInd] = xls_read(fd,Sheetpos)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>fd</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a number, the logical unit on the Excel stream returned by <LINK>xls_open</LINK>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Sheetpos</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       :  a number: the position of the beginning of the sheet in the
+	    Excel stream. This position is one of those returned by <LINK>xls_open</LINK>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Value</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a matrix of numbers, the numerical data found in the sheet. The cell
+	    without numerical data are represented by <VERB>NaN</VERB> values.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>TextInd</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a matrix of indices with the same size as <VERB>Value</VERB>. The 0
+	    indices indicates that no string exists in the correspondin Excel
+	    cell. a positive index <VERB>i </VERB> points to the string
+	    <VERB>SST(i)</VERB>  where <VERB>SST</VERB>  is given by <LINK>xls_open</LINK>.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <P>
+     This function reads an Excel sheet given a logical unit on an Excel stream
+      ant the position of the beginning of the sheet within this stream. It
+      returns the numerical data and the strings contained by the Excel cells.
+     </P>
+     <P>The <LINK>readxls</LINK> function can be used to read all an Excel file
+      in one function with a single function call.</P> 
+    <P> Warning only BIFF8 Excel files (last Excel file version) are handled  </P>
+
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   //Decode ole file, extract and open Excel stream
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/demos/excel/Test1.xls')
+    //Read first data sheet
+    [Value,TextInd] = xls_read(fd,Sheetpos(1))
+    //close the excel stream
+    mclose(fd)
+  ]]></EXAMPLE>
+
+ 
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xls_open</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>readxls</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Pierrick Mode'>
+    INRIA
+    </AUTHORS_ITEM>
+    <AUTHORS_ITEM label='Serge Steer'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+    <SP>This function is based on Excel
+      stream description from OpenOffice (http://sc.openoffice.org/excelfileformat.pdf).</SP>
+  </BIBLIO>
+
+
+
+  <USED_FUNCTIONS>
+     <SP>
+     This unction uses the xls.c file which can be found in a Scilab source
+      version in the directory SCIDIR/routines/sound 
+     </SP>
+  </USED_FUNCTIONS>
+</MAN>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>clearfun</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="clearfun"> remove primitive.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>clearfun('name')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>clearfun('name')</VERB> removes the primitive <VERB>'name'</VERB> from the set of
+    primitives (built-in functions) .
+    This function allows to rename a primitive : a Scilab 
+    primitive can be replaced by a user-defined function. For experts...</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>newfun</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>funptr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

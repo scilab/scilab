@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>getos</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Septembre 2004</DATE>
+
+  <SHORT_DESCRIPTION name="getos">retourne le nom et la version de
+  O.S</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>OS=getos()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[OS,Version]=getos()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>getos </VERB>retourne le nom et la version de O.S</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[OS=getos()
+[OS,version]=getos()
+  ]]></EXAMPLE>
+
+  <AUTHOR>A.C</AUTHOR>
+</MAN>

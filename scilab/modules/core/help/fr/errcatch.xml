@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>errcatch  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="errcatch"> interception d&apos;erreur  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>errcatch(n [,&apos;action&apos;] [,&apos;option&apos;])   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>errcatch()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>n  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : entier
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>action, option  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : chaînes de caractères
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>errcatch</VERB> définit une action à effectuer quand une erreur de
+      numéro <VERB>n</VERB> est rencontrée. <VERB>n</VERB> a la signification
+      suivante:
+    </P>
+    <P>
+      si <VERB>n&gt;0</VERB>, <VERB>n</VERB> est le numéro de l&apos;erreur à
+      intercepter
+    </P>
+    <P>
+      si <VERB>n&lt;0</VERB>, toutes les erreurs sont à intercepter
+    </P>
+    <P>
+      <VERB>action</VERB> est une des chaînes de caractères suivantes :
+    </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label='&quot;pause&quot;'> 
+	<SP>
+	  : l&apos;interception de l&apos;erreur conduit à une pause. Cette
+	  option est utile en phase de mise au point. On peut utiliser
+	  <VERB>whereami()</VERB> pour obtenir des informations sur le contexte
+	  courant.
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='&quot;continue&quot;'> 
+	<SP>
+	  : l&apos;exécution de la fonction ou du script continue,
+	  l&apos;instruction courante est tout simplement ignorée. Il est
+	  possible de vérifier si une erreur s&apos;est produite avec la
+	  fonction <VERB>iserror</VERB>. Ne pas oublier d&apos;effacer
+	  l&apos;erreur avec la fonction <VERB>errclear</VERB> le plus tôt
+	  possible. Cette option est utile pour remédier aux erreurs. Dans la
+	  plupart des cas, l&apos;usage de <VERB>
+	    errcatch(n,&quot;continue&quot;,..)</VERB> peut être remplacé par
+	  l&apos;usage de la fonction <VERB>execstr</VERB>.  
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='&quot;kill&quot;'> 
+	<SP>
+	  : mode par défaut, tous les niveaux intermédiaires sont abandonnés,
+	  et Scilab revient à l&apos;invite de commande de niveau 0.
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='&quot;stop&quot;'> 
+	<SP>
+	  : interrompt la session Scilab courante (très utile quand Scilab est
+	  exécuté à partir d&apos;un programme externe).
+	</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+      <VERB>option</VERB> est la chaîne de caractères
+      <VERB>&apos;nomessage&apos;</VERB> pour supprimer les messages
+      d&apos;erreurs.
+    </P>
+    <P>
+      Pour revenir au mode par défaut, taper
+      <VERB>errcatch(-1,&quot;kill&quot;)</VERB> ou bien
+      <VERB>errcatch(-1)</VERB>. 
+    </P>
+    <P>
+      Lorsque <VERB>errcatch</VERB> est appelée à l&apos;intérieur d&apos;une
+      fonction, le mode d&apos;interception d&apos;erreur est automatiquement
+      réinitialisé au mode par défaut lorsque l&apos;on sort de la fonction. 
+    </P>
+    <P><VERB>errcatch()</VERB> est un equivalent obsolete de <VERB>errcatch(-1)</VERB>.</P>
+  </DESCRIPTION>
+  <SECTION label='REMARQUES'>
+    <P> <VERB>errcatch</VERB> est obsolete.
+      Il est préférable d'utiliser  <LINK>try</LINK> ou <VERB>execstr(...,'errcatch')</VERB>  à
+      la place de <VERB>errcatch</VERB> lorsque c'est possible.
+    </P>
+  </SECTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>errclear</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>iserror</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>whereami</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

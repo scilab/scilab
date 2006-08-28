@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>typename  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="typename"> associe un nom à un type de variable  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[types [ [,names]]=typename()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>typename(name,type)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>types  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur colonne d&apos;entiers, les codes des types de variables
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>names  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur colonne de chaînes de caractères, les noms associés à chaque code
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>type  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier, le code d&apos;un nouveau type de variable 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères, le nom associé au nouveau type 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    La surcharge des opérateurs et primitives utilise des noms formels associés à
+    chaque type de variable pour former les noms des fonctions de surcharge
+    (voir <VERB>overloading</VERB>). <VERB>typename</VERB> peut être utilisé pour gérer ces noms pour les types natifs de variables (les noms formels pour les types <VERB>tlist</VERB> ou <VERB>mlist</VERB> sont définis autrement, pour ceci voir <VERB>overloading</VERB>).
+  </P>
+  <P>
+    Sans argument d&apos;entrée, <VERB>typename</VERB> renvoie les informations associées aux types de données déjà définis.
+  </P>
+  <P>
+    Avec les arguments d&apos;entrée, <VERB>typename</VERB> associe un nom à un code de type de variable.
+  </P>
+  <P>
+    <VERB>typename(&apos;&apos;,type)</VERB> supprime le type de donnée défini par le code passé dans <VERB>type</VERB> dans la table des types de variables connus.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>overloading</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mlist</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>where  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>May 1994  </DATE>
+  <SHORT_DESCRIPTION name="where"> donne l&apos;arborescence d&apos;appel courante  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[linenum,mac]=where()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>linenum  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur colonne d&apos;entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>mac  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur colonne de chaînes de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Renvoie <VERB>linenum</VERB> et <VERB>mac</VERB> tels que l&apos;instruction courante a été appelée par la ligne linenum(1) de la fonction mac(1),
+    mac(1) a été appelée par la ligne linenum(2) de la fonction mac(2)
+    et ainsi de suite.
+  </P>
+  <P>
+    mac(i) est en général le nom d&apos;une fonction mais il peut être égal à
+    &quot;exec&quot; ou &quot;execstr&quot; si l&apos;instruction est dans un script ou dans une chaîne argument de execstr.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>whereami</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

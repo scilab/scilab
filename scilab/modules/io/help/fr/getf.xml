@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getf  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="getf"> chargement de fonctions à partir d&apos;un fichier  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>getf(file-name [,opt])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+   <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>filename  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    <SP>: chaîne de caractères</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>opt  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     <SP>: chaîne de caractères optionnelle. Si opt==&quot;c&quot;, les
+	    fonctions sont &quot;compilées&quot; pour accélérer leur exécution
+	    (par défaut). Si opt==&quot;n&quot;, les fonctions ne sont pas
+	    &quot;compilées&quot;. Si opt==&quot;p&quot;,les fonctions sont &quot;compilées&quot; et préparées pour les statistiques d&apos;appel (voir <VERB>profile</VERB>) </SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Charge une ou plusieurs fonctions (voir <VERB>functions</VERB>) définies dans le fichier <VERB>&apos;file-name&apos;</VERB>.
+    La chaîne de caractères <VERB>opt=&apos;n&apos;</VERB> signifie que les fonctions ne sont pas compilées (pré-interprétées) au chargement. Cela peut être utile en phase de mise au point (voir <VERB>comp</VERB>). Par défaut les fonctions sont compilées (i.e. <VERB>opt=&apos;c&apos;</VERB> est utilisée).
+  </P>
+  <P>
+    Dans le fichier chaque fonction doit commencer par une ligne de la forme :
+  </P>
+  <VERBATIM><![CDATA[
+function [y1,...,yn]=foo(x1,...,xm)
+   ]]></VERBATIM>
+  <P>
+    suivie par une suite d&apos;instructions Scilab.
+  </P>
+  <P>
+    La &quot;ligne de définition&quot; donne la syntaxe d&apos;appel complète de la fonction.
+    Les <VERB>yi</VERB> sont les variables de sortie, calculées à partir des
+    variables d&apos;entrée <VERB>xi</VERB> et des variables existantes dans le contexte appelant lorsque la
+    fonction est exécutée. On peut utiliser éventuellement un sous-ensemble de ces variables d&apos;entrée et de sortie.
+  </P>
+  <P>
+    Il est possible d&apos;écrire plusieurs fonctions dans un seul fichier. Une fonction est alors terminée par le mot-clé <VERB>endfunction</VERB> ou par la ligne de déclaration de la fonction suivante (ancienne convention) ou par la fin du fichier.
+  </P>
+  <P>
+  </P>
+ <P>
+    <VERB>getf</VERB> est une ancienne manière de charger les fonctions. Si chaque fonction est terminée par <VERB>endfunction</VERB>, les fonctions peuvent être chargées avec la commande <VERB>exec</VERB> au lieu de <VERB>getf</VERB>. Dans ce cas l&apos;option par défaut <VERB>opt</VERB> est utilisée.
+  </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+getf('SCI/macros/xdess/plot.sci')
+
+getf SCI/macros/xdess/plot.sci
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>functions</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>genlib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>exec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>edit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

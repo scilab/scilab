@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>error</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="error"> error messages</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>error(message [,n])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>error(n)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>error(n,pos)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>message</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The error message to be displayed.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer. The number associated with the error message</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pos</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer. a parameter for the error message</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P> <VERB>error</VERB> function allow to issue an error message and to
+      handle the error. By defaut <VERB>error</VERB> stops the current
+      execution and resume to the prompt level. This default can be changed
+      using the <VERB>errcatch</VERB> or <VERB>execstr(...,'errcatch')</VERB> functions.</P>
+    <P><VERB>error(message)</VERB> prints the character string contained in
+      <VERB>message</VERB>. The number associated with the error message is
+      10000 </P>
+    <P><VERB>error(message,n)</VERB> prints the character string contained in
+      <VERB>message</VERB>. The number associated with the error message is
+      given by <VERB>n</VERB>. This number should be greater than 10000. </P>
+   <P><VERB>error(n)</VERB> prints the predefined error message associated with
+      the error number <VERB>n</VERB>. </P>
+
+   <P>Some predefined error messages  require a parameter (see
+      <LINK>error_table</LINK>). In this case the <VERB>pos</VERB> 
+      argument must be used <VERB>error(n,pos)</VERB> to give the parameter
+      value. In the other cases the <VERB>pos</VERB>  argument is ignored.</P>
+   <P> see <LINK>error_table</LINK> for a list of error messages and the
+      associated error numbers.</P>
+ </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+error('my error message')
+error(43)
+error(52,3)
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>warning</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>isglobal</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="isglobal">  check if a variable is global</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>t=isglobal(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: any variable</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>isglobal(x)</VERB> returns true if x has been declared to be a global
+        variable and false otherwise.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+isglobal(1)
+global a
+isglobal(a)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>global</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>clearglobal</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>who</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

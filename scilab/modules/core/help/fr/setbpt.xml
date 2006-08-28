@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>setbpt</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993 - Updated 2004-2005</DATE>
+
+  <SHORT_DESCRIPTION name="setbpt">set breakpoints</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>setbpt(macroname
+    [,linenumb])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>macroname</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>linenumb</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: scalar integer or vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>setbpt</VERB> interactively inserts a breakpoint in the line
+    number <VERB>linenumb</VERB> (default value is 1) of the function
+    <VERB>macroname</VERB></P>
+
+    <P><VERB>linenumb</VERB> can be a line or column vector of line numbers,
+    or a single scalar line number.</P>
+
+    <P>When reaching the breakpoint, Scilab evaluates the specified line,
+    prints the number of the line and the name of the function. If the
+    function is not compiled (see <VERB>comp</VERB>) the line is printed on
+    the screen. Then Scilab goes into a <VERB>pause</VERB> mode in which the
+    user can check current values. The <VERB>pause</VERB> is exited with
+    <VERB>resume</VERB> or <VERB>abort</VERB>. Redefining the function does
+    not clear the breakpoints, the user must explicitly delete breakpoints
+    using <VERB>delbpt</VERB>. The maximum number of functions with
+    breakpoints enabled must be less than 100 and the maximum number of
+    breakpoints is set to 1000.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[setbpt('foo'),setbpt('foo',10),dispbpt()
+delbpt()
+
+setbpt('foo',[1,2,5,6]),dispbpt()]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>delbpt</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>dispbpt</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>pause</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>resume</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

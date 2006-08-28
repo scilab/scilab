@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>funptr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="funptr"> coding of  primitives ( wizard stuff )  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM> [numptr] = funptr(name)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string, the name of a primitive</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>numptr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the internal routine number of the primitive</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Utility function (for experts only) to get the internal routine number <VERB>numptr</VERB>
+    of the primitive <VERB>'name'</VERB>. <VERB>numptr</VERB> is formed from the interface
+    number <VERB>fun</VERB> and the routine number <VERB>fin</VERB> of the primitive in its interface
+    by <VERB>numptr = 100*fun + fin</VERB> (fin &lt; 100). From  <VERB>numptr</VERB> you can get 
+    the interface number <VERB>fun = floor(numptr/100)</VERB> which may be useful to link a 
+    dynamical interface with arguments passed by reference (see example section).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// Suppose you want to load some codes via the dynamic 
+// loading facilities offers by addinter. By default 
+// arguments are passed by values but if you want to 
+// pass them by reference you can do the following 
+// (name being the scilab name of one of the interfaced 
+// routines) :
+//
+// addinter(files,spnames,fcts)  // args passed by values
+// num_interface = floor(funptr(name)/100)
+// intppty(num_interface)  // args now passed by reference
+//
+// Note that if you enter the following
+//
+// intppty()                
+//
+// you will see all the interfaces working by reference
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>clearfun</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>newfun</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>intppty</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

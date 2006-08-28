@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>read</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="read"> matrices read</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x]=read(file-desc,m,n,[format])     </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x]=read(file-desc,m,n,k,format)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file-desc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string specifying the file name or integer value specifying logical unit (see file).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>m, n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers (dimensions of the matrix x). Set m=-1 if you do not know the numbers of rows, so the whole file is read.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>format : character string, specifies a &quot;Fortran&quot; format. This</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>character string must begin with a right parenthesis and end with a left parenthesis.  Formats cannot mix floating point or character edition modes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer or vector of integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    reads row after row
+    the <VERB>mxn</VERB> matrix <VERB>x</VERB> (<VERB>n=1</VERB> for character chain) in the
+    file <VERB>file-desc</VERB> (string or integer).  Each row of the matrix <VERB>x</VERB>
+    begin in a new line of <VERB>file-desc</VERB> file. Depending on <VERB>format</VERB>, a
+    given row of the <VERB>x</VERB> matrix may be read from more than one line
+    of <VERB>file-desc</VERB> file.</P>
+    <P>
+    The type of the result will depend on the specified format. 
+    If format contains only <VERB>(d,e,f,g)</VERB>  descriptors the function
+    tries to read numerical data (the result is matrix of real numbers).</P>
+    <P>
+    If format contains only  <VERB>a</VERB> descriptors the function tries to
+    read character strings (the result is a character string column
+    vector). In this case n must be equal to 1. Warning: The character strings are
+      truncated when they are longuer than 4093.</P>
+    <P>
+    Examples for <VERB>format</VERB>:</P>
+    <VERBATIM>
+<![CDATA[
+(1x,e10.3,5x,3(f3.0))
+(10x,a20) 
+   ]]>
+    </VERBATIM>
+    <P>
+    When format is omitted datas are read using numerical free format: 
+    blank, comma and slash may be used as data separators, n*v may be use
+    to represent n occurrences of value n.</P>
+    <P>
+    A direct access file can be used if using the parameter <VERB>k</VERB> which is 
+    is the vector of record numbers to be read (one record per row),
+    thus <VERB>m</VERB> must be <VERB>m=prod(size(k))</VERB>.</P>
+    <P>
+    To read on the keyboard use <VERB>read(%io(1),...)</VERB>.</P>
+  </DESCRIPTION>
+  <SECTION label="Remark">
+    <P>
+    Last line of data files must be terminated by a newline to be taken into account.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+if MSDOS then unix('del foo');
+else unix('rm -f foo'); end
+A=rand(3,5); write('foo',A);
+B=read('foo',3,5)
+B=read('foo',-1,5)
+read(%io(1),1,1,'(a)')  // waits for user's input
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>readb</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>x_dialog</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>msscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

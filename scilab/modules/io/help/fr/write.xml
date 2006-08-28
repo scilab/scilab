@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>write</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="write">  write in a formatted file</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>write(file-desc,a,[format])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>write(file-desc,a,k,format)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file-desc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string specifying the file name or integer value specifying logical unit (see file).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix or column vector of character strings.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string, specifies a &quot;Fortran&quot; format. This character string must begin with a right parenthesis and end with a left parenthesis. Formats cannot mix floating point , integer or character edition modes</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    writes row-by-row a real matrix or a column vector of character
+    strings in a formatted file.  Each row of the <VERB>a</VERB> argument begin
+    in a new line of <VERB>file-desc</VERB> file. Depending on <VERB>format</VERB> a
+    given row of the <VERB>a</VERB> argument may be written in more than one line
+    of <VERB>file-desc</VERB> file.</P>
+    <P>
+    Format examples : <VERB>(1x,e10.3,5x,3(f3.0))</VERB>  ,  <VERB>(10x,a20)</VERB> ;</P>
+    <P>
+    See a Fortran book for more precision.</P>
+    <P>
+    Direct access files :
+    <VERB>x=write(file_desc,a,k,format)</VERB>.
+    Here <VERB>k</VERB> is the vector of records (one record by row, i.e. 
+    <VERB>m=prod(size(k)</VERB>)</P>
+    <P><VERB>write(%io(2),....)</VERB> writes on Scilab's
+    window. Note that in this case <VERB>format</VERB> should produce
+    one output line per matrix row. If this contraint is not verified
+    unpredictable behavior could happen.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+if MSDOS then unix('del asave');
+else unix('rm -f asave'); end
+A=rand(5,3); write('asave',A); A=read('asave',5,3);
+write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
+write(%io(2),string(1:10))
+write(%io(2),strcat(string(1:10),','))
+write(%io(2),1:10,'(10(i2,3x))')
+
+if MSDOS then unix('del foo');
+else unix('rm -f foo'); end
+write('foo',A)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fileinfo</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>writb</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>print</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>msprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

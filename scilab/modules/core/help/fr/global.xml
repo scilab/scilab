@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>global  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Mai 1999  </DATE>
+  <SHORT_DESCRIPTION name="global "> définition de variables globales  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>global(&apos;nam1&apos;,...,&apos;namn&apos;)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>global nam1 ... namn  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>nam1,..., namn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : noms valides de variables 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Habituellement, chaque fonction Scilab a ses propres variables locales et peut accéder &quot;en lecture uniquement&quot; à toutes les variables de l&apos;environnement principal et des fonctions appelantes. Le mot-clé <VERB>global</VERB> permet de partager certaines variables en lecture/écriture entre des fonctions.
+    Toute affectation à ces variables est propagée à toutes les autres fonctions ayant déclaré cette variable globale (avec le mot-clé <VERB>global</VERB>).
+  </P>
+  <P>
+    Si la variable n&apos;existe pas au moment où elle est déclarée globale avec le mot-clé <VERB>global</VERB>, elle est initialisée avec une matrice vide [].
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// 1 : l'environnement appelant et une fonction partagent une variable
+global a
+a=1
+deff('y=f1(x)','global a,a=x^2,y=a^2')
+f1(2)
+a
+// 2 : trois fonctions partagent des variables
+deff('initdata()','global A C ;A=10,C=30')
+deff('letsgo()','global A C ;disp(A) ;C=70')
+deff('letsgo1()','global C ;disp(C)')
+initdata()
+letsgo()
+letsgo1()
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>who</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>isglobal</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>clearglobal</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>gstacksize</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>resume</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

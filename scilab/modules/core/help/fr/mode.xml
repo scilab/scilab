@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mode  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="mode"> choisit le mode d&apos;exécution des scripts
+    et des fonctions  </SHORT_DESCRIPTION> 
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mode(k)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>k=mode()   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+      Utilisé <VERB>uniquement</VERB> dans un script ou une fonction,
+      <VERB>mode(k)</VERB> permet de choisir le mode d&apos;affichage utilisé
+      pendant l&apos;exécution, suivant la valeur de <VERB>k</VERB> : 
+    </P>
+    
+    <DESCRIPTION_INDENT>
+
+      <DESCRIPTION_ITEM  label='k=0'> 
+	<SP>
+	  : les nouvelles valeurs des variables sont affichées (voir
+	  <LINK>semi</LINK> ou <LINK>comma</LINK>). 
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='k=-1'> 
+	<SP>
+	  : l&apos;exécution est silencieuse (rien n&apos;est affiché : mode
+	  par défaut pour les fonctions) 
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='k=1 ou k=3'> 
+	<SP>
+	  : les nouvelles valeurs des variables sont affichées, chaque ligne de
+	  commande est affichée et précédée de l&apos;invite de commande (mode
+	  par défaut pour les scripts lancés par &quot;exec&quot;) 
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='k=7'> 
+	<SP>: les nouvelles valeurs des variables sont affichées, chaque ligne de
+	  commande est affichée et précédée de l&apos;invite de
+	  commande. L&apos;exécution est interrompue après chaque ligne et
+	  reprend après un appui sur la touche entrée/return.</SP>
+	<SP>Si la touche
+	  entrée/return et précédée du caractère "p", l'éxecution est suspendue
+	  (voir <LINK>pause</LINK>).	</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <SP>
+      L&apos;affichage est supprimé dans les fonctions compilées (voir getf ou
+      comp). Par défaut les fonctions Scilab sont éxécutées en mode silencieux ("-1"). 
+
+    </SP>
+    
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>exec</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>semi</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>comma</LINK> </SEE_ALSO_ITEM> 
+  </SEE_ALSO>
+</MAN>

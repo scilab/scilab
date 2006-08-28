@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>format</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="format"> number printing and display format</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>format([type],[long])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>format()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>long</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer ( max number of digits (default 10))</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Sets the current printing format with the parameter <VERB>type</VERB> ; it is one of the following :
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&quot;v&quot;">
+        <SP>: for a variable format (default)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;e&quot;">
+        <SP>: for the  e-format.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P><VERB>long</VERB> defines the max number of digits (default 10).
+    <VERB>format()</VERB> returns a vector for the current format:
+    first component is the type of format (0 if <VERB>v</VERB> ; 1 if <VERB>e</VERB> );
+    second component is the number of digits.</P>
+    <P>
+    In &quot;variable format&quot; mode, vectors entries which are less than %eps
+    times the maximum absolute value of the entries were displayed as &quot;0&quot;
+    in the previous Scilab versions. It is no more the case, the clean
+    function can be used to set neglitible entries to zeros.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=rand(1,5);
+format('v',10);x
+format(20);x
+format('e',10);x
+format(20);x
+
+x=[100 %eps];
+format('e',10);x
+format('v',10);x
+
+format("v")
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>disp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>print</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

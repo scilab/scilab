@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mopen</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="mopen"> open a file</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[fd,err]=mopen(file [, mode,  swap ])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>file</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. The pathname of the file to open.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string that controls whether the file is opened for reading (r), writing (w), or appending (a) and whether the file is opened for updating (+).  The mode can also include a b parameter to indicate a binary file.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>swap</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar. If <VERB>swap</VERB> is present and <VERB>swap=0</VERB> then automatic bytes swap is disabled.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar. Error indicator</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar. The <VERB>fd</VERB> parameter returned by the function <VERB>mopen</VERB> is used as a file descriptor (it's a positive integer).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>mopen</VERB> may be used to open a file in a way compatible with the C
+    <VERB>fopen</VERB> procedure. Without swap argument the file is supposed to
+    be coded in &quot;little endian IEEE format&quot; and data are swaped if
+    necessary to match the IEEE format of the processor. 
+  </P>
+    <P>
+    The mode parameter controls the access allowed to the stream. The
+    parameter can have one of the following values. In this list of
+    values, the b character indicates a binary file
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="r or rb">
+        <SP>: Opens the file for reading.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="w or wb">
+        <SP>: Creates a new file for writing, or opens and truncates a file to zero length.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="a or ab">
+        <SP>: Appends (opens a file for writing at the end of the file, or creates a file for writing).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="r+ or r+b">
+        <SP>: Opens a file for update (reading and writing).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="w+ or w+b">
+        <SP>: Truncates to zero length or creates a file for update.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="a+ or a+b">
+        <SP>:Appends (opens a file for update, writing at the end of the file, or creates a file for writing).</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    When you open a file for update, you can perform both input and output
+    operations on the resulting stream. However, an output operation
+    cannot be directly followed by an input operation without a
+    file-positioning operation (mseek() function). Also, an input
+    operation cannot be directly followed by an output operation without
+    an intervening file positioning operation, unless the input operation
+    encounters the end of the file.</P>
+    <P>
+    When you open a file for append (that is, when the mode parameter is a
+    or a+), it is impossible to overwrite information already in the
+    file. You can use the fseek() function to reposition the file pointer
+    to any position in the file, but when output is written to the file,
+    the current file pointer is ignored.  All output is written at the end
+    of the file and the file pointer is repositioned to the end of the
+    output.</P>
+    <P>
+    To open files in a way compatible with Fortran like functions use
+    function <VERB>file</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mclose</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>meof</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanfMat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mget</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mgetstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mopen</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mput</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mputstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mscanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mseek</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtell</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>setenv</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Janvier 2005</DATE>
+
+  <SHORT_DESCRIPTION name="setenv">fixe la valeur d'une variable
+  d'environnement</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rep=setenv(nom, valeur )</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nom</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: chaîne de caractères contenant le nom de la variable
+          d'environnement </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>valeur</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: chaîne de caractères contenant la valeur de la variable
+          d'environnement</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>rep</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: retourne %T si la variable d'environnement a ete cree ou %F
+          dans le cas contraire</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Fixe la valeur d'une variable d'environnement.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+ setenv('chaine','exemple')
+ getenv('chaine') 
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getenv</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

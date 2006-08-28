@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>resethistory</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>17-July-2004</DATE>
+
+  <SHORT_DESCRIPTION name="resethistory">Efface toutes les entrées dans l'historique courant.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>resethistory()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>Efface toutes les entrées dans l'historique courant.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>savehistory</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>loadhistory</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

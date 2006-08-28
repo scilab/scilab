@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>addinter</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1995</DATE>
+  <SHORT_DESCRIPTION name="addinter"> new functions interface incremental linking at run time</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>addinter(files,spname,fcts)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>files</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string or a vector of character string contain object files used to define the new Scilab interface routine (interface code, user routines or libraries, system libraries).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>spname</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string. Name of interface routine entry point</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fcts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of character strings. The name of new Scilab function implemented in the new interface (in <VERB> fin</VERB> the order ).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>addinter</VERB> performs incremental linking of a compiled C or Fortran
+    new Scilab interface routine (see <VERB>intersci</VERB> documentation)
+    and define corresponding scilab functions.</P>
+    <P>
+    For machines using dlopen functionality one can unlink an interface 
+    with <VERB>ulink</VERB> ( use the command <VERB>link('show')</VERB> to get the number 
+    of the shared library ). And to reload a new version of an interface a call to <VERB>ulink</VERB> is 
+    necessary to get rid of the old version.</P>
+    <P>
+    See <VERB>link</VERB> for more precision on use.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>intersci</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>newfun</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>clearfun</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
