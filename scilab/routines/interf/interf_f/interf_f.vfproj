@@ -65,6 +65,14 @@ cd .."/>
 		<File RelativePath="..\matric.f"/>
 		<File RelativePath="..\misops.f"/>
 		<File RelativePath="..\newsave.f"/>
+		<File RelativePath="..\sci_calerf.f"/>
+		<File RelativePath="..\sci_dlgamma.f"/>
+		<File RelativePath="..\sci_gamma.f"/>
+		<File RelativePath="..\sci_lgamma.f"/>
+		<File RelativePath="..\sci_oldbesseli.f"/>
+		<File RelativePath="..\sci_oldbesselj.f"/>
+		<File RelativePath="..\sci_oldbesselk.f"/>
+		<File RelativePath="..\sci_oldbessely.f"/>
 		<File RelativePath="..\specfun.f"/>
 		<File RelativePath="..\stack0.f"/>
 		<File RelativePath="..\v2cunit.f"/>
