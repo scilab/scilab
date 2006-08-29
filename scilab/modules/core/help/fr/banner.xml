@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
 
@@ -7,7 +7,7 @@
 
   <TYPE>Fonction Scilab</TYPE>
 
-  <DATE>28-Fev-2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="banner">affiche la baniere scilab</SHORT_DESCRIPTION>
 

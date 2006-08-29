@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mfscanf</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>May 1999</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="mscanf"> interface to the C scanf function</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="mfscanf"> interface to the C fscanf function</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="msscanf"> interface to the C sscanf function</SHORT_DESCRIPTION>
