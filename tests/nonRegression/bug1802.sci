@@ -9,5 +9,5 @@ clear
 
 a=rand(100,500);
 timer();sci2exp(a);t=timer();
-affich_result(t<12,1802);
+affich_result(t<60,1802);
 clear
