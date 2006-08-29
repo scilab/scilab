@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>intg  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="intg"> intégration numérique adaptative  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[v,err]=intg(a,b,f [,ea [,er])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>a,b  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombres réels
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>f  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>ea, er  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nombres réels
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>ea  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : erreur absolue désirée (1.d-14 par défaut)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>er  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : erreur relative (1.d-8 par défaut)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>err  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : estimation de l&apos;erreur absolue sur le résultat
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>intg(a,b,f)</VERB> approche l&apos;intégrale de <VERB>a</VERB> à
+      <VERB>b</VERB> de <VERB>f(t)dt</VERB>. La fonction <VERB>f</VERB> doit être
+      continue.</P>
+
+
+    <P>L&apos;évaluation satisfait si possible
+      <VERB>abs(I-v)&lt;= max(ea,er*abs(I))</VERB> où I représente la valeur
+      exacte de l&apos;intégrale. </P>
+
+    <P><VERB>f</VERB> est une fonction externe :</P>
+    <P>Si <VERB>f</VERB>  est une fonction Scilab elle doit avoir la liste
+      d&apos;appel :
+      <VERB>y = f(t)</VERB></P>
+
+    <P>Si <VERB>f</VERB> est une liste, cette liste doit avoir la structure
+      suivante : <VERB> list(f,x1,x2,...)</VERB> où <VERB>f</VERB> est une
+      fonction Scilab avec la liste d&apos;appel : <VERB>f(t,x1,x2,...)</VERB>.</P>
+    
+    <P>Si <VERB>f</VERB> est une chaîne de caractères, ce paramètre désigne le
+      nom d'un fonction Fortran ou d'une procédure C ayant une liste d'appel fixée:  </P>
+
+    <P>Dans le cas Fortran la liste d'appel doit être:
+      <VERB>double precision function f(x)</VERB> où <VERB>x</VERB> est aussi
+      un nombre double precision. </P>
+    <P>Dans la cas  C la liste d'appel doit être:
+      <VERB>double f(double *x)</VERB>. </P>
+
+    
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    //External écrit en Scilab
+    function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
+    exact=-2.5432596188;
+    I=intg(0,2*%pi,f)
+    abs(exact-I)
+
+    //External écrit en Scilab avec un argument
+    function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
+    I=intg(0,2*%pi,list(f1,30))
+    abs(exact-I)
+
+
+    // External écrit en Fortran (un compilateur Fortran est nécessaire)
+    // Ecriture du code fortran
+    F=['      double precision function ffun(x)'
+    '      double precision x,pi'
+    '      pi=3.14159265358979312d+0'
+    '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
+    '      return'
+    '      end'];
+    mputl(F,TMPDIR+'/ffun.f')
+    // compilation du code Fortran
+    l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+    // link incrémental
+    link(l,'ffun','f')
+    // integration de la fonction
+    I=intg(0,2*%pi,'ffun')
+    abs(exact-I)
+
+    // External écrit en C (un compilateur C est nécessaire)
+    // Ecriture du code C
+    C=['#include <math.h>'
+    'double cfun(double *x)'
+    '{'
+    '  double y,pi=3.14159265358979312;'
+    '  y=*x/(2.0e0*pi);'
+    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
+    '}'];
+    mputl(C,TMPDIR+'/cfun.c')
+    // compilation du code C
+    l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+    // incremental linking
+    link(l,'cfun','c')
+    // integration de la fonction
+    I=intg(0,2*%pi,'cfun')
+    abs(exact-I)
+
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>intc</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>intl</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>inttrap</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>intsplin</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <USED_FUNCTIONS>
+    <P>Les programmes correspondants (dqag0.f et  dqags.f de quadpack)  se
+      trouvent dabs le repertoire   routines/integ  :</P>
+  </USED_FUNCTIONS>
+</MAN>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>odedc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="odedc"> discrete/continuous ode solver</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>yt=odedc(y0,nd,stdel,t0,t,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real column vector (initial conditions), <VERB>y0=[y0c;y0d]</VERB> where <VERB>y0d</VERB> has <VERB>nd</VERB> components.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, dimension of <VERB>y0d</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>stdel</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector with one or two entries, <VERB>stdel=[h, delta]</VERB> (with <VERB>delta=0</VERB> as default value).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar (initial time).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real (row) vector, instants where <VERB>yt</VERB> is calculated .</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external i.e. function or character string or list with calling sequence: <VERB>yp=f(t,yc,yd,flag)</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</VERB>
+    computes the solution of a mixed discrete/continuous system. 
+    The discrete system state <VERB>yd_k</VERB> is embedded into a  piecewise constant <VERB>yd(t)</VERB> time function as follows:</P>
+    <VERBATIM>
+<![CDATA[
+yd(t)=yd_k for t in 
+[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h[ (with delay=h*delta).
+   ]]>
+    </VERBATIM>
+    <P>
+    The simulated equations are now:</P>
+    <VERBATIM>
+<![CDATA[
+dyc/dt=f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)[
+yc(t0)=y0c
+   ]]>
+    </VERBATIM>
+    <P>
+    and at instants <VERB>t_k</VERB> the discrete variable <VERB>yd</VERB> is updated by:</P>
+    <VERBATIM>
+<![CDATA[
+yd(t_k+)=f(yc(t_k-),yd(t_k-),1)
+   ]]>
+    </VERBATIM>
+    <P>
+    Note that, using the definition of <VERB>yd(t)</VERB> the last equation gives</P>
+    <VERBATIM>
+<![CDATA[
+yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
+   ]]>
+    </VERBATIM>
+    <P>
+    The calling parameters of <VERB>f</VERB> are fixed: <VERB>ycd=f(t,yc,yd,flag)</VERB>;
+    this function must return either the derivative of the vector <VERB>yc</VERB> if
+    <VERB>flag=0</VERB> or the update of <VERB>yd</VERB> if <VERB>flag=1</VERB>.</P>
+    <P><VERB>ycd=dot(yc)</VERB> must be a vector with same dimension as <VERB>yc</VERB> 
+    if <VERB>flag=0</VERB> and <VERB>ycd=update(yd)</VERB> must be a vector with same 
+    dimension as <VERB>yd</VERB> if <VERB>flag=1</VERB>.</P>
+    <P><VERB>t</VERB> is a vector of instants where the solution <VERB>y</VERB> is computed.</P>
+    <P><VERB>y</VERB> is the vector <VERB>y=[y(t(1)),y(t(2)),...]</VERB>.
+    This function can be called with the same optional parameters as the
+    <VERB>ode</VERB> function (provided <VERB>nd</VERB> and <VERB>stdel</VERB> are given
+    in the calling sequence as second and third parameters).
+    In particular integration flags, tolerances can be set. Optional
+    parameters can be set by the <VERB>odeoptions</VERB> function.</P>
+    <P>
+    An example for calling an external routine is given in directory 
+    <VERB>SCIDIR/default/fydot2.f</VERB></P>
+    <P>
+    External routines can be dynamically linked (see <VERB>link</VERB>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Linear system with switching input
+deff('xdu=phis(t,x,u,flag)','if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
+x0=[1;1];A=[-1,2;-2,-1];B=[1;2];u=0;nu=1;stdel=[1,0];u0=0;t=0:0.05:10;
+xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
+nx=2;
+plot2d1('onn',t',x',[1:nx],'161');
+plot2d2('onn',t',u',[nx+1:nx+nu],'000');
+//Fortran external( see fydot2.f): 
+norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
+
+//Sampled feedback 
+//
+//        |     xcdot=fc(t,xc,u)
+//  (system)   |
+//        |     y=hc(t,xc)
+//
+//
+//        |     xd+=fd(xd,y)
+//  (feedback) |
+//        |     u=hd(t,xd)
+//
+deff('xcd=f(t,xc,xd,iflag)',...
+  ['if iflag==0 then '
+   '  xcd=fc(t,xc,e(t)-hd(t,xd));'
+   'else '
+   '  xcd=fd(xd,hc(t,xc));'
+   'end']);
+A=[-10,2,3;4,-10,6;7,8,-10];B=[1;1;1];C=[1,1,1];
+Ad=[1/2,1;0,1/20];Bd=[1;1];Cd=[1,1];
+deff('st=e(t)','st=sin(3*t)')
+deff('xdot=fc(t,x,u)','xdot=A*x+B*u')
+deff('y=hc(t,x)','y=C*x')
+deff('xp=fd(x,y)','xp=Ad*x + Bd*y')
+deff('u=hd(t,x)','u=Cd*x')
+h=0.1;t0=0;t=0:0.1:2;
+x0c=[0;0;0];x0d=[0;0];nd=2;
+xcd=odedc([x0c;x0d],nd,h,t0,t,f);
+norm(xcd-odedc([x0c;x0d],nd,h,t0,t,'fcd1')) // Fast calculation (see fydot2.f)
+plot2d([t',t',t'],xcd(1:3,:)');
+xset("window",2);plot2d2("gnn",[t',t'],xcd(4:5,:)');
+xset("window",0);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>odeoptions</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>csim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

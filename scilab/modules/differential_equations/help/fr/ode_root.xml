@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ode_root</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="ode_root"> ordinary differential equation solver with root finding</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y,rd[,w,iw]=ode(&quot;root&quot;,y0,t0,t [,rtol  [,atol]],f  [,jac],ng,g [,w,iw])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix (initial conditions).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar (initial time).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector (times at which the solution is computed).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external i.e. function or character string or list.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rtol,atol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real constants or real vectors of the same size as <VERB>y</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>jac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external i.e. function or character string or list.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>w,iw</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ng</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external i.e. function or character string or list.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    With this syntax (first argument equal to <VERB>&quot;root&quot;</VERB>)
+    <VERB>ode</VERB>
+    computes the solution
+    of the differential equation <VERB>dy/dt=f(t,y)</VERB> until the state
+    <VERB>y(t)</VERB> crosses the surface <VERB>g(t,y)=0</VERB>.</P>
+    <P><VERB>g</VERB> should give the equation of the surface.
+    It is an external i.e. a function with
+    specified syntax, or the name of a Fortran subroutine or a C function 
+    (character string) with specified calling sequence or a list.</P>
+    <P>
+    If <VERB>g</VERB> is a function the syntax should be as follows:</P>
+    <VERBATIM>
+<![CDATA[
+z=g(t,y)
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB>t</VERB> is a real scalar (time)  and <VERB>y</VERB> a real vector (state).
+    It returns a vector of size <VERB>ng</VERB> which corresponds to 
+    the <VERB>ng</VERB> constraints. 
+    If <VERB>g</VERB> is a character string it refers to the name of a Fortran
+    subroutine or a C function, with the following calling sequence: 
+    <VERB>g(n,t,y,ng,gout)</VERB>
+    where <VERB>ng</VERB> is the number of constraints and 
+    <VERB>gout</VERB> is the value of <VERB>g</VERB> (output of the program).
+    If <VERB>g</VERB> is a list the same conventions as for <VERB>f</VERB> apply (see ode
+    help).</P>
+    <P>
+    Ouput <VERB>rd</VERB> is a <VERB>1 x k</VERB> vector. The first entry contains the stopping
+    time. Other entries indicate which components of <VERB>g</VERB> have changed
+    sign. <VERB>k</VERB> larger than 2 indicates that more than one surface
+    (<VERB>(k-1)</VERB> surfaces) have been simultaneously traversed.</P>
+    <P>
+    Other arguments and other options are the same as for <VERB>ode</VERB>, see the
+    ode help.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// Integration of the differential equation
+// dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2
+deff("[ydot]=f(t,y)","ydot=y")
+deff("[z]=g(t,y)","z=y-2")
+y0=1;ng=1;
+[y,rd]=ode("roots",y0,0,2,f,ng,g)
+
+
+deff("[z]=g(t,y)","z=y-[2;2;33]")
+[y,rd]=ode("roots",1,0,2,f,3,g)
+
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>dasrt</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

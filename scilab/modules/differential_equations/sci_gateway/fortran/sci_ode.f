@@ -3,7 +3,7 @@ c
 c     ode
 c
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       integer iadr,sadr
 c
 c     common de lsode,lsoda,lsodar

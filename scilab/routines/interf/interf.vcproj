@@ -181,34 +181,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dassl.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_differential_equations1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_differential_equations2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_differential_equations3.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_differential_equations4.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_differential_equations5.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gw_differential_equations6.c"
-				>
-			</File>
-			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
@@ -234,30 +206,6 @@
 			</File>
 			<File
 				RelativePath=".\matdsr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_bvode.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_feval.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_int2d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_int3d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_intg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_ode.c"
 				>
 			</File>
 			<File
@@ -291,23 +239,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\bva.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\def.fundef"
-			>
-		</File>
-		<File
 			RelativePath=".\dsRC.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\feval.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\imp.fundef"
 			>
 		</File>
 		<File
@@ -324,18 +256,6 @@
 		</File>
 		<File
 			RelativePath=".\lstelmi.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\odc.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\ode.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\polelm.fundef"
 			>
 		</File>
 		<File

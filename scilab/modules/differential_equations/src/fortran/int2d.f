@@ -3,7 +3,7 @@ C     --------------------------------------------
 c     Scilab intg 
 c      implicit undefined (a-z)
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       character*(5) fname
       character*(nlgh+1) namef
       integer iero 

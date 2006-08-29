@@ -1,6 +1,6 @@
    		subroutine sciimpl(fname)
 c     ==================================================
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c
       character*(*) fname
       integer iadr,sadr

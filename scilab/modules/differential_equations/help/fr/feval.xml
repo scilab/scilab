@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>feval  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="feval"> évaluation multiple d&apos;une fonction  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[z]=feval(x,y,f)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[z]=feval(x,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x,y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : deux vecteurs
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>f  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : fonction, ou chaîne de caractères pour les appels Fortran ou C
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Evaluation multiple d&apos;une fonction pour un ou deux arguments de type vecteur.
+  </P>
+ 
+ <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='z=feval(x,f)'> 
+  <SP>
+    renvoie le vecteur <VERB>z</VERB> défini par <VERB>z(i)=f(x(i)</VERB>
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='z=feval(x,y,f)'> 
+  <SP>
+    renvoie la matrice <VERB>z</VERB> telle que  <VERB>z(i,j)=f(x(i),y(j))
+</VERB>  
+</SP>
+</DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT>
+
+  <P>
+    <VERB>f</VERB> est un &quot;external&quot; (fonction ou routine Fortran ou C) acceptant un ou deux arguments d&apos;entrée supposés réels.
+    Le résultat renvoyé par <VERB>f</VERB> peut par contre être réel ou complexe. 
+    Dans le cas d&apos;un appel Fortran ou C, la fonction <VERB> &apos;f&apos; </VERB> doit être définie dans la fonction <VERB>ffevalf</VERB> (voir dans le dossier <VERB>SCIDIR/routines/default</VERB>)
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+deff('[z]=f(x,y)','z=x^2+y^2');
+feval(1:10,1:5,f)
+deff('[z]=f(x,y)','z=x+%i*y');
+feval(1:10,1:5,f)
+feval(1:10,1:5,'parab')   // voir le fichier ffeval.f
+feval(1:10,'parab')
+// Pour le lien dynamique (voir l'exemple ftest dans ffeval.f)
+// on peut utiliser la commande "link" 
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -5,7 +5,7 @@ c      implicit undefined (a-z)
 c     Copyright INRIA
       character*(4) fname
       character*6   namef
-      include '../stack.h'
+      include 'stack.h'
       integer iero 
       common/ierajf/iero
       common/cintg/namef

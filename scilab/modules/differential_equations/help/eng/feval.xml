@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>feval</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="feval"> multiple evaluation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[z]=feval(x,y,f)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[z]=feval(x,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two vectors</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: function or character string (for Fortran or C call)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Multiple evaluation of a function for one or two arguments 
+    of vector type :
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="z=feval(x,f)">
+        <SP>returns the vector <VERB>z</VERB> defined by <VERB>z(i)=f(x(i))</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="z=feval(x,y,f)">
+        <SP>returns the matrix <VERB>z</VERB> such as <VERB>z(i,j)=f(x(i),y(j))</VERB></SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P><VERB>f</VERB> is an external (function or routine) accepting
+    on one or two  arguments which are supposed to be real.
+    The result returned by <VERB>f</VERB> can be real or complex. 
+    In case of a Fortran call, the function <VERB> 'f' </VERB> must be defined 
+    in the subroutine <VERB>ffeval.f</VERB> (in directory <VERB>SCIDIR/routines/default</VERB>)</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff('[z]=f(x,y)','z=x^2+y^2');
+feval(1:10,1:5,f)
+deff('[z]=f(x,y)','z=x+%i*y');
+feval(1:10,1:5,f)
+feval(1:10,1:5,'parab')   //See ffeval.f file
+feval(1:10,'parab')
+// For dynamic link (see example ftest in ffeval.f)
+// you can use the link command (the parameters depend on the machine):
+// unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest') 
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

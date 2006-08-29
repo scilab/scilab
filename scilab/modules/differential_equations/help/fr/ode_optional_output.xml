@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+  <MAN>
+    <LANGUAGE>eng</LANGUAGE>
+    <TITLE>ode</TITLE>
+    <TYPE>Scilab Function</TYPE>
+    <DATE>February 1998</DATE>
+    <SHORT_DESCRIPTION name="ode_optional_output"> ode solvers optional outputs description</SHORT_DESCRIPTION>
+    <DESCRIPTION>
+      <SP>
+      This page describes the the most important values returned in the
+      optional lhs <LINK>ode</LINK> function arguments <VERB>w</VERB> and
+      <VERB>iw</VERB>.
+      These are valid only for the <VERB>lsode</VERB> 
+      <VERB>lsoda</VERB> and  <VERB>lsodar</VERB> ode solver.
+	For more details, one can look at the solvers fortran code comments in <VERB>routines/integ/lsod*.f</VERB>.
+      </SP>
+      <DESCRIPTION_INDENT>
+	<DESCRIPTION_ITEM   label='w(11)'> 
+	  <SP> the step size in t last used (successfully).</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='w(12)'> 
+	  <SP> the step size to be attempted on the next step.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='w(13)'> 
+	  <SP> the current value of the independent variable
+	    which the solver has actually reached, i.e. the
+	    current internal mesh point in t.  on output, tcur
+	    will always be at least as far as the argument
+	    t, but may be farther (if interpolation was done).</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='w(14)'> 
+	  <SP> a tolerance scale factor, greater than 1.0,
+	    computed when a request for too much accuracy was
+	    detected (istate = -3 if detected at the start of
+	    the problem, istate = -2 otherwise).  if itol is
+	    left unaltered but rtol and atol are uniformly
+	    scaled up by a factor of <VERB>tolsf=w(14)</VERB> for the next call,
+	    then the solver is deemed likely to succeed.
+	    (the user may also ignore <VERB>tolsf</VERB> and alter the
+	    tolerance parameters in any other way appropriate.)</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='w(15)'> 
+	  <SP> the value of t at the time of the last method
+	    switch, if any. This value is not significant with
+	    <VERB>lsode</VERB> solver. </SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(10)'> 
+	  <SP> the number of <VERB>g</VERB>  evaluations for the problem so
+	    far. This value is only significant for <VERB>lsodar</VERB> solver.</SP>
+	</DESCRIPTION_ITEM>
+
+	<DESCRIPTION_ITEM   label='iw(11)'> 
+	  <SP> the number of steps taken for the problem so far.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(12)'> 
+	  <SP> the number of f evaluations for the problem so far.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(13)'> 
+	  <SP> the number of jacobian evaluations (and of matrix
+	    lu decompositions) for the problem so far.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(14)'> 
+	  <SP> the method order last used (successfully).</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(15)'> 
+	  <SP> the order to be attempted on the next step.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(16)'> 
+	  <SP> the index of the component of largest magnitude in
+	    the weighted local error vector ( e(i)/ewt(i) ),
+	    on an error return with istate = -4 or -5.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(17)'> 
+	  <SP> the length of <VERB>w</VERB> actually required, assuming
+	    that the length of rwork is to be fixed for the
+	    rest of the problem, and that switching may occur.
+	    this is defined on normal returns and on an illegal
+	    input return for insufficient storage.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(18)'> 
+	  <SP> the length of <VERB>iw</VERB> actually required, assuming
+	    that the length of <VERB>iw</VERB> is to be fixed for the
+	    rest of the problem, and that switching may occur.
+	    this is defined on normal returns and on an illegal
+	    input return for insufficient storage.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(19)'> 
+	  <SP> the method indicator for the last successful step..
+	    1 means adams (nonstiff), 2 means bdf (stiff). This value is not significant with
+	    <VERB>lsode</VERB> solver.</SP>
+	</DESCRIPTION_ITEM>
+	<DESCRIPTION_ITEM   label='iw(20)'> 
+	  <SP> the current method indicator..
+	    1 means adams (nonstiff), 2 means bdf (stiff).
+	    this is the method to be attempted
+	    on the next step.  thus it differs from <VERB>iw(19)</VERB>
+	    only if a method switch has just been made. This value is not significant with
+	    <VERB>lsode</VERB> solver.</SP>
+	</DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+    </DESCRIPTION>
+  </MAN>

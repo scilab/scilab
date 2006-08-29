@@ -3,7 +3,7 @@ c
 C      implicit undefined (a-z)
 c     Copyright ENPC (Jean-Philippe Chancelier )
 c     -----------------------------------------------------
-      include '../stack.h'
+      include 'stack.h'
       character*(*) fname
       character*(nlgh+1)   efsub,edfsub,egsub,edgsub,eguess
       integer    kfsub,kdfsub,kgsub,kdgsub,kguess,topk

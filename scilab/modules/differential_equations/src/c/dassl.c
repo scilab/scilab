@@ -1,7 +1,7 @@
 /* C driver over ddassl to handle longjump from xerhlt*/
 
 #include <setjmp.h>
-#include "../machine.h"
+#include "machine.h"
 extern jmp_buf slatec_jmp_env; 
 
 extern void C2F(ddassl)(void *res, int *neq, double *t, double *y, double *yprime, 

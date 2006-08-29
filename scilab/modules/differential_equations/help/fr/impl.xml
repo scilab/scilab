@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>impl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="impl"> differential algebraic equation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y0,ydot0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors or matrix (initial conditions).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar (initial time).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector (times at which the solution is computed).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>res,adda</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: externals (function or character string or list).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string <VERB>'adams'</VERB> or <VERB>'stiff'</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>atol,rtol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar or real vector of the same size as  as <VERB>y</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>jac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or character string or list).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Solution of the linear implicit differential equation</P>
+    <P>
+    A(t,y) dy/dt=g(t,y), y(t0)=y0</P>
+    <P><VERB>t0</VERB> is the initial instant, <VERB>y0</VERB> is the vector of initial conditions
+    Vector <VERB>ydot0</VERB> of the time derivative of <VERB>y</VERB> at <VERB>t0</VERB> must
+    also be given.
+    r
+    The input <VERB>res</VERB> is an external i.e. a function with
+    specified syntax, or the name a Fortran subroutine or a C function 
+    (character string) with specified calling sequence or a list.</P>
+    <P>
+    If <VERB>res</VERB> is a function, its syntax must be as follows:</P>
+    <VERBATIM>
+<![CDATA[
+r = res(t,y,ydot)
+   ]]>
+    </VERBATIM>
+    <P>
+    where <VERB>t</VERB> is a real scalar (time) and <VERB>y</VERB> and <VERB>ydot</VERB> are
+    real vector (state and derivative of the state). 
+    This function must return <VERB>r=g(t,y)-A(t,y)*ydot</VERB>.</P>
+    <P>
+    If <VERB>res</VERB> is a character string, it refers to the name of a Fortran
+    subroutine or a C function. See
+    <VERB>SCIDIR/routines/default/Ex-impl.f</VERB> for an example to do that.</P>
+    <P><VERB>res</VERB> can also be a list: see the help of <VERB>ode</VERB>.</P>
+    <P>
+    The input <VERB>adda</VERB> is also an external.</P>
+    <P>
+    If <VERB>adda</VERB> is a function, its syntax must be as follows:</P>
+    <VERBATIM>
+<![CDATA[
+r = adda(t,y,p)
+   ]]>
+    </VERBATIM>
+    <P>
+    and it must return <VERB>r=A(t,y)+p</VERB> where <VERB>p</VERB> is a matrix to be
+    added to <VERB>A(t,y)</VERB>.</P>
+    <P>
+    If <VERB>adda</VERB> is a character string, it refers to the name of a Fortran
+    subroutine or a C function. See
+    <VERB>SCIDIR/routines/default/Ex-impl.f</VERB> for an example to do that.</P>
+    <P><VERB>adda</VERB> can also be a list: see the help of <VERB>ode</VERB>.</P>
+    <P>
+    The input <VERB>jac</VERB> is also an external.</P>
+    <P>
+    If <VERB>jac</VERB> is a function, its syntax must be as follows:</P>
+    <VERBATIM>
+<![CDATA[
+j = jac(t,y,ydot)
+   ]]>
+    </VERBATIM>
+    <P>
+    and it must return the Jacobian of <VERB>r=g(t,y)-A(t,y)*ydot</VERB> with
+    respect to <VERB>y</VERB>.</P>
+    <P>
+    If <VERB>jac</VERB> is a character string, it refers to the name of a Fortran
+    subroutine or a C function. See
+    <VERB>SCIDIR/routines/default/Ex-impl.f</VERB> for an example to do that.</P>
+    <P><VERB>jac</VERB> can also be a list: see the help of <VERB>ode</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+// Using hot restart 
+//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+// hot start from previous call 
+//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+//maxi(abs(x1-x))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>dassl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

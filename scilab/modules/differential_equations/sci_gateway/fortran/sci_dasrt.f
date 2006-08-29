@@ -4,7 +4,7 @@ C     dasrt
 c ====================================================================
 c
 c     Copyright INRIA/ENPC 
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c
       character*(*) fname
       character*(nlgh+1) namjac

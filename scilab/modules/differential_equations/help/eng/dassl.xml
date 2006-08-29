@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dassl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>June 1993</DATE>
+  <SHORT_DESCRIPTION name="dassl"> differential algebraic equation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is either <VERB>y0</VERB> (<VERB>ydot0</VERB> is estimated by
+    <VERB>dassl</VERB> with zero as first estimate) or the matrix
+    <VERB>[y0 ydot0]</VERB>.  <VERB>g(t,y0,ydot0)</VERB> must be equal
+    to zero. If you only know an estimate  of <VERB>ydot0</VERB> set
+    <VERB>info(7)=1</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>y0</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real column vector  of initial conditions.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>ydot0</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real column vector of the time derivative of <VERB>y</VERB> at <VERB>t0</VERB> (may be an estimate).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number is the initial instant.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar or vector. Gives instants for which you want the
+  solution. Note that you can get solution at each dassl's step
+  point by setting <VERB>info(2)=1</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>atol,rtol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalars or column vectors of same size as <VERB>y</VERB>. <VERB>atol,rtol</VERB> give respectively  absolute and relative error tolerances of solution.  If vectors the tolerances are specified for each component of <VERB>y</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>res</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or list or string). Computes the  value of <VERB>g(t,y,ydot)</VERB>.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>function</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <P>
+    : Its calling sequence must be <VERB>[r,ires]=res(t,y,ydot)</VERB>
+  and <VERB>res</VERB> must return the residue
+  <VERB>r=g(t,y,ydot)</VERB>  and error flag
+  <VERB>ires</VERB>. <VERB>ires = 0</VERB> if <VERB>res</VERB>
+  succeeds to compute <VERB>r</VERB>, <VERB>=-1</VERB>  if residue is
+  locally not defined for <VERB>(t,y,ydot)</VERB>, <VERB>=-2</VERB> if
+  parameters are out of admissible range. </P>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>list</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: it must be as follows:</SP>
+                <VERBATIM>
+<![CDATA[
+list(res,x1,x2,...)
+   ]]>
+                </VERBATIM>
+                <P>
+    where the calling sequence of the function <VERB>res</VERB> is now
+  </P>
+                <VERBATIM>
+<![CDATA[
+r=res(t,y,ydot,x1,x2,...)
+   ]]>
+                </VERBATIM>
+                <P><VERB>res</VERB> still returns <VERB>r=g(t,y,ydot)</VERB> as a function of <VERB>(t,y,ydot,x1,x2,...)</VERB>.
+  </P>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>string</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: it must refer to the name of a fortran subroutine (see source code of of <VERB>Ex-dassl.f</VERB> in routines/defaut/).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>jac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or list or string). Computes the  value  of <VERB>dg/dy+cj*dg/dydot</VERB> for a given value of parameter <VERB>cj</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>function</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: Its calling sequence must be <VERB>r=jac(t,y,ydot,cj)</VERB> and the <VERB>jac</VERB> function must return <VERB>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</VERB> where <VERB>cj</VERB> is a real scalar</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>list</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: it must be as follows</SP>
+                <VERBATIM>
+<![CDATA[
+list(jac,x1,x2,...)
+   ]]>
+                </VERBATIM>
+                <P>
+    where the calling sequence of the function <VERB>jac</VERB> is now
+  </P>
+                <VERBATIM>
+<![CDATA[
+r=jac(t,y,ydot,x1,x2,...)
+   ]]>
+                </VERBATIM>
+                <P><VERB>jac</VERB> still returns <VERB>dg/dy+cj*dg/dydot</VERB> as a function of <VERB>(t,y,ydot,cj,x1,x2,...)</VERB>.
+  </P>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>character string</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: it must refer to the name of a fortran subroutine  (see source code of <VERB>Ex-dassl.f</VERB> in routines/defaut/).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>info</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list which contains <VERB>7</VERB> elements, default value is list([],0,[],[],[],0,0);</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(1)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real scalar which gives the maximum time for which <VERB>g</VERB> is allowed  to be evaluated or an empty matrix <VERB>[]</VERB> if no limits imposed for time.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(2)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: flag which indicates if <VERB>dassl</VERB> returns its intermediate  computed values (<VERB>flag=1</VERB>) or only the user specified time point  values (<VERB>flag=0</VERB>).</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(3)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: <VERB>2</VERB> components vector which give the definition <VERB>[ml,mu]</VERB> of band  matrix computed by <VERB>jac</VERB>; <VERB>r(i - j + ml + mu + 1,j) = &quot;dg(i)/dy(j)+cj*dg(i)/dydot(j)&quot;</VERB>.  If <VERB>jac</VERB> returns a full matrix set <VERB>info(3)=[]</VERB>.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(4)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real scalar which gives the maximum step size. Set <VERB>info(4)=[]</VERB> if no  limitation.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(5)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: real scalar which gives the initial step size. Set <VERB>info(4)=[]</VERB> if  not specified.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(6)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: set <VERB>info(6)=1</VERB> if the solution is known to be non negative,  else set <VERB>info(6)=0</VERB>.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>info(7)  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: set <VERB>info(7)=1</VERB> if <VERB>ydot0</VERB> is just an estimation, <VERB>info(7)=0</VERB> if <VERB>g(t0,y0,ydot0)=0</VERB>.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>hd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector which allows to store the <VERB>dassl</VERB> context and to  resume integration</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix . Each column is the vector [t;x(t);xdot(t)] where t is time index for which the solution had been computed</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Solution of the implicit differential equation</P>
+    <VERBATIM>
+<![CDATA[
+    g(t,y,ydot)=0
+    y(t0)=y0  and   ydot(t0)=ydot0
+   ]]>
+    </VERBATIM>
+    <P>
+    Detailed examples are given in SCIDIR/tests/dassldasrt.tst</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ deff('[r,ires]=chemres(t,y,yd)',[
+         'r(1)=-0.04*y(1)+1d4*y(2)*y(3)-yd(1);';
+         'r(2)=0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2);'
+         'r(3)=y(1)+y(2)+y(3)-1;'
+         'ires=0']);
+ deff('[pd]=chemjac(x,y,yd,cj)',[
+         'pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);';
+         '0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);';
+         '1       , 1                      , 1       ]'])
+
+y0=[1;0;0];
+yd0=[-0.04;0.04;0];
+t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
+
+
+y=dassl([y0,yd0],0,t,chemres);
+
+info=list([],0,[],[],[],0,0);
+info(2)=1;
+y=dassl([y0,yd0],0,4d10,chemres,info);
+y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dasrt</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>impl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fort</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -4,7 +4,7 @@ c     ============================================
       subroutine dassli(fname)
       character*(*) fname
 c     ============================================
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c
       integer iadr,sadr
       integer topk,topw, info(15),gettype

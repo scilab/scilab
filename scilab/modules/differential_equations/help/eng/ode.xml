@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ode</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="ode"> ordinary differential equation solver</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=ode(y0,t0,t,f)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[y,rd,w,iw]=ode(&quot;root&quot;,y0,t0,t [,rtol [,atol]],f  [,jac],ng,g [,w,iw])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=ode(&quot;discrete&quot;,y0,k0,kvect,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix (initial conditions).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar (initial time).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector (times at which the solution is computed).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or character string or list).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: one of the following character string: <VERB>&quot;adams&quot; &quot;stiff&quot; &quot;rk&quot; &quot;rkf&quot; &quot;fix&quot; &quot;discrete&quot; &quot;roots&quot;</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rtol,atol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real constants or real vectors of the same size as <VERB>y</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>jac</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or character string or list).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>w,iw</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vectors.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ng</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or character string or list).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (initial time). kvect : integer vector.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <SP><VERB>ode</VERB> is the standard function for solving explicit ODE
+      systems defined by:      dy/dt=f(t,y) , y(t0)=y0.
+
+      It is an interface to various solvers, in particular to ODEPACK.
+      The type of problem solved and the method used depend on the value of
+      the first optional argument <VERB>type</VERB> which can be one of the
+      following strings:
+    </SP>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&lt;not given&gt;:">
+        <SP><VERB>lsoda</VERB> solver of package ODEPACK is called by default. It automatically selects between nonstiff predictor-corrector Adams method and stiff Backward Differentiation Formula (BDF) method. It uses nonstiff method initially and dynamically  monitors data in order to decide which method to use.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;adams&quot;:">
+        <SP>This is for nonstiff problems. <VERB>lsode</VERB> solver of package ODEPACK is called and it uses the Adams method.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;stiff&quot;:">
+        <SP>This is for stiff problems. <VERB>lsode</VERB> solver of package ODEPACK is called and it uses the BDF method.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;rk&quot;:">
+        <SP>Adaptive Runge-Kutta of order 4 (RK4) method.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;rkf&quot;:">
+        <SP>The Shampine and Watts program based on Fehlberg's Runge-Kutta pair of order 4 and 5 (RKF45) method is used. This is for non-stiff and mildly stiff problems when derivative evaluations are inexpensive.  This method should generally not be used when the user is demanding high accuracy.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;fix&quot;:">
+        <SP>Same solver as &quot;rkf&quot;, but the user interface is very simple, i.e. only <VERB>rtol</VERB> and <VERB>atol</VERB>  parameters can be passed to the solver. This is the simplest method to try.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;root&quot;:">
+        <SP>ODE solver with rootfinding capabilities.  The <VERB>lsodar</VERB> solver of package ODEPACK is used. It is a variant of the <VERB>lsoda</VERB> solver where it finds the roots of a given vector function. See help on ode_root for more details.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;discrete&quot;:">
+        <SP>Discrete time simulation. See help on ode_discrete for more details.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+      In this help we only describe the use of <VERB>ode</VERB> for standard
+      explicit ODE systems.</P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+	<P>The simplest call of <VERB>ode</VERB> is:
+	  <VERB>y=ode(y0,t0,t,f)</VERB>
+	  where <VERB>y0</VERB> is the vector of initial conditions, <VERB>t0</VERB> is the
+	  initial time, <VERB>t</VERB> is the vector of times at which the solution 
+	  <VERB>y</VERB> is computed and <VERB>y</VERB> is matrix of solution vectors 
+	  <VERB>y=[y(t(1)),y(t(2)),...]</VERB>.</P>
+	<P>
+	  The input argument <VERB>f</VERB>  defines the RHS of the first order differential equation:
+	  dy/dt=f(t,y). It is an external i.e. a function with
+	  specified syntax, or the name of a Fortran subroutine or a C function 
+	  (character string) with specified calling sequence or a list:</P>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM>
+	    <SP> If <VERB>f</VERB> is a Scilab function, its syntax must be
+	      <VERB>ydot = f(t,y)</VERB>, where <VERB>t</VERB> is a real scalar
+	      (time) and <VERB>y</VERB> a real vector (state) and
+	      <VERB>ydot</VERB>a real vector (dy/dt)</SP>
+	  </DESCRIPTION_ITEM> 
+	  <DESCRIPTION_ITEM>
+	    <SP> If <VERB>f</VERB> is a character string, it refers to the name of a Fortran
+	      subroutine or a C function, i.e. if <VERB>ode(y0,t0,t,&quot;fex&quot;)</VERB> is the
+	      command, then the subroutine <VERB>fex</VERB> is called. </SP>
+	    <P> The Fortran routine must have the following calling sequence:
+	      <VERB>fex(n,t,y,ydot)</VERB>, with n an integer, t a double precision
+	      scalar, y and ydot double precision vectors.
+	    </P>
+	    <P> The C function must have the following prototype:
+	      <VERB>fex(int *n,double *t,double *y,double *ydot)</VERB>
+	    </P>
+	    <SP><VERB>t</VERB> is the time, <VERB>y</VERB> the state and
+	      <VERB>ydot</VERB>the state derivative (dy/dt)</SP>
+	    <P>This external can be build in a OS independant way using
+		   <LINK>ilib_for_link</LINK> and dynamically linked to Scilab by the
+	      <LINK>link</LINK> function. </P>
+	  </DESCRIPTION_ITEM> 
+	  <DESCRIPTION_ITEM>
+	    <SP> The <VERB>f</VERB> argument can also be a list with the following
+	      structure: <VERB>lst=list(realf,u1,u2,...un)</VERB>
+	      where <VERB>realf</VERB> is a Scilab function with syntax: 
+	      <VERB>ydot = f(t,y,u1,u2,...,un)</VERB></SP>
+	    <P> This syntax allows to use parameters as the arguments of <VERB>realf</VERB>.</P>
+	  </DESCRIPTION_ITEM> 
+	</DESCRIPTION_INDENT>
+
+	<P>
+	  The function <VERB>f</VERB> can return a <VERB>p x q</VERB> matrix instead of a vector. 
+	  With this matrix notation, we solve the <VERB>n=p+q</VERB> ODE's 
+	  system <VERB>dY/dt=F(t,Y)</VERB> where <VERB>Y</VERB> is a <VERB>p x q</VERB> matrix.
+	  Then initial conditions, <VERB>Y0</VERB>, must also be
+	  a <VERB>p x q</VERB> matrix and the result of <VERB>ode</VERB> is the
+	  <VERB>p x q(T+1)</VERB> matrix <VERB>[Y(t_0),Y(t_1),...,Y(t_T)]</VERB>.</P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  Optional input parameters can be given for the error of the solution:
+	  <VERB>rtol</VERB> and <VERB>atol</VERB> 
+	  are threshold for relative and absolute estimated errors. 
+	  The estimated error on <VERB>y(i)</VERB> is: <VERB>rtol(i)*abs(y(i))+atol(i)</VERB></SP>
+	<P>
+	  and integration is carried out as far as this error is small
+	  for all components of the state.
+	  If <VERB>rtol</VERB> and/or <VERB>atol</VERB> is a constant <VERB>rtol(i)</VERB> and/or 
+	  <VERB>atol(i)</VERB> are
+	  set to this constant value. Default values for <VERB>rtol</VERB> and <VERB>atol</VERB>
+	  are respectively <VERB>rtol=1.d-5</VERB> and <VERB>atol=1.d-7</VERB> for most
+	  solvers and <VERB>rtol=1.d-3</VERB> and <VERB>atol=1.d-4</VERB> for <VERB>&quot;rfk&quot;</VERB> and 
+	  <VERB>&quot;fix&quot;</VERB>.</P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<P> For stiff problems, it is better to give the Jacobian of the RHS
+	  function as the optional argument <VERB>jac</VERB>.
+	  It is an external i.e. a function with
+	  specified syntax, or the name of a Fortran subroutine or a C function 
+	  (character string) with specified calling sequence or a list.</P>
+	<P>If <VERB>jac</VERB> is a function the syntax should be <VERB>J=jac(t,y)</VERB></P>
+	<P>where <VERB>t</VERB> is a real scalar (time) and <VERB>y</VERB> a real vector (state).
+	The result matrix <VERB>J</VERB> must evaluate to df/dx i.e. 
+	<VERB>J(k,i) = dfk/dxi</VERB> with <VERB>fk</VERB> = kth component of f.</P>
+	<P>If <VERB>jac</VERB> is a character string it refers to the name of a Fortran
+	  subroutine or a C function, with the following calling sequence: </P>
+	<SP>Fortran case: </SP>
+
+	    <VERBATIM><![CDATA[
+	      subroutine fex(n,t,y,ml,mu,J,nrpd) 
+	      integer n,ml,mu,nrpd
+	      double precision t,y(*),J(*)
+	      ]]></VERBATIM>
+	     <SP> C case:</SP>
+	    <VERBATIM><![CDATA[
+	      void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
+	      ]]></VERBATIM>
+
+	<P><VERB>jac(n,t,y,ml,mu,J,nrpd)</VERB>. In most cases you have
+	  not to refer <VERB>ml</VERB>, <VERB>mu</VERB> and <VERB>nrpd</VERB>.</P>
+	<P>If <VERB>jac</VERB> is a list the same conventions as for <VERB>f</VERB>
+	  apply.</P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  Optional arguments <VERB>w</VERB> and <VERB>iw</VERB>  are 
+	  vectors for storing information returned by the
+	  integration routine (see <LINK>ode_optional_output</LINK> for
+	  details). When these vectors are provided in RHS
+	  of <VERB>ode</VERB> the integration re-starts with the same  parameters as
+	  in its previous stop.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<P>
+	  More options can be given to ODEPACK solvers by using
+	  <VERB>%ODEOPTIONS</VERB> variable. See <LINK>odeoptions</LINK>.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    // ---------- Simple one dimension ODE (Scilab function external)
+    // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
+    function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
+    y0=0;t0=0;t=0:0.1:%pi;
+    y=ode(y0,t0,t,f)
+    plot(t,y)
+
+    // ---------- Simple one dimension ODE (C coded external)
+    ccode=['#include <math.h>'
+	   'void myode(int *n,double *t,double *y,double *ydot)'
+	   '{'
+	   '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
+	   '}']
+    mputl(ccode,TMPDIR+'/myode.c') //create the C file
+    ilib_for_link('myode','myode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+    exec(TMPDIR+'/loader.sce') //incremental linking
+    y0=0;t0=0;t=0:0.1:%pi;
+    y=ode(y0,t0,t,'myode');
+	
+    // ---------- Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),
+    // x0=[1;0]
+    // solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
+    // A and u function are passed to RHS function in a list. 
+    // B and omega are passed as global variables
+    function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
+    function ut=u(t),ut=sin(omega*t),endfunction
+    A=[1 1;0 2];B=[1;1];omega=5;
+    ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+
+    // ---------- Matrix notation Integration of the Riccati differential equation
+    // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
+    // Solution at t=[1,2] 
+    function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
+    A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+    t0=0;t=0:0.1:%pi;
+    X=ode(eye(A),0,t,ric)
+    //
+    // ---------- Matrix notation, Computation of exp(A)
+    A=[1,1;0,2];
+    function xdot=f(t,x),xdot=A*x;,endfunction 
+    ode(eye(A),0,1,f)
+    ode("adams",eye(A),0,1,f)
+
+    // ---------- Matrix notation, Computation of exp(A) with stiff matrix, Jacobian given
+    A=[10,0;0,-1];
+    function xdot=f(t,x),xdot=A*x,endfunction 
+    function J=Jacobian(t,y),J=A,endfunction 
+    ode("stiff",[0;1],0,1,f,Jacobian)
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode_discrete</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode_root</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dassl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>impl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>odedc</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>odeoptions</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>csim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ltitr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rtitr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM label="Alan C. Hindmarsh">,  mathematics and statistics division, l-316
+      livermore, ca 94550.19</AUTHORS_ITEM>
+  </AUTHORS>
+  <BIBLIO>
+    <P>
+      Alan C. Hindmarsh,  lsode and lsodi, two new initial value
+      ordinary differential equation solvers,
+      acm-signum newsletter, vol. 15, no. 4 (1980), pp. 10-11.</P>
+  </BIBLIO>
+  <USED_FUNCTIONS>
+    <P>
+      The associated routines can be found in  routines/integ directory :</P>
+    <P>
+      lsode.f lsoda.f lsodar.f</P>
+  </USED_FUNCTIONS>
+</MAN>

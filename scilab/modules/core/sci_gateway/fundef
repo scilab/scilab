@@ -30,7 +30,7 @@
 #include "../../optimization/sci_gateway/optim.fundef"
 
 #define  IN_matode  12
-#include "../../../../routines/interf/ode.fundef"  
+#include "../../differential_equations/sci_gateway/differential_equations1.fundef"  
 
 #define  IN_matsys  13  
 #include "core.fundef"
@@ -71,7 +71,7 @@
 #include "../../gui/sci_gateway/gui.fundef"  
 
 #define  IN_matimp  26
-#include "../../../../routines/interf/imp.fundef"	  
+#include "../../differential_equations/sci_gateway/differential_equations2.fundef"  
 
 #define  IN_spelm  27
 #include "../../sparse/sci_gateway/sparse.fundef"  
@@ -80,16 +80,16 @@
 #include "../../cacsd/sci_gateway/slicot.fundef"
 
 #define  IN_matodc  29  
-#include "../../../../routines/interf/odc.fundef"	
+#include "../../differential_equations/sci_gateway/differential_equations3.fundef"  
 
 #define  IN_intdef  30  
-#include "../../../../routines/interf/def.fundef"	
+#include "../../differential_equations/sci_gateway/differential_equations4.fundef"  
 
 #define  IN_feval  31
-#include "../../../../routines/interf/feval.fundef"	  
+#include "../../differential_equations/sci_gateway/differential_equations5.fundef"  
 
 #define  IN_bva  32
-#include "../../../../routines/interf/bva.fundef"	
+#include "../../differential_equations/sci_gateway/differential_equations6.fundef"  
 
 /* 33 <FREE> free position may be used */  
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>odeoptions</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="odeoptions"> set options for ode solvers</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>odeoptions()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    This function interactively displays a command which
+    should be executed to set various options of ode solvers.
+    The global variable <VERB>%ODEOPTIONS</VERB> sets the options.</P>
+    <P>
+    CAUTION: the <VERB>ode</VERB> function checks if this variable
+    exists and in this case it uses it. For using default
+    values you should clear this variable. Note that <VERB>odeoptions</VERB>
+    does not create this variable. To create it you must execute
+    the command line displayed by <VERB>odeoptions</VERB>.</P>
+    <P>
+    The variable <VERB>%ODEOPTIONS</VERB> is a vector with the following elements:</P>
+    <VERBATIM>
+<![CDATA[
+[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
+   ]]>
+    </VERBATIM>
+    <P>
+    The default value is:</P>
+    <VERBATIM>
+<![CDATA[
+[1,0,0,%inf,0,2,500,12,5,0,-1,-1]
+   ]]>
+    </VERBATIM>
+    <P>
+    The meaning of the elements is described below.</P>
+    <P><VERB>itask</VERB>
+     1 : normal computation at specified times
+     2 : computation at mesh points (given in first row of output of <VERB>ode</VERB>)
+     3 : one step at one internal mesh point and return
+     4 : normal computation without overshooting <VERB>tcrit</VERB>
+     5 : one step, without passing <VERB>tcrit</VERB>, and return</P>
+    <P><VERB>tcrit</VERB>
+      assumes <VERB>itask</VERB> equals 4 or 5, described above</P>
+    <P><VERB>h0</VERB>
+      first step tried</P>
+    <P><VERB>hmax</VERB>
+      max step size</P>
+    <P><VERB>hmin</VERB>
+      min step size</P>
+    <P><VERB>jactype</VERB>
+     0 : functional iterations, no jacobian used (<VERB>&quot;adams&quot;</VERB> or
+         <VERB>&quot;stiff&quot;</VERB> only)
+     1 : user-supplied full jacobian
+     2 : internally generated full jacobian
+     3 : internally generated diagonal jacobian (<VERB>&quot;adams&quot;</VERB> or 
+         <VERB>&quot;stiff&quot;</VERB> only)
+     4 : user-supplied banded jacobian (see <VERB>ml</VERB> and <VERB>mu</VERB> below)
+     5 : internally generated banded jacobian (<VERB>see</VERB> ml and <VERB>mu</VERB> below)</P>
+    <P><VERB>maxordn</VERB> 
+     maximum non-stiff order allowed, at most 12</P>
+    <P><VERB>maxords</VERB>
+     maximum stiff order allowed, at most 5</P>
+    <P><VERB>ixpr</VERB> 
+     print level, 0 or 1</P>
+    <P><VERB>ml</VERB>,<VERB>mu</VERB>
+     If <VERB>jactype</VERB> equals 4 or 5, <VERB>ml</VERB> and <VERB>mu</VERB> are the lower
+     and upper half-bandwidths of the banded jacobian: the band is the
+     i,j's with i-ml &lt;= j &lt;= ny-1.
+     If <VERB>jactype</VERB> equals 4 the jacobian function must return
+     a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))
+     such that column 1 of J is made of mu zeros followed by
+     df1/dy1, df2/dy1, df3/dy1, ... (1+ml possibly non-zero entries)
+     column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2, etc</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

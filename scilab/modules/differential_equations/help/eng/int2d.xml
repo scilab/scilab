@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>int2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="int2d"> definite 2D integral by quadrature and cubature method</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[I,err]=int2d(X,Y,f [,params])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a 3 by N array containing the abscissae of the vertices   of the N triangles.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a 3 by N array containing the ordinates of the vertices   of the N triangles.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external (function or list or string) defining the integrand <VERB>f(u,v)</VERB>;</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>params</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector <VERB>[tol, iclose, maxtri, mevals, iflag]</VERB>. default value is <VERB>[1.d-10, 1, 50, 4000, 1]</VERB>.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>tol</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:the desired bound on the error.  If <VERB>iflag=0</VERB>, <VERB>tol</VERB> is interpreted as a bound on the relative error; if <VERB>iflag=</VERB>1, the bound is on the absolute error.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>iclose</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:an integer parameter that determines the selection of LQM0 or LQM1 methods.  If <VERB>iclose=1</VERB> then LQM1 is used. Any other value of <VERB>iclose</VERB> causes LQM0 to be used. LQM0 uses function values only at interior points of the triangle.  LQM1 is usually more accurate than LQM0 but involves evaluating the integrand at more points including some on the boundary of the triangle.  It will usually be better to use LQM1 unless the integrand has singularities on the boundary of the triangle.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>maxtri</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:the maximum number of triangles in the final triangulation of the region</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>mevals</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: the maximum number of function evaluations to be allowed.  This number will be effective in limiting the computation only if it is less than 94*<VERB>maxtri</VERB>  when LQM1 is specified or 56*<VERB>maxtri</VERB> when LQM0 is specified.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>iflag</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>I</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the integral value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>err</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the estimated error</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>int2d</VERB> computes the two-dimensional integral of a
+    function <VERB>f</VERB> over a region consisting of <VERB>n</VERB> triangles.
+    A total error estimate is obtained and compared with a
+    tolerance - <VERB>tol</VERB> - that is provided as input to the subroutine.
+    The error tolerance is treated as either relative or absolute
+    depending on the input value of <VERB>iflag</VERB>.  A 'Local Quadrature
+    Module' is applied to each input triangle and estimates of the
+    total integral and the total error are computed.  The local
+    quadrature module is either subroutine LQM0 or subroutine
+    LQM1 and the choice between them is determined by the
+    value of the input variable <VERB>iclose</VERB>.</P>
+    <P>
+    If the total error estimate exceeds the tolerance, the triangle
+    with the largest absolute error is divided into two triangles
+    by a median to its longest side.  The local quadrature module
+    is then applied to each of the subtriangles to obtain new
+    estimates of the integral and the error.  This process is
+    repeated until either (1) the error tolerance is satisfied,
+    (2) the number of triangles generated exceeds the input
+    parameter <VERB>maxtri</VERB>, (3) the number of integrand evaluations
+    exceeds the input parameter <VERB>mevals</VERB>, or (4) the function
+    senses that roundoff error is beginning to contaminate
+    the result.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+X=[0,0;1,1;1,0];
+Y=[0,0;0,1;1,1];
+deff('z=f(x,y)','z=cos(x+y)')
+[I,e]=int2d(X,Y,f)
+// computes the integrand over the square [0 1]x[0 1]
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>intc</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>intl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>int3d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>intg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mesh2d</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</AUTHOR>
+</MAN>

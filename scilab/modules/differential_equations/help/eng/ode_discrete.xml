@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ode_discrete</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="ode_discrete"> ordinary differential equation solver, discrete time simulation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=ode(&quot;discrete&quot;,y0,k0,kvect,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>y0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real vector or matrix (initial conditions).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real scalar (initial time).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: external i.e. function or character string or list.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer (initial time).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>kvect</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vector.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    With this syntax (first argument equal to <VERB>&quot;discrete&quot;</VERB>)
+    <VERB>ode</VERB> computes recursively <VERB>y(k+1)=f(k,y(k))</VERB>
+    from an initial state
+    <VERB>y(k0)</VERB> and returns <VERB>y(k)</VERB> for <VERB>k</VERB> in <VERB>kvect</VERB>.
+    <VERB>kvect(1)</VERB> must be greater than or equal to <VERB>k0</VERB>.</P>
+    <P>
+    Other arguments and other options are the same as for <VERB>ode</VERB>, see the
+    ode help.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+y1=[1;2;3]; deff("yp=a_function(k,y)","yp=A*y+B*u(k)")
+A=diag([0.2,0.5,0.9]); B=[1;1;1];u=1:10;n=5;
+y=ode("discrete",y1,1,1:n,a_function);
+y(:,2)-(A*y1+B*u(1))
+// Now y evaluates  at [y3,y5,y7,y9]
+y=ode("discrete",y1,1,3:2:9,a_function)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
