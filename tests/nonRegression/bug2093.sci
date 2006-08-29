@@ -9,7 +9,8 @@ clear;
 
 A = rand(1,1,6);
 B = matrix(A,6);
- 
+C = matrix(A,[6,1]);
+
 if (type(B) == 1) & (type(C) == 1) then
 	affich_result(%T,2093);
 else
