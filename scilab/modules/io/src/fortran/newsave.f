@@ -1,7 +1,7 @@
       
       subroutine intsave
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       logical opened,ptover,cremat
       integer fd,vol,top0,srhs,bl(nsiz)
       double precision res
@@ -130,7 +130,7 @@ c     Loads variables stored in a file. if id1 is a valid variable name
 c     (id1(1).ne.blank) and if this variable if loaded k1 ist set to its
 c     index in the stack
 c
-      include '../stack.h'
+      include 'stack.h'
       integer id1(nsiz),k1,vol
       logical opened,cremat,ptover,eqid
       integer fd,id(nsiz),semi,blank,top0,endian,getendian,it,ssym
@@ -336,7 +336,7 @@ c     return a nul variable
 
       subroutine savevar(fd,id,il,vol,ierr)
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd,id(nsiz),vol
       integer iadr
@@ -403,7 +403,7 @@ c     .  call an external function
 
       subroutine loadvar(fd,id,il,nn,ierr)
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd,id(nsiz),vol
       integer iadr
@@ -467,7 +467,7 @@ c     read id and type
       subroutine savelist(fd,il,ierr)
 c     Copyright INRIA
 c     Save a matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       logical ptover,cremat
@@ -577,7 +577,7 @@ c     finish
       subroutine loadlist(fd,il,nn,ierr)
 c     Copyright INRIA
 c     Save a matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       logical ptover,cremat
@@ -717,7 +717,7 @@ c     finish
       subroutine savemat(fd,il,ierr)
 c     Copyright INRIA
 c     Save a matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -742,7 +742,7 @@ c     write matrix elements
       subroutine loadmat(fd,il,n,ierr)
 c     Copyright INRIA
 c     Save a matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*3 fmti,fmtd
       integer sadr
@@ -779,7 +779,7 @@ c      n=4+2*mn
       subroutine savepol(fd,il,ierr)
 c     Copyright INRIA
 c     Save a matrix of polynomials
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -805,7 +805,7 @@ c     write polynomials coefficients
       subroutine loadpol(fd,il,n,ierr)
 c     Copyright INRIA
 c     Load a matrix of polynomials
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*3 fmti,fmtd
       integer sadr
@@ -853,7 +853,7 @@ c      n=9+mn+2*mn1
       subroutine savestr(fd,il,ierr)
 c     Copyright INRIA
 c     Save a matrix of strings
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
 
@@ -878,7 +878,7 @@ c     write characters
       subroutine loadstr(fd,il,n,ierr)
 c     Copyright INRIA
 c     Load a matrix of strings
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*2 fmti,fmtd
       integer sadr
@@ -921,7 +921,7 @@ c     read characters
       subroutine savebool(fd,il,ierr)
 c     Copyright INRIA
 c     Save a matrix of boolean
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*2 fmti,fmtd
@@ -943,7 +943,7 @@ c     write matrix elements
       subroutine loadbool(fd,il,n,ierr)
 c     Copyright INRIA
 c     Load a matrix of boolean
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*2 fmti,fmtd
       integer sadr
@@ -978,7 +978,7 @@ c     read matrix elements
       subroutine savefun(fd,il,ierr)
 c     Copyright INRIA
 c     Save  a function
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*2 fmti,fmtd
@@ -1003,7 +1003,7 @@ c     write function header without type
       subroutine loadfun(fd,il,n,ierr)
 c     Copyright INRIA
 c     Load a function
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*2 fmti,fmtd
@@ -1060,7 +1060,7 @@ c     read function  without type
       subroutine savecfun(fd,il,ierr)
 c     Copyright INRIA
 c     Save a compiled function
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*2 fmti,fmtd
@@ -1085,7 +1085,7 @@ c     write function header without type
       subroutine loadcfun(fd,il,n,ierr)
 c     Copyright INRIA
 c     Load a compiled function
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       integer sadr
@@ -1143,7 +1143,7 @@ c     read function  without type
       subroutine savesparse(fd,il,ierr)
 c     Copyright INRIA
 c     Save a sparse matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1172,7 +1172,7 @@ c     write matrix elements
       subroutine loadsparse(fd,il,n,ierr)
 c     Copyright INRIA
 c     load a sparse matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*3 fmti,fmtd
       integer sadr
@@ -1221,7 +1221,7 @@ c      n=5+m+nel+2*mn
       subroutine savespb(fd,il,ierr)
 c     Copyright INRIA
 c     Save a sparse matrix of boolean
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1242,7 +1242,7 @@ c     write matrix elements
       subroutine loadspb(fd,il,n,ierr)
 c     Copyright INRIA
 c     Load a sparse matrix of boolean
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*3 fmti,fmtd
       integer sadr 
@@ -1280,7 +1280,7 @@ c     read matrix elements
 c     [14,n,codagedupath(n),nombre-de-nom,nclas+1 cases,suite des noms]
 c     Copyright INRIA
 c     Save a sparse matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1299,7 +1299,7 @@ c
 c     [14,n,codagedupath(n),nombre-de-nom,nclas+1 cases,suite des noms]
 c     Copyright INRIA
 c     Save a sparse matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1346,7 +1346,7 @@ c
       subroutine savemsp(fd,il,ierr)
 c     Copyright INRIA
 c     Save a sparse matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1375,7 +1375,7 @@ c     write matrix elements
       subroutine loadmsp(fd,il,n,ierr)
 c     Copyright INRIA
 c     load a sparse matrix of numbers
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*3 fmti,fmtd
       integer sadr
@@ -1425,7 +1425,7 @@ c      n=5+n+nel+2*mn
       subroutine saveptr(fd,il,ierr)
 c     Copyright INRIA
 c     Save a pointer on sparse lu factorization
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1452,7 +1452,7 @@ c      return
       subroutine loadptr(fd,il,n,ierr)
 c     Copyright INRIA
 c     Save a pointer on sparse lu factorization
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       character*3 fmti,fmtd
       integer sadr
@@ -1482,7 +1482,7 @@ c      n=4+2*1
       subroutine saveint(fd,il,ierr)
 c     Copyright INRIA
 c     Save a pointer on sparse lu factorization
-      include '../stack.h'
+      include 'stack.h'
 c
       integer fd
       character*3 fmti,fmtd
@@ -1519,7 +1519,7 @@ c     write  header type excluded
       subroutine loadint(fd,il,n,ierr)
 c     Copyright INRIA
 c     Save a pointer on sparse lu factorization
-      include '../stack.h'
+      include 'stack.h'
       integer fd
       external memused
       integer memused

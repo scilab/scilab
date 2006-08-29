@@ -3,7 +3,7 @@ c     ================================== ( Inria    ) =============
 c     operations sur les types secondaires (macros librairies...)
 c     =============================================================
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr,op,rhs1,r
       integer equal,less,great,insert,extrac
@@ -61,7 +61,7 @@ c
 
       subroutine libops
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr,op,r
       integer id(nsiz)
@@ -249,7 +249,7 @@ c     *call* macro
 
       subroutine macroops
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr,op,rhs1
       integer equal,less,great,insert,extrac

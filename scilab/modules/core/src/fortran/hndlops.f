@@ -3,7 +3,7 @@ c
 c     operations sur les matrices de handle
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       integer op
 c     
       integer dot,colon,quote
@@ -91,7 +91,7 @@ c
 c     .'
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer vol
       integer iadr,sadr
@@ -131,7 +131,7 @@ c
 c     [a b]
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr
 c     
@@ -185,7 +185,7 @@ c
 c     [a;b]
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr
 c     
@@ -256,7 +256,7 @@ c
 c     B=A(i)
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr
 c     
@@ -377,7 +377,7 @@ c
 c     B=A(i,j)
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr
 c     
@@ -492,7 +492,7 @@ c
 c     A(i)=B
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       logical isany
       integer top0
@@ -796,7 +796,7 @@ c
 c     A(i,j)=B
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer top0
       integer iadr,sadr
@@ -1119,7 +1119,7 @@ c
 c     ==  <>
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer top0,op
       double precision  e1,e2,e1r,e2r,e1i,e2i

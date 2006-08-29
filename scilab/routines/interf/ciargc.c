@@ -1,5 +1,0 @@
-int ciargc()
-{
-  return IARGC();
-
-}

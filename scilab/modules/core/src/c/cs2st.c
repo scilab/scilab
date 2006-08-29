@@ -3,7 +3,7 @@
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
 
-#include "../machine.h" 
+#include "machine.h" 
 
 int C2F(cs2st)(i,ires)
      integer *i,*ires;

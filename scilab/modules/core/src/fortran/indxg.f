@@ -20,7 +20,7 @@ c               implicit indice ":" gives mi=-1,mx=siz
 c!
 
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       integer siz,iopt1,iopt
       double precision e1,v(3)
       integer iadr,sadr
@@ -251,7 +251,7 @@ c!
 *     modification by Bruno so as to use a faster algorithm (7 May 2002)
 
       implicit none
-      include '../stack.h'
+      include 'stack.h'
       integer il, siz, ilr, mi, mx, lw
 
       integer i, k, ilc

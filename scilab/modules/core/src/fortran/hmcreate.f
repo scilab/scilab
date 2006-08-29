@@ -5,7 +5,7 @@ c     sz : dimensions
 c     typv : Matlab class
 c     iflag = 0 or 1 (real or complex)
 
-      include '../stack.h'
+      include 'stack.h'
       integer nz,sz(nz),szv,retval
       integer typv
       integer hmsz
@@ -187,7 +187,7 @@ c        entry (3,1) = "entries"
       integer function hmsz(nz,sz,typv,iflag)
 c     sz = dimensions
 
-      include '../stack.h'
+      include 'stack.h'
       integer nz,sz(nz)
       integer nv
       integer typv

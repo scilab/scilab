@@ -19,7 +19,7 @@ c     we copy from 0 to p-1 ( then istk(il1+k) k>=p
 c     are not scratched and then from n-1 to p 
 c     ===============================
 c     Copyright ENPC/INRIA
-      include '../stack.h'
+      include 'stack.h'
       integer n,il1,dl1 
       integer iadr,sadr
       iadr(l)=l+l-1
@@ -42,7 +42,7 @@ c     =============================
 c     same as stacki2d but for reals 
 c     to double 
 c     ===============================
-      include '../stack.h'
+      include 'stack.h'
       integer n,sl1,dl1 
       integer iadr,sadr
       iadr(l)=l+l-1
@@ -65,7 +65,7 @@ c     =============================
 c     same as stacki2d but for characters
 c     to integer and overlapping region 
 c     ===============================
-      include '../stack.h'
+      include 'stack.h'
       integer n,sl1,il1
       integer iadr,cadr
       iadr(l)=l+l-1

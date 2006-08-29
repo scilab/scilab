@@ -2,7 +2,7 @@
 c     given il the adress of the begining of a scilab variable 
 c     in istk isany returns true if one of the variable entry is non
 c     zero or true
-      include '../stack.h'
+      include 'stack.h'
       integer genisany
       integer iadr,sadr
 c

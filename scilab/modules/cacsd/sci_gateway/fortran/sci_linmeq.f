@@ -123,7 +123,7 @@ C
 C
       SUBROUTINE intlinmeq  (fname)
 
-      include '../stack.h'
+      include 'stack.h'
       character*(*) fname
 
 
@@ -747,7 +747,7 @@ C *** Last line of LINMEQ ***
       end 
 
       logical function iscomplex(pos)
-      include '../stack.h'
+      include 'stack.h'
       integer pos
 c
       integer iadr,sadr

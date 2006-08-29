@@ -198,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\cs2st.c"
+				>
+			</File>
+			<File
 				RelativePath=".\csignal.c"
 				>
 			</File>

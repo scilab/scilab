@@ -2,7 +2,7 @@
 c     given variable #k (scalar or string) and mode 
 c     v2unit return a  logical unit attached to corresponding file
 
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c
       logical opened
       integer mode(2)
