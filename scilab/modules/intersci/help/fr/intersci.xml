@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>intersci</TITLE>
+  <TYPE>Scilab Tool</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="intersci"> scilab tool to interface C of Fortran functions with scilab</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    All scilab primitive functions are defined in a set of interface
+    routines. For each function the interfacing code checks first number of
+    rhs and lhs arguments. Then  it get pointers on input arguments in the
+    Scilab data base and checks their types. After that it calls procedure
+    associated with Scilab functions, checks returned errors flags and set
+    the results in the data base.</P>
+    <P><VERB>intersci</VERB>\ is a program which permits to interface automatically FORTRAN 
+    subroutines or C functions to Scilab</P>
+    <P>
+    With <VERB>intersci</VERB>, a user can group all his FORTRAN or C code into a same set,
+    called an interface, and use them in Scilab as Scilab functions. The interfacing
+    is made by creating a FORTRAN subroutine which has to be linked to
+    Scilab  together 
+    with the user code. This complex FORTRAN subroutine is automatically generated
+    by <VERB>intersci</VERB>\ from a description file of the interface.</P>
+    <P>
+    Refer to intersci documentation for more details.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>fort</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>external</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

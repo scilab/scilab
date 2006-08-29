@@ -1,14 +1,9 @@
 #include <string.h>
-#include "../machine.h"
+#include "machine.h"
 
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
+#include "MALLOC.h"
 
-#/* REORGANISATION TEMPORAIRE */
-#include "../../modules/string/includes/men_Sutils.h"
+#include "../../../string/includes/men_Sutils.h"
 
 #include "libinter.h"
 #include "cerro.h"

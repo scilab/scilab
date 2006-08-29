@@ -3,10 +3,9 @@
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
-#include "../machine.h"
+#include "machine.h"
 
-/* REORGANISATION TEMPORAIRE */
-#include "../../modules/core/includes/Scierror.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
  int C2F(erro)(char *str,long int str_len)
 {

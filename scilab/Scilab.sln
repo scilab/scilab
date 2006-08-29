@@ -206,14 +206,14 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "interf_f", "routines\interf
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersci", "routines\intersci\intersci.vcproj", "{DFA0D75B-F7EF-4D02-B33F-486829405315}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersci", "modules\intersci\src\lib\intersci.vcproj", "{DFA0D75B-F7EF-4D02-B33F-486829405315}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersciexe", "intersci\intersciexe\intersciexe.vcproj", "{73AA7612-4297-4339-B521-8C2870E7BEC1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersciexe", "modules\intersci\src\exe\intersciexe\intersciexe.vcproj", "{73AA7612-4297-4339-B521-8C2870E7BEC1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interscin", "intersci\interscin\interscin.vcproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interscin", "modules\intersci\src\exe\interscin\interscin.vcproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libf2c_DLL", "libs\f2c\libf2c\libf2c.vcproj", "{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}"
 	ProjectSection(ProjectDependencies) = postProject

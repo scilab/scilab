@@ -94,6 +94,7 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
+ exec("SCI/modules/intersci/etc/intersci.start",-1);
  exec("SCI/modules/differential_equations/etc/differential_equations.start",-1);
  exec("SCI/modules/core/etc/core.start",-1);
  exec("SCI/modules/special_functions/etc/special_functions.start",-1);
