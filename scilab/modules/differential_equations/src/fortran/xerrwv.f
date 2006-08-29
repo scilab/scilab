@@ -56,7 +56,7 @@ c for a different run-abort command, change the statement following
 c statement 100 at the end.
 c!
 c-----------------------------------------------------------------------
-      include '../stack.h'
+      include 'stack.h'
       common /eh0001/ mesflg, lunit
       integer         iero
       common /ierode/ iero

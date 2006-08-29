@@ -30,7 +30,7 @@ c-----------------------------------------------------------------------
       double precision tt
       integer         iero
       common /ierode/ iero
-      include '../stack.h'
+      include 'stack.h'
 c
       it=int(t)
       itout=int(tout)

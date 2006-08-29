@@ -34,7 +34,6 @@
 #pragma comment(lib,"../../bin/lapack.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
-#pragma comment(lib,"../../libs/integ_f.lib")
 #pragma comment(lib,"../../libs/interf_f.lib")
 #pragma comment(lib,"../../libs/int_f.lib")
 
