@@ -21,7 +21,7 @@ extern void    /* 08  */ C2F(gw_cacsd1)();
 extern void    /* 09  */ C2F(matric)();
 extern void    /* 10  */ C2F(gw_cacsd2)();
 extern void    /* 11  */ C2F(gw_optim)();
-extern void    /* 12  */ C2F(matode)();
+extern void    /* 12  */ C2F(gw_differential_equations1)();
 extern void    /* 13  */ C2F(gw_core)();
 extern void    /* 14  */ C2F(matusr)();
 extern void    /* 15  */ C2F(gw_metanet)();
@@ -35,13 +35,13 @@ extern void    /* 22  */ C2F(gw_symbolic)();
 extern void    /* 23  */ C2F(logelm)();
 extern void    /* 24  */ C2F(matus2)();
 extern void    /* 25  */ C2F(gw_gui)();
-extern void    /* 26  */ C2F(matimp)();
+extern void    /* 26  */ C2F(gw_differential_equations2)();
 extern void    /* 27  */ C2F(gw_sparse)();
 extern void    /* 28  */ C2F(gw_slicot)();
-extern void    /* 29  */ C2F(matodc)();
-extern void    /* 30  */ C2F(defint)();
-extern void    /* 31  */ C2F(feval)();
-extern void    /* 32  */ C2F(bva)();
+extern void    /* 29  */ C2F(gw_differential_equations3)();
+extern void    /* 30  */ C2F(gw_differential_equations4)();
+extern void    /* 31  */ C2F(gw_differential_equations5)();
+extern void    /* 32  */ C2F(gw_differential_equations6)();
 /* 33  */ /* FREE */
 extern void    /* 34  */ C2F(gw_fileio)();
 extern void    /* 35  */ C2F(gw_arpack)();
@@ -95,7 +95,7 @@ static OpTab Interfaces[] ={
 	/* 09  */ {C2F(matric)},
 	/* 10  */ {C2F(gw_cacsd2)},
 	/* 11  */ {C2F(gw_optim)},
-	/* 12  */ {C2F(matode)},
+	/* 12  */ {C2F(gw_differential_equations1)},
 	/* 13  */ {C2F(gw_core)},
 	/* 14  */ {C2F(matusr)},
 	/* 15  */ {C2F(gw_metanet)},
@@ -109,13 +109,13 @@ static OpTab Interfaces[] ={
 	/* 23  */ {C2F(logelm)},
 	/* 24  */ {C2F(matus2)},
 	/* 25  */ {C2F(gw_gui)},
-	/* 26  */ {C2F(matimp)},
+	/* 26  */ {C2F(gw_differential_equations2)},
 	/* 27  */ {C2F(gw_sparse)},
 	/* 28  */ {C2F(gw_slicot)},
-	/* 29  */ {C2F(matodc)},
-	/* 30  */ {C2F(defint)},
-	/* 31  */ {C2F(feval)},
-	/* 32  */ {C2F(bva)},
+	/* 29  */ {C2F(gw_differential_equations3)},
+	/* 30  */ {C2F(gw_differential_equations4)},
+	/* 31  */ {C2F(gw_differential_equations5)},
+	/* 32  */ {C2F(gw_differential_equations6)},
   /* 33  */ {C2F(matus2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(gw_arpack)},
