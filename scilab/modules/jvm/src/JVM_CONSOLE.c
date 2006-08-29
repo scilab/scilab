@@ -112,6 +112,8 @@ int Terminate_JVM_Thread_CONSOLE(void)
 	JAVALIBRARYPATH=(char*)MALLOC( (strlen("-Djava.library.path=%s/lib")+strlen(JRE_PATH)+strlen(SCILAB_PATH)+strlen("/modules/jvm/bin/SWT")+10)*sizeof(char) );
 	sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s/lib%c%s%s",JRE_PATH,PATH_SEPARATOR,SCILAB_PATH,"/modules/jvm/bin/SWT");
 
+	/* JAVACLASSPATH & JAVALIBRARYPATH sont liberes à la fin de l'execution de la JVM */
+
 	options[0].optionString = "-Djava.compiler=NONE"; /* disable JIT */
 	options[1].optionString = JAVACLASSPATH; /* user classes */
 	options[2].optionString = JAVALIBRARYPATH;  /* set native library path */
@@ -136,8 +138,6 @@ int Terminate_JVM_Thread_CONSOLE(void)
 		bOK=TRUE;
 	}
 
-	if (JAVACLASSPATH) {FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;};
-	if (JAVALIBRARYPATH) {FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
 		
 	Create_JVM_Thread_CONSOLE();
 
