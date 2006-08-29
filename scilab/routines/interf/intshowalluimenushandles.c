@@ -3,7 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "intshowalluimenushandles.h"
-#include "stack-c.h"
+#include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern int version_flag();
 extern sciPointObj *sciGetPointerFromHandle (long handle);

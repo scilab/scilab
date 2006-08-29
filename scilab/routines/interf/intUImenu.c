@@ -13,7 +13,7 @@
 
 #include "../graphics/ObjectStructure.h"
 #include "../../modules/graphics/includes/BuildObjects.h"
-#include "stack-c.h"
+#include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
 extern sciPointObj *sciGetCurrentFigure ();
