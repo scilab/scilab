@@ -29,13 +29,12 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" Preprocess="preprocessYes" AdditionalIncludeDirectories="../../modules/core/includes" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreaded" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/interf_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/interf_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\bva.f"/>
-		<File RelativePath="..\defint.f"/>
 		<File RelativePath="..\feval.f"/>
 		<File RelativePath="..\followpath.f"/>
 		<File RelativePath="..\hmcreate.f"/>
@@ -55,9 +54,6 @@ cd .."/>
 		<File RelativePath="..\lstelm.f"/>
 		<File RelativePath="..\lstelmi.f"/>
 		<File RelativePath="..\lstops.f"/>
-		<File RelativePath="..\matimp.f"/>
-		<File RelativePath="..\matodc.f"/>
-		<File RelativePath="..\matode.f"/>
 		<File RelativePath="..\matold.f"/>
 		<File RelativePath="..\matops.f"/>
 		<File RelativePath="..\matric.f"/>
@@ -66,6 +62,8 @@ cd .."/>
 		<File RelativePath="..\sci_dasrt.f"/>
 		<File RelativePath="..\sci_dassl.f"/>
 		<File RelativePath="..\sci_impl.f"/>
+		<File RelativePath="..\sci_ode.f"/>
+		<File RelativePath="..\sci_odedc.f"/>
 		<File RelativePath="..\stack0.f"/>
 		<File RelativePath="..\v2cunit.f"/>
 		<File RelativePath="..\v2unit.f"/></Filter>

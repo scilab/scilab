@@ -1,4 +1,4 @@
-      subroutine bva(fname)
+      subroutine scibvode(fname)
 c
 C      implicit undefined (a-z)
 c     Copyright ENPC (Jean-Philippe Chancelier )
