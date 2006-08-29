@@ -68,7 +68,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Creation .Lib External Functions"
-				CommandLine="lib /DEF:$(InputDir)LibScilab_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)LibScilab_Import.lib 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:$(InputDir)SciGUIConsole_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)SciGUIConsole_Import.lib 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab_Import.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)SciGUIConsole_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)SciGUIConsole_Import.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -159,7 +159,7 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Creation .Lib External Functions"
-				CommandLine="lib /DEF:$(InputDir)LibScilab_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)LibScilab_Import.lib 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:$(InputDir)SciGUIConsole_Import.def /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:$(InputDir)SciGUIConsole_Import.lib 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab_Import.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)SciGUIConsole_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)SciGUIConsole_Import.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
