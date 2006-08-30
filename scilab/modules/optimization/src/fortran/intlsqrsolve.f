@@ -7,7 +7,7 @@ c     Author : Serge Steer INRIA
 c     ---------------------------
       character*(*) fname
 c      implicit undefined (a-z)
-      include '../stack.h'
+      include 'stack.h'
       integer topk,kres,kjac,kx,m1,n1,lr1,lr,lw,gettype
       logical checklhs,checkrhs,getrmat,getexternal,cremat,jac
       logical type,getscalar
