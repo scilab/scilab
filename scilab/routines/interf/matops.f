@@ -18,11 +18,6 @@ c
 c     
       op=fin
 c     
-      if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' matops op: '//buf(1:4))
-      endif
-c     
 c     operations binaires et ternaires
 c     --------------------------------
 c     
