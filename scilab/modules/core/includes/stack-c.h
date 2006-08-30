@@ -92,8 +92,8 @@ typedef struct sciintmat {
  * set of defines for interface simplication 
  * -------------------------------------------------*/
 
-static int c1_local;
-static int c_local;
+static int c1_local=0;
+static int c_local=0;
 
 #define TRUE_ 1
 #define FALSE_ 0
