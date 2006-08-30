@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\gw_cacsd1.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_cacsd2.c"
 				>
 			</File>
@@ -254,6 +258,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\gw_cacsd1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_cacsd2.h"
 				>
 			</File>
@@ -264,6 +272,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\sci_gateway\cacsd0.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\cacsd1.fundef"
 			>
 		</File>
 		<File

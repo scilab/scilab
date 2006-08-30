@@ -1,6 +1,6 @@
     	subroutine scilyap(fname)
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       character*(*) fname
       integer iadr,sadr
 c

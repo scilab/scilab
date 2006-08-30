@@ -173,10 +173,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\gw_cacsd1.c"
-				>
-			</File>
-			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
@@ -209,10 +205,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\gw_cacsd1.h"
-				>
-			</File>
 			<File
 				RelativePath=".\intshowalluimenushandles.h"
 				>

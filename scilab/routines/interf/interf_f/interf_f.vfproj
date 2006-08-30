@@ -45,10 +45,7 @@ cd .."/>
 		<File RelativePath="..\lstelmi.f"/>
 		<File RelativePath="..\lstops.f"/>
 		<File RelativePath="..\matold.f"/>
-		<File RelativePath="..\matops.f"/>
-		<File RelativePath="..\sci_lyap.f"/>
-		<File RelativePath="..\sci_ricc.f"/>
-		<File RelativePath="..\sci_sylv.f"/></Filter>
+		<File RelativePath="..\matops.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
 	<Globals/></VisualStudioProject>
