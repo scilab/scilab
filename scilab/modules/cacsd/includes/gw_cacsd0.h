@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __GW_CACSD1__
-#define __GW_CACSD1__
+#ifndef __GW_CACSD0__
+#define __GW_CACSD0__
 
 #ifdef _MSC_VER
   #include <windows.h>
@@ -16,14 +16,14 @@
 #include "stack-c.h"
 
 
-typedef int (*Cacsd1_Interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*Cacsd0_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 
 {
-  Cacsd1_Interf f;    /** function **/
+  Cacsd0_Interf f;    /** function **/
   char *name;      /** its name **/
-} Cacsd1Table;
+} Cacsd0Table;
 
-#endif /*  __GW_CACSD1__ */
+#endif /*  __GW_CACSD0__ */
 /*-----------------------------------------------------------------------------------*/
 

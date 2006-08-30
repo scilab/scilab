@@ -18,7 +18,7 @@
 #include "../../graphics/sci_gateway/graphics.fundef"	
   
 #define  IN_matqz  8
-#include "../../cacsd/sci_gateway/cacsd1.fundef"  
+#include "../../cacsd/sci_gateway/cacsd0.fundef"  
 
 #define  IN_matric 9
 #include "../../../../routines/interf/ric.fundef"  

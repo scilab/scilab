@@ -173,7 +173,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_cacsd1.c"
+				RelativePath="..\..\sci_gateway\c\gw_cacsd0.c"
 				>
 			</File>
 			<File
@@ -250,7 +250,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\gw_cacsd1.h"
+				RelativePath="..\..\includes\gw_cacsd0.h"
 				>
 			</File>
 			<File
@@ -263,7 +263,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\cacsd1.fundef"
+			RelativePath="..\..\sci_gateway\cacsd0.fundef"
 			>
 		</File>
 		<File

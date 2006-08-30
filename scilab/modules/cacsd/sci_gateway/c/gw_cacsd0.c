@@ -1,4 +1,4 @@
-#include "gw_cacsd1.h"
+#include "gw_cacsd0.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -14,7 +14,7 @@ extern int C2F(sci_gspec) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_ereduc) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_fstair) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
-static Cacsd1Table Tab[]=
+static Cacsd0Table Tab[]=
 {
 	{C2F(sci_gschur),"gschur"},
 	{C2F(sci_gspec),"gspec"},
@@ -22,7 +22,7 @@ static Cacsd1Table Tab[]=
 	{C2F(sci_fstair),"fstair"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd1)()
+int C2F(gw_cacsd0)()
 {  
 #if _MSC_VER
 	#ifndef _DEBUG
