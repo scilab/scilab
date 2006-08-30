@@ -197,10 +197,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\matdsr.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -211,10 +207,6 @@
 			>
 			<File
 				RelativePath=".\intshowalluimenushandles.h"
-				>
-			</File>
-			<File
-				RelativePath="matdsr.h"
 				>
 			</File>
 			<File
@@ -230,10 +222,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\dsRC.fundef"
-			>
-		</File>
 		<File
 			RelativePath=".\interp.fundef"
 			>

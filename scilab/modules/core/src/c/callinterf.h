@@ -11,7 +11,7 @@
 
 
 extern void    /* 01  */ C2F(matlu)(); /* for backward compatibility */
-extern void    /* 02  */ C2F(matdsr)();
+extern void    /* 02  */ C2F(gw_linear_algebra)();
 extern void    /* 03  */ C2F(matsvd)();/* for backward compatibility */
 extern void    /* 04  */ C2F(matqr)();/* for backward compatibility */
 extern void    /* 05  */ C2F(gw_io)();
@@ -85,7 +85,7 @@ extern void    /* 49  */ C2F(gw_sound)();
 
 static OpTab Interfaces[] ={
   /* 01  */ {C2F(matlu)},
-	/* 02  */ {C2F(matdsr)},
+	/* 02  */ {C2F(gw_linear_algebra)},
 	/* 03  */ {C2F(matsvd)},
 	/* 04  */ {C2F(matqr)},
 	/* 05  */ {C2F(gw_io)},
