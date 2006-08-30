@@ -37,8 +37,6 @@
 #pragma comment(lib,"../../libs/interf_f.lib")
 #pragma comment(lib,"../../libs/int_f.lib")
 
-#pragma comment(lib,"../../libs/control_f.lib")
-
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")
 #pragma comment(lib,"../../libs/linear_algebra_f.lib")
