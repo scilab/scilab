@@ -3,9 +3,9 @@ mode(-1)
 //blocks
 //mprintf('Compiling Modelica models in '+pwd()')
 load('SCI/macros/util/lib')
-load('SCI/macros/int/lib')
 load('SCI/macros/percent/lib')
 
+load('SCI/modules/integer/macros/lib')
 load('SCI/modules/elementaries_functions/macros/lib')
 load('SCI/modules/polynomials/macros/lib')
 

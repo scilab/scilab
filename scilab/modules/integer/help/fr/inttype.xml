@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>inttype  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="inttype">  type des entiers utilisés dans les types entiers de données.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[i]=inttype(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice d&apos;entiers (voir int8)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un entier
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    renvoie un entier donnant le type de données stockées dans
+    <VERB>x</VERB> avec la convention suivante :
+  </P>
+ 
+  <P>
+     1 
+    :  codage entier à 1 octet
+  </P>
+  <P>
+     2 
+    :  codage entier à 2 octets
+  </P>
+  <P>
+     4 
+    :  codage entier à 4 octets
+  </P>
+  <P>
+     11 
+    :  codage entier non-signé à 1 octet
+  </P>
+  <P>
+     12 
+    :  codage entier non-signé à 2 octets
+  </P>
+  <P>
+     14 
+    :  codage entier non-signé à 4 octets
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+x=uint16(1:10);
+inttype(x)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>int8</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

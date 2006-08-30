@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>iconvert  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>October 99  </DATE>
+  <SHORT_DESCRIPTION name="iconvert "> conversion au codage entier à 1,2 ou 4 octets  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=iconvert(X,itype)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>X  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de flottants ou d&apos;entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice d&apos;entiers codés sur 1,2 ou 4 octets.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Convertit et stocke sous forme d&apos;entiers à 1,2 ou 4 octets.
+  </P>
+ 
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='itype=0'> 
+  <SP>
+    : renvoie des nombres à virgule flottante
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=1'> 
+  <SP>
+    : renvoie et stocke dans y des entiers int8 dans l&apos;intervalle [-128,127] 
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=11'> 
+  <SP>
+    : renvoie et stocke dans y des entiers uint8 dans l&apos;intervalle [0,255] 
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=2'> 
+  <SP>
+    : renvoie et stocke dans y des entiers int16 dans l&apos;intervalle [-32768,32767] 
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=12'> 
+  <SP>
+    : renvoie et stocke dans y des entiers uint16 dans l&apos;intervalle [0, 65535] 
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='itype=4'> 
+  <SP>
+    : renvoie et stocke dans y des entiers int32 dans
+	l&apos;intervalle[-2147483648,2147483647] 
+</SP>
+  </DESCRIPTION_ITEM>
+  <DESCRIPTION_ITEM  label='itype=14'>
+  <SP>
+ : renvoie et stocke dans y des entiers uint32 dans l&apos;intervalle [0, 4294967295] 
+</SP>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+b=int32([1 -120 127 312])
+y=iconvert(b,1)
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>double</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inttype</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -55,7 +55,6 @@ MSDOS = (getos() == "Windows")
 load('SCI/macros/sci2for/lib')
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/util/lib')
-load('SCI/macros/int/lib')
 load('SCI/macros/percent/lib')
 // Create some configuration variables ================================
 // path of scilab main directory
@@ -94,6 +93,7 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
+ exec("SCI/modules/integer/etc/integer.start",-1);
  exec("SCI/modules/intersci/etc/intersci.start",-1);
  exec("SCI/modules/differential_equations/etc/differential_equations.start",-1);
  exec("SCI/modules/core/etc/core.start",-1);
@@ -122,6 +122,7 @@ clear  larg L
  exec("SCI/modules/scicos/etc/scicos.start",-1);
  exec("SCI/modules/pvm/etc/pvm.start",-1);
  exec("SCI/modules/texmacs/etc/texmacs.start",-1);
+ 
  // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
 global demolist

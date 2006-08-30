@@ -125,7 +125,7 @@
 #endif
 
 #define  IN_intelm  43
-#include "../../../../routines/int/int.fundef"
+#include "../../integer/sci_gateway/integer.fundef"
 
 #define  IN_intlapack  44
 #include "../../linear_algebra/sci_gateway/linear_algebra2.fundef"

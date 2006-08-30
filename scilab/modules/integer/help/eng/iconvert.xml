@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>iconvert</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 99</DATE>
+  <SHORT_DESCRIPTION name="iconvert"> conversion to 1 or 4 byte integer representation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=iconvert(X,itype)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of floats or integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of integers coded on one, two or four bytes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    converts and stores data two one, two or four bytes integers. 
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="itype=0">
+        <SP>: return floating point numbers</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="itype=1">
+        <SP>: return int8 numbers in the range [-128,127]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="itype=11">
+        <SP>: return uint8 numbers in the range [0,255]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="itype=2">
+        <SP>: return int16 numbers in the range [-32768,32767]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="itype=12">
+        <SP>: return uint16 numbers in the range [0, 65535]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="itype=4">
+        <SP>: return int32 numbers in the range [-2147483648,2147483647]</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="itype=14">
+        <SP>: return uint32 numbers in the range [0, 4294967295]</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+b=int32([1 -120 127 312])
+y=iconvert(b,1)
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>double</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>inttype</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>inttype</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="inttype">  type integers used in integer data types</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[i]=inttype(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an matrix of integers (see int8,..)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>inttype(x)</VERB>  returns an integer which is the type of the entries
+    of <VERB>x</VERB> as following :</P>
+    <P>
+     1 
+    :  one byte integer representation</P>
+    <P>
+     2 
+    :  two bytes integer representation</P>
+    <P>
+     4 
+    :  four bytes integer representation</P>
+    <P>
+     11 
+    :  one byte unsigned integer representation</P>
+    <P>
+     12 
+    :  two bytes unsigned integer representation</P>
+    <P>
+     14 
+    :  four bytes unsigned integer representation</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=uint16(1:10);
+inttype(x)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>int8</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
