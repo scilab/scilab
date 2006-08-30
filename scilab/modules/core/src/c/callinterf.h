@@ -18,7 +18,7 @@ extern void    /* 05  */ C2F(gw_io)();
 extern void    /* 06  */ C2F(gw_elementaries_functions)();
 extern void    /* 07  */ C2F(gw_graphics)();
 extern void    /* 08  */ C2F(gw_cacsd0)();
-extern void    /* 09  */ C2F(matric)();
+extern void    /* 09  */ C2F(gw_cacsd1)();
 extern void    /* 10  */ C2F(gw_cacsd2)();
 extern void    /* 11  */ C2F(gw_optim)();
 extern void    /* 12  */ C2F(gw_differential_equations1)();
@@ -92,7 +92,7 @@ static OpTab Interfaces[] ={
 	/* 06  */ {C2F(gw_elementaries_functions)},
 	/* 07  */ {C2F(gw_graphics)},
 	/* 08  */ {C2F(gw_cacsd0)},
-	/* 09  */ {C2F(matric)},
+	/* 09  */ {C2F(gw_cacsd1)},
 	/* 10  */ {C2F(gw_cacsd2)},
 	/* 11  */ {C2F(gw_optim)},
 	/* 12  */ {C2F(gw_differential_equations1)},

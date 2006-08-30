@@ -21,7 +21,7 @@
 #include "../../cacsd/sci_gateway/cacsd0.fundef"  
 
 #define  IN_matric 9
-#include "../../../../routines/interf/ric.fundef"  
+#include "../../cacsd/sci_gateway/cacsd1.fundef"  
 
 #define  IN_matnew  10
 #include "../../cacsd/sci_gateway/cacsd2.fundef"  
