@@ -337,6 +337,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_integer.c"
+				>
+			</File>
+			<File
 				RelativePath=".\i_nextj.c"
 				>
 			</File>
@@ -359,6 +363,10 @@
 			>
 			<File
 				RelativePath="def.h"
+				>
+			</File>
+			<File
+				RelativePath=".\gw_integer.h"
 				>
 			</File>
 		</Filter>

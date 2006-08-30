@@ -9,7 +9,7 @@
 {"mgeti",		IN_intelm,	9,	3},
 /* 10 not used */
 {"%i_mput",		IN_intelm,	11,	3},
-/* 12 not used */
+/*{"iconvert",	IN_intelm,	12,	3},*/
 {"%i_abs",		IN_intelm,	13,	3},
 {"%i_diag",		IN_intelm,	14,	3},
 {"%i_triu",		IN_intelm,	15,	3},

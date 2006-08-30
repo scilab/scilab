@@ -66,7 +66,7 @@ extern void    /* 42  */ C2F(gw_pvm)();
 #define PVMINTERF C2F(NoPvm)
 #endif
 
-extern void    /* 43  */ C2F(intelm)();
+extern void    /* 43  */ C2F(gw_integer)();
 extern void    /* 44  */ C2F(gw_linear_algebra2)();
 
 #if WITHOUT_SCICOS
@@ -126,7 +126,7 @@ static OpTab Interfaces[] ={
   /* 40  */ {TCLINTERF},
 	/* 41  */ {C2F(lstelmi)},
 	/* 42  */ {PVMINTERF},
-  /* 43  */ {C2F(intelm)},
+  /* 43  */ {C2F(gw_integer)},
   /* 44  */ {C2F(gw_linear_algebra2)},
   /* 45  */ {SCICOSINTERF1},  
   /* 46  */ {SCICOSINTERF2},
