@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>ode_discrete</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>February 1998</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="ode_discrete"> ordinary differential equation solver, discrete time simulation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=ode(&quot;discrete&quot;,y0,k0,kvect,f)  </CALLING_SEQUENCE_ITEM>
