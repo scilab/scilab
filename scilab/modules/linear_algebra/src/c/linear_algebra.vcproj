@@ -173,7 +173,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\c\gw_linear_algebra.c"
+				RelativePath="..\..\sci_gateway\c\gw_linear_algebra2.c"
 				>
 			</File>
 			<File
@@ -238,7 +238,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\gw_linear_algebra.h"
+				RelativePath="..\..\includes\gw_linear_algebra2.h"
 				>
 			</File>
 		</Filter>

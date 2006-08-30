@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __GW_LINEAR_ALGEBRA__
-#define __GW_LINEAR_ALGEBRA__
+#ifndef __GW_LINEAR_ALGEBRA2__
+#define __GW_LINEAR_ALGEBRA2__
 
 #ifdef _MSC_VER
 #include <windows.h>
@@ -16,14 +16,14 @@
 #include "stack-c.h"
 
 
-typedef int (*Linear_Algebra_Interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*Linear_Algebra2_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 
 {
-	Linear_Algebra_Interf f;    /** function **/
+	Linear_Algebra2_Interf f;    /** function **/
 	char *name;      /** its name **/
-} LinearAlgebraTable;
+} LinearAlgebra2Table;
 
-#endif /*  __GW_LINEAR_ALGEBRA__ */
+#endif /*  __GW_LINEAR_ALGEBRA2__ */
 /*-----------------------------------------------------------------------------------*/
 

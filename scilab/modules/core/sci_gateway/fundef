@@ -128,7 +128,7 @@
 #include "../../../../routines/int/int.fundef"
 
 #define  IN_intlapack  44
-#include "../../linear_algebra/sci_gateway/linear_algebra.fundef"
+#include "../../linear_algebra/sci_gateway/linear_algebra2.fundef"
 
 #define  IN_intcos  45  
 #define  IN_intcscicos 46

@@ -1,4 +1,4 @@
-#include "gw_linear_algebra.h"
+#include "gw_linear_algebra2.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
@@ -24,7 +24,7 @@ extern int C2F(inthess) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intdet) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intbalanc) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
-static LinearAlgebraTable Tab[]={
+static LinearAlgebra2Table Tab[]={
 	{C2F(intqr),"qr"},
 	{C2F(intsvd),"svd"},
 	{C2F(intlsq),"lsq"},
@@ -41,7 +41,7 @@ static LinearAlgebraTable Tab[]={
 	{C2F(intbalanc),"balanc"},
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_linear_algebra)()
+int C2F(gw_linear_algebra2)()
 {  
 	Rhs = Max(0, Rhs);
 #if _MSC_VER
