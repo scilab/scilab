@@ -3,7 +3,7 @@
 /* matlu 1 for backward compatibility */
 
 #define  IN_MatdsRC 2
-#include "../../linear_algebra/sci_gateway/linear_algebra.fundef"
+#include "../../linear_algebra/sci_gateway/linear_algebra1.fundef"
 
 /* matsvd 3 for backward compatibility */
 /* matqr 4 for backward compatibility */
