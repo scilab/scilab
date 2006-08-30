@@ -8,13 +8,8 @@
 #include <stdio.h> 
 #include <string.h> 
 /*-----------------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-
-#include "../graphics/ObjectStructure.h"
+#include "MALLOC.h"
+#include "ObjectStructure.h"
 /*-----------------------------------------------------------------------------------*/
 int intshowalluimenushandles(char *fname,unsigned long fname_len);
 #endif /* __INTSHOWALLUIMENUSHANDLES__ */

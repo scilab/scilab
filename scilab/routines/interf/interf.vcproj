@@ -189,14 +189,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intshowalluimenushandles.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intUImenu.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -205,10 +197,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\intshowalluimenushandles.h"
-				>
-			</File>
 			<File
 				RelativePath="stack1.h"
 				>

@@ -277,6 +277,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\intshowalluimenushandles.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\intUImenu.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
 			</File>
@@ -840,6 +848,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Interaction.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\intshowalluimenushandles.h"
 				>
 			</File>
 			<File
