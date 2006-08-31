@@ -1,0 +1,159 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2006 */
+/*-----------------------------------------------------------------------------------*/
+#include "../machine.h"
+#include "../stack-c.h"
+/*-----------------------------------------------------------------------------------*/
+#define ISTK ((integer *)&C2F(stack))
+/*-----------------------------------------------------------------------------------*/
+int C2F(matlog)()
+{
+    static integer ou = 57;
+    static integer non = 61;
+
+    static integer j=0;
+    static double e1, e2;
+    extern  int C2F(error)();
+    static integer i1, i2, l1, l2, m2, n2, m1, n1, op, lw, il1, il2, mn2, it1, it2, mn1, top0;
+
+    top0 = C2F(vstk).top;
+    op = C2F(com).fin;
+    lw = C2F(vstk).lstk[C2F(vstk).top] + 1;
+
+    if (C2F(com).rhs == 2)
+    {
+		il2 = C2F(vstk).lstk[C2F(vstk).top - 1] + C2F(vstk).lstk[C2F(vstk).top - 1] - 1;
+		if (ISTK[il2 - 1] < 0) 
+		{
+	    	il2 = ISTK[il2] + ISTK[il2] - 1;
+		}
+		m2 = ISTK[il2];
+		n2 = ISTK[il2 + 1];
+		it2 = ISTK[il2 + 2];
+		l2 = (il2 + 4) / 2 + 1;
+		mn2 = m2 * n2;
+		--C2F(vstk).top;
+    }
+
+    il1 = C2F(vstk).lstk[C2F(vstk).top - 1] + C2F(vstk).lstk[C2F(vstk).top - 1] - 1;
+    if (ISTK[il1 - 1] < 0) 
+   	{
+		il1 = ISTK[il1] + ISTK[il1] - 1;
+    }
+    m1 = ISTK[il1];
+    n1 = ISTK[il1 + 1];
+    it1 = ISTK[il1 + 2];
+
+    l1 = (il1 + 4) / 2 + 1;
+    mn1 = m1 * n1;
+    if (C2F(com).fin == non) 
+   	{
+		if (mn1 == 0) 
+		{
+			ISTK[il1 - 1] = 1;
+			ISTK[il1] = 0;
+			ISTK[il1 + 1] = 0;
+			ISTK[il1 + 2] = 0;
+
+			C2F(vstk).lstk[C2F(vstk).top] = (il1 + 4) / 2 + 1;
+			return 0;
+		}
+		else
+		{
+			ISTK[il1 - 1] = 4;
+			for (j = 0; j <= mn1 - 1; ++j) 
+			{
+				e1 = C2F(stack).Stk[l1 + j - 1];
+				if (e1 == 0.) 
+				{
+		    		ISTK[il1 + 3 + j - 1] = 1;
+				}
+				else
+				{
+		    		ISTK[il1 + 3 + j - 1] = 0;
+				}
+			}
+			C2F(vstk).lstk[C2F(vstk).top] = (il1 + 3 + mn1) / 2 + 1;
+		}
+	}
+	else
+	{
+		if (mn1 == 0 || mn2 == 0) 
+		{
+			ISTK[il1 - 1] = 1;
+			ISTK[il1] = 0;
+			ISTK[il1 + 1] = 0;
+			ISTK[il1 + 2] = 0;
+
+			C2F(vstk).lstk[C2F(vstk).top] = (il1 + 4) / 2 + 1;
+			return 0;
+		}
+		if (mn1 == 1) 
+		{
+			i1 = 0;
+			mn1 = mn2;
+		}
+		else 
+		{
+			i1 = 1;
+		}
+		if (mn2 == 1) 
+		{
+			i2 = 0;
+			mn2 = mn1;
+		}
+		else 
+		{
+		    i2 = 1;
+		}
+		if (mn1 != mn2) 
+		{
+			static integer code_error = 60;
+			C2F(error)(&code_error);
+			return 0;
+		}
+		if (C2F(com).fin == ou) 
+		{
+	        for (j = 0; j <= mn1 - 1; ++j) 
+			{
+				e1 = C2F(stack).Stk[l1 + j * i1 - 1];
+				e2 = C2F(stack).Stk[l2 + j * i2 - 1];
+				if (e1 != 0. || e2 != 0.) 
+				{
+		    		ISTK[il1 + 3 + j - 1] = 1;
+				}
+				else 
+				{
+		    		ISTK[il1 + 3 + j - 1] = 0;
+				}
+			}
+		}
+		else
+		{
+			for (j = 0; j <= mn1 - 1; ++j) 
+			{
+				e1 = C2F(stack).Stk[l1 + j * i1 - 1];
+				e2 = C2F(stack).Stk[l2 + j * i2 - 1];
+				if (e1 != 0. && e2 != 0.) 
+				{
+					ISTK[il1 + 3 + j - 1] = 1;
+				}
+				else
+				{
+		    		ISTK[il1 + 3 + j - 1] = 0;
+				}
+			}
+		}
+		ISTK[il1 - 1] = 4;
+		ISTK[il1] = max(m1,m2);
+		ISTK[il1 + 1] = max(n1,n2);
+
+		C2F(vstk).lstk[C2F(vstk).top] = (il1 + 3 + mn1) / 2 + 1;
+		return 0;
+	}
+return 0;
+}
+#undef ISTK
+/*-----------------------------------------------------------------------------------*/
+
+

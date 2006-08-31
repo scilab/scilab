@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\matlog.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
