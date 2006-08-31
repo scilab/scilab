@@ -2,28 +2,32 @@
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
 /*-----------------------------------------------------------------------------------*/ 
+#if _MSC_VER
+#include <Windows.h>
+#endif
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 #include "interpolation.h"
+#include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
-extern double C2F(db3val)(double *xval, double *yval, double *zval, int *idx, int *idy, int *idz, 
-		   double *tx, double *ty, double *tz, int *nx, int *ny, int *nz, 
-		   int *kx, int *ky, int *kz, double *bcoef, double *work);
+extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
+extern int C2F(driverdb3valwithgrad)();
+extern int C2F(driverdb3val)();
 /*-----------------------------------------------------------------------------------*/ 
-int intbsplin3val(char *fname,unsigned long fname_len)
+int intinterp3d(char *fname,unsigned long fname_len)
 {
   /*
-   *   [fp] = bsplin3val(xp, yp, zp, tlcoef, der)  
+   *   [f [, dfdx, dfdy, dfdz]] = interp3d(xp, yp, zp, tlcoef [,outmode])  
    */
 
-  int minrhs=5, maxrhs=5, minlhs=1, maxlhs=1;
+  int minrhs=4, maxrhs=5, minlhs=1, maxlhs=4;
 
-  int mxp, nxp, lxp, myp, nyp, lyp, mzp, nzp, lzp, mt, nt, lt, m1, n1, np;
+  int mxp, nxp, lxp, myp, nyp, lyp, mzp, nzp, lzp, mt, nt, lt, np;
   int zero=0, one=1, kx, ky, kz;
   int nx, ny, nz, nxyz, mtx, mty, mtz, m, n, ltx, lty, ltz, lbcoef, mwork, lwork, lfp;
-  int lxyzminmax, nsix;
-  int i, mder,nder,lder, ox, oy, oz;
-  double *fp, *xp, *yp, *zp, *der;
+  int lxyzminmax, nsix, outmode, ns, *str_outmode;
+  int /*i,*/ m1, n1, ldfpdx, ldfpdy, ldfpdz;
+  double *fp, *xp, *yp, *zp, *dfpdx, *dfpdy, *dfpdz;
   double *xyzminmax, xmin, xmax, ymin, ymax, zmin, zmax;
   SciIntMat Order; int *order;
   char **Str;
@@ -61,18 +65,20 @@ int intbsplin3val(char *fname,unsigned long fname_len)
   ymin = xyzminmax[2];  ymax = xyzminmax[3]; 
   zmin = xyzminmax[4];  zmax = xyzminmax[5]; 
 
-  GetRhsVar(5,"d", &mder, &nder, &lder);
-  der = stk(lder);
-  if (   mder*nder != 3
-      || der[0] != floor(der[0]) || der[0] < 0.0 
-      || der[1] != floor(der[1]) || der[1] < 0.0 
-      || der[2] != floor(der[2]) || der[2] < 0.0 )
-    {
-      Scierror(999,"%s: bad 5 th argument \r\n", fname);
-      return 0;
-    }
-  ox = (int) der[0];  oy = (int) der[1];  oz = (int) der[2];
 
+  /* get the outmode */
+  if ( Rhs == 5 ) 
+    {
+      GetRhsScalarString(5, &ns, &str_outmode);
+      outmode =  get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
+      if ( outmode == UNDEFINED || outmode == LINEAR || outmode == NATURAL )
+	{
+	  Scierror(999,"%s: unsupported outmode type\n\r",fname);
+	  return 0;
+	};
+    }
+  else
+    outmode = C0;
 
   CreateVar(Rhs+1, "d", &mxp, &nxp, &lfp); fp = stk(lfp);
 
@@ -83,14 +89,28 @@ int intbsplin3val(char *fname,unsigned long fname_len)
   mwork = ky*kz + 3*max(kx,max(ky,kz)) + kz;
   CreateVar(Rhs+2, "d", &mwork, &one, &lwork);
 
-  for ( i=0; i<np ; i++ )
+  if ( Lhs == 1 )
     {
-      fp[i] = C2F(db3val)(&(xp[i]), &(yp[i]), &(zp[i]), &ox, &oy, &oz, 
-			  stk(ltx), stk(lty), stk(lty), &nx, &ny, &nz,
-			  &kx, &ky, &kz, stk(lbcoef), stk(lwork));
+      C2F(driverdb3val)(xp,yp,zp,fp,&np,stk(ltx), stk(lty), stk(ltz),
+			&nx, &ny, &nz, &kx, &ky, &kz, stk(lbcoef), stk(lwork),
+			&xmin, &xmax, &ymin, &ymax, &zmin, &zmax, &outmode);
+      LhsVar(1) = Rhs+1;
+    }
+  else
+    {
+      CreateVar(Rhs+3, "d", &mxp, &nxp, &ldfpdx); dfpdx = stk(ldfpdx);
+      CreateVar(Rhs+4, "d", &mxp, &nxp, &ldfpdy); dfpdy = stk(ldfpdy);
+      CreateVar(Rhs+5, "d", &mxp, &nxp, &ldfpdz); dfpdz = stk(ldfpdz);
+      C2F(driverdb3valwithgrad)(xp,yp,zp,fp,dfpdx, dfpdy, dfpdz, &np,
+				stk(ltx), stk(lty), stk(ltz),
+				&nx, &ny, &nz, &kx, &ky, &kz, stk(lbcoef), stk(lwork),
+				&xmin, &xmax, &ymin, &ymax, &zmin, &zmax, &outmode);
+      LhsVar(1) = Rhs+1;
+      LhsVar(2) = Rhs+3;
+      LhsVar(3) = Rhs+4;
+      LhsVar(4) = Rhs+5;
     }
 
-  LhsVar(1) = Rhs+1;
   PutLhsVar();
   return 0;
 }

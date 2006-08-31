@@ -51,7 +51,7 @@
 #include "../../signal_processing/sci_gateway/signal.fundef"
 
 #define  IN_intinterp  19
-#include "../../../../routines/interf/interp.fundef"  
+#include "../../interpolation/sci_gateway/interpolation.fundef"  
 
 #define  IN_polaut  20
 #include "../../cacsd/sci_gateway/cacsd3.fundef"

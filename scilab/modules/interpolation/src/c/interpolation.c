@@ -11,7 +11,7 @@
 #include <math.h>
 #include <string.h>
 #include "interpolation.h"
-#include "../stack-c.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern integer C2F(getfastcode)(unsigned char *c, unsigned long c_len);
 /*-----------------------------------------------------------------------------------*/

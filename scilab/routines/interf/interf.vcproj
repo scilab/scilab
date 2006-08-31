@@ -173,63 +173,11 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\gw_interpolation.c"
-				>
-			</File>
-			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
 			<File
-				RelativePath=".\interpolation.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intqld.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_bsplin3val.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_cshep2d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_eval_cshep2d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_interp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_interp2d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_interp3d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_linear_interpn.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_lsq_splin.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_splin.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_splin2d.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_splin3d.c"
 				>
 			</File>
 			<File
@@ -241,14 +189,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\gw_interpolation.h"
-				>
-			</File>
-			<File
-				RelativePath=".\interpolation.h"
-				>
-			</File>
 			<File
 				RelativePath="stack1.h"
 				>

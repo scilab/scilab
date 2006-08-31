@@ -2,8 +2,11 @@
 /* INRIA */
 /* AUTHOR : Bruno Pincon */
 /*-----------------------------------------------------------------------------------*/ 
+#if _MSC_VER
+#include <Windows.h>
+#endif
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(cshep2) (int *n, double *x, double *y, double *z, int *nc, int *nw, 

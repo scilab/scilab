@@ -3,7 +3,7 @@
 /* AUTHOR : Bruno Pincon */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 #include "interpolation.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int good_order(double x[], int n);
