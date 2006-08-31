@@ -173,15 +173,15 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\gw_boolean.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
 			<File
 				RelativePath=".\intinterp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\intorand.c"
 				>
 			</File>
 			<File
@@ -193,7 +193,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_and.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_or.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stcreate.c"
+				>
+			</File>
+			<File
+				RelativePath=".\vect_and.c"
+				>
+			</File>
+			<File
+				RelativePath=".\vect_or.c"
 				>
 			</File>
 		</Filter>
@@ -201,6 +217,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\gw_boolean.h"
+				>
+			</File>
 			<File
 				RelativePath="stack1.h"
 				>

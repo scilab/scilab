@@ -1,4 +1,6 @@
-
+c     ==================================================
+c     INRIA
+c     ==================================================
       subroutine intsfind(nmax)
 c     find of a full standard or boolean matrix
       include '../stack.h'
@@ -241,3 +243,4 @@ c     order the index column wise
 
       return
       end
+c     ==================================================      
