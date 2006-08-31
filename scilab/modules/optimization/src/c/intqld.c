@@ -1,5 +1,5 @@
 #include <string.h>
-#include "../stack-c.h"
+#include "stack-c.h"
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
 #ifdef __STDC__

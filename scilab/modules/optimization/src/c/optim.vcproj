@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\intqld.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_fsolv.c"
 				>
 			</File>
