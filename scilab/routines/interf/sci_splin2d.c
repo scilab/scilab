@@ -1,0 +1,106 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA */
+/* AUTHOR : Bruno Pincon */
+/*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
+#include "../stack-c.h"
+#include "interpolation.h"
+/*-----------------------------------------------------------------------------------*/ 
+extern int good_order(double x[], int n);
+extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
+extern int C2F(bicubicsubspline)(double *x, double *y, double *z, int *nx, int *ny,double *C, double *p, double *q, double *r, int *spline_type);
+extern int C2F(bicubicspline)(double *x, double *y, double *u, int *nx, int *ny,double *C, double *p, double *q, double *r, double *A_d, double *A_sd, double *d, double *ll,double *qdu, double *u_temp, int *spline_type);
+/*-----------------------------------------------------------------------------------*/ 
+int intsplin2d(char *fname,unsigned long fname_len)
+{
+  /*    interface pour splin2d :
+   *
+   *    C = splin2d(x, y, z [, type])
+   *
+   */
+ 
+  int minrhs=3, maxrhs=4, minlhs=1, maxlhs=1;
+
+  int mx, nx, lx, my, ny, ly, mz, nz, lz, ns, mc, nc, lc, lp, lq, lr;
+  int spline_type, *str_spline_type/*, i*/;
+  int one = 1;
+  double *x, *y, *C;
+
+  CheckRhs(minrhs,maxrhs);
+  CheckLhs(minlhs,maxlhs);
+
+  GetRhsVar(1,"d", &mx, &nx, &lx);
+  GetRhsVar(2,"d", &my, &ny, &ly);
+  GetRhsVar(3,"d", &mz, &nz, &lz);
+
+  if ( mx != 1 || my != 1 || mz != nx || nz != ny || nx < 2 || ny < 2)
+    { 
+      Scierror(999,"%s: bad inputs \r\n", fname);
+      return 0;
+    }
+
+  /* verify strict increasing order for x and y */
+  x = stk(lx);  y = stk(ly);
+  if ( !good_order(x, nx) || !good_order(y, ny))
+    {
+      Scierror(999,"%s: x and/or y are not in strict increasing order (or +-inf detected) \r\n", fname);
+      return 0;
+    }
+
+  /* get the spline type */
+  if ( Rhs == 4 ) 
+    {
+      GetRhsScalarString(4, &ns, &str_spline_type);
+      spline_type = get_type(SplineTable, NB_SPLINE_TYPE, str_spline_type, ns);
+      if ( spline_type == UNDEFINED || spline_type == CLAMPED )
+	{
+	  Scierror(999,"%s: unsupported spline type\n\r",fname);
+	  return 0;
+	};
+    }
+  else
+    spline_type = NOT_A_KNOT;
+
+  /* memory for the big C array */
+  mc = 16*(nx-1)*(ny-1); nc = 1;
+  CreateVar( Rhs+1, "d", &mc,  &nc, &lc);
+  C = stk(lc);
+  /* memory for work arrays  */
+  CreateVar( Rhs+2, "d", &nx, &ny, &lp);
+  CreateVar( Rhs+3, "d", &nx, &ny, &lq);
+  CreateVar( Rhs+4, "d", &nx, &ny, &lr);
+
+  if (spline_type == MONOTONE || spline_type == FAST || spline_type == FAST_PERIODIC)
+    {   
+      C2F(bicubicsubspline)(x, y, stk(lz), &nx, &ny, stk(lc), 
+			    stk(lp), stk(lq), stk(lr), &spline_type);
+    }
+
+  else   /*  spline */
+    {
+      int lA_d, lA_sd, ld, lqdu, lutemp, nxy, nxym1, nxym2, lll;
+
+      nxy = max(nx,ny); nxym1 = nxy-1; nxym2 = nxy-2; 
+
+      CreateVar( Rhs+5, "d", &nxy,   &one, &lA_d);
+      CreateVar( Rhs+6, "d", &nxym1, &one, &lA_sd);
+      CreateVar( Rhs+7, "d", &ny,    &one, &ld);
+      CreateVar( Rhs+8, "d", &nxy,   &one, &lqdu);
+      CreateVar( Rhs+9, "d", &ny,    &one, &lutemp);
+
+      if (spline_type == PERIODIC)
+	{
+	  CreateVar(Rhs+10, "d", &nxym2, &one, &lll) ;
+	}
+      else
+	lll = lA_sd ;   /* bidon ... */
+      C2F(bicubicspline)(x, y, stk(lz), &nx, &ny, stk(lc), stk(lp), stk(lq), stk(lr), 
+                         stk(lA_d), stk(lA_sd), stk(ld), stk(lll), stk(lqdu), 
+			 stk(lutemp), &spline_type);
+    }
+
+  LhsVar(1) = Rhs+1;
+  PutLhsVar();
+  return 0;
+}
+

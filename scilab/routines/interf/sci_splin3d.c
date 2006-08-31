@@ -1,0 +1,115 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA */
+/* AUTHOR : Bruno Pincon */
+/*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
+#include "../stack-c.h"
+#include "interpolation.h"
+/*-----------------------------------------------------------------------------------*/ 
+extern int C2F(db3ink)();
+/*-----------------------------------------------------------------------------------*/ 
+int intsplin3d(char * fname,unsigned long fname_len)
+{
+  /*
+   *   [tlist] = splin3d(x, y, z, v [,orderxyz])
+   */
+  static char *Str[]={"tensbs3d", "tx", "ty", "tz", "order", "bcoef", "xyzminmax"};
+
+  int minrhs=4, maxrhs=5, minlhs=1, maxlhs=1;
+
+  int mx, nx, lx, my, ny, ly, mz, nz, lz, mo, no, lo, kx, ky, kz;
+  int ntx, nty, ntz, ltx, lty, ltz, lbcoef, lxyzminmax, mwk, mwkx, mwky, mwkz;
+  int flag, one=1, three=3, six=6, seven=7,ltlist, nxyz, lwork, lar, lorder, *order;
+  double *x, *y, *z, *xyzminmax;
+  RealHyperMat V;
+
+  CheckRhs(minrhs,maxrhs);
+  CheckLhs(minlhs,maxlhs);
+
+  GetRhsVar(1,"d", &mx, &nx, &lx);
+  CheckVector(1, mx, nx); x = stk(lx);
+  GetRhsVar(2,"d", &my, &ny, &ly);
+  CheckVector(2, my, ny); y = stk(ly);
+  GetRhsVar(3,"d", &mz, &nz, &lz);
+  CheckVector(2, mz, nz); z = stk(lz);
+
+  nx = mx*nx; ny = my*ny; nz = mz*nz;
+
+  if ( nx < 3  ||  ny < 3  ||  nz < 3 ) 
+    { 
+      Scierror(999,"%s: the x, y and z grids must have at least 3 points \r\n", fname);
+      return 0;
+    }
+
+  GetRhsRealHMat(4, &V);
+  if ( V.dimsize != 3 )
+    { 
+      Scierror(999,"%s: 4 th argument must be a real 3-dim hypermatrix  \n", fname);
+      return 0;
+    }
+  if ( V.dims[0] != nx  ||  V.dims[1] != ny  ||  V.dims[2] != nz  )
+    { 
+      Scierror(999,"%s: size incompatibility between grid points and grid values\n\r", fname);
+      return 0;
+    }
+
+  if ( Rhs == 5 )
+    {
+      GetRhsVar(5,"d", &mo, &no, &lo);
+      if ( (mo != 1 && no != 1)  ||  mo*no != 3 )
+	{ 
+	  Scierror(999,"%s: the 4 th arg must be a vector with 3 components \r\n", fname);
+	  return 0;
+	}
+      kx = (int)*stk(lo); ky = (int)*stk(lo+1); kz = (int)*stk(lo+2);
+      if ( kx < 2  ||  kx >= nx  ||  ky < 2  ||  ky >= ny  ||  kz < 2  ||  kz >= nz )
+	{ 
+	  Scierror(999,"%s: bad 5 th arg [kx ky kz]\n\r", fname);
+	  return 0;
+	}
+    }
+  else
+    {
+      kx = 4; ky = 4; kz = 4;
+    }
+
+  ntx = nx + kx;
+  nty = ny + ky;
+  ntz = nz + kz;
+  mwkx = kx*(nx+1); mwky = ky*(ny+1); mwkz = kz*(nz+1); 
+  mwkx = max(mwkx, mwky);
+  mwk = nx*ny*nz + 2*(max(mwkx, mwkz));
+  nxyz = nx*ny*nz;
+
+  CreateVar(Rhs+1,"t", &seven, &one, &ltlist);
+  CreateListVarFromPtr(Rhs+1, 1, "S", &one,  &seven, Str);
+  lar = -1; CreateListVarFrom(Rhs+1, 2, "d", &ntx, &one, &ltx, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 3, "d", &nty, &one, &lty, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 4, "d", &ntz, &one, &ltz, &lar);
+  lorder = 4; 
+  lar = -1; CreateListVarFrom(Rhs+1, 5, "I", &three, &one, &lorder, &lar);
+  order = istk(lorder); order[0] = kx; order[1] = ky; order[2] = kz;
+  lar = -1; CreateListVarFrom(Rhs+1, 6, "d", &nxyz,  &one, &lbcoef, &lar);
+  lar = -1; CreateListVarFrom(Rhs+1, 7, "d", &six,  &one, &lxyzminmax, &lar); 
+  xyzminmax = stk(lxyzminmax); 
+  xyzminmax[0] = x[0]; xyzminmax[1] = x[nx-1];  
+  xyzminmax[2] = y[0]; xyzminmax[3] = y[ny-1];  
+  xyzminmax[4] = z[0]; xyzminmax[5] = z[nz-1];  
+  CreateVar(Rhs+2, "d", &mwk, &one, &lwork);    /* work */
+
+  flag = 0;
+  C2F(db3ink) ( stk(lx), &nx, stk(ly), &ny, stk(lz), &nz, V.R,
+		&nx, &ny, &kx, &ky, &kz, stk(ltx), stk(lty), stk(ltz), 
+		stk(lbcoef), stk(lwork), &flag);
+
+  if ( flag != 1 )
+    {
+      Scierror(999,"%s: problem : flag = %d \r\n", fname, flag);
+      return 0;
+    }
+
+  /*  Return only the tlist  */
+  LhsVar(1) = Rhs+1;
+  PutLhsVar();
+  return 0;
+}
