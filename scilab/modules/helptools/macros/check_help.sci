@@ -61,7 +61,10 @@ function check_help(dirs)
 	// Gestion du fichier de log
 	//------------------------------------------------------------------------------------------
 	
-	logfile = pathconvert(TMPDIR+"/check_help.log",%f,%f);
+	global LANGUAGE;
+	logfile = pathconvert(SCIHOME+"/check_help_"+LANGUAGE+".log",%f,%f);
+	clear LANGUAGE;
+	
 	logfile_id = mopen(logfile,"w");
 	mclose(logfile_id);
 	
@@ -146,9 +149,9 @@ function check_help(dirs)
 							mclose(logfile_id);
 							
 							if MSDOS then
-								unix(SCI+"\modules\helptools\bin\xmllint\xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+								unix(SCI+"\modules\helptools\bin\xmllint\xmllint --noout --valid """+xml(k2)+""" >> """+logfile+""" 2>&1");
 							else
-								unix("xmllint --noout --valid "+xml(k2)+" >> "+logfile+" 2>&1");
+								unix("xmllint --noout --valid """+xml(k2)+""" >> """+logfile+""" 2>&1");
 							end
 						end
 					end

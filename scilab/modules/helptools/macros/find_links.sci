@@ -182,6 +182,7 @@ function t=getlink(name,absolute_path,path)
 	end
 	
 	t=getrelativefilename(absolute_path,man_found);
+	t=strsubst(t,'\','/');
 	
 endfunction
 
