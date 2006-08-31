@@ -776,6 +776,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\sci_gateway\user.fundef"
+			>
+		</File>
+		<File
 			RelativePath="..\..\includes\version-h.vc"
 			>
 		</File>

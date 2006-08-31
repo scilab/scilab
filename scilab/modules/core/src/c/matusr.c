@@ -5,7 +5,7 @@
 #include "machine.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
- int C2F(matusr)()
+ int C2F(gw_user)()
 {
    Rhs=Max(Rhs,0);
    return 0;

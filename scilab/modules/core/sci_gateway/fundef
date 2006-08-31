@@ -36,7 +36,7 @@
 #include "core.fundef"
 
 #define  IN_matusr  14  
-#include "../../../../routines/interf/usr.fundef"
+#include "user.fundef"
 
 #define  IN_metane  15
 #include "../../metanet/sci_gateway/metanet.fundef"  

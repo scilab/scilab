@@ -6,7 +6,7 @@
  *  to add a new interface add a declaration and a new entry 
  *  at the end of the Interfaces array 
  *  The maximum number of interfaces is bound to DynInterfStart 
- *                                 ( file ../sun/addinter.h ) 
+ *                                 ( file /core/includes/addinter.h ) 
  ********************************************************/
 
 
@@ -23,7 +23,7 @@ extern void    /* 10  */ C2F(gw_cacsd2)();
 extern void    /* 11  */ C2F(gw_optim)();
 extern void    /* 12  */ C2F(gw_differential_equations1)();
 extern void    /* 13  */ C2F(gw_core)();
-extern void    /* 14  */ C2F(matusr)();
+extern void    /* 14  */ C2F(gw_user)();
 extern void    /* 15  */ C2F(gw_metanet)();
 extern void    /* 16  */ C2F(gw_polynomials)();
 extern void    /* 17  */ C2F(lstelm)();
@@ -33,7 +33,7 @@ extern void    /* 20  */ C2F(gw_cacsd3)();
 extern void    /* 21  */ C2F(gw_string)();
 extern void    /* 22  */ C2F(gw_symbolic)();
 extern void    /* 23  */ C2F(gw_boolean)();
-extern void    /* 24  */ C2F(matus2)();
+extern void    /* 24  */ C2F(gw_user2)();
 extern void    /* 25  */ C2F(gw_gui)();
 extern void    /* 26  */ C2F(gw_differential_equations2)();
 extern void    /* 27  */ C2F(gw_sparse)();
@@ -84,7 +84,7 @@ extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
 
 static OpTab Interfaces[] ={
-  /* 01  */ {C2F(matlu)},
+    /* 01  */ {C2F(matlu)},
 	/* 02  */ {C2F(gw_linear_algebra)},
 	/* 03  */ {C2F(matsvd)},
 	/* 04  */ {C2F(matqr)},
@@ -97,7 +97,7 @@ static OpTab Interfaces[] ={
 	/* 11  */ {C2F(gw_optim)},
 	/* 12  */ {C2F(gw_differential_equations1)},
 	/* 13  */ {C2F(gw_core)},
-	/* 14  */ {C2F(matusr)},
+	/* 14  */ {C2F(gw_user)},
 	/* 15  */ {C2F(gw_metanet)},
 	/* 16  */ {C2F(gw_polynomials)},
 	/* 17  */ {C2F(lstelm)},
@@ -107,7 +107,7 @@ static OpTab Interfaces[] ={
 	/* 21  */ {C2F(gw_string)},
 	/* 22  */ {C2F(gw_symbolic)},
 	/* 23  */ {C2F(gw_boolean)},
-	/* 24  */ {C2F(matus2)},
+	/* 24  */ {C2F(gw_user2)},
 	/* 25  */ {C2F(gw_gui)},
 	/* 26  */ {C2F(gw_differential_equations2)},
 	/* 27  */ {C2F(gw_sparse)},
@@ -116,23 +116,23 @@ static OpTab Interfaces[] ={
 	/* 30  */ {C2F(gw_differential_equations4)},
 	/* 31  */ {C2F(gw_differential_equations5)},
 	/* 32  */ {C2F(gw_differential_equations6)},
-  /* 33  */ {C2F(matus2)}, /* free position may be used */
+    /* 33  */ {C2F(gw_user2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
 	/* 46  */ {C2F(gw_arpack)},
 	/* 36  */ {C2F(gw_special_functions1)},
 	/* 37  */ {C2F(gw_statistics)},
-  /* 38  */ {C2F(gw_randlib)},
-  /* 39  */ {C2F(gw_special_functions2)},
-  /* 40  */ {TCLINTERF},
+    /* 38  */ {C2F(gw_randlib)},
+    /* 39  */ {C2F(gw_special_functions2)},
+    /* 40  */ {TCLINTERF},
 	/* 41  */ {C2F(lstelmi)},
 	/* 42  */ {PVMINTERF},
-  /* 43  */ {C2F(gw_integer)},
-  /* 44  */ {C2F(gw_linear_algebra2)},
-  /* 45  */ {SCICOSINTERF1},  
-  /* 46  */ {SCICOSINTERF2},
+    /* 43  */ {C2F(gw_integer)},
+    /* 44  */ {C2F(gw_linear_algebra2)},
+    /* 45  */ {SCICOSINTERF1},  
+    /* 46  */ {SCICOSINTERF2},
 	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
-	/* 49  */	{C2F(gw_sound)}
+	/* 49  */ {C2F(gw_sound)}
 };
 
 #endif /*__CALLINTERF__*/

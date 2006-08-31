@@ -24,10 +24,10 @@ c     .     back to matio
 c     .     end of overloaded function
             goto 96
          elseif(ir.gt.40) then
-c     .     back to matus2
+c     .     back to gw_user2
             k=24
          elseif(ir.gt.20) then
-c     .     back to matusr
+c     .     back to gw_user
             k=14
          else
             goto 89

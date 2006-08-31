@@ -1584,10 +1584,10 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
       /* end of overloaded function */
       goto L96;
     } else if (ir > 40) {
-      /* back to matus2 */
+      /* back to gw_user2 */
       k = 24;
     } else if (ir > 20) {
-      /* back to matusr */
+      /* back to gw_user */
       k = 14;
     } else {
       goto L89;
