@@ -40,10 +40,7 @@ cd .."/>
 		<File RelativePath="..\intl_i.f"/>
 		<File RelativePath="..\lstelm.f"/>
 		<File RelativePath="..\lstelmi.f"/>
-		<File RelativePath="..\lstops.f"/>
-		<File RelativePath="..\matlu.f"/>
-		<File RelativePath="..\matqr.f"/>
-		<File RelativePath="..\matsvd.f"/></Filter>
+		<File RelativePath="..\lstops.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
 	<Globals/></VisualStudioProject>

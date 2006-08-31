@@ -10,10 +10,10 @@
  ********************************************************/
 
 
-extern void    /* 01  */ C2F(matlu)(); /* for backward compatibility */
+/* 01  C2F(gw_user)(); FREE */
 extern void    /* 02  */ C2F(gw_linear_algebra)();
-extern void    /* 03  */ C2F(matsvd)();/* for backward compatibility */
-extern void    /* 04  */ C2F(matqr)();/* for backward compatibility */
+/* 03  C2F(gw_user)(); FREE */
+/* 04  C2F(gw_user)(); FREE */
 extern void    /* 05  */ C2F(gw_io)();
 extern void    /* 06  */ C2F(gw_elementaries_functions)();
 extern void    /* 07  */ C2F(gw_graphics)();
@@ -84,10 +84,10 @@ extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
 
 static OpTab Interfaces[] ={
-    /* 01  */ {C2F(matlu)},
+    /* 01  */ {C2F(gw_user)}, /* free position may be used */
 	/* 02  */ {C2F(gw_linear_algebra)},
-	/* 03  */ {C2F(matsvd)},
-	/* 04  */ {C2F(matqr)},
+	/* 03  */ {C2F(gw_user)}, /* free position may be used */
+	/* 04  */ {C2F(gw_user)}, /* free position may be used */
 	/* 05  */ {C2F(gw_io)},
 	/* 06  */ {C2F(gw_elementaries_functions)},
 	/* 07  */ {C2F(gw_graphics)},

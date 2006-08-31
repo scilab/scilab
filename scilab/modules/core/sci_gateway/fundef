@@ -1,12 +1,12 @@
 /** you can insert in this file new scilab functions **/
 
-/* matlu 1 for backward compatibility */
+/* FREE 1  */
 
 #define  IN_MatdsRC 2
 #include "../../linear_algebra/sci_gateway/linear_algebra1.fundef"
 
-/* matsvd 3 for backward compatibility */
-/* matqr 4 for backward compatibility */
+/* FREE 3  */
+/* FREE 4  */
 
 #define  IN_matio  5  
 #include "../../io/sci_gateway/io.fundef"
