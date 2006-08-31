@@ -32,7 +32,7 @@ extern void    /* 19  */ C2F(intinterp)();
 extern void    /* 20  */ C2F(gw_cacsd3)();
 extern void    /* 21  */ C2F(gw_string)();
 extern void    /* 22  */ C2F(gw_symbolic)();
-extern void    /* 23  */ C2F(logelm)();
+extern void    /* 23  */ C2F(gw_boolean)();
 extern void    /* 24  */ C2F(matus2)();
 extern void    /* 25  */ C2F(gw_gui)();
 extern void    /* 26  */ C2F(gw_differential_equations2)();
@@ -106,7 +106,7 @@ static OpTab Interfaces[] ={
 	/* 20  */ {C2F(gw_cacsd3)},
 	/* 21  */ {C2F(gw_string)},
 	/* 22  */ {C2F(gw_symbolic)},
-	/* 23  */ {C2F(logelm)},
+	/* 23  */ {C2F(gw_boolean)},
 	/* 24  */ {C2F(matus2)},
 	/* 25  */ {C2F(gw_gui)},
 	/* 26  */ {C2F(gw_differential_equations2)},

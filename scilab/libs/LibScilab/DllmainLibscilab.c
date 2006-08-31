@@ -36,7 +36,7 @@
 #ifndef USE_F2C
 #pragma comment(lib,"../../libs/interf_f.lib")
 
-
+#pragma comment(lib,"../../libs/boolean_f.lib")
 #pragma comment(lib,"../../libs/double_f.lib")
 #pragma comment(lib,"../../libs/integer_f.lib")
 #pragma comment(lib,"../../libs/differential_equations_f.lib")

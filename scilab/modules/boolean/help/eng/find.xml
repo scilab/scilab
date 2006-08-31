@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>find</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="find"> find indices of  boolean vector or matrix true elements</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[ii]=find(x [,nmax])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[i1,i2,..]=find(x [,nmax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: may be a boolean vector,  a boolean matrix, a boolean
+  hypermatrix, a &quot;standard&quot; matrix or hypermatrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nmax</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer giving the maximum number of indices to return. The default value is -1 which stands for &quot;all&quot;. This option can be used for efficiency, to avoid searching all indices.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ii, i1, i2, ..  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer vectors of indices or empty matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    If <VERB>x</VERB> is a boolean matrix,</P>
+    <P><VERB>ii=find(x)</VERB> returns the vector
+    of indices <VERB>i</VERB> for which <VERB>x(i)</VERB> is &quot;true&quot;. If no true element
+    found find returns an empty matrix.</P>
+    <P><VERB>[i1,i2,..]=find(x)</VERB> returns vectors of indices <VERB>i1</VERB> (for rows) and <VERB>i2</VERB> (for columns),..
+    such that <VERB>x(i1(n),i2(n),..)</VERB> is &quot;true&quot;. If no true element
+    found find returns  empty matrices in <VERB>i1</VERB>,
+    <VERB>i2</VERB>, ...</P>
+    <P>
+    if <VERB>x</VERB> is a standard matrix or hypermatrix <VERB>find(x)</VERB> is interpreted as
+    <VERB>find(x&lt;&gt;0)</VERB></P>
+    <P><VERB>find([])</VERB> returns <VERB>[]</VERB></P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+A=rand(1,20);
+w=find(A<0.4)
+A(w)
+w=find(A>100) 
+
+B=rand(1,20);
+w=find(B<0.4,2) //at most 2 returned values
+
+H=rand(4,3,5); //an hypermatrix
+[i,j,k]=find(H>0.9)  
+
+H(i(1),j(1),k(1))
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>boolean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>extraction</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>insertion</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>vectorfind</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

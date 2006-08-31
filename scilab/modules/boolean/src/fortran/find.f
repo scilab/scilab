@@ -3,7 +3,7 @@ c     INRIA
 c     ==================================================
       subroutine intsfind(nmax)
 c     find of a full standard or boolean matrix
-      include '../stack.h'
+      include 'stack.h'
 
       double precision tv
 c
@@ -137,7 +137,7 @@ c
       end
 
       subroutine intspfind(nmax)
-      include '../stack.h'
+      include 'stack.h'
 
       logical ref
       double precision temp

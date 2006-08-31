@@ -1,0 +1,23 @@
+// ====================================================================
+// boolean module initialisation file 
+// Copyright INRIA 2006
+// ====================================================================
+//Load  functions librarie
+//load('SCI/modules/boolean/macros/lib');
+// ====================================================================
+//add help chapter
+global LANGUAGE
+
+path = get_absolute_file_path('boolean.start');
+path = getshortpathname(path);
+
+if LANGUAGE == 'fr' then
+	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("Booleen",path);
+elseif LANGUAGE == 'eng' then
+	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("Boolean",path);
+end
+
+clear path get_absolute_file_path add_help_chapter LANGUAGE;
+// ====================================================================

@@ -2,7 +2,7 @@ c     ==================================================
 c     INRIA
 c     ==================================================
       subroutine intfind
-      include '../stack.h'
+      include 'stack.h'
 c
       external gettype
       integer gettype,vt,top0

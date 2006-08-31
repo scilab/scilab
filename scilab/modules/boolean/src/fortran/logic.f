@@ -6,7 +6,7 @@ c
 c     ====================================================================
 c     
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
 c     
       integer dot,colon
       integer less,great,equal,et,ou,non

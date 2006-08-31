@@ -2,7 +2,7 @@ c     ==================================================
 c     INRIA
 c     ==================================================
       subroutine intsbool2s
-      include '../stack.h'
+      include 'stack.h'
 
       logical ref
       integer sadr,iadr
