@@ -7,7 +7,7 @@ c
 c     matrix substraction
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       common /mtlbc/ mmode
 c     
       double precision cstr,csti,sr,si

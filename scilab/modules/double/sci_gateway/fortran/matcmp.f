@@ -7,7 +7,7 @@ c
 c     == <= >= <>
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer top0,op
       double precision  e1,e2,e1r,e2r,e1i,e2i

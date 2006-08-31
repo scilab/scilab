@@ -7,7 +7,7 @@ c
 c     matrix/vector entrywize power
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       double precision ddot,dasum,sr,si
       integer iadr,sadr

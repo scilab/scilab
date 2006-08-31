@@ -7,7 +7,7 @@ c
 c     vector multiplication .*
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       double precision sr,si
       integer iadr,sadr

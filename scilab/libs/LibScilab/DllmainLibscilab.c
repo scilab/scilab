@@ -37,6 +37,7 @@
 #pragma comment(lib,"../../libs/interf_f.lib")
 
 
+#pragma comment(lib,"../../libs/double_f.lib")
 #pragma comment(lib,"../../libs/integer_f.lib")
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")

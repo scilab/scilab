@@ -7,7 +7,7 @@ c
 c     B=A(i)
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer iadr,sadr
 c     

@@ -1,15 +1,15 @@
 // ====================================================================
 // This file contains command to be executed at the end 
-// of a scilab session for time module
+// of a scilab session for double module
 // Copyright INRIA 2006
 // ====================================================================
 // delete help chapter
 global LANGUAGE
 
 if LANGUAGE == 'fr' then
-	//del_help_chapter("Arpack");
+	//del_help_chapter("Doubles");
 elseif LANGUAGE == 'eng' then
-	//del_help_chapter("Arpack");
+	//del_help_chapter("Doubles");
 end
 
 clear del_help_chapter LANGUAGE;

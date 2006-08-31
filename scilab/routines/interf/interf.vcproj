@@ -189,10 +189,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\matops.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stcreate.c"
 				>
 			</File>
@@ -228,10 +224,6 @@
 		</File>
 		<File
 			RelativePath=".\lstelmi.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\ric.fundef"
 			>
 		</File>
 		<File

@@ -6,7 +6,7 @@ c
 c     A(i,j)=B
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       integer top0
       integer iadr,sadr

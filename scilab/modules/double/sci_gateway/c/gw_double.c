@@ -2,7 +2,7 @@
 /* Allan CORNET */
 /* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/
-#include "../stack-c.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 static integer colon = 44;
 static integer quote = 53;
@@ -45,7 +45,6 @@ extern int C2F(matxpow)();
 int C2F(matops)()
 {
     static integer op;
-
 
     op = C2F(com).fin;
 

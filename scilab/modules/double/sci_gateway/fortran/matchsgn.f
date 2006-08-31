@@ -7,7 +7,7 @@ c
 c     matrix change sign
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 
       integer iadr,sadr
 c     

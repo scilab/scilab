@@ -7,7 +7,7 @@ c
 c     A(i)=B
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
       common /mtlbc/ mmode
 c     
       logical isany

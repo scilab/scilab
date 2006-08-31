@@ -1,13 +1,13 @@
 c			================================================
 c     Copyright INRIA
 c			================================================
-
-      subroutine matldiv
+ 
+      subroutine matrdiv
 c     
-c     matrix/vector left division
+c     matrix/vector right division
 c     
 c     Copyright INRIA
-      include '../stack.h'
+      include 'stack.h'
 c     
       double precision sr,si
       integer iadr,sadr
@@ -33,9 +33,9 @@ c
       mn1=m1*n1
 c
       itr=max(it1,it2)
-
+c
       if (mn1.eq.0.or.mn2.eq.0) then
-c     .  a\[] or []\a
+c     .  a/[] or []/a
          istk(il1)=1
          istk(il1+1)=0
          istk(il1+2)=0
@@ -43,57 +43,52 @@ c     .  a\[] or []\a
          lstk(top+1)=sadr(il1+4)
          return
       endif
-      if (m1*n1 .ne. 1) then
-         if(m2.lt.0) then
+      if (mn2 .ne. 1) then
+         if(m1.lt.0) then
             call error(14)
             return
          endif
          top = top+1
-         rhs = 2 
-         call intbackslash('backslash')
+         rhs = 2        
+         call intslash('slash')
          if (fin.ge.0) call putlhsvar()
-c         if (m1 .eq. n1) fun = 1
-c         if (m1 .ne. n1) fun = 4
-c         fin = -2
+c         if (m2 .eq. n2) fun = 1
+c         if (m2 .ne. n2) fun = 4
+c         fin = -1
       else
-c     .  cst \ vector
-         if(m1.lt.0.and.mn2.ne.1) then 
+c     .  vector / cst
+         if(m2.lt.0.and.mn1.ne.1) then 
             call error(14)
             return
          endif
-         istk(il1+1)=m2
-         istk(il1+2)=n2
+         istk(il1+1)=m1
+         istk(il1+2)=n1
          istk(il1+3)=itr
-         lstk(top+1)=l1+mn2*(itr+1)
+         lstk(top+1)=l1+mn1*(itr+1)
 c     
          err=lstk(top+1)-lstk(bot)
          if(err.gt.0) then
             call error(17)
             return
          endif
-
-         sr=stk(l1)
          it21=it2+2*it1
          if(it21.eq.0) then
-c     .     real \ real
-            call ddrdiv(stk(l2),1,sr,0,stk(l1),1,mn2,ierr)
+c     .     real / real
+            call ddrdiv(stk(l1),1,stk(l2),0,stk(l1),1,mn1,ierr)
          elseif(it21.eq.1) then
-c     .     real \ complex = complex/real
-            call wdrdiv(stk(l2),stk(l2+mn2),1,sr,0,stk(l2)
-     $           ,stk(l2+mn2),1,mn2,ierr)
-            call unsfdcopy(2*mn2,stk(l2),1,stk(l1),1)
+c     .     real / complex
+            sr=stk(l2)
+            si=stk(l2+1)
+            call dwrdiv(stk(l1),1,sr,si,0,stk(l1),stk(l1+mn1),1,
+     $           mn1,ierr)
          elseif(it21.eq.2) then 
-c     .     complex \ real =real / complex
-            si=stk(l1+1)
-            call unsfdcopy(mn2,stk(l2),1,stk(l1),1)
-            call dwrdiv(stk(l1),1,sr,si,0,stk(l1),stk(l1+mn2),1
-     $           ,mn2,ierr)
+c     .     complex / real
+            call wdrdiv(stk(l1),stk(l1+mn1),1,stk(l2),0,stk(l1)
+     $           ,stk(l1+mn1),1,mn1,ierr)
          elseif(it21.eq.3) then  
-c     .     complex \ complex
-            si=stk(l1+1)
-            call unsfdcopy(2*mn2,stk(l2),1,stk(l1),1)
-            call wwrdiv(stk(l1),stk(l1+mn2),1,sr,si,0,stk(l1)
-     $           ,stk(l1+mn2),1,mn2,ierr)
+c     .     complex / complex
+            call wwrdiv(stk(l1),stk(l1+mn1),1,stk(l2),stk(l2+1)
+     $           ,0,stk(l1),stk(l1+mn1),1,mn1,ierr)
          endif
          if(ierr.ne.0) then
             if(ieee.eq.0) then
@@ -104,6 +99,6 @@ c     .     complex \ complex
             endif
          endif
       endif
+      return
       end
-
 c			================================================
