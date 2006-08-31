@@ -17,7 +17,7 @@
 #include "../stack-c.h"
 #include <math.h>
 #include <stdlib.h>
-/* #include <stdio.h> */
+
 #if _MSC_VER
 #undef min
 #undef max
