@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "/home/scilab/scilab-3.0/man/manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scisum</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>25-Mar-2006</DATE>
+  <SHORT_DESCRIPTION name="scisum">  add short decription here</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y = scisum(a,b)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>a</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : add here the parameter description
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>b</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : add here the parameter description
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>y</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : add here the parameter description
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      Add here a paragraph of the function description. 
+      Other paragraph can be added 
+     </P>
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+     <P>
+      Add here a paragraph of the function description 
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   Add here scilab instructions and comments
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> add a key here</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <BIBLIO>
+    Add here the function bibliography if any
+  </BIBLIO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='enter here the author name'>
+    Add here the author  references
+    </AUTHORS_ITEM>
+  </AUTHORS>
+  <USED_FUNCTIONS>
+     Add here the used function name and  references
+  </USED_FUNCTIONS>
+</MAN>
