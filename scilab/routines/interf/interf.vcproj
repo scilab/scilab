@@ -173,7 +173,47 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\gw_data_structures1.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hmops.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_definedfields.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_glist.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_list.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lsslist.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lstcat.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_lstsize.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_mlist.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_rlist.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_tlist.c"
 				>
 			</File>
 			<File
@@ -185,6 +225,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\gw_data_structures1.h"
+				>
+			</File>
 			<File
 				RelativePath="stack1.h"
 				>
@@ -198,14 +242,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\list.fundef"
-			>
-		</File>
-		<File
-			RelativePath=".\lstelmi.fundef"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
