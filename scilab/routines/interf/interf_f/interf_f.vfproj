@@ -42,7 +42,6 @@ cd .."/>
 		<File RelativePath="..\intl_e.f"/>
 		<File RelativePath="..\intl_i.f"/>
 		<File RelativePath="..\lsstyp.f"/>
-		<File RelativePath="..\lstelmi.f"/>
 		<File RelativePath="..\lstops.f"/>
 		<File RelativePath="..\mlist.f"/>
 		<File RelativePath="..\rattyp.f"/>

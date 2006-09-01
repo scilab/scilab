@@ -177,6 +177,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gw_data_structures2.c"
+				>
+			</File>
+			<File
 				RelativePath=".\hmops.c"
 				>
 			</File>
@@ -227,6 +231,10 @@
 			>
 			<File
 				RelativePath=".\gw_data_structures1.h"
+				>
+			</File>
+			<File
+				RelativePath=".\gw_data_structures2.h"
 				>
 			</File>
 			<File
