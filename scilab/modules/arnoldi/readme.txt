@@ -1,1 +1,1 @@
-readme.txt about arpack module
+readme.txt about arnoldi module

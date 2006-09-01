@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="arpack"
+	Name="arnoldi"
 	ProjectGUID="{D575A6BA-094A-45EC-8F8D-2DF7A2C37AA6}"
 	>
 	<Platforms>
@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/arpack.lib"
+				OutputFile="../../libs/arnoldi.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def arpack1.def &gt;nul&#x0D;&#x0A;copy arpack1.def ..\..\..\libs\arpack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def arnoldi1.def &gt;nul&#x0D;&#x0A;copy arnoldi1.def ..\..\..\libs\arnoldi.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -144,7 +144,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../libs/arpack.lib"
+				OutputFile="../../libs/arnoldi.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def arpack1.def &gt;nul&#x0D;&#x0A;copy arpack1.def ..\..\..\libs\arpack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def arnoldi1.def &gt;nul&#x0D;&#x0A;copy arnoldi1.def ..\..\..\libs\arnoldi.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -173,7 +173,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\sci_gateway\gw_arpack.c"
+				RelativePath=".\sci_gateway\gw_arnoldi.c"
 				>
 			</File>
 			<File
@@ -207,7 +207,7 @@
 			>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\arpack.fundef"
+			RelativePath=".\sci_gateway\arnoldi.fundef"
 			>
 		</File>
 	</Files>
