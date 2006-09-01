@@ -45,7 +45,7 @@
 #include "../../polynomials/sci_gateway/polynomials.fundef"  
 
 #define  IN_lstelm  17
-#include "../../../../routines/interf/data_structure1.fundef"  
+#include "../../data_structures/sci_gateway/data_structures1.fundef"  
 
 #define  IN_sigelm  18  
 #include "../../signal_processing/sci_gateway/signal.fundef"
@@ -97,7 +97,7 @@
 #include "../../fileio/sci_gateway/fileio.fundef"  
 
 #define  IN_intarpack  35
-#include "../../arpack/sci_gateway/arpack.fundef"
+#include "../../arnoldi/sci_gateway/arnoldi.fundef"
 
 #define  IN_specfun  36
 #include "../../special_functions/sci_gateway/special_functions1.fundef"  
@@ -117,7 +117,7 @@
 #endif 
 
 #define  IN_lstelmi  41
-#include "../../../../routines/interf/data_structure2.fundef"
+#include "../../data_structures/sci_gateway/data_structures2.fundef"  
 
 #ifdef WITH_PVM
 #define  IN_pvm  42

@@ -35,7 +35,7 @@ static ArpackTable Tab[]={
   {C2F(intzneupd),"zneupd"},
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_arpack)()
+int C2F(gw_arnoldi)()
 {
 	Rhs = Max(0, Rhs);
 	

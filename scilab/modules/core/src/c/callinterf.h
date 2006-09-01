@@ -28,7 +28,7 @@ extern void    /* 15  */ C2F(gw_metanet)();
 extern void    /* 16  */ C2F(gw_polynomials)();
 extern void    /* 17  */ C2F(lstelm)();
 extern void    /* 18  */ C2F(gw_signal)();
-extern void    /* 19  */ C2F(intinterp)();
+extern void    /* 19  */ C2F(gw_interpolation)();
 extern void    /* 20  */ C2F(gw_cacsd3)();
 extern void    /* 21  */ C2F(gw_string)();
 extern void    /* 22  */ C2F(gw_symbolic)();
@@ -44,7 +44,7 @@ extern void    /* 31  */ C2F(gw_differential_equations5)();
 extern void    /* 32  */ C2F(gw_differential_equations6)();
 /* 33  */ /* FREE */
 extern void    /* 34  */ C2F(gw_fileio)();
-extern void    /* 35  */ C2F(gw_arpack)();
+extern void    /* 35  */ C2F(gw_arnoldi)();
 extern void    /* 36  */ C2F(gw_special_functions1)();
 extern void    /* 37  */ C2F(gw_statistics)();
 extern void    /* 38  */ C2F(gw_randlib)();
@@ -102,7 +102,7 @@ static OpTab Interfaces[] ={
 	/* 16  */ {C2F(gw_polynomials)},
 	/* 17  */ {C2F(lstelm)},
 	/* 18  */ {C2F(gw_signal)},
-	/* 19  */ {C2F(intinterp)},
+	/* 19  */ {C2F(gw_interpolation)},
 	/* 20  */ {C2F(gw_cacsd3)},
 	/* 21  */ {C2F(gw_string)},
 	/* 22  */ {C2F(gw_symbolic)},
@@ -118,7 +118,7 @@ static OpTab Interfaces[] ={
 	/* 32  */ {C2F(gw_differential_equations6)},
     /* 33  */ {C2F(gw_user2)}, /* free position may be used */
 	/* 34  */ {C2F(gw_fileio)},
-	/* 46  */ {C2F(gw_arpack)},
+	/* 46  */ {C2F(gw_arnoldi)},
 	/* 36  */ {C2F(gw_special_functions1)},
 	/* 37  */ {C2F(gw_statistics)},
     /* 38  */ {C2F(gw_randlib)},

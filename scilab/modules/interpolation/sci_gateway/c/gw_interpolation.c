@@ -33,7 +33,7 @@ static TabF Tab[]={
   {intbsplin3val,      "bsplin3val"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(intinterp)(void)
+int C2F(gw_interpolation)(void)
 {
 	Rhs = Max(0, Rhs);
 
