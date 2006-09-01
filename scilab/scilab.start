@@ -51,11 +51,9 @@ clear verbose
 // use MSDOS syntax?
 MSDOS = (getos() == "Windows")
 
-
-
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/util/lib')
-load('SCI/macros/percent/lib')
+
 // Create some configuration variables ================================
 // path of scilab main directory
 SCI=getenv('SCI');
@@ -92,7 +90,9 @@ end
 clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
+
  
+ exec("SCI/modules/overloading/etc/overloading.start",-1);
  exec("SCI/modules/scilab2fortran/etc/scilab2fortran.start",-1);
  exec("SCI/modules/data_structures/etc/data_structures.start",-1);
  exec("SCI/modules/interpolation/etc/interpolation.start",-1);
@@ -132,8 +132,6 @@ clear  larg L
 global demolist
 demolist=initial_demos_tables()
 clear initial_demos_tables demolist
-
-
 
 // Set the preferred browser  ==========================================
 global %browsehelp

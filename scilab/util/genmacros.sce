@@ -24,7 +24,7 @@ function RemoveMinimalMacros()
     unix('if EXIST ""'+'isdir.bin'+'"" del /F ""'+'isdir.bin'+'""');
     unix('if EXIST ""'+'basename.bin'+'"" del /F ""'+'basename.bin'+'""');
     unix('if EXIST ""'+'mputl.bin'+'"" del /F ""'+'mputl.bin'+'""');
-    chdir(SCI+'/macros/percent');
+    chdir(SCI+'/modules/overloading/macros');
     unix('if EXIST ""'+'%c_a_c.bin'+'"" del /F ""'+'%c_a_c.bin'+'""');
     chdir(CurrentDir);
   else
@@ -37,7 +37,7 @@ function RemoveMinimalMacros()
     unix('rm -f '+SCI+'/macros/util/unix_g.bin');
     unix('rm -f '+SCI+'/macros/util/OS_Version.bin');
     unix('rm -f '+SCI+'/macros/util/isdir.bin');
-    unix('rm -f '+SCI+'/macros/percent/%c_a_c.bin');
+    unix('rm -f '+SCI+'/modules/overloading/macros/%c_a_c.bin');
     unix('rm -f '+SCI+'/macros/util/basename.bin');
     unix('rm -f '+SCI+'/macros/util/mputl.bin');
   end
@@ -80,7 +80,7 @@ function BuildMinimalMacros()
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
 
-  cmd=scilabstart+'getf(SCI+''/macros/percent/%c_a_c.sci'');save(SCI+''/macros/percent/%c_a_c.bin'');'+scilabquit;
+  cmd=scilabstart+'getf(SCI+''/modules/overloading/macros/%c_a_c.sci'');save(SCI+''/modules/overloading/macros/%c_a_c.bin'');'+scilabquit;
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
   
@@ -145,7 +145,7 @@ load(SCI+'/macros/util/listfiles.bin');
 load(SCI+'/macros/util/unix_g.bin');
 load(SCI+'/macros/util/OS_Version.bin');
 load(SCI+'/macros/util/isdir.bin');
-load(SCI+'/macros/percent/%c_a_c.bin');
+load(SCI+'/modules/overloading/macros/%c_a_c.bin');
 load(SCI+'/macros/util/basename.bin');
 load(SCI+'/macros/util/mputl.bin');
 load(SCI+'/macros/util/genlib.bin');

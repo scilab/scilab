@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('percentlib','SCI/macros/percent');
+genlib('percentlib','SCI/modules/overloading/macros');
 //------------------------------------
