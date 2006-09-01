@@ -8,7 +8,7 @@ load('SCI/modules/maple2scilab/macros/lib');
 //add help chapter
 global LANGUAGE
 
-path = get_absolute_file_path('maple.start');
+path = get_absolute_file_path('maple2scilab.start');
 path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then
