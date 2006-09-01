@@ -38,55 +38,11 @@ c
 c
       goto(01,01,20,30,40,50,01,60,70) fin
 c
- 01   lf=lstk(top+1)
-      top=top+1-rhs
-      ld=lstk(top)
 c
-      n=rhs
-      err=lf+sadr(n+3)-lstk(bot)
-      if(err.gt.0) then
-         call error(17)
-         return
-      endif
-
-      if(fin.eq.2) then
-c     typed list
-c     check if first element is a string
-         if (istk(iadr(ld)).ne.10) then
-            err=1
-            call error(55)
-            return
-         endif
-         ltyp=16
-      elseif(fin.eq.7) then
-c     typed list
-c     check if first element is a string
-         if (istk(iadr(ld)).ne.10) then
-            err=1
-            call error(55)
-            return
-         endif
-         ltyp=17
-      else
-c     c untyped list
-         ltyp=15
-      endif
-
-      il=iadr(ld)
-      l=sadr(il+n+3)
-      call unsfdcopy(lf-ld,stk(ld),-1,stk(l),-1)
-
-      istk(il)=ltyp
-      istk(il+1)=n
-      istk(il+2)=1
-      if(n.ne.0) then
-         do 10 i=1,n
-            istk(il+2+i)=istk(il+1+i)+lstk(top+i)-lstk(top-1+i)
- 10      continue
-      endif
-      lstk(top+1)=l+lf-ld
+ 01   continue
+      call scilist('list')
       goto 99
-c
+ 
  20   continue
 c     rlist
       call mtlist(rattyp)

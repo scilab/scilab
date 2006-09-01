@@ -45,7 +45,7 @@
 #include "../../polynomials/sci_gateway/polynomials.fundef"  
 
 #define  IN_lstelm  17
-#include "../../../../routines/interf/list.fundef"  
+#include "../../../../routines/interf/data_structure1.fundef"  
 
 #define  IN_sigelm  18  
 #include "../../signal_processing/sci_gateway/signal.fundef"
@@ -117,7 +117,7 @@
 #endif 
 
 #define  IN_lstelmi  41
-#include "../../../../routines/interf/lstelmi.fundef"
+#include "../../../../routines/interf/data_structure2.fundef"
 
 #ifdef WITH_PVM
 #define  IN_pvm  42
