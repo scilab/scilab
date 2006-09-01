@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>add_palette</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>18-Sep-2003</DATE>
+  <SHORT_DESCRIPTION name="add_palette"> Add an entry in the Scicos palettes list</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>add_palette(title,path)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>title</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the palette title</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the path of the scicos file associated
+       with the palette</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+  This function adds a new entry in the Scicos palettes list. The palette should be
+  executed by a Scilab script file. If the given <VERB>title</VERB> already exists
+  in the palette list associated with the same file nothing is done.
+   The function checks if the file exist.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>scicos</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>
+    Serge Steer , INRIA
+  </AUTHOR>
+</MAN>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>create_palette</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>3-Feb-2005</DATE>
+  <SHORT_DESCRIPTION name="create_palette"> Build Scicos palettes</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>routines = create_palette(Path)</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>routines = create_palette()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>Path</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : string, the path of the directory containing the interfacing functions
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>routines</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : The list of required simulation functions
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <SP>
+	  Without argument <VERB>create_palette()</VERB> build all the initial
+	  scicos palettes and store then in <VERB>SCIDIR/macros/scicos/</VERB>.
+     </SP>
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM>
+     <SP>
+	 <VERB>create_palette(Path)</VERB> build the palette associated with
+	  all *.sci files contained in the directory given by
+	  <VERB>Path</VERB>. The palette file is store in this directory.
+     </SP>
+	<P>
+	  N.B. : all *.sci file contained  in the directory are assumed to be
+	  Scicos interfacing functions
+	</P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> add_palette</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+</MAN>
