@@ -52,7 +52,7 @@ clear verbose
 MSDOS = (getos() == "Windows")
 
 
-load('SCI/macros/sci2for/lib')
+
 load('SCI/macros/tdcs/lib')
 load('SCI/macros/util/lib')
 load('SCI/macros/percent/lib')
@@ -93,6 +93,7 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
  
+ exec("SCI/modules/scilab2fortran/etc/scilab2fortran.start",-1);
  exec("SCI/modules/data_structures/etc/data_structures.start",-1);
  exec("SCI/modules/interpolation/etc/interpolation.start",-1);
  exec("SCI/modules/double/etc/double.start",-1);

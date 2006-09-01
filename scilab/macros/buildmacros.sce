@@ -5,10 +5,10 @@ CurrentDirectory=pwd();
 
  Directories=["util",
  "percent",
- "sci2for",
  "tdcs",
   ];
  
+ Directories=[Directories;"SCI/modules/scilab2fortran/macros"];        
  Directories=[Directories;"SCI/modules/integer/macros"];        
  Directories=[Directories;"SCI/modules/differential_equations/macros"];        
  Directories=[Directories;"SCI/modules/core/macros"];        

@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('s2flib','SCI/macros/sci2for');
+genlib('s2flib','SCI/modules/scilab2fortran/macros');
 //------------------------------------

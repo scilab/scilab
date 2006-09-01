@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sci2for</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sci2for"> scilab function to Fortran routine conversion</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>txt=sci2for(fun,nam,vtps [,lvtps])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Scilab function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>nam</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string, the name of generated subroutine</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>vtps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lvtps</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string, text of the subroutine Fortran code</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+  </P>
+    <P>
+    The elements of the list <VERB>vtps</VERB> give the type and dimensions 
+    of the input variables of the calling sequence and <VERB>lvtps</VERB>
+    optionally gives the type and dimensions of the output variables. This
+    last parameter is usefull if type and/or dimension inference cannot be
+    able to determine the desired values.
+  </P>
+    <P>
+    These lists are  structured as described below:
+  </P>
+    <VERBATIM>
+<![CDATA[
+vtps(i)=list(typ,row_dim,col_dim)
+   ]]>
+    </VERBATIM>
+    <P>
+    where :
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="typ">
+        <SP>: is a character string giving the type of the variable :</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;0&quot;">
+        <SP>: constant,integer vector or matrix</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;1&quot;">
+        <SP>: constant,double precision vector or matrix</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;10&quot;">
+        <SP>: character string</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="row_dim">
+        <SP>: character string (row dimension)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="col_dim">
+        <SP>: character string (column dimension)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="txt">
+        <SP>: Fortran code</SP>
+        <P>
+    Generated code may use routines of scilab libraries and some others
+    whose source code may be found in &lt;SCIDIR&gt;/util/sci2for.f</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="Remarks">
+    <P>
+    This function is just a try. Only simple function may be translated. Many function calls have not  yet Fortran equivalent, to add the translation of a new function call you may define a scilab function. whose name is f_&lt;name of function&gt;. see &lt;SCIDIR&gt;/macros/sci2for/f_*.sci files for examples.</P>
+    <P>
+    The following keywords :</P>
+    <VERBATIM>
+<![CDATA[
+ work,iwork,ierr
+ iw*  iiw*      
+ ilbN   (N integer)          
+   ]]>
+    </VERBATIM>
+    <P>
+    may not appear in the function code.</P>
+  </SECTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>function</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
