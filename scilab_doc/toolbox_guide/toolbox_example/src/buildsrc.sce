@@ -1,0 +1,1 @@
+ilib_for_link('mytoolboxsrc',['fun1.o' 'fun2.o','vectsum.o'],[],"c")
