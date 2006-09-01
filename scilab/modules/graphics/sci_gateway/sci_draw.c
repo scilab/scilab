@@ -11,7 +11,7 @@
 #include "DrawObjects.h"
 #include "Graphics.h"
 #include "BuildObjects.h"
-#include "HandleManagement.h" /* REORGANISATION TEMPORAIRE */
+#include "HandleManagement.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_draw( char * fname, unsigned long fname_len )

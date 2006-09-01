@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+	
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>list  </TITLE>
+	<TYPE>Scilab Function  </TYPE>
+	<DATE>April 1993  </DATE>
+	<SHORT_DESCRIPTION name="list"> Objet Scilab, Définition d&apos;une liste  </SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>list(a1,....an)    </CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		Crée une <VERB>liste</VERB> avec les éléments <VERB>ai</VERB> 
+		qui sont des objets Scilab arbitraires (<VERB>matrice, 
+		liste, ...</VERB>). Le numéro de type des objets <EM>liste</EM> 
+		(renvoyé par la fonction <VERB>type</VERB>) est 15.
+		</P>
+		<P>
+			<VERB>list()</VERB> crée une liste vide (0 élément).
+		</P>
+	</DESCRIPTION>
+	
+	<SECTION label="Operations sur les listes">
+		<ITEMIZE>
+			<ITEM label="extraction">
+				<SP>: <TT>[x,y,z...]=L(v)</TT> où <TT>v</TT> est un vecteur d'indices; 
+				<TT>[x,y,z]=L(:)</TT>  extrait tous les éléments.</SP>
+			</ITEM>
+			<ITEM label="insertion en position i">
+				<SP>:  <TT>L(i)=a</TT> . Remarque : l'opération <TT>L(i)=a</TT>
+				avec <EM>i &gt; 1 + size(L)</EM> ne génère pas d'erreur les
+				entrées en position  <EM>1 + size(L), ..., i-1</EM> étant
+				alors <EM>indéfinies</EM>. Par contre l'extraction d'un élément
+				<EM>indéfini</EM> en génère une.</SP>
+			</ITEM>
+			<ITEM label="ajouter un élément en queue de liste">
+				<SP>:  <TT>L($+1)=e</TT>.</SP>
+			</ITEM>
+			<ITEM label="ajouter un élément en tête de liste">
+				<SP>:  <TT>L(0)=e</TT>. (remarque : après cette opération <TT>e</TT> est
+				en position 1, la position des éléments initiaux de la liste étant 
+				décalée vers la droite).</SP>
+			</ITEM>
+			<ITEM label="suppression">
+				<SP>: <TT>L(i)=null()</TT> supprime l'élément en position i de la liste <TT>L</TT>.</SP>
+			</ITEM>
+			<ITEM label="concaténation de deux listes">
+				<SP>: <TT>L3 = lstcat(L1,L2)</TT>.</SP>
+			</ITEM>
+			<ITEM label="nombre d'éléments d'une liste">
+				<SP>:  vous pouvez utiliser <TT>nb_elm = size(L)</TT> 
+				ou encore <TT>nb_elm = length(L)</TT>.</SP>
+			</ITEM>
+			<ITEM label="itérer avec une liste">
+				<SP>:  il est possible d'utiliser une liste <TT>L</TT> pour piloter une boucle <LINK>for</LINK> : 
+				<TT>for e=L,...,end</TT> est une boucle avec <TT>length(L)</TT> 
+				itérations, la variable <TT>e</TT> de la boucle prenant la valeur <TT>L(i)</TT>
+				à l'itération i.</SP>
+			</ITEM>
+		</ITEMIZE>
+	</SECTION>
+	
+	<SECTION label="Remarques">
+		<P>Scilab propose deux autres sortes de liste, les <LINK>tlist</LINK> (pour listes typées)
+			et les <LINK>mlist</LINK> qui sont très utiles pour définir de nouveaux types de 
+			données avec possibilité de surcharge des opérateurs classiques (voir <LINK>overloading</LINK>).
+			Les tableaux multidimensionnels de scilab (les <LINK>hypermatrices</LINK>) sont en fait
+			codés comme des <EM>mlist</EM>.
+		</P>
+		<P>Les structures Matlab (<EM>struct</EM>) sont aussi utilisables.</P>
+	</SECTION>
+	
+	<EXAMPLE><![CDATA[
+l = list(1,["a" "b"])
+l(0) = "foo"
+l($+1) = "hello"
+l(2) = "toto"
+l(3) = rand(1,2)
+l(3) = null()
+lbis = list("gewurtz", "caipirina" ,"debug")
+lter = lstcat(l,lbis)
+size(lter) - size(lbis) - size(l)  // doit être nul
+]]></EXAMPLE>
+	
+	<SEE_ALSO>
+	
+		<SEE_ALSO_ITEM>
+			<LINK>null</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>lstcat</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>tlist</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>insertion</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>extraction</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>size</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>length</LINK>
+		</SEE_ALSO_ITEM>
+		
+	</SEE_ALSO>
+	
+</MAN>
+

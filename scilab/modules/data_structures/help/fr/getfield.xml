@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getfield  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1999  </DATE>
+  <SHORT_DESCRIPTION name="getfield">  extraction d&apos;un champ d&apos;une liste  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[x,...]=getfield(i,l)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de tout type
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : variable de type list, tlist ou mlist
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : indice du champ, voir <VERB>extraction</VERB> pour plus de détails
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction est un équivalent de la syntaxe <VERB>[x,...]=l(i)</VERB> pour l&apos;extraction de champs avec la seule différence qu&apos;elle s&apos;applique aussi aux objets de type <VERB>mlist</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+l=list(1,'qwerw',%s)
+[a,b]=getfield([3 2],l)
+
+a=hypermat([2,2,2],rand(1:2^3));// les hypermatrices sont stockées dans des mlist
+a(1) // le terme a(1,1,1)
+getfield(1,a) // le premier champ de la mlist
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>extraction</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

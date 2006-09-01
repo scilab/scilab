@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>list</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>April 1993</DATE>
+	<SHORT_DESCRIPTION name="list"> Scilab object and list function definition</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>list(a1,....an)    </CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<DESCRIPTION>
+		<P>
+		Creates a <VERB>list</VERB> with elements <VERB>ai</VERB>'s which are arbitrary Scilab 
+		objects (<VERB>matrix, list,...</VERB>). Type of <VERB>list</VERB> objects is 15.
+		<TT>list()</TT> creates the empty <VERB>list</VERB> (0 element).
+		</P>
+	</DESCRIPTION>
+	
+	<SECTION label="Operations on lists">
+		<ITEMIZE>
+			<ITEM label="extraction">
+				<SP>: <TT>[x,y,z...]=L(v)</TT> where <TT>v</TT> is a vector of indices; 
+				<TT>[x,y,z]=L(:)</TT> extracts all the elements.</SP>
+			</ITEM>
+			<ITEM label="insertion at index i">
+				<SP>:  <TT>L(i)=a</TT> (note that it is not an error to use <TT>L(i)=a</TT>
+				with <EM>i &gt; 1 + size(L)</EM> but some list entries are then undefined
+				and their extraction gives raise to an error).</SP>
+			</ITEM>
+			<ITEM label="append an element in queue">
+				<SP>:  <TT>L($+1)=e</TT>.</SP>
+			</ITEM>
+			<ITEM label="append an element in head">
+				<SP>:  <TT>L(0)=e</TT>. (note that after this operation <TT>e</TT> is
+				at index 1, the initial elements being shifted on the right).</SP>
+			</ITEM>
+			<ITEM label="deletion">
+				<SP>: <TT>L(i)=null()</TT> removes the i-th element of the list <TT>L</TT>.</SP>
+			</ITEM>
+			<ITEM label="concatenation of two lists">
+				<SP>: <TT>L3 = lstcat(L1,L2)</TT>.</SP>
+			</ITEM>
+			<ITEM label="number of elements of a list">
+				<SP>:  you can use either <TT>nb_elm = size(L)</TT> 
+				or <TT>nb_elm = length(L)</TT>.</SP>
+			</ITEM>
+			<ITEM label="iterations with a list">
+				<SP>:  it is possible to use a list <TT>L</TT> with a <LINK>for</LINK> loop: 
+				<TT>for e=L,...,end</TT> is a loop with <TT>length(L)</TT> 
+				iterations, the loop variable <TT>e</TT> being equal to <TT>L(i)</TT>
+				at the i th iteration.</SP>
+			</ITEM>
+		</ITEMIZE>
+	</SECTION>
+	
+	<SECTION label="Remarks">
+		<P>Scilab provides also other kinds of list, the <LINK>tlist</LINK> type (typed list) and
+			the <LINK>mlist</LINK> type which are useful to define a new data type with operator 
+			<LINK>overloading</LINK> facilities (<LINK>hypermatrices</LINK> which are 
+			multi-dimensionnal arrays in scilab are in fact <EM>mlist</EM>).
+		</P>
+		<P>Matlab <EM>struct</EM> are also available.</P>
+	</SECTION>
+	
+	<EXAMPLE><![CDATA[
+l = list(1,["a" "b"])
+l(0) = "foo"
+l($+1) = "hello"
+l(2) = "toto"
+l(3) = rand(1,2)
+l(3) = null()
+lbis = list("gewurtz", "caipirina" ,"debug")
+lter = lstcat(l,lbis)
+size(lter) - size(lbis) - size(l)  // must be zero
+]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>null</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>lstcat</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>tlist</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>insertion</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>extraction</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>size</LINK>
+		</SEE_ALSO_ITEM>
+		
+		<SEE_ALSO_ITEM>
+			<LINK>length</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+</MAN>

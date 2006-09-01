@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>tlist  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1995  </DATE>
+  <SHORT_DESCRIPTION name="tlist"> Objet Scilab. Définition d&apos;une liste typée  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>tlist(typ,a1,....an )    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>typ  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères ou matrice de chaînes de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ai  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : objet Scilab (<VERB>matrice, liste, chaîne...</VERB>).
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Crée une <VERB>liste typée</VERB> avec les éléments <VERB>ai</VERB>. L&apos;argument <VERB>typ</VERB>
+    spécifie le nom du type. L&apos;utilisateur peut redéfinir
+    les opérateurs et primitives de Scilab pour ces nouveaux objets à l&apos;aide de fonctions Scilab (voir <VERB>overloading</VERB>). La seule différence entre les listes typées et les listes (voir <VERB>list</VERB>)
+    est la valeur numérique du type (16 au lieu de 15).
+  </P>
+  <P>
+    <VERB>typ(1)</VERB> spécifie le nom du type (cette chaîne de caractères est utilisée dans les noms des fonctions surchargeant les opérateurs et primitives).
+  </P>
+  <P>
+    S&apos;il est spécifié, <VERB>typ(i)</VERB> donne le nom formel de l&apos;élément <VERB>i+1</VERB> (voir plus bas dans les exemples).
+  </P>
+  <P>
+    Les opérations standard sur les listes fonctionnent similairement pour les listes typées (tlist). 
+  </P>
+ 
+  <P>
+     extraction 
+    : <VERB>[x,y,z...]=l(v)</VERB> ou <VERB>v</VERB> est un vecteur d&apos;indices; 
+    <VERB>[x,y,z]=l(:)</VERB> extrait tous les éléments.
+  </P>
+  <P>
+      insertion
+    : <VERB>l(i)=a</VERB>
+  </P>
+  <P>
+     suppression
+    : <VERB>l(i)=null()</VERB> supprime le i-ème élément de la <VERB>tlist l</VERB>.
+  </P>
+  <P>
+     affichage
+  </P>
+  <P>
+    De plus si les composantes <VERB>typ(2:n+1)</VERB> sont spécifiées, les éléments peuvent être désignés par leur noms formels.
+  </P>
+  <P>
+    Voici quelques exemples d&apos;utilisation des liste typées :
+  </P>
+  <P>
+    Dans Scilab, les systèmes dynamiques linéaires sont définis par une liste typée :
+    le quadruplet <VERB>[A,B,C,D]</VERB> est représenté par la tlist
+    <VERB>Sys=tlist([&apos;lss&apos;;&apos;A&apos;;&apos;B&apos;;&apos;C&apos;;&apos;D&apos;;&apos;X0&apos;;&apos;dt&apos;],A,B,C,D,x0,&apos;c&apos;)</VERB> 
+    et cette tlist spécifique est créée par la fonction <VERB>syslin</VERB>.
+  </P>
+  <P>
+    Sys(2), Sys(&apos;A&apos;) ou Sys.A est la matrice d&apos;état et Sys(&apos;dt&apos;) ou Sys.dt est le domaine temporel.
+  </P>
+  <P>
+    Une matrice rationnelle <VERB>H</VERB> est représentée par la tlist
+    <VERB>H=tlist([&apos;r&apos;;&apos;num&apos;;&apos;den&apos;;&apos;dt&apos;],Num,Den,[])</VERB> où <VERB>Num</VERB> et <VERB>Den</VERB> sont deux
+    matrices polynomiales et un système dynamique linéaire (en temps continu) peut être créé sous la forme d&apos;une
+    matrice de transfert <VERB>H</VERB> par <VERB>syslin(&apos;c&apos;,H)</VERB>.
+  </P>
+  <P>
+    H(2), H(&apos;num&apos;) ou H.num est le numérateur de la matrice de transfert
+  </P>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>null</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>percent</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>syslin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>list</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

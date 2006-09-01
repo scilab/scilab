@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rlist</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="rlist"> Scilab rational fraction function definition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rlist()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>rlist(a1,....an)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>rlist(a1,....an)</VERB> is a shortcut  to
+    <VERB>tlist(['r','num';'den','dt'], a1,....an)</VERB></P>
+    <P>
+    Creates a <VERB>tlist</VERB> with  <VERB>['r','num';'den','dt']</VERB> as
+    first entry and  <VERB>ai</VERB>'s as next entries if any. No type nor size
+    checking is done on <VERB>ai</VERB>'s.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tlist</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -13,7 +13,7 @@
 #define __SCI_OBJECT_STRUCTURE__
 
 #ifdef _MSC_VER
-#undef Top /* REORGANISATION TEMPORAIRE */
+#undef Top 
 #include <windows.h>
 #define Top C2F(vstk).top
 #endif

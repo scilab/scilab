@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lstcat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="lstcat"> list concatenation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>lc=lstcat(l1,..ln)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>li</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list or any other type of variable</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>lc</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>lc=lstcat(l1,..ln)</VERB> catenates components of <VERB>li</VERB> lists in a
+    single list. If the <VERB>li</VERB> are other type of variables they are simply
+    added to the resulting list.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+lstcat(list(1,2,3),33,list('foo',%s))
+lstcat(1,2,3)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>list</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

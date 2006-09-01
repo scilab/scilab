@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lsslist</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="lsslist"> Scilab linear state space function definition</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>lsslist()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>lsslist(a1,....an)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>lsslist(a1,....an)</VERB> is a shortcut to
+    <VERB>tlist(['lss','A';'B';'C';'X0','dt'], a1,....an)</VERB></P>
+    <P>
+    Creates a <VERB>tlist</VERB> with  <VERB>['lss','A';'B';'C';'X0','dt']</VERB> as
+    first entry and  <VERB>ai</VERB>'s as next entries if any. No type nor size
+    checking is done on <VERB>ai</VERB>'s.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tlist</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

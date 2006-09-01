@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tlist</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1995</DATE>
+  <SHORT_DESCRIPTION name="tlist"> Scilab object and typed list definition.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>tlist(typ,a1,....an )    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>typ</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Character string or vector of character strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ai</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Any Scilab object (<VERB>matrix, list,string...</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Creates a <VERB>typed-list</VERB> with elements <VERB>ai</VERB>'s. The <VERB>typ</VERB>
+    argument specifies the list type. Such <VERB>typed-list</VERB> allow the user
+    to define new operations working on these object through scilab
+    functions. The only difference between <VERB>typed-list</VERB> and <VERB>list</VERB>
+    is the value of the type (16 instead of 15).</P>
+    <P><VERB>typ(1)</VERB> specifies the list type (character string used to define
+    soft coded operations)</P>
+    <P>
+    if specified <VERB>typ(i)</VERB> may give the <VERB>i+1</VERB>th element formal name</P>
+    <P>
+    Standard Operations on <VERB>list</VERB> work similarly for <VERB>typed-list</VERB>:</P>
+    <P>
+     extraction 
+    : <VERB>[x,y,z...]=l(v)</VERB> where <VERB>v</VERB> is a vector of indices; 
+    <VERB>[x,y,z]=l(:)</VERB> extracts all the elements.</P>
+    <P>
+      insertion
+    : <VERB>l(i)=a</VERB></P>
+    <P>
+     deletion
+    : <VERB>l(i)=null()</VERB> removes the i-th element of the <VERB>tlist l</VERB>.</P>
+    <P>
+     display</P>
+    <P>
+    Moreover if <VERB>typ(2:n+1)</VERB> are specified, user may point elements by
+    their names</P>
+    <P>
+    We give below examples where tlist are used.</P>
+    <P>
+    Linear systems are represented by specific <VERB>typed-list</VERB> e.g. a
+    linear system <VERB>[A,B,C,D]</VERB> is represented by the tlist
+    <VERB>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</VERB> 
+    and this specific list may be created by the function <VERB>syslin</VERB>.</P>
+    <P>
+    Sys(2), Sys('A') or Sys.A is the state-matrix and Sys('dt') or Sys.dt is the time domain</P>
+    <P>
+    A rational matrix <VERB>H</VERB> is represented by the <VERB>typed-list</VERB>
+    <VERB>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</VERB> where <VERB>Num</VERB> and <VERB>Den</VERB> are two
+    polynomial matrices and a  (e.g. continuous time) linear system with
+    transfer matrix <VERB>H</VERB> maybe created by <VERB>syslin('c',H)</VERB>.</P>
+    <P>
+    H(2), H('num') or H.num is the transfer matrix numerator</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>null</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>percent</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>list</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

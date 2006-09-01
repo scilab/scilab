@@ -13,7 +13,7 @@ char *getenv();
 #include <ctype.h>
 #include <stdio.h>
 
-#include "../routines/machine.h"
+#include "../modules/core/includes/machine.h"
 #include "util.h" 
 #define Min(x,y)  (((x)<(y))?(x):(y))
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>lsslist  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jan 1997  </DATE>
+  <SHORT_DESCRIPTION name="lsslist"> Définition d&apos;un système dynamique linéaire  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>lsslist()  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>lsslist(a1,....an)    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    <VERB>lsslist(a1,....an)</VERB> est équivalent à la commande
+    <VERB>tlist([&apos;lss&apos;,&apos;A&apos;;&apos;B&apos;;&apos;C&apos;;&apos;X0&apos;,&apos;dt&apos;], a1,....an)</VERB> 
+  </P>
+  <P>
+    Crée une <VERB>tlist</VERB> avec <VERB>[&apos;lss&apos;,&apos;A&apos;;&apos;B&apos;;&apos;C&apos;;&apos;X0&apos;,&apos;dt&apos;]</VERB> pour le premier champ et les <VERB>ai</VERB> pour les termes suivants, s&apos;ils sont spécifiés. Aucune vérification de taille ou de type n&apos;est faite sur les <VERB>ai</VERB>.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>syslin</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

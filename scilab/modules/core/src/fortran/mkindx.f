@@ -13,13 +13,13 @@ c     .  last is (i,j)
          rhs=m
          fin=1
          lhs=1
-         call lstelm
+         call gwdatastructures1
       endif
       if(n.eq.0) return
       rhs=n
       fin=1
       lhs=1
-      call lstelm
+      call gwdatastructures1
       rhs=1
       return
       end

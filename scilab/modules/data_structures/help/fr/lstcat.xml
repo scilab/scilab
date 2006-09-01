@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>lstcat  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>Jan 1997  </DATE>
+  <SHORT_DESCRIPTION name="lstcat"> concaténation de listes  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>lc=lstcat(l1,..ln)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>li  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : une liste ou une variable de type indifférent
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lc  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : une liste
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>lc=lstcat(l1,..ln)</VERB> concatène les composantes des listes <VERB>li</VERB> sous forme d&apos;une liste unique. Si les <VERB>li</VERB> sont des variables d&apos;un autre type elles sont tout simplement ajoutées comme termes supplémentaires dans la liste.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+lstcat(list(1,2,3),33,list('foo',%s))
+lstcat(1,2,3)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>list</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

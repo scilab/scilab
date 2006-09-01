@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>mlist</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>September 1995</DATE>
+
+  <SHORT_DESCRIPTION name="mlist">Objet Scilab, définition d'une liste
+  typée</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mlist(typ,a1,....an )</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>typ</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur de chaînes de caractères</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>ai</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: objet Scilab (<VERB>matrice, liste, chaîne...</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Les objets de type <VERB>mlist</VERB> sont très similaires aux objets
+    de type <VERB>tlist</VERB>. Si <VERB>M</VERB> est de type mlist, pour tout
+    indice <VERB>i</VERB> qui n'est pas le nom d'un champ de la liste,
+    <VERB>M(i)</VERB> n'est pas le <VERB>i</VERB>-ème champ de la liste mais
+    est interprété comme le <VERB>i</VERB>-ème terme de <VERB>M</VERB> vu
+    comme un vecteur. C'est la seule différence entre <VERB>mlist</VERB> et
+    <VERB>tlist</VERB>.</P>
+
+    <P></P>
+
+    <P>Les champs des mlist doivent donc être manipulés par leur noms. Il
+    peuvent aussi être manipulés avec les fonctions <VERB>getfield</VERB> et
+    <VERB>setfield</VERB>.</P>
+
+    <P></P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+// définition de la fonction d'affichage
+deff('%V_p(M)','disp(M.name+'':''+string(M.value))')
+// définition de la fonction d'extraction
+deff('r=%V_e(i,M)',..
+'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))')
+M(2) // Le deuxième terme du vecteur M
+M.value 
+
+// définition de M comme une tlist
+M=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
+M(2)
+
+M('name')
+
+// avec deux indices
+M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2;3 4]);
+deff('r=%V_e(varargin)',[
+    'M=varargin($)';
+    'H=[''V'',''name'',''value'']'
+    'r=mlist(H,M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))'])
+
+M(:,2)
+// tableau multidimensionnel
+str=['a','b','c','d','e','f','g','h'];
+n=hypermat([2,2,2],str);
+v=hypermat([2,2,2],1:8);
+M=mlist(['V','name','value'],n,v);
+M(1,1:2,2)
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tlist</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>list</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>overloading</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getfield</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>setfield</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

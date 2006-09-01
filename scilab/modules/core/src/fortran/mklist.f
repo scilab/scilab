@@ -46,7 +46,7 @@ c
 
       lhs=1
 c      call ref2val
-      call lstelm
+      call gwdatastructures1
       rhs=srhs
       lhs=slhs
       fin=sfin

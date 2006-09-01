@@ -20,11 +20,7 @@
   #include "pvm3.h"
 #endif
 #include "machine.h"
-
-/* REORGANISATION TEMPORAIRE */
-#include "../../../routines/calelm/sci_tools.h"
-
-
+#include "sci_tools.h"
 #include "sci_pvm.h"
 
 

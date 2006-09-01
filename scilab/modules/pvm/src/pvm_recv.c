@@ -21,9 +21,7 @@
 #endif
 #include "machine.h"
 #include "stack-c.h"
-
-/* REORGANISATION TEMPORAIRE */
-#include "../../../routines/calelm/sci_tools.h"
+#include "sci_tools.h"
 
 
 #include "sci_pvm.h"

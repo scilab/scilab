@@ -26,7 +26,7 @@ extern void    /* 13  */ C2F(gw_core)();
 extern void    /* 14  */ C2F(gw_user)();
 extern void    /* 15  */ C2F(gw_metanet)();
 extern void    /* 16  */ C2F(gw_polynomials)();
-extern void    /* 17  */ C2F(lstelm)();
+extern void    /* 17  */ C2F(gwdatastructures1)();
 extern void    /* 18  */ C2F(gw_signal)();
 extern void    /* 19  */ C2F(gw_interpolation)();
 extern void    /* 20  */ C2F(gw_cacsd3)();
@@ -57,7 +57,7 @@ extern void    /* 40  */ C2F(gw_tclsci)();
 #define TCLINTERF C2F(no_gw_tclsci)
 #endif
 
-extern void    /* 41  */ C2F(lstelmi)();
+extern void    /* 41  */ C2F(gwdatastructures2)();
 
 #ifdef WITH_PVM
 extern void    /* 42  */ C2F(gw_pvm)();
@@ -100,7 +100,7 @@ static OpTab Interfaces[] ={
 	/* 14  */ {C2F(gw_user)},
 	/* 15  */ {C2F(gw_metanet)},
 	/* 16  */ {C2F(gw_polynomials)},
-	/* 17  */ {C2F(lstelm)},
+	/* 17  */ {C2F(gwdatastructures1)},
 	/* 18  */ {C2F(gw_signal)},
 	/* 19  */ {C2F(gw_interpolation)},
 	/* 20  */ {C2F(gw_cacsd3)},
@@ -124,7 +124,7 @@ static OpTab Interfaces[] ={
     /* 38  */ {C2F(gw_randlib)},
     /* 39  */ {C2F(gw_special_functions2)},
     /* 40  */ {TCLINTERF},
-	/* 41  */ {C2F(lstelmi)},
+	/* 41  */ {C2F(gwdatastructures2)},
 	/* 42  */ {PVMINTERF},
     /* 43  */ {C2F(gw_integer)},
     /* 44  */ {C2F(gw_linear_algebra2)},

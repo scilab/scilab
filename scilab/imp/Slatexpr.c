@@ -13,7 +13,7 @@ char *getenv();
 #include <ctype.h>
 #include <stdio.h>
 
-#include "../routines/machine.h"
+#include "../modules/core/includes/machine.h"
 #include "util.h" 
 
 static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));

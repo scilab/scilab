@@ -84,7 +84,7 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1
 !IF "$(USE_F2C)" == "YES"
 .f.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@"$(SCIDIR1)\bin\f2c.exe" $(FFLAGS) $*.f 
+	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 
 	@$(CC) $(CFLAGS) $*.c 
 	-del $*.c 
 !ELSE 

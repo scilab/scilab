@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>setfield  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1999  </DATE>
+  <SHORT_DESCRIPTION name="setfield"> insertion dans un champ d&apos;une liste  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>setfield(i,x,l)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de tout type
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : variable de type list, tlist ou mlist
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>i  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : indice de champ, voir <VERB>insertion</VERB> pour plus de détails.
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Cette fonction est équivalente à la syntaxe <VERB>l(i)=x</VERB> pour l&apos;extraction avec la seule différence qu&apos;elle s&apos;applique aussi aux objets de type <VERB>mlist</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+l=list(1,'qwerw',%s)
+l(1)='change'
+l(0)='ajoute'
+l(6)=['un de plus';'ajoute']
+//
+
+a=hypermat([2,2,2],rand(1:2^3));// les hypermatrices sont des mlist
+setfield(3,1:8,a);a // affectation du champ
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>insertion</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
