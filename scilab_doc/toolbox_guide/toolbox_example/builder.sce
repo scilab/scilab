@@ -2,23 +2,23 @@ mode(-1);
 mainpathB=get_absolute_file_path('builder.sce');
 chdir(mainpathB);
 if isdir('src') then
-  chdir('src');
-  exec('builder.sce');
-  chdir('..');
+chdir('src');
+exec('buildsrc.sce');
+chdir('..');
 end
-if isdir('interface') then
-  chdir('interface');
-  exec('builder.sce');
-  chdir('..');
+if isdir('sci_gateway') then
+chdir('sci_gateway');
+exec('buildsci_gateway.sce');
+chdir('..');
 end
 if isdir('macros') then
-  chdir('macros');
-  exec('builder.sce');
-  chdir('..');
+chdir('macros');
+exec('buildmacros.sce');
+chdir('..');
 end
-if isdir('man') then
-  chdir('man');
-  exec('builder.sce');
-  chdir('..');
+if isdir('help') then
+chdir('help');
+exec('buildhelp.sce');
+chdir('..');
 end
 clear mainpathB
