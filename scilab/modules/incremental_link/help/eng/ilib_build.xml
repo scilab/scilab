@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ilib_build</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 2000</DATE>
+  <SHORT_DESCRIPTION name="ilib_build"> utility for shared library management</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>ilib_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>lib_name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the generic name of the library without path and extension.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>table</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: 2 column string matrix giving the table of pairs 'scilab-name', 'interface name'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>files</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string matrix giving objects files needed for shared library creation</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>libs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: string matrix giving extra libraries needed for shred library creation</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>makename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string. The path of the Makefile file without extension.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ldflags,cflags,fflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character strings to provide options for the loader, the C compiler and the Fortran compiler.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This tool is used to create shared libraries and to generate a 
+    loader file which can be used to dynamically load the shared library 
+    into Scilab with <VERB>addinter</VERB></P>
+    <P>
+    Many examples are provided in <VERB>examples/interface-tour-so</VERB>
+    directory.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Here with give a complete example on adding new primitive to Scilab
+//create the procedure files
+f1=['extern double fun2();'
+    'void fun1(x,y)'
+    'double *x, *y;'
+    '{*y=fun2(*x)/(*x);}'];
+
+mputl(f1,'fun1.c')
+
+f2=['#include <math.h>'
+    'double fun2(x)'
+    'double x;'
+    '{ return( sin(x+1.));}'];
+mputl(f2,'fun2.c');
+
+//creating the interface file
+i=['#include ""stack-c.h""'
+   'extern int fun1 _PARAMS(( double *x, double *y));'
+   'int intfun1(fname)' 
+   'char * fname;'
+   '{'
+   '  int m1,n1,l1;'
+   '  CheckRhs(1,1);'
+   '  CheckLhs(1,1);'
+   '  GetRhsVar(1, ""d"", &m1, &n1, &l1);'
+   '  fun1(stk(l1),stk(l1));'
+   '  LhsVar(1) = 1;'
+   '  return 0;'
+   '}'];
+mputl(i,'intfun1.c')
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated. 
+
+files=['fun1.o','fun2.o','intfun1.o'];
+ilib_build('foo',['scifun1','intfun1'],files,[]);
+
+// load the shared library 
+
+exec loader.sce 
+
+//using the new primitive
+scifun1(33)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_compile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_gen_Make</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_gen_gateway</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_gen_loader</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_for_link</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

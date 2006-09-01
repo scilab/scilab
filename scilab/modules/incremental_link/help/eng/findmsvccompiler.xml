@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>findmsvccompiler</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>28-Feb-2005</DATE>
+
+  <SHORT_DESCRIPTION name="findmsvccompiler">detects Microsoft C Compiler</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>msvc=findmsvccompiler()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>msvc</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: returns 'msvc50','msvc60','msvc70','msvc71','unknown'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>detects Microsoft C Compiler.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[msvc=findmsvccompiler()
+]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

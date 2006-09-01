@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ilib_gen_Make</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 2000</DATE>
+  <SHORT_DESCRIPTION name="ilib_gen_Make"> utility for  <VERB>ilib_build</VERB>: produces a makefile for building shared libraries</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway,ldflags,cflags,fflags])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>lib_name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the generic name of the library without path and extension.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>files</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of character string. The names of the C or Fortran files without the extension and the path part.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>libs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of character string. additionnal libraries paths or [].</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>makename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string. The path of the Makefile file.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>with_gateway</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a boolean. If true a file with name &lt;lib_name&gt;_gateway is
+	    added. Default value is %t</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ldflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. It can be used to add specific linker options in the
+	    generated Makefile. Default value is ''</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>cflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. It can be used to add specific C compiler options in the
+	    generated Makefile. Default value is ''</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>fflags</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string. It can be used to add specific Fortran compiler options in the
+	    generated Makefile. Default value is ''</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Makename</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string. The path of the really generated Makefile file.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Utility function used by <VERB>ilib_build</VERB></P>
+    <P>
+    This function generates a makefile adapted to the Operating System for
+    building shared libraries to be loaded in Scilab. Proper options and
+    paths are set.</P>
+    <P>
+    Shared libraries can then be used with the <VERB>link</VERB> and
+    <VERB>addinter</VERB> scilab function for incremental linking.</P>
+    <P>
+    The shared library is build from a set of C or Fortran routines
+    stored in a directory and if required from a set of external
+    libraries.</P>
+    <P>
+    Files are not required to exist, when makefile is generated, but of
+    course are required for executing the makefile.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_build</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_compile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_gen_gateway</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_gen_loader</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ilib_for_link</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

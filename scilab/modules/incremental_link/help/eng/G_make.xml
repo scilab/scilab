@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>G_make</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1995</DATE>
+  <SHORT_DESCRIPTION name="G_make"> call make or nmake</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>Rfiles=G_make(files,dllname)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>files</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string or a vector of character string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dllname</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Rfiles</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of character string. <VERB>Rfiles</VERB> can be used as a first argument when calling <VERB>addinter</VERB> function.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    On Unix like systems (i.e unix or windows/gcwin32) <VERB>G_make</VERB> calls
+    the <VERB>make</VERB> utility for building target <VERB>files</VERB> and returns
+    the value of <VERB>files</VERB> in the variable <VERB>Rfiles</VERB>. On windows platforms, (i.e when
+    Scilab was compiled with Microsoft VisualC++). <VERB>G_make</VERB> calls
+    the <VERB>nmake</VERB> utility for building target <VERB>dllname</VERB> and it
+    returns the value of <VERB>dllname</VERB> in the variable <VERB>Rfiles</VERB>. 
+    Of course <VERB>G_make</VERB> will work if apropriate Makefiles are 
+    provided in the current Scilab directory.</P>
+    <P><VERB>G_make</VERB> can be used to provide OS independant call to addinter. 
+    and such examples can be found in the directory
+    <VERB>SCIDIR/examples/addinter-examples</VERB></P>
+    <VERBATIM>
+<![CDATA[
+files=G_make([TMPDIR+'/ex1cI.o',TMPDIR+'/ex1c.o'],'ex1c.dll');// compilation 
+addinter(files,'foobar','foubare'); // link 
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
