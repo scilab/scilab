@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tdinit</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="tdinit"> interactive initialisation of the tdcs dynamical systems</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>tdinit()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    This macro can be used to interactively define the parameters needed 
+    by the dynamical systems described in systems</P>
+    <P>
+     &quot;bioreactor model&quot;</P>
+    <P>
+     &quot;competition model&quot;</P>
+    <P>
+     &quot;system with limit cycle&quot;</P>
+    <P>
+     &quot;linear system&quot;</P>
+    <P>
+     &quot;quadratic model&quot;</P>
+    <P>
+     &quot;linear system with a feedback&quot;</P>
+    <P>
+     &quot;prey predatory model&quot;</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>portrait</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>systems</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

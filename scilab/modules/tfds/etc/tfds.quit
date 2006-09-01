@@ -1,0 +1,16 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for tfds module
+// Copyright INRIA 2006
+// ====================================================================
+// delete help chapter
+global LANGUAGE
+
+if LANGUAGE == 'fr' then
+	del_help_chapter("Tools For Dynamical Systems");
+elseif LANGUAGE == 'eng' then
+	del_help_chapter("Tools For Dynamical Systems");
+end
+
+clear del_help_chapter LANGUAGE;
+// ====================================================================

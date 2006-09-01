@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>systems</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="systems"> a collection of dynamical system</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[]=systems()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    A call to this function will load into Scilab a set of macros which
+    describes dynamical systems. Their parameters can be initiated by 
+    calling the routine tdinit().
+  </P>
+  </DESCRIPTION>
+  <SECTION label="Bioreact">
+    <VERBATIM>
+<![CDATA[
+[ydot]=biorecat(t,x)
+   ]]>
+    </VERBATIM>
+    <P>
+    a bioreactor model, 
+  </P>
+    <ITEMIZE>
+      <ITEM label="x(1)">
+        <SP>is the biomass concentration</SP>
+      </ITEM>
+      <ITEM label="x(2)">
+        <SP>is the sugar concentration</SP>
+      </ITEM>
+    </ITEMIZE>
+    <VERBATIM>
+<![CDATA[
+                    xdot(1)=mu_td(x(2))*x(1)- debit*x(1);
+                    xdot(2)=-k*mu_td(x(2))*x(1)-debit*x(2)+debit*x2in;
+   ]]>
+    </VERBATIM>
+    <P>
+    where mu_td is given by 
+  </P>
+    <VERBATIM>
+<![CDATA[
+                    mu_td(x)=x/(1+x);
+   ]]>
+    </VERBATIM>
+  </SECTION>
+  <SECTION label="Compet">
+    <VERBATIM>
+<![CDATA[
+[xdot]=compet(t,x [,u])
+   ]]>
+    </VERBATIM>
+    <P>
+    a competition model. <VERB>x(1),x(2)</VERB> stands for two populations which  grows on a same resource. <VERB>1/u</VERB> is the level of that resource ( 1 is the default value).
+  </P>
+    <VERBATIM>
+<![CDATA[
+xdot=0*ones(2,1);
+xdot(1) = ppr*x(1)*(1-x(1)/ppk) - u*ppa*x(1)*x(2) ,
+xdot(2) = pps*x(2)*(1-x(2)/ppl) - u*ppb*x(1)*x(2) ,
+   ]]>
+    </VERBATIM>
+    <P>
+     &quot;The macro <VERB>[xe]=equilcom(ue)</VERB>&quot; computes an equilibrium point of the competition model and a fixed  level of the resource ue ( default value is 1)
+  </P>
+    <P>
+     &quot;The macro <VERB>[f,g,h,linsy]=lincomp([ue])</VERB>&quot; gives the linearisation of the competition model ( with output y=x) around the equilibrium point xe=equilcom(ue). This macro returns [f,g,h] the three matrices of the linearised system. and linsy which is a Scilab macro [ydot]=linsy(t,x) which computes the  dynamics of the linearised system
+  </P>
+  </SECTION>
+  <SECTION label="Cycllim">
+    <VERBATIM>
+<![CDATA[
+[xdot]=cycllim(t,x)
+   ]]>
+    </VERBATIM>
+    <P>
+    a model with a limit cycle 
+  </P>
+    <VERBATIM>
+<![CDATA[
+  xdot=a*x+qeps(1-||x||**2)x
+   ]]>
+    </VERBATIM>
+  </SECTION>
+  <SECTION label="Linear">
+    <VERBATIM>
+<![CDATA[
+[xdot]=linear(t,x)
+   ]]>
+    </VERBATIM>
+    <P>
+    a linear system 
+  </P>
+  </SECTION>
+  <SECTION label="Blinper">
+    <VERBATIM>
+<![CDATA[
+[xdot]=linper(t,x)
+   ]]>
+    </VERBATIM>
+    <P>
+    a linear system with quadratic perturbations.
+  </P>
+  </SECTION>
+  <SECTION label="Pop">
+    <VERBATIM>
+<![CDATA[
+[xdot]=pop(t,x)
+   ]]>
+    </VERBATIM>
+    <P>
+    a fish population model
+  </P>
+    <VERBATIM>
+<![CDATA[
+xdot= 10*x*(1-x/K)- peche(t)*x
+   ]]>
+    </VERBATIM>
+  </SECTION>
+  <SECTION label="Proie">
+    <P>
+    a Predator prey model with external insecticide.
+  </P>
+    <VERBATIM>
+<![CDATA[
+[xdot]=p_p(t,x,[u]
+   ]]>
+    </VERBATIM>
+    <ITEMIZE>
+      <ITEM label="x(1)">
+        <SP>The prey ( that we want to kill )</SP>
+      </ITEM>
+      <ITEM label="x(2)">
+        <SP>the predator ( that we want to preserve )</SP>
+      </ITEM>
+      <ITEM label="u">
+        <SP>mortality rate due to insecticide which  destroys both prey and predator ( default value u=0)</SP>
+      </ITEM>
+    </ITEMIZE>
+    <VERBATIM>
+<![CDATA[
+xdot(1) = ppr*x(1)*(1-x(1)/ppk) - ppa*x(1)*x(2) - u*x(1);
+xdot(2) = -ppm*x(2)             + ppb*x(1)*x(2) - u*x(2);
+   ]]>
+    </VERBATIM>
+    <P>
+     The macro <VERB>[xe]=equilpp([ue])</VERB> computes the equilibrium point of the <VERB>p_p</VERB> system for the value <VERB>ue</VERB> of the command. The default value for <VERB>ue</VERB> is 0.</P>
+    <VERBATIM>
+<![CDATA[
+                    xe(1) =  (ppm+ue)/ppb;
+                    xe(2) =  (ppr*(1-xe(1)/ppk)-ue)/ppa;
+   ]]>
+    </VERBATIM>
+  </SECTION>
+  <SECTION label="Lincom">
+    <VERBATIM>
+<![CDATA[
+[xdot]=lincom(t,x,k)
+   ]]>
+    </VERBATIM>
+    <P>
+    linear system with a feedback</P>
+    <VERBATIM>
+<![CDATA[
+ xdot= a*x +b*(-k*x)
+   ]]>
+    </VERBATIM>
+  </SECTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tdinit</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

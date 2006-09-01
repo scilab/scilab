@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fusee</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fusee"> a set of Scilab macro for a landing rocket problem</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="FUSEE">
+        <SP><VERB>[xdot]=fusee(t,x)</VERB> gives the dynamical motion equation
+    for the rocket</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="FINIT">
+        <SP><VERB>finit()</VERB>  Initialises the following parameters for rocket landing.</SP>
+        <ITEMIZE>
+          <ITEM label="k">
+            <SP>: The acceleration of the rocket engines</SP>
+          </ITEM>
+          <ITEM label="gamma">
+            <SP>: The moon gravity acceleration.</SP>
+          </ITEM>
+          <ITEM label="umax">
+            <SP>: the gaz ejection flow out.</SP>
+          </ITEM>
+          <ITEM label="mcap">
+            <SP>: the mass of the space capsule.</SP>
+          </ITEM>
+          <ITEM label="cpen">
+            <SP>: penalisation in the cost function of the final state.</SP>
+          </ITEM>
+        </ITEMIZE>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="FUSEEGRAD">
+        <SP><VERB>[ukp1]=fuseegrad(niter,ukp1,pasg)</VERB> Iterate a gradient method and returns the computed control.</SP>
+        <ITEMIZE>
+          <ITEM label="niter">
+            <SP>: number of gradient iteration steps.</SP>
+          </ITEM>
+          <ITEM label="ukp1">
+            <SP>: initial control value ( vector of sie 135 )</SP>
+          </ITEM>
+          <ITEM label="pasg">
+            <SP>: the gradient step value.</SP>
+          </ITEM>
+        </ITEMIZE>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="FUSEEP">
+        <SP><VERB>[pdot]=fuseep(t,p)</VERB>     adjoint equation for the
+  landing rocket problem.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="POUSSE">
+        <SP><VERB>[ut]=pousse(t)</VERB> return the value of a piece wise
+  constant control build on the discrete control <VERB>uk</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="UBANG">
+        <SP><VERB>[uk]=ubang(tf,tcom)</VERB> returns a bang-bang control, 0
+   form time 0 to tcom  and 1 form tcom to tf.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="FCOUT">
+        <SP><VERB>[c,xk,pk,ukp1]=fcout(tf,uk,pasg)</VERB> optimise the following
+    cost function by gradient iterations. <VERB>c = -m(tf) + C*( h(tf)**2 + v(tf)**2)</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="SFUSEE">
+        <SP><VERB>[]=sfusee(tau,h0,v0,m0,Tf)</VERB> computes the rocket
+    trajectory when a bang-bang control is used <VERB>tau</VERB> is
+    the commutation time.</SP>
+        <ITEMIZE>
+          <ITEM label="h0">
+            <SP>: The initial position (high)</SP>
+          </ITEM>
+          <ITEM label="v0">
+            <SP>: The initial speed ( negative if the rocket is landing )</SP>
+          </ITEM>
+          <ITEM label="m0">
+            <SP>: The total initial mass ( capsule and fuel).</SP>
+          </ITEM>
+          <ITEM label="Tf">
+            <SP>: Time horizon.</SP>
+          </ITEM>
+        </ITEMIZE>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="EQUAD">
+        <SP><VERB> [xk,pk]=equad(tf,uk)</VERB> Computes the state and adjoint state of the rocket system for a given 
+    control <VERB>ur</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="TRAJ">
+        <SP><VERB> [xt]=traj(t)</VERB> returns a piece wise value of the mass evolution.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</MAN>

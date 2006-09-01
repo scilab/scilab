@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>chaintest</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="chaintest"> a three-species food chain model</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>chaintest([f_l,b1,odem,xdim,npts])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[xdot]=chain(t,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[z1]=ch_f1(u)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[z2]=ch_f2(u)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>f_l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the name of the macro which code the three-species food chain model (default value <VERB> chain</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>odem,xdim,npts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: are optional arguments. Their meaning and syntax can be found in the <VERB>portr3d</VERB>  help</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    A call to the function <VERB>chaintest()</VERB> will interactively 
+    display a phase portrait of  a three-species food chain model given by:</P>
+    <VERBATIM>
+<![CDATA[
+ ff1= f1(x(1))
+ ff2= f2(x(2))
+
+ xdot1= x(1)*(1-x(1)) - ff1*x(2)
+ xdot2= ff1*x(2) -  ff2*x(3) - 0.4*x(2)
+ xdot3= ff2*x(3) - 0.01*x(3)
+   ]]>
+    </VERBATIM>
+    <P>
+    and</P>
+    <VERBATIM>
+<![CDATA[
+ f1(u)=5*u/(1+b1*u)
+ f2(u)z2=0.1*u/(1+2*u)
+   ]]>
+    </VERBATIM>
+    <P>
+    The default value for <VERB>b1</VERB> is 3.0.</P>
+    <P>
+    The Scilab macros <VERB>chain(t,x)</VERB>,<VERB>f1(u),f2(u)</VERB> code the dynamical system</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>portr3d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

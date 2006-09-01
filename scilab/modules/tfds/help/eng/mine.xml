@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mine</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mine"> a mining problem</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[cout,feed]=mine(n1,n2,uvect)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[]=showcost(n1,n2,teta,alpha)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Number of discrete point for the state.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Number of time step</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>uvect</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a row vector which gives the possible control value ( integer values ). for example <VERB>u=[-1,0,1]</VERB> means that at each step we come down one step or stay at the same level or rise one step ).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>cout(n1,n2)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The Bellman values.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>feed(n1,n2)  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The feedback Law.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Dynamic programming applied to an optimal extraction of ore in an opencast mine. 
+    The extraction is done as follows : the steam shovel move forward for (k=1,2,...,n2) 
+    at each step it takes the ore, then move up or down (or stay at the same level)
+    according to the control value to reach another level at next step. 
+    The extraction process must maximise the following cost :</P>
+    <VERBATIM>
+<![CDATA[
+   -- n2-1
+   \
+   /        f(x(k),k) + V_F(x,n2)
+   -- k=1
+   ]]>
+    </VERBATIM>
+    <P>
+    with <VERB>x(k+1)=x(k) + u</VERB>. <VERB>x(k)</VERB> is the trajectory depth at step 
+    <VERB>k</VERB> (<VERB>x=1</VERB> is the ground level).
+     
+    The instantaneous  cost <VERB>f(i,k)</VERB> stands for the benefit
+    of digging at depth <VERB>i</VERB> at position <VERB>k</VERB>. 
+    It must be given as a Scilab macro <VERB>ff_o</VERB></P>
+    <VERBATIM>
+<![CDATA[
+[y]=ff_o(x,k)
+   ]]>
+    </VERBATIM>
+    <P>
+    and for efficiency <VERB>ff_o</VERB> must accept and return  column vectors for 
+    <VERB>x</VERB> and <VERB>y</VERB>.</P>
+    <P><VERB>V_F(i,n2)</VERB> is a final cost which is set so as to impose the steam shovel to be at ground level 
+    at position <VERB>n2</VERB></P>
+    <P><VERB>showcost</VERB> Shows a 3D representation of the instantaneous
+  cost.</P>
+  </DESCRIPTION>
+</MAN>

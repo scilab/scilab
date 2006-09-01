@@ -51,7 +51,6 @@ clear verbose
 // use MSDOS syntax?
 MSDOS = (getos() == "Windows")
 
-load('SCI/macros/tdcs/lib')
 load('SCI/macros/util/lib')
 
 // Create some configuration variables ================================
@@ -92,6 +91,7 @@ clear  larg L
  exec("SCI/modules/helptools/etc/helptools.start",-1);
 
  
+ exec("SCI/modules/tfds/etc/tfds.start",-1);
  exec("SCI/modules/overloading/etc/overloading.start",-1);
  exec("SCI/modules/scilab2fortran/etc/scilab2fortran.start",-1);
  exec("SCI/modules/data_structures/etc/data_structures.start",-1);

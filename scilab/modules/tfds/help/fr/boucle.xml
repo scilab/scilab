@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>boucle</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="boucle"> phase portrait of a dynamical system with observer</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[]=boucle(fch,[abruit,xdim,npts,farrow])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fch</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Scilab macro. <VERB>fch</VERB> is supposed to be an observed-controlled system with  noisy output of state dimension 4 ( [x;xchap] is of dimension 4). <VERB>fch</VERB> can be created with the macro <VERB>obscont1</VERB> or can be set to one of the two following string which gives pre computed examples</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;bcomp&quot;  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: for a non-linear competition model.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;lcomp&quot;  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: for a linear example.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>abruit</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: give the noise variance.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>xdim,npts,farrow</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: See portrait</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Phase portrait of dynamical systems.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>portrait</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>obscont1</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

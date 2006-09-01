@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('tdcslib','SCI/macros/tdcs');
+genlib('tfdslib','SCI/modules/tfds/macros');
 //------------------------------------

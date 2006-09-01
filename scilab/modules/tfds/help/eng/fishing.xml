@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>gpeche</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gpeche"> a fishing program</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[xk,ukp1]=gpeche(uk,pasg)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[ut]=peche(t)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[pdot]=pechep(t,p)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P><VERB>gpeche</VERB> Iterates a gradient method on a fishing problem 
+    Computes the trajectory associated to the command law <VERB>uk</VERB>
+    prints the cost value and computes a new control.</P>
+  </DESCRIPTION>
+</MAN>

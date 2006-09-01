@@ -3,10 +3,9 @@ MSDOS=(getos()=='Windows');
 
 CurrentDirectory=pwd();
 
- Directories=["util",
- "tdcs",
-  ];
+ Directories=["util"];
  
+ Directories=[Directories;"SCI/modules/tfds/macros"];        
  Directories=[Directories;"SCI/modules/overloading/macros"];        
  Directories=[Directories;"SCI/modules/scilab2fortran/macros"];        
  Directories=[Directories;"SCI/modules/integer/macros"];        

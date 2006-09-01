@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>portr3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="portr3d"> 3 dimensional phase portrait.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[]=portr3d(f,[odem,xdim,npts,pinit])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab external which gives the field of the dynamical system. Hence  it can be a macro name which computes the field at time t and point x [y]=f(t,x,[u]) or a list list(f1,u1) where f1 is a macro of type [y]=f1(t,x,u) or a character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>.I rest</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: The other parameters are optional. If omitted they will be asked interactively</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>odem</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: gives the integration method to use. The value &quot;default&quot; can be used,  otherwise see ode for a complete set of possibilities</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>npts</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:  a vector of size (2,10) [number-of-points,step] gives the step for integration  and the number of requested points. The solution will be calculated and drawn  for time=0:step:(step*[number-of-points])</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>xdim</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: [xmin,xmax,ymin,ymax,zmin,zmax] the boundaries of the graphic frame.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>pinit</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: initial values for integration. A set of initial points can be given in a matrix</SP>
+                <VERBATIM>
+<![CDATA[
+      pinit = [x0(1), x1(1),...., xn(1)
+               x0(2), x1(2),...., xn(2)
+               x0(3), x1(3),...., xn(3)].
+   ]]>
+                </VERBATIM>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Interactive integration and display of a 3 dimensional phase portrait
+    of a dynamical system  dx/dt=f(t,x,[u]) (where u is an optional parameter )</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

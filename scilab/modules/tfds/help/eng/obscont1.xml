@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>obscont1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="obscont1"> a controlled-observed system</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[macr]=obscont1(sysn)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>sysn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: A Scilab string which gives the name of the controlled system.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>gaincom,gainobs</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vectors giving the requested gains</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>macr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a new Scilab function which simulates the controlled observed system.</SP>
+          <VERBATIM>
+<![CDATA[
+[x1dot]=macr(t,x1,abruit,pas,n)
+x1=[x;xchap],
+   ]]>
+          </VERBATIM>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This macros return a new function which computes the controlled observed 
+    version of a linearised system around the <VERB>(xe,ue)</VERB> point.</P>
+    <P>
+    before calling this function, a noise vector <VERB>br</VERB> should be created.
+    the equilibrium point <VERB>(xe,ue)</VERB> should be given as a global Scilab.
+     the linearised system $f,g,h$ and the two  gain matrices <VERB>l,k</VERB> are 
+    returned as global Scilab data.</P>
+  </DESCRIPTION>
+</MAN>

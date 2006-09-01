@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>artest</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="artest"> arnold dynamical system</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>artest(f_l,[odem,xdim,npts])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>arnold(t,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>iarf([a])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>f_l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: can be &quot;arnold&quot; or arnold. It is the name of the external for the arnold system. If  <VERB>f_l</VERB> is set to &quot;arnold&quot; a Fortran coded version of the arnold system where a(1:6)=1  will be used and if <VERB>f_l</VERB> is set to arnold a Scilab coded version will be used .  <VERB>arnold</VERB> is a Scilab macro coding the Arnold system. This macro is loaded when calling <VERB>artest</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>iarf</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is used to fix the values of <VERB>a</VERB> in the Scilab coded case. <VERB>a</VERB> is a vector of size 6.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>odem,xdim,npts</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: are optional arguments. Their meaning and syntax can be found in the <VERB>portr3d</VERB>  help</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    A call to the function <VERB>artest()</VERB> will interactively 
+    display a phase portrait of  a the following dynamical system :</P>
+    <VERBATIM>
+<![CDATA[
+      ydot(1)=a(1)*cos(y(2)) +a(2)*sin(y(3))
+      ydot(2)=a(3)*cos(y(3)) +a(4)*sin(y(1))
+      ydot(3)=a(5)*cos(y(1)) +a(6)*sin(y(2))
+   ]]>
+    </VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>portr3d</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>chaintest</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lotest</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
