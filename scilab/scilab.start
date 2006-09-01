@@ -90,6 +90,7 @@ clear  larg L
 
  exec("SCI/modules/helptools/etc/helptools.start",-1);
 
+exec("SCI/modules/io/etc/io.start",-1);
  exec("SCI/modules/incremental_link/etc/incremental_link.start",-1);
  exec("SCI/modules/tfds/etc/tfds.start",-1);
  exec("SCI/modules/overloading/etc/overloading.start",-1);

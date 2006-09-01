@@ -19,7 +19,10 @@ function RemoveMinimalMacros()
     unix('if EXIST ""'+'pathconvert.bin'+'"" del /F ""'+'pathconvert.bin'+'""');
     unix('if EXIST ""'+'stripblanks.bin'+'"" del /F ""'+'stripblanks.bin'+'""');
     unix('if EXIST ""'+'listfiles.bin'+'"" del /F ""'+'listfiles.bin'+'""');
+    chdir(SCI+'/modules/io/macros');
     unix('if EXIST ""'+'unix_g.bin'+'"" del /F ""'+'unix_g.bin'+'""');
+    chdir(CurrentDir);
+    chdir(SCI+'/macros/util');
     unix('if EXIST ""'+'OS_Version.bin'+'"" del /F ""'+'OS_Version.bin'+'""');
     unix('if EXIST ""'+'isdir.bin'+'"" del /F ""'+'isdir.bin'+'""');
     unix('if EXIST ""'+'basename.bin'+'"" del /F ""'+'basename.bin'+'""');
@@ -34,7 +37,7 @@ function RemoveMinimalMacros()
     unix('rm -f '+SCI+'/macros/util/pathconvert.bin');
     unix('rm -f '+SCI+'/macros/util/stripblanks.bin');
     unix('rm -f '+SCI+'/macros/util/listfiles.bin');
-    unix('rm -f '+SCI+'/macros/util/unix_g.bin');
+    unix('rm -f '+SCI+'/modules/io/macros/unix_g.bin');
     unix('rm -f '+SCI+'/macros/util/OS_Version.bin');
     unix('rm -f '+SCI+'/macros/util/isdir.bin');
     unix('rm -f '+SCI+'/modules/overloading/macros/%c_a_c.bin');
@@ -88,7 +91,7 @@ function BuildMinimalMacros()
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
 
-  cmd=scilabstart+'getf(SCI+''/macros/util/unix_g.sci'');save(SCI+''/macros/util/unix_g.bin'');'+scilabquit;
+  cmd=scilabstart+'getf(SCI+''/modules/io/macros/unix_g.sci'');save(SCI+''/modules/io/macros/unix_g.bin'');'+scilabquit;
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
   
@@ -142,7 +145,7 @@ load(SCI+'/macros/util/getshell.bin');
 load(SCI+'/macros/util/pathconvert.bin');
 load(SCI+'/macros/util/stripblanks.bin');
 load(SCI+'/macros/util/listfiles.bin');
-load(SCI+'/macros/util/unix_g.bin');
+load(SCI+'/modules/io/macros/unix_g.bin');
 load(SCI+'/macros/util/OS_Version.bin');
 load(SCI+'/macros/util/isdir.bin');
 load(SCI+'/modules/overloading/macros/%c_a_c.bin');
