@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>sethomedirectory</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>2005</DATE>
+
+  <SHORT_DESCRIPTION name="sethomedirectory">Set Scilab home
+  directory</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[home,scilabhome]=sethomedirectory()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[home,scilabhome]=sethomedirectory(homepath)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>home</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>scilabhome</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a string (value of SCIHOME environment variable)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>homepath</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: home path (a string)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Set Scilab home path : "SCIHOME" variable.</P>
+
+    <P>On Windows, C:/Documents and
+    Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;</P>
+
+    <P>On Unix, /home/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;</P>
+  </DESCRIPTION>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>
