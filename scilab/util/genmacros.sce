@@ -26,7 +26,10 @@ function RemoveMinimalMacros()
     unix('if EXIST ""'+'OS_Version.bin'+'"" del /F ""'+'OS_Version.bin'+'""');
     unix('if EXIST ""'+'isdir.bin'+'"" del /F ""'+'isdir.bin'+'""');
     unix('if EXIST ""'+'basename.bin'+'"" del /F ""'+'basename.bin'+'""');
+    
+    chdir(SCI+'/modules/fileio/macros');
     unix('if EXIST ""'+'mputl.bin'+'"" del /F ""'+'mputl.bin'+'""');
+    
     chdir(SCI+'/modules/overloading/macros');
     unix('if EXIST ""'+'%c_a_c.bin'+'"" del /F ""'+'%c_a_c.bin'+'""');
     chdir(CurrentDir);
@@ -42,7 +45,7 @@ function RemoveMinimalMacros()
     unix('rm -f '+SCI+'/macros/util/isdir.bin');
     unix('rm -f '+SCI+'/modules/overloading/macros/%c_a_c.bin');
     unix('rm -f '+SCI+'/macros/util/basename.bin');
-    unix('rm -f '+SCI+'/macros/util/mputl.bin');
+    unix('rm -f '+SCI+'/modules/fileio/macros/mputl.bin');
   end
   clear MSDOS;
   clear SCI;
@@ -75,7 +78,7 @@ function BuildMinimalMacros()
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
 
-  cmd=scilabstart+'getf(SCI+''/macros/util/mputl.sci'');save(SCI+''/macros/util/mputl.bin'');'+scilabquit;
+  cmd=scilabstart+'getf(SCI+''/modules/fileio/macros/mputl.sci'');save(SCI+''/modules/fileio/macros/mputl.bin'');'+scilabquit;
   unix(startline+cmd+endline);
   unix(SCI+LineToDo);
   
@@ -150,7 +153,7 @@ load(SCI+'/macros/util/OS_Version.bin');
 load(SCI+'/macros/util/isdir.bin');
 load(SCI+'/modules/overloading/macros/%c_a_c.bin');
 load(SCI+'/macros/util/basename.bin');
-load(SCI+'/macros/util/mputl.bin');
+load(SCI+'/modules/fileio/macros/mputl.bin');
 load(SCI+'/macros/util/genlib.bin');
 clear SCI;
 // Need to remove macros binary files before build by genlib

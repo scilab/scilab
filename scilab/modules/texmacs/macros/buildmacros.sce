@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('texmacslib','SCI/modules/texmacs/macros/texmacs');
+genlib('texmacslib','SCI/modules/texmacs/macros');
 //------------------------------------
