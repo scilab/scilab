@@ -1,9 +1,8 @@
 #include "FindScilab.h"
-#include "version.h"
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
+#include "version.h"
 #include "wcommon.h"
 #include "resource.h"
 
@@ -33,7 +32,7 @@ BOOL HaveAnotherWindowScilab(void)
 	
 	int a=0;
 
-	wsprintf(BeginningWindowScilabName,"%s (",VERSION);
+	wsprintf(BeginningWindowScilabName,"%s (",SCI_VERSION_STRING);
 	
 	CurrenthWnd=GetWindow(GetDesktopWindow(),GW_CHILD);
 	CurrenthWnd=GetWindow(CurrenthWnd,GW_HWNDFIRST);

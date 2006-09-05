@@ -3,7 +3,6 @@
 
 #include "WinConsole.h"
 #include "version.h"
-
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
@@ -27,7 +26,7 @@ void RenameConsole(void)
 
 	if ( strcmp(CurrentConsoleNameTmp,NameConsole) != 0)	 
 	{
-		wsprintf(ScilexConsoleName,"%s %s",NameConsole,VERSION);
+		wsprintf(ScilexConsoleName,"%s %s",NameConsole,SCI_VERSION_STRING);
 		SetConsoleTitle(ScilexConsoleName);
 	}
 
@@ -46,7 +45,7 @@ void CreateScilabConsole(int ShowBanner)
 	AllocConsole();
 
 	Current_Number_of_Scilex=FindFreeScilexNumber();
-	wsprintf(ScilexConsoleName,"%s %s (%d)",NameConsole,VERSION,Current_Number_of_Scilex);
+	wsprintf(ScilexConsoleName,"%s %s (%d)",NameConsole,SCI_VERSION_STRING,Current_Number_of_Scilex);
 	SetConsoleTitle(ScilexConsoleName);
 
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
@@ -59,7 +58,7 @@ void CreateScilabConsole(int ShowBanner)
 
 		strcpy(line,"        ___________________________________________\r\n");
 		printf(line);
-	    wsprintf(line,"                         %s\r\n\n",VERSION);
+	    wsprintf(line,"                         %s\r\n\n",SCI_VERSION_STRING);
 		printf(line);
 		strcpy(line,"                  Copyright (c) 1989-2006          \r\n");
 		printf(line);
@@ -137,7 +136,7 @@ int FindFreeScilexNumber(void)
 	int Number_of_Scilex=0;
 	char NameScilex[MAX_PATH];
 
-	wsprintf(NameScilex,"%s (%d)",VERSION,Number_of_Scilex);
+	wsprintf(NameScilex,"%s (%d)",SCI_VERSION_STRING,Number_of_Scilex);
 	hScilexN=FindWindow(NULL,NameScilex);
 	while ( hScilexN )
 	{
@@ -150,7 +149,7 @@ int FindFreeScilexNumber(void)
 		if (NbChar>0)
 		{
 			Number_of_Scilex++;
-			wsprintf(NameScilex,"%s (%d)",VERSION,Number_of_Scilex);
+			wsprintf(NameScilex,"%s (%d)",SCI_VERSION_STRING,Number_of_Scilex);
 			hScilexN=FindWindow(NULL,NameScilex);
 		}
 		else

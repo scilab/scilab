@@ -32,7 +32,6 @@
 
 #include "bcg.h"
 #include "periWin.h" 
-#include "version.h"
 #include "color.h" 
 #include "Graphics.h"
 #include "scigraphic.h"

@@ -26,7 +26,6 @@
 #include "../sci_mem_alloc.h"
 #include "Math.h"
 #include "periX11.h"
-#include "../version.h"
 #include "color.h"
 #include "bcg.h"
 #include "Events.h"
@@ -3803,14 +3802,14 @@ Window Window_With_Name(Window top, char *name, int j, char *ResList0, char *Res
   return((Window) w);
 }
 
-static char *ResList[]={ VERSION,"BG","ScilabGraphic"};
+static char *ResList[]={ SCI_VERSION_STRING,"BG","ScilabGraphic"};
 
 Window Find_X_Scilab(void)
 {
   Window w;
-  DbugInfo1("Searching %s\n",VERSION);
+  DbugInfo1("Searching %s\n",SCI_VERSION_STRING);
   w=Window_With_Name(RootWindow(dpy,DefaultScreen(dpy)),
-		     VERSION,0,ResList[0],ResList[0],ResList[0]);
+		     SCI_VERSION_STRING,0,ResList[0],ResList[0],ResList[0]);
   return(w);
 }
 

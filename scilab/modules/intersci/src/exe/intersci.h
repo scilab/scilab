@@ -1,6 +1,6 @@
 /* VERSION et DATE */
 #define VERSION "2.2"
-#define DATE "MAY 1994" 
+#define DATE "September 2006" 
 
 /* max dimension for the array: can be modified */
 #define MAXARG 50

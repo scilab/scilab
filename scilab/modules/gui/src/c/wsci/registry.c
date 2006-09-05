@@ -42,7 +42,7 @@ void ReadRegistryTxt (LPTW lptw)
 	
 	Length=MAX_PATH;
 	
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
   	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
 	if ( RegQueryValueEx(key, "TextOriginX", 0, NULL, (LPBYTE)&rect.left, &size) !=  ERROR_SUCCESS )
@@ -223,7 +223,7 @@ void WriteRegistryTxt (LPTW lptw)
 	int LanguageCode;
 	LONG TstRegCreateKeyEx=0;
 
-  	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);  	
+  	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);  	
   	TstRegCreateKeyEx = RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
 	if (TstRegCreateKeyEx == ERROR_SUCCESS)
 	{
@@ -287,7 +287,7 @@ void WriteRegistryGraph (struct BCG *ScilabGC)
 	LONG TstRegCreateKeyEx=0;
 
 
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);  	
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",SCI_VERSION_STRING);  	
   	TstRegCreateKeyEx=RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
 	if (TstRegCreateKeyEx == ERROR_SUCCESS)
 	{
@@ -325,7 +325,7 @@ void ReadRegistryGraph (struct BCG *ScilabGC)
 	
 	RECT rect;
 
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",VERSION);
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Graph Settings",SCI_VERSION_STRING);
   	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
 	if ( RegQueryValueEx(key, "GraphOriginX", 0, NULL, (LPBYTE)&rect.left, &size) !=  ERROR_SUCCESS )

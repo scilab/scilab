@@ -7,7 +7,6 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <Winuser.h>
-#include "version.h"
 #include "wgnuplib.h"
 #include "printf.h"
 #include "winmain.h"

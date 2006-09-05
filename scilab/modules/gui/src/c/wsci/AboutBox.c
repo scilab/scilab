@@ -52,8 +52,9 @@ BOOL ON_ABOUT_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM lParam)
 {
 	char buffer[MAX_PATH];
 	int cpubuild=_M_IX86;
-	wsprintf(buffer,"%s %s",MSG_SCIMSG31,DEFAULT_MES);
-	SetDlgItemText(hDlg,IDC_VERSION_SPLASH,VERSION);
+	
+	wsprintf(buffer,"%s %s",MSG_SCIMSG31,DEFAULT_SCI_VERSION_MESSAGE);
+	SetDlgItemText(hDlg,IDC_VERSION_SPLASH,SCI_VERSION_STRING);
 	SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
 	wsprintf(buffer,"%s %s",__DATE__,__TIME__);
 	SetDlgItemText(hDlg,IDC_BUILD,buffer);

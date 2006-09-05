@@ -296,11 +296,11 @@ BOOL UpdateSCE(void)
 	switch (Language)
 	{
 		case 1:
-			wsprintf(KeyRegistryWithLanguage,"SCE_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+			wsprintf(KeyRegistryWithLanguage,"SCE_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
 		break;
 
 		default :case 0:
-			wsprintf(KeyRegistryWithLanguage,"SCE_scilab_file\\shell\\Run with %s\\command",VERSION);
+			wsprintf(KeyRegistryWithLanguage,"SCE_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 		break;
 	}
 	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
@@ -335,11 +335,11 @@ BOOL UpdateSCI(void)
 	switch (Language)
 	{
 	case 1:
-		wsprintf(KeyRegistryWithLanguage,"SCI_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"SCI_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
 		break;
 
 	default :case 0:
-		wsprintf(KeyRegistryWithLanguage,"SCI_scilab_file\\shell\\Run with %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"SCI_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 		break;
 	}
 	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
@@ -375,11 +375,11 @@ BOOL UpdateTST(void)
 	switch (Language)
 	{
 	case 1:
-		wsprintf(KeyRegistryWithLanguage,"TST_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"TST_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
 		break;
 
 	default :case 0:
-		wsprintf(KeyRegistryWithLanguage,"TST_scilab_file\\shell\\Run with %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"TST_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 		break;
 	}
 	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
@@ -415,11 +415,11 @@ BOOL UpdateDEM(void)
 	switch (Language)
 	{
 	case 1:
-		wsprintf(KeyRegistryWithLanguage,"DEM_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"DEM_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
 		break;
 
 	default :case 0:
-		wsprintf(KeyRegistryWithLanguage,"DEM_scilab_file\\shell\\Run with %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"DEM_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 		break;
 	}
 	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
@@ -452,11 +452,11 @@ BOOL UpdateCOS(void)
 	switch (Language)
 	{
 	case 1:
-		wsprintf(KeyRegistryWithLanguage,"COS_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"COS_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
 		break;
 
 	default :case 0:
-		wsprintf(KeyRegistryWithLanguage,"COS_scilab_file\\shell\\Run with %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"COS_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 		break;
 	}
 	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
@@ -489,11 +489,11 @@ BOOL UpdateCOSF(void)
 	switch (Language)
 	{
 	case 1:
-		wsprintf(KeyRegistryWithLanguage,"COSF_scilab_file\\shell\\Executer avec %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"COSF_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
 		break;
 
 	default :case 0:
-		wsprintf(KeyRegistryWithLanguage,"COSF_scilab_file\\shell\\Run with %s\\command",VERSION);
+		wsprintf(KeyRegistryWithLanguage,"COSF_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 		break;
 	}
 	if (bOK) bOK=UpdateAKey(KeyRegistryWithLanguage,Line);
@@ -742,8 +742,8 @@ void InitCheckSCI(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%s%s\" -O \"%%1\"",path,WSCILEX);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(KeyFR,"SCI_scilab_file\\shell\\Executer avec %s\\command",VERSION);
-	wsprintf(KeyENG,"SCI_scilab_file\\shell\\Run with %s\\command",VERSION);
+	wsprintf(KeyFR,"SCI_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
+	wsprintf(KeyENG,"SCI_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 	wsprintf(GoodValue,"\"%s%s\" -X \"%%1\"",path,WSCILEX);
 	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
     if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
@@ -782,8 +782,8 @@ void InitCheckSCE(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%s%s\" -O \"%%1\"",path,WSCILEX);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(KeyFR,"SCE_scilab_file\\shell\\Executer avec %s\\command",VERSION);
-	wsprintf(KeyENG,"SCE_scilab_file\\shell\\Run with %s\\command",VERSION);
+	wsprintf(KeyFR,"SCE_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
+	wsprintf(KeyENG,"SCE_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 	wsprintf(GoodValue,"\"%s%s\" -X \"%%1\"",path,WSCILEX);
 	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
 	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
@@ -822,8 +822,8 @@ void InitCheckTST(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%s%s\" -O \"%%1\"",path,WSCILEX);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(KeyFR,"TST_scilab_file\\shell\\Executer avec %s\\command",VERSION);
-	wsprintf(KeyENG,"TST_scilab_file\\shell\\Run with %s\\command",VERSION);
+	wsprintf(KeyFR,"TST_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
+	wsprintf(KeyENG,"TST_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 	wsprintf(GoodValue,"\"%s%s\" -X \"%%1\"",path,WSCILEX);
 	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
 	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
@@ -862,8 +862,8 @@ void InitCheckDEM(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%s%s\" -O \"%%1\"",path,WSCILEX);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(KeyFR,"DEM_scilab_file\\shell\\Executer avec %s\\command",VERSION);
-	wsprintf(KeyENG,"DEM_scilab_file\\shell\\Run with %s\\command",VERSION);
+	wsprintf(KeyFR,"DEM_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
+	wsprintf(KeyENG,"DEM_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 	wsprintf(GoodValue,"\"%s%s\" -X \"%%1\"",path,WSCILEX);
 	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
 	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);
@@ -898,8 +898,8 @@ void InitCheckCOS(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%s%s\",4",path,WSCILEX);
 	bOK[1]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(KeyFR,"COS_scilab_file\\shell\\Executer avec %s\\command",VERSION);
-	wsprintf(KeyENG,"COS_scilab_file\\shell\\Run with %s\\command",VERSION);
+	wsprintf(KeyFR,"COS_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
+	wsprintf(KeyENG,"COS_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 	wsprintf(GoodValue,"\"%s%s\" -X \"%%1\"",path,WSCILEX);
 	bOK[2]=TestRegistryKey(KeyENG,GoodValue);
 	if (!bOK[2]) bOK[2]=TestRegistryKey(KeyFR,GoodValue);
@@ -934,8 +934,8 @@ void InitCheckCOSF(HWND hDlgParent)
 	wsprintf(GoodValue,"\"%s%s\" -O \"%%1\"",path,WSCILEX);
 	bOK[2]=TestRegistryKey(Key,GoodValue);
 
-	wsprintf(KeyFR,"COSF_scilab_file\\shell\\Executer avec %s\\command",VERSION);
-	wsprintf(KeyENG,"COSF_scilab_file\\shell\\Run with %s\\command",VERSION);
+	wsprintf(KeyFR,"COSF_scilab_file\\shell\\Executer avec %s\\command",SCI_VERSION_STRING);
+	wsprintf(KeyENG,"COSF_scilab_file\\shell\\Run with %s\\command",SCI_VERSION_STRING);
 	wsprintf(GoodValue,"\"%s%s\" -X \"%%1\"",path,WSCILEX);
 	bOK[3]=TestRegistryKey(KeyENG,GoodValue);
 	if (!bOK[3]) bOK[3]=TestRegistryKey(KeyFR,GoodValue);

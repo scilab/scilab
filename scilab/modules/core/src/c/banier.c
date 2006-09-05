@@ -14,7 +14,7 @@ void banner(void)
 {
 	int i;
 	char *line = "        ___________________________________________        ";
-	int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(VERSION)/2)));
+	int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
 	
 	sciprint("%s\r\n",line);
 	
@@ -24,7 +24,7 @@ void banner(void)
 		sciprint(" ");
 	}
 	
-	sciprint("%s\r\n\n",VERSION);
+	sciprint("%s\r\n\n",SCI_VERSION_STRING);
 	sciprint("                 Copyright (c) 1989-2006                   \r\n");
 	sciprint("              Consortium Scilab (INRIA, ENPC)              \r\n");
 	sciprint("%s\r\n",line);

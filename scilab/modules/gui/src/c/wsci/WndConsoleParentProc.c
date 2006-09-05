@@ -119,7 +119,7 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 	DragAcceptFiles (hwnd, TRUE);
 
 	/* Modification Allan CORNET 15/07/03 */
-	/* Renomme la fenetre avec VERSION et numero x associé à la console*/  
+	/* Renomme la fenetre avec SCI_VERSION_STRING et numero x associé à la console*/  
 	{
 		char CopyNameConsole[MAX_PATH];
 		char *FirstOccurence;
@@ -128,7 +128,7 @@ BOOL ON_WND_CONSOLE_WM_CREATE(HWND hwnd,LPCREATESTRUCT lpCreateStruct)
 		strcpy(CopyNameConsole,ScilexConsoleName);
 		FirstOccurence = strtok(CopyNameConsole,"("); 
 		SecondOccurence= strtok(NULL,"("); 
-		wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
+		wsprintf(ScilexWindowName,"%s (%s",SCI_VERSION_STRING,SecondOccurence);
 
 		SetWindowText(hwnd,ScilexWindowName);  
 	}

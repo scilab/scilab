@@ -22,7 +22,6 @@
 #include <X11/cursorfont.h>
 #include <X11/Xaw3d/SimpleMenu.h>
 
-#include "../version.h"
 #include "../machine.h"
 #include "../graphics/Math.h"
 
@@ -198,9 +197,9 @@ XtResource application_resources[] = {
     {"iconGeometry", "IconGeometry", XtRString, sizeof(char *),
 	offset(icon_geometry), XtRString, (caddr_t) NULL},
     {XtNtitle, XtCTitle, XtRString, sizeof(char *),
-	offset(title), XtRString, VERSION},
+	offset(title), XtRString, SCI_VERSION_STRING},
     {XtNiconName, XtCIconName, XtRString, sizeof(char *),
-	offset(icon_name), XtRString, VERSION},
+	offset(icon_name), XtRString, SCI_VERSION_STRING},
     {"ttyModes", "TtyModes", XtRString, sizeof(char *),
 	offset(tty_modes), XtRString, (caddr_t) NULL},
     {"useInsertMode", "UseInsertMode", XtRBoolean, sizeof (Boolean),

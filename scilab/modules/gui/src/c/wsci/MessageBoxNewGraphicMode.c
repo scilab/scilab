@@ -21,7 +21,7 @@ void MessageBoxNewGraphicMode(void)
 	char Clef[MAX_PATH];
 	int DontShowMessageNewGraphicMode,Ans;
 
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
   result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
 	if ( RegQueryValueEx(key, "DontShowMessageNewGraphicMode", 0, NULL, (LPBYTE)&Ans, &size) !=  ERROR_SUCCESS )
@@ -65,7 +65,7 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_INITDIALOG(HWND hDlg,HWND hwndFocus, LPARAM 
 	char Clef[MAX_PATH];
 	LPTW lptw=GetTextWinScilab();
 
-	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
+	wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);
 	result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
 
 	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
@@ -111,7 +111,7 @@ BOOL ON_MESSAGEBOXNEWGRAPHICMODE_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UIN
 			  int DontShowMessageNewGraphicMode;
 			  LONG TstRegCreateKeyEx=0;
 
-			  wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);  	
+			  wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",SCI_VERSION_STRING);  	
 			  TstRegCreateKeyEx=RegCreateKeyEx(HKEY_CURRENT_USER, Clef, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, &result);
 			  if (TstRegCreateKeyEx == ERROR_SUCCESS)
 			  {

@@ -119,10 +119,10 @@ Widget parent;
     fm = XtCreateManagedWidget("msWindow",formWidgetClass,
 					  parent, args, n);
     n = 0;
-    XtSetArg(args[n], XtNlabel, (XtArgVal) VERSION); n++;
+    XtSetArg(args[n], XtNlabel, (XtArgVal) SCI_VERSION_STRING); n++;
     XtCreateManagedWidget("logoWindow",labelWidgetClass,
 					  fm, args, n);
-    XtSetArg(args[n], XtNlabel, (XtArgVal) DEFAULT_MES); n++;
+    XtSetArg(args[n], XtNlabel, (XtArgVal) DEFAULT_SCI_VERSION_MESSAGE); n++;
     messageWindow = XtCreateManagedWidget("messageWindow",labelWidgetClass,
 					  fm, args, n);
 }
@@ -131,7 +131,7 @@ void DefaultMessageWindow()
 {
     Arg 	args[MAXARGS];
     Cardinal 	n=0;
-    XtSetArg(args[n], XtNlabel,(XtArgVal) DEFAULT_MES);	n++;
+    XtSetArg(args[n], XtNlabel,(XtArgVal) DEFAULT_SCI_VERSION_MESSAGE);	n++;
     XtSetValues(messageWindow, args, n);
 }
 
