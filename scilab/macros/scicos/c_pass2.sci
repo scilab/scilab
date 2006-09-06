@@ -138,7 +138,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
       n_out=clkptr(ordoclk(k,1)+1)-clkptr(ordoclk(k,1))
       if n_out>0 then
 	for j=1:n_out
-          [bouclalg,vec,primary]=ordo3(ordoclk(k,1),j,clkconnect,connectmat);
+          [bouclalg,vec,primary]=ordo3(ordoclk(k,1),j,clkconnect,connectmat,dep_t,dep_u,dep_uptr);
 	  if bouclalg then
 	    message('Algebrique  loop detected; cannot be compiled.');
 	    cpr=list()
@@ -2785,23 +2785,32 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   if show_trace then disp('c_pass4445:'+string(timer())),end
 
   [clkr,clkc]=size(clkconnect);
-  mm=maxi(clkconnect)+1;
+  mm=max(clkconnect(:,2))+1;
   cll=clkconnect(:,1)*mm+clkconnect(:,2);
   [cll,ind]=sort(-cll);
   clkconnect=clkconnect(ind,:);
-  cll=[-1;-cll;mm];
+  if cll<>[] then mcll=max(-cll)+1, else mcll=1;end
+  cll=[-1;-cll;mcllx];
   ii=find(cll(2:$)-cll(1:$-1)<>0)
-
+  
   for k=1:size(ii,'*')-1
     oo=[ii(k):ii(k+1)-1]
     vec=-ones(1,nblk);
     vec(clkconnect(oo,3))=0
-    [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
-    
+    [r,ok]=newc_tree4(vec,outoin,outoinptr,typ_r)
     m=size(r,1)
     r=[clkconnect(ii(k),1)*ones(m,1),clkconnect(ii(k),2)*ones(m,1),r]
     clkconnect=[clkconnect;r]
+  end  
+  // temporary fix to take care of conditional blocks inherting from
+  // constants: make these blocks always active
+  
+  ind=setdiff(find(typ_l),clkconnect(:,3))
+  ind=ind(:)
+  for k=ind'
+    clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
+  // end of  temoprary fix 
 
   if show_trace then disp('c_pass4446:'+string(timer())),end 
 endfunction
