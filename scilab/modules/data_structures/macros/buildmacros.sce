@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-//genlib('dstructlib','SCI/modules/data_structures/macros');
+genlib('dstructlib','SCI/modules/data_structures/macros');
 //------------------------------------

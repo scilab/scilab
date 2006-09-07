@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-//genlib('localizationlib','SCI/modules/localization/macros');
+genlib('localizationlib','SCI/modules/localization/macros');
 //------------------------------------

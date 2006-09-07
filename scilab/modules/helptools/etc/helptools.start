@@ -5,10 +5,14 @@
 //Load  functions librarie
 load('SCI/modules/helptools/macros/lib');
 // ====================================================================
+
 //add help chapter
 global LANGUAGE
 
+load('SCI/modules/fileio/macros/get_absolute_file_path.bin');
 path = get_absolute_file_path('helptools.start');
+clearfun get_absolute_file_path
+
 path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then

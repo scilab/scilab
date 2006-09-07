@@ -4,5 +4,5 @@
 SCI=getenv('SCI'); 
 TMPDIR=getenv('TMPDIR');
 //------------------------------------
-genlib('metalib','SCI/modules/metanet/macros');
+genlib('metanetlib','SCI/modules/metanet/macros');
 //------------------------------------

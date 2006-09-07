@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>genlib</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Nov 2000</DATE>
+  <SHORT_DESCRIPTION name="genlib"> build library from functions in given directory</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>genlib(lib_name [[,dir_name, [ Force [,verb [,Names]]]])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>genlib(lib_name [,path=dir_name] [,verbose=verb]
+      [,force=Force]  [,names=Names])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>lib_name:  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>Scilab string.  The variable name of the library to (re)create.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>dir_name:  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>Scilab string.  The name of the directory to look for
+	    <VERB>.sci</VERB>-files. </SP> 
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Force</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: boolean value (default value is <VERB>%f</VERB>). Set it to
+	    <VERB>%f</VERB> to force the sci-files recompilation.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>verb</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: boolean values (default value is <VERB>%f</VERB>). Set it to
+	    <VERB>%f</VERB> to get information.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Names</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector of strings, the names of function to include in the
+	    library. By default all the sci-files are taken into account</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>For each <VERB>.sci</VERB> file in <VERB>dir_name</VERB> (or only those
+      specified by the <VERB>Names</VERB> argument), <VERB>genlib</VERB> executes a
+    <VERB>getf</VERB> and saves the functions to the corresponding <VERB>.bin</VERB>
+    file.  The <VERB>.sci</VERB> file must not contain anything but Scilab
+    functions.  If a <VERB>.bin</VERB> file is newer than the associated
+    <VERB>.sci</VERB> file, <VERB>genlib</VERB> does not translate and save the file.</P>
+    
+    <P>This default behaviour can be changed if <VERB>force</VERB> is given and 
+    set to <VERB>%t</VERB>. In this latter case the recompilation is always 
+    performed for each <VERB>.sci</VERB> file.</P>
+
+    <P>When all <VERB>.sci</VERB> files have been processed, <VERB>genlib</VERB> creates a
+    library variable named <VERB>lib_name</VERB> and saves it in the file
+    <VERB>lib</VERB> in <VERB>dir_name</VERB>. If the Scilab variable
+      <VERB>lib_name</VERB> is not protected (see <LINK>predef</LINK>) this
+      variable is updated.</P>
+
+    <P>If <VERB>verbose</VERB> is et to <VERB>%t</VERB> information are displayed during 
+    the build process.</P>
+
+    <P>If <VERB>dir_name</VERB> argument is not given and if <VERB>lib_name</VERB>
+    Scilab variable  exists and it is a library dir_name is taken equal to the
+    <VERB>lib_name</VERB> library path (update mode).</P>
+
+  </DESCRIPTION>
+  <SECTION label="Restrictions">
+    <P>
+    Scilab tacitly assumes that file <VERB>foo.sci</VERB> defines at least a
+      function named <VERB>foo</VERB>. If subsidiary functions are included,
+      they are made known to Scilab only after the function <VERB>foo</VERB>
+      had been referenced.</P>
+  </SECTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getd</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lib</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

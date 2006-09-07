@@ -2,8 +2,8 @@ mode(-1)
 //this script is used to compile Modelica models of scicos implicit
 //blocks
 //mprintf('Compiling Modelica models in '+pwd()')
-load('SCI/macros/util/lib')
 
+load('SCI/modules/core/macros/lib')
 load('SCI/modules/overloading/macros/lib')
 load('SCI/modules/integer/macros/lib')
 load('SCI/modules/elementaries_functions/macros/lib')

@@ -1,22 +1,22 @@
 // ====================================================================
-// localization module initialisation file 
+// functions module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
 //Load  functions librarie
-load('SCI/modules/localization/macros/lib');
+load('SCI/modules/functions/macros/lib');
 // ====================================================================
 //add help chapter
 global LANGUAGE
 
-path = get_absolute_file_path('localization.start');
+path = get_absolute_file_path('functions.start');
 path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("localization",path);
+	add_help_chapter("Fonctions",path);
 elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("localization",path);
+	add_help_chapter("Functions",path);
 end
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;

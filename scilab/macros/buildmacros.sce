@@ -3,8 +3,8 @@ MSDOS=(getos()=='Windows');
 
 CurrentDirectory=pwd();
 
- Directories=["util"];
  
+Directories=["SCI/modules/functions/macros"]; 
 Directories=[Directories;"SCI/modules/arnoldi/macros"];
 Directories=[Directories;"SCI/modules/boolean/macros"];
 Directories=[Directories;"SCI/modules/cacsd/macros"];
@@ -56,6 +56,7 @@ Directories=[Directories;"SCI/modules/scicos/macros"];
 end
 Dim=size(Directories);
 
+exec('SCI/util/genmacros.sce');
 
 for i=1:Dim(1) do 
   chdir(Directories(i));

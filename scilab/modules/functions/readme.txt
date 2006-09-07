@@ -1,0 +1,1 @@
+readme.txt about functions module

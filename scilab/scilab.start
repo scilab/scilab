@@ -58,9 +58,10 @@ MSDOS = (getos() == "Windows")
 PWD = getcwd()
 
 // loads modules ======================================================
-load('SCI/macros/util/lib')
 
 exec("SCI/modules/helptools/etc/helptools.start",-1);
+exec("SCI/modules/fileio/etc/fileio.start",-1);
+exec("SCI/modules/functions/etc/functions.start",-1);
 exec("SCI/modules/core/etc/core.start",-1);
 exec("SCI/modules/io/etc/io.start",-1);
 exec("SCI/modules/arnoldi/etc/arnoldi.start",-1);
@@ -70,7 +71,7 @@ exec("SCI/modules/data_structures/etc/data_structures.start",-1);
 exec("SCI/modules/differential_equations/etc/differential_equations.start",-1);
 exec("SCI/modules/double/etc/double.start",-1);
 exec("SCI/modules/elementaries_functions/etc/elementaries_functions.start",-1);
-exec("SCI/modules/fileio/etc/fileio.start",-1);
+
 exec("SCI/modules/graphics/etc/graphics.start",-1);
 exec("SCI/modules/gui/etc/gui.start",-1);
 exec("SCI/modules/incremental_link/etc/incremental_link.start",-1);
