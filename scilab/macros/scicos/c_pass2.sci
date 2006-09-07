@@ -2790,7 +2790,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   [cll,ind]=sort(-cll);
   clkconnect=clkconnect(ind,:);
   if cll<>[] then mcll=max(-cll)+1, else mcll=1;end
-  cll=[-1;-cll;mcllx];
+  cll=[-1;-cll;mcll];
   ii=find(cll(2:$)-cll(1:$-1)<>0)
   
   for k=1:size(ii,'*')-1
