@@ -570,12 +570,12 @@ function [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec,am
   for i=1:size(amaj,1)
     children=[children;get_allchildren2(amaj(i));amaj(i)]
   end
-  children=cleanup1(children)
+  children=unique(children)
   amaj=intersection(children,oldvec)
   
   //on supprime des blocs à vec_plus
-  newless=my_setdiff(oldvec,vec)
-  newless=cleanup1([amaj;newless])
+  newless=setdiff(oldvec,vec)
+  newless=unique([amaj;newless])
   allparmaj=[]
   dontmaj=[]
   vecmaj=[]
@@ -604,15 +604,15 @@ function [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec,am
 	vecmaj=[vecmaj;newless(i)]
       end
     end
-    newless=my_setdiff(newless,dontmaj)
+    newless=setdiff(newless,dontmaj)
     [allpar,allparptr,oldvec]=maj_del(allpar,allparptr,oldvec,newless)
   end
   
   amaj=intersection(children,vec)
   //on ajoute des blocs à vec_plus
-  newplus=my_setdiff(vec,oldvec)
-  newplus=cleanup1([amaj;newplus])
-  newplus=my_setdiff(newplus,dontmaj)
+  newplus=setdiff(vec,oldvec)
+  newplus=unique([amaj;newplus])
+  newplus=setdiff(newplus,dontmaj)
   if newplus~=[] then
     [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,..
 				      newplus,allparmaj,allparmajptr,vecmaj)
@@ -679,13 +679,13 @@ function [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,..
   end
 endfunction
 
-function [vec]=my_setdiff(vec,blk)
-  for i=1:size(blk,1)
-    f=find(vec==blk(i))'
-    vec(f)=[]
-  end
-  vec=gsort(vec,'g','i')
-endfunction
+//function [vec]=my_setdiff(vec,blk)
+//  for i=1:size(blk,1)
+//    f=find(vec==blk(i))'
+//    vec(f)=[]
+//  end
+//  vec=gsort(vec,'g','i')
+//endfunction
 
 function [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,..
           dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev,vec_plus,allpar,..
@@ -695,7 +695,7 @@ function [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,..
 
   primary=get_children([],blk,port)
   //on enleve blk de primary (cas des horloges)
-  primary=my_setdiff(primary,blk)
+  primary=setdiff(primary,blk)
   n_p=size(primary,1)
   done=%f
   blk_duplicated=[]
@@ -803,7 +803,7 @@ function [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,..
 		  
 		else
 		  blk1=[]
-		  primary1=my_setdiff(primary,primary(i))
+		  primary1=setdiff(primary,primary(i))
 		  if or(typ_l(primary1)) then
 		    veci=find(childj==vec_plus)
 		    parents=allpar(allparptr(veci):allparptr(veci+1)-1,:)
@@ -3284,14 +3284,14 @@ function   clkconnect=cleanup(clkconnect)
   clkconnect(ind,:)=[]
 endfunction
 
-function mat=cleanup1(mat)
-  mm=maxi(mat)+1
-  cc=mat(:,1)*mm
-  [cc1,ind]=sort(-cc)
-  mat=mat(ind,:)
-  ind=find(cc1(2:$)-cc1(1:$-1)==0)
-  mat(ind,:)=[]
-endfunction
+//function mat=cleanup1(mat)
+//  mm=maxi(mat)+1
+//  cc=mat(:,1)*mm
+//  [cc1,ind]=sort(-cc)
+//  mat=mat(ind,:)
+ // ind=find(cc1(2:$)-cc1(1:$-1)==0)
+ // mat(ind,:)=[]
+//endfunction
 
 function vec=intersection(vec1,vec2)
   vec=[]
