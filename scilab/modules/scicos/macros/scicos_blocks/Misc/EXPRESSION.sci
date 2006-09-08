@@ -45,19 +45,9 @@ case 'getorigin' then
 				     [])
       end
       if ok then
-	%ok1=%t
 	
-	if exists('%scicos_context') then
-	  %mm=getfield(1,%scicos_context)
-	  for %mi=%mm(3:$)
-	    if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
-	      ok=%f
-	    end
-	  end
-	end 
-	if ok then
-	  ok=execstr('[%ok1,ipar,rpar,%nz]=compile_expr(%foo)','errcatch')==0
-	end
+	[ok,%ok1,ipar,rpar,%nz]=compiler_expression(%foo)
+
 	if ~ok then
 	  message(['Erroneous expression';lasterror()])
 	else
@@ -99,6 +89,21 @@ case 'define' then
   gr_i=['xstringb(orig(1),orig(2),[''Mathematical'';''Expression''],sz(1),sz(2),''fill'');']
   x=standard_define([3 2],model,exprs,gr_i)
 end
+endfunction
+
+function [ok,%ok1,ipar,rpar,%nz]=compiler_expression(%foo)	
+  ok=%t,%ok1=%f,ipar=[],rpar=[],%nz=[]
+  if exists('%scicos_context') then
+    %mm=getfield(1,%scicos_context)
+    for %mi=%mm(3:$)
+      if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
+	ok=%f
+      end
+    end
+  end 
+  if ok then
+    ok=execstr('[%ok1,ipar,rpar,%nz]=compile_expr(%foo)','errcatch')==0
+  end
 endfunction
 
 
