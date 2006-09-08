@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>genlib</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>Nov 2000</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="genlib"> build library from functions in given directory</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>genlib(lib_name [[,dir_name, [ Force [,verb [,Names]]]])  </CALLING_SEQUENCE_ITEM>
