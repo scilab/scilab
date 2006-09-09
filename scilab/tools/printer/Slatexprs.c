@@ -252,7 +252,7 @@ int main(int argc, char **argv)
     fprintf(stderr,"Environment variable SCI must be defined\n");
     exit(0);
   }
-  sprintf(entete,"%s/imp/NperiPos.ps",env);
+  sprintf(entete,"%s/tools/printer/NperiPos.ps",env);
   fd=fopen(entete,"r");
   if (fd != 0)
     { int c;

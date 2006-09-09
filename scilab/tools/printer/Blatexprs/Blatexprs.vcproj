@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Blatexprs.exe"
+				OutputFile="../Blatexprs.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -157,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Blatexprs.exe"
+				OutputFile="../Blatexprs.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Blatexprs.pdb"

@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="Blatexpr"
-	ProjectGUID="{4467FBE5-45A6-4CA7-AD8C-48419B656137}"
+	Name="Blpr"
+	ProjectGUID="{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}"
 	>
 	<Platforms>
 		<Platform
@@ -36,7 +36,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Blatexpr.tlb"
+				TypeLibraryName="$(ConfigurationName)/Blpr.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -67,11 +67,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Blatexpr.exe"
+				OutputFile="../Blpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Blatexpr.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Blpr.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -123,7 +123,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Blatexpr.tlb"
+				TypeLibraryName="$(ConfigurationName)/Blpr.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -157,10 +157,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Blatexpr.exe"
+				OutputFile="../Blpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Blatexpr.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Blpr.pdb"
 				SubSystem="1"
 				OptimizeForWindows98="1"
 				TargetMachine="1"
@@ -222,7 +222,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\Slatexpr.c"
+				RelativePath="..\Slpr.c"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

@@ -2371,7 +2371,7 @@ void C2F(getFontMaxSizeGif)(char *str, integer *sizeMin, integer *sizeMax, integ
 void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   FILE *ff;
-  char fname[200];
+  char fname[1024];
   int i,ierr;
   char *SciPath;
   gdFontPtr Font;
@@ -2402,8 +2402,7 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
   }
   if (FontInfoTabGif[*j].ok == 0) {
     for (i=0;i<FONTMAXSIZE;i++) {
-      sprintf(fname,"%s/imp/giffonts/75dpi/%s%s.bdf",
-	      SciPath,name,sizeGif[i]);
+      sprintf(fname,"%s/modules/graphics/fonts/giffonts/75dpi/%s%s.bdf",SciPath,name,sizeGif[i]);
       ff=fopen(fname,"r");
       if (ff == 0) 
 	{

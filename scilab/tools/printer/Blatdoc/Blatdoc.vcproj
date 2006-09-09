@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../util/Blatdoc.exe"
+				OutputFile="../Blatdoc.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -157,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../util/Blatdoc.exe"
+				OutputFile="../Blatdoc.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Blatdoc.pdb"

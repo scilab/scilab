@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="lpr"
 	ProjectGUID="{4A98D3E0-692D-4F80-877F-7441FC107C09}"
+	RootNamespace="lpr"
 	>
 	<Platforms>
 		<Platform
@@ -52,9 +53,9 @@
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
-				AssemblerListingLocation=".\lpr___Win32_Debug/"
-				ObjectFile=".\lpr___Win32_Debug/"
-				ProgramDataBaseFileName=".\lpr___Win32_Debug/"
+				AssemblerListingLocation=".\Debug/"
+				ObjectFile=".\Debug/"
+				ProgramDataBaseFileName=".\Debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -73,11 +74,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../../../bin/lpr.exe"
+				OutputFile="lpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\lpr___Win32_Debug/lpr.pdb"
+				ProgramDatabaseFile=".\Debug/lpr.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -169,7 +170,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../../../bin/lpr.exe"
+				OutputFile="lpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/lpr.pdb"
@@ -240,7 +241,11 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 			<File
-				RelativePath="Rscilab.rc"
+				RelativePath="lpr.rc"
+				>
+			</File>
+			<File
+				RelativePath=".\scilab.ico"
 				>
 			</File>
 		</Filter>
@@ -248,6 +253,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

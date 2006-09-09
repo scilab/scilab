@@ -13,7 +13,7 @@ char *getenv();
 #include <ctype.h>
 #include <stdio.h>
 
-#include "../modules/core/includes/machine.h"
+#include "../../modules/core/includes/machine.h"
 #include "util.h" 
 
 static int Sed __PARAMS((int,char *,FILE *,char *,char *,char *,char *,char *,char *));
@@ -155,7 +155,7 @@ int ScilabPsToTeX(char orientation, char *filein, char *fileout, double xs, doub
   /** first we produce the epsf file from the scilab file 
     without preamble **/
 
-  sprintf(entete,"%s/imp/NperiPos.ps",env);
+  sprintf(entete,"%s/tools/printer/NperiPos.ps",env);
 
   FileNameChange(filein,fileout,base,"eps");
   if ( strcmp(fileout,filein) == 0 ) 

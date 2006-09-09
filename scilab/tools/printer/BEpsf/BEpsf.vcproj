@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="Blpr"
-	ProjectGUID="{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}"
+	Name="BEpsf"
+	ProjectGUID="{114F3B77-2A32-4EC8-AC23-B3F910622BD9}"
 	>
 	<Platforms>
 		<Platform
@@ -36,7 +36,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Blpr.tlb"
+				TypeLibraryName="$(ConfigurationName)/BEpsf.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -67,11 +67,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Blpr.exe"
+				OutputFile="../BEpsf.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Blpr.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/BEpsf.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -123,7 +123,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/Blpr.tlb"
+				TypeLibraryName="$(ConfigurationName)/BEpsf.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -157,10 +157,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Blpr.exe"
+				OutputFile="../BEpsf.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile="$(ConfigurationName)/Blpr.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/BEpsf.pdb"
 				SubSystem="1"
 				OptimizeForWindows98="1"
 				TargetMachine="1"
@@ -222,7 +222,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\Slpr.c"
+				RelativePath="..\SEpsf.c"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

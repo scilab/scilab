@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="BEpsf"
-	ProjectGUID="{114F3B77-2A32-4EC8-AC23-B3F910622BD9}"
+	Name="Blatexpr2"
+	ProjectGUID="{836EC214-02DD-474F-91C9-C8C46C183D48}"
 	>
 	<Platforms>
 		<Platform
@@ -36,7 +36,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/BEpsf.tlb"
+				TypeLibraryName="$(ConfigurationName)/Blatexpr2.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -67,11 +67,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/BEpsf.exe"
+				OutputFile="../Blatexpr2.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(ConfigurationName)/BEpsf.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Blatexpr2.pdb"
 				SubSystem="1"
 				TargetMachine="1"
 			/>
@@ -123,7 +123,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(ConfigurationName)/BEpsf.tlb"
+				TypeLibraryName="$(ConfigurationName)/Blatexpr2.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
@@ -157,10 +157,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/BEpsf.exe"
+				OutputFile="../Blatexpr2.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				ProgramDatabaseFile="$(ConfigurationName)/BEpsf.pdb"
+				ProgramDatabaseFile="$(ConfigurationName)/Blatexpr2.pdb"
 				SubSystem="1"
 				OptimizeForWindows98="1"
 				TargetMachine="1"
@@ -222,7 +222,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\SEpsf.c"
+				RelativePath="..\Slatexpr2.c"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"

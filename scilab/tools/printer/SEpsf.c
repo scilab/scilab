@@ -13,7 +13,7 @@ char *getenv();
 #include <ctype.h>
 #include <stdio.h>
 
-#include "../modules/core/includes/machine.h"
+#include "../../modules/core/includes/machine.h"
 #include "util.h" 
 #define Min(x,y)  (((x)<(y))?(x):(y))
 
@@ -145,7 +145,7 @@ int ScilabPsToEps(char orientation,char *filein,char *fileout)
       sciprint("Environment variable SCI must be defined\r\n");
       return(1);
     }
-  sprintf(entete,"%s/imp/NperiPos.ps",env);
+  sprintf(entete,"%s/tools/printer/NperiPos.ps",env);
 
   ConvertName(filein,fileout);
   if ( strcmp(fileout,filein) == 0 ) 
