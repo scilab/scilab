@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>macro</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="macro"> Scilab procedure and Scilab object</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Macros are Scilab procedures (&quot;macro&quot;, &quot;function&quot; and &quot;procedure&quot;
+    have the save meaning). Usually, they are defined 
+    in files with an editor and loaded into Scilab by <VERB>getf</VERB> or through
+    a library.</P>
+    <P>
+    They can also be defined on-line (see <VERB>deff</VERB>). 
+    A file which contains a macro must begin as follows:</P>
+    <VERBATIM>
+<![CDATA[
+function [y1,...,yn]=foo(x1,...,xm)
+   ]]>
+    </VERBATIM>
+    <P>
+    The <VERB>yi</VERB> are output variables calculated as functions of
+    input variables and variables existing in Scilab
+    when the macro is executed.
+    A macro can be compiled for faster execution. Collections
+    of macros can be collected in libraries.
+    Macros which begin with <VERB>%</VERB> sign (e.g. <VERB>%foo</VERB>) and whose
+    arguments are lists are used to perform specific 
+    operations: for example, <VERB>z=%rmr(x,y)</VERB> is equivalent
+    to <VERB>z=x*y</VERB> when <VERB>x</VERB> and <VERB>z</VERB> are rationals 
+    (i.e. <VERB>x=list('r',n,d,[])</VERB> with <VERB>n</VERB> and <VERB>d</VERB> polynomials).</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>deff</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lib</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

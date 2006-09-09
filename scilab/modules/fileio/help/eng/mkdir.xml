@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>mkdir</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>September 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mkdir">Make new directory</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mkdir('dirname')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>mkdir('parentdir','newdir')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>status=mkdir( ... )</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[status,msg]=mkdir( ... )</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>mkdir('dirname') creates the directory dirname in the current
+    directory, if dirname represents a relative path.</P>
+
+    <P>mkdir('parentdir','dirname') creates the directory dirname in the
+    existing directory parentdir, where parentdir is an absolute or relative
+    pathname.</P>
+
+    <P>[status,message] = mkdir(...,'dirname') creates the directory dirname
+    in the existing directory parentdir, returning the status, a message.
+    Here, status is 1 for success, 2 if it already exists, and 0
+    otherwise.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+rmdir(SCI + '/Directory'); //remove the directory if it exists
+mkdir(SCI,'Directory')
+status=mkdir(SCI,'Directory')
+[status,msg] = mkdir(SCI,'Directory')
+rmdir(SCI+'/Directory')
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cd</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dir</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rmdir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

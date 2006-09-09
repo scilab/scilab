@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>getshell</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Janvier 2006</DATE>
+
+  <SHORT_DESCRIPTION name="getshell">retourne le nom de l'interpreteur de
+  commandes.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>getshell()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>getshell</VERB> : retourne le nom de l'interpreteur de
+    commandes.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    getshell()
+    ]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sident</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="sident"> discrete-time state-space realization and Kalman gain</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>   [(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,Ai,  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>                                              Ci,printw))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>meth</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer option to determine the method to use:</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>1 : MOESP method with past inputs and outputs;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>2 : N4SID method;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>3 : combined method: A and C via MOESP, B and D via N4SID.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>job</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer option to determine the calculation to be performed:</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>1 : compute all system matrices, A, B, C, D;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>2 : compute the matrices A and C only;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>3 : compute the matrix B only;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>4 : compute the matrices B and D only.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the number of block rows in the processed input and output block Hankel matrices.  s &gt; 0.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the order of the system</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the number of the system outputs</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>R</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the 2*(m+l)*s-by-2*(m+l)*s part of  R  contains the processed upper triangular factor  R  from the QR factorization of the concatenated block-Hankel matrices, and further details needed for computing system matrices.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>tol</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) tolerance used for estimating the rank of matrices. If  tol &gt; 0,  then the given value of  tol  is used as a lower bound for the reciprocal condition number; an m-by-n matrix whose estimated condition number is less than  1/tol  is considered to be of full rank. Default:    m*n*epsilon_machine where epsilon_machine is the relative machine precision.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) the total number of samples used for calculating the covariance matrices.  Either t = 0, or t &gt;= 2*(m+l)*s. This parameter is not needed if the covariance matrices and/or the Kalman predictor gain matrix are not desired. If t = 0, then K, Q, Ry, and S are not computed. Default:    t = 0.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ai</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ci</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>printw</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) switch for printing the warning messages.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>1:  print warning messages;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>=  </PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>0:  do not print warning messages.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+    Default:    printw = 0.
+  </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>A</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>C</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>B</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>D</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real matrix, kalman gain</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) the n-by-n positive semidefinite state covariance matrix used as state weighting matrix when computing the Kalman gain.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>RY</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) the l-by-l positive (semi)definite output covariance matrix used as output weighting matrix when computing the Kalman gain.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) the n-by-l state-output cross-covariance matrix used as cross-weighting matrix when computing the Kalman gain.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rcnd</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: (optional) vector of length lr, containing estimates of the reciprocal condition numbers of the matrices involved in rank decisions, least squares, or Riccati equation solutions, where   lr = 4,  if Kalman gain matrix K is not required, and  lr = 12, if Kalman gain matrix K is required.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    SIDENT function for computing a discrete-time state-space realization
+    (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.</P>
+    <VERBATIM>
+<![CDATA[
+                 [A,C,B,D] = sident(meth,1,s,n,l,R)
+   [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
+                     [A,C] = sident(meth,2,s,n,l,R)
+                         B = sident(meth,3,s,n,l,R,tol,0,Ai,Ci)
+         [B,K,Q,Ry,S,rcnd] = sident(meth,3,s,n,l,R,tol,t,Ai,Ci)
+                     [B,D] = sident(meth,4,s,n,l,R,tol,0,Ai,Ci)
+       [B,D,K,Q,Ry,S,rcnd] = sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
+   ]]>
+    </VERBATIM>
+    <P>
+    SIDENT computes a state-space realization (A,B,C,D) and the Kalman
+    predictor gain K of a discrete-time system, given the system
+    order and the relevant part of the R factor of the concatenated 
+    block-Hankel matrices, using subspace identification techniques 
+    (MOESP, N4SID, or their combination).</P>
+    <P>
+       The model structure is :</P>
+    <VERBATIM>
+<![CDATA[
+         x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+         y(k)   = Cx(k) + Du(k) + e(k),
+   ]]>
+    </VERBATIM>
+    <P>
+       where  
+    x(k)  is the  n-dimensional state vector (at time k),</P>
+    <P>
+    u(k)  is the  m-dimensional input vector,</P>
+    <P>
+    y(k)  is the  l-dimensional output vector,</P>
+    <P>
+    e(k)  is the  l-dimensional disturbance vector,</P>
+    <P>
+    and  A, B, C, D, and K  are real matrices of appropriate dimensions.</P>
+  </DESCRIPTION>
+  <SECTION label="Comments">
+    <P>
+    1. The n-by-n system state matrix A, and the p-by-n system output  matrix C are computed for job &lt;= 2.</P>
+    <P>
+    2. The n-by-m system input matrix B is computed for job &lt;&gt; 2.</P>
+    <P>
+    3. The l-by-m system matrix D is computed for job = 1 or 4.</P>
+    <P>
+    4. The n-by-l Kalman predictor gain matrix K and the covariance matrices Q, Ry, and S are computed for t &gt; 0.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;      
+     -0.4,-0.6,-0.7,-0.1;  
+      0.8, 0,  -0.6,-0.6];      
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+
+S = 15;
+N = 3;
+METH=1;
+[R,N1] = findR(S,Y',U',METH);
+[A,C,B,D,K] = sident(METH,1,S,N,1,R);
+SYS1=syslin(1,A,B,C,D);
+SYS1.X0 = inistate(SYS1,Y',U');
+
+Y1=flts(U,SYS1);
+xbasc();plot2d((1:nsmp)',[Y',Y1'])
+
+
+
+METH = 2;
+[R,N1,SVAL] = findR(S,Y',U',METH);
+tol = 0;
+t = size(U',1)-2*S+1;
+
+[A,C,B,D,K] = sident(METH,1,S,N,1,R,tol,t)
+SYS1=syslin(1,A,B,C,D)
+SYS1.X0 = inistate(SYS1,Y',U');
+
+Y1=flts(U,SYS1);
+xbasc();plot2d((1:nsmp)',[Y',Y1'])
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>findBD</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sorder</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>   V. Sima, Research Institute for Informatics, Bucharest, Oct. 1999. 
+  Revisions: May 2000, July 2000. 
+ </AUTHOR>
+</MAN>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>intl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="intl"> Cauchy integral</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y]=intl(a,b,z0,r,f)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>z0</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: complex number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a,b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: two real numbers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: positive real number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: &quot;external&quot; function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    If <VERB>f</VERB> is a complex-valued function, <VERB>intl(a,b,z0,r,f)</VERB> computes
+    the integral of <VERB>f(z)dz</VERB> along the curve
+    in the complex plane defined by <VERB>z0 + r.exp(%i*t)</VERB> for
+    <VERB>a&lt;=t&lt;=b</VERB> .(part of the circle with center <VERB>z0</VERB> and radius <VERB>r</VERB>
+    with phase between <VERB>a</VERB> and <VERB>b</VERB>)</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>intc</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>F. D.  </AUTHOR>
+</MAN>

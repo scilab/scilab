@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>rmdir</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Septembre 2004</DATE>
+
+  <SHORT_DESCRIPTION name="rmdir">Supprime un repertoire</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rmdir('dirname')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>rmdir('dirname','s')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[status,message] =
+    rmdir('dirname','s')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>rmdir('dirname') supprime le repertoire dirname depuis le repertoire
+    courant. Si le repertoire n'est pas vide, vous devez utiliser l'argument
+    s. Si dirname n'est pas dans le repertoire courant , vous devez specifier
+    le chemin relatif ou complet pour acceder a dirname.</P>
+
+    <P>rmdir('dirname','s') suppprime le repertoire dirname depuis le
+    repertoire courant et ses sous repertoires ainsi que leurs contenus.</P>
+
+    <P>[status, message] = rmdir('dirname','s') supprime le repertoire dirname
+    et son contenu depuis le repertoire courant et retourne la variable status
+    et un message. Ici, status vaut 1 si l'execution s'est bien passé et 0 en
+    cas d'erreur.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+mkdir(SCI,'Directory')
+rmdir(SCI+'/Directory')
+
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cd</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>dir</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>mkdir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

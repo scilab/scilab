@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scanf_conversion</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="scanf_conversion"> scanf, sscanf, fscanf conversion specifications</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Each conversion specification in the format parameter
+    contains the following elements:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="+">
+        <SP>The character % (percent sign)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>The optional assignment suppression character *</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>An optional numeric maximum field width</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>A conversion code</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    The conversion specification has the following syntax:
+  </P>
+    <P><VERB>[*][width][size]convcode</VERB>.
+  </P>
+    <P>
+    The results from the conversion are placed in v_i arguments
+    unless you specify assignment suppression with * (asterisk). Assignment
+    suppression provides a way to describe an input field that is to be
+    skipped. The input field is a string of nonwhite-space characters.
+    It extends to the next inappropriate character or until the field
+    width, if specified, is exhausted.
+  </P>
+    <P>
+    The conversion code indicates how to interpret the input field.
+     You should not specify the v_i parameter for a
+    suppressed field. You can use the following conversion codes:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="%">
+        <SP>:Accepts a single % (percent sign) input at this point; no assignment is done.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="d, i">
+        <SP>:Accepts a decimal integer;</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="u">
+        <SP>:Accepts an unsigned decimal integer;</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="o">
+        <SP>:Accepts an octal integer;</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x">
+        <SP>:Accepts a hexadecimal integer;</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="e,f,g">
+        <SP>:Accepts a floating-point number. The next field is converted accordingly and stored through the corresponding parameter, which should be a pointer to a float. The input format for floating-point numbers is a string of digits, with the following optional characteristics:</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>It can be a signed value.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>It can be an exponential value, containing a decimal point followed by an exponent field, which consists of an E or an e followed by an (optionally signed) integer.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>It can be one of the special values INF, NaN,</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="s">
+        <SP>:Accepts a string of characters.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="c">
+        <SP>:character value is expected. The normal skip over white space is suppressed.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>scanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>scanf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fscanf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

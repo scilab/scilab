@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>functions  </TITLE>
+  <TYPE>Scilab Data type  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="functions"> procédures Scilab et objets Scilab  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Les fonctions Scilab sont des procédures (&quot;macros&quot;, &quot;fonction&quot; et &quot;procédures&quot;
+    ont la même signification). 
+  </P>
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM label='Définition de fonctions'>
+
+  <P>
+    Les fonctions sont tapées dans un éditeur de texte et chargées dans Scilab avec la commande <VERB>getf</VERB> ou via une librairie (voir <VERB>lib</VERB> ou <VERB>genlib</VERB>). Mais elles peuvent être définies en ligne (voir <VERB>deff</VERB> ou <VERB>function</VERB>).  Une fonction est définie en deux parties :  
+  </P>
+
+<P>une ligne de déclaration formelle</P>
+
+
+  <VERBATIM><![CDATA[
+ function [y1,...,yn]=foo(x1,...,xm)
+ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
+   ]]></VERBATIM>
+
+<P>une suite d&apos;instructions Scilab.</P>
+
+
+  <P>
+     La &quot;ligne de définition&quot; donne la syntaxe d&apos;appel complète de la fonction. Les <VERB>yi</VERB> sont les variables de sortie, calculées à partir des variables d&apos;entrée <VERB>xi</VERB> et des variables existantes dans le contexte appelant lorsque la fonction est exécutée. On peut utiliser éventuellement un sous-ensemble de ces variables d&apos;entrée et de sortie.
+  </P>
+  </DESCRIPTION_ITEM>
+  <DESCRIPTION_ITEM label='Appel à une fonction'>
+<P>
+    LA syntaxe d&apos;appel est habituellement <VERB>[y1,...,yn]=foo(x1,...,xm)</VERB>. On peut utiliser éventuellement un sous-ensemble de ces variables d&apos;entrée et de sortie. Dans ce cas, seules les premières variables à partir de la gauche sont utilisées. La fonction <VERB>argn</VERB> peut être utilisée pour connaître le nombre effectif d&apos;arguments d&apos;appel.
+  </P>
+<P>
+    Il est aussi possible d&apos;utiliser des &quot;arguments nommés&quot; pour spécifier les valeurs des arguments d&apos;entrée  : supposons que la fonction <VERB>fun1</VERB> est définie ainsi <VERB>function y1=fun1(x1,x2,x3)</VERB> alors on peut utiliser la syntaxe  <VERB>y=fun1(x1=33,x3=[1 2 3])</VERB>, et dans <VERB>fun1</VERB> x2 ne sera pas défini. Il est possible de vérifier quelles sont les variables définies avec la fonction <VERB>exists</VERB>.
+  </P>
+<P>
+    Quand une fonction n&apos;a pas d&apos;argument de sortie et est appelée avec des arguments d&apos;entrée de type chaîne de caractère, la syntaxe d&apos;appel peut être simplifiée : <VERB>fun(&apos;a&apos;,&apos;toto&apos;,&apos;une chaîne&apos;)</VERB> est alors équivalent à <VERB>fun a toto &apos;une chaîne&apos;</VERB> 
+  </P>
+  </DESCRIPTION_ITEM>
+  <DESCRIPTION_ITEM label='Divers'>
+  <P>
+    Les fonctions sont des objets Scilab (numéro de type 13 ou 11). Elles peuvent être manipulées (passées en argument, sauvées, chargées, ...) comme toute autre variable.
+  </P>
+  <P>
+    Un ensemble de fonctions peut être assemblé dans une librairie. Les fonctions dont le nom commence par le caractère <VERB>%</VERB> (exemple : <VERB>%foo</VERB>) sont utilisées pour la surcharge des opérateurs (voir <VERB>overloading</VERB>) ou des fonctions pour des nouveaux types de données.
+  </P>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+ </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// définition en ligne
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+// autre type de définition en ligne
+deff('[x,y]=myfct(a,b)',['x=a+b';
+                         'y=a-b'])
+// définition dans un fichier texte (voir exec)
+exec SCI/macros/elem/asinh.sci;
+
+// définition dans un fichier texte (voir getf)
+getf SCI/macros/elem/asinh.sci;
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>function</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>genlib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>exists</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>varargin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>varargout</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

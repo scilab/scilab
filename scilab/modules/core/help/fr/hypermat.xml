@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>hypermat  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="hypermat"> initialisation d&apos;une matrice à N dimensions   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>M=hypermat(dims [,v])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>dims  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur des dimensions de l&apos;hypermatrice
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur des termes de l&apos;hypermatrice (valeur par défaut <VERB>zeros(prod(dims),1)</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Initialisation d&apos;une matrice à N dimensions dont les dimensions sont données dans le vecteur dims
+    et dont les termes sont éventuellement donnés dans un vecteur optionnel <VERB>v</VERB>.
+  </P>
+  <P>
+    La structure de données M contient un champ <VERB>M(&apos;dims&apos;)</VERB> contenant les dimensions de l&apos;hypermatrice et un champ contenant le vecteur des termes <VERB>M(&apos;entries&apos;)</VERB>, rangés tel que l&apos;indice
+    le plus à gauche varie en premier :
+    <VERB>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</VERB>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+M=hypermat([2 3 2 2],1:24)
+ ]]></EXAMPLE>
+</MAN>

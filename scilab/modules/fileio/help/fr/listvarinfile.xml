@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>listvarinfile</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>19-May-2005</DATE>
+  <SHORT_DESCRIPTION name="listvarinfile">list the contents of a saved data file</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>listvarinfile(filename)</CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[nams,typs,dims,vols]=listvarinfile(filename)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>filename</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : character string, the pathname of the file to be inspected
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+    <PARAM_NAME>nams</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : character array, names of the variables saved in the file
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+    <PARAM_NAME>dims</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : list, dimensions of the variables saved in the file
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+    <PARAM_NAME>typs</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : numeric array, types of the variables saved in the file
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+    <PARAM_NAME>vols</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : numeric array, size in bytes of the variables saved in the file 
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+      This utility function lists "a la <LINK>whos</LINK>" the variables contained in
+      a Scilab data file produced by <LINK>save</LINK>.
+     </P>
+     <P>
+     Remark: hypermatrices are reported as plain mlists;
+     rationals and state-spaces are reported as plain tlists;
+     graphic handles are not recognized.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
+   save("vals.dat",a,b,c)
+   listvarinfile("vals.dat")
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>whos</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>load</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>save_format</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Serge Steer'>
+    31 Jan 2001; reediting by Enrico Segre
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>

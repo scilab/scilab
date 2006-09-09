@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>findABCD</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="findABCD"> discrete-time system subspace identification</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>SYS = findABCD(S,N,L,R,METH)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[SYS,RCND] = findABCD(S,N,L,R,METH)   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the number of block rows in the block-Hankel matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>N</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the system order</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>L</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the number of output</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>R</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix, relevant part of the  R factor of the concatenated block-Hankel matrices computed by a call to findr.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>METH</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, an option for the method to use</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>= 1</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:  MOESP method with past inputs and outputs;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>= 2</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:  N4SID method;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>= 3</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>:  combined method: A and C via MOESP, B and D via N4SID.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+    Default:    METH = 3.
+  </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>NSMPL</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the total number of samples used for calculating the covariance matrices and the Kalman predictor gain. This parameter is not needed if the covariance matrices and/or the Kalman predictor gain matrix are not desired. If NSMPL = 0, then K, Q, Ry, and S are not computed. Default:    NSMPL = 0.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>TOL</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default: prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>PRINTW</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, switch for printing the warning messages.</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>PRINTW</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>= 1: print warning messages;</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>PRINTW</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>= 0: do not print warning messages.</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+          <P>
+    Default:    PRINTW = 0.
+  </P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>SYS</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: computes a state-space realization SYS = (A,B,C,D) (an syslin object)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the Kalman predictor gain K (if NSMPL &gt; 0)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Q</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:  state covariance</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>Ry</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: output covariance</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: state-output cross-covariance</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>RCND</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector, reciprocal condition numbers of the matrices involved in rank decisions, least squares or Riccati equation solutions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Finds the system matrices and the Kalman gain of a discrete-time 
+    system, given the system order and the relevant part of the 
+    R factor of the concatenated block-Hankel matrices, using subspace 
+    identification techniques (MOESP and/or N4SID).
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="*">
+        <SP>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)  computes a state- space realization SYS = (A,B,C,D) (an ss object), and the Kalman predictor gain K (if NSMPL &gt; 0). The model structure is:</SP>
+        <VERBATIM>
+<![CDATA[
+     x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+     y(k)   = Cx(k) + Du(k) + e(k),
+   ]]>
+        </VERBATIM>
+        <P>
+    where x(k) and y(k) are vectors of length N and L, respectively.
+  </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP>[SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)  also returns the state, output, and state-output (cross-)covariance matrices Q, Ry, and S (used for computing the Kalman gain), as well as the vector RCND of length lr containing the reciprocal condition numbers of the matrices involved in rank decisions, least squares or Riccati equation solutions, where</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <VERBATIM>
+<![CDATA[
+   lr = 4,  if Kalman gain matrix K is not required, and
+   lr = 12, if Kalman gain matrix K is required.
+   ]]>
+    </VERBATIM>
+    <P>
+    Matrix R, computed by findR, should be determined with suitable arguments
+    METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1 
+    in findABCD;  METH = 1 must be used in findR, for METH = 3 in findABCD.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;      
+     -0.4,-0.6,-0.7,-0.1;  
+      0.8, 0,  -0.6,-0.6];      
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+
+
+// Compute R
+S=15;
+[R,N1,SVAL] = findR(S,Y',U');
+N=3;
+SYS1 = findABCD(S,N,1,R) ;SYS1.dt=0.1;
+
+SYS1.X0 = inistate(SYS1,Y',U');
+
+Y1=flts(U,SYS1);
+xbasc();plot2d((1:nsmp)',[Y',Y1'])
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>findAC</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findBD</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findBDK</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findR</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sorder</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sident</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

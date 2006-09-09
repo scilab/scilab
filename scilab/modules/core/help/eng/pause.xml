@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pause</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pause"> pause mode, invoke keyboard</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Switch to the <VERB>pause</VERB> mode;
+    inserted in the code of a function, <VERB>pause</VERB> interrupts the execution
+    of the function: one receives a prompt symbol which indicates
+    the level of the <VERB>pause</VERB> (e.g. <VERB>-1-&gt;</VERB>). The user is
+    then in a new workspace in which all the lower-level variables
+    (and in particular all the variable of the function) are available.
+    To return to the calling workspace enter <VERB>&quot;return&quot;</VERB></P>
+    <P>
+    In this mode, <VERB>[...]=return(...) </VERB>
+    returns the variables of the argument <VERB>(...)</VERB> to the calling workspace with 
+    names in the output <VERB> [...]</VERB>. Otherwise, the lower-level variables
+    are protected and cannot be modified.</P>
+    <P>
+    The <VERB>pause</VERB> is extremely useful for debugging purposes.</P>
+    <P>
+    This mode is killed by the command <VERB>&quot;abort&quot;</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>halt</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>return</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>abort</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>quit</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>whereami</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>where</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

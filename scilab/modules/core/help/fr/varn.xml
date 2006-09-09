@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>varn  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="varn"> indéterminée d&apos;un polynôme  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[symb]=varn(p)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[pm]=varn(x,var)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>p  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme (ou matrice de polynômes)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>symb  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme (ou matrice de polynômes)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>var  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : indéterminée du polynôme
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : polynôme (ou matrice de polynômes)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>symb=varn(p)</VERB> renvoie dans <VERB>symb</VERB> l&apos;indéterminée du polynôme <VERB>p</VERB>
+    (par exemple <VERB>varn(poly(0,&apos;x&apos;))</VERB> est égal à <VERB>&apos;x&apos;</VERB>).
+  </P>
+  <P>
+    <VERB>varn(x,&apos;s&apos;)</VERB> renvoie une matrice polynomiale de même taille que <VERB>x</VERB> mais avec <VERB>&apos;s&apos;</VERB> comme indéterminée.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=poly(0,'s');p=[s^2+1,s];
+varn(p)
+varn(p,'x')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

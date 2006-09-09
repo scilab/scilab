@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>exit  </TITLE>
+  <TYPE>Scilab Command  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="exit">  termine la session Scilab courante  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    termine la session Scilab courante.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>quit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>abort</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>break</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>resume</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>realtime</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="realtimeinit">set  time unit</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="realtime">set  dates origin or waits until date</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>realtime(t)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>time_unit</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real number. The number of seconds associated to the <VERB>realtime</VERB> argument</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a real number.  A date</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>   These two functions can be used to handle real time into Scilab.</P>
+    <P><VERB>realtimeinit(time_unit)</VERB>  defines the time unit
+   associated to the <VERB>realtime</VERB> argument <VERB>t</VERB></P>
+    <P>
+   first call to <VERB>realtime(t0)</VERB> sets current date to
+   (<VERB>t0</VERB>).
+   subsequent calls to <VERB>realtime(t)</VERB> wait till date <VERB>t</VERB> is
+   reached.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+
+
+   realtimeinit(1/2);//sets time unit to half a second
+   realtime(0);//sets current date to 0
+   for k=1:10,realtime(k);mprintf('current time is '+string(k/2)+'sec .\r\n');end
+ 
+  //next instruction outputs a dot each 2 seconds
+   realtimeinit(2); realtime(0);for k=1:10,realtime(k);mprintf('.\r\n');end
+
+   realtimeinit(1);realtime(0);
+   dt=getdate('s'); realtime(10);   getdate('s')-dt
+
+
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getdate</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>names  </TITLE>
+  <TYPE>Scilab Syntax  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="names"> syntaxe des noms de variables dans Scilab  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Les noms de variables et de fonctions doivent commencer par une lettre de l&apos;alphabet ou l&apos;un des caractères &quot;spéciaux&quot; suivants : &apos;<VERB>%</VERB>&apos;, &apos;<VERB>_</VERB>&apos;, &apos;<VERB>#</VERB>&apos;, &apos;<VERB>!</VERB>&apos;, &apos;<VERB>$</VERB>&apos;, &apos;<VERB>?</VERB>&apos;.
+  </P>
+  <P>
+  </P>
+  <P>
+    Les caractères suivants peuvent être des lettres ou des chiffres, ou bien des caractères spéciaux tels que &apos;<VERB>_</VERB>&apos;, &apos;<VERB>#</VERB>&apos;, &apos;<VERB>!</VERB>&apos;, &apos;<VERB>$</VERB>&apos;, &apos;<VERB>?</VERB>&apos;.
+  </P>
+  <P>
+  </P>
+  <P>
+    Le nombre de caractères des noms de variables n&apos;est pas limité mais seuls les 24 premiers sont pris en compte. La différence entre minuscules et majuscules est prise en compte.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// Noms valides
+%eps
+A1=123
+#Color=8
+My_Special_Color_Table=rand(10,3)
+// Noms invalides
+//1A , b%, .C
+ ]]></EXAMPLE>
+</MAN>

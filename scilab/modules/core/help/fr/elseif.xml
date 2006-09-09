@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>elseif  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="elseif"> mot clé dans une structure if-then-else  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Voir <VERB>if,then,else</VERB> .
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>varargout</TITLE>
+  <TYPE>Scilab keyword</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="varargout">  variable numbers of arguments in an output argument list</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    A function whose output argument list contains  <VERB>varargout</VERB> must be
+    called with more output arguments than indicated in the output argument
+    list. The calling arguments passed form <VERB>varargout</VERB> keyword onwards
+    are extracted out of the <VERB>varargout</VERB> list defined in the function</P>
+    <P><VERB>varagout = function ex()</VERB> may be called with any number of output
+    arguments. Within function  <VERB>ex</VERB> output arguments may be stored in
+    in <VERB>varargout(i)</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+deff('varargout=exampl()','varargout=list(1,2,3,4)')
+
+x=exampl()
+[x,y]=exampl()
+[x,y,z]=exampl()
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>function</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>varargin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>list</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

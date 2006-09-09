@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>insertion  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="insertion"> insertion/modification dans une
+    variable  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="affectation"> affectation partielle d'une variable  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x(i,j)=a  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i)=a  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(i)=a  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i)=a ou l(list(k1,...,kn,i))=a  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)=a ou l(list(k1,...,kn,list(i,j))=a  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>x  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice de tout type
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>l  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : liste
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>i,j  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : indices
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>k1,...kn  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : indices à valeurs entières
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+	<PARAM_NAME>a  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : nouvelles valeurs des termes
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label="CAS DES MATRICES"> <P></P>
+	<SP>Si  <VERB>x</VERB> est un tableau <VERB>i</VERB> et <VERB>j</VERB> peuvent être :</SP>
+	<DESCRIPTION_INDENT>
+
+	  <DESCRIPTION_ITEM label="Des scalaires, vecteurs ou matrices">
+	    <SP>Dans ce cas les parties entieres des valeurs données en
+	      indices doivent être strictement positives. Seule la prtie
+	      entière est prise e, compte.</SP>
+
+	    <DESCRIPTION_INDENT>
+	      
+	      <DESCRIPTION_ITEM>
+		<SP>
+		  Si <VERB>a</VERB> est une matrice de dimensions
+		  <VERB>(size(i,&apos;*&apos;),size(j,&apos;*&apos;))</VERB>
+		  <VERB>x(i,j)=a</VERB> renvoie une nouvelle matrice
+		  <VERB>x</VERB> telle que <VERB>x(int(i(l)),int(j(k)))=a(l,k)
+		  </VERB> pour <VERB>l</VERB> variant de 1 à
+		  <VERB>size(i,&apos;*&apos;)</VERB> et <VERB>k</VERB> variant de
+		  1 à <VERB>size(j,&apos;*&apos;)</VERB>, les autres composantes
+
+		  initiales de <VERB>x</VERB> sont inchangées.</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>Si <VERB>a</VERB> est un scalaire
+		  <VERB>x(i,j)=a</VERB> renvoie une nouvelle matrice
+		  <VERB>x</VERB> telle que <VERB>x(int(i(l)),int(j(k)))=a </VERB>
+		  pour <VERB>l</VERB> variant de 1 à
+		  <VERB>size(i,&apos;*&apos;)</VERB> et <VERB>k</VERB> variant de
+		  1 à <VERB>size(j,&apos;*&apos;)</VERB>, les autres composantes
+		  initiales de <VERB>x</VERB> sont inchangées.</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>Si la valeur maximum de <VERB>i</VERB> ou
+		  <VERB>j</VERB> dépasse la dimension correspondante de
+		  <VERB>x</VERB>, alors <VERB>x</VERB> est au préalable agrandie
+		  aux dimensions adéquates en stockant des zéros pour les matrices
+		  standard, des chaînes vides pour les matrices de chaînes de
+		  caractères ou la valeur %F pour les matrices booléennes.
+		</SP>
+	      </DESCRIPTION_ITEM>
+	      
+	      <DESCRIPTION_ITEM> 
+		<SP>
+		  <VERB>x(i,j)=[]</VERB> détruit les lignes
+		  spécifiées par <VERB>i</VERB> si <VERB>j</VERB> désigne toutes
+		  les colonnes de <VERB>x</VERB> ou détruit les colonnes
+		  spécifiées par <VERB>j</VERB> si <VERB>i</VERB> désigne toutes
+		  les lignes de <VERB>x</VERB>. Dans tous les autres cas
+		  <VERB>x(i,j)=[]</VERB> produit une erreur.
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM>
+		<SP>
+		  <VERB>x(i)=a</VERB> où <VERB>a</VERB> est un
+		  vecteur renvoie une nouvelle matrice <VERB>x</VERB> telle que
+		  <VERB>x(int(i(l)))=a(l)</VERB> pour <VERB>l</VERB> variant de 1
+		  à <VERB>size(i,&apos;*&apos;)</VERB> , les autres composantes
+		  initiales de <VERB>x</VERB> sont inchangées.
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>
+		  <VERB>x(i)=a</VERB> où <VERB>a</VERB> est un
+		  scalaire, renvoie une nouvelle matrice <VERB>x</VERB> telle que
+		  <VERB>x(int(i(l)))=a</VERB> pour <VERB>l</VERB> variant de 1 à
+		  <VERB>size(i,&apos;*&apos;)</VERB> , les autres composantes
+		  initiales de <VERB>x</VERB> sont inchangées.
+		</SP>
+		<P>
+		  Si la valeur maximum de <VERB>i</VERB> dépasse
+		  <VERB>size(x,1)</VERB>, <VERB>x</VERB> est au préalable agrandie
+		  aux dimensions adéquates en stockant des zéros pour les matrices
+		  standard, des chaînes vides pour les matrices de chaînes de
+		  caractères ou la valeur %F pour les matrices booléennes.
+		</P>
+		<DESCRIPTION_INDENT>
+		  <DESCRIPTION_ITEM label='Si'>  
+		    <SP> 
+		      <VERB>x</VERB> est une matrice 1 x 1 <VERB>a</VERB> peut
+		      être un vecteur ligne (resp. colonne) de dimension
+		      <VERB>size(i,&apos;*&apos;)</VERB>. La matrice
+		      <VERB>x</VERB> obtenue est un vecteur ligne
+		      (resp. colonne)
+		    </SP>
+		  </DESCRIPTION_ITEM>
+
+		  <DESCRIPTION_ITEM label='Si'>  
+		    <SP>
+		      <VERB>x</VERB> est un vecteur
+		      ligne (resp. colonne) <VERB>a</VERB> doit être un vecteur
+		      ligne (resp. colonne) de dimension
+		      <VERB>size(i,&apos;*&apos;)</VERB>
+		    </SP>
+		  </DESCRIPTION_ITEM>
+
+		  <DESCRIPTION_ITEM label='Si'>  
+		    <SP>
+		      <VERB>x</VERB> est une matrice
+		      en général <VERB>a</VERB> doit être un vecteur ligne ou
+		      colonne de dimension <VERB>size(i,&apos;*&apos;)</VERB> et
+		      la valeur maximum de<VERB>i</VERB> ne peut dépasser
+		      <VERB>size(x,&apos;*&apos;)</VERB>,
+		    </SP>
+		  </DESCRIPTION_ITEM>
+		</DESCRIPTION_INDENT>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM><SP> <VERB>x(i)=[]</VERB> supprime les termes
+
+
+		  spécifiés par <VERB>i</VERB>.  </SP>
+	      </DESCRIPTION_ITEM>
+	    </DESCRIPTION_INDENT>
+
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="Le : symbole"> 
+	    <SP>
+	      Le symbole <VERB> : </VERB> signifiant &quot;tous les éléments&quot;. </SP>
+	    <DESCRIPTION_INDENT>
+	      <DESCRIPTION_ITEM>  <SP><VERB>x(i,:)=a</VERB> est interprété comme
+
+		  <VERB>x(i,1:size(x,2))=a</VERB></SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM>  <SP><VERB>x(:,j)=a</VERB> est interprété comme
+		  <VERB>x(1:size(x,1),j)=a</VERB>
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> <SP> <VERB>x(:)=a</VERB> renvoie dans
+		  <VERB>x</VERB> la matrice <VERB>a</VERB> remise en forme en
+		  accord avec les dimensions de
+		  x. <VERB>size(x,&apos;*&apos;)</VERB> doit être égal
+		  à<VERB>size(a,&apos;*&apos;)</VERB></SP>
+	      </DESCRIPTION_ITEM>
+	    </DESCRIPTION_INDENT>
+	  </DESCRIPTION_ITEM> 
+
+	  <DESCRIPTION_ITEM label="Vecteurs de booléens"> <SP>  Si un indice
+	      
+	      (<VERB>i</VERB> ou <VERB>j</VERB> ) est un vecteur de booléens, il
+	      est interprété comme <VERB>find(i)</VERB> ou <VERB>find(j)</VERB>,
+	      respectivement.</SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="Polynomes"> <SP>Si un indice (<VERB>i</VERB> ou
+	      <VERB>j</VERB> ) est un vecteur de polynômes ou de polynômes
+	      implicites, il est interprété comme <VERB>horner(i,m)</VERB> ou
+	      <VERB>horner(j,n)</VERB>, respectivement, où <VERB>m</VERB> et
+	      <VERB>n</VERB> sont les dimensions de <VERB>x</VERB> associées.
+	      Même si cette fonctionnalité marche pour tous les polynômes, il
+	      est recommandé d&apos;utiliser des polynômes dans <VERB>$</VERB>
+	      par souci de lisibilité.</SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM  label='CAS DES LISTES'> 
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM>
+	    <SP>
+	      S&apos;ils sont présents les <VERB>ki</VERB> donnent le chemin
+	      vers un terme d&apos;une sous-liste de la liste
+	      <VERB>l</VERB>. Ils permettent de faire une insertion récursive
+	      directe sans utiliser de variable intermédiaire.  Les instructions
+	      <VERB>l(k1)...(kn)(i)=a</VERB> et
+	      <VERB>l(list(k1,...,kn,i)=a)</VERB> sont interprétées comme :</SP>
+	    <P>
+	      <VERB>lk1 = l(k1)</VERB> <VERB> ..  = ..  </VERB> 
+	    </P>
+	    <P>
+	      <VERB>lkn =   lkn-1(kn)</VERB>
+	    </P>
+	    <P>
+	      <VERB>lkn(i) = a</VERB> <VERB>lkn-1(kn) =lkn</VERB> <VERB> ..  = ..</VERB> 
+	    </P>
+
+	      
+	    <SP>les instructions<VERB>l(k1)...(kn)(i,j)=a</VERB> et
+	      <VERB>l(list(k1,...,kn,list(i,j))=a</VERB> sont interprétées
+	      comme:</SP>
+
+	    <P>
+	      <VERB>lk1 = l(k1)</VERB> <VERB> ..  = ..  </VERB> 
+	    </P>
+	    <P>
+	      <VERB>lkn =lkn-1(kn)</VERB> <VERB>lkn(i,j) = a</VERB> 
+	    </P>
+	    <P>
+	      <VERB>lkn-1(kn) = lkn</VERB> <VERB> ..  = ..  </VERB> 
+	    </P>
+	    <P>
+	      <VERB>l(k1) = lk1</VERB>
+	    </P>
+	  </DESCRIPTION_ITEM>
+	  
+
+	  <DESCRIPTION_ITEM> <SP><VERB>i</VERB> peut être :</SP>
+	    <DESCRIPTION_INDENT>
+	      <DESCRIPTION_ITEM> <SP>un scalaire réel positif
+		  <VERB>l(0)=a</VERB> ajoute un terme &quot;à gauche&quot;
+		  de la liste <VERB>l(i)=a</VERB> affecte <VERB>a</VERB> au
+		  terme <VERB>i</VERB> de la liste <VERB>l</VERB>. Si
+		  <VERB>i&gt;size(l)</VERB>, <VERB>l</VERB> est
+		  préalablement agrandie et les termes créés sont de type
+		  non-défini.  <VERB>l(i)=null()</VERB> supprime le terme
+		  <VERB>i</VERB>th de la liste.</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM>  <SP>un polynôme. Si <VERB>i</VERB> est un
+		  
+		  vecteur de polynômes ou de polynômes implicites il est
+		  interprété comme <VERB>horner(i,m)</VERB> où
+		  <VERB>m=size(l)</VERB>. Même si cette fonctionnalité marche
+		  pour tous les polynômes, il est recommandé d&apos;utiliser
+		  des polynômes dans <VERB>$</VERB> par souci de lisibilité.</SP>
+	      </DESCRIPTION_ITEM>
+	    </DESCRIPTION_INDENT>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM> <SP><VERB>k1,..kn</VERB> peuvent être :</SP>
+	    <DESCRIPTION_INDENT>
+	      
+	      <DESCRIPTION_ITEM>  <SP>un polynôme, interprété comme
+		  <VERB>horner(ki,m)</VERB> ou <VERB>m</VERB> est la taille de
+		  la sous-liste correspondante.</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> <SP>une chaîne de caractères associée à un nom
+		  
+		  d&apos;entrée de sous-liste.</SP>
+	      </DESCRIPTION_ITEM>
+	      
+	    </DESCRIPTION_INDENT>
+	  </DESCRIPTION_ITEM> 
+	</DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM> 
+    </DESCRIPTION_INDENT>
+
+  </DESCRIPTION>
+  <SECTION label='Remarque'>
+    <P>
+      Pour les matrices rationnelles et les systèmes dynamiques
+      linéaires stockés sous forme de représentation d&apos;état, la
+      syntaxe <VERB>x(i)</VERB> ne doit pas être utilisée pour
+      l&apos;insertion des éléments d&apos;un vecteur, à cause de la
+      confusion possible avec l&apos;insertion des éléments de liste. La
+      syntaxe <VERB>x(1,j)</VERB> où <VERB>x(i,1)</VERB> doit être
+      utilisée dans ce cas.
+    </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+    // CAS DES MATRICES
+    a=[1 2 3;4 5 6]
+    a(1,2)=10
+    a([1 1],2)=[-1;-2]
+    a(:,1)=[8;5]
+    a(1,3:-1:1)=[77 44 99]
+    a(1)=%s
+    a(6)=%s+1
+    a(:)=1:6
+    a([%t %f],1)=33
+    a(1:2,$-1)=[2;4]
+    a($:-1:1,1)=[8;7]
+    a($)=123
+    //
+    x='test'
+    x([4 5])=['4','5']
+    //
+    b=[1/%s,(%s+1)/(%s-1)]
+    b(1,1)=0
+    b(1,$)=b(1,$)+1
+    b(2)=[1 2] // le numérateur
+    // CAS des LISTES (types LIST et TLIST)
+    l=list(1,'qwerw',%s)
+    l(1)='Changed'
+    l(0)='Added'
+    l(6)=['one more';'added']
+    //
+    //
+    dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+    dts(2)('a')=33
+    dts(2)('b')(1,2)=-100
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>parents</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>extraction</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

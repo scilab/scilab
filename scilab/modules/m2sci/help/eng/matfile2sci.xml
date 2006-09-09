@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>matfile2sci</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
+  <SHORT_DESCRIPTION name="matfile2sci"> converts  a Matlab 5 MAT-file
+  into a Scilab binary file</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>matfile2sci(mat_file_path,sci_file_path)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>mat_file_path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string containing the path of the Matlab input file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sci_file_path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string containing the path of the Scilab output file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Converts a Matlab 5 MAT-file into a Scilab binary file compatible
+    with  the function <VERB>load</VERB> The Matlab data types are
+    converted into the Scilab equivalents.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>loadmatfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>load</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfile2sci</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR>Serge Steer (INRIA)  </AUTHOR>
+  <BIBLIO>
+    <P>This function has been developped according to the document  &quot;MAT-File Format&quot;:
+ <A href="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</A></P>
+  </BIBLIO>
+</MAN>

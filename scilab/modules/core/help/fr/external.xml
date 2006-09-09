@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>external  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="external"> Objet Scilab, fonction externe ou routine  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Fonction ou routine externe nécessitée par des commandes particulières.
+  </P>
+  <P>
+    Un &quot;external&quot; est une fonction ou une routine qui est utilisée comme argument d&apos;une
+    &quot;primitive de haut niveau&quot;, telle que <VERB>ode</VERB>, <VERB>optim</VERB>, <VERB>schur</VERB>...
+  </P>
+  <P>
+    La séquence d&apos;appel de la fonction ou de la routine est en général imposée
+    par la primitive de haut niveau qui impose en particulier les arguments d&apos;entrée.
+  </P>
+  <P>
+    Par exemple la fonction externe <VERB>costfunc</VERB> est un argument de la primitive <VERB>optim</VERB>.
+    Sa séquence d&apos;appel doit être de la forme : <VERB>[f,g,ind]=costfunc(x,ind)</VERB> et 
+    <VERB>optim</VERB> (primitive permettant de résoudre des problèmes d&apos;optimisation) est invoquée ainsi :
+  </P>
+  <VERBATIM><![CDATA[
+optim(costfunc,...)
+   ]]></VERBATIM>
+  <P>
+    Ici <VERB>costfunc</VERB> (la fonction coût à minimiser avec <VERB>optim</VERB>)
+    calcule <VERB>f=f(x)</VERB> et <VERB>g=</VERB> le gradient de <VERB>f</VERB> en <VERB>x</VERB> (<VERB>ind</VERB> est un entier dont l&apos;usage est précisé dans l&apos;aide de <VERB>optim</VERB>).
+  </P>
+  <P>
+    Si d&apos;autres variables sont nécessaires à la fonction externe, ces variables
+    peuvent être définies dans son environnement. Elles peuvent aussi être stockées dans une liste :
+    par exemple
+  </P>
+  <VERBATIM><![CDATA[
+[f,g,ind]=costfunc(x,ind,a,b,c) 
+   ]]></VERBATIM>
+  <P>
+    est valide pour <VERB>optim</VERB> si <VERB>costfunc</VERB> est remplacé par <VERB>list(costfunc,a,b,c)</VERB>. 
+    La séquence d&apos;appel à <VERB>optim</VERB> est donc maintenant :
+  </P>
+  <VERBATIM><![CDATA[
+optim(list(costfunc,a1,b1,c1),....
+   ]]></VERBATIM>
+  <P>
+    Un &quot;external&quot; peut aussi être une routine Fortran ou C : cela peut permettre d&apos;accélérer les calculs.
+  </P>
+  <P>
+    Le nom de la routine est donné comme argument à la primitive de haut niveau sous forme d&apos;une
+    chaîne de caractères. La séquence d&apos;appel est aussi imposée. Des exemples sont donnés dans le répertoire <VERB>routines/default</VERB> (voir le fichier <VERB>README</VERB>).
+  </P>
+  <P>
+    Les routines externes Fortran ou C peuvent aussi être liées dynamiquement (voir <VERB>link</VERB>).
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>ode</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>optim</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>impl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dassl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>intg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>schur</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>gschur</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

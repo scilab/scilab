@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>readxls</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>14-Mar-2005</DATE>
+  <SHORT_DESCRIPTION name="readxls">reads an Excel file</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>sheets = readxls(file_path)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>file_path</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : a character string: the path of the Excel file.
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>sheets</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       <SP>
+       : an <VERB>mlist</VERB> of type <VERB>xls</VERB>, with one field named <VERB>sheets</VERB>
+       </SP>
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+    <P>Given an Excel file path this function returns an <VERB>mlist</VERB> data structure
+      of type <VERB>xls</VERB>, with one field named <VERB>sheets</VERB>. The
+      <VERB>sheets</VERB> field itself contains a list of sheet data structure.</P>
+
+    <P><VERB>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</VERB> where 
+      <VERB>sheetname</VERB> is a character string containing the name of the sheet,
+      <VERB>Text</VERB> is a matrix of string which contains the cell's
+      strings and  <VERB>Value</VERB> is a matrix of numberswhich contains the cell's
+      values. </P>
+    <P> Warning only BIFF8 Excel files (last Excel file version) are handled  </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    Sheets = readxls('SCI/demos/excel/t1.xls')
+    // some basic operations on Sheets
+    typeof(Sheets)
+    s1=Sheets(1) //get the first sheet
+    typeof(s1)
+    s1.value //get the first sheet value field
+    s1.text  //get the first sheet text field
+    s1(2,:)  //get the 2 row of the sheet
+    typeof(s1(2,:))
+
+    editvar s1
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xls_open</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xls_read</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='Pierrick Mode'>
+    INRIA
+    </AUTHORS_ITEM>
+    <AUTHORS_ITEM label='Serge Steer'>
+    INRIA
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <USED_FUNCTIONS>
+     <SP> This function is based on the Scilab functions <VERB>xls_open</VERB>
+      and  <VERB>xls_read</VERB>
+     </SP>
+  </USED_FUNCTIONS>
+</MAN>

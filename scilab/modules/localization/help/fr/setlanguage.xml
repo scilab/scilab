@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>setlanguage</TITLE>
+
+  <TYPE>Foncion Scilab</TYPE>
+
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="setlanguage">Modifie la langue courante.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>setlanguage(language)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>language</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: avec language='fr' or 'eng'</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P><VERB>setlanguage(language)</VERB> change la langue courante dans
+    scilab (aide, scipad, et les menus).</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>LANGUAGE</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

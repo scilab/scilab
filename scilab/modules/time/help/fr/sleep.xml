@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>sleep</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Fevrier 2005</DATE>
+
+  <SHORT_DESCRIPTION name="sleep">suspend Scilab</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sleep(milliseconds)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>sleep</VERB> : Sleep suspend Scilab durant la duree specifie en
+    millisecondes.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    tic;sleep(6000);toc
+    ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>xpause</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

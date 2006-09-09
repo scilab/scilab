@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>getd  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1998  </DATE>
+  <SHORT_DESCRIPTION name="getd"> chargement de toutes les fonctions contenues dans un répertoire  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>getd(path)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>path  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères, chemin du répertoire
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Charge tous les fichiers <VERB>.sci</VERB> (contenant des fonctions Scilab) présents dans le répertoire <VERB>path</VERB>. 
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+getd('SCI/macros/auto')
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lib</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getcwd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pwd</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>chdir</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

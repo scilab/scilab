@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>error_table</TITLE>
+  <TYPE>table</TYPE>
+  <DATE>june 2005</DATE>
+  <SHORT_DESCRIPTION name="error_table">table of error messages</SHORT_DESCRIPTION>
+   <DESCRIPTION>
+<P>This page gives the table of the predefined error messages, and their
+      associated error number. Some of these error messages are used by  Scilab
+      itself for parser errors or specific builtin errors. Some others are of a 
+      more general use and can be used in Scilab
+      functions. The starred one are those for which the syntax
+      <VERB>error(n,pos)</VERB> is handled.</P>
+<P> 1 "incorrect assignment"    </P>
+<P> 2 "invalid factor"  </P>
+<P> 3 "waiting for right parenthesis"  </P>
+<P> 4 "undefined variable : %s"  </P>
+<P> 5 "inconsistent column/row dimensions"  </P>
+<P> 6 "inconsistent row/column dimensions"  </P>
+<P> 7 "dot cannot be used as modifier for this operator"  </P>
+<P> 8 "inconsistent addition"  </P>
+<P> 9 "inconsistent subtraction"  </P>
+<P> 10 "inconsistent multiplication"  </P>
+<P> 11 "inconsistent right division "  </P>
+<P> 12 "inconsistent left division"  </P>
+<P> 13 "redefining permanent variable"  </P>
+<P> 14 "eye variable undefined in this context"  </P>
+<P> 15 "submatrix incorrectly defined"  </P>
+<P> 16 "incorrect command!"  </P>
+<P> 17 "stack size exceeded! (Use stacksize function to increase it)"  </P>
+<P> 18 "too many variables!"  </P>
+<P> 19 "Problem is singular"  </P>
+<P>* 20 "%dth argument must be square matrix"  </P>
+<P> 21 "invalid index"  </P>
+<P> 22 "recursion problems. Sorry...."  </P>
+<P> 23 "Matrix norms available are 1, 2, inf, and fro"  </P>
+<P> 24 "convergence problem..."  </P>
+<P> 25 "bad call to primitive :%s"  </P>
+<P> 26 "too complex recursion! (recursion tables are full)"  </P>
+<P> 27 "division by zero..."  </P>
+<P> 28 "empty function..."  </P>
+<P> 29 "matrix is not positive definite"  </P>
+<P> 30 "invalid exponent"  </P>
+<P> 31 "incorrect string"  </P>
+<P> 32 "singularity of log or tan function"  </P>
+<P> 33 "too many "":"""  </P>
+<P> 34 "incorrect control intruction syntax"  </P>
+<P> 35 "Syntax error in an if,a while or a select instruction"  </P>
+<P>* 36 "%dth argument is incorrect here"  </P>
+<P>* 37 "incorrect function at line %d"  </P>
+<P> 38 "file name incorrect"  </P>
+<P> 39 "incorrect number of arguments"  </P>
+<P> 40 "waiting for end of command"  </P>
+<P> 41 "incompatible LHS"  </P>
+<P> 42 "incompatible RHS"  </P>
+<P> 43 "not implemented in scilab...."  </P>
+<P>* 44 "%dth argument is incorrect"  </P>
+<P>* 45 "null matrix (argument # %d)"  </P>
+<P> 46 "incorrect syntax"  </P>
+<P> 47 "end or else is missing..."  </P>
+<P>* 48 "input line longer than buffer size %d"  </P>
+<P> 49 "incorrect file or format"  </P>
+<P> 50 "subroutine not found : %s"  </P>
+<P>* 52 "%dth argument must be a real matrix"  </P>
+<P>* 53 "%dth input is invalid (waiting for real or complex matrix) "  </P>
+<P>* 54 "%dth argument type must be polynomial"  </P>
+<P>* 55 "%dth argument type must be character string"  </P>
+<P>* 56 "%dth argument must be a list"  </P>
+<P> 57 "problem with comparison symbol..."  </P>
+<P> 58 "incorrect number of arguments in function call..."  </P>
+<P> 59 "incorrect # of outputs in the function"  </P>
+<P> 60 "argument with incompatible dimensions"  </P>
+<P> 61 "direct acces file : give format"  </P>
+<P>* 62 "end of file at line %d"  </P>
+<P>* 63 "%d graphic terminal?"  </P>
+<P> 64 "integration fails"  </P>
+<P>* 65 "%d: logical unit already used"  </P>
+<P> 66 "no more logical units available!"  </P>
+<P> 67 "unknown file format "  </P>
+<P> 69 "floating point exception"  </P>
+<P> 70 "too many arguments in fort (max 30)"  </P>
+<P> 71 "this variable is not valid in fort"  </P>
+<P> 72 "%s is not valid in this context"  </P>
+<P> 73 "error while linking"  </P>
+<P> 74 "Leading coefficient is zero"  </P>
+<P> 75 "Too high degree (max 100)"  </P>
+<P>* 76 "for x=val with type(val)="%d is not implemented in Scilab"  </P>
+<P> 77 "%s : wrong number of rhs arguments"  </P>
+<P> 78 "%s : wrong number of lhs arguments"  </P>
+<P> 80 "incorrect function (argument n:%s)"  </P>
+<P> 81 "Argument "%d of %s: wrong type argument, expecting a real or complex matrix"  </P>
+<P> 82 "Argument %d of %s: wrong type argument, expecting a real matrix"  </P>
+<P> 83 "Argument %d of %s: wrong type argument, expecting a real vector"  </P>
+<P> 84 "Argument %d of %s: wrong type argument, expecting a scalar"  </P>
+<P> 85 "host does not answer..."  </P>
+<P> 86 "uncontrollable system"  </P>
+<P> 87 "unobservable system"  </P>
+<P> 88 "sfact : singular or assymetric problem"  </P>
+<P>* 89 "%dth argument has incorrect dimensions"  </P>
+<P>* 90 "%dth argument must be a transfer matrix"  </P>
+<P>* 91 "%dth argument must be in state space form"  </P>
+<P>* 92 "%dth argument must be a rational matrix"  </P>
+<P>* 93 "%dth argument must be in continuous time"  </P>
+<P>* 94 "%dth argument must be in discrete time"  </P>
+<P>* 95 "%dth argument must "be SISO"  </P>
+<P>* 96 "time domain of %dth argument is not defined"  </P>
+<P>* 97 "%dth argument must be a system in state space or transfer matrix form"  </P>
+<P> 98 "variable returned by scilab argument function is incorrect"  </P>
+<P>* 99 "elements of %dth argument must be in increasing order!"  </P>
+<P>* 100 "the elements of %dth argument are not in (strictly) decreasing order"  </P>
+<P>* 101 "last element of %dth argument is not equal to the first"  </P>
+<P> 102 "variable or function %s is not in file %s"  </P>
+<P> 103 "variable %s is not a valid rational function "  </P>
+<P> 104 "variable %s is not a valid state space representation"  </P>
+<P> 105 "undefined fonction"  </P>
+<P> 106 "function name already used"  </P>
+<P>* 107 "too many functions are defined (maximum #:%d)"  </P>
+<P> 108 "too complex for scilab, may be a too long control instruction"  </P>
+<P> 109 "too large, can""t be displayed"  </P>
+<P> 110 "%s was a function when compiled but is now a primitive!"  </P>
+<P> 111 "trying to re-define function %s "  </P>
+<P> 112 "Cannot allocate more memory"  </P>
+<P> 113 "too large string"  </P>
+<P> 114 "too many linked entry points"  </P>
+<P> 115 "Stack problem detected within a loop"  </P>
+<P>* 116 "%dth argument has incorrect value"  </P>
+<P>* 117 "list element number %d is Undefined"  </P>
+<P>* 118 "%dth argument must be a named variable not an expression"  </P>
+<P> 119 "indices for non-zero elements must be given by a 2 column matrix"  </P>
+<P> 121 "incompatible indices for non-zero elements "  </P>
+<P>* 122 "logical unit number should be larger than %d"  </P>
+<P> 123 "fonction not bounded from below"  </P>
+<P> 124 "problem may be unbounded :too high distance between two consecutive iterations"  </P>
+<P> 126 "Inconsistent constraints"  </P>
+<P> 127 "no feasible solution"  </P>
+<P> 128 "degenerate starting point"  </P>
+<P> 129 "no feasible point has been found"  </P>
+<P> 130 "optimization fails: back to initial point"  </P>
+<P> 131 "optim: stop requested by simulator (ind=0)"  </P>
+<P> 132 "optim: incorrect input parameters"  </P>
+<P> 133 "too small memory"  </P>
+<P> 134 "optim: problem with initial constants in simul "  </P>
+<P> 135 "optim : bounds and initial guess are incompatible"  </P>
+<P> 136 "optim : this method is NOT implemented "  </P>
+<P> 137 "NO hot restart available in this method"  </P>
+<P> 138 "optim : incorrect stopping parameters"  </P>
+<P> 139 "optim : incorrect bounds"  </P>
+<P>* 141 "incorrect function (argument n:%d)"  </P>
+<P>* 142 "hot restart : dimension of working table (argument n:%d)"  </P>
+<P> 143 "optim : df0 must be positive !"  </P>
+<P> 144 "Undefined operation for the given operands check or define function %s for overloading"  </P>
+<P> 201 "Argument %d of %s: wrong type argument, expecting a real or complex matrix"  </P>
+<P> 202 "Argument %d of %s: wrong type argument, expecting a real matrix"  </P>
+<P> 203 "Argument %d of %s : wrong type argument, expecting a real vector"  </P>
+<P>* 204 "Argument %d, wrong type argument: expecting a scalar"  </P>
+<P> 205 "Argument %d of %s: wrong matrix size (%d) expected "  </P>
+<P> 206 "Argument %d of %s: wrong vector size (%d) expected "  </P>
+<P> 207 "Argument %d of %s: wrong type argument, expecting a matrix of strings"  </P>
+<P> 208 "Argument %d of %s: wrong type argument, expecting a booleen matrix"  </P>
+<P> 209 "Argument %d of %s: wrong type argument, expecting a matrix"  </P>
+<P> 210 "Argument %d of %s: wrong type argument, expecting a list"  </P>
+<P> 211 "Argument %d of %s: wrong type argument, expecting a function or string (external function)"  </P>
+<P> 212 "Argument %d of %s: wrong type argument, expecting a polynomial matrix"  </P>
+<P> 213 "Argument %d of %s: wrong type argument, expecting a working integer matrix"  </P>
+<P> 214 "Argument %d of %s: wrong type argument, expecting a vector"  </P>
+<P>* 215 "%dth argument type must be boolean"  </P>
+<P>* 216 "%dth argument type must be boolean or scalar"  </P>
+<P>* 217 "%dth argument must be a sparse matrix of scalars"  </P>
+<P>* 218 "%dth argument must be a handle to sparse lu factors"  </P>
+<P>* 219 "%dth argument must be a sparse or full scalar matrix"  </P>
+<P> 220 "null variable cannot be used here"  </P>
+<P> 221 "A sparse matrix entry is defined with two differents values"  </P>
+<P> 222 "lusolve not yet implemented for full RHS"  </P>
+<P> 223 "It is not possible to redefine the %s primitive this way (see clearfun)."  </P>
+<P> 224 "Type data base is full"  </P>
+<P> 225 "This data type is already defined"  </P>
+<P> 226 "Inequality comparison with empty matrix"  </P>
+<P> 227 "Missing index"  </P>
+<P> 228 "reference to the cleared global variable %s"  </P>
+<P> 230 "semidef fails"  </P>
+<P> 231 "First argument must be a single string"  </P>
+<P> 232 "Entry name not found"  </P>
+<P> 233 "Maximum number of dynamic interfaces reached"  </P>
+<P> 234 "link: expecting more than one argument"  </P>
+<P> 235 "link: problem with one of the entry point"  </P>
+<P> 236 "link: the shared archive was not loaded"  </P>
+<P> 237 "link: Only one entry point allowed On this operating system"  </P>
+<P> 238 "link: First argument cannot be a number"  </P>
+<P> 239 "You cannot link more functions, maxentry reached"  </P>
+<P> 240 "File %s already exists or directory write access denied "  </P>
+<P> 241 "File %s does not exist or read access denied "  </P>
+<P> 242 "binary direct acces files must be opened by ""file"""  </P>
+<P> 243 "C file logical unit not allowed here"  </P>
+<P> 244 "Fortran file logical unit not allowed here"  </P>
+<P>* 245 "No input file associated to logical unit %d"  </P>
+<P> 246 "function not defined for given argument type(s)"  </P>
+<P>* 248 "%dth argument is not a valid variable name"  </P>
+<P>* 249 "%dth argument must not be an empty string"  </P>
+<P> 250 "Recursive extraction is not valid in this context"  </P>
+<P> 251 "bvode: ipar dimensioned at least 11"  </P>
+<P> 252 "bvode: ltol must be of size ipar(4)"  </P>
+<P> 253 "bvode: fixpnt must be of size ipar(11)"  </P>
+<P> 254 "bvode: ncomp must be less than 20"  </P>
+<P> 255 "bvode: m must be of size ncomp"  </P>
+<P> 256 "bvode: sum(m) must be less than 40"  </P>
+<P> 257 "bvode: sum(m) must be less than 40"  </P>
+<P> 258 "bvode: input data error"  </P>
+<P> 259 "bvode: no. of subintervals exceeds storage"  </P>
+<P> 260 "bvode: Th colocation matrix is singular"  </P>
+<P> 261 "Interface property table is full"  </P>
+<P>* 262 "too many global variables!,max number is %d"  </P>
+<P> 263 "Error while writing in file,(disk full or deleted file)"  </P>
+<P>* 264 "%dth argument must not contain NaN or Inf"  </P>
+<P> 265 "A and B must have equal number of rows"  </P>
+<P> 266 "A and B must have equal number of columns"  </P>
+<P> 267 "A and B must have equal dimensions"  </P>
+<P>* 268 "invalid return value for function passed in argument %d"  </P>
+<P>* 269 "%dth argument eigenvalues must have negative real parts"  </P>
+<P>* 270 "%dth argument eigenvalues modulus must be less than one"  </P>
+<P>* 271 "Size varying argument aeye(), (arg %d) not allowed here"  </P>
+<P> 272 "endfunction is missing"  </P>
+<P> 273 "Instruction left hand side: waiting for a dot or a left parenthesis"  </P>
+<P> 274 "Instruction left hand side: waiting for a name"  </P>
+<P> 275 "varargout keyword cannot be used here"  </P>
+<P> 276 "Missing operator, comma, or semicolon"  </P>
+<P> 277 "Too many commands defined"  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>warning</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

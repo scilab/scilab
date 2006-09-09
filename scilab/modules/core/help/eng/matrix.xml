@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>matrix</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="matrix"> reshape a vector or a matrix to a different size matrix</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=matrix(v,n,m)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>y=matrix(v,[sizes])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector, a matrix or an hypermatrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n,m</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sizes</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a vector, a matrix or hypermatrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    For a vector or a matrix with <VERB>n</VERB> x <VERB>m</VERB> entries, the command
+    <VERB>y=matrix(v,n,m)</VERB> or similarily <VERB>y=matrix(v,[n,m])</VERB>
+    transforms the <VERB>v</VERB> vector (or matrix) into an <VERB>nxm</VERB> matrix by
+    stacking columnwise the entries of <VERB>v</VERB>.</P>
+    <P>
+    if one of the dimension m or n is equal to -1 it is automatically
+    assigned to the quotient of size(v,'*') by the other dimension,</P>
+    <P>
+    For an hypermatrix such as
+    <VERB>prod(size(v))==prod(sizes)</VERB>, the command <VERB>y=matrix(v,sizes)</VERB> (or
+    equivalently <VERB>y=matrix(v,n1,n2,...nm)</VERB>) transforms
+    <VERB>v</VERB>  into an  matrix or hypermatrix by 
+    stacking &quot;columnwise&quot; (first dimension is varying first) the entries of <VERB>v</VERB>. <VERB>y=matrix(v,sizes)</VERB>
+    results in a regular matrix if sizes is a scalar or a 2-vector.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=[1 2 3;4 5 6]
+matrix(a,1,6)
+matrix(a,1,-1)
+matrix(a,3,2)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>matrices</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hypermatrices</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ones</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>zeros</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rand</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>empty</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

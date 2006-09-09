@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>break  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="break"> interruption d&apos;une boucle  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    A l&apos;intérieur d&apos;une boucle <VERB>for</VERB> ou <VERB>while</VERB>, la commande <VERB>break</VERB> force la boucle à se terminer.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+k=0; while 1==1, k=k+1; if k > 100 then  break,end; end
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>while</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>if</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>abort</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

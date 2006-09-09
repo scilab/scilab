@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>comma  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="comma (,)"> virgule, séparateur d&apos;instructions ou d&apos;arguments  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Les virgules sont utilisées pour séparer les arguments dans les appels de fonctions, pour séparer les termes des vecteurs lignes ou pour spécifier une concaténation de colonnes.
+  </P>
+  <P>
+    Pour les vecteurs lignes et pour la concaténation de colonnes les espaces peuvent remplacer les virgules, mais il est préférable d&apos;utiliser des virgules.
+  </P>
+  <P>
+    Les virgules peuvent aussi être utilisées pour séparer des instructions Scilab.
+    (on utilise  <VERB>;</VERB> pour que le résultat des expressions ne soit pas affiché).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=[1,2,3;4,5,6];
+a=1,b=1;c=2
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>semi</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>brackets</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

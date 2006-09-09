@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>fileparts</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Juillet 2004</DATE>
+  <SHORT_DESCRIPTION name="fullfile">Construit un nom de fichier complet</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>f = fullfile(varargin)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>varargin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tous les répertoires et le nom de fichier utilisés pour créer le nom de fichier complet (au moins un répertoire et un nom de fichier)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP> : nom de fichier complet</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>f = fullfile(varargin)</VERB> construit un nom de fichier complet en prenant en compte la plateforme actuelle et en gérant les cas où les noms de répertoires commencent ou finissent par un séparateur de répertoire.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+   f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
+   f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
+  ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pathconvert</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>fileparts</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+  <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

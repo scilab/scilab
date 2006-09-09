@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>rmdir</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>September 2004</DATE>
+
+  <SHORT_DESCRIPTION name="rmdir">Remove a directory</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rmdir('dirname')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>rmdir('dirname','s')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[status,message] =
+    rmdir('dirname','s')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>rmdir('dirname') removes the directory dirname from the current
+    directory. If the directory is not empty, you must use the s argument. If
+    dirname is not in the current directory, specify the relative path to the
+    current directory or the full path for dirname.</P>
+
+    <P>rmdir('dirname','s') removes the directory dirname and its contents
+    from the current directory. </P>
+
+    <P>[status, message] = rmdir('dirname','s') removes the directory dirname
+    and its contents from the current directory, returning the status, and a
+    message. Here, status is 1 for success and is 0 for error.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+mkdir(SCI,'Directory')
+rmdir(SCI+'/Directory')
+
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cd</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>dir</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>mkdir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

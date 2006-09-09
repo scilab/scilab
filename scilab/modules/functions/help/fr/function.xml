@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>function  </TITLE>
+  <TYPE>Scilab keyword  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="function"> définition d&apos;une fonction Scilab  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="endfunction"> fin de la définition d&apos;une fonction Scilab  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+
+  
+  <VERBATIM><![CDATA[
+       function <arguments_sortie>=<nom_de_la_fonction><arguments_entrée>
+       <instructions>
+        endfunction
+   ]]></VERBATIM>
+
+  <SP>  où</SP>  
+
+ 
+<DESCRIPTION_INDENT> 
+  <DESCRIPTION_ITEM  label='&lt;nom_de_la_fonction&gt;'> 
+    <SP>est le nom de la fonction</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='&lt;arguments_entrée&gt;'> 
+    <SP>est la liste d&apos;arguments d&apos;entrée. Il peut s&apos;agir de :</SP>
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    <SP>une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <VERB>(x1,...,xm)</VERB>. Le dernier nom de variable peut être <VERB>varargin</VERB> (voir varargin)</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    <SP>la séquence <VERB>()</VERB> ou rien du tout, si la fonction n&apos;a pas d&apos;argument d&apos;entrée.</SP>
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='&lt;arguments_sortie&gt;'> 
+    <SP>Est la liste d&apos;arguments de sortie. Il peut s&apos;agir de</SP>
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='-'> 
+    <SP>une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <VERB>[y1,...,ym]</VERB>. Le dernier nom de variable peut être <VERB>varargout</VERB> (voir varargout)</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='-'> 
+    <SP>la séquence <VERB>[]</VERB>, si la fonction n&apos;a pas d&apos;argument de sortie. Dans ce cas la syntaxe d&apos;appel peut aussi être : <VERB>function &lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</VERB></SP>
+  </DESCRIPTION_ITEM>
+ 
+
+  <DESCRIPTION_ITEM  label='&lt;instructions&gt;'> 
+    <SP>une suite d&apos;instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <VERB>getf</VERB>.</SP>
+  </DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT> 
+
+  <P>
+    La séquence <VERB>function &lt;arguments_sortie&gt;=&lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</VERB>
+    doit apparaître sur une seule ligne. Cette suite peut être suivie d&apos;instructions Scilab si une virgule ou un point-virgule est ajouté à la fin.
+  </P>
+  <P>    Les définitions de fonctions peuvent être imbriquées.  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+// définition en ligne
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+// définition sur une seule ligne
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+// définitions imbriquées
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+
+// définition dans un script
+exec SCI/macros/elem/asinh.sci;
+
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>functions</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>exec</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>tree2code</TITLE>
+  <TYPE>Fonction Scilab</TYPE>
+  <DATE>Mars 2004</DATE>
+  <SHORT_DESCRIPTION name="tree2code"> genère le code ASCII d'une fonction Scilab</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>txt=tree2code(tree,prettyprint)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>tree</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: arbre représentant une macro (retourné par macr2tree)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>prettyprint</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: booléen optionel</SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>%T</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: le code généré est indenté et réarrangé</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>%F</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: le code est inchangé (valeur par défaut)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur colonne de chaînes de caractère, texte contenant les instructions Scilab</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    A partir de l'arbre (retourné par macr2tree) d'une fonction Scilab chargée en mémoire,
+    tree2code permet de regénérer le code de la fonction.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+tree=macr2tree(cosh);
+txt=tree2code(tree,%T);
+write(%io(2),txt,'(a)');
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>macr2tree</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

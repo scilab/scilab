@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plus</TITLE>
+  <TYPE>Scilab Operator</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="plus"> (+)  addition operator</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>X+Y</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>str1+str2</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X,Y</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: scalar or vector or matrix of numbers, polynomials or rationals. It may also be a <VERB>syslin</VERB> list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str1,str2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, a vector or a matrix of character strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Addition.</P>
+    <P>
+    For numeric operands addition as its usual meaning.
+    If one of the operands is a matrix and the other one a scalar the
+    scalar is added to each matrix entries. if one of the operands is an
+    empty matrix the other operand is returned (this default behavior can be modified by the function <VERB>mtlb_mode</VERB>).</P>
+    <P>
+    For character strings <VERB>+</VERB> means concatenation.</P>
+    <P>
+    Addition may also be defined for other data types through
+    &quot;soft-coded&quot; operations (see <VERB>overloading</VERB>).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+[1,2]+1
+[]+2
+s=poly(0,"s");
+s+2
+1/s+2
+"cat"+"enate"
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>addf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mtlb_mode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>overloading</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

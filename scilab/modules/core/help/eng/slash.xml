@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>slash</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="slash"> (/) right division and feed back</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Right division.  <VERB>x=A / b</VERB> is the solution of <VERB>x*b=A</VERB> .</P>
+    <P><VERB>b/a = (a' \ b')'</VERB> .</P>
+    <P><VERB>a ./  b</VERB> is the matrix with entries <VERB>a(i,j)/ b(i,j)</VERB>.
+    If <VERB>b</VERB> is scalar (1x1 matrix) this operation is the same
+    as <VERB> a./b*ones(a)</VERB>. (Same convention if <VERB>a</VERB> is a scalar).</P>
+    <P>
+    Remark that <VERB>123./b</VERB> is interpreted as <VERB>(123.)/b</VERB>. In this
+    cases dot is part of the  number not of the operator.</P>
+    <P>
+    Backslash stands for left division.</P>
+    <P>
+    System feed back.  <VERB>S=G/.K</VERB> evaluates <VERB>S=G*(eye()+K*G)^(-1)</VERB>
+    this operator avoid simplification problem.</P>
+    <P>
+    Remark that <VERB>G/.5</VERB> is interpreted as <VERB>G/(.5)</VERB>. In such 
+    cases dot is part of the number, not of the operator.</P>
+    <P>
+    Comment <VERB>//</VERB> comments a line i.e lines which begin by <VERB>//</VERB> are
+    ignored by the interpreter.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>inv</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>percent</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>backslash</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ieee</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

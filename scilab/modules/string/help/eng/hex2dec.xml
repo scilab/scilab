@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>hex2dec</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hex2dec">   conversion from hexadecimal representation to integers</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>d=hex2dec(h)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>d=oct2dec(o)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>d=base2dec(s,b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>d</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of  integers</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of character strings corresponding to hexadecimal representation</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of character strings corresponding to octal representation</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>s</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of character strings corresponding to base b representation</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, the base</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>hex2dec(x)</VERB> returns the  matrix of numbers corresponding to the
+    hexadecimal representation.</P>
+    <P><VERB>oct2dec(x)</VERB> returns the  matrix of numbers corresponding to the
+    octal representation.</P>
+    <P><VERB>base2dec(x,b)</VERB> returns the  matrix of numbers corresponding to the
+    base <VERB>b</VERB> representation.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+hex2dec(['ABC','0','A'])
+ ]]>
+  </EXAMPLE>
+</MAN>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>colon</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="colon"> (:) colon operator</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+  Colon symbol <VERB>:</VERB> can be used to form implicit
+  vectors. (see also <LINK>linspace</LINK>,  <LINK>logspace</LINK>) </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="j:k">
+        <SP>is the vector <VERB>[j, j+1,...,k]</VERB> (empty if
+   <VERB>j&gt;k</VERB>).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="j:d:k">
+        <SP>is the vector <VERB>[j, j+d, ..., j+m*d]  </VERB></SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    The colon notation can also be used to pick out selected rows,
+    columns and elements of vectors and matrices (see also <LINK>extraction</LINK>,<LINK>insertion</LINK>)</P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="A(:)">
+        <SP>is the vector of all the elements of <VERB>A</VERB>  regarded as a single column.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="A(:,j)">
+        <SP>ys the <VERB>j</VERB>-th column of <VERB>A</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="A(j:k)">
+        <SP>is <VERB>[A(j),A(j+1),...,A(k)]</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="A(:,j:k)">
+        <SP>is
+  <VERB>[A(:,j),A(:,j+1),...,A(:,k)] </VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="A(:)=w">
+        <SP>fills the matrix <VERB>A</VERB> with entries of <VERB>w</VERB> (taken column by column if <VERB>w</VERB> is a matrix).</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>matrix</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>for</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>linspace</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>logspace</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

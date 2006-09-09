@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>varargin</TITLE>
+
+  <TYPE>Scilab keyword</TYPE>
+
+  <DATE>April 1998 - Revised February 2006</DATE>
+
+  <SHORT_DESCRIPTION name="varargin">variable numbers of arguments in an input
+  argument list</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>A function whose last input argument is <VERB>varargin</VERB> can be
+    called with more input arguments than indicated in the input argument
+    list. The calling arguments passed form <VERB>varargin</VERB> keyword
+    onwards may then be retrieved within the function in a list named
+    <VERB>varargin</VERB>.</P>
+
+    <P>Suppose that <VERB>varargin</VERB> keyword is the <VERB>n</VERB> th
+    argument of the formal input argument list, then if the function is called
+    with less than <VERB>n-1</VERB> input arguments the <VERB>varargin</VERB>
+    list is not defined, if the function is called with <VERB>n-1</VERB>
+    arguments then <VERB>varargin</VERB> list is an empty list.</P>
+
+    <P><VERB>y = function ex(varargin)</VERB> may be called with any number of
+    input arguments. Within function <VERB>ex</VERB> input arguments may be
+    retrieved in <VERB>varargin(i)</VERB>
+    ,<VERB>i=1:length(varargin)</VERB></P>
+
+    <P>If it is not the last input argument of a function,
+    <VERB>varargin</VERB> is a normal input argument name with no special
+    meaning.</P>
+  </DESCRIPTION>
+
+  <SECTION label="Remark">
+    <P>Named argument syntax like <VERB>foo(...,key=value) </VERB> is
+    incompatible with the use of varargin. The reason is that the names (i.e.
+    keys) associated with values are not stored in the varargin list. Consider
+    for instance:</P>
+
+    <P>function foo(varargin),disp([varargin(1),varargin(2)]),endfunction</P>
+
+    <P>foo(a=1,b=2)</P>
+
+    <P>Scilab answers: 1. 2. </P>
+
+    <P>foo(b=1,a=2)</P>
+
+    <P> Scilab answers: 1. 2. </P>
+
+    <P>Result is the same, but the arguments were inverted.</P>
+  </SECTION>
+
+  <EXAMPLE><![CDATA[
+
+deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
+                          'if rhs>=1 then disp(varargin),end'])
+exampl(1)
+exampl()
+exampl(1,2,3)
+l=list('a',%s,%t);
+exampl(1,l(2:3))
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>function</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>varargout</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>list</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

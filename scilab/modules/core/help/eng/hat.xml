@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>hat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hat"> (<VERB>^</VERB>) exponentiation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>A^b</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    Exponentiation of matrices or vectors by a constant vector.</P>
+    <P>
+    If <VERB>A</VERB> is a vector or a rectangular matrix the exponentiation is done
+    element-wise, with the usual meaning.</P>
+    <P>
+    For square <VERB>A</VERB> matrices the exponentiation is done in the matrix sense.</P>
+    <P>
+    For boolean, polynomial and rational matrices, the exponent must be an
+    integer</P>
+    <P>
+    Remark that <VERB>123.^b</VERB> is interpreted as <VERB>(123).^b</VERB>. In such
+    cases dot is part of the operator, not of the number.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+2^4
+[1 2;2 4]^(1+%i)
+s=poly(0,"s");
+[1 2 s]^4
+[s 1;1  s]^(-1)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>exp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>inv</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>for  </TITLE>
+  <TYPE>Scilab Keyword  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="for"> mot clé pour les structures de boucles  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Utilisé pour spécifier une boucle. La syntaxe est la suivante :
+  </P>
+  <P>
+<VERB>for variable=expression ,instruction,   ,instruction,end</VERB>
+  </P>
+  <P>
+<VERB>for variable=expression do instruction,   ,instruction,end</VERB>
+  </P>
+  <P>
+    Si <VERB>expression</VERB> est une matrice ou un vecteur ligne, <VERB>variable</VERB>
+    prend successivement les valeurs de chaque colonne de la matrice.
+  </P>
+  <P>
+    Un exemple utile : <VERB>for variable=n1:pas:n2,  ...,end</VERB>
+  </P>
+  <P>
+    Si <VERB>expression</VERB> est une liste, <VERB>variable</VERB> prend comme valeurs successives les termes de la liste.
+  </P>
+  <P>
+    Attention : le nombre de caractères constituant le corps d&apos;une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+n=5;
+for i = 1:n, for j = 1:n, a(i,j) = 1/(i+j-1);end;end
+for j = 2:n-1, a(j,j) = j; end; a
+for  e=eye(3,3),e,end  
+for v=a, write(6,v),end        
+for j=1:n,v=a(:,j), write(6,v),end 
+for l=list(1,2,'example'); l,end 
+ ]]></EXAMPLE>
+   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>while</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>end</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>do</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

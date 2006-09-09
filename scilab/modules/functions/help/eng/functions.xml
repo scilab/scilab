@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>functions</TITLE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="functions"> Scilab procedures and Scilab objects</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Functions are Scilab procedures (&quot;macro&quot;, &quot;function&quot; and &quot;procedure&quot;
+    have the save meaning). 
+  </P>
+  </DESCRIPTION>
+  <SECTION label="Function definition">
+    <P>
+    Usually, they are defined in files with an editor and loaded into
+    Scilab by <VERB>getf</VERB> or through a library (see
+    <VERB>lib</VERB> or <VERB>genlib</VERB>). But They can also be
+    defined on-line (see <VERB>deff</VERB> or <VERB>function</VERB> o.
+    A function is defined by two components:  
+  </P>
+    <ITEMIZE>
+      <ITEM label="-">
+        <SP>a &quot;syntax definition&quot; part  as follows:</SP>
+        <VERBATIM>
+<![CDATA[
+ function [y1,...,yn]=foo(x1,...,xm)
+ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
+   ]]>
+        </VERBATIM>
+      </ITEM>
+      <ITEM label="-">
+        <SP>a sequence of scilab instructions.</SP>
+      </ITEM>
+    </ITEMIZE>
+    <P>
+      The &quot;syntax definition&quot; line gives the &quot;full&quot; calling syntax of this function. The <VERB>yi</VERB> are output variables calculated as functions of input variables <VERB>xi</VERB> and variables existing in Scilab when the function is executed.</P>
+  </SECTION>
+  <SECTION label="Calling function">
+    <P>
+    Usually function calling syntax is <VERB>[y1,...,yn]=foo(x1,...,xm)</VERB>. Shorter input or output argument list than definition ones may be used. In such cases, only the first variables from the left are used of set. The <VERB>argn</VERB> function may be used to get the actual number of calling arguments.</P>
+    <P>
+    It is also possible to use &quot;named argument&quot; to specify input arguments: suppose function <VERB>fun1</VERB> defined as <VERB>function y1=fun1(x1,x2,x3)</VERB> then it call be called with a syntax like  <VERB>y=fun1(x1=33,x3=[1 2 3])</VERB> within <VERB>fun1</VERB> x2 will be undefined. It is possible to check for defined variables with the <VERB>exists</VERB> function</P>
+    <P>
+    When a function has no left hand side argument and is called only with character string arguments, the callling syntax may be simplified <VERB>fun('a','toto','a string')</VERB> can be replaced by <VERB>fun a toto 'a string'</VERB></P>
+  </SECTION>
+  <SECTION label="Miscellaneous">
+    <P>
+    Functions are Scilab objects (with type numbers 13 or 11). They and can be manipulated (built, saved, loaded, passed as arguments,..) as other variable types.</P>
+    <P>
+    Collections of functions can be collected in libraries.  Functions which begin with <VERB>%</VERB> sign (e.g. <VERB>%foo</VERB>) are often used to overload (see <VERB>overloading</VERB>) operations or functions for new data type.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+//inline definition (see function)
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//inline definition (see deff)
+deff('[x,y]=myfct(a,b)',['x=a+b';
+                         'y=a-b'])
+// definition in an ascii file (see exec)
+exec SCI/macros/elem/asinh.sci;
+
+// definition in an ascii file (see getf)
+getf SCI/macros/elem/asinh.sci;
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>function</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>deff</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lib</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getd</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>genlib</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>exists</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>varargin</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>varargout</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

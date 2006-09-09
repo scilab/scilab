@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>star</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="star"> (*) multiplication operator</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Multiplication. Usual meaning. Valid for constant,
+    boolean, polynomial, rational matrices and for <VERB>syslin</VERB> lists (the meaning is series connection)</P>
+    <P>
+    Element-wise multiplication is denoted <VERB>x.*y</VERB>. If
+    <VERB>x</VERB> or <VERB>y</VERB> is scalar (1x1 matrix) <VERB> .* </VERB>
+    is the same as <VERB>*</VERB>.</P>
+    <P>
+    Kronecker product is <VERB>x.*.y</VERB></P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>mulf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>syslin</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

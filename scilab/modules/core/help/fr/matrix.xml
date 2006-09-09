@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>matrix  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="matrix"> remise en forme d&apos;une matrice  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=matrix(v,n,m)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=matrix(v,[sizes])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un vecteur, une matrice ou une hypermatrice 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n,m  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>sizes  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur d&apos;entiers
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : un vecteur, une matrice ou une hypermatrice
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Pour un vecteur ou une matrice de taille <VERB>n</VERB> x <VERB>m</VERB>, la commande
+    <VERB>y=matrix(v,n,m)</VERB> ou <VERB>y=matrix(v,[n,m])</VERB>
+    transforme le vecteur (ou la matrice) <VERB>v</VERB> en une matrice <VERB>nxm</VERB> en parcourant les éléments colonne par colonne <VERB>v</VERB>.
+  </P>
+  <P>
+    Si l&apos;une des dimensions m ou n est égale à -1 elle est remplacée par le quotient de  size(v,&apos;*&apos;) par l&apos;autre dimension.
+  </P>
+  <P>
+  </P>
+  <P>
+    Pour une hypermatrice telle que <VERB>prod(size(v))==prod(sizes)</VERB>, la commande <VERB>y=matrix(v,sizes)</VERB> (ou de façon équivalente, <VERB>y=matrix(v,n1,n2,...nm)</VERB>) transforme <VERB>v</VERB> en une matrice ou une hypermatrice
+    en parcourant les éléments de <VERB>v</VERB> (parcourus tel que le premier indice varie en premier). <VERB>y=matrix(v,sizes)</VERB> renvoie une matrice ou un vecteur si <VERB>sizes</VERB> est un scalaire ou un vecteur à deux composantes.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=[1 2 3;4 5 6]
+matrix(a,1,6)
+matrix(a,1,-1)
+matrix(a,3,2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>matrices</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>hypermatrices</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ones</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>zeros</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rand</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>empty</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>extraction</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="extraction"> matrix and list entry extraction</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x(i,j)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[...]=l(i)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[...]=l(k1)...(kn)(i) or [...]=l(list(k1,...,kn,i))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)   or l(list(k1,...,kn,list(i,j))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix  of any  possible types</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list variable</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>i,j</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: indices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k1,...kn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: indices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="MATRIX CASE">
+        <SP><VERB>i</VERB> and <VERB>j</VERB>, can be:</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>real scalars or vectors or matrices with positive elements.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <P><VERB>r=x(i,j)</VERB> builds the matrix <VERB>r</VERB> such as
+    <VERB>r(l,k)=x(int(i(l)),int(j(k)))</VERB> for  <VERB>l</VERB>
+    from 1 to <VERB>size(i,'*')</VERB> and <VERB>k</VERB>
+    from 1 to <VERB>size(j,'*')</VERB>.   <VERB>i</VERB>
+    (<VERB>j</VERB>) Maximum value must be less or equal to
+    <VERB>size(x,1)</VERB> (<VERB>size(x,2)</VERB>). 
+  </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <P><VERB>r=x(i)</VERB> with <VERB>x</VERB> a 1x1 matrix builds the
+    matrix <VERB>r</VERB> such as
+    <VERB>r(l,k)=x(int(i(l)),int(i(k)))</VERB> for  <VERB>l</VERB>
+    from 1 to <VERB>size(i,1)</VERB> and <VERB>k</VERB> from 1 to
+    <VERB>size(i,2)</VERB>.   Note that in this case index
+    <VERB>i</VERB> is valid only if  all its entries are equal to
+    one. </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP><VERB>r=x(i)</VERB> with <VERB>x</VERB> a row vector builds the
+    row vector <VERB>r</VERB> such as <VERB>r(l)=x(int(i(l)))</VERB>
+    for <VERB>l</VERB> from 1 to <VERB>size(i,'*')</VERB><VERB>i</VERB>  Maximum value must be less or equal to
+    <VERB>size(x,'*')</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <P><VERB>r=x(i)</VERB> with <VERB>x</VERB> a matrix with one or more
+    columns builds the column vector <VERB>r</VERB> such as
+    <VERB>r(l)</VERB> (<VERB>l</VERB> from 1 to
+    <VERB>size(i,'*')</VERB>) contains the
+    <VERB>int(i(l))</VERB> entry of the column vector formed by the
+    concatenation of the <VERB>x</VERB>'s columns.
+    <VERB>i</VERB>  Maximum value must be less or equal to
+    <VERB>size(x,'*')</VERB>. </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>the <VERB> : </VERB> symbol which stands for &quot;all elements&quot;.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP><VERB>r=x(i,:)</VERB> builds the matrix <VERB>r</VERB> such as
+    <VERB>r(l,k)=x(int(i(l)),k))</VERB> for  <VERB>l</VERB> from 1 to
+    <VERB>size(i,'*')</VERB> and <VERB>k</VERB> from 1 to
+    <VERB>size(x,2)</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP><VERB>r=x(:,j)</VERB> builds the matrix <VERB>r</VERB> such as
+    <VERB>r(l,k)=x(l,int(j(k)))</VERB> for  <VERB>l</VERB> from 1 to
+    <VERB>size(r,1)</VERB> and <VERB>k</VERB> from 1 to
+    <VERB>size(j,'*')</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="*">
+        <SP><VERB>r=x(:)</VERB> builds the column vector <VERB>r</VERB> formed
+    by the column concatenations of<VERB> x</VERB> columns. It is
+    equivalent to <VERB>matrix(x,size(x,'*'),1)</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>vector of boolean. If an index (<VERB>i</VERB>  or <VERB>j</VERB>
+    )is a vector of booleans it is interpreted as <VERB>find(i)</VERB>
+    or respectively  <VERB>find(j)</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>a polynomial.  If an index (<VERB>i</VERB>  or <VERB>j</VERB> )is
+    a vector of polynomials or implicit polynomial vector it is
+    interpreted as <VERB>horner(i,m)</VERB> or respectively
+    <VERB>horner(j,n)</VERB> where <VERB>m</VERB> and <VERB>n</VERB>
+    are associated <VERB>x</VERB> dimensions.  Even if this feature
+    works for all polynomials, it is recommended to use polynomials in
+    <VERB>$</VERB> for readability.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="LIST OR TLIST CASE">
+        <P>
+     If they are present the <VERB>ki</VERB> give the path to a
+     sub-list entry of <VERB>l</VERB> data structure. They allow a
+     recursive extraction without intermediate copies.  The
+     <VERB>[...]=l(k1)...(kn)(i)</VERB> and
+     <VERB>[...]=l(list(k1,...,kn,i))</VERB> instructions are
+     interpreted as:  <VERB>lk1   = l(k1)</VERB>  <VERB> ..   = .. </VERB>
+     <VERB>lkn   = lkn-1(kn)</VERB>  <VERB>[...] = lkn(i)</VERB>  
+     And the  <VERB>l(k1)...(kn)(i,j)</VERB> and
+     <VERB>l(list(k1,...,kn,list(i,j))</VERB> instructions are
+     interpreted as:  <VERB>lk1   = l(k1)</VERB>  <VERB> ..   = ..  </VERB>  
+     <VERB>lkn   = lkn-1(kn)</VERB>  <VERB> lkn(i,j)</VERB> 
+     <VERB>i</VERB> and <VERB>j</VERB>, can be:  When
+     path points on more than one list component the instruction must
+     have as many left hand side arguments as selected components. But
+     if the extraction syntax is used within a function input calling
+     sequence each returned list component is added to the function
+     calling sequence. </P>
+        <P>
+    Note that, <VERB> l(list()</VERB> is the same as <VERB> l</VERB>.
+  </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>real scalar or vector or matrix with positive elements.
+    <VERB>[r1,...rn]=l(i)</VERB> extracts the <VERB>i(k)</VERB>
+    elements from the list l and store them in <VERB>rk</VERB>
+    variables for  <VERB>k</VERB> from 1 to
+    <VERB>size(i,'*')</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>the <VERB> : </VERB> symbol which stands for &quot;all elements&quot;.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>a vector of booleans. If <VERB>i</VERB> is a vector of booleans it is interpreted as <VERB>find(i)</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>a polynomial.  If <VERB>i</VERB>  is a vector of polynomials or
+    implicit polynomial vector it is interpreted as
+    <VERB>horner(i,m)</VERB> where <VERB>m=size(l)</VERB>.  Even if
+    this feature works for all polynomials, it is recommended to use
+    polynomials in <VERB>$</VERB> for readability.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="k1,..kn may be :">
+        <SP/>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>real positive scalar.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>a polynomial,interpreted as <VERB>horner(ki,m)</VERB> where <VERB>m</VERB> is the corresponding sub-list size.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="- a character string associated with a sub-list entry name.">
+        <SP/>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="Remarks">
+    <P>
+    For soft coded matrix types such as rational functions and state
+    space linear systems, <VERB>x(i)</VERB> syntax may not be used for
+    vector element extraction due to confusion with list element
+    extraction. <VERB>x(1,j)</VERB> or <VERB>x(i,1)</VERB> syntax must
+    be used.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+// MATRIX CASE
+a=[1 2 3;4 5 6]
+a(1,2)
+a([1 1],2)
+a(:,1)
+a(:,3:-1:1)
+a(1)
+a(6)
+a(:)
+a([%t %f %f %t])
+a([%t %f],[2 3])
+a(1:2,$-1)
+a($:-1:1,2)
+a($)
+//
+x='test'
+x([1 1;1 1;1 1])
+//
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)
+b(1,$)
+b(2) // the numerator
+// LIST OR TLIST CASE
+l=list(1,'qwerw',%s)
+l(1)
+[a,b]=l([3 2])
+l($)
+x=tlist(l(2:3)) //form a tlist with the last 2 components of l
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2)('a')
+dts(2)('b')(1,2)
+[a,b]=dts(2)(['a','b'])
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>find</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>parents</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

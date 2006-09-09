@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>about</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>28-Fev-2005</DATE>
+
+  <SHORT_DESCRIPTION name="about">affiche la boite de dialogue "A propos de
+  scilab" (Windows)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>about()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>affiche la boite de dialogue "A propos de scilab".</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[about()
+]]></EXAMPLE>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

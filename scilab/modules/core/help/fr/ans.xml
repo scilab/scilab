@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>ans  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="ans"> réponse (answer)  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    <VERB>ans</VERB> signifie réponse (answer).
+    La variable <VERB>ans</VERB> est créée automatiquement quand des expressions 
+    ne sont pas affectées à une variable. <VERB>ans</VERB> contient la dernière expression non affectée.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+</MAN>

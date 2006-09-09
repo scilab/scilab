@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>select</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="select"> select keyword</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <VERBATIM>
+<![CDATA[
+ select expr,
+   case expr1 then instructions1,
+   case expr2 then instructions2,
+   ...
+   case exprn then instructionsn,
+   [else instructions],
+ end
+   ]]>
+    </VERBATIM>
+    <P>
+  </P>
+    <P>
+    Notes:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The only constraint is that each &quot;then&quot;  keyword  must be on  the same line line as corresponding &quot;case&quot; keyword.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The keyword &quot;then&quot;  can be replaced by a carriage return or a comma.   <VERB>instructions1</VERB> are executed if <VERB>expr1=expr</VERB>, etc.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    Warning: the number of characters used to define the body of any
+    conditionnal instruction (if while for or select/case) must be limited to
+    16k.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+while %t do
+  n=round(10*rand(1,1))
+  select n
+  case 0 then 
+    disp(0)
+  case 1 then
+    disp(1)
+  else
+    break
+  end
+end
+  
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>if</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>while</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>for</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

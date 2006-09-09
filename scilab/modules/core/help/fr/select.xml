@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>select  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="select"> mot-clé utilisé dans une structure select ... case  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Mot-clé utilisé dans une structure <VERB>select ... case</VERB>, à utiliser de la façon suivante :
+  </P>
+  <VERBATIM><![CDATA[
+ select expr,
+   case expr1 then instructions1,
+   case expr2 then instructions2,
+   ...
+   case exprn then instructions,
+   [else instructions],
+ end
+   ]]></VERBATIM>
+
+  <P>
+    Notes :
+  </P>
+ 
+<DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='- La seule contrainte est que chaque mot-clé &quot;then&quot; soit sur la même ligne que le &quot;case&quot; correspondant.'> 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='- Le mot-clé then peut être remplacé par un passage à la ligne ou une virgule.'> 
+  <SP>
+     Les <VERB>instructions1</VERB> sont exécutées si <VERB>expr1=expr</VERB>, etc. 
+</SP>
+  </DESCRIPTION_ITEM>
+</DESCRIPTION_INDENT>
+  <P>
+    Attention : le nombre de caractères constituant le corps d&apos;une instruction conditionnelle (if while for ou select/case) est limité à 16k..
+  </P>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+while %t do
+  n=round(10*rand(1,1))
+  select n
+  case 0 then 
+    disp(0)
+  case 1 then
+    disp(1)
+  else
+    break
+  end
+end
+  
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>if</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>while</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

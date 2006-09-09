@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>excel2sci</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="excel2sci"> reads ascii Excel files</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>M=excel2sci(fname [,sep])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fname</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string. The file path</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>sep</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string. Excel separator used, default value is &quot;,&quot;</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>M</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given an ascii  file created by Excel using &quot;Text and comma&quot; format
+    <VERB>exel2sci(fname)</VERB> returns the corresponding Scilab matrix of
+    strings. Use <VERB>exel2sci(fname,sep )</VERB> for an other choice of
+    separator.</P>
+    <P>
+    Note: You may eval all or part ot <VERB>M</VERB> using function <VERB>evstr</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

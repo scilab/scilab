@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>power  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="power"> élévation à la puissance (^,.^)   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=A^b  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>t=A**b  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>t=A.^b  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A,t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle, complexe, polynomiale ou rationnelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice réelle, complexe, polynomiale ou rationnelle
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+ 
+<DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='(A:matrice carrée)^(b:scalaire)'> 
+  <SP>
+    : Si <VERB>A</VERB> est une matrice carrée et <VERB>b</VERB> un scalaire alors  <VERB>A^b</VERB> est la matrice <VERB>A</VERB> élevée à la puissance <VERB>b</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='(A:matrice).^(b:scalaire)'> 
+  <SP>
+    : Si <VERB>b</VERB> est un un scalaire et <VERB>A</VERB> une matrice alors <VERB>A.^b</VERB>  est la matrice formée par les éléments de <VERB>A</VERB> élevés à la puissance <VERB>b</VERB> (puissance élément par élément). Si <VERB>A</VERB> est un vecteur et <VERB>b</VERB> un scalaire alors  <VERB>A^b</VERB> et <VERB>A.^b</VERB> donnent le même résultat (puissance élément par élément).
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='(A:scalaire).^(b:matrice)'> 
+  <SP>
+    Si <VERB>A</VERB> est un scalaire et <VERB>b</VERB> est une matrice <VERB>A^b</VERB> et <VERB>A.^b</VERB> sont deux matrices de même taille que b dont les termes sont égaux à <VERB> a^(b(i,j))</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='(A:matrice).^(b:matrice)'> 
+  <SP>
+    Si <VERB>A</VERB> et <VERB>b</VERB> sont des matrices de même taille <VERB>A.^b</VERB> est la matrice dont les termes sont égaux à <VERB>A(i,j)^b(i,j)</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+</DESCRIPTION_INDENT>
+  <P>
+    Notes :
+  </P>
+  <P>
+     -
+    Pour les matrices carrées <VERB>A^p</VERB> est calculé par multiplications successives si <VERB>p</VERB> est un entier positif, et par diagonalisation sinon.
+  </P>
+  <P>
+     -
+    Les opérateurs <VERB>**</VERB> et <VERB>^</VERB> sont synonymes.
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>exp</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

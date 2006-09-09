@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plotprofile</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Nov 2005</DATE>
+  <SHORT_DESCRIPTION name="plotprofile"> extracts and displays execution profiles
+                     of a Scilab function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>plotprofile(fun)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab compiled function, or a function name (string), or an array of
+                function names</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    To use <VERB>plotprofile</VERB>, the Scilab function must have been prepared for
+    profiling (see getf).</P>
+    <P>
+    When such a function is executed, the system
+    counts how many times each line is executed and how much cpu time is
+    spent executing each line. This data is stored within the
+    function data structure. The function <VERB>plotprofile</VERB> in an interactive
+    command which displays this results in a graphic window. When a line
+    is clicked, the source of the function is displayed with the selected line
+    highlighted.</P>
+    <P>
+    NOTE: you have to click on the &quot;Exit&quot; item in the graphics windows to
+    exit from &quot;plotprofile&quot;.</P>
+    <P>
+    The function code is regenerated with <VERB>fun2string</VERB> and dumped into
+    a temporary file.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//define a function and prepare it for profiling
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+//call the function
+foo(30)
+//get execution profiles
+plotprofile(foo) // click on Exit to exit
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>profile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>showprofile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fun2string</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

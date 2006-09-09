@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>brackets  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="brackets ([,])"> crochets à droite et à gauche  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[a11,a12,...;a21,a22,...;...]  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[s1,s2,...]=func(...)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a11,a12,...  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : toute matrice (réelle, complexe, polynomiale, rationnelle, liste de type <VERB>syslin</VERB> ...) de dimensions adéquates
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>s1,s2,...  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : noms de variables
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Les crochets droit et gauche sont utilisés pour effectuer une concaténation de matrices. Ces symboles sont aussi utilisés quand on effectue un appel à une fonction renvoyant plusieurs arguments.
+  </P>
+  <P>
+    A l&apos;intérieur d&apos;une paire de crochets spécifiant une concaténation, un espace ou une virgule signifient une concaténation de colonnes, alors qu&apos;un point-virgule ou un passage à la ligne signifient une concaténation de lignes.
+  </P>
+  <P>
+    Note : pour éviter les confusions il est plus sûr d&apos;utiliser des virgules pour concaténer des colonnes.
+  </P>
+  <P>
+    Pour des crochets entourant une liste d&apos;arguments de sortie d&apos;une fonction, 
+    les noms de variables doivent être séparés par des virgules.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[6.9,9.64; sqrt(-1) 0]
+[1 +%i  2 -%i  3]
+[]
+['ceci est';'un vecteur';'de chaines de caracteres']
+s=poly(0,'s');[1/s,2/s]
+[tf2ss(1/s),tf2ss(2/s)]
+
+[u,s]=schur(rand(3,3))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>comma</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>semicolon</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

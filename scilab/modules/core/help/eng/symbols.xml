@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>symbols</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="symbols"> scilab operator names</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Use the following names to get help on a specific symbol.</P>
+    <TABLE>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> operator</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>name in Scilab help</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> ',&quot;, .'</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>quote</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> +</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>plus</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> -</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>minus</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> *,.*</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>star</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> /, ./, /.</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>slash</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> \,.\ ,\. </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>backslash</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> .</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>dot</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> =, ==</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>equal</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> &lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>less</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> ~</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>tilda</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> [</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>left</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> ]</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>right</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> ()</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>parents</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> %</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>percent</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> :</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>colon</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> ,</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>comma</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> ;</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>semi</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN><VERB>^</VERB></TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>hat</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN><VERB>.^</VERB></TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>power</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> |</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>or</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> &amp;</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>and</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+      <TABLE_NEW_ROW>
+        <TABLE_NEW_COLUMN> .*., ./., .\.</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>kron</TABLE_NEW_COLUMN>
+      </TABLE_NEW_ROW>
+    </TABLE>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>overloading</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>dot  </TITLE>
+  <TYPE>Scilab Symbol  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="dot (.)">  point  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>123.33  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>a.*b  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[123,..  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM> 456]  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+ 
+ <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='.'> 
+  <SP>
+    Le point est utilisé dans la notation décimale : 3.25 et 0.001
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='.&lt;op&gt;'> 
+  <SP>
+    Il est aussi utilisé en conjonction avec d&apos;autres opérateurs (* / \ ^ &apos;) pour  en former de nouveaux. Les opérations multiplicatives &quot;élément par élément&quot; sont obtenues avec .* , .^ , ./ , .\ ou .&apos;. Par exemple, C = A ./ B est la matrice dont les éléments sont c(i,j) = a(i,j)/b(i,j). Le produit de Kronecker est noté .*. .  Notez que lorsqu&apos;un point suit un nombre entier il est considéré comme en faisant partie. Ainsi 2.*x est évalué comme 2.0*x et 2 .*x est évalué comme (2).*x
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='..'> 
+  <SP>
+    A suivre. Deux points ou plus à la fin d&apos;une ligne font en sorte que la ligne suivante est considérée comme en étant la suite (le passage à la ligne n&apos;est pas pris en compte).
+</SP>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+1.345
+x=[1 2 3];x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
+[123,..
+ 456]
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>star</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>hat</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slash</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

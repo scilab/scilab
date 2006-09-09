@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>user  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="user"> interfaçage d&apos;une routine Fortran ou C  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Avec cette commande il est possible d&apos;utiliser un programme externe 
+    comme une commande Scilab où
+    <VERB>(s_1,s_2,...,s_lhs)</VERB> sont les variables de sortie et
+     <VERB>(e_1,e_2,...,e_rhs)</VERB> sont les variables d&apos;entrée. Pour utiliser cette commande dans Scilab il faut écrire quelques lignes dans la subroutine Fortran <VERB>user</VERB> de Scilab. Voir <VERB>intersci</VERB> ou la documentation de Scilab pour plus d&apos;informations.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>fort</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

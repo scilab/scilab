@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>inv_coeff  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="inv_coeff"> construction d&apos;une matrice polynomiale à partir des coefficients  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P]=inv_coeff(C,[,d,[name])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>C  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : &quot;grosse&quot; matrice des coefficients
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : degré de la matrice polynomiale (paramètre optionnel valant par défaut  <VERB>d=-1+size(C,&apos;c&apos;)/size(C,&apos;r&apos;)</VERB>)
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères (indéterminée du polynôme, <VERB>&apos;x&apos;</VERB> par défaut).
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>P=inv_coeff(Mp,k)</VERB>, quand <VERB>k</VERB> est compatible avec la taille de <VERB>Mp</VERB> renvoie une matrice polynomiale de degré k. <VERB>C=[C0,C1,...,Ck]</VERB> et 
+    <VERB>P= C0 + C1*x +... +Ck*x^k</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=int(10*rand(2,6))
+// construction d'une matrice polynomiale de degré 1
+P=inv_coeff(A,1)
+norm(coeff(P)-A)
+// utilisation de la valeur par défaut du degré
+P1=inv_coeff(A)
+norm(coeff(P1)-A)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>degree</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>coeff</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

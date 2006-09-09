@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>try</TITLE>
+  <TYPE>Scilab keyword</TYPE>
+  <DATE>Aug 2005</DATE>
+  <SHORT_DESCRIPTION name="try"> beginning of try block in try-catch control instruction</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="catch"> beginning of catch block in try-catch control instruction </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>try </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>catch </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>end</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>The <VERB>try</VERB>-<VERB>catch</VERB> control instruction can be used
+      to manage codes that could possibly generate errors.</P>
+
+    <P>When a <VERB>try</VERB>-<VERB>catch</VERB> control instruction is
+      executed, normally only the statements between the <VERB>try</VERB> and 
+      <VERB>catch</VERB> keywords are executed. However, if an error occurs
+      during execution of any of these statements, the error is recorded, the
+      remaining statements up to the <VERB>catch</VERB> keyword 
+      are skipped and the statements between the <VERB>catch</VERB> and
+      <VERB>end</VERB> keywords are executed using the default error handling
+      mode (see: <LINK>errcatch</LINK>. </P>
+    <P>The recorded error can be retreived using the <LINK>lasterror</LINK>
+      function.</P>
+
+    <P>The <VERB>catch</VERB> statements as well as the <VERB>catch</VERB>
+      keyword can be omitted if no alternative statements are given.</P>
+
+
+    <P>Note that one can also use the <LINK>execstr</LINK> function with
+      <VERB>'errcatch'</VERB> argument for error handling. This can be
+      particularily useful for handling syntactical errors.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ file_path=TMPDIR+'/wrong'
+ try
+    u=mopen(file_path,'r')
+    x=mget(10,'c',u)
+  catch
+    disp(['file '+file_path+ 'cannot be read',
+          'using default values for x'])
+    x=1:10
+  end 
+  [error_message,error_number]=lasterror(%t) 
+
+ 
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>error</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>if</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+ <AUTHOR> Serge Steer, INRIA</AUTHOR>
+</MAN>

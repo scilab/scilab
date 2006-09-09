@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+	
+	<LANGUAGE>fr</LANGUAGE>
+	<TITLE>whos</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>Jan 1997</DATE>
+	<SHORT_DESCRIPTION name="whos"> liste des variables courantes dans un format détaillé</SHORT_DESCRIPTION>
+	
+	<CALLING_SEQUENCE>
+		<CALLING_SEQUENCE_ITEM>whos()</CALLING_SEQUENCE_ITEM>
+		<CALLING_SEQUENCE_ITEM>whos -type typ</CALLING_SEQUENCE_ITEM>
+		<CALLING_SEQUENCE_ITEM>whos -name nam</CALLING_SEQUENCE_ITEM>
+	</CALLING_SEQUENCE>
+	
+	<PARAM>
+		<PARAM_INDENT>
+			<PARAM_ITEM>
+				<PARAM_NAME>typ</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: nom du type des variables sélectionnées (voir <VERB>typeof</VERB>)</SP>
+				</PARAM_DESCRIPTION> 
+			</PARAM_ITEM>
+			<PARAM_ITEM>
+				<PARAM_NAME>nam</PARAM_NAME>
+				<PARAM_DESCRIPTION>
+					<SP>: premiers caractères des noms des variables recherchées</SP>
+				</PARAM_DESCRIPTION> 
+			</PARAM_ITEM>
+		</PARAM_INDENT>
+	</PARAM>
+	
+	<DESCRIPTION>
+		<P><VERB>whos()</VERB> affiche tous les noms des variables courantes, leurs types et la place mémoire occupée.</P>
+		<P><VERB>whos -type typ</VERB> affiche tous les noms des variables courantes de type spécifié dans <VERB>typ</VERB>.</P>
+		<P><VERB>whos -name nam</VERB> affiche tous les noms des variables courantes dont le nom commence par <VERB>&apos;nam&apos;</VERB></P>
+		<P>Remarque : si une variable est globale, le caractère * apparait devant son type.</P>
+	</DESCRIPTION>
+	
+	<EXAMPLE><![CDATA[
+whos()
+
+whos -type boolean
+
+whos -name %
+]]></EXAMPLE>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>who</LINK>
+		</SEE_ALSO_ITEM>
+		<SEE_ALSO_ITEM>
+			<LINK>typeof</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+</MAN>

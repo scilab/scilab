@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ls</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>june 2004</DATE>
+  <SHORT_DESCRIPTION name="ls"> show files</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>ls path options</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>files=ls( [path) [,options])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix giving a directory pathname (eventually  ended
+	    by a pattern built with <VERB>*</VERB>). Default value is <VERB>.</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>options</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a sequence of strings which can be added under Unix systems:
+	    the Unix <VERB>ls</VERB> command options. (default value <VERB>'-C'</VERB>).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>files</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string column vector. By default it contains a column
+	    formatted output. if one of the option is
+	    <VERB>'-1'</VERB>. <VERB>files</VERB> contains an entry for each
+	    files</SP>
+
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>ls</VERB> can be used to list the files which match 
+      the patterns given by the path argument. 
+      Patterns are given to the unix <VERB>ls</VERB> or to the windows
+      <VERB>dir</VERB> commands in order to get information on files. 
+      Thus in order to write portable Scilab script valid wildcard patterns 
+      for both os are to be given. Note that Pathname conversion is
+      performed and for example <VERB>SCI/macros/util/*.sci</VERB> is a valid 
+      pattern for both unix and windows.
+    </P>
+    <P>
+      Under Unix systems it is possible to add options to rule the output (see
+      the unix manual about the ls command)
+    </P>
+    <P>
+      If you want to get a vector of all files matching a pattern use preferabily
+      the  <LINK>listfiles</LINK>  or the <LINK>dir</LINK>function.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    ls
+    ls SCI/macros/util/*.sci
+    x=ls('SCI/macros/util/f*.sci')
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>listfiles</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dir</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fileinfo</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

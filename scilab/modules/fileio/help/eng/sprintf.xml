@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>printf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="sprintf"> Emulator of C language sprintf function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>str=sprintf(format,value_1,..,value_n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>format</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab string. Specifies a character string combining literal characters with conversion specifications.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>value_i</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Specifies the data to be converted according to the format parameter.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: column vector of character strings</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    The <VERB>sprintf</VERB> function converts, formats, and stores its
+    <VERB>value</VERB> parameters, under control of the <VERB>format</VERB> parameter.
+  </P>
+    <P>
+    The <VERB>format</VERB> parameter is a character string that contains two
+    types of objects:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Literal characters">
+        <SP>: which are copied to the output stream.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="Conversion specifications">
+        <SP>: each of which causes zero or more items to be fetched from the <VERB>value</VERB> parameter list. see <VERB>printf_conversion</VERB> for details</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    If there are not enough items for <VERB>format</VERB> in the
+    <VERB>value</VERB> parameter list, <VERB>sprintf</VERB> generate an error.
+    If any <VERB>value</VERB>s remain after the entire <VERB>format</VERB> has been
+    processed, they are ignored.</P>
+    <P>
+    Note: <VERB>sprintf</VERB> is obsolete, use <VERB>msprintf</VERB> instead.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+fahr=120
+sprintf('%3d Fahrenheit = %6.1f Celsius',fahr,(5/9)*(fahr-32)) 
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>print</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>write</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>format</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>disp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>printf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>msprintf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

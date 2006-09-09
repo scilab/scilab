@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>colon  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="colon (:)"> opérateur &quot;deux points&quot;  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+      Le symbole <VERB>:</VERB> peut être utilisé pour former des vecteurs
+      (voir aussi <LINK>linspace</LINK>,  <LINK>logspace</LINK>).
+    </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label='j:k'> 
+	<SP> 
+	  est le vecteur <VERB>[j, j+1,...,k]</VERB>
+	  (ou la matrice vide si <VERB>j&gt;k</VERB>).
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='j:d:k'> 
+	<SP>
+	   est le vecteur <VERB>[j, j+d, ..., j+m*d]  </VERB>
+	</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <SP>Cet opérateur peut aussi être utilisé pour sélectionner des lignes
+    ou des colonnes d&apos;une matrice, ou bien des sous-matrices (voir aussi
+    <LINK>extraction</LINK>,  <LINK>insertion</LINK>).</SP>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label='A(:)'> 
+	<SP>
+	  est le vecteur de tous les éléments de la matrice <VERB>A</VERB>,
+	  considérée comme un vecteur colonne (les colonnes sont mises bout à
+	  bout).
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='A(:,j)'> 
+	<SP>
+	  est la <VERB>j</VERB>-ème colonne de <VERB>A</VERB>
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='A(j:k)'> 
+	<SP>
+	  est égal à <VERB>[A(j),A(j+1),...,A(k)]</VERB>
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='A(:,j:k)'> 
+	<SP>
+	  est égal à <VERB>[A(:,j),A(:,j+1),...,A(:,k)] </VERB>
+	</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='A(:)=w'> 
+	<SP>
+	  remplit la matrice <VERB>A</VERB> avec les composantes de
+	  <VERB>w</VERB> (prises colonne par colonne si <VERB>w</VERB> est une
+	  matrice).
+	</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>matrix</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>function</TITLE>
+  <TYPE>Scilab keyword</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="function"> opens a function definition</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="endfunction"> closes a function definition</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <VERBATIM>
+<![CDATA[
+function <lhs_arguments>=<function_name><rhs_arguments>
+<statements>
+endfunction
+   ]]>
+    </VERBATIM>
+    <P>
+    Where
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&lt;function_name&gt;">
+        <SP>stands for the name of the function</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&lt;rhs_arguments&gt;">
+        <SP>stands for the input argument list. It may be</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>a comma separated sequence of variable names enclosed in parenthesis, like  <VERB>(x1,...,xm)</VERB>. Last variable name can be the key word <VERB>varargin</VERB> (see varargin)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>the sequence <VERB>()</VERB> or nothing,if the function has no input argument.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&lt;lhs_arguments&gt;">
+        <SP>stands for the output argument list. It may be</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>a comma separated sequence of variable names enclosed in brackets, like  <VERB>[y1,...,yn]</VERB>. Last variable name can be the key word <VERB>varargout</VERB> (see varargout)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>the sequence <VERB>[]</VERB> ,if the function has no input argument. In this case the syntax may also be:  <VERB>function &lt;function_name&gt;&lt;rhs_arguments&gt;</VERB></SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&lt;statements&gt;">
+        <SP>stands for a set of scilab instructions (statements)  This syntax may be used to define function (see functions) inline or in a script file (see exec). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be &quot;loaded&quot; into Scilab using the <VERB>getf</VERB> function.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    The <VERB>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</VERB>
+    sequence cannot be split over several lines. This sequence can be
+    followed by statements in the same line if a comma of semi column is
+    added at its end.</P>
+    <P>
+    function definitions can be nested</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//inline definition (see function)
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//a one line function definition
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+//nested functions definition
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+
+// definition in an script file (see exec)
+exec SCI/macros/elem/asinh.sci;
+
+
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>functions</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>exec</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

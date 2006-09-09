@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>if  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="if then else"> exécution conditionnelle  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>if expr1 then instructions  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>elseif expri then instructions  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>  ....  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>else  instructions  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>end  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Le mot-clé <VERB>if</VERB> évalue une expression logique et exécute un groupe
+    d&apos;instructions si l&apos;expression est vraie.
+  </P>
+  <P>
+    Les <VERB>expri</VERB> sont des expressions à valeurs numériques ou booléennes. Si <VERB>expri</VERB> est à valeur matricielle la condition est vraie si tous les termes de la matrice sont vrais ou différents de zéro.
+  </P>
+  <P>
+    Les mot-clés optionnels <VERB>elseif</VERB> et <VERB>else</VERB> permettent d&apos;exécuter en alternative des groupes d&apos;instructions. Le mot clé <VERB>end</VERB>,
+    correspondant au <VERB>if</VERB>, termine le groupe courant d&apos;instructions. La structure des lignes ci-dessus n&apos;est pas significative et la seule contrainte
+    est que chaque mot-clé <VERB>then</VERB> doit être sur la même ligne que le <VERB>if</VERB> ou <VERB>elseif</VERB> correspondant .
+  </P>
+  <P>
+  </P>
+  <P>
+    Le mot-clé <VERB>then</VERB> peut être remplacé par un passage à la ligne ou une virgule.
+  </P>
+  <P>
+    Attention : le nombre de caractères constituant le corps d&apos;une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   i=2
+   for j = 1:3, 
+      if i == j then
+        a(i,j) = 2; 
+      elseif abs(i-j) == 1 then 
+        a(i,j) = -1; 
+      else a(i,j) = 0;
+      end,
+   end
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>try</LINK> </SEE_ALSO_ITEM>   
+    <SEE_ALSO_ITEM> <LINK>while</LINK> </SEE_ALSO_ITEM>   
+    <SEE_ALSO_ITEM> <LINK>select</LINK> </SEE_ALSO_ITEM>    
+    <SEE_ALSO_ITEM> <LINK>boolean</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>end</LINK> </SEE_ALSO_ITEM>   
+    <SEE_ALSO_ITEM> <LINK>then</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>else</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

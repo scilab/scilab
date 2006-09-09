@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>semicolon</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="semicolon"> (;)  ending expression and row separator</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+      In a file, the line separator ``;'' suppresses the display of the
+      line.
+    </P>
+    <P>
+      Within brackets ; denotes row separator in matrix definition.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+    a=[1,2,3;4,5,6];
+    a=1;b=1,c=2
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>comma</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>brackets</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

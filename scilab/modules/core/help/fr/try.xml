@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>try</TITLE>
+  <TYPE>Scilab keyword</TYPE>
+  <DATE>Aug 2005</DATE>
+  <SHORT_DESCRIPTION name="try"> mot clé de début du block try dans une
+    instruction de contrôle try-catch </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="catch">  mot clé de début du block catch dans une
+    instruction de contrôle try-catch </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>try </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>catch </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>  statements</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>end</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>L'instruction de contrôle <VERB>try</VERB>-<VERB>catch</VERB> peut être
+      utilisée pour controler les conséquence d'une erreur d'éxécution en permettant
+      l'éxécution de code spécifique en cas d'erreur.</P>
+
+    <P>Quand une instruction de contrôle <VERB>try</VERB>-<VERB>catch</VERB>
+      est exécutée, normalement seules les instructions comprises entre les mots
+      clés  <VERB>try</VERB> et <VERB>catch</VERB> sont exécutées. Cependant,
+      si une erreur se produit pendant l'exécution de ces instructions,
+      l'erreur est mémorisée, les instructions restantes jusqu'au mot clé
+      <VERB>catch</VERB> sont ignorées et les instructions comprises entre les
+      mots clés  <VERB>catch</VERB> et  <VERB>end</VERB> sont exécutées en
+      utilisant le mode de gestion des erreurs par défaut (voir: <LINK>errcatch</LINK>. </P>
+    <P>L'erreur mémorisé peut être retrouvée en utilisant la fonction <LINK>lasterror</LINK>.</P>
+
+    <P>Les intructions comprises entre les mots clés  <VERB>catch</VERB> et
+      <VERB>end</VERB> peuvent être omises ainsi que le mot clé
+      <VERB>catch</VERB> si aucun code alternatif n'est fourni.</P>
+
+
+    <P>Notez que l'on peut aussi utiliser la fonction  <LINK>execstr</LINK>
+      avec l'argument <VERB>'errcatch'</VERB> pour gérer les erreurs et tout 
+      particulièrement pour gérer les erreurs de syntaxe.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ file_path=TMPDIR+'/wrong'
+ try
+    u=mopen(file_path,'r')
+    x=mget(10,'c',u)
+  catch
+    disp(['le fichier '+file_path+ 'ne peut pas être lu', 
+          'on utilise la valeur  par défaut de x'])
+    x=1:10
+  end 
+  [error_message,error_number]=lasterror(%t) 
+ 
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>error</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>if</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>errcatch</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+ <AUTHOR> Serge Steer, INRIA</AUTHOR>
+</MAN>

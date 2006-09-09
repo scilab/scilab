@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>pathconvert</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pathconvert"> pathnames convertion between posix and windows.  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>paths</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix giving a set of pathnames</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>flagtrail,flagexpand</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: boolean optional parameters (default value depends on  the MSDOS variable).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>type</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string <VERB>'u'</VERB> or <VERB>'w'</VERB>.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>pathconvert</VERB> can be used to convert a set of pathnames
+    (given by a string matrix <VERB>paths</VERB>) from windows native 
+    filename to posix-style pathnames and back. The target style 
+    is given by the optional string <VERB>type</VERB> which can be 
+    <VERB>'u'</VERB> for Unix or <VERB>'w'</VERB> for Windows. The default 
+    style is set according to the value of <VERB>MSDOS</VERB>. 
+    If <VERB>MSDOS</VERB> is true (resp. false ) then default type is <VERB>'w'</VERB>
+    (resp.  <VERB>'u'</VERB>).</P>
+    <P>
+    Windows pathnames starting with <VERB>name:</VERB> are converted to 
+    pathnames starting with <VERB>/cygdrive/name/</VERB> using the cygwin 
+    convention.</P>
+    <P><VERB>flagtrail</VERB> is an optional boolean parameter. When its value 
+    is true a trailing separator (<VERB>'\'</VERB> or <VERB>'/'</VERB>) is added 
+    at the end of the path.</P>
+    <P><VERB>flagexpand</VERB> is an optional boolean parameter. When its value 
+    is true leading strings like  <VERB>HOME</VERB>, <VERB>SCI</VERB> or <VERB>~</VERB> are 
+    expanded using environment variables.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+pathconvert('SCI/macros\util/foo.sci',%f,%f,'u')
+pathconvert('SCI/macros\util/foo.sci',%f,%f,'w')
+pathconvert('SCI/macros/util/foo.sci',%f,%t,'w')
+pathconvert('HOME/macros/util/foo.sci',%t,%t,'w')
+pathconvert('c:/tmp',%f,%t,'u')
+pathconvert('/cygdrive/c/tmp',%f,%f,'w')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>basename</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>listfiles</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

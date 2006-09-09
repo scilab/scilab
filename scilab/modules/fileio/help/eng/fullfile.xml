@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fileparts</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>July 2004</DATE>
+  <SHORT_DESCRIPTION name="fullfile">Build a full filename from parts</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>f = fullfile(varargin)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>varargin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: all directories and filename used to build the full filename (at least one directory and filename)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>f</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP> : full filename</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>f = fullfile(varargin)</VERB> builds a full filename taking care of platform on which it is run
+    and handling the cases when the directories begin or end with a directory separator.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+   f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
+   f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
+  ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>pathconvert</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>fileparts</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+  <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

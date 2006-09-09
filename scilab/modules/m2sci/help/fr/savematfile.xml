@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>savematfile</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2004</DATE>
+  <SHORT_DESCRIPTION name="savematfile">write a Matlab MAT-file (binary or ASCII)</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>savematfile('filename')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savematfile('filename', 'var1', 'var2', ...)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savematfile('filename', '-struct', 's')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savematfile('filename', '-struct', 's', 'f1', 'f2', ...)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savematfile(..., 'format')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>savematfile filename var1 var2 ...</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+  <PARAM_INDENT>
+    <PARAM_ITEM>
+       <PARAM_NAME>filename</PARAM_NAME>
+       <PARAM_DESCRIPTION>
+         <SP>: character string containing the path of the file (needed)</SP>
+       </PARAM_DESCRIPTION>
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+       <PARAM_NAME>format</PARAM_NAME>
+       <PARAM_DESCRIPTION>
+         <SP>: data format to use</SP>
+         <PARAM_INDENT>
+           <PARAM_ITEM>
+             <PARAM_NAME>&quot;-mat&quot;</PARAM_NAME>
+             <PARAM_DESCRIPTION>
+                <SP>: binary MAT-file (default)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;-ascii&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: 8-bit ASCII format</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;-ascii&quot; &quot;-double&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: 16-bit ASCII format</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;-ascii&quot; &quot;-tabs&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: delimits with tabs</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;-ascii&quot; &quot;-double&quot; &quot;-tabs&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: 16-digit ASCII format, tab delimited</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;-v4&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: A format that MATLAB Version 4 can open</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>&quot;-v6&quot;</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: A format that MATLAB Version 6 and earlier can open (default)</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>var1, var2</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character strings containing the name of the variables to load (only for binary files)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>&quot;-struct&quot; &quot;s&quot;</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: saves all fields of the scalar structure s as individual variables within the file filename.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>&quot;-struct&quot; &quot;s&quot; &quot;f1&quot; &quot;f2&quot;</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: saves as individual variables only those structure fields specified (s.f1, s.f2, ...).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    saves variables in a Matlab MAT-file from Scilab. The Scilab data types are
+    converted into the Matlab equivalents.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>load</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>loadmatfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mfile2sci</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHORS>
+  <AUTHORS_ITEM>Serge Steer (INRIA)</AUTHORS_ITEM>
+  <AUTHORS_ITEM>V.C</AUTHORS_ITEM>
+  </AUTHORS>
+  <BIBLIO>
+    <P>This function has been developped following the &quot;MAT-File Format&quot;
+  description: 
+<VERB>www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf</VERB></P>
+  </BIBLIO>
+</MAN>

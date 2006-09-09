@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>semi  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="semicolon (;)"> séparateur de lignes ou d&apos;instructions Scilab  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Les points-virgules sont utilisés pour séparer des lignes dans une définition de matrice.
+  </P>
+  <P>
+    Les points-virgules sont utilisés aussi pour marquer la fin d&apos;une instruction. Dans ce cas le résultat n&apos;est pas affiché. On peut utiliser à la place une virgule (,) qui permet de séparer les instructions sans supprimer l&apos;affichage.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=[1,2,3;4,5,6];
+a=1;b=1,c=2
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>comma</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>brackets</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>help</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 2002</DATE>
+  <SHORT_DESCRIPTION name="make_index"> creates a new index file for
+  on-line help</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>make_index() </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    The on-line help reads first the <VERB>index.html</VERB> file
+    which contains the list of the chapters. This file comes with Scilab and is
+    in the directory <VERB>SCIDIR/man/&lt;language&gt;</VERB> (see
+    <LINK>man</LINK>). It is possible to change this
+    index file while interactively adding new chapters. For that,
+    modify the <LINK>%helps</LINK> variable and then use the
+    <VERB>make_index</VERB> function.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>%helps</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>man</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

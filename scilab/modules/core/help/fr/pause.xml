@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>pause  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="pause"> mode de pause, attente clavier  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Passage en mode de <VERB>pause</VERB>;
+    inséré dans le code d&apos;une fonction, <VERB>pause</VERB> fait une pause dans l&apos;exécution
+    de la fonction : un symbole d&apos;invite de commande est affiché à l&apos;utilisateur indiquant le &quot;niveau&quot; de la <VERB>pause</VERB> (e.g. <VERB>-1-&gt;</VERB>). L&apos;utilisateur se trouve dans un environnement dans lequel toutes les variables du niveau correspondant sont accessibles (en particulier les variables locales de la fonction).
+    Pour reprendre l&apos;exécution taper <VERB>&quot;return&quot;</VERB>.
+  </P>
+  <P>
+    Dans ce mode, <VERB>[...]=return(...) </VERB>
+    renvoie les variables de l&apos;argument <VERB>(...)</VERB> dans l&apos;environnement appelant 
+    sous les noms précisés dans <VERB> [...]</VERB>. Sinon, les variables de l&apos;environnement interrompu sont protégées et non modifiables.
+  </P>
+  <P>
+    L&apos;instruction <VERB>pause</VERB> est très utile en phase de mise au point ou de déboggage.
+  </P>
+  <P>
+    Il est possible de sortir du mode de pause en mettant fin à l&apos;exécution en tapant <VERB>&quot;abort&quot;</VERB>.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>halt</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>abort</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>quit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereami</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>where</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

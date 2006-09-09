@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>scilink</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="scilink"> Unix script to relink Scilab</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>scilink &lt;object-files&gt;  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    This script is used to produce a local <VERB>scilex</VERB> (executable code
+    of Scilab) linked with the  additional files given by the 
+    user in <VERB>&lt;object-files&gt;</VERB>.</P>
+    <P>
+    If in the list of object files some names are known <VERB>scilex</VERB> names 
+    (from <VERB>SCIDIR/routines/default</VERB> ) then the <VERB>scilex</VERB> default 
+    files are omitted and replaced with the given ones .</P>
+    <P>
+    This script also produces an <VERB>xscilab</VERB> script, which when called 
+    will ran the new generated scilex file.</P>
+    <P>
+    For example the command</P>
+    <VERBATIM>
+<![CDATA[
+scilink C/interf.o C/evol.o C/bib.a
+   ]]>
+    </VERBATIM>
+    <P>
+    will create a new <VERB>scilex</VERB> file in which the default <VERB>interf.o</VERB> 
+    file will be replaced by <VERB>C/interf.o</VERB>.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>link</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>addinter</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

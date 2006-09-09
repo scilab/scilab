@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>exec  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="exec"> exécution d&apos;un script (fichier de commandes)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>exec(path [,mode])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>exec(fun [,mode])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ierr=exec(path,&apos;errcatch&apos; [,mode])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ierr=exec(fun,&apos;errcatch&apos; [,mode])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>path  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : chaîne de caractères, le chemin du script à exécuter
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>mode  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : entier, précisant le mode d&apos;exécution (voir plus bas)
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>fun  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : identificateur d&apos;une fonction scilab
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>ierr  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : entier, 0 ou numéro d&apos;erreur 
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>exec(path [,mode])</VERB> exécute séquentiellement les instructions
+      Scilab contenues dans le fichier spécifié par <VERB>path</VERB> avec le
+      mode d&apos;exécution optionnel <VERB>mode</VERB> .
+    </P>
+    <P>Les différentes valeurs de <VERB>mode</VERB> sont :</P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label='0'>
+	<SP>: valeur par défaut</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label='-1'>
+	<SP>: rien n&apos;est affiché</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label='1'>
+	<SP>: chaque ligne de commande est affichée</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label='2'>
+	<SP>: l&apos;invite de commande <VERB>--&gt;</VERB> est affiché</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label='3'>
+	<SP>: lignes de commandes + invite de commande</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label='4'>
+	<SP>: pause dans l&apos;exécution au début de chaque ligne. L&apos;exécution
+	reprend après un appui sur la touche entrée/return. </SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label='7'>
+	<SP>: pause + invite + affichage : ce mode est utile pour les démonstrations.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+      <VERB>exec(fun [,mode])</VERB> exécute la fonction <VERB>fun</VERB> comme
+      un script : aucun argument n&apos;est utilisé en entrée ou en sortie, et
+      l&apos;exécution se fait dans l&apos;environnement courant (les variables
+      créées dans la fonction sont conservées après l&apos;exécution). Cette
+      forme est plus efficace, car ainsi les instructions du script peuvent
+      être pré-compilées (voir getf, comp). Cette méthode d&apos;exécution des
+      scripts permet aussi de stocker des scripts comme des fonctions dans des
+      librairies. 
+    </P>
+    <P>
+      Si une erreur se produit pendant l&apos;exécution, si la chaîne de
+      caractères &apos;errcatch&apos; est présente, <VERB>exec</VERB> ne
+      produit pas de message d&apos;erreur, mais stoppe l&apos;exécution du
+      script et renvoie une valeur de <VERB>ierr</VERB> égale au numéro de
+      l&apos;erreur. Si la chaîne &apos;errcatch&apos; n&apos;est pas présente,
+      la gestion habituelle des erreurs est utilisée.
+    </P>
+    
+  </DESCRIPTION>
+  <SECTION label='REMARQUE'>
+    <SP>
+      Les scripts peuvent maintenant contenir des définitions de fonctions en
+      ligne (voir fonction). 
+    </SP>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+    // création d'un script
+    mputl('a=1;b=2',TMPDIR+'/myscript')
+    // on l'exécute
+    exec(TMPDIR+'/myscript')
+    whos -name "a "
+
+    // création d'une function
+    function y=foo(x),a=x+1;y=a^2,endfunction
+    clear a b
+    // appel à la fonction
+    foo(1)
+    // a est une variable créée dans l'environnement de la fonction foo
+    // elle est détruite à la sortie de la fonction.
+    whos -name "a "
+
+    x=1 // on crée la variable x pour qu'elle soit connue à l'exécution de foo
+    exec(foo)
+    // a et y ont été créées dans l'environnement courant
+    whos -name "a "
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>comp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>mode</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>chdir</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>getcwd</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

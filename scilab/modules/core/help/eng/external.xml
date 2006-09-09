@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>external</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="external"> Scilab Object, external function or routine</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    External function or routine for use with specific commands.</P>
+    <P>
+    An &quot;external&quot; is a function or routine which is used as an argument
+    of some high-level primitives (such as <VERB>ode</VERB>, <VERB>optim</VERB>, <VERB>schur</VERB>...).</P>
+    <P>
+    The calling sequence of the external (function or routine) is imposed by
+    the high-level primitive which sets the arguments of the external.</P>
+    <P>
+    For example the external function <VERB>costfunc</VERB> is an argument of the <VERB>optim</VERB> 
+    primitive. Its calling sequence must be: <VERB>[f,g,ind]=costfunc(x,ind)</VERB> and 
+    <VERB>optim</VERB> (the high-level optimization primitive) is invoked as follows:</P>
+    <VERBATIM>
+<![CDATA[
+optim(costfunc,...)
+   ]]>
+    </VERBATIM>
+    <P>
+    Here <VERB>costfunc</VERB> (the cost function to be minimized by the primitive <VERB>optim</VERB>)
+    evaluates <VERB>f=f(x)</VERB> and <VERB>g=</VERB> gradient of <VERB>f</VERB> at <VERB>x</VERB> (<VERB>ind</VERB> is an integer. Its use is precised in the <VERB>optim</VERB> help).</P>
+    <P>
+    If other values are needed by the external function these variables
+    can be defined in its environment. Also, they can be put in a list.
+    For example,the external function</P>
+    <VERBATIM>
+<![CDATA[
+[f,g,ind]=costfunc(x,ind,a,b,c) 
+   ]]>
+    </VERBATIM>
+    <P>
+    is valid for <VERB>optim</VERB> if the external is <VERB>list(costfunc,a,b,c)</VERB> and
+    the call to <VERB>optim</VERB> is then:</P>
+    <VERBATIM>
+<![CDATA[
+optim(list(costfunc,a1,b1,c1),....
+   ]]>
+    </VERBATIM>
+    <P>
+    An external can also be a Fortran or C routine : this is convenient to speed up 
+    the computations.</P>
+    <P>
+    The name of the routine is given to the high-level primitive
+    as a character string. The calling sequence of the routine 
+    is also imposed. Examples are given in the <VERB>routines/default</VERB> directory 
+    (see the <VERB>README</VERB> file).</P>
+    <P>
+    External Fortran or C routines can also be dynamically linked (see <VERB>link</VERB>)</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>optim</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>impl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>dassl</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>intg</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>schur</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gschur</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

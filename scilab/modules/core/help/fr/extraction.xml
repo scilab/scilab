@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>extraction  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>September 1996  </DATE>
+  <SHORT_DESCRIPTION name="extraction"> extraction à partir d&apos;une matrice ou d&apos;une liste  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x(i,j)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[...]=l(i)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[...]=l(k1)...(kn)(i) ou [...]=l(list(k1,...,kn,i))  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)   ou l(list(k1,...,kn,list(i,j))  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+	<PARAM_NAME>x  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : matrice de tout type
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>l  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : liste
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>i,j  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : indices
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+	<PARAM_NAME>k1,...kn  </PARAM_NAME>
+	<PARAM_DESCRIPTION>
+	  <SP>
+	    : indices à valeurs entières
+	  </SP>
+	</PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM  label='CAS DES MATRICES'> 
+	<SP><VERB>i</VERB> et <VERB>j</VERB> peuvent être :</SP>
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM  label='des scalaires'> 
+	    <SP>,vecteurs ou matrices à éléments positifs. 	</SP>
+	    <DESCRIPTION_INDENT>
+	      <DESCRIPTION_ITEM> 
+		<SP><VERB>r=x(i,j)</VERB> construit la matrice <VERB>r</VERB> telle que:</SP>
+		<P><VERB>r(l,k)=x(int(i(l)),int(j(k)))</VERB></P>
+		<P>pour <VERB>l</VERB>  variant de 1 à
+		  <VERB>size(i,&apos;*&apos;)</VERB></P>
+		<P>et <VERB>k</VERB> variant de 1 à
+		  <VERB>size(j,&apos;*&apos;)</VERB>.</P>
+		<P>La valeur
+		  maximale de <VERB>i</VERB> (resp. <VERB>j</VERB>) doit être
+		  inférieure ou égale à <VERB>size(x,1)</VERB>
+		  (resp. <VERB>size(x,2)</VERB>).
+		</P>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP> 
+		  <VERB>r=x(i)</VERB> où <VERB>x</VERB> est une matrice 1 x 1,
+		  construit la matrice <VERB>r</VERB> telle que
+		  <VERB>r(l,k)=x(int(i(l)),int(i(k)))</VERB> pour <VERB>l</VERB>
+		  variant de 1 à <VERB>size(i,1)</VERB> et <VERB>k</VERB> variant de 1
+		  à <VERB>size(i,2)</VERB>.   Noter que dans ce cas l&apos;indice
+		  <VERB>i</VERB> est valable si toutes ses composantes sont égales à
+		  1.
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>
+		  <VERB>r=x(i)</VERB> avec <VERB>x</VERB> un vecteur ligne, construit
+		  le vecteur ligne <VERB>r</VERB> tel que
+		  <VERB>r(l)=x(int(i(l)))</VERB> pour <VERB>l</VERB> entre 1 et
+		  <VERB>size(i,&apos;*&apos;)</VERB>  La valeur maximale de
+		  <VERB>i</VERB> doit être inférieure ou égale à
+		  <VERB>size(x,&apos;*&apos;)</VERB>.
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP> 
+		  <VERB>r=x(i)</VERB> avec <VERB>x</VERB> une matrice à une ou
+		  plusieurs colonnes, construit la matrice  <VERB>r</VERB> telle que
+		  <VERB>r(l)</VERB> (<VERB>l</VERB> variant de 1 à
+		  <VERB>size(i,&apos;*&apos;)</VERB>) contient le terme numéro
+		  <VERB>int(i(l))</VERB> du vecteur colonne issu de la concaténation
+		  des colonnes de <VERB>x</VERB>.  La valeur maximale de <VERB>i</VERB>
+		  doit être inférieure ou égale à <VERB>size(x,&apos;*&apos;)</VERB>.
+		</SP>
+	      </DESCRIPTION_ITEM>
+	    </DESCRIPTION_INDENT>
+	  </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM  label='Le symbole '> 
+	    <SP><VERB> : </VERB> signifiant &quot;tous les éléments&quot;. </SP>
+	    <DESCRIPTION_INDENT>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>
+		  <VERB>r=x(i,:)</VERB> construit la matrice <VERB>r</VERB> telle que
+		  <VERB>r(l,k)=x(int(i(l)),k))</VERB> pour <VERB>l</VERB> variant de 1
+		  à <VERB>size(i,&apos;*&apos;)</VERB> et <VERB>k</VERB> variant de 1 à
+		  <VERB>size(x,2)</VERB>
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>
+		  <VERB>r=x(:,j)</VERB> construit la matrice <VERB>r</VERB> telle que
+		  <VERB>r(l,k)=x(l,int(j(k)))</VERB> pour <VERB>l</VERB> variant de 1 à
+		  <VERB>size(r,1)</VERB> et <VERB>k</VERB> variant de 1 à
+		  <VERB>size(j,&apos;*&apos;)</VERB>.
+		</SP>
+	      </DESCRIPTION_ITEM>
+
+	      <DESCRIPTION_ITEM> 
+		<SP>
+		  <VERB>r=x(:)</VERB> construit le vecteur colonne <VERB>r</VERB>
+		  obtenu par concaténation des colonnes  de <VERB> x</VERB>.  Cette
+		  commande est équivalente à
+		  <VERB>r=matrix(x,size(x,&apos;*&apos;),1)</VERB>.
+		</SP>
+	      </DESCRIPTION_ITEM>
+	    </DESCRIPTION_INDENT>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='vecteur de booléens'> 
+	    <SP>
+	      Si un indice (<VERB>i</VERB>  ou <VERB>j</VERB> ) est un vecteur de
+	      booléen il est interprété comme <VERB>find(i)</VERB> ou
+	      <VERB>find(j)</VERB>, respectivement. 
+	    </SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='un polynôme'> 
+	    <SP>
+	      Si un indice (<VERB>i</VERB>  ou <VERB>j</VERB> ) est un vecteur de
+	      polynômes ou de polynômes implicites il est interprété comme
+	      <VERB>horner(i,m)</VERB> ou <VERB>horner(j,n)</VERB>, respectivement,
+	      où <VERB>m</VERB> et <VERB>n</VERB> sont les dimensions de
+	      <VERB>x</VERB> associées.  Même si cette fonctionnalité marche pour
+	      tous les polynômes, il est recommandé d&apos;utiliser des polynômes
+	      dans  <VERB>$</VERB> par souci de lisibilité.  
+	    </SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+      
+      <DESCRIPTION_ITEM label='CAS DES LISTES'> 
+	<P>
+	  (types LIST et TLIST)  S&apos;ils sont présents, les <VERB>ki</VERB> donnent
+	  le chemin vers un terme d&apos;une sous-liste de la liste
+	  <VERB>l</VERB>. Ils permettent de faire une extraction récursive
+	  directe sans utiliser de variable intermédiaire.  Les instructions:
+	</P>
+	<P> <VERB>[...]=l(k1)...(kn)(i)</VERB></P>
+	<P>et</P>
+	<P> <VERB>[...]=l(list(k1,...,kn,i))</VERB></P>
+	<P>sont interprétées comme :</P>
+	<P>
+	  <VERB>lk1   = l(k1)</VERB>,  <VERB> ..   = ..    </VERB>,  <VERB>lkn   =
+	    lkn-1(kn)</VERB>,  <VERB>[...] = lkn(i)</VERB>
+	</P>  
+	<P>De même, les instructions </P>
+	<P><VERB>l(k1)...(kn)(i,j)</VERB> </P>
+	<P>et</P>
+	<P><VERB>l(list(k1,...,kn,list(i,j))</VERB> </P>
+	<P>sont interprétées comme :</P>
+	<P> 
+	  <VERB>lk1 = l(k1)</VERB>,  
+	  <VERB> ..   = .. </VERB>,  
+	  <VERB>lkn = lkn-1(kn)</VERB>,  
+	  <VERB>lkn(i,j)</VERB>
+	</P>
+
+	<P>
+	  <VERB>i</VERB> et  <VERB>j</VERB>, peuvent valoir : 
+  	</P>
+	<DESCRIPTION_INDENT>
+
+	  <DESCRIPTION_ITEM  label='scalaire'> 
+	    <SP>
+	      vecteur ou matrice à termes positifs    <VERB>[r1,...rn]=l(i)</VERB>
+	      extrait les termes <VERB>i(k)</VERB> de la liste l et les stocke dans
+	      les variables <VERB>rk</VERB> pour <VERB>k</VERB> variant de 1 à
+	      <VERB>size(i,&apos;*&apos;)</VERB> 
+	    </SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='le symbole '> 
+	    <SP>:  (&quot;tous les éléments&quot;) </SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='vecteur de booléens'> 
+	    <SP>
+	      Si <VERB>i</VERB>  est un vecteur de booléens, il est interprété
+	      comme <VERB>find(i)</VERB>. 
+	    </SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='un polynôme'> 
+	    <SP>
+	      Si <VERB>i</VERB> est un vecteur de polynômes ou de polynômes
+	      implicites il est interprété comme <VERB>horner(i,m)</VERB> où
+	      <VERB>m=size(l)</VERB>.  Même si cette fonctionnalité marche pour
+	      tous les polynômes, il est recommandé d&apos;utiliser des polynômes
+	      dans  <VERB>$</VERB> par souci de lisibilité. 
+	    </SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM  label='k1,..kn peuvent être :'> 
+
+	<DESCRIPTION_INDENT>
+	  <DESCRIPTION_ITEM  label='un nombre réel positif'> 
+	    <SP></SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='un polynôme'> 
+	    <SP>
+	      un polynôme, interprété comme <VERB>horner(ki,m)</VERB> ou
+	      <VERB>m</VERB> est la taille de la sous-liste correspondante. 
+	    </SP>
+	  </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM  label='une chaîne de caractères'>
+	    <SP>
+	      associée à un nom d&apos;entrée de sous-liste'
+	    </SP>
+	  </DESCRIPTION_ITEM>
+	</DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<P> Quand le chemin désigne plusieurs
+	  termes d&apos;une liste l&apos;instruction doit avoir autant de termes
+	  dans la liste des arguments du membre de gauche que le nombre de termes
+	  sélectionnés. Mais si la syntaxe d&apos;extraction est utilisée dans
+	  les arguments d&apos;entrée d&apos;une fonction,  chaque terme renvoyé
+	  est ajouté aux arguments d&apos;entrée.</P>
+	<P>
+	  Notez que <VERB> l(list())</VERB> est identique à <VERB>l</VERB>.
+	</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+  </DESCRIPTION>
+  <SECTION label='REMARQUES'>
+    <P>
+      Pour les matrices rationnelles et les systèmes dynamiques linéaires stockés sous forme de représentation d&apos;état, la syntaxe <VERB>x(i)</VERB> ne doit pas être utilisée pour l&apos;extraction des éléments d&apos;un vecteur, à cause de la confusion possible avec l&apos;extraction des éléments de liste. La syntaxe <VERB>x(1,j)</VERB> où <VERB>x(i,1)</VERB> doit être utilisée dans ce cas.
+    </P>
+  </SECTION>
+  <EXAMPLE><![CDATA[
+    // CAS DES MATRICES
+    a=[1 2 3;4 5 6]
+    a(1,2)
+    a([1 1],2)
+    a(:,1)
+    a(:,3:-1:1)
+    a(1)
+    a(6)
+    a(:)
+    a([%t %f %f %t])
+    a([%t %f],[2 3])
+    a(1:2,$-1)
+    a($:-1:1,2)
+    a($)
+    //
+    x='test'
+    x([1 1;1 1;1 1])
+    //
+    b=[1/%s,(%s+1)/(%s-1)]
+    b(1,1)
+    b(1,$)
+    b(2) // le numérateur
+    // CAS des LISTES (types LIST et TLIST)
+    l=list(1,'qwerw',%s)
+    l(1)
+    [a,b]=l([3 2])
+    l($)
+    x=tlist(l(2:3)) // construction d'une TLIST avec les deux derniers termes de l
+    //
+    dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+    dts(2)('a')
+    dts(2)('b')(1,2)
+    [a,b]=dts(2)(['a','b'])
+
+    ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>find</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>parents</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

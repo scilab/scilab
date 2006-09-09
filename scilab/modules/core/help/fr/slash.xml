@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>slash  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="slash (/)"> division à droite et feedback  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Division à droite.  <VERB>x=A / b</VERB> est la solution de <VERB>x*b=A</VERB> .
+  </P>
+  <P>
+    <VERB>b/a = (a&apos; \ b&apos;)&apos;</VERB> .
+  </P>
+  <P>
+    <VERB>a ./  b</VERB> est la matrice dont les termes sont égaux à <VERB>a(i,j)/ b(i,j)</VERB>.
+    Si <VERB>b</VERB> est un scalaire (matrice 1x1) cette opération est la même que <VERB> a./b*ones(a)</VERB> (même convention si <VERB>a</VERB> est un scalaire).
+  </P>
+  <P>
+    Notez que <VERB>123./b</VERB> est interprété comme <VERB>(123.)/b</VERB>. Dans un tel cas le point fait partie du nombre et non pas de l&apos;opérateur.
+  </P>
+  <P>
+    L&apos;anti-slash (&quot;contre-barre&quot; ou backslash) signifie quant à lui la division à gauche (voir <VERB>backslash</VERB>).
+  </P>
+  <P>
+    Feedback de systèmes dynamiques. <VERB>S=G/.K</VERB> évalue <VERB>S=G*(eye()+K*G)^(-1)</VERB>. Cet opérateur évite des problèmes de simplification.
+  </P>
+  <P>
+    Notez aussi que <VERB>G/.5</VERB> est interprété comme <VERB>G/(.5)</VERB>. Dans un tel cas le point fait partie du nombre et non pas de l&apos;opérateur.
+  </P>
+  <P>
+  </P>
+  <P>
+    La suite de symboles <VERB>//</VERB> met une ligne en commentaire, c&apos;est à dire, les lignes commençant par <VERB>//</VERB> sont ignorées par l&apos;interpréteur.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>inv</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>percent</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>backslash</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ieee</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

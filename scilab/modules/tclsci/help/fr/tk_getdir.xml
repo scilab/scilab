@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tk_getdir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1996</DATE>
+  <SHORT_DESCRIPTION name="tk_getdir"> dialog to get a directory path</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>path=tk_getdir([title='string'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getdir([title='string'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getdir(dir,[title='string'])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getdir(dir,'string')  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>dir</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string which gives the initial directory used for directory search. by default tk_getdir uses the previously selected directory.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: is the user selected file path if user answers &quot;Ok&quot; or the &quot; &quot; string if user answers &quot;Cancel&quot;</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>title='string'  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>:Optional argument which gives the title for the tk_getdir window.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Creates a dialog window for file selection</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+tk_getdir()
+tk_getdir('SCI/macros/xdess')
+tk_getdir(title='Choose a directory name ')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>tk_getfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>file</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fileinfo</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

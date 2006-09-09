@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>hat  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="hat (^)"> élévation à la puissance  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>A^b  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Élévation à la puissance de matrices ou vecteurs.
+  </P>
+  <P>
+    Si <VERB>A</VERB> est un vecteur ou une matrice non-carrée l&apos;élévation à la puissance est faite élément par élément avec la signification usuelle.
+  </P>
+  <P>
+    Pour une matrice carrée <VERB>A</VERB> l&apos;élévation est faite au sens matriciel.
+  </P>
+  <P>
+    Pour les matrices booléennes, rationnelles ou polynomiales, l&apos;exposant doit être entier.
+  </P>
+  <P>
+    Notez que <VERB>123.^b</VERB> est interprété comme <VERB>(123).^b</VERB>. Dans un tel cas le point fait partie de l&apos;opérateur et non pas du nombre.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+2^4
+[1 2;2 4]^(1+%i)
+s=poly(0,"s");
+[1 2 s]^4
+[s 1;1  s]^(-1)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>exp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inv</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

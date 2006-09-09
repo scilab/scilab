@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>do</TITLE>
+  <TYPE>Scilab Keyword</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="do"> language keyword for loops</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Le mot clé M<VERB>do</VERB> peut être utilisé dans une instruction
+      <VERB>for</VERB> ou  <VERB>while</VERB> pour séparer la définition de la
+      variable de boucle de l'ensemble des instructions.
+    </P>
+  </DESCRIPTION>
+   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>for</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>while</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>perl</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>25-Aout-2004</DATE>
+
+  <SHORT_DESCRIPTION name="perl">execute le script Perl.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>perl('perlfile')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>perl('perlfile',arg1,arg2,...)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>result = perl(...)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>perl('perlfile') appelle le script Perl perlfile.</P>
+
+    <P>perl('perlfile',arg1,arg2,...) appelle le script Perl perlfile et passe
+    les arguments arg1, arg2, ..., à perlfile.</P>
+
+    <P>result = perl(...) retourne le resultat du script Perl.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>unix</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

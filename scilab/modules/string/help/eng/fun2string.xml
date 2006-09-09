@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fun2string</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="fun2string"> generates ascii definition of a scilab function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>txt=fun2string(fun,name)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a function type variable</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the generated function name</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a column vector of strings, the text giving the scilab instructions</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Given a loaded Scilab function pseudo-code fun2string allows to
+    re-generate the code. The generated
+    code is indented and beautified.</P>
+    <P>
+    The mechanism is similar, but simpler than the mfile2sci one. It may
+    be adapted for syntax translations.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+txt=fun2string(asinh,'foo');
+write(%io(2),txt,'(a)')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>edit</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>macrovar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

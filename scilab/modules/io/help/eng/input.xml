@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>input</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="input"> prompt for user input</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[x]=input(message,[&quot;string&quot;])     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>message</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>&quot;string&quot;  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: the character string <VERB>&quot;string&quot;</VERB> (may be abbreviated to <VERB>&quot;s&quot;</VERB>)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: real number (or character string if <VERB>&quot;string&quot;</VERB> is in the calling sequence)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    <VERB>input(message)</VERB> gives the user the prompt in the text string and 
+    then waits for input from the keyboard. 
+    The input can be expression which is evaluated by <LINK>evstr</LINK>.
+    If nothing but a carriage return is
+    entered at the prompt <VERB>input(message)</VERB> returns an empty matrix
+    </P>
+    <P>
+    Invoked with two arguments, the output is a character string which is the
+    expression entered at keyboard.  If nothing but a carriage return is
+    entered at the prompt <VERB>input(message)</VERB> returns an empty string
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//x=input("How many iterations?")
+//x=input("What is your name?","string")
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>x_dialog</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>x_mdialog</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

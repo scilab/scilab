@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>insertion</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="insertion">  partial variable assignation
+  or   modification</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="assignation"> partial variable assignation</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>x(i,j)=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i)=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(i)=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i)=a or l(list(k1,...,kn,i))=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)=a   or l(list(k1,...,kn,list(i,j))=a</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix  of any  kind (constant, sparse, polynomial,...)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>i,j</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: indices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>k1,...kn</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: indices  with integer value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: new entry value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="MATRIX CASE">
+        <SP>if <VERB>x</VERB> is a matrix the indices <VERB>i</VERB> and <VERB>j</VERB>, may be:</SP>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM label="Real scalars or vectors or matrices">
+            <SP>In this case the values given as indices should be positive and
+       it is only their integer part which taken into account.</SP>
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P>if <VERB>a</VERB> is a matrix with
+            dimensions
+            <VERB>(size(i,'*'),size(j,'*'))</VERB>,
+            <VERB>x(i,j)=a</VERB> returns a new <VERB>x</VERB> matrix
+            such as <VERB>x(int(i(l)),int(j(k)))=a(l,k) </VERB> for
+            <VERB>l</VERB> from 1 to
+            <VERB>size(i,'*')</VERB> and <VERB>k</VERB> from
+            1 to <VERB>size(j,'*')</VERB>, other initial
+            entries of <VERB>x</VERB> are unchanged. </P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P> if <VERB>a</VERB> is a scalar
+           <VERB>x(i,j)=a</VERB> returns a new <VERB>x</VERB> matrix
+           such as <VERB>x(int(i(l)),int(j(k)))=a</VERB> for
+           <VERB>l</VERB> from 1 to <VERB>size(i,'*')</VERB>
+           and <VERB>k</VERB> from 1 to
+           <VERB>size(j,'*')</VERB>, other initial entries
+           of <VERB>x</VERB> are unchanged. </P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P> If <VERB>i</VERB> or <VERB>j</VERB>
+           maximum value exceed corresponding <VERB>x</VERB> matrix
+           dimension, array <VERB>x</VERB> is previously extended to the
+           required dimensions with zeros entries for standard
+           matrices, 0 length character string for string matrices and
+           false values for boolean matrices.
+         </P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(i,j)=[]</VERB> kills rows
+           specified by <VERB>i</VERB> if <VERB>j</VERB> matches all
+           columns of <VERB>x</VERB> or kills columns specified by
+           <VERB>j</VERB> if <VERB>i</VERB> matches all rows of
+           <VERB>x</VERB>. In other cases <VERB>x(i,j)=[]</VERB>
+           produce an error. </P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(i)=a</VERB> with <VERB>a</VERB> a
+           vector returns a new <VERB>x</VERB> matrix such as
+           <VERB>x(int(i(l)))=a(l)</VERB> for <VERB>l</VERB> from 1 to
+           <VERB>size(i,'*')</VERB> , other initial entries
+           of <VERB>x</VERB> are unchanged. </P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(i)=a</VERB> with <VERB>a</VERB> a
+           scalar returns a new <VERB>x</VERB> matrix such as
+           <VERB>x(int(i(l)))=a</VERB> for <VERB>l</VERB> from 1 to
+           <VERB>size(i,'*')</VERB> , other initial entries
+           of <VERB>x</VERB> are unchanged. </P>
+                <P>
+          If <VERB>i</VERB> maximum value exceed
+          <VERB>size(x,1)</VERB>, <VERB>x</VERB> is previously
+          extended to the required dimension with zeros entries for
+          standard matrices, 0 length character string for string
+          matrices and false values for boolean matrices.
+          </P>
+                <DESCRIPTION_INDENT>
+                  <DESCRIPTION_ITEM label="if">
+                    <SP><VERB>x</VERB> is a 1x1</SP>
+                    <P>
+              matrix <VERB>a</VERB> may be a row (respectively a
+              column) vector with dimension
+              <VERB>size(i,'*')</VERB>. Resulting
+              <VERB>x</VERB> matrix is a row (respectively a column)
+              vector
+            </P>
+                  </DESCRIPTION_ITEM>
+                  <DESCRIPTION_ITEM label="if">
+                    <SP><VERB>x</VERB> is a row</SP>
+                    <P>
+               vector <VERB>a</VERB> must be a row vector with
+               dimension <VERB>size(i,'*')</VERB>
+            </P>
+                  </DESCRIPTION_ITEM>
+                  <DESCRIPTION_ITEM label="if">
+                    <SP><VERB>x</VERB> is a column</SP>
+                    <P>
+               vector <VERB>a</VERB> must be a column vector with
+               dimension <VERB>size(i,'*')</VERB>
+            </P>
+                  </DESCRIPTION_ITEM>
+                  <DESCRIPTION_ITEM label="if">
+                    <SP><VERB>x</VERB> is a general</SP>
+                    <P>
+               matrix <VERB>a</VERB> must be a row or column vector
+               with dimension <VERB>size(i,'*')</VERB> and
+               <VERB>i</VERB> maximum value cannot exceed
+               <VERB>size(x,'*')</VERB>,
+            </P>
+                  </DESCRIPTION_ITEM>
+                </DESCRIPTION_INDENT>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(i)=[]</VERB> kills entries
+            specified by <VERB>i</VERB>.
+         </P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="The : symbol">
+            <SP>the <VERB>:</VERB> symbol stands for &quot;all elements&quot;.</SP>
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(i,:)=a</VERB> is interpreted as
+             <VERB>x(i,1:size(x,2))=a</VERB></P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(:,j)=a</VERB> is interpreted as
+            <VERB>x(1:size(x,1),j)=a</VERB></P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P><VERB>x(:)=a</VERB> returns in
+            <VERB>x</VERB> the <VERB>a</VERB> matrix reshaped
+            according to x
+            dimensions. <VERB>size(x,'*')</VERB> must be
+            equal to <VERB>size(a,'*')</VERB></P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="Vectors of boolean">
+            <SP>If an index (<VERB>i</VERB> or <VERB>j</VERB> )is a vector
+          of booleans it is interpreted as <VERB>find(i)</VERB> or
+          respectively <VERB>find(j)</VERB></SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="Polynomials">
+            <SP>If an index (<VERB>i</VERB> or <VERB>j</VERB> )is a vector of
+         polynomials or implicit polynomial vector it is interpreted
+         as <VERB>horner(i,m)</VERB> or respectively
+         <VERB>horner(j,n)</VERB> where <VERB>m</VERB> and
+         <VERB>n</VERB> are associated <VERB>x</VERB> dimensions.
+         Even if this feature works for all polynomials, it is
+         recommended to use polynomials in <VERB>$</VERB> for
+         readability.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="LIST OR TLIST CASE">
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM>
+            <P>If they are present
+        the <VERB>ki</VERB> give the path to a sub-list entry of
+        <VERB>l</VERB> data structure. They allow a recursive insertion
+        without intermediate copies.  The <VERB>l(k1)...(kn)(i)=a</VERB>
+        and <VERB>l(list(k1,...,kn,i)=a)</VERB> instructions are
+        interpreted as:</P>
+            <P>
+              <VERB>lk1 = l(k1)</VERB>
+              <VERB> ..  = ..  </VERB>
+            </P>
+            <P>
+              <VERB>lkn = lkn-1(kn)</VERB>
+              <VERB> lkn(i) = a</VERB>
+            </P>
+            <P>
+              <VERB>lkn-1(kn) = lkn</VERB>
+              <VERB> ..  = ..  </VERB>
+              <VERB>l(k1) = lk1</VERB>
+            </P>
+            <P>
+        And the <VERB>l(k1)...(kn)(i,j)=a</VERB> and  <VERB>l(list(k1,...,kn,list(i,j))=a</VERB> 
+        instructions are interpreted as:</P>
+            <P>
+              <VERB>lk1 = l(k1)</VERB>
+              <VERB> ..  = ..  </VERB>
+            </P>
+            <P>
+              <VERB>lkn = lkn-1(kn)</VERB>
+              <VERB>lkn(i,j) = a</VERB>
+            </P>
+            <P>
+              <VERB>lkn-1(kn) = lkn</VERB>
+              <VERB> ..  = ..  </VERB>
+              <VERB>l(k1)= lk1</VERB>
+            </P>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <P><VERB>i</VERB> may be :</P>
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P> a real non negative scalar.
+           <VERB>l(0)=a</VERB> adds an entry on the &quot;left&quot;
+           of the list <VERB>l(i)=a</VERB> sets the <VERB>i</VERB>
+           entry of the list <VERB>l</VERB> to <VERB>a</VERB>. if
+           <VERB>i&gt;size(l)</VERB>, <VERB>l</VERB> is previously
+           extended with zero length entries (undefined).
+           <VERB>l(i)=null()</VERB> suppress the <VERB>i</VERB>th list
+           entry.</P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P> a polynomial.  If <VERB>i</VERB> is a
+            polynomial it is interpreted as <VERB>horner(i,m)</VERB>
+            where <VERB>m=size(l)</VERB>.  Even if this feature works
+            for all polynomials, it is recommended to use polynomials
+            in <VERB>$</VERB> for readability.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <P><VERB>k1,..kn</VERB> may be :</P>
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P> 
+            real positive scalar.</P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P> a polynomial,interpreted as
+            <VERB>horner(ki,m)</VERB> where <VERB>m</VERB> is the
+            corresponding sub-list size.</P>
+              </DESCRIPTION_ITEM>
+              <DESCRIPTION_ITEM>
+                <P> a character string associated with a
+            sub-list entry name.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SECTION label="Remarks">
+    <P>
+    For soft coded matrix types such as rational functions and state space linear systems, <VERB>x(i)</VERB> syntax may not be used for vector entry insertion due to confusion with list entry insertion. <VERB>x(1,j)</VERB> or <VERB>x(i,1)</VERB> syntax must be used.</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+// MATRIX CASE
+a=[1 2 3;4 5 6]
+a(1,2)=10
+a([1 1],2)=[-1;-2]
+a(:,1)=[8;5]
+a(1,3:-1:1)=[77 44 99]
+a(1)=%s
+a(6)=%s+1
+a(:)=1:6
+a([%t %f],1)=33
+a(1:2,$-1)=[2;4]
+a($:-1:1,1)=[8;7]
+a($)=123
+//
+x='test'
+x([4 5])=['4','5']
+//
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)=0
+b(1,$)=b(1,$)+1
+b(2)=[1 2] // the numerator
+// LIST OR TLIST CASE
+l=list(1,'qwerw',%s)
+l(1)='Changed'
+l(0)='Added'
+l(6)=['one more';'added']
+//
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a=33
+dts(2)('b')(1,2)=-100
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>find</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>parents</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>extraction</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

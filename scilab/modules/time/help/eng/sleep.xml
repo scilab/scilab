@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>sleep</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>Feb 2005</DATE>
+
+  <SHORT_DESCRIPTION name="sleep">suspend Scilab</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>sleep(milliseconds)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>sleep</VERB> : Sleep process for specified number of miliseconds
+    specified by the argument. The actual suspension time may be longer
+    because of other activities in the system, or because of the time spent in
+    processing the call.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+    tic;sleep(6000);toc
+    ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>xpause</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Allan CORNET</AUTHOR>
+</MAN>

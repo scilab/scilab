@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>less</TITLE>
+  <TYPE>Scilab symbol</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="less"> (&lt;) lower than comparison</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="great"> (&lt;) greater than comparison</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    logical comparison symbol
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="&lt;&gt;">
+        <SP>means &quot;different&quot; (same as <VERB>~=</VERB>)</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&lt;">
+        <SP>means &quot;lower than&quot;</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&gt;">
+        <SP>means &quot;larger than&quot;</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&lt;=">
+        <SP>means lower than or equal to.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&gt;=">
+        <SP>means larger than or equal to</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>if</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comparison</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>equal</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>parents</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="parents">  ( ) left and right parenthesis</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>(expression)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[...]=func(e1,e2,...)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[x1,x2,...]=(e1,e2,...)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i,j)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>v(i)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[...]=l(i)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of any  possible type</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>v</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: row or column vector of any  possible type</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>l</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list variable</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>func</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: any function name</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>e1,e2,...  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: any possible type expression</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Left and right parenthesis are used to</P>
+    <P>
+     *
+    Specify evaluation order within expressions,</P>
+    <P>
+     *
+    Form right-hand-side functions argument list. Within multiple rhs
+    arguments must be separated by comma.</P>
+    <P>
+     *
+    Select elements within vectors, matrices and lists.
+    see help on extraction and insertion for more precisions</P>
+    <P>
+     *
+    [x1,x2,...]=(e1,e2,...) is equivalent to first performing %t_1 = e1,
+    %t_2 = e2, ..., and then x1 = %t_1, x2 = %t_2, ..., where the
+    variables %t_i, i = 1, 2, ... are invisible to the user.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+3^(-1)
+x=poly(0,"x");
+//
+(x+10)/2
+i3=eye(3,3)
+//
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+a(1,$)=33
+a(2,[$ $-1])
+a(:,$+1)=[10;11;12]
+//
+w=ssrand(2,2,2);ssprint(w)
+ssprint(w(:,1))
+ss2tf(w(:,1)) 
+//
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+l($+1)='new'
+//
+v=%t([1 1 1 1 1])
+//
+[x,y,z]=(1,2,3)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>colon</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comma</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>brackets</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>list</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>extraction</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>insertion</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

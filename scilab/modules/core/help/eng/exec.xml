@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>exec</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="exec"> script file execution</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>exec(path [,mode])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>exec(fun [,mode])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ierr=exec(path,'errcatch' [,mode])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ierr=exec(fun,'errcatch' [,mode])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string, the path of the script file</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>mode</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an integer scalar, the execution mode (see below)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a scilab function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ierr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, 0 or error number</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>exec(path [,mode])</VERB> executes sequentialy the scilab instructions
+    contained in the file given by <VERB>path</VERB>  with an optional 
+    execution mode <VERB>mode</VERB> .</P>
+    <P>
+    The different cases for <VERB>mode</VERB> are :</P>
+    <P>
+     0 
+    : the default value</P>
+    <P>
+     -1 
+    : nothing is printed</P>
+    <P>
+     1 
+    : echo of each command line</P>
+    <P>
+     2 
+    : prompt <VERB>--&gt;</VERB> is printed</P>
+    <P>
+     3 
+    : echoes + prompts</P>
+    <P>
+     4 
+    : stops before each prompt. Execution resumes after a carriage return.</P>
+    <P>
+     7 
+    : stops + prompts + echoes : useful mode for demos.</P>
+    <P><VERB>exec(fun [,mode])</VERB> executes function  <VERB>fun</VERB> as a script: no
+    input nor output argument nor specific variable environment. This form
+    is more efficient, because script code may be pre-compiled (see getf,
+    comp). This method for script evaluation allows to store scripts as
+    function in libraries.</P>
+    <P>
+    If an error is encountered while executing, if 'errcatch' flag is
+    present <VERB>exec</VERB> issues no error message, aborts execution of the
+    instructions and resumes with <VERB>ierr</VERB> equal to the error
+    number. If 'errcatch' flag is not present, standard error handling
+    works.</P>
+  </DESCRIPTION>
+  <SECTION label="Remark">
+    <P><VERB>exec</VERB> files may now be used to define functions using the inline function definition syntax (see function).</P>
+  </SECTION>
+  <EXAMPLE>
+<![CDATA[
+// create a script file
+mputl('a=1;b=2',TMPDIR+'/myscript')
+// execute it
+exec(TMPDIR+'/myscript')
+whos -name "a "
+
+// create a function
+deff('y=foo(x)','a=x+1;y=a^2')
+clear a b
+// call the function
+foo(1)
+// a is a variable created in the environment of the function foo
+//    it is destroyed when foo returns
+whos -name "a "
+
+
+x=1 //create x to make it known by the script foo
+exec(foo)
+// a and y are created in the current environment
+whos -name "a "
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>getf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>evstr</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>comp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mode</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>chdir</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getcwd</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>evstr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="evstr"> evaluation of expressions</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>H=evstr(Z)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[H,ierr]=evstr(Z)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix of character strings <VERB>M</VERB> or <VERB>list(M,Subexp)</VERB></SP>
+          <PARAM_INDENT>
+            <PARAM_ITEM>
+              <PARAM_NAME>M</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: matrix of character strings</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+            <PARAM_ITEM>
+              <PARAM_NAME>Subexp</PARAM_NAME>
+              <PARAM_DESCRIPTION>
+                <SP>: vector of character strings</SP>
+              </PARAM_DESCRIPTION>
+            </PARAM_ITEM>
+          </PARAM_INDENT>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>H</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>ierr</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer, error indicator</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    Returns the result of the evaluation of the matrix of character
+    strings <VERB>M</VERB>.  Each element of the matrix must define a valid
+    Scilab expression.</P>
+    <P>
+    If the evaluation of <VERB>M</VERB> expression leads to an error, the single
+    return value version, <VERB>H=evstr(M)</VERB>, raises the error as usual.
+    The two return values version, <VERB>[H,ierr]=evstr(M)</VERB>, on the other
+    hand, produces no error, but returns the error number in <VERB>ierr</VERB>.</P>
+    <P>
+    If <VERB>Z</VERB> is a list, <VERB>Subexp</VERB> is a vector of character strings,
+    that defines sub_expressions which are evaluated before evaluating
+    <VERB>M</VERB>.  These sub_expressions must be referred to as <VERB>%(k)</VERB> in
+    <VERB>M</VERB>, where <VERB>k</VERB> is the sub-expression's index in <VERB>Subexp</VERB>.</P>
+    <P>
+    evstr('a=1') is not valid (use <VERB>execstr</VERB> instead).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=1; b=2; Z=['a','b'] ; evstr(Z) 
+
+a=1; b=2; Z=list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>execstr</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

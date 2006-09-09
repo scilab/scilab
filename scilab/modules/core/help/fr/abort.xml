@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>abort  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="abort"> interruption d&apos;une évaluation  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    <VERB>abort</VERB> interrompt l&apos;évaluation courante et affiche l&apos;invite de commande. Dans un niveau de <VERB>pause</VERB>, la commande <VERB>abort</VERB> renvoie à l&apos;invite de commande de niveau 0.
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>quit</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>break</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

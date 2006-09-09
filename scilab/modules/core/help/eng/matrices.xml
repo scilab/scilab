@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>matrices</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="matrices"> Scilab object, matrices in Scilab</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Matrices are basic objects defined in Scilab.
+    They can be defined as follows:</P>
+    <VERBATIM>
+<![CDATA[
+E=[e11,e12,...,e1n;
+   e21,e22,...,e2n;
+        ....
+   em1,em2,...,emn];
+   ]]>
+    </VERBATIM>
+    <P>
+    Entries <VERB>eij</VERB> can be real or complex numbers, polynomials,
+    rationals, strings, booleans.</P>
+    <P>
+    Vectors are seen as matrices with one row or one column.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+E=[1,2;3,4]
+E=[%T,%F;1==1,1~=1]
+s=poly(0,'s');E=[s,s^2;1,1+s]
+E=[1/s,0;s,1/(s+1)]
+E=['A11','A12';'A21','A22']
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>boolean</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rational</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>empty</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hypermatrices</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

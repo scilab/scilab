@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>printf_conversion</TITLE>
+  <TYPE>Scilab Documentation</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="printf_conversion"> printf, sprintf, fprintf conversion specifications</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Each conversion specification in the <VERB>printf</VERB> , <VERB>sprintf</VERB> ,
+    <VERB>fprintf</VERB> <VERB>format</VERB> parameter
+    has the following syntax:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>A % (percent) sign.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>Zero or more <VERB>options</VERB>, which modify the meaning of the conversion specification. The following list contains the <VERB>option</VERB> characters and their meanings:</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>: Left align, within the field, the result of the conversion.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="+">
+        <SP>: Begin the result of a signed conversion with a sign (+ or -).</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="&quot;space&quot;">
+        <SP>: Prefix a space character to the result if the first character of a signed conversion is not a sign. If both the (space) and + options appear, the (space) option is ignored.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="#">
+        <P>
+    : Convert the value to an alternate form. For <VERB>c</VERB>,
+    <VERB>d</VERB>, <VERB>i</VERB>, <VERB>s</VERB>, and <VERB>u</VERB>
+    conversions, the <VERB>#</VERB> option has no effect. For
+    <VERB>o</VERB> conversion, <VERB>#</VERB> increases the precision
+    to force the first digit of the result to be a 0 (zero). For
+    <VERB>x</VERB> and <VERB>X</VERB> conversions, a nonzero result
+    has 0x or 0X prefixed to it. For <VERB>e, E, f, g,</VERB> and
+    <VERB>G</VERB> conversions, the result always contains a decimal
+    point, even if no digits follow it. For <VERB>g</VERB> and
+    <VERB>G</VERB> conversions, trailing zeros are not removed from
+    the result.
+   </P>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="0">
+        <P>
+    : Pad to the field width, using leading zeros (following any
+    indication of sign or base) for <VERB>d</VERB>, <VERB>i</VERB>,
+    <VERB>o</VERB>, <VERB>u</VERB>, <VERB>x</VERB>, <VERB>X</VERB>,
+    <VERB>e</VERB>, <VERB>E</VERB>, <VERB>f</VERB>, <VERB>g</VERB>,
+    and <VERB>G</VERB> conversions; no space padding is performed. If
+    the <VERB>0</VERB> and <VERB>\-</VERB> (dash) flags both appear,
+    the <VERB>0</VERB> flag is ignored. For <VERB>d</VERB>,
+    <VERB>i</VERB>, <VERB>o</VERB> <VERB>u</VERB>, <VERB>x</VERB>, and
+    <VERB>X</VERB> conversions, if a precision is specified, the
+    <VERB>0</VERB> flag is also ignored. 
+  </P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    An optional decimal digit string that specifies the minimum field
+    width.
+    If the converted value has fewer characters than the field width, the
+    field is padded on the left to the length specified by the field
+    width.
+    If the left-adjustment option is specified, the field is padded on the
+    right.
+  </P>
+    <P>
+    An optional precision.
+    The precision is a <VERB>.</VERB> (dot) followed by a decimal digit string.
+    If no precision is given, the parameter is treated as 0 (zero).
+    The precision specifies:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The minimum number of digits to appear for <VERB>d</VERB>,
+    <VERB>u</VERB>, <VERB>o</VERB>, <VERB>x</VERB>, or <VERB>X</VERB>
+    conversions</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The number of digits to appear after the decimal point for <VERB>e</VERB>, <VERB>E</VERB>, and <VERB>f</VERB> conversions</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The maximum number of significant digits for <VERB>g</VERB> and <VERB>G</VERB> conversions</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The maximum number of characters to be printed from a string in an <VERB>s</VERB> conversion</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>A character that indicates the type of conversion to be applied:</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="%">
+        <SP>: Performs no conversion.  Displays %.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="d,i">
+        <SP>:Accepts an integer <VERB>value</VERB> and converts it to signed decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as a leading character causes the field width value to be padded with leading zeros.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="u">
+        <SP>:Accepts an integer <VERB>value</VERB> and converts it to unsigned decimal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros. The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="o">
+        <SP>:Accepts an integer <VERB>value</VERB> and converts it to unsigned octal notation. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros. An octal value for field width is not implied.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="x, X">
+        <SP>:Accepts an integer <VERB>value</VERB> and converts it to unsigned hexadecimal notation. The letters ``abcdef'' are used for the <VERB>x</VERB> conversion; the letters ``ABCDEF'' are used for the <VERB>X</VERB> conversion. The precision specifies the minimum number of digits to appear. If the value being converted can be represented in fewer digits, it is expanded with leading zeros.  The default precision is 1. The result of converting a zero value with a precision of zero is a null string. Specifying a field width with a zero as the leading character causes the field width value to be padded with leading zeros.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="f">
+        <SP>: Accepts a float or double <VERB>value</VERB> and converts it to decimal notation in the format %[\-]<VERB>ddd.ddd</VERB>. The number of digits after the decimal point is equal to the precision specification.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>If no precision is specified, six digits are output.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>If the precision is zero, no decimal point appears and the system outputs a number rounded to the integer nearest to <VERB>value</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>If a decimal point is output, at least one digit is output before it.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="e, E">
+        <SP>:Accepts a real  and converts it to the exponential form %[\-]<VERB>d.ddde</VERB>+/\-<VERB>dd</VERB>. There is one digit before the decimal point, and the number of digits after the decimal point is equal to the precision specification.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>If no precision is specified, , six digits are output.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>If the precision is zero, , no decimal point appears.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="-">
+        <SP>The <VERB>E</VERB> conversion character  produces a number with E instead of e before the exponent. The exponent always contains at least two digits. If the value is zero, the exponent is zero.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="g, G">
+        <SP>: Accepts a real  and converts it in the style of the
+    <VERB>e</VERB>, <VERB>E</VERB>, or <VERB>f</VERB> conversion
+    characters, with the precision specifying the number of
+    significant digits. Trailing zeros are removed from the result. A
+    decimal point appears only if it is followed by a digit. The style
+    used depends on the value converted. Style <VERB>e</VERB>
+    (<VERB>E</VERB>, if <VERB>G</VERB> is the flag used) results only
+    if the exponent resulting from the conversion is less than -4, or
+    if it is greater or equal to the precision.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="c">
+        <SP>:Accepts and displays an integer value converted to a character.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="s">
+        <SP>:Accepts a string <VERB>value</VERB>  and displays characters from the string to the end or the number of characters indicated by the precision is reached. If no precision is specified, all characters up to the end are displayed.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+    <P>
+    A field width or precision can be indicated by an <VERB>*</VERB> (asterisk)
+    instead of a digit string.
+    In this case, an integer <VERB>value</VERB> parameter supplies the field
+    width or precision.
+    The <VERB>value</VERB> parameter converted for output is not fetched until
+    the conversion letter is reached, so the parameters specifying field
+    width or precision must appear before the value to be converted (if any).</P>
+    <P>
+    If the result of a conversion is wider than the field width, the field
+    is expanded to contain the converted result.</P>
+    <P>
+    The representation of the plus sign depends on whether the
+    <VERB>+</VERB> or (space) formatting option is specified.</P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>printf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fprintf</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>sprintf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

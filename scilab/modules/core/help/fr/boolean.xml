@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>boolean  </TITLE>
+  <TYPE>Scilab Objects  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="boolean"> Objets Scilab, variables booléennes et opérateurs &amp; | ~  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Une variable booléenne est <VERB>%T</VERB> (pour &quot;vrai&quot;=&quot;true&quot;) ou <VERB>%F</VERB> (pour &quot;faux&quot;).
+    Ces variables permettent de définir des matrices de booléens avec la syntaxe habituelle. Ces matrices booléennes peuvent être manipulées comme des matrices ordinaires pour les opérations d&apos;extraction/insertion et de concaténation. Notez que les autres opérations usuelles (<VERB>+, *, -, ^,</VERB> etc.) ne sont pas définies pour les matrices booléennes. Les seuls opérateurs valides sont les suivants :
+  </P>
+ 
+ <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM  label='~b'> 
+  <SP>
+    : est la négation logique élément par élément de la matrice booléenne <VERB>b</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='b1&amp;b2'> 
+  <SP>
+    : est la conjonction (et) logique élément par élément de <VERB>b1</VERB> et <VERB>b2</VERB> (matrices).
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='b1|b2'> 
+  <SP>
+    : est la disjonction (ou) logique élément par élément de <VERB>b1</VERB> et <VERB>b2</VERB> (matrices).
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='Les variables booléennes peuvent être utilisées comme indice pour les matrices et les vecteurs.'> 
+  <SP>
+    Par exemple <VERB>a([%T,%F,%T],:)</VERB> renvoie la sous-matrice composée des lignes <VERB>1</VERB> et <VERB>3</VERB> de <VERB>a</VERB>. Les matrices booléennes peuvent être creuses.
+</SP>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[1,2]==[1,3]
+[1,2]==1
+a=1:5; a(a>2)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>matrices</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>or</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>and</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>not</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

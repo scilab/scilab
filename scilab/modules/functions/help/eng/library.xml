@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>lib</TITLE>
+  <TYPE>Scilab data type</TYPE>
+  <DATE>Nov 2000</DATE>
+  <SHORT_DESCRIPTION name="library"> library datatype description
+  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>   </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <P>
+    A library is a data type with type number 14. It contains a path-name
+    and a set of names. It allows automatic loading of variables using the
+    following algorithm:</P>
+    <P>
+    Suppose the Scilab user references the variable named <VERB>foo</VERB>.
+    Scilab first looks if <VERB>foo</VERB> is the name of a primitive or of an
+    already defined variable. If not, it looks for <VERB>foo</VERB> sequentially
+    (the newest first) in all defined library .</P>
+    <P>
+    Suppose <VERB>foo</VERB> belongs to the set of names of the library <VERB>xlib</VERB>
+    then Scilab tries to load the file
+    &lt;xlib-path-name&gt;/foo.bin. &lt;xlib-path-name&gt;/foo.bin must have been
+    created using the <VERB>save</VERB> function</P>
+    <P>
+    Library are often used for collection of functions, but they can also
+    be used for any collection of scilab variables</P>
+    <P>
+    If a function is defined in more than one library, the default search
+    algorithm loads thode contained in the newest. It possible to force
+    the use of a specific library using dot notation:</P>
+    <P><VERB>xlib.foo</VERB> loads the variable <VERB>foo</VERB> contained in <VERB>xlib</VERB>.
+    if <VERB>foo</VERB> is a function 
+    and <VERB>xlib.foo(args)</VERB> executes the functions</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// elemlib is a predefined library
+elemlib //displays the contents of the library
+A=rand(3,3);
+cosm(A) //loads cosm and executes it
+
+whos -name cosm // now cosm is a variable
+
+elemlib.sinm //loads sinm from the library
+
+elemlib.cosm(A) //reloads cosm and executes it
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>lib</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>string</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>load</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

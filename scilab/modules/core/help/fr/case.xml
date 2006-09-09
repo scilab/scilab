@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>case  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="case"> mot-clé utilisé dans une structure select ... case  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    Mot-clé utilisé dans une structure <VERB>select ... case</VERB>, à utiliser de la façon suivante :
+  </P>
+  <VERBATIM><![CDATA[
+select expr0,
+ case expr1 then instructions1,
+ case expr2 then instructions2,
+ ...
+ case exprn then instructions,
+ [else instructions],
+end
+   ]]></VERBATIM>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>select</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>while</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>end</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

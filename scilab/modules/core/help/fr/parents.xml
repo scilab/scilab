@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>parents  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="parents ( )"> parenthèses droite et gauche  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>(expression)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[...]=func(e1,e2,...)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[x1,x2,...]=(e1,e2,...)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>x(i,j)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>v(i)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[...]=l(i)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice de tout type 
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : vecteur ligne ou colonne de tout type
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : liste
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>func  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : nom de fonction
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>e1,e2,...  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : expression de type quelconque
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Les parenthèses droite et gauche sont utilisées pour : 
+  </P>
+ 
+  <P>
+     *
+    Spécifier l&apos;ordre d&apos;évaluation dans des expressions, 
+  </P>
+  <P>
+     *
+    Former la liste des arguments d&apos;entrée d&apos;une fonction. Les arguments multiples sont séparés par des virgules. 
+  </P>
+  <P>
+     *
+    Sélectionner des éléments dans les vecteurs, matrices et listes.
+  </P>
+  <P>
+    Voir <VERB>extraction</VERB> et <VERB>insertion</VERB> pour de plus amples précisions.
+  </P>
+  <P>
+     *
+    [x1,x2,...]=(e1,e2,...) est équivalent aux commandes préalables %t_1 = e1,
+    %t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ..., où les
+    variables %t_i, i = 1, 2, ... sont &quot;invisibles&quot; pour l&apos;utilisateur.
+  </P>
+  <P>
+  </P>
+ 
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+3^(-1)
+x=poly(0,"x");
+//
+(x+10)/2
+i3=eye(3,3)
+//
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+a(1,$)=33
+a(2,[$ $-1])
+a(:,$+1)=[10;11;12]
+//
+w=ssrand(2,2,2);ssprint(w)
+ssprint(w(:,1))
+ss2tf(w(:,1)) 
+//
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+l($+1)='new'
+//
+v=%t([1 1 1 1 1])
+//
+[x,y,z]=(1,2,3)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>colon</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>comma</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>brackets</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>list</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>extraction</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>insertion</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>quote  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="quote (&apos;)"> opérateur de transposition, délimiteur de chaîne de caractères  </SHORT_DESCRIPTION>
+  <DESCRIPTION>
+  <P>
+    L&apos;apostrophe ou &quot;quote&quot; (<VERB>&apos;</VERB>) est utilisé pour noter la transposition (conjuguée) des matrices.
+  </P>
+  <P>
+    Le symbole (<VERB>.&apos;</VERB>) doit être utilisé pour une transposition non conjuguée.
+  </P>
+  <P>
+    L&apos;apostrophe (&apos;) ou le guillemet (&quot;) sont aussi utilisés pour délimiter les chaînes de caractères (une chaîne de caractères est définie entre deux apostrophes ou guillemets). Une apostrophe ou un guillemet doivent être doublés s&apos;ils font partie de la chaîne de caractères elle même.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[1+%i, 2]'
+[1+%i, 2].'
+x='Ceci est une chaîne de caractères'
+'Et Dieu dit : ''que la lumière soit'''
+ ]]></EXAMPLE>
+</MAN>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>names</TITLE>
+  <TYPE>Scilab Syntax</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="names"> scilab names syntax</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Names of variables and functions must begin with a letter or one of
+    the following special characters  '<VERB>%</VERB>', '<VERB>_</VERB>', '<VERB>#</VERB>', '<VERB>!</VERB>', '<VERB>$</VERB>', '<VERB>?</VERB>'.</P>
+    <P>
+    Next characters may be letters or digits or any special character in '<VERB>_</VERB>', '<VERB>#</VERB>', '<VERB>!</VERB>', '<VERB>$</VERB>', '<VERB>?</VERB>'</P>
+    <P>
+    Names may be as long as you want but only the first 24  characters are
+    taken into account. Upper and lower case letters are different.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//Valid names
+%eps
+A1=123
+#Color=8
+My_Special_Color_Table=rand(10,3)
+//Non valid names
+//1A , b%, .C
+ ]]>
+  </EXAMPLE>
+</MAN>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>varn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="varn"> symbolic variable of a polynomial</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[symb]=varn(p)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[pm]=varn(x,var)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial (or matrix polynomial)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>symb</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: polynomial or polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>var</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: symbolic variable (character string)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>pm</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: matrix or polynomial matrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>symb=varn(p)</VERB> returns in <VERB>symb</VERB> the symbolic variable of the polynomial <VERB>p</VERB>
+    (i.e. <VERB>varn(poly(0,'x'))</VERB> is <VERB>'x'</VERB>).</P>
+    <P><VERB>varn(x,'s')</VERB> returns a polynomial matrix with same coefficients
+    as <VERB>x</VERB> but with <VERB>'s'</VERB> as symbolic variable (change of variable name).</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+// 
+s=poly(0,'s');p=[s^2+1,s];
+varn(p)
+varn(p,'x')
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>horner</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>poly</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

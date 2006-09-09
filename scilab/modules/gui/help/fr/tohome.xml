@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>tohome</TITLE>
+  <TYPE>Fonction Scilab</TYPE>
+  <DATE>Avril 2004</DATE>
+
+  <SHORT_DESCRIPTION name="tohome">Déplace le curseur en haut à gauche de la fenêtre de commande</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>tohome()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>tohome()</VERB> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.</P>
+    <P>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</P>
+    <P>Notez que <VERB>tohome()</VERB> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>clc</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

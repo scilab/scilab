@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>semi</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="semi"> (;) instruction and row separator</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    semicolons  are used to separate rows in a matrix definition.</P>
+    <P>
+    semicolons may also be used at the end of an instruction. In this
+    case it means that the result(s) are not displayed. Conversely use
+    comma (,) to get the display</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+a=[1,2,3;4,5,6];
+a=1;b=1,c=2
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>comma</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>brackets</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

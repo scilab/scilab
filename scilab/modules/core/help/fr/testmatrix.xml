@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>testmatrix  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="testmatrix"> génération de matrices remarquables  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[y]=testmatrix(name,n)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>name  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : chaîne de caractères
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : entier
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>y  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  <SP>
+    : matrice <VERB>n</VERB> x <VERB>n</VERB>
+</SP>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Génère certaines matrices carrées particulières.
+  </P>
+ <DESCRIPTION_INDENT>
+
+  <DESCRIPTION_ITEM  label='testmatrix(&apos;magi&apos;,n)'> 
+  <SP>
+    : renvoie un carré magique de taille <VERB>n</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='testmatrix(&apos;frk&apos;,n)'> 
+  <SP>
+    : renvoie la matrice de Franck :
+</SP>
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='testmatrix(&apos;hilb&apos;,n)'> 
+  <SP>
+    : renvoie l&apos;inverse de la matrice de Hilbert de taille n x n   <VERB> (Hij= 1/(i+j-1))</VERB>.
+</SP>
+  </DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</MAN>

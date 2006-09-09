@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>elseif</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="elseif"> keyword in if-then-else</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    See <VERB>if,then,else</VERB> .</P>
+  </DESCRIPTION>
+</MAN>

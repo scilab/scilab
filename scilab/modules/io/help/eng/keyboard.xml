@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>keyboard</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="keyboard"> keyboard commands</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Let <VERB>C-</VERB> stands for the control key. The following keyboard commands are available:
+  </P>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="C-l">
+        <SP>clears the Scilab window</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-d">
+        <SP>deletes the current character</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-p">
+        <SP>calls back the preceding command</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-n">
+        <SP>go to next command line</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-a">
+        <SP>moves the cursor to the beginning of command line.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-b">
+        <SP>backspace, moves the cursor one character to the left</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-f">
+        <SP>forwards, moves the cursor one character to the right</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-k">
+        <SP>kills command line from cursor to the end.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-y">
+        <SP>yank, retrieves killed line.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="!beg">
+        <SP>looks for last command line which begins by <VERB>beg</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="C-c">
+        <SP>interrupts Scilab and pause after carriage return. (Only functions can be interrupted). Clicking on the stop button enters a <VERB>C-C</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>pause</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>read</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>input</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

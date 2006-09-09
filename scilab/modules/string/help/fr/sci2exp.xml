@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>abs  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="sci2exp"> convertit une expression ou une instruction d&apos;affectation en une chaîne  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>t=sci2exp(a [,nam] [,lmax])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>a  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : une expression Scilab de type
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    constante, 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    polynomiale 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    matrice de chaînes de caractères
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+     liste
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>-  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    matrice booléenne
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>nam  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : chaîne de caractères
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : vecteur de chaînes de caractères, contenant l&apos;instruction ou l&apos;expression
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>lmax  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : entier, longueur maximum d&apos;une ligne (90 par défaut. <VERB>lmax=0</VERB> signifie qu&apos;il n&apos;y pas de contrôle de taille, et <VERB>sci2exp</VERB> ne renvoie dans ce cas qu&apos;une seule ligne). 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>sci2exp</VERB> évalue une expression et renvoie le résultat dans une chaîne de caractères. Si <VERB>nam</VERB> est précisé, la chaîne contient une instruction d&apos;affectation de ce résultat à la variable dont le nom est donné dans <VERB>nam</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+  a=[1 2;3 4]
+  sci2exp(a,'aa')
+  sci2exp(a,'aa',0)
+  sci2exp(ssrand(2,2,2))
+  sci2exp(poly([1 0 3 4],'s'),'fi')
+ ]]></EXAMPLE>
+</MAN>

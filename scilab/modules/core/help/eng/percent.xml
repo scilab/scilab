@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>percent</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="percent"> (%) special character</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Some predefined variables names begin with <VERB>%</VERB>, such as
+    <VERB>%i</VERB> (for <VERB>sqrt(-1)</VERB>), <VERB>%inf</VERB> (for <VERB>Infinity</VERB>), <VERB>%pi</VERB> (for <VERB>3.14...</VERB>),
+    <VERB>%T</VERB> (for the boolean constant <VERB>&quot;true&quot;</VERB>),...</P>
+    <P>
+    In addition, functions whose names begin with <VERB>%</VERB> are special : 
+    they are used for primitives and operators overloading (see <VERB>overloading</VERB>).</P>
+    <P>
+    For example the function <VERB>%rmr</VERB> performs the multiplication (<VERB>m</VERB>)
+    operation <VERB>x*y</VERB> for <VERB>x</VERB> and <VERB>y</VERB> rational matrices (<VERB>r</VERB>).
+    The coding conventions are given by the readme file in 
+    directory <VERB>SCIDIR/macros/percent</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x1=tlist('x',1,2);
+x2=tlist('x',2,3);
+deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+x1*x2
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>overloading</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

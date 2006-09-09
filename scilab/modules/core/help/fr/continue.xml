@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>continue</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>August 2003</DATE>
+  <SHORT_DESCRIPTION name="continue"> keyword to pass control to the next
+  iteration of a loop</SHORT_DESCRIPTION>
+  <DESCRIPTION>
+    <P>
+    Inside a <VERB>for</VERB> or <VERB>while</VERB> loop, the command
+    <VERB>continue</VERB> passes control to the next iteration of the loop
+    in which it appears, skipping any remaining statements between
+    this instruction and the loop's <VERB>end</VERB> instruction.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+  for k=1:10,K=k;if k>2&k<=8 then continue,disp('hello'),end,k,end
+
+  for j=1:2
+    x=[];
+    for k=1:10,if k>j+1&k<=8 then continue,end,x=[x,k];end
+    x
+  end
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>while</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>for</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>break</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>return</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  <AUTHOR> Serge Steer, INRIA</AUTHOR>
+</MAN>

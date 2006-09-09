@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>showprofile</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>july 2000</DATE>
+  <SHORT_DESCRIPTION name="showprofile"> extracts and displays execution profiles of a Scilab function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>showprofile(fun)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>fun</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a Scilab function</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    To use <VERB>showprofile</VERB> the Scilab function must have been prepared for
+    profiling (see getf).</P>
+    <P>
+    For such function, When such a function is executed the systems counts
+    how many time each line is executed and how may cpu time is spend for
+    each line execution. These data are stored within the function data
+    structure.  The <VERB>showprofile</VERB> function outputs profiling results
+    (see <VERB>profile</VERB>) with text of the function lines.</P>
+    <P>
+    Function text is rebuild with <VERB>fun2string</VERB>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//define function and prepare it for profiling
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+//call the function
+foo(30)
+//get execution profiles
+showprofile(foo)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>profile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>plotprofile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fun2string</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
