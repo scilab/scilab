@@ -47,7 +47,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blatexprs", "imp\Blatexprs\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blpr", "imp\Blpr\Blpr.vcproj", "{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "macros\BuildMacros.vcproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildMacros", "modules\functions\scripts\buildmacros\BuildMacros.vcproj", "{66F2FB48-5D68-4445-A856-119F685A371B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77} = {9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}
 	EndProjectSection
