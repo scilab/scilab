@@ -9,10 +9,14 @@ load('SCI/modules/helptools/macros/lib');
 //add help chapter
 global LANGUAGE
 
+// load temporary functions
 load('SCI/modules/fileio/macros/get_absolute_file_path.bin');
-path = get_absolute_file_path('helptools.start');
-clearfun get_absolute_file_path
+load('SCI/modules/fileio/macros/pathconvert.bin');
+load('SCI/modules/fileio/macros/isdir.bin');
+load('SCI/modules/string/macros/stripblanks.bin');
 
+
+path = get_absolute_file_path('helptools.start');
 path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then
@@ -22,6 +26,13 @@ elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
 	add_help_chapter("Online help management",path);
 end
+
+// clear temporary functions
+clearfun get_absolute_file_path
+clearfun pathconvert
+clearfun isdir
+clearfun stripblanks
+
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

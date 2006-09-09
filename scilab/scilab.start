@@ -57,12 +57,29 @@ TMPDIR=getenv('TMPDIR')
 MSDOS = (getos() == "Windows")
 PWD = getcwd()
 
-// loads modules ======================================================
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
+global LANGUAGE
+LANGUAGE="eng"
+args=sciargs(); larg=find(args=="-l")
+if larg<>[] & larg<=size(args,"*") then
+  L=args(larg+1)
+  if L=="eng" | L=="fr" then
+    LANGUAGE=L
+  else
+    write(%io(2),[" "
+		  "Unsupported language """+L+"""."+..
+		  "Choosing default language """+LANGUAGE+"""."])
+  end
+end
+clear  larg L
 
+// loads modules ======================================================
 exec("SCI/modules/helptools/etc/helptools.start",-1);
 exec("SCI/modules/fileio/etc/fileio.start",-1);
-exec("SCI/modules/functions/etc/functions.start",-1);
 exec("SCI/modules/core/etc/core.start",-1);
+exec("SCI/modules/functions/etc/functions.start",-1);
+
 exec("SCI/modules/io/etc/io.start",-1);
 exec("SCI/modules/arnoldi/etc/arnoldi.start",-1);
 exec("SCI/modules/boolean/etc/boolean.start",-1);
@@ -93,7 +110,7 @@ exec("SCI/modules/string/etc/string.start",-1);
 exec("SCI/modules/symbolic/etc/symbolic.start",-1);
 exec("SCI/modules/time/etc/time.start",-1);
 exec("SCI/modules/wintools/etc/wintools.start",-1);
-exec("SCI/modules/Javasci/etc/Javasci.start",-1);
+exec("SCI/modules/Javasci/etc/javasci.start",-1);
 exec("SCI/modules/m2sci/etc/m2sci.start",-1);
 exec("SCI/modules/maple2scilab/etc/maple2scilab.start",-1);
 
@@ -123,23 +140,6 @@ else
   end
 end
 setenv("VERSION",getversion())
-// Set LANGUAGE  ======================================================
-// used mainly for on-line help
-global LANGUAGE
-LANGUAGE="eng"
-args=sciargs(); larg=find(args=="-l")
-if larg<>[] & larg<=size(args,"*") then
-  L=args(larg+1)
-  if L=="eng" | L=="fr" then
-    LANGUAGE=L
-  else
-    write(%io(2),[" "
-		  "Unsupported language """+L+"""."+..
-		  "Choosing default language """+LANGUAGE+"""."])
-  end
-end
-clear  larg L
-
  
  // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
