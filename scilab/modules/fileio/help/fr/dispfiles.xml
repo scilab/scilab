@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>dispfiles</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>may 2000</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="dispfiles"> display opened files properties</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>dispfiles([units])  </CALLING_SEQUENCE_ITEM>

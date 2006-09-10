@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>realtime</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>April 1993</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="realtimeinit">set  time unit</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="realtime">set  dates origin or waits until date</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>

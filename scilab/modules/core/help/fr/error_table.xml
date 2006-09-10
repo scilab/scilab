@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>error_table</TITLE>
   <TYPE>table</TYPE>
-  <DATE>june 2005</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="error_table">table of error messages</SHORT_DESCRIPTION>
    <DESCRIPTION>
 <P>This page gives the table of the predefined error messages, and their

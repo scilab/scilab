@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>sscanf</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>May 1994</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="sscanf"> Converts formatted input given by a string</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> [v_1,...v_n]=sscanf (string,format)  </CALLING_SEQUENCE_ITEM>

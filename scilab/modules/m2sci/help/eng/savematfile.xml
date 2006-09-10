@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>savematfile</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="savematfile">write a Matlab MAT-file (binary or ASCII)</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>savematfile('filename')</CALLING_SEQUENCE_ITEM>

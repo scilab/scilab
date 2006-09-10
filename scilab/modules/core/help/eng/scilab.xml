@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!--*- mode: xml -*-->
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scilab  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>May 199</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="scilab"> Major unix script to execute Scilab and miscellaneous tools  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>scilab &lt;Options&gt; </CALLING_SEQUENCE_ITEM>

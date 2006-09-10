@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>left  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="left ([)"> crochet gauche  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[a11,a12,...;a21,a22,...;...]  </CALLING_SEQUENCE_ITEM>

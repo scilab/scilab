@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>insertion</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>September 1996</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="insertion">  partial variable assignation
   or   modification</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="assignation"> partial variable assignation</SHORT_DESCRIPTION>

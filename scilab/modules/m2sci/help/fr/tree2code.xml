@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>tree2code</TITLE>
   <TYPE>Fonction Scilab</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="tree2code"> genère le code ASCII d'une fonction Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>txt=tree2code(tree,prettyprint)  </CALLING_SEQUENCE_ITEM>

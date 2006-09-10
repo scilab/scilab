@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>findR</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>April 1999</DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="findR"> Preprocessor for estimating the matrices of a linear time-invariant dynamical system</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[R,N [,SVAL,RCND]] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  </CALLING_SEQUENCE_ITEM>

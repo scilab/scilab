@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>clc</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>April 2004</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="clc">Clear Command Window</SHORT_DESCRIPTION>
 

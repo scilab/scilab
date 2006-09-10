@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>whereami  </TITLE>
   <TYPE>Scilab Function  </TYPE>
-  <DATE>May 1994  </DATE>
+  <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="whereami"> donne l&apos;arborescence d&apos;appel de l&apos;instruction courante  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>whereami()  </CALLING_SEQUENCE_ITEM>
