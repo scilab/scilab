@@ -246,6 +246,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getmodules.c"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\getval.c"
 				>
 			</File>
@@ -443,6 +455,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_getmemory.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_getmodules.c"
 				>
 			</File>
 			<File
@@ -683,6 +699,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\getmodules.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_core.h"
 				>
 			</File>
@@ -716,6 +736,10 @@
 			</File>
 			<File
 				RelativePath=".\md5.h"
+				>
+			</File>
+			<File
+				RelativePath=".\modules.h"
 				>
 			</File>
 			<File

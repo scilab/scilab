@@ -72,6 +72,7 @@ extern int C2F(sci_getmemory) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 static CoreTable Tab[]=
 {
@@ -137,7 +138,8 @@ static CoreTable Tab[]=
 {C2F(sci_fromc),"fromc"},
 {C2F(sci_getmd5),"getmd5"},
 {C2F(sci_warning),"warning"},
-{C2F(sci_getcwd),"getcwd"}
+{C2F(sci_getcwd),"getcwd"},
+{C2F(sci_getmodules),"getmodules"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_core)()
