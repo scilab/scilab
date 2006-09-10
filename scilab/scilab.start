@@ -69,6 +69,9 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear  larg L
 
+
+
+
 // loads modules ======================================================
 exec("SCI/modules/helptools/etc/helptools.start",-1);
 exec("SCI/modules/fileio/etc/fileio.start",-1);
@@ -120,6 +123,8 @@ exec("SCI/modules/texmacs/etc/texmacs.start",-1);
 exec("SCI/modules/tfds/etc/tfds.start",-1);
 exec("SCI/modules/metanet/etc/metanet.start",-1);
 exec("SCI/modules/others/etc/others.start",-1);
+
+clear stripblanks
 
 // Create some configuration variables ================================
 [home,SCIHOME]=sethomedirectory();

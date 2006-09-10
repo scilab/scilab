@@ -28,10 +28,9 @@ elseif LANGUAGE == 'eng' then
 end
 
 // clear temporary functions
-clearfun get_absolute_file_path
-clearfun pathconvert
-clearfun isdir
-clearfun stripblanks
+clear get_absolute_file_path
+clear pathconvert
+clear isdir
 
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
