@@ -4,7 +4,6 @@
 // ------------------------------------
 
 lines(0);
-MSDOS=(getos()=='Windows');
 
 CurrentDirectory=pwd();
 

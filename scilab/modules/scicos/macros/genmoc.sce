@@ -13,11 +13,6 @@ if ~isdef('genmoc_verbose') then
   genmoc_verbose=%f
 end
 
-SCI=getenv('SCI')  
-MSDOS = getenv('WIN32','NO')=='OK' & ..
-	or(COMPILER==['VC++' 'gcc'])
-
-TMPDIR=getenv('TMPDIR');
 
 if ~with_modelica_compiler() then quit,end
 models=stripblanks(mgetl('models'))

@@ -50,11 +50,6 @@ clear verbose
 
 
 // Create some configuration variables ================================
-// path of scilab main directory
-SCI=getenv('SCI');
-TMPDIR=getenv('TMPDIR')
-// use MSDOS syntax?
-MSDOS = (getos() == "Windows")
 PWD = getcwd()
 
 // Set LANGUAGE  ======================================================
@@ -130,7 +125,6 @@ exec("SCI/modules/others/etc/others.start",-1);
 [home,SCIHOME]=sethomedirectory();
 clear sethomedirectory ExistScilabHomeDirectory CreateScilabHomeDirectory
 if MSDOS then
-  SCI=strsubst(getshortpathname(SCI),'\','/');
   // path of scilab main directory for Windows
   WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
   clear pathconvert

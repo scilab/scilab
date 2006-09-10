@@ -237,8 +237,8 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     14 is the number of predefined variables 
-      bot=isiz-14
+c     18 is the number of predefined variables 
+      bot=isiz-18
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -246,7 +246,9 @@ c     mxn bmat -> size : sadr(2+m*n+2)
 c     $        -> size : sadr(10-1) + 2 
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
-      call getcomp(buf,nbuf)
+
+c     . SCI
+      call getsci(buf,nbuf)
       lpvar = (sadr(10-1) + 2) 
      $     + 5*sadr(5) 
      $     + 4*(sadr(3)+1)
@@ -255,19 +257,40 @@ c     string   -> size : sadr(6+nchar)+1
       l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
+      vname = ' '
+      vname(1:3) = "SCI"
+      call cvname(idloc,vname,0)
+      call cresmatvar(idloc,k,buf,nbuf)
+      k=k+1
 c     . COMPILER
+      call getcomp(buf,nbuf)
       vname = ' '
       vname(1:8) = "COMPILER"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
+c     . TMPDIR
+      call gettmpdir(buf,nbuf)
+      vname = ' '
+      vname(1:6) = "TMPDIR"
+      call cvname(idloc,vname,0)
+      call cresmatvar(idloc,k,buf,nbuf)
+      k=k+1
+c     . MSDOS
+	vname = ' '
+      vname(1:5) = "MSDOS"
+      call withmsdos(irep)
+      call cvname(idloc,vname,0)
+      call crebmatvar(idloc,k,1,1,irep)
+      k=k+1 
 c     . %scicos
-	    vname = ' '
+	vname = ' '
       vname(1:7) = "%scicos"
       call withscicos(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
-      k=k+1     
+      k=k+1 
+          
 c     . %gtk 
       vname = ' '
       vname(1:4) = "%gtk"

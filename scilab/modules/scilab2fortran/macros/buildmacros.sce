@@ -1,8 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
-//------------------------------------
 genlib('s2flib','SCI/modules/scilab2fortran/macros');
 //------------------------------------

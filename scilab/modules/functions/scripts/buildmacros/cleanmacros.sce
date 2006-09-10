@@ -3,7 +3,6 @@
 // INRIA 2006
 // ------------------------------------
 lines(0);
-MSDOS=(getos()=='Windows');
 
 CurrentDirectory=pwd();
 

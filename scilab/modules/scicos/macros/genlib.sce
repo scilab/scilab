@@ -10,9 +10,6 @@ load('SCI/modules/differential_equations/macros/lib')
 load('SCI/modules/polynomials/macros/lib')
 load('SCI/modules/overloading/macros/lib')
 
-SCI=getenv('SCI')  
-MSDOS = getenv('WIN32','NO')=='OK'
-
 names=stripblanks(mgetl('names'));
 args=sciargs()
 genlib(args($-1),args($),names=names,verbose=%t)

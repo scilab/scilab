@@ -1,10 +1,6 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-MSDOS=(getos()=='Windows');
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
-//------------------------------------
 genlib('scshydraulicslib','SCI/modules/scicos/macros/scicos_blocks/Hydraulics'); 
 //------------------------------------
 if MSDOS then

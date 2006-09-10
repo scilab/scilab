@@ -1,8 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
-//------------------------------------
 genlib('siglib','SCI/modules/signal_processing/macros');
 //------------------------------------

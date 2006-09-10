@@ -110,6 +110,16 @@ int C2F(withjavasci)(int *rep)
   return 0;
 }
 /*************************************************************************************************/
+int C2F(withmsdos)(int *rep)
+{
+#ifdef _MSC_VER
+	*rep =1;
+#else
+	*rep =0; 
+#endif
+	return 0;
+}
+/*************************************************************************************************/
 int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 {
   int ierr,iflag=0,l1buf=lbuf;
@@ -117,6 +127,40 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   if ( ierr== 1) strncpy(buf,"NO",lbuf);
   *nbuf = strlen(buf);
   return 0;
+}
+/*************************************************************************************************/
+int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
+{
+	int ierr,iflag=0,l1buf=lbuf;
+	C2F(getenvc)(&ierr,"SCI",buf,&l1buf,&iflag);
+	if ( ierr== 1) 
+	{
+		#if  _MSC_VER
+		MessageBox(NULL,"SCI not defined.","Warning",MB_ICONWARNING);
+		#else
+		printf("SCI not defined.\n");
+		#endif
+		exit(1);
+	}
+	*nbuf = strlen(buf);
+	return 0;
+}
+/*************************************************************************************************/
+int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
+{
+	int ierr,iflag=0,l1buf=lbuf;
+	C2F(getenvc)(&ierr,"TMPDIR",buf,&l1buf,&iflag);
+	if ( ierr== 1) 
+	{
+#if  _MSC_VER
+		MessageBox(NULL,"TMPDIR not defined.","Warning",MB_ICONWARNING);
+#else
+		printf("TMPDIR not defined.\n");
+#endif
+		exit(1);
+	}
+	*nbuf = strlen(buf);
+	return 0;
 }
 /*************************************************************************************************/
 #ifdef _MSC_VER

@@ -8,8 +8,6 @@ clear all;
 mode(-1);
 //------------------------------------
 function RemoveMinimalMacros()
-  SCI=getenv('SCI');
-  MSDOS=(getos()=='Windows')
   if MSDOS then
     CurrentDir=pwd();
     chdir(SCI+'/modules/functions/macros');
@@ -50,12 +48,9 @@ function RemoveMinimalMacros()
     unix('rm -f '+SCI+'/modules/fileio/macros/basename.bin');
     unix('rm -f '+SCI+'/modules/fileio/macros/mputl.bin');
   end
-  clear MSDOS;
-  clear SCI;
 endfunction
 //------------------------------------
 function BuildMinimalMacros()
-  MSDOS=(getos()=='Windows');
   LineToDo='';
   startline='';
   endline='';
@@ -69,8 +64,7 @@ function BuildMinimalMacros()
     endline='"">cmd.sce';
   end
   
-  SCI=getenv('SCI');
-  scilabstart="SCI=getenv(''SCI'');MSDOS=(getos()==''Windows'');TMPDIR=getenv(''TMPDIR'');"
+  scilabstart=""
   scilabquit='clear;quit;'
   
   cmd=scilabstart+'getf(SCI+''/modules/core/macros/OS_Version.sci'');save(SCI+''/modules/core/macros/OS_Version.bin'');'+scilabquit
@@ -134,14 +128,11 @@ function BuildMinimalMacros()
     unix('rm -f cmd.sce');
   end
   
-  clear MSDOS
-  
 endfunction
 //------------------------------------
 RemoveMinimalMacros();
 BuildMinimalMacros();
 clear BuildMinimalMacros;
-SCI=getenv('SCI');
 load(SCI+'/modules/fileio/macros/fileparts.bin');
 load(SCI+'/modules/core/macros/getshell.bin');
 load(SCI+'/modules/fileio/macros/pathconvert.bin');
@@ -154,7 +145,6 @@ load(SCI+'/modules/overloading/macros/%c_a_c.bin');
 load(SCI+'/modules/fileio/macros/basename.bin');
 load(SCI+'/modules/fileio/macros/mputl.bin');
 load(SCI+'/modules/functions/macros/genlib.bin');
-clear SCI;
 // Need to remove macros binary files before build by genlib
 RemoveMinimalMacros();
 clear RemoveMinimalMacros;

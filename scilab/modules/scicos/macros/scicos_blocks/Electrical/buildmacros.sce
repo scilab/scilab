@@ -1,10 +1,6 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-MSDOS=(getos()=='Windows');
-SCI=getenv('SCI'); 
-TMPDIR=getenv('TMPDIR');
-//------------------------------------
 genlib('scselectricallib','SCI/modules/scicos/macros/scicos_blocks/Electrical');
 //------------------------------------
 if MSDOS then

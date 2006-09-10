@@ -27,7 +27,6 @@ function scitest(tstfile,force,error_check,keep_prompt,postscript_graphics)
   //Reset standard globals
   rand('seed',0);rand('uniform');
   if MSDOS then
-    SCI=strsubst(SCI,'/','\')
     tmpfiles=strsubst(TMPDIR,'/','\')+'\tmp.'
   else
      tmpfiles=TMPDIR+'/tmp.'
