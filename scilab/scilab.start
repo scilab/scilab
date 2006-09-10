@@ -110,7 +110,7 @@ exec("SCI/modules/string/etc/string.start",-1);
 exec("SCI/modules/symbolic/etc/symbolic.start",-1);
 exec("SCI/modules/time/etc/time.start",-1);
 exec("SCI/modules/wintools/etc/wintools.start",-1);
-exec("SCI/modules/Javasci/etc/javasci.start",-1);
+exec("SCI/modules/javasci/etc/javasci.start",-1);
 exec("SCI/modules/m2sci/etc/m2sci.start",-1);
 exec("SCI/modules/maple2scilab/etc/maple2scilab.start",-1);
 
