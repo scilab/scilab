@@ -5,7 +5,6 @@ mode(-1);  // silent execution mode
 // clean database when restarted ======================================
 predef('clear'); //unprotect all variables 
 clear  // erase all variables 
-clear  scicos_pal // explicitly clear %helps scicos_pal variables
 clearglobal();
 
 // Set stack size   ===================================================
@@ -162,6 +161,24 @@ else
   LCC=%f
 end
 clear LCC 
+
+
+clear  scicos_pal // explicitly clear %helps scicos_pal variables
+  // De	fine Scicos data tables ===========================================
+  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+       ~isdef("scicos_pal_libs") ) then
+    [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
+     %scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
+    clear initial_scicos_tables
+  end
+  //======================================================================
+
+
+
+
+
 
 // Protect variable previously defined  ================================
 predef('all') 
