@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\FileExist.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\fileio.c"
 				>
 			</File>
@@ -247,6 +251,10 @@
 			</File>
 			<File
 				RelativePath=".\src\bytedecoders.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\FileExist.h"
 				>
 			</File>
 			<File

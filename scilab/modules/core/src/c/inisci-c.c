@@ -15,8 +15,8 @@
 
 /*************************************************************************************************/
 #ifdef _MSC_VER
+	extern BOOL FileExist(char *filename);
 	BOOL ExistScicos(void);
-	BOOL FileExist(char *filename);
 	BOOL ExistModelicac(void);
 	BOOL ExistJavaSciWin(void);
 #endif
@@ -164,22 +164,6 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 }
 /*************************************************************************************************/
 #ifdef _MSC_VER
-BOOL FileExist(char *filename)
-{
-     BOOL retour=FALSE;	
-	
-     WIN32_FIND_DATA FindFileData;
-     HANDLE handle = FindFirstFile (filename, &FindFileData);
-     if (handle != INVALID_HANDLE_VALUE)
-     {
-         FindClose (handle);
-         retour=TRUE;
-     }
-     else retour=FALSE;
-
-     return retour;
-}
-/*************************************************************************************************/
 BOOL ExistModelicac(void)
 {
 	#define ModelicacName "/modules/scicos/bin/modelicac.exe"

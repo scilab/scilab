@@ -739,10 +739,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\modules.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\msg_errors.h"
 				>
 			</File>
