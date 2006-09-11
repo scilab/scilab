@@ -7,11 +7,6 @@
  // Close multimedia files open with scilab
  if MSDOS then mcisendstring('close all'),end;
 
-	exec("SCI/modules/scipad/etc/scipad.quit",-1);
-	exec("SCI/modules/metanet/etc/metanet.quit",-1);
-	exec("SCI/modules/helptools/etc/helptools.quit",-1);
-
-
 // save history file ==================================================
 if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
   if MSDOS then
@@ -20,6 +15,16 @@ if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
     savehistory(SCIHOME+'/.history.scilab')
   end
 end 
+// ====================================================================
+// starts modules .quit
+ modules=getmodules();
+ index=size(modules);
+
+ for i=1:index(1) do 
+  exec("SCI/modules/"+modules(index(1)-i+1)+"/etc/"+modules(index(1)-i+1)+".quit",-1);
+ end  
+
+clear modules index i
 // ====================================================================
 // free all dynamics libraries
 ulink();

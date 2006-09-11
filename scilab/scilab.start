@@ -69,62 +69,15 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear  larg L
 
-
-
-
 // loads modules ======================================================
-exec("SCI/modules/helptools/etc/helptools.start",-1);
-exec("SCI/modules/fileio/etc/fileio.start",-1);
-exec("SCI/modules/core/etc/core.start",-1);
-exec("SCI/modules/functions/etc/functions.start",-1);
+modules=getmodules();
+index=size(modules);
 
-exec("SCI/modules/io/etc/io.start",-1);
-exec("SCI/modules/arnoldi/etc/arnoldi.start",-1);
-exec("SCI/modules/boolean/etc/boolean.start",-1);
-exec("SCI/modules/cacsd/etc/cacsd.start",-1);
-exec("SCI/modules/data_structures/etc/data_structures.start",-1);
-exec("SCI/modules/differential_equations/etc/differential_equations.start",-1);
-exec("SCI/modules/double/etc/double.start",-1);
-exec("SCI/modules/elementaries_functions/etc/elementaries_functions.start",-1);
+for i=1:index(1) do 
+ exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
+end  
 
-exec("SCI/modules/graphics/etc/graphics.start",-1);
-exec("SCI/modules/gui/etc/gui.start",-1);
-exec("SCI/modules/incremental_link/etc/incremental_link.start",-1);
-exec("SCI/modules/integer/etc/integer.start",-1);
-exec("SCI/modules/interpolation/etc/interpolation.start",-1);
-exec("SCI/modules/intersci/etc/intersci.start",-1);
-exec("SCI/modules/jvm/etc/jvm.start",-1);
-exec("SCI/modules/linear_algebra/etc/linear_algebra.start",-1);
-exec("SCI/modules/localization/etc/localization.start",-1);
-exec("SCI/modules/optimization/etc/optimization.start",-1);
-exec("SCI/modules/overloading/etc/overloading.start",-1);
-exec("SCI/modules/polynomials/etc/polynomials.start",-1);
-exec("SCI/modules/randlib/etc/randlib.start",-1);
-exec("SCI/modules/signal_processing/etc/signal_processing.start",-1);
-exec("SCI/modules/sparse/etc/sparse.start",-1);
-exec("SCI/modules/special_functions/etc/special_functions.start",-1);
-exec("SCI/modules/statistics/etc/statistics.start",-1);
-exec("SCI/modules/string/etc/string.start",-1);
-exec("SCI/modules/symbolic/etc/symbolic.start",-1);
-exec("SCI/modules/time/etc/time.start",-1);
-exec("SCI/modules/wintools/etc/wintools.start",-1);
-exec("SCI/modules/javasci/etc/javasci.start",-1);
-exec("SCI/modules/m2sci/etc/m2sci.start",-1);
-exec("SCI/modules/maple2scilab/etc/maple2scilab.start",-1);
-
-exec("SCI/modules/mexlib/etc/mexlib.start",-1);
-exec("SCI/modules/pvm/etc/pvm.start",-1);
-exec("SCI/modules/scicos/etc/scicos.start",-1);
-exec("SCI/modules/scilab2fortran/etc/scilab2fortran.start",-1);
-exec("SCI/modules/scipad/etc/scipad.start",-1);
-exec("SCI/modules/sound/etc/sound.start",-1);
-exec("SCI/modules/tclsci/etc/tclsci.start",-1);
-exec("SCI/modules/texmacs/etc/texmacs.start",-1);
-exec("SCI/modules/tfds/etc/tfds.start",-1);
-exec("SCI/modules/metanet/etc/metanet.start",-1);
-exec("SCI/modules/others/etc/others.start",-1);
-
-clear stripblanks
+clear stripblanks modules index i
 
 // Create some configuration variables ================================
 [home,SCIHOME]=sethomedirectory();
