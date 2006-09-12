@@ -35,7 +35,7 @@
   <EXAMPLE>
 <![CDATA[
 isdir(TMPDIR)
-isdir SCI/scilab.start
+isdir SCI/etc/scilab.start
  ]]>
   </EXAMPLE>
   <SEE_ALSO>

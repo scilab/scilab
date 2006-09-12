@@ -59,8 +59,8 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-   [path,fname,extension]=fileparts('SCI/scilab.start')
-   fileparts('SCI/scilab.start','extension')
+   [path,fname,extension]=fileparts('SCI/etc/scilab.start')
+   fileparts('SCI/etc/scilab.start','extension')
   ]]>
   </EXAMPLE>
   <SEE_ALSO>

@@ -485,7 +485,7 @@ void Callback_RESTART(void)
 	StoreCommand1("resethistory();",1);
 
 	SendCTRLandAKey(CTRLU);
-	write_scilab("exec('SCI/scilab.start',-1);\n");
+	write_scilab("exec('SCI/etc/scilab.start',-1);\n");
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_ABORT(void)
@@ -1927,7 +1927,7 @@ void ConfigureScilabStar(int LangCode)
 	if (WSCIPath)
 	{
 		strcpy(scilabstarfullpath,wscitmp);
-		strcat(scilabstarfullpath,"\\");
+		strcat(scilabstarfullpath,"\\etc\\");
 		strcat(scilabstarfullpath,SCILABSTAR);
 
 		strcpy(scilabstartmpfullpath,scilabstarfullpath);
@@ -2050,7 +2050,7 @@ int GetLanguageCodeInScilabDotStar(void)
 		ConvertPathUnixToWindowsFormat(WSCIPath,wscitmp);
 
 		strcpy(scilabstarfullpath,wscitmp);
-		strcat(scilabstarfullpath,"\\");
+		strcat(scilabstarfullpath,"\\etc\\");
 		strcat(scilabstarfullpath,SCILABSTAR);
 
 		fileR= fopen(scilabstarfullpath, "rt");

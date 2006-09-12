@@ -25,7 +25,7 @@ int GetInterfState()
 void Initialize() 
 {
   static char env[1024];
-  static char initstr[]="exec(\"SCI/scilab.start\",-1);quit;";
+  static char initstr[]="exec(\"SCI/etc/scilab.start\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
   #if _MSC_VER
@@ -81,7 +81,8 @@ void Initialize()
 		putenv (env);
    }
   #endif
-
+  /* set TMPDIR */
+  C2F(settmpdir)();
   /* Scilab Initialization */
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
@@ -89,8 +90,7 @@ void Initialize()
       fprintf(stderr,"Scilab initialization failed !\n");
       exit(1);
     }
-  /* running the startup */ 
-  C2F(settmpdir)();
+
 
   /* Initialisation fenetre graphique */
   #if _MSC_VER

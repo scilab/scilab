@@ -390,7 +390,7 @@
   </SECTION>
 
   <EXAMPLE><![CDATA[
-   scipad SCI/scilab.start 
+   scipad SCI/etc/scilab.start 
 ]]></EXAMPLE>
 
   <SEE_ALSO>

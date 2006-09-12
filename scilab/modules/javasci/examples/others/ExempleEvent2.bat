@@ -1,5 +1,5 @@
 echo off
-SET JAVA="../Java/jre1.5.0_06/bin/java.exe"
+SET JAVA="../modules/jvm/bin/jre/bin/java.exe"
 rem execution des exemples
 cd ..\..\..\..\bin
 echo ------------------------------------------------------------------------

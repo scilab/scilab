@@ -47,11 +47,11 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-mgetl('SCI/scilab.start',5)
+mgetl('SCI/etc/scilab.start',5)
 
-mgetl SCI/macros/elem/erf.sci
+mgetl SCI/modules/elementaries_functions/macros/erf.sci
 
-fd=mopen('SCI/scilab.start','r')
+fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
  ]]>

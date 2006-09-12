@@ -14,8 +14,8 @@ typedef int BOOL;
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-static char DefaultScilabStartup[]="SCI/scilab.start";
-static char DefaultScilabQuit[]="SCI/scilab.quit";
+static char DefaultScilabStartup[]="SCI/etc/scilab.start";
+static char DefaultScilabQuit[]="SCI/etc/scilab.quit";
 static char DefaultSCIenv[]="../..";
 static int DefaultStacksize=1000000;
 static int StartScilabIsOK=FALSE;
@@ -123,6 +123,9 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		StacksizeUsed=*Stacksize;
 	}
 
+	/* running the startup */ 
+	C2F(settmpdir)();
+
 	/* Scilab Initialization */ 
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
@@ -132,13 +135,11 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
       return bOK;
     }
 
-	/* running the startup */ 
-	C2F(settmpdir)();
 #if _MSC_VER
 	InitWindowGraphDll();
 #endif
 
-	lengthStringToScilab=(int)(strlen("exec(\"SCI/scilab.start\",-1);quit;")+strlen(ScilabStartupUsed));
+	lengthStringToScilab=(int)(strlen("exec(\"SCI/etc/scilab.start\",-1);quit;")+strlen(ScilabStartupUsed));
 	InitStringToScilab=(char*)MALLOC(lengthStringToScilab*sizeof(char));
 	sprintf(InitStringToScilab,"exec(\"%s\",-1);quit;",ScilabStartupUsed);
 	

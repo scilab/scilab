@@ -8,7 +8,7 @@
 
 static char *dataStrings[] = {
   "$MANCHAPTERS",
-  "exec('SCI/scilab.start',-1);",         /* start_up instructions file   */
+  "exec('SCI/etc/scilab.start',-1);",         /* start_up instructions file   */
   "exec('SCI/demos/alldems.dem');",	 /* demos instructions file      */
 #ifdef _MSC_VER
   "home/history.scilab",		 /* history file                */
@@ -16,7 +16,7 @@ static char *dataStrings[] = {
   "home/.history.scilab",		 /* history file                */
 #endif
   "home/scilab.save",			 /* on crash save file          */
-  "exec('SCI/scilab.quit',-1);quit;"	 /* exit instructions file      */
+  "exec('SCI/etc/scilab.quit',-1);quit;"	 /* exit instructions file      */
 };
 
 /******************************************

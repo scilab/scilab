@@ -1,5 +1,5 @@
  
  
--->exec('SCI/scilab.quit',-1);quit;
+-->exec('SCI/etc/scilab.quit',-1);quit;
  
  

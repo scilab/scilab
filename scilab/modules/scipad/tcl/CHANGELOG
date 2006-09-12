@@ -586,7 +586,7 @@ ES 15/11/04:
  * added support for user preference file $env(HOME)/.SciPadPreferences.tcl,
    loaded at startup by defaults.tcl and saved on exit
  * wm geometry in strict pixels (avoids cross-session shrinking due to wm decorations
- * outside of Scipad: removed %scipad_fontsize from SCI/scilab.start and 
+ * outside of Scipad: removed %scipad_fontsize from SCI/etc/scilab.start and 
    SCI/macros/util/scipad.sci: overridden by the user preferences file
  * version --> 3.13
 
