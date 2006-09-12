@@ -237,8 +237,8 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     18 is the number of predefined variables 
-      bot=isiz-18
+c     17 is the number of predefined variables 
+      bot=isiz-17
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -247,8 +247,8 @@ c     $        -> size : sadr(10-1) + 2
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
 
-c     . SCI
-      call getsci(buf,nbuf)
+c     . COMPILER
+      call getcomp(buf,nbuf)
       lpvar = (sadr(10-1) + 2) 
      $     + 5*sadr(5) 
      $     + 4*(sadr(3)+1)
@@ -258,14 +258,14 @@ c     . SCI
       k=bot
       lstk(k)=lstk(1)-1+l
       vname = ' '
-      vname(1:3) = "SCI"
+      vname(1:8) = "COMPILER"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
-c     . COMPILER
-      call getcomp(buf,nbuf)
+c     . SCI
+      call getsci(buf,nbuf)
       vname = ' '
-      vname(1:8) = "COMPILER"
+      vname(1:3) = "SCI"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
@@ -290,7 +290,6 @@ c     . %scicos
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1 
-          
 c     . %gtk 
       vname = ' '
       vname(1:4) = "%gtk"
@@ -344,10 +343,6 @@ c     .  %eps : machine precision
       call crematvar(eps,k,0,1,1,dlamch('p'),0.0d0)
       leps=sadr( iadr(lstk(k)) +4)
       k=k+1
-c     . %test 
-c      call cvname(idloc,"%test",0)
-c      call crematvar(idloc,k,0,1,1,dlamch('p'),0.0d0)
-c      k=k+1
 c     .  %io : standard input&output
       iov(1)=dble(rte)
       iov(2)=dble(wte)
