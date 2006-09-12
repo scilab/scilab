@@ -77,42 +77,35 @@ function [lambda,facpr,comprinc]=pca(x,N)
   
   
   w=winsid();if w==[] then w=0, else w=max(w)+1,end
-  xbasc(w)
-  xset("window",w)
-  xset('mark size',1)
+  fig1=scf(w)
+
   rc= (ones(colx,1)* sqrt((lambda(N,1))')) .* facpr(:,order(N)) 
+  
   rango=rank(V)
   ra=[1:rango]'
   if rango<=1 then return, end
-  xset("font",2,1)
-  xset("color",7)
-  plot2d(rc(ra,1),rc(ra,2),-10,"145",'(r(c1,xj),r(c2,xj))')
-  xset("color",2)
+  plot2d(-rc(ra,1),rc(ra,2),style=-10)
+  legend('(r(c1,xj),r(c2,xj)')
+  ax=gca();ax.x_location="middle";ax.y_location = "middle";
+  blue=color('blue')
   for k=1:rango,
     xstring(rc(k,1),rc(k,2),'X'+string(k)),
+    e=gce();e.foreground=blue;
   end
-  xset("color",1)
-  xset("font",3,6)
-  xtitle(' -Correlations Circle- ')
-  xbasc(w+1)
-  xset("window",w+1)
-  xset("font",2,1)
-  xset("color",1)
+  title(' -Correlations Circle- ')
+  fig2=scf(w+1);
   plot2d3([0;ra;rango+1]',[0; lambda(ra,2);0])
   plot2d(ra,lambda(ra,2),style=9)
-  xgrid(31)
+  ax=gca(); ax.grid=[31 31]
   plot2d3([0;ra;rango+1]',[0; lambda(ra,2);0])
   plot2d(ra,lambda(ra,2),style=9)
-  xset("font",1,1)
   for k=1:rango,
     xstring(k,0,'l'+string(k)),
+    e=gce();e.font_style=1
   end
-  xset("font",3,6)
-  xtitle(' -Eigenvalues (in percent)- ')
-  xset("font",2,3)
-  xset("color",1)
-  xtitle('','','%')
-  xset("font",2,1)
+  title(' -Eigenvalues (in percent)- ')
+  ylabel('%')
+
 endfunction
 
 
