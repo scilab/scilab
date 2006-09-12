@@ -312,7 +312,7 @@ errclear();errcatch();
  
 //whereis
  
-if whereis('sci2exp')<>'utillib' then bugmes();quit;end
+if whereis('sci2exp')<>'libm2sci' then bugmes();quit;end
  
 if whereis('aaa')<>[]  then bugmes();quit;end
  

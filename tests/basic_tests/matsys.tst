@@ -157,7 +157,7 @@ if iserror()<>1 then pause,end
 errclear();errcatch();
 
 //whereis
-if whereis('sci2exp')<>'utillib' then pause,end
+if whereis('sci2exp')<>'libm2sci' then pause,end
 if whereis('aaa')<>[]  then pause,end
 
 //where
