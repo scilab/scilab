@@ -143,7 +143,7 @@ c     -->link('ext8c.o','ext8c','C');
 c     -->y=call('ext8c','out',size(param),1,'d');
       logical cmatptr
       double precision y(*)
-      include '../routines/stack.h'
+      include 'stack.h'
 c     If variable 'param' exists gets its pointer in 
 c     internal stack else return
       if(.not.cmatptr('param'//char(0),m,n,lp)) return
@@ -249,7 +249,7 @@ c     -->y=ode([1;0;0],0,[0.4,4],'ext12f')
       logical cmatptr
       dimension y(3), ydot(3)
 c
-      include '../routines/stack.h'
+      include 'stack.h'
 c
 
 c     If variable 'param' exists gets its pointer in 
