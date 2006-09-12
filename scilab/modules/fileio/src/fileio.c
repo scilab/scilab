@@ -23,7 +23,7 @@
 #include "core_math.h"
 #include "MALLOC.h" /* MALLOC */
 #include "stack-c.h"
-#include "../../core/includes/Os_specific.h"
+#include "Os_specific.h"
 /*-----------------------------------------------------------------------------------*/
 typedef union {
   char * c;
