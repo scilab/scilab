@@ -34,7 +34,10 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>Exécute les instructions Scilab données dans l'argument <VERB>instr</VERB>. </P>
+    <P>Exécute les instructions Scilab données dans l'argument
+      <VERB>instr</VERB>. </P>
+    <P>Note : les instructions ne doivent pas comporter de marques de suite (..). </P>
+    <P> </P>
     <P>Si 'errcatch' n'est pas présent dans les arguments, les erreurs sont contrôlées comme d'habitude.</P>
     <P>Si 'errcatch' est présent dans les arguments, et qu'une erreur est
       rencontrée lors de l'évaluation d'un élément de <VERB>instr</VERB>,
