@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>execstr</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="execstr"> execute Scilab code in strings</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>execstr(instr)  </CALLING_SEQUENCE_ITEM>
@@ -33,7 +33,10 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>Executes the Scilab instructions given in argument <VERB>instr</VERB>.</P>
+    <P>Executes the Scilab instructions given in argument
+      <VERB>instr</VERB>.</P>
+    <P>Note that instr should not make use of continuation marks (..) </P>
+    <P> </P>
     <P>If the 'errcatch' flag is not present, error handling works as usual.</P>
     <P>If the 'errcatch' flag is set, and an error is encountered while
       executing the instructions defined in <VERB>instr</VERB>, <VERB>execstr</VERB>
