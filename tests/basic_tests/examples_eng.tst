@@ -4084,7 +4084,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-w=fileinfo(SCI+'/scilab.start')
+w=fileinfo(SCI+'/etc/scilab.start')
 getdate(w(6))
   
 xdel(winsid())
@@ -4094,8 +4094,8 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-   [path,fname,extension]=fileparts('SCI/scilab.start')
-   fileparts('SCI/scilab.start','extension')
+   [path,fname,extension]=fileparts('SCI/etc/scilab.start')
+   fileparts('SCI/etc/scilab.start','extension')
  
 xdel(winsid())
 
@@ -4189,7 +4189,7 @@ xdel(winsid())
 clear;lines(0);
 
 isdir(TMPDIR)
-isdir SCI/scilab.start
+isdir SCI/etc/scilab.start
 
 xdel(winsid())
 
@@ -4309,11 +4309,11 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-mgetl('SCI/scilab.start',5)
+mgetl('SCI/etc/scilab.start',5)
 
-mgetl SCI/macros/elem/erf.sci
+mgetl SCI/modules/elementaries_functions/macros/erf.sci
 
-fd=mopen('SCI/scilab.start','r')
+fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)
 
@@ -15366,7 +15366,7 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
  
-   scipad(SCI+'/scilab.start')
+   scipad(SCI+'/etc/scilab.start')
 
 
 xdel(winsid())
