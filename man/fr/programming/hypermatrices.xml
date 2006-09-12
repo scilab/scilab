@@ -8,10 +8,8 @@
   <SHORT_DESCRIPTION name="hypermatrices"> Objet Scilab, matrices à N dimensions  </SHORT_DESCRIPTION>
   <DESCRIPTION>
   <P>
-    Le type Hypermatrice permet de manipuler des tableaux multidimensionnels.
-  </P>
-  <P>
-    Ce type d&apos;objet peut être défini par extension des matrices 2D comme ceci :
+    Le type Hypermatrice permet de manipuler des tableaux multidimensionnels. 
+    Ce type d&apos;objet peut être défini par extension des matrices 2D comme ceci : 
   </P>
   <P>
     a=[1 2;3 4];a(:,:,2)=rand(2,2)
@@ -20,19 +18,30 @@
     ou directement en utilisant la fonction <VERB>hypermat</VERB>.
   </P>
   <P>
-    Les termes peuvent être réels, complexes, polynômiaux, rationnels, booléens ou de type chaîne de caractères.
+    Les termes peuvent être réels, complexes, polynômiaux, rationnels, booléens
+      ou de type chaîne de caractères. 
   </P>
   <P>
     Les Hypermatrices sont des <VERB>mlists</VERB> :
-    <VERB>mlist([&apos;hm&apos;,&apos;dims&apos;,&apos;entries&apos;],sz,v)</VERB> où <VERB>sz</VERB> est le vecteur ligne des dimensions et <VERB>v</VERB> le vecteur colonne des termes (rangés tel que l&apos;indice le plus à gauche varie en premier).
+    <VERB>mlist([&apos;hm&apos;,&apos;dims&apos;,&apos;entries&apos;],sz,v)</VERB> où <VERB>sz</VERB> est 
+      le vecteur ligne des dimensions et <VERB>v</VERB> le vecteur colonne des termes (rangés tel que 
+      l&apos;indice le plus à gauche varie en premier).
   </P>
-  <P>
-  </P>
+  <P>NOTES: le nombre de dimensions des hypermatrices dont les dimensions les plus Žà droite sont egales  
+     Žà 1 est automatiquement rŽéduit. Une hypermatrice n'ayant que 2 dimensions
+      est automatiquement transformŽée en une matrice standard (de type 1).</P>
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
+
+size(a)
+
+a(:,:,1) //dimensionnality reduction 
+type(a(:,:,1))
+
 [a a]
  ]]></EXAMPLE>
   <SEE_ALSO>
