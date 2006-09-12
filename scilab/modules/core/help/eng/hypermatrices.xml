@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>hypermatrices</TITLE>
   <TYPE>Scilab data type</TYPE>
-  <DATE>$LastChangedDate$</DATE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="hypermatrices"> Scilab object, N dimensional matrices in Scilab</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
@@ -20,14 +20,28 @@
     <P>
     Hypermatrices are <VERB>mlists</VERB>:
     <VERB>mlist(['hm','dims','entries'],sz,v)</VERB> where <VERB>sz</VERB> is the row
-    vector of dimensions and <VERB>v</VERB> the column vector of entries (first dimension are stored first)</P>
+    vector of dimensions and <VERB>v</VERB> the column vector of entries (first
+      dimension are stored first)</P>
+
+     <P>NOTES: The number of dimension of hypermatrices with right-most sizes equal to
+      1 are automatically reduced. An hypermatrix with only two dimensions is
+      automatically changed to a regular matrix (type 1).</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
+
+size(a)
+
+a(:,:,1) //dimensionnality reduction 
+type(a(:,:,1))
+
 [a a]
+
+
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
