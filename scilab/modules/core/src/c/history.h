@@ -9,10 +9,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-#ifndef	_MSC_VER
-#include "../stack-c.h"
-#endif
-
 #ifdef  WITH_READLINE
 #include <readline/readline.h>
 #include <readline/history.h>
