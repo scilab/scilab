@@ -51,7 +51,7 @@ int sci_Beep __PARAMS((char *fname,unsigned long fname_len))
 	if (BeepON) strcpy(output,"on");
 	else strcpy(output,"off");
 
-	CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+	CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 	FREE(output);
 	output=NULL;
 

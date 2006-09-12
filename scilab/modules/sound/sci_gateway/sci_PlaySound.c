@@ -36,7 +36,7 @@ int sci_Playsound __PARAMS((char *fname,unsigned long fname_len))
   /*** first call to get the size **/
   lout=FILENAME_MAX;
   C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
-  rep = C2F(playsound)(filename,command,strlen(filename));
+  rep = C2F(playsound)(filename,command,(int)strlen(filename));
   if ( Lhs == 1 ) 
   {
       CreateVar(2,"d",&un,&un,&l2);

@@ -15,6 +15,7 @@ extern int sci_Beep __PARAMS((char *fname,unsigned long fname_len));
 extern int sci_Playsound __PARAMS((char *fname,unsigned long fname_len));
 extern int sci_savewave __PARAMS((char *fname,unsigned long fname_len));
 extern int sci_loadwave __PARAMS((char *fname,unsigned long fname_len));
+extern void sciprint ();
 /*-----------------------------------------------------------------------------------*/ 
 static intSoundTable Tab[]={
 	{ sci_savewave, "savewave"},
@@ -30,7 +31,7 @@ int C2F(gw_sound)()
 		#ifndef _DEBUG
 		_try
 		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -39,7 +40,7 @@ int C2F(gw_sound)()
 			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 		}
 		#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 		#endif
 	#else
 		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));

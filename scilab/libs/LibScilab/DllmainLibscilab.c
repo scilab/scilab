@@ -32,6 +32,7 @@
 #pragma comment(lib,"../../bin/atlas.lib")
 #pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
+#pragma comment(lib,"../../bin/sound.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
 #pragma comment(lib,"../../libs/data_structures_f.lib")

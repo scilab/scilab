@@ -50,7 +50,7 @@ int sci_loadwave(char *fname,unsigned long fname_len)
   *stk(l3+6) = Wi.data_length;	/* length of sound data in bytes */
   *stk(l3+7) = Wi.bytespersample; /* bytes per sample (per channel) */
 
-  n4=1;m4=strlen(Wi.wav_format);
+  n4=1;m4=(int)strlen(Wi.wav_format);
   CreateVar(4,"c",&m4,&n4,&l4);
   strncpy(cstk(l4),Wi.wav_format,strlen(Wi.wav_format));
   C2F(loadwave)(filename,stk(l2),&n2,1,&Wi,&err);
