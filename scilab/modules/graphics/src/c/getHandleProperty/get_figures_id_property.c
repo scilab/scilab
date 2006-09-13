@@ -11,7 +11,7 @@
 
 /*------------------------------------------------------------------------*/
 
-int get_figures_id_property( sciPointObj * pObj )
+int get_figures_id_property( sciPointObj * pobj )
 {
   int numRow   = 1 ;
   int numCol   = 0 ;
@@ -22,7 +22,10 @@ int get_figures_id_property( sciPointObj * pObj )
   sciGetIdFigure (&ids,&numCol,&iflag);
   CreateVar(Rhs+1,"i",&numRow,&numCol,&outIndex);
   iflag = 1; 
-  sciGetIdFigure (istk(outIndex),&numCol,&iflag);
+  sciGetIdFigure (istk(outIndex),&numCol,&iflag) ;
+
+  return 0 ;
+
 }
 
 /*------------------------------------------------------------------------*/

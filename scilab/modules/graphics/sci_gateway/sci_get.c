@@ -27,6 +27,7 @@
 #include "Xcall1.h"
 #include "Format.h"
 #include "pixel_mode.h"
+#include "../src/c/getHandleProperty/returnProperty.h"
 
 #include "../src/c/getHandleProperty/getHandleProperty.h"
 
@@ -213,7 +214,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   double *tab;
   char **str;
   sciPointObj *psubwin;
-  int Etype,ids,iflag=0;
+  int Etype,iflag=0;
 
   if (pobj != (sciPointObj *)NULL && pobj  != pfiguremdl  && pobj  != paxesmdl
       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
@@ -237,36 +238,17 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strcmp(marker,"figures_id") == 0)
   { 
-    get_figures_id_property( pobj ) ;
+    return get_figures_id_property( pobj ) ;
   }
   /***************** graphics mode *******************************/ 
-  else if (strcmp(marker,"visible") == 0) {
-    if (sciGetVisibility((sciPointObj *)pobj)){
-      numrow   = 1;
-      numcol   = 2;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex),"on", numrow*numcol);
-    }
-    else {
-      numrow   = 1;
-      numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex),"off", numrow*numcol);
-    }
+  else if (strcmp(marker,"visible") == 0)
+  {
+    return get_visible_property( pobj ) ;
   }
   else if (strcmp(marker,"pixel_drawing_mode") == 0) 
-    {
-      if ( sciGetEntityType (pobj) == SCI_FIGURE )
-      {
-        sciReturnString( getPixelMode( pFIGURE_FEATURE (pobj)->gmode.xormode ) ) ;
-      }
-      else
-      {
-        strcpy(error_message,"pixel_drawing_mode do not exist for this handle") ;
-        return -1 ;
-      }
-
-    }  
+  {
+    return get_pixel_drawing_mode_property( pobj ) ;
+  }  
   else if (strcmp(marker,"old_style") == 0)
     {
       if (versionflag != 0){
@@ -2776,46 +2758,4 @@ int BuildTListForTicks(double * locations, char ** labels, int nbtics)
 
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
-
-int sciReturnString( const char * value )
-{
-  int numRow   = 1 ;
-  int numCol   = strlen( value ) ;
-  int outIndex = 0 ;
-  CreateVar(Rhs+1,"c",&numRow,&numCol,&outIndex);
-  strncpy(cstk(outIndex),value, numCol);
-
-  return  0 ;
-}
-/*-----------------------------------------------------------------------------------*/
-
-int sciReturnInt( int value )
-{
-
-  int numRow   = 1 ;
-  int numCol   = 1 ;
-  int outIndex = 0 ;
-  CreateVar( Rhs+1, "i", &numRow, &numCol, &outIndex ) ;
-  *istk(outIndex) = value ;
-  
-  return 0 ;
-}
-
-/*-----------------------------------------------------------------------------------*/
-
-int sciReturnRowVector( double values[], int nbValues )
-{
-  int numRow   = 1        ;
-  int numCol   = nbValues ;
-  int outIndex = 0        ;
-  int i ;
-  CreateVar(Rhs+1,"d",&numRow,&numCol,&outIndex) ;
-  for ( i = 0 ; i < nbValues ; i++ )
-  {
-    stk(outIndex)[i] = values[i] ;
-  }
-  return 0 ;
-}
-
 /*-----------------------------------------------------------------------------------*/

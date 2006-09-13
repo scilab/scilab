@@ -241,6 +241,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_pixel_drawing_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_visible_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\GetCommandArg.c"
 				>
 			</File>
@@ -367,6 +375,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\RecSave.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\returnProperty.c"
 				>
 			</File>
 			<File
@@ -916,6 +928,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\RecSaveLoad.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\returnProperty.h"
 				>
 			</File>
 			<File
