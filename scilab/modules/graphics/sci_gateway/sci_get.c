@@ -1,10 +1,15 @@
-/*-----------------------------------------------------------------------------------*/
-/* Copyright (C) 1998-2000 INRIA/Enpc */
-/* Fabrice LERAY INRIA 2005 */
-/* Allan CORNET INRIA 2005 */
-/*-----------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------*/
+/* file: sci_get.c                                                        */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/* desc : interface for sci_get routine                                   */
+/*------------------------------------------------------------------------*/
 #include "sci_get.h"
 /*-----------------------------------------------------------------------------------*/
+
+#include <string.h>
+#include <stdio.h>
+
 #include "bcg.h"
 #include "Graphics.h" 
 #include "stack-c.h"

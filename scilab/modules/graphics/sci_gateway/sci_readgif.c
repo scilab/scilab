@@ -1,14 +1,16 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------*/
+/* file: sci_readgif.c                                                    */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Allan Cornet, Jean-Baptiste Silvy                            */
+/* desc : interface for sci_readgif routine                               */
+/*------------------------------------------------------------------------*/
+
 #include "sci_readgif.h"
 #include "MALLOC.h"
-#include "../src/gd/gd.h"
-extern void C2F(readgifimg)(char * string,gdImagePtr *imgptr,int *m,int *n,int *ncol);
-extern void C2F(deallocategifimg)(gdImagePtr *im);
+#include "gifimg.h"
+#include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/ 
-int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
+int sci_readgif ( char * fname, unsigned long fname_len )
 {
 	integer m1,n1,l1;
 
@@ -29,7 +31,7 @@ int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		FilenameGIF=cstk(l1);
 
-		C2F(readgifimg)(FilenameGIF,&imgptr,&m,&n,&ncol);
+		readGifImg(FilenameGIF,&imgptr,&m,&n,&ncol) ;
 		ml1=m;
 		nl1=n;
 
@@ -42,8 +44,8 @@ int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
 			return 0;
 		}
 
-		ArrayTmpL1=(int*)MALLOC(ml1*nl1*sizeof(int));
-		ArrayTmpL2=(int*)MALLOC(ml2*nl2*sizeof(int));
+		ArrayTmpL1 = (int*)MALLOC(ml1*nl1*sizeof(int));
+		ArrayTmpL2 = (int*)MALLOC(ml2*nl2*sizeof(int));
 
 
 		for (i=0;i<ml1;i++)
@@ -71,10 +73,10 @@ int sci_readgif _PARAMS((char *fname,unsigned long fname_len))
 		CreateVarFromPtr(Rhs+2, "i",&ml2,&nl2,&ArrayTmpL2);
 		LhsVar(2)=Rhs+2;
 
-		if (ArrayTmpL2){FREE(ArrayTmpL2);ArrayTmpL2=NULL;}
-		if (ArrayTmpL1){FREE(ArrayTmpL1);ArrayTmpL1=NULL;}
+		if ( ArrayTmpL2 != NULL ) {FREE(ArrayTmpL2);ArrayTmpL2=NULL;}
+		if ( ArrayTmpL1 != NULL ){FREE(ArrayTmpL1);ArrayTmpL1=NULL;}
 
-		C2F(deallocategifimg)(&imgptr);
+		deallocateGifImg(&imgptr);
 		
 	}
 	else

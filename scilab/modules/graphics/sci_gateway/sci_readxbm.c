@@ -1,14 +1,17 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------*/
+/* file: sci_readxbm.c                                                    */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Allan Cornet, Jean-Baptiste Silvy                            */
+/* desc : interface for sci_readxbm routine                               */
+/*------------------------------------------------------------------------*/
+
 #include "sci_readxbm.h"
 #include "MALLOC.h"
-#include "../src/gd/gd.h"
-extern void C2F(readxbmimg)(char * string,gdImagePtr *imgptr,int *m,int *n,int *ncol);
-extern void C2F(deallocategifimg)(gdImagePtr *im);
+#include "gifimg.h"
+#include "stack-c.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
-int sci_readxbm _PARAMS((char *fname,unsigned long fname_len))
+int sci_readxbm ( char * fname,unsigned long fname_len )
 {
 	integer m1,n1,l1;
 
@@ -29,7 +32,7 @@ int sci_readxbm _PARAMS((char *fname,unsigned long fname_len))
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		FilenameXBM=cstk(l1);
 
-		C2F(readxbmimg)(FilenameXBM,&imgptr,&m,&n,&ncol);
+		readXbmImg(FilenameXBM,&imgptr,&m,&n,&ncol);
 		ml1=m;
 		nl1=n;
 
@@ -71,10 +74,10 @@ int sci_readxbm _PARAMS((char *fname,unsigned long fname_len))
 		CreateVarFromPtr(Rhs+2, "i",&ml2,&nl2,&ArrayTmpL2);
 		LhsVar(2)=Rhs+2;
 
-		if (ArrayTmpL2){FREE(ArrayTmpL2);ArrayTmpL2=NULL;}
-		if (ArrayTmpL1){FREE(ArrayTmpL1);ArrayTmpL1=NULL;}
+		if ( ArrayTmpL2 != NULL ){FREE(ArrayTmpL2);ArrayTmpL2=NULL;}
+		if ( ArrayTmpL1 != NULL ){FREE(ArrayTmpL1);ArrayTmpL1=NULL;}
 
-		C2F(deallocategifimg)(&imgptr);
+		deallocateGifImg(&imgptr);
 		
 	}
 	else

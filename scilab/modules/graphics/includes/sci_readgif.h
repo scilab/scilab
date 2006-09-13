@@ -1,20 +1,20 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
-#ifndef __SCI_READGIF__
-#define __SCI_READGIF__
+/*------------------------------------------------------------------------*/
+/* file: sci_readgif.h                                                    */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Allan Cornet, Jean-Baptiste Silvy                            */
+/* desc : interface for sci_readgif routine                               */
+/*------------------------------------------------------------------------*/
 
-#ifdef _MSC_VER
-	#include <windows.h>
-#endif
+#ifndef _INT_READGIF_H_
+#define _INT_READGIF_H_
+/**
+* interface function for the readgif routine.
+*
+* @param[in] fname     name of the routine (ie readgif)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_readgif( char * fname, unsigned long fname_len ) ;
 
-#include "machine.h"
-#include "stack-c.h"
-#include "version.h"
-
-
-int sci_readgif _PARAMS((char *fname,unsigned long fname_len));
-
-#endif /*__SCI_READGIF__*/
+#endif /*_INT_READGIF_H_*/
 /*-----------------------------------------------------------------------------------*/ 

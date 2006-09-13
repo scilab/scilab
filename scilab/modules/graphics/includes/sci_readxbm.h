@@ -1,20 +1,20 @@
-/*-----------------------------------------------------------------------------------*/
-/* INRIA 2006 */
-/* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
-#ifndef __SCI_READXBM__
-#define __SCI_READXBM__
+/*------------------------------------------------------------------------*/
+/* file: sci_readxbm.h                                                    */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Allan Cornet, Jean-Baptiste Silvy                            */
+/* desc : interface for sci_readxbm routine                               */
+/*------------------------------------------------------------------------*/
 
-#ifdef _MSC_VER
-	#include <windows.h>
-#endif
+#ifndef _INT_READXBM_H_
+#define _INT_READXBM_H_
+/**
+* interface function for the readxbm routine.
+*
+* @param[in] fname     name of the routine (ie readxbm)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
+int sci_readxbm( char * fname, unsigned long fname_len ) ;
 
-#include "machine.h"
-#include "stack-c.h"
-#include "version.h"
-
-
-int sci_readxbm _PARAMS((char *fname,unsigned long fname_len));
-
-#endif /*__SCI_READXBM__*/
+#endif /*_INT_READXBM_H_*/
 /*-----------------------------------------------------------------------------------*/ 

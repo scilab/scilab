@@ -1,16 +1,19 @@
-/*-----------------------------------------------------------------------------------*/
-/* Copyright (C) 1998-2000 INRIA/Enpc */
-/* Fabrice LERAY INRIA 2005 */
-/* Allan CORNET INRIA 2005 */
-/* Jean-Baptiste Silvy 2006 */
-/*-----------------------------------------------------------------------------------*/
-#ifndef _INT_GET_
-#define  _INT_GET_
+/*------------------------------------------------------------------------*/
+/* file: sci_get.h                                                        */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/* desc : interface for sci_get routine                                   */
+/*------------------------------------------------------------------------*/
+#ifndef _INT_GET_H_
+#define _INT_GET_H_
 
-#include <string.h>
-#include <stdio.h>
-#include <math.h>
-
+/**
+* interface function for the get routine.
+*
+* @param[in] fname     name of the routine (ie get)
+* @param[in] fname_len length of fname
+* @return 0 if success, -1 otherwise
+*/
 int sci_get(char *fname,unsigned long fname_len);
 
 /*-----------------------------------------------------------------------------------*/
@@ -25,5 +28,5 @@ int sciReturnRowVector( double values[], int nbValues ) ;
 
 /*-----------------------------------------------------------------------------------*/
 
-#endif /*__INTGGET__*/
+#endif /*_INT_GET_H_*/
 /*-----------------------------------------------------------------------------------*/

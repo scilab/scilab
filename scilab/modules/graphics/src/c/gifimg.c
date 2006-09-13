@@ -1,19 +1,15 @@
-#include "../gd/gd.h"
-
+#include "gifimg.h"
 #include "machine.h"
+#include "sciprint.h"
 
-extern void sciprint __PARAMS ((char *fmt,...));
-
-void C2F(deallocategifimg)(im)
-     gdImagePtr *im;
+void C2F(deallocategifimg)( gdImagePtr * im )
 {
   gdImageDestroy(*im);
 }
 
-void C2F(readgifimg)(string,imgptr,m,n,ncol)
-     char * string;
-     gdImagePtr *imgptr;
-     int *m,*n,*ncol;
+void deallocateGifImg( gdImagePtr * im ) { C2F(deallocategifimg)( im ) ; }
+
+void C2F(readgifimg)( char * string, gdImagePtr * imgptr, int * m,int * n, int * ncol )
 {
   FILE *fd;
   gdImagePtr im;
@@ -34,10 +30,10 @@ void C2F(readgifimg)(string,imgptr,m,n,ncol)
   *ncol = im->colorsTotal;
   *imgptr =im;
 }
-void C2F(readxbmimg)(string,imgptr,m,n,ncol)
-     char * string;
-     gdImagePtr *imgptr;
-     int *m,*n,*ncol;
+
+void readGifImg( char * string, gdImagePtr * imgptr, int * m, int * n, int * ncol) { C2F(readgifimg)( string, imgptr, m, n, ncol ) ; }
+
+void C2F(readxbmimg)( char * string, gdImagePtr * imgptr, int * m, int * n, int * ncol )
 {
   FILE *fd;
   gdImagePtr im;
@@ -59,10 +55,9 @@ void C2F(readxbmimg)(string,imgptr,m,n,ncol)
   *imgptr =im;
 }
 
+void readXbmImg( char * string, gdImagePtr * imgptr, int * m, int * n, int * ncol) { C2F(readxbmimg)( string, imgptr, m, n, ncol ) ; }
 
-void C2F(getgifpixels)(imgptr,pixels)
-     gdImagePtr *imgptr;
-     unsigned char *pixels;
+void C2F(getgifpixels)( gdImagePtr * imgptr, unsigned char * pixels )
 {
   int i,m,n,x,y;
   gdImagePtr im;
@@ -78,9 +73,9 @@ void C2F(getgifpixels)(imgptr,pixels)
   }
 }
 
-void C2F(getgifcmap)(imgptr,cmap)
-     gdImagePtr *imgptr;
-     unsigned char *cmap;
+void getGifPixels( gdImagePtr * imgptr, unsigned char * pixels ) { C2F(getgifpixels)( imgptr, pixels ) ; }
+
+void C2F(getgifcmap)( gdImagePtr * imgptr, unsigned char * cmap )
 {
   int i,k, ncol;
   gdImagePtr im;
@@ -95,3 +90,5 @@ void C2F(getgifcmap)(imgptr,cmap)
     k++;
   }
 }
+
+void getGifCmap( gdImagePtr * imgptr, unsigned char * cmap ) { C2F(getgifcmap)( imgptr, cmap ) ; }
