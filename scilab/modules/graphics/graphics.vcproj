@@ -277,10 +277,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intshowalluimenushandles.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\intUImenu.c"
 				>
 			</File>
@@ -503,6 +499,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\sci_seteventhandler.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_showalluimenushandles.c"
 				>
 			</File>
 			<File
@@ -851,10 +851,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\intshowalluimenushandles.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\math_graphics.h"
 				>
 			</File>
@@ -1040,6 +1036,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_seteventhandler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_showalluimenushandles.h"
 				>
 			</File>
 			<File

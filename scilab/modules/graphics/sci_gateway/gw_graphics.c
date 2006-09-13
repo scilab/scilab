@@ -96,7 +96,7 @@ extern int sci_xs2bmp                     _PARAMS((char *fname, unsigned long fn
 extern int sci_xs2emf                     _PARAMS((char *fname, unsigned long fname_len));
 extern int intUImenu                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_newaxes                    _PARAMS((char *fname, unsigned long fname_len));
-extern int intshowalluimenushandles       _PARAMS(( char * fname, unsigned long fname_len ) ) ;
+extern int sci_showalluimenushandles      _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sci_relocate_handle            _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sci_swap_handles               _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sci_readxbm	                  _PARAMS(( char * fname, unsigned long fname_len ) ) ;
@@ -195,7 +195,7 @@ static MatdesTable Tab[]={
 	{sci_xsort,"gsort"},
 	{sci_help_gtk,"help_gtk"},
 	{intUImenu,"UImenu"},
-	{intshowalluimenushandles,"showalluimenushandles"},
+	{sci_showalluimenushandles,"showalluimenushandles"},
 	{sci_readxbm,"readxbm"},
 	{sci_readgif,"readgif"}
 };
