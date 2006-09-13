@@ -661,6 +661,10 @@
 				RelativePath=".\userf2.c"
 				>
 			</File>
+			<File
+				RelativePath=".\xscion.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -796,6 +800,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\version.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\xscion.h"
 				>
 			</File>
 		</Filter>

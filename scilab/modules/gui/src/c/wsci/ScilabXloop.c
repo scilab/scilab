@@ -17,7 +17,7 @@
 #include "Messages.h"
 #include "Warnings.h"
 #include "Errors.h"
-
+#include "xscion.h"
 
 #ifdef WITH_TK
 extern void flushTKEvents ();
@@ -26,36 +26,17 @@ static int BasicScilab = 0;
 #endif
 
 extern int GetWITH_GUI(void);
-
-/*-----------------------------------------------------------------------------------*/
-/** do I want a scilab or an xscilab (here it means Windows ) */
-
-int INXscilab = 0; /**  XXXX just to use zzledt1 **/
-
-/*-----------------------------------------------------------------------------------*/
-void SetXsciOn ()
-{
-switch_rlgets (1);
-INXscilab = 1;
-}
-/*-----------------------------------------------------------------------------------*/
-int C2F (xscion) (int *i)
-{
-  *i = INXscilab;
-  return (0);
-}
 /*-----------------------------------------------------------------------------------*/
 /* used to know if we must check events 
  * inside the scilab interpreter (parse/*)
  */
-
 int C2F(checkevts)(int *i)
 {
-  /*  *i= INXscilab; */
+  
   #if WITH_TK
-  *i= Max(INXscilab,1);
+  *i= Max(getINXscilab(),1);
   #else
-  *i= INXscilab;
+  *i= getINXscilab();
   #endif
   return(0);
 }
@@ -93,9 +74,9 @@ int C2F (sxevents) ()
   if ( GetWITH_GUI() )
   {
 #ifdef WITH_TK
-	  if (INXscilab == 1 || BasicScilab == 0 )
+	  if (getINXscilab() == 1 || BasicScilab == 0 )
 #else
-	  if (INXscilab == 1 )
+	  if (getINXscilab() == 1 )
 #endif
 	  {
 		  TextMessage1 (1);

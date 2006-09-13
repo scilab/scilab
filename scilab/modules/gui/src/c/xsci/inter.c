@@ -13,6 +13,7 @@
 #include "../machine.h"
 #include "All-extern-x.h"
 #include "All-extern.h"
+#include "xscion.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -79,29 +80,19 @@ int IsClick_menu(void);
 void Click_menu(int n);
 int charfromclick(void);
 
-static int INXscilab=0;
+
 static int intoemacs=0;
 
-void SetXsciOn(void)
-{
-  INXscilab=1;
-}
 
 int IntoEmacs(void )
 {
   return(strcmp(getenv("TERM"),"dumb")==0);
 }
 
-int C2F(xscion)(int *i)
-{
-  *i=INXscilab;
-  return(0);
-}
-
 
 int C2F(checkevts)(int *i)
 {
-  *i= Max(INXscilab,1-BasicScilab);
+  *i= Max(getINXscilab(),1-BasicScilab);
   return(0);
 }
 
@@ -314,7 +305,7 @@ int C2F(sxevents)()
 {
 	if ( GetWITH_GUI() )
 	{
-		  if (INXscilab==1) 
+		  if (getINXscilab()==1) 
     {
       xevents1();
     }
