@@ -1,25 +1,22 @@
-/*-----------------------------------------------------------------------------------*/
-/* Allan CORNET INRIA 2005 */
-/* UImenu interface */
-/*-----------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------*/
+/* file: sci_UImenu.c                                                     */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Allan Cornet, Fabrice Leray, Jean-Baptiste Silvy             */
+/* desc : interface for sci_UImenu routine                                */
+/*------------------------------------------------------------------------*/
+
 #include <stdio.h> 
 #include <string.h> 
 /*-----------------------------------------------------------------------------------*/
+#include "sci_UImenu.h"
 #include "MALLOC.h" /* MALLOC */
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
 #include "stack-c.h"
+#include "GetProperty.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
-extern void *sciGetPointerToFeature (sciPointObj * pobj); /* GET */
-extern sciPointObj *sciGetCurrentFigure ();
-extern sciPointObj *sciGetPointerFromHandle (long handle);
-extern sciEntityType sciGetEntityType (sciPointObj * pobj);
-extern long sciGetHandle (sciPointObj * pobj);
-extern sciPointObj * ConstructUimenu (sciPointObj * pparentfigure, char *label,char *callback,BOOL handle_visible);
-extern int version_flag();
-extern void sciprint __PARAMS((char *fmt,...));
-/*-----------------------------------------------------------------------------------*/
-int intUImenu(char *fname,unsigned long fname_len)
+int sci_UImenu( char *fname,unsigned long fname_len )
 {
   int numrow,numcol,outindex;
   int m1,n1,l1;

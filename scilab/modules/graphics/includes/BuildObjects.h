@@ -110,4 +110,6 @@ extern sciPointObj *ConstructMenuContext (sciPointObj * pparentfigure);
 extern int sciAddLabelMenu (sciPointObj * pthis, char plabel[], int n);
 extern int sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu);
 
+sciPointObj * ConstructUimenu (sciPointObj * pparent, char *label,char *callback,BOOL handle_visible) ;
+
 #endif /* __SCI_BUILD__ */

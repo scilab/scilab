@@ -94,7 +94,7 @@ extern int sci_zoom_rect                  _PARAMS((char *fname, unsigned long fn
 extern int sci_unzoom                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xs2bmp                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xs2emf                     _PARAMS((char *fname, unsigned long fname_len));
-extern int intUImenu                      _PARAMS((char *fname, unsigned long fname_len));
+extern int sci_UImenu                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_newaxes                    _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_showalluimenushandles      _PARAMS(( char * fname, unsigned long fname_len ) ) ;
 extern int sci_relocate_handle            _PARAMS(( char * fname, unsigned long fname_len ) ) ;
@@ -194,7 +194,7 @@ static MatdesTable Tab[]={
      /* NG end */
 	{sci_xsort,"gsort"},
 	{sci_help_gtk,"help_gtk"},
-	{intUImenu,"UImenu"},
+	{sci_UImenu,"UImenu"},
 	{sci_showalluimenushandles,"showalluimenushandles"},
 	{sci_readxbm,"readxbm"},
 	{sci_readgif,"readgif"}

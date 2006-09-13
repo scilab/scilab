@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: sci_showalluimenushandles.h                                      */
+/* file: sci_showalluimenushandles.c                                      */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Allan Cornet, Fabrice Leray, Jean-Baptiste Silvy             */
 /* desc : interface for howalluimenushandles routine                      */

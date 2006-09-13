@@ -277,10 +277,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\intUImenu.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
 			</File>
@@ -511,6 +507,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\sci_swap_handles.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_UImenu.c"
 				>
 			</File>
 			<File
@@ -1048,6 +1048,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_swap_handles.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\sci_UImenu.h"
 				>
 			</File>
 			<File
