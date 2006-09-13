@@ -237,6 +237,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_figures_id_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\GetCommandArg.c"
 				>
 			</File>
@@ -808,6 +812,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\GetCommandArg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\getHandleProperty.h"
 				>
 			</File>
 			<File

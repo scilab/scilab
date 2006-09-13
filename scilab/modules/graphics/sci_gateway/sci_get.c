@@ -28,6 +28,8 @@
 #include "Format.h"
 #include "pixel_mode.h"
 
+#include "../src/c/getHandleProperty/getHandleProperty.h"
+
 
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
@@ -233,13 +235,9 @@ int sciGet(sciPointObj *pobj,char *marker)
       else
 	{strcpy(error_message,"function not valid under old graphics style");return -1;}
     }
-  else if (strcmp(marker,"figures_id") == 0){
-    sciGetIdFigure (&ids,&numcol,&iflag);
-    numrow   = 1;
-    CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-    iflag = 1; 
-    sciGetIdFigure (istk(outindex),&numcol,&iflag);
-
+  else if (strcmp(marker,"figures_id") == 0)
+  { 
+    get_figures_id_property( pobj ) ;
   }
   /***************** graphics mode *******************************/ 
   else if (strcmp(marker,"visible") == 0) {
@@ -534,6 +532,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     sciSons * curSon = NULL ;
     numrow = sciGetNbAccessibleChildren( pobj ) ;
     numcol = 1 ;
+
     if ( numrow == 0 )
     {
       /* empty matrix */
