@@ -605,54 +605,6 @@ void Scistring(str)
 #endif 
 
 #define MAXPRINTF 512
-/*---------------------------------------------------
- * functions similar to print(format,arg1,...,argn) 
- * but with output redirected to scilab window 
- *-------------------------------------------------*/
-
-#ifdef __STDC__ 
-void  sciprint(char *fmt,...) 
-#else 
-/*VARARGS0*/
-void sciprint(va_alist) va_dcl
-#endif 
-{
-  int i;
-  integer lstr;
-  va_list ap;
-  char s_buf[MAXPRINTF];
-  int count=0;
-#ifdef __STDC__
-  va_start(ap,fmt);
-#else
-  char *fmt;
-  va_start(ap);
-  fmt = va_arg(ap, char *);
-#endif
-#ifdef linux
-	count = vsnprintf (s_buf,MAXPRINTF-1, fmt, ap );
-	if (count == -1)
-	{
-		s_buf[MAXPRINTF-1]='\0';
-	}
-#else
-	  (void )vsprintf(s_buf, fmt, ap );
-#endif
-  lstr=strlen(s_buf);
-
-  C2F(xscion)(&i);
-  if (i == 0) 
-    {
-      printf("%s",s_buf); 
-    }
-  else 
-    {
-      C2F(xscisrn)(s_buf,&lstr,0L);
-      /* C2F(xscisncr)(s_buf,&lstr,0L); */
-    }
-  if (getdiary()) diary_nnl(s_buf,&lstr);
-  va_end(ap);
-}
 
 /* almost the same but no diary record */ 
 /* usefull for automatic tests */ 

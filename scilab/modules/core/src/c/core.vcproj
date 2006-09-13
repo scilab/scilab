@@ -618,6 +618,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sciprint.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sciquit.c"
 				>
 			</File>
@@ -752,6 +756,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\Scierror.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sciprint.h"
 				>
 			</File>
 			<File
