@@ -294,6 +294,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\sci_gateway\sound.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

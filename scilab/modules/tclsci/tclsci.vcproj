@@ -461,6 +461,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\sci_gateway\tclsci.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
