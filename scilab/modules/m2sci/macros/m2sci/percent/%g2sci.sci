@@ -19,6 +19,7 @@ function [tree]=%g2sci(tree)
 if (typeof(B)=="variable" & B.name=="%shortcircuit") then
   if typeof(tree.out(1))=="variable" & tree.out(1).name=="ans" then
     tmp=gettempvar()
+    tmp.type=Type(Boolean,Real)
     tree=tmp
   else
     tmp=tree.out(1)
@@ -26,15 +27,15 @@ if (typeof(B)=="variable" & B.name=="%shortcircuit") then
     varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
     tree=list()
   end
-  insert(Equal(list(tmp),Cste(%F)))
-  insert(tlist(["ifthenelse","expression","then","elseifs","else"],A.operands(1),list(Equal(list(tmp),A.operands(2))),list(),list()))
+  insert(Equal(list(tmp),Cste(%T)))
+  insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
   return
 end
 
 // To have good size for result with String as input
 // And overloading functions are not written for Strings
-//A = convert2double(A)
-//B = convert2double(B)
+A = convert2double(A)
+B = convert2double(B)
 tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)
