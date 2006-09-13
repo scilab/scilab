@@ -7,9 +7,8 @@
 int GetTclCurrentFigure(void);
 int SetTclCurrentFigure(int num);
 /*-----------------------------------------------------------------------------------*/
-extern int cf_type;
-/*-----------------------------------------------------------------------------------*/
 extern void flushTKEvents(void);
+extern void set_cf_type(int val);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_gcf) _PARAMS((char *fname))
 {
@@ -115,7 +114,7 @@ int SetTclCurrentFigure(int num)
 		return 0;
 	}
 	
-	cf_type=0; /* Current handle is a TCL Handle */
+	set_cf_type(0); /* Current handle is a TCL Handle */
 
 	ValRet=(int)atoi(StrHandle);
 	Tcl_UnsetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);

@@ -224,7 +224,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	ScilabIsStarting=TRUE;
 
 	strcpy(FileName,"Empty");
-
+	
 	ScilabDirectory=GetScilabDirectory(FALSE);
 
 	if (ScilabDirectory == NULL)

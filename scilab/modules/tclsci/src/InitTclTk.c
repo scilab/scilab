@@ -16,6 +16,7 @@
  #include <X11/Xos.h>
  #include <ctype.h>
 #endif
+#include "setgetSCIpath.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 extern int GetWITH_GUI(void);
@@ -190,7 +191,7 @@ char *GetSciPath(void)
 	char *SciPathTmp=NULL;
 	int i=0;
 
-	SciPathTmp=getenv("SCI");
+	SciPathTmp=getSCIpath();
 
 	if (SciPathTmp)
 	{

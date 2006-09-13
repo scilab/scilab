@@ -106,6 +106,17 @@ int cf_type = 1 ;
 static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/
 #endif
 
+int get_cf_type(void)
+{
+	return cf_type;
+}
+
+void set_cf_type(int val)
+{
+	cf_type=val;
+}
+
+
 
 /**sciGetDC
  * Returns the HDC of the figure window (not the parent)

@@ -1,0 +1,33 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+ ConvertPathUnixToWindowsFormat
+ GetWITH_GUI
+ gettype_
+ vstk_
+ IsAScalar
+ iop_
+ cf_type
+ GetData
+ SetCommandflag
+ StoreCommand
+ GetCommand
+ ismenu_
+ recu_
+ syncexec_
+ GetScreenProperty
+ sciprint
+ putlhsvar_
+ createvar_
+ stack_
+ com_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ intersci_
+ createvarfromptr_
+ Scierror
+ GetExceptionString
+ set_cf_type
+ getSCIpath

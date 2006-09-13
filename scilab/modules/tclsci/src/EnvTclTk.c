@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <windows.h>
+#include <stdio.h>
 #include "Errors.h"
 #ifdef WITH_TK
 	#include "tcl.h"

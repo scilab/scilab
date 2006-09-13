@@ -145,6 +145,7 @@ struct BCG  ScilabGCGif ;
 static int col_index[gdMaxColors];
 static int fillpolylines_closeflag = 0;
 
+extern char *getSCIpath();
 /*-----------------------------------------------------
 \encadre{General routines}
 -----------------------------------------------------*/
@@ -2382,7 +2383,7 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
       sciprint("only alias font name are supported by gif driver\n");
       return;
     }
-  SciPath=getenv("SCI");
+  SciPath=getSCIpath();
   if (SciPath==NULL)
     {
       Scistring("The SCI environment variable is not set\n");

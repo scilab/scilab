@@ -224,7 +224,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	
 	char MyTclCommand[CommandLenMax];
 
-	LenStr=(strlen(PropertieField)+strlen(PropertieValue)+strlen("SetField              ")+1);
+	LenStr=(int)(strlen(PropertieField)+strlen(PropertieValue)+strlen("SetField              ")+1);
 
 	if (LenStr >= CommandLenMax)
 	{

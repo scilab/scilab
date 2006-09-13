@@ -3752,8 +3752,10 @@ sciPointObj * sciGetCurPointedFigure( void )
 /**sciGetCurrentFigure
  * @memo Returns the pointer to the current selected figure. 
  */
-sciPointObj *
-sciGetCurrentFigure ()
+
+extern void set_cf_type(int val);
+
+sciPointObj *sciGetCurrentFigure ()
 { 
   /* debug F.Leray 22.07.04 */
   BCG * moncurScilabXgc = NULL;
@@ -3780,13 +3782,13 @@ sciGetCurrentFigure ()
 	  if ((masousfen = ConstructSubWin (mafigure, moncurScilabXgc->CurWindow)) != NULL) {
 	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
-	    cf_type=1;/* current figure is a graphic one */
+	    set_cf_type(1);/* current figure is a graphic one */
 	  }
 	}
     }
   
   return (sciPointObj *) sciGetCurrentScilabXgc ()->mafigure  ;
-  cf_type=1;/* current figure is a graphic one */
+  set_cf_type(1);/* current figure is a graphic one */
 }                                                               
 
 

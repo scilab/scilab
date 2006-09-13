@@ -5,6 +5,8 @@
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
+#include "setgetSCIpath.h"
+
 #if _MSC_VER
 #define putenv _putenv
 #endif
@@ -91,6 +93,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		#else
 		{
 			char env[2048];
+			setSCIpath(SCIpath);
 			sprintf(env,"SCI=%s",SCIpath);
 			putenv(env);
 		}
@@ -99,6 +102,7 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	else
 	{
 		char env[2048];
+		setSCIpath(SCIpath);
 		sprintf(env,"SCI=%s",SCIpath);
 		putenv(env);
 	}

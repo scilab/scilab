@@ -42,9 +42,6 @@ extern sciPointObj *paxesmdl;
 
 /* sciClipTab ptabclip[15]; */
 BOOL modereplay = FALSE;
-
-extern int cf_type;
-
 extern int versionflag ;
 
 /*------------------------------------------------------------------------------------*/
@@ -3731,11 +3728,12 @@ sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin)
   return 0;   
 }
 
+extern void set_cf_type(int val);
 
 int sciInitCurrentFigure( sciPointObj * mafigure )
 {
   sciGetCurrentScilabXgc ()->mafigure = mafigure ;
-  cf_type=1;/* current figure is a graphic one */
+  set_cf_type(1);/* current figure is a graphic one */
   return 0 ;
 }
 
@@ -4257,7 +4255,7 @@ int sciSwitchWindow(winnum)
 	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL) {
 	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
-	    cf_type=1;/* current figure is a graphic one */
+	    set_cf_type(1);/* current figure is a graphic one */
 	  }
 	}
       else
@@ -4265,7 +4263,7 @@ int sciSwitchWindow(winnum)
        
     }
   else
-    cf_type=1;/* current figure is a graphic one */
+    set_cf_type(1);/* current figure is a graphic one */
   return 0;
 }
 

@@ -37,7 +37,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 
 	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 	/* UTF to ANSI */
-	Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
+	Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 	
     sciprint(TCL_MSG7,AsciiFromUTF8);
     while (argv[++argc]) sciprint(" %s",argv[argc]);
@@ -51,7 +51,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	  AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
 
 	  /* UTF to ANSI */
-	  Tcl_UtfToExternal(theinterp, NULL, argv[1], strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
+	  Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
 
     if (strlen(AsciiFromUTF8)>=bsiz)
 	{
@@ -82,7 +82,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       /* sync or sync seq */
       C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
       seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
-      ns=strlen(command); 
+      ns=(int)strlen(command); 
       if (C2F(iop).ddt==-1) sciprint(TCL_MSG8,command);
       C2F(syncexec)(command,&ns,&ierr,&seq);
       if (C2F(iop).ddt==-1) sciprint(TCL_MSG9,command);
@@ -119,7 +119,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 			  sciprint(TCL_MSG12,comm[nc]);
 		  }
         }
-        ns=strlen(comm[nc]);
+        ns=(int)strlen(comm[nc]);
         C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]));
         if (C2F(iop).ddt==-1)
         {

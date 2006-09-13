@@ -1238,6 +1238,9 @@ void updateMenus( struct BCG * XGC )
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
  * Sets the value to the object
  */
+
+extern void set_cf_type(int val);
+
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol)
 {
   int xtmp;
@@ -1331,7 +1334,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      sciSetCurrentObj(figure);
 	      XGC->mafigure = (sciPointObj *) figure;
 	      XGC->graphicsversion = 0;   /* new graphic mode */
-	      cf_type=1;
+	      set_cf_type(1);
 	      /* Add xclear to refresh toolbar for Windows */
 	      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){

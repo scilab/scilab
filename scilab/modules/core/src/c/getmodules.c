@@ -6,6 +6,7 @@
 #include "getmodules.h"
 #include "machine.h"
 #include "MALLOC.h"
+#include "setgetSCIpath.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define basenamemodulesfile "modules/modules" 
 /*-----------------------------------------------------------------------------------*/ 
@@ -37,7 +38,7 @@ static BOOL ReadModulesFile(void)
 	char *ModulesFilename=NULL;
 	char *SciPath=NULL;
 
-	SciPath=getenv("SCI");
+	SciPath=getSCIpath();
 	if (SciPath==NULL)
 	{
 		sciprint("The SCI environment variable is not set\n");
@@ -46,6 +47,8 @@ static BOOL ReadModulesFile(void)
 
 	ModulesFilename=(char*)MALLOC((strlen(SciPath)+strlen(basenamemodulesfile)+1)*sizeof(char));
 	sprintf(ModulesFilename,"%s/%s",SciPath,basenamemodulesfile);
+	FREE(SciPath);
+	SciPath=NULL;
 
 	if (FileExist(ModulesFilename))
 	{
@@ -140,7 +143,7 @@ static BOOL VerifyModule(char *ModuleName)
 	/* ';' est defini pour mettre un commentaire dans le fichier */
 	if (ModuleName[0]==';') return FALSE;
 
-	SciPath=getenv("SCI");
+	SciPath=getSCIpath();
 	if (SciPath==NULL)
 	{
 		sciprint("The SCI environment variable is not set\n");
@@ -149,6 +152,8 @@ static BOOL VerifyModule(char *ModuleName)
 
 	FullPathModuleName=(char*)MALLOC((strlen(SciPath)+strlen("%s/modules/%s/etc/%s.start")+(strlen(ModuleName)*2)+1)*sizeof(char));
 	sprintf(FullPathModuleName,"%s/modules/%s/etc/%s.start",SciPath,ModuleName,ModuleName);
+	FREE(SciPath);
+	SciPath=NULL;
 
 	/* ajouter d'autres tests d'existences */
 

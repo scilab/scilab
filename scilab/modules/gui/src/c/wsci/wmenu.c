@@ -33,6 +33,7 @@
 #include "Graphics.h" 
 
 #include "win_mem_alloc.h" /* MALLOC */
+#include "setgetSCIpath.h"
 
 #ifndef STRICT
 #define STRICT
@@ -1921,7 +1922,7 @@ void ConfigureScilabStar(int LangCode)
 	
 	int CodeRetour=-2;
 
-	WSCIPath=getenv("SCI");
+	WSCIPath=getSCIpath();
 	ConvertPathUnixToWindowsFormat(WSCIPath,wscitmp);
 	
 	if (WSCIPath)
@@ -2034,7 +2035,8 @@ int GetLanguageCodeInScilabDotStar(void)
 {
 	int ReturnLanguageCode=-1;
 	char *WSCIPath=NULL;
-	WSCIPath=getenv("SCI");
+
+	WSCIPath=getSCIpath();
 
 	if (WSCIPath)
 	{

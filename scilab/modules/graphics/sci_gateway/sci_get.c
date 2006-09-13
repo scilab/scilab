@@ -201,6 +201,9 @@ int sci_get(char *fname,unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 /* @name sciGet(sciPointObj *pobj,) */
 /* Sets the value to the object */
+
+extern int get_cf_type(void);
+
 int sciGet(sciPointObj *pobj,char *marker)
 {
   int numrow, numcol, outindex, i,j,k;
@@ -488,7 +491,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if (strcmp(marker,"current_figure") == 0)
     {
 
-      if (cf_type==1) {
+      if (get_cf_type()==1) {
 	C2F(sciwin)();/*SciWin();*/
 	numrow   = 1;
 	numcol   = 1;

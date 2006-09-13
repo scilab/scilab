@@ -306,7 +306,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 	  FREE(path);
 	}
       } /* PVM_ROOT + HOME */
-      if (!argc && (rd = getenv("SCI"))){
+      if (!argc && (rd = getSCIpath())){
 	if ((path = (char *) MALLOC(strlen(rd)+12)) == NULL) {
 	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
 	  *res = PvmNoMem;

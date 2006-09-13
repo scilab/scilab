@@ -40,7 +40,7 @@ int C2F(sci_TCL_GetVersion) _PARAMS((char *fname))
 	output=(char*)MALLOC((strlen(VersionString)+1)*sizeof(char));
 	sprintf(output,"%s",VersionString);
 	n1=1;
-	CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+	CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 	if (output) {FREE(output);output=NULL;}
 			
 	LhsVar(1) = 1;

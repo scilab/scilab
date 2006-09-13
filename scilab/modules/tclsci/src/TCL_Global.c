@@ -108,7 +108,7 @@ double *String2Matrix(char *StringIn,int *nbelemOut)
 {
     double *MatrixReturn=NULL;
 	int nbelem=0;
-	int Stringlen=strlen(StringIn);
+	int Stringlen=(int)strlen(StringIn);
 
 	if (Stringlen>0)
 	{
@@ -231,7 +231,7 @@ char *UTF8toANSI(Tcl_Interp *TCLinterp,char *StringUTF8)
 	{
 		ReturnANSIString=MALLOC(sizeof(char)*(strlen(StringUTF8)+AddCharacters));
 		/* UTF to ANSI */
-		Tcl_UtfToExternal(TCLinterp, NULL, StringUTF8, strlen(StringUTF8), 0, NULL, ReturnANSIString, (int)(strlen(StringUTF8)+AddCharacters), NULL, NULL,NULL);
+		Tcl_UtfToExternal(TCLinterp, NULL, StringUTF8, (int)strlen(StringUTF8), 0, NULL, ReturnANSIString, (int)(strlen(StringUTF8)+AddCharacters), NULL, NULL,NULL);
 	}
 	return ReturnANSIString;
 }

@@ -8,6 +8,7 @@
 #include "Errors.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
+#include "setgetSCIpath.h"
 
 #define putenv _putenv
 /********************************************************************************************************/
@@ -102,6 +103,7 @@ char *GetScilabDirectory(BOOL UnixStyle)
 		}
 	}
 	SciPathName[strlen(SciPathName)-1]='\0';
+	setSCIpath(SciPathName);
 	return SciPathName;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -166,6 +168,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 			GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
 			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "SCI=%s",ShortPath);
+			setSCIpath(ShortPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 			
 		}
@@ -173,6 +176,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 		{
 			ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 			sprintf (env, "SCI=%s",CopyOfDefaultPath);
+			setSCIpath(CopyOfDefaultPath);
 			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 		}
 	}
@@ -187,10 +191,12 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 		GetShortPathName(DefaultPath,ShortPath,MAX_PATH);
 		ConvertPathWindowsToUnixFormat(ShortPath,CopyOfDefaultPath);
 		sprintf (env, "SCI=%s",ShortPath);
+		setSCIpath(ShortPath);
 		
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 	}
 
+	
 	if (_putenv (env))
 	{
 		bOK=FALSE;

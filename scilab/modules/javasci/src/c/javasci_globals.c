@@ -78,6 +78,7 @@ void Initialize()
    {
    	fprintf(stderr,"Please define SCI environment variable\n");
    	sprintf (env, "%s=%s", "SCI",SCI);
+	setSCIpath(SCI);
 		putenv (env);
    }
   #endif

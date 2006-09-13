@@ -626,6 +626,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\setgetSCIpath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stack1.c"
 				>
 			</File>
@@ -764,6 +768,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sciquit.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\setgetSCIpath.h"
 				>
 			</File>
 			<File

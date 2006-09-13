@@ -10,7 +10,7 @@
 #include "machine.h" 
 #include "Os_specific.h"
 #include "core_math.h" 
-
+#include "setgetSCIpath.h"
 #include "MALLOC.h"
 
 /*************************************************************************************************/
@@ -142,6 +142,7 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 		#endif
 		exit(1);
 	}
+	setSCIpath(buf);
 	*nbuf = strlen(buf);
 	return 0;
 }

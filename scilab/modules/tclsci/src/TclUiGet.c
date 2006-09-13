@@ -117,7 +117,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 							output=(char*)MALLOC((strlen(AsciiFromUTF8)+1)*sizeof(char));
 							sprintf(output,"%s",AsciiFromUTF8);
-							CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+							CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 
 							if (output) {FREE(output);output=NULL;}
 							if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
@@ -210,7 +210,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 								char *AsciiFromUTF8=NULL;
 
 								AsciiFromUTF8=UTF8toANSI(TCLinterp,StrValue);
-								m1=strlen(AsciiFromUTF8);
+								m1=(int)strlen(AsciiFromUTF8);
 								n1=1;
 								CreateVar(Rhs+1, "c", &m1,&n1,&l1);
 								sprintf(cstk(l1),"%s",AsciiFromUTF8);
@@ -255,7 +255,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 						else
 						if ( MustReturnAString(StrField) )
 						{
-							m1=strlen(AsciiFromUTF8);
+							m1=(int)strlen(AsciiFromUTF8);
 							n1=1;
 							CreateVar(Rhs+1, "c", &m1,&n1,&l1);
 							sprintf(cstk(l1),"%s",AsciiFromUTF8);
