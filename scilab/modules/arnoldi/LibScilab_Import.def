@@ -1,0 +1,13 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+ com_
+ intersci_
+ stack_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ errorinfo_
+ sciprint
+ GetExceptionString
