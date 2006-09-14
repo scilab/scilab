@@ -32,12 +32,21 @@
 
 #include "MALLOC.h" /* MALLOC */
 
-
-sciPointObj *pfiguremdl = (sciPointObj *) NULL;
-sciPointObj *paxesmdl = (sciPointObj *) NULL;
-
 static char error_message[70]; /* DJ.A 08/01/04 */
 extern unsigned short defcolors[];
+
+static sciPointObj * pfiguremdl = (sciPointObj *) NULL;
+static sciPointObj * paxesmdl = (sciPointObj *) NULL;
+
+sciPointObj * getFigureModel( void )
+{
+  return pfiguremdl ;
+}
+
+sciPointObj * getAxesModel( void )
+{
+  return paxesmdl ;
+}
 
 
 /* DJ.A 08/01/04 */

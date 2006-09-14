@@ -28,7 +28,6 @@
 #include "GetProperty.h"
 
 static sciPointObj * psubwin;/* NG */
-extern sciPointObj * paxesmdl ;
 
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
@@ -2751,7 +2750,7 @@ void reinitSubWin( sciPointObj * pSubWin )
 void initSubWinAngles( sciPointObj * pSubWin )
 {
   sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
-  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (paxesmdl) ;
+  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
   ppSubWin->is3d     = ppAxesMdl->is3d     ;
   ppSubWin->alpha_kp = ppAxesMdl->alpha_kp ;
   ppSubWin->theta_kp = ppAxesMdl->theta_kp ;
@@ -2764,7 +2763,7 @@ void initSubWinAngles( sciPointObj * pSubWin )
 void initSubWinSize( sciPointObj * pSubWin )
 {
   sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
-  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (paxesmdl) ;
+  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
   ppSubWin->WRect[0] = ppAxesMdl->WRect[0] ;
   ppSubWin->WRect[1] = ppAxesMdl->WRect[1] ;
   ppSubWin->WRect[2] = ppAxesMdl->WRect[2] ;
@@ -2776,7 +2775,7 @@ void initSubWinSize( sciPointObj * pSubWin )
 void initSubWinBounds( sciPointObj * pSubWin )
 {
   sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
-  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (paxesmdl) ;
+  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
   ppSubWin->FRect[0] = ppAxesMdl->FRect[0] ;
   ppSubWin->FRect[1] = ppAxesMdl->FRect[1] ;
   ppSubWin->FRect[2] = ppAxesMdl->FRect[2] ;

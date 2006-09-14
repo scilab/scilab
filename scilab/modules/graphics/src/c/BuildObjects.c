@@ -43,8 +43,6 @@ extern double * AllocUserGrads(double * u_xgrads, int nb);
 extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
 
-extern sciPointObj *pfiguremdl;
-extern sciPointObj *paxesmdl;
 extern unsigned short defcolors[];
 
 /**ConstructStatusBar
@@ -141,7 +139,7 @@ ConstructFigure (XGC)
   integer i , m, n;
   integer x[2], verbose=0, narg=0;
   int succeed = 0;
-
+  sciPointObj * pfiguremdl = getFigureModel() ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -186,10 +184,10 @@ ConstructFigure (XGC)
   
   /** Initialize the colormap */
   n=3;
-  m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
+  m = pFIGURE_FEATURE (getFigureModel())->numcolors;
   /* try to install the colormap in the graphic context */
   C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
-	  pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
+	  pFIGURE_FEATURE(getFigureModel())->pcolormap,PD0,PD0,PD0,0L,0L);
   
   if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
     sciprint ("Failed to load default colormap : Allocation failed or missing xinit detected\n");
@@ -245,7 +243,7 @@ ConstructFigure (XGC)
       return (sciPointObj *) NULL;
     }
   sciInitNum (pobj, &(XGC->CurWindow));		   
-  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
+  sciSetName(pobj, sciGetName(getFigureModel()), sciGetNameLength(pfiguremdl));
   sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
   pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
   pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
@@ -291,7 +289,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
   char dir;
   int i;
   sciPointObj *pobj = (sciPointObj *) NULL;
-  sciSubWindow * ppsubwin = NULL; 
+  sciSubWindow * ppsubwin = NULL;
+  sciPointObj * paxesmdl = getAxesModel() ;
   sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl); 
   
 

@@ -1,11 +1,9 @@
 /*------------------------------------------------------------------------*/
-/* file: get_visible_property.c                                           */
+/* file: get_old_style_property.c                                         */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the visible field of a handle    */
+/* desc : function to retrieve in Scilab the old_style field of a handle  */
 /*------------------------------------------------------------------------*/
-
-#include <string.h>
 
 #include "getHandleProperty.h"
 #include "stack-c.h"
@@ -14,15 +12,14 @@
 
 /*------------------------------------------------------------------------*/
 
-int get_visible_property( sciPointObj * pobj )
+int get_old_style_property( sciPointObj * pobj )
 {
 
-  if ( sciGetVisibility( pobj ) )
+  if ( version_flag() != 0)
   {
     return sciReturnString( "on" ) ;
   }
-  else
-  {
+  else {
     return sciReturnString( "off" ) ;
   }
 

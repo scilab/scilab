@@ -32,7 +32,7 @@ int sciReturnInt( int value )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciReturnRowVector( double values[], int nbValues )
+int sciReturnRowVector( const double values[], int nbValues )
 {
   int numRow   = 1        ;
   int numCol   = nbValues ;

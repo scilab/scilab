@@ -32,6 +32,7 @@
 #include "../src/c/getHandleProperty/getHandleProperty.h"
 
 
+
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 #ifdef WITH_TK
@@ -39,8 +40,6 @@ extern int GetTclCurrentFigure(void);
 #endif
 
 /*-----------------------------------------------------------------------------------*/
-extern sciPointObj *pfiguremdl;
-extern sciPointObj *paxesmdl;
 extern int versionflag;
 /*-----------------------------------------------------------------------------------*/
 static char error_message[128];
@@ -86,11 +85,11 @@ int sci_get(char *fname,unsigned long fname_len)
 	C2F(overload)(&lw,"get",3);return 0;
       }
       GetRhsVar(2,"c",&numrow2,&numcol2,&l2);
-      if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
+      if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_z_label))
 	{
 	  if ((strcmp(cstk(l2),"old_style") !=0)
 	      &&(strcmp(cstk(l2),"default_figure") !=0) 
@@ -216,11 +215,11 @@ int sciGet(sciPointObj *pobj,char *marker)
   sciPointObj *psubwin;
   int Etype,iflag=0;
 
-  if (pobj != (sciPointObj *)NULL && pobj  != pfiguremdl  && pobj  != paxesmdl
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ){ /* Addings F.Leray 10.06.04 */
+  if (pobj != (sciPointObj *)NULL && pobj  != getFigureModel()  && pobj  != getAxesModel()
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_title
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_x_label
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_y_label
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label ){ /* Addings F.Leray 10.06.04 */
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     Etype=sciGetEntityType (pobj);}
 
@@ -250,123 +249,30 @@ int sciGet(sciPointObj *pobj,char *marker)
     return get_pixel_drawing_mode_property( pobj ) ;
   }  
   else if (strcmp(marker,"old_style") == 0)
-    {
-      if (versionflag != 0){
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_old_style_property( pobj ) ;
+  }
   else if (strcmp(marker,"figure_style") == 0)
-    {
-      numrow   = 1;
-      if (pobj != pfiguremdl)
-	{
-	  numcol   = 3;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  if (version_flag()!=0)
-	    strncpy(cstk(outindex),"old", numrow*numcol); 
-	  else 
-	    strncpy(cstk(outindex),"new", numrow*numcol);      
-	}
-      else /* what is it usefull for ? F.Leray 20.04.05 */
-	{
-	  numcol   = 10;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"customised", numrow*numcol);
-	}
-    }
+  {
+    return get_figure_style_property( pobj ) ;
+  }
   else if (strcmp(marker,"auto_resize") == 0)
-    {
-      if (sciGetResize((sciPointObj *) pobj)){
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol); 
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_auto_resize_property( pobj ) ;
+  }
   /************************  figure Properties *****************************/ 
   else if (strcmp(marker,"figure_position") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      numrow   = 1;numcol   = 2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-      if ((sciPointObj *) pobj != pfiguremdl)
-	{
-#if _MSC_VER /* Correction pour figure_position (Windows) Allan CORNET Mai 2004 */
-	  stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj); 
-	  stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj);
-#else
-	  stk(outindex)[0] = sciGetFigurePosX ((sciPointObj *) pobj)-4; 
-	  stk(outindex)[1] = sciGetFigurePosY ((sciPointObj *) pobj)-20;
-#endif
-	}
-      else
-	{
-	  stk(outindex)[0] = pFIGURE_FEATURE (pobj)->inrootposx; 
-	  stk(outindex)[1] = pFIGURE_FEATURE (pobj)->inrootposy;
-	}
-    }  
+  {
+    return get_figure_position_property( pobj ) ;
+  }  
   else if (strcmp(marker,"axes_size") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      numrow   = 1;
-      numcol   = 2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      if ((sciPointObj *) pobj != pfiguremdl)
-	{ 
-	  stk(outindex)[0] = sciGetWidth ((sciPointObj *) pobj); 
-	  stk(outindex)[1] = sciGetHeight ((sciPointObj *) pobj); 
-	}
-      else
-	{
-	  stk(outindex)[0] = pFIGURE_FEATURE (pobj)->windowdimwidth;
-	  stk(outindex)[1] = pFIGURE_FEATURE (pobj)->windowdimheight; 
-	}
-    } 
+  {
+    return get_axes_size_property( pobj ) ;
+  } 
   else if (strcmp(marker,"figure_size") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      numrow   = 1;
-      numcol   = 2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      if ((sciPointObj *) pobj != pfiguremdl)
-	{
-	  int cur,num=pFIGURE_FEATURE(pobj)->number;
-	  C2F(dr)("xget","window",&itmp,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	  C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-	  C2F(dr)("xget","wpdim",&itmp,x,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-	  pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=x[0];  
-	  pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=x[1]; 
-	}
-      stk(outindex)[0] = pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth;  
-      stk(outindex)[1] = pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight;  
-    }
+  {
+    return get_figure_size_property( pobj ) ;
+  }
   else if (strcmp(marker,"figure_name") == 0)
     {
       if (sciGetEntityType (pobj) != SCI_FIGURE) {
@@ -544,12 +450,12 @@ int sciGet(sciPointObj *pobj,char *marker)
   /* DJ.A 08/01/04 */
   else if (strcmp(marker,"default_figure") == 0)
     {
-      if (pfiguremdl != (sciPointObj *) NULL) 
+      if (getFigureModel() != (sciPointObj *) NULL) 
 	{
 	  numrow   = 1;
 	  numcol   = 1;	
 	  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	  *hstk(outindex) =  sciGetHandle(pfiguremdl);
+	  *hstk(outindex) =  sciGetHandle(getFigureModel());
 	}
       else
 	{
@@ -559,12 +465,12 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strcmp(marker,"default_axes") == 0)
     { 
-      if (paxesmdl != (sciPointObj *) NULL) 
+      if (getAxesModel() != (sciPointObj *) NULL) 
 	{
 	  numrow   = 1;
 	  numcol   = 1;
 	  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	  *hstk(outindex) = sciGetHandle(paxesmdl);	
+	  *hstk(outindex) = sciGetHandle(getAxesModel());	
 	}
       else
 	{
@@ -581,7 +487,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       strcpy(error_message,"color_map property does not exist for this handle.");
       return -1;
     }
-    if ((sciPointObj *) pobj != pfiguremdl)
+    if ((sciPointObj *) pobj != getFigureModel())
     {
       numcol = 3;
       numrow = sciGetNumColors (pobj);
@@ -599,7 +505,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       for  ( i = 0; i < numcol*numrow; i++ )
       {
-        stk(outindex)[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
+        stk(outindex)[i] = pFIGURE_FEATURE(getFigureModel())->pcolormap[i];
       }
     }
   }

@@ -32,8 +32,6 @@
 
 #include "MALLOC.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
-extern sciPointObj *pfiguremdl;
-extern sciPointObj *paxesmdl;
 extern int versionflag;
 /*-----------------------------------------------------------------------------------*/
 static char error_message[256];
@@ -95,11 +93,11 @@ int sci_set(fname,fname_len)
       /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles*/
       CheckRhs(3,3);
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
-      if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
+      if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_z_label))
 	{
 	  if (m1!=1||n1!=1) { 
 	    lw = 1 + Top - Rhs;
@@ -121,11 +119,11 @@ int sci_set(fname,fname_len)
 	}
 
       GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
-      if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) 
-	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
+      if ( *hstk(l1) != sciGetHandle(getFigureModel()) && *hstk(l1) != sciGetHandle(getAxesModel())
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_title)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_x_label)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_y_label) 
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(getAxesModel())->mon_z_label))
 	if ((strcmp(cstk(l2),"old_style") !=0) 
 	    &&(strcmp(cstk(l2),"default_figure") !=0) 
 	    && (strcmp(cstk(l2),"default_axes") !=0) ) SciWin();
@@ -444,11 +442,11 @@ int sci_set(fname,fname_len)
 	  (strcmp(cstk(l2),"current_axes") !=0) &&
 	  (strcmp(cstk(l2),"default_figure") !=0) && 
 	  (strcmp(cstk(l2),"default_axes") !=0) &&
-	  (pobj != pfiguremdl) && (pobj != paxesmdl)
-	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
-	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label )
+	  (pobj != getFigureModel()) && (pobj != getAxesModel())
+	  && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_title
+	  && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_x_label
+	  && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_y_label
+	  && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label )
       { 
         /* Addings F.Leray 10.06.04 */
 	num= sciGetNumFigure (pobj);    
@@ -1254,11 +1252,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /* sciSubWindow * ppsubwin = NULL;*/
 
   if ((strcmp(marker,"figure_model") !=0) && (strcmp(marker,"axes_model") !=0)
-      && (pobj  != pfiguremdl)  && (pobj  != paxesmdl)
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ) /* Addings F.Leray 10.06.04 */
+      && (pobj  != getFigureModel())  && (pobj  != getAxesModel())
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_title
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_x_label
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_y_label
+      && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label ) /* Addings F.Leray 10.06.04 */
     {
       if (pobj != (sciPointObj *)NULL) 
 			{
@@ -1292,7 +1290,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   }
   else if (strcmp(marker,"figure_style") == 0) {
-    if (pobj != pfiguremdl)
+    if (pobj != getFigureModel())
       {
 	if ((strcmp(cstk(*value),"old") == 0)) {
 	  if (version_flag() == 0)  {
@@ -1379,9 +1377,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"default_values") == 0) {
     if (*stk(*value) == 1)
       {
-	if (pobj == pfiguremdl)
+	if (pobj == getFigureModel())
 	  InitFigureModel();
-	else if (pobj == paxesmdl)
+	else if (pobj == getAxesModel())
 	  InitAxesModel();
 	else
 	  sciSetDefaultValues();
@@ -1503,7 +1501,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=(int)stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=(int)stk(*value)[1];
-      if ((sciPointObj *)pobj != pfiguremdl) {
+      if ((sciPointObj *)pobj != getFigureModel()) {
 	num=pFIGURE_FEATURE(pobj)->number;
 	C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1522,7 +1520,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
       pFIGURE_FEATURE( pobj )->figuredimwidth  = (int)stk(*value)[0] ;  
       pFIGURE_FEATURE( pobj )->figuredimheight = (int)stk(*value)[1] ;
-      if ( pobj != pfiguremdl )
+      if ( pobj != getFigureModel() )
       {
 	num = pFIGURE_FEATURE(pobj)->number ;
 	C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
@@ -1544,7 +1542,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       return -1;
     }
     id = (int)stk(*value)[0];
-    if ((sciPointObj *)pobj != pfiguremdl)
+    if ((sciPointObj *)pobj != getFigureModel())
       {
 	C2F(dr)("xset","window",&id,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
 	if (sciSwitchWindow(&id) != 0){
@@ -1553,7 +1551,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
     else
     {
-      return sciSetNum(pfiguremdl, &id);
+      return sciSetNum(getFigureModel(), &id);
     }
   }
   else if (strcmp(marker,"rotation_style") == 0)

@@ -32,4 +32,8 @@ extern int InitAxesModel();   /* INITOBJECT */
 
 int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
 
+sciPointObj * getFigureModel( void ) ;
+sciPointObj * getAxesModel( void ) ;
+
+
 #endif /* __SCI_INIT_GRAPHICS__ */

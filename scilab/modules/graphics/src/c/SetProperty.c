@@ -37,9 +37,6 @@
 
 #include "MALLOC.h"
 
-extern sciPointObj *pfiguremdl;
-extern sciPointObj *paxesmdl;
-
 /* sciClipTab ptabclip[15]; */
 BOOL modereplay = FALSE;
 extern int versionflag ;
@@ -176,7 +173,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
 
   old_m = sciGetNumColors(pobj);
   m1 = m ;
-  if ( pobj != pfiguremdl )
+  if ( pobj != getFigureModel() )
   {
     int verbose = 0 ;
     sciSetUsedWindow( sciGetNum( pobj ) ) ;
@@ -201,7 +198,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
     if ( ( cmap = MALLOC ( m * n * sizeof(double) ) ) == NULL )
     {
       /* error allocating colormap */
-      if (pobj != pfiguremdl)
+      if (pobj != getFigureModel())
       {
 	sciSetUsedWindow( sciGetNum( pobj ) ) ;
 	C2F(dr)("xset","colormap",&old_m,&n,&notSucceed,PI0,PI0,PI0,
@@ -227,7 +224,7 @@ sciSetColormap ( sciPointObj * pobj, double *rgbmat, integer m, integer n )
   }
   pFigure->numcolors = m1 ;
   
-  if ( pobj != pfiguremdl )
+  if ( pobj != getFigureModel() )
   {
     sciRecursiveUpdateBaW( pobj, old_m, m ) ; /* missing line F.Leray */
   }
@@ -2836,7 +2833,7 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if (pobj == pfiguremdl)
+      if (pobj == getFigureModel())
 	(sciGetGraphicMode (pobj))->autoscaling = value;
       else
 	sciSetAutoScale(sciGetSelectedSubWin (pobj),value);
@@ -3018,7 +3015,7 @@ sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
 
 int sciInitXorMode( sciPointObj * pobj, int value )
 {
-  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
+  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
   {
     C2F(dr)("xset","alufunction",&(value),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
   }
@@ -3230,7 +3227,7 @@ int sciInitResize( sciPointObj * pobj, BOOL value )
 {
   integer num1 = (value ? 1 : 0);
   
-  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
+  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
     { 
       /* this code will coms from
        *  C2F(setwresize)((i = value, &i), PI0,PI0,PI0);
@@ -3344,7 +3341,7 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
       strcpy (pFIGURE_FEATURE (pobj)->name, pvalue ) ;
       pFIGURE_FEATURE (pobj)->namelen = length ; 
       
-      if (pobj != pfiguremdl)
+      if (pobj != getFigureModel())
       {
 	char * str = NULL ;
         if ( percentStatus == 0 )
@@ -3442,7 +3439,7 @@ int sciInitDim( sciPointObj * pobj, int * pwidth, int * pheight )
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->windimwidth = *pwidth;
       pSUBWIN_FEATURE (pobj)->windimheight = *pheight;
-      if (pobj != paxesmdl)
+      if (pobj != getAxesModel())
 	C2F(dr)("xset","wdim",pwidth, pheight,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
       break;
     case SCI_AGREG:
@@ -3483,7 +3480,7 @@ int sciInitFigurePos( sciPointObj * pobj, int pposx, int pposy )
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      if (pobj != pfiguremdl) {
+      if (pobj != getFigureModel()) {
 	num=pFIGURE_FEATURE(pobj)->number;
 	C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -3497,7 +3494,7 @@ int sciInitFigurePos( sciPointObj * pobj, int pposx, int pposy )
       break;
     case SCI_AGREG:
     default:
-      sciprint ("Only Figure can breturn position\n");
+      sciprint ("Only Figure can return position\n");
       return -1;
       break;
     }

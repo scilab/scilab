@@ -19,6 +19,7 @@
 
 #include "Graphics.h" 
 #include "HandleManagement.h"
+#include "InitObjects.h"
 #include "DrawObjects.h"
 #include "DestroyObjects.h"
 #include "SetProperty.h"
@@ -35,10 +36,6 @@ sciHandleTab * PENDOFHANDLETAB;
 sciPointObj * PCURRENTPOBJ;
 
 
-extern sciPointObj *pfiguremdl;
-extern sciPointObj *paxesmdl;
-
-
 /*********************************** Handle ******************************************/
 
 /**sciSetHandle
@@ -47,7 +44,7 @@ extern sciPointObj *paxesmdl;
 void
 sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
 {
-  if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
+  if ( (pobj != getFigureModel()) && (pobj != getAxesModel()))
     switch (sciGetEntityType (pobj))
       {
       case SCI_FIGURE:
@@ -263,7 +260,7 @@ sciGetPointerFromHandle (long handle)
 {
 
   sciHandleTab *phandletab;
-  if ( handle != sciGetHandle(pfiguremdl) && handle != sciGetHandle(paxesmdl))
+  if ( handle != sciGetHandle(getFigureModel()) && handle != sciGetHandle(getAxesModel()))
     {
       phandletab = PENDOFHANDLETAB;
       while ((phandletab != NULL) && (phandletab->index != handle))
@@ -276,10 +273,10 @@ sciGetPointerFromHandle (long handle)
 	}  
       return (sciPointObj *) phandletab->pointobj;
     }
-  else if ( handle == sciGetHandle(pfiguremdl))
-    return (sciPointObj *) pfiguremdl;
-  else if ( handle == sciGetHandle(paxesmdl))
-    return (sciPointObj *) paxesmdl;
+  else if ( handle == sciGetHandle(getFigureModel()))
+    return (sciPointObj *) getFigureModel();
+  else if ( handle == sciGetHandle(getAxesModel()))
+    return (sciPointObj *) getAxesModel();
   else
     {
       /* sciprint ("this is not or no more a valid handle !!\n");  F.Leray Adding 'or no more' */

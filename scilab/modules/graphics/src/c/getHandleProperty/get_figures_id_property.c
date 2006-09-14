@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------*/
-/* file: get_figures_id_property                                          */
+/* file: get_figures_id_property.c                                        */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
 /* desc : function to retrieve in Scilab the figures_id field of a handle */
@@ -10,7 +10,6 @@
 #include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
-
 int get_figures_id_property( sciPointObj * pobj )
 {
   int numRow   = 1 ;
@@ -27,5 +26,4 @@ int get_figures_id_property( sciPointObj * pobj )
   return 0 ;
 
 }
-
 /*------------------------------------------------------------------------*/

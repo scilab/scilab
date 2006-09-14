@@ -15,5 +15,11 @@
 int get_figures_id_property( sciPointObj * pobj ) ;
 int get_visible_property(    sciPointObj * pobj ) ;
 int get_pixel_drawing_mode_property( sciPointObj * pobj ) ;
+int get_old_style_property( sciPointObj * pobj ) ;
+int get_figure_style_property( sciPointObj * pobj ) ;
+int get_auto_resize_property( sciPointObj * pobj ) ;
+int get_figure_position_property( sciPointObj * pobj ) ;
+int get_axes_size_property( sciPointObj * pobj ) ;
+int get_figure_size_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

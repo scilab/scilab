@@ -24,6 +24,6 @@ int sciReturnInt( int value ) ;
 * copy a double array into a row vector in the scilab stack in order to see it the console.
 * @return 0 if the function was executed correctly, -1 if an error occured.
 */
-int sciReturnRowVector( double values[], int nbValues ) ;
+int sciReturnRowVector( const double values[], int nbValues ) ;
 
 #endif /* _RETURN_PROPERTY_H_ */
