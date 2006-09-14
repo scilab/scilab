@@ -124,43 +124,6 @@ void sciprint_nd (char *fmt,...)
 	/** return count; **/
 }
 /*-----------------------------------------------------------------------------------*/
-/*---------------------------------------------------
-* as sciprint but with an added first argument
-* which is ignored (used in do_printf)
-*---------------------------------------------------*/
-int sciprint2 (int iv, char *fmt,...)
-{
-	int i, count,lstr;
-	va_list ap;
-	char s_buf[MAXPRINTF];
-	va_start (ap, fmt);
-	/* next three lines added for diary SS */
-	count = _vsnprintf (s_buf,MAXPRINTF-1, fmt, ap);
-	if (count == -1)
-	{
-		s_buf[MAXPRINTF-1]='\0';
-	}
-
-	lstr = strlen (s_buf);
-
-	C2F (xscion) (&i);
-	if (i == 0)
-	{
-		printf ("%s", s_buf);
-		//count = vfprintf (stdout,"%s",s_buf);
-	}
-	else
-	{
-		/* count = vsprintf (s_buf, fmt, ap); SS */
-		TextPutS (&textwin, s_buf);
-		PutString(s_buf);
-	}
-	if (getdiary()) diary_nnl(s_buf,&lstr);
-
-	va_end (ap);
-	return count;
-}
-/*-----------------------------------------------------------------------------------*/
 size_t MyFWrite (const void *ptr, size_t size, size_t n, FILE * file)
 {
 	if (isterm (file))
