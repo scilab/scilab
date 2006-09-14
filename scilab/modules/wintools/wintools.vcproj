@@ -256,6 +256,14 @@
 				RelativePath=".\sci_gateway\sci_winqueryreg.c"
 				>
 			</File>
+			<File
+				RelativePath=".\src\TextToPrint.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\TryToGetDC.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -331,6 +339,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_winqueryreg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\TextToPrint.h"
 				>
 			</File>
 		</Filter>

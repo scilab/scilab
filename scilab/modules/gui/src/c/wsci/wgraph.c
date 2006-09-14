@@ -564,27 +564,3 @@ void SetCurrentFigureWindows(integer win)
 	scig_sel (win);
 }
 /*-----------------------------------------------------------------------------------*/
-HDC TryToGetDC(HWND hWnd)
-{
-	HDC hDCRet=NULL;
-
-	if (hWnd)
-	{
-		hDCRet=GetDC(hWnd);
-		if (hDCRet == NULL)
-		{
-			#ifdef _DEBUG
-				MessageBox(NULL,MSG_ERROR36,MSG_ERROR20,MB_ICONWARNING);
-			#endif
-		}
-	}
-	else
-	{
-		#ifdef _DEBUG
-			MessageBox(NULL,MSG_ERROR37,MSG_ERROR20,MB_ICONWARNING);
-		#endif
-	}
-
-	return (HDC)hDCRet;
-}
-/*-----------------------------------------------------------------------------------*/

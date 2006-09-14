@@ -47,7 +47,6 @@ typedef struct hist_
   struct hist_ *prev;
   struct hist_ *next;
 } sci_hist;
-
 /*-----------------------------------------------------------------------------------*/
 extern sci_hist *history ;	/* no history yet */
 extern sci_hist *cur_entry;
@@ -66,7 +65,6 @@ sci_hist * GoFirstKnot(sci_hist * CurrentKnot);
 sci_hist * GoLastKnot(sci_hist * CurrentKnot);
 sci_hist * GoPrevKnot(sci_hist * CurrentKnot);
 sci_hist * GoNextKnot(sci_hist * CurrentKnot);
-
 /*-----------------------------------------------------------------------------------*/
 int C2F(resethistory) _PARAMS((char *fname));
 int C2F(loadhistory) _PARAMS((char *fname));

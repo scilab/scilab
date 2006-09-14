@@ -133,7 +133,7 @@ int ReplacePrompt(char *Text,char *prompt);
 /* retourne TRUE si Text a été modifié */
 /*--------------------------*/
 void ForceToActiveWindowParent(void);
-void PrintSelection(LPTW lptw,char *Entete);
+void PrintSelectionGUI(LPTW lptw,char *Entete);
 void ExitWindow(void);
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);

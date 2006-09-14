@@ -29,7 +29,7 @@ extern void TextSelectFont (LPTW lptw);
 extern void WriteRegistryTxt (LPTW lptw);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
 extern void HelpOn(LPTW lptw);
-extern void PrintSelection(LPTW lptw,char *Entete);
+extern void PrintSelectionGUI(LPTW lptw,char *Entete);
 extern void OpenSelection(LPTW lptw);
 extern void CutSelection(LPTW lptw);
 extern void EvaluateSelection(LPTW lptw);
@@ -312,11 +312,11 @@ BOOL ON_WND_TEXT_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 				TextCopyClip (lptw);
 				if (lptw->lpmw->CodeLanguage == 0)
 				{
-					PrintSelection(lptw,MSG_SCIMSG44);
+					PrintSelectionGUI(lptw,MSG_SCIMSG44);
 				}
 				else
 				{
-					PrintSelection(lptw,MSG_SCIMSG45);
+					PrintSelectionGUI(lptw,MSG_SCIMSG45);
 				}
 			}
 		break;

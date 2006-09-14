@@ -366,11 +366,11 @@ void Callback_PRINT(void)
 
 	if (lptw->lpmw->CodeLanguage == 0)
 	{
-		PrintSelection(lptw,MSG_SCIMSG44);
+		PrintSelectionGUI(lptw,MSG_SCIMSG44);
 	}
 	else
 	{
-		PrintSelection(lptw,MSG_SCIMSG45);
+		PrintSelectionGUI(lptw,MSG_SCIMSG45);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
