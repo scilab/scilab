@@ -101,3 +101,15 @@ int sciReturnRowHandleVector( const long handles[], int nbValues )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciReturnMatrix( const double values[], int nbRow, int nbCol )
+{
+  int outIndex = 0 ;
+  int i ;
+  CreateVar( Rhs+1, "d", &nbRow, &nbCol, &outIndex ) ;
+  for  ( i = 0; i < nbRow * nbCol; i++ )
+  {
+    stk(outIndex)[i] = values[i] ;
+  }
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/

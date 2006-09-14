@@ -32,5 +32,8 @@ int get_current_axes_property( sciPointObj * pobj ) ;
 int get_current_figure_property( sciPointObj * pobj ) ;
 int get_current_entity_property( sciPointObj * pobj ) ;
 int get_children_property( sciPointObj * pobj ) ;
+int get_default_figure_property( sciPointObj * pobj ) ;
+int get_default_axes_property( sciPointObj * pobj ) ;
+int get_color_map_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

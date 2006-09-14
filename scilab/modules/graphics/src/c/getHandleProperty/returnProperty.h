@@ -57,5 +57,11 @@ int sciReturnHandle( long handle ) ;
  */
 int sciReturnRowHandleVector( const long handles[], int nbValues ) ;
 
+/**
+* copy a matrix sotored has a double array
+* into a sScilab matrix in the stack in order to see it the console.
+* @return 0 if the function was executed correctly, -1 if an error occured.
+*/
+int sciReturnMatrix( const double values[], int nbRow, int nbCol ) ;
 
 #endif /* _RETURN_PROPERTY_H_ */

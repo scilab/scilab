@@ -311,7 +311,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   {
     return get_current_figure_property( pobj ) ;
   }
-  else if((strcmp(marker,"current_obj") == 0) || (strcmp(marker,"current_entity") == 0))
+  else if( (strcmp(marker,"current_obj") == 0) || (strcmp(marker,"current_entity") == 0) || (strcmp(marker,"hdl") == 0) )
   {
     return get_current_entity_property( pobj ) ;
   }
@@ -319,74 +319,19 @@ int sciGet(sciPointObj *pobj,char *marker)
   {
     return get_children_property( pobj ) ;
   }
-  else if (strcmp(marker,"hdl") == 0)
-    {
-      numrow   = 1;
-      numcol   = 1;
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
-    }
   /* DJ.A 08/01/04 */
   else if (strcmp(marker,"default_figure") == 0)
-    {
-      if (getFigureModel() != (sciPointObj *) NULL) 
-	{
-	  numrow   = 1;
-	  numcol   = 1;	
-	  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	  *hstk(outindex) =  sciGetHandle(getFigureModel());
-	}
-      else
-	{
-	  strcpy(error_message,"Default figure do not existed ");
-	  return -1;
-	}
-    }
+  {
+    return get_default_figure_property( pobj ) ;
+  }
   else if (strcmp(marker,"default_axes") == 0)
-    { 
-      if (getAxesModel() != (sciPointObj *) NULL) 
-	{
-	  numrow   = 1;
-	  numcol   = 1;
-	  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	  *hstk(outindex) = sciGetHandle(getAxesModel());	
-	}
-      else
-	{
-	  strcpy(error_message,"Default axes do not existed ");
-	  return -1;
-	}
-    }
-  /******************************** context graphique  *****************************************/
-
+  {
+    return get_default_axes_property( pobj ) ;  
+  }
+  /******************************** context graphique  ******************************************/
   else if ( strcmp(marker,"color_map") == 0 )
   {
-    if ( sciGetEntityType( pobj ) != SCI_FIGURE )
-    {
-      strcpy(error_message,"color_map property does not exist for this handle.");
-      return -1;
-    }
-    if ((sciPointObj *) pobj != getFigureModel())
-    {
-      numcol = 3;
-      numrow = sciGetNumColors (pobj);
-      if ( numrow == 0 ) numcol=0;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for  ( i = 0 ; i < numcol*numrow ; i++ )
-      {
-        stk(outindex)[i] = pFIGURE_FEATURE(pobj)->pcolormap[i];
-      }
-    }
-    else
-    {
-      numcol = 3;
-      numrow = sciGetNumColors (pobj);
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for  ( i = 0; i < numcol*numrow; i++ )
-      {
-        stk(outindex)[i] = pFIGURE_FEATURE(getFigureModel())->pcolormap[i];
-      }
-    }
+    return get_color_map_property( pobj ) ;
   }
   else if (strcmp(marker,"interp_color_vector") == 0)
     {

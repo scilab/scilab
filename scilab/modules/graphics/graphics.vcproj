@@ -249,6 +249,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_color_map_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_current_axes_property.c"
 				>
 			</File>
@@ -258,6 +262,14 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_current_figure_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_default_axes_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_default_figure_property.c"
 				>
 			</File>
 			<File
