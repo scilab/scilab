@@ -57,5 +57,9 @@ int get_x_shift_property( sciPointObj * pobj ) ;
 int get_y_shift_property( sciPointObj * pobj ) ;
 int get_z_shift_property( sciPointObj * pobj ) ;
 int get_polyline_style_property( sciPointObj * pobj ) ;
+int get_font_size_property( sciPointObj * pobj ) ;
+int get_font_angle_property( sciPointObj * pobj ) ;
+int get_font_foreground_property( sciPointObj * pobj ) ;
+int get_font_color_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

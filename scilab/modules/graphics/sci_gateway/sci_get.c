@@ -423,32 +423,21 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   /****************************************************/
   else if (strcmp(marker,"font_size") == 0)
-    {
-      numrow = 1;numcol = 1;
-      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-      *istk(outindex) = sciGetFontDeciWidth((sciPointObj *)pobj)/100;
-    }
+  {
+    return get_font_size_property( pobj ) ;
+  }
   else if (strcmp(marker,"font_angle") == 0)
-    {
-      numrow = 1; numcol = 1;
-      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-      *istk(outindex) = (sciGetFontOrientation((sciPointObj *)pobj))/10;
-    }
+  {
+    return get_font_angle_property( pobj ) ;
+  }
   else if (strcmp(marker,"font_foreground") == 0)
-    {
-      numrow = 1;numcol = 1;
-      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-      *istk(outindex) = sciGetFontForegroundToDisplay((sciPointObj *)pobj);
-    }
-  else if (strcmp(marker,"font_color") == 0)	{ /* F.Leray 09.04.04 : Added for FIGURE and SUBWIN objects */
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    if (sciGetEntityType (pobj) == SCI_AXES)
-      *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
-      *stk(outindex) = sciGetFontForegroundToDisplay(pobj);} /* F.Leray 08.04.04 */
-    else
-      {strcpy(error_message,"font_color property does not exist for this handle");return -1;}
+  {
+    return get_font_foreground_property( pobj ) ;
+  }
+  else if (strcmp(marker,"font_color") == 0)
+  {
+    /* F.Leray 09.04.04 : Added for FIGURE and SUBWIN objects */
+    return get_font_color_property( pobj ) ;
   }
   else if (strcmp(marker,"font_style") == 0)
     {

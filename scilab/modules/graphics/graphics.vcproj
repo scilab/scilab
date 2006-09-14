@@ -317,6 +317,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_font_angle_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_font_color_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_font_foreground_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_font_size_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_foreground_property.c"
 				>
 			</File>
