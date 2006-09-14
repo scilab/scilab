@@ -19,7 +19,7 @@ function [tree]=%h2sci(tree)
 if (typeof(B)=="variable" & B.name=="%shortcircuit") then
   if typeof(tree.out(1))=="variable" & tree.out(1).name=="ans" then
     tmp=gettempvar()
-    tmp.type=Type(Boolean,Real)
+    tmp.type=Type(Double,Real)
     tree=tmp
   else
     tmp=tree.out(1)
@@ -27,7 +27,7 @@ if (typeof(B)=="variable" & B.name=="%shortcircuit") then
     varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
     tree=list()
   end
-  insert(Equal(list(tmp),Cste(%F)))
+  insert(Equal(list(tmp),Funcall("bool2s",1,list(Cste(%F)),list())))
   insert(tlist(["ifthenelse","expression","then","elseifs","else"],A.operands(1),list(Equal(list(tmp),A.operands(2))),list(),list()))
   return
 end
