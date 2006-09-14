@@ -367,7 +367,7 @@ c     on initialise nizs,nrzs,ndzs
             call boptim(indsim,nx,stk(lx),stk(lf),stk(lg),
      &           izs,rzs,dzs)
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
 c     
          if(indsim.le.0) then
             indopt=-7
@@ -549,7 +549,7 @@ c
             call boptim(indsim,nx,stk(lx),stk(lf),stk(lg),
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0)return
+         if(err.gt.0.or.err1.gt.0)return
          if(indsim.le.0) then
             indopt=-7
             if(indsim.eq.0) indopt=0
@@ -596,7 +596,7 @@ c
      &           stk(lvar),epsg,mode,itmax,napm,imp,io,stk(ltv),
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
 c     affectation de indopt
          epsg=sqrt(epsg)
          indopt=9
@@ -765,7 +765,7 @@ c     optimiseur qnbd
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          go to 300
       endif
 c     
@@ -806,7 +806,7 @@ c     optimiseur gcbd
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          go to 300
       endif
 c     
@@ -1642,7 +1642,7 @@ C     -------------------------------------------
          call hybrd1(bsolv,mn1,stk(lr1),stk(lw4),tol,info,
      $        stk(lw7),nn7)
       endif 
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
 c     
       top=top-1
       if(lhs.eq.1) then
