@@ -65,6 +65,19 @@ int sciReturnRowVector( const double values[], int nbValues )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciReturnRowVectorFromInt( const int values[], int nbValues )
+{
+  int numRow   = 1        ;
+  int outIndex = 0        ;
+  int i ;
+  CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;
+  for ( i = 0 ; i < nbValues ; i++ )
+  {
+    stk(outIndex)[i] = (double)values[i] ;
+  }
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
 int sciReturnRowIntVector( const int values[], int nbValues )
 {
   int numRow   = 1        ;

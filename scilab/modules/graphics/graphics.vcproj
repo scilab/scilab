@@ -237,11 +237,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_arrow_size_factor_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_auto_resize_property.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_axes_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_background_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_bar_layout_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_bar_width_property.c"
 				>
 			</File>
 			<File
@@ -297,7 +313,55 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_fill_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_foreground_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_immediate_drawing_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_interp_color_mode.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_interp_color_vector.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_line_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_line_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_mark_background_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_mark_foreground_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_mark_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_mark_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_mark_size_unit_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_mark_style_property.c"
 				>
 			</File>
 			<File
@@ -317,7 +381,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_polyline_style_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_rotation_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_surface_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_thickness_property.c"
 				>
 			</File>
 			<File
@@ -326,6 +402,18 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_visible_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_x_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_y_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_z_shift_property.c"
 				>
 			</File>
 			<File

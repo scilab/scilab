@@ -39,11 +39,18 @@ int sciReturnInt( int value ) ;
 int sciReturnRowVector( const double values[], int nbValues ) ;
 
 /**
- * copy an integer array into a row vector in the scilab stack in order to see it the console.
+* copy a integer array into a row vector (of double) in the scilab stack
+* in order to see it the console.
+* @return 0 if the function was executed correctly, -1 if an error occured.
+*/
+int sciReturnRowVectorFromInt( const int values[], int nbValues ) ;
+
+/**
+ * copy an integer array into an integer row vector in the scilab stack
+ * in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.
  */
 int sciReturnRowIntVector( const int values[], int nbValues ) ;
-
 
 /**
  * copy a handle in the scilab stack in order to see it the console.
@@ -58,7 +65,7 @@ int sciReturnHandle( long handle ) ;
 int sciReturnRowHandleVector( const long handles[], int nbValues ) ;
 
 /**
-* copy a matrix sotored has a double array
+* copy a matrix stored has a double array
 * into a sScilab matrix in the stack in order to see it the console.
 * @return 0 if the function was executed correctly, -1 if an error occured.
 */

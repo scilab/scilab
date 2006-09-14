@@ -334,290 +334,93 @@ int sciGet(sciPointObj *pobj,char *marker)
     return get_color_map_property( pobj ) ;
   }
   else if (strcmp(marker,"interp_color_vector") == 0)
-    {
-      int * vectmp = sciGetInterpVector((sciPointObj *) pobj);
-
-      if(sciGetEntityType(pobj) != SCI_POLYLINE)
-	{ strcpy(error_message,"interp_color_vector property does not exist for this handle"); return -1;}
-
-      if(vectmp != NULL){
-	numrow = 1;
-	numcol = pPOLYLINE_FEATURE(pobj)->dim_icv;
-
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
-	for (i=0;i<numcol;i++)
-	  stk(outindex)[i] =  vectmp[i];
-      }
-      else{
-	numrow = 0;
-	numcol = 0;
-
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); 
-      }
-    }
+  {
+    return get_interp_color_vector_property( pobj ) ;
+  }
   else if (strcmp(marker,"interp_color_mode") == 0)
-    {
-      if(pPOLYLINE_FEATURE(pobj)->isinterpshaded == TRUE){
-	numrow = 1;
-	numcol = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else{
-	numrow = 1;
-	numcol = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_interp_color_mode_property( pobj ) ;
+  }
   else if (strcmp(marker,"background") == 0) /**DJ.Abdemouche 2003**/
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-
-      *stk(outindex) = sciGetBackgroundToDisplay((sciPointObj *) pobj);
-    }
+  {
+    return get_background_property( pobj ) ;
+  }
   else if (strcmp(marker,"foreground") == 0) 
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-
-      *stk(outindex) = sciGetForegroundToDisplay((sciPointObj *) pobj);
-    }
+  {
+    return get_foreground_property( pobj ) ;
+  }
   else if (strcmp(marker,"fill_mode") == 0) 
-    {
-      if (sciGetIsFilled((sciPointObj *) pobj)==1) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_fill_mode_property( pobj ) ;    
+  }
   else if (strcmp(marker,"thickness") == 0) 
-    {
-      numrow   = 1;numcol   = 1;
- 	 
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetLineWidth((sciPointObj *) pobj);
-    }
+  {
+    return get_thickness_property( pobj ) ;
+  }
   else if (strcmp(marker,"arrow_size_factor") == 0) 
-    {
-      numrow   = 1;numcol   = 1;
-      if(sciGetEntityType(pobj) == SCI_POLYLINE){
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex) = pPOLYLINE_FEATURE(pobj)->arsize_factor;
-      }
-    }
+  {
+    return get_arrow_size_factor_property( pobj ) ;
+  }
   else if (strcmp(marker,"line_style") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetLineStyle((sciPointObj *) pobj);
-    }
+  {
+    return get_line_style_property( pobj ) ;
+  }
   else if (strcmp(marker,"line_mode") == 0)
-    {
-      if (sciGetIsLine((sciPointObj *)pobj) == 1) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {	
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_line_mode_property( pobj ) ;
+  }
   else if (strcmp(marker,"surface_mode") == 0)
-    {
-      if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
-	 (sciGetEntityType(pobj) == SCI_FAC3D)  ||
-	 (sciGetEntityType(pobj) == SCI_SURFACE)){
-	if (sciGetIsLine((sciPointObj *)pobj) == 1) {
-	  numrow   = 1;
-	  numcol   = 2;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"on", numrow*numcol);
-	}
-	else {
-	  numrow   = 1;
-	  numcol   = 3;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"off", numrow*numcol);
-	}
-      }
-      else {strcpy(error_message,"Surface_mode value can not be accessed with this object, use line_mode"); return -1;}
-    }
+  {
+    return get_surface_mode_property( pobj ) ;    
+  }
   else if (strcmp(marker,"mark_style") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetMarkStyle((sciPointObj *) pobj);
-    }
+  {
+    return get_mark_style_property( pobj ) ;
+  }
   else if (strcmp(marker,"mark_mode") == 0)
-    {
-      if (sciGetIsMark((sciPointObj *)pobj) == 1) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_mark_mode_property( pobj ) ;
+  }
   else if (strcmp(marker,"mark_size_unit") == 0)
-    {
-      numrow   = 1;
-      if (sciGetMarkSizeUnit((sciPointObj *)pobj) == 1){
-	numcol = 5;
-	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	strncpy(cstk(outindex),"point", numrow*numcol);
-      }
-      else if(sciGetMarkSizeUnit((sciPointObj *)pobj) == 2){
-	numcol = 9;
-	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-	strncpy(cstk(outindex),"tabulated", numrow*numcol);
-      }
-    }
+  {
+    return get_mark_size_unit_property( pobj ) ;
+  }
   else if (strcmp(marker,"mark_size") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetMarkSize((sciPointObj *) pobj);
-    }
+  {
+    return get_mark_size_property( pobj ) ;
+  }
   else if (strcmp(marker,"mark_foreground") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetMarkForegroundToDisplay((sciPointObj *) pobj);
-    }
+  {
+    return get_mark_foreground_property( pobj ) ;
+  }
   else if (strcmp(marker,"mark_background") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetMarkBackgroundToDisplay((sciPointObj *) pobj);
-    }
+  {
+    return get_mark_background_property( pobj ) ;
+  }
   else if (strcmp(marker,"bar_layout") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	{   
-	  numrow   = 1;
-	  numcol   = 7;
-
-	  if(pPOLYLINE_FEATURE (pobj)->bar_layout == 0)
-	    { /* 0 grouped; 1 stacked */
-	      
-	      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	      strncpy(cstk(outindex),"grouped", numrow*numcol);
-	    }
-	  else
-	    {
-	      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	      strncpy(cstk(outindex),"stacked", numrow*numcol);
-	    }
-	}
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    }
+  {
+    return get_bar_layout_property( pobj ) ;    
+  }
   else if (strcmp(marker,"bar_width") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	*stk(outindex) = pPOLYLINE_FEATURE (pobj)->bar_width;
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    }
+  {
+    return get_bar_width_property( pobj ) ;  
+  }
   else if (strcmp(marker,"x_shift") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	{
-	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
-	  
-	  if(ppolyline->x_shift == (double *) NULL)
-	    {
-	      numrow = numcol = 0;
-	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-	    }
-	  else
-	    {
-	      numrow   = 1;numcol   = ppolyline->n1;
-	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-	      
-	      for (i=0;i<numcol;i++)
-		stk(outindex)[i] = ppolyline->x_shift[i];
-	    }
-	}
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    } 
+  {
+    return get_x_shift_property( pobj ) ;    
+  } 
   else if (strcmp(marker,"y_shift") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	{
-	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
-	  
-	  if(ppolyline->y_shift == (double *) NULL)
-	    {
-	      numrow = numcol = 0;
-	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-	    }
-	  else
-	    {
-	      numrow   = 1;numcol   = ppolyline->n1;
-	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-	      
-	      for (i=0;i<numcol;i++)
-		stk(outindex)[i] = ppolyline->y_shift[i];
-	    }
-	}
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    } 
+  {
+    return get_y_shift_property( pobj ) ;    
+  }  
   else if (strcmp(marker,"z_shift") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_POLYLINE)
-	{
-	  sciPolyline *  ppolyline = pPOLYLINE_FEATURE (pobj);
-	  
-	  if(ppolyline->z_shift == (double *) NULL)
-	    {
-	      numrow = numcol = 0;
-	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-	    }
-	  else
-	    {
-	      numrow   = 1;numcol   = ppolyline->n1;
-	      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-	      
-	      for (i=0;i<numcol;i++)
-		stk(outindex)[i] = ppolyline->z_shift[i];
-	    }
-	}
-      else
-	{ strcpy(error_message,"Unknown polyline property"); return -1;}
-    } 
+  {
+    return get_z_shift_property( pobj ) ;    
+  }   
   else if (strcmp(marker,"polyline_style") == 0)
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);  
-  if (sciGetEntityType (pobj) == SCI_POLYLINE)
-    *stk(outindex) = pPOLYLINE_FEATURE (pobj)->plot;
-  else
-    { strcpy(error_message,"Unknown polyline property"); return -1;}
-    } 
-  
+  {
+    return get_polyline_style_property( pobj ) ;
+  }
   /****************************************************/
   else if (strcmp(marker,"font_size") == 0)
     {
