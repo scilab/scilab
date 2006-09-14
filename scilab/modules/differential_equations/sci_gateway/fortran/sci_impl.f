@@ -282,7 +282,7 @@ c     f macro j macro
      2              stk(lrwp),ilrw,istk(ilc),liwp,mf)
             endif
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          if(istate.lt.0) then
             call error(24)
             return

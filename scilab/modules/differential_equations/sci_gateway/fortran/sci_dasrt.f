@@ -395,7 +395,7 @@ C     SUBROUTINE DDASRT (RES,NEQ,T,Y,YPRIME,TOUT,
 C     *  INFO,RTOL,ATOL,IDID,RWORK,LRW,IWORK,LIW,RPAR,IPAR,JAC,
 C     *  G,NG,JROOT)
          endif
-         if(err.gt.0)  return
+         if(err.gt.0.or.err1.gt.0)  return
          if(idid.eq.1) then
 C     A step was successfully taken in the intermediate-output mode. 
 C     The code has not yet reached TOUT.

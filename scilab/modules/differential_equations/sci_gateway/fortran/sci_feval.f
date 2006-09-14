@@ -82,7 +82,7 @@ C     une variable de taille 1 qui permet de gerer le type d'argument
                do 174 j=1,m1*n1
                   call bfeval(nn,stk(la+i-1),stk(lb+j-1),
      $                 fval,itype,ename)
-                  if(err.gt.0) return
+                  if(err.gt.0.or.err1.gt.0) return
                   if(iero.gt.0) then
                      call error(24)
                      Return
@@ -94,7 +94,7 @@ C     une variable de taille 1 qui permet de gerer le type d'argument
          else
             do 173 i=1,m1*n1
                call bfeval(nn,stk(lb+i-1),1.0D0,fval,itype,ename)
-               if(err.gt.0) return
+               if(err.gt.0.or.err1.gt.0) return
                if(iero.gt.0) then
                   call error(24)
                   Return

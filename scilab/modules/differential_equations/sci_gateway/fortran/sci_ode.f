@@ -755,7 +755,7 @@ c     --------------
      1           atol,itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2           liw,bjac,meth)
          endif         
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          if(istate.lt.0) then
             if(meth.le.3) then
                if(istate.eq.-3) then
@@ -857,7 +857,7 @@ c--------------------
      1              atol,itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2              liw,bjac,meth)
             endif         
-            if(err.gt.0) return
+            if(err.gt.0.or.err1.gt.0) return
 
             if(istate.lt.0) then
             if(meth.le.3) then

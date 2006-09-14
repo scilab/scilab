@@ -831,7 +831,7 @@ c     integrate continuous part
      $           ,atol,itask,istate,iopt,stk(lc),lrw,istk(ilc)
      $           ,liw,bjac,meth)
          endif         
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          if(istate.lt.0) then
             if(meth.le.3) then
                if(istate.eq.-3) then
@@ -875,7 +875,7 @@ c     update discrete part if necessary
             call basout(io,wte,buf(1:20))
          endif
          call bydot2(ny,tright,stk(ly),stk(ly+ny))
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          iflag=0
          nhpass=nhpass+1
 c     store intermediate result
@@ -968,7 +968,7 @@ c     integrate continuuous part
      $              ,atol,itask,istate,iopt,stk(lc),lrw,istk(ilc)
      $              ,liw,bjac,meth)
             endif         
-            if(err.gt.0) return
+            if(err.gt.0.or.err1.gt.0) return
             if(istate.lt.0) then
             if(meth.le.3) then
                if(istate.eq.-3) then
@@ -995,7 +995,7 @@ c     update discrete part if necessary
                   call basout(io,wte,buf(1:20))
                endif
                call bydot2(ny,tright,stk(ly),stk(ly+ny))
-               if(err.gt.0) return
+               if(err.gt.0.or.err1.gt.0) return
                iflag=0
             endif
 c     store intermediate result

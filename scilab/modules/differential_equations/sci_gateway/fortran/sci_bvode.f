@@ -162,7 +162,7 @@ C     Modele des arguments des external x scalaire z vecteur
      $     istk(iadr(lipar)),istk(iadr(lltol)), stk(ltol),stk(lfixpnt),
      $     istk(iadr(lispace)), stk(lspace), iflag, fsub, 
      $             dfsub, gsub, dgsub, dguess) 
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
       if(iero.gt.0) then
          call error(24)
          Return
