@@ -209,7 +209,7 @@ extern int get_cf_type(void);
 int sciGet(sciPointObj *pobj,char *marker)
 {
   int numrow, numcol, outindex, i,j,k;
-  integer x[2], itmp = 0, na ;
+  integer itmp = 0 ;
   double *tab;
   char **str;
   sciPointObj *psubwin;
@@ -274,97 +274,35 @@ int sciGet(sciPointObj *pobj,char *marker)
     return get_figure_size_property( pobj ) ;
   }
   else if (strcmp(marker,"figure_name") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      numrow = 1;
-      numcol = sciGetNameLength((sciPointObj *) pobj);
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex), sciGetName((sciPointObj *) pobj), numrow*numcol);
-    }
+  {
+    return get_figure_name_property( pobj ) ;
+  }
   else if (strcmp(marker,"figure_id") == 0)
-    {
-      numrow = 1;
-      numcol = 1;
-      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-      *istk(outindex) = sciGetNum((sciPointObj *)pobj);
-    }
+  {
+    return get_figure_id_property( pobj ) ;
+  }
   else if (strcmp(marker,"rotation_style") == 0) 
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      if (pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle == 0){
-	numrow   = 1;
-	numcol   = 5;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"unary", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 8;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"multiple",numrow*numcol);
-      }
-    }
+  {
+    return get_rotation_style_property( pobj ) ;
+  }
   else if (strcmp(marker,"immediate_drawing") == 0) 
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      if (pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw == TRUE){
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off",numrow*numcol);
-      }
-    }
+  {
+    return get_immediate_drawing_property( pobj ) ;
+  }
   /*Ajout A.Djalel*/
   else if (strcmp(marker,"pixmap") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      if (pFIGURE_FEATURE(pobj)->pixmap==1){
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
-
+  {
+    return get_pixmap_property( pobj ) ;    
+  }
   /********** Handles Properties *********************************************/       
   else if (strcmp(marker,"type") == 0)
-    {
-      numrow = 1;  
-      numcol = strlen(sciGetCharEntityType((sciPointObj *) pobj));
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex), sciGetCharEntityType((sciPointObj *) pobj), numrow*numcol);
-    }
+  {
+    return get_type_property( pobj ) ;
+  }
   else if (strcmp(marker,"parent") == 0)
-    {
-      numrow   = 1;
-      numcol   = 1;
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *hstk(outindex) = sciGetHandle(sciGetParent((sciPointObj *)pobj));
-    }
+  {
+    return get_parent_property( pobj ) ;    
+  }
   else if (strcmp(marker,"current_axes") == 0)
     {
       /*       sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure()); */

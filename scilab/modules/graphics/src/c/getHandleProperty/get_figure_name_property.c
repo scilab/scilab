@@ -1,30 +1,25 @@
 /*------------------------------------------------------------------------*/
-/* file: get_old_style_property.c                                         */
+/* file: get_figure_name_property.c                                       */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the old_style field of a handle  */
+/* desc : function to retrieve in Scilab the figure_name field of a       */
+/*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-
-int get_old_style_property( sciPointObj * pobj )
+int get_figure_name_property( sciPointObj * pobj )
 {
-
-  if ( version_flag() != 0)
+  if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    return sciReturnString( "on" ) ;
+    sciprint("figure_name property undefined for this object") ;
+    return -1;
   }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
+  return sciReturnString( sciGetName( pobj ) ) ;
 
-  return 0 ;
 }
-
 /*------------------------------------------------------------------------*/

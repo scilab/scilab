@@ -46,3 +46,27 @@ int sciReturnRowVector( const double values[], int nbValues )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciReturnRowIntVector( const int values[], int nbValues )
+{
+  int numRow   = 1        ;
+  int numCol   = nbValues ;
+  int outIndex = 0        ;
+  int i ;
+  CreateVar(Rhs+1,"i",&numRow,&numCol,&outIndex) ;
+  for ( i = 0 ; i < nbValues ; i++ )
+  {
+    istk(outIndex)[i] = values[i] ;
+  }
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
+int sciReturnHandle( long handle )
+{
+  int numRow   = 1 ;
+  int numCol   = 1 ;
+  int outIndex = 0 ;
+  CreateVar(Rhs+1,"h",&numRow,&numCol,&outIndex);
+  *hstk(outIndex) = handle ;
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/

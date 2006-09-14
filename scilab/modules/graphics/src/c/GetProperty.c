@@ -4523,17 +4523,41 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"alignment"          ) == 0) {return 10;} /*       05/06 */
   else {return -1;}
 }
-
-/**sciGetIdFigure
+/*----------------------------------------------------------------------------------------*/
+/**
+ * return the number of figures
+ */
+int sciGetNbFigure( void )
+{
+  int nbFig = 0 ;
+  int flag  = 0 ;
+  sciGetIdFigure( NULL, &nbFig, &flag ) ;
+  return nbFig ;
+}
+/*----------------------------------------------------------------------------------------*/
+/**
+ * Fill the array figIds withe the list of all opened figures
+ * @param[out] figIds should be allocated before the call of the routine.
+ *                    sciGetNbFigure might be used to retrieve the number of opened
+ *                    figures.
+ */
+void sciGetFiguresId( int figIds[] )
+{
+  int flag  = 1 ;
+  sciGetIdFigure( figIds, NULL, &flag ) ;
+}
+/*----------------------------------------------------------------------------------------*/
+/**
+ * private, use sciGetNbFigure and sciGetFiguresId instead.
  */
 void
-sciGetIdFigure (int *vect, int *id, int *flag)
+sciGetIdFigure ( int * vect, int * id, int * flag )
 {
   sciHandleTab *hdl;
   sciPointObj  *pobj;
+  int nbFig = 0 ;
   
-  hdl = PENDOFHANDLETAB;  
-  *id=0;
+  hdl = PENDOFHANDLETAB;
   while (hdl != NULL)
     { 
       sciFigure * ppfigure = NULL; 
@@ -4541,12 +4565,19 @@ sciGetIdFigure (int *vect, int *id, int *flag)
       ppfigure = pFIGURE_FEATURE(pobj);
       if (sciGetEntityType(pobj) == SCI_FIGURE)
 	{
-	  if (*flag) vect[*id] = sciGetNum(pobj);
-	  (*id)++;
+          if ( *flag != 0 )
+          {
+            vect[nbFig] = sciGetNum(pobj);
+          }
+	  nbFig++ ;
 	} 
-        
       hdl = hdl->pprev;
     }
+    if ( id != NULL )
+    {
+      *id = nbFig ;
+    }
+
 }
 int version_flag() 
 { 

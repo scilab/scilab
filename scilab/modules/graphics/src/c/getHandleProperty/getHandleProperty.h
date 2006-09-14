@@ -21,5 +21,12 @@ int get_auto_resize_property( sciPointObj * pobj ) ;
 int get_figure_position_property( sciPointObj * pobj ) ;
 int get_axes_size_property( sciPointObj * pobj ) ;
 int get_figure_size_property( sciPointObj * pobj ) ;
+int get_figure_name_property( sciPointObj * pobj ) ;
+int get_figure_id_property( sciPointObj * pobj ) ;
+int get_rotation_style_property( sciPointObj * pobj ) ;
+int get_immediate_drawing_property( sciPointObj * pobj ) ;
+int get_pixmap_property( sciPointObj * pobj ) ;
+int get_type_property( sciPointObj * pobj ) ;
+int get_parent_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

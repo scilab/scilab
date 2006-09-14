@@ -26,4 +26,18 @@ int sciReturnInt( int value ) ;
 */
 int sciReturnRowVector( const double values[], int nbValues ) ;
 
+/**
+* copy an integer array into a row vector in the scilab stack in order to see it the console.
+* @return 0 if the function was executed correctly, -1 if an error occured.
+*/
+int sciReturnRowIntVector( const int values[], int nbValues ) ;
+
+
+/**
+* copy a handle in the scilab stack in order to see it the console.
+* @return 0 if the function was executed correctly, -1 if an error occured.
+*/
+int sciReturnHandle( long handle ) ;
+
+
 #endif /* _RETURN_PROPERTY_H_ */

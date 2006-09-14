@@ -237,11 +237,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getHandleProperty\get_auto_resize.c"
+				RelativePath=".\src\c\getHandleProperty\get_auto_resize_property.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_axes_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_figure_id_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_figure_name_property.c"
 				>
 			</File>
 			<File
@@ -261,11 +269,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_immediate_drawing_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_old_style_property.c"
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_parent_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_pixel_drawing_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_pixmap_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_rotation_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_type_property.c"
 				>
 			</File>
 			<File
