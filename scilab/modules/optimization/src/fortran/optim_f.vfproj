@@ -132,10 +132,10 @@ cd .."/>
 		<File RelativePath="relvar.f"/>
 		<File RelativePath="rlbd.f"/>
 		<File RelativePath="satur.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_fsolve.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_optim.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_quapro.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_semidef.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_fsolve.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_optim.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_quapro.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_semidef.f"/>
 		<File RelativePath="shanph.f"/>
 		<File RelativePath="strang.f"/>
 		<File RelativePath="tol03.f"/>
