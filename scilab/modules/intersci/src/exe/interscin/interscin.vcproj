@@ -359,7 +359,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\out.c"
+				RelativePath="..\out-e.c"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
