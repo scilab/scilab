@@ -101,7 +101,7 @@ C     -------------------------------------------
          call hybrd1(bsolv,mn1,stk(lr1),stk(lw4),tol,info,
      $        stk(lw7),nn7)
       endif 
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
 c     
       top=top-1
       if(lhs.eq.1) then

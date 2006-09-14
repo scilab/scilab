@@ -362,7 +362,7 @@ c     on initialise nizs,nrzs,ndzs
             call boptim(indsim,nx,stk(lx),stk(lf),stk(lg),
      &           izs,rzs,dzs)
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
 c     
          if(indsim.le.0) then
             indopt=-7
@@ -544,7 +544,7 @@ c
             call boptim(indsim,nx,stk(lx),stk(lf),stk(lg),
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0)return
+         if(err.gt.0.or.err1.gt.0)return
          if(indsim.le.0) then
             indopt=-7
             if(indsim.eq.0) indopt=0
@@ -591,7 +591,7 @@ c
      &           stk(lvar),epsg,mode,itmax,napm,imp,io,stk(ltv),
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
 c     affectation de indopt
          epsg=sqrt(epsg)
          indopt=9
@@ -647,7 +647,7 @@ c
      &           stk(lg),dxmin,df0,epsg,imp,io,mode,itmax,napm,
      &           stk(ltv),ntv,istk(lizs),sstk(lrzs),stk(ldzs) )
          endif
-         if (err.gt.0) return
+         if (err.gt.0.or.err1.gt.0) return
          indopt=9
          if (mode.eq.0) indopt=0
          if (mode.eq.1) indopt=1
@@ -695,7 +695,7 @@ c     optimiseur n1fc1 (non smooth)
      &           istk(litv),stk(ltv1),stk(ltv2),istk(lizs),sstk(lrzs),
      $           stk(ldzs))
          endif
-         if (err.gt.0) return
+         if (err.gt.0.or.err1.gt.0) return
 c     interpretation de la cause de retour
          indopt=9
          if (mode.eq.0)indopt=0
@@ -760,7 +760,7 @@ c     optimiseur qnbd
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          go to 300
       endif
 c     
@@ -801,7 +801,7 @@ c     optimiseur gcbd
      &           stk(ltv),ntv,istk(litv),nitv,
      &           istk(lizs),sstk(lrzs),stk(ldzs))
          endif
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          go to 300
       endif
 c     
