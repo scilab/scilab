@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "misc.h"
 /*-----------------------------------------------------------------------------------*/
-EXPORT char *sizes[] = {
+char *sizes[] = {
 			 "NONSENSE!",
 			 "bytes",
 			 "shorts",
@@ -25,7 +25,7 @@ EXPORT char *sizes[] = {
 			 "IEEE floats"
 		       };
 
-EXPORT char *styles[] = {
+char *styles[] = {
 			  "NONSENSE!",
 			  "unsigned",
 			  "signed (2's complement)",

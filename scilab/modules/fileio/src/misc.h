@@ -1,5 +1,3 @@
-#define IMPORT  extern
-#define EXPORT 
 
 #define	PRIVSIZE	100
 #define NLOOPS		8
@@ -57,7 +55,7 @@ struct soundstream {
 	int     ierr;
 	};
 
-IMPORT struct soundstream informat, outformat;
+extern struct soundstream informat, outformat;
 typedef struct soundstream *ft_t;
 /*-----------------------------------------------------------------------------------*/
 /* Utilities to read and write shorts and longs little-endian and big-endian */
