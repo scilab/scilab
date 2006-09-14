@@ -31,6 +31,7 @@
 
 void wininfo  __PARAMS((char *fmt,...));
 
+int get_cf_type( void ) ;
 
 extern void GPopupResize();
 /* static struct BCG *tmpScilabXgc; */

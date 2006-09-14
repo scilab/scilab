@@ -28,5 +28,9 @@ int get_immediate_drawing_property( sciPointObj * pobj ) ;
 int get_pixmap_property( sciPointObj * pobj ) ;
 int get_type_property( sciPointObj * pobj ) ;
 int get_parent_property( sciPointObj * pobj ) ;
+int get_current_axes_property( sciPointObj * pobj ) ;
+int get_current_figure_property( sciPointObj * pobj ) ;
+int get_current_entity_property( sciPointObj * pobj ) ;
+int get_children_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

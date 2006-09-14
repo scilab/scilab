@@ -304,79 +304,20 @@ int sciGet(sciPointObj *pobj,char *marker)
     return get_parent_property( pobj ) ;    
   }
   else if (strcmp(marker,"current_axes") == 0)
-    {
-      /*       sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure()); */
-      numrow   = 1;
-      numcol   = 1;
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *hstk(outindex) = sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure()));
-    }
-
+  {
+    return get_current_axes_property( pobj ) ;
+  }
   else if (strcmp(marker,"current_figure") == 0)
-    {
-
-      if (get_cf_type()==1) {
-	C2F(sciwin)();/*SciWin();*/
-	numrow   = 1;
-	numcol   = 1;
-	if(version_flag() == 0)
-	  { /* return handle on the current figure */
-	    CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	    *hstk(outindex) = sciGetHandle(sciGetCurrentFigure());
-	  }
-	else
-	  { /* return id of the current figure */
-	    double *XGC,dv=0;
-	    int v=0;
-	    struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
-	    C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-	    CurrentScilabXgc=(struct BCG *)XGC;
-
-
-	    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	    *stk(outindex) = (double) CurrentScilabXgc->CurWindow;
-	  }
-      }
-      else {
-	numrow   = 1;
-	numcol   = 1;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-#ifdef WITH_TK
-	*stk(outindex) = (double )GetTclCurrentFigure();
-#endif
-      }
-    }
+  {
+    return get_current_figure_property( pobj ) ;
+  }
   else if((strcmp(marker,"current_obj") == 0) || (strcmp(marker,"current_entity") == 0))
-    {
-      numrow   = 1;
-      numcol   = 1;
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
-    }
+  {
+    return get_current_entity_property( pobj ) ;
+  }
   else if (strcmp(marker,"children") == 0)
-  { 
-    sciSons * curSon = NULL ;
-    numrow = sciGetNbAccessibleChildren( pobj ) ;
-    numcol = 1 ;
-
-    if ( numrow == 0 )
-    {
-      /* empty matrix */
-      CreateVar(Rhs+1,"d",&numrow,&numrow,&outindex) ;
-      }
-    else
-    {
-      int index = 0 ;
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex) ;
-      curSon = sciGetFirstAccessibleSon( pobj ) ;
-      
-      while ( curSon != NULL && curSon->pointobj != NULL )
-      {
-          hstk(outindex)[index] = sciGetHandle( curSon->pointobj ) ;
-          index++ ;
-          curSon = sciGetNextAccessibleSon( curSon ) ;
-      }
-    }
+  {
+    return get_children_property( pobj ) ;
   }
   else if (strcmp(marker,"hdl") == 0)
     {

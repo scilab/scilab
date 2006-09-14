@@ -6,10 +6,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "MALLOC.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
 int get_figures_id_property( sciPointObj * pobj )
@@ -20,7 +20,13 @@ int get_figures_id_property( sciPointObj * pobj )
   
 
   nbFig = sciGetNbFigure() ; /* get the number of opened windows */
+  
   ids = MALLOC( nbFig * sizeof(int) ) ;
+  if ( ids == NULL )
+  { 
+    sciprint("Error returning figures_id vector, memory full.\n") ;
+    return -1 ;
+  }
 
   sciGetFiguresId( ids ) ;
 

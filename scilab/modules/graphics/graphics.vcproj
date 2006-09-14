@@ -245,6 +245,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_children_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_current_axes_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_current_entity_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_current_figure_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_figure_id_property.c"
 				>
 			</File>

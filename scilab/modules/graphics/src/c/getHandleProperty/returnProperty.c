@@ -9,6 +9,15 @@
 #include <string.h>
 
 /*-----------------------------------------------------------------------------------*/
+int sciReturnEmptyMatrix( void )
+{
+  int numRow   = 0 ;
+  int numCol   = 0 ;
+  int outIndex = 0 ;
+  CreateVar(Rhs+1,"d",&numRow,&numCol,&outIndex) ;
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
 int sciReturnString( const char * value )
 {
   int numRow   = 1 ;
@@ -18,6 +27,17 @@ int sciReturnString( const char * value )
   strncpy(cstk(outIndex),value, numCol);
 
   return  0 ;
+}
+/*-----------------------------------------------------------------------------------*/
+int sciReturnDouble( double value )
+{
+  int numRow   = 1 ;
+  int numCol   = 1 ;
+  int outIndex = 0 ;
+  CreateVar( Rhs+1, "d", &numRow, &numCol, &outIndex ) ;
+  *stk(outIndex) = value ;
+
+  return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciReturnInt( int value )
@@ -35,10 +55,9 @@ int sciReturnInt( int value )
 int sciReturnRowVector( const double values[], int nbValues )
 {
   int numRow   = 1        ;
-  int numCol   = nbValues ;
   int outIndex = 0        ;
   int i ;
-  CreateVar(Rhs+1,"d",&numRow,&numCol,&outIndex) ;
+  CreateVar(Rhs+1,"d",&numRow,&nbValues,&outIndex) ;
   for ( i = 0 ; i < nbValues ; i++ )
   {
     stk(outIndex)[i] = values[i] ;
@@ -49,10 +68,9 @@ int sciReturnRowVector( const double values[], int nbValues )
 int sciReturnRowIntVector( const int values[], int nbValues )
 {
   int numRow   = 1        ;
-  int numCol   = nbValues ;
   int outIndex = 0        ;
   int i ;
-  CreateVar(Rhs+1,"i",&numRow,&numCol,&outIndex) ;
+  CreateVar(Rhs+1,"i",&numRow,&nbValues,&outIndex) ;
   for ( i = 0 ; i < nbValues ; i++ )
   {
     istk(outIndex)[i] = values[i] ;
@@ -67,6 +85,19 @@ int sciReturnHandle( long handle )
   int outIndex = 0 ;
   CreateVar(Rhs+1,"h",&numRow,&numCol,&outIndex);
   *hstk(outIndex) = handle ;
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
+int sciReturnRowHandleVector( const long handles[], int nbValues )
+{
+  int numRow   = 1 ;
+  int outIndex = 0 ;
+  int i ;
+  CreateVar( Rhs+1, "h", &numRow, &nbValues, &outIndex ) ;
+  for ( i = 0 ; i < nbValues ; i++ )
+  {
+    hstk(outIndex)[i] = handles[i] ;
+  }
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/

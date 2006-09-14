@@ -9,35 +9,53 @@
 #define _RETURN_PROPERTY_H_
 
 /**
-* copy the string value in the scilab stack in order to see it the console.
-* @return 0 if the function was executed correctly, -1 if an error occured.
-*/
+ * create an empty matrix in the scilab stack in order to see it in the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
+int sciReturnEmptyMatrix( void ) ;
+
+/**
+ * copy the string value in the scilab stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
 int sciReturnString( const char * value ) ;
 
 /**
-* copy a single int in the scilab stack in order to see it the console.
-* @return 0 if the function was executed correctly, -1 if an error occured.
-*/
+ * copy a single double in the scilab stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
+int sciReturnDouble( double value ) ;
+
+/**
+ * copy a single int in the scilab stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
 int sciReturnInt( int value ) ;
 
 /**
-* copy a double array into a row vector in the scilab stack in order to see it the console.
-* @return 0 if the function was executed correctly, -1 if an error occured.
-*/
+ * copy a double array into a row vector in the scilab stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
 int sciReturnRowVector( const double values[], int nbValues ) ;
 
 /**
-* copy an integer array into a row vector in the scilab stack in order to see it the console.
-* @return 0 if the function was executed correctly, -1 if an error occured.
-*/
+ * copy an integer array into a row vector in the scilab stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
 int sciReturnRowIntVector( const int values[], int nbValues ) ;
 
 
 /**
-* copy a handle in the scilab stack in order to see it the console.
-* @return 0 if the function was executed correctly, -1 if an error occured.
-*/
+ * copy a handle in the scilab stack in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
 int sciReturnHandle( long handle ) ;
+
+/**
+ * copy an handle array into a row vector in the scilab stack in order to see it the console.
+  * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
+int sciReturnRowHandleVector( const long handles[], int nbValues ) ;
 
 
 #endif /* _RETURN_PROPERTY_H_ */
