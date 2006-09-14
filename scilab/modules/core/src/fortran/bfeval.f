@@ -4,7 +4,7 @@ C     soft external for feval
 C     the result is real or complex according to itype value 
 c     ==========================================================
 c     Copyright INRIA
-      include 'stack.h'
+      include '../stack.h'
       integer sadr,iadr
       character*6 ename
       double precision x1,x2,xres(2)
@@ -67,7 +67,7 @@ c
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
 cxxx
 c     
  200  lhs=ids(1,pt)
@@ -89,6 +89,12 @@ c+
       return
 c     
  9999 continue
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       iero=1
       niv=niv-1
       return

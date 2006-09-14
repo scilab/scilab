@@ -3,7 +3,7 @@ c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
 c     Copyright INRIA
-      INCLUDE 'stack.h'
+      INCLUDE '../stack.h'
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), dg(*)
@@ -63,7 +63,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -86,7 +86,7 @@ c
 c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
-      INCLUDE 'stack.h'
+      INCLUDE '../stack.h'
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), g(*)
@@ -147,7 +147,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -169,7 +169,7 @@ c
 c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
-      INCLUDE 'stack.h'
+      INCLUDE '../stack.h'
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), df(*),x
@@ -229,7 +229,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -252,7 +252,7 @@ c
 c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
-      INCLUDE 'stack.h'
+      INCLUDE '../stack.h'
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), f(*),x
@@ -312,7 +312,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -335,7 +335,7 @@ c
 c ======================================================================
 C     Soft and Fortrans coded externals for colnew 
 c ======================================================================
-      INCLUDE 'stack.h'
+      INCLUDE '../stack.h'
       integer iadr,sadr
       common/iercol/iero
       double precision z(*), dmval(*),x
@@ -393,7 +393,7 @@ c     Macro execution
 c     
       icall=5
 
-      include 'callinter.h'
+      include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
@@ -408,6 +408,12 @@ c+
       return
 c     
  9999 continue
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       iero=1
       niv=niv-1
       return
