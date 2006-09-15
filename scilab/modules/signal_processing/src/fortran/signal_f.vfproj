@@ -95,6 +95,9 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_remez.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_rpem.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_syredi.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bgetx.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bgety.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-corr.f"/>
 		<File RelativePath="sn.f"/>
 		<File RelativePath="snell.f"/>
 		<File RelativePath="syredi.f"/>
