@@ -136,6 +136,15 @@ cd .."/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_optim.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_quapro.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_semidef.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\boptim.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bsolv.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bjlsqrsolv.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\blsqrsolv.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bjsolv.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intlsqrsolve.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-optim.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-fsolve.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-lsqrsolve.f"/>
 		<File RelativePath="shanph.f"/>
 		<File RelativePath="strang.f"/>
 		<File RelativePath="tol03.f"/>
