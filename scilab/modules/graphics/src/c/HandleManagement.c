@@ -27,6 +27,7 @@
 #include "BuildObjects.h"
 #include "bcg.h"
 #include "WindowList.h"
+#include "../../../data_structures/includes/DoublyLinkedList.h" /* REORGANISATION TEMPORAIRE */
 
 
 
@@ -1251,8 +1252,8 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   sciPointObj *  parentObj = sciGetPointerFromHandle( newParentHandle ) ;
   int i ;
   int nbFigure = 0 ;
-  BOOL * modifiedFigure = NULL ; /* tell wether the figure number i or its children has been */
-                                 /* changed. Use for final redraw */
+  DoublyLinkedList * modifiedFiguresList = DoublyLinkedList_new() ; /* list of modified figures. */
+                                                              /* Only the needed figures are redrawn at the end of the function. */
   
   /* check parent */
   if ( parentObj == NULL )
@@ -1293,26 +1294,27 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
 
   /* allocate the array with as much space as number of figures. */
   nbFigure = sciGetNbFigures() ;
-  modifiedFigure = MALLOC( nbFigure * sizeof(BOOL) ) ;
-  if ( modifiedFigure == NULL )
-  {
-    Scierror(999,"Memory full, aborting operation.\r\n", i  ) ;
-    FREE( movedObjs ) ;
-    return -1 ;
-  }
-  
-  for ( i = 0 ; i < nbFigure ; i++ )
-  {
-    modifiedFigure[i] = FALSE ;
-  }
 
   /* now move each object */
   for ( i = 0 ; i < nbHandles ; i++ )
   {
     /* both the current and future (wich might be the same) figure of the object */
     /* are modified. */
-    modifiedFigure[sciGetNumFigure(movedObjs[i])] = TRUE ;
-    modifiedFigure[sciGetNumFigure(parentObj)]    = TRUE ;
+    sciPointObj * currentFig = sciGetParentFigure( movedObjs[i] ) ;
+    sciPointObj * futureFig  = sciGetParentFigure( parentObj    ) ;
+
+    if ( List_find( modifiedFiguresList, currentFig ) == NULL )
+    {
+      /* the figure was not already considered modified */
+      modifiedFiguresList = List_push( modifiedFiguresList, currentFig ) ;
+    }
+
+    if ( List_find( modifiedFiguresList, futureFig ) == NULL )
+    {
+      /* the figure was not already considered modified */
+      modifiedFiguresList = List_push( modifiedFiguresList, futureFig ) ;
+    }
+
     if ( sciRelocateObject( movedObjs[i], parentObj ) != 0 )
     {
       Scierror(999,"Error relocating handle %d.", i  ) ;
@@ -1321,16 +1323,18 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   
   FREE( movedObjs ) ;
  
-  /* redraw the modified figures */
-  for ( i = 0 ; i < nbFigure ; i++ )
-  {
-    if ( modifiedFigure[i] )
-    {
-      sciDrawFigure( i ) ;
-    }
-  }
+  
 
-  FREE( modifiedFigure ) ;
+
+  /* redraw the modified figures */
+  while( !List_is_empty( modifiedFiguresList ) )
+  {
+    sciPointObj * modifiedFig  = NULL ;
+    modifiedFiguresList = List_pop( modifiedFiguresList, &modifiedFig ) ;
+    sciDrawObj( modifiedFig ) ;
+  }
+  
+  List_free( modifiedFiguresList ) ;
   
   return 0 ;
 }
