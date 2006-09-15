@@ -153,7 +153,7 @@ endfunction
 
 
 
-function gener_whatis(title)
+function gener_whatis(Title)
 
 	//------------------------------------------------------------------------------------------
 	// generate a whatis.htm file 
@@ -174,7 +174,7 @@ function gener_whatis(title)
 	end
 	
 	if rhs == 1 then 
-		whatis_title= title 
+		whatis_title= Title 
 	else
 		// find the title 
 		ind=grep(%helps(:,1),getcwd());
@@ -420,8 +420,8 @@ function gener_contents(dirs1)
 	full_whatis=full_whatis(sk);
 	
 	select LANGUAGE 
-		case 'fr' then title =  "<H2>Fonctions Scilab</H2>";
-		case 'eng' then title =  "<H2>Scilab functions</H2>";
+		case 'fr' then Title =  "<H2>Fonctions Scilab</H2>";
+		case 'eng' then Title =  "<H2>Scilab functions</H2>";
 	end
   
 	full_whatis=["<html>"
@@ -430,7 +430,7 @@ function gener_contents(dirs1)
 		"	<title>Scilab General Index</title>"
 		"</head>"
 		"<body bgcolor=""#FFFFFF"">";
-		title;
+		Title;
 		full_whatis;
 		"</body></html>"
 		];
