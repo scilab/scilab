@@ -1,0 +1,18 @@
+/*------------------------------------------------------------------------*/
+/* file: get_font_name_property.c                                         */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/* desc : function to retrieve in Scilab the font_name field of a         */
+/*        handle                                                          */
+/*------------------------------------------------------------------------*/
+
+#include "getHandleProperty.h"
+#include "GetProperty.h"
+#include "returnProperty.h"
+
+/*------------------------------------------------------------------------*/
+int get_font_name_property( sciPointObj * pobj )
+{
+  return sciReturnString( sciGetFontName( pobj ) ) ;
+}
+/*------------------------------------------------------------------------*/

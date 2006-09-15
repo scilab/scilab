@@ -126,3 +126,9 @@ int sciReturnMatrix( const double values[], int nbRow, int nbCol )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciReturnStringMatrix( const char * values[], int nbRow, int nbCol )
+{
+  CreateVarFromPtr( Rhs+1, "S", &nbRow, &nbCol, values ) ;
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/

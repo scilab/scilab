@@ -61,5 +61,12 @@ int get_font_size_property( sciPointObj * pobj ) ;
 int get_font_angle_property( sciPointObj * pobj ) ;
 int get_font_foreground_property( sciPointObj * pobj ) ;
 int get_font_color_property( sciPointObj * pobj ) ;
+int get_font_style_property( sciPointObj * pobj ) ;
+int get_font_name_property( sciPointObj * pobj ) ;
+int get_text_box_mode_property( sciPointObj * pobj ) ;
+int get_auto_dimensionning_property( sciPointObj * pobj ) ;
+int get_alignment_property( sciPointObj * pobj ) ;
+int get_text_box_property( sciPointObj * pobj ) ;
+int get_text_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

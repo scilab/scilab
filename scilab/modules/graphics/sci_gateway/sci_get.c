@@ -440,108 +440,33 @@ int sciGet(sciPointObj *pobj,char *marker)
     return get_font_color_property( pobj ) ;
   }
   else if (strcmp(marker,"font_style") == 0)
-    {
-      numrow = 1; numcol = 1;
-      CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-      *istk(outindex) = sciGetFontStyle((sciPointObj *)pobj);
-    }
+  {
+    return get_font_style_property( pobj ) ;
+  }
   else if (strcmp(marker,"font_name") == 0)
-    {
-      numrow = 1;
-      numcol = sciGetFontNameLength((sciPointObj *)pobj);
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex), sciGetFontName((sciPointObj *)pobj), numrow*numcol);
-    }
+  {
+    return get_font_name_property( pobj ) ;
+  }
   else if (strcmp(marker,"text_box_mode") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT) 
-      {
-        if ( sciGetAutoSize( pobj ) )
-        {
-          if ( sciGetCenterPos( pobj ) )
-          {
-            sciReturnString( "centered" ) ;
-          }
-          else
-          {
-            sciReturnString( "off" ) ;
-          }
-        }
-        else
-        {
-          sciReturnString( "filled" ) ;
-        }
-      }
-      else
-      {
-        strcpy(error_message,"text_box_mode property does not exist for this handle");
-        return -1;
-      }
-    }
+  {
+    return get_text_box_mode_property( pobj ) ;
+  }
   else if ( strcmp(marker,"auto_dimensionning") == 0 )
   {
-    if ( sciGetEntityType( pobj ) == SCI_TEXT )
-    {
-      if ( sciGetAutoSize( pobj ) )
-      {
-        sciReturnString( "on" ) ;
-      }
-      else
-      {
-        sciReturnString( "off" ) ;
-      }
-    }
-    else
-    {
-      strcpy(error_message,"auto_dimensionning property does not exist for this handle");return -1;
-    }
+    return get_auto_dimensionning_property( pobj ) ;
   }
   else if ( strcmp(marker,"alignment") == 0 )
   {
-    if ( sciGetEntityType( pobj ) == SCI_TEXT )
-    {
-      switch ( sciGetAlignment( pobj ) )
-      {
-      case ALIGN_LEFT :
-        sciReturnString("left") ;
-        break;
-      case ALIGN_RIGHT:
-        sciReturnString("right") ;
-        break ;
-      case ALIGN_CENTER:
-        sciReturnString("center");
-        break ;
-      default:
-        strcpy(error_message,"error acceding alignment property");
-        return -1 ;
-      }
-    }
-    else
-    {
-      strcpy(error_message,"alignment property does not exist for this handle");
-      return -1 ;
-    }
+    return get_alignment_property( pobj ) ;
   }
   else if (strcmp(marker,"text_box") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT) 
-      {
-	double size[2] ;
-        sciGetUserSize( pobj, &(size[0]), &(size[1]) ) ;
-        sciReturnRowVector( size, 2 ) ;
-      }
-      else
-      {
-        strcpy(error_message,"text_box property does not exist for this handle");
-        return -1;
-      }
-    }
+  {
+    return get_text_box_property( pobj ) ;
+  }
   else if (strcmp(marker,"text") == 0)
-    {
-      /* get the size of the text matrix */
-      sciGetTextSize( pobj , &numrow, &numcol ) ;
-      CreateVarFromPtr(Rhs+1,"S", &numrow, &numcol, getStrMatData( sciGetText( pobj ) ) ) ;
-    }
+  {
+    return get_text_property( pobj ) ;
+  }
 
   else if (strcmp(marker,"auto_clear") == 0)
     {

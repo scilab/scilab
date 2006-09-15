@@ -237,7 +237,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_alignment_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_arrow_size_factor_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_auto_dimensionning_property.c"
 				>
 			</File>
 			<File
@@ -329,7 +337,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_font_name_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_font_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_font_style_property.c"
 				>
 			</File>
 			<File
@@ -406,6 +422,18 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_surface_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_text_box_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_text_box_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_text_property.c"
 				>
 			</File>
 			<File
