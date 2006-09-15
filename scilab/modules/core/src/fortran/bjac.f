@@ -1,7 +1,7 @@
       subroutine bjac(ny,t,y,ml,mu,jac,nrowj)
 c
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
 c     
       double precision y(ny),jac(nrowj,ny),t(*)
@@ -95,7 +95,7 @@ c
 c     
       icall=5
 
-      include '../callinter.h'
+      include 'callinter.h'
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)

@@ -5,7 +5,7 @@ c     gestion external "soft" relatif a solve
 c ======================================================================
 c
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
 c     
       integer n,iflag
@@ -109,7 +109,7 @@ c
 c     
       icall=5
 c
-      include "../callinter.h"
+      include "callinter.h"
 c======================================================================
 c     this include file contains code relative to interfaces calling. We use
 c     include file instead of subroutine to avoid recursion pb's. This file

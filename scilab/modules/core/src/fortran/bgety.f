@@ -4,7 +4,7 @@ c     macros or list externals for corr
 c ======================================================================
 
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
       double precision y(*)
       character*(nlgh+1) namex,namey
@@ -55,7 +55,7 @@ c
 c     
       icall=5
 
-      include '../callinter.h'
+      include 'callinter.h'
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)

@@ -5,7 +5,7 @@ c     ====================================
 c    soft external for dasrt (surface crossing)
 c ====================================
 c
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
 c     
       common/ierode/iero
@@ -112,7 +112,7 @@ c
 c     
       icall=5
 
-      include '../callinter.h'
+      include 'callinter.h'
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)

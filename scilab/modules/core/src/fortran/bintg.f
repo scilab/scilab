@@ -5,7 +5,7 @@ c     gestion des macros externals pour le primitive INTG
 c ======================================================================
 c
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
 c     
       double precision t(*),xx
@@ -98,7 +98,7 @@ c
 c     
       icall=5
 
-      include '../callinter.h'
+      include 'callinter.h'
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)

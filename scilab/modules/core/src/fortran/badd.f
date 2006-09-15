@@ -5,7 +5,7 @@ c      interface pour l'external add de IMPL
 c ======================================================================
 c
 c     Copyright INRIA
-      INCLUDE '../stack.h'
+      INCLUDE 'stack.h'
       integer iadr,sadr
 c     
       double precision y(ny),p(nrowp,ny),t(*)
@@ -118,7 +118,7 @@ c
 c     
       icall=5
 c
-      include '../callinter.h'
+      include 'callinter.h'
 c     
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
