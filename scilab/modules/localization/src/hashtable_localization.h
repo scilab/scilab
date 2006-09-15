@@ -5,7 +5,7 @@
 #ifndef __HASHTABLE_H__
 #define __HASHTABLE_H__
 /*-----------------------------------------------------------------------------------*/ 
-#include "../hashtable/hashtable.h"
+//#include "../../libs/hashtable/hashtable.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/ 
 struct key_string
