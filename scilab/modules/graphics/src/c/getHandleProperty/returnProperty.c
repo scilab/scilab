@@ -30,6 +30,17 @@ int sciReturnString( const char * value )
   return  0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciReturnChar( char value )
+{
+  int nbRow    = 1 ;
+  int nbCol    = 1 ;
+  int outIndex = 0 ;
+  CreateVar(Rhs+1,"c",&nbRow,&nbCol,&outIndex);
+  strncpy(cstk(outIndex), &value , 1 ) ;
+
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
 int sciReturnDouble( double value )
 {
   int numRow   = 1 ;

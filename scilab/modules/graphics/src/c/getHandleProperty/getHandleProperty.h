@@ -91,5 +91,12 @@ int get_auto_position_property( sciPointObj * pobj ) ;
 int get_auto_rotation_property( sciPointObj * pobj ) ;
 int get_position_property( sciPointObj * pobj ) ;
 int get_auto_ticks_property( sciPointObj * pobj ) ;
+int get_axes_reverse_property( sciPointObj * pobj ) ;
+int get_view_property( sciPointObj * pobj ) ;
+int get_axes_bounds_property( sciPointObj * pobj ) ;
+int get_data_bounds_property( sciPointObj * pobj ) ;
+int get_margins_property( sciPointObj * pobj ) ;
+int get_tics_color_property( sciPointObj * pobj ) ;
+int get_tics_style_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

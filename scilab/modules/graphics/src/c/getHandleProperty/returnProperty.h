@@ -21,6 +21,12 @@ int sciReturnEmptyMatrix( void ) ;
 int sciReturnString( const char * value ) ;
 
 /**
+ * copy a char value into a scilab string in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
+int sciReturnChar( char value ) ;
+
+/**
  * copy a single double in the scilab stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.
  */

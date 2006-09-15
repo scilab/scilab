@@ -562,140 +562,32 @@ int sciGet(sciPointObj *pobj,char *marker)
   }
   else if ( strcmp(marker,"axes_reverse") == 0 )
   {
-    if ( sciGetEntityType(pobj) == SCI_SUBWIN )
-    {
-	    char ** foo = NULL;
-	    int i;
-
-	    numrow = 1 ;
-      numcol = 3 ;
-	    if( ( foo = MALLOC( numcol * sizeof(char *) ) ) ==NULL )
-      {
-	      strcpy(error_message,"No memory left for allocating temporary reverse") ;
-        return -1;
-      }
-    
-	    for(i=0;i<numcol;i++)
-      {
-	      if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] )
-	      {
-	        if( ( foo[i] = MALLOC( 3 * sizeof(char) ) ) == NULL )
-          {
-		        strcpy(error_message,"No memory left for allocating temporary reverse") ;
-            return -1;
-          }
-	        strcpy(foo[i],"on");
-	      }
-	      else
-	      {
-	        if( ( foo[i] = MALLOC( 4 * sizeof(char) ) ) ==NULL )
-          {
-		        strcpy(error_message,"No memory left for allocating temporary reverse") ;
-            return -1 ;
-          }
-	        strcpy(foo[i],"off");
-	      }
-      }
-
-	    CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
-
-      /* free the foo */
-      for ( i = 0 ; i < numcol ; i++ )
-      {
-        FREE( foo[i] ) ;
-      }
-      FREE( foo ) ;
-        
-    }
-    else
-	  {
-      strcpy(error_message,"reverse property does not exist for this handle") ;
-      return -1 ;
-    }
+    return get_axes_reverse_property( pobj ) ;
   }
   else if (strcmp(marker,"view") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	numrow   = 1;numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if ( sciGetIs3d( pobj ) )
-	  strncpy(cstk(outindex),"3d", numrow*numcol); 
-	else 
-	  strncpy(cstk(outindex),"2d", numrow*numcol);      
-      }
-      else
-	{strcpy(error_message,"view property does not exist for this handle");return -1;}
-    }
-  else if (strcmp(marker,"axes_bounds") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      numrow   = 1;numcol   = 4;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for (i=0;i<4;i++) {
-	stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->WRect[i];
-      }
-    }
-    else
-      {strcpy(error_message,"axes_bounds property does not exist for this handle");return -1;}
+  {
+    return get_view_property( pobj ) ;
   }
-  else if (strcmp(marker,"data_bounds") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      /**DJ.Abdemouche 2003**/
-      numrow   = 2;
-      numcol=(pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->SRect[0];
-      stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->SRect[1];
-      stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->SRect[2];
-      stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->SRect[3];
-      if (pSUBWIN_FEATURE (pobj)->is3d)
-	{
-	  stk(outindex)[4] = pSUBWIN_FEATURE (pobj)->SRect[4];
-	  stk(outindex)[5] = pSUBWIN_FEATURE (pobj)->SRect[5];	
-	}
-    }
-    else if (sciGetEntityType (pobj) == SCI_SURFACE) { /* used for what ? F.Leray 20.04.05 */
-      numrow   = 3;numcol   = 2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for (i=0;i<numcol*numrow;i++) {
-	stk(outindex)[i] = pSURFACE_FEATURE (pobj)->ebox[i];
-      }
-    }
-    else
-      {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"axes_bounds") == 0)
+  {
+    return get_axes_bounds_property( pobj ) ;
+  }
+  else if (strcmp(marker,"data_bounds") == 0)
+  {
+    return get_data_bounds_property( pobj ) ;
   } 
-  else if (strcmp(marker,"margins") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      /**SS  2004**/
-      numrow   = 1;
-      numcol=4;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->ARect[0];
-      stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->ARect[1];
-      stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->ARect[2];
-      stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->ARect[3];
-    }
-    else
-      {strcpy(error_message,"margins property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"margins") == 0)
+  {
+    return get_margins_property( pobj ) ;
   } 
   else if (strcmp(marker,"tics_color") == 0) 
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      if (sciGetEntityType (pobj) == SCI_AXES)
-	*stk(outindex) = pAXES_FEATURE (pobj)->ticscolor;
-      else if (sciGetEntityType (pobj) == SCI_SUBWIN){
-	sciprint("Warning: tics_color use is deprecated and no more taken into account, use foreground property to edit Axes color\n");
-	*stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.ticscolor;
-      }
-      else
-	{strcpy(error_message,"tics_color property does not exist for this handle");return -1;}
-    }
+  {
+    return get_tics_color_property( pobj ) ;
+  }
   else if (strcmp(marker,"tics_style") == 0)
-    {
-      numrow = 1; numcol = 1;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex), &pAXES_FEATURE (pobj)->tics , numrow*numcol);
-    }
+  {
+    return get_tics_style_property( pobj ) ;
+  }
   /*Dj.A 17/12/2003*/
   /* modified jb Silvy 01/2006 */
   else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))

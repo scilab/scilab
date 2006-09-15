@@ -273,6 +273,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_axes_bounds_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_axes_reverse_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_axes_size_property.c"
 				>
 			</File>
@@ -326,6 +334,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_current_figure_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_data_bounds_property.c"
 				>
 			</File>
 			<File
@@ -421,6 +433,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_margins_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_mark_background_property.c"
 				>
 			</File>
@@ -493,7 +509,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_tics_color_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_tics_direction_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_tics_style_property.c"
 				>
 			</File>
 			<File
@@ -506,6 +530,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_type_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_view_property.c"
 				>
 			</File>
 			<File
