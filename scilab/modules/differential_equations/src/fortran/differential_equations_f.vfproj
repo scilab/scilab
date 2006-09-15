@@ -49,10 +49,7 @@ cd .."/>
 		<File RelativePath="epsalg.f"/>
 		<File RelativePath="ewset.f"/>
 		<File RelativePath="fnorm.f"/>
-		<File RelativePath="int2d.f"/>
-		<File RelativePath="int3d.f"/>
 		<File RelativePath="intdy.f"/>
-		<File RelativePath="intg.f"/>
 		<File RelativePath="lsdisc.f"/>
 		<File RelativePath="lsoda.f"/>
 		<File RelativePath="lsodar.f"/>
