@@ -6,6 +6,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "stack-c.h"
+#include "returnProperty.h"
 #include <string.h>
 
 /*-----------------------------------------------------------------------------------*/
@@ -89,6 +90,11 @@ int sciReturnRowIntVector( const int values[], int nbValues )
     istk(outIndex)[i] = values[i] ;
   }
   return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
+int sciReturnRowStringVector( const char * values[], int nbValues )
+{
+  return sciReturnStringMatrix( values, 1, nbValues ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 int sciReturnHandle( long handle )

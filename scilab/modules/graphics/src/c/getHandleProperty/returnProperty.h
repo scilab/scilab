@@ -53,6 +53,13 @@ int sciReturnRowVectorFromInt( const int values[], int nbValues ) ;
 int sciReturnRowIntVector( const int values[], int nbValues ) ;
 
 /**
+ * copy a char * array into an string row vector in the scilab stack
+ * in order to see it the console.
+ * @return 0 if the function was executed correctly, -1 if an error occured.
+ */
+int sciReturnRowStringVector( const char * values[], int nbValues ) ;
+
+/**
  * copy a handle in the scilab stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.
  */

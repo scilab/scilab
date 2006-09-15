@@ -208,9 +208,8 @@ extern int get_cf_type(void);
 
 int sciGet(sciPointObj *pobj,char *marker)
 {
-  int numrow, numcol, outindex, i,j,k;
+  int numrow, numcol, outindex, i;
   integer itmp = 0 ;
-  double *tab;
   char **str;
   sciPointObj *psubwin;
   int Etype,iflag=0;
@@ -467,439 +466,99 @@ int sciGet(sciPointObj *pobj,char *marker)
   {
     return get_text_property( pobj ) ;
   }
-
   else if (strcmp(marker,"auto_clear") == 0)
-    {
-      if(   sciGetEntityType(pobj) != SCI_SUBWIN 
-         && sciGetEntityType(pobj) != SCI_FIGURE )
-       {strcpy(error_message,"Entity type not yet taken into account for this property");return -1;}
-	
-      if (!sciGetAddPlot((sciPointObj *)pobj)) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {	
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off",numrow*numcol);
-      }
-    }
+  {
+    return get_auto_clear_property( pobj ) ;
+  }
   else if (strcmp(marker,"auto_scale") == 0)
-    {
-      if ( sciGetAutoScale((sciPointObj *)pobj)) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off",numrow*numcol);
-      }
-    }
-  else if ((strcmp(marker,"zoom_box") == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
-    {
-      if (!sciGetZooming((sciPointObj *)pobj))
-	{
-	  numrow=0; numcol=0;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	}
-      else
-	{
-	  numrow=1;numcol=4;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] =  pSUBWIN_FEATURE(pobj)->ZRect[i];			
-	} 
-    }
-  else if ((strcmp(marker,"zoom_state") == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
-    {
-      if (sciGetZooming((sciPointObj *)pobj)) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol); 
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_auto_scale_property( pobj ) ;
+  }
+  else if ( strcmp(marker,"zoom_box") == 0 )
+  {
+    return get_zoom_box_property( pobj ) ;
+  }
+  else if ( strcmp(marker,"zoom_state") == 0 )
+  {
+    return get_zoom_state_property( pobj ) ;
+  }
   else if (strcmp(marker,"clip_box") == 0) 
-    {
-      if (sciGetIsClipping ((sciPointObj *) pobj) > 0)
-	{
-	  double *cliparea = sciGetClipping(pobj);
-	  numrow=1; numcol=4;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] =  cliparea[i];
-	}
-      else
-	{ 
-	  numrow=0;numcol=0;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	}
-    }
+  {
+    return get_clip_box_property( pobj ) ;
+  }
   else if (strcmp(marker,"clip_state") == 0) 
-    {
-      if (sciGetIsClipping (pobj) == 0) {
-	numrow   = 1;
-	numcol   = 7;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"clipgrf", numrow*numcol); 
-      }
-      else if (sciGetIsClipping (pobj) > 0) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);	
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);    
-      }
-    }
+  {
+    return get_clip_state_property( pobj ) ;
+  }
   else if (strcmp(marker,"data") == 0)
-    {
-      if ((tab = sciGetPoint ((sciPointObj *)pobj, &numrow, &numcol)) == NULL)
-	{strcpy(error_message,"No point");return -1;}
-
-      /*  if(sciGetEntityType (pobj) != SCI_SURFACE){ */
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      k=0;
-      for (j=0;j < numcol*numrow;j++)
-	stk(outindex)[j] = tab[j];
-
-      FREE(tab); tab = NULL;
-
-    }
-
+  {
+    return get_data_property( pobj ) ;
+  }
   /**************** callback *********************/
   else if (strcmp(marker,"callbackmevent") == 0)
-    {
-      numrow = 1;numcol = 1;
-      CreateVar(Rhs+1,"i", &numrow, &numcol, &outindex);
-      istk(outindex)[0] = sciGetCallbackMouseEvent((sciPointObj *)pobj);
-    }
+  {
+    return get_callbackmevent_property( pobj ) ;
+  }
   else if (strcmp(marker,"callback") == 0)
-    {
-      numrow = 1;
-      numcol = sciGetCallbackLen((sciPointObj *)pobj);
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      strncpy(cstk(outindex), sciGetCallback((sciPointObj *)pobj), numrow*numcol);
-    }
-
-
-
+  {
+    return get_callback_property( pobj ) ;
+  }
   /**************************** AXES *************/
   else if (strcmp(marker,"x_label") == 0) /* we send back a handle on the x_label object */
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"x_label property undefined for this object");return -1;}
-      else{
-	numrow = 1;
-	numcol = 1;
-	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_x_label);
-
-      }
-    }
+  {
+    return get_x_label_property( pobj ) ;
+  }
   else if (strcmp(marker,"y_label") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"y_label property undefined for this object");return -1;}
-      else{
-	numrow = 1;
-	numcol = 1;
-	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_y_label);
-      }
-    }
+  {
+    return get_y_label_property( pobj ) ;
+  }
   else if (strcmp(marker,"z_label") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"z_label property undefined for this object");return -1;}
-      else{
-	numrow = 1;
-	numcol = 1;
-	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_z_label);
-      }
-    }
+  {
+    return get_z_label_property( pobj ) ;
+  }
   else if (strcmp(marker,"title") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"title property undefined for this object");return -1;}
-      else{
-	numrow = 1;
-	numcol = 1;
-	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_title);
-      }
-    }
+  {
+    return get_title_property( pobj ) ;
+  }
   else if (strcmp(marker,"log_flags") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	numrow = 1;numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	*cstk(outindex)  = pSUBWIN_FEATURE (pobj)->logflags[0];
-	*cstk(outindex+1)= pSUBWIN_FEATURE (pobj)->logflags[1];
-	*cstk(outindex+2)= pSUBWIN_FEATURE (pobj)->logflags[2];
-
-      }
-      else 	
-	{strcpy(error_message,"log_flag property undefined for this object");return -1;}
-
-    }
+  {
+    return get_log_flags_property( pobj ) ;
+  }
   else if (strcmp(marker,"tics_direction") == 0)
-    {
-      numrow = 1;
-      switch (pAXES_FEATURE (pobj)->dir)
-	{
-	case 'u': 
-	  numcol =  3;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "top" , numrow*numcol);
-	  break;
-	case 'd': 
-	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "bottom" , numrow*numcol);
-	  break;
-	case 'r': 
-	  numcol =  5;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "right" , numrow*numcol); 
-	  break;
-	case 'l': 
-	  numcol =  4;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "left", numrow*numcol); 
-	  break;
-	default : 
-	  strcpy(error_message, "Unexpected error");return -1;
-	  break;
-	}
-    }
+  {
+    return get_tics_direction_property( pobj ) ;
+  }
   else if (strcmp(marker,"x_location") == 0) 
-    {
-      char loc;
-      numrow = 1;
-      if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	loc = pSUBWIN_FEATURE (pobj)->axes.xdir;
-      else
-	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
-
-      switch (loc)
-	{
-	case 'u': 
-	  numcol =  3;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "top" , numrow*numcol);
-	  break;
-	case 'd': 
-	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "bottom" , numrow*numcol);
-	  break;
-	case 'c': 
-	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "middle" , numrow*numcol); 
-	  break;
-	default : 
-	  strcpy(error_message, "Unexpected error"); return -1;
-	  break;
-	}
-    }  
+  {
+    return get_x_location_property( pobj ) ;
+  }
   else if (strcmp(marker,"y_location") == 0)
-    {
-      char loc;
-      numrow = 1;
-      if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	loc = pSUBWIN_FEATURE (pobj)->axes.ydir;
-      else
-	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
-
-      switch (loc)
-	{
-	case 'l': 
-	  numcol =  4;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "left" , numrow*numcol);
-	  break;
-	case 'r': 
-	  numcol =  5;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "right" , numrow*numcol);
-	  break;
-	case 'c': 
-	  numcol =  6;CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex), "middle" , numrow*numcol); 
-	  break;
-	default : 
-	  strcpy(error_message, "Unexpected error"); return -1;
-	  break;
-	}
-    } 
+  {
+    return get_y_location_property( pobj ) ;
+  }
   else if (strcmp(marker,"tight_limits") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	if (pSUBWIN_FEATURE (pobj)->tight_limits == 1) {
-	  numrow   = 1;
-	  numcol   = 2;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"on", numrow*numcol);
-	}
-	else {
-	  numrow   = 1;
-	  numcol   = 3;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"off", numrow*numcol);      
-	}
-      }
-      else
-	{strcpy(error_message,"tight_limits property does not exist for this handle");return -1;}
-    }
+  {
+    return get_tight_limits_property( pobj ) ;
+  }
   else if (strcmp(marker,"closed") == 0) 
-    { 
-      if(sciGetEntityType(pobj) != SCI_POLYLINE)
-	{strcpy(error_message,"closed property does not exist for this handle");return -1;}
-
-      if (pPOLYLINE_FEATURE(pobj)->closed == 1) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_closed_property( pobj ) ;
+  }
   else if (strcmp(marker,"auto_position") == 0) 
-    { 
-      if(sciGetEntityType(pobj) != SCI_LABEL)
-	{strcpy(error_message,"auto_position does not exist for this handle");return -1;}
-
-      if (pLABEL_FEATURE(pobj)->auto_position == TRUE) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_auto_position_property( pobj ) ;
+  }
   else if (strcmp(marker,"auto_rotation") == 0) 
-    { 
-      if(sciGetEntityType(pobj) != SCI_LABEL)
-	{strcpy(error_message,"auto_rotation does not exist for this handle");return -1;}
-
-      if (pLABEL_FEATURE(pobj)->auto_rotation == TRUE) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol);
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);
-      }
-    }
+  {
+    return get_auto_rotation_property( pobj ) ;
+  }
   else if (strcmp(marker,"position") == 0) 
-    {
-      	  if (sciGetEntityType(pobj) == SCI_UIMENU)
-		  {
-			  numrow = 1;
-			  numcol = 1;
-			  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-			  stk(outindex)[0]=pUIMENU_FEATURE(pobj)->MenuPosition;
-		  }
-		  else if (sciGetEntityType(pobj) == SCI_LABEL)
-		  {
-			  numrow = 1;
-			  numcol = 2;
-			  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-			  sciGetPosition(pobj,&stk(outindex)[0],&stk(outindex)[1]);
-		  }
-		  else
-		  {
-			  strcpy(error_message,"position does not exist for this handle");
-			  return -1;
-		  }
-	  
-		  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-
-		  
-
-      
-      
-
-      /*       /\* switch to manual mode for label position *\/ */
-      /*       pLABEL_FEATURE(pobj)->auto_position = FALSE; */
-    }
+  {
+    return get_position_property( pobj ) ;
+  }
   else if ( strcmp(marker,"auto_ticks") == 0 )
   {
-    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
-    {
-	    char ** foo = NULL;
-	    int i;
-
-	    numrow = 1 ;
-      numcol = 3 ;
-	    if( ( foo = MALLOC( numcol * sizeof(char *) ) ) == NULL ) 
-      {
-	      strcpy(error_message,"No memory left for allocating temporary auto_ticks") ;
-        return -1 ;
-      }
-
-	    for( i = 0 ; i < numcol ; i++ )
-      {
-	      if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] )
-	      {
-	        if( ( foo[i] = MALLOC( 3 * sizeof(char) ) ) == NULL )
-          {
-		        strcpy(error_message,"No memory left for allocating temporary auto_ticks") ;
-            return -1 ;
-          }
-	        strcpy(foo[i],"on");
-	      }
-	      else
-	      {
-	        if( ( foo[i] = MALLOC( 4 * sizeof(char) ) ) == NULL )
-          {
-		        strcpy(error_message,"No memory left for allocating temporary auto_ticks") ;
-            return -1 ;
-          }
-	        strcpy(foo[i],"off");
-	      }
-      }
-
-	    CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
-
-      /* free the foo */
-      for ( i = 0 ; i < numcol ; i++ )
-      {
-        FREE( foo[i] ) ;
-      }
-      FREE( foo ) ;
-
-    }
-    else
-	  {
-      strcpy(error_message,"auto_ticks property does not exist for this handle") ;
-      return -1 ;
-    }
+    return get_auto_ticks_property( pobj ) ;
   }
   else if ( strcmp(marker,"axes_reverse") == 0 )
   {

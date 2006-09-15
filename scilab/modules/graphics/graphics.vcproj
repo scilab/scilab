@@ -245,11 +245,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_auto_clear_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_auto_dimensionning_property.c"
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_auto_position_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_auto_resize_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_auto_rotation_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_auto_scale_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_auto_ticks_property.c"
 				>
 			</File>
 			<File
@@ -269,7 +289,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_callback_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_callbackmevent_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_children_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_clip_box_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_clip_state_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_closed_property.c"
 				>
 			</File>
 			<File
@@ -286,6 +326,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_current_figure_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_data_property.c"
 				>
 			</File>
 			<File
@@ -373,6 +417,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_log_flags_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_mark_background_property.c"
 				>
 			</File>
@@ -417,6 +465,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_position_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_rotation_style_property.c"
 				>
 			</File>
@@ -441,6 +493,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_tics_direction_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_tight_limits_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_title_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_type_property.c"
 				>
 			</File>
@@ -449,7 +513,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_x_location_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_x_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_y_label_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_y_location_property.c"
 				>
 			</File>
 			<File
@@ -457,7 +533,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_z_label_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_z_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_zoom_box_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_zoom_state_property.c"
 				>
 			</File>
 			<File
@@ -1032,6 +1120,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Format.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_x_label_property.c"
 				>
 			</File>
 			<File

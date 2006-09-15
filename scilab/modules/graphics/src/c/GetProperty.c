@@ -2969,7 +2969,7 @@ sciGetZooming (sciPointObj * pobj)
 	case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     default:
-      sciprint ("\r\nThis object cannot be zoomed \r\n");
+      sciprint ("\r\nThis object cannot be zoomed. \r\n");
       return FALSE;
       break;
     }
@@ -4394,10 +4394,9 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"y_shift") == 0) { return 1;}
   else if (strcmp(marker,"z_shift") == 0) { return 1;}
   else if (strcmp(marker,"bar_width") == 0) { return 1;}
-  else if (strcmp(marker,"closed") == 0) { return 10;}	
+  else if (strcmp(marker,"closed") == 0) { return 10;}
   else if (strcmp(marker,"label") == 0) { return 10;}
   else if (strcmp(marker,"callback") == 0) { return 10;}
-  else if (strcmp(marker,"closed") == 0) { return 10;}	
   else if (strcmp(marker,"background") == 0) { return 1;}	
   else if (strcmp(marker,"position") == 0) {return 1;}
   else if (strcmp(marker,"auto_position") == 0)   {return 10;}		

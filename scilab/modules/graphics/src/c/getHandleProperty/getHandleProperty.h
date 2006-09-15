@@ -68,5 +68,28 @@ int get_auto_dimensionning_property( sciPointObj * pobj ) ;
 int get_alignment_property( sciPointObj * pobj ) ;
 int get_text_box_property( sciPointObj * pobj ) ;
 int get_text_property( sciPointObj * pobj ) ;
+int get_auto_clear_property( sciPointObj * pobj ) ;
+int get_auto_scale_property( sciPointObj * pobj ) ;
+int get_zoom_box_property( sciPointObj * pobj ) ;
+int get_zoom_state_property( sciPointObj * pobj ) ;
+int get_clip_box_property( sciPointObj * pobj ) ;
+int get_clip_state_property( sciPointObj * pobj ) ;
+int get_data_property( sciPointObj * pobj ) ;
+int get_callbackmevent_property( sciPointObj * pobj ) ;
+int get_callback_property( sciPointObj * pobj ) ;
+int get_x_label_property( sciPointObj * pobj ) ;
+int get_y_label_property( sciPointObj * pobj ) ;
+int get_z_label_property( sciPointObj * pobj ) ;
+int get_title_property( sciPointObj * pobj ) ;
+int get_log_flags_property( sciPointObj * pobj ) ;
+int get_tics_direction_property( sciPointObj * pobj ) ;
+int get_x_location_property( sciPointObj * pobj ) ;
+int get_y_location_property( sciPointObj * pobj ) ;
+int get_tight_limits_property( sciPointObj * pobj ) ;
+int get_closed_property( sciPointObj * pobj ) ;
+int get_auto_position_property( sciPointObj * pobj ) ;
+int get_auto_rotation_property( sciPointObj * pobj ) ;
+int get_position_property( sciPointObj * pobj ) ;
+int get_auto_ticks_property( sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */
