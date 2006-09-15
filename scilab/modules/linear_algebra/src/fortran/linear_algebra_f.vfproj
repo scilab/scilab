@@ -92,7 +92,9 @@ cd .."/>
 		<File RelativePath="issymmetric.f"/>
 		<File RelativePath="scischur.f"/>
 		<File RelativePath="SELECT.f"/>
-		<File RelativePath="zoldqr.f"/></Filter>
+		<File RelativePath="zoldqr.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-schur.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bschur.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<File RelativePath="..\..\sci_gateway\linear_algebra.fundef"/></Files>
