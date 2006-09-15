@@ -33,9 +33,9 @@ int intcshep2d(char *fname,unsigned long fname_len)
     }
 
   /* choix pour nc (peut etre futur parametre optionnel) */
-  nc = min( 17, n-1 );
+  nc = Min( 17, n-1 );
   /* choix pour nw */
-  nw = min( 30, n-1 );
+  nw = Min( 30, n-1 );
   /* choix pour nr (grille nr x nr) */
   nr = (int) sqrt( n/3.0 ); /* comme n >= 10 nr >= 1 */
 

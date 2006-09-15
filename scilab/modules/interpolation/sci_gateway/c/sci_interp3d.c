@@ -86,7 +86,7 @@ int intinterp3d(char *fname,unsigned long fname_len)
   kx = order[0]; ky = order[1]; kz = order[2];
   nx = mtx - kx; ny = mty - ky; nz = mtz - kz; 
 
-  mwork = ky*kz + 3*max(kx,max(ky,kz)) + kz;
+  mwork = ky*kz + 3*Max(kx,Max(ky,kz)) + kz;
   CreateVar(Rhs+2, "d", &mwork, &one, &lwork);
 
   if ( Lhs == 1 )

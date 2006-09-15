@@ -80,8 +80,8 @@ int intsplin3d(char * fname,unsigned long fname_len)
   nty = ny + ky;
   ntz = nz + kz;
   mwkx = kx*(nx+1); mwky = ky*(ny+1); mwkz = kz*(nz+1); 
-  mwkx = max(mwkx, mwky);
-  mwk = nx*ny*nz + 2*(max(mwkx, mwkz));
+  mwkx = Max(mwkx, mwky);
+  mwk = nx*ny*nz + 2*(Max(mwkx, mwkz));
   nxyz = nx*ny*nz;
 
   CreateVar(Rhs+1,"t", &seven, &one, &ltlist);

@@ -83,7 +83,7 @@ int intsplin2d(char *fname,unsigned long fname_len)
     {
       int lA_d, lA_sd, ld, lqdu, lutemp, nxy, nxym1, nxym2, lll;
 
-      nxy = max(nx,ny); nxym1 = nxy-1; nxym2 = nxy-2; 
+      nxy = Max(nx,ny); nxym1 = nxy-1; nxym2 = nxy-2; 
 
       CreateVar( Rhs+5, "d", &nxy,   &one, &lA_d);
       CreateVar( Rhs+6, "d", &nxym1, &one, &lA_sd);

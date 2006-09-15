@@ -41,10 +41,3 @@ extern int get_rhs_scalar_string(int num, int *length, int **tabchar);
 extern int get_rhs_real_hmat(int num, RealHyperMat *H);
 #define GetRhsRealHMat(pos,H) if (!get_rhs_real_hmat(pos,H)) { return 0;}
 /*-----------------------------------------------------------------------------------*/
-#ifndef max 
-#define max(x,y)	(((x)>(y))?(x):(y))
-#endif 
-
-#ifndef min
-#define min(x,y) ((x) < (y) ? (x) : (y))
-#endif
