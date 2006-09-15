@@ -93,7 +93,6 @@ cd .."/>
 		<File RelativePath="icse2.f"/>
 		<File RelativePath="icsec2.f"/>
 		<File RelativePath="icsei.f"/>
-		<File RelativePath="intlsqrsolve.f"/>
 		<File RelativePath="lmder.f"/>
 		<File RelativePath="lmdif.f"/>
 		<File RelativePath="lmpar.f"/>
