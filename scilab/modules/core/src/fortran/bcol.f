@@ -76,6 +76,12 @@ c+
       return
 c     
  9999 continue
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       iero=1
       niv=niv-1
       return
@@ -160,6 +166,12 @@ c+
       return
 c     
  9999 continue
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       iero=1
       niv=niv-1
       return
@@ -242,6 +254,12 @@ c+
       return
 c     
  9999 continue
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       iero=1
       niv=niv-1
       return
@@ -325,6 +343,12 @@ c+
       return
 c     
  9999 continue
+      if(err1.gt.0) then
+         lhs=ids(1,pt)
+         rhs=ids(2,pt)
+         pt=pt-1
+         fun=0
+      endif
       iero=1
       niv=niv-1
       return
