@@ -43,13 +43,7 @@ cd .."/>
 		<File RelativePath="basnms.f"/>
 		<File RelativePath="bexec.f"/>
 		<File RelativePath="bgetx.f"/>
-		<File RelativePath="bgety.f"/>
-		<File RelativePath="bjlsqrsolv.f"/>
-		<File RelativePath="bjsolv.f"/>
-		<File RelativePath="blsqrsolv.f"/>
-		<File RelativePath="boptim.f"/>
-		<File RelativePath="bschur.f"/>
-		<File RelativePath="bsolv.f"/>
+		<File RelativePath="bgety.f"/>	
 		<File RelativePath="btof.f"/>
 		<File RelativePath="btofm.f"/>
 		<File RelativePath="chkvar.f"/>
@@ -80,10 +74,6 @@ cd .."/>
 		<File RelativePath="Ex-corr.f"/>
 		<File RelativePath="Ex-fbutn.f"/>
 		<File RelativePath="Ex-fort.f"/>
-		<File RelativePath="Ex-fsolve.f"/>
-		<File RelativePath="Ex-lsqrsolve.f"/>
-		<File RelativePath="Ex-optim.f"/>
-		<File RelativePath="Ex-schur.f"/>
 		<File RelativePath="expr.f"/>
 		<File RelativePath="expsum.f"/>
 		<File RelativePath="extlarg.f"/>
