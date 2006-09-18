@@ -42,8 +42,6 @@ cd .."/>
 		<File RelativePath="basin.f"/>
 		<File RelativePath="basnms.f"/>
 		<File RelativePath="bexec.f"/>
-		<File RelativePath="bgetx.f"/>
-		<File RelativePath="bgety.f"/>	
 		<File RelativePath="btof.f"/>
 		<File RelativePath="btofm.f"/>
 		<File RelativePath="chkvar.f"/>
@@ -71,7 +69,6 @@ cd .."/>
 		<File RelativePath="errmgr.f"/>
 		<File RelativePath="errmsgf.f"/>
 		<File RelativePath="error.f"/>
-		<File RelativePath="Ex-corr.f"/>
 		<File RelativePath="Ex-fbutn.f"/>
 		<File RelativePath="Ex-fort.f"/>
 		<File RelativePath="expr.f"/>
