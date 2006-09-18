@@ -34,7 +34,6 @@ cd .."/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="complexify.f"/>
 		<File RelativePath="DGELSY1.f"/>
 		<File RelativePath="doldqr.f"/>
 		<File RelativePath="intddet.f"/>
@@ -89,7 +88,6 @@ cd .."/>
 		<File RelativePath="intzoldsvd.f"/>
 		<File RelativePath="intzpotrf.f"/>
 		<File RelativePath="intzschur.f"/>
-		<File RelativePath="issymmetric.f"/>
 		<File RelativePath="scischur.f"/>
 		<File RelativePath="SELECT.f"/>
 		<File RelativePath="zoldqr.f"/>
