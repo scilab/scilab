@@ -101,6 +101,7 @@ cd .."/>
 		<File RelativePath="isany.f"/>
 		<File RelativePath="isbrk.f"/>
 		<File RelativePath="iseye.f"/>
+		<File RelativePath="issymmetric.f"/>
 		<File RelativePath="isnum.f"/>
 		<File RelativePath="israt.f"/>
 		<File RelativePath="istrue.f"/>
