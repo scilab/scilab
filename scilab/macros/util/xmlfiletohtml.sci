@@ -14,9 +14,9 @@ function xmlfiletohtml(path,xsl)
   
 	//proceed if xml file is newest than htm file
 	if newest(path,strsubst(path,".xml",".htm"))==1 then
-		
+	
 		mprintf('  Processing file %s.xml\n',basename(path));
-		
+
 		// build .xml2 file where LINK tags references are solved
 		find_links(path,path+"2")
 		

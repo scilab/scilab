@@ -200,22 +200,22 @@ if %lhs==%nn+2 then
 end
 endfunction
 
-function result=mdialog(title,items,init)
+function result=mdialog(titlex,items,init)
   if argn(2)<1 then
-    title=['this is a demo';'sdsdfs sdfsdddddddddd w"+...
+    titlex=['this is a demo';'sdsdfs sdfsdddddddddd w"+...
 	   " errrereeeeeeeeeeeeeeeeeeeeee']
     items=['asdfaf';'qwedfeqwfwefffffffffffffffffffffff']
     end
     if argn(2)<3 then
     init=['asdffasf';'dfsdfsfsfsdfsdfddddddddddddddddddddddddddd']
   end
-    title=sci2tcl(title);
+    titlex=sci2tcl(titlex);
     for i=1:size(items,'*')
       items(i)=sci2tcl(items(i))
       init(i)=sci2tcl(init(i))
     end
     
-txt=create_txt(title,items,init);
+txt=create_txt(titlex,items,init);
 result=[];
 TCL_EvalStr(txt)
 done=TCL_GetVar('done')
@@ -229,7 +229,7 @@ TCL_EvalStr('destroy $w')
 endfunction
 
 
-function txt=create_txt(title,items,init)
+function txt=create_txt(titlex,items,init)
 txt=['set w .form'
 'catch {destroy $w}'
 'toplevel $w'
@@ -239,7 +239,7 @@ txt=['set w .form'
 'wm title $w '"Set Block properties'"'
 'wm iconname $w '"form'"'
 '#positionWindow $w'
-'label $w.msg  -wraplength 4i -justify left -text '"'+title+''"'
+'label $w.msg  -wraplength 4i -justify left -text '"'+titlex+''"'
 'frame $w.buttons'
 'pack $w.buttons -side bottom -fill x -pady 2m'
 'button $w.buttons.dismiss -text Dismiss -command {set done 2}'

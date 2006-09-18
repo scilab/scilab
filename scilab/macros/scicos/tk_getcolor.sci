@@ -1,5 +1,5 @@
-function Color=tk_getcolor(title,Color)
-  title=sci2tcl(title)
+function Color=tk_getcolor(titlex,Color)
+  titlex=sci2tcl(titlex)
   Color=Color-1;
   
 txt=  'proc createmxn {frame r g b taille ind} {global maxrow n;set n"+...
@@ -17,7 +17,7 @@ ta=size(col,1);
   maxrow=ceil(sqrt(ta))
   maxcol=ceil(ta/maxrow)
   
-  txt=txt+'catch {destroy .toto};toplevel .toto;wm title .toto '"'+title+''";global maxrow ;set m"+...
+  txt=txt+'catch {destroy .toto};toplevel .toto;wm title .toto '"'+titlex+''";global maxrow ;set m"+...
       "axrow '+string(maxrow)+';frame  .toto.titi -width '+string(maxcol*400)+';';
 
   

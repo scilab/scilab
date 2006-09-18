@@ -163,6 +163,12 @@ end
 clear LCC 
 
 
+
+
+// Protect variable previously defined  ================================
+predef('all') 
+
+
 clear  scicos_pal // explicitly clear %helps scicos_pal variables
   // De	fine Scicos data tables ===========================================
   if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
@@ -178,10 +184,6 @@ clear  scicos_pal // explicitly clear %helps scicos_pal variables
 
 
 
-
-
-// Protect variable previously defined  ================================
-predef('all') 
 
 // Graphic mode and Startup info ======================================
 if %gui then 
