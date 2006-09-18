@@ -1,4 +1,4 @@
-    	subroutine errmsg(n,errtyp)
+    	subroutine errmsgf(n,errtyp)
 c     -------------------------
 c     this routine displays the error message and set if the error is
 c     recoverable by errcatch or not:
