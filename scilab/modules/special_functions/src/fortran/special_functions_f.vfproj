@@ -34,14 +34,14 @@ cd .."/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../../libs/special_functions_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\..\sci_gateway\fortran\sci_calerf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_dlgamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_gamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_lgamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_oldbesseli.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_oldbesselj.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_oldbesselk.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_oldbessely.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_calerf.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dlgamma.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_gamma.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesseli.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselj.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselk.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbessely.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<File RelativePath="..\..\sci_gateway\special_functions2.fundef"/>
