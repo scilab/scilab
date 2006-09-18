@@ -69,7 +69,7 @@ cd .."/>
 		<File RelativePath="dtosci.f"/>
 		<File RelativePath="eqid.f"/>
 		<File RelativePath="errmgr.f"/>
-		<File RelativePath="errmsg.f"/>
+		<File RelativePath="errmsgf.f"/>
 		<File RelativePath="error.f"/>
 		<File RelativePath="Ex-corr.f"/>
 		<File RelativePath="Ex-fbutn.f"/>

@@ -24,7 +24,7 @@ c     . locate the error in the current statement
         if(trace) call errloc(n)
 c     . output error message
         if(.not.trace) lct(1)=-1
-        call errmsg(n,errtyp)
+        call errmsgf(n,errtyp)
         lct(1)=0
       endif
 c
