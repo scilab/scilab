@@ -12,7 +12,7 @@ extern char *GetScilabDirectory(BOOL UnixStyle);
 extern int StartJVMs(char *SCILAB_PATH); 
 #endif
 
-#if WITH_TK
+#ifdef WITH_TK
 extern void initTCLTK ();
 #endif
 /*-----------------------------------------------------------------------------------*/
@@ -24,7 +24,7 @@ int C2F(initscilab)(void)
 	SciEnv();
 	#endif
 
-	#if WITH_TK
+	#ifdef WITH_TK
 		initTCLTK();
 	#endif
 

@@ -2,7 +2,13 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#ifdef _MSC_VER
 #include <windows.h>
+#else
+#define MAX_PATH 512
+#include "machine.h"
+#endif
+
 #include <stdio.h>
 #include "Errors.h"
 #ifdef WITH_TK

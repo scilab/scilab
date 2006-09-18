@@ -15,6 +15,7 @@ extern int C2F(calerf) _PARAMS((double *arg, double *result, int *jint));
 extern double C2F(derf) _PARAMS((double *x));
 extern double C2F(derfc) _PARAMS((double *x));
 extern double C2F(derfcx) _PARAMS((double *x));
+extern int C2F(dgefa) _PARAMS((double *a, int *lda, int *n, int *ipvt, int *info));
 extern int C2F(ccopy) _PARAMS((int *n, char *dx, int *incx, char *dy, int *incy, int dx_len, int dy_len));
 extern double C2F(coshin) _PARAMS((double *x));
 extern int C2F(cupro) _PARAMS((int *n, double *w));

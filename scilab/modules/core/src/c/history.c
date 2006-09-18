@@ -4,11 +4,9 @@
 
 #include "history.h"
 
-
 #include "MALLOC.h"  /* malloc */
 
 #include  "stack-c.h"
-
 
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
@@ -472,42 +470,6 @@ int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
 /* readline version */
 
 static int CreSmatFromHist(char *fname, int number, int from_line, int count);
-
-int C2F(gethistory) _PARAMS((char *fname))
-{
-  register HIST_ENTRY **the_list;
-  int l1, m1, n1, GotoLine,count;
-
-  Rhs=Max(Rhs,0);
-  CheckRhs(0,1) ;
-  CheckLhs(1,1) ;
-
-  if (Rhs == 1) {
-    GetRhsVar(1,"i",&m1,&n1,&l1);
-    GotoLine=Max(1,*istk(l1)); 
-  }
-  else {
-    GotoLine=1; 
-  }
-
-  the_list = history_list ();
-  for (count = 0; the_list[count]; count++) ;
-  if ( GotoLine -1 >= count ) goto empty;
-
-  if(!CreSmatFromHist(fname, Rhs+1,GotoLine,count)) return 0;
-  LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
-  return 0;
-
- empty:
-  m1=0;
-  n1=0;
-  CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
-  LhsVar(1)=Rhs+1;
-  C2F(putlhsvar)();
-  return 0;
-}	
- 
 
 static int CreSmatFromHist(char *fname, int number, int from_line, int count)
 {

@@ -2,7 +2,7 @@ dnl Because this macro is used by AC_PROG_GCC_TRADITIONAL, which must
 dnl come early, it is not included in AC_BEFORE checks.
 dnl AC_GREP_CPP(PATTERN, PROGRAM, [ACTION-IF-FOUND [,
 dnl              ACTION-IF-NOT-FOUND]])
-AC_DEFUN(AC_GREP_CPP,
+AC_DEFUN([AC_GREP_CPP],
 [AC_REQUIRE_CPP()dnl
 cat > conftest.$ac_ext <<EOF
 [#]line __oline__ "configure"
@@ -27,7 +27,7 @@ rm -f conftest*
 ])
 
 
-AC_DEFUN( AC_CHECK_TCL_VERSION, [
+AC_DEFUN([AC_CHECK_TCL_VERSION], [
 dnl INPUTS :
 dnl  $1 : Path where to find the include file (/include f. ex.)
 dnl  $2 : Major version number ( 8 f. ex)
@@ -117,7 +117,7 @@ CPPFLAGS=$saved_cppflags
 ]) dnl End of AC_CHECK_TCL_VERSION
 
 
-AC_DEFUN( AC_CHECK_TCL_LIB, [
+AC_DEFUN([AC_CHECK_TCL_LIB], [
 dnl INPUTS :
 dnl  $1 : major tcl version number
 dnl  $2 : minor tcl version number
@@ -181,7 +181,7 @@ done
 
 
 
-AC_DEFUN( AC_CHECK_TK_VERSION, [
+AC_DEFUN([AC_CHECK_TK_VERSION], [
 dnl INPUTS :
 dnl  $1 : Path where to find the include file (/include f. ex.)
 dnl  $2 : Major version number ( 8 f. ex)
@@ -270,7 +270,7 @@ CPPFLAGS=$saved_cppflags
 
 
 
-AC_DEFUN( AC_CHECK_TK_LIB, [
+AC_DEFUN([AC_CHECK_TK_LIB], [
 dnl INPUTS :
 dnl  $1 : major tcl version number
 dnl  $2 : minor tcl version number
@@ -354,7 +354,7 @@ done
 
 
 
-AC_DEFUN( AC_CHECK_TCLTK, [
+AC_DEFUN([AC_CHECK_TCLTK], [
 dnl this macro finds and test the tcl/tk files
 dnl **** it uses $X_LDFLAGS $X_LIBS  to find X libs  ****
 dnl

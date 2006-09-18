@@ -11,10 +11,6 @@
 #define putenv _putenv
 #endif
 
-#ifndef BOOL
-typedef int BOOL;
-#endif
-
 /*-----------------------------------------------------------------------------------*/
 static char DefaultScilabStartup[]="SCI/etc/scilab.start";
 static char DefaultScilabQuit[]="SCI/etc/scilab.quit";

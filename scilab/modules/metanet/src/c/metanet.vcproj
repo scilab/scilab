@@ -185,7 +185,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\gw_metanet.c"
+				RelativePath="..\..\sci_gateway\c\gw_metanet.c"
 				>
 			</File>
 			<File

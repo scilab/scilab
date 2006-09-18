@@ -1,3 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 OPTIMIZATION_C_SOURCES = src/c/intqld.c \
 src/c/sp.c
 
@@ -82,7 +87,6 @@ src/fortran/frdf1.f \
 src/fortran/lmder.f \
 src/fortran/icse1.f \
 src/fortran/ctonb.f \
-src/fortran/intlsqrsolve.f \
 src/fortran/icscof.f \
 src/fortran/fmlag1.f \
 src/fortran/fpq2.f \
@@ -117,7 +121,16 @@ sci_gateway/c/sci_sqrsolve.c
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_semidef.f \
 sci_gateway/fortran/sci_f_fsolve.f \
 sci_gateway/fortran/sci_f_quapro.f \
-sci_gateway/fortran/sci_f_optim.f
+sci_gateway/fortran/sci_f_optim.f \
+sci_gateway/fortran/boptim.f \
+sci_gateway/fortran/bsolv.f \
+sci_gateway/fortran/bjlsqrsolv.f \
+sci_gateway/fortran/blsqrsolv.f \
+sci_gateway/fortran/bjsolv.f \
+sci_gateway/fortran/intlsqrsolve.f \
+sci_gateway/fortran/Ex-optim.f \
+sci_gateway/fortran/Ex-fsolve.f \
+sci_gateway/fortran/Ex-lsqrsolve.f
 
 
 liboptimization_la_includedir=$(includedir)/optimization
@@ -133,9 +146,11 @@ lib_LTLIBRARIES = liboptimization.la
 liboptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 liboptimization_la_DEPENDENCIES = \
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+	$(top_builddir)/libs/lapack/liblapack.la\
+	$(top_builddir)/modules/core/libcore.la
+
 
 
 

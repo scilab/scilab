@@ -9,6 +9,14 @@
 #include <time.h>
 #include <stdlib.h>
 
+#ifdef	_MSC_VER
+  #include "wcommon.h" /* for BOOL */
+#else
+  #include "machine.h"
+  extern char *getenv();
+#endif
+
+
 #ifdef  WITH_READLINE
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -21,20 +29,6 @@ extern void reset_history(void);
   #define STRICT
 #endif
 
-
-#ifdef	_MSC_VER
-  #include "wcommon.h" /* for BOOL */
-#else
-  typedef int BOOL;
-  extern char *getenv();
-#endif
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-#ifndef FALSE
-#define FALSE 0
-#endif
 
 extern void write_scilab  __PARAMS((char *s));
 /*-----------------------------------------------------------------------------------*/

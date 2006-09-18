@@ -63,8 +63,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libpolynomials_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/core/libcore.la
+am__DEPENDENCIES_1 = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
 	recbez.lo sfact1.lo dmptld.lo dpodiv.lo dmptra.lo dmpins.lo \
@@ -241,12 +240,12 @@ PATH_SEPARATOR = :
 PERIX11NOPT = periX11darwin
 PKG_CONFIG = 
 PREFIX_DIR = NONE
-PVMARCH = 
-PVMGETARCH = 
-PVM_FALSE = 
-PVM_INCLUDE = 
-PVM_LIB = 
-PVM_TRUE = #
+PVMARCH = LINUX
+PVMGETARCH = pvmgetarch
+PVM_FALSE = #
+PVM_INCLUDE = -I/usr/include
+PVM_LIB =  -L/usr/lib -lgpvm3 -lpvm3
+PVM_TRUE = 
 RANLIB = ranlib
 RM = rm -f
 SCIDIR = .
@@ -457,15 +456,10 @@ libpolynomials_la_CFLAGS = -Iincludes/
 lib_LTLIBRARIES = libpolynomials.la
 libpolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 libpolynomials_la_DEPENDENCIES = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
-	$(top_builddir)/modules/core/libcore.la 
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 
-#	$(top_builddir)/libs/blas/libblas.la 
-
-# \
-#	$(top_builddir)/routines/console/libconsole.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
+# Cyclic dep
+#	$(top_builddir)/modules/core/libcore.la 
 libpolynomials_la_LIBADD = $(libpolynomials_la_DEPENDENCIES)
 libpolynomials_la_PKGCONFIG = polynomials.pc
 all: all-am

@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <sys/file.h>
 
-#include "../stack-def.h"
+#include "stack-def.h"
 
 #ifndef hppa
 #include <dlfcn.h>

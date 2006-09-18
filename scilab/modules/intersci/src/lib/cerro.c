@@ -1,6 +1,6 @@
 /* Copyright INRIA */
 #include <string.h>
-#include "../machine.h"
+#include "machine.h"
 #include "cerro.h"
 
 extern void C2F(erro)();

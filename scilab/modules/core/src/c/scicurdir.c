@@ -16,16 +16,6 @@
 #define FSIZE 1024
 static char     cur_dir[FSIZE];
 
-#if defined(SYSV) || defined(SVR4)
-extern char	   *getcwd();
-#define GETCWD(x,y) getcwd(x,y)
-#else
-#ifndef _MSC_VER
-extern char	   *getwd();
-#define GETCWD(x,y) getwd(x)
-#endif
-#endif
-
 #ifdef _MSC_VER
 extern void sciprint (char *fmt,...);
 #endif

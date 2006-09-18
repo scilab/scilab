@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #endif
 
+#ifndef _MSC_VER 
+#include "machine.h"
+#endif
 
 #ifdef _MSC_VER 
 		#include <float.h>

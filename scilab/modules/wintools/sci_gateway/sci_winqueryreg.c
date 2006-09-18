@@ -4,6 +4,10 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_winqueryreg.h"
 #include "MALLOC.h"
+
+#ifndef _MSC_VER
+#include "intpathname.h"
+#endif
 /*-----------------------------------------------------------------------------------*/
 #define MSG_WERROR1 "parameter(s) type incorrect.\r\n"
 #define MSG_WERROR2 "Error.\r\n"

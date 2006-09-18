@@ -1,96 +1,619 @@
-dnl ===============================================================
-dnl Available from the GNU Autoconf Macro Archive at:
-dnl http://autoconf-archive.cryp.to/ac_jni_include_dir.html
-dnl 
-dnl Some other macros about java environment detection can be found at :
-dnl http://tcljava.sourceforge.net/docs/website/index.html
-dnl ===============================================================
+## Macros "stolen" from jacl (http://tcljava.sourceforge.net/)
+## They made a great job on this part !
 
-AC_DEFUN([AC_JNI_INCLUDE_DIR],[
+#------------------------------------------------------------------------
+# AC_MSG_LOG( MSG, ?LOGONLY? )
+#
+#	Write the message out to the config.log file and the console.
+#	If 1 is passed as the second argument, then write to the
+#	config.log file only.
+#
+# Arguments:
+#	1. The message to log
+#	2. Optional boolean, if true then write to config.log only
+#------------------------------------------------------------------------
 
-	JNI_INCLUDE_DIRS=""
-	test "x$JAVAC" = x && AC_MSG_ERROR(['$JAVAC' undefined])
-	AC_PATH_PROG(_ACJNI_JAVAC, $JAVAC, no)
-	test "x$_ACJNI_JAVAC" = xno && AC_MSG_ERROR([$JAVAC could not be found in path])
-	
-	_ACJNI_FOLLOW_SYMLINKS("$_ACJNI_JAVAC")
-	
-	AC_MSG_CHECKING([for java headers])
-	
-	_JTOPDIR=`echo "$_ACJNI_FOLLOWED" | sed -e 's://*:/:g' -e 's:/[[^/]]*$::'`
-	case "$host_os" in
-		darwin*)
-			_JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[[^/]]*$::'`
-			_JINC="$_JTOPDIR/Headers";;
-		*)
-			_JINC="$_JTOPDIR/include";;
-	esac
-	
-	if test -f "$_JINC/jni.h"; then
-		JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JINC"
-	else
-		_JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[[^/]]*$::'`
-		if test -f "$_JTOPDIR/include/jni.h"; then
-			JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include"
-		else
-			JAVASCITARGET=javasci-bidon
-			AC_MSG_WARN([jni.h not found: I will not build the java interface])
-		fi
-	fi
-	
-	if test "$JAVASCITARGET" = scilex-lib; then
-	
-		# get the likely subdirectories for system specific java includes
-		case "$host_os" in
-		bsdi*)
-			_JNI_INC_SUBDIRS="bsdos";;
-		linux*)
-			_JNI_INC_SUBDIRS="linux genunix";;
-		osf*)
-			_JNI_INC_SUBDIRS="alpha";;
-		solaris*)
-			_JNI_INC_SUBDIRS="solaris";;
-		mingw*)
-			_JNI_INC_SUBDIRS="win32";;
-		cygwin*)
-			_JNI_INC_SUBDIRS="win32";;
-		*)
-			_JNI_INC_SUBDIRS="genunix";;
-		esac
-		
-		# add any subdirectories that are present
-		for JINCSUBDIR in $_JNI_INC_SUBDIRS
-		do
-			if test -d "$_JTOPDIR/include/$JINCSUBDIR"; then
-				JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include/$JINCSUBDIR"
-			fi
-		done
-		
-		AC_MSG_RESULT($JNI_INCLUDE_DIRS)
-	fi
+AC_DEFUN([AC_MSG_LOG], [
+    echo $1 >&AS_MESSAGE_LOG_FD
+    m4_ifval([$2],,[echo $1])
 ])
 
-dnl ===============================================================
-dnl _ACJNI_FOLLOW_SYMLINKS <path>
-dnl Follows symbolic links on <path>,
-dnl finally setting variable _ACJNI_FOLLOWED
-dnl ===============================================================
+#------------------------------------------------------------------------
+# AC_GREP_FILE( PATTERN, FILE, ACTION-IF-FOUND, [ACTION-IF-NOT-FOUND])
+#
+#	Use grep to search for a pattern in a file. If the pattern
+#	is not found then return a non zero exit status. No information
+#	will be echoed to the screen by this macro.
+#
+# Arguments:
+#	1. The pattern to search for
+#	2. The name of the file to be grep'ed
+#	3. The script to execute if PATTERN is found in FILE
+#	4. The script to execute if PATTERN is not found in FILE (optional)
+#------------------------------------------------------------------------
 
-AC_DEFUN([_ACJNI_FOLLOW_SYMLINKS],[
-	
-	dnl find the include directory relative to the javac executable
-	_cur="$1"
-	while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-		AC_MSG_CHECKING(symlink for $_cur)
-		_slink=`ls -ld "$_cur" | sed 's/.* -> //'`
-		case "$_slink" in
-			/*)
-				_cur="$_slink";;
-			# 'X' avoids triggering unwanted echo options.
-			*)
-				_cur=`echo "X$_cur" | sed -e 's/^X//' -e 's:[[^/]]*$::'`"$_slink";;
-		esac
-		AC_MSG_RESULT($_cur)
-	done
-	_ACJNI_FOLLOWED="$_cur"
-])# _ACJNI
+AC_DEFUN([AC_GREP_FILE], [
+    AC_MSG_LOG([grep in $2 for pattern '"$1"'], 1)
+    if (grep "$1" $2 > /dev/null 2>&1) ; then
+        AC_MSG_LOG([grep result : yes], 1)
+        $3
+    else
+        AC_MSG_LOG([grep result : no], 1)
+        m4_ifval([$4], [
+            $4
+        ])dnl
+    fi
+])
+
+
+#------------------------------------------------------------------------
+# AC_PROG_JAVAC
+#
+#	If JAVAC is not already defined, then search for "javac" on
+#	the path. If a java compiler is found, then test it to make
+#	sure it actually works.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	JAVAC can be set to the path name of the java compiler
+#	JAVAC_FLAGS can be set to compiler specific flags
+#	ac_java_jvm_dir can be set to the jvm's root directory
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_PROG_JAVAC], [
+    if test "x$JAVAC" = "x" ; then
+        AC_PATH_PROG(JAVAC, javac)
+        if test "x$JAVAC" = "x" ; then
+            AC_MSG_ERROR([javac not found on PATH ... did you forget --with-jdk=DIR])
+        fi
+    fi
+    if test ! -f "$JAVAC" ; then
+        AC_MSG_ERROR([javac '$JAVAC' does not exist.
+        Perhaps Java is not installed or you passed a bad dir to a --with option.])
+    fi
+
+    # Check for Solaris install which uses a symlink in /usr/bin to /usr/java/bin
+    if test -h "$JAVAC" ; then
+        BASE=`basename $JAVAC`
+        DIR=`dirname $JAVAC`
+        if test -f $DIR/../java/bin/$BASE ; then
+            JAVAC=`cd $DIR/../java/bin;pwd`/$BASE
+        fi
+    fi
+
+    # If we were searching for javac, then set ac_java_jvm_dir
+    if test "x$ac_java_jvm_dir" = "x"; then
+        TMP=`dirname $JAVAC`
+        TMP=`dirname $TMP`
+        ac_java_jvm_dir=$TMP
+    fi
+
+    # Look for a setting for the CLASSPATH, we might need one to run JAVAC
+    AC_JAVA_CLASSPATH
+
+    # FIXME : add detection of command line arguments for JAVAC
+
+    JAVAC_FLAGS=-g
+    JAVAC_D_FLAG=-d
+
+    dnl Test out the Java compiler with an empty class
+    AC_MSG_CHECKING([to see if the java compiler works])
+    AC_JAVA_TRY_COMPILE(,,works=yes)
+    if test "$works" = "yes" ; then
+        AC_MSG_RESULT($works)
+    else
+        AC_MSG_ERROR([Could not compile simple Java program with '$JAVAC'])
+    fi
+
+    AC_MSG_LOG([Using JAVAC=$JAVAC], 1)
+])
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_TRY_COMPILE(imports, main-body, action-if-worked, [action-if-failed])
+#
+#	Try to compile a Java program. This works a lot like AC_TRY_COMPILE
+#	except is supports Java instead of C or C++. This macro will create
+#	a file named Test.java and try to compile it.
+#
+# Arguments:
+#	imports should contain Java import statements like [import java.util.*;]
+#       main-body should contain the code to appear in the main() method
+#	action-if-worked should contain the code to run if the compile worked
+#	action-if-failed should contain the code to run if the compile failed (optional)
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_TRY_COMPILE], [
+    cat << \EOF > conftest.java
+// [#]line __oline__ "configure"
+[$1]
+
+public class conftest {
+    public static void main(String[[]] argv) {
+        [$2]
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >&AS_MESSAGE_LOG_FD 2>&AS_MESSAGE_LOG_FD) ; then
+        echo "yes" >&AS_MESSAGE_LOG_FD
+        $3
+    else
+        echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
+        cat conftest.java >&AS_MESSAGE_LOG_FD
+        echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
+        m4_ifval([$4],
+        [  $4
+        ])dnl
+    fi
+])
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_DETECT_JVM
+#
+#	Figure out what JVM to build with. If no JVM was already defined
+#	using a --with command line option then we search for one
+#	by looking for the javac executable.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	JAVAC
+#	ac_java_jvm_version can be set to 1.4, or 1.5
+#	ac_java_jvm_dir can be set to the jvm's root directory
+#
+# DEPENDS ON:
+#	This macro can depend on the values set by the following macros:
+#	AC_JAVA_WITH_JDK
+#	AC_PROG_JAVAC
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_DETECT_JVM], [
+
+	# check if JAVA_HOME is set. If it is the case, try to use if first
+	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" == "x"; then
+	    AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
+        ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
+		JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+	fi
+
+    # if we do not know the jvm dir, javac will be found on the PATH
+    if test "x$JAVAC" = "x" && test "x$ac_java_jvm_dir" != "x"; then
+        ac_java_jvm_dir=`cd $ac_java_jvm_dir ; pwd`
+        JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+    fi
+
+    # Search for and test the javac compiler
+    AC_PROG_JAVAC
+
+    AC_MSG_LOG([Java found in $ac_java_jvm_dir])
+
+    # Try to detect non JDK JVMs. If we can't, then just assume a jdk
+
+    AC_MSG_CHECKING([type of jvm]) 
+
+    if test "x$ac_java_jvm_name" = "x" ; then
+        AC_JAVA_TRY_COMPILE([import gnu.java.io.EncodingManager;],,ac_java_jvm_name=gcj)
+    fi
+
+    if test "x$ac_java_jvm_name" = "x" ; then
+       ac_java_jvm_name=jdk
+    fi
+
+    AC_MSG_RESULT([$ac_java_jvm_name])
+
+    case "$ac_java_jvm_name" in
+        gcj) DO=nothing ;;
+        jdk) DO=nothing ;;
+        *) AC_MSG_ERROR(['$ac_java_jvm_name' is not a supported JVM]) ;;
+    esac
+
+    # Try to detect the version of java that is installed
+
+    AC_MSG_CHECKING([java API version])
+
+    # The class java.nio.charset.Charset is new to 1.4
+
+    AC_JAVA_TRY_COMPILE([import java.nio.charset.Charset;], , ac_java_jvm_version=1.4)
+
+    # The class java.lang.StringBuilder is new to 1.5
+
+    AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , ac_java_jvm_version=1.5)
+
+    if test "x$ac_java_jvm_version" = "x" ; then
+        AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
+    fi
+
+    AC_MSG_RESULT([$ac_java_jvm_version])
+
+])
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_CLASSPATH
+#
+#	Find out which .zip or .jar files need to be included on
+#	the CLASSPATH if we are setting it via an env variable.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	ac_java_classpath
+#
+# DEPENDS ON:
+#	This macro is used by the AC_JAVA_DETECT_JVM macro.
+#	It depends on the ac_java_jvm_dir variable.
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_CLASSPATH], [
+    AC_MSG_CHECKING([for zip or jar files to include on CLASSPATH])
+
+    if test "x$ac_java_jvm_dir" = "x" ; then
+        AC_MSG_ERROR([jvm directory not set])
+    fi
+
+    # GNU gcj does not need to set the CLASSPATH.
+
+    # Assume that JDK 1.4 and newer systems will
+    # not need to explicitly set the CLASSPATH.
+
+    # Append CLASSPATH if env var is set. Avoid append
+    # under msys because CLASSPATH is in Win32 format
+    # and we can't combine it with a msys path.
+    if test "x$CLASSPATH" != "x" && test "$ac_cv_tcl_win32" != "yes" ; then
+        AC_MSG_LOG([Adding user supplied CLASSPATH env var])
+        ac_java_classpath="${ac_java_classpath}:${CLASSPATH}"
+    fi
+
+    AC_MSG_LOG([Using CLASSPATH=$ac_java_classpath], 1)
+    AC_MSG_RESULT($ac_java_classpath)
+])
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_JNI_INCLUDE
+#
+#	Figure out where jni.h and jni_md.h include files are installed.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	ac_java_jvm_jni_include_flags : Flags that we pass to the compiler
+#           so that it can locate JNI headers. (for example: -I/usr/jdk/include)
+#
+# DEPENDS ON:
+#	This macro must be run after the AC_JAVA_DETECT_JVM macro as
+#	it depends on the ac_java_jvm_dir variable.
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
+
+    # Look for jni.h in the subdirectory $ac_java_jvm_dir/include
+
+    F=$ac_java_jvm_dir/include/jni.h
+    if test -f "$F" ; then
+         ac_java_jvm_jni_include_flags="-I`dirname $F`"
+    else
+         F=`ls $ac_java_jvm_dir/include/*/jni.h 2>/dev/null`
+         if test -f "$F" ; then
+             ac_java_jvm_jni_include_flags="-I`dirname $F`"
+         else
+             AC_MSG_ERROR([Could not locate Java's jni.h include file])
+         fi
+    fi
+
+    # Look for jni_md.h in an arch specific subdirectory
+    # we assume that there is only one arch subdirectory,
+    # if that is not the case we would need to use $host
+
+    F=`ls $ac_java_jvm_dir/include/*/jni_md.h 2>/dev/null`
+    if test -f "$F" ; then
+        ac_java_jvm_jni_include_flags="$ac_java_jvm_jni_include_flags -I`dirname $F`"
+    fi
+
+    AC_MSG_LOG([Using the following JNI include flags $ac_java_jvm_jni_include_flags])
+
+    # Make sure a simple #include <jni.h> will compile.
+
+    AC_REQUIRE([AC_PROG_CC])
+
+    AC_CACHE_CHECK(to see if jni.h can be included,
+        ac_java_jvm_jni_working,[
+        AC_LANG_PUSH(C)
+        ac_saved_cflags=$CFLAGS
+        CFLAGS="$CFLAGS $ac_java_jvm_jni_include_flags"
+        AC_TRY_COMPILE([
+            #include <jni.h>
+        ],[return 0;],
+        ac_java_jvm_jni_working=yes,
+        AC_MSG_ERROR([could not compile file that includes jni.h]))
+        AC_LANG_POP()
+        CFLAGS=$ac_saved_cflags
+    ])
+
+    # FIXME: should we look for or require a include/native_threads dir?
+])
+
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_JNI_LIBS
+#
+#	Figure out where the native threads libraries for JNI live.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	ac_java_jvm_ld_preload : list of libraries to include in LD_PROLOAD
+#	ac_java_jvm_ld_bind_now : if set to 1, then use LD_BIND_NOW=1
+#	ac_java_jvm_jni_lib_flags : library flags that we will pass to the compiler.
+#	    For instance, we might pass -L/usr/jdk/lib -ljava
+#	ac_java_jvm_jni_lib_runtime_path : colon separated path of directories
+#	    that is typically passed to rld.
+#
+# DEPENDS ON:
+#	This macro must be run after the AC_JAVA_DETECT_JVM macro as
+#	it depends on the ac_java_jvm_dir variable.
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_JNI_LIBS], [
+    machine=`uname -m`
+    case "$machine" in
+        i?86)
+          machine=i386
+          ;;
+    esac
+
+    # Check for known JDK installation layouts
+
+    if test "$ac_java_jvm_name" = "jdk"; then
+
+        # Sun/Blackdown 1.4 for Linux (client JVM)
+
+        F=jre/lib/$machine/libjava.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
+                D=$ac_java_jvm_dir/jre/lib/$machine/client
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+                D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -lhpi"
+            fi
+        fi
+
+        # Sun JDK 1.5 for AMD64 Linux (server JVM)
+
+        F=jre/lib/amd64/libjava.so
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            if test -f $ac_java_jvm_dir/$F ; then
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+
+                D=`dirname $ac_java_jvm_dir/$F`
+                ac_java_jvm_jni_lib_runtime_path=$D
+                ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
+
+                D=$ac_java_jvm_dir/jre/lib/amd64/server
+                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
+                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
+            fi
+        fi
+
+        # Sun JDK 1.4 and 1.5 for Win32 (client JVM)
+
+        F=lib/jvm.lib
+        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            if test -f $ac_java_jvm_dir/$F ; then
+                # jre/bin/client must contain jvm.dll
+                # jre/bin/server directory could also contain jvm.dll,
+                # just assume the user wants to use the client JVM.
+                DLL=jre/bin/client/jvm.dll
+                if test -f $ac_java_jvm_dir/$DLL ; then
+                    AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                    D1=$ac_java_jvm_dir/jre/bin
+                    D2=$ac_java_jvm_dir/jre/bin/client
+                    ac_java_jvm_jni_lib_runtime_path="${D1}:${D2}"
+                    ac_java_jvm_jni_lib_flags="$ac_java_jvm_dir/$F"
+                fi
+            fi
+        fi
+    fi
+
+    # Generate error for unsupported JVM layout
+
+    if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
+        AC_MSG_ERROR([Could not detect the location of the Java
+            shared library. You will need to update tcljava.m4
+            to add support for this JVM configuration.])
+    fi
+
+    AC_MSG_LOG([Using the following JNI library flags $ac_java_jvm_jni_lib_flags])
+    AC_MSG_LOG([Using the following runtime library path $ac_java_jvm_jni_lib_runtime_path])
+
+    AC_MSG_LOG([Using LD_PRELOAD=$ac_java_jvm_ld_preload], 1)
+    AC_MSG_LOG([Using LD_BIND_NOW=$ac_java_jvm_ld_bind_now], 1)
+
+    # Make sure we can compile and link a trivial JNI program
+
+    AC_REQUIRE([AC_PROG_CC])
+
+    AC_CACHE_CHECK(to see if we can link a JNI application,
+        ac_java_jvm_working_jni_link,[
+        AC_LANG_PUSH(C)
+        ac_saved_cflags=$CFLAGS
+        ac_saved_libs=$LIBS
+        CFLAGS="$CFLAGS $ac_java_jvm_jni_include_flags"
+        LIBS="$LIBS $ac_java_jvm_jni_lib_flags"
+        AC_TRY_LINK([
+            #include <jni.h>
+        ],[JNI_GetCreatedJavaVMs(NULL,0,NULL);],
+            ac_java_jvm_working_jni_link=yes,
+            ac_java_jvm_working_jni_link=no)
+        AC_LANG_POP()
+        CFLAGS=$ac_saved_cflags
+        LIBS=$ac_saved_libs
+    ])
+
+    # gcc can't link with some JDK .lib files under Win32.
+    # Work around this problem by linking with win/libjvm.dll.a
+
+    if test "$ac_java_jvm_working_jni_link" != "yes" &&
+      test "$ac_cv_tcl_win32" = "yes"; then
+        AC_LANG_PUSH(C)
+        ac_saved_cflags=$CFLAGS
+        ac_saved_libs=$LIBS
+        CFLAGS="$CFLAGS $ac_java_jvm_jni_include_flags"
+        LIBS="$LIBS -L$srcdir/win -ljvm"
+        AC_TRY_LINK([
+            #include <jni.h>
+        ],[JNI_GetCreatedJavaVMs(NULL,0,NULL);],
+            ac_java_jvm_working_jni_link=yes,
+            ac_java_jvm_working_jni_link=no)
+        AC_LANG_POP()
+        CFLAGS=$ac_saved_cflags
+        LIBS=$ac_saved_libs
+
+        if test "$ac_java_jvm_working_jni_link" = "yes"; then
+            AC_MSG_LOG([Using custom JNI link lib])
+            ac_java_jvm_jni_lib_flags="-L$srcdir/win -ljvm"
+        fi
+    fi
+
+    if test "$ac_java_jvm_working_jni_link" != "yes"; then
+        AC_MSG_ERROR([could not link file that includes jni.h
+        Either the configure script does not know how to deal with
+        this JVM configuration or the JVM install is broken or corrupted.])
+    fi
+])
+
+
+#------------------------------------------------------------------------
+# AC_JAVA_WITH_JDK
+#
+#	Check to see if the --with-jdk command line option is given.
+#	If it was, then set ac_java_with_jdk to the DIR argument.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	ac_java_with_jdk can be set to the directory where the jdk lives
+#	ac_java_jvm_name can be set to "jdk"
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_WITH_JDK], [
+    AC_ARG_WITH(jdk, [  --with-jdk=DIR          use JDK from DIR], ok=$withval, ok=no)
+    if test "$ok" = "no" ; then
+        NO=op
+    elif test "$ok" = "yes" || test ! -d "$ok"; then
+        AC_MSG_ERROR([--with-jdk=DIR option, must pass a valid DIR])
+    elif test "$ok" != "no" ; then
+	    AC_MSG_RESULT([Use JDK path specified ($ok)])
+        ac_java_jvm_dir=$ok
+        ac_java_jvm_name=jdk
+    fi
+])
+
+#------------------------------------------------------------------------
+# AC_JAVA_TOOLS
+#
+#	Figure out the paths of any Java tools we will need later on.
+#
+# Arguments:
+#	NONE
+#
+# VARIABLES SET:
+#	JAVA
+#	JAVA_G
+#	JAVAC
+#	JAVAH
+#	JAR
+#	JDB
+#
+# DEPENDS ON:
+#	This macro must be run after the AC_JAVA_DETECT_JVM macro as
+#	it depends on the ac_java_jvm_name, ac_java_jvm_version and
+#	ac_java_jvm_dir variables
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_TOOLS], [
+    AC_JAVA_TOOLS_CHECK(JAVA, java, $ac_java_jvm_dir/bin)
+
+    # Don't error if java_g can not be found
+    AC_JAVA_TOOLS_CHECK(JAVA_G, java_g, $ac_java_jvm_dir/bin, 1)
+
+    if test "x$JAVA_G" = "x" ; then
+        JAVA_G=$JAVA
+    fi
+
+    TOOL=javah
+    AC_JAVA_TOOLS_CHECK(JAVAH, $TOOL, $ac_java_jvm_dir/bin)  
+
+    AC_JAVA_TOOLS_CHECK(JAR, jar, $ac_java_jvm_dir/bin)
+
+    # Don't error if jdb can not be found
+    AC_JAVA_TOOLS_CHECK(JDB, jdb, $ac_java_jvm_dir/bin, 1)
+
+    case "$ac_java_jvm_version" in
+        *)
+            # JDK on Win32 does not allow connection with suspend=n
+            if test "$ac_cv_tcl_win32" = "yes"; then
+                suspend="y"
+            else
+                suspend="n"
+            fi
+            JDB_ATTACH_FLAGS="-attach 8757"
+            JAVA_G_FLAGS="-Xdebug -Xrunjdwp:transport=dt_socket,address=8757,server=y,suspend=$suspend"
+            JDB_ATTACH_FLAGS="-attach 8757"
+            ;;
+    esac
+])
+
+#------------------------------------------------------------------------
+# AC_JAVA_TOOLS_CHECK(VARIABLE, TOOL, PATH, NOERR)
+#
+#	Helper function that will look for the given tool on the
+#	given PATH. If cross compiling and the tool can not
+#	be found on the PATH, then search for the same tool
+#	on the users PATH. If the tool still can not be found
+#	then give up with an error unless NOERR is 1.
+#
+# Arguments:
+#	1. The variable name we pass to AC_PATH_PROG
+#	2. The name of the tool
+#	3. The path to search on
+#	4. Pass 1 if you do not want any error generated 
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_TOOLS_CHECK], [
+    if test "$cross_compiling" = "yes" ; then
+        AC_PATH_PROG($1, $2)
+    else
+        AC_PATH_PROG($1, $2, , $3)
+    fi
+
+    # Check to see if $1 could not be found
+
+    m4_ifval([$4],,[
+    if test "x[$]$1" = "x" ; then
+        AC_MSG_ERROR([Cannot find $2 on $3])
+    fi
+    ])
+])
