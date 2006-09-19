@@ -40,7 +40,7 @@ case 'set' then
       model.state=x0
       if satur<>0 then 
 	model.nzcross=size(x0,1)
-	model.nmode=1
+	model.nmode=size(x0,1)
       else
 	model.nzcross=0
 	model.nmode=0
