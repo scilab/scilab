@@ -19,6 +19,18 @@ for k=1:rhs
   if typeof(tree.rhs(k))=="cste" & tree.rhs(k).value=="-regexp" then
     set_infos(["Option -regexp not yet handled: will be ignored"],2);
   end
+  if typeof(tree.rhs(k))=="cste" //& exists("sci_"+tree.rhs(k).value)==1
+    INFER=Infer()
+    varslist($+1)=M2scivar(tree.rhs(k).value,tree.rhs(k).value,INFER)
+  end 
+  if typeof(tree.rhs(k))=="operation"
+    for j=1:size(tree.rhs(k).operands)
+      if typeof(tree.rhs(k).operands(j))=="cste" //& exists("sci_"+tree.rhs(k).operands(j).value)==1
+        INFER=Infer()
+        varslist($+1)=M2scivar(tree.rhs(k).operands(j).value,tree.rhs(k).operands(j).value,INFER)
+      end 
+    end
+  end
 end
 rhstemp=list()
 rhstemp($+1)=tree.rhs(1)
