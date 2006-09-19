@@ -34,10 +34,6 @@
 
 
 #include "MALLOC.h" /* MALLOC */
-/*-----------------------------------------------------------------------------------*/
-#ifdef WITH_TK
-extern int GetTclCurrentFigure(void);
-#endif
 
 /*-----------------------------------------------------------------------------------*/
 extern int versionflag;
@@ -160,30 +156,10 @@ int sci_get(char *fname,unsigned long fname_len)
 	  if(getticks(cstk(l2),pobj)!=0)
 	    return 0;
 	}
-      else if(strcmp(cstk(l2),"data") == 0){ /* distinction for "data" treatment for champ and surface objects */
-	if(sciGetEntityType(pobj) == SCI_SURFACE)
-	  {
-	    if (get3ddata(pobj)!=0)
-	      return 0;
-	  }
-	else if((sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1))
-	  {
-	    if (getchampdata(pobj)!=0)
-	      return 0;
-	  }  
-	else if((sciGetEntityType(pobj) == SCI_GRAYPLOT)  && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
-	  {
-	    if (getgrayplotdata(pobj)!=0)
-	      return 0;
-	  } 
-	else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
-	  {
-	    if (sciGet(pobj, cstk(l2))!=0)
-	      {
-		Scierror(999,"%s: %s\r\n",fname,error_message);
-		return 0;
-	      }
-	  }
+      else if(strcmp(cstk(l2),"data") == 0)
+      {
+        /* distinction for "data" treatment for champ and surface objects */
+
       }
       else /* F.Leray 02.05.05 : main case (all but "data") (using sciGetPoint routine inside GetProperty.c) */
 	{
@@ -722,205 +698,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   return 0;
 }
 
-/*-----------------------------------------------------------------------------------*/
-/* F.Leray 29.04.05 */
-/* the grayplot data is now given as a tlist (like for surface and champ objects) */
-int getgrayplotdata(sciPointObj *pobj)
-{
-  char *variable_tlist[] = {"grayplotdata","x","y","z"};
-  int m_variable_tlist = 0;
-  int n_variable_tlist = 0;
-  /*int n_variable_tlist = 1; */
 
-  int  numrow, numcol,l;
-  /*   int nx,ny; */
-
-  /* F.Leray debug*/
-  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
-
-  m_variable_tlist = 1;
-  n_variable_tlist = 4;
-
-  /* Add 'variable' tlist items to stack */
-  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
-
-  numrow = ppgrayplot->nx;
-  numcol = 1;
-  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppgrayplot->pvecx);
-
-  numrow = ppgrayplot->ny;
-  numcol = 1;
-  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &ppgrayplot->pvecy);
-
-  numrow = ppgrayplot->nx;
-  numcol = ppgrayplot->ny;
-
-  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppgrayplot->pvecz);
-
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-/* F.Leray 29.04.05 */
-/* the champ data is now given as a tlist (like for surface objects) */
-int getchampdata(sciPointObj *pobj)
-{
-  char *variable_tlist[] = {"champdata","x","y","fx","fy"};
-  int m_variable_tlist = 0;
-  int n_variable_tlist = 0;
-  /*int n_variable_tlist = 1; */
-
-  int  numrow, numcol,l;
-
-  /* F.Leray debug*/
-  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
-
-  m_variable_tlist = 1;
-  n_variable_tlist = 5;
-
-  /* Add 'variable' tlist items to stack */
-  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
-
-  numrow = ppsegs->Nbr1;
-  numcol = 1;
-  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &ppsegs->vx);
-
-  numrow = ppsegs->Nbr2;
-  numcol = 1;
-  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &ppsegs->vy);
-
-  numrow = ppsegs->Nbr1;
-  numcol = ppsegs->Nbr2;
-  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &ppsegs->vfx);
-
-  /* same numrow and numcol */
-  CreateListVarFromPtr(Rhs+1, 5, "d", &numrow,&numcol, &ppsegs->vfy);
-
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-int get3ddata(sciPointObj *pobj)
-{
-  char *variable_tlist_color[] = {"3d","x","y","z","color"};
-  char *variable_tlist[] = {"3d","x","y","z"};
-  int m_variable_tlist = 0;
-  int n_variable_tlist = 0;
-  /*int n_variable_tlist = 1; */
-
-  int flag_c;
-  /*int one = 1;
-    int four = 4;*/
-  int  numrow, numcol,l;
-
-  /* F.Leray debug*/
-  /*sciSurface * psurf = pSURFACE_FEATURE (pobj); */
-
-  /* tests a faire sur presence et taille color */
-  flag_c = pSURFACE_FEATURE (pobj)->m3n;
-  if(flag_c !=0)
-    {
-      m_variable_tlist = 1;
-      n_variable_tlist = 5;
-
-      if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
-	{
-	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3*/
-	  
-	  /* Add 'variable' tlist items to stack */
-	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);
-
-
-	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3*/
-	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
-	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m3n;
-	  numcol = pSURFACE_FEATURE (pobj)->n3n;
-
-	  /* F.Leray 24.03.04 Replaced by: */
-	  CreateListVarFromPtr(Rhs+1, 5, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->inputCMoV);
-
-	}
-      else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
-	{
-	  /* Add 'variable' tlist items to stack */
-	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; /* but here m1!=m2!=m3 and n1!=n2!=n3*/
-	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m2;
-	  numcol = pSURFACE_FEATURE (pobj)->n2;
-	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m3;
-	  numcol = pSURFACE_FEATURE (pobj)->n3;
-	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m3n;
-	  numcol = pSURFACE_FEATURE (pobj)->n3n;
-
-
-	  /* F.Leray 24.03.04 Replaced by: */
-	  CreateListVarFromPtr(Rhs+1, 5, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->inputCMoV);
-
-	}
-    }
-  else /* no color provided in input*/
-    {
-      m_variable_tlist = 1;
-      n_variable_tlist = 4;
-
-      if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
-	{
-	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3 */
-	  /*
-	    CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-	    CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-	    CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
-	  */
-
-	  /* Add 'variable' tlist items to stack */
-	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3 */
-	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
-	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-	}
-      else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
-	{
-	  /* Add 'variable' tlist items to stack */
-	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; /* but here m1!=m2!=m3 and n1!=n2!=n3 */
-	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m2;
-	  numcol = pSURFACE_FEATURE (pobj)->n2;
-	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
-
-	  numrow = pSURFACE_FEATURE (pobj)->m3;
-	  numcol = pSURFACE_FEATURE (pobj)->n3;
-	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-	}
-    }
-
-
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 
 int getticks(char * xyztick, sciPointObj* psubwin)

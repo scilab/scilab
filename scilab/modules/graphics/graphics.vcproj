@@ -834,6 +834,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\returnPropertyList.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_addcb.c"
 				>
 			</File>
@@ -1384,6 +1388,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\returnProperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\returnPropertyList.h"
 				>
 			</File>
 			<File
