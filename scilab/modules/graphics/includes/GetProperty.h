@@ -192,4 +192,6 @@ extern int sciGetSubwinNbSurf( sciPointObj * pObj ) ;
 
 extern int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
+extern int sciGetHiddenColor( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

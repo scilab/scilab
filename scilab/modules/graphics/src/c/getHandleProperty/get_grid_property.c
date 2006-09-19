@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: get_x_location_property.c                                        */
+/* file: get_grid_property.c                                              */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the x_location field of          */
+/* desc : function to retrieve in Scilab the grid field of                */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,29 +12,30 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_location_property( sciPointObj * pobj )
+int get_grid_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
+  double grid[3] ;
+
+  if (sciGetEntityType (pobj) != SCI_SUBWIN) 
   {
-    sciprint( "x_location property undefined for this handle\n." ) ;
+    sciprint("grid property does not exist for this handle.\n") ;
     return -1 ;
   }
 
-  switch ( pSUBWIN_FEATURE (pobj)->axes.xdir )
+  /* need converstion for display in double */
+  grid[0] = pSUBWIN_FEATURE(pobj)->grid[0] ;
+  grid[1] = pSUBWIN_FEATURE(pobj)->grid[1] ;
+  grid[2] = pSUBWIN_FEATURE(pobj)->grid[2] ;
+
+  if ( sciGetIs3d( pobj ) )
   {
-  case 'u': 
-    return sciReturnString( "top" ) ; 
-    break;
-  case 'd': 
-    return sciReturnString( "bottom" ) ;
-    break;
-  case 'c': 
-    return sciReturnString( "middle" ) ;
-    break;
-  default : 
-    sciprint( "x_location is not correctly defined\n." ) ;
-    break;
+    return sciReturnRowVector( grid, 3 ) ;
   }
+  else
+  {
+    return sciReturnRowVector( grid, 2 ) ;
+  }
+
   return -1 ;
 }
 /*------------------------------------------------------------------------*/

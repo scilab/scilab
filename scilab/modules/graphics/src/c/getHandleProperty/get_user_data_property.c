@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: get_x_location_property.c                                        */
+/* file: get_user_data_property.c                                         */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the x_location field of          */
+/* desc : function to retrieve in Scilab the user_data field of           */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,29 +12,24 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_location_property( sciPointObj * pobj )
+int get_user_data_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
-  {
-    sciprint( "x_location property undefined for this handle\n." ) ;
-    return -1 ;
-  }
+  /* user_data */
+  int *size_ptr, data_size;
+  int **user_data_ptr,*data_ptr;
+  sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
 
-  switch ( pSUBWIN_FEATURE (pobj)->axes.xdir )
+  data_ptr=*user_data_ptr;
+  data_size=0;
+  if ( *user_data_ptr == NULL || *size_ptr == 0 )
   {
-  case 'u': 
-    return sciReturnString( "top" ) ; 
-    break;
-  case 'd': 
-    return sciReturnString( "bottom" ) ;
-    break;
-  case 'c': 
-    return sciReturnString( "middle" ) ;
-    break;
-  default : 
-    sciprint( "x_location is not correctly defined\n." ) ;
-    break;
+    return sciReturnEmptyMatrix() ;
+  }
+  else
+  {
+    return sciReturnUserData( *user_data_ptr, *size_ptr ) ;
   }
   return -1 ;
+
 }
 /*------------------------------------------------------------------------*/

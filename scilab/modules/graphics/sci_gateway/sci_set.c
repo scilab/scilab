@@ -3042,7 +3042,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"data_mapping") == 0) {
     if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
       if ((strcmp(cstk(*value),"scaled") == 0)||(strcmp(cstk(*value),"direct") == 0)) 
-	strncpy(pGRAYPLOT_FEATURE (pobj)->datamapping,cstk(*value),6);
+	strcpy(pGRAYPLOT_FEATURE (pobj)->datamapping,cstk(*value));
       else
 	{strcpy(error_message,"Value must be 'direct' or 'scaled'");return -1;}
     }

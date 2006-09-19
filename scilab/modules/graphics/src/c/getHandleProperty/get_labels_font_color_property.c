@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: get_x_location_property.c                                        */
+/* file: get_labels_font_color_property.c                                 */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the x_location field of          */
+/* desc : function to retrieve in Scilab the labels_font_color field of   */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,29 +12,17 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_location_property( sciPointObj * pobj )
+int get_labels_font_color_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
+  if (sciGetEntityType (pobj) == SCI_AXES)
   {
-    sciprint( "x_location property undefined for this handle\n." ) ;
-    return -1 ;
+    return sciReturnDouble( pAXES_FEATURE (pobj)->textcolor ) ;
   }
-
-  switch ( pSUBWIN_FEATURE (pobj)->axes.xdir )
+  else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
   {
-  case 'u': 
-    return sciReturnString( "top" ) ; 
-    break;
-  case 'd': 
-    return sciReturnString( "bottom" ) ;
-    break;
-  case 'c': 
-    return sciReturnString( "middle" ) ;
-    break;
-  default : 
-    sciprint( "x_location is not correctly defined\n." ) ;
-    break;
+    return sciReturnDouble( sciGetFontForegroundToDisplay(pobj) ) ; /* F.Leray 08.04.04 */
   }
+  sciprint( "labels_font_color property does not exist for this handle\n." ) ;
   return -1 ;
 }
 /*------------------------------------------------------------------------*/

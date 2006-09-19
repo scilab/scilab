@@ -1146,6 +1146,70 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/**
+ * Compute the default labels of an axis from the positions of the ticks.
+ * @param[in/out] pobj the axis object
+ * @return a string matrix containing the labels.
+ *         Actually it is a row vector.
+ */
+StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
+{
+  StringMatrix * ticsLabels = NULL   ;
+  int            nbTics     = 0      ;
+  char           c_format[5]         ;
+  double       * vector     = NULL   ; /* position of labels */
+  char           curLabelBuffer[257] ;
+  int            i                   ;
+
+  if ( pAXES_FEATURE(pobj)->format == NULL )
+  {
+    /* we need to compute c_format */
+    ComputeC_format( pobj, c_format ) ;
+  }
+  else
+  {
+    int i ;
+    for ( i = 0 ; i < 5 ; i++ )
+    {
+      c_format[i] = pAXES_FEATURE(pobj)->format[i] ;
+    }
+  }
+
+  /* vector is allocated here */
+  if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &nbTics, 1 ) != 0 )
+  {
+    Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
+    return 0;
+  }
+
+  ComputeC_format( pobj, c_format ) ;
+
+  /* create a vector of strings */
+  ticsLabels = newMatrix( 1, nbTics ) ;
+
+  if ( curLabelBuffer == NULL )
+  {
+    sciprint("No memory left for allocating temporary tics_labels\n.") ;
+    return NULL ;
+  }
+
+  for( i = 0 ; i < nbTics ; i++ )
+  {
+    sprintf(curLabelBuffer,c_format,vector[i]) ; /* we can't know for sure the size of the label */
+                                                 /* That's why it is first stored in a big array */
+    copyStrMatElement( ticsLabels, 0, i, curLabelBuffer ) ;
+  }
+  FREE(vector) ;
+  vector = NULL;
+
+  /* I recompute the nb_tics_labels */
+  /* Why ??? jb Silvy */
+  pAXES_FEATURE (pobj)->nb_tics_labels = nbTics;
+
+  return ticsLabels ;
+
+}
+/*-----------------------------------------------------------------------------------*/
 
 #undef ROUND
 #undef ABS

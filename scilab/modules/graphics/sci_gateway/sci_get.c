@@ -208,9 +208,7 @@ extern int get_cf_type(void);
 
 int sciGet(sciPointObj *pobj,char *marker)
 {
-  int numrow, numcol, outindex, i;
   integer itmp = 0 ;
-  char **str;
   sciPointObj *psubwin;
   int Etype,iflag=0;
 
@@ -588,694 +586,138 @@ int sciGet(sciPointObj *pobj,char *marker)
   {
     return get_tics_style_property( pobj ) ;
   }
-  /*Dj.A 17/12/2003*/
-  /* modified jb Silvy 01/2006 */
   else if ((strcmp(marker,"sub_tics") == 0) || (strcmp(marker,"sub_ticks") == 0))
-    {
-      numrow   = 1;
-      /*numcol   = (sciGetEntityType (pobj) == SCI_AXES) ? 1 : 2 ;*/
-      
-      if ( sciGetEntityType (pobj) == SCI_AXES )
-      {
-        numcol = 1 ;
-        CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex) = pAXES_FEATURE (pobj)->subint;
-      }
-      else if ( sciGetEntityType (pobj) == SCI_SUBWIN )
-      {
-        sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
-        numcol = (ppSubWin->is3d)? 3 : 2;
-        CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-        for ( i = 0 ; i < numcol ; i++ )
-        {
-          stk(outindex)[i] = ppSubWin->axes.nbsubtics[i] - 1 ;
-        }
-      }
-      else
-      {
-        strcpy(error_message,"sub_ticks property does not exist for this handle");
-        return -1 ;
-      }
-    }
+  {
+    return get_sub_tics_property( pobj ) ;
+  }
   else if (strcmp(marker,"tics_segment") == 0) 
-    {
-      if (sciGetEntityType (pobj) == SCI_AXES) {
-	if (pAXES_FEATURE (pobj)->seg==1) {
-	  numrow   = 1;
-	  numcol   = 2;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"on", numrow*numcol);
-	}
-	else {	
-	  numrow   = 1;
-	  numcol   = 3;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"off", numrow*numcol);
-	}
-      }
-      else
-	{strcpy(error_message,"tics_segment property does not exist for this handle");return -1;}
-    }
-  else if (strcmp(marker,"labels_font_size") == 0)	{
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    if (sciGetEntityType (pobj) == SCI_AXES)
-      *stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
-      /* *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;*/
-      *stk(outindex) = sciGetFontDeciWidth(pobj)/100;} /* F.Leray 08.04.04 */
-    else
-      {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
+  {
+    return get_tics_segment_property( pobj ) ;
   }
-  else if (strcmp(marker,"labels_font_color") == 0)	{
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    if (sciGetEntityType (pobj) == SCI_AXES)
-      *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
-      /* *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;*/
-      *stk(outindex) = sciGetFontForegroundToDisplay(pobj);} /* F.Leray 08.04.04 */
-    else
-      {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"labels_font_size") == 0) 
+  {
+    return get_labels_font_size_property( pobj ) ;
   }
-  else if (strcmp(marker,"labels_font_style") == 0)	{ /* Adding F.Leray 09.04.04 */
-    numrow   = 1;numcol   = 1;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){ /* F.Leray 09.04.04: For the moment sciAxes have no font_style property*/
-      /* *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;*/
-      *stk(outindex) = sciGetFontStyle(pobj);} /* F.Leray 08.04.04 */
-    else
-      {strcpy(error_message,"labels_font_style property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"labels_font_color") == 0 )
+  {
+    return get_labels_font_color_property( pobj ) ;
   }
-  else if (strcmp(marker,"format_n") == 0)	{
-    if (sciGetEntityType (pobj) == SCI_AXES) {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strncpy(cstk(outindex),pAXES_FEATURE (pobj)->format, numrow*numcol);
-    }
-    else
-      {strcpy(error_message,"format_n property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"labels_font_style") == 0 )
+  {
+    /* Adding F.Leray 09.04.04 */
+    return get_labels_font_style_property( pobj ) ;
+  }
+  else if (strcmp(marker,"format_n") == 0)
+  {
+    return get_labels_format_n_property( pobj ) ;
   }
   else if (strcmp(marker,"xtics_coord") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_AXES) {
-	numrow=1;
-	numcol= pAXES_FEATURE (pobj)->nx;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	for (i=0;i<numcol;i++)
-	  stk(outindex)[i] = pAXES_FEATURE (pobj)->vx[i];
-      }
-      else
-	{strcpy(error_message,"xtics_coord property does not exist for this handle");return -1;}
-    }
+  {
+    return get_xtics_coord_property( pobj ) ;
+  }
   else if (strcmp(marker,"ytics_coord") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_AXES) {
-	numrow=1;
-	numcol= pAXES_FEATURE (pobj)->ny;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	for (i=0;i<numcol;i++)
-	  stk(outindex)[i] = pAXES_FEATURE (pobj)->vy[i];
-      }
-      else
-	{strcpy(error_message,"ytics_coord property does not exist for this handle");return -1;}
-    }
+  {
+    return get_ytics_coord_property( pobj ) ;
+  }
   else if (strcmp(marker,"tics_labels") == 0)
   {
-    char ** foo =  NULL ;
-    int i ;
-    int N ;
-    if ( sciGetEntityType (pobj) == SCI_AXES ) 
-    {
-      numrow = 1 ;
-      numcol = Max( pAXES_FEATURE (pobj)->nx, pAXES_FEATURE (pobj)->ny ) ;
-      str = pAXES_FEATURE (pobj)->str ;
-      
-      if (str == NULL )
-      {
-
-    	  if( pAXES_FEATURE(pobj)->format == NULL )
-        {
-	        /* we need to compute a c_format */
-	        char c_format[5];
-	        double * vector = NULL ;
-
-          /* vector is allocated here */
-	        if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &N, 1 ) != 0 )
-          {
-	          Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
-	          return 0;
-	        }
-          
-	        ComputeC_format( pobj, c_format ) ;
-          
-	        if( ( foo = MALLOC( N * sizeof(char *) ) ) == NULL )
-          {
-	          strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
-            return -1 ;
-          }
-	        for( i = 0 ; i < N ; i++ )
-          {
-	          if( ( foo[i] = MALLOC( 257 * sizeof(char) ) ) == NULL)
-            {
-	            strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
-              return -1 ;
-            }
-	        }
-
-	        for( i = 0 ; i < N ; i++ )
-          {
-	          if( pAXES_FEATURE(pobj)->nx < numcol )
-            {
-	            sprintf(foo[i],c_format,vector[i]) ;
-            }
-	          else
-            {
-	            sprintf(foo[i],c_format,vector[i]);
-            }
-	        }
-	        FREE(vector) ;
-          vector = NULL;
-        }
-        else
-        {
-	        double * vector = NULL;
-
-	        if(ComputeXIntervals(pobj,pAXES_FEATURE (pobj)->tics,&vector,&N,1) != 0)
-          {
-	          Scierror(999,"Error: Bad size in tics_coord ; you must first increase the size of the tics_coord\n");
-	          return 0;
-	        }
-
-	        if( ( foo = MALLOC( N * sizeof(char *) ) ) == NULL )
-          {
-	          strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
-            return -1 ;
-          }
-	  
-          for( i = 0 ; i < N ; i++ )
-          {
-	          if( ( foo[i] = MALLOC( 257 * sizeof(char) ) ) == NULL )
-            {
-	            strcpy(error_message,"No memory left for allocating temporary tics_labels") ;
-              return -1 ;
-            }
-	        }
-
-	        for( i = 0 ; i < N ; i++ )
-          {
-	          if( pAXES_FEATURE(pobj)->nx < numcol )
-            {
-	            sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i])  ;
-            }
-	          else
-            {
-	            sprintf(foo[i],pAXES_FEATURE (pobj)->format,vector[i]);
-            }
-	        }
-	        FREE(vector) ;
-          vector = NULL;
-        }
-
-        /* I recompute the nb_tics_labels */
-        pAXES_FEATURE (pobj)->nb_tics_labels = N;
-
-        CreateVarFromPtr(Rhs+1,"S",&numrow,&N,foo);
-
-        if(foo != NULL)
-        {
-          for( i = 0 ; i < N ; i++ )
-          {            
-            FREE(foo[i]) ;
-            foo[i] = NULL ;
-          }
-          FREE(foo) ;
-          foo = NULL ;
-        }
-      }
-      else
-      { /* str has been previously set once */
-        N = pAXES_FEATURE (pobj)->nb_tics_labels;
-        CreateVarFromPtr(Rhs+1,"S",&numrow,&N,str);
-      }
-    }
-    else
-    {
-      strcpy(error_message,"tics_labels property does not exist for this handle") ; return -1 ;
-    }
+    return get_tics_label_property( pobj ) ;
   }
   else if ((strcmp(marker,"box") == 0))
   {
-    if ( sciGetEntityType ( pobj ) == SCI_SUBWIN )
-    {
-      switch( sciGetBoxType( pobj ) )
-      {
-      case BT_OFF:
-        sciReturnString( "off" ) ;
-        break ;
-      case BT_ON:
-        sciReturnString( "on" ) ;
-        break ;
-      case BT_HIDDEN_AXIS:
-        sciReturnString( "hidden_axis" ) ;
-        break ;
-      case BT_BACK_HALF:
-        sciReturnString( "back_half" ) ;
-        break ;
-      }
-    }
-    else
-    {
-      if (sciGetIsBoxed(pobj))
-      {
-        numrow   = 1;
-        numcol   = 2;
-        CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-        strncpy(cstk(outindex),"on", numrow*numcol); 
-      }
-      else
-      {
-        numrow   = 1;
-        numcol   = 3;
-        CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-        strncpy(cstk(outindex),"off", numrow*numcol);  
-      }
-    }
+    return get_box_property( pobj ) ;
   }
   /**DJ.Abdemouche 2003**/
   else if (strcmp(marker,"grid") == 0) 
-    {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) 
-	{
-	  numrow   = 1; 
-	  numcol   = (pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol;i++) 
-	    {stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->grid[i];}
-	}
-      else
-	{strcpy(error_message,"grid property does not exist for this handle");return -1;}
-    }
+  {
+    return get_grid_property( pobj ) ;
+  }
   else if (strcmp(marker,"axes_visible") == 0)
   {
-    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
-    {
-      char ** foo = NULL;
-      int i;
-
-      numrow = 1;
-      numcol = 3;
-      if((foo=MALLOC(numcol*(sizeof(char *))))==NULL)
-      {
-	      strcpy( error_message, "No memory left for allocating temporary axes_visible" ) ;
-        return -1 ;
-      }
-
-      for(i=0;i<numcol;i++)
-      {
-	      if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] )
-	      {
-	        if( ( foo[i] = MALLOC( 3 * sizeof(char) ) ) == NULL )
-          {
-	          strcpy(error_message,"No memory left for allocating temporary axes_visible") ;
-            return -1 ;
-          }
-	        strcpy(foo[i],"on");
-	      }
-	      else
-	      {
-	        if((foo[i]=MALLOC(4*(sizeof(char))))==NULL)
-          {
-	          strcpy(error_message,"No memory left for allocating temporary axes_visible") ;
-            return -1 ;
-          }
-	        strcpy(foo[i],"off");
-        }
-      }
-
-      CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
-        
-      /* free the foo */
-      for ( i = 0 ; i < numcol ; i++ )
-      {
-        FREE( foo[i] ) ;
-      }
-      FREE( foo ) ;
-      
-    }
-    else
-    {
-       strcpy(error_message,"axes_visible property does not exist for this handle") ;
-       return -1 ;
-    }
+    return get_axes_visible_property( pobj ) ;
   }
   else if (strcmp(marker,"hiddencolor") == 0) 
-    {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	numrow   = 1;numcol   = 1;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex) = pSUBWIN_FEATURE (pobj)->hiddencolor;
-      }
-      else if (sciGetEntityType (pobj) == SCI_SURFACE) {
-	numrow   = 1;numcol   = 1;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex) = pSURFACE_FEATURE (pobj)->hiddencolor;
-      }
-      else{
-	strcpy(error_message,"hiddencolor property does not exist for this handle");
-	return -1;
-      }
-    }
-  /**DJ.Abdemouche 2003**/
-  else if (strcmp(marker,"isoview") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      if (pSUBWIN_FEATURE (pobj)->isoview) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol); 
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);  
-      }
-    }
-    else
-      {strcpy(error_message,"isoview property does not exist for this handle");return -1;}
+  {
+    return get_hidden_color_property( pobj ) ;    
   }
-  else if (strcmp(marker,"cube_scaling") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      if (pSUBWIN_FEATURE (pobj)->cube_scaling) {
-	numrow   = 1;
-	numcol   = 2;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"on", numrow*numcol); 
-      }
-      else {
-	numrow   = 1;
-	numcol   = 3;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),"off", numrow*numcol);  
-      }
-    }
-    else
-      {strcpy(error_message,"cube_scaling property does not exist for this handle");return -1;}
+  /**DJ.Abdemouche 2003**/
+  else if (strcmp(marker,"isoview") == 0)
+  {
+    return get_isoview_property( pobj ) ;
+  }
+  else if (strcmp(marker,"cube_scaling") == 0)
+  {
+    return get_cube_scaling_property( pobj ) ;
   }
   /**************** SEGS  *********************/
   else if (strcmp(marker,"arrow_size") == 0)
-    {    
-      if (sciGetEntityType (pobj) == SCI_SEGS) {
-	numrow = 1;numcol = 1;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex) = pSEGS_FEATURE (pobj)->arrowsize ;
-      }
-      else
-	{strcpy(error_message,"arrow_size property does not exist for this handle");return -1;}
-    } 
-  else if ((strcmp(marker,"segs_color") == 0) && (sciGetEntityType (pobj) == SCI_SEGS))
-    {
-      if (pSEGS_FEATURE (pobj)->ptype == 0)
-	{
-	  numrow = 1;numcol = (pSEGS_FEATURE (pobj)->Nbr1)/2;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol;i++) {
-	    stk(outindex)[i] = pSEGS_FEATURE (pobj)->pstyle[i] ;
-	  }
-	}
-    }  
-  else if ((strcmp(marker,"colored") == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){
-    if (pSEGS_FEATURE (pobj)->ptype != 0)
-      { 
-	if (pSEGS_FEATURE (pobj)->typeofchamp == 1) {
-	  numrow   = 1;
-	  numcol   = 2;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"on", numrow*numcol); 
-	}
-	else {	
-	  numrow   = 1;
-	  numcol   = 3;
-	  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	  strncpy(cstk(outindex),"off", numrow*numcol); 
-	}
-      }
-    else
-      {strcpy(error_message,"colored property does not exist for Segs");return -1;} 
+  {
+    return get_arrow_size_property( pobj ) ;
+  }
+  else if ( strcmp(marker,"colored") == 0 )
+  {
+    return get_colored_property( pobj ) ;
   }
   /**************** Matplot Grayplot *********************/
-  else if (strcmp(marker,"data_mapping") == 0) {
-    if (sciGetEntityType (pobj) == SCI_GRAYPLOT) {
-      numrow = 1;numcol = 6;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      strcpy(cstk(outindex),pGRAYPLOT_FEATURE (pobj)->datamapping);
-    }
-    else
-      {strcpy(error_message,"data_mapping property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"data_mapping") == 0)
+  {
+    return get_data_mapping_property( pobj ) ;
   } 
   /**************** Surface *******************************/
-  else if (strcmp(marker,"rotation_angles") == 0) {
-    /* DJ.A 2003 */
-    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-      numrow = 1;numcol = 2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex)=pSUBWIN_FEATURE (pobj)->alpha;
-      *stk(outindex+1)=pSUBWIN_FEATURE (pobj)->theta;
-    }
-    else
-      {strcpy(error_message,"rotation_angle property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"rotation_angles") == 0)
+  {
+    return get_rotation_angles_property( pobj ) ;
   } 
-  else if (strcmp(marker,"color_mode") == 0) {/*DJ.A merge*/
-    if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      numrow = 1;numcol = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = pSURFACE_FEATURE (pobj)->flag[0];
-    }
-    else
-      {strcpy(error_message,"color_mode property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"color_mode") == 0)
+  {
+    return get_color_mode_property( pobj ) ;
   } 
-  else if (strcmp(marker,"color_flag") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      numrow = 1;numcol = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      stk(outindex)[0] = pSURFACE_FEATURE (pobj)->flagcolor;
-    }
-    else
-      {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"color_flag") == 0)
+  {
+    return get_color_flag_property( pobj ) ;
   } 
-  else if (strcmp(marker,"cdata_mapping") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SURFACE )
-    {
-      if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D)
-      {
-	numrow   = 1;numcol   = 6;
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	if(pSURFACE_FEATURE (pobj)->cdatamapping == 0)
-        { /* scaled mode */
-	  strncpy(cstk(outindex),"scaled", numrow*numcol);
-        } 
-	else if( pSURFACE_FEATURE (pobj)->cdatamapping == 1)
-        { /* direct mode */
-	  strncpy(cstk(outindex),"direct", numrow*numcol);
-        }
-      }
-      else
-      {
-        strcpy(error_message,"cdata_mapping property only exists for Fac3d surfaces.");
-        return -1;
-      }
-    }
-    else
-    {
-      strcpy(error_message,"cdata_mapping property does not exist for this handle.");
-      return -1;
-    }
+  else if (strcmp(marker,"cdata_mapping") == 0)
+  {
+    return get_cdata_mapping_property( pobj ) ;
   }
-
-  else if (strcmp(marker,"surface_color") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SURFACE) { 
-      if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1) {
-	numrow=1;
-	numcol=pSURFACE_FEATURE (pobj)->dimzy;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	for (i=0;i<numcol*numrow;i++) 
-	  stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
-      }
-      else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D) {
-	if (pSURFACE_FEATURE (pobj)->flagcolor==2 || pSURFACE_FEATURE (pobj)->flagcolor==4) {
-	  numrow=1;
-	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol*numrow;i++) 
-	    stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
-	}
-	else if  (pSURFACE_FEATURE (pobj)->flagcolor==3) {
-	  numrow=pSURFACE_FEATURE (pobj)->dimzx;
-	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol*numrow;i++) 
-	    stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
-	}
-	else {
-	  numrow=0; numcol=0;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	}
-
-      }
-    }
-    else
-      {strcpy(error_message,"surface_color property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"surface_color") == 0)
+  {
+    return get_surface_color_property( pobj ) ;
   } 
   /*  ===================================== FEC ======================================== */
-  else if (strcmp(marker,"triangles") == 0) {
-    if (sciGetEntityType (pobj) == SCI_FEC) { 
-      numrow=pFEC_FEATURE (pobj)->Ntr;
-      numcol=5;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for (i=0;i<numcol*numrow;i++) 
-	stk(outindex)[i] = (double)pFEC_FEATURE (pobj)->pnoeud[i];
-    }
-    else
-      {strcpy(error_message,"triangles property does not exist for this handle");return -1;}
+  else if (strcmp(marker,"triangles") == 0)
+  {
+    return get_triangles_property( pobj ) ;
   }
-  else if (strcmp(marker,"z_bounds") == 0) {
-    if (sciGetEntityType (pobj) == SCI_FEC) { 
-      numrow=1;
-      numcol=2;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for (i=0;i<2;i++) 
-	stk(outindex)[i] = (double)pFEC_FEATURE (pobj)->zminmax[i];
-    }
-    else
-      {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
-
+  else if ( strcmp(marker,"z_bounds") == 0 )
+  {
+    return get_z_bounds_property( pobj ) ;
   }
-  else if (strcmp(marker,"user_data") == 0) {
-    /* user_data */
-    int *size_ptr, data_size;
-    int **user_data_ptr,*data_ptr;
-    sciGetPointerToUserData (pobj,&user_data_ptr, &size_ptr);
-
-    data_ptr=*user_data_ptr;
-    data_size=0;
-    if (*user_data_ptr==NULL||*size_ptr==0) {
-      numrow=0;
-      numcol=0;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    }
-    else {
-      data_size=(int)((*size_ptr+1)/2);
-      SetWorkSize(Rhs+1,&data_size);
-      data_ptr=GetData(Rhs+1);
-      memcpy(data_ptr,*user_data_ptr,(*size_ptr)*sizeof (int));
-    }
+  else if (strcmp(marker,"user_data") == 0)
+  {
+    return get_user_data_property( pobj ) ;
   }
   else if (strcmp(marker,"handle_visible") == 0)
   {
-	  if (sciGetEntityType (pobj) == SCI_UIMENU)
-	  {
-		if (GetHandleVisibilityOnUimenu((sciPointObj *)pobj))
-		{
-		  numrow   = 1;
-		  numcol   = 2;
-		  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-		  strncpy(cstk(outindex),"on", numrow*numcol);
-		}
-		else 
-		{
-		  numrow   = 1;
-		  numcol   = 3;
-		  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-		  strncpy(cstk(outindex),"off", numrow*numcol);
-		}
-	 }
-	  else
-	  {
-		  strcpy(error_message,"handle_visible property does not exist for this handle");
-		  return -1;
-	  }
-
+    return get_handle_visible_property( pobj ) ;
   }
   else if (strcmp(marker,"callback_type") == 0)
   {
-	  if (sciGetEntityType (pobj) == SCI_UIMENU)
-	  {
-		  char CallbackType[16];
-		  switch (pUIMENU_FEATURE(pobj)->CallbackType)
-		  {
-			case -1:
-				strcpy(CallbackType,"disable");
-			break;
-			case 0:
-				strcpy(CallbackType,"string");
-			break;
-			case 1:
-				strcpy(CallbackType,"C");
-			break;
-			case 2:
-				strcpy(CallbackType,"internal");
-			break;
-			case 3:
-				strcpy(CallbackType,"addmenu");
-			break;
-			default:
-				strcpy(error_message,"unknow callbak type");
-				return -1;
-			break;
-		  }
-
-		  numrow   = 1;
-		  numcol   = strlen(CallbackType);
-		  CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-		  strncpy(cstk(outindex),CallbackType, numrow*numcol);
-
-	  }
-	  else
-	  {
-		  strcpy(error_message,"callback_type property does not exist for this handle");
-		  return -1;
-	  }
+    return get_callback_type_property( pobj ) ;
   }
   else if (strcmp(marker,"menu_enable") == 0)
   {
-	  if (sciGetEntityType (pobj) == SCI_UIMENU)
-	  {
-		if (pUIMENU_FEATURE(pobj)->Enable == TRUE)
-		 {
-			 numrow   = 1;
-			 numcol   = 2;
-			 CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-			 strncpy(cstk(outindex),"on", numrow*numcol);
-		 }
-		 else 
-		 {
-			 numrow   = 1;
-			 numcol   = 3;
-			 CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-			 strncpy(cstk(outindex),"off", numrow*numcol);
-		 }
-	  }
-	  else
-	  {
-		  strcpy(error_message,"menu_enable property does not exist for this handle");
-		  return -1;
-	  }
+    return get_menu_enable_property( pobj ) ;
   }
   else if ( strcmp(marker,"hidden_axis_color") == 0 )
   {
-    if ( sciGetEntityType (pobj) == SCI_SUBWIN )
-    {
-      sciReturnInt( pSUBWIN_FEATURE(pobj)->axes.hiddenAxisColor ) ;
-    }
-    else
-    {
-      strcpy(error_message,"hidden_axis_color property does not exist for this handle");
-      return -1;
-    }
+    return get_hidden_axis_color_property( pobj ) ;
   }
   else 
-    {sprintf(error_message,"Unknown  property %s",marker);return -1;}
+  {
+    sprintf(error_message,"Unknown  property %s",marker) ;
+    return -1 ;
+  }
 
   return 0;
 }

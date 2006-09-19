@@ -228,6 +228,9 @@ extern int sciSetIsSelected(  sciPointObj * pObj, BOOL is3d ) ;
 
 void setVersionFlag( int newFlag ) ;
 
+extern int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
+extern int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;
+
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
 /* and -1 otherwise. */

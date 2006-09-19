@@ -4900,3 +4900,30 @@ void setVersionFlag( int newFlag )
   versionflag = newFlag ;
 }
 /*--------------------------------------------------------------------------------------------*/
+int sciInitHiddenColor( sciPointObj * pObj, int newColor )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_SUBWIN:
+    pSUBWIN_FEATURE(pObj)->hiddencolor = newColor ;
+    return 0 ;
+  case SCI_SURFACE:
+    pSURFACE_FEATURE(pObj)->hiddencolor = newColor ;
+    return 0;
+  default:
+    sciprint ("This object has no hidden color.\n");
+    return -1 ;
+  }
+  return -1 ;
+}
+/*--------------------------------------------------------------------------------------------*/
+int sciSetHiddenColor( sciPointObj * pObj, int newColor )
+{
+  if ( sciGetHiddenColor( pObj ) == newColor )
+  {
+    /* nothing to do */
+    return 1 ;
+  }
+  return sciInitHiddenColor( pObj, newColor ) ;
+}
+/*--------------------------------------------------------------------------------------------*/

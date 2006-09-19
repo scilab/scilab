@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: get_x_location_property.c                                        */
+/* file: get_labels_font_size_property.c                                  */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the x_location field of          */
+/* desc : function to retrieve in Scilab the labels_font_size field of    */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,29 +12,22 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_location_property( sciPointObj * pobj )
+int get_labels_font_size_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
+  if ( sciGetEntityType (pobj) == SCI_AXES)
   {
-    sciprint( "x_location property undefined for this handle\n." ) ;
-    return -1 ;
+    return sciReturnDouble( pAXES_FEATURE (pobj)->fontsize ) ;
   }
-
-  switch ( pSUBWIN_FEATURE (pobj)->axes.xdir )
+  else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
   {
-  case 'u': 
-    return sciReturnString( "top" ) ; 
-    break;
-  case 'd': 
-    return sciReturnString( "bottom" ) ;
-    break;
-  case 'c': 
-    return sciReturnString( "middle" ) ;
-    break;
-  default : 
-    sciprint( "x_location is not correctly defined\n." ) ;
-    break;
+    return sciReturnDouble( sciGetFontDeciWidth(pobj) / 100 ) ; /* F.Leray 08.04.04 */
+  }
+  else
+  {
+    sciprint("labels_font_size property does not exist for this handle\n.");
+    return -1;
   }
   return -1 ;
+
 }
 /*------------------------------------------------------------------------*/

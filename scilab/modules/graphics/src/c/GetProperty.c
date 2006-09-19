@@ -5180,3 +5180,21 @@ int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type )
   return nbFound ;
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+ * return the hidden color of a surface or the inherated attribute of a subwindow.
+ */
+int sciGetHiddenColor( sciPointObj * pObj )
+{
+  switch( sciGetEntityType( pObj ) )
+  {
+  case SCI_SUBWIN:
+    return pSUBWIN_FEATURE(pObj)->hiddencolor ;
+  case SCI_SURFACE:
+    return pSURFACE_FEATURE(pObj)->hiddencolor ;
+  default:
+    sciprint ("This object has no hidden color.\n");
+    return -10 ;
+  }
+  return -10 ;
+}
+/*--------------------------------------------------------------------------------------------*/

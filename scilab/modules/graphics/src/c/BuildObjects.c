@@ -1943,7 +1943,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       pGRAYPLOT_FEATURE (pobj)->pvecx = (double *)NULL;
       pGRAYPLOT_FEATURE (pobj)->pvecy = (double *)NULL;
 
-      strncpy (pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled", 6);
+      strcpy( pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled" ) ;
       pgray = pGRAYPLOT_FEATURE (pobj);
       
       if (pvecx && (pgray->pvecx = MALLOC (n1 * sizeof (double))) == NULL)

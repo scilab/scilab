@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: get_x_location_property.c                                        */
+/* file: get_rotation_angles_property.c                                   */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the x_location field of          */
+/* desc : function to retrieve in Scilab the rotation_angles field of     */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,29 +12,21 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int get_x_location_property( sciPointObj * pobj )
+int get_rotation_angles_property( sciPointObj * pobj )
 {
-  if (sciGetEntityType (pobj) != SCI_SUBWIN)
+  /* DJ.A 2003 */
+  double angles[2] ;
+  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint( "x_location property undefined for this handle\n." ) ;
+    sciprint("rotation_angle property does not exist for this handle.\n") ;
     return -1 ;
   }
 
-  switch ( pSUBWIN_FEATURE (pobj)->axes.xdir )
-  {
-  case 'u': 
-    return sciReturnString( "top" ) ; 
-    break;
-  case 'd': 
-    return sciReturnString( "bottom" ) ;
-    break;
-  case 'c': 
-    return sciReturnString( "middle" ) ;
-    break;
-  default : 
-    sciprint( "x_location is not correctly defined\n." ) ;
-    break;
-  }
-  return -1 ;
+  angles[0] = pSUBWIN_FEATURE(pobj)->alpha ;
+  angles[1] = pSUBWIN_FEATURE(pobj)->theta ;
+
+  return sciReturnRowVector( angles, 2 ) ;
+
+
 }
 /*------------------------------------------------------------------------*/
