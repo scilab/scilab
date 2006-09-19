@@ -11,7 +11,7 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-returnedList * createNewReturnedList( int nbElement, const char * elementName[] )
+returnedList * createNewReturnedList( int nbElements, const char * elementName[] )
 {
   returnedList * newList = NULL ;
   int nbRow = 1 ;
@@ -23,13 +23,13 @@ returnedList * createNewReturnedList( int nbElement, const char * elementName[] 
     return NULL ;
   }
 
-  newList->curElement = 0 ;
+  newList->nbElements = nbElements + 1 ;
 
   /* create the tlist in the stack and get the stack pointer in newList->stackPointer */
-  CreateVar( Rhs+1, "t", &nbRow, &nbElement, &(newList->stackPointer) ) ;
+  CreateVar( Rhs+1, "t", &(newList->nbElements), &nbRow, &(newList->stackPointer) ) ;
 
   /* create the first element : names of properties */
-  CreateListVarFromPtr( Rhs+1, 1, "S", &nbRow, &nbElement, elementName ) ;
+  CreateListVarFromPtr( Rhs+1, 1, "S", &nbRow, &(newList->nbElements), elementName ) ;
   
   newList->curElement = 1 ;
 
@@ -38,7 +38,8 @@ returnedList * createNewReturnedList( int nbElement, const char * elementName[] 
 /*------------------------------------------------------------------------*/
 int destroyReturnedList( returnedList * list )
 {
-  if ( list->curElement < list->nbElements )
+  /* safe test to know if the list has been correctly filled */
+  if ( list->curElement != list->nbElements )
   {
     sciprint( "tList not completely filled.\n" ) ;
     FREE( list ) ;
@@ -52,38 +53,67 @@ int destroyReturnedList( returnedList * list )
 int addRowVectorToReturnedList( returnedList * list, const double vector[], int nbValues )
 {
   int nbRow = 1 ;
+  /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
     sciprint("list full.\n") ;
     return 1 ;
   }
-  list->curElement++ ;
+
+  /* add a new element */
   CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbValues, &vector ) ;
+  list->curElement++ ;
+
   return 0 ;
 }
 /*------------------------------------------------------------------------*/
 int addColVectorToReturnedList( returnedList * list, const double vector[], int nbValues )
 {
   int nbCol = 1 ;
+  /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
     sciprint("list full.\n") ;
     return 1 ;
   }
-  list->curElement++ ;
+
+  /* add a new element */
   CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbValues, &nbCol, &vector ) ;
+  list->curElement++ ;
+
   return 0 ;
 }
 /*------------------------------------------------------------------------*/
 int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbRow, int nbCol )
 {
+  /* check we are not using all the allocated space for the list */
   if ( list->curElement >= list->nbElements )
   {
     sciprint("list full.\n") ;
     return 1 ;
   }
-  list->curElement++ ;
+
+  /* add a new element */
   CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbCol, &matrix ) ;
+  list->curElement++ ;
+
+  return 0 ;
+}
+/*------------------------------------------------------------------------*/
+int addStringColVectorToReturnedList( returnedList * list, const char * vector[], int nbValues )
+{
+  int nbCol = 1 ;
+  /* check we are not using all the allocated space for the list */
+  if ( list->curElement >= list->nbElements )
+  {
+    sciprint("list full.\n") ;
+    return 1 ;
+  }
+
+  /* add a new element */
+  CreateListVarFromPtr( Rhs+1, 3, "S", &nbValues, &nbCol, vector ) ;
+  list->curElement++ ;
+
   return 0 ;
 }
 /*------------------------------------------------------------------------*/

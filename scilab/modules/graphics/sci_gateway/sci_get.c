@@ -152,14 +152,9 @@ int sci_get(char *fname,unsigned long fname_len)
       if(sciGetEntityType(pobj) == SCI_SUBWIN && (strcmp(cstk(l2),"x_ticks")==0 ||
 						  strcmp(cstk(l2),"y_ticks")==0 ||
 						  strcmp(cstk(l2),"z_ticks")==0))
-	{
-	  if(getticks(cstk(l2),pobj)!=0)
-	    return 0;
-	}
-      else if(strcmp(cstk(l2),"data") == 0)
       {
-        /* distinction for "data" treatment for champ and surface objects */
-
+        if(getticks(cstk(l2),pobj)!=0)
+          return 0;
       }
       else /* F.Leray 02.05.05 : main case (all but "data") (using sciGetPoint routine inside GetProperty.c) */
 	{
@@ -822,17 +817,6 @@ int getticks(char * xyztick, sciPointObj* psubwin)
   /* z */
   else if(strcmp(xyztick,"z_ticks")==0)
     {
-      /*     int test_tmp = (ppsubwin->axes.auto_ticks[2] == TRUE)?ppsubwin->axes.nzgrads:ppsubwin->axes.u_nzgrads; */
-
-      /*       if(test_tmp == 0)  */
-      /* 	{ */
-      /* 	  int zero = 0; */
-      /* 	  BuildTListForTicks(NULL,NULL, zero); */
-
-
-      /* 	  return 0; */
-      /* 	} */
-      /* compute the c_format used for convert double to char (for labels) */
 
       ChooseGoodFormat(c_format,ppsubwin->logflags[2],ppsubwin->axes.zgrads,ppsubwin->axes.nzgrads);
 

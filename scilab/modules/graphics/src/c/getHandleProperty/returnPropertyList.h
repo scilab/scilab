@@ -24,7 +24,7 @@ typedef struct
  *                  properties.
  * @return a pointer to the newly created list or NULL if an error occurred.
  */
-returnedList * createNewReturnedList( int nbElement, const char * elementName[] ) ;
+returnedList * createNewReturnedList( int nbElements, const char * elementName[] ) ;
 
 /**
 * free the list. Must be done after using the list.
@@ -64,5 +64,6 @@ int addColVectorToReturnedList( returnedList * list, const double vector[], int 
 */
 int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbRow, int nbCol ) ;
 
+int addStringColVectorToReturnedList( returnedList * list, const char * vector[], int nbValues ) ;
 
 #endif /* _RETURN_PROPERTY_LIST_H_ */

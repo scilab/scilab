@@ -85,7 +85,7 @@ int get3ddata(sciPointObj *pobj)
   {
 
     /* Add 'variable' tlist items to stack */
-    tList = createNewReturnedList( 5, variable_tlist_color ) ;
+    tList = createNewReturnedList( 4, variable_tlist_color ) ;
 
     if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
     {
@@ -114,7 +114,7 @@ int get3ddata(sciPointObj *pobj)
   {
 
     /* Add 'variable' tlist items to stack */
-    tList = createNewReturnedList( 4, variable_tlist ) ;
+    tList = createNewReturnedList( 3, variable_tlist ) ;
 
     if( pSURFACE_FEATURE(pobj)->typeof3d == SCI_FAC3D )
     {
@@ -158,7 +158,7 @@ int get_data_property( sciPointObj * pobj )
     int nbCol  =  0 ;
     int status = -1 ;
     /* Warning the following function allocate data */
-    double * data = sciGetPoint ( pobj, &nbRow, &nbCol ) ;
+    double * data = sciGetPoint( pobj, &nbRow, &nbCol ) ;
     if ( data  == NULL )
     {
       sciprint( "No data found for this handle.\n" ) ;
