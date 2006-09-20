@@ -1,5 +1,5 @@
 ##########
-### Sylvestre Ledru <sylvestre.ledru@inria.f \r>
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 
 ##########
 
@@ -333,7 +333,7 @@ CORE_FORTRAN_SOURCES+=src/fortran/fgetarg.f
 CORE_C_SOURCES+=src/c/getarg.c
 endif
 
-libcore_la_CFLAGS=  -Iincludes/ -Isrc/c/
+libcore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 
 lib_LTLIBRARIES = libcore.la
 
@@ -344,8 +344,8 @@ libcore_la_DEPENDENCIES = \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+
 
 
 libcore_la_LIBADD = $(libcore_la_DEPENDENCIES)

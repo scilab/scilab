@@ -127,6 +127,11 @@ src/c/getHandleProperty/get_cdata_mapping_property.c \
 src/c/getHandleProperty/get_colored_property.c \
 src/c/getHandleProperty/get_triangles_property.c \
 src/c/getHandleProperty/returnPropertyList.c \
+src/c/getHandleProperty/get_ticks_utils.h \
+src/c/getHandleProperty/get_y_ticks_property.c \
+src/c/getHandleProperty/get_z_ticks_property.c \
+src/c/getHandleProperty/get_x_ticks_property.c \
+src/c/getHandleProperty/get_ticks_utils.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/graphicSession.c \

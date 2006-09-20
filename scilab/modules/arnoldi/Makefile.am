@@ -1,0 +1,81 @@
+ARNOLDI_FORTRAN_SOURCES = src/arpack/dsconv.f \
+src/arpack/dsortc.f \
+src/arpack/dsaup2.f \
+src/arpack/dneigh.f \
+src/arpack/znaupd.f \
+src/arpack/dsesrt.f \
+src/arpack/iset.f \
+src/arpack/zneupd.f \
+src/arpack/smout.f \
+src/arpack/znaitr.f \
+src/arpack/zngets.f \
+src/arpack/second.f \
+src/arpack/znapps.f \
+src/arpack/zlarnv.f \
+src/arpack/dsortr.f \
+src/arpack/zmout.f \
+src/arpack/dseigt.f \
+src/arpack/zgetv0.f \
+src/arpack/znaup2.f \
+src/arpack/icnteq.f \
+src/arpack/icopy.f \
+src/arpack/zneigh.f \
+src/arpack/zsortc.f \
+src/arpack/dstatn.f \
+src/arpack/dlaruv.f \
+src/arpack/dstqrb.f \
+src/arpack/cvout.f \
+src/arpack/dvout.f \
+src/arpack/dstats.f \
+src/arpack/dlaqrb.f \
+src/arpack/ivout.f \
+src/arpack/dnaupd.f \
+src/arpack/dneupd.f \
+src/arpack/dsaupd.f \
+src/arpack/svout.f \
+src/arpack/dnaitr.f \
+src/arpack/iswap.f \
+src/arpack/zstatn.f \
+src/arpack/dseupd.f \
+src/arpack/dngets.f \
+src/arpack/dnapps.f \
+src/arpack/dsaitr.f \
+src/arpack/dlarnv.f \
+src/arpack/cmout.f \
+src/arpack/dnconv.f \
+src/arpack/zvout.f \
+src/arpack/dmout.f \
+src/arpack/dsgets.f \
+src/arpack/dgetv0.f \
+src/arpack/dnaup2.f \
+src/arpack/dsapps.f
+
+GATEWAY_C_SOURCES = sci_gateway/sci_dsaupd.c \
+sci_gateway/sci_znaupd.c \
+sci_gateway/sci_dseupd.c \
+sci_gateway/sci_zneupd.c \
+sci_gateway/gw_arnoldi.c \
+sci_gateway/sci_dnaupd.c \
+sci_gateway/sci_dneupd.c
+
+
+libarnoldi_la_includedir=$(includedir)/arnoldi
+
+libarnoldi_la_include_HEADERS = 
+
+libarnoldi_la_CFLAGS= 
+lib_LTLIBRARIES = libarnoldi.la
+
+libarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libarnoldi_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
+$(top_builddir)/libs/blas/libblas.la \
+$(top_builddir)/modules/core/libcore.la
+
+# \
+#	$(top_builddir)/routines/console/libconsole.la 
+#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
+#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
+
+libarnoldi_la_LIBADD = $(libarnoldi_la_DEPENDENCIES)
+
+libarnoldi_la_PKGCONFIG = arnoldi.pc

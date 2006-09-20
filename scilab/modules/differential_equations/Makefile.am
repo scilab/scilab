@@ -1,0 +1,99 @@
+DIFFERENTIAL_EQUATIONS_C_SOURCES = src/c/dassl.c
+
+DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
+src/fortran/prja.f \
+src/fortran/vnorm.f \
+src/fortran/lsoda.f \
+src/fortran/ainvg.f \
+src/fortran/lsode.f \
+src/fortran/svcom1.f \
+src/fortran/quarul.f \
+src/fortran/solsy.f \
+src/fortran/lsodi.f \
+src/fortran/ddassl.f \
+src/fortran/order.f \
+src/fortran/epsalg.f \
+src/fortran/cfode.f \
+src/fortran/int3d.f \
+src/fortran/lsodar.f \
+src/fortran/rscma1.f \
+src/fortran/colnew.f \
+src/fortran/dcutet.f \
+src/fortran/xsetf.f \
+src/fortran/dgbsl.f \
+src/fortran/rkf45.f \
+src/fortran/rchek.f \
+src/fortran/dqag0.f \
+src/fortran/xerrwv.f \
+src/fortran/twodq.f \
+src/fortran/dqags.f \
+src/fortran/svcar1.f \
+src/fortran/intg.f \
+src/fortran/daux.f \
+src/fortran/dgbfa.f \
+src/fortran/rscom1.f \
+src/fortran/rksimp.f \
+src/fortran/roots.f \
+src/fortran/rgk4.f \
+src/fortran/stoda.f \
+src/fortran/bnorm.f \
+src/fortran/rchek2.f \
+src/fortran/stode.f \
+src/fortran/vmnorm.f \
+src/fortran/prepj.f \
+src/fortran/int2d.f \
+src/fortran/lsdisc.f \
+src/fortran/fnorm.f \
+src/fortran/ddasrt.f \
+src/fortran/stodi.f \
+src/fortran/xsetun.f \
+src/fortran/intdy.f \
+src/fortran/ewset.f \
+src/fortran/roots2.f \
+src/fortran/prepji.f \
+src/fortran/svcma1.f 
+
+GATEWAY_C_SOURCES = sci_gateway/c/sci_int2d.c \
+sci_gateway/c/sci_int3d.c \
+sci_gateway/c/sci_intg.c \
+sci_gateway/c/sci_ode.c \
+sci_gateway/c/sci_feval.c \
+sci_gateway/c/gw_differential_equations1.c \
+sci_gateway/c/gw_differential_equations2.c \
+sci_gateway/c/gw_differential_equations3.c \
+sci_gateway/c/gw_differential_equations4.c \
+sci_gateway/c/sci_bvode.c \
+sci_gateway/c/gw_differential_equations5.c \
+sci_gateway/c/gw_differential_equations6.c
+
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_dasrt.f \
+sci_gateway/fortran/sci_feval.f \
+sci_gateway/fortran/sci_odedc.f \
+sci_gateway/fortran/sci_bvode.f \
+sci_gateway/fortran/sci_impl.f \
+sci_gateway/fortran/sci_dassl.f \
+sci_gateway/fortran/sci_ode.f
+
+libdifferential_equations_la_includedir=$(includedir)/differential_equations
+
+libdifferential_equations_la_include_HEADERS = 
+#includes/gw_differential_equations.h
+
+libdifferential_equations_la_CFLAGS= 
+# -Iincludes/ 
+#-Isrc/c/
+lib_LTLIBRARIES = libdifferential_equations.la
+
+libdifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+
+libdifferential_equations_la_DEPENDENCIES = \
+	$(top_builddir)/libs/blas/libblas.la \
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
+#	
+
+
+
+libdifferential_equations_la_LIBADD = $(libdifferential_equations_la_DEPENDENCIES)
+
+libdifferential_equations_la_PKGCONFIG = differential_equations.pc
