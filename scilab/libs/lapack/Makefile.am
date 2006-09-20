@@ -1,3 +1,7 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
 
 LAPACK_FORTRAN_SOURCES = dlasv2.f \
 zgeqpf.f \
@@ -271,15 +275,12 @@ dlagv2.f \
 dggbak.f \
 dtzrzf.f
 
-
 lib_LTLIBRARIES = liblapack.la
 
 liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 
 liblapack_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
 
 liblapack_la_LIBADD = $(liblapack_la_DEPENDENCIES)
 
