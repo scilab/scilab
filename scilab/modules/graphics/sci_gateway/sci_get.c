@@ -146,27 +146,21 @@ int sci_get(char *fname,unsigned long fname_len)
       return 0;
     }
   }
-  else {
-    if ((pobj = sciGetPointerFromHandle(hdl))){
+  else
+  {
+    if ( (pobj = sciGetPointerFromHandle(hdl) ) )
+    {
 
-      if(sciGetEntityType(pobj) == SCI_SUBWIN && (strcmp(cstk(l2),"x_ticks")==0 ||
-						  strcmp(cstk(l2),"y_ticks")==0 ||
-						  strcmp(cstk(l2),"z_ticks")==0))
+      if (sciGet(pobj, cstk(l2))!=0)
       {
-        if(getticks(cstk(l2),pobj)!=0)
-          return 0;
+        Scierror(999,"%s: %s\r\n",fname,error_message);
+        return 0;
       }
-      else /* F.Leray 02.05.05 : main case (all but "data") (using sciGetPoint routine inside GetProperty.c) */
-	{
-	  if (sciGet(pobj, cstk(l2))!=0)
-	    {
-	      Scierror(999,"%s: %s\r\n",fname,error_message);
-	      return 0;
-	    }
-	}
     }
     else
+    {
       Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+    }
   }
   LhsVar(1)=Rhs+1;
   return 0;
@@ -684,6 +678,18 @@ int sciGet(sciPointObj *pobj,char *marker)
   {
     return get_hidden_axis_color_property( pobj ) ;
   }
+  else if ( strcmp(marker,"x_ticks") == 0 )
+  {
+    return get_x_ticks_property( pobj ) ;
+  }
+  else if ( strcmp(marker,"y_ticks") == 0 )
+  {
+    return get_y_ticks_property( pobj ) ;
+  }
+  else if ( strcmp(marker,"z_ticks") == 0 )
+  {
+    return get_z_ticks_property( pobj ) ;
+  }
   else 
   {
     sprintf(error_message,"Unknown  property %s",marker) ;
@@ -694,270 +700,4 @@ int sciGet(sciPointObj *pobj,char *marker)
 }
 
 
-/*-----------------------------------------------------------------------------------*/
-
-int getticks(char * xyztick, sciPointObj* psubwin)
-{
-  int i,nbtics;
-  char c_format[5]; 
-  char **  ticklabel = (char**) NULL;
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-  double *tmp= NULL;
-
-  /* x */
-  if(strcmp(xyztick,"x_ticks")==0)
-    {
-      /* compute the c_format used for convert double to char (for labels) */
-      ChooseGoodFormat(c_format,ppsubwin->logflags[0],ppsubwin->axes.xgrads,ppsubwin->axes.nxgrads);
-
-      if(ppsubwin->axes.auto_ticks[0] == TRUE)
-	{
-	  nbtics = ppsubwin->axes.nxgrads;
-
-	  if((ticklabel=(char **)MALLOC(nbtics*sizeof(char *)))==NULL){
-	    sciprint("No more place for allocating ticklabel");
-	    return -1;
-	  }
-
-	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[0],nbtics,ppsubwin->axes.xgrads);
-
-	  for(i=0;i<nbtics;i++)
-	    {  
-	      char foo[100];
-
-	      sprintf(foo,c_format,tmp[i]);
-
-	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-		sciprint("No more place for allocating ticklabel");
-		return -1;
-	      }
-
-	      strcpy(ticklabel[i],foo);
-	    }
-
-	  /* construction de la tlist */
-
-	  BuildTListForTicks(tmp,ticklabel, nbtics);
-          
-          /* free ticklabel */
-          for ( i = 0 ; i < nbtics ; i++ )
-          {
-            FREE( ticklabel[i] ) ;
-          }
-	  FREE(ticklabel); ticklabel = (char **) NULL;
-	  FREE(tmp); tmp = (double *) NULL;
-	}
-      else /* we display the x tics specified by the user*/
-	{
-	  nbtics = ppsubwin->axes.u_nxgrads;
-
-	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[0],nbtics,ppsubwin->axes.u_xgrads);
-
-
-	  BuildTListForTicks(tmp,ppsubwin->axes.u_xlabels, nbtics);
-
-	  FREE(tmp); tmp = (double *) NULL;
-	}
-    }
-
-  /* y */
-  else if(strcmp(xyztick,"y_ticks")==0)
-    {
-      /* compute the c_format used for convert double to char (for labels) */
-      ChooseGoodFormat(c_format,ppsubwin->logflags[1],ppsubwin->axes.ygrads,ppsubwin->axes.nygrads);
-
-      if(ppsubwin->axes.auto_ticks[1] == TRUE)
-	{
-	  nbtics = ppsubwin->axes.nygrads;
-
-	  if((ticklabel=(char **)MALLOC(nbtics*sizeof(char *)))==NULL){
-	    sciprint("No more place for allocating ticklabel");
-	    return -1;
-	  }
-
-	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[1],nbtics,ppsubwin->axes.ygrads);
-
-	  for(i=0;i<nbtics;i++)
-	    {  
-	      char foo[100];
-
-	      sprintf(foo,c_format,tmp[i]);
-
-	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-		sciprint("No more place for allocating ticklabel");
-		return -1;
-	      }
-
-	      strcpy(ticklabel[i],foo);
-	    }
-
-	  /* construction de la tlist */
-	  BuildTListForTicks(tmp,ticklabel, nbtics);
-
-          /* free ticklabel */
-          for ( i = 0 ; i < nbtics ; i++ )
-          {
-            FREE( ticklabel[i] ) ;
-          }
-	  FREE(ticklabel); ticklabel = (char **) NULL;
-	  FREE(tmp); tmp = (double *) NULL;
-	}
-      else /* we display the y tics specified by the user*/
-	{
-	  nbtics = ppsubwin->axes.u_nygrads;
-
-	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[1],nbtics,ppsubwin->axes.u_ygrads);
-
-	  BuildTListForTicks(tmp,ppsubwin->axes.u_ylabels, nbtics);
-
-	  FREE(tmp); tmp = (double *) NULL;
-	}
-    }
-
-  /* z */
-  else if(strcmp(xyztick,"z_ticks")==0)
-    {
-
-      ChooseGoodFormat(c_format,ppsubwin->logflags[2],ppsubwin->axes.zgrads,ppsubwin->axes.nzgrads);
-
-      if(ppsubwin->axes.auto_ticks[2] == TRUE)
-	{
-	  nbtics = ppsubwin->axes.nzgrads;
-
-	  if((ticklabel=(char **)MALLOC(nbtics*sizeof(char *)))==NULL){
-	    sciprint("No more place for allocating ticklabel");
-	    return -1;
-	  }
-
-
-	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.zgrads);
-
-
-	  for(i=0;i<nbtics;i++)
-	    {  
-	      char foo[100];
-
-	      sprintf(foo,c_format,tmp[i]);
-
-	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
-		sciprint("No more place for allocating ticklabel");
-		return -1;
-	      }
-
-	      strcpy(ticklabel[i],foo);
-	    }
-
-	  /* construction de la tlist */
-	  BuildTListForTicks(tmp,ticklabel, nbtics);
-
-          /* free ticklabel */
-          for ( i = 0 ; i < nbtics ; i++ )
-          {
-            FREE( ticklabel[i] ) ;
-          }
-	  FREE(ticklabel); ticklabel = (char **) NULL;
-	  FREE(tmp); tmp = (double *) NULL;
-	}
-      else /* we display the z tics specified by the user*/
-	{
-	  nbtics = ppsubwin->axes.u_nzgrads;
-
-	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.u_zgrads);
-
-
-	  BuildTListForTicks(tmp,ppsubwin->axes.u_zlabels, nbtics);
-
-	  FREE(tmp); tmp = (double *) NULL;
-	}
-    }
-  else
-    {
-      sciprint("Impossible case xyztick must be equal to x_, y_ or z_tick");
-      return -1;
-    }
-
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-/* compute the c_format used for convert double to char (for labels) */
-int ChooseGoodFormat(char * c_format,char logflag, double *_grads,int n_grads)
-{
-  int last_index = n_grads - 1;
-
-  if(logflag == 'l')
-    {
-      ChoixFormatE(c_format,
-		   exp10(_grads[0]),
-		   exp10(_grads[last_index]),
-		   (( exp10(_grads[last_index]))-( exp10(_grads[0])))/(last_index));
-    }
-  else
-    {
-      ChoixFormatE(c_format,
-		   _grads[0],
-		   _grads[last_index],
-		   ((_grads[last_index])-(_grads[0]))/(last_index)); /* Adding F.Leray 06.05.04 */
-    }
-
-  return 0;
-
-}
-/*-----------------------------------------------------------------------------------*/
-double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
-{
-  int flag_limit = 0,i;
-  double * tmp = NULL;
-
-  if ( nbtics <= 0 || ( tmp = MALLOC( nbtics * sizeof(double) ) ) == NULL )
-  {
-    return NULL ;
-  }
-
-  if(logflag=='l')
-    {
-      for(i=0;i<nbtics;i++)
-	{
-	  flag_limit = 0;
-
-	  /* 10^(-307) == -Inf */
-	  flag_limit = flag_limit + ((grads[i])<-307)?-1:0;
-	  /* 10^(+307) == +Inf */
-	  flag_limit = flag_limit + ((grads[i])>307)?1:0;
-
-	  if( flag_limit == -1)
-	    {
-	      tmp[i] = 0.;
-	    }
-	  else if ( flag_limit == 1)
-	    {
-	      tmp[i] = exp10(307);
-	    }
-	  else  if ( flag_limit == 0) /* general case */
-	    {
-	      tmp[i]=exp10(grads[i]);
-	    }
-	}
-    }
-  else
-    {
-      for(i=0;i<nbtics;i++)
-	tmp[i] = grads[i];
-    }
-
-  return tmp;
-}
-/*-----------------------------------------------------------------------------------*/
-int BuildTListForTicks(double * locations, char ** labels, int nbtics)
-{
-  int un=1, trois=3,l;
-  char *variable_tlist[] = {"ticks","locations","labels"};
-
-  CreateVar(Rhs+1,"t",&trois,&un,&l);
-  CreateListVarFromPtr(Rhs+1, 1, "S", &un, &trois, variable_tlist);
-
-  CreateListVarFromPtr(Rhs+1, 2, "d", &nbtics, &un, &locations);
-  CreateListVarFromPtr(Rhs+1, 3, "S", &nbtics, &un, labels);
-
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/

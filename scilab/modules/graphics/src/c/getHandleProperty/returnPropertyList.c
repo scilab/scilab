@@ -11,7 +11,7 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-returnedList * createNewReturnedList( int nbElements, const char * elementName[] )
+returnedList * createReturnedList( int nbElements, const char * elementName[] )
 {
   returnedList * newList = NULL ;
   int nbRow = 1 ;
@@ -61,8 +61,8 @@ int addRowVectorToReturnedList( returnedList * list, const double vector[], int 
   }
 
   /* add a new element */
-  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbValues, &vector ) ;
   list->curElement++ ;
+  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbValues, &vector ) ;
 
   return 0 ;
 }
@@ -78,8 +78,8 @@ int addColVectorToReturnedList( returnedList * list, const double vector[], int 
   }
 
   /* add a new element */
-  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbValues, &nbCol, &vector ) ;
   list->curElement++ ;
+  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbValues, &nbCol, &vector ) ;
 
   return 0 ;
 }
@@ -94,8 +94,8 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
   }
 
   /* add a new element */
-  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbCol, &matrix ) ;
   list->curElement++ ;
+  CreateListVarFromPtr( Rhs+1, list->curElement, "d", &nbRow, &nbCol, &matrix ) ;
 
   return 0 ;
 }
@@ -111,8 +111,8 @@ int addStringColVectorToReturnedList( returnedList * list, const char * vector[]
   }
 
   /* add a new element */
-  CreateListVarFromPtr( Rhs+1, 3, "S", &nbValues, &nbCol, vector ) ;
   list->curElement++ ;
+  CreateListVarFromPtr( Rhs+1, list->curElement, "S", &nbValues, &nbCol, vector ) ;
 
   return 0 ;
 }

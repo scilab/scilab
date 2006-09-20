@@ -1210,6 +1210,137 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
 
 }
 /*-----------------------------------------------------------------------------------*/
+/* compute the c_format used for convert double to char (for labels) */
+int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
+{
+  int last_index = n_grads - 1;
+
+  if(logflag == 'l')
+  {
+    ChoixFormatE(c_format,
+      exp10(_grads[0]),
+      exp10(_grads[last_index]),
+      (( exp10(_grads[last_index]))-( exp10(_grads[0])))/(last_index));
+  }
+  else
+  {
+    ChoixFormatE(c_format,
+      _grads[0],
+      _grads[last_index],
+      ((_grads[last_index])-(_grads[0]))/(last_index)); /* Adding F.Leray 06.05.04 */
+  }
+
+  return 0;
+
+}
+/*-----------------------------------------------------------------------------------*/
+double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads)
+{
+  int flag_limit = 0,i;
+  double * tmp = NULL;
+
+  if ( nbtics <= 0 || ( tmp = MALLOC( nbtics * sizeof(double) ) ) == NULL )
+  {
+    return NULL ;
+  }
+
+  if(logflag=='l')
+  {
+    for(i=0;i<nbtics;i++)
+    {
+      flag_limit = 0;
+
+      /* 10^(-307) == -Inf */
+      flag_limit = flag_limit + ((grads[i])<-307)?-1:0;
+      /* 10^(+307) == +Inf */
+      flag_limit = flag_limit + ((grads[i])>307)?1:0;
+
+      if( flag_limit == -1)
+      {
+        tmp[i] = 0.;
+      }
+      else if ( flag_limit == 1)
+      {
+        tmp[i] = exp10(307);
+      }
+      else  if ( flag_limit == 0) /* general case */
+      {
+        tmp[i]=exp10(grads[i]);
+      }
+    }
+  }
+  else
+  {
+    for(i=0;i<nbtics;i++)
+      tmp[i] = grads[i];
+  }
+
+  return tmp;
+}
+/*-----------------------------------------------------------------------------------*/
+char * copyFormatedValue( double value, const char format[5], int bufferSize )
+{
+  char * buffer = MALLOC( bufferSize * sizeof(char) ) ;
+  char * res = NULL ;
+  int resLength = 0 ;
+
+  if ( buffer == NULL )
+  {
+    sciprint("Can not copy the string, memory full.\n" ) ;
+    return NULL ;
+  }
+
+  sprintf( buffer , format, value ) ;
+
+  resLength = strlen( buffer ) + 1 ; /* + 1 <=> 0 terminating char */
+
+  res = MALLOC( resLength * sizeof(char) ) ;
+
+  if ( res == NULL )
+  {
+    sciprint("Can not copy the string, memory full.\n" ) ;
+    FREE( buffer ) ;
+    return NULL ;
+  }
+
+  strncpy( res, buffer, resLength ) ;
+
+  FREE( buffer ) ;
+  
+  return res ;
+}
+/*-----------------------------------------------------------------------------------*/
+char ** copyFormatedArray( const double values[], int nbStrings, const char format[5], int bufferSize )
+{
+  int i ;
+  char ** res = MALLOC( nbStrings * sizeof(char *) ) ;
+
+  if ( res == NULL )
+  {
+    sciprint("Can not copy the strings, memory full.\n" ) ;
+    return NULL ;
+  }
+
+  for ( i = 0 ; i < nbStrings ; i++ )
+  {
+    res[i] = copyFormatedValue( values[i], format, bufferSize ) ;
+  }
+
+  return res ;
+
+}
+/*-----------------------------------------------------------------------------------*/
+void destroyStringArray( char * src[], int nbStrings )
+{
+  int i ;
+  for ( i = 0 ; i < nbStrings ; i++ )
+  {
+    FREE( src[i] ) ;
+    src[i] = NULL ;
+  }
+  FREE( src ) ;
+}
+/*-----------------------------------------------------------------------------------*/
 
 #undef ROUND
 #undef ABS

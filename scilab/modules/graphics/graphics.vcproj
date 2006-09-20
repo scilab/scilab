@@ -601,6 +601,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_ticks_utils.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_tics_color_property.c"
 				>
 			</File>
@@ -661,6 +665,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_x_ticks_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_xtics_coord_property.c"
 				>
 			</File>
@@ -677,6 +685,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_y_ticks_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_ytics_coord_property.c"
 				>
 			</File>
@@ -690,6 +702,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_z_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_z_ticks_property.c"
 				>
 			</File>
 			<File
@@ -1276,6 +1292,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Format.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_ticks_utils.h"
 				>
 			</File>
 			<File

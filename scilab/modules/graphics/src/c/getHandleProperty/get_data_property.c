@@ -24,7 +24,7 @@ int getgrayplotdata(sciPointObj *pobj)
   sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
 
   /* Add 'variable' tlist items to stack */
-  returnedList * tList = createNewReturnedList( 3, variable_tlist ) ;
+  returnedList * tList = createReturnedList( 3, variable_tlist ) ;
 
   if ( tList == NULL )
   {
@@ -53,7 +53,7 @@ int getchampdata(sciPointObj *pobj)
 
   /* Add 'variable' tlist items to stack */
 
-  returnedList * tList = createNewReturnedList( 4, variable_tlist ) ;
+  returnedList * tList = createReturnedList( 4, variable_tlist ) ;
 
   if ( tList == NULL )
   {
@@ -85,7 +85,7 @@ int get3ddata(sciPointObj *pobj)
   {
 
     /* Add 'variable' tlist items to stack */
-    tList = createNewReturnedList( 4, variable_tlist_color ) ;
+    tList = createReturnedList( 4, variable_tlist_color ) ;
 
     if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
     {
@@ -114,7 +114,7 @@ int get3ddata(sciPointObj *pobj)
   {
 
     /* Add 'variable' tlist items to stack */
-    tList = createNewReturnedList( 3, variable_tlist ) ;
+    tList = createReturnedList( 3, variable_tlist ) ;
 
     if( pSURFACE_FEATURE(pobj)->typeof3d == SCI_FAC3D )
     {
