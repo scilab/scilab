@@ -1,5 +1,4 @@
-LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/issymmetric.f \
-src/fortran/intdggbal.f \
+LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
 src/fortran/intzheev.f \
 src/fortran/intzgehrd.f \

@@ -1,0 +1,309 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
+GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
+src/c/w_rottext.c \
+src/c/gifimg.c \
+src/c/WindowList.c \
+src/c/Events.c \
+src/c/Rec.c \
+src/c/getHandleProperty/get_figure_position_property.c \
+src/c/getHandleProperty/get_figure_size_property.c \
+src/c/getHandleProperty/get_visible_property.c \
+src/c/getHandleProperty/get_old_style_property.c \
+src/c/getHandleProperty/get_figures_id_property.c \
+src/c/getHandleProperty/get_figure_style_property.c \
+src/c/getHandleProperty/get_pixel_drawing_mode_property.c \
+src/c/getHandleProperty/returnProperty.c \
+src/c/getHandleProperty/get_line_mode_property.c \
+src/c/getHandleProperty/get_axes_size_property.c \
+src/c/getHandleProperty/get_thickness_property.c \
+src/c/getHandleProperty/get_font_foreground_property.c \
+src/c/getHandleProperty/get_bar_layout_property.c \
+src/c/getHandleProperty/get_current_axes_property.c \
+src/c/getHandleProperty/get_bar_width_property.c \
+src/c/getHandleProperty/get_font_color_property.c \
+src/c/getHandleProperty/get_default_axes_property.c \
+src/c/getHandleProperty/get_y_shift_property.c \
+src/c/getHandleProperty/get_immediate_drawing_property.c \
+src/c/getHandleProperty/get_current_entity_property.c \
+src/c/getHandleProperty/get_background_property.c \
+src/c/getHandleProperty/get_rotation_style_property.c \
+src/c/getHandleProperty/get_type_property.c \
+src/c/getHandleProperty/get_current_figure_property.c \
+src/c/getHandleProperty/get_mark_foreground_property.c \
+src/c/getHandleProperty/get_default_figure_property.c \
+src/c/getHandleProperty/get_children_property.c \
+src/c/getHandleProperty/get_parent_property.c \
+src/c/getHandleProperty/get_surface_mode_property.c \
+src/c/getHandleProperty/get_figure_id_property.c \
+src/c/getHandleProperty/get_mark_mode_property.c \
+src/c/getHandleProperty/get_pixmap_property.c \
+src/c/getHandleProperty/get_interp_color_mode.c \
+src/c/getHandleProperty/get_font_size_property.c \
+src/c/getHandleProperty/get_x_shift_property.c \
+src/c/getHandleProperty/get_z_shift_property.c \
+src/c/getHandleProperty/get_line_style_property.c \
+src/c/getHandleProperty/get_foreground_property.c \
+src/c/getHandleProperty/get_mark_style_property.c \
+src/c/getHandleProperty/get_color_map_property.c \
+src/c/getHandleProperty/get_polyline_style_property.c \
+src/c/getHandleProperty/get_font_angle_property.c \
+src/c/getHandleProperty/get_interp_color_vector.c \
+src/c/getHandleProperty/get_figure_name_property.c \
+src/c/getHandleProperty/get_arrow_size_factor_property.c \
+src/c/getHandleProperty/get_mark_size_unit_property.c \
+src/c/getHandleProperty/get_mark_size_property.c \
+src/c/getHandleProperty/get_mark_background_property.c \
+src/c/getHandleProperty/get_auto_resize_property.c \
+src/c/getHandleProperty/get_fill_mode_property.c \
+src/c/getHandleProperty/get_tight_limits_property.c \
+src/c/getHandleProperty/get_auto_ticks_property.c \
+src/c/getHandleProperty/get_font_name_property.c \
+src/c/getHandleProperty/get_x_label_property.c \
+src/c/getHandleProperty/get_auto_scale_property.c \
+src/c/getHandleProperty/get_auto_dimensionning_property.c \
+src/c/getHandleProperty/get_text_box_property.c \
+src/c/getHandleProperty/get_clip_box_property.c \
+src/c/getHandleProperty/get_tics_direction_property.c \
+src/c/getHandleProperty/get_position_property.c \
+src/c/getHandleProperty/get_y_label_property.c \
+src/c/getHandleProperty/get_data_property.c \
+src/c/getHandleProperty/get_auto_clear_property.c \
+src/c/getHandleProperty/get_title_property.c \
+src/c/getHandleProperty/get_zoom_state_property.c \
+src/c/getHandleProperty/get_zoom_box_property.c \
+src/c/getHandleProperty/get_log_flags_property.c \
+src/c/getHandleProperty/get_x_location_property.c \
+src/c/getHandleProperty/get_text_box_mode_property.c \
+src/c/getHandleProperty/get_y_location_property.c \
+src/c/getHandleProperty/get_z_label_property.c \
+src/c/getHandleProperty/get_alignment_property.c \
+src/c/getHandleProperty/get_font_style_property.c \
+src/c/getHandleProperty/get_auto_rotation_property.c \
+src/c/getHandleProperty/get_clip_state_property.c \
+src/c/getHandleProperty/get_callback_property.c \
+src/c/getHandleProperty/get_auto_position_property.c \
+src/c/getHandleProperty/get_closed_property.c \
+src/c/getHandleProperty/get_callbackmevent_property.c \
+src/c/getHandleProperty/get_text_property.c \
+src/c/getHandleProperty/get_margins_property.c \
+src/c/getHandleProperty/get_view_property.c \
+src/c/getHandleProperty/get_data_bounds_property.c \
+src/c/getHandleProperty/get_axes_reverse_property.c \
+src/c/getHandleProperty/get_tics_color_property.c \
+src/c/getHandleProperty/get_axes_bounds_property.c \
+src/c/getHandleProperty/get_tics_style_property.c \
+src/c/getHandleProperty/get_user_data_property.c \
+src/c/getHandleProperty/get_xtics_coord_property.c \
+src/c/getHandleProperty/get_color_mode_property.c \
+src/c/getHandleProperty/get_z_bounds_property.c \
+src/c/getHandleProperty/get_data_mapping_property.c \
+src/c/getHandleProperty/get_arrow_size_property.c \
+src/c/getHandleProperty/get_rotation_angles_property.c \
+src/c/getHandleProperty/get_callback_type_property.c \
+src/c/getHandleProperty/get_format_n_property.c \
+src/c/getHandleProperty/get_color_flag_property.c \
+src/c/getHandleProperty/get_sub_tics_property.c \
+src/c/getHandleProperty/get_hidden_axis_color_property.c \
+src/c/getHandleProperty/get_ytics_coord_property.c \
+src/c/getHandleProperty/get_labels_font_size_property.c \
+src/c/getHandleProperty/get_isoview_property.c \
+src/c/getHandleProperty/get_grid_property.c \
+src/c/getHandleProperty/get_box_property.c \
+src/c/getHandleProperty/get_hidden_color_property.c \
+src/c/getHandleProperty/get_handle_visible_property.c \
+src/c/getHandleProperty/get_menu_enable_property.c \
+src/c/getHandleProperty/get_labels_font_color_property.c \
+src/c/getHandleProperty/get_surface_color_property.c \
+src/c/getHandleProperty/get_tics_label_property.c \
+src/c/getHandleProperty/get_labels_font_style_property.c \
+src/c/getHandleProperty/get_axes_visible_property.c \
+src/c/getHandleProperty/get_cube_scaling_property.c \
+src/c/getHandleProperty/get_tics_segment_property.c \
+src/c/getHandleProperty/get_cdata_mapping_property.c \
+src/c/getHandleProperty/get_colored_property.c \
+src/c/getHandleProperty/get_triangles_property.c \
+src/c/getHandleProperty/returnPropertyList.c \
+src/c/DefaultCommandArg.c \
+src/c/periPos.c \
+src/c/graphicSession.c \
+src/c/Xcall1.c \
+src/c/Axes.c \
+src/c/Plo2d2.c \
+src/c/sciMatrix.c \
+src/c/Xcall.c \
+src/c/Plo2d4.c \
+src/c/DrawObjects.c \
+src/c/Vect2Matrix.c \
+src/c/xs2file.c \
+src/c/Plo3d.c \
+src/c/dr1Call.c \
+src/c/GetProperty.c \
+src/c/periFig.c \
+src/c/Contour.c \
+src/c/nues1.c \
+src/c/SetProperty.c \
+src/c/BasicAlgos.c \
+src/c/BuildObjects.c \
+src/c/sciCall.c \
+src/c/CloneObjects.c \
+src/c/InitObjects.c \
+src/c/Plo2d.c \
+src/c/pixel_mode.c \
+src/c/Format.c \
+src/c/Champ.c \
+src/c/periX11.c \
+src/c/Alloc.c \
+src/c/StringMatrix.c \
+src/c/FeC.c \
+src/c/gsort.c \
+src/c/Plo2dn.c \
+src/c/Plo3dn.c \
+src/c/Actions.c \
+src/c/Plo2dEch.c \
+src/c/Plo2d1.c \
+src/c/Gray.c \
+src/c/DestroyObjects.c \
+src/c/Plo2d3.c \
+src/c/clipping.c \
+src/c/qsort.c \
+src/c/math_graphics.c \
+src/c/RecLoad.c \
+src/c/Interaction.c \
+src/c/periGif.c \
+src/c/RecSave.c \
+src/c/HandleManagement.c \
+src/gd/gdfonts/gdfontmb.c \
+src/gd/gdfonts/gdfonts.c \
+src/gd/gdfonts/gdfontt.c \
+src/gd/gdfonts/gdfontg.c \
+src/gd/gdfonts/gdfontl.c \
+src/gd/bdftogd.c \
+src/gd/xfonts.c \
+src/gd/giftogd.c \
+src/gd/gd.c 
+
+# A voir si c'st utilisé
+#src/xdr/xdr_reference.c \
+#src/xdr/xdr_stdio.c \
+#src/xdr/xdr_float.c \
+#src/xdr/xdr_rec.c \
+#src/xdr/xdr_array.c \
+#src/xdr/xdr_mem.c \
+#src/xdr/xdr.c
+
+GATEWAY_C_SOURCES = sci_gateway/sci_swap_handles.c \
+sci_gateway/sci_readgif.c \
+sci_gateway/sci_grayplot.c \
+sci_gateway/sci_matplot1.c \
+sci_gateway/sci_xfpolys.c \
+sci_gateway/sci_xget.c \
+sci_gateway/sci_newaxes.c \
+sci_gateway/sci_xlfont.c \
+sci_gateway/sci_xgraduate.c \
+sci_gateway/sci_xgrid.c \
+sci_gateway/sci_xclick.c \
+sci_gateway/sci_xclear.c \
+sci_gateway/sci_geom3d.c \
+sci_gateway/sci_xsort.c \
+sci_gateway/sci_xtape.c \
+sci_gateway/sci_xset.c \
+sci_gateway/sci_set_posfig_dim.c \
+sci_gateway/sci_xgetech.c \
+sci_gateway/sci_unzoom.c \
+sci_gateway/sci_xs2ppm.c \
+sci_gateway/sci_xs2bmp.c \
+sci_gateway/sci_xs2emf.c \
+sci_gateway/sci_xsegs.c \
+sci_gateway/sci_xaxis.c \
+sci_gateway/sci_seteventhandler.c \
+sci_gateway/sci_glue.c \
+sci_gateway/sci_xarc.c \
+sci_gateway/sci_xpolys.c \
+sci_gateway/sci_xstring.c \
+sci_gateway/sci_xstringb.c \
+sci_gateway/sci_xs2gif.c \
+sci_gateway/sci_xsetech.c \
+sci_gateway/sci_xload.c \
+sci_gateway/sci_xselect.c \
+sci_gateway/sci_param3d1.c \
+sci_gateway/sci_xname.c \
+sci_gateway/sci_xstringl.c \
+sci_gateway/sci_xpoly.c \
+sci_gateway/sci_xchange.c \
+sci_gateway/sci_UImenu.c \
+sci_gateway/sci_matplot.c \
+sci_gateway/sci_readxbm.c \
+sci_gateway/sci_drawaxis.c \
+sci_gateway/sci_demo.c \
+sci_gateway/sci_plot2d1.c \
+sci_gateway/sci_xrect.c \
+sci_gateway/sci_xsave.c \
+sci_gateway/sci_contour.c \
+sci_gateway/sci_xclea.c \
+sci_gateway/sci_draw.c \
+sci_gateway/sci_xg2ps.c \
+sci_gateway/sci_xarrows.c \
+sci_gateway/sci_plot3d.c \
+sci_gateway/sci_move.c \
+sci_gateway/sci_copy.c \
+sci_gateway/sci_relocate_handle.c \
+sci_gateway/sci_get.c \
+sci_gateway/sci_xs2ps.c \
+sci_gateway/sci_xarcs.c \
+sci_gateway/sci_xfpoly.c \
+sci_gateway/sci_drawlater.c \
+sci_gateway/sci_champ.c \
+sci_gateway/sci_xinit.c \
+sci_gateway/sci_help_gtk.c \
+sci_gateway/sci_set.c \
+sci_gateway/sci_showalluimenushandles.c \
+sci_gateway/sci_xend.c \
+sci_gateway/sci_unglue.c \
+sci_gateway/gw_graphics.c \
+sci_gateway/sci_xsnative.c \
+sci_gateway/sci_zoom_rect.c \
+sci_gateway/sci_delete.c \
+sci_gateway/sci_xs2fig.c \
+sci_gateway/sci_plot2d.c \
+sci_gateway/sci_xrects.c \
+sci_gateway/sci_xtitle.c \
+sci_gateway/sci_StringBox.c \
+sci_gateway/sci_xgetmouse.c \
+sci_gateway/sci_drawnow.c \
+sci_gateway/sci_xinfo.c \
+sci_gateway/sci_xfarcs.c \
+sci_gateway/sci_param3d.c \
+sci_gateway/sci_contour2di.c \
+sci_gateway/sci_driver.c \
+sci_gateway/sci_xdel.c \
+sci_gateway/sci_winsid.c \
+sci_gateway/sci_addcb.c \
+sci_gateway/sci_fec.c
+
+libgraphics_la_includedir=$(includedir)/graphics
+
+libgraphics_la_include_HEADERS = includes/gw_graphics.h
+
+libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/
+
+libgraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
+#-Isrc/c/
+lib_LTLIBRARIES = libgraphics.la
+
+libgraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
+
+libgraphics_la_DEPENDENCIES = \
+	$(top_builddir)/modules/intersci/libintersci.la \
+	$(top_builddir)/modules/data_structures/libdata_structures.la \
+	$(top_builddir)/modules/tclsci/libtclsci.la \
+	$(top_builddir)/modules/string/libstring.la
+
+#	$(top_builddir)/modules/gui/libgui.la
+
+libgraphics_la_LIBADD = $(libgraphics_la_DEPENDENCIES)
+
+libgraphics_la_PKGCONFIG = graphics.pc
