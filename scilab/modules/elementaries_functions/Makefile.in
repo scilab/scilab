@@ -75,7 +75,6 @@ am__objects_1 = libelementaries_functions_la-sci_tools.lo \
 	libelementaries_functions_la-vfinite.lo \
 	libelementaries_functions_la-cmp.lo \
 	libelementaries_functions_la-vceil.lo \
-	libelementaries_functions_la-someinterp.lo \
 	libelementaries_functions_la-xerhlt.lo \
 	libelementaries_functions_la-vfloor.lo \
 	libelementaries_functions_la-vfrexp.lo
@@ -673,7 +672,6 @@ src/c/finite.c \
 src/c/vfinite.c \
 src/c/cmp.c \
 src/c/vceil.c \
-src/c/someinterp.c \
 src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c 
@@ -1148,7 +1146,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-sci_tril.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-sci_triu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-sci_zeros.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-someinterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-vceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-vfinite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libelementaries_functions_la-vfloor.Plo@am__quote@
@@ -1210,13 +1207,6 @@ libelementaries_functions_la-vceil.lo: src/c/vceil.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/vceil.c' object='libelementaries_functions_la-vceil.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libelementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libelementaries_functions_la-vceil.lo `test -f 'src/c/vceil.c' || echo '$(srcdir)/'`src/c/vceil.c
-
-libelementaries_functions_la-someinterp.lo: src/c/someinterp.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libelementaries_functions_la_CFLAGS) $(CFLAGS) -MT libelementaries_functions_la-someinterp.lo -MD -MP -MF "$(DEPDIR)/libelementaries_functions_la-someinterp.Tpo" -c -o libelementaries_functions_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libelementaries_functions_la-someinterp.Tpo" "$(DEPDIR)/libelementaries_functions_la-someinterp.Plo"; else rm -f "$(DEPDIR)/libelementaries_functions_la-someinterp.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/someinterp.c' object='libelementaries_functions_la-someinterp.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libelementaries_functions_la_CFLAGS) $(CFLAGS) -c -o libelementaries_functions_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c
 
 libelementaries_functions_la-xerhlt.lo: src/c/xerhlt.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libelementaries_functions_la_CFLAGS) $(CFLAGS) -MT libelementaries_functions_la-xerhlt.lo -MD -MP -MF "$(DEPDIR)/libelementaries_functions_la-xerhlt.Tpo" -c -o libelementaries_functions_la-xerhlt.lo `test -f 'src/c/xerhlt.c' || echo '$(srcdir)/'`src/c/xerhlt.c; \

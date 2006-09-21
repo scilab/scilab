@@ -1,4 +1,5 @@
-INTERPOLATION_C_SOURCES = src/c/interpolation.c
+INTERPOLATION_C_SOURCES = src/c/interpolation.c \
+src/c/someinterp.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_lsq_splin.c \
 sci_gateway/c/sci_interp.c \

@@ -65,7 +65,8 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 = $(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
-am__objects_1 = libinterpolation_la-interpolation.lo
+am__objects_1 = libinterpolation_la-interpolation.lo \
+	libinterpolation_la-someinterp.lo
 am__objects_2 = libinterpolation_la-sci_lsq_splin.lo \
 	libinterpolation_la-sci_interp.lo \
 	libinterpolation_la-sci_interp2d.lo \
@@ -329,7 +330,9 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tcldir = @tcldir@
-INTERPOLATION_C_SOURCES = src/c/interpolation.c
+INTERPOLATION_C_SOURCES = src/c/interpolation.c \
+src/c/someinterp.c
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_lsq_splin.c \
 sci_gateway/c/sci_interp.c \
 sci_gateway/c/sci_interp2d.c \
@@ -439,6 +442,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libinterpolation_la-sci_splin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libinterpolation_la-sci_splin2d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libinterpolation_la-sci_splin3d.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libinterpolation_la-someinterp.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -467,6 +471,13 @@ libinterpolation_la-interpolation.lo: src/c/interpolation.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/interpolation.c' object='libinterpolation_la-interpolation.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libinterpolation_la_CFLAGS) $(CFLAGS) -c -o libinterpolation_la-interpolation.lo `test -f 'src/c/interpolation.c' || echo '$(srcdir)/'`src/c/interpolation.c
+
+libinterpolation_la-someinterp.lo: src/c/someinterp.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libinterpolation_la_CFLAGS) $(CFLAGS) -MT libinterpolation_la-someinterp.lo -MD -MP -MF "$(DEPDIR)/libinterpolation_la-someinterp.Tpo" -c -o libinterpolation_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libinterpolation_la-someinterp.Tpo" "$(DEPDIR)/libinterpolation_la-someinterp.Plo"; else rm -f "$(DEPDIR)/libinterpolation_la-someinterp.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/someinterp.c' object='libinterpolation_la-someinterp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libinterpolation_la_CFLAGS) $(CFLAGS) -c -o libinterpolation_la-someinterp.lo `test -f 'src/c/someinterp.c' || echo '$(srcdir)/'`src/c/someinterp.c
 
 libinterpolation_la-sci_lsq_splin.lo: sci_gateway/c/sci_lsq_splin.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libinterpolation_la_CFLAGS) $(CFLAGS) -MT libinterpolation_la-sci_lsq_splin.lo -MD -MP -MF "$(DEPDIR)/libinterpolation_la-sci_lsq_splin.Tpo" -c -o libinterpolation_la-sci_lsq_splin.lo `test -f 'sci_gateway/c/sci_lsq_splin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_lsq_splin.c; \

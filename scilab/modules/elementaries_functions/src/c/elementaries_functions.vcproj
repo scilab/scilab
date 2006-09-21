@@ -377,10 +377,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\someinterp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\vceil.c"
 				>
 			</File>
