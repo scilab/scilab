@@ -1,3 +1,9 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
+
 SLICOT_FORTRAN_SOURCES= src/slicot/sb04pd.f \
 src/slicot/ib01ad.f \
 src/slicot/tb01wd.f \
@@ -158,31 +164,53 @@ src/fortran/front.f \
 src/fortran/calcsc.f \
 src/fortran/wgefa.f
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_zrankqr.f \
-sci_gateway/fortran/sci_freq.f \
-sci_gateway/fortran/sci_sylv.f \
-sci_gateway/fortran/sci_rankqr.f \
-sci_gateway/fortran/sci_ltitr.f \
-sci_gateway/fortran/sci_ldiv.f \
-sci_gateway/fortran/sci_sorder.f \
-sci_gateway/fortran/sci_mucomp.f \
-sci_gateway/fortran/sci_arl2.f \
-sci_gateway/fortran/sci_gspec.f \
-sci_gateway/fortran/sci_ricc2.f \
-sci_gateway/fortran/sci_rtitr.f \
-sci_gateway/fortran/sci_lyap.f \
-sci_gateway/fortran/sci_ereduc.f \
-sci_gateway/fortran/sci_ppol.f \
-sci_gateway/fortran/sci_ricc.f \
-sci_gateway/fortran/sci_hinf.f \
-sci_gateway/fortran/sci_tzer.f \
-sci_gateway/fortran/sci_linmeq.f \
-sci_gateway/fortran/sci_findbd.f \
-sci_gateway/fortran/sci_sident.f \
-sci_gateway/fortran/sci_fstair.f \
-sci_gateway/fortran/sci_dhinf.f \
-sci_gateway/fortran/sci_gschur.f \
-sci_gateway/fortran/sci_residu.f
+GATEWAY_C_SOURCES = sci_gateway/c/sci_arl2.c \
+sci_gateway/c/sci_gspec.c \
+sci_gateway/c/sci_rtitr.c \
+sci_gateway/c/sci_ereduc.c \
+sci_gateway/c/sci_ppol.c \
+sci_gateway/c/sci_tzer.c \
+sci_gateway/c/sci_contr.c \
+sci_gateway/c/sci_fstair.c \
+sci_gateway/c/sci_gschur.c \
+sci_gateway/c/sci_residu.c \
+sci_gateway/c/gw_slicot.c \
+sci_gateway/c/gw_cacsd0.c \
+sci_gateway/c/sci_freq.c \
+sci_gateway/c/gw_cacsd1.c \
+sci_gateway/c/sci_rankqr.c \
+sci_gateway/c/sci_ltitr.c \
+sci_gateway/c/sci_ldiv.c \
+sci_gateway/c/gw_cacsd2.c \
+sci_gateway/c/gw_cacsd3.c
+
+
+
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_hinf.f \
+sci_gateway/fortran/sci_f_zrankqr.f \
+sci_gateway/fortran/sci_f_tzer.f \
+sci_gateway/fortran/sci_f_residu.f \
+sci_gateway/fortran/sci_f_sylv.f \
+sci_gateway/fortran/sci_f_ppol.f \
+sci_gateway/fortran/sci_f_freq.f \
+sci_gateway/fortran/sci_f_ldiv.f \
+sci_gateway/fortran/sci_f_ricc.f \
+sci_gateway/fortran/sci_f_sident.f \
+sci_gateway/fortran/sci_f_lyap.f \
+sci_gateway/fortran/sci_f_rtitr.f \
+sci_gateway/fortran/sci_f_sorder.f \
+sci_gateway/fortran/sci_f_mucomp.f \
+sci_gateway/fortran/sci_f_ltitr.f \
+sci_gateway/fortran/sci_f_dhinf.f \
+sci_gateway/fortran/sci_f_ricc2.f \
+sci_gateway/fortran/sci_f_arl2.f \
+sci_gateway/fortran/sci_f_gschur.f \
+sci_gateway/fortran/sci_f_ereduc.f \
+sci_gateway/fortran/sci_f_findbd.f \
+sci_gateway/fortran/sci_f_fstair.f \
+sci_gateway/fortran/sci_f_gspec.f \
+sci_gateway/fortran/sci_f_linmeq.f \
+sci_gateway/fortran/sci_f_rankqr.f
 
 libcacsd_la_includedir=$(includedir)/cacsd
 
@@ -192,21 +220,19 @@ includes/gw_cacsd2.h \
 includes/gw_cacsd3.h
 
 libcacsd_la_FFLAGS= -Iincludes/ 
+libcacsd_la_CFLAGS= -Iincludes/ 
 
 lib_LTLIBRARIES = libcacsd.la
 
-libcacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libcacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 libcacsd_la_DEPENDENCIES = \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/core/libcore.la 
+	$(top_builddir)/modules/polynomials/libpolynomials.la
 
-# \
-#	$(top_builddir)/routines/console/libconsole.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
+# Cyclic deps
+#	$(top_builddir)/modules/core/libcore.la 
 
 libcacsd_la_LIBADD = $(libcacsd_la_DEPENDENCIES)
 
