@@ -323,7 +323,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tcldir = @tcldir@
-INTERSCI_LIB_C_SOURCES =  \
+INTERSCI_LIB_C_SOURCES = \
 src/lib/libinter.c \
 src/lib/erro.c \
 src/lib/out.c

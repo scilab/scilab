@@ -180,6 +180,11 @@
 				RelativePath=".\interpolation.c"
 				>
 			</File>
+                        <File
+                                RelativePath=".\someinterp.c"
+                                >
+                        </File>
+
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_bsplin3val.c"
 				>
