@@ -12,7 +12,7 @@ cacsd \
 elementaries_functions \
 arnoldi \
 boolean \
-linear_algebra \
+linear_algebra \
 core \
 metanet \
 optimization \
