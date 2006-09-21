@@ -309,6 +309,9 @@ XAW_LOCAL_SUBDIR = @XAW_LOCAL_SUBDIR@
 XDRLIB = @XDRLIB@
 XDRLIBNAME = @XDRLIBNAME@
 XMKMF = @XMKMF@
+XML_CONFIG = @XML_CONFIG@
+XML_FLAGS = @XML_FLAGS@
+XML_LIBS = @XML_LIBS@
 XMULIB = @XMULIB@
 XXTXEXT = @XXTXEXT@
 X_CFLAGS = @X_CFLAGS@
@@ -536,8 +539,6 @@ libsparse_la_DEPENDENCIES = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/intersci/libintersci.la
 
-
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 libsparse_la_LIBADD = $(libsparse_la_DEPENDENCIES)
 libsparse_la_PKGCONFIG = sparse.pc
 all: all-am
