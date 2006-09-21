@@ -73,20 +73,16 @@ libio_la_includedir=$(includedir)/io
 libio_la_include_HEADERS = includes/gw_io.h \
 includes/sci_getrelativefilename.h
 
-
-libio_la_CFLAGS=  -Iincludes/ 
+libio_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 lib_LTLIBRARIES = libio.la
 
 libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libio_la_DEPENDENCIES = \
-	$(top_builddir)/module/sparse/libsparse.la \
-	$(top_builddir)/module/fileio/libfileio.la
-
-#	$(top_builddir)/modules/core/libcore.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
+	$(top_builddir)/modules/sparse/libsparse.la \
+	$(top_builddir)/modules/fileio/libfileio.la \
+	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 
 libio_la_LIBADD = $(libio_la_DEPENDENCIES)

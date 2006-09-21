@@ -52,6 +52,7 @@ void ColSortdouble(double *a,int *ind,int flag,int n,int p,char dir)
 	    ind[i+n*j]= i+1;
 	}
     }
+
   for ( j= 0 ; j < p ; j++ ) 
     {
       sciqsort((char *) (a+n*j),(char *) (ind+n*j),flag, n, 

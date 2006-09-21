@@ -229,7 +229,9 @@ libcacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEW
 libcacsd_la_DEPENDENCIES = \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la
+	$(top_builddir)/modules/polynomials/libpolynomials.la \
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
+
 
 # Cyclic deps
 #	$(top_builddir)/modules/core/libcore.la 

@@ -48,16 +48,18 @@ libstring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h
 
 
-libstring_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libstring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+
 lib_LTLIBRARIES = libstring.la
 
 libstring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libstring_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la
-	$(top_builddir)/modules/core/libcore.la 
+	$(top_builddir)/modules/polynomials/libpolynomials.la \
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/libs/MALLOC/libmalloc.la
+
 
 libstring_la_LIBADD = $(libstring_la_DEPENDENCIES)
 

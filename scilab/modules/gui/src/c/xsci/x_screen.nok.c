@@ -574,7 +574,7 @@ ScreenResize(screen, width, height, flags)
 
 
 #define SCITRW ";lines(%3d,%3d);\n"
-#include "../machine.h"
+#include "machine.h"
 
 /* JPC */
 Size2Scilab(rows, cols)

@@ -177,10 +177,6 @@ libsparse_la_DEPENDENCIES = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/intersci/libintersci.la
 
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-
-
 libsparse_la_LIBADD = $(libsparse_la_DEPENDENCIES)
 
 libsparse_la_PKGCONFIG = sparse.pc

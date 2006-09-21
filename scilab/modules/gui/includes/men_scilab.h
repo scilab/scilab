@@ -4,9 +4,8 @@
 /* Copyright ENPC */
 
 #include <stdio.h>
-#include "../machine.h"
-#include "../graphics/Math.h"
-#include "../graphics/Graphics.h"
+#include "machine.h"
+#include "math.h"
 
 #if defined(THINK_C)
 #define Widget int

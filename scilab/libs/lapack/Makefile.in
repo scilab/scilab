@@ -14,6 +14,11 @@
 
 @SET_MAKE@
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -291,6 +296,9 @@ XAW_LOCAL_SUBDIR = @XAW_LOCAL_SUBDIR@
 XDRLIB = @XDRLIB@
 XDRLIBNAME = @XDRLIBNAME@
 XMKMF = @XMKMF@
+XML_CONFIG = @XML_CONFIG@
+XML_FLAGS = @XML_FLAGS@
+XML_LIBS = @XML_LIBS@
 XMULIB = @XMULIB@
 XXTXEXT = @XXTXEXT@
 X_CFLAGS = @X_CFLAGS@
@@ -625,8 +633,6 @@ liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 liblapack_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la 
 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
 liblapack_la_LIBADD = $(liblapack_la_DEPENDENCIES)
 liblapack_la_PKGCONFIG = lapack.pc
 all: all-am

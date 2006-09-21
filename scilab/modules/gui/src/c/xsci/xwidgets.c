@@ -1,7 +1,11 @@
 /* Copyright (C) 1998 Chancelier Jean-Philippe */
 #include <stdio.h>
 #include <math.h>
-#include "../graphics/Math.h"
+#include "math.h"
+#include "math_graphics.h"
+#ifndef _MSC_VER
+#include "machine.h"
+#endif
 
 #include <X11/Xatom.h>
 #include <X11/Intrinsic.h>

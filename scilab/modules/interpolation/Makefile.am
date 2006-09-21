@@ -18,7 +18,7 @@ libinterpolation_la_includedir=$(includedir)/interpolation
 libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
 includes/interpolation.h
 
-libinterpolation_la_CFLAGS=  -Iincludes/ 
+libinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 #-Isrc/c/
 lib_LTLIBRARIES = libinterpolation.la
 

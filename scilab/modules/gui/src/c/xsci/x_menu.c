@@ -25,7 +25,7 @@ without express or implied warranty.
 #include <stdio.h>
 #include <signal.h>
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern-x.h"
 
 

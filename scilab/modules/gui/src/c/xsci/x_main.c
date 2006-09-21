@@ -22,10 +22,15 @@
 #include <X11/cursorfont.h>
 #include <X11/Xaw3d/SimpleMenu.h>
 
-#include "../machine.h"
-#include "../graphics/Math.h"
 
-#include "../graphics/DestroyObjects.h"
+#include "machine.h"
+#include "math.h"
+#ifndef _MSC_VER
+#include "version.h"
+#endif
+
+
+#include "DestroyObjects.h"
 
 extern void  controlC_handler(int n);
 

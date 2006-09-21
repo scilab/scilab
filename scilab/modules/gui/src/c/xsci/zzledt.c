@@ -8,7 +8,7 @@
  *  - Interruption for Scilab menu execution
  *  - History functions changed to use linked lists
  **********************************************************************/
-#include "../machine.h" 
+#include "machine.h" 
 
 static char Sci_Prompt[10];
 
@@ -65,7 +65,7 @@ static char Sci_Prompt[10];
 
 #include <stdio.h>
 #include <ctype.h>
-#include "../machine.h"
+#include "machine.h"
 
 #ifndef HAVE_TERMCAP
 #undef TERMCAP
@@ -85,10 +85,6 @@ static struct tchars arg1;
 #include <termio.h>
 static struct termio save_term;
 static struct termio arg;
-#endif
-
-#ifndef MAX
-#define MAX(a, b) (a > b ? a : b)
 #endif
 
 #define EXCL                  0x0021
@@ -223,7 +219,6 @@ static char *CL=NULL;            /* clear screen */
 
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
-extern void write_history(char *filename);
 
 int NumberOfCommands=0;
 

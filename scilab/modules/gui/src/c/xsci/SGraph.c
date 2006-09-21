@@ -31,9 +31,9 @@
 #include <X11/Xaw3d/ViewportP.h>
 #include <string.h>
 
-#include "../sci_mem_alloc.h"
-#include "../graphics/GetProperty.h"
-#include "../graphics/DestroyObjects.h"
+#include "sci_mem_alloc.h"
+#include "GetProperty.h"
+#include "DestroyObjects.h"
 
 extern int StoreCommand  __PARAMS((char *command));
 
@@ -49,13 +49,13 @@ extern char * getenv();
 extern int getpid();
 #endif
 
-#include "../graphics/Math.h"
-#include "../os_specific/men_Sutils.h"
-#include "../menusX/men_scilab.h"
+#include "math.h"
+#include "men_Sutils.h"
+#include "men_scilab.h"
 #include "All-extern.h"
 #include "All-extern-x1.h"
-#include "../graphics/bcg.h"
-#include "../graphics/Events.h"
+#include "bcg.h"
+#include "Events.h"
 
 extern XtAppContext app_con;
 
@@ -1122,7 +1122,7 @@ Print(w, number, client_data)
 	}
 
       sprintf(bufname,"%s/scilab-%d",p1,(int)win_num);
-      scig_tops(win_num,colored,bufname,"Pos");
+      scig_toPs(win_num,colored,bufname,"Pos");
       sprintf(bufname,"$SCI/bin/scilab -%s %s/scilab-%d %s",
 	      (orientation == 1) ? "print_l" : "print_p",
 	      p1,(int)win_num,printer);
@@ -1156,22 +1156,22 @@ SavePs(w, number, client_data)
       if (strncmp(printer,"Postscript",10)==0 ) 
 	{
 	  /** Postscript*   **/
-	  scig_tops(win_num,colored,file,"Pos");
+	  scig_toPs(win_num,colored,file,"Pos");
 	}
       else if (strcmp(printer,"Xfig")==0)
 	{
 	  /** Xfig   **/
-	  scig_tops(win_num,colored,file,"Fig");
+	  scig_toPs(win_num,colored,file,"Fig");
 	}
       else if (strcmp(printer,"Gif")==0)
 	{
 	  /** Gif file **/
-	  scig_tops(win_num,colored,file,"GIF");
+	  scig_toPs(win_num,colored,file,"GIF");
 	}
       else if (strcmp(printer,"PPM")==0)
 	{
 	  /** PPM file **/
-	  scig_tops(win_num,colored,file,"PPM");
+	  scig_toPs(win_num,colored,file,"PPM");
 	}
       if ( strcmp(printer,"Postscript No Preamble") != 0)
 	{

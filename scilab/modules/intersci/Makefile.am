@@ -1,4 +1,4 @@
-INTERSCI_LIB_C_SOURCES = \
+INTERSCI_LIB_C_SOURCES = \
 src/lib/libinter.c \
 src/lib/erro.c \
 src/lib/out.c
@@ -24,8 +24,9 @@ lib_LTLIBRARIES = libintersci.la
 bin_PROGRAMS = intersci
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 
-
 libintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
+
+libintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
 
 libintersci_la_DEPENDENCIES = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la

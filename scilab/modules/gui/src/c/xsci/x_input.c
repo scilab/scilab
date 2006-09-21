@@ -29,7 +29,7 @@
 
 #include "x_ptyxP.h"		/* gets Xt headers, too */
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern-x.h"
 
 #include <X11/keysym.h>

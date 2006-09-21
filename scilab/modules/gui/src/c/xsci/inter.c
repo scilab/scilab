@@ -10,7 +10,7 @@
 
 #include "x_ptyxP.h"
 #include "x_data.h"
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern-x.h"
 #include "All-extern.h"
 #include "xscion.h"
@@ -48,10 +48,10 @@
 #endif
 
 #ifdef WITH_TK
-#include "../tclsci/TCL_Global.h"
+#include "TCL_Global.h"
 #endif
 
-#include "../os_specific/Os_specific.h" 
+#include "Os_specific.h" 
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 

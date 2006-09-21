@@ -60,7 +60,7 @@
 #include <malloc.h>
 #endif
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern.h"
 
 /* External variables */

@@ -44,19 +44,15 @@ includes/sci_dos.h \
 includes/intihmcolor.h \
 includes/TextToPrint.h
 
-libwintools_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+
 lib_LTLIBRARIES = libwintools.la
 
 libwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 libwintools_la_DEPENDENCIES = \
-	$(top_builddir)/modules/core/libcore.la 
-
-#	$(top_builddir)/libs/blas/libblas.la \
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 
 libwintools_la_LIBADD = $(libwintools_la_DEPENDENCIES)

@@ -1,3 +1,9 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
+
 ARNOLDI_FORTRAN_SOURCES = src/arpack/dsconv.f \
 src/arpack/dsortc.f \
 src/arpack/dsaup2.f \
@@ -63,18 +69,17 @@ libarnoldi_la_includedir=$(includedir)/arnoldi
 
 libarnoldi_la_include_HEADERS = 
 
-libarnoldi_la_CFLAGS= 
+libarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libarnoldi.la
 
 libarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 libarnoldi_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/blas/libblas.la \
-$(top_builddir)/modules/core/libcore.la
+$(top_builddir)/libs/MALLOC/libmalloc.la
 
-# \
-#	$(top_builddir)/routines/console/libconsole.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
+# Cyclic deps
+#$(top_builddir)/modules/core/libcore.la
+
 
 libarnoldi_la_LIBADD = $(libarnoldi_la_DEPENDENCIES)
 

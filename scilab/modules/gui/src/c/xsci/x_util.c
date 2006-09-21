@@ -31,8 +31,8 @@
 #include "x_data.h"
 #include "x_error.h"
 #include "x_menu.h"
-#include "../stack-c.h"
-#include "../machine.h"
+#include "stack-c.h"
+#include "machine.h"
 #include "All-extern-x.h"
 
 #include <stdio.h>
@@ -266,9 +266,7 @@ register int amount;
  * All done within the scrolling region, of course.
  * Requires: amount > 0
  */
-void RevScroll(screen, amount)
-register TScreen *screen;
-register int amount;
+void RevScroll(register TScreen *screen, register int amount)
 {
 	register int i = screen->bot_marg - screen->top_marg + 1;
 	register int shift;

@@ -14,8 +14,6 @@ src/fortran/ddassl.f \
 src/fortran/order.f \
 src/fortran/epsalg.f \
 src/fortran/cfode.f \
-src/fortran/int3d.f \
-src/fortran/lsodar.f \
 src/fortran/rscma1.f \
 src/fortran/colnew.f \
 src/fortran/dcutet.f \
@@ -28,7 +26,6 @@ src/fortran/xerrwv.f \
 src/fortran/twodq.f \
 src/fortran/dqags.f \
 src/fortran/svcar1.f \
-src/fortran/intg.f \
 src/fortran/daux.f \
 src/fortran/dgbfa.f \
 src/fortran/rscom1.f \
@@ -41,7 +38,6 @@ src/fortran/rchek2.f \
 src/fortran/stode.f \
 src/fortran/vmnorm.f \
 src/fortran/prepj.f \
-src/fortran/int2d.f \
 src/fortran/lsdisc.f \
 src/fortran/fnorm.f \
 src/fortran/ddasrt.f \
@@ -53,7 +49,8 @@ src/fortran/roots2.f \
 src/fortran/prepji.f \
 src/fortran/svcma1.f 
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_int2d.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/sci_int2d.c \
 sci_gateway/c/sci_int3d.c \
 sci_gateway/c/sci_intg.c \
 sci_gateway/c/sci_ode.c \
@@ -66,13 +63,43 @@ sci_gateway/c/sci_bvode.c \
 sci_gateway/c/gw_differential_equations5.c \
 sci_gateway/c/gw_differential_equations6.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_dasrt.f \
+GATEWAY_FORTRAN_SOURCES = \
+sci_gateway/fortran/Ex-ode-more.f \
+sci_gateway/fortran/sci_dasrt.f \
 sci_gateway/fortran/sci_feval.f \
 sci_gateway/fortran/sci_odedc.f \
 sci_gateway/fortran/sci_bvode.f \
 sci_gateway/fortran/sci_impl.f \
 sci_gateway/fortran/sci_dassl.f \
-sci_gateway/fortran/sci_ode.f
+sci_gateway/fortran/sci_ode.f \
+sci_gateway/fortran/bsurf.f \
+sci_gateway/fortran/bsurfd.f \
+sci_gateway/fortran/bydot.f \
+sci_gateway/fortran/bydot2.f \
+sci_gateway/fortran/bresd.f \
+sci_gateway/fortran/bresid.f \
+sci_gateway/fortran/bjac.f \
+sci_gateway/fortran/bjacd.f \
+sci_gateway/fortran/badd.f \
+sci_gateway/fortran/bj2.f \
+sci_gateway/fortran/bfeval.f \
+sci_gateway/fortran/int2d.f \
+sci_gateway/fortran/bint2d.f \
+sci_gateway/fortran/bint3d.f \
+sci_gateway/fortran/bintg.f \
+sci_gateway/fortran/int3d.f \
+sci_gateway/fortran/intg.f \
+sci_gateway/fortran/Ex-odedc.f \
+sci_gateway/fortran/Ex-ode.f \
+sci_gateway/fortran/Ex-impl.f \
+sci_gateway/fortran/Ex-int2d.f \
+sci_gateway/fortran/Ex-int3d.f \
+sci_gateway/fortran/Ex-intg.f \
+sci_gateway/fortran/Ex-dasrt.f \
+sci_gateway/fortran/Ex-dassl.f \
+sci_gateway/fortran/Ex-bvode.f \
+sci_gateway/fortran/bbvode.f \
+sci_gateway/fortran/Ex-feval.f
 
 libdifferential_equations_la_includedir=$(includedir)/differential_equations
 
@@ -89,8 +116,6 @@ libdifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIF
 libdifferential_equations_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-#	
 
 
 

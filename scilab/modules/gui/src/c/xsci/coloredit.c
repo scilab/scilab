@@ -16,7 +16,7 @@
 #include <malloc.h>
 #endif
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern.h"
 #include "All-extern-x1.h" 
 

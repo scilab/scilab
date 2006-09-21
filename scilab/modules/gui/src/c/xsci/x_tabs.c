@@ -29,7 +29,7 @@
 
 #include "x_ptyxP.h"
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern-x.h"
 
 /*

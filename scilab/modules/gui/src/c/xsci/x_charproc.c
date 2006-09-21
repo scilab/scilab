@@ -31,7 +31,7 @@
 #define __STDC__ 1  
 #endif
 
-#include "../machine.h"
+#include "machine.h"
 #include "x_ptyxP.h"
 #include "x_VTparse.h"
 #include "x_data.h"
@@ -67,7 +67,7 @@
 
 
 #ifdef WITH_TK
-#include "../tclsci/TCL_Global.h"
+#include "TCL_Global.h"
 #endif
 
 

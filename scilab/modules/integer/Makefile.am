@@ -1,3 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 INTEGER_C_SOURCES = src/c/genconcatcol.c \
 src/c/genprod.c \
 src/c/genrdiv.c \
@@ -44,43 +49,43 @@ src/c/gencuprod.c \
 src/c/genbitops.c \
 src/c/genimpl.c
 
-INTEGER_FORTRAN_SOURCES = src/fortran/unarybit.f \
-src/fortran/i_mput.f \
-src/fortran/i_logic.f \
-src/fortran/i_a_i.f \
-src/fortran/i_b_i.f \
-src/fortran/i_c_i.f \
-src/fortran/i_d_i.f \
-src/fortran/i_mini.f \
-src/fortran/intinttype.f \
-src/fortran/i_f_i.f \
-src/fortran/i_maxi.f \
-src/fortran/i_matrix.f \
-src/fortran/i_i_i.f \
-src/fortran/i_l_i.f \
-src/fortran/i_m_i.f \
-src/fortran/intops.f \
-src/fortran/i_prod.f \
-src/fortran/i_convert.f \
-src/fortran/i_q_i.f \
-src/fortran/i_r_i.f \
-src/fortran/i_tril.f \
-src/fortran/i_s_i.f \
-src/fortran/i_x_i.f \
-src/fortran/uppertype.f \
-src/fortran/i_triu.f \
-src/fortran/i_e.f \
-src/fortran/memused.f \
-src/fortran/bitops.f \
-src/fortran/i_mget.f \
-src/fortran/i_p.f \
-src/fortran/i_t.f \
-src/fortran/i_sum.f \
-src/fortran/i_diag.f \
-src/fortran/i_abs.f \
-src/fortran/convert.f \
-src/fortran/i_cumprod.f \
-src/fortran/i_cumsum.f \
+INTEGER_FORTRAN_SOURCES = src/fortran/unarybit.f \
+src/fortran/i_mput.f \
+src/fortran/i_logic.f \
+src/fortran/i_a_i.f \
+src/fortran/i_b_i.f \
+src/fortran/i_c_i.f \
+src/fortran/i_d_i.f \
+src/fortran/i_mini.f \
+src/fortran/intinttype.f \
+src/fortran/i_f_i.f \
+src/fortran/i_maxi.f \
+src/fortran/i_matrix.f \
+src/fortran/i_i_i.f \
+src/fortran/i_l_i.f \
+src/fortran/i_m_i.f \
+src/fortran/intops.f \
+src/fortran/i_prod.f \
+src/fortran/i_convert.f \
+src/fortran/i_q_i.f \
+src/fortran/i_r_i.f \
+src/fortran/i_tril.f \
+src/fortran/i_s_i.f \
+src/fortran/i_x_i.f \
+src/fortran/uppertype.f \
+src/fortran/i_triu.f \
+src/fortran/i_e.f \
+src/fortran/memused.f \
+src/fortran/bitops.f \
+src/fortran/i_mget.f \
+src/fortran/i_p.f \
+src/fortran/i_t.f \
+src/fortran/i_sum.f \
+src/fortran/i_diag.f \
+src/fortran/i_abs.f \
+src/fortran/convert.f \
+src/fortran/i_cumprod.f \
+src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
@@ -123,12 +128,8 @@ libinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWA
 
 libinteger_la_DEPENDENCIES = \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/core/libcore.la 
-
-#\
-#	$(top_builddir)/libs/blas/libblas.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/fileio/libfileio.la 
 
 
 libinteger_la_LIBADD = $(libinteger_la_DEPENDENCIES)

@@ -29,7 +29,7 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include "../machine.h"
+#include "machine.h"
 #include <stdio.h>
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>	/* Get standard string definations. */

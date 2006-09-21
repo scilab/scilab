@@ -6,14 +6,24 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_show_window.h"
+#ifdef _MSC_VER
 #include "../src/c/wsci/wtext.h"
 #include "../src/c/wsci/WinConsole.h"
 #include "../src/c/wsci/TextWindows.h"
+#else
+#include "../src/c/xsci/x_ptyxP.h"
+#include "../src/c/xsci/x_data.h"
+#include "../src/c/xsci/x_error.h"
+#include "../src/c/xsci/x_menu.h"
+#include "machine.h"
+#include "../src/c/xsci/All-extern-x.h"
+#endif
 #include "../../graphics/includes/WindowList.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_show_window( char * fname, unsigned long fname_len )
 {
+#ifdef _MSC_VER
   static int l1, m1, n1;	
   if (IsWindowInterface())
   {
@@ -71,5 +81,13 @@ int sci_show_window( char * fname, unsigned long fname_len )
   }
   C2F(putlhsvar)();
   return 0;
+#else
+  Scierror(999,"\nNot yet implemented. \n");	
+  return 0;
+
+
+#endif
+
+
 }
 /*-----------------------------------------------------------------------------------*/

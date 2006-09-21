@@ -44,7 +44,7 @@
 #include "x_error.h"
 #include "x_menu.h"
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern-x.h"
 
 /* Event handlers */

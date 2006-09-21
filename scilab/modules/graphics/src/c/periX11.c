@@ -23,8 +23,14 @@
 #include <X11/StringDefs.h>
 #include <X11/Shell.h>
 
-#include "../sci_mem_alloc.h"
-#include "Math.h"
+#ifndef _MSC_VER
+#include "machine.h"
+#include "version.h"
+#include "math_graphics.h"
+#endif
+
+#include "sci_mem_alloc.h"
+#include "math.h"
 #include "periX11.h"
 #include "color.h"
 #include "bcg.h"
@@ -91,7 +97,9 @@ void C2F(set_cX11)(integer i);
 void C2F(idfromnameX11) (char *name1, integer *num);
 void C2F(getdashX11)(integer *verbose, integer *value, integer *narg, double *dummy);
 
-BOOL IsTKGraphicalMode(void);
+BOOL IsTKGraphicalMode(void){
+	return TRUE;
+}
 
 /** Global variables to deal with X11 **/
 
@@ -3605,15 +3613,15 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
 
     /* TKmainWindow est initialise dans tclsci.c  Tk_CreateMainWindow */
     if (TKmainWindow != (Tk_Window)0) {
-      win = Tk_NameToWindow(TCLinterp, string, (Tk_Window) TKmainWindow);
-      if (win != (Tk_Window)0) {
-	ScilabXgc->CWindow=Tk_WindowId(win);
-	ScilabXgc->CBGWindow=(Window)0;
-	ScilabXgc->popup=(Widget)0;
-
-	/*	Tk_CreateEventHandler(win, ExposureMask, (Tk_EventProc *) redrawProc,NULL);*/
-
-      }
+		win = Tk_NameToWindow(TCLinterp, string, (Tk_Window) TKmainWindow);
+		if (win != (Tk_Window)0) {
+			ScilabXgc->CWindow=Tk_WindowId(win);
+			ScilabXgc->CBGWindow=(Window)0;
+			ScilabXgc->popup=(Widget)0;
+			
+			/*	Tk_CreateEventHandler(win, ExposureMask, (Tk_EventProc *) redrawProc,NULL);*/
+			
+		}
     }
   }
   else

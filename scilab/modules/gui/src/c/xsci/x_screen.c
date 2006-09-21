@@ -35,7 +35,7 @@
 #include "x_error.h"
 #include "x_data.h"
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern-x.h"
 #include "All-extern.h"
 

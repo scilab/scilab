@@ -7,7 +7,7 @@ BOOLEAN_C_SOURCES = src/c/matboolean.c \
 src/c/vect_or.c \
 src/c/vect_and.c
 
-BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f \
+BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f \
 src/fortran/find.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_and.c \

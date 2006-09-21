@@ -5,12 +5,12 @@
 #ifndef __LOCALIZATION_H__
 #define __LOCALIZATION_H__
 /*-----------------------------------------------------------------------------------*/ 
-#include "xmlreader.h"
+#include "libxml/xmlreader.h"
 #include <string.h>
 #include <iconv.h>
 #include "hashtable_localization.h"
 /*-----------------------------------------------------------------------------------*/ 
-#if _MSC_VER
+#ifdef _MSC_VER
 	#ifdef EXPORT_LOCALIZATION_DLL
 		#define IMPORT_EXPORT_LOCALIZATION_DLL __declspec(dllexport)
 	#else

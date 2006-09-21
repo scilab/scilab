@@ -1,3 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 TIME_C_SOURCES = src/realtime.c \
 src/timer.c \
 src/getdate.c
@@ -20,8 +25,8 @@ includes/sci_calendar.h \
 includes/sci_xpause.h \
 includes/sci_sleep.h
 
-libtime_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libtime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+
 lib_LTLIBRARIES = libtime.la
 
 libtime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -30,9 +35,6 @@ libtime_la_DEPENDENCIES = \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-
-
 
 libtime_la_LIBADD = $(libtime_la_DEPENDENCIES)
 

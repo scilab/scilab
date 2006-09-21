@@ -203,7 +203,7 @@ includes/gw_cscicos.h \
 includes/scicos.h
 
 
-libscicos_la_CFLAGS=  -Iincludes/ 
+libscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 #-Isrc/c/
 lib_LTLIBRARIES = libscicos.la
 
@@ -213,12 +213,6 @@ libscicos_la_DEPENDENCIES = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-#	$(top_builddir)/modules/core/libcore.la 
-
-
-#\
-#	$(top_builddir)/libs/blas/libblas.la
-
 
 
 libscicos_la_LIBADD = $(libscicos_la_DEPENDENCIES)

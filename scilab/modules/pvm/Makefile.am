@@ -2,6 +2,7 @@
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 
 ##########
+
 if PVM
 PVM_C_SOURCES = src/pvm_proc_ctrl.c \
 src/sci_tools.c \
@@ -84,19 +85,16 @@ includes/sci_pvm_send_var.h \
 includes/sci_pvm_config.h \
 includes/sci_pvm_recv_var.h
 
-libscipvm_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+
 lib_LTLIBRARIES = libscipvm.la
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libscipvm_la_DEPENDENCIES = \
-	$(top_builddir)/libs/module/libcore.la 
-# 
-#\
-#	$(top_builddir)/libs/blas/libblas.la \
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/libs/MALLOC/libmalloc.la
+
 libscipvm_la_LDFLAGS = $(PVM_LIB)
 
 

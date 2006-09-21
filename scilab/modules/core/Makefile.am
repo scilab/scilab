@@ -3,7 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
-CORE_C_SOURCES = src/c/history.c \
+CORE_C_SOURCES = \
+src/c/history.c \
 src/c/inffic.c \
 src/c/cs2st.c \
 src/c/tmpdir.c \
@@ -334,7 +335,7 @@ CORE_C_SOURCES+=src/c/getarg.c
 endif
 
 libcore_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
-
+libcore_la_LDFLAGS = 
 lib_LTLIBRARIES = libcore.la
 
 libcore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -343,10 +344,9 @@ libcore_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
+	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-
 
 libcore_la_LIBADD = $(libcore_la_DEPENDENCIES)
 

@@ -121,20 +121,22 @@ extern int   Calelm_contents __PARAMS((int));
 extern int   Sun_contents __PARAMS((int));
 extern int   System2_contents __PARAMS((int));
 extern int   System_contents __PARAMS((int));
-extern int  Intersci_contents __PARAMS((int));
-extern int  Sparse_contents __PARAMS((int));
+extern int   Intersci_contents __PARAMS((int));
+extern int   Sparse_contents __PARAMS((int));
 
 #ifndef _MSC_VER
 int ForceLink(void)
 {
-  Blas_contents(0);
+	/*  
+		commented for test purpose by Sylvestre (no sure it is mandatory
+Blas_contents(0);
   Lapack_contents(0);
   Calelm_contents(0);
   Sun_contents(0);
   System2_contents(0);
   System_contents(0);
   Intersci_contents(0);
-  Sparse_contents(0);
+  Sparse_contents(0);*/
   return 0;
 }
 #endif

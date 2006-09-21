@@ -74,7 +74,7 @@
 #endif
 #endif
 
-#include "../machine.h"
+#include "machine.h"
 #include "defs.h"
 
 #include "All-extern.h"

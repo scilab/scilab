@@ -44,7 +44,7 @@
 #include "x_ptyx.h"
 #include "x_data.h"
 #include "global.h"
-#include "../version.h"
+#include "version.h"
 
 extern Widget realToplevel;
 

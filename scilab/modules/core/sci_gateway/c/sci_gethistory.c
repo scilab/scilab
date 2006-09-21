@@ -2,6 +2,7 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+
 #include "history.h"
 #include "machine.h"
 #include "stack-c.h"

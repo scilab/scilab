@@ -21,7 +21,7 @@ static  Widget	msg_form, msg_panel, name_panel;
 #include "wf_w_util.h"
 #include "wf_w_setup.h"
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern.h"
 
 

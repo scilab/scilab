@@ -23,19 +23,15 @@ includes/sci_savewave.h \
 includes/sci_loadwave.h \
 includes/gw_sound.h
 
-libsound_la_CFLAGS=  -Iincludes/ -Isrc/
+libsound_la_CFLAGS=  -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 lib_LTLIBRARIES = libsound.la
 
 libsound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libsound_la_DEPENDENCIES = \
+	$(top_builddir)/libs/MALLOC/libmalloc.la \
 	$(top_builddir)/modules/core/libcore.la
-
-#	$(top_builddir)/libs/blas/libblas.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-
 
 libsound_la_LIBADD = $(libsound_la_DEPENDENCIES)
 

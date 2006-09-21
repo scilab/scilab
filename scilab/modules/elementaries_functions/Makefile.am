@@ -1,3 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
 src/c/finite.c \
 src/c/vfinite.c \
@@ -350,8 +355,8 @@ includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 
 libelementaries_functions_la_FFLAGS= -Iincludes/ 
-libelementaries_functions_la_CFLAGS= -Iincludes/ 
-#-Isrc/c/
+libelementaries_functions_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+
 lib_LTLIBRARIES = libelementaries_functions.la
 
 libelementaries_functions_la_SOURCES = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -359,15 +364,6 @@ libelementaries_functions_la_SOURCES = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELE
 libelementaries_functions_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-# \
-#	$(top_builddir)/modules/polynomials/libpolynomials.la 
-
-
-# \
-#	$(top_builddir)/routines/console/libconsole.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
 
 libelementaries_functions_la_LIBADD = $(libelementaries_functions_la_DEPENDENCIES)
 

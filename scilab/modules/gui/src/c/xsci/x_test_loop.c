@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../machine.h"
+#include "machine.h"
 #include "../menusX/men_scilab.h" 
 #include "All-extern-x1.h" 
 #include "All-extern.h" 

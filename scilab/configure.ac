@@ -952,7 +952,6 @@ if test "$with_gtk" = yes; then
     # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
     # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
     HTMLFLAGS='`gnome-config --cflags gnome`'
-  fi
   # try to use readline with the gtk version 
   ac_save_LIBS="$LIBS"
   LIBS="$TERMCAPLIB  $LIBS"
@@ -981,6 +980,7 @@ if test "$with_gtk" = yes; then
     if test "$TCL_INC_PATH" = '-I/usr/include' ; then
         TCL_INC_PATH=
     fi
+  fi
 fi
 
 
@@ -1169,7 +1169,32 @@ LT_INIT
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
+#######################
+## Test for libxml
+#######################
 
+AC_MSG_CHECKING([for libxml2])
+AC_ARG_WITH(libxml2,[  --with-libxml2=PREFIX    set the path to your libxml2 installation])
+if test "x$with_libxml" != "x"; then
+   AC_MSG_CHECKING([for xml-config])
+   XML2_CONFIG="$with_libxml2/bin/xml2-config"
+        if test -x "$XML_CONFIG"
+        then
+                AC_MSG_RESULT([$XML_CONFIG])
+        else
+                AC_MSG_ERROR([Unable to find xml2-config. Please check the path ($with libxml2) you provided])
+		fi
+else
+		AC_CHECK_PROGS(XML_CONFIG,xml2-config,no)
+		if test "x$XML_CONFIG" = "xno"; then
+				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check  your installation of libxml2])
+		fi
+fi
+XML_FLAGS=`$XML_CONFIG --cflags`
+XML_LIBS=`$XML_CONFIG --libs`
+echo $XML_CONFIG --cflags
+
+		
 #################
 ## Man management
 #################
@@ -1184,7 +1209,7 @@ AC_ARG_WITH(xsltproc,
 
 		  AC_CHECK_PROG(WITH_XSLTPROC,xsltproc,yes,no)
 
-		  if test "$WITH_XSLTPROC" = yes; then
+		  if test "x$WITH_XSLTPROC" = "xyes"; then
 			MANTARGET=man
 			MANGENERATOR=xsltproc
 		  fi
@@ -1196,7 +1221,7 @@ AC_ARG_WITH(sablotron,
 	      [  --with-sablotron compile man pages with sablotron], 
 	      [
 		  	AC_CHECK_PROG(WITH_SABLOTRON,sabcmd,yes,no)
-			if test "$WITH_SABLOTRON" = yes; then
+			if test "x$WITH_SABLOTRON" = "xyes"; then
 		  		MANTARGET=man
 				MANGENERATOR=sabcmd
 			fi
@@ -1365,6 +1390,9 @@ AC_SUBST(WHICH_BLAS)
 AC_SUBST(ATLAS_DIR)
 AC_SUBST(IN_ATLAS)
 
+AC_SUBST(XML_FLAGS)
+AC_SUBST(XML_LIBS)
+
 AC_SUBST(MANTARGET)
 # for Makemex
 
@@ -1417,6 +1445,7 @@ AC_CONFIG_FILES([
 libs/lapack/Makefile
 libs/blas/Makefile
 libs/MALLOC/Makefile
+libs/hashtable/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
@@ -1563,6 +1592,8 @@ echo "  LIBS             = $LIBS"
 echo "  FC               = $FC"
 echo "  FFLAGS           = $FFLAGS"
 echo "  FC_LDFLAGS       = $FC_LDFLAGS"
+echo "  XML_FLAGS        = $XML_FLAGS"
+echo "  XML_LIBS         = $XML_LIBS"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"

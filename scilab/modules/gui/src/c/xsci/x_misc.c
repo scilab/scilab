@@ -26,7 +26,7 @@
  */
 
 #include "x_ptyxP.h"	/* X headers included here. */
-#include "../machine.h"
+#include "machine.h"
 
 #include <X11/Xos.h>
 #include <stdio.h>

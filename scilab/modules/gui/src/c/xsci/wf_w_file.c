@@ -30,9 +30,9 @@ char     cur_filename[FSIZE];
 #include <malloc.h>
 #endif 
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern.h"
-#include "../menusX/men_scilab.h"
+#include "men_scilab.h"
 
 extern Boolean	file_msg_is_popped;
 extern Widget	file_msg_popup;

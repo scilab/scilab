@@ -3,7 +3,7 @@
 #include "wf_figx.h"
 #include "wf_resources.h"
 
-#include "../machine.h"
+#include "machine.h"
 #include "All-extern.h"
 
 Display	       *tool_d;

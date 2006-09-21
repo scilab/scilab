@@ -70,7 +70,7 @@ includes/Warnings.h \
 includes/sci_TCL_GetVar.h
 
 
-libtclsci_la_CFLAGS=  -Iincludes/ $(TCL_INC_PATH) $(TK_INC_PATH)
+libtclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
 libtclsci_la_LDFLAGS= $(TCLTK_LIBS)
 lib_LTLIBRARIES = libtclsci.la
 
@@ -78,13 +78,8 @@ libtclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 libtclsci_la_DEPENDENCIES = 
 	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/core/libcore.la 
-
-#\
-#	$(top_builddir)/libs/blas/libblas.la \
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 
 libtclsci_la_LIBADD = $(libtclsci_la_DEPENDENCIES)

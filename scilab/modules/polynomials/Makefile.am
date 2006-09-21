@@ -1,3 +1,7 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
 
 POLYNOMIALS_FORTRAN_SOURCES = src/fortran/residu.f \
 src/fortran/imptra.f \
@@ -112,9 +116,9 @@ lib_LTLIBRARIES = libpolynomials.la
 
 libpolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libpolynomials_la_DEPENDENCIES = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
-# Cyclic dep
+libpolynomials_la_DEPENDENCIES =
+# Cyclic dependencies : 
+#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 #	$(top_builddir)/modules/core/libcore.la 
 
 libpolynomials_la_LIBADD = $(libpolynomials_la_DEPENDENCIES)
