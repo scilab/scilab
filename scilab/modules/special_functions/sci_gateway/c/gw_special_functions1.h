@@ -14,7 +14,7 @@
 
 #include "machine.h"
 #include "stack-c.h"
-
+#include "core_math.h"
 
 typedef int (*Special_Functions_Interf) __PARAMS((char *fname,unsigned long l));
 

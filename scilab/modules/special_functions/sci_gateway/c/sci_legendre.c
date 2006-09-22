@@ -90,7 +90,7 @@ int sci_legendre(char *fname,unsigned long fname_len)
   else
     normalised = 0;
   
-  MNp1 = max (n2 - n1, m2 - m1) + 1;
+  MNp1 = Max (n2 - n1, m2 - m1) + 1;
 
   CreateVar(Rhs+1, "d", &MNp1, &mnx, &lpqa); pqa = stk(lpqa);
   CreateVar(Rhs+2, "i", &MNp1, &mnx, &lipqa); ipqa = istk(lipqa);
