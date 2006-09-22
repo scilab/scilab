@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "math.h"
+#include "core_math.h"
 
 #if defined(THINK_C)
 #define Widget int

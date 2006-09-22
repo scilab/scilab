@@ -66,6 +66,7 @@ static char Sci_Prompt[10];
 #include <stdio.h>
 #include <ctype.h>
 #include "machine.h"
+#include "core_math.h"
 
 #ifndef HAVE_TERMCAP
 #undef TERMCAP
@@ -603,7 +604,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	    PutChar(keystroke);
 	    if(cursor < WK_BUF_SIZE - 1) {
 	      cursor++;
-	      cursor_max = MAX(cursor_max, cursor);
+	      cursor_max = Max(cursor_max, cursor);
 	    }
 	    else {
 	      backspace(1);
@@ -822,7 +823,7 @@ static int CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max)
       display_string(wk_buf);/* copy to screen */
       *cursor = strlen(wk_buf);/* cursor set at end of line */
       /* erase extra characters left over if any */
-      erase_nchar(MAX(0, *cursor_max - *cursor));
+      erase_nchar(Max(0, *cursor_max - *cursor));
       *cursor_max = *cursor;
       return 1;
     }

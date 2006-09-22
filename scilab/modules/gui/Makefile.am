@@ -3,57 +3,6 @@
 ### INRIA - Scilab 2006 
 ##########
 
-
-
-#noinst_LTLIBRARIES = libxmu.la 
-ploop = src/c/X11/Xmu/EditresCom.c \
-src/c/X11/Xmu/DelCmap.c \
-src/c/X11/Xmu/LookupCmap.c \
-src/c/X11/Xmu/LocBitmap.c \
-src/c/X11/Xmu/GetHost.c \
-src/c/X11/Xmu/StrToOrnt.c \
-src/c/X11/Xmu/StrToShap.c \
-src/c/X11/Xmu/Clip.c \
-src/c/X11/Xmu/DrRndRect.c \
-src/c/X11/Xmu/Lower.c \
-src/c/X11/Xmu/Initer.c \
-src/c/X11/Xmu/CrPixFBit.c \
-src/c/X11/Xmu/StrToGrav.c \
-src/c/X11/Xmu/sharedlib.c \
-src/c/X11/Xmu/Xct.c \
-src/c/X11/Xmu/UpdMapHint.c \
-src/c/X11/Xmu/AllCmap.c \
-src/c/X11/Xmu/GrayPixmap.c \
-src/c/X11/Xmu/Atoms.c \
-src/c/X11/Xmu/StdCmap.c \
-src/c/X11/Xmu/CmapAlloc.c \
-src/c/X11/Xmu/snprintf.c \
-src/c/X11/Xmu/StrToCurs.c \
-src/c/X11/Xmu/Lookup.c \
-src/c/X11/Xmu/CvtStdSel.c \
-src/c/X11/Xmu/DefErrMsg.c \
-src/c/X11/Xmu/CvtCache.c \
-src/c/X11/Xmu/StrToJust.c \
-src/c/X11/Xmu/CloseHook.c \
-src/c/X11/Xmu/ScrOfWin.c \
-src/c/X11/Xmu/StrToLong.c \
-src/c/X11/Xmu/ClientWin.c \
-src/c/X11/Xmu/StrToBS.c \
-src/c/X11/Xmu/VisCmap.c \
-src/c/X11/Xmu/CrCmap.c \
-src/c/X11/Xmu/RdBitF.c \
-src/c/X11/Xmu/StrToBmap.c \
-src/c/X11/Xmu/ShapeWidg.c \
-src/c/X11/Xmu/FToCback.c \
-src/c/X11/Xmu/CursorName.c \
-src/c/X11/Xmu/DrawLogo.c \
-src/c/X11/Xmu/ExtAgent.c \
-src/c/X11/Xmu/DisplayQue.c \
-src/c/X11/Xmu/Distinct.c \
-src/c/X11/Xmu/StrToWidg.c \
-src/c/X11/Xmu/WidgetNode.c
-
-
 GUI_C_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c \
 src/c/xsci/wf_w_util.c \
 src/c/xsci/utils.c \
@@ -143,7 +92,7 @@ includes/sci_show_window.h
 
 libgui_la_CFLAGS=  -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 
-libgui_la_LDFLAGS = $(X_LIBS)
+libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 
 lib_LTLIBRARIES = libgui.la
 

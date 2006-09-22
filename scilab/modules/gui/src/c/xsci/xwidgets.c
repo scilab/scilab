@@ -32,7 +32,7 @@ typedef  struct  {
   char *name;
   void  (*fonc)();} TestOpTab ;
 
-extern TestOpTab GraphicTestTab[];
+TestOpTab GraphicTestTab[];
 
 extern XtAppContext app_con;
 
