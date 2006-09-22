@@ -7,6 +7,7 @@
 
 #include "machine.h"
 #include "stack-c.h"
+#include "core_math.h"
 /*-----------------------------------------------------------------------------------*/
 #define ISTK ((integer *)&C2F(stack))
 /*-----------------------------------------------------------------------------------*/
@@ -149,8 +150,8 @@ int C2F(matlog)()
 			}
 		}
 		ISTK[il1 - 1] = 4;
-		ISTK[il1] = max(m1,m2);
-		ISTK[il1 + 1] = max(n1,n2);
+		ISTK[il1] = Max(m1,m2);
+		ISTK[il1 + 1] = Max(n1,n2);
 
 		C2F(vstk).lstk[C2F(vstk).top] = (il1 + 3 + mn1) / 2 + 1;
 		return 0;

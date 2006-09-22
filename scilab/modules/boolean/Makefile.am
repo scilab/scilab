@@ -22,7 +22,7 @@ libboolean_la_includedir=$(includedir)/boolean
 libboolean_la_include_HEADERS = includes/gw_boolean.h
 
 libboolean_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+
 lib_LTLIBRARIES = libboolean.la
 
 libboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -31,8 +31,6 @@ libboolean_la_DEPENDENCIES = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-
 
 libboolean_la_LIBADD = $(libboolean_la_DEPENDENCIES)
 
