@@ -204,7 +204,7 @@ includes/scicos.h
 
 
 libscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-#-Isrc/c/
+libscicos_la_LDFLAGS = -lf2c
 lib_LTLIBRARIES = libscicos.la
 
 libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -212,6 +212,11 @@ libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C
 libscicos_la_DEPENDENCIES = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/time/libtime.la \
+	$(top_builddir)/modules/gui/libgui.la \
+	$(top_builddir)/modules/fileio/libfileio.la \
+	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 

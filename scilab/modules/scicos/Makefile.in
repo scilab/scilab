@@ -70,6 +70,11 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/time/libtime.la \
+	$(top_builddir)/modules/gui/libgui.la \
+	$(top_builddir)/modules/fileio/libfileio.la \
+	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libscicos_la-cstblk4.lo libscicos_la-readau.lo \
 	libscicos_la-variable_delay.lo libscicos_la-scicos_malloc.lo \
@@ -262,7 +267,6 @@ LIBTOOL = @LIBTOOL@
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
-MAIN = @MAIN@
 MAKEINFO = @MAKEINFO@
 MALLOC = @MALLOC@
 MANGENERATOR = @MANGENERATOR@
@@ -310,7 +314,7 @@ TCLSCILIB = @TCLSCILIB@
 TCLTKHELP = @TCLTKHELP@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAPLIB = @TERMCAPLIB@
+TERMCAP_LIB = @TERMCAP_LIB@
 TERM_VTE_FALSE = @TERM_VTE_FALSE@
 TERM_VTE_TRUE = @TERM_VTE_TRUE@
 TERM_ZTERM_FALSE = @TERM_ZTERM_FALSE@
@@ -594,12 +598,17 @@ includes/gw_cscicos.h \
 includes/scicos.h
 
 libscicos_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-#-Isrc/c/
+libscicos_la_LDFLAGS = -lf2c
 lib_LTLIBRARIES = libscicos.la
 libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicos_la_DEPENDENCIES = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
+	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/time/libtime.la \
+	$(top_builddir)/modules/gui/libgui.la \
+	$(top_builddir)/modules/fileio/libfileio.la \
+	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libscicos_la_LIBADD = $(libscicos_la_DEPENDENCIES)
