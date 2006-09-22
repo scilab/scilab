@@ -78,6 +78,12 @@ int sciReturnHandle( long handle ) ;
 int sciReturnRowHandleVector( const long handles[], int nbValues ) ;
 
 /**
+* copy an handle array into a col vector in the scilab stack in order to see it the console.
+* @return 0 if the function was executed correctly, -1 if an error occured.
+*/
+int sciReturnColHandleVector( const long handles[], int nbValues ) ;
+
+/**
  * copy a matrix stored has a double array
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.

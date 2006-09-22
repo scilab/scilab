@@ -42,7 +42,7 @@ int get_children_property( sciPointObj * pobj )
       index++ ;
       curSon = sciGetNextAccessibleSon( curSon ) ;
     }
-    status = sciReturnRowHandleVector( children, nbChildren ) ;
+    status = sciReturnColHandleVector( children, nbChildren ) ;
 
     FREE( children ) ;
 

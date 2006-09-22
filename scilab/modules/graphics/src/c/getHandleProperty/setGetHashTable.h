@@ -1,0 +1,60 @@
+/*------------------------------------------------------------------------*/
+/* file: setGetHashTable.h                                                */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : define two hash table to be used in sci_set and sci_get         */
+/*        These hash table are based on the Scilab hashTable              */
+/*------------------------------------------------------------------------*/
+
+#ifndef _SET_GET_HASHTABLE_H_
+#define _SET_GET_HASHTABLE_H_
+
+#include "hashtable.h"
+#include "ObjectStructure.h"
+
+/*-----------------------------------------------------------------------------------*/ 
+/**
+ * Hide the real type of hashtable
+ */
+typedef struct hashtable GetPropertyHashTable ;
+
+/**
+* Hide the real type of hashtable
+*/
+typedef struct hashtable SetPropertyHashTable ;
+/*-----------------------------------------------------------------------------------*/ 
+
+/*-----------------------------------------------------------------------------------*/ 
+/**
+ * Prototype of functions used to get a specific property of an handle.
+ * The sciPointObj is the object to get the property from
+ * The return value is 0 if the call was successful and -1 otherwise.
+ */
+typedef int (*getPropertyFunc)(sciPointObj *) ;
+/*-----------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
+/**
+ * Create a new hashTable of get functions
+ * Use singleton pattern. Only one hashTable is created
+ */
+GetPropertyHashTable * createGetHashTable( void ) ;
+
+/**
+ * destroy the hashtable and free the used resources.
+ */
+void destroyGetHashTable( GetPropertyHashTable * hashTable ) ;
+
+/**
+ * Search for a key in a hashtable. if succeed, return the value needed. if failed, return NULL
+ * @return The corresponding value if the key was found, NULL otherwise.
+ */
+getPropertyFunc searchGetHashtable( GetPropertyHashTable * hashTable , char * key ) ;
+
+/*
+ * Insert a new element in the hashtable
+ */
+int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropertyFunc value ) ;
+
+/*-----------------------------------------------------------------------------------*/ 
+#endif /* _SET_GET_HASHTABLE_H_ */

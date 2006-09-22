@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable"
 				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -573,6 +573,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_segs_color_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_sub_tics_property.c"
 				>
 			</File>
@@ -718,6 +722,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\GetCommandArg.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\GetHashTable.c"
 				>
 			</File>
 			<File
@@ -1210,6 +1218,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\setGetHashTable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\SetProperty.c"
 				>
 			</File>
@@ -1304,6 +1316,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\getHandleProperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\GetHashTable.h"
 				>
 			</File>
 			<File
@@ -1772,6 +1788,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sciMatrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\setGetHashTable.h"
 				>
 			</File>
 			<File

@@ -20,7 +20,7 @@ int get_sub_tics_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) == SCI_AXES )
   {
-    sciReturnDouble( pAXES_FEATURE (pobj)->subint ) ;
+    return sciReturnDouble( pAXES_FEATURE(pobj)->subint ) ;
   }
   else if ( sciGetEntityType (pobj) == SCI_SUBWIN )
   {

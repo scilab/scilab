@@ -131,6 +131,19 @@ int sciReturnRowHandleVector( const long handles[], int nbValues )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
+int sciReturnColHandleVector( const long handles[], int nbValues )
+{
+  int numCol   = 1 ;
+  int outIndex = 0 ;
+  int i ;
+  CreateVar( Rhs+1, "h", &nbValues, &numCol, &outIndex ) ;
+  for ( i = 0 ; i < nbValues ; i++ )
+  {
+    hstk(outIndex)[i] = handles[i] ;
+  }
+  return 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
 int sciReturnMatrix( const double values[], int nbRow, int nbCol )
 {
   int outIndex = 0 ;

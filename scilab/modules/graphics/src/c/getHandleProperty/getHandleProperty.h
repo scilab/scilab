@@ -114,6 +114,7 @@ int get_hidden_color_property(        sciPointObj * pobj ) ;
 int get_isoview_property(             sciPointObj * pobj ) ;
 int get_cube_scaling_property(        sciPointObj * pobj ) ;
 int get_arrow_size_property(          sciPointObj * pobj ) ;
+int get_segs_color_property(          sciPointObj * pobj ) ;
 int get_colored_property(             sciPointObj * pobj ) ;
 int get_data_mapping_property(        sciPointObj * pobj ) ;
 int get_rotation_angles_property(     sciPointObj * pobj ) ;
