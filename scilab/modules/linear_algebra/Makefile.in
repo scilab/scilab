@@ -14,6 +14,11 @@
 
 @SET_MAKE@
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
@@ -96,7 +101,9 @@ am__objects_2 = liblinear_algebra_la-sci_backslash.lo \
 	liblinear_algebra_la-sci_inv.lo \
 	liblinear_algebra_la-sci_svd.lo \
 	liblinear_algebra_la-sci_lsq.lo
-am_liblinear_algebra_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am__objects_3 = Ex-schur.lo bschur.lo
+am_liblinear_algebra_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 liblinear_algebra_la_OBJECTS = $(am_liblinear_algebra_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -219,7 +226,6 @@ LIBTOOL = @LIBTOOL@
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
-MAIN = @MAIN@
 MAKEINFO = @MAKEINFO@
 MALLOC = @MALLOC@
 MANGENERATOR = @MANGENERATOR@
@@ -429,22 +435,20 @@ sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c
 
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
+sci_gateway/fortran/bschur.f
+
 liblinear_algebra_la_includedir = $(includedir)/linear_algebra
 liblinear_algebra_la_include_HEADERS = includes/gw_linear_algebra2.h  \
 	includes/gw_linear_algebra.h
 
 liblinear_algebra_la_CFLAGS = -Iincludes/ 
-#-Isrc/c/
 lib_LTLIBRARIES = liblinear_algebra.la
-liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 liblinear_algebra_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/blas/libblas.la \
 $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 
-# \
-#	$(top_builddir)/routines/console/libconsole.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
 liblinear_algebra_la_LIBADD = $(liblinear_algebra_la_DEPENDENCIES)
 liblinear_algebra_la_PKGCONFIG = linear_algebra.pc
 all: all-am
@@ -856,6 +860,12 @@ intzschur.lo: src/fortran/intzschur.f
 
 intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intzgeqpf3.lo `test -f 'src/fortran/intzgeqpf3.f' || echo '$(srcdir)/'`src/fortran/intzgeqpf3.f
+
+Ex-schur.lo: sci_gateway/fortran/Ex-schur.f
+	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'sci_gateway/fortran/Ex-schur.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-schur.f
+
+bschur.lo: sci_gateway/fortran/bschur.f
+	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bschur.lo `test -f 'sci_gateway/fortran/bschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/bschur.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -1,3 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
 src/fortran/intzheev.f \
@@ -75,6 +80,9 @@ sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c
 
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/Ex-schur.f \
+sci_gateway/fortran/bschur.f
+
 liblinear_algebra_la_includedir=$(includedir)/linear_algebra
 
 liblinear_algebra_la_include_HEADERS = includes/gw_linear_algebra2.h  \
@@ -82,18 +90,14 @@ liblinear_algebra_la_include_HEADERS = includes/gw_linear_algebra2.h  \
 
 
 liblinear_algebra_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+
 lib_LTLIBRARIES = liblinear_algebra.la
 
-liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 liblinear_algebra_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/blas/libblas.la \
 $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
-# \
-#	$(top_builddir)/routines/console/libconsole.la 
-#	$(top_builddir)/routines/interf/libinterf.la \ => interf depends of everything 
-#	$(top_builddir)/routines/xsci/libxsci.la \ => causes a crappy cyclic dep
 
 liblinear_algebra_la_LIBADD = $(liblinear_algebra_la_DEPENDENCIES)
 
