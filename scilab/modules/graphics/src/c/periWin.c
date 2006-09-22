@@ -1244,7 +1244,7 @@ void C2F(setcurwin)(intnum, v2, v3, v4)
 /*-----------------------------------------------------------------------------------*/
 /* used in the previous function to set back the graphic scales 
    when changing form one window to an other 
-   Also used in scig_tops : to force a reset of scilab graphic scales 
+   Also used in scig_toPs : to force a reset of scilab graphic scales 
    after a print in Postscript or Xfig 
 */
 int SwitchWindow(integer *intnum)

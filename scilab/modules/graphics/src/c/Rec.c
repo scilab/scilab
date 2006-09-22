@@ -814,7 +814,7 @@ void StoreXgc(integer winnumber)
   C2F(dr)("xget","use color",&verbose,&col,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   /**  It seams not a good idea to send back use color on the recorded  commands 
-    see Actions.c (scig_tops) 
+    see Actions.c (scig_toPs) 
     C2F(dr1)("xset","use color",&col,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   **/
 
