@@ -127,11 +127,13 @@ src/c/getHandleProperty/get_cdata_mapping_property.c \
 src/c/getHandleProperty/get_colored_property.c \
 src/c/getHandleProperty/get_triangles_property.c \
 src/c/getHandleProperty/returnPropertyList.c \
-src/c/getHandleProperty/get_ticks_utils.h \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
 src/c/getHandleProperty/get_x_ticks_property.c \
 src/c/getHandleProperty/get_ticks_utils.c \
+src/c/getHandleProperty/setGetHashTable.c \
+src/c/getHandleProperty/get_segs_color_property.c \
+src/c/getHandleProperty/GetHashTable.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/graphicSession.c \
@@ -293,7 +295,7 @@ libgraphics_la_includedir=$(includedir)/graphics
 
 libgraphics_la_include_HEADERS = includes/gw_graphics.h
 
-libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/
+libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
 libgraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 #-Isrc/c/
