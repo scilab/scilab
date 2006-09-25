@@ -765,7 +765,7 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 ## termcap library
 ##################
 
-TERMCAPLIB=no
+TERMCAP_LIB=no
 AC_CHECK_LIB(ncurses,main,[TERMCAP_LIB=-lncurses])
 if test "$TERMCAPLIB" = no; then
   AC_CHECK_LIB(curses,main,[TERMCAP_LIB=-lcurses])
@@ -776,7 +776,7 @@ fi
 if test "$TERMCAPLIB" = no; then
   AC_CHECK_LIB(termlib,main,[TERMCAP_LIB=-ltermlib])
 fi
-if test "$TERMCAPLIB" != no; then
+if test "$TERMCAP_LIB" != no; then
   AC_DEFINE([HAVE_TERMCAP],[],[Have Term Cap])
 else
  AC_MSG_WARN([No termcap library detected])
