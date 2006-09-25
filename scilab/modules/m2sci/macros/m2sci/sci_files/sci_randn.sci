@@ -41,6 +41,7 @@ if rhs==0 then
     tree.rhs=Rhs(1,1,"normal")
     tree.lhs(1).dims=list(1,1)
     tree.lhs(1).type=Type(Double,Real)
+    tree.name="rand"
   elseif tree.name=="false" then
     tree=Cste(%F)
   elseif tree.name=="true" then
