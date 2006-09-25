@@ -179,9 +179,13 @@ AC_DEFUN([AC_JAVA_DETECT_JVM], [
 
 	# check if JAVA_HOME is set. If it is the case, try to use if first
 	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" == "x"; then
-	    AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
-        ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
-		JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+		if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
+		    AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
+    	    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
+			JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+		else
+		    AC_MSG_RESULT([JAVA_HOME variable found, but unable to find javac (JRE ?)])
+		fi
 	fi
 
     # if we do not know the jvm dir, javac will be found on the PATH
