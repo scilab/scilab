@@ -312,6 +312,7 @@
 /* Provide a macro to do exp10 */
 #undef log_10_
 
+
 /* 
    Define integer C type which must fit Fortran integer
    For Scilab to work, the rule is: 

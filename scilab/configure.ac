@@ -156,9 +156,6 @@ AC_ARG_WITH(gtk2,
 AC_ARG_WITH(ocam,
     [  --without-ocaml         do not compile with ocaml ])
 
-AC_ARG_WITH(java,
-    [  --without-java          do not compile Java interface ])
-
 #################################
 ## check this is a source version
 #################################
@@ -199,7 +196,7 @@ FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS ma
 
 
 #####################################################
-## if specific compilers are required, check if they exist
+## Check if options are correct (or not)
 #####################################################
 
 if test "$with_g77" = yes -a "$with_gfortran" = yes; then
@@ -209,6 +206,11 @@ fi
 if test "$with_intelcompilers" = yes -a "$with_gnu" = yes; then
 	AC_MSG_ERROR([Conflicting options : you specified two compiler series])
 fi
+
+
+#####################################################
+## if specific compilers are required, check if they exist
+#####################################################
 
 if test "$with_gnu" = yes; then
 	# GNU C and Fortran compilers required
@@ -1159,6 +1161,27 @@ echo "CC 4 : $CC"
 AM_PROG_LIBTOOL
 LT_INIT
 
+
+
+dnl check for xsltproc
+
+AC_ARG_WITH(sablotron,
+		[  --with-sablotron compile man pages with sablotron],
+		[with_sablotron=$withval], 
+		[with_sablotron='']
+	)
+
+AC_ARG_WITH(xsltproc,
+		[  --with-xsltproc  compile man pages with xsltproc],
+		[with_xsltproc=$withval], 
+		[with_xsltproc='']
+		)
+
+AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
+if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
+   AC_CHECK_MAN_GENERATOR([$with_xsltproc],[xsltproc],[xsltproc])
+fi
+
 #######################
 ## test for underscores
 #######################
@@ -1168,16 +1191,19 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## Test for libxml
 #######################
 
-AC_MSG_CHECKING([for libxml2])
-AC_ARG_WITH(libxml2,[  --with-libxml2=PREFIX    set the path to your libxml2 installation])
-if test "x$with_libxml" != "x"; then
-   AC_MSG_CHECKING([for xml-config])
+AC_ARG_WITH(libxml2,
+		[  --with-libxml2=PREFIX    set the path to your libxml2 installation],
+		[with_libxml2=$withval], 
+		[with_libxml2='yes']
+		)
+
+if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
+   AC_MSG_CHECKING([libxml2, for xml-config])
    XML2_CONFIG="$with_libxml2/bin/xml2-config"
-        if test -x "$XML_CONFIG"
-        then
+        if test -x "$XML_CONFIG"; then
                 AC_MSG_RESULT([$XML_CONFIG])
         else
-                AC_MSG_ERROR([Unable to find xml2-config. Please check the path ($with libxml2) you provided])
+                AC_MSG_ERROR([Unable to find $XML_CONFIG. Please check the path you provided])
 		fi
 else
 		AC_CHECK_PROGS(XML_CONFIG,xml2-config,no)
@@ -1187,63 +1213,6 @@ else
 fi
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
-echo $XML_CONFIG --cflags
-
-		
-#################
-## Man management
-#################
-
-# Sablotron or xsltproc
-# ===================
-
-dnl check for xsltproc
-AC_ARG_WITH(xsltproc, 
-	      [  --with-xsltproc  compile man pages with xsltproc], 
-	      [ 
-
-		  AC_CHECK_PROG(WITH_XSLTPROC,xsltproc,yes,no)
-
-		  if test "x$WITH_XSLTPROC" = "xyes"; then
-			MANTARGET=man
-			MANGENERATOR=xsltproc
-		  fi
-	      ]
-	      )
-
-dnl check for sabcmd
-AC_ARG_WITH(sablotron, 
-	      [  --with-sablotron compile man pages with sablotron], 
-	      [
-		  	AC_CHECK_PROG(WITH_SABLOTRON,sabcmd,yes,no)
-			if test "x$WITH_SABLOTRON" = "xyes"; then
-		  		MANTARGET=man
-				MANGENERATOR=sabcmd
-			fi
-	      ]
-	      )
-
-# check and make sure that we only have sablotron _or_ xsltproc
-if test "x$MANGENERATOR" = "x"; then
-   AC_MSG_WARN([Sablotron (sabcmd) and xsltproc not found: I will not build man pages])
-fi
-# Now check if man sources 
-# are checked out or not
-# ===================
-
-AC_CHECK_FILE(man/fr/Makefile.in,[MAN_FR=man/fr/Makefile],[MAN_FR=])
-
-if test "$MAN_FR" = ''; then
-	MANTARGET=
-	AC_MSG_WARN([man/fr/Makefile.in not found : I will not build man pages])
-else
-	AC_CHECK_FILE(man/eng/Makefile.in,[MAN_ENG=man/eng/Makefile],[MAN_ENG=])
-	if test "$MAN_ENG" = ''; then
-		MANTARGET=
-		AC_MSG_WARN([man/eng/Makefile.in not found : I will not build man pages])
-	fi
-fi
-
 AC_C_CONST()
 AC_C_INLINE()
 
@@ -1253,9 +1222,6 @@ AH_TOP([#ifndef MACHINE_H
 ])
 
 AH_BOTTOM([
-typedef int integer;
-
-
 /* 
    Define integer C type which must fit Fortran integer
    For Scilab to work, the rule is: 
@@ -1530,7 +1496,6 @@ echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
 echo "Don't use TCL/TK (--without-tk) ................. : $with_tk"
 echo "Uses Gtk2 widgets (--with-gtk2) ................. : $with_gtk2"
 echo "Don't compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
-echo "Don't compile the Java interface (--without-java) : $with_java"
 echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) .................. : $USER_TK_INC_PATH"
