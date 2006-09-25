@@ -12623,7 +12623,7 @@ fi
 ## termcap library
 ##################
 
-TERMCAPLIB=no
+TERMCAP_LIB=no
 { echo "$as_me:$LINENO: checking for main in -lncurses" >&5
 echo $ECHO_N "checking for main in -lncurses... $ECHO_C" >&6; }
 if test "${ac_cv_lib_ncurses_main+set}" = set; then
@@ -12930,7 +12930,7 @@ if test $ac_cv_lib_termlib_main = yes; then
 fi
 
 fi
-if test "$TERMCAPLIB" != no; then
+if test "$TERMCAP_LIB" != no; then
 
 cat >>confdefs.h <<\_ACEOF
 #define HAVE_TERMCAP
