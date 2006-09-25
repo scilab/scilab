@@ -361,8 +361,8 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	boolean linear_algebra core metanet optimization \
 	differential_equations interpolation localization sound \
 	statistics time pvm fileio integer special_functions double \
-	randlib data_structures boolean symbolic tclsci scicos sparse \
-	string io gui graphics wintools .
+	randlib data_structures symbolic tclsci sparse string io gui \
+	graphics scicos wintools .
 lib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
 libscilab_la_DEPENDENCIES =  \
