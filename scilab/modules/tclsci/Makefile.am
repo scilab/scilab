@@ -12,8 +12,10 @@ src/ScilabEval.c \
 src/TclEvents.c \
 src/setenvtcl.c \
 src/with_tk.c \
-src/EnvTclTk.c \
 src/TclUiSet.c
+
+# a priori utilisé seulement par windows
+# src/EnvTclTk.c
 
 GATEWAY_C_SOURCES =  sci_gateway/sci_TCL_CreateSlave.c \
 sci_gateway/sci_opentk.c \

@@ -91,8 +91,8 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/fromc.c src/c/malloc.c src/c/setgetSCIpath.c \
 	src/c/getmemory.c src/c/msgout.c src/c/Funtab.c src/c/mexlib.c \
 	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/errmsg.c src/c/banier.c src/c/callinterf.c \
-	src/c/isanan.c src/c/parse.c src/c/matus2.c src/c/scimem.c \
+	src/c/errmsg.c src/c/scimem.c src/c/banier.c \
+	src/c/callinterf.c src/c/isanan.c src/c/parse.c src/c/matus2.c \
 	src/c/timer.c src/c/stack2.c src/c/Scierror.c src/c/sciprint.c \
 	src/c/link.c src/c/xscion.c src/c/getarg-hpux.c src/c/getarg.c \
 	src/fortran/algebre.f src/fortran/clunit.f \
@@ -116,8 +116,7 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/fortran/btofm.f src/fortran/ctrlc.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/wspdsp.f src/fortran/israt.f \
-	src/fortran/mainsci.f src/fortran/stack0.f \
-	src/fortran/setlnb.f src/fortran/mrknmd.f \
+	src/fortran/stack0.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/print.f \
 	src/fortran/mname.f src/fortran/prntid.f src/fortran/comand.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
@@ -239,12 +238,12 @@ am__objects_3 = libcore_la-history.lo libcore_la-inffic.lo \
 	libcore_la-Funtab.lo libcore_la-mexlib.lo \
 	libcore_la-csignal.lo libcore_la-prompt.lo \
 	libcore_la-CallScilab.lo libcore_la-errmsg.lo \
-	libcore_la-banier.lo libcore_la-callinterf.lo \
-	libcore_la-isanan.lo libcore_la-parse.lo libcore_la-matus2.lo \
-	libcore_la-scimem.lo libcore_la-timer.lo libcore_la-stack2.lo \
-	libcore_la-Scierror.lo libcore_la-sciprint.lo \
-	libcore_la-link.lo libcore_la-xscion.lo $(am__objects_1) \
-	$(am__objects_2)
+	libcore_la-scimem.lo libcore_la-banier.lo \
+	libcore_la-callinterf.lo libcore_la-isanan.lo \
+	libcore_la-parse.lo libcore_la-matus2.lo libcore_la-timer.lo \
+	libcore_la-stack2.lo libcore_la-Scierror.lo \
+	libcore_la-sciprint.lo libcore_la-link.lo libcore_la-xscion.lo \
+	$(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -256,20 +255,20 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	skpins.lo folhp.lo cvname.lo funs.lo fact.lo inibrk.lo \
 	typ2cod.lo prompt.lo intstr.lo createref.lo btof.lo matzs.lo \
 	getnum.lo btofm.lo ctrlc.lo getsym.lo findequal.lo stackg.lo \
-	find.lo wspdsp.lo israt.lo mainsci.lo stack0.lo setlnb.lo \
-	mrknmd.lo stackgl.lo allops.lo print.lo mname.lo prntid.lo \
-	comand.lo ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo \
-	dmdspf.lo xerbla.lo bashos.lo dtosci.lo bexec.lo varfunptr.lo \
-	getfun.lo Ex-fbutn.lo savlod.lo error.lo cvdm.lo tradsl.lo \
-	mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo \
-	sigbas.lo indxg.lo matz.lo istrue.lo terme.lo inisci.lo \
-	expr.lo ptover.lo Ex-fort.lo getfunction.lo stackp.lo \
-	dspdsp.lo getpro.lo dbasin.lo macro.lo scirun.lo lspdsp.lo \
-	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
-	fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
-	seteol.lo basin.lo clause.lo compcl.lo termf.lo strdsp.lo \
-	expsum.lo eqid.lo copyvar.lo putid.lo itosci.lo \
-	$(am__objects_4) $(am__objects_5)
+	find.lo wspdsp.lo israt.lo stack0.lo setlnb.lo mrknmd.lo \
+	stackgl.lo allops.lo print.lo mname.lo prntid.lo comand.lo \
+	ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo dmdspf.lo \
+	xerbla.lo bashos.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo \
+	Ex-fbutn.lo savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo \
+	whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo sigbas.lo \
+	indxg.lo matz.lo istrue.lo terme.lo inisci.lo expr.lo \
+	ptover.lo Ex-fort.lo getfunction.lo stackp.lo dspdsp.lo \
+	getpro.lo dbasin.lo macro.lo scirun.lo lspdsp.lo extlarg.lo \
+	getstr.lo cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo \
+	basnms.lo matc.lo ptrback.lo getch.lo ftob.lo seteol.lo \
+	basin.lo clause.lo compcl.lo termf.lo strdsp.lo expsum.lo \
+	eqid.lo copyvar.lo putid.lo itosci.lo $(am__objects_4) \
+	$(am__objects_5)
 am__objects_7 = libcore_la-sci_savehistory.lo \
 	libcore_la-sci_stacksize.lo libcore_la-sci_resume.lo \
 	libcore_la-sci_mtlb_mode.lo libcore_la-intgetmd5.lo \
@@ -440,7 +439,6 @@ LIBTOOL = @LIBTOOL@
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
-MAIN = @MAIN@
 MAKEINFO = @MAKEINFO@
 MALLOC = @MALLOC@
 MANGENERATOR = @MANGENERATOR@
@@ -488,7 +486,7 @@ TCLSCILIB = @TCLSCILIB@
 TCLTKHELP = @TCLTKHELP@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAPLIB = @TERMCAPLIB@
+TERMCAP_LIB = @TERMCAP_LIB@
 TERM_VTE_FALSE = @TERM_VTE_FALSE@
 TERM_VTE_TRUE = @TERM_VTE_TRUE@
 TERM_ZTERM_FALSE = @TERM_ZTERM_FALSE@
@@ -586,8 +584,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/fromc.c src/c/malloc.c src/c/setgetSCIpath.c \
 	src/c/getmemory.c src/c/msgout.c src/c/Funtab.c src/c/mexlib.c \
 	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/errmsg.c src/c/banier.c src/c/callinterf.c \
-	src/c/isanan.c src/c/parse.c src/c/matus2.c src/c/scimem.c \
+	src/c/errmsg.c src/c/scimem.c src/c/banier.c \
+	src/c/callinterf.c src/c/isanan.c src/c/parse.c src/c/matus2.c \
 	src/c/timer.c src/c/stack2.c src/c/Scierror.c src/c/sciprint.c \
 	src/c/link.c src/c/xscion.c $(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
@@ -611,8 +609,7 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/btofm.f src/fortran/ctrlc.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/wspdsp.f src/fortran/israt.f \
-	src/fortran/mainsci.f src/fortran/stack0.f \
-	src/fortran/setlnb.f src/fortran/mrknmd.f \
+	src/fortran/stack0.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/print.f \
 	src/fortran/mname.f src/fortran/prntid.f src/fortran/comand.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
@@ -791,6 +788,8 @@ libcore_la_DEPENDENCIES = \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
+#	$(top_builddir)/modules/string/libstring.la 
+#	$(top_builddir)/modules/fileio/libfileio.la
 libcore_la_LIBADD = $(libcore_la_DEPENDENCIES)
 libcore_la_PKGCONFIG = core.pc
 all: all-am
@@ -1308,6 +1307,13 @@ libcore_la-errmsg.lo: src/c/errmsg.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
 
+libcore_la-scimem.lo: src/c/scimem.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-scimem.lo -MD -MP -MF "$(DEPDIR)/libcore_la-scimem.Tpo" -c -o libcore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libcore_la-scimem.Tpo" "$(DEPDIR)/libcore_la-scimem.Plo"; else rm -f "$(DEPDIR)/libcore_la-scimem.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scimem.c' object='libcore_la-scimem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c
+
 libcore_la-banier.lo: src/c/banier.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-banier.lo -MD -MP -MF "$(DEPDIR)/libcore_la-banier.Tpo" -c -o libcore_la-banier.lo `test -f 'src/c/banier.c' || echo '$(srcdir)/'`src/c/banier.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libcore_la-banier.Tpo" "$(DEPDIR)/libcore_la-banier.Plo"; else rm -f "$(DEPDIR)/libcore_la-banier.Tpo"; exit 1; fi
@@ -1342,13 +1348,6 @@ libcore_la-matus2.lo: src/c/matus2.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matus2.c' object='libcore_la-matus2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-matus2.lo `test -f 'src/c/matus2.c' || echo '$(srcdir)/'`src/c/matus2.c
-
-libcore_la-scimem.lo: src/c/scimem.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-scimem.lo -MD -MP -MF "$(DEPDIR)/libcore_la-scimem.Tpo" -c -o libcore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libcore_la-scimem.Tpo" "$(DEPDIR)/libcore_la-scimem.Plo"; else rm -f "$(DEPDIR)/libcore_la-scimem.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scimem.c' object='libcore_la-scimem.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c
 
 libcore_la-timer.lo: src/c/timer.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-timer.lo -MD -MP -MF "$(DEPDIR)/libcore_la-timer.Tpo" -c -o libcore_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c; \
@@ -2029,9 +2028,6 @@ wspdsp.lo: src/fortran/wspdsp.f
 
 israt.lo: src/fortran/israt.f
 	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o israt.lo `test -f 'src/fortran/israt.f' || echo '$(srcdir)/'`src/fortran/israt.f
-
-mainsci.lo: src/fortran/mainsci.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mainsci.lo `test -f 'src/fortran/mainsci.f' || echo '$(srcdir)/'`src/fortran/mainsci.f
 
 stack0.lo: src/fortran/stack0.f
 	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stack0.lo `test -f 'src/fortran/stack0.f' || echo '$(srcdir)/'`src/fortran/stack0.f

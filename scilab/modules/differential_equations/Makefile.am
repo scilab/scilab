@@ -4,6 +4,7 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/prja.f \
 src/fortran/vnorm.f \
 src/fortran/lsoda.f \
+src/fortran/lsodar.f \
 src/fortran/ainvg.f \
 src/fortran/lsode.f \
 src/fortran/svcom1.f \

@@ -52,17 +52,27 @@
    #define FREE(x) if (x  != NULL) free((void *) x);
    #define REALLOC(x,y) MyReAlloc((void *)x, y,__FILE__,__LINE__)
    #define CALLOC(x,y) MyCalloc((size_t) x, (size_t) y,__FILE__,__LINE__)
+
+
+   /* Only for Scilab Stacksize use VirtualAlloc on Window */
+   #define SCISTACKMALLOC(x) MyAlloc((size_t)x,__FILE__,__LINE__)
+   #define SCISTACKFREE(x) if (x  != NULL) MyFree((void *) x,__FILE__,__LINE__);
  #else
    #define MALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
    #define FREE(x) if (x  != NULL) free((char *) x);
    #define REALLOC(x,y) MyReAlloc((char *)x, y,__FILE__,__LINE__)
    #define CALLOC(x,y) MyCalloc((unsigned) x, (unsigned) y,__FILE__,__LINE__)
+
+    /* Only for Scilab Stacksize use VirtualAlloc on Window */
+   #define SCISTACKMALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
+   #define SCISTACKFREE(x) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
  #endif
 #else
 	#define MALLOC(x) malloc(((unsigned) x))
 	#define FREE(x) if (x  != NULL) free((char *) x);
 	#define REALLOC(x,y) realloc((char *) x,(unsigned) y)
 	#define CALLOC(x,y) calloc( x,(unsigned) y)
+
 #endif	
 
 #define Top C2F(vstk).top

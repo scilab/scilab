@@ -1131,7 +1131,7 @@ EXPORTS
 	scig_resize
 	scig_resize_pixmap
 	scig_erase
-	scig_tops
+	scig_toPs
 	xg2psofig_
 	scig_2dzoom
 	scig_unzoom

@@ -47,12 +47,12 @@ src/c/csignal.c \
 src/c/prompt.c \
 src/c/CallScilab.c \
 src/c/errmsg.c \
+src/c/scimem.c \
 src/c/banier.c \
 src/c/callinterf.c \
 src/c/isanan.c \
 src/c/parse.c \
 src/c/matus2.c \
-src/c/scimem.c \
 src/c/timer.c \
 src/c/stack2.c \
 src/c/Scierror.c \
@@ -111,7 +111,6 @@ src/fortran/stackg.f \
 src/fortran/find.f \
 src/fortran/wspdsp.f \
 src/fortran/israt.f \
-src/fortran/mainsci.f \
 src/fortran/stack0.f \
 src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
@@ -347,6 +346,8 @@ libcore_la_DEPENDENCIES = \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+#	$(top_builddir)/modules/string/libstring.la 
+#	$(top_builddir)/modules/fileio/libfileio.la
 
 libcore_la_LIBADD = $(libcore_la_DEPENDENCIES)
 

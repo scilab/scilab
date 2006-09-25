@@ -54,6 +54,7 @@ libdata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_F
 libdata_structures_la_DEPENDENCIES = \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/integer/libinteger.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 

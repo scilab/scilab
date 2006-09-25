@@ -104,6 +104,7 @@ libgui_la_DEPENDENCIES = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/string/libstring.la
 
+#	$(top_builddir)/modules/jvm/libjvm.la \
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 

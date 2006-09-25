@@ -71,6 +71,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =  \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/integer/libinteger.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libdata_structures_la-stcreate.lo \
 	libdata_structures_la-hmops.lo \
@@ -215,7 +216,6 @@ LIBTOOL = @LIBTOOL@
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
-MAIN = @MAIN@
 MAKEINFO = @MAKEINFO@
 MALLOC = @MALLOC@
 MANGENERATOR = @MANGENERATOR@
@@ -263,7 +263,7 @@ TCLSCILIB = @TCLSCILIB@
 TCLTKHELP = @TCLTKHELP@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAPLIB = @TERMCAPLIB@
+TERMCAP_LIB = @TERMCAP_LIB@
 TERM_VTE_FALSE = @TERM_VTE_FALSE@
 TERM_VTE_TRUE = @TERM_VTE_TRUE@
 TERM_ZTERM_FALSE = @TERM_ZTERM_FALSE@
@@ -395,6 +395,7 @@ libdata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_F
 libdata_structures_la_DEPENDENCIES = \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/core/libcore.la \
+	$(top_builddir)/modules/integer/libinteger.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libdata_structures_la_LIBADD = $(libdata_structures_la_DEPENDENCIES)

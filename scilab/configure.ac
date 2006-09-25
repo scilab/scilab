@@ -249,7 +249,7 @@ else
 fi
 #AC_SUBST(X11_LIBS)
 
-
+LDFLAGS="$LDFLAGS  -no-undefined"
 #############################################
 ## Compilers and options according to machine
 #############################################
@@ -265,8 +265,6 @@ SCILABSCRIPT=scilab.g
 # For old Hp computer (9.x), used in "routines/os_specific/Makefile.in"
 #   for choosing the good file between link_std.c and link_SYSV.c
 HPPA_OLD=
-# Scilab main file: default is "mainsci.o" for UNIX
-MAIN='mainsci.o'
 
 GUI='X11'
 
@@ -621,7 +619,7 @@ if test "x$GUI" = "xX11"; then
 ##test Xmu (Required)
     AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
     if test "$XMu" = no; then
-		AC_MSG_ERROR([Cannot find the library Mmu])	
+		AC_MSG_ERROR([Cannot find the library Xmu])	
     else
       XMULIB=-lXmu
       AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
@@ -768,24 +766,21 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 ##################
 
 TERMCAPLIB=no
-AC_CHECK_LIB(ncurses,main,
-  [TERMCAPLIB=-lncurses])
+AC_CHECK_LIB(ncurses,main,[TERMCAP_LIB=-lncurses])
 if test "$TERMCAPLIB" = no; then
-  AC_CHECK_LIB(curses,main,
-  [TERMCAPLIB=-lcurses])
+  AC_CHECK_LIB(curses,main,[TERMCAP_LIB=-lcurses])
 fi
 if test "$TERMCAPLIB" = no; then
-  AC_CHECK_LIB(termcap,main,
-  [TERMCAPLIB=-ltermcap])
+  AC_CHECK_LIB(termcap,main,[TERMCAP_LIB=-ltermcap])
 fi
 if test "$TERMCAPLIB" = no; then
-  AC_CHECK_LIB(termlib,main,
-  [TERMCAPLIB=-ltermlib])
+  AC_CHECK_LIB(termlib,main,[TERMCAP_LIB=-ltermlib])
 fi
 if test "$TERMCAPLIB" != no; then
   AC_DEFINE([HAVE_TERMCAP],[],[Have Term Cap])
 else
-  TERMCAPLIB=
+ AC_MSG_WARN([No termcap library detected])
+ TERMCAPLIB=
 fi
 
 #################
@@ -1364,8 +1359,7 @@ AC_SUBST(XAW_LOCAL_LIB)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 AC_SUBST(GNOME_CFLAGS)
-AC_SUBST(TERMCAPLIB)
-AC_SUBST(MAIN)
+AC_SUBST(TERMCAP_LIB)
 AC_SUBST(GUI)
 AC_SUBST(GUILIB)
 AC_SUBST(GZVT)
@@ -1446,18 +1440,21 @@ libs/lapack/Makefile
 libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/hashtable/Makefile
+libs/f2c/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
 modules/elementaries_functions/Makefile
 modules/special_functions/Makefile
 modules/io/Makefile
+modules/jvm/Makefile
 modules/sound/Makefile
 modules/statistics/Makefile
 modules/sparse/Makefile
 modules/linear_algebra/Makefile
 modules/polynomials/Makefile
 modules/symbolic/Makefile
+modules/signal_processing/Makefile
 modules/arnoldi/Makefile
 modules/interpolation/Makefile
 modules/intersci/Makefile
@@ -1594,6 +1591,7 @@ echo "  FFLAGS           = $FFLAGS"
 echo "  FC_LDFLAGS       = $FC_LDFLAGS"
 echo "  XML_FLAGS        = $XML_FLAGS"
 echo "  XML_LIBS         = $XML_LIBS"
+echo "  TERMCAP_LIB      = $TERMCAP_LIB"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"

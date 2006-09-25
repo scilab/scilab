@@ -17,7 +17,11 @@ extern "C" {
 extern int creat(const char*,int), open(const char*,int);
 #endif
 extern int close(int);
+#ifdef lint5
 extern int read(int,void*,size_t), write(int,void*,size_t);
+#else
+extern int read(int,void*,unsigned), write(int,void*,unsigned);
+#endif
 extern int unlink(const char*);
 #ifndef _POSIX_SOURCE
 #ifndef NON_UNIX_STDIO

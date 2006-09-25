@@ -84,11 +84,18 @@ am__DEPENDENCIES_1 = $(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
 	$(top_builddir)/modules/optimization/liboptimization.la \
+	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/randlib/librandlib.la \
+	$(top_builddir)/modules/symbolic/libsymbolic.la \
+	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
+	$(top_builddir)/modules/special_functions/libspecial_functions.la \
+	$(top_builddir)/modules/scicos/libscicos.la \
+	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
@@ -214,7 +221,6 @@ LIBTOOL = @LIBTOOL@
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
-MAIN = @MAIN@
 MAKEINFO = @MAKEINFO@
 MALLOC = @MALLOC@
 MANGENERATOR = @MANGENERATOR@
@@ -262,7 +268,7 @@ TCLSCILIB = @TCLSCILIB@
 TCLTKHELP = @TCLTKHELP@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAPLIB = @TERMCAPLIB@
+TERMCAP_LIB = @TERMCAP_LIB@
 TERM_VTE_FALSE = @TERM_VTE_FALSE@
 TERM_VTE_TRUE = @TERM_VTE_TRUE@
 TERM_ZTERM_FALSE = @TERM_ZTERM_FALSE@
@@ -354,9 +360,9 @@ tcldir = @tcldir@
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	boolean linear_algebra core metanet optimization \
 	differential_equations interpolation localization sound \
-	statistics time pvm fileio special_functions double randlib \
-	data_structures boolean symbolic tclsci scicos integer sparse \
-	string io wintools .
+	statistics time pvm fileio integer special_functions double \
+	randlib data_structures boolean symbolic tclsci scicos sparse \
+	string io gui graphics wintools .
 lib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
 libscilab_la_DEPENDENCIES =  \
@@ -379,11 +385,18 @@ libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
 	$(top_builddir)/modules/optimization/liboptimization.la \
+	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/randlib/librandlib.la \
+	$(top_builddir)/modules/symbolic/libsymbolic.la \
+	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
+	$(top_builddir)/modules/special_functions/libspecial_functions.la \
+	$(top_builddir)/modules/scicos/libscicos.la \
+	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \

@@ -930,8 +930,7 @@ XAW_LOCAL_SUBDIR
 XAW_LOCAL_INCLUDES
 XAW_LOCAL_LIB
 GNOME_CFLAGS
-TERMCAPLIB
-MAIN
+TERMCAP_LIB
 GUI
 GUILIB
 GZVT
@@ -7961,7 +7960,7 @@ echo "$as_me: error: Scilab requires the X Window System header files and librar
 fi
 #AC_SUBST(X11_LIBS)
 
-
+LDFLAGS="$LDFLAGS  -no-undefined"
 #############################################
 ## Compilers and options according to machine
 #############################################
@@ -7977,8 +7976,6 @@ SCILABSCRIPT=scilab.g
 # For old Hp computer (9.x), used in "routines/os_specific/Makefile.in"
 #   for choosing the good file between link_std.c and link_SYSV.c
 HPPA_OLD=
-# Scilab main file: default is "mainsci.o" for UNIX
-MAIN='mainsci.o'
 
 GUI='X11'
 
@@ -8521,8 +8518,8 @@ else
 fi
 
     if test "$XMu" = no; then
-		{ { echo "$as_me:$LINENO: error: Cannot find the library Mmu" >&5
-echo "$as_me: error: Cannot find the library Mmu" >&2;}
+		{ { echo "$as_me:$LINENO: error: Cannot find the library Xmu" >&5
+echo "$as_me: error: Cannot find the library Xmu" >&2;}
    { (exit 1); exit 1; }; }
     else
       XMULIB=-lXmu
@@ -8732,10 +8729,15 @@ echo "${ECHO_T}Use JDK path specified ($ok)" >&6; }
 
 	# check if JAVA_HOME is set. If it is the case, try to use if first
 	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" == "x"; then
-	    { echo "$as_me:$LINENO: result: JAVA_HOME variable found, use it as JVM root directory" >&5
+		if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
+		    { echo "$as_me:$LINENO: result: JAVA_HOME variable found, use it as JVM root directory" >&5
 echo "${ECHO_T}JAVA_HOME variable found, use it as JVM root directory" >&6; }
-        ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
-		JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+    	    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
+			JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+		else
+		    { echo "$as_me:$LINENO: result: JAVA_HOME variable found, but unable to find javac (JRE ?)" >&5
+echo "${ECHO_T}JAVA_HOME variable found, but unable to find javac (JRE ?)" >&6; }
+		fi
 	fi
 
     # if we do not know the jvm dir, javac will be found on the PATH
@@ -8861,7 +8863,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 8864 "configure"
+// #line 8866 "configure"
 
 
 public class conftest {
@@ -8911,7 +8913,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 8914 "configure"
+// #line 8916 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -8959,7 +8961,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 8962 "configure"
+// #line 8964 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -8986,7 +8988,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 8989 "configure"
+// #line 8991 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -12694,7 +12696,7 @@ fi
 { echo "$as_me:$LINENO: result: $ac_cv_lib_ncurses_main" >&5
 echo "${ECHO_T}$ac_cv_lib_ncurses_main" >&6; }
 if test $ac_cv_lib_ncurses_main = yes; then
-  TERMCAPLIB=-lncurses
+  TERMCAP_LIB=-lncurses
 fi
 
 if test "$TERMCAPLIB" = no; then
@@ -12770,7 +12772,7 @@ fi
 { echo "$as_me:$LINENO: result: $ac_cv_lib_curses_main" >&5
 echo "${ECHO_T}$ac_cv_lib_curses_main" >&6; }
 if test $ac_cv_lib_curses_main = yes; then
-  TERMCAPLIB=-lcurses
+  TERMCAP_LIB=-lcurses
 fi
 
 fi
@@ -12847,7 +12849,7 @@ fi
 { echo "$as_me:$LINENO: result: $ac_cv_lib_termcap_main" >&5
 echo "${ECHO_T}$ac_cv_lib_termcap_main" >&6; }
 if test $ac_cv_lib_termcap_main = yes; then
-  TERMCAPLIB=-ltermcap
+  TERMCAP_LIB=-ltermcap
 fi
 
 fi
@@ -12924,7 +12926,7 @@ fi
 { echo "$as_me:$LINENO: result: $ac_cv_lib_termlib_main" >&5
 echo "${ECHO_T}$ac_cv_lib_termlib_main" >&6; }
 if test $ac_cv_lib_termlib_main = yes; then
-  TERMCAPLIB=-ltermlib
+  TERMCAP_LIB=-ltermlib
 fi
 
 fi
@@ -12935,7 +12937,9 @@ cat >>confdefs.h <<\_ACEOF
 _ACEOF
 
 else
-  TERMCAPLIB=
+ { echo "$as_me:$LINENO: WARNING: No termcap library detected" >&5
+echo "$as_me: WARNING: No termcap library detected" >&2;}
+ TERMCAPLIB=
 fi
 
 #################
@@ -13842,7 +13846,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 13845 "configure"
+#line 13849 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -14188,7 +14192,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 { echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14191 "configure"
+#line 14195 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -16635,13 +16639,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:16638: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:16642: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16641: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:16645: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16644: output\"" >&5)
+  (eval echo "\"\$as_me:16648: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -17731,7 +17735,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 17734 "configure"' > conftest.$ac_ext
+  echo '#line 17738 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -18679,11 +18683,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18682: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:18686: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:18686: \$? = $ac_status" >&5
+   echo "$as_me:18690: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19001,11 +19005,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19004: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19008: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:19008: \$? = $ac_status" >&5
+   echo "$as_me:19012: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19106,11 +19110,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19109: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19113: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19113: \$? = $ac_status" >&5
+   echo "$as_me:19117: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -19161,11 +19165,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19164: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19168: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19168: \$? = $ac_status" >&5
+   echo "$as_me:19172: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -22006,7 +22010,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22009 "configure"
+#line 22013 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22106,7 +22110,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22109 "configure"
+#line 22113 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22888,11 +22892,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22891: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22895: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:22895: \$? = $ac_status" >&5
+   echo "$as_me:22899: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -22987,11 +22991,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22990: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22994: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:22994: \$? = $ac_status" >&5
+   echo "$as_me:22998: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -23039,11 +23043,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23042: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23046: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23046: \$? = $ac_status" >&5
+   echo "$as_me:23050: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -25841,7 +25845,6 @@ fi
 
 
 
-
 # for Makemex
 
 
@@ -25889,7 +25892,7 @@ fi
 
 ## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
 
-ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/hashtable/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementaries_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/sound/Makefile modules/statistics/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/wintools/Makefile modules/core/Makefile modules/scicos/Makefile modules/Makefile libs/Makefile Makefile"
+ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/hashtable/Makefile libs/f2c/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementaries_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/wintools/Makefile modules/core/Makefile modules/scicos/Makefile modules/Makefile libs/Makefile Makefile"
 #MAN_FR MAN_ENG
 
 
@@ -26879,18 +26882,21 @@ do
     "libs/blas/Makefile") CONFIG_FILES="$CONFIG_FILES libs/blas/Makefile" ;;
     "libs/MALLOC/Makefile") CONFIG_FILES="$CONFIG_FILES libs/MALLOC/Makefile" ;;
     "libs/hashtable/Makefile") CONFIG_FILES="$CONFIG_FILES libs/hashtable/Makefile" ;;
+    "libs/f2c/Makefile") CONFIG_FILES="$CONFIG_FILES libs/f2c/Makefile" ;;
     "modules/data_structures/Makefile") CONFIG_FILES="$CONFIG_FILES modules/data_structures/Makefile" ;;
     "modules/differential_equations/Makefile") CONFIG_FILES="$CONFIG_FILES modules/differential_equations/Makefile" ;;
     "modules/optimization/Makefile") CONFIG_FILES="$CONFIG_FILES modules/optimization/Makefile" ;;
     "modules/elementaries_functions/Makefile") CONFIG_FILES="$CONFIG_FILES modules/elementaries_functions/Makefile" ;;
     "modules/special_functions/Makefile") CONFIG_FILES="$CONFIG_FILES modules/special_functions/Makefile" ;;
     "modules/io/Makefile") CONFIG_FILES="$CONFIG_FILES modules/io/Makefile" ;;
+    "modules/jvm/Makefile") CONFIG_FILES="$CONFIG_FILES modules/jvm/Makefile" ;;
     "modules/sound/Makefile") CONFIG_FILES="$CONFIG_FILES modules/sound/Makefile" ;;
     "modules/statistics/Makefile") CONFIG_FILES="$CONFIG_FILES modules/statistics/Makefile" ;;
     "modules/sparse/Makefile") CONFIG_FILES="$CONFIG_FILES modules/sparse/Makefile" ;;
     "modules/linear_algebra/Makefile") CONFIG_FILES="$CONFIG_FILES modules/linear_algebra/Makefile" ;;
     "modules/polynomials/Makefile") CONFIG_FILES="$CONFIG_FILES modules/polynomials/Makefile" ;;
     "modules/symbolic/Makefile") CONFIG_FILES="$CONFIG_FILES modules/symbolic/Makefile" ;;
+    "modules/signal_processing/Makefile") CONFIG_FILES="$CONFIG_FILES modules/signal_processing/Makefile" ;;
     "modules/arnoldi/Makefile") CONFIG_FILES="$CONFIG_FILES modules/arnoldi/Makefile" ;;
     "modules/interpolation/Makefile") CONFIG_FILES="$CONFIG_FILES modules/interpolation/Makefile" ;;
     "modules/intersci/Makefile") CONFIG_FILES="$CONFIG_FILES modules/intersci/Makefile" ;;
@@ -27198,8 +27204,7 @@ XAW_LOCAL_SUBDIR!$XAW_LOCAL_SUBDIR$ac_delim
 XAW_LOCAL_INCLUDES!$XAW_LOCAL_INCLUDES$ac_delim
 XAW_LOCAL_LIB!$XAW_LOCAL_LIB$ac_delim
 GNOME_CFLAGS!$GNOME_CFLAGS$ac_delim
-TERMCAPLIB!$TERMCAPLIB$ac_delim
-MAIN!$MAIN$ac_delim
+TERMCAP_LIB!$TERMCAP_LIB$ac_delim
 GUI!$GUI$ac_delim
 GUILIB!$GUILIB$ac_delim
 GZVT!$GZVT$ac_delim
@@ -27211,6 +27216,7 @@ MALLOC!$MALLOC$ac_delim
 TKBASE!$TKBASE$ac_delim
 TK_INC_PATH!$TK_INC_PATH$ac_delim
 TCL_INC_PATH!$TCL_INC_PATH$ac_delim
+TCLTK_LIBS!$TCLTK_LIBS$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -27252,7 +27258,6 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
-TCLTK_LIBS!$TCLTK_LIBS$ac_delim
 TCLSCILIB!$TCLSCILIB$ac_delim
 TCLSCIDIR!$TCLSCIDIR$ac_delim
 TCLTKHELP!$TCLTKHELP$ac_delim
@@ -27292,7 +27297,7 @@ LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 38; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 37; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -28645,6 +28650,7 @@ echo "  FFLAGS           = $FFLAGS"
 echo "  FC_LDFLAGS       = $FC_LDFLAGS"
 echo "  XML_FLAGS        = $XML_FLAGS"
 echo "  XML_LIBS         = $XML_LIBS"
+echo "  TERMCAP_LIB      = $TERMCAP_LIB"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"

@@ -23,6 +23,7 @@ statistics \
 time \
 pvm \
 fileio \
+integer \
 special_functions \
 double \
 randlib \
@@ -31,10 +32,11 @@ boolean \
 symbolic \
 tclsci \
 scicos \
-integer \
 sparse \
 string \
 io \
+gui \
+graphics \
 wintools
 
 if JAVA
@@ -65,11 +67,18 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
 	$(top_builddir)/modules/optimization/liboptimization.la \
+	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/randlib/librandlib.la \
+	$(top_builddir)/modules/symbolic/libsymbolic.la \
+	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
+	$(top_builddir)/modules/special_functions/libspecial_functions.la \
+	$(top_builddir)/modules/scicos/libscicos.la \
+	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la
+	$(top_builddir)/modules/wintools/libwintools.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 
 ## Libs 
 libscilab_la_DEPENDENCIES += \

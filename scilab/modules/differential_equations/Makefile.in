@@ -66,14 +66,15 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 = $(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = libdifferential_equations_la-dassl.lo
-am__objects_2 = rscar1.lo prja.lo vnorm.lo lsoda.lo ainvg.lo lsode.lo \
-	svcom1.lo quarul.lo solsy.lo lsodi.lo ddassl.lo order.lo \
-	epsalg.lo cfode.lo rscma1.lo colnew.lo dcutet.lo xsetf.lo \
-	dgbsl.lo rkf45.lo rchek.lo dqag0.lo xerrwv.lo twodq.lo \
-	dqags.lo svcar1.lo daux.lo dgbfa.lo rscom1.lo rksimp.lo \
-	roots.lo rgk4.lo stoda.lo bnorm.lo rchek2.lo stode.lo \
-	vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo stodi.lo \
-	xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo svcma1.lo
+am__objects_2 = rscar1.lo prja.lo vnorm.lo lsoda.lo lsodar.lo ainvg.lo \
+	lsode.lo svcom1.lo quarul.lo solsy.lo lsodi.lo ddassl.lo \
+	order.lo epsalg.lo cfode.lo rscma1.lo colnew.lo dcutet.lo \
+	xsetf.lo dgbsl.lo rkf45.lo rchek.lo dqag0.lo xerrwv.lo \
+	twodq.lo dqags.lo svcar1.lo daux.lo dgbfa.lo rscom1.lo \
+	rksimp.lo roots.lo rgk4.lo stoda.lo bnorm.lo rchek2.lo \
+	stode.lo vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo \
+	stodi.lo xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo \
+	svcma1.lo
 am__objects_3 = libdifferential_equations_la-sci_int2d.lo \
 	libdifferential_equations_la-sci_int3d.lo \
 	libdifferential_equations_la-sci_intg.lo \
@@ -218,7 +219,6 @@ LIBTOOL = @LIBTOOL@
 LIBTOOL_DEPS = @LIBTOOL_DEPS@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
-MAIN = @MAIN@
 MAKEINFO = @MAKEINFO@
 MALLOC = @MALLOC@
 MANGENERATOR = @MANGENERATOR@
@@ -266,7 +266,7 @@ TCLSCILIB = @TCLSCILIB@
 TCLTKHELP = @TCLTKHELP@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAPLIB = @TERMCAPLIB@
+TERMCAP_LIB = @TERMCAP_LIB@
 TERM_VTE_FALSE = @TERM_VTE_FALSE@
 TERM_VTE_TRUE = @TERM_VTE_TRUE@
 TERM_ZTERM_FALSE = @TERM_ZTERM_FALSE@
@@ -356,6 +356,7 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = src/fortran/rscar1.f \
 src/fortran/prja.f \
 src/fortran/vnorm.f \
 src/fortran/lsoda.f \
+src/fortran/lsodar.f \
 src/fortran/ainvg.f \
 src/fortran/lsode.f \
 src/fortran/svcom1.f \
@@ -682,6 +683,9 @@ vnorm.lo: src/fortran/vnorm.f
 
 lsoda.lo: src/fortran/lsoda.f
 	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lsoda.lo `test -f 'src/fortran/lsoda.f' || echo '$(srcdir)/'`src/fortran/lsoda.f
+
+lsodar.lo: src/fortran/lsodar.f
+	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lsodar.lo `test -f 'src/fortran/lsodar.f' || echo '$(srcdir)/'`src/fortran/lsodar.f
 
 ainvg.lo: src/fortran/ainvg.f
 	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ainvg.lo `test -f 'src/fortran/ainvg.f' || echo '$(srcdir)/'`src/fortran/ainvg.f
