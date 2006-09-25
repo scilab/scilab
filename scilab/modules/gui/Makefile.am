@@ -100,13 +100,14 @@ libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOUR
 
 libgui_la_DEPENDENCIES = \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la
+	$(top_builddir)/modules/string/libstring.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 
-#	$(top_builddir)/modules/jvm/libjvm.la \
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+# Cyclic dep
+#	$(top_builddir)/modules/graphics/libgraphics.la
+
+
 
 
 

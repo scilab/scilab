@@ -69,9 +69,9 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 = $(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la
+	$(top_builddir)/modules/string/libstring.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 am__objects_1 = libgui_la-SciGUIConsole.lo libgui_la-wf_w_util.lo \
 	libgui_la-utils.lo libgui_la-x_cursor.lo libgui_la-x_main.lo \
 	libgui_la-wf_f_read.lo libgui_la-wf_f_util.lo \
@@ -454,14 +454,13 @@ lib_LTLIBRARIES = libgui.la
 libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libgui_la_DEPENDENCIES = \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la
+	$(top_builddir)/modules/string/libstring.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 
 
-#	$(top_builddir)/modules/jvm/libjvm.la \
-#	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-#	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+# Cyclic dep
+#	$(top_builddir)/modules/graphics/libgraphics.la
 libgui_la_LIBADD = $(libgui_la_DEPENDENCIES)
 libgui_la_PKGCONFIG = gui.pc
 all: all-am
