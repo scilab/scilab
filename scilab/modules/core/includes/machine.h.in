@@ -3,6 +3,8 @@
 #ifndef MACHINE_H 
 #define MACHINE_H 
 
+
+
 /* Define C2F without Trailing Underscore */
 #undef C2F
 
@@ -356,6 +358,8 @@ typedef int BOOL ;
 #define  _PARAMS(paramlist)		()
 #endif
 #endif
+
+
 
 #endif /* MACHINE_H  */
 
