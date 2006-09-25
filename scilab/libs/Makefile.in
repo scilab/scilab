@@ -18,7 +18,6 @@
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006 
 ##########
-
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -41,7 +40,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules
+subdir = libs
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/check_compiler.m4 \
@@ -56,63 +55,8 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
-am__vpath_adj = case $$p in \
-    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
-    *) f=$$p;; \
-  esac;
-am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)"
-libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/boolean/libboolean.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/double/libdouble.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
-	$(top_builddir)/modules/gui/libgui.la \
-	$(top_builddir)/modules/integer/libinteger.la \
-	$(top_builddir)/modules/interpolation/libinterpolation.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/io/libio.la \
-	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
-	$(top_builddir)/modules/localization/liblocalization.la \
-	$(top_builddir)/modules/metanet/libmetanet.la \
-	$(top_builddir)/modules/optimization/liboptimization.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/randlib/librandlib.la \
-	$(top_builddir)/modules/symbolic/libsymbolic.la \
-	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
-	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/scicos/libscicos.la \
-	$(top_builddir)/modules/sound/libsound.la \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/lapack/liblapack.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
-am_libscilab_la_OBJECTS =
-libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
-DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(libscilab_la_SOURCES)
-DIST_SOURCES = $(libscilab_la_SOURCES)
+SOURCES =
+DIST_SOURCES =
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -355,57 +299,9 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 
 # The order DOES matter !!!
-
-#SUBDIRS += Javasci
-SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
-	boolean linear_algebra core metanet optimization \
-	differential_equations interpolation localization sound \
-	statistics time pvm fileio integer special_functions double \
-	randlib data_structures symbolic tclsci sparse string io gui \
-	graphics scicos wintools .
-
-# 
-lib_LTLIBRARIES = libscilab.la
-libscilab_la_SOURCES = 
-
-# Core modules
-libscilab_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/arnoldi/libarnoldi.la \
-	$(top_builddir)/modules/boolean/libboolean.la \
-	$(top_builddir)/modules/cacsd/libcacsd.la \
-	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/data_structures/libdata_structures.la \
-	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
-	$(top_builddir)/modules/double/libdouble.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/fileio/libfileio.la \
-	$(top_builddir)/modules/graphics/libgraphics.la \
-	$(top_builddir)/modules/gui/libgui.la \
-	$(top_builddir)/modules/integer/libinteger.la \
-	$(top_builddir)/modules/interpolation/libinterpolation.la \
-	$(top_builddir)/modules/intersci/libintersci.la \
-	$(top_builddir)/modules/io/libio.la \
-	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
-	$(top_builddir)/modules/localization/liblocalization.la \
-	$(top_builddir)/modules/metanet/libmetanet.la \
-	$(top_builddir)/modules/optimization/liboptimization.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
-	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/randlib/librandlib.la \
-	$(top_builddir)/modules/symbolic/libsymbolic.la \
-	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
-	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/scicos/libscicos.la \
-	$(top_builddir)/modules/sound/libsound.la \
-	$(top_builddir)/modules/tclsci/libtclsci.la \
-	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/libs/blas/libblas.la \
-	$(top_builddir)/libs/hashtable/libhashtable.la \
-	$(top_builddir)/libs/lapack/liblapack.la \
-	$(top_builddir)/libs/MALLOC/libmalloc.la
-libscilab_la_LIBADD = $(libscilab_la_DEPENDENCIES)
+# \
+#	f2c
+SUBDIRS = blas lapack MALLOC .
 all: all-recursive
 
 .SUFFIXES:
@@ -418,9 +314,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  libs/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  modules/Makefile
+	  $(AUTOMAKE) --foreign  libs/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -438,41 +334,6 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
-install-libLTLIBRARIES: $(lib_LTLIBRARIES)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdir)" || $(mkdir_p) "$(DESTDIR)$(libdir)"
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-	  if test -f $$p; then \
-	    f=$(am__strip_dir) \
-	    echo " $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
-	    $(LIBTOOL) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
-	  else :; fi; \
-	done
-
-uninstall-libLTLIBRARIES:
-	@$(NORMAL_UNINSTALL)
-	@set -x; list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-	  p=$(am__strip_dir) \
-	  echo " $(LIBTOOL) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
-	  $(LIBTOOL) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
-	done
-
-clean-libLTLIBRARIES:
-	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
-	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
-libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) 
-	$(LINK) -rpath $(libdir) $(libscilab_la_LDFLAGS) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
-
-mostlyclean-compile:
-	-rm -f *.$(OBJEXT)
-
-distclean-compile:
-	-rm -f *.tab.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -660,12 +521,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(LTLIBRARIES)
+all-am: Makefile
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(libdir)"; do \
-	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
-	done
 install: install-recursive
 install-exec: install-exec-recursive
 install-data: install-data-recursive
@@ -692,13 +550,12 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-recursive
 
-clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
-	mostlyclean-am
+clean-am: clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f Makefile
-distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-libtool distclean-tags
+distclean-am: clean-am distclean-generic distclean-libtool \
+	distclean-tags
 
 dvi: dvi-recursive
 
@@ -712,7 +569,7 @@ info-am:
 
 install-data-am:
 
-install-exec-am: install-libLTLIBRARIES
+install-exec-am:
 
 install-info: install-info-recursive
 
@@ -726,8 +583,7 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-recursive
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-generic mostlyclean-libtool
 
 pdf: pdf-recursive
 
@@ -737,24 +593,22 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES
+uninstall-am: uninstall-info-am
 
 uninstall-info: uninstall-info-recursive
 
 .PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am check check-am \
-	clean clean-generic clean-libLTLIBRARIES clean-libtool \
-	clean-recursive ctags ctags-recursive distclean \
-	distclean-compile distclean-generic distclean-libtool \
+	clean clean-generic clean-libtool clean-recursive ctags \
+	ctags-recursive distclean distclean-generic distclean-libtool \
 	distclean-recursive distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-exec install-exec-am install-info \
-	install-info-am install-libLTLIBRARIES install-man \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	maintainer-clean-recursive mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool mostlyclean-recursive \
-	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-info-am uninstall-libLTLIBRARIES
+	install-info-am install-man install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic maintainer-clean-recursive \
+	mostlyclean mostlyclean-generic mostlyclean-libtool \
+	mostlyclean-recursive pdf pdf-am ps ps-am tags tags-recursive \
+	uninstall uninstall-am uninstall-info-am
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

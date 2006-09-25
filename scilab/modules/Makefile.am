@@ -44,8 +44,11 @@ endif
 
 SUBDIRS += .
 
+# 
 lib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
+
+# Core modules
 libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/boolean/libboolean.la \
