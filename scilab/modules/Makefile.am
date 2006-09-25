@@ -28,15 +28,14 @@ special_functions \
 double \
 randlib \
 data_structures \
-boolean \
 symbolic \
 tclsci \
-scicos \
 sparse \
 string \
 io \
 gui \
 graphics \
+scicos \
 wintools
 
 if JAVA
