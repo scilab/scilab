@@ -33,6 +33,7 @@ int C2F(sci_winqueryreg) _PARAMS((char *fname))
 /*-----------------------------------------------------------------------------------*/
 int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 {
+#ifdef _MSC_VER
 	static int l1,n1,m1;
 
 	char *param1=NULL,*param2=NULL,*param3=NULL;
@@ -157,7 +158,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 
 	if (output) {FREE(output);output=NULL;}
 	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-
+#endif
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
