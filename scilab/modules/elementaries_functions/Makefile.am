@@ -23,7 +23,6 @@ src/fortran/iset.f \
 src/fortran/franck.f \
 src/fortran/dwpowe.f \
 src/fortran/dbskin.f \
-src/fortran/somespline.f \
 src/fortran/rcsort.f \
 src/fortran/zbesi.f \
 src/fortran/wddiv.f \

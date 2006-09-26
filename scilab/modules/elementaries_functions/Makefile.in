@@ -90,7 +90,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-franck.lo \
 	libelementaries_functions_la-dwpowe.lo \
 	libelementaries_functions_la-dbskin.lo \
-	libelementaries_functions_la-somespline.lo \
 	libelementaries_functions_la-rcsort.lo \
 	libelementaries_functions_la-zbesi.lo \
 	libelementaries_functions_la-wddiv.lo \
@@ -121,7 +120,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-zacon.lo \
 	libelementaries_functions_la-wacos.lo \
 	libelementaries_functions_la-zdiv.lo \
-	libelementaries_functions_la-dtensbs.lo \
 	libelementaries_functions_la-xerprn.lo \
 	libelementaries_functions_la-balanc.lo \
 	libelementaries_functions_la-dcsevl.lo \
@@ -156,7 +154,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-ddif.lo \
 	libelementaries_functions_la-dbesk0.lo \
 	libelementaries_functions_la-zunk1.lo \
-	libelementaries_functions_la-cshep2d.lo \
 	libelementaries_functions_la-wdiv.lo \
 	libelementaries_functions_la-wtan.lo \
 	libelementaries_functions_la-dbesks.lo \
@@ -295,7 +292,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-dbesjg.lo \
 	libelementaries_functions_la-dset.lo \
 	libelementaries_functions_la-dtild.lo \
-	libelementaries_functions_la-pchim.lo \
 	libelementaries_functions_la-wpade.lo \
 	libelementaries_functions_la-i1mach.lo \
 	libelementaries_functions_la-zbesyg.lo \
@@ -313,8 +309,7 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-rjbesl.lo \
 	libelementaries_functions_la-djairy.lo \
 	libelementaries_functions_la-rat.lo \
-	libelementaries_functions_la-dbesk.lo \
-	libelementaries_functions_la-dspfit.lo
+	libelementaries_functions_la-dbesk.lo
 am__objects_3 = libelementaries_functions_la-sci_isequal.lo \
 	libelementaries_functions_la-sci_matrix.lo \
 	libelementaries_functions_la-sci_prod.lo \
@@ -686,7 +681,6 @@ src/fortran/iset.f \
 src/fortran/franck.f \
 src/fortran/dwpowe.f \
 src/fortran/dbskin.f \
-src/fortran/somespline.f \
 src/fortran/rcsort.f \
 src/fortran/zbesi.f \
 src/fortran/wddiv.f \
@@ -717,7 +711,6 @@ src/fortran/wipowe.f \
 src/fortran/zacon.f \
 src/fortran/wacos.f \
 src/fortran/zdiv.f \
-src/fortran/dtensbs.f \
 src/fortran/xerprn.f \
 src/fortran/balanc.f \
 src/fortran/dcsevl.f \
@@ -752,7 +745,6 @@ src/fortran/xermsg.f \
 src/fortran/ddif.f \
 src/fortran/dbesk0.f \
 src/fortran/zunk1.f \
-src/fortran/cshep2d.f \
 src/fortran/wdiv.f \
 src/fortran/wtan.f \
 src/fortran/dbesks.f \
@@ -891,7 +883,6 @@ src/fortran/dexint.f \
 src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
-src/fortran/pchim.f \
 src/fortran/wpade.f \
 src/fortran/i1mach.f \
 src/fortran/zbesyg.f \
@@ -909,8 +900,7 @@ src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
 src/fortran/djairy.f \
 src/fortran/rat.f \
-src/fortran/dbesk.f \
-src/fortran/dspfit.f
+src/fortran/dbesk.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -1010,8 +1000,7 @@ sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
 
 libelementaries_functions_la_includedir = $(includedir)/elementaries_functions
-libelementaries_functions_la_include_HEADERS = includes/constinterp.h \
-includes/sci_tools.h \
+libelementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 
@@ -1606,9 +1595,6 @@ libelementaries_functions_la-dwpowe.lo: src/fortran/dwpowe.f
 libelementaries_functions_la-dbskin.lo: src/fortran/dbskin.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbskin.lo `test -f 'src/fortran/dbskin.f' || echo '$(srcdir)/'`src/fortran/dbskin.f
 
-libelementaries_functions_la-somespline.lo: src/fortran/somespline.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-somespline.lo `test -f 'src/fortran/somespline.f' || echo '$(srcdir)/'`src/fortran/somespline.f
-
 libelementaries_functions_la-rcsort.lo: src/fortran/rcsort.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rcsort.lo `test -f 'src/fortran/rcsort.f' || echo '$(srcdir)/'`src/fortran/rcsort.f
 
@@ -1698,9 +1684,6 @@ libelementaries_functions_la-wacos.lo: src/fortran/wacos.f
 
 libelementaries_functions_la-zdiv.lo: src/fortran/zdiv.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zdiv.lo `test -f 'src/fortran/zdiv.f' || echo '$(srcdir)/'`src/fortran/zdiv.f
-
-libelementaries_functions_la-dtensbs.lo: src/fortran/dtensbs.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dtensbs.lo `test -f 'src/fortran/dtensbs.f' || echo '$(srcdir)/'`src/fortran/dtensbs.f
 
 libelementaries_functions_la-xerprn.lo: src/fortran/xerprn.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xerprn.lo `test -f 'src/fortran/xerprn.f' || echo '$(srcdir)/'`src/fortran/xerprn.f
@@ -1803,9 +1786,6 @@ libelementaries_functions_la-dbesk0.lo: src/fortran/dbesk0.f
 
 libelementaries_functions_la-zunk1.lo: src/fortran/zunk1.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunk1.lo `test -f 'src/fortran/zunk1.f' || echo '$(srcdir)/'`src/fortran/zunk1.f
-
-libelementaries_functions_la-cshep2d.lo: src/fortran/cshep2d.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cshep2d.lo `test -f 'src/fortran/cshep2d.f' || echo '$(srcdir)/'`src/fortran/cshep2d.f
 
 libelementaries_functions_la-wdiv.lo: src/fortran/wdiv.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdiv.lo `test -f 'src/fortran/wdiv.f' || echo '$(srcdir)/'`src/fortran/wdiv.f
@@ -2221,9 +2201,6 @@ libelementaries_functions_la-dset.lo: src/fortran/dset.f
 libelementaries_functions_la-dtild.lo: src/fortran/dtild.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dtild.lo `test -f 'src/fortran/dtild.f' || echo '$(srcdir)/'`src/fortran/dtild.f
 
-libelementaries_functions_la-pchim.lo: src/fortran/pchim.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-pchim.lo `test -f 'src/fortran/pchim.f' || echo '$(srcdir)/'`src/fortran/pchim.f
-
 libelementaries_functions_la-wpade.lo: src/fortran/wpade.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wpade.lo `test -f 'src/fortran/wpade.f' || echo '$(srcdir)/'`src/fortran/wpade.f
 
@@ -2277,9 +2254,6 @@ libelementaries_functions_la-rat.lo: src/fortran/rat.f
 
 libelementaries_functions_la-dbesk.lo: src/fortran/dbesk.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk.lo `test -f 'src/fortran/dbesk.f' || echo '$(srcdir)/'`src/fortran/dbesk.f
-
-libelementaries_functions_la-dspfit.lo: src/fortran/dspfit.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dspfit.lo `test -f 'src/fortran/dspfit.f' || echo '$(srcdir)/'`src/fortran/dspfit.f
 
 libelementaries_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
 	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f

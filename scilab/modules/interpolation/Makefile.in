@@ -68,7 +68,10 @@ am__DEPENDENCIES_1 = $(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = libinterpolation_la-interpolation.lo \
 	libinterpolation_la-someinterp.lo
-am__objects_2 = libinterpolation_la-sci_lsq_splin.lo \
+am__objects_2 = libinterpolation_la-somespline.lo \
+	libinterpolation_la-dspfit.lo libinterpolation_la-cshep2d.lo \
+	libinterpolation_la-dtensbs.lo libinterpolation_la-pchim.lo
+am__objects_3 = libinterpolation_la-sci_lsq_splin.lo \
 	libinterpolation_la-sci_interp.lo \
 	libinterpolation_la-sci_interp2d.lo \
 	libinterpolation_la-sci_splin.lo \
@@ -80,7 +83,8 @@ am__objects_2 = libinterpolation_la-sci_lsq_splin.lo \
 	libinterpolation_la-sci_splin3d.lo \
 	libinterpolation_la-sci_bsplin3val.lo \
 	libinterpolation_la-sci_eval_cshep2d.lo
-am_libinterpolation_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libinterpolation_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libinterpolation_la_OBJECTS = $(am_libinterpolation_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
@@ -92,6 +96,11 @@ LTCOMPILE = $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) \
 	$(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+F77LD = $(F77)
+F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libinterpolation_la_SOURCES)
 DIST_SOURCES = $(libinterpolation_la_SOURCES)
@@ -329,6 +338,12 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tcldir = @tcldir@
+INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
+src/fortran/dspfit.f \
+src/fortran/cshep2d.f \
+src/fortran/dtensbs.f \
+src/fortran/pchim.f
+
 INTERPOLATION_C_SOURCES = src/c/interpolation.c \
 src/c/someinterp.c
 
@@ -347,12 +362,13 @@ sci_gateway/c/sci_eval_cshep2d.c
 
 libinterpolation_la_includedir = $(includedir)/interpolation
 libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
-includes/interpolation.h
+includes/interpolation.h \
+includes/constinterp.h
 
+libinterpolation_la_FFLAGS = -Iincludes/
 libinterpolation_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-#-Isrc/c/
 lib_LTLIBRARIES = libinterpolation.la
-libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
 libinterpolation_la_DEPENDENCIES = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
@@ -362,7 +378,7 @@ libinterpolation_la_PKGCONFIG = interpolation.pc
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .f .lo .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -420,7 +436,7 @@ clean-libLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libinterpolation.la: $(libinterpolation_la_OBJECTS) $(libinterpolation_la_DEPENDENCIES) 
-	$(LINK) -rpath $(libdir) $(libinterpolation_la_LDFLAGS) $(libinterpolation_la_OBJECTS) $(libinterpolation_la_LIBADD) $(LIBS)
+	$(F77LINK) -rpath $(libdir) $(libinterpolation_la_LDFLAGS) $(libinterpolation_la_OBJECTS) $(libinterpolation_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -561,6 +577,30 @@ libinterpolation_la-sci_eval_cshep2d.lo: sci_gateway/c/sci_eval_cshep2d.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_eval_cshep2d.c' object='libinterpolation_la-sci_eval_cshep2d.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libinterpolation_la_CFLAGS) $(CFLAGS) -c -o libinterpolation_la-sci_eval_cshep2d.lo `test -f 'sci_gateway/c/sci_eval_cshep2d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_eval_cshep2d.c
+
+.f.o:
+	$(F77COMPILE) -c -o $@ $<
+
+.f.obj:
+	$(F77COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.f.lo:
+	$(LTF77COMPILE) -c -o $@ $<
+
+libinterpolation_la-somespline.lo: src/fortran/somespline.f
+	$(LIBTOOL) --mode=compile $(F77) $(libinterpolation_la_FFLAGS) $(FFLAGS) -c -o libinterpolation_la-somespline.lo `test -f 'src/fortran/somespline.f' || echo '$(srcdir)/'`src/fortran/somespline.f
+
+libinterpolation_la-dspfit.lo: src/fortran/dspfit.f
+	$(LIBTOOL) --mode=compile $(F77) $(libinterpolation_la_FFLAGS) $(FFLAGS) -c -o libinterpolation_la-dspfit.lo `test -f 'src/fortran/dspfit.f' || echo '$(srcdir)/'`src/fortran/dspfit.f
+
+libinterpolation_la-cshep2d.lo: src/fortran/cshep2d.f
+	$(LIBTOOL) --mode=compile $(F77) $(libinterpolation_la_FFLAGS) $(FFLAGS) -c -o libinterpolation_la-cshep2d.lo `test -f 'src/fortran/cshep2d.f' || echo '$(srcdir)/'`src/fortran/cshep2d.f
+
+libinterpolation_la-dtensbs.lo: src/fortran/dtensbs.f
+	$(LIBTOOL) --mode=compile $(F77) $(libinterpolation_la_FFLAGS) $(FFLAGS) -c -o libinterpolation_la-dtensbs.lo `test -f 'src/fortran/dtensbs.f' || echo '$(srcdir)/'`src/fortran/dtensbs.f
+
+libinterpolation_la-pchim.lo: src/fortran/pchim.f
+	$(LIBTOOL) --mode=compile $(F77) $(libinterpolation_la_FFLAGS) $(FFLAGS) -c -o libinterpolation_la-pchim.lo `test -f 'src/fortran/pchim.f' || echo '$(srcdir)/'`src/fortran/pchim.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

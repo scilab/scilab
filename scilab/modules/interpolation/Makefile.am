@@ -27,8 +27,9 @@ libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
 includes/interpolation.h \
 includes/constinterp.h
 
+libinterpolation_la_FFLAGS=  -Iincludes/
 libinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-#-Isrc/c/
+
 lib_LTLIBRARIES = libinterpolation.la
 
 libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
