@@ -733,7 +733,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\getPropertyAssignedValue.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\gifimg.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\graphicModuleClose.c"
 				>
 			</File>
 			<File
@@ -1218,6 +1226,86 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_auto_resize_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_axes_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_background_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_color_map_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_current_axes_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_current_entity_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_current_figure_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_default_values_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_figure_id_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_figure_name_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_figure_position_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_figure_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_figure_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_immediate_drawing_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_interp_color_vector_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_pixel_drawing_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_pixmap_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_rotation_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_visible_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\setGetHashTable.c"
 				>
 			</File>
@@ -1327,11 +1415,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\getPropertyAssignedValue.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\giffonts.h"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\gifimg.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\graphicModuleClose.h"
 				>
 			</File>
 			<File
@@ -1792,6 +1888,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\setGetHashTable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\setHandleProperty.h"
 				>
 			</File>
 			<File

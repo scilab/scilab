@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
 /* file: getHandleProperty.h                                              */
 /* Copyright INRIA 2006                                                   */
-/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : contains definitions of functions needed by sci_get             */
+/* Authors : Jean-Baptiste Silvy                                          */
+/* desc : contains declarations of functions needed by sci_get            */
 /*        Each function has the same signature int (sciPointObj *) and    */
 /*        return a value in the scilab console                            */
 /*------------------------------------------------------------------------*/

@@ -18,22 +18,22 @@
 /**
  * the array of correspondance
  */
-static char * pmodes[NB_PIXEL_MODES] = { "clear"       , /* 1 */
-                                         "and"         , /* 2 */
-                                         "andReverse"  , /* 3 */
-                                         "copy"        , /* 4 */
-                                         "andInverted" , /* 5 */
-                                         "noop"        , /* 6 */
-                                         "xor"         , /* 7 */
-                                         "or"          , /* 8 */
-                                         "nor"         , /* 9 */
-                                         "equiv"       , /* 10 */
-                                         "invert"      , /* 11 */
-                                         "orReverse"   , /* 12 */
-                                         "copyInverted", /* 13 */
-                                         "orInverted"  , /* 14 */
-                                         "nand"        , /* 15 */
-                                         "set"         , /* 16 */
+static char * pmodes[NB_PIXEL_MODES] = { "clear"       , /* 0 */
+                                         "and"         , /* 1 */
+                                         "andReverse"  , /* 2 */
+                                         "copy"        , /* 3 */
+                                         "andInverted" , /* 4 */
+                                         "noop"        , /* 5 */
+                                         "xor"         , /* 6 */
+                                         "or"          , /* 7 */
+                                         "nor"         , /* 8 */
+                                         "equiv"       , /* 9 */
+                                         "invert"      , /* 10 */
+                                         "orReverse"   , /* 11 */
+                                         "copyInverted", /* 12 */
+                                         "orInverted"  , /* 13 */
+                                         "nand"        , /* 14 */
+                                         "set"         , /* 15 */
                                        } ;
 
 /*----------------------------------------------------------------------------------*/
@@ -60,13 +60,13 @@ int getPixelModeIndex( const char * modeName )
       switch( modeName[3] )
       {
       case 0 : /* and */
-        return 2 ;
+        return 1 ;
         break ;
       case 'R' : /* andReverse */
-        return 3 ;
+        return 2 ;
         break ;
       case 'I' : /* andInverted */
-        return 5 ;
+        return 4 ;
         break ;
       }
       break;
@@ -77,13 +77,13 @@ int getPixelModeIndex( const char * modeName )
       switch( modeName[4] )
       {
       case 'r' : /* clear */
-        return 1 ;
+        return 0 ;
         break ;
       case 0 : /* copy */
-        return 4 ;
+        return 3 ;
         break ;
       case 'I' : /* copyInverted */
-        return 13 ;
+        return 12 ;
         break ;
       }
       break ;
@@ -91,13 +91,13 @@ int getPixelModeIndex( const char * modeName )
   case 'e':
     {
       if ( nameLen < 5 ) { break ; }
-      return 10 ; /* equiv */
+      return 9 ; /* equiv */
       break ;
     }
   case 'i':
     {
       if ( nameLen < 6 ) { break ;}
-      return 11 ; /* invert */
+      return 10 ; /* invert */
       break ;
     }
   case 'n':
@@ -106,13 +106,13 @@ int getPixelModeIndex( const char * modeName )
       switch( modeName[2] )
       {
       case 'o' : /* noop */
-        return 6 ;
+        return 5 ;
         break ;
       case 'r' : /* nor */
-        return 9 ;
+        return 8 ;
         break ;
       case 'n' : /* nand */
-        return 15 ;
+        return 14 ;
         break ;
       }
       break ;
@@ -123,13 +123,13 @@ int getPixelModeIndex( const char * modeName )
       switch( modeName[2] )
       {
       case 0 : /* or */
-        return 8 ;
+        return 7 ;
         break ;
       case 'R' : /* orReverse */
-        return 12 ;
+        return 11 ;
         break ;
       case 'I' : /* orInverted */
-        return 14 ;
+        return 13 ;
         break ;
       }
       break;
@@ -137,13 +137,13 @@ int getPixelModeIndex( const char * modeName )
   case 's':
     {
       if ( nameLen < 3 ) { break ; }
-      return 16 ; /* set */
+      return 15 ; /* set */
       break ;
     }
   case 'x':
     {
       if ( nameLen < 3 ) { break ; }
-      return 7 ; /* xor */
+      return 8 ; /* xor */
       break ;
     }
   }

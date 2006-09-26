@@ -52,16 +52,9 @@ sciPointObj * getAxesModel( void )
 /* DJ.A 08/01/04 */
 int C2F(graphicsmodels) ()
 {
- 
-  integer i ,m;
-  char dir;
-  sciHandleTab *newhd1, *newhd2;
-  sciPointObj * pobj = NULL;
-  sciSubWindow * ppobj = NULL;
-  double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
+  sciHandleTab * newhd1 ;
+  sciHandleTab * newhd2 ;
   sciSubWindow * ppaxesmdl = NULL ;
-  
-  /*  sciSubWindow * ppaxesmdl = NULL; */
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
@@ -99,77 +92,18 @@ int C2F(graphicsmodels) ()
   
   sciSetCurrentSon (pfiguremdl, (sciPointObj *) NULL);
 
-  pFIGURE_FEATURE (pfiguremdl)->user_data = (int *) NULL; /* adding 30.06.05 */
-  pFIGURE_FEATURE (pfiguremdl)->size_of_user_data = 0;
   pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS_SCI;
-  /** the colormap is mx3 matrix */
-  m = NUMCOLORS_SCI; /* F.Leray 30.03.04 */
-  if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
-    {
-      sciDelHandle (pfiguremdl);
-      FREE(pfiguremdl->pfeatures);
-      FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
-      return 0;
-    }  
-  for (i= 0 ; i < m ; i++)
-    {
-      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
-      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
-      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
-    }
 
-  /* initialisation de context et mode graphique par defaut */
-  if (sciInitGraphicContext (pfiguremdl) == -1)
-    {
-      sciDelHandle (pfiguremdl);
-      FREE(pFIGURE_FEATURE(pfiguremdl)->pcolormap);
-      FREE(pfiguremdl->pfeatures);
-      FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
-      return 0;
-    }
-  if (sciInitGraphicMode (pfiguremdl) == -1)
-    {
-      sciDelHandle (pfiguremdl);    
-      FREE(pFIGURE_FEATURE(pfiguremdl)->pcolormap);
-      FREE(pfiguremdl->pfeatures);
-      FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
-      return 0;
-    }   
-
-  /* F.Leray 09.04.04 */
-  if (sciInitFontContext (pfiguremdl) == -1)
-    {
-      sciDelHandle (pfiguremdl);
-      FREE(pfiguremdl->pfeatures);	  
-      FREE(pfiguremdl);
-      strcpy(error_message,"Default figure cannot be create");
-      return 0;
-    }
-
-  pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
-  
-  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic (%d)", sizeof ("Scilab Graphic (%d)") + 4);
-  pFIGURE_FEATURE (pfiguremdl)->namelen = Min (60, 19); 
-  pFIGURE_FEATURE (pfiguremdl)->number=0;
-  pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
-  pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;
-  pFIGURE_FEATURE (pfiguremdl)->windowdimwidth = 600;
-  pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 400;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposx = -1;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposy = -1;
-  pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
-  pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
-  pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
-  pFIGURE_FEATURE (pfiguremdl)->visible = TRUE;
-  pFIGURE_FEATURE (pfiguremdl)->auto_redraw = TRUE;
-  pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
-  pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
-  pFIGURE_FEATURE (pfiguremdl)->wshow = 0; 
+  /* set default properties */
+  if ( InitFigureModel() < 0 )
+  {
+    sciDelHandle (pfiguremdl);
+    FREE(pfiguremdl->pfeatures);
+    FREE(pfiguremdl);
+    strcpy(error_message,"Default figure cannot be create");
+    return 0;
+  }
 
   /* F.Leray Adding some FontContext Info for InitFontContext function */
   /*  pFIGURE_FEATURE (pfiguremdl)->fontcontext.backgroundcolor = */
@@ -207,165 +141,33 @@ int C2F(graphicsmodels) ()
       strcpy(error_message,"Default axes cannot be create");
       return 0;
     }
-  sciSetCurrentSon (paxesmdl, (sciPointObj *) NULL);
   
   ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
 
-  ppaxesmdl->user_data = (int *) NULL; /* adding 30.06.05 */
-  ppaxesmdl->size_of_user_data = 0;
+  sciSetCurrentSon (paxesmdl, (sciPointObj *) NULL);
   ppaxesmdl->relationship.psons = (sciSons *) NULL;
   ppaxesmdl->relationship.plastsons = (sciSons *) NULL;
-  ppaxesmdl->callback = (char *)NULL;
-  ppaxesmdl->callbacklen = 0;
-  ppaxesmdl->callbackevent = 100;
   
-  if (sciInitGraphicContext (paxesmdl) == -1)
-    {
-      sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
-      sciDelHandle (paxesmdl);
-      FREE(paxesmdl->pfeatures);
-      FREE(paxesmdl);          
-      strcpy(error_message,"Default axes cannot be create");
-      return 0;
-    }   
-  if (sciInitGraphicMode (paxesmdl) == -1)
-    {
-      sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
-      sciDelHandle (paxesmdl);
-      FREE(paxesmdl->pfeatures);
-      FREE(paxesmdl);
-      strcpy(error_message,"Default axes cannot be create");
-      return 0;
-    } 
-  
-  
-  /* F.Leray 09.04.04 */
-  if (sciInitFontContext (paxesmdl) == -1)
+  if ( InitAxesModel() < 0 )
   {
     sciDelThisToItsParent (paxesmdl, sciGetParent (paxesmdl));
     sciDelHandle (paxesmdl);
-    FREE(paxesmdl->pfeatures);	  
-    FREE(paxesmdl);
+    FREE(paxesmdl->pfeatures);
+    FREE(paxesmdl);          
     strcpy(error_message,"Default axes cannot be create");
     return 0;
   }
-  
-  ppaxesmdl->logflags[0] = 'n';
-  ppaxesmdl->logflags[1] = 'n';
-  ppaxesmdl->logflags[2] = 'n';
-  
-  /* axes labelling values*/
-  ppaxesmdl->axes.ticscolor  = -1;
-  /* F.Leray 08.04.04 : No need anymore:  */
-  /*ppaxesmdl->axes.textcolor  = -1;
-    ppaxesmdl->axes.fontsize  = -1;  */
-  ppaxesmdl->axes.subint[0]  = 1;   
-  ppaxesmdl->axes.subint[1]  = 1; 
-  ppaxesmdl->axes.subint[2]  = 1;
-  ppaxesmdl->axes.xdir='d'; 
-  ppaxesmdl->axes.ydir='l';
+
+  /* there are properties not initialized bu InitAxesModel */
+  /* Is it a missing ? */
      
-  ppaxesmdl->axes.rect  = BT_OFF;
-  for (i=0 ; i<7 ; i++)
-    ppaxesmdl->axes.limits[i]  = 0;
-  
-  ppaxesmdl->cube_scaling = FALSE;
-  for (i=0 ; i<3 ; i++)  ppaxesmdl->grid[i]  = -1;
-  ppaxesmdl->alpha  = 0.0;
-  ppaxesmdl->theta  = 270.0;
-  ppaxesmdl->alpha_kp  = 45.0;
-  ppaxesmdl->theta_kp  = 215.0;
-  ppaxesmdl->is3d  = FALSE;
   ppaxesmdl->FirstPlot = TRUE;
   ppaxesmdl->with_leg = 0;
-
-  dir= 'd'; ppaxesmdl->axes.xdir=dir;
-  dir= 'l'; ppaxesmdl->axes.ydir=dir;      
-
-  /* BU HERE */
-  /*   ppaxesmdl = ppaxesmdl; */
-  for (i=0 ; i<4 ; i++){  
-    ppaxesmdl->axes.xlim[i]=  Cscale.xtics[i];
-    ppaxesmdl->axes.ylim[i]=  Cscale.ytics[i]; }
-  
-  /* F.Leray 22.09.04 */
-  (ppaxesmdl->axes).axes_visible[0] = FALSE;
-  (ppaxesmdl->axes).axes_visible[1] = FALSE;
-  (ppaxesmdl->axes).axes_visible[2] = FALSE;
-  (ppaxesmdl->axes).reverse[0] = FALSE;
-  (ppaxesmdl->axes).reverse[1] = FALSE;
-  (ppaxesmdl->axes).reverse[2] = FALSE;
-  ppaxesmdl->flagNax = FALSE;
- 
-  /*F.Leray : just for completion : */
-  ppaxesmdl->axes.nbsubtics[0] = 1; /* not used at all because needs ppaxesmdl->flagNax = TRUE */
-  ppaxesmdl->axes.nbsubtics[1] = 1; /* and when it is TRUE, it means WE have given the corresponding */
-  ppaxesmdl->axes.nbsubtics[2] = 1; /* ppaxesmdl->axes.nbsubtics[0,1,2] !! */
-  
-  (ppaxesmdl->axes).nxgrads = 11; /* computed ticks */
-  (ppaxesmdl->axes).nygrads = 11;
-  (ppaxesmdl->axes).nzgrads = 3;
-  
-  for(i=0;i<11;i++) (ppaxesmdl->axes).xgrads[i] = tab[i];
-  for(i=0;i<11;i++) (ppaxesmdl->axes).ygrads[i] = tab[i];
-  (ppaxesmdl->axes).zgrads[0] = -1.;
-  (ppaxesmdl->axes).zgrads[1]  = 0.;
-  (ppaxesmdl->axes).zgrads[2]  = 1.;
-
-  (ppaxesmdl->axes).u_nxgrads = 0;
-  (ppaxesmdl->axes).u_nygrads = 0;
-  (ppaxesmdl->axes).u_nzgrads = 0;
-  (ppaxesmdl->axes).u_xgrads = (double *)NULL;
-  (ppaxesmdl->axes).u_ygrads = (double *)NULL;
-  (ppaxesmdl->axes).u_zgrads = (double *)NULL;
-  (ppaxesmdl->axes).u_xlabels= (char **) NULL;
-  (ppaxesmdl->axes).u_ylabels= (char **) NULL;
-  (ppaxesmdl->axes).u_zlabels= (char **) NULL;
-  (ppaxesmdl->axes).auto_ticks[0] = TRUE;
-  (ppaxesmdl->axes).auto_ticks[1] = TRUE;
-  (ppaxesmdl->axes).auto_ticks[2] = TRUE;
-  /* end 22.09.04 */
-  
-  ppaxesmdl->axes.zlim[0]= -1.0;
-  ppaxesmdl->axes.zlim[1]= 1.0;
-  
-  ppaxesmdl->axes.flag[0]= 2;
-  ppaxesmdl->axes.flag[1]= 2;
-  ppaxesmdl->axes.flag[2]= 4;
-
-  ppaxesmdl->axes.hiddenAxisColor = 4 ; /* jb silvy 03/2006 */
- 
-  ppaxesmdl->project[0]= 1;
-  ppaxesmdl->project[1]= 1;
-  ppaxesmdl->project[2]= 0;
-  ppaxesmdl->hiddencolor=4;
-  ppaxesmdl->hiddenstate=0;
-  ppaxesmdl->isoview= FALSE; 
-  ppaxesmdl->facetmerge = FALSE;
-
-  ppaxesmdl->WRect[0]   = 0;
-  ppaxesmdl->WRect[1]   = 0;
-  ppaxesmdl->WRect[2]   = 1;
-  ppaxesmdl->WRect[3]   = 1;
-
+     
   ppaxesmdl->ARect[0]   = 0.125;
   ppaxesmdl->ARect[1]   = 0.125;
   ppaxesmdl->ARect[2]   = 0.125;
   ppaxesmdl->ARect[3]   = 0.125;
-  
-  ppaxesmdl->FRect[0]   = 0.0;
-  ppaxesmdl->FRect[1]   = 0.0;
-  ppaxesmdl->FRect[2]   = 1.0;
-  ppaxesmdl->FRect[3]   = 1.0;
-  ppaxesmdl->FRect[4]   = -1.0;
-  ppaxesmdl->FRect[5]   = 1.0;
-  
-  ppaxesmdl->SRect[0]   = 0.0;
-  ppaxesmdl->SRect[1]   = 1.0;
-  ppaxesmdl->SRect[2]   = 0.0;
-  ppaxesmdl->SRect[3]   = 1.0;
-  ppaxesmdl->SRect[4]   = -1.0;
-  ppaxesmdl->SRect[5]   = 1.0;
   
   ppaxesmdl->clip_region[0] = 0.;
   ppaxesmdl->clip_region[1] = 0.;
@@ -375,66 +177,8 @@ int C2F(graphicsmodels) ()
   /* the model has not been changed !!! */
   ppaxesmdl->clip_region_set = 0 ;
   
-  ppaxesmdl->tight_limits = FALSE;
   
-  ppaxesmdl->isselected = FALSE;
-
-  ppaxesmdl->visible = sciGetVisibility(pfiguremdl);
-  /*   ppaxesmdl->drawlater = FALSE; */
-  ppaxesmdl->isclip = -1;
-  
-  ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
-  
-  /* F.Leray 10.06.04 */
-  /* Adding default Labels inside Axes */
-  /*------------------------------------------------------------------------------------*/
  
-  pobj = paxesmdl;
-  ppobj = pSUBWIN_FEATURE(paxesmdl);
-  
-  /******************************  title *************************/
-  
-  ppobj->mon_title = initLabel( paxesmdl ) ;
-
-  if ( ppobj->mon_title == NULL )
-  {
-    return -1 ;
-  }
-  
-  pLABEL_FEATURE(ppobj->mon_title)->ptype = 1;
-  
-  /******************************  x_label *************************/
-  
-  ppobj->mon_x_label = initLabel( paxesmdl ) ;
-  
-  if ( ppobj->mon_x_label == NULL )
-  {
-    return -1 ;
-  }
-  
-  pLABEL_FEATURE( ppobj->mon_x_label )->ptype = 2 ;
-  
-  /******************************  y_label *************************/
-  
-  ppobj->mon_y_label = initLabel( paxesmdl ) ;
-  
-  if ( ppobj->mon_y_label == NULL )
-  {
-    return -1 ;
-  }
-  
-  pLABEL_FEATURE( ppobj->mon_y_label )->ptype = 3 ;
-  
-  /******************************  z_label *************************/
-  
-  ppobj->mon_z_label = initLabel( paxesmdl ) ;
-  
-  if ( ppobj->mon_z_label == NULL )
-  {
-    return -1 ;
-  }
-  
-  pLABEL_FEATURE( ppobj->mon_z_label )->ptype = 4 ;
   
   return 1;
 }
@@ -719,31 +463,46 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
 
 int InitFigureModel()
 { 
-  int i, m = NUMCOLORS_SCI;
-  /*sciPointObj *pfiguremdl = (sciPointObj *) NULL;*/ /* DJ.A 08/01/04 */
+  int i ;
+  int m = NUMCOLORS_SCI ;
+
   pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
 
-  sciInitGraphicContext (pfiguremdl);
-  sciInitGraphicMode (pfiguremdl);
-  sciInitFontContext (pfiguremdl);  /* F.Leray 10.06.04 */
+  if ( sciInitGraphicContext(pfiguremdl) < 0 )
+  {
+    return -1 ;
+  }
+  if ( sciInitGraphicMode(pfiguremdl) < 0 )
+  {
+    return -1 ;
+  }
+  if ( sciInitFontContext(pfiguremdl) < 0)
+  {
+    /* F.Leray 10.06.04 */
+    return -1 ;
+  }
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic", sizeof ("Scilab Graphic") + 4);
   pFIGURE_FEATURE (pfiguremdl)->namelen = Min (sizeof ("Scilab Graphic") + 4, 14); 
-  pFIGURE_FEATURE (pfiguremdl)->number=0;
-  pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
-  pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposx = 200;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposy = 200;
+  pFIGURE_FEATURE (pfiguremdl)->number          = 0   ;
+  pFIGURE_FEATURE (pfiguremdl)->figuredimwidth  = 610 ;
+  pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461 ;
+  pFIGURE_FEATURE (pfiguremdl)->windowdimwidth  = 600 ;
+  pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 400 ;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposx      = 200 ;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposy      = 200 ;
+  
   if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
     {
       strcpy(error_message,"Cannot init color map");
-      return 0;
+      return -1 ;
     }  
   for (i= 0 ; i < m ; i++)
-    {
-      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
-      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
-      pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
-    }
+  {
+    pFIGURE_FEATURE(pfiguremdl)->pcolormap[i] = (double) (defcolors[3*i]/255.0);
+    pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
+    pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
+  }
+  
   pFIGURE_FEATURE (pfiguremdl)->numcolors = m;
   pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
@@ -757,14 +516,13 @@ int InitFigureModel()
   pFIGURE_FEATURE (pfiguremdl)->numsubwinselected = 0; 
   pFIGURE_FEATURE (pfiguremdl)->pixmap = 0; 
   pFIGURE_FEATURE (pfiguremdl)->wshow = 0;
-  return 1;
+  return 0;
 }
 
 
 
 int InitAxesModel()
 { 
-  char dir;
   int i;
   double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
   sciPointObj * pobj = NULL;
@@ -793,17 +551,21 @@ int InitAxesModel()
   ppaxesmdl->size_of_user_data = 0;
 
   for (i=0 ; i<7 ; i++)
-    ppaxesmdl->axes.limits[i]  = 0;
+  {
+    ppaxesmdl->axes.limits[i] = 0;
+  }
 
   for (i=0 ; i<3 ; i++)
+  {
     ppaxesmdl->grid[i]  = -1;
+  }
+
   ppaxesmdl->alpha  = 0.0;
   ppaxesmdl->theta  = 270.0;
   ppaxesmdl->alpha_kp  = 45.0;
   ppaxesmdl->theta_kp  = 215.0;
-  ppaxesmdl->is3d  = FALSE;  
-  dir= 'd'; ppaxesmdl->axes.xdir=dir;
-  dir= 'l'; ppaxesmdl->axes.ydir=dir;      
+  ppaxesmdl->is3d  = FALSE;
+
   for (i=0 ; i<4 ; i++)
     {  
       ppaxesmdl->axes.xlim[i]= Cscale.xtics[i]; 
@@ -828,8 +590,16 @@ int InitAxesModel()
   (ppaxesmdl->axes).nygrads = 11;
   (ppaxesmdl->axes).nzgrads = 3;
 
-  for(i=0;i<11;i++) (ppaxesmdl->axes).xgrads[i] = tab[i];
-  for(i=0;i<11;i++) (ppaxesmdl->axes).ygrads[i] = tab[i];
+  for(i=0;i<11;i++)
+  {
+    ppaxesmdl->axes.xgrads[i] = tab[i];
+  }
+  
+  for(i=0;i<11;i++)
+  {
+    ppaxesmdl->axes.ygrads[i] = tab[i];
+  }
+
   (ppaxesmdl->axes).zgrads[0] = -1.;
   (ppaxesmdl->axes).zgrads[1]  = 0.;
   (ppaxesmdl->axes).zgrads[2]  = 1.;
@@ -943,7 +713,7 @@ int InitAxesModel()
   
   pLABEL_FEATURE( ppobj->mon_z_label )->ptype = 4 ;
   
-  return 1; 
+  return 0; 
 }
 
 

@@ -36,6 +36,8 @@ int get_cf_type( void ) ;
 extern void GPopupResize();
 /* static struct BCG *tmpScilabXgc; */
 
+void set_cf_type( int val ) ;
+
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 			     integer *Ntr,double *zminmax, integer *colminmax, integer *colout, BOOL with_mesh));
 extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2);

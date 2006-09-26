@@ -28,6 +28,7 @@
 #include "Xcall1.h"
 #include "Format.h"
 #include "pixel_mode.h"
+#include "../src/c/getHandleProperty/setHandleProperty.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -1206,33 +1207,6 @@ int set3ddata(sciPointObj *pobj, int value[4], int numrow[4], int numcol[4], int
 }
 
 /*-----------------------------------------------------------------------------------*/
-/* removeNewStyleMenu                                                                */
-/* remove the menu and toolbar which can not be used in old style                    */
-/*-----------------------------------------------------------------------------------*/
-void updateMenus( struct BCG * XGC )
-{
-#if  _MSC_VER
-  {
-    extern void RefreshGraphToolBar(struct BCG * ScilabGC);
-    extern void RefreshMenus(struct BCG * ScilabGC);
-    
-    RefreshMenus(XGC);
-    RefreshGraphToolBar(XGC);
-  }
-#else
-  {
-
-      extern void refreshMenus( struct BCG * ScilabGC ) ;
-
-      refreshMenus( XGC ) ;
-      /* no toolbar under linux */
-
-  }
-#endif
-
-}
-
-/*-----------------------------------------------------------------------------------*/
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
  * Sets the value to the object
  */
@@ -1242,11 +1216,10 @@ extern void set_cf_type(int val);
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol)
 {
   int xtmp;
-  int  i,num,v=1,na,id,cur,verb=0;
+  int  i,v=1,verb=0;
   double dv=0.0; 
   char   **ptr;
-  sciPointObj *psubwin, *figure, *tmpobj;
-  struct BCG *XGC;
+  sciPointObj *psubwin ;
 
   /* debug F.Leray 28.04.04 */
   /* sciSubWindow * ppsubwin = NULL;*/
@@ -1259,8 +1232,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       && pobj != pSUBWIN_FEATURE(getAxesModel())->mon_z_label ) /* Addings F.Leray 10.06.04 */
     {
       if (pobj != (sciPointObj *)NULL) 
-			{
-				psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+      {
+        psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
       }
 
       if ((pobj == (sciPointObj *)NULL) && 
@@ -1278,340 +1251,89 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 
   /***************** graphics mode *******************************/ 
   if (strcmp(marker,"color_map") == 0)
-    sciSetColormap((sciPointObj *)pobj, stk(*value), *numrow, *numcol);
-  else if (strcmp(marker,"old_style") == 0) {
-    if ((strcmp(cstk(*value),"on") == 0)) 
-      versionflag = 1;
-    else if ((strcmp(cstk(*value),"off") == 0))
-      versionflag = 0; 
-    else {
-      strcpy(error_message,"old_style must be 'on' or 'off'");
-      return -1;
-    }
+  {
+    return set_color_map_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"figure_style") == 0) {
-    if (pobj != getFigureModel())
-      {
-	if ((strcmp(cstk(*value),"old") == 0)) {
-	  if (version_flag() == 0)  {
-	      /* 	    versionflag = 1; */
-
-	    
-            sciXClearFigure();
-	    
-            C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
-	
-	    if (XGC->mafigure != (sciPointObj *)NULL) {
-		DestroyAllGraphicsSons(XGC->mafigure);
-		DestroyFigure (XGC->mafigure);
-		XGC->mafigure = (sciPointObj *)NULL; 
-	    }
-	    
-	    XGC->graphicsversion = 1; /* Adding F.Leray 23.07.04 : we switch to old graphic mode */
-            
-            /* remove the Insert menu and purge the Edit menu in old style */
-            /* A.Cornet, JB Silvy 12/2005 */
-            updateMenus( XGC ) ;
-            
-	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-	    
-	    /* Add xclear to refresh toolbar for Windows */
-	    C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
-		      PD0, 0L, 0L);
-	  }
-	}
-	else if ((strcmp(cstk(*value),"new") == 0)) {   
-	  if (version_flag() == 1)  {
-	    C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);      
-	    
-	    C2F(dr)("xget","window",&verb,&num,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L); 
-	    C2F(dr)("xstart","v",&num,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
-	    XGC=(struct BCG *) sciGetCurrentScilabXgc ();
-	    if ((figure = ConstructFigure (XGC)) != NULL) {
-	      /* Adding F.Leray 25.03.04*/
-	      sciSetCurrentObj(figure);
-	      XGC->mafigure = (sciPointObj *) figure;
-	      XGC->graphicsversion = 0;   /* new graphic mode */
-	      set_cf_type(1);
-	      /* Add xclear to refresh toolbar for Windows */
-	      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
-	      if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
-		sciSetCurrentObj(psubwin);
-		sciSetOriginalSubWin (figure, psubwin);
-              }
-              /* Refresh toolbar and Menus */
-              updateMenus( XGC ) ;
-	    }
-	  }
-	}
-	else {
-	  strcpy(error_message,"Figure style must be 'old' or 'new'");    
-	  return -1;
-	}
-      }
-    else{
-      strcpy(error_message,"Cannot set the style of a model");    
-      return -1;
-    }  
+  else if (strcmp(marker,"old_style") == 0)
+  {
+    return set_old_style_property( pobj, *value, *numrow, *numcol ) ;
+  }
+  else if (strcmp(marker,"figure_style") == 0)
+  {
+    return set_figure_style_property( pobj, *value, *numrow, *numcol ) ;
   }  
-  else if (strcmp(marker,"pixel_drawing_mode") == 0) {
-    if (sciGetEntityType (pobj) == SCI_FIGURE) {
-      v=-1;
-      /*for (i=0;i<16;i++) {
-	if (strcmp(cstk(*value),pmodes[i])==0) {v=i;break;}
-      }*/
-      v = getPixelModeIndex( cstk(*value) ) ;
-      if ( v >=0 )
-      {
-	sciSetXorMode((sciPointObj *) pobj, v);
-      }
-      else
-      {
-	strcpy(error_message,"Invalid value");  
-	return -1;
-      }  
-    }
-    else
-      {strcpy(error_message,"pixel_drawing_mode: unknown property for this handle");return -1;}
+  else if (strcmp(marker,"pixel_drawing_mode") == 0)
+  {
+    return set_pixel_drawing_mode_property( pobj, *value, *numrow, *numcol ) ;
   }  
-  else if (strcmp(marker,"default_values") == 0) {
-    if (*stk(*value) == 1)
-      {
-	if (pobj == getFigureModel())
-	  InitFigureModel();
-	else if (pobj == getAxesModel())
-	  InitAxesModel();
-	else
-	  sciSetDefaultValues();
-      }
-    else {
-      strcpy(error_message,"Value must be 1 to set default values");
-      return -1;
-    }
+  else if ( strcmp(marker,"default_values") == 0 )
+  {
+    return set_default_values_property( pobj, *value, *numrow, *numcol ) ;
   }  
   else if (strcmp(marker,"visible") == 0) 
   {
-    if ((strcmp(cstk(*value),"on") == 0))
-    {
-      return sciSetVisibility((sciPointObj *)pobj, TRUE) ;
-    }
-    else if ((strcmp(cstk(*value),"off") == 0))
-    {
-      return sciSetVisibility((sciPointObj *)pobj, FALSE);
-    }
-    else
-    {
-      strcpy(error_message,"Value must be 'on' or 'off'");
-      return -1;
-    }
+    return set_visible_property( pobj, *value, *numrow, *numcol ) ;
   } 
-  else if (strcmp(marker,"auto_resize") == 0)  { 
-    if ((strcmp(cstk(*value),"on") == 0))
-      return sciSetResize((sciPointObj *) pobj, TRUE); 
-    else if ((strcmp(cstk(*value),"off") == 0))  
-      return sciSetResize((sciPointObj *) pobj, FALSE);
-    else
-      {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
-
+  else if ( strcmp(marker,"auto_resize") == 0 )
+  {
+    return set_auto_resize_property( pobj, *value, *numrow, *numcol ) ;
   }
   /*************************** Handles Properties ********/
   else if ((strcmp(marker,"current_obj") == 0) || (strcmp(marker,"current_entity") == 0))
-    {
-      tmpobj=(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
-      if (tmpobj == (sciPointObj *)NULL) 
-	{strcpy(error_message,"Object is not valid");return -1;}
-      sciSetCurrentObj(tmpobj);
-    }
+  {
+    return set_current_entity_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"current_axes") == 0) 
-    {
-      tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
-      if (tmpobj == (sciPointObj *) NULL)
-	{strcpy(error_message,"Object is not valid");return -1;}
-      if (sciGetEntityType (tmpobj) == SCI_SUBWIN){
-	sciPointObj * pfigure = NULL;
-	sciSetSelectedSubWin(tmpobj);
-	/* F.Leray 11.02.05 : if the new selected subwin is not inside the current figure, */
-	/* we must also set the current figure to subwin->parent */
-	pfigure = sciGetParentFigure(tmpobj);
-
-	num=pFIGURE_FEATURE(pfigure)->number;
-	C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-	if (sciSwitchWindow(&num) != 0){
-	  strcpy(error_message,"It was not possible to create the requested figure");return -1;
-	}
-	/* End modif. on the 11.02.05 */
-      }
-      else
-	{strcpy(error_message,"Object is not an Axes Entity");return -1;}
-    }
+  {
+    return set_current_axes_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"current_figure") == 0) 
   {
-    if (VarType(2) == 9)
-    {
-      tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
-      if (tmpobj == (sciPointObj *) NULL)
-      {
-        strcpy(error_message,"Object is not valid") ;
-        return -1 ;
-      }
-      if (sciGetEntityType (tmpobj) != SCI_FIGURE)
-      {
-        strcpy(error_message,"Object is not a handle on a figure");
-        return -1;
-      }
-      num=pFIGURE_FEATURE(tmpobj)->number;
-    }
-    else if (VarType(2) == 1)
-    {
-      num=(int)stk(*value)[0];
-    }
-    else
-    {
-      strcpy(error_message,"Bad argument to determine the current figure: should be a window number or a handle (available under new graphics mode only)");return -1;
-    }
-      
-    
-    if( version_flag() == 0  )
-    {
-      /* select the figure num */
-      int res = sciSetUsedWindow( num ) ;
-      if ( res < 0 )
-      {
-        strcpy(error_message,"It was not possible to create the requested figure");
-      }
-      return res ;
-    }
-    else
-    {
-      C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L) ;
-    }
-
+    return set_current_figure_property( pobj, *value, *numrow, *numcol ) ;
   }
 
   /************************  figure Properties *****************************/ 
   else if (strcmp(marker,"figure_position") == 0)
-    {
-      return sciSetFigurePos ((sciPointObj *)pobj, (int)stk(*value)[0], (int)stk(*value)[1]);
-    } 
+  {
+    return set_figure_position_property( pobj, *value, *numrow, *numcol ) ;
+  } 
   else if (strcmp(marker,"axes_size") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=(int)stk(*value)[0];  
-      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=(int)stk(*value)[1];
-      if ((sciPointObj *)pobj != getFigureModel()) {
-	num=pFIGURE_FEATURE(pobj)->number;
-	C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	C2F(dr)("xset","wdim",
-		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
-		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),
-		PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      }
-    } 
+  {
+    return set_axes_size_property( pobj, *value, *numrow, *numcol ) ;
+  } 
   else if (strcmp(marker,"figure_size") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      pFIGURE_FEATURE( pobj )->figuredimwidth  = (int)stk(*value)[0] ;  
-      pFIGURE_FEATURE( pobj )->figuredimheight = (int)stk(*value)[1] ;
-      if ( pobj != getFigureModel() )
-      {
-	num = pFIGURE_FEATURE(pobj)->number ;
-	C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	C2F(dr)("xset","wpdim",
-		&(pFIGURE_FEATURE( pobj )->figuredimwidth),
-		&(pFIGURE_FEATURE( pobj )->figuredimheight),
-		PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      }
-
-    }
-  else if (strcmp(marker,"figure_name") == 0) {
-    return sciSetName((sciPointObj *) pobj, cstk(*value), (*numcol)*(*numrow));
+  {
+    return set_figure_size_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"figure_id") == 0){
-    if (sciGetEntityType (pobj) != SCI_FIGURE) {
-      sprintf(error_message,"%s property undefined for this object",marker);
-      return -1;
-    }
-    id = (int)stk(*value)[0];
-    if ((sciPointObj *)pobj != getFigureModel())
-      {
-	C2F(dr)("xset","window",&id,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
-	if (sciSwitchWindow(&id) != 0){
-	  strcpy(error_message,"It was not possible to create the requested figure");return -1;
-	}
-      }
-    else
-    {
-      return sciSetNum(getFigureModel(), &id);
-    }
+  else if (strcmp(marker,"figure_name") == 0)
+  {
+    return set_figure_name_property( pobj, *value, *numrow, *numcol ) ;
+  }
+  else if (strcmp(marker,"figure_id") == 0)
+  {
+    return set_figure_id_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if (strcmp(marker,"rotation_style") == 0)
-    { 
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      if (strcmp(cstk(*value),"unary")==0 )
-	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 0 ;
-      else if (strcmp(cstk(*value),"multiple")==0 )
-	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 1 ;
-      else  {strcpy(error_message,"Nothing to do (value must be 'unary/multiple')"); return -1;}
-    }
+  {
+    return set_rotation_style_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"immediate_drawing") == 0)
-    { 
-      if (sciGetEntityType (pobj) != SCI_FIGURE) {
-	sprintf(error_message,"%s property undefined for this object",marker);
-	return -1;
-      }
-      if (strcmp(cstk(*value),"on")==0 )
-	pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = TRUE ;
-      else if (strcmp(cstk(*value),"off")==0 )
-	pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = FALSE ;
-      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
-    }
-  else if (strcmp(marker,"pixmap") == 0){
-    if (sciGetEntityType (pobj) != SCI_FIGURE) {
-      sprintf(error_message,"%s property undefined for this object",marker);
-      return -1;
-    }
-    if (strcmp(cstk(*value),"on")==0 )
-      pFIGURE_FEATURE(pobj)->pixmap =1;
-    else if (strcmp(cstk(*value),"off")==0 )
-      pFIGURE_FEATURE(pobj)->pixmap =0;
-    else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+  {
+    return set_immediate_drawing_property( pobj, *value, *numrow, *numcol ) ;
+  }
+  else if (strcmp(marker,"pixmap") == 0)
+  {
+    return set_pixmap_property( pobj, *value, *numrow, *numcol ) ;
   }
   /********************** context graphique ******************************/
   else if (strcmp(marker,"background") == 0)
-    {
-      /* I add this line under:*/
-      return sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
-
-    }
+  {
+    return set_background_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"interp_color_vector") == 0)
-    {
-      if(sciGetEntityType(pobj) != SCI_POLYLINE)
-	{strcpy(error_message,"interp_color_vector can only be set on Polyline objects"); return -1;}
-
-      if(((*numcol) == 3 && pPOLYLINE_FEATURE(pobj)->dim_icv == 3) || 
-	 ((*numcol) == 4 && pPOLYLINE_FEATURE(pobj)->dim_icv == 4))
-	{
-	  int tmp[4];
-	  for(i=0;i<(*numcol);i++) tmp[i] = (int) stk(*value)[i];
-
-	  sciSetInterpVector((sciPointObj *)pobj, (*numcol),tmp);
-	}
-      else
-	{strcpy(error_message,"Under interpolated color moden the column dimension of the color vector must match the number of points defining the line (which must be 3 or 4)"); return -1;}
-    }
+  {
+    return set_interp_color_vector_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"interp_color_mode") == 0)
     {
       if((sciGetEntityType(pobj) != SCI_POLYLINE))

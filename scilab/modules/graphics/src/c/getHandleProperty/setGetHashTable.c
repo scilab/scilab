@@ -6,8 +6,10 @@
 /*        These hash table are based on the Scilab hashTable              */
 /*------------------------------------------------------------------------*/
 
-#include "setGetHashTable.h"
 #include <string.h>
+
+#include "setGetHashTable.h"
+#include "MALLOC.h"
 
 /*-----------------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */
@@ -55,6 +57,14 @@ getPropertyFunc searchGetHashtable( GetPropertyHashTable * hashTable, char * key
 /*-----------------------------------------------------------------------------------*/
 int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropertyFunc value )
 {
-  return hashtable_insert( hashTable, key, value ) ;
+  /* allocate a new key because the hashable claims ownership */
+  /* and will free it when destroyed */
+  char * copyKey   = NULL ;
+  int    keyLength = strlen( key ) + 1 ;
+
+  copyKey = MALLOC( keyLength * sizeof(char) ) ;
+  strcpy( copyKey, key ) ;
+
+  return hashtable_insert( hashTable, copyKey, value ) ;
 }
 /*-----------------------------------------------------------------------------------*/
