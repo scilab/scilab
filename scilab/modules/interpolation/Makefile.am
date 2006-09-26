@@ -1,3 +1,9 @@
+INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
+src/fortran/dspfit.f \
+src/fortran/cshep2d.f \
+src/fortran/dtensbs.f \
+src/fortran/pchim.f
+
 INTERPOLATION_C_SOURCES = src/c/interpolation.c \
 src/c/someinterp.c
 
@@ -14,16 +20,18 @@ sci_gateway/c/sci_splin3d.c \
 sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
+
 libinterpolation_la_includedir=$(includedir)/interpolation
 
 libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
-includes/interpolation.h
+includes/interpolation.h \
+includes/constinterp.h
 
 libinterpolation_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 #-Isrc/c/
 lib_LTLIBRARIES = libinterpolation.la
 
-libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES) 
+libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
 
 libinterpolation_la_DEPENDENCIES = \
 	$(top_builddir)/modules/core/libcore.la \

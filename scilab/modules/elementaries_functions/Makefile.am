@@ -54,7 +54,6 @@ src/fortran/wipowe.f \
 src/fortran/zacon.f \
 src/fortran/wacos.f \
 src/fortran/zdiv.f \
-src/fortran/dtensbs.f \
 src/fortran/xerprn.f \
 src/fortran/balanc.f \
 src/fortran/dcsevl.f \
@@ -89,7 +88,6 @@ src/fortran/xermsg.f \
 src/fortran/ddif.f \
 src/fortran/dbesk0.f \
 src/fortran/zunk1.f \
-src/fortran/cshep2d.f \
 src/fortran/wdiv.f \
 src/fortran/wtan.f \
 src/fortran/dbesks.f \
@@ -228,7 +226,6 @@ src/fortran/dexint.f \
 src/fortran/dbesjg.f \
 src/fortran/dset.f \
 src/fortran/dtild.f \
-src/fortran/pchim.f \
 src/fortran/wpade.f \
 src/fortran/i1mach.f \
 src/fortran/zbesyg.f \
@@ -246,8 +243,8 @@ src/fortran/wsqrt.f \
 src/fortran/rjbesl.f \
 src/fortran/djairy.f \
 src/fortran/rat.f \
-src/fortran/dbesk.f \
-src/fortran/dspfit.f
+src/fortran/dbesk.f
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -348,8 +345,7 @@ sci_gateway/fortran/sci_f_exp.f
 
 libelementaries_functions_la_includedir=$(includedir)/elementaries_functions
 
-libelementaries_functions_la_include_HEADERS = includes/constinterp.h \
-includes/sci_tools.h \
+libelementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 
