@@ -16,6 +16,7 @@
 #include "MALLOC.h"
 #include "sciquit.h"
 #include "../../../graphics/includes/DestroyObjects.h"
+#include "../../../graphics/includes/graphicModuleClose.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(deletewin)(integer *number);
 extern char *get_sci_data_strings(int n);
@@ -69,7 +70,8 @@ int ExitScilab(void)
       C2F(scirun)(quit_script,strlen(quit_script));
     }
 
-	AllGraphWinDelete();
+    closeGraphicModule() ;
+
 
 	#ifdef _MSC_VER
 		if ( IsWindowInterface() ) 
