@@ -29,7 +29,6 @@ if test "x$with" != 'x' -a "x$with" != "xyes"; then
 else
 dnl look for the program in the path
 	AC_CHECK_PROG(WITH,$prog,yes,no)
-
 	if test "x$WITH" = "xyes"; then
 		MANTARGET=man
 		MANGENERATOR=$prog
@@ -39,9 +38,10 @@ dnl look for the program in the path
 		AC_MSG_ERROR([Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available])		   
 	fi
 fi
-	unset ac_cv_prog_WITH # Void the caching of WITH
-fi
 
+fi
+unset ac_cv_prog_WITH # Void the caching of WITH
+unset WITH
 
 ])
 

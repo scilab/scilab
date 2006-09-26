@@ -1,7 +1,8 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
 dnl Macros which process ./configure arguments
-dnl Copyright INRIA
-dnl Sylvestre Ledru - June 2006
-
 
 AC_DEFUN([AC_CHECK_PROG_GCC],[
 

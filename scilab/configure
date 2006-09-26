@@ -25145,8 +25145,6 @@ echo "${ECHO_T}no" >&6; }
 fi
 
 
-#		WITH=$WITH_XSLTPROC
-
 	if test "x$WITH" = "xyes"; then
 		MANTARGET=man
 		MANGENERATOR=$prog
@@ -25157,9 +25155,10 @@ echo "$as_me: error: Unable to find $progname in the path. Please check your ins
    { (exit 1); exit 1; }; }
 	fi
 fi
-	unset ac_cv_prog_WITH # Void the caching of WITH
-fi
 
+fi
+unset ac_cv_prog_WITH # Void the caching of WITH
+unset WITH
 
 
 if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
@@ -25219,8 +25218,6 @@ echo "${ECHO_T}no" >&6; }
 fi
 
 
-#		WITH=$WITH_XSLTPROC
-
 	if test "x$WITH" = "xyes"; then
 		MANTARGET=man
 		MANGENERATOR=$prog
@@ -25231,9 +25228,10 @@ echo "$as_me: error: Unable to find $progname in the path. Please check your ins
    { (exit 1); exit 1; }; }
 	fi
 fi
-	unset ac_cv_prog_WITH # Void the caching of WITH
-fi
 
+fi
+unset ac_cv_prog_WITH # Void the caching of WITH
+unset WITH
 
 
 fi
