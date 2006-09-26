@@ -888,9 +888,8 @@ LN_S
 AR
 RANLIB
 lt_ECHO
+WITH
 XML_CONFIG
-WITH_XSLTPROC
-WITH_SABLOTRON
 GUI_X11_TRUE
 GUI_X11_FALSE
 GUI_WIN32_TRUE
@@ -1604,7 +1603,6 @@ Optional Packages:
   --without-tk            do not compile with TCL/TK
   --with-gtk2             use Gtk2 widgets
   --without-ocaml         do not compile with ocaml
-  --without-java          do not compile Java interface
   --with-x                use the X Window System
   --with-jdk=DIR          use JDK from DIR
   --with-pvm	           compile with PVM library
@@ -1618,9 +1616,9 @@ Optional Packages:
   --with-pic              try to use only PIC/non-PIC objects [default=use
                           both]
   --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
-  --with-libxml2=PREFIX    set the path to your libxml2 installation
-  --with-xsltproc  compile man pages with xsltproc
   --with-sablotron compile man pages with sablotron
+  --with-xsltproc  compile man pages with xsltproc
+  --with-libxml2=PREFIX    set the path to your libxml2 installation
 
 Some influential environment variables:
   FC          Fortran compiler command
@@ -4283,13 +4281,6 @@ if test "${with_ocam+set}" = set; then
 fi
 
 
-
-# Check whether --with-java was given.
-if test "${with_java+set}" = set; then
-  withval=$with_java;
-fi
-
-
 #################################
 ## check this is a source version
 #################################
@@ -4330,7 +4321,7 @@ FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS ma
 
 
 #####################################################
-## if specific compilers are required, check if they exist
+## Check if options are correct (or not)
 #####################################################
 
 if test "$with_g77" = yes -a "$with_gfortran" = yes; then
@@ -4344,6 +4335,11 @@ if test "$with_intelcompilers" = yes -a "$with_gnu" = yes; then
 echo "$as_me: error: Conflicting options : you specified two compiler series" >&2;}
    { (exit 1); exit 1; }; }
 fi
+
+
+#####################################################
+## if specific compilers are required, check if they exist
+#####################################################
 
 if test "$with_gnu" = yes; then
 	# GNU C and Fortran compilers required
@@ -7960,7 +7956,7 @@ echo "$as_me: error: Scilab requires the X Window System header files and librar
 fi
 #AC_SUBST(X11_LIBS)
 
-LDFLAGS="$LDFLAGS  -no-undefined"
+
 #############################################
 ## Compilers and options according to machine
 #############################################
@@ -8863,7 +8859,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 8866 "configure"
+// #line 8862 "configure"
 
 
 public class conftest {
@@ -8913,7 +8909,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 8916 "configure"
+// #line 8912 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -8961,7 +8957,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 8964 "configure"
+// #line 8960 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -8988,7 +8984,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 8991 "configure"
+// #line 8987 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -13846,7 +13842,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 13849 "configure"
+#line 13845 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -14192,7 +14188,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 { echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14195 "configure"
+#line 14191 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -16639,13 +16635,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:16642: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:16638: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16645: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:16641: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16648: output\"" >&5)
+  (eval echo "\"\$as_me:16644: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -17735,7 +17731,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 17738 "configure"' > conftest.$ac_ext
+  echo '#line 17734 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -18683,11 +18679,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18686: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:18682: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:18690: \$? = $ac_status" >&5
+   echo "$as_me:18686: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19005,11 +19001,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19008: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19004: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:19012: \$? = $ac_status" >&5
+   echo "$as_me:19008: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19110,11 +19106,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19113: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19109: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19117: \$? = $ac_status" >&5
+   echo "$as_me:19113: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -19165,11 +19161,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19168: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:19164: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19172: \$? = $ac_status" >&5
+   echo "$as_me:19168: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -22010,7 +22006,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22013 "configure"
+#line 22009 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22110,7 +22106,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22113 "configure"
+#line 22109 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22892,11 +22888,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22895: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22891: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:22899: \$? = $ac_status" >&5
+   echo "$as_me:22895: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -22991,11 +22987,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22994: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22990: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:22998: \$? = $ac_status" >&5
+   echo "$as_me:22994: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -23043,11 +23039,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23046: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23042: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23050: \$? = $ac_status" >&5
+   echo "$as_me:23046: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -25061,6 +25057,187 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+
+
+#################
+## Man management
+#################
+
+
+# Check whether --with-sablotron was given.
+if test "${with_sablotron+set}" = set; then
+  withval=$with_sablotron; with_sablotron=$withval
+else
+  with_sablotron=''
+
+fi
+
+
+
+# Check whether --with-xsltproc was given.
+if test "${with_xsltproc+set}" = set; then
+  withval=$with_xsltproc; with_xsltproc=$withval
+else
+  with_xsltproc=''
+
+fi
+
+
+if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
+	{ { echo "$as_me:$LINENO: error: Conflicting options : you specified two xsl compilers (sablotron & sabcmd)" >&5
+echo "$as_me: error: Conflicting options : you specified two xsl compilers (sablotron & sabcmd)" >&2;}
+   { (exit 1); exit 1; }; }
+fi
+
+
+	with=$with_sablotron
+	progname=Sablotron
+	prog=sabcmd
+
+	if test "x$with" != 'x' -a "x$with" != "xyes"; then
+      { echo "$as_me:$LINENO: checking $progname" >&5
+echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
+   MANBIN="$with/bin/$prog"
+        if test -x "$MANBIN"; then
+                { echo "$as_me:$LINENO: result: $MANBIN" >&5
+echo "${ECHO_T}$MANBIN" >&6; }
+        else
+			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
+echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
+else
+	# Extract the first word of "$prog", so it can be a program name with args.
+set dummy $prog; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH"; then
+  ac_cv_prog_WITH="$WITH" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
+fi
+fi
+WITH=$ac_cv_prog_WITH
+if test -n "$WITH"; then
+  { echo "$as_me:$LINENO: result: $WITH" >&5
+echo "${ECHO_T}$WITH" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+#		WITH=$WITH_XSLTPROC
+
+	if test "x$WITH" = "xyes"; then
+		MANTARGET=man
+		MANGENERATOR=$prog
+	else
+	if test "x$with" != "x"; then
+				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
+echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+fi
+	unset ac_cv_prog_WITH # Void the caching of WITH
+fi
+
+
+
+if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
+
+	with=$with_xsltproc
+	progname=xsltproc
+	prog=xsltproc
+
+	if test "x$with" != 'x' -a "x$with" != "xyes"; then
+      { echo "$as_me:$LINENO: checking $progname" >&5
+echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
+   MANBIN="$with/bin/$prog"
+        if test -x "$MANBIN"; then
+                { echo "$as_me:$LINENO: result: $MANBIN" >&5
+echo "${ECHO_T}$MANBIN" >&6; }
+        else
+			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
+echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
+else
+	# Extract the first word of "$prog", so it can be a program name with args.
+set dummy $prog; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH"; then
+  ac_cv_prog_WITH="$WITH" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
+fi
+fi
+WITH=$ac_cv_prog_WITH
+if test -n "$WITH"; then
+  { echo "$as_me:$LINENO: result: $WITH" >&5
+echo "${ECHO_T}$WITH" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+#		WITH=$WITH_XSLTPROC
+
+	if test "x$WITH" = "xyes"; then
+		MANTARGET=man
+		MANGENERATOR=$prog
+	else
+	if test "x$with" != "x"; then
+				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
+echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+fi
+	unset ac_cv_prog_WITH # Void the caching of WITH
+fi
+
+
+
+fi
+
 #######################
 ## test for underscores
 #######################
@@ -25252,25 +25429,26 @@ fi
 ## Test for libxml
 #######################
 
-{ echo "$as_me:$LINENO: checking for libxml2" >&5
-echo $ECHO_N "checking for libxml2... $ECHO_C" >&6; }
 
 # Check whether --with-libxml2 was given.
 if test "${with_libxml2+set}" = set; then
-  withval=$with_libxml2;
+  withval=$with_libxml2; with_libxml2=$withval
+else
+  with_libxml2='yes'
+
 fi
 
-if test "x$with_libxml" != "x"; then
-   { echo "$as_me:$LINENO: checking for xml-config" >&5
-echo $ECHO_N "checking for xml-config... $ECHO_C" >&6; }
+
+if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
+   { echo "$as_me:$LINENO: checking libxml2, for xml-config" >&5
+echo $ECHO_N "checking libxml2, for xml-config... $ECHO_C" >&6; }
    XML2_CONFIG="$with_libxml2/bin/xml2-config"
-        if test -x "$XML_CONFIG"
-        then
+        if test -x "$XML_CONFIG"; then
                 { echo "$as_me:$LINENO: result: $XML_CONFIG" >&5
 echo "${ECHO_T}$XML_CONFIG" >&6; }
         else
-                { { echo "$as_me:$LINENO: error: Unable to find xml2-config. Please check the path ($with libxml2) you provided" >&5
-echo "$as_me: error: Unable to find xml2-config. Please check the path ($with libxml2) you provided" >&2;}
+                { { echo "$as_me:$LINENO: error: Unable to find $XML_CONFIG. Please check the path you provided" >&5
+echo "$as_me: error: Unable to find $XML_CONFIG. Please check the path you provided" >&2;}
    { (exit 1); exit 1; }; }
 		fi
 else
@@ -25325,188 +25503,6 @@ echo "$as_me: error: Unable to find xml2-config in the path. Please check  your 
 fi
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
-echo $XML_CONFIG --cflags
-
-
-#################
-## Man management
-#################
-
-# Sablotron or xsltproc
-# ===================
-
-
-# Check whether --with-xsltproc was given.
-if test "${with_xsltproc+set}" = set; then
-  withval=$with_xsltproc;
-
-		  # Extract the first word of "xsltproc", so it can be a program name with args.
-set dummy xsltproc; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH_XSLTPROC+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH_XSLTPROC"; then
-  ac_cv_prog_WITH_XSLTPROC="$WITH_XSLTPROC" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH_XSLTPROC="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH_XSLTPROC" && ac_cv_prog_WITH_XSLTPROC="no"
-fi
-fi
-WITH_XSLTPROC=$ac_cv_prog_WITH_XSLTPROC
-if test -n "$WITH_XSLTPROC"; then
-  { echo "$as_me:$LINENO: result: $WITH_XSLTPROC" >&5
-echo "${ECHO_T}$WITH_XSLTPROC" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-
-		  if test "x$WITH_XSLTPROC" = "xyes"; then
-			MANTARGET=man
-			MANGENERATOR=xsltproc
-		  fi
-
-
-fi
-
-
-
-# Check whether --with-sablotron was given.
-if test "${with_sablotron+set}" = set; then
-  withval=$with_sablotron;
-		  	# Extract the first word of "sabcmd", so it can be a program name with args.
-set dummy sabcmd; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH_SABLOTRON+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH_SABLOTRON"; then
-  ac_cv_prog_WITH_SABLOTRON="$WITH_SABLOTRON" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH_SABLOTRON="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH_SABLOTRON" && ac_cv_prog_WITH_SABLOTRON="no"
-fi
-fi
-WITH_SABLOTRON=$ac_cv_prog_WITH_SABLOTRON
-if test -n "$WITH_SABLOTRON"; then
-  { echo "$as_me:$LINENO: result: $WITH_SABLOTRON" >&5
-echo "${ECHO_T}$WITH_SABLOTRON" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-			if test "x$WITH_SABLOTRON" = "xyes"; then
-		  		MANTARGET=man
-				MANGENERATOR=sabcmd
-			fi
-
-
-fi
-
-
-# check and make sure that we only have sablotron _or_ xsltproc
-if test "x$MANGENERATOR" = "x"; then
-   { echo "$as_me:$LINENO: WARNING: Sablotron (sabcmd) and xsltproc not found: I will not build man pages" >&5
-echo "$as_me: WARNING: Sablotron (sabcmd) and xsltproc not found: I will not build man pages" >&2;}
-fi
-# Now check if man sources
-# are checked out or not
-# ===================
-
-{ echo "$as_me:$LINENO: checking for man/fr/Makefile.in" >&5
-echo $ECHO_N "checking for man/fr/Makefile.in... $ECHO_C" >&6; }
-if test "${ac_cv_file_man_fr_Makefile_in+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  test "$cross_compiling" = yes &&
-  { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
-echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
-   { (exit 1); exit 1; }; }
-if test -r "man/fr/Makefile.in"; then
-  ac_cv_file_man_fr_Makefile_in=yes
-else
-  ac_cv_file_man_fr_Makefile_in=no
-fi
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_file_man_fr_Makefile_in" >&5
-echo "${ECHO_T}$ac_cv_file_man_fr_Makefile_in" >&6; }
-if test $ac_cv_file_man_fr_Makefile_in = yes; then
-  MAN_FR=man/fr/Makefile
-else
-  MAN_FR=
-fi
-
-
-if test "$MAN_FR" = ''; then
-	MANTARGET=
-	{ echo "$as_me:$LINENO: WARNING: man/fr/Makefile.in not found : I will not build man pages" >&5
-echo "$as_me: WARNING: man/fr/Makefile.in not found : I will not build man pages" >&2;}
-else
-	{ echo "$as_me:$LINENO: checking for man/eng/Makefile.in" >&5
-echo $ECHO_N "checking for man/eng/Makefile.in... $ECHO_C" >&6; }
-if test "${ac_cv_file_man_eng_Makefile_in+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  test "$cross_compiling" = yes &&
-  { { echo "$as_me:$LINENO: error: cannot check for file existence when cross compiling" >&5
-echo "$as_me: error: cannot check for file existence when cross compiling" >&2;}
-   { (exit 1); exit 1; }; }
-if test -r "man/eng/Makefile.in"; then
-  ac_cv_file_man_eng_Makefile_in=yes
-else
-  ac_cv_file_man_eng_Makefile_in=no
-fi
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_file_man_eng_Makefile_in" >&5
-echo "${ECHO_T}$ac_cv_file_man_eng_Makefile_in" >&6; }
-if test $ac_cv_file_man_eng_Makefile_in = yes; then
-  MAN_ENG=man/eng/Makefile
-else
-  MAN_ENG=
-fi
-
-	if test "$MAN_ENG" = ''; then
-		MANTARGET=
-		{ echo "$as_me:$LINENO: WARNING: man/eng/Makefile.in not found : I will not build man pages" >&5
-echo "$as_me: WARNING: man/eng/Makefile.in not found : I will not build man pages" >&2;}
-	fi
-fi
-
 { echo "$as_me:$LINENO: checking for an ANSI C-conforming const" >&5
 echo $ECHO_N "checking for an ANSI C-conforming const... $ECHO_C" >&6; }
 if test "${ac_cv_c_const+set}" = set; then
@@ -25775,6 +25771,9 @@ else
   TERM_VTE_FALSE=
 fi
 
+
+
+LDFLAGS="$LDFLAGS  -no-undefined"
 
 
 
@@ -27162,9 +27161,8 @@ LN_S!$LN_S$ac_delim
 AR!$AR$ac_delim
 RANLIB!$RANLIB$ac_delim
 lt_ECHO!$lt_ECHO$ac_delim
+WITH!$WITH$ac_delim
 XML_CONFIG!$XML_CONFIG$ac_delim
-WITH_XSLTPROC!$WITH_XSLTPROC$ac_delim
-WITH_SABLOTRON!$WITH_SABLOTRON$ac_delim
 GUI_X11_TRUE!$GUI_X11_TRUE$ac_delim
 GUI_X11_FALSE!$GUI_X11_FALSE$ac_delim
 GUI_WIN32_TRUE!$GUI_WIN32_TRUE$ac_delim
@@ -27217,6 +27215,7 @@ TKBASE!$TKBASE$ac_delim
 TK_INC_PATH!$TK_INC_PATH$ac_delim
 TCL_INC_PATH!$TCL_INC_PATH$ac_delim
 TCLTK_LIBS!$TCLTK_LIBS$ac_delim
+TCLSCILIB!$TCLSCILIB$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -27258,7 +27257,6 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
-TCLSCILIB!$TCLSCILIB$ac_delim
 TCLSCIDIR!$TCLSCIDIR$ac_delim
 TCLTKHELP!$TCLTKHELP$ac_delim
 TK_MINOR_VERSION!$TK_MINOR_VERSION$ac_delim
@@ -27297,7 +27295,7 @@ LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 37; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 36; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -28589,7 +28587,6 @@ echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
 echo "Don't use TCL/TK (--without-tk) ................. : $with_tk"
 echo "Uses Gtk2 widgets (--with-gtk2) ................. : $with_gtk2"
 echo "Don't compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
-echo "Don't compile the Java interface (--without-java) : $with_java"
 echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) .................. : $USER_TK_INC_PATH"
@@ -28613,21 +28610,21 @@ else
 fi
 
 echo ""
-if test "$GUI" = "GTK"
-then
-  echo "GTK Configuration:"
-  echo "GTK Version ... : $GTK_VER"
-  echo "GTK CFLAGS .... : $GTK_CFLAGS"
-  echo "GTK LIBS ...... : $GTK_LIBS"
-  echo "GNOME CFLAGS .. : $GNOME_CFLAGS"
-fi
-
-echo ""
 if test ! -z "$PVM_INCLUDE"; then
    echo "PVM Configuration:"
    echo "PVM Architecture : $PVMARCH"
    echo "PVM INCLUDE .... : $PVM_INCLUDE"
    echo "PVM LIBS ....... : $PVM_LIB"
+else
+   echo "Not using PVM"
+fi
+
+echo ""
+if test ! -z "$MANGENERATOR"; then
+   echo "XSL Processor Configuration:"
+   echo "XSL Processor .. : $MANGENERATOR"
+else
+   echo "No documentation generated"
 fi
 
 echo ""

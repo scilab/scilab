@@ -251,7 +251,7 @@ else
 fi
 #AC_SUBST(X11_LIBS)
 
-LDFLAGS="$LDFLAGS  -no-undefined"
+
 #############################################
 ## Compilers and options according to machine
 #############################################
@@ -1162,9 +1162,12 @@ AM_PROG_LIBTOOL
 LT_INIT
 
 
+		
+#################
+## Man management
+#################
 
 dnl check for xsltproc
-
 AC_ARG_WITH(sablotron,
 		[  --with-sablotron compile man pages with sablotron],
 		[with_sablotron=$withval], 
@@ -1176,6 +1179,10 @@ AC_ARG_WITH(xsltproc,
 		[with_xsltproc=$withval], 
 		[with_xsltproc='']
 		)
+
+if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
+	AC_MSG_ERROR([Conflicting options : you specified two xsl compilers (sablotron & sabcmd)])
+fi
 
 AC_CHECK_MAN_GENERATOR([$with_sablotron],[Sablotron],[sabcmd])
 if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
@@ -1281,6 +1288,9 @@ AM_CONDITIONAL(GUI_GTK, test "$GUI" = "GTK")
 
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
+
+
+LDFLAGS="$LDFLAGS  -no-undefined"
 
 dnl #########################
 dnl ## substituting variables
@@ -1519,21 +1529,21 @@ else
 fi
 
 echo ""
-if test "$GUI" = "GTK"
-then
-  echo "GTK Configuration:"
-  echo "GTK Version ... : $GTK_VER"
-  echo "GTK CFLAGS .... : $GTK_CFLAGS"
-  echo "GTK LIBS ...... : $GTK_LIBS"
-  echo "GNOME CFLAGS .. : $GNOME_CFLAGS"
-fi
-
-echo ""
 if test ! -z "$PVM_INCLUDE"; then
    echo "PVM Configuration:"
    echo "PVM Architecture : $PVMARCH"
    echo "PVM INCLUDE .... : $PVM_INCLUDE"
    echo "PVM LIBS ....... : $PVM_LIB"
+else
+   echo "Not using PVM"
+fi
+
+echo ""
+if test ! -z "$MANGENERATOR"; then
+   echo "XSL Processor Configuration:"
+   echo "XSL Processor .. : $MANGENERATOR"
+else
+   echo "No documentation generated"
 fi
 
 echo ""
