@@ -7,7 +7,8 @@
 SUBDIRS = \
 	blas \
 	lapack \
-	MALLOC
+	MALLOC \
+	hashtable
 # \
 #	f2c
 

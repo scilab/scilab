@@ -270,17 +270,11 @@
 /* With the Atlas Lib */
 #undef WITH_ATLAS
 
-/* With GTK */
-#undef WITH_GTK
-
 /* With OCAML */
 #undef WITH_OCAML
 
 /* With PVM */
 #undef WITH_PVM
-
-/* With Readline */
-#undef WITH_READLINE
 
 /* With TK */
 #undef WITH_TK

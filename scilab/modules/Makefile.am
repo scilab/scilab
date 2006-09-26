@@ -21,6 +21,7 @@ localization \
 sound \
 statistics \
 time \
+jvm \
 pvm \
 fileio \
 integer \
@@ -32,6 +33,7 @@ symbolic \
 tclsci \
 sparse \
 string \
+signal_processing \
 io \
 gui \
 graphics \
@@ -65,6 +67,7 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/interpolation/libinterpolation.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/io/libio.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
@@ -79,8 +82,7 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/time/libtime.la \
-	$(top_builddir)/modules/wintools/libwintools.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+	$(top_builddir)/modules/wintools/libwintools.la
 
 ## Libs 
 libscilab_la_DEPENDENCIES += \
