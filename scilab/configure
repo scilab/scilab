@@ -862,15 +862,6 @@ PVM_LIB
 PVM_INCLUDE
 PVM_TRUE
 PVM_FALSE
-PKG_CONFIG
-GTK_CFLAGS
-GTK_LIBS
-LIBGTKHTML_CFLAGS
-LIBGTKHTML_LIBS
-VTE_CFLAGS
-VTE_LIBS
-ZVT_CFLAGS
-ZVT_LIBS
 OCAMLC
 OCAMLOPT
 OCAMLDEP
@@ -894,8 +885,6 @@ GUI_X11_TRUE
 GUI_X11_FALSE
 GUI_WIN32_TRUE
 GUI_WIN32_FALSE
-GUI_GTK_TRUE
-GUI_GTK_FALSE
 TERM_ZTERM_TRUE
 TERM_ZTERM_FALSE
 TERM_VTE_TRUE
@@ -928,7 +917,6 @@ XMULIB
 XAW_LOCAL_SUBDIR
 XAW_LOCAL_INCLUDES
 XAW_LOCAL_LIB
-GNOME_CFLAGS
 TERMCAP_LIB
 GUI
 GUILIB
@@ -969,7 +957,6 @@ IMPPREF
 IMPENV
 ZZLEDT
 HTMLFLAGS
-GTKPLUGBUG
 XXTXEXT
 PERIX11NOPT
 GETLIBTK
@@ -990,14 +977,7 @@ CC
 CFLAGS
 CPPFLAGS
 XMKMF
-CPP
-PKG_CONFIG
-LIBGTKHTML_CFLAGS
-LIBGTKHTML_LIBS
-VTE_CFLAGS
-VTE_LIBS
-ZVT_CFLAGS
-ZVT_LIBS'
+CPP'
 
 
 # Initialize some variables set by options.
@@ -1584,7 +1564,6 @@ Optional Features:
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --enable-debug          compile with "-g" option and do not optimize
-  --disable-gtktest       do not try to compile and run a test GTK+ program
   --enable-shared[=PKGS]  build shared libraries [default=yes]
   --enable-static[=PKGS]  build static libraries [default=yes]
   --enable-fast-install[=PKGS]
@@ -1601,7 +1580,6 @@ Optional Packages:
   --with-intelcompilers   use Intel C (icc) and Fortran (ifort) compilers (GNU/Linux only)
   --with-local-xaw        use Xaw3d widgets given with Scilab
   --without-tk            do not compile with TCL/TK
-  --with-gtk2             use Gtk2 widgets
   --without-ocaml         do not compile with ocaml
   --with-x                use the X Window System
   --with-jdk=DIR          use JDK from DIR
@@ -1631,15 +1609,6 @@ Some influential environment variables:
               you have headers in a nonstandard directory <include dir>
   XMKMF       Path to xmkmf, Makefile generator for X Window System
   CPP         C preprocessor
-  PKG_CONFIG  path to pkg-config utility
-  LIBGTKHTML_CFLAGS
-              C compiler flags for LIBGTKHTML, overriding pkg-config
-  LIBGTKHTML_LIBS
-              linker flags for LIBGTKHTML, overriding pkg-config
-  VTE_CFLAGS  C compiler flags for VTE, overriding pkg-config
-  VTE_LIBS    linker flags for VTE, overriding pkg-config
-  ZVT_CFLAGS  C compiler flags for ZVT, overriding pkg-config
-  ZVT_LIBS    linker flags for ZVT, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -4264,13 +4233,6 @@ fi
 # Check whether --with-tk was given.
 if test "${with_tk+set}" = set; then
   withval=$with_tk;
-fi
-
-
-
-# Check whether --with-gtk2 was given.
-if test "${with_gtk2+set}" = set; then
-  withval=$with_gtk2;
 fi
 
 
@@ -7978,8 +7940,7 @@ GUI='X11'
 # specific scilab dirs for graphics: default is "xsci" for X11
 #   different for Win32
 GUILIB=xsci
-# specific for gnome/gtk version
-GZVT=
+
 # specific scilab dirs for xdr:  default is void for X11
 #   xdr for Win32
 XDRLIB=
@@ -8410,15 +8371,6 @@ fi
 ##########################################
 ## test for X11 and Xaw3d  Athena widgets
 ##########################################
-
-# do not want to check for X11 when using gtk or gtk2
-if test "$with_gtk" = yes; then
-   GUI='GTK'
-fi
-
-if test "$with_gtk2" = yes; then
-   GUI='GTK'
-fi
 
 if test "x$GUI" = "xX11"; then
   ac_save_LDFLAGS="$LDFLAGS"
@@ -8859,7 +8811,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 8862 "configure"
+// #line 8814 "configure"
 
 
 public class conftest {
@@ -8909,7 +8861,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 8912 "configure"
+// #line 8864 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -8957,7 +8909,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 8960 "configure"
+// #line 8912 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -8984,7 +8936,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 8987 "configure"
+// #line 8939 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -13842,7 +13794,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 13845 "configure"
+#line 13797 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -14188,7 +14140,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 { echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14191 "configure"
+#line 14143 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -14568,1242 +14520,6 @@ echo "$as_me: error: TCL/TK not found. Use --without-tk or specify the librairie
 		GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
 	esac
 
-fi
-
-#################
-## GTK
-#################
-
-ZZLEDT=
-GTKPLUGBUG=
-
-if test "$with_gtk" = yes; then
-
-#   AM_PATH_GTK(1.2.0, [
-#					  CFLAGS_save=$CFLAGS
-#					  CFLAGS=$GTK_CFLAGS
-#					  AC_CHECK_HEADERS([gdk/gdkx.h gtk/gtk.h],,[AC_MSG_ERROR(["gdk/gdkx.h or gtk/gtk.h not found (dev files missing ?)"])])
-#					  GNOME_CFLAGS=`gnome-config --cflags gnome`
-#					  CFLAGS=$GNOME_CFLAGS
-#					  AC_CHECK_HEADERS([gtk-xmhtml/gtk-xmhtml.h],,[AC_MSG_ERROR(["gtk-xmhtml/gtk-xmhtml.h not found (dev files missing ?)"])])
-#					  CFLAGS=$CFLAGS_save
-#					],
-#					AC_MSG_ERROR([Cannot find GTK: Is gtk-config in path?])
-#					)
-  { echo "$as_me:$LINENO: checking for gtk_xmhtml_new in -lgtkxmhtml" >&5
-echo $ECHO_N "checking for gtk_xmhtml_new in -lgtkxmhtml... $ECHO_C" >&6; }
-if test "${ac_cv_lib_gtkxmhtml_gtk_xmhtml_new+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lgtkxmhtml  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char gtk_xmhtml_new ();
-int
-main ()
-{
-return gtk_xmhtml_new ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_lib_gtkxmhtml_gtk_xmhtml_new=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_gtkxmhtml_gtk_xmhtml_new=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_gtkxmhtml_gtk_xmhtml_new" >&5
-echo "${ECHO_T}$ac_cv_lib_gtkxmhtml_gtk_xmhtml_new" >&6; }
-if test $ac_cv_lib_gtkxmhtml_gtk_xmhtml_new = yes; then
-
-							GTK_LIBS="$GTK_LIBS -lgtkxmhtml"
-
-else
-
-							{ { echo "$as_me:$LINENO: error: \"libgtkxmhtml not found (gtk xmhtml library missing ?)\"" >&5
-echo "$as_me: error: \"libgtkxmhtml not found (gtk xmhtml library missing ?)\"" >&2;}
-   { (exit 1); exit 1; }; }
-
-
-fi
-
-
-
-
-#  AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
-#  if test "$GTK_CONFIG" = no; then
-#    AC_MSG_WARN([gtk-config not found: I will not use -with-gtk])
-#    with_gtk="no"
-#  fi
-#  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
-#  if test "$GNOME_CONFIG" = no; then
-#    AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
-#    with_gtk="no"
-#  fi
-#  if test "$with_gtk" != yes; then
-#    AC_MSG_ERROR([Cannot find gnome configuration tool (gtk-config or gnome-config)])
-#  else
-#    AC_MSG_CHECKING([if gtk is version 1.2 or later])
-#    GTK_VER=`gtk-config --version`
-#    case $GTK_VER in
-#      0.* )
-#        AC_MSG_ERROR([You need at least version 1.2 of gtk])
-#        ;;
-#      1.1* )
-#        AC_MSG_ERROR([You need at least version 1.2 of gtk])
-#        ;;
-#      * )
-      # we have cheched above that gtk-config is in the
-      # path, then we don't want to generate a full path
-      # for gtk-config or to directly generate the
-      # result of `gtk-config --cflags`. Idem for gnome
-#      AC_MSG_RESULT([$GTK_VER])
-#      GTK_CFLAGS=`gtk-config --cflags`
-#      GTK_LIBS=`gtk-config --libs` `gnome-config --libs  gtkxmhtml`
-
-#      ;;
-#    esac
-
-cat >>confdefs.h <<\_ACEOF
-#define WITH_GTK
-_ACEOF
-
-    GUILIB='gtksci'
-    GZVT='gzvt'
-    SCILABSCRIPT=scilab-gtk.g
-    MENUSOBJS=GOBJS
-    GUI='GTK'
-    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
-    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
-    HTMLFLAGS='`gnome-config --cflags gnome`'
-  # try to use readline with the gtk version
-  ac_save_LIBS="$LIBS"
-  LIBS="$TERMCAPLIB  $LIBS"
-  { echo "$as_me:$LINENO: checking for rl_callback_read_char in -lreadline" >&5
-echo $ECHO_N "checking for rl_callback_read_char in -lreadline... $ECHO_C" >&6; }
-if test "${ac_cv_lib_readline_rl_callback_read_char+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lreadline  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char rl_callback_read_char ();
-int
-main ()
-{
-return rl_callback_read_char ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_lib_readline_rl_callback_read_char=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_readline_rl_callback_read_char=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_readline_rl_callback_read_char" >&5
-echo "${ECHO_T}$ac_cv_lib_readline_rl_callback_read_char" >&6; }
-if test $ac_cv_lib_readline_rl_callback_read_char = yes; then
-  READLINE=-lreadline
-fi
-
-  LIBS=$ac_save_LIBS
-  TERMCAPLIB="$READLINE $TERMCAPLIB"
-  if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl.o"
-
-cat >>confdefs.h <<\_ACEOF
-#define WITH_READLINE
-_ACEOF
-
-  fi
-  # we remove the X libs they were just used above during tcl/tk check
-  if test "$with_gtk" = yes; then
-    XAWLIB=
-    XMULIB=
-    XAW_LOCAL_SUBDIR=
-    XAW_LOCAL_LIB=
-    X_CFLAGS=
-    XAW_LOCAL_INCLUDES=
-    X_EXTRA_LIBS=
-    XXTXEXT=
-    X_LIBS=
-    X_PRE_LIBS=
-    if test "$TK_INC_PATH" = '-I/usr/include' ; then
-        TK_INC_PATH=
-    fi
-    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
-        TCL_INC_PATH=
-    fi
-  fi
-fi
-
-
-#################
-## GTK2
-#################
-
-TERM_NAME=vte
-
-if test "$with_gtk2" = yes; then
-
-  #  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
-  #if test "$GNOME_CONFIG" = no; then
-  #  AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
-  #  with_gtk2="no"
-  # fi
-  if test "$with_gtk2" = yes; then
-    # Check whether --enable-gtktest was given.
-if test "${enable_gtktest+set}" = set; then
-  enableval=$enable_gtktest;
-else
-  enable_gtktest=yes
-fi
-
-
-  pkg_config_args=gtk+-2.0
-  for module in . gtk-xmhtml gtkxmhtml xmhtml
-  do
-      case "$module" in
-         gthread)
-             pkg_config_args="$pkg_config_args gthread-2.0"
-         ;;
-      esac
-  done
-
-  no_gtk=""
-
-  # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
-if test -n "$PKG_CONFIG"; then
-  { echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-
-  if test x$PKG_CONFIG != xno ; then
-    if pkg-config --atleast-pkgconfig-version 0.7 ; then
-      :
-    else
-      echo *** pkg-config too old; version 0.7 or better required.
-      no_gtk=yes
-      PKG_CONFIG=no
-    fi
-  else
-    no_gtk=yes
-  fi
-
-  min_gtk_version=2.1.0
-  { echo "$as_me:$LINENO: checking for GTK+ - version >= $min_gtk_version" >&5
-echo $ECHO_N "checking for GTK+ - version >= $min_gtk_version... $ECHO_C" >&6; }
-
-  if test x$PKG_CONFIG != xno ; then
-    ## don't try to run the test against uninstalled libtool libs
-    if $PKG_CONFIG --uninstalled $pkg_config_args; then
-	  echo "Will use uninstalled version of GTK+ found in PKG_CONFIG_PATH"
-	  enable_gtktest=no
-    fi
-
-    if $PKG_CONFIG --atleast-version $min_gtk_version $pkg_config_args; then
-	  :
-    else
-	  no_gtk=yes
-    fi
-  fi
-
-  if test x"$no_gtk" = x ; then
-    GTK_CFLAGS=`$PKG_CONFIG $pkg_config_args --cflags`
-    GTK_LIBS=`$PKG_CONFIG $pkg_config_args --libs`
-    gtk_config_major_version=`$PKG_CONFIG --modversion gtk+-2.0 | \
-           sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\1/'`
-    gtk_config_minor_version=`$PKG_CONFIG --modversion gtk+-2.0 | \
-           sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\2/'`
-    gtk_config_micro_version=`$PKG_CONFIG --modversion gtk+-2.0 | \
-           sed 's/\([0-9]*\).\([0-9]*\).\([0-9]*\)/\3/'`
-    if test "x$enable_gtktest" = "xyes" ; then
-      ac_save_CFLAGS="$CFLAGS"
-      ac_save_LIBS="$LIBS"
-      CFLAGS="$CFLAGS $GTK_CFLAGS"
-      LIBS="$GTK_LIBS $LIBS"
-      rm -f conf.gtktest
-      if test "$cross_compiling" = yes; then
-  echo $ac_n "cross compiling; assumed OK... $ac_c"
-else
-  cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-#include <gtk/gtk.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int
-main ()
-{
-  int major, minor, micro;
-  char *tmp_version;
-
-  system ("touch conf.gtktest");
-
-  /* HP/UX 9 (%@#!) writes to sscanf strings */
-  tmp_version = g_strdup("$min_gtk_version");
-  if (sscanf(tmp_version, "%d.%d.%d", &major, &minor, &micro) != 3) {
-     printf("%s, bad version string\n", "$min_gtk_version");
-     exit(1);
-   }
-
-  if ((gtk_major_version != $gtk_config_major_version) ||
-      (gtk_minor_version != $gtk_config_minor_version) ||
-      (gtk_micro_version != $gtk_config_micro_version))
-    {
-      printf("\n*** 'pkg-config --modversion gtk+-2.0' returned %d.%d.%d, but GTK+ (%d.%d.%d)\n",
-             $gtk_config_major_version, $gtk_config_minor_version, $gtk_config_micro_version,
-             gtk_major_version, gtk_minor_version, gtk_micro_version);
-      printf ("*** was found! If pkg-config was correct, then it is best\n");
-      printf ("*** to remove the old version of GTK+. You may also be able to fix the error\n");
-      printf("*** by modifying your LD_LIBRARY_PATH enviroment variable, or by editing\n");
-      printf("*** /etc/ld.so.conf. Make sure you have run ldconfig if that is\n");
-      printf("*** required on your system.\n");
-      printf("*** If pkg-config was wrong, set the environment variable PKG_CONFIG_PATH\n");
-      printf("*** to point to the correct configuration files\n");
-    }
-  else if ((gtk_major_version != GTK_MAJOR_VERSION) ||
-	   (gtk_minor_version != GTK_MINOR_VERSION) ||
-           (gtk_micro_version != GTK_MICRO_VERSION))
-    {
-      printf("*** GTK+ header files (version %d.%d.%d) do not match\n",
-	     GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
-      printf("*** library (version %d.%d.%d)\n",
-	     gtk_major_version, gtk_minor_version, gtk_micro_version);
-    }
-  else
-    {
-      if ((gtk_major_version > major) ||
-        ((gtk_major_version == major) && (gtk_minor_version > minor)) ||
-        ((gtk_major_version == major) && (gtk_minor_version == minor) && (gtk_micro_version >= micro)))
-      {
-        return 0;
-       }
-     else
-      {
-        printf("\n*** An old version of GTK+ (%d.%d.%d) was found.\n",
-               gtk_major_version, gtk_minor_version, gtk_micro_version);
-        printf("*** You need a version of GTK+ newer than %d.%d.%d. The latest version of\n",
-	       major, minor, micro);
-        printf("*** GTK+ is always available from ftp://ftp.gtk.org.\n");
-        printf("***\n");
-        printf("*** If you have already installed a sufficiently new version, this error\n");
-        printf("*** probably means that the wrong copy of the pkg-config shell script is\n");
-        printf("*** being found. The easiest way to fix this is to remove the old version\n");
-        printf("*** of GTK+, but you can also set the PKG_CONFIG environment to point to the\n");
-        printf("*** correct copy of pkg-config. (In this case, you will have to\n");
-        printf("*** modify your LD_LIBRARY_PATH enviroment variable, or edit /etc/ld.so.conf\n");
-        printf("*** so that the correct libraries are found at run-time))\n");
-      }
-    }
-  return 1;
-}
-
-_ACEOF
-rm -f conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  :
-else
-  echo "$as_me: program exited with status $ac_status" >&5
-echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-( exit $ac_status )
-no_gtk=yes
-fi
-rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext conftest.$ac_objext conftest.$ac_ext
-fi
-
-
-       CFLAGS="$ac_save_CFLAGS"
-       LIBS="$ac_save_LIBS"
-     fi
-  fi
-  if test "x$no_gtk" = x ; then
-     { echo "$as_me:$LINENO: result: yes (version $gtk_config_major_version.$gtk_config_minor_version.$gtk_config_micro_version)" >&5
-echo "${ECHO_T}yes (version $gtk_config_major_version.$gtk_config_minor_version.$gtk_config_micro_version)" >&6; }
-
-
-  else
-     { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-     if test "$PKG_CONFIG" = "no" ; then
-       echo "*** A new enough version of pkg-config was not found."
-       echo "*** See http://pkgconfig.sourceforge.net"
-     else
-       if test -f conf.gtktest ; then
-        :
-       else
-          echo "*** Could not run GTK+ test program, checking why..."
-	  ac_save_CFLAGS="$CFLAGS"
-	  ac_save_LIBS="$LIBS"
-          CFLAGS="$CFLAGS $GTK_CFLAGS"
-          LIBS="$LIBS $GTK_LIBS"
-          cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-#include <gtk/gtk.h>
-#include <stdio.h>
-
-int
-main ()
-{
- return ((gtk_major_version) || (gtk_minor_version) || (gtk_micro_version));
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-   echo "*** The test program compiled, but did not run. This usually means"
-          echo "*** that the run-time linker is not finding GTK+ or finding the wrong"
-          echo "*** version of GTK+. If it is not finding GTK+, you'll need to set your"
-          echo "*** LD_LIBRARY_PATH environment variable, or edit /etc/ld.so.conf to point"
-          echo "*** to the installed location  Also, make sure you have run ldconfig if that"
-          echo "*** is required on your system"
-	  echo "***"
-          echo "*** If you have an old version installed, it is best to remove it, although"
-          echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH"
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	 echo "*** The test program failed to compile or link. See the file config.log for the"
-          echo "*** exact error that occured. This usually means GTK+ is incorrectly installed."
-fi
-
-rm -f core conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-          CFLAGS="$ac_save_CFLAGS"
-          LIBS="$ac_save_LIBS"
-       fi
-     fi
-     GTK_CFLAGS=""
-     GTK_LIBS=""
-
-	  { { echo "$as_me:$LINENO: error: GTK+-2.0 libraries not found (probably gdk/gdkx.h or gtk/gtk.h)" >&5
-echo "$as_me: error: GTK+-2.0 libraries not found (probably gdk/gdkx.h or gtk/gtk.h)" >&2;}
-   { (exit 1); exit 1; }; }
-
-  fi
-
-
-  rm -f conf.gtktest
-
-
-    { echo "$as_me:$LINENO: checking if gtk is version 2.1 or later" >&5
-echo $ECHO_N "checking if gtk is version 2.1 or later... $ECHO_C" >&6; }
-    GTK_VER=`$PKG_CONFIG --modversion gtk+-2.0`
-    case $GTK_VER in
-      2.2.* | 2.3.0 | 2.3.1| 2.3.2| 2.3.4 )
-        GTKPLUGBUG=gtkmenu.o
-	;;
-    esac
-    { echo "$as_me:$LINENO: result: $GTK_VER" >&5
-echo "${ECHO_T}$GTK_VER" >&6; }
-	echo "GTK_CFLAGS : $GTK_CFLAGS "
-	echo "GTK_LIBS : $GTK_LIBS "
-	echo "GNOME_CFLAGS : $GNOME_CFLAGS "
-    # we have cheched above that gtk-config is in the
-    # path, then we don't want to generate a full path
-    # for gtk-config or to directly generate the
-    # result of `gtk-config --cflags`. Idem for gnome
-#    GTK_CFLAGS='`pkg-config gtk+-2.0 --cflags`'
-#    GTK_LIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
-#    GNOME_CFLAGS='`pkg-config gtk+-2.0 --cflags`'
-
-cat >>confdefs.h <<\_ACEOF
-#define WITH_GTK
-_ACEOF
-
-    GUILIB='gtksci'
-    # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
-    # gzvt2 works again with a gtk patch
-    GZVT='gzvt2'
-    # we need a patched version
-    SCILABSCRIPT=scilab-gtk.g
-    MENUSOBJS=GOBJS
-	GUI='GTK'
-    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
-    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
-
-
-
-if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
-	if test -n "$ac_tool_prefix"; then
-  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
-set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
-if test -n "$PKG_CONFIG"; then
-  { echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-fi
-if test -z "$ac_cv_path_PKG_CONFIG"; then
-  ac_pt_PKG_CONFIG=$PKG_CONFIG
-  # Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  case $ac_pt_PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  ;;
-esac
-fi
-ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
-if test -n "$ac_pt_PKG_CONFIG"; then
-  { echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
-echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-  if test "x$ac_pt_PKG_CONFIG" = x; then
-    PKG_CONFIG=""
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ echo "$as_me:$LINENO: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&5
-echo "$as_me: WARNING: In the future, Autoconf will not detect cross-tools
-whose name does not start with the host triplet.  If you think this
-configuration is useful to you, please write to autoconf@gnu.org." >&2;}
-ac_tool_warned=yes ;;
-esac
-    PKG_CONFIG=$ac_pt_PKG_CONFIG
-  fi
-else
-  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
-fi
-
-fi
-if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.9.0
-	{ echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
-echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6; }
-	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
-		{ echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6; }
-	else
-		{ echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-		PKG_CONFIG=""
-	fi
-
-fi
-
-pkg_failed=no
-{ echo "$as_me:$LINENO: checking for LIBGTKHTML" >&5
-echo $ECHO_N "checking for LIBGTKHTML... $ECHO_C" >&6; }
-
-if test -n "$PKG_CONFIG"; then
-    if test -n "$LIBGTKHTML_CFLAGS"; then
-        pkg_cv_LIBGTKHTML_CFLAGS="$LIBGTKHTML_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libgtkhtml-2.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "libgtkhtml-2.0") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_LIBGTKHTML_CFLAGS=`$PKG_CONFIG --cflags "libgtkhtml-2.0" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$LIBGTKHTML_LIBS"; then
-        pkg_cv_LIBGTKHTML_LIBS="$LIBGTKHTML_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libgtkhtml-2.0\"") >&5
-  ($PKG_CONFIG --exists --print-errors "libgtkhtml-2.0") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_LIBGTKHTML_LIBS=`$PKG_CONFIG --libs "libgtkhtml-2.0" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        LIBGTKHTML_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libgtkhtml-2.0"`
-        else
-	        LIBGTKHTML_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libgtkhtml-2.0"`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$LIBGTKHTML_PKG_ERRORS" >&5
-
-	{ echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-                GTKHTML=no
-elif test $pkg_failed = untried; then
-	GTKHTML=no
-else
-	LIBGTKHTML_CFLAGS=$pkg_cv_LIBGTKHTML_CFLAGS
-	LIBGTKHTML_LIBS=$pkg_cv_LIBGTKHTML_LIBS
-        { echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6; }
-	GTKHTML=yes
-fi
-
-#    HTMLFLAGS='`pkg-config libgtkhtml-2.0 --cflags`'
-    # check for libgtkhtml-2.0
-#    ac_save_LIBS="$LIBS"
-#    LIBS=`pkg-config libgtkhtml-2.0 --cflags --libs`
-#    GTKHTML=no
-#    AC_CHECK_LIB(gtkhtml-2,html_document_open_stream,[GTKHTML=yes])
-    if test "$GTKHTML" = no; then
-    	{ { echo "$as_me:$LINENO: error: Could not find the libgtkhtml-2.0 package." >&5
-echo "$as_me: error: Could not find the libgtkhtml-2.0 package." >&2;}
-   { (exit 1); exit 1; }; }
-    fi
-#    LIBS=$ac_save_LIBS
-
-    # check first for vte
-
-pkg_failed=no
-{ echo "$as_me:$LINENO: checking for VTE" >&5
-echo $ECHO_N "checking for VTE... $ECHO_C" >&6; }
-
-if test -n "$PKG_CONFIG"; then
-    if test -n "$VTE_CFLAGS"; then
-        pkg_cv_VTE_CFLAGS="$VTE_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"vte\"") >&5
-  ($PKG_CONFIG --exists --print-errors "vte") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_VTE_CFLAGS=`$PKG_CONFIG --cflags "vte" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$VTE_LIBS"; then
-        pkg_cv_VTE_LIBS="$VTE_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"vte\"") >&5
-  ($PKG_CONFIG --exists --print-errors "vte") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_VTE_LIBS=`$PKG_CONFIG --libs "vte" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        VTE_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "vte"`
-        else
-	        VTE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "vte"`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$VTE_PKG_ERRORS" >&5
-
-	{ echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-                VTE=no
-elif test $pkg_failed = untried; then
-	VTE=no
-else
-	VTE_CFLAGS=$pkg_cv_VTE_CFLAGS
-	VTE_LIBS=$pkg_cv_VTE_LIBS
-        { echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6; }
-	VTE=yes
-fi
-
-	echo "VTE_CFLAGS $VTE_CFLAGS"
-	echo "VTE_LIBS $VTE_LIBS"
-
-#    ac_save_LIBS="$LIBS"
-#    LIBS=`pkg-config vte --cflags --libs`
-#    VTE=no
-#    AC_CHECK_LIB(vte,vte_terminal_new,[VTE=yes])
-    if test "$VTE" = no; then
-       { echo "$as_me:$LINENO: WARNING: Could not find the vte library. I will try libzvt-2.0 " >&5
-echo "$as_me: WARNING: Could not find the vte library. I will try libzvt-2.0 " >&2;}
-       { echo "$as_me:$LINENO: WARNING: you should install vte and vte-devel " >&5
-echo "$as_me: WARNING: you should install vte and vte-devel " >&2;}
-
-
-pkg_failed=no
-{ echo "$as_me:$LINENO: checking for ZVT" >&5
-echo $ECHO_N "checking for ZVT... $ECHO_C" >&6; }
-
-if test -n "$PKG_CONFIG"; then
-    if test -n "$ZVT_CFLAGS"; then
-        pkg_cv_ZVT_CFLAGS="$ZVT_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libzvt-2.0 \"") >&5
-  ($PKG_CONFIG --exists --print-errors "libzvt-2.0 ") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_ZVT_CFLAGS=`$PKG_CONFIG --cflags "libzvt-2.0 " 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$ZVT_LIBS"; then
-        pkg_cv_ZVT_LIBS="$ZVT_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libzvt-2.0 \"") >&5
-  ($PKG_CONFIG --exists --print-errors "libzvt-2.0 ") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_ZVT_LIBS=`$PKG_CONFIG --libs "libzvt-2.0 " 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        ZVT_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "libzvt-2.0 "`
-        else
-	        ZVT_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libzvt-2.0 "`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$ZVT_PKG_ERRORS" >&5
-
-	{ echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-                ZVT=no
-elif test $pkg_failed = untried; then
-	ZVT=no
-else
-	ZVT_CFLAGS=$pkg_cv_ZVT_CFLAGS
-	ZVT_LIBS=$pkg_cv_ZVT_LIBS
-        { echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6; }
-	ZVT=yes
-fi
-
-	   echo "ZVT_CFLAGS $ZVT_CFLAGS"
-	   echo "ZVT_LIBS $ZVT_LIBS"
-
-       # check for zzledt
-       LIBS=`pkg-config libzvt-2.0 --cflags --libs`
-       GZVT2=no
-       { echo "$as_me:$LINENO: checking for zvt_term_new_with_size in -lzvt-2.0" >&5
-echo $ECHO_N "checking for zvt_term_new_with_size in -lzvt-2.0... $ECHO_C" >&6; }
-if test "${ac_cv_lib_zvt_2_0_zvt_term_new_with_size+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lzvt-2.0  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char zvt_term_new_with_size ();
-int
-main ()
-{
-return zvt_term_new_with_size ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_lib_zvt_2_0_zvt_term_new_with_size=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_zvt_2_0_zvt_term_new_with_size=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_zvt_2_0_zvt_term_new_with_size" >&5
-echo "${ECHO_T}$ac_cv_lib_zvt_2_0_zvt_term_new_with_size" >&6; }
-if test $ac_cv_lib_zvt_2_0_zvt_term_new_with_size = yes; then
-  GZVT2=yes
-fi
-
-       if test "$GZVT2" = no; then
-	  { { echo "$as_me:$LINENO: error: Could not find vte library or libzvt-2.0 library." >&5
-echo "$as_me: error: Could not find vte library or libzvt-2.0 library." >&2;}
-   { (exit 1); exit 1; }; }
-       else
-         TERM_NAME=zterm
-       fi
-    else
-	 TERM_NAME=vte
-    fi
-    LIBS=$ac_save_LIBS
-  fi
-  # try to use readline with the gtk version
-  ac_save_LIBS="$LIBS"
-  LIBS="$TERMCAPLIB  $LIBS"
-  { echo "$as_me:$LINENO: checking for rl_callback_read_char in -lreadline" >&5
-echo $ECHO_N "checking for rl_callback_read_char in -lreadline... $ECHO_C" >&6; }
-if test "${ac_cv_lib_readline_rl_callback_read_char+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lreadline  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char rl_callback_read_char ();
-int
-main ()
-{
-return rl_callback_read_char ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_lib_readline_rl_callback_read_char=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_readline_rl_callback_read_char=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_readline_rl_callback_read_char" >&5
-echo "${ECHO_T}$ac_cv_lib_readline_rl_callback_read_char" >&6; }
-if test $ac_cv_lib_readline_rl_callback_read_char = yes; then
-  READLINE=-lreadline
-fi
-
-  LIBS=$ac_save_LIBS
-  TERMCAPLIB="$READLINE $TERMCAPLIB"
-  if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl.o"
-
-cat >>confdefs.h <<\_ACEOF
-#define WITH_READLINE
-_ACEOF
-
-  fi
-  # we remove the X libs they were just used above during tcl/tk check
-  if test "$with_gtk2" = yes; then
-    XAWLIB=
-    XMULIB=
-    XAW_LOCAL_SUBDIR=
-    XAW_LOCAL_LIB=
-    X_CFLAGS=
-    XAW_LOCAL_INCLUDES=
-    X_EXTRA_LIBS=
-    XXTXEXT=
-    X_LIBS=
-    X_PRE_LIBS=
-    if test "$TK_INC_PATH" = '-I/usr/include' ; then
-        TK_INC_PATH=
-    fi
-    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
-        TCL_INC_PATH=
-    fi
-  fi
 fi
 
 
@@ -16635,13 +15351,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:16638: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:15354: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16641: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:15357: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:16644: output\"" >&5)
+  (eval echo "\"\$as_me:15360: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -17731,7 +16447,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 17734 "configure"' > conftest.$ac_ext
+  echo '#line 16450 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -18679,11 +17395,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18682: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17398: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:18686: \$? = $ac_status" >&5
+   echo "$as_me:17402: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19001,11 +17717,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19004: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17720: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:19008: \$? = $ac_status" >&5
+   echo "$as_me:17724: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -19106,11 +17822,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19109: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17825: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19113: \$? = $ac_status" >&5
+   echo "$as_me:17829: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -19161,11 +17877,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:19164: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17880: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:19168: \$? = $ac_status" >&5
+   echo "$as_me:17884: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -22006,7 +20722,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22009 "configure"
+#line 20725 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22106,7 +20822,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 22109 "configure"
+#line 20825 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22888,11 +21604,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22891: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:21607: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:22895: \$? = $ac_status" >&5
+   echo "$as_me:21611: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -22987,11 +21703,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22990: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:21706: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:22994: \$? = $ac_status" >&5
+   echo "$as_me:21710: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -23039,11 +21755,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23042: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:21758: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23046: \$? = $ac_status" >&5
+   echo "$as_me:21762: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -25740,17 +24456,6 @@ fi
 
 
 
-if test "$GUI" = "GTK"; then
-  GUI_GTK_TRUE=
-  GUI_GTK_FALSE='#'
-else
-  GUI_GTK_TRUE='#'
-  GUI_GTK_FALSE=
-fi
-
-
-
-
 if test "$TERM_NAME" = "zterm"; then
   TERM_ZTERM_TRUE=
   TERM_ZTERM_FALSE='#'
@@ -25772,9 +24477,6 @@ fi
 
 
 LDFLAGS="$LDFLAGS  -no-undefined"
-
-
-
 
 
 
@@ -25876,7 +24578,6 @@ LDFLAGS="$LDFLAGS  -no-undefined"
 
 
 #AC_SUBST(STRIP)
-
 
 
 
@@ -26066,13 +24767,6 @@ if test -z "${GUI_WIN32_TRUE}" && test -z "${GUI_WIN32_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"GUI_WIN32\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"GUI_WIN32\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${GUI_GTK_TRUE}" && test -z "${GUI_GTK_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"GUI_GTK\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"GUI_GTK\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -27133,15 +25827,6 @@ PVM_LIB!$PVM_LIB$ac_delim
 PVM_INCLUDE!$PVM_INCLUDE$ac_delim
 PVM_TRUE!$PVM_TRUE$ac_delim
 PVM_FALSE!$PVM_FALSE$ac_delim
-PKG_CONFIG!$PKG_CONFIG$ac_delim
-GTK_CFLAGS!$GTK_CFLAGS$ac_delim
-GTK_LIBS!$GTK_LIBS$ac_delim
-LIBGTKHTML_CFLAGS!$LIBGTKHTML_CFLAGS$ac_delim
-LIBGTKHTML_LIBS!$LIBGTKHTML_LIBS$ac_delim
-VTE_CFLAGS!$VTE_CFLAGS$ac_delim
-VTE_LIBS!$VTE_LIBS$ac_delim
-ZVT_CFLAGS!$ZVT_CFLAGS$ac_delim
-ZVT_LIBS!$ZVT_LIBS$ac_delim
 OCAMLC!$OCAMLC$ac_delim
 OCAMLOPT!$OCAMLOPT$ac_delim
 OCAMLDEP!$OCAMLDEP$ac_delim
@@ -27165,8 +25850,6 @@ GUI_X11_TRUE!$GUI_X11_TRUE$ac_delim
 GUI_X11_FALSE!$GUI_X11_FALSE$ac_delim
 GUI_WIN32_TRUE!$GUI_WIN32_TRUE$ac_delim
 GUI_WIN32_FALSE!$GUI_WIN32_FALSE$ac_delim
-GUI_GTK_TRUE!$GUI_GTK_TRUE$ac_delim
-GUI_GTK_FALSE!$GUI_GTK_FALSE$ac_delim
 TERM_ZTERM_TRUE!$TERM_ZTERM_TRUE$ac_delim
 TERM_ZTERM_FALSE!$TERM_ZTERM_FALSE$ac_delim
 TERM_VTE_TRUE!$TERM_VTE_TRUE$ac_delim
@@ -27199,7 +25882,6 @@ XMULIB!$XMULIB$ac_delim
 XAW_LOCAL_SUBDIR!$XAW_LOCAL_SUBDIR$ac_delim
 XAW_LOCAL_INCLUDES!$XAW_LOCAL_INCLUDES$ac_delim
 XAW_LOCAL_LIB!$XAW_LOCAL_LIB$ac_delim
-GNOME_CFLAGS!$GNOME_CFLAGS$ac_delim
 TERMCAP_LIB!$TERMCAP_LIB$ac_delim
 GUI!$GUI$ac_delim
 GUILIB!$GUILIB$ac_delim
@@ -27214,6 +25896,18 @@ TK_INC_PATH!$TK_INC_PATH$ac_delim
 TCL_INC_PATH!$TCL_INC_PATH$ac_delim
 TCLTK_LIBS!$TCLTK_LIBS$ac_delim
 TCLSCILIB!$TCLSCILIB$ac_delim
+TCLSCIDIR!$TCLSCIDIR$ac_delim
+TCLTKHELP!$TCLTKHELP$ac_delim
+TK_MINOR_VERSION!$TK_MINOR_VERSION$ac_delim
+TK_MAJOR_VERSION!$TK_MAJOR_VERSION$ac_delim
+NOINLINE!$NOINLINE$ac_delim
+WHICH_BLAS!$WHICH_BLAS$ac_delim
+ATLAS_DIR!$ATLAS_DIR$ac_delim
+IN_ATLAS!$IN_ATLAS$ac_delim
+XML_FLAGS!$XML_FLAGS$ac_delim
+XML_LIBS!$XML_LIBS$ac_delim
+MANTARGET!$MANTARGET$ac_delim
+DLLTOOL!$DLLTOOL$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -27255,18 +25949,6 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
-TCLSCIDIR!$TCLSCIDIR$ac_delim
-TCLTKHELP!$TCLTKHELP$ac_delim
-TK_MINOR_VERSION!$TK_MINOR_VERSION$ac_delim
-TK_MAJOR_VERSION!$TK_MAJOR_VERSION$ac_delim
-NOINLINE!$NOINLINE$ac_delim
-WHICH_BLAS!$WHICH_BLAS$ac_delim
-ATLAS_DIR!$ATLAS_DIR$ac_delim
-IN_ATLAS!$IN_ATLAS$ac_delim
-XML_FLAGS!$XML_FLAGS$ac_delim
-XML_LIBS!$XML_LIBS$ac_delim
-MANTARGET!$MANTARGET$ac_delim
-DLLTOOL!$DLLTOOL$ac_delim
 LIBM!$LIBM$ac_delim
 LIBTOOL_DEPS!$LIBTOOL_DEPS$ac_delim
 OBJDUMP!$OBJDUMP$ac_delim
@@ -27281,7 +25963,6 @@ IMPPREF!$IMPPREF$ac_delim
 IMPENV!$IMPENV$ac_delim
 ZZLEDT!$ZZLEDT$ac_delim
 HTMLFLAGS!$HTMLFLAGS$ac_delim
-GTKPLUGBUG!$GTKPLUGBUG$ac_delim
 XXTXEXT!$XXTXEXT$ac_delim
 PERIX11NOPT!$PERIX11NOPT$ac_delim
 GETLIBTK!$GETLIBTK$ac_delim
@@ -27293,7 +25974,7 @@ LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 36; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 23; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -28583,7 +27264,6 @@ echo "Use PVM (--with-pvm) ............................ : $with_pvm"
 echo "PVM include (--with-pvm-include) ................ : $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
 echo "Don't use TCL/TK (--without-tk) ................. : $with_tk"
-echo "Uses Gtk2 widgets (--with-gtk2) ................. : $with_gtk2"
 echo "Don't compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
 echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"

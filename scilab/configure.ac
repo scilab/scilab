@@ -26,10 +26,7 @@ dnl Process this file with autoconf to produce a configure script.
 ## Verifier le probleme quand on compile avec le compiler intel fortran (merde au niveau du linkage)
 ## Rajouter une verification que pvm3.h existe ou pas avant la compilation (pvm_grp.c(20): catastrophic error: could not open source file "pvm3.h")
 ## Ne pas oublier de regarder du cote de AC_LIBTOOL_DLOPEN
-## Voir a quoi sert ZZLEDT  et GTKPLUGBUG
 ## Voir ce que fait helpbrower et voir comment je dois le remettre en place dans libtool
-## Rajouter  le  AC_CHECK_HEADERS  sur les libs gtk
-## Regarder les pbs de gtksci avec libtool
 ## Nettoyer (enlever a priori) les fichiers ?getarg-hpux.{f,c} (ok pour le .f a priori mais verifier pour le .c vu qu'il n'est different quand dans la derniere version de hpux)
 ## Probleme de compilation dans poly (duplicate machin)
 ## libtool sur pvm 
@@ -149,9 +146,6 @@ AC_ARG_WITH(local-xaw,
 
 AC_ARG_WITH(tk,
     [  --without-tk            do not compile with TCL/TK ])
-
-AC_ARG_WITH(gtk2,
-    [  --with-gtk2             use Gtk2 widgets ])
 
 AC_ARG_WITH(ocam,
     [  --without-ocaml         do not compile with ocaml ])
@@ -273,8 +267,7 @@ GUI='X11'
 # specific scilab dirs for graphics: default is "xsci" for X11
 #   different for Win32
 GUILIB=xsci 
-# specific for gnome/gtk version 
-GZVT=
+
 # specific scilab dirs for xdr:  default is void for X11
 #   xdr for Win32
 XDRLIB=
@@ -594,15 +587,6 @@ fi
 ## test for X11 and Xaw3d  Athena widgets
 ##########################################
 
-# do not want to check for X11 when using gtk or gtk2
-if test "$with_gtk" = yes; then	
-   GUI='GTK'
-fi 
-
-if test "$with_gtk2" = yes; then	
-   GUI='GTK'
-fi 
-
 if test "x$GUI" = "xX11"; then 
   ac_save_LDFLAGS="$LDFLAGS"
   if test -n "$x_libraries"; then
@@ -876,239 +860,6 @@ if test "$with_tk" != no; then
 
 fi
 
-#################
-## GTK
-#################
-
-ZZLEDT=
-GTKPLUGBUG=
-
-if test "$with_gtk" = yes; then
-
-#   AM_PATH_GTK(1.2.0, [					
-#					  CFLAGS_save=$CFLAGS
-#					  CFLAGS=$GTK_CFLAGS
-#					  AC_CHECK_HEADERS([gdk/gdkx.h gtk/gtk.h],,[AC_MSG_ERROR(["gdk/gdkx.h or gtk/gtk.h not found (dev files missing ?)"])]) 
-#					  GNOME_CFLAGS=`gnome-config --cflags gnome`
-#					  CFLAGS=$GNOME_CFLAGS
-#					  AC_CHECK_HEADERS([gtk-xmhtml/gtk-xmhtml.h],,[AC_MSG_ERROR(["gtk-xmhtml/gtk-xmhtml.h not found (dev files missing ?)"])]) 
-#					  CFLAGS=$CFLAGS_save
-#					],
-#					AC_MSG_ERROR([Cannot find GTK: Is gtk-config in path?])
-#					)
-  AC_CHECK_LIB(gtkxmhtml, gtk_xmhtml_new,
-						  [
-							GTK_LIBS="$GTK_LIBS -lgtkxmhtml"
-							],
-							[
-							AC_MSG_ERROR(["libgtkxmhtml not found (gtk xmhtml library missing ?)"])
-							]
-				)
-
-
-
-#  AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
-#  if test "$GTK_CONFIG" = no; then
-#    AC_MSG_WARN([gtk-config not found: I will not use -with-gtk])
-#    with_gtk="no"
-#  fi
-#  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
-#  if test "$GNOME_CONFIG" = no; then
-#    AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
-#    with_gtk="no"
-#  fi
-#  if test "$with_gtk" != yes; then
-#    AC_MSG_ERROR([Cannot find gnome configuration tool (gtk-config or gnome-config)])		
-#  else
-#    AC_MSG_CHECKING([if gtk is version 1.2 or later])
-#    GTK_VER=`gtk-config --version`
-#    case $GTK_VER in
-#      0.* )
-#        AC_MSG_ERROR([You need at least version 1.2 of gtk])
-#        ;;
-#      1.1* )
-#        AC_MSG_ERROR([You need at least version 1.2 of gtk])
-#        ;;
-#      * )
-      # we have cheched above that gtk-config is in the 
-      # path, then we don't want to generate a full path 
-      # for gtk-config or to directly generate the 
-      # result of `gtk-config --cflags`. Idem for gnome
-#      AC_MSG_RESULT([$GTK_VER])
-#      GTK_CFLAGS=`gtk-config --cflags`
-#      GTK_LIBS=`gtk-config --libs` `gnome-config --libs  gtkxmhtml`
-
-#      ;;
-#    esac    
-    AC_DEFINE([WITH_GTK], [], [With GTK])
-    GUILIB='gtksci'
-    GZVT='gzvt'
-    SCILABSCRIPT=scilab-gtk.g
-    MENUSOBJS=GOBJS
-    GUI='GTK'
-    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
-    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
-    HTMLFLAGS='`gnome-config --cflags gnome`'
-  # try to use readline with the gtk version 
-  ac_save_LIBS="$LIBS"
-  LIBS="$TERMCAPLIB  $LIBS"
-  AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
-  LIBS=$ac_save_LIBS
-  TERMCAPLIB="$READLINE $TERMCAPLIB"
-  if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl.o"
-     AC_DEFINE([WITH_READLINE],[],[With Readline])
-  fi
-  # we remove the X libs they were just used above during tcl/tk check 
-  if test "$with_gtk" = yes; then
-    XAWLIB=
-    XMULIB=
-    XAW_LOCAL_SUBDIR=
-    XAW_LOCAL_LIB=
-    X_CFLAGS=
-    XAW_LOCAL_INCLUDES=
-    X_EXTRA_LIBS=
-    XXTXEXT=
-    X_LIBS= 
-    X_PRE_LIBS=
-    if test "$TK_INC_PATH" = '-I/usr/include' ; then
-        TK_INC_PATH=
-    fi
-    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
-        TCL_INC_PATH=
-    fi
-  fi
-fi
-
-
-#################
-## GTK2 
-#################
-
-TERM_NAME=vte
-
-if test "$with_gtk2" = yes; then
-
-  #  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
-  #if test "$GNOME_CONFIG" = no; then
-  #  AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
-  #  with_gtk2="no"
-  # fi
-  if test "$with_gtk2" = yes; then
-    AM_PATH_GTK_2_0(2.1.0,
-      [
-      ],
-      [
-	  AC_MSG_ERROR([GTK+-2.0 libraries not found (probably gdk/gdkx.h or gtk/gtk.h)])
-      ],[gtk-xmhtml gtkxmhtml xmhtml])
-
-    AC_MSG_CHECKING([if gtk is version 2.1 or later])
-    GTK_VER=`$PKG_CONFIG --modversion gtk+-2.0`
-    case $GTK_VER in
-      2.2.* | 2.3.0 | 2.3.1| 2.3.2| 2.3.4 )
-        GTKPLUGBUG=gtkmenu.o
-	;;
-    esac    
-    AC_MSG_RESULT([$GTK_VER])
-	echo "GTK_CFLAGS : $GTK_CFLAGS "
-	echo "GTK_LIBS : $GTK_LIBS "
-	echo "GNOME_CFLAGS : $GNOME_CFLAGS "
-    # we have cheched above that gtk-config is in the 
-    # path, then we don't want to generate a full path 
-    # for gtk-config or to directly generate the 
-    # result of `gtk-config --cflags`. Idem for gnome
-#    GTK_CFLAGS='`pkg-config gtk+-2.0 --cflags`'
-#    GTK_LIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
-#    GNOME_CFLAGS='`pkg-config gtk+-2.0 --cflags`'
-    AC_DEFINE([WITH_GTK],[],[With GTK])
-    GUILIB='gtksci'
-    # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
-    # gzvt2 works again with a gtk patch 
-    GZVT='gzvt2'
-    # we need a patched version 
-    SCILABSCRIPT=scilab-gtk.g
-    MENUSOBJS=GOBJS
-	GUI='GTK'
-    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
-    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
-
-	PKG_CHECK_MODULES(LIBGTKHTML, libgtkhtml-2.0,[GTKHTML=yes],[GTKHTML=no])
-
-#    HTMLFLAGS='`pkg-config libgtkhtml-2.0 --cflags`'
-    # check for libgtkhtml-2.0
-#    ac_save_LIBS="$LIBS"
-#    LIBS=`pkg-config libgtkhtml-2.0 --cflags --libs`
-#    GTKHTML=no
-#    AC_CHECK_LIB(gtkhtml-2,html_document_open_stream,[GTKHTML=yes])
-    if test "$GTKHTML" = no; then
-    	AC_MSG_ERROR([Could not find the libgtkhtml-2.0 package.],)
-    fi
-#    LIBS=$ac_save_LIBS
-
-    # check first for vte 
-	PKG_CHECK_MODULES(VTE, vte,[VTE=yes],[VTE=no])
-
-	echo "VTE_CFLAGS $VTE_CFLAGS"
-	echo "VTE_LIBS $VTE_LIBS"
-
-#    ac_save_LIBS="$LIBS"
-#    LIBS=`pkg-config vte --cflags --libs` 
-#    VTE=no 
-#    AC_CHECK_LIB(vte,vte_terminal_new,[VTE=yes])
-    if test "$VTE" = no; then
-       AC_MSG_WARN([Could not find the vte library. I will try libzvt-2.0 ],)
-       AC_MSG_WARN([you should install vte and vte-devel ],)
-
-	   PKG_CHECK_MODULES(ZVT, libzvt-2.0 ,[ZVT=yes],[ZVT=no])
-
-	   echo "ZVT_CFLAGS $ZVT_CFLAGS"
-	   echo "ZVT_LIBS $ZVT_LIBS"
-
-       # check for zzledt 
-       LIBS=`pkg-config libzvt-2.0 --cflags --libs` 
-       GZVT2=no
-       AC_CHECK_LIB(zvt-2.0, zvt_term_new_with_size,[GZVT2=yes])
-       if test "$GZVT2" = no; then
-	  AC_MSG_ERROR([Could not find vte library or libzvt-2.0 library.],)
-       else 
-         TERM_NAME=zterm
-       fi
-    else 
-	 TERM_NAME=vte
-    fi
-    LIBS=$ac_save_LIBS
-  fi
-  # try to use readline with the gtk version 
-  ac_save_LIBS="$LIBS"
-  LIBS="$TERMCAPLIB  $LIBS"
-  AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
-  LIBS=$ac_save_LIBS
-  TERMCAPLIB="$READLINE $TERMCAPLIB"
-  if test "no$READLINE" != no; then
-     ZZLEDT="zzledt-rl.o"
-     AC_DEFINE([WITH_READLINE],[],[With Readline])
-  fi
-  # we remove the X libs they were just used above during tcl/tk check 
-  if test "$with_gtk2" = yes; then
-    XAWLIB=
-    XMULIB=
-    XAW_LOCAL_SUBDIR=
-    XAW_LOCAL_LIB=
-    X_CFLAGS=
-    XAW_LOCAL_INCLUDES=
-    X_EXTRA_LIBS=
-    XXTXEXT=
-    X_LIBS= 
-    X_PRE_LIBS=
-    if test "$TK_INC_PATH" = '-I/usr/include' ; then
-        TK_INC_PATH=
-    fi
-    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
-        TCL_INC_PATH=
-    fi
-  fi
-fi
-
 
 #################
 ## atlas 
@@ -1284,8 +1035,6 @@ typedef int BOOL ;
 
 AM_CONDITIONAL(GUI_X11, test "$GUI" = "X11")
 AM_CONDITIONAL(GUI_WIN32, test "$GUI" = "WIN32")
-AM_CONDITIONAL(GUI_GTK, test "$GUI" = "GTK")
-
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
@@ -1332,9 +1081,6 @@ AC_SUBST(XMULIB)
 AC_SUBST(XAW_LOCAL_SUBDIR)
 AC_SUBST(XAW_LOCAL_INCLUDES)
 AC_SUBST(XAW_LOCAL_LIB)
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
-AC_SUBST(GNOME_CFLAGS)
 AC_SUBST(TERMCAP_LIB)
 AC_SUBST(GUI)
 AC_SUBST(GUILIB)
@@ -1399,7 +1145,6 @@ AC_SUBST(IMPENV)
 AC_SUBST(ZZLEDT)
 #AC_SUBST(STRIP)
 AC_SUBST(HTMLFLAGS)
-AC_SUBST(GTKPLUGBUG)
 AC_SUBST(XXTXEXT)
 AC_SUBST(PERIX11NOPT)
 AC_SUBST(GETLIBTK)
@@ -1504,7 +1249,6 @@ echo "Use PVM (--with-pvm) ............................ : $with_pvm"
 echo "PVM include (--with-pvm-include) ................ : $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................ : $PVMLIBDIR"
 echo "Don't use TCL/TK (--without-tk) ................. : $with_tk"
-echo "Uses Gtk2 widgets (--with-gtk2) ................. : $with_gtk2"
 echo "Don't compile with Ocaml (--without-ocaml) ...... : $with_ocaml"
 echo "TCL include (--with-tcl-include) ................ : $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................ : $USER_TCL_LIB_PATH"

@@ -47,13 +47,12 @@ DIST_COMMON = $(liblinear_algebra_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/check_compiler.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/gtk-2.0.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
-	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
+	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -179,15 +178,9 @@ FLIBS = @FLIBS@
 GCC = @GCC@
 GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
-GNOME_CFLAGS = @GNOME_CFLAGS@
 GREP = @GREP@
-GTKPLUGBUG = @GTKPLUGBUG@
-GTK_CFLAGS = @GTK_CFLAGS@
-GTK_LIBS = @GTK_LIBS@
 GUI = @GUI@
 GUILIB = @GUILIB@
-GUI_GTK_FALSE = @GUI_GTK_FALSE@
-GUI_GTK_TRUE = @GUI_GTK_TRUE@
 GUI_WIN32_FALSE = @GUI_WIN32_FALSE@
 GUI_WIN32_TRUE = @GUI_WIN32_TRUE@
 GUI_X11_FALSE = @GUI_X11_FALSE@
@@ -218,8 +211,6 @@ JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LD_LDFLAGS = @LD_LDFLAGS@
-LIBGTKHTML_CFLAGS = @LIBGTKHTML_CFLAGS@
-LIBGTKHTML_LIBS = @LIBGTKHTML_LIBS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -249,7 +240,6 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PERIX11NOPT = @PERIX11NOPT@
-PKG_CONFIG = @PKG_CONFIG@
 PREFIX_DIR = @PREFIX_DIR@
 PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
@@ -284,8 +274,6 @@ TK_INC_PATH = @TK_INC_PATH@
 TK_MAJOR_VERSION = @TK_MAJOR_VERSION@
 TK_MINOR_VERSION = @TK_MINOR_VERSION@
 VERSION = @VERSION@
-VTE_CFLAGS = @VTE_CFLAGS@
-VTE_LIBS = @VTE_LIBS@
 WHICH_BLAS = @WHICH_BLAS@
 WINXFLAGS = @WINXFLAGS@
 WITH = @WITH@
@@ -308,8 +296,6 @@ X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_LIB_PATH = @X_LIB_PATH@
 X_PRE_LIBS = @X_PRE_LIBS@
-ZVT_CFLAGS = @ZVT_CFLAGS@
-ZVT_LIBS = @ZVT_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
