@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>factorial</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>Sep 2006</DATE>
+
+  <SHORT_DESCRIPTION name="factorial">returns factorial</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=factorial(n)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar, vector, matrix or hypermatrix of positives integers
+          </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a scalar, vector, matrix or hypermatrix</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>This function returns the factorial n, if dimension of n is more than
+    <VERB>1</VERB> then it returns the element wise factorial (<VERB>x</VERB>
+    and <VERB>y</VERB> have the same size).</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// n scalar
+n=4
+y=factorial(n)
+// n matrix 
+n=[2 6 8;5 4 3]
+y=factorial(n)
+//n hypermatrix
+n=matrix(1:12,[2 2 3])
+y=factorial(n)
+
+
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
