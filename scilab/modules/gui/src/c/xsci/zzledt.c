@@ -1004,13 +1004,13 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 
 int HomeFunction _PARAMS((char *fname, unsigned long fname_len))
 {
-  XHomeFunction(); /* In SCI/routines/xsci/x_util.c */
+  XHomeFunction(); /* In SCI/modules/gui/src/c/xsci/x_util.c */
   return 0;
 }
 
 int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 {
-  return XClearScreenConsole(fname); /* In SCI/routines/xsci/x_util.c */
+  return XClearScreenConsole(fname); /* In SCI/modules/gui/src/c/xsci/x_util.c */
 }
 
 int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len))

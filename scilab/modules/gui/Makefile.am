@@ -3,7 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
-GUI_C_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c \
+GUI_C_SOURCES = src/c/xsci/Xscilab.ad.h \
+src/c/SciGUIConsole/SciGUIConsole.c \
 src/c/xsci/wf_w_util.c \
 src/c/xsci/utils.c \
 src/c/xsci/x_cursor.c \
@@ -89,6 +90,8 @@ includes/sci_clc.h \
 includes/gw_gui.h \
 includes/sci_show_window.h
 
+src/c/xsci/Xscilab.ad.h: src/c/xsci/Xscilab.ad
+	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.script $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 libgui_la_CFLAGS=  -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 
