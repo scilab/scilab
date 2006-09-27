@@ -24476,7 +24476,7 @@ fi
 
 
 
-LDFLAGS="$LDFLAGS  -no-undefined"
+
 
 
 
@@ -27213,6 +27213,7 @@ _ACEOF
 chmod +x $CONFIG_STATUS
 ac_clean_files=$ac_clean_files_save
 
+chmod +x $(top_srcdir)/modules/gui/src/c/xsci/ad2c.script
 
 # configure is writing to config.log, and then calls config.status.
 # config.status does its own redirection, appending to config.log.

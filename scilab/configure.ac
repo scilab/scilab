@@ -1039,8 +1039,8 @@ AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
 
-LDFLAGS="$LDFLAGS  -no-undefined"
 
+AC_CONFIG_COMMANDS_POST([chmod +x $(top_srcdir)/modules/gui/src/c/xsci/ad2c.script])
 dnl #########################
 dnl ## substituting variables
 dnl #########################
