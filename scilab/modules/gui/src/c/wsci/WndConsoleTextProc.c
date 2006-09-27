@@ -733,10 +733,10 @@ void ON_WND_TEXT_WM_VSCROLL(HWND hwnd, HWND hwndCtl, UINT code, int pos)
 		nYinc = lptw->CharSize.y;
 		break;
 	case SB_PAGEUP:
-		nYinc = min(-1,-lptw->ClientSize.y);
+		nYinc = Min(-1,-lptw->ClientSize.y);
 		break;
 	case SB_PAGEDOWN:
-		nYinc = max(1,lptw->ClientSize.y);
+		nYinc = Max(1,lptw->ClientSize.y);
 		break;
 	case SB_THUMBPOSITION:
 		nYinc = pos - lptw->ScrollPos.y;
@@ -788,11 +788,11 @@ void ON_WND_TEXT_WM_HSCROLL(HWND hwnd, HWND hwndCtl, UINT code, int pos)
 		break;
 
 	case SB_PAGELEFT:
-		nXinc = min(-1,-lptw->ClientSize.x);
+		nXinc = Min(-1,-lptw->ClientSize.x);
 		break;
 
 	case SB_PAGERIGHT:
-		nXinc = max(1,lptw->ClientSize.x);
+		nXinc = Max(1,lptw->ClientSize.x);
 		break;
 
 	case SB_THUMBPOSITION:

@@ -1,5 +1,5 @@
 /* Copyright ENPC */
-#include "../sci_mem_alloc.h"
+#include "sci_mem_alloc.h"
 #ifdef _MSC_VER 
 #include "wmen_scilab.h"
 #else
