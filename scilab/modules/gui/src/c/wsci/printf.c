@@ -18,6 +18,7 @@
 
 
 /*-----------------------------------------------------------------------------------*/
+extern int PutString(char *Str);
 extern void Xputchar ();
 extern int getdiary();
 extern void diary_nnl(char *str,int *n);

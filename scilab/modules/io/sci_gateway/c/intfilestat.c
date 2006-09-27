@@ -1,3 +1,6 @@
+/*-----------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
@@ -10,9 +13,10 @@
 #endif
 
 #include "stack-c.h"
-
-int C2F(intfilestat)(fname)
-char * fname;
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
+/*-----------------------------------------------------------------------------------*/
+int C2F(intfilestat)(char * fname)
 {
 #ifdef _MSC_VER
    struct _stat buf;
@@ -132,3 +136,4 @@ char * fname;
   C2F(putlhsvar)();
   return 0;
 }
+/*-----------------------------------------------------------------------------------*/
