@@ -349,8 +349,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tcldir = @tcldir@
-GUI_C_SOURCES = src/c/xsci/Xscilab.ad.h \
-src/c/SciGUIConsole/SciGUIConsole.c \
+GUI_C_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c \
 src/c/xsci/wf_w_util.c \
 src/c/xsci/utils.c \
 src/c/xsci/x_cursor.c \
@@ -435,6 +434,8 @@ includes/sci_clc.h \
 includes/gw_gui.h \
 includes/sci_show_window.h
 
+BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+DISTCLEANFILES = src/c/xsci/Xscilab.ad.h
 libgui_la_CFLAGS = -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 lib_LTLIBRARIES = libgui.la
@@ -450,7 +451,8 @@ libgui_la_DEPENDENCIES = \
 #	$(top_builddir)/modules/graphics/libgraphics.la
 libgui_la_LIBADD = $(libgui_la_DEPENDENCIES)
 libgui_la_PKGCONFIG = gui.pc
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .c .f .lo .o .obj
@@ -1196,13 +1198,15 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
 	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgui_la_includedir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -1222,10 +1226,12 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
@@ -1293,7 +1299,7 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
 	uninstall-libgui_la_includeHEADERS
 
 
-src/c/xsci/Xscilab.ad.h: src/c/xsci/Xscilab.ad
+$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad
 	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.script $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
