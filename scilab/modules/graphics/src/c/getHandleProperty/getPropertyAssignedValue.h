@@ -41,7 +41,7 @@ char * getStringFromStack( int stackPointer ) ;
 /**
 * retireve a string on from the scilab stack
 */
-long getHandleFromStack( int stackPointer ) ;
+unsigned long getHandleFromStack( int stackPointer ) ;
 
 /**
  * compare the string stored in the stack with str
