@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Fortran to C conversion"
+	Version="8,00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="f2c rule"
+			DisplayName="f2c rule"
+			CommandLine="..\..\..\bin\f2c.exe ..\$(InputFileName)"
+			Outputs="..\$(InputName).c"
+			FileExtensions="*.f"
+			ExecutionDescription="Fortran to C conversion ..."
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>
