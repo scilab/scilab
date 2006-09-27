@@ -1040,7 +1040,7 @@ AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
 
 
-AC_CONFIG_COMMANDS_POST([chmod +x $(top_srcdir)/modules/gui/src/c/xsci/ad2c.script])
+AC_CONFIG_COMMANDS_POST([chmod +x $(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh])
 dnl #########################
 dnl ## substituting variables
 dnl #########################
