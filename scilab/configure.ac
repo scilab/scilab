@@ -1040,9 +1040,10 @@ AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
 
 
-AC_CONFIG_COMMANDS_POST([chmod +x $(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh])
-AC_CONFIG_COMMANDS_POST([chmod +x $(top_srcdir)/modules/scicos/src/c/GenBlocks.sh])
+AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/gui/src/c/xsci/ad2c.sh])
+AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/scicos/src/c/GenBlocks.sh])
 dnl #########################
+
 dnl ## substituting variables
 dnl #########################
 
