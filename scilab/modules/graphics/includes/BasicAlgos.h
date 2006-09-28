@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: BAsicAlgos.h                                                    */
+/* file: BasicAlgos.h                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* desc : Several basic algorithm which can be used in several places in  */
+/* desc : Several basic algorithms which can be used in several places in */
 /*        the code.                                                       */
 /*------------------------------------------------------------------------*/
 
@@ -25,5 +25,33 @@ double sciFindStPosMin( double x[], int n ) ;
  *      implicit undefined (a-z)
  */
 int C2F(entier2d)( integer * n, double * dx,integer * s ) ;
+
+/**
+ * check the strict monotony of a vector
+ * @return  1 if the vector is increasing or constant
+ *         -1 if decreasing and not constant
+ *          0 if not monotonous
+ * @param nbElement must be greater than 2.
+ */
+int checkMonotony( double vector[], int nbElement ) ;
+
+/**
+ * copy an array into an other
+ */
+void doubleArrayCopy( double dest[], const double src[], int nbElement ) ;
+
+/**
+ * set each element of an array to a certain value
+ */
+void setDoubleArraySingleValue( double dest[], double value, int nbElement ) ;
+
+/**
+ * create a new array which is kind of copy of another
+ * the elements are copied beginning with the first
+ * if the array is longer than the other, then the last values are set to 0.0
+ * @param destSize the wanted size for the new array
+ * @return  the newly created array or NULL if an error occured
+ */
+double * createNewArrayFromSource( int destSize, const double src[], int srcSize ) ;
 
 #endif /* _BASIC_ALGOS_H_ */

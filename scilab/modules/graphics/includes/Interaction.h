@@ -27,7 +27,6 @@ extern int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
 
 extern int Objmove (long *hdl, double *d, int m, BOOL opt); /* INTERACTION */
 extern BOOL sciIsAreaZoom(integer *box, integer *box1 ,integer *section); /* INTERACTION */
-extern void scizoom(double bbox[], sciPointObj * pobj); /* INTERACTION */
 
 
 

@@ -1,35 +1,35 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_text_box_property.c                                          */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the text_box field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "SetPropertyStatus.h"
+#include "GetProperty.h"
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_text_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  double * values = getDoubleMatrixFromStack( stackPointer ) ;
+  if (sciGetEntityType (pobj) != SCI_TEXT)
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    sciprint("text_box property does not exist for this handle.\n");
+    return SET_PROPERTY_ERROR ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
+
+  if ( nbRow * nbCol != 2 )
   {
-    setVersionFlag( 0 ) ;
-    return 0 ;
+    sciprint("text_box must be a 2D vector.\n");
+    return SET_PROPERTY_ERROR ;
   }
-  else
-  {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
-  }
-  return -1 ;
+  return sciSetUserSize( pobj, values[0], values[1] ) ;
+
+
 }
 /*------------------------------------------------------------------------*/

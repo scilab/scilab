@@ -1,34 +1,34 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_font_color_property.c                                        */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the font_color field of            */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "GetProperty.h"
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_font_color_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  int value = (int) getDoubleFromStack( stackPointer ) ;
+  if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    setVersionFlag( 1 ) ;
+    pAXES_FEATURE (pobj)->textcolor = value ;
     return 0 ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
+  else if ( sciGetEntityType(pobj) == SCI_SUBWIN || sciGetEntityType(pobj) == SCI_FIGURE )
   {
-    setVersionFlag( 0 ) ;
-    return 0 ;
-  }
+    return sciSetFontForeground( pobj,value ) ;
+  } /* F.Leray 08.04.04 */
   else
   {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
+    sciprint( "font_color property does not exist for this handle.\n" ) ;
+    return -1 ;
   }
   return -1 ;
 }

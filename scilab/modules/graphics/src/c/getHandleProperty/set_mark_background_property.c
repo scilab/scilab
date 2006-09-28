@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_mark_background_property.c                                   */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the mark_background field of       */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,24 +12,11 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_mark_background_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
-  {
-    setVersionFlag( 1 ) ;
-    return 0 ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    setVersionFlag( 0 ) ;
-    return 0 ;
-  }
-  else
-  {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
-  }
-  return -1 ;
+  /*   sciSetIsMark((sciPointObj *) pobj, TRUE); */
+  /* F.Leray 27.01.05 commented because mark_size is automatically launched */
+  /* in tcl/tk editor (which causes marks appearance even when unwanted). */
+  return sciSetMarkBackground( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
 }
 /*------------------------------------------------------------------------*/

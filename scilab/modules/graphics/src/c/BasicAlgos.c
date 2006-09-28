@@ -2,11 +2,13 @@
 /* file: BasicAlgos.c                                                     */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Jean-Baptiste Silvy                           */
-/* desc : Several basic algorithm which can be used in several places in  */
+/* desc : Several basic algorithms which can be used in several places in */
 /*        the code.                                                       */
 /*------------------------------------------------------------------------*/
 
 #include "BasicAlgos.h"
+#include "MALLOC.h"
+#include "core_math.h"
 
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin( double x[], int n )
@@ -39,4 +41,76 @@ int C2F(entier2d)( integer * n, double * dx,integer * s )
   for (ix = *n -1 ; ix >= 0; --ix) { dx[ix] = (double) s[ix]; }
   return 0;
 }  
+/*------------------------------------------------------------------------*/
+int checkMonotony( double vector[], int nbElement )
+{
+  int i ;
+  if( vector[1] >= vector[0] )
+  {
+    /* might be incresing */
+    for ( i = 1 ; i < nbElement - 1 ; i++ )
+    {
+      if ( vector[i+1] < vector[i] )
+      {
+        /* not increasing */
+        return 0 ;
+      }
+    }
+    return 1 ;
+  }
+  else
+  {
+    /* might be decreasing */
+    for ( i = 1 ; i < nbElement - 1 ; i++ )
+    {
+      if ( vector[i+1] > vector[i] )
+      {
+        /* not decreasing */
+        return 0 ;
+      }
+    }
+    return -1 ;
+
+  }
+  return 0 ;
+
+}
+/*------------------------------------------------------------------------*/
+void doubleArrayCopy( double dest[], const double src[], int nbElement )
+{
+  memcpy( dest, src, nbElement * sizeof(double) ) ;
+}
+/*------------------------------------------------------------------------*/
+void setDoubleArraySingleValue( double dest[], double value, int nbElement )
+{
+  int i ;
+  for ( i = 0 ; i < nbElement ; i++ )
+  {
+    dest[i] = value ;
+  }
+}
+/*------------------------------------------------------------------------*/
+double * createNewArrayFromSource( int destSize, const double src[], int srcSize )
+{
+  int i ;
+  int endCopy = Min( destSize, srcSize ) ;
+  /* create new array */
+  double * dest = MALLOC( destSize * sizeof(double) ) ;
+
+  if ( dest == NULL )
+  {
+    return NULL ;
+  }
+
+  /* copy the element which needs to be copied */
+  memcpy( dest, src, endCopy * sizeof( double ) ) ;
+
+  for ( i = endCopy ; i < destSize ; i++ )
+  {
+    dest[i] = 0.0 ;
+  }
+
+  return dest ;
+
+}
 /*------------------------------------------------------------------------*/

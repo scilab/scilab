@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_line_mode_property.c                                         */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the line_mode field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,22 +12,19 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_line_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    return sciSetIsLine( pobj, TRUE ) ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    setVersionFlag( 0 ) ;
-    return 0 ;
+    return sciSetIsLine( pobj, FALSE ) ;
   }
   else
   {
-    sciprint("old_style must be 'on' or 'off'.\n");
+    sciprint("Value must be 'on/off'.\n");
     return -1;
   }
   return -1 ;

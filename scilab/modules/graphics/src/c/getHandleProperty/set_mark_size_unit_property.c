@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_mark_size_unit_property.c                                    */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the mark_size_unit field of        */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -12,23 +12,20 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_mark_size_unit_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  if ( isStringParamEqual( stackPointer, "point") )
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    return sciSetMarkSizeUnit( pobj, 1 ) ; /* 1 : points, 2 : tabulated */
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
+  else if ( isStringParamEqual( stackPointer, "tabulated" ) )
   {
-    setVersionFlag( 0 ) ;
-    return 0 ;
+    return sciSetMarkSizeUnit( pobj, 2) ;
   }
   else
   {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
+    sciprint("Value must be 'point/tabulated'.\n") ;
+    return -1 ;
   }
   return -1 ;
 }

@@ -15,11 +15,11 @@
 int set_visible_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
   char * value = getStringFromStack( stackPointer ) ;
-  if ( strcmp(value,"on") == 0 )
+  if ( isStringParamEqual( stackPointer, "on" ) )
   {
     return sciSetVisibility( pobj, TRUE ) ;
   }
-  else if ( strcmp(value,"off") == 0 )
+  else if ( isStringParamEqual( stackPointer, "off" ) )
   {
     return sciSetVisibility( pobj, FALSE ) ;
   }

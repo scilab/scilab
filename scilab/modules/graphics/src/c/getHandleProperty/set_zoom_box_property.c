@@ -1,36 +1,41 @@
 /*------------------------------------------------------------------------*/
-/* file: set_figure_id_property.c                                         */
+/* file: set_zoom_box_property.c                                          */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the figure_id field of             */
+/* desc : function to modify in Scilab the zoom_box field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
+#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
-#include "InitObjects.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
+#include "PloEch.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_id_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  int id = (int) getDoubleFromStack( stackPointer ) ;
-  if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("figure_id property undefined for this object.\n") ;
+    sciprint( "zoom_box property does nor exist for this handle.\n" ) ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( pobj != getFigureModel() )
+  /* On doit avoir avoir une matrice 4x1 */
+  if ( nbRow * nbCol == 4 )
   {
-    return sciInitUsedWindow( id ) ;
+    scizoom( getDoubleMatrixFromStack( stackPointer ), pobj ) ;
+  }
+  else if ( nbCol * nbRow == 0 )
+  {
+    unzoom() ;
   }
   else
   {
-    return sciSetNum( getFigureModel(), &id ) ;
+    sciprint("Argument must be a vector of size 4.\n");
+    return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;
 }

@@ -15,7 +15,6 @@
 /*------------------------------------------------------------------------*/
 int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
   
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
@@ -23,12 +22,12 @@ int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int nb
     return -1;
   }
   
-  if ( strcmp(value,"on") == 0 )
+  if ( isStringParamEqual( stackPointer, "on" ) )
   {
     pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = TRUE ;
     return 0 ;
   }
-  else if ( strcmp(value,"off") == 0 )
+  else if ( isStringParamEqual( stackPointer, "off" ) )
   {
     pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = FALSE ;
     return 0 ;

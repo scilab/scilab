@@ -1926,3 +1926,58 @@ static void zoom_rect2(int xpix_ini, int ypix_ini, int xpix_fin, int ypix_fin)
 #endif
 }
 
+void scizoom( double bbox[4], sciPointObj * pobj )
+{
+  sciPointObj *psousfen;
+  double fmin,fmax,lmin,lmax;
+  integer min,max,puiss,deux=2,dix=10;
+  psousfen= pobj; /* ??? */
+
+  if ( !( sciGetZooming(pobj) ) )
+  {
+    sciSetZooming(psousfen, 1);
+    /*    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
+    /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
+    /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
+    /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
+  }
+  /** regraduation de l'axe des axes ***/
+  fmin=  bbox[0];
+  fmax=  bbox[2];
+  if( pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n' )
+  {
+    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+    pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;
+  }
+  else
+  {
+    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
+    pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
+  }
+
+  fmin= bbox[1]; 
+  fmax= bbox[3];
+  if ( pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n' )
+  {
+    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+    pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;
+  }
+  else
+  {
+    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
+    pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;
+  }
+
+  /* default values when zooming in 3d */
+  /* and scizoom takes only xmin ymin xmax ymax AND not zmin zmax (for now at least) */
+  /* F.Leray 29.09.05 */
+  pSUBWIN_FEATURE (psousfen)->ZRect[4] = pSUBWIN_FEATURE (psousfen)->SRect[4];
+  pSUBWIN_FEATURE (psousfen)->ZRect[5] = pSUBWIN_FEATURE (psousfen)->SRect[5];
+
+}

@@ -205,6 +205,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\ColorMapManagement.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Contour.c"
 				>
 			</File>
@@ -1226,7 +1230,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_alignment_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_arrow_size_factor_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_auto_clear_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_auto_dimensionning_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_auto_resize_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_auto_scale_property.c"
 				>
 			</File>
 			<File
@@ -1235,6 +1259,22 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_background_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_bar_layout_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_bar_width_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_clip_box_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_clip_state_property.c"
 				>
 			</File>
 			<File
@@ -1251,6 +1291,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_current_figure_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_data_property.c"
 				>
 			</File>
 			<File
@@ -1278,11 +1322,79 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_fill_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_font_angle_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_font_color_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_font_foreground_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_font_name_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_font_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_font_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_foreground_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_immediate_drawing_property.c"
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_interp_color_mode_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_interp_color_vector_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_line_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_line_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_mark_background_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_mark_foreground_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_mark_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_mark_size_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_mark_size_unit_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_mark_style_property.c"
 				>
 			</File>
 			<File
@@ -1298,11 +1410,55 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_polyline_style_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_rotation_style_property.c"
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_surface_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_text_box_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_text_box_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_text_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_thickness_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_visible_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_x_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_y_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_z_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_zoom_box_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_zoom_state_property.c"
 				>
 			</File>
 			<File
@@ -1311,6 +1467,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\SetProperty.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\SetPropertyStatus.c"
 				>
 			</File>
 			<File
@@ -1368,6 +1528,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\color.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\ColorMapManagement.h"
 				>
 			</File>
 			<File
@@ -1896,6 +2060,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\SetProperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\SetPropertyStatus.h"
 				>
 			</File>
 			<File

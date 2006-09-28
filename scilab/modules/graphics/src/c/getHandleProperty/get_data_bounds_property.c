@@ -20,11 +20,11 @@ int get_data_bounds_property( sciPointObj * pobj )
     /**DJ.Abdemouche 2003**/
     if ( sciGetIs3d( pobj ) )
     {
-      return sciReturnRowVector( pSUBWIN_FEATURE (pobj)->SRect, 6 ) ;
+      return sciReturnMatrix( pSUBWIN_FEATURE (pobj)->SRect, 2, 3 ) ;
     }
     else
     {
-      return sciReturnRowVector( pSUBWIN_FEATURE (pobj)->SRect, 4 ) ;
+      return sciReturnRowVector( pSUBWIN_FEATURE (pobj)->SRect, 2, 2 ) ;
     }
   }
   else if ( sciGetEntityType (pobj) == SCI_SURFACE )

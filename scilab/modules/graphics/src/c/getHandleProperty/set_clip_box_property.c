@@ -1,35 +1,33 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_clip_box_property.c                                          */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the clip_box field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
+#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_clip_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  int status1 ;
+  int status2 ;
+
+  /* On doit avoir avoir une matrice 4x1 */
+  if ( nbRow * nbCol != 4 )
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    sciprint("Argument must be a vector of size 4.\n");
+    return SET_PROPERTY_ERROR ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    setVersionFlag( 0 ) ;
-    return 0 ;
-  }
-  else
-  {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
-  }
-  return -1 ;
+  status1 = sciSetClipping( pobj, getDoubleMatrixFromStack( stackPointer ) ) ;
+  status2 = sciSetIsClipping( pobj, 1 ) ;
+  return sciSetFinalStatus( status1, status2 ) ;
+
 }
 /*------------------------------------------------------------------------*/

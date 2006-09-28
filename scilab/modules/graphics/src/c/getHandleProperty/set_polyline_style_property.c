@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_polyline_style_property.c                                    */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the polyline_style field of        */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -10,26 +10,27 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_polyline_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  int value = 0 ;
+  if (sciGetEntityType (pobj) != SCI_POLYLINE)
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    sciprint( "polyline_style property does not exist for this handle.\n" ) ;
+    return -1 ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
+    
+  value = (int) getDoubleFromStack( stackPointer ) ;
+  if ( value < 1 || value > 7 )
   {
-    setVersionFlag( 0 ) ;
-    return 0 ;
+    sciprint("Style must be 1,2,3,4,5,6 or 7.\n") ;
+    return -1 ;
   }
-  else
-  {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
-  }
-  return -1 ;
+
+  pPOLYLINE_FEATURE (pobj)->plot = value ;
+  return 0 ;
+  
 }
 /*------------------------------------------------------------------------*/

@@ -1,35 +1,34 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_auto_clear_property.c                                        */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the auto_clear field of            */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
+#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_auto_clear_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    return sciSetAddPlot( pobj, FALSE ) ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    setVersionFlag( 0 ) ;
-    return 0 ;
+    return sciSetAddPlot( pobj, TRUE ) ;
   }
   else
   {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
+    sciprint("Value must be 'on/off'.\n");
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

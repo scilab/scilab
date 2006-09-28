@@ -23,12 +23,12 @@ int set_rotation_style_property( sciPointObj * pobj, int stackPointer, int nbRow
     return -1;
   }
 
-  if ( strcmp(value,"unary") == 0 )
+  if ( isStringParamEqual( stackPointer, "unary" ) )
   {
     pFIGURE_FEATURE(pobj)->rotstyle = 0 ;
     return 0 ;
   }
-  else if ( strcmp(value,"multiple") == 0 )
+  else if ( isStringParamEqual( stackPointer, "multiple" ) )
   {
     pFIGURE_FEATURE(pobj)->rotstyle = 1 ;
     return 0 ;

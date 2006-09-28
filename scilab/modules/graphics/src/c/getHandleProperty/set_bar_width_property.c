@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_bar_width_property.c                                         */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the bar_width field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -10,26 +10,17 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_bar_width_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  if ( sciGetEntityType (pobj) != SCI_POLYLINE )
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    sciprint( "Object has no bar shift.\n" ) ;
+    return -1 ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    setVersionFlag( 0 ) ;
-    return 0 ;
-  }
-  else
-  {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
-  }
-  return -1 ;
+  pPOLYLINE_FEATURE (pobj)->bar_width = getDoubleFromStack( stackPointer ) ;
+  return 0 ;
 }
 /*------------------------------------------------------------------------*/

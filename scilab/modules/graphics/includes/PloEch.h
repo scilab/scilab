@@ -67,6 +67,8 @@ int zoom_box( double * bbox, int * x_pixel, int * y_pixel ) ;
 void unzoom( void ) ;
 void unzoom_one_axes( sciPointObj * psousfen ) ;
 
+extern void scizoom(double bbox[4], sciPointObj * pobj); /* INTERACTION */
+
 extern int XScale(double x);
 extern int XLogScale(double x);
 

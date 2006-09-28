@@ -46,8 +46,6 @@ void updateMenus( struct BCG * XGC )
 /*------------------------------------------------------------------------*/
 int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-
-  char * value = getStringFromStack( stackPointer ) ;
   struct BCG * XGC = NULL ;
   int    verb = 0   ;
   int    v    = 1   ;
@@ -62,7 +60,7 @@ int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, 
     return -1;
   }
     
-  if ( strcmp(value,"old") == 0 )
+  if ( isStringParamEqual( stackPointer, "old" ) )
   {
     if ( version_flag() == 0 )
     {
@@ -94,7 +92,7 @@ int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, 
       return 0 ;
     }
   }
-  else if ( strcmp(value,"new") == 0 )
+  else if ( isStringParamEqual( stackPointer, "new" ) )
   {   
     if ( version_flag() == 1 ) 
     {

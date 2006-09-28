@@ -1,35 +1,26 @@
 /*------------------------------------------------------------------------*/
-/* file: set_old_style_property.c                                         */
+/* file: set_arrow_size_factor_property.c                                 */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to modify in Scilab the old_style field of             */
+/* desc : function to modify in Scilab the arrow_size_factor field of     */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "GetProperty.h"
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_arrow_size_factor_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    setVersionFlag( 1 ) ;
-    return 0 ;
+    sciprint( "arrow_size_factor property undefined for this handle.\n" ) ;
+    return -1 ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    setVersionFlag( 0 ) ;
-    return 0 ;
-  }
-  else
-  {
-    sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
-  }
-  return -1 ;
+  pPOLYLINE_FEATURE(pobj)->arsize_factor = getDoubleFromStack( stackPointer ) ;
+  return 0 ;
 }
 /*------------------------------------------------------------------------*/

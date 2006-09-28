@@ -29,6 +29,7 @@
 #include "Format.h"
 #include "pixel_mode.h"
 #include "../src/c/getHandleProperty/setHandleProperty.h"
+#include "../src/c/ColormapManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -38,11 +39,7 @@ extern int versionflag;
 static char error_message[256];
 /*-----------------------------------------------------------------------------------*/
 int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow, int * numcol);
-int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
-int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname);
-int set3ddata(sciPointObj *pobj, int value[4], int numrow[4], int numcol[4], int flagc, char *fname);
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol);
-int LinearScaling2Colormap(sciPointObj* pobj);
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels);
 char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels);
 /*-----------------------------------------------------------------------------------*/
@@ -333,100 +330,6 @@ int sci_set(fname,fname_len)
         if(setticks(cstk(l2),pobj, ptrindex, numrow, numcol) != 0) return 0;
 
       }
-    else if(strcmp(cstk(l2),"data") == 0)
-    { /* distinction for "data" treatment for champ and surface objects */
-      if((sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1))
-      {	/* F.Leray Work here*/
-        int address[4],i;
-        for(i=0;i<4;i++) address[i] = 0;
-
-        if(VarType(3) != 16)
-        {
-          Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-          return -1;
-        }
-
-        GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
-
-        if(m3tl != 5 || n3tl != 1)
-        {
-          sciprint("Tlist size must be 1x5\r\n");
-          return -1;
-        }
-
-        GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
-        GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
-        GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
-        GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&address[3]);
-
-        if (setchampdata(pobj, address, numrow, numcol,fname)!=0)  return 0;
-      }
-      else if((sciGetEntityType(pobj) == SCI_GRAYPLOT) && (pGRAYPLOT_FEATURE(pobj)->type == 0)) /* case 0: real grayplot */
-      {	/* F.Leray Work here*/
-        int address[4],i;
-        for(i=0;i<4;i++) address[i] = 0;
-
-        if(VarType(3) != 16)
-        {
-          Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-          return -1;
-        }
-
-        GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
-
-        if(m3tl != 4 || n3tl != 1)
-        {
-          sciprint("Tlist size must be 1x4\r\n");
-          return -1;
-        }
-
-        GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&address[0]);
-        GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&address[1]);
-        GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&address[2]);
-
-        if (setgrayplotdata(pobj, address, numrow, numcol,fname)!=0) { return 0; }
-      }
-      else if(sciGetEntityType(pobj) == SCI_SURFACE)
-      {	/* F.Leray Work here*/
-        if(VarType(3) != 16)
-        {
-          Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
-          return -1;
-        }
-        GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
-
-        /* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); 
-           Not good because 3,1 is the string character "3d x y z [en option col]"*/
-        GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
-        GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
-
-        if(m3tl == 4)
-        {
-          GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
-          flagc = 0;
-        }
-        else if( m3tl == 5)
-        {
-          GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
-          GetListRhsVar(3,5,"d",&numrow[3],&numcol[3],&lxyzcol[3]);
-          flagc = 1;
-        }
-        else
-        {
-          sciprint("Error m3tl must be equal to 4 or 5\r\n");
-          return -1;
-        }
-
-        if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0) {  return 0; }
-      }
-      else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
-      {
-        if ( ( setStatus = sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3) ) < 0) {
-          Scierror(999,"%s: %s\r\n",fname,error_message);
-          return 0;
-        }
-      }
-    }
     else /* F.Leray 02.05.05 : main case (using sciGetPoint routine inside GetProperty.c) */
     {
       if ( (setStatus = sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)) < 0 ) {
@@ -606,605 +509,6 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
     }
   return 0;
 }
-/*-----------------------------------------------------------------------------------*/
-/* F.Leray 29.04.05 */
-/* the champ data is now set as a tlist (like for surface objects) */
-/* setchampdata(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setchampdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname)
-{
-  int i=0;
-  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
-
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3, m4, n4, l4;
-
-  double * vx = NULL, * vy = NULL;
-  double * vfx = NULL, * vfy = NULL;
-
-  m1 = numrow[0];
-  m2 = numrow[1];
-  m3 = numrow[2];
-  m4 = numrow[3];
-
-  n1 = numcol[0];
-  n2 = numcol[1];
-  n3 = numcol[2];
-  n4 = numcol[3];
-
-  l1 = value[0];
-  l2 = value[1];
-  l3 = value[2];
-  l4 = value[3];
-
-  if (n1 != 1 || n2 != 1){
-    Scierror(999,"%s:  Inside the Tlist : the first argument must be columns vectors\r\n",fname);
-    return 0;
-  }
-
-  if (m3 != m1 || n3 != m2 || m4 != m3 || n4 != n3) {
-    Scierror(999,"%s:  Inside the Tlist : incompatible length in the third and/or fourth argument(s)\r\n",fname);
-    return 0;
-  }
-
-  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 || m4 * n4 == 0) { LhsVar(1)=0; return 0;} 
-
-  /* Update the dimensions Nbr1 and Nbr2 */
-  ppsegs->Nbr1 = m1;
-  ppsegs->Nbr2 = m2;
-
-  /* Free the old values... */
-  FREE(ppsegs->vx); ppsegs->vx = NULL;
-  FREE(ppsegs->vy); ppsegs->vy = NULL;
-  FREE(ppsegs->vfx); ppsegs->vfx = NULL;
-  FREE(ppsegs->vfy); ppsegs->vfy = NULL;
-
-  /* allocations:*/
-  if ((vx = MALLOC (m1 * sizeof (double))) == NULL) return -1;
-  if ((vy = MALLOC (m2 * sizeof (double))) == NULL) {
-    FREE(vx); vx = (double *) NULL;
-    return -1;
-  }
-
-  if ((vfx = MALLOC (m3*n3 * sizeof (double))) == NULL) return -1;
-  if ((vfy = MALLOC (m4*n4 * sizeof (double))) == NULL) {
-    FREE(vfx); vfx = (double *) NULL;
-    return -1;
-  }
-
-  /* Copy the new values F.Leray */
-  for(i=0;i< m1;i++)
-    vx[i] = stk(l1)[i];
-
-  for(i=0;i< m2;i++)
-    vy[i] = stk(l2)[i];
-
-  for(i=0;i< m3*n3;i++){ /* vfx and vfy must have the same dimensions */
-    vfx[i] = stk(l3)[i];
-    vfy[i] = stk(l4)[i];
-  }
-
-  ppsegs->vx = vx;
-  ppsegs->vy = vy;
-  ppsegs->vfx = vfx;
-  ppsegs->vfy = vfy;
-
-  return 0;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/* F.Leray 29.04.05 */
-/* the grayplot data is now set as a tlist (like for surface and champ objects) */
-/* setgrayplot(pobj,cstk(l2), &l3, &numrow3, &numcol3, fname) */
-int setgrayplotdata(sciPointObj *pobj, int *value, int *numrow, int *numcol, char *fname)
-{
-  int i=0;
-  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
-
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-
-  double * pvecx = NULL, * pvecy = NULL;
-  double * pvecz = NULL;
-
-  m1 = numrow[0];
-  m2 = numrow[1];
-  m3 = numrow[2];
-
-  n1 = numcol[0];
-  n2 = numcol[1];
-  n3 = numcol[2];
-
-  l1 = value[0];
-  l2 = value[1];
-  l3 = value[2];
-
-  if (n1 != 1 || n2 != 1){
-    Scierror(999,"%s:  Inside the Tlist : the first argument must be columns vectors\r\n",fname);
-    return 0;
-  }
-
-  if (m3 != m1 || n3 != m2) {
-    Scierror(999,"%s:  Inside the Tlist : incompatible length in the third argument\r\n",fname);
-    return 0;
-  }
-
-  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0 ) { LhsVar(1)=0; return 0;} 
-
-  /* Update the dimensions nx and ny */
-  ppgrayplot->nx = m1;
-  ppgrayplot->ny = m2;
-
-  /* Free the old values... */
-  FREE(ppgrayplot->pvecx); ppgrayplot->pvecx = NULL;
-  FREE(ppgrayplot->pvecy); ppgrayplot->pvecy = NULL;
-  FREE(ppgrayplot->pvecz); ppgrayplot->pvecz = NULL;
-
-  /* allocations:*/
-  if ((pvecx = MALLOC (m1 * sizeof (double))) == NULL) return -1;
-  if ((pvecy = MALLOC (m2 * sizeof (double))) == NULL) {
-    FREE(pvecx); pvecx = (double *) NULL;
-    return -1;
-  }
-
-  if ((pvecz = MALLOC (m3*n3 * sizeof (double))) == NULL)
-    return -1;
-
-
-  /* Copy the new values F.Leray */
-  for(i=0;i< m1;i++)
-    pvecx[i] = stk(l1)[i];
-
-  for(i=0;i< m2;i++)
-    pvecy[i] = stk(l2)[i];
-
-  for(i=0;i< m3*n3;i++){ /* vfx and vfy must have the same dimensions */
-    pvecz[i] = stk(l3)[i];
-  }
-
-  ppgrayplot->pvecx = pvecx;
-  ppgrayplot->pvecy = pvecy;
-  ppgrayplot->pvecz = pvecz;
-
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-/* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
-int set3ddata(sciPointObj *pobj, int value[4], int numrow[4], int numcol[4], int flagc, char *fname)
-{
-  int i=0,j,nc;
-  sciSurface * psurf = pSURFACE_FEATURE (pobj);
-
-
-  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n, n3n, l3n, ii;
-
-  double * pvecx = NULL, * pvecy = NULL, * pvecz = NULL;
-  integer /* * zcol = NULL,*/ izcol = 0 ;
-  int dimvectx = 0;
-  int dimvecty = 0;
-
-  m1 = numrow[0]; /* X size */
-  m2 = numrow[1]; /* Y size */
-  m3 = numrow[2]; /* Z size */
-  m3n = numrow[3]; /* F.Leray for color */
-  n1 = numcol[0];
-  n2 = numcol[1];
-  n3 = numcol[2];
-  n3n = numcol[3]; /* F.Leray for color */
-  l1 = value[0];
-  l2 = value[1];
-  l3 = value[2];
-  l3n = value[3]; /* F.Leray for color */
-
-  if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 )
-  {
-    if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
-    {
-      Scierror(999,"%s:  Inside the Tlist (third argument): The three first arguments have incompatible length \r\n",fname);
-      return 0;
-    }
-  }
-  else 
-  {
-    if ( m2 * n2 != n3 )
-    {
-      Scierror(999,"%s:  Inside the Tlist (third argument): The second and third arguments have incompatible length\r\n",fname);
-      return 0;
-    }
-    if ( m1 * n1 != m3 )
-    {
-      Scierror(999,"%s:  Inside the Tlist (third argument): The first and third arguments have incompatible length\r\n",fname);
-      return 0;
-    }
-    if ( m1 * n1 <= 1 || m2 * n2 <= 1 ) 
-    {
-      Scierror(999,"%s: Inside the Tlist (third argument):The first and second arguments should be of size >= 2\r\n",fname);
-      return 0;
-    }
-  }
-
-  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0)
-  { 
-    LhsVar(1) = 0 ; 
-    return 0;
-  } 
-
-  if(flagc == 1)
-  {
-     
-    if ( m3n * n3n == m3 * n3 )
-    {
-      /* the color is a matrix */
-      izcol = 2 ; 
-    }
-    else
-    {
-      /* a vector */
-      izcol = 1 ;
-    }
-    psurf->izcol = izcol;
-  }
-  else
-  {
-    psurf->izcol = 0;
-  }
-
-  if ( m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1 ) /* NG beg */
-  { /* case isfac=1;*/
-    if( psurf->isfac != 1 )
-    {
-      sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n");
-      return 0;
-    }
-  }
-  else
-  { 
-    /* case isfac=0;*/
-    if(psurf->isfac != 0)
-    {
-      sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n");
-      return 0;
-    }
-  }
-  
-  
-  /* check the monotony on x and y */
-  
-  if ( m1 == 1 ) /* x is a row vector */
-  {
-    dimvectx = n1 ;
-  }
-  else if ( n1 == 1 ) /* x is a column vector */
-  {
-    dimvectx = m1 ;
-  }
-  else /* x is a matrix */
-  {
-    dimvectx = -1 ;
-  }
-  
-  if ( dimvectx > 1 )
-  {
-    /* test the monotony on x*/
-    if( stk(l1)[0] >= stk(l1)[1] ) /* decreasing */
-    {
-      int i;
-      for(i=1;i<dimvectx-1;i++)
-      {
-        if(stk(l1)[i] < stk(l1)[i+1])
-        {
-          Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
-          return 0;
-        }
-      }
-      psurf->flag_x = -1;
-    }
-    else /* x[0] < x[1]*/
-    {
-      for(i=1;i<dimvectx-1;i++)
-      {
-        if(stk(l1)[i] > stk(l1)[i+1])
-        {
-          Scierror(999,"Objplot3d: x vector is not monotonous \t\n");
-          return 0;
-        }
-      }
-      psurf->flag_x = 1;
-    }
-  }
-
-  if(m2 == 1) /* y is a row vector */
-  {
-    dimvecty = n2 ;
-  }
-  else if(n2 == 1) /* y is a column vector */
-  {
-    dimvecty = m2 ;
-  }
-  else /* y is a matrix */
-  {
-    dimvecty = -1 ;
-  }
-  if(dimvecty>1)
-  {
-    /* test the monotony on y*/
-    if(stk(l2)[0] >= stk(l2)[1]) /* decreasing */
-    {
-      int i;
-      for(i=1;i<dimvecty-1;i++)
-      {
-        if(stk(l2)[i] < stk(l2)[i+1])
-        {
-          Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
-          return 0;
-        }
-      }
-      psurf->flag_y = -1;
-    }
-    else /* y[0] < y[1]*/
-    {
-      for(i=1;i<dimvecty-1;i++)
-      {
-        if(stk(l2)[i] > stk(l2)[i+1])
-        {
-          Scierror(999,"Objplot3d: y vector is not monotonous \t\n");
-          return 0;
-        }
-      }
-      psurf->flag_y = 1;
-    }
-  }
-  
-  /* Update of the dimzx, dimzy depends on  m3, n3: */
-  psurf->dimzx = m3;
-  psurf->dimzy = n3;
-  
-
-  /* Free the old values... */
-  FREE(psurf->pvecx); psurf->pvecx = NULL;
-  FREE(psurf->pvecy); psurf->pvecy = NULL;
-  FREE(psurf->pvecz); psurf->pvecz = NULL;
-  /* ...even on zcol wich must have been initialized like others or set to NULL in case there was no color before
-     The FREE macro tests the NULL pointer existence... */
-  FREE(psurf->zcol); psurf->zcol = NULL;
-  /* If we had a previous color matrix/vector and we do not specify a new one, I consider we are losing it.*/
-  /* That's why we make a FREE as follows:*/
-  FREE(psurf->inputCMoV);psurf->inputCMoV = NULL; /* F.Leray 23.03.04*/
-
-  /* allocations:*/
-  if ((pvecx = MALLOC (m1*n1 * sizeof (double))) == NULL) return -1;
-  if ((pvecy = MALLOC (m2*n2 * sizeof (double))) == NULL) {
-    FREE(pvecx); pvecx = (double *) NULL;
-    return -1;
-  } 
-  if ((pvecz = MALLOC (m3*n3 * sizeof (double))) == NULL) {
-    FREE(pvecx); pvecx = (double *) NULL;
-    FREE(pvecy); pvecy = (double *) NULL;
-    return -1;
-  }
-
-  /* Copy the new values F.Leray */
-  for(i=0;i< m1*n1;i++)
-  {
-    pvecx[i] = stk(l1)[i];
-  }
-
-  for(i=0;i< m2*n2;i++)
-  {
-    pvecy[i] = stk(l2)[i];
-  }
-
-  for(i=0;i< m3*n3;i++)
-  {
-    pvecz[i] = stk(l3)[i];
-  }
-
-  if( flagc == 1 ) /* F.Leray There is a color matrix */
-  {
-    if( m3n * n3n != 0 ) /* Normally useless test here: means we have a color vector or matrix */
-    {
-      if (((psurf->inputCMoV = MALLOC (( (m3n)*(n3n) * sizeof (double)))) == NULL))
-      {
-        FREE(pvecx); pvecx = (double *) NULL;
-        FREE(pvecy); pvecy = (double *) NULL;
-        FREE(pvecz); pvecz = (double *) NULL;
-        return -1;
-      }
-
-      for (j = 0;j < (m3n)*(n3n); j++)
-      {
-        psurf->inputCMoV[j] = stk(l3n)[j] ;
-      }
-
-    }
-
-    if( psurf->flagcolor == 2 || psurf->flagcolor == 4 )
-    { /* case of SCI_PLOT3D avoid */
-      nc = psurf->dimzy ;
-    }
-    else if( psurf->flagcolor == 3 )
-    {
-      nc = psurf->dimzx * psurf->dimzy ;
-    }
-    else
-    {
-      nc = 0 ;
-    }
-
-    if ( nc > 0 )
-    {
-      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
-      {
-        FREE(pvecx); pvecx = (double *) NULL;
-        FREE(pvecy); pvecy = (double *) NULL;
-        FREE(pvecz); pvecz = (double *) NULL;
-        return -1;
-      }
-    }
-
-    /* case flagcolor == 2*/
-    if( psurf->flagcolor == 2 && ( m3n == 1 || n3n == 1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
-    {
-      /* We have just enough information to fill the psurf->zcol array*/
-      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-      {
-        psurf->zcol[j] = psurf->inputCMoV[j];  /* DJ.A 2003 */
-      }
-    }
-    else if( psurf->flagcolor == 2 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-    {
-      /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
-      /* NO !! Let's do better; F.Leray 08.05.04 : */
-      /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
-      /* in our example: m3n=4 and n3n=400 */
-      for ( j = 0 ; j < nc ; j++)   /* nc value is dimzy*/
-      {
-        double tmp = 0.0 ;
-        for(ii=0;ii<m3n;ii++)
-        {
-          tmp = tmp +  psurf->inputCMoV[j * m3n + ii] ;
-        }
-        tmp = tmp / m3n ;
-        psurf->zcol[j] = tmp;
-      }
-    }
-    /* case flagcolor == 3*/
-    else if( psurf->flagcolor==3 && ( m3n==1 || n3n ==1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
-    {
-      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-      /* We repeat the data:*/
-      for(i = 0; i< psurf->dimzy; i++)
-      {
-        for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-        {
-          psurf->zcol[psurf->dimzx*i+j] = psurf->inputCMoV[i];  /* DJ.A 2003 */
-        }
-      }
-    }
-    else if( psurf->flagcolor==3 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-    {
-      /* We have just enough information to fill the psurf->zcol array*/
-      for (j = 0;j < nc; j++)
-      {   /* nc value is dimzy*/
-        psurf->zcol[j]= psurf->inputCMoV[j] ;
-      }
-    }  
-    /* case flagcolor == 4*/
-    else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
-    {
-      /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-      /* We repeat the data:*/
-      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-      {
-        psurf->zcol[j] = psurf->inputCMoV[j];
-      }
-    }
-    else if ( psurf->flagcolor == 4 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
-    {
-      /* input : color matrix , we use 1 color per facet with Matlab selection mode (no average computed) */
-      /* HERE is the difference with case 2 */
-      for ( j = 0 ; j < nc ; j++ )   /* nc value is dimzy*/
-      {
-        psurf->zcol[j] = psurf->inputCMoV[j*m3n] ;
-      }
-    }
-
-  }
-  else /* else we put the value of the color_mode flag[0]*/
-  {
-
-    if(psurf->flagcolor == 2 || psurf->flagcolor == 4)
-    { /* case of SCI_PLOT3D avoid */
-      nc = psurf->dimzy;
-    }
-    else if(psurf->flagcolor == 3)
-    {
-      nc = psurf->dimzx *  psurf->dimzy;
-    } 
-    else
-    {
-      nc=0;
-    }
-
-    if ( nc > 0)
-    {
-      if ((psurf->zcol = MALLOC (nc * sizeof (double))) == NULL)
-      {
-        FREE(pvecx); pvecx = (double *) NULL;
-        FREE(pvecy); pvecy = (double *) NULL;
-        FREE(pvecz); pvecz = (double *) NULL;
-        return -1;
-      }
-    }
-
-    /* case flagcolor == 2*/
-    if(psurf->flagcolor==2 || psurf->flagcolor==4) /* we have to fill a Color vector */
-    {
-      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-      {
-        psurf->zcol[j] = psurf->flag[0];
-      }
-    }
-    else if(psurf->flagcolor==3) /* we have to fill a color matrix */
-    {
-      for ( i = 0 ; i < psurf->dimzx * psurf->dimzy ; i++ )
-      {
-        psurf->zcol[i] = psurf->flag[0];
-      }
-    }
-    else
-    {
-      /* case flagcolor == 0 or 1 */
-      psurf->zcol = NULL;
-      psurf->izcol = 0;
-    }
-  }
-
-  psurf->pvecx = pvecx;
-  psurf->pvecy = pvecy;
-  psurf->pvecz = pvecz;
-
-  psurf->nc = nc; /*Adding F.Leray 23.03.04*/
-
-  psurf->m1 = m1;
-  psurf->m2 = m2;
-  psurf->m3 = m3;
-  psurf->n1 = n1;
-  psurf->n2 = n2;
-  psurf->n3 = n3;
-  psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
-  psurf->n3n = n3n;
-
-  /* We need to rebuild ...->color matrix */
-  if( psurf->flagcolor != 0 && psurf->flagcolor != 1 )
-  { 
-    if(psurf->cdatamapping == 0)
-    {
-      /* scaled */
-      FREE(psurf->color);
-      LinearScaling2Colormap(pobj);
-    }
-    else
-    {
-      int nc = psurf->nc;
-
-      FREE(psurf->color);
-
-      if(nc>0)
-      {
-	if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
-        {
-	  return -1;
-        }
-      }
-
-      for(i=0;i<nc;i++)
-      {
-	psurf->color[i] = psurf->zcol[i];
-      }
-      /* copy zcol that has just been freed and re-alloc + filled in */
-    }
-  }
-  return 0;
-}
 
 /*-----------------------------------------------------------------------------------*/
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
@@ -1291,7 +595,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   {
     return set_current_figure_property( pobj, *value, *numrow, *numcol ) ;
   }
-
   /************************  figure Properties *****************************/ 
   else if (strcmp(marker,"figure_position") == 0)
   {
@@ -1335,472 +638,159 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     return set_interp_color_vector_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if (strcmp(marker,"interp_color_mode") == 0)
-    {
-      if((sciGetEntityType(pobj) != SCI_POLYLINE))
-	{strcpy(error_message,"interp_color_mode can only be set on Polyline objects"); return -1;}
-
-      if(strcmp(cstk(*value),"on")==0 ){
-	if(sciGetInterpVector(pobj) == NULL)
-	  {strcpy(error_message,"You must first specify an interp_color_vector for this object"); return -1;}
-	else
-	  pPOLYLINE_FEATURE (pobj)->isinterpshaded = TRUE;
-      }
-      else
-	pPOLYLINE_FEATURE (pobj)->isinterpshaded = FALSE;
-    } 
+  {
+    return set_interp_color_mode_property( pobj, *value, *numrow, *numcol ) ;
+  } 
   else if (strcmp(marker,"foreground") == 0)
-    {
-      return sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
-    }
+  {
+    return set_foreground_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"fill_mode") == 0)
-  { 
-    if ( strcmp(cstk(*value),"on") == 0 )
-    {
-      return sciSetIsFilled( pobj, TRUE ) ;
-    }
-    else if (strcmp(cstk(*value),"off")==0 )
-    {
-      return sciSetIsFilled( pobj, FALSE ) ;
-    }
-    else
-    {
-      strcpy(error_message,"Nothing to do (value must be 'on/off')");
-      return -1;
-    }
+  {
+    return set_fill_mode_property( pobj, *value, *numrow, *numcol ) ;
   }  
   else if (strcmp(marker,"thickness") == 0) 
   {
-    return sciSetLineWidth( pobj, (int) *stk(*value) ) ;
+    return set_thickness_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"arrow_size_factor") == 0)  {
-    if(sciGetEntityType(pobj) == SCI_POLYLINE)
-      pPOLYLINE_FEATURE(pobj)->arsize_factor = *stk(*value);
+  else if (strcmp(marker,"arrow_size_factor") == 0)
+  {
+    return set_arrow_size_factor_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"line_style") == 0) {
-    return sciSetLineStyle((sciPointObj *) pobj,(int) *stk(*value));
+  else if (strcmp(marker,"line_style") == 0)
+  {
+    return set_line_style_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"line_mode") == 0) {
-    if (strcmp(cstk(*value),"on")==0 )
-      return sciSetIsLine((sciPointObj *) pobj,1);
-    else if (strcmp(cstk(*value),"off")==0 )
-      return sciSetIsLine((sciPointObj *) pobj,0);
-    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  else if (strcmp(marker,"line_mode") == 0)
+  {
+    return set_line_mode_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"surface_mode") == 0) {
-    if((sciGetEntityType(pobj) == SCI_PLOT3D) ||
-       (sciGetEntityType(pobj) == SCI_FAC3D)  ||
-       (sciGetEntityType(pobj) == SCI_SURFACE)){
-      if (strcmp(cstk(*value),"on")==0 )
-	return sciSetIsLine((sciPointObj *) pobj,1);
-      else if (strcmp(cstk(*value),"off")==0 )
-	return sciSetIsLine((sciPointObj *) pobj,0);
-      else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
-    }
-    else {strcpy(error_message,"Surface_mode can not be set with this object, use line_mode"); return -1;}
+  else if (strcmp(marker,"surface_mode") == 0)
+  {
+    return set_surface_mode_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if (strcmp(marker,"mark_style") == 0)
   {
-    int status1 ;
-    int status2 ;
-    status1 = sciSetIsMark((sciPointObj *) pobj, TRUE);
-    status2 = sciSetMarkStyle((sciPointObj *) pobj,(int) *stk(*value));
-    return sciSetFinalStatus( status1, status2 ) ;
+    return set_mark_style_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"mark_mode") == 0) {
-    if (strcmp(cstk(*value),"on")==0 )
-      return sciSetIsMark((sciPointObj *) pobj,1);
-    else if (strcmp(cstk(*value),"off")==0 )
-      return sciSetIsMark((sciPointObj *) pobj,0);
-    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  else if (strcmp(marker,"mark_mode") == 0)
+  {
+    return set_mark_mode_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"mark_size_unit") == 0) {
-    if (strcmp(cstk(*value),"point")==0 )
-      return sciSetMarkSizeUnit((sciPointObj *) pobj, 1); /* 1 : points, 2 : tabulated */
-    else if (strcmp(cstk(*value),"tabulated")==0 )
-      return sciSetMarkSizeUnit((sciPointObj *) pobj, 2);
-    else  {strcpy(error_message,"Value must be 'point/tabulated'"); return -1;}
+  else if (strcmp(marker,"mark_size_unit") == 0)
+  {
+    return set_mark_size_unit_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"mark_size") == 0) {
-    /* sciSetIsMark((sciPointObj *) pobj, TRUE); */ 
-    /* F.Leray 27.01.05 commented because mark_size is automatically launched */
-    /* in tcl/tk editor (which causes marks appearance even when unwanted). */
-    return sciSetMarkSize((sciPointObj *) pobj, (int)*stk(*value));
+  else if (strcmp(marker,"mark_size") == 0)
+  {
+    return set_mark_size_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"mark_foreground") == 0) {
-    /*    sciSetIsMark((sciPointObj *) pobj, TRUE); */
-    /* F.Leray 27.01.05 commented because mark_size is automatically launched */
-    /* in tcl/tk editor (which causes marks appearance even when unwanted). */
-    return sciSetMarkForeground((sciPointObj *) pobj, (int)*stk(*value));
+  else if (strcmp(marker,"mark_foreground") == 0)
+  {
+    return set_mark_foreground_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"mark_background") == 0) {
-    /*   sciSetIsMark((sciPointObj *) pobj, TRUE); */
-    /* F.Leray 27.01.05 commented because mark_size is automatically launched */
-    /* in tcl/tk editor (which causes marks appearance even when unwanted). */
-    return sciSetMarkBackground((sciPointObj *) pobj, (int)*stk(*value));
+  else if (strcmp(marker,"mark_background") == 0)
+  {
+    return set_mark_background_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if (strcmp(marker,"bar_width") == 0)
-    {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	double valeur = stk(*value)[0];
-	pPOLYLINE_FEATURE (pobj)->bar_width = valeur;
-      }
-      else
-	{strcpy(error_message,"Object has no bar shift");return -1;}
-    }
+  {
+    return set_bar_width_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"bar_layout") == 0)
-    {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	if(strcmp(cstk(*value),"grouped") == 0)
-	  pPOLYLINE_FEATURE (pobj)->bar_layout = 0;
-	else if(strcmp(cstk(*value),"stacked") == 0)
-	  pPOLYLINE_FEATURE (pobj)->bar_layout = 1;
-	else
-	  {strcpy(error_message,"Bad property specified for bar_layout");return -1;}
-      }
-      else
-	{strcpy(error_message,"Object has no bar style");return -1;}
-    }
+  {
+    return set_bar_layout_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"x_shift") == 0)
-    {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	int num = 0;
-	if(*numcol > 1 && *numrow > 1){
-	  strcpy(error_message,"Bad input, x_shift should be a row or column vector.");
-	  return -1;
-	}
-	num = (*numrow)*(*numcol);
-
-	if (num != 0 && num!=pPOLYLINE_FEATURE (pobj)->n1) /* we can specify [] (null vector) to reset to default */
-	  {
-	    strcpy(error_message,"Wrong size for input vector.");
-	    return -1;
-	  }
-      
-	FREE(pPOLYLINE_FEATURE (pobj)->x_shift);
-	pPOLYLINE_FEATURE (pobj)->x_shift = (double *) NULL;
-	
-	if(num != 0){
-	  if ((pPOLYLINE_FEATURE (pobj)->x_shift = (double *) MALLOC (num * sizeof (double))) == NULL){
-	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
-	  
-	  for (i=0;i<num;i++)
-	    pPOLYLINE_FEATURE (pobj)->x_shift[i] = *stk(*value+i);
-	}
-      }
-      else
-	{strcpy(error_message,"Object has no x_shift");return -1;}
-    }
+  {
+    return set_x_shift_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"y_shift") == 0)
-    {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	int num = 0;
-	if(*numcol > 1 && *numrow > 1){
-	  strcpy(error_message,"Bad input, y_shift should be a row or column vector.");
-	  return -1;
-	}
-	num = (*numrow)*(*numcol);
-
-	if (num != 0 && num!=pPOLYLINE_FEATURE (pobj)->n1) /* we can specify [] (null vector) to reset to default */
-	  {
-	    strcpy(error_message,"Wrong size for input vector.");
-	    return -1;
-	  }
-      
-	FREE(pPOLYLINE_FEATURE (pobj)->y_shift);
-	pPOLYLINE_FEATURE (pobj)->y_shift = (double *) NULL;
-
-	if(num != 0){
-	  if ((pPOLYLINE_FEATURE (pobj)->y_shift = (double *) MALLOC (num * sizeof (double))) == NULL){
-	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
-	  
-	  for (i=0;i<num;i++)
-	    pPOLYLINE_FEATURE (pobj)->y_shift[i] = *stk(*value+i);
-	}
-      }
-      else
-	{strcpy(error_message,"Object has no y_shift");return -1;}
-    }
+  {
+    return set_y_shift_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"z_shift") == 0)
-    {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	int num = 0;
-	if(*numcol > 1 && *numrow > 1){
-	  strcpy(error_message,"Bad input, z_shift should be a row or column vector.");
-	  return -1;
-	}
-	num = (*numrow)*(*numcol);
-
-	if (num != 0 && num!=pPOLYLINE_FEATURE (pobj)->n1) /* we can specify [] (null vector) to reset to default */
-	  {
-	    strcpy(error_message,"Wrong size for input vector.");
-	    return -1;
-	  }
-      
-	FREE(pPOLYLINE_FEATURE (pobj)->z_shift);
-	pPOLYLINE_FEATURE (pobj)->z_shift = (double *) NULL;
-	
-	if(num != 0){
-	  if ((pPOLYLINE_FEATURE (pobj)->z_shift = (double *) MALLOC (num * sizeof (double))) == NULL){
-	    strcpy(error_message,"No memory left for allocating temporary tics_coord");return -1;}
-	  
-	  for (i=0;i<num;i++)
-	    pPOLYLINE_FEATURE (pobj)->z_shift[i] = *stk(*value+i);
-	}
-      }
-      else
-	{strcpy(error_message,"Object has no z_shift");return -1;}
-    }
-
+  {
+    return set_z_shift_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"polyline_style") == 0)
-    {  
-      if (sciGetEntityType (pobj) == SCI_POLYLINE){
-	int valeur = (int)stk(*value)[0];
-	if ((valeur==1) || (valeur==2) ||
-	    (valeur==3) || (valeur==4) ||
-	    (valeur==5) || (valeur==6) ||
-	    (valeur==7)){
-	  pPOLYLINE_FEATURE (pobj)->plot = valeur;
-	}
-	else
-	  {strcpy(error_message,"Style must be 1,2,3,4,5,6 or 7");return -1;}
-      }
-      else
-	{strcpy(error_message,"Object is not a Polyline");return -1;}
-    }
-
+  {
+    return set_polyline_style_property( pobj, *value, *numrow, *numcol ) ;
+  }
   /************* font properties *********/
   else if (strcmp(marker,"font_size") == 0)
-    {
-      xtmp = (int)stk(*value)[0];
-      return sciSetFontDeciWidth((sciPointObj *) pobj, xtmp*100);
-    }
+  {
+    return set_font_size_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"font_angle") == 0)
-    {
-      int status1 = 1 ;
-      int status2 ;
-      xtmp = (int)stk(*value)[0];
-      if ( sciGetAutoRotation( pobj ) )
-      {
-        status1 = sciSetAutoRotation( pobj, FALSE ) ;
-      }
-      status2 = sciSetFontOrientation((sciPointObj *) pobj,(int) (*stk(*value)*10));
-      return sciSetFinalStatus( status1, status2 ) ;
-    }
+  {
+    return set_font_angle_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"font_foreground") == 0)
-    {
-      xtmp = (int) *stk(*value);
-      return sciSetFontForeground((sciPointObj *) pobj, xtmp);
-    }
-  else if (strcmp(marker,"font_color") == 0)	{
-    if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->textcolor=(int)*stk(*value);
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
-      return sciSetFontForeground(pobj,(int)*stk(*value));} /* F.Leray 08.04.04 */
-    else
-      {strcpy(error_message,"font_color property does not exist for this handle");return -1;}
+  {
+    return set_font_foreground_property( pobj, *value, *numrow, *numcol ) ;
+  }
+  else if (strcmp(marker,"font_color") == 0)
+  {
+    return set_font_color_property( pobj, *value, *numrow, *numcol ) ;
   }	
   else if (strcmp(marker,"font_style") == 0)
-    {
-      xtmp = (int) *stk(*value);
-      if ( (xtmp > 10) || xtmp < 0)
-	{strcpy(error_message,"The value must be in [0 10]");return -1;}
-      else
-	return sciSetFontStyle((sciPointObj *) pobj, xtmp);
-    }
-  else if (strcmp(marker,"font_name") == 0) {
-    return sciSetFontName((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
+  {
+    return set_font_style_property( pobj, *value, *numrow, *numcol ) ;
   }
-
+  else if (strcmp(marker,"font_name") == 0)
+  {
+    return set_font_name_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"text_box_mode") == 0)
   {
-    if (sciGetEntityType (pobj) == SCI_TEXT)
-    {
-      if ( strcmp(cstk(*value),"off") == 0 )
-      {
-        int status1 = sciSetCenterPos( pobj, FALSE ) ;
-        int status2 = sciSetAutoSize(  pobj, TRUE  ) ;
-        return sciSetFinalStatus( status1, status2 ) ;
-      }
-      else if ( strcmp(cstk(*value),"centered") == 0 )
-      {
-        int status1 = sciSetCenterPos( pobj, TRUE  ) ;
-        int status2 = sciSetAutoSize(  pobj, TRUE  ) ;
-        return sciSetFinalStatus( status1, status2 ) ;
-      }
-      else if ( strcmp(cstk(*value),"filled") ==  0 )
-      {
-        int status1 = sciSetCenterPos( pobj, TRUE  ) ;
-        int status2 = sciSetAutoSize(  pobj, FALSE ) ;
-        return sciSetFinalStatus( status1, status2 ) ;
-      }
-      else
-      {
-        strcpy(error_message,"Value must be 'off', 'centered' or 'filled'");
-        return -1;
-      }
-    }
-    else
-    {
-      strcpy(error_message,"text_box_mode property does not exist for this handle");
-      return -1;
-    }
+    return set_text_box_mode_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if ( strcmp(marker,"auto_dimensionning") == 0 )
   {
-    if ( sciGetEntityType( pobj ) == SCI_TEXT )
-    {
-      if ( strcmp(cstk(*value),"on") == 0 )
-      {
-        return sciSetAutoSize( pobj, TRUE ) ;
-      }
-      else if ( strcmp(cstk(*value),"off") == 0 )
-      {
-        return sciSetAutoSize( pobj, FALSE ) ;
-      }
-      else
-      {
-        strcpy(error_message,"Value must be 'on/off'");
-        return -1;
-      }
-    }
-    else
-    {
-      strcpy(error_message,"auto_dimensionning property does not exist for this handle");
-      return -1;
-    }
+    return set_auto_dimensionning_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if ( strcmp(marker,"alignment") == 0 )
   {
-    if ( sciGetEntityType( pobj ) == SCI_TEXT )
-    {
-      if ( strcmp(cstk(*value),"left") == 0 )
-      {
-        return sciSetAlignment( pobj, ALIGN_LEFT ) ;
-      }
-      else if ( strcmp(cstk(*value),"center") == 0 )
-      {
-        return sciSetAlignment( pobj, ALIGN_CENTER ) ;
-      }
-      else if ( strcmp(cstk(*value),"right") == 0 )
-      {
-        return sciSetAlignment( pobj, ALIGN_RIGHT ) ;
-      }
-      strcpy(error_message,"Second argument must be 'left','center' or 'right'.");
-      return -1 ;
-    }
-    else
-    {
-      strcpy(error_message,"alignment property does not exist for this handle");
-      return -1 ;
-    }
+    return set_alignment_property( pobj, *value, *numrow, *numcol ) ;
   }
   else if (strcmp(marker,"text_box") == 0)
-    {
-      if (sciGetEntityType (pobj) == SCI_TEXT)
-      {
-        if ( *numcol * *numrow != 2 )
-        {
-          strcpy(error_message,"text_box must be a 2D vector.");
-          return -1 ;
-        }
-	return sciSetUserSize( pobj, stk(*value)[0], stk(*value)[1] ) ;
-      }
-      else
-      {
-        strcpy(error_message,"text_box property does not exist for this handle");
-        return -1;
-      }
-    }
+  {
+    return set_text_box_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"text") == 0)
   {
-    char *** pStrings = (char ***) value ;
-    return sciSetText( pobj, *pStrings, *numrow, *numcol ) ;
+    return set_text_property( pobj, *value, *numrow, *numcol ) ;
   }
   /******************/
-  else if (strcmp(marker,"auto_clear") == 0) {
-    if (strcmp(cstk(*value),"on")==0 )
-      return sciSetAddPlot((sciPointObj *) pobj,FALSE);
-    else if (strcmp(cstk(*value),"off")==0 )
-      return sciSetAddPlot((sciPointObj *) pobj,TRUE);
-    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  else if (strcmp(marker,"auto_clear") == 0)
+  {
+    return set_auto_clear_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"auto_scale") == 0) {
-    if (strcmp(cstk(*value),"on")==0 )
-      return sciSetAutoScale((sciPointObj *) pobj, TRUE);
-    else if (strcmp(cstk(*value),"off")==0 )
-      return sciSetAutoScale((sciPointObj *) pobj, FALSE);
-    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  else if (strcmp(marker,"auto_scale") == 0)
+  {
+    return set_auto_scale_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if ((strcmp(marker,"zoom_box") == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN)) { 
-    /* On doit avoir avoir une matrice 4x1 */
-    if (*numcol * *numrow == 4)
-      scizoom(stk(*value),pobj);  
-    else if (*numcol * *numrow == 0)
-      unzoom();
-    else
-      {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
-
+  else if ( strcmp(marker,"zoom_box") == 0 )
+  {
+    return set_zoom_box_property( pobj, *value, *numrow, *numcol ) ;
   } 
-  else if ((strcmp(marker,"zoom_state") == 0)  && (sciGetEntityType (pobj) == SCI_SUBWIN)){
-    if ((strcmp(cstk(*value),"on") == 0))
-      { 
-	if (!sciGetZooming((sciPointObj *)pobj))
-	  {strcpy(error_message,"set zoom box ( set('zoom_box',[xmin ymin xmax ymax]))");return -1;}
-	else
-	  {strcpy(error_message,"Object is already zoomed");return -1;}
-      }
-    else if ((strcmp(cstk(*value),"off") == 0)) 
-      { 
-        unzoom();
-        return sciSetZooming((sciPointObj *)pobj,FALSE);
-      }
-    else
-      {strcpy(error_message,"Value must be 'on/off'");       return -1;}
+  else if ( strcmp(marker,"zoom_state") == 0 )
+  {
+    return set_zoom_state_property( pobj, *value, *numrow, *numcol ) ;
   }
   /***********************************************/
-  else if (strcmp(marker,"clip_box") == 0)  { 
-    /* On doit avoir avoir une matrice 4x1 */
-    if (*numcol * *numrow == 4){
-      int status1 ;
-      int status2 ;
-      status1 = sciSetClipping((sciPointObj *)pobj, stk(*value));
-      status2 = sciSetIsClipping(pobj, 1);
-      return sciSetFinalStatus( status1, status2 ) ;
-    }
-    else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
-
+  else if (strcmp(marker,"clip_box") == 0)
+  {
+    return set_clip_box_property( pobj, *value, *numrow, *numcol ) ;
   } 
-  else if (strcmp(marker,"clip_state") == 0) {
-    if ((strcmp(cstk(*value),"clipgrf") == 0))
-    {
-      return sciSetIsClipping( (sciPointObj *)pobj,0);
-    }
-    else if ((strcmp(cstk(*value),"off") == 0))
-    {
-      return sciSetIsClipping( (sciPointObj *)pobj,-1);
-    }
-    else if ((strcmp(cstk(*value),"on") == 0))
-    {
-      /*       if(sciGetClipping(pobj) != NULL){ */
-      if(sciGetIsClipRegionValuated(pobj) == 1)
-      {
-	return sciSetIsClipping( (sciPointObj *)pobj,1);
-      }
-      else
-      {
-	return sciSetIsClipping( (sciPointObj *)pobj,0);
-      }
-    }
-    else
-      {strcpy(error_message,"Value must be 'clipgrf', 'on' or 'off'"); return -1;}
+  else if (strcmp(marker,"clip_state") == 0)
+  {
+    return set_clip_state_property( pobj, *value, *numrow, *numcol ) ;
   }		
-  else if (strcmp(marker,"data") == 0){
-    CheckAndUpdate_x_shift(pobj,*numrow); /* used only on Polyline */
-    CheckAndUpdate_y_shift(pobj,*numrow); /* used only on Polyline */
-    CheckAndUpdate_z_shift(pobj,*numrow); /* used only on Polyline */
-    
-    return sciSetPoint((sciPointObj *)pobj, stk(*value), numrow, numcol);
-    
+  else if (strcmp(marker,"data") == 0)
+  {
+    return set_data_property( pobj, *value, *numrow, *numcol ) ; 
   }
 
   /**************** callback *********************/
@@ -3257,59 +2247,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	}
   return 0;
 }
-
-/*-----------------------------------------------------------------------------------*/
-int LinearScaling2Colormap(sciPointObj* pobj)
-{
-  int i;
-  int nbcol =  sciGetNumColors (pobj);	/* the number of the colors inside the current colormap */
-  sciSurface * psurf = pSURFACE_FEATURE (pobj);
-
-  double min,max;
-
-  double indexmin = 1.;
-  double indexmax = (double) nbcol;
-
-  int nc = psurf->nc; /* the number of colors contained inside zcol matrix */
-
-
-  if(psurf->zcol == NULL){
-    sciprint("Color matrix is NULL ; can not build color scaled linearly into the current colormap");
-    return -1;
-  }
-
-  if (((psurf->color = MALLOC (nc * sizeof (double))) == NULL)){
-    sciprint("Allocation failed for color in LinearScaling2Colormap");
-    return -1;
-  }
-
-  /* get the min inside zcol */
-  min = psurf->zcol[0];
-  for(i=0;i<nc;i++)
-    if(min > psurf->zcol[i]) min = psurf->zcol[i];
-
-  /* get the max inside zcol */
-  max = psurf->zcol[0];
-  for(i=0;i<nc;i++)
-    if(max < psurf->zcol[i]) max = psurf->zcol[i];
-
-  if(min != max)
-    {
-      /* linear interpolation */
-      double A = (indexmin-indexmax)/(min-max); 
-      double B = (min*indexmax-indexmin*max)/(min-max);
-      for(i=0;i<nc;i++)
-	psurf->color[i] = A*psurf->zcol[i] + B + 0.1;
-    }
-  else
-    {
-      double C = (indexmin+indexmax)/2;
-      for(i=0;i<nc;i++)
-	psurf->color[i] = C;
-    }
-
-  return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 /* Called by a.log_flags='nn','ln','nl', or 'll'*/
 /* For the moment, z has no logflag F.Leray 05.10.04 */
@@ -3388,209 +2325,4 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 
   return u_xlabels;
 }
-
-
-int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
-{
-  sciPolyline * ppolyline = NULL;
-  int i;
-
-  if(sciGetEntityType(pobj) != SCI_POLYLINE)
-    return 0;
-  
-  ppolyline = pPOLYLINE_FEATURE(pobj);
-
-
-  if(ppolyline->x_shift == (double *) NULL)
-    return 0;
-  else
-    {
-      int size_x_old = ppolyline->n1; /* number of x data */
-      if(size_x_old == numrow)
-	return 0;
-      else if(size_x_old > numrow)
-	{
-	  double * new_bar = NULL;
-	  
-	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
-	    {
-	      strcpy(error_message,"No more place to allocate new_bar");
-	      return -1;
-	    }
-	  
-	  for(i=0;i<numrow;i++)
-	    new_bar[i] = ppolyline->x_shift[i];
-	  
-	  FREE(ppolyline->x_shift);
-	  
-	  ppolyline->x_shift = new_bar;
-	  
-	}
-      else /* case where size_x_old < numrow */
-	{
-	  double * new_bar = NULL;
-	  
-	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
-	    {
-	      strcpy(error_message,"No more place to allocate new_bar");
-	      return -1;
-	    }
-	  
-	  for(i=0;i<size_x_old;i++)
-	    new_bar[i] = ppolyline->x_shift[i];
-	  
-	  for(i=size_x_old;i<numrow;i++)
-	    new_bar[i] = 0.;
-	  
-	  FREE(ppolyline->x_shift);
-	  
-	  ppolyline->x_shift = new_bar;
-	}
-    }
-  
-  return 0;
-}
-
-int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
-{
-  sciPolyline * ppolyline = NULL;
-  int i;
-
-  if(sciGetEntityType(pobj) != SCI_POLYLINE)
-    return 0;
-  
-  ppolyline = pPOLYLINE_FEATURE(pobj);
-
-
-  if(ppolyline->y_shift == (double *) NULL)
-    return 0;
-  else
-    {
-      int size_x_old = ppolyline->n1; /* number of x data */
-      if(size_x_old == numrow)
-	return 0;
-      else if(size_x_old > numrow)
-	{
-	  double * new_bar = NULL;
-	  
-	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
-	    {
-	      strcpy(error_message,"No more place to allocate new_bar");
-	      return -1;
-	    }
-	  
-	  for(i=0;i<numrow;i++)
-	    new_bar[i] = ppolyline->y_shift[i];
-	  
-	  FREE(ppolyline->y_shift);
-	  
-	  ppolyline->y_shift = new_bar;
-	  
-	}
-      else /* case where size_x_old < numrow */
-	{
-	  double * new_bar = NULL;
-	  
-	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
-	    {
-	      strcpy(error_message,"No more place to allocate new_bar");
-	      return -1;
-	    }
-	  
-	  for(i=0;i<size_x_old;i++)
-	    new_bar[i] = ppolyline->y_shift[i];
-	  
-	  for(i=size_x_old;i<numrow;i++)
-	    new_bar[i] = 0.;
-	  
-	  FREE(ppolyline->y_shift);
-	  
-	  ppolyline->x_shift = new_bar;
-	}
-    }
-  
-  return 0;
-}
-
-int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
-{
-  sciPolyline * ppolyline = NULL;
-  int i;
-
-  if(sciGetEntityType(pobj) != SCI_POLYLINE)
-    return 0;
-  
-  ppolyline = pPOLYLINE_FEATURE(pobj);
-
-
-  if(ppolyline->z_shift == (double *) NULL)
-    return 0;
-  else
-    {
-      int size_x_old = ppolyline->n1; /* number of x data */
-      if(size_x_old == numrow)
-	return 0;
-      else if(size_x_old > numrow)
-	{
-	  double * new_bar = NULL;
-	  
-	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
-	    {
-	      strcpy(error_message,"No more place to allocate new_bar");
-	      return -1;
-	    }
-	  
-	  for(i=0;i<numrow;i++)
-	    new_bar[i] = ppolyline->z_shift[i];
-	  
-	  FREE(ppolyline->z_shift);
-	  
-	  ppolyline->z_shift = new_bar;
-	  
-	}
-      else /* case where size_x_old < numrow */
-	{
-	  double * new_bar = NULL;
-	  
-	  if((new_bar = (double *) MALLOC(numrow*sizeof(double))) == NULL)
-	    {
-	      strcpy(error_message,"No more place to allocate new_bar");
-	      return -1;
-	    }
-	  
-	  for(i=0;i<size_x_old;i++)
-	    new_bar[i] = ppolyline->z_shift[i];
-	  
-	  for(i=size_x_old;i<numrow;i++)
-	    new_bar[i] = 0.;
-	  
-	  FREE(ppolyline->z_shift);
-	  
-	  ppolyline->x_shift = new_bar;
-	}
-    }
-  
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
-
-int sciSetFinalStatus( int status1, int status2 )
-{
-  if ( status1 < 0 || status2 < 0 )
-  {
-    /* problem */
-    return -1 ;
-  }
-  else if ( status1 == 1 && status2 == 1 )
-  {
-    /* nothing changed */
-    return 1 ;
-  }
-  else
-  {
-    /* everything should be ok */
-    return 0 ;
-  }
-}
-
 /*-----------------------------------------------------------------------------------*/

@@ -15,7 +15,7 @@
 /*------------------------------------------------------------------------*/
 int set_interp_color_vector_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
 {
-  if(sciGetEntityType(pobj) != SCI_POLYLINE)
+  if( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
     sciprint("interp_color_vector can only be set on Polyline objects.\n");
     return -1 ;

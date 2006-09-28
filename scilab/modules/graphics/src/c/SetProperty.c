@@ -2632,7 +2632,7 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
 
 /**sciSetIsClipping*/
 int
-sciSetIsClipping (sciPointObj * pobj, int value)
+sciSetIsClipping( sciPointObj * pobj, int value )
 {
 
   if ( sciGetIsClipping( pobj ) == value )

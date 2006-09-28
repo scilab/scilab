@@ -12,6 +12,7 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "Xcall1.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
 int set_current_axes_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
@@ -20,6 +21,8 @@ int set_current_axes_property( sciPointObj * pobj, int stackPointer, int nbRow, 
   sciPointObj * parentFig = NULL ;
   int num = -1 ;
   int v    = 1 ;
+  int status1 = 1 ;
+  int status2 = 1 ;
   
   if ( curAxes == NULL)
   {
@@ -32,21 +35,17 @@ int set_current_axes_property( sciPointObj * pobj, int stackPointer, int nbRow, 
     return -1 ;
   }
 
-  sciSetSelectedSubWin( curAxes ) ;
+  status1 = sciSetSelectedSubWin( curAxes ) ;
   /* F.Leray 11.02.05 : if the new selected subwin is not inside the current figure, */
   /* we must also set the current figure to subwin->parent */
   parentFig = sciGetParentFigure( curAxes );
 
   num  = sciGetNum( parentFig ) ;
-  C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
 
-  if ( sciSwitchWindow(&num) != 0 )
-  {
-    sciprint("An error occured during window creation. Action can not be performed.\n");
-    return -1;
-  }
+  status2 = sciSetUsedWindow( num ) ;
+
   /* End modif. on the 11.02.05 */
-  return -1 ;
+  return sciSetFinalStatus( status1, status2 ) ;
 
 }
 /*------------------------------------------------------------------------*/
