@@ -163,6 +163,7 @@ src/c/getHandleProperty/set_font_name_property.c \
 src/c/getHandleProperty/set_auto_scale_property.c \
 src/c/getHandleProperty/set_auto_dimensionning_property.c \
 src/c/getHandleProperty/set_text_box_property.c \
+src/c/getHandleProperty/set_text_property.c \
 src/c/getHandleProperty/set_mark_mode_property.c \
 src/c/getHandleProperty/set_clip_box_property.c \
 src/c/getHandleProperty/set_z_shift_property.c \

@@ -230,6 +230,7 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-set_auto_scale_property.lo \
 	libgraphics_la-set_auto_dimensionning_property.lo \
 	libgraphics_la-set_text_box_property.lo \
+	libgraphics_la-set_text_property.lo \
 	libgraphics_la-set_mark_mode_property.lo \
 	libgraphics_la-set_clip_box_property.lo \
 	libgraphics_la-set_z_shift_property.lo \
@@ -736,6 +737,7 @@ src/c/getHandleProperty/set_font_name_property.c \
 src/c/getHandleProperty/set_auto_scale_property.c \
 src/c/getHandleProperty/set_auto_dimensionning_property.c \
 src/c/getHandleProperty/set_text_box_property.c \
+src/c/getHandleProperty/set_text_property.c \
 src/c/getHandleProperty/set_mark_mode_property.c \
 src/c/getHandleProperty/set_clip_box_property.c \
 src/c/getHandleProperty/set_z_shift_property.c \
@@ -1339,6 +1341,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_surface_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_text_box_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_text_box_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_text_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_thickness_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_x_shift_property.Plo@am__quote@
@@ -2490,6 +2493,13 @@ libgraphics_la-set_text_box_property.lo: src/c/getHandleProperty/set_text_box_pr
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_text_box_property.c' object='libgraphics_la-set_text_box_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_text_box_property.lo `test -f 'src/c/getHandleProperty/set_text_box_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_text_box_property.c
+
+libgraphics_la-set_text_property.lo: src/c/getHandleProperty/set_text_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_text_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_text_property.Tpo" -c -o libgraphics_la-set_text_property.lo `test -f 'src/c/getHandleProperty/set_text_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_text_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_text_property.Tpo" "$(DEPDIR)/libgraphics_la-set_text_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_text_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_text_property.c' object='libgraphics_la-set_text_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_text_property.lo `test -f 'src/c/getHandleProperty/set_text_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_text_property.c
 
 libgraphics_la-set_mark_mode_property.lo: src/c/getHandleProperty/set_mark_mode_property.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_mark_mode_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_mark_mode_property.Tpo" -c -o libgraphics_la-set_mark_mode_property.lo `test -f 'src/c/getHandleProperty/set_mark_mode_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_mark_mode_property.c; \
