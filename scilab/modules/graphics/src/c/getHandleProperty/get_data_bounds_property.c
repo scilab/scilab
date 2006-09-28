@@ -24,7 +24,7 @@ int get_data_bounds_property( sciPointObj * pobj )
     }
     else
     {
-      return sciReturnRowVector( pSUBWIN_FEATURE (pobj)->SRect, 2, 2 ) ;
+      return sciReturnMatrix( pSUBWIN_FEATURE (pobj)->SRect, 2, 2 ) ;
     }
   }
   else if ( sciGetEntityType (pobj) == SCI_SURFACE )
