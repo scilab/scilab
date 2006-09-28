@@ -22,7 +22,6 @@ sound \
 statistics \
 time \
 jvm \
-pvm \
 fileio \
 integer \
 special_functions \
@@ -40,8 +39,8 @@ graphics \
 scicos \
 wintools
 
-if JAVA
-#SUBDIRS += Javasci
+if PVM
+SUBDIRS += pvm
 endif
 
 SUBDIRS += .
@@ -72,7 +71,6 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
 	$(top_builddir)/modules/optimization/liboptimization.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/randlib/librandlib.la \
 	$(top_builddir)/modules/symbolic/libsymbolic.la \
@@ -83,6 +81,10 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la
+
+if PVM
+libscilab_la_DEPENDENCIES += $(top_builddir)/modules/pvm/libscipvm.la
+endif
 
 ## Libs 
 libscilab_la_DEPENDENCIES += \

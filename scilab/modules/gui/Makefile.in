@@ -435,7 +435,7 @@ includes/gw_gui.h \
 includes/sci_show_window.h
 
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-DISTCLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 libgui_la_CFLAGS = -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 lib_LTLIBRARIES = libgui.la
@@ -1223,10 +1223,10 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
-	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
