@@ -27,9 +27,9 @@
       le vecteur ligne des dimensions et <VERB>v</VERB> le vecteur colonne des termes (rangés tel que 
       l&apos;indice le plus à gauche varie en premier).
   </P>
-  <P>NOTES: le nombre de dimensions des hypermatrices dont les dimensions les plus Žà droite sont egales  
-     Žà 1 est automatiquement rŽéduit. Une hypermatrice n'ayant que 2 dimensions
-      est automatiquement transformŽée en une matrice standard (de type 1).</P>
+  <P>NOTES: le nombre de dimensions des hypermatrices dont les dimensions les plus à droite sont egales  
+     à 1 est automatiquement réduit. Une hypermatrice n'ayant que 2 dimensions
+      est automatiquement transformée en une matrice standard (de type 1).</P>
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[

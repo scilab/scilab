@@ -28,10 +28,10 @@
     Les fonctions fournies dans les librairies standard de Scilab sont &quot;compilées&quot;.
   </P>
     <P>
-      La définition en line des fonction ainsi que la forme courte des
+      La définition en line des fonction ainsi que la forme courte des
       fonctions <VERB>getf</VERB> et  <VERB>deff</VERB> produisent des
-      fonctions compilées. L'usage de la fonction comp est donc réservé a des
-      usages très particuliers. Pour générer des fonction non compilées, il
+      fonctions compilées. L'usage de la fonction comp est donc réservé a des
+      usages très particuliers. Pour générer des fonction non compilées, il
       faut appeler les fonctions <VERB>getf</VERB> ou  <VERB>deff</VERB> avec
       l'option <VERB>"n"</VERB>.
     </P>
