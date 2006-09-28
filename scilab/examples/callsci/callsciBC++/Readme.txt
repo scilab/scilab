@@ -1,28 +1,19 @@
 How to make calls to Scilab interpreter from Borland C++ 6
 
-	
-In this directory we provide a small project for Borland C++ 6
-which use the Scilab interpreter to perform matrix computation 
+Import Scilab library (LibScilab.dll) to Borland
 
-This example was only tested under Windows XP and Borland C++ 6 (Trial)
+on a Command line
 
-Important Note: This demo will not work with a binary scilab 
-	version. You need to have a locally compiled scilab version 
-	(I need main.c file in \routines\libf2c\) 
+impdef Libscilab.def Libscilab.dll
+implib Libscilab.lib Libscilab.def
+
+Add Libscilab.lib in your Borland C++ project in "import library"
 
 
-1] build scilab
-2] import Scilab library to Borland
-
-on a Commands line
-
- implib -a C:\scilab-2.7.2\examples\callsci\callsciBC++\LibScilab.lib C:\scilab-2.7.2\bin\LibScilab.dll
- impdef -a C:\scilab-2.7.2\examples\callsci\callsciBC++\LibScilab.def C:\scilab-2.7.2\bin\LibScilab.dll
-
-3] open project scilab.bpr
+(On Google see 'Borland import library')
 
 That's all 
 
 Allan CORNET
-September 2003
-
+September 2006
+Scilab Team
