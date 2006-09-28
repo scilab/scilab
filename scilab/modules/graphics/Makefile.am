@@ -356,7 +356,7 @@ libgraphics_la_includedir=$(includedir)/graphics
 
 libgraphics_la_include_HEADERS = includes/gw_graphics.h
 
-libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
+libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
 libgraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
 #-Isrc/c/

@@ -29,7 +29,7 @@
 #include "Format.h"
 #include "pixel_mode.h"
 #include "getHandleProperty/setHandleProperty.h"
-#include "ColormapManagement.h"
+#include "ColorMapManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
