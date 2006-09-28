@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
+  
   <LANGUAGE>fr</LANGUAGE>
-
   <TITLE>factorial</TITLE>
-
   <TYPE>Scilab Function</TYPE>
-
   <DATE>Sep 2006</DATE>
-
   <SHORT_DESCRIPTION name="factorial">retourne factorielle</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -55,6 +52,5 @@ n=matrix(1:12,[2,2,3])
 y=factorial(n)
 
  ]]></EXAMPLE>
-
-  <SEE_ALSO></SEE_ALSO>
+ 
 </MAN>
