@@ -28,8 +28,8 @@
 #include "Xcall1.h"
 #include "Format.h"
 #include "pixel_mode.h"
-#include "../src/c/getHandleProperty/setHandleProperty.h"
-#include "../src/c/ColormapManagement.h"
+#include "getHandleProperty/setHandleProperty.h"
+#include "ColormapManagement.h"
 
 
 #include "MALLOC.h" /* MALLOC */
