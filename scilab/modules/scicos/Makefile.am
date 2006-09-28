@@ -6,21 +6,17 @@
 SCICOS_C_SOURCES = src/c/cstblk4.c \
 src/c/readau.c \
 src/c/variable_delay.c \
-src/c/scicos_malloc.c \
 src/c/absolute_value.c \
 src/c/integral_func.c \
 src/c/ratelimiter.c \
 src/c/atanh_blk.c \
 src/c/minmax.c \
-src/c/scicosclip.c \
 src/c/samphold4.c \
 src/c/ramp.c \
-src/c/tree.c \
 src/c/sciblk2i.c \
 src/c/prod.c \
 src/c/invblk4.c \
 src/c/scalar2vector.c \
-src/c/intconnection.c \
 src/c/tan_blk.c \
 src/c/atan_blk.c \
 src/c/relay.c \
@@ -34,7 +30,6 @@ src/c/evtvardly.c \
 src/c/sin_blk.c \
 src/c/asin_blk.c \
 src/c/delay4.c \
-src/c/scicos.c \
 src/c/multiplex.c \
 src/c/cosh_blk.c \
 src/c/tcsltj4.c \
@@ -53,14 +48,11 @@ src/c/modulo_count.c \
 src/c/gainblk.c \
 src/c/backlash.c \
 src/c/logicalop.c \
-src/c/import.c \
 src/c/hystheresis.c \
 src/c/cscope.c \
 src/c/summation.c \
-src/c/blocks.c \
 src/c/selector.c \
 src/c/deadband.c \
-src/c/scicos_free.c \
 src/c/writef4.c \
 src/c/acosh_blk.c \
 src/c/csslti4.c \
@@ -85,6 +77,16 @@ src/c/asinh_blk.c \
 src/c/cpass2.c \
 src/c/bouncexy.c
 
+SCICOS_C_SOURCES_EXT = \
+src/c/scicosclip.c \
+src/c/blocks.c \
+src/c/import.c \
+src/c/scicos.c \
+src/c/scicos_malloc.c \
+src/c/scicos_free.c \
+src/c/intconnection.c \
+src/c/tree.c
+
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/qzflr.f \
 src/fortran/writef.f \
@@ -94,7 +96,6 @@ src/fortran/dlradp.f \
 src/fortran/sciblk.f \
 src/fortran/lsplit.f \
 src/fortran/evtdly.f \
-src/fortran/ddaskr.f \
 src/fortran/mux.f \
 src/fortran/ifthel.f \
 src/fortran/tanblk.f \
@@ -107,7 +108,6 @@ src/fortran/sum2.f \
 src/fortran/scierr.f \
 src/fortran/delay.f \
 src/fortran/iocopy.f \
-src/fortran/lsodar2.f \
 src/fortran/sawtth.f \
 src/fortran/logblk.f \
 src/fortran/maxblk.f \
@@ -165,6 +165,9 @@ src/fortran/ftree2.f \
 src/fortran/lusat.f \
 src/fortran/ftree4.f
 
+SCICOS_FORTRAN_SOURCES_EXT = src/fortran/ddaskr.f \
+src/fortran/lsodar2.f
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_scicos_debug.c \
 sci_gateway/c/sci_sci_tree3.c \
 sci_gateway/c/sci_sci_tree4.c \
@@ -200,14 +203,25 @@ includes/intcscicos.h \
 includes/scicos_block4.h \
 includes/blocks.h \
 includes/gw_cscicos.h \
-includes/scicos.h
+includes/scicos.h \
+includes/blocks.h
 
+BUILT_SOURCES = includes/blocks.h
+
+includes/blocks.h:
+	if test ! -d build; then mkdir build; fi
+# Get the filename, strip the extension and put into a file
+	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
+	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
+
+CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames 
 
 libscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 libscicos_la_LDFLAGS = -lf2c
 lib_LTLIBRARIES = libscicos.la
 
-libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 
 libscicos_la_DEPENDENCIES = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \

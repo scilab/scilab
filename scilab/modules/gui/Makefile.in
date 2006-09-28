@@ -435,7 +435,7 @@ includes/gw_gui.h \
 includes/sci_show_window.h
 
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-DISTCLEANFILES = src/c/xsci/Xscilab.ad.h
+DISTCLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 libgui_la_CFLAGS = -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 lib_LTLIBRARIES = libgui.la
@@ -1299,8 +1299,8 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
 	uninstall-libgui_la_includeHEADERS
 
 
-$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad
-	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.script $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
+$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
+	$(top_srcdir)/modules/gui/src/c/xsci/ad2c.sh $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad > $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
