@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable"
+				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable;src/c"
 				PreprocessorDefinitions="_LIB;STRICT;WITH_TK;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -116,7 +116,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable"
+				AdditionalIncludeDirectories="includes;../core/includes;../../libs/MALLOC/includes;../../libs/hashtable;src/c"
 				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -1246,7 +1246,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_auto_position_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_auto_resize_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_auto_rotation_property.c"
 				>
 			</File>
 			<File
@@ -1270,11 +1278,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_callback_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_callbackmevent_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_clip_box_property.c"
 				>
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_clip_state_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_closed_property.c"
 				>
 			</File>
 			<File
@@ -1438,7 +1458,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_tics_direction_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_tight_limits_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_title_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_visible_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_x_label_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_x_location_property.c"
 				>
 			</File>
 			<File
@@ -1446,7 +1486,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_y_label_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_y_location_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_y_shift_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_z_label_property.c"
 				>
 			</File>
 			<File

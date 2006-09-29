@@ -790,149 +790,63 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }		
   else if (strcmp(marker,"data") == 0)
   {
-    return set_data_property( pobj, *value, *numrow, *numcol ) ; 
+    return set_data_property( pobj, *value, *numrow, *numcol ) ;
   }
 
   /**************** callback *********************/
-  else if (strcmp(marker,"callbackmevent") == 0) {
-    sciSetCallbackMouseEvent((sciPointObj *)pobj,(int) *stk(*value));
+  else if (strcmp(marker,"callbackmevent") == 0)
+  {
+    return set_callbackmevent_property( pobj, *value, *numrow, *numcol ) ;
   }
-  else if (strcmp(marker,"callback") == 0) {
-    sciAddCallback((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow),1);
+  else if (strcmp(marker,"callback") == 0)
+  {
+    return set_callback_property( pobj, *value, *numrow, *numcol ) ;
   }
-
-
-
-
   /******** AXES *******************************/
   else if (strcmp(marker,"x_label") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"x_label property undefined for this object");return -1;}
-      else{
-	{strcpy(error_message,"can not set directly a label object");return -1;}
-      }
-    }
+  {
+    return set_x_label_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"y_label") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"y_label property undefined for this object");return -1;}
-      else{
-	{strcpy(error_message,"can not set directly a label object");return -1;}
-      }
-    }
+  {
+    return set_y_label_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"z_label") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"z_label property undefined for this object");return -1;}
-      else{
-	{strcpy(error_message,"can not set directly a label object");return -1;}
-      }
-    }
+  {
+    return set_z_label_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"title") == 0)
-    {
-      if (sciGetEntityType (pobj) != SCI_SUBWIN)
-	{strcpy(error_message,"title property undefined for this object");return -1;}
-      else{
-	{strcpy(error_message,"can not set directly a label object");return -1;}
-      }
-    }
-
+  {
+    return set_title_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"tics_direction") == 0)
-    {   
-      if (pAXES_FEATURE (pobj)->ny == 1)
-	{ 
-	  if(strcmp(cstk(*value),"top") == 0) 
-	    strncpy(&(pAXES_FEATURE (pobj)->dir),"u",1);
-	  else if (strcmp(cstk(*value),"bottom") == 0)
-	    strncpy(&(pAXES_FEATURE (pobj)->dir),"d",1);
-	  else
-	    {strcpy(error_message,"Second argument must be 'top' or 'bottom'");return -1;}
-	} 
-      else
-	{
-	  if(strcmp(cstk(*value),"right") == 0)
-	    strncpy(&(pAXES_FEATURE (pobj)->dir),"r",1);
-	  else if  (strcmp(cstk(*value),"left") == 0)
-	    strncpy(&(pAXES_FEATURE (pobj)->dir),"l",1);
-	  else
-	    {strcpy(error_message,"Second argument must be 'right' or 'left' ");return -1;}
-	}
-    }
+  {
+    return set_tics_direction_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"x_location") == 0)
-    {  
-      char loc;
-      if(strcmp(cstk(*value),"top") == 0)
-	loc='u';
-      else if  (strcmp(cstk(*value),"bottom") == 0)
-	loc='d';
-      else if (strcmp(cstk(*value),"middle") == 0)
-	loc='c';
-      else  
-	{strcpy(error_message,"Second argument must be 'top', 'bottom' or 'middle'");return -1;}
-      if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	pSUBWIN_FEATURE (pobj)->axes.xdir = loc;
-      else
-	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
-    }
+  {
+    return set_x_location_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"y_location") == 0)
-    {   
-      char loc;
-      if(strcmp(cstk(*value),"left") == 0)
-	loc='l';
-      else if  (strcmp(cstk(*value),"right") == 0)
-	loc='r';
-      else if (strcmp(cstk(*value),"middle") == 0)
-	loc='c';
-      else  
-	{strcpy(error_message,"Second argument must be 'left', 'right' or 'middle'");return -1;}
-      if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	pSUBWIN_FEATURE (pobj)->axes.ydir = loc;
-      else
-	{strcpy(error_message,"x_location property does not exist for this handle");return -1;}
-    }
+  {
+    return set_y_location_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"tight_limits") == 0) 
-    {                   
-      if ((strcmp(cstk(*value),"off") == 0)) 
-	pSUBWIN_FEATURE (pobj)->tight_limits=FALSE;
-      else if ((strcmp(cstk(*value),"on") == 0))
-	pSUBWIN_FEATURE (pobj)->tight_limits=TRUE;
-      else
-	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
-    } 
+  {
+    return set_tight_limits_property( pobj, *value, *numrow, *numcol ) ;
+  }
   else if (strcmp(marker,"closed") == 0)
-    { 
-      if(sciGetEntityType(pobj) != SCI_POLYLINE)
-	{strcpy(error_message,"closed property does not exist for this handle");return -1;}
-
-      if (strcmp(cstk(*value),"on")==0 )
-	pPOLYLINE_FEATURE(pobj)->closed = 1;
-      else if (strcmp(cstk(*value),"off")==0 )
-	pPOLYLINE_FEATURE(pobj)->closed = 0;
-      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
-    } 
+  {
+    return set_closed_property( pobj, *value, *numrow, *numcol ) ;
+  } 
   else if (strcmp(marker,"auto_position") == 0)
-    { 
-      if(sciGetEntityType(pobj) != SCI_LABEL)
-	{strcpy(error_message,"auto_position does not exist for this handle");return -1;}
-
-      if (strcmp(cstk(*value),"on")==0 )
-	pLABEL_FEATURE(pobj)->auto_position = TRUE;
-      else if (strcmp(cstk(*value),"off")==0 )
-	pLABEL_FEATURE(pobj)->auto_position = FALSE;
-      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
-    }  
+  {
+    return set_auto_position_property( pobj, *value, *numrow, *numcol ) ;
+  }  
   else if (strcmp(marker,"auto_rotation") == 0)
-    { 
-      if(sciGetEntityType(pobj) != SCI_LABEL)
-	{strcpy(error_message,"auto_rotation does not exist for this handle");return -1;}
-
-      if (strcmp(cstk(*value),"on")==0 )
-	pLABEL_FEATURE(pobj)->auto_rotation = TRUE;
-      else if (strcmp(cstk(*value),"off")==0 )
-	pLABEL_FEATURE(pobj)->auto_rotation = FALSE;
-      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
-    } 
+  {
+    return set_auto_rotation_property( pobj, *value, *numrow, *numcol ) ;
+  } 
   else if (strcmp(marker,"position") == 0)
     {
       if ( sciGetAutoPosition( pobj ) )

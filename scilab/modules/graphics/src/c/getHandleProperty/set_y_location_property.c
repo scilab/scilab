@@ -1,0 +1,44 @@
+/*------------------------------------------------------------------------*/
+/* file: set_y_location_property.c                                        */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/* desc : function to modify in Scilab the y_location field of            */
+/*        a handle                                                        */
+/*------------------------------------------------------------------------*/
+
+#include "setHandleProperty.h"
+#include "SetProperty.h"
+#include "getPropertyAssignedValue.h"
+#include "SetPropertyStatus.h"
+#include "GetProperty.h"
+#include "sciprint.h"
+
+/*------------------------------------------------------------------------*/
+int set_y_location_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+{
+  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+  {
+    sciprint("y_location property does not exist for this handle.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  if ( isStringParamEqual( stackPointer, "left" ) )
+  {
+    pSUBWIN_FEATURE(pobj)->axes.ydir = 'l' ;
+  }
+  else if ( isStringParamEqual( stackPointer, "right" ) )
+  {
+    pSUBWIN_FEATURE(pobj)->axes.ydir = 'r' ;
+  }
+  else if ( isStringParamEqual( stackPointer, "middle" ) )
+  {
+    pSUBWIN_FEATURE(pobj)->axes.ydir = 'c' ;
+  }
+  else  
+  {
+    sciprint("Second argument must be 'left', 'right' or 'middle'.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+  return SET_PROPERTY_ERROR ;
+}
+/*------------------------------------------------------------------------*/

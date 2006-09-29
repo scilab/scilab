@@ -74,5 +74,18 @@ int set_zoom_state_property( sciPointObj * pobj, int stackPointer, int nbRow, in
 int set_clip_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
 int set_clip_state_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
 int set_data_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_x_label_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_y_label_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_z_label_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_callbackmevent_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_callback_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_title_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_tics_direction_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_x_location_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_y_location_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_tight_limits_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_closed_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_auto_position_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
+int set_auto_rotation_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol ) ;
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */
