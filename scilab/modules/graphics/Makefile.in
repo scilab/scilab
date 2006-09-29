@@ -263,6 +263,19 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-set_clip_state_property.lo \
 	libgraphics_la-set_x_shift_property.lo \
 	libgraphics_la-set_foreground_property.lo \
+	libgraphics_la-set_tics_direction_property.lo \
+	libgraphics_la-set_title_property.lo \
+	libgraphics_la-set_x_location_property.lo \
+	libgraphics_la-set_auto_position_property.lo \
+	libgraphics_la-set_tight_limits_property.lo \
+	libgraphics_la-set_x_label_property.lo \
+	libgraphics_la-set_y_label_property.lo \
+	libgraphics_la-set_y_location_property.lo \
+	libgraphics_la-set_z_label_property.lo \
+	libgraphics_la-set_auto_rotation_property.lo \
+	libgraphics_la-set_callback_property.lo \
+	libgraphics_la-set_closed_property.lo \
+	libgraphics_la-set_callbackmevent_property.lo \
 	libgraphics_la-DefaultCommandArg.lo libgraphics_la-periPos.lo \
 	libgraphics_la-graphicSession.lo libgraphics_la-Xcall1.lo \
 	libgraphics_la-Axes.lo libgraphics_la-Plo2d2.lo \
@@ -291,7 +304,7 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-gdfonts.lo libgraphics_la-gdfontt.lo \
 	libgraphics_la-gdfontg.lo libgraphics_la-gdfontl.lo \
 	libgraphics_la-bdftogd.lo libgraphics_la-xfonts.lo \
-	libgraphics_la-giftogd.lo libgraphics_la-gd.lo
+	libgraphics_la-gd.lo
 am__objects_2 = libgraphics_la-sci_swap_handles.lo \
 	libgraphics_la-sci_readgif.lo libgraphics_la-sci_grayplot.lo \
 	libgraphics_la-sci_matplot1.lo libgraphics_la-sci_xfpolys.lo \
@@ -398,6 +411,7 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
 FC_LDFLAGS = @FC_LDFLAGS@
@@ -532,6 +546,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -770,6 +785,19 @@ src/c/getHandleProperty/set_mark_foreground_property.c \
 src/c/getHandleProperty/set_clip_state_property.c \
 src/c/getHandleProperty/set_x_shift_property.c \
 src/c/getHandleProperty/set_foreground_property.c \
+src/c/getHandleProperty/set_tics_direction_property.c \
+src/c/getHandleProperty/set_title_property.c \
+src/c/getHandleProperty/set_x_location_property.c \
+src/c/getHandleProperty/set_auto_position_property.c \
+src/c/getHandleProperty/set_tight_limits_property.c \
+src/c/getHandleProperty/set_x_label_property.c \
+src/c/getHandleProperty/set_y_label_property.c \
+src/c/getHandleProperty/set_y_location_property.c \
+src/c/getHandleProperty/set_z_label_property.c \
+src/c/getHandleProperty/set_auto_rotation_property.c \
+src/c/getHandleProperty/set_callback_property.c \
+src/c/getHandleProperty/set_closed_property.c \
+src/c/getHandleProperty/set_callbackmevent_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/graphicSession.c \
@@ -826,7 +854,6 @@ src/gd/gdfonts/gdfontg.c \
 src/gd/gdfonts/gdfontl.c \
 src/gd/bdftogd.c \
 src/gd/xfonts.c \
-src/gd/giftogd.c \
 src/gd/gd.c 
 
 
@@ -1186,7 +1213,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-get_zoom_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-get_zoom_state_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gifimg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-giftogd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-graphicModuleClose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-graphicSession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gsort.Plo@am__quote@
@@ -1295,14 +1321,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_arrow_size_factor_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_auto_clear_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_auto_dimensionning_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_auto_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_auto_resize_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_auto_rotation_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_auto_scale_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_axes_size_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_background_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_bar_layout_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_bar_width_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_callback_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_callbackmevent_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_clip_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_clip_state_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_closed_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_color_map_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_current_axes_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_current_entity_property.Plo@am__quote@
@@ -1343,9 +1374,17 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_text_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_text_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_thickness_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_tics_direction_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_tight_limits_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_title_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_visible_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_x_label_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_x_location_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_x_shift_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_y_label_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_y_location_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_y_shift_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_z_label_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_z_shift_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_zoom_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-set_zoom_state_property.Plo@am__quote@
@@ -2725,6 +2764,97 @@ libgraphics_la-set_foreground_property.lo: src/c/getHandleProperty/set_foregroun
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_foreground_property.lo `test -f 'src/c/getHandleProperty/set_foreground_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_foreground_property.c
 
+libgraphics_la-set_tics_direction_property.lo: src/c/getHandleProperty/set_tics_direction_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_tics_direction_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_tics_direction_property.Tpo" -c -o libgraphics_la-set_tics_direction_property.lo `test -f 'src/c/getHandleProperty/set_tics_direction_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_tics_direction_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_tics_direction_property.Tpo" "$(DEPDIR)/libgraphics_la-set_tics_direction_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_tics_direction_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_tics_direction_property.c' object='libgraphics_la-set_tics_direction_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_tics_direction_property.lo `test -f 'src/c/getHandleProperty/set_tics_direction_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_tics_direction_property.c
+
+libgraphics_la-set_title_property.lo: src/c/getHandleProperty/set_title_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_title_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_title_property.Tpo" -c -o libgraphics_la-set_title_property.lo `test -f 'src/c/getHandleProperty/set_title_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_title_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_title_property.Tpo" "$(DEPDIR)/libgraphics_la-set_title_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_title_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_title_property.c' object='libgraphics_la-set_title_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_title_property.lo `test -f 'src/c/getHandleProperty/set_title_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_title_property.c
+
+libgraphics_la-set_x_location_property.lo: src/c/getHandleProperty/set_x_location_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_x_location_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_x_location_property.Tpo" -c -o libgraphics_la-set_x_location_property.lo `test -f 'src/c/getHandleProperty/set_x_location_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_x_location_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_x_location_property.Tpo" "$(DEPDIR)/libgraphics_la-set_x_location_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_x_location_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_x_location_property.c' object='libgraphics_la-set_x_location_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_x_location_property.lo `test -f 'src/c/getHandleProperty/set_x_location_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_x_location_property.c
+
+libgraphics_la-set_auto_position_property.lo: src/c/getHandleProperty/set_auto_position_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_auto_position_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_auto_position_property.Tpo" -c -o libgraphics_la-set_auto_position_property.lo `test -f 'src/c/getHandleProperty/set_auto_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_auto_position_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_auto_position_property.Tpo" "$(DEPDIR)/libgraphics_la-set_auto_position_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_auto_position_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_auto_position_property.c' object='libgraphics_la-set_auto_position_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_auto_position_property.lo `test -f 'src/c/getHandleProperty/set_auto_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_auto_position_property.c
+
+libgraphics_la-set_tight_limits_property.lo: src/c/getHandleProperty/set_tight_limits_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_tight_limits_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_tight_limits_property.Tpo" -c -o libgraphics_la-set_tight_limits_property.lo `test -f 'src/c/getHandleProperty/set_tight_limits_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_tight_limits_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_tight_limits_property.Tpo" "$(DEPDIR)/libgraphics_la-set_tight_limits_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_tight_limits_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_tight_limits_property.c' object='libgraphics_la-set_tight_limits_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_tight_limits_property.lo `test -f 'src/c/getHandleProperty/set_tight_limits_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_tight_limits_property.c
+
+libgraphics_la-set_x_label_property.lo: src/c/getHandleProperty/set_x_label_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_x_label_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_x_label_property.Tpo" -c -o libgraphics_la-set_x_label_property.lo `test -f 'src/c/getHandleProperty/set_x_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_x_label_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_x_label_property.Tpo" "$(DEPDIR)/libgraphics_la-set_x_label_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_x_label_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_x_label_property.c' object='libgraphics_la-set_x_label_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_x_label_property.lo `test -f 'src/c/getHandleProperty/set_x_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_x_label_property.c
+
+libgraphics_la-set_y_label_property.lo: src/c/getHandleProperty/set_y_label_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_y_label_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_y_label_property.Tpo" -c -o libgraphics_la-set_y_label_property.lo `test -f 'src/c/getHandleProperty/set_y_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_y_label_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_y_label_property.Tpo" "$(DEPDIR)/libgraphics_la-set_y_label_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_y_label_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_y_label_property.c' object='libgraphics_la-set_y_label_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_y_label_property.lo `test -f 'src/c/getHandleProperty/set_y_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_y_label_property.c
+
+libgraphics_la-set_y_location_property.lo: src/c/getHandleProperty/set_y_location_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_y_location_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_y_location_property.Tpo" -c -o libgraphics_la-set_y_location_property.lo `test -f 'src/c/getHandleProperty/set_y_location_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_y_location_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_y_location_property.Tpo" "$(DEPDIR)/libgraphics_la-set_y_location_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_y_location_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_y_location_property.c' object='libgraphics_la-set_y_location_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_y_location_property.lo `test -f 'src/c/getHandleProperty/set_y_location_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_y_location_property.c
+
+libgraphics_la-set_z_label_property.lo: src/c/getHandleProperty/set_z_label_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_z_label_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_z_label_property.Tpo" -c -o libgraphics_la-set_z_label_property.lo `test -f 'src/c/getHandleProperty/set_z_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_z_label_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_z_label_property.Tpo" "$(DEPDIR)/libgraphics_la-set_z_label_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_z_label_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_z_label_property.c' object='libgraphics_la-set_z_label_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_z_label_property.lo `test -f 'src/c/getHandleProperty/set_z_label_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_z_label_property.c
+
+libgraphics_la-set_auto_rotation_property.lo: src/c/getHandleProperty/set_auto_rotation_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_auto_rotation_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_auto_rotation_property.Tpo" -c -o libgraphics_la-set_auto_rotation_property.lo `test -f 'src/c/getHandleProperty/set_auto_rotation_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_auto_rotation_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_auto_rotation_property.Tpo" "$(DEPDIR)/libgraphics_la-set_auto_rotation_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_auto_rotation_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_auto_rotation_property.c' object='libgraphics_la-set_auto_rotation_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_auto_rotation_property.lo `test -f 'src/c/getHandleProperty/set_auto_rotation_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_auto_rotation_property.c
+
+libgraphics_la-set_callback_property.lo: src/c/getHandleProperty/set_callback_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_callback_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_callback_property.Tpo" -c -o libgraphics_la-set_callback_property.lo `test -f 'src/c/getHandleProperty/set_callback_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_callback_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_callback_property.Tpo" "$(DEPDIR)/libgraphics_la-set_callback_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_callback_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_callback_property.c' object='libgraphics_la-set_callback_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_callback_property.lo `test -f 'src/c/getHandleProperty/set_callback_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_callback_property.c
+
+libgraphics_la-set_closed_property.lo: src/c/getHandleProperty/set_closed_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_closed_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_closed_property.Tpo" -c -o libgraphics_la-set_closed_property.lo `test -f 'src/c/getHandleProperty/set_closed_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_closed_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_closed_property.Tpo" "$(DEPDIR)/libgraphics_la-set_closed_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_closed_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_closed_property.c' object='libgraphics_la-set_closed_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_closed_property.lo `test -f 'src/c/getHandleProperty/set_closed_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_closed_property.c
+
+libgraphics_la-set_callbackmevent_property.lo: src/c/getHandleProperty/set_callbackmevent_property.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_callbackmevent_property.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-set_callbackmevent_property.Tpo" -c -o libgraphics_la-set_callbackmevent_property.lo `test -f 'src/c/getHandleProperty/set_callbackmevent_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_callbackmevent_property.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-set_callbackmevent_property.Tpo" "$(DEPDIR)/libgraphics_la-set_callbackmevent_property.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-set_callbackmevent_property.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_callbackmevent_property.c' object='libgraphics_la-set_callbackmevent_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-set_callbackmevent_property.lo `test -f 'src/c/getHandleProperty/set_callbackmevent_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_callbackmevent_property.c
+
 libgraphics_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-DefaultCommandArg.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-DefaultCommandArg.Tpo" -c -o libgraphics_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-DefaultCommandArg.Tpo" "$(DEPDIR)/libgraphics_la-DefaultCommandArg.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-DefaultCommandArg.Tpo"; exit 1; fi
@@ -3116,13 +3246,6 @@ libgraphics_la-xfonts.lo: src/gd/xfonts.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/gd/xfonts.c' object='libgraphics_la-xfonts.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-xfonts.lo `test -f 'src/gd/xfonts.c' || echo '$(srcdir)/'`src/gd/xfonts.c
-
-libgraphics_la-giftogd.lo: src/gd/giftogd.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-giftogd.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-giftogd.Tpo" -c -o libgraphics_la-giftogd.lo `test -f 'src/gd/giftogd.c' || echo '$(srcdir)/'`src/gd/giftogd.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-giftogd.Tpo" "$(DEPDIR)/libgraphics_la-giftogd.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-giftogd.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/gd/giftogd.c' object='libgraphics_la-giftogd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-giftogd.lo `test -f 'src/gd/giftogd.c' || echo '$(srcdir)/'`src/gd/giftogd.c
 
 libgraphics_la-gd.lo: src/gd/gd.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-gd.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-gd.Tpo" -c -o libgraphics_la-gd.lo `test -f 'src/gd/gd.c' || echo '$(srcdir)/'`src/gd/gd.c; \

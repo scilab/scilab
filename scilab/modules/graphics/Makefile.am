@@ -196,6 +196,19 @@ src/c/getHandleProperty/set_mark_foreground_property.c \
 src/c/getHandleProperty/set_clip_state_property.c \
 src/c/getHandleProperty/set_x_shift_property.c \
 src/c/getHandleProperty/set_foreground_property.c \
+src/c/getHandleProperty/set_tics_direction_property.c \
+src/c/getHandleProperty/set_title_property.c \
+src/c/getHandleProperty/set_x_location_property.c \
+src/c/getHandleProperty/set_auto_position_property.c \
+src/c/getHandleProperty/set_tight_limits_property.c \
+src/c/getHandleProperty/set_x_label_property.c \
+src/c/getHandleProperty/set_y_label_property.c \
+src/c/getHandleProperty/set_y_location_property.c \
+src/c/getHandleProperty/set_z_label_property.c \
+src/c/getHandleProperty/set_auto_rotation_property.c \
+src/c/getHandleProperty/set_callback_property.c \
+src/c/getHandleProperty/set_closed_property.c \
+src/c/getHandleProperty/set_callbackmevent_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
 src/c/graphicSession.c \
@@ -252,7 +265,6 @@ src/gd/gdfonts/gdfontg.c \
 src/gd/gdfonts/gdfontl.c \
 src/gd/bdftogd.c \
 src/gd/xfonts.c \
-src/gd/giftogd.c \
 src/gd/gd.c 
 
 # A voir si c'st utilisé
