@@ -2,14 +2,16 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+/** 
+ * save SCI path
+ * @param path a char * in order to set the Scilab Path
+*/
 void setSCIpath(char *path);
-/** 
-save SCI path
-*/
 
-char *getSCIpath(void);
 /** 
-get SCI path
+ * get SCI path
+ * @return the path to Scilab
 */
+char *getSCIpath(void);
 
 /*-----------------------------------------------------------------------------------*/ 
