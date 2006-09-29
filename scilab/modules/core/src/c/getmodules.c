@@ -45,7 +45,7 @@ static BOOL ReadModulesFile(void)
 		return FALSE;
 	}
 
-	ModulesFilename=(char*)MALLOC((strlen(SciPath)+strlen(basenamemodulesfile)+1)*sizeof(char));
+	ModulesFilename=(char*)MALLOC((strlen(SciPath)+strlen("/")+strlen(basenamemodulesfile)+1)*sizeof(char));
 	sprintf(ModulesFilename,"%s/%s",SciPath,basenamemodulesfile);
 	FREE(SciPath);
 	SciPath=NULL;
