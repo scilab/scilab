@@ -31,7 +31,6 @@
 			/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description=""
 				CommandLine=""
 				ExecutionBucket="2"
 			/>
@@ -129,7 +128,6 @@
 			/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description=""
 				CommandLine=""
 				ExecutionBucket="2"
 			/>
@@ -532,9 +530,9 @@
 					>
 					<Tool
 						Name="VCCustomBuildTool"
-						Description="Performing Custom Build Step (f2c)"
-						CommandLine="..\..\..\bin\f2c.exe ..\$(InputFileName)"
-						Outputs="..\$(InputName).c"
+						Description=""
+						CommandLine=""
+						Outputs=""
 					/>
 				</FileConfiguration>
 			</File>
