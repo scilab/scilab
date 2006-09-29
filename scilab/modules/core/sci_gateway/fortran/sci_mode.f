@@ -27,3 +27,4 @@ c     .  get line  mode value
       endif
       return
       end
+      
