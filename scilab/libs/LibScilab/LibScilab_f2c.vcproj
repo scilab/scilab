@@ -374,11 +374,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
 				>
 			</File>
 			<File
