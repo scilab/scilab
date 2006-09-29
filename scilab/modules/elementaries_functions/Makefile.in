@@ -420,10 +420,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libelementaries_functions_la_SOURCES)
 DIST_SOURCES = $(libelementaries_functions_la_SOURCES)
 libelementaries_functions_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -436,7 +437,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -447,13 +447,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -468,18 +464,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -513,7 +506,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -602,6 +594,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -1549,838 +1542,838 @@ libelementaries_functions_la-sci_maxi.lo: sci_gateway/c/sci_maxi.c
 	$(LTF77COMPILE) -c -o $@ $<
 
 libelementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
 
 libelementaries_functions_la-psi.lo: src/fortran/psi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-psi.lo `test -f 'src/fortran/psi.f' || echo '$(srcdir)/'`src/fortran/psi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-psi.lo `test -f 'src/fortran/psi.f' || echo '$(srcdir)/'`src/fortran/psi.f
 
 libelementaries_functions_la-wasum.lo: src/fortran/wasum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wasum.lo `test -f 'src/fortran/wasum.f' || echo '$(srcdir)/'`src/fortran/wasum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wasum.lo `test -f 'src/fortran/wasum.f' || echo '$(srcdir)/'`src/fortran/wasum.f
 
 libelementaries_functions_la-dexpm1.lo: src/fortran/dexpm1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dexpm1.lo `test -f 'src/fortran/dexpm1.f' || echo '$(srcdir)/'`src/fortran/dexpm1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dexpm1.lo `test -f 'src/fortran/dexpm1.f' || echo '$(srcdir)/'`src/fortran/dexpm1.f
 
 libelementaries_functions_la-idmin.lo: src/fortran/idmin.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-idmin.lo `test -f 'src/fortran/idmin.f' || echo '$(srcdir)/'`src/fortran/idmin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-idmin.lo `test -f 'src/fortran/idmin.f' || echo '$(srcdir)/'`src/fortran/idmin.f
 
 libelementaries_functions_la-wwdiv.lo: src/fortran/wwdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwdiv.lo `test -f 'src/fortran/wwdiv.f' || echo '$(srcdir)/'`src/fortran/wwdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwdiv.lo `test -f 'src/fortran/wwdiv.f' || echo '$(srcdir)/'`src/fortran/wwdiv.f
 
 libelementaries_functions_la-wdotcr.lo: src/fortran/wdotcr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdotcr.lo `test -f 'src/fortran/wdotcr.f' || echo '$(srcdir)/'`src/fortran/wdotcr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdotcr.lo `test -f 'src/fortran/wdotcr.f' || echo '$(srcdir)/'`src/fortran/wdotcr.f
 
 libelementaries_functions_la-iset.lo: src/fortran/iset.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-iset.lo `test -f 'src/fortran/iset.f' || echo '$(srcdir)/'`src/fortran/iset.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-iset.lo `test -f 'src/fortran/iset.f' || echo '$(srcdir)/'`src/fortran/iset.f
 
 libelementaries_functions_la-franck.lo: src/fortran/franck.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-franck.lo `test -f 'src/fortran/franck.f' || echo '$(srcdir)/'`src/fortran/franck.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-franck.lo `test -f 'src/fortran/franck.f' || echo '$(srcdir)/'`src/fortran/franck.f
 
 libelementaries_functions_la-dwpowe.lo: src/fortran/dwpowe.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwpowe.lo `test -f 'src/fortran/dwpowe.f' || echo '$(srcdir)/'`src/fortran/dwpowe.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwpowe.lo `test -f 'src/fortran/dwpowe.f' || echo '$(srcdir)/'`src/fortran/dwpowe.f
 
 libelementaries_functions_la-dbskin.lo: src/fortran/dbskin.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbskin.lo `test -f 'src/fortran/dbskin.f' || echo '$(srcdir)/'`src/fortran/dbskin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbskin.lo `test -f 'src/fortran/dbskin.f' || echo '$(srcdir)/'`src/fortran/dbskin.f
 
 libelementaries_functions_la-rcsort.lo: src/fortran/rcsort.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rcsort.lo `test -f 'src/fortran/rcsort.f' || echo '$(srcdir)/'`src/fortran/rcsort.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rcsort.lo `test -f 'src/fortran/rcsort.f' || echo '$(srcdir)/'`src/fortran/rcsort.f
 
 libelementaries_functions_la-zbesi.lo: src/fortran/zbesi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesi.lo `test -f 'src/fortran/zbesi.f' || echo '$(srcdir)/'`src/fortran/zbesi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesi.lo `test -f 'src/fortran/zbesi.f' || echo '$(srcdir)/'`src/fortran/zbesi.f
 
 libelementaries_functions_la-wddiv.lo: src/fortran/wddiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wddiv.lo `test -f 'src/fortran/wddiv.f' || echo '$(srcdir)/'`src/fortran/wddiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wddiv.lo `test -f 'src/fortran/wddiv.f' || echo '$(srcdir)/'`src/fortran/wddiv.f
 
 libelementaries_functions_la-lnblnk.lo: src/fortran/lnblnk.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-lnblnk.lo `test -f 'src/fortran/lnblnk.f' || echo '$(srcdir)/'`src/fortran/lnblnk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-lnblnk.lo `test -f 'src/fortran/lnblnk.f' || echo '$(srcdir)/'`src/fortran/lnblnk.f
 
 libelementaries_functions_la-entier.lo: src/fortran/entier.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-entier.lo `test -f 'src/fortran/entier.f' || echo '$(srcdir)/'`src/fortran/entier.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-entier.lo `test -f 'src/fortran/entier.f' || echo '$(srcdir)/'`src/fortran/entier.f
 
 libelementaries_functions_la-round.lo: src/fortran/round.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-round.lo `test -f 'src/fortran/round.f' || echo '$(srcdir)/'`src/fortran/round.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-round.lo `test -f 'src/fortran/round.f' || echo '$(srcdir)/'`src/fortran/round.f
 
 libelementaries_functions_la-cortr.lo: src/fortran/cortr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cortr.lo `test -f 'src/fortran/cortr.f' || echo '$(srcdir)/'`src/fortran/cortr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cortr.lo `test -f 'src/fortran/cortr.f' || echo '$(srcdir)/'`src/fortran/cortr.f
 
 libelementaries_functions_la-simple.lo: src/fortran/simple.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-simple.lo `test -f 'src/fortran/simple.f' || echo '$(srcdir)/'`src/fortran/simple.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-simple.lo `test -f 'src/fortran/simple.f' || echo '$(srcdir)/'`src/fortran/simple.f
 
 libelementaries_functions_la-initds.lo: src/fortran/initds.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-initds.lo `test -f 'src/fortran/initds.f' || echo '$(srcdir)/'`src/fortran/initds.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-initds.lo `test -f 'src/fortran/initds.f' || echo '$(srcdir)/'`src/fortran/initds.f
 
 libelementaries_functions_la-split.lo: src/fortran/split.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-split.lo `test -f 'src/fortran/split.f' || echo '$(srcdir)/'`src/fortran/split.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-split.lo `test -f 'src/fortran/split.f' || echo '$(srcdir)/'`src/fortran/split.f
 
 libelementaries_functions_la-zbesy.lo: src/fortran/zbesy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesy.lo `test -f 'src/fortran/zbesy.f' || echo '$(srcdir)/'`src/fortran/zbesy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesy.lo `test -f 'src/fortran/zbesy.f' || echo '$(srcdir)/'`src/fortran/zbesy.f
 
 libelementaries_functions_la-zmlri.lo: src/fortran/zmlri.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zmlri.lo `test -f 'src/fortran/zmlri.f' || echo '$(srcdir)/'`src/fortran/zmlri.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zmlri.lo `test -f 'src/fortran/zmlri.f' || echo '$(srcdir)/'`src/fortran/zmlri.f
 
 libelementaries_functions_la-zairy.lo: src/fortran/zairy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zairy.lo `test -f 'src/fortran/zairy.f' || echo '$(srcdir)/'`src/fortran/zairy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zairy.lo `test -f 'src/fortran/zairy.f' || echo '$(srcdir)/'`src/fortran/zairy.f
 
 libelementaries_functions_la-wdrdiv.lo: src/fortran/wdrdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdrdiv.lo `test -f 'src/fortran/wdrdiv.f' || echo '$(srcdir)/'`src/fortran/wdrdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdrdiv.lo `test -f 'src/fortran/wdrdiv.f' || echo '$(srcdir)/'`src/fortran/wdrdiv.f
 
 libelementaries_functions_la-imcopy.lo: src/fortran/imcopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-imcopy.lo `test -f 'src/fortran/imcopy.f' || echo '$(srcdir)/'`src/fortran/imcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-imcopy.lo `test -f 'src/fortran/imcopy.f' || echo '$(srcdir)/'`src/fortran/imcopy.f
 
 libelementaries_functions_la-cbal.lo: src/fortran/cbal.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cbal.lo `test -f 'src/fortran/cbal.f' || echo '$(srcdir)/'`src/fortran/cbal.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cbal.lo `test -f 'src/fortran/cbal.f' || echo '$(srcdir)/'`src/fortran/cbal.f
 
 libelementaries_functions_la-cuproi.lo: src/fortran/cuproi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cuproi.lo `test -f 'src/fortran/cuproi.f' || echo '$(srcdir)/'`src/fortran/cuproi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cuproi.lo `test -f 'src/fortran/cuproi.f' || echo '$(srcdir)/'`src/fortran/cuproi.f
 
 libelementaries_functions_la-dlngam.lo: src/fortran/dlngam.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dlngam.lo `test -f 'src/fortran/dlngam.f' || echo '$(srcdir)/'`src/fortran/dlngam.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dlngam.lo `test -f 'src/fortran/dlngam.f' || echo '$(srcdir)/'`src/fortran/dlngam.f
 
 libelementaries_functions_la-dbsi0e.lo: src/fortran/dbsi0e.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsi0e.lo `test -f 'src/fortran/dbsi0e.f' || echo '$(srcdir)/'`src/fortran/dbsi0e.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsi0e.lo `test -f 'src/fortran/dbsi0e.f' || echo '$(srcdir)/'`src/fortran/dbsi0e.f
 
 libelementaries_functions_la-dsum.lo: src/fortran/dsum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dsum.lo `test -f 'src/fortran/dsum.f' || echo '$(srcdir)/'`src/fortran/dsum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dsum.lo `test -f 'src/fortran/dsum.f' || echo '$(srcdir)/'`src/fortran/dsum.f
 
 libelementaries_functions_la-dbesj1.lo: src/fortran/dbesj1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesj1.lo `test -f 'src/fortran/dbesj1.f' || echo '$(srcdir)/'`src/fortran/dbesj1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesj1.lo `test -f 'src/fortran/dbesj1.f' || echo '$(srcdir)/'`src/fortran/dbesj1.f
 
 libelementaries_functions_la-dbsk0e.lo: src/fortran/dbsk0e.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsk0e.lo `test -f 'src/fortran/dbsk0e.f' || echo '$(srcdir)/'`src/fortran/dbsk0e.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsk0e.lo `test -f 'src/fortran/dbsk0e.f' || echo '$(srcdir)/'`src/fortran/dbsk0e.f
 
 libelementaries_functions_la-pade.lo: src/fortran/pade.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
 libelementaries_functions_la-urand.lo: src/fortran/urand.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-urand.lo `test -f 'src/fortran/urand.f' || echo '$(srcdir)/'`src/fortran/urand.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-urand.lo `test -f 'src/fortran/urand.f' || echo '$(srcdir)/'`src/fortran/urand.f
 
 libelementaries_functions_la-intp.lo: src/fortran/intp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-intp.lo `test -f 'src/fortran/intp.f' || echo '$(srcdir)/'`src/fortran/intp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-intp.lo `test -f 'src/fortran/intp.f' || echo '$(srcdir)/'`src/fortran/intp.f
 
 libelementaries_functions_la-watan.lo: src/fortran/watan.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-watan.lo `test -f 'src/fortran/watan.f' || echo '$(srcdir)/'`src/fortran/watan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-watan.lo `test -f 'src/fortran/watan.f' || echo '$(srcdir)/'`src/fortran/watan.f
 
 libelementaries_functions_la-wipowe.lo: src/fortran/wipowe.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wipowe.lo `test -f 'src/fortran/wipowe.f' || echo '$(srcdir)/'`src/fortran/wipowe.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wipowe.lo `test -f 'src/fortran/wipowe.f' || echo '$(srcdir)/'`src/fortran/wipowe.f
 
 libelementaries_functions_la-zacon.lo: src/fortran/zacon.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zacon.lo `test -f 'src/fortran/zacon.f' || echo '$(srcdir)/'`src/fortran/zacon.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zacon.lo `test -f 'src/fortran/zacon.f' || echo '$(srcdir)/'`src/fortran/zacon.f
 
 libelementaries_functions_la-wacos.lo: src/fortran/wacos.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wacos.lo `test -f 'src/fortran/wacos.f' || echo '$(srcdir)/'`src/fortran/wacos.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wacos.lo `test -f 'src/fortran/wacos.f' || echo '$(srcdir)/'`src/fortran/wacos.f
 
 libelementaries_functions_la-zdiv.lo: src/fortran/zdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zdiv.lo `test -f 'src/fortran/zdiv.f' || echo '$(srcdir)/'`src/fortran/zdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zdiv.lo `test -f 'src/fortran/zdiv.f' || echo '$(srcdir)/'`src/fortran/zdiv.f
 
 libelementaries_functions_la-xerprn.lo: src/fortran/xerprn.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xerprn.lo `test -f 'src/fortran/xerprn.f' || echo '$(srcdir)/'`src/fortran/xerprn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xerprn.lo `test -f 'src/fortran/xerprn.f' || echo '$(srcdir)/'`src/fortran/xerprn.f
 
 libelementaries_functions_la-balanc.lo: src/fortran/balanc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-balanc.lo `test -f 'src/fortran/balanc.f' || echo '$(srcdir)/'`src/fortran/balanc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-balanc.lo `test -f 'src/fortran/balanc.f' || echo '$(srcdir)/'`src/fortran/balanc.f
 
 libelementaries_functions_la-dcsevl.lo: src/fortran/dcsevl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dcsevl.lo `test -f 'src/fortran/dcsevl.f' || echo '$(srcdir)/'`src/fortran/dcsevl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dcsevl.lo `test -f 'src/fortran/dcsevl.f' || echo '$(srcdir)/'`src/fortran/dcsevl.f
 
 libelementaries_functions_la-ribesl.lo: src/fortran/ribesl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ribesl.lo `test -f 'src/fortran/ribesl.f' || echo '$(srcdir)/'`src/fortran/ribesl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ribesl.lo `test -f 'src/fortran/ribesl.f' || echo '$(srcdir)/'`src/fortran/ribesl.f
 
 libelementaries_functions_la-wdpow1.lo: src/fortran/wdpow1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdpow1.lo `test -f 'src/fortran/wdpow1.f' || echo '$(srcdir)/'`src/fortran/wdpow1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdpow1.lo `test -f 'src/fortran/wdpow1.f' || echo '$(srcdir)/'`src/fortran/wdpow1.f
 
 libelementaries_functions_la-zsqrt.lo: src/fortran/zsqrt.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zsqrt.lo `test -f 'src/fortran/zsqrt.f' || echo '$(srcdir)/'`src/fortran/zsqrt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zsqrt.lo `test -f 'src/fortran/zsqrt.f' || echo '$(srcdir)/'`src/fortran/zsqrt.f
 
 libelementaries_functions_la-zbesjg.lo: src/fortran/zbesjg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesjg.lo `test -f 'src/fortran/zbesjg.f' || echo '$(srcdir)/'`src/fortran/zbesjg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesjg.lo `test -f 'src/fortran/zbesjg.f' || echo '$(srcdir)/'`src/fortran/zbesjg.f
 
 libelementaries_functions_la-dmsum.lo: src/fortran/dmsum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmsum.lo `test -f 'src/fortran/dmsum.f' || echo '$(srcdir)/'`src/fortran/dmsum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmsum.lo `test -f 'src/fortran/dmsum.f' || echo '$(srcdir)/'`src/fortran/dmsum.f
 
 libelementaries_functions_la-dlgama.lo: src/fortran/dlgama.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dlgama.lo `test -f 'src/fortran/dlgama.f' || echo '$(srcdir)/'`src/fortran/dlgama.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dlgama.lo `test -f 'src/fortran/dlgama.f' || echo '$(srcdir)/'`src/fortran/dlgama.f
 
 libelementaries_functions_la-exch.lo: src/fortran/exch.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-exch.lo `test -f 'src/fortran/exch.f' || echo '$(srcdir)/'`src/fortran/exch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-exch.lo `test -f 'src/fortran/exch.f' || echo '$(srcdir)/'`src/fortran/exch.f
 
 libelementaries_functions_la-wsign.lo: src/fortran/wsign.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wsign.lo `test -f 'src/fortran/wsign.f' || echo '$(srcdir)/'`src/fortran/wsign.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wsign.lo `test -f 'src/fortran/wsign.f' || echo '$(srcdir)/'`src/fortran/wsign.f
 
 libelementaries_functions_la-zbinu.lo: src/fortran/zbinu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbinu.lo `test -f 'src/fortran/zbinu.f' || echo '$(srcdir)/'`src/fortran/zbinu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbinu.lo `test -f 'src/fortran/zbinu.f' || echo '$(srcdir)/'`src/fortran/zbinu.f
 
 libelementaries_functions_la-zbuni.lo: src/fortran/zbuni.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbuni.lo `test -f 'src/fortran/zbuni.f' || echo '$(srcdir)/'`src/fortran/zbuni.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbuni.lo `test -f 'src/fortran/zbuni.f' || echo '$(srcdir)/'`src/fortran/zbuni.f
 
 libelementaries_functions_la-zbknu.lo: src/fortran/zbknu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbknu.lo `test -f 'src/fortran/zbknu.f' || echo '$(srcdir)/'`src/fortran/zbknu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbknu.lo `test -f 'src/fortran/zbknu.f' || echo '$(srcdir)/'`src/fortran/zbknu.f
 
 libelementaries_functions_la-kronr.lo: src/fortran/kronr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-kronr.lo `test -f 'src/fortran/kronr.f' || echo '$(srcdir)/'`src/fortran/kronr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-kronr.lo `test -f 'src/fortran/kronr.f' || echo '$(srcdir)/'`src/fortran/kronr.f
 
 libelementaries_functions_la-wrscal.lo: src/fortran/wrscal.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wrscal.lo `test -f 'src/fortran/wrscal.f' || echo '$(srcdir)/'`src/fortran/wrscal.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wrscal.lo `test -f 'src/fortran/wrscal.f' || echo '$(srcdir)/'`src/fortran/wrscal.f
 
 libelementaries_functions_la-j4save.lo: src/fortran/j4save.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-j4save.lo `test -f 'src/fortran/j4save.f' || echo '$(srcdir)/'`src/fortran/j4save.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-j4save.lo `test -f 'src/fortran/j4save.f' || echo '$(srcdir)/'`src/fortran/j4save.f
 
 libelementaries_functions_la-d9b1mp.lo: src/fortran/d9b1mp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9b1mp.lo `test -f 'src/fortran/d9b1mp.f' || echo '$(srcdir)/'`src/fortran/d9b1mp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9b1mp.lo `test -f 'src/fortran/d9b1mp.f' || echo '$(srcdir)/'`src/fortran/d9b1mp.f
 
 libelementaries_functions_la-pythag.lo: src/fortran/pythag.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-pythag.lo `test -f 'src/fortran/pythag.f' || echo '$(srcdir)/'`src/fortran/pythag.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-pythag.lo `test -f 'src/fortran/pythag.f' || echo '$(srcdir)/'`src/fortran/pythag.f
 
 libelementaries_functions_la-dbkias.lo: src/fortran/dbkias.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbkias.lo `test -f 'src/fortran/dbkias.f' || echo '$(srcdir)/'`src/fortran/dbkias.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbkias.lo `test -f 'src/fortran/dbkias.f' || echo '$(srcdir)/'`src/fortran/dbkias.f
 
 libelementaries_functions_la-dbeskg.lo: src/fortran/dbeskg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbeskg.lo `test -f 'src/fortran/dbeskg.f' || echo '$(srcdir)/'`src/fortran/dbeskg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbeskg.lo `test -f 'src/fortran/dbeskg.f' || echo '$(srcdir)/'`src/fortran/dbeskg.f
 
 libelementaries_functions_la-zabs.lo: src/fortran/zabs.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zabs.lo `test -f 'src/fortran/zabs.f' || echo '$(srcdir)/'`src/fortran/zabs.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zabs.lo `test -f 'src/fortran/zabs.f' || echo '$(srcdir)/'`src/fortran/zabs.f
 
 libelementaries_functions_la-dmmul1.lo: src/fortran/dmmul1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmmul1.lo `test -f 'src/fortran/dmmul1.f' || echo '$(srcdir)/'`src/fortran/dmmul1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmmul1.lo `test -f 'src/fortran/dmmul1.f' || echo '$(srcdir)/'`src/fortran/dmmul1.f
 
 libelementaries_functions_la-dwpow.lo: src/fortran/dwpow.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwpow.lo `test -f 'src/fortran/dwpow.f' || echo '$(srcdir)/'`src/fortran/dwpow.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwpow.lo `test -f 'src/fortran/dwpow.f' || echo '$(srcdir)/'`src/fortran/dwpow.f
 
 libelementaries_functions_la-rybesl.lo: src/fortran/rybesl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rybesl.lo `test -f 'src/fortran/rybesl.f' || echo '$(srcdir)/'`src/fortran/rybesl.f
 
 libelementaries_functions_la-zunik.lo: src/fortran/zunik.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunik.lo `test -f 'src/fortran/zunik.f' || echo '$(srcdir)/'`src/fortran/zunik.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunik.lo `test -f 'src/fortran/zunik.f' || echo '$(srcdir)/'`src/fortran/zunik.f
 
 libelementaries_functions_la-dyairy.lo: src/fortran/dyairy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dyairy.lo `test -f 'src/fortran/dyairy.f' || echo '$(srcdir)/'`src/fortran/dyairy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dyairy.lo `test -f 'src/fortran/dyairy.f' || echo '$(srcdir)/'`src/fortran/dyairy.f
 
 libelementaries_functions_la-wmmul.lo: src/fortran/wmmul.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmmul.lo `test -f 'src/fortran/wmmul.f' || echo '$(srcdir)/'`src/fortran/wmmul.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmmul.lo `test -f 'src/fortran/wmmul.f' || echo '$(srcdir)/'`src/fortran/wmmul.f
 
 libelementaries_functions_la-dsearch.lo: src/fortran/dsearch.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dsearch.lo `test -f 'src/fortran/dsearch.f' || echo '$(srcdir)/'`src/fortran/dsearch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dsearch.lo `test -f 'src/fortran/dsearch.f' || echo '$(srcdir)/'`src/fortran/dsearch.f
 
 libelementaries_functions_la-dpsixn.lo: src/fortran/dpsixn.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dpsixn.lo `test -f 'src/fortran/dpsixn.f' || echo '$(srcdir)/'`src/fortran/dpsixn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dpsixn.lo `test -f 'src/fortran/dpsixn.f' || echo '$(srcdir)/'`src/fortran/dpsixn.f
 
 libelementaries_functions_la-xermsg.lo: src/fortran/xermsg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xermsg.lo `test -f 'src/fortran/xermsg.f' || echo '$(srcdir)/'`src/fortran/xermsg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xermsg.lo `test -f 'src/fortran/xermsg.f' || echo '$(srcdir)/'`src/fortran/xermsg.f
 
 libelementaries_functions_la-ddif.lo: src/fortran/ddif.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddif.lo `test -f 'src/fortran/ddif.f' || echo '$(srcdir)/'`src/fortran/ddif.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddif.lo `test -f 'src/fortran/ddif.f' || echo '$(srcdir)/'`src/fortran/ddif.f
 
 libelementaries_functions_la-dbesk0.lo: src/fortran/dbesk0.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk0.lo `test -f 'src/fortran/dbesk0.f' || echo '$(srcdir)/'`src/fortran/dbesk0.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk0.lo `test -f 'src/fortran/dbesk0.f' || echo '$(srcdir)/'`src/fortran/dbesk0.f
 
 libelementaries_functions_la-zunk1.lo: src/fortran/zunk1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunk1.lo `test -f 'src/fortran/zunk1.f' || echo '$(srcdir)/'`src/fortran/zunk1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunk1.lo `test -f 'src/fortran/zunk1.f' || echo '$(srcdir)/'`src/fortran/zunk1.f
 
 libelementaries_functions_la-wdiv.lo: src/fortran/wdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdiv.lo `test -f 'src/fortran/wdiv.f' || echo '$(srcdir)/'`src/fortran/wdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdiv.lo `test -f 'src/fortran/wdiv.f' || echo '$(srcdir)/'`src/fortran/wdiv.f
 
 libelementaries_functions_la-wtan.lo: src/fortran/wtan.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wtan.lo `test -f 'src/fortran/wtan.f' || echo '$(srcdir)/'`src/fortran/wtan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wtan.lo `test -f 'src/fortran/wtan.f' || echo '$(srcdir)/'`src/fortran/wtan.f
 
 libelementaries_functions_la-dbesks.lo: src/fortran/dbesks.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesks.lo `test -f 'src/fortran/dbesks.f' || echo '$(srcdir)/'`src/fortran/dbesks.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesks.lo `test -f 'src/fortran/dbesks.f' || echo '$(srcdir)/'`src/fortran/dbesks.f
 
 libelementaries_functions_la-ccopy.lo: src/fortran/ccopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ccopy.lo `test -f 'src/fortran/ccopy.f' || echo '$(srcdir)/'`src/fortran/ccopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ccopy.lo `test -f 'src/fortran/ccopy.f' || echo '$(srcdir)/'`src/fortran/ccopy.f
 
 libelementaries_functions_la-ddpow.lo: src/fortran/ddpow.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddpow.lo `test -f 'src/fortran/ddpow.f' || echo '$(srcdir)/'`src/fortran/ddpow.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddpow.lo `test -f 'src/fortran/ddpow.f' || echo '$(srcdir)/'`src/fortran/ddpow.f
 
 libelementaries_functions_la-zbesj.lo: src/fortran/zbesj.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesj.lo `test -f 'src/fortran/zbesj.f' || echo '$(srcdir)/'`src/fortran/zbesj.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesj.lo `test -f 'src/fortran/zbesj.f' || echo '$(srcdir)/'`src/fortran/zbesj.f
 
 libelementaries_functions_la-magic.lo: src/fortran/magic.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-magic.lo `test -f 'src/fortran/magic.f' || echo '$(srcdir)/'`src/fortran/magic.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-magic.lo `test -f 'src/fortran/magic.f' || echo '$(srcdir)/'`src/fortran/magic.f
 
 libelementaries_functions_la-zwrsk.lo: src/fortran/zwrsk.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zwrsk.lo `test -f 'src/fortran/zwrsk.f' || echo '$(srcdir)/'`src/fortran/zwrsk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zwrsk.lo `test -f 'src/fortran/zwrsk.f' || echo '$(srcdir)/'`src/fortran/zwrsk.f
 
 libelementaries_functions_la-wcerr.lo: src/fortran/wcerr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wcerr.lo `test -f 'src/fortran/wcerr.f' || echo '$(srcdir)/'`src/fortran/wcerr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wcerr.lo `test -f 'src/fortran/wcerr.f' || echo '$(srcdir)/'`src/fortran/wcerr.f
 
 libelementaries_functions_la-ivimp.lo: src/fortran/ivimp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ivimp.lo `test -f 'src/fortran/ivimp.f' || echo '$(srcdir)/'`src/fortran/ivimp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ivimp.lo `test -f 'src/fortran/ivimp.f' || echo '$(srcdir)/'`src/fortran/ivimp.f
 
 libelementaries_functions_la-zuchk.lo: src/fortran/zuchk.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuchk.lo `test -f 'src/fortran/zuchk.f' || echo '$(srcdir)/'`src/fortran/zuchk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuchk.lo `test -f 'src/fortran/zuchk.f' || echo '$(srcdir)/'`src/fortran/zuchk.f
 
 libelementaries_functions_la-zmlt.lo: src/fortran/zmlt.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zmlt.lo `test -f 'src/fortran/zmlt.f' || echo '$(srcdir)/'`src/fortran/zmlt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zmlt.lo `test -f 'src/fortran/zmlt.f' || echo '$(srcdir)/'`src/fortran/zmlt.f
 
 libelementaries_functions_la-cupro.lo: src/fortran/cupro.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cupro.lo `test -f 'src/fortran/cupro.f' || echo '$(srcdir)/'`src/fortran/cupro.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cupro.lo `test -f 'src/fortran/cupro.f' || echo '$(srcdir)/'`src/fortran/cupro.f
 
 libelementaries_functions_la-dadd.lo: src/fortran/dadd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dadd.lo `test -f 'src/fortran/dadd.f' || echo '$(srcdir)/'`src/fortran/dadd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dadd.lo `test -f 'src/fortran/dadd.f' || echo '$(srcdir)/'`src/fortran/dadd.f
 
 libelementaries_functions_la-calerf.lo: src/fortran/calerf.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-calerf.lo `test -f 'src/fortran/calerf.f' || echo '$(srcdir)/'`src/fortran/calerf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-calerf.lo `test -f 'src/fortran/calerf.f' || echo '$(srcdir)/'`src/fortran/calerf.f
 
 libelementaries_functions_la-zseri.lo: src/fortran/zseri.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zseri.lo `test -f 'src/fortran/zseri.f' || echo '$(srcdir)/'`src/fortran/zseri.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zseri.lo `test -f 'src/fortran/zseri.f' || echo '$(srcdir)/'`src/fortran/zseri.f
 
 libelementaries_functions_la-xgetua.lo: src/fortran/xgetua.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xgetua.lo `test -f 'src/fortran/xgetua.f' || echo '$(srcdir)/'`src/fortran/xgetua.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xgetua.lo `test -f 'src/fortran/xgetua.f' || echo '$(srcdir)/'`src/fortran/xgetua.f
 
 libelementaries_functions_la-dgesl.lo: src/fortran/dgesl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgesl.lo `test -f 'src/fortran/dgesl.f' || echo '$(srcdir)/'`src/fortran/dgesl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgesl.lo `test -f 'src/fortran/dgesl.f' || echo '$(srcdir)/'`src/fortran/dgesl.f
 
 libelementaries_functions_la-isort.lo: src/fortran/isort.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-isort.lo `test -f 'src/fortran/isort.f' || echo '$(srcdir)/'`src/fortran/isort.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-isort.lo `test -f 'src/fortran/isort.f' || echo '$(srcdir)/'`src/fortran/isort.f
 
 libelementaries_functions_la-dgamlm.lo: src/fortran/dgamlm.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamlm.lo `test -f 'src/fortran/dgamlm.f' || echo '$(srcdir)/'`src/fortran/dgamlm.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamlm.lo `test -f 'src/fortran/dgamlm.f' || echo '$(srcdir)/'`src/fortran/dgamlm.f
 
 libelementaries_functions_la-wcopy.lo: src/fortran/wcopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wcopy.lo `test -f 'src/fortran/wcopy.f' || echo '$(srcdir)/'`src/fortran/wcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wcopy.lo `test -f 'src/fortran/wcopy.f' || echo '$(srcdir)/'`src/fortran/wcopy.f
 
 libelementaries_functions_la-hilber.lo: src/fortran/hilber.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-hilber.lo `test -f 'src/fortran/hilber.f' || echo '$(srcdir)/'`src/fortran/hilber.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-hilber.lo `test -f 'src/fortran/hilber.f' || echo '$(srcdir)/'`src/fortran/hilber.f
 
 libelementaries_functions_la-wdpowe.lo: src/fortran/wdpowe.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdpowe.lo `test -f 'src/fortran/wdpowe.f' || echo '$(srcdir)/'`src/fortran/wdpowe.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdpowe.lo `test -f 'src/fortran/wdpowe.f' || echo '$(srcdir)/'`src/fortran/wdpowe.f
 
 libelementaries_functions_la-wmprod.lo: src/fortran/wmprod.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmprod.lo `test -f 'src/fortran/wmprod.f' || echo '$(srcdir)/'`src/fortran/wmprod.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmprod.lo `test -f 'src/fortran/wmprod.f' || echo '$(srcdir)/'`src/fortran/wmprod.f
 
 libelementaries_functions_la-dxlegf.lo: src/fortran/dxlegf.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dxlegf.lo `test -f 'src/fortran/dxlegf.f' || echo '$(srcdir)/'`src/fortran/dxlegf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dxlegf.lo `test -f 'src/fortran/dxlegf.f' || echo '$(srcdir)/'`src/fortran/dxlegf.f
 
 libelementaries_functions_la-wscal.lo: src/fortran/wscal.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wscal.lo `test -f 'src/fortran/wscal.f' || echo '$(srcdir)/'`src/fortran/wscal.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wscal.lo `test -f 'src/fortran/wscal.f' || echo '$(srcdir)/'`src/fortran/wscal.f
 
 libelementaries_functions_la-dlblks.lo: src/fortran/dlblks.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dlblks.lo `test -f 'src/fortran/dlblks.f' || echo '$(srcdir)/'`src/fortran/dlblks.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dlblks.lo `test -f 'src/fortran/dlblks.f' || echo '$(srcdir)/'`src/fortran/dlblks.f
 
 libelementaries_functions_la-kronc.lo: src/fortran/kronc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-kronc.lo `test -f 'src/fortran/kronc.f' || echo '$(srcdir)/'`src/fortran/kronc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-kronc.lo `test -f 'src/fortran/kronc.f' || echo '$(srcdir)/'`src/fortran/kronc.f
 
 libelementaries_functions_la-ddrdiv.lo: src/fortran/ddrdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddrdiv.lo `test -f 'src/fortran/ddrdiv.f' || echo '$(srcdir)/'`src/fortran/ddrdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddrdiv.lo `test -f 'src/fortran/ddrdiv.f' || echo '$(srcdir)/'`src/fortran/ddrdiv.f
 
 libelementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
 
 libelementaries_functions_la-d9knus.lo: src/fortran/d9knus.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9knus.lo `test -f 'src/fortran/d9knus.f' || echo '$(srcdir)/'`src/fortran/d9knus.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9knus.lo `test -f 'src/fortran/d9knus.f' || echo '$(srcdir)/'`src/fortran/d9knus.f
 
 libelementaries_functions_la-dbdiff.lo: src/fortran/dbdiff.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbdiff.lo `test -f 'src/fortran/dbdiff.f' || echo '$(srcdir)/'`src/fortran/dbdiff.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbdiff.lo `test -f 'src/fortran/dbdiff.f' || echo '$(srcdir)/'`src/fortran/dbdiff.f
 
 libelementaries_functions_la-d9lgmc.lo: src/fortran/d9lgmc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9lgmc.lo `test -f 'src/fortran/d9lgmc.f' || echo '$(srcdir)/'`src/fortran/d9lgmc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9lgmc.lo `test -f 'src/fortran/d9lgmc.f' || echo '$(srcdir)/'`src/fortran/d9lgmc.f
 
 libelementaries_functions_la-int2db.lo: src/fortran/int2db.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-int2db.lo `test -f 'src/fortran/int2db.f' || echo '$(srcdir)/'`src/fortran/int2db.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-int2db.lo `test -f 'src/fortran/int2db.f' || echo '$(srcdir)/'`src/fortran/int2db.f
 
 libelementaries_functions_la-dipow.lo: src/fortran/dipow.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dipow.lo `test -f 'src/fortran/dipow.f' || echo '$(srcdir)/'`src/fortran/dipow.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dipow.lo `test -f 'src/fortran/dipow.f' || echo '$(srcdir)/'`src/fortran/dipow.f
 
 libelementaries_functions_la-wshrsl.lo: src/fortran/wshrsl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wshrsl.lo `test -f 'src/fortran/wshrsl.f' || echo '$(srcdir)/'`src/fortran/wshrsl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wshrsl.lo `test -f 'src/fortran/wshrsl.f' || echo '$(srcdir)/'`src/fortran/wshrsl.f
 
 libelementaries_functions_la-wwrdiv.lo: src/fortran/wwrdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwrdiv.lo `test -f 'src/fortran/wwrdiv.f' || echo '$(srcdir)/'`src/fortran/wwrdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwrdiv.lo `test -f 'src/fortran/wwrdiv.f' || echo '$(srcdir)/'`src/fortran/wwrdiv.f
 
 libelementaries_functions_la-zbeshg.lo: src/fortran/zbeshg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbeshg.lo `test -f 'src/fortran/zbeshg.f' || echo '$(srcdir)/'`src/fortran/zbeshg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbeshg.lo `test -f 'src/fortran/zbeshg.f' || echo '$(srcdir)/'`src/fortran/zbeshg.f
 
 libelementaries_functions_la-coshin.lo: src/fortran/coshin.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-coshin.lo `test -f 'src/fortran/coshin.f' || echo '$(srcdir)/'`src/fortran/coshin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-coshin.lo `test -f 'src/fortran/coshin.f' || echo '$(srcdir)/'`src/fortran/coshin.f
 
 libelementaries_functions_la-iwamax.lo: src/fortran/iwamax.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-iwamax.lo `test -f 'src/fortran/iwamax.f' || echo '$(srcdir)/'`src/fortran/iwamax.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-iwamax.lo `test -f 'src/fortran/iwamax.f' || echo '$(srcdir)/'`src/fortran/iwamax.f
 
 libelementaries_functions_la-dbesi.lo: src/fortran/dbesi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesi.lo `test -f 'src/fortran/dbesi.f' || echo '$(srcdir)/'`src/fortran/dbesi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesi.lo `test -f 'src/fortran/dbesi.f' || echo '$(srcdir)/'`src/fortran/dbesi.f
 
 libelementaries_functions_la-zkscl.lo: src/fortran/zkscl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zkscl.lo `test -f 'src/fortran/zkscl.f' || echo '$(srcdir)/'`src/fortran/zkscl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zkscl.lo `test -f 'src/fortran/zkscl.f' || echo '$(srcdir)/'`src/fortran/zkscl.f
 
 libelementaries_functions_la-dipowe.lo: src/fortran/dipowe.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dipowe.lo `test -f 'src/fortran/dipowe.f' || echo '$(srcdir)/'`src/fortran/dipowe.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dipowe.lo `test -f 'src/fortran/dipowe.f' || echo '$(srcdir)/'`src/fortran/dipowe.f
 
 libelementaries_functions_la-getorient.lo: src/fortran/getorient.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-getorient.lo `test -f 'src/fortran/getorient.f' || echo '$(srcdir)/'`src/fortran/getorient.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-getorient.lo `test -f 'src/fortran/getorient.f' || echo '$(srcdir)/'`src/fortran/getorient.f
 
 libelementaries_functions_la-zrati.lo: src/fortran/zrati.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zrati.lo `test -f 'src/fortran/zrati.f' || echo '$(srcdir)/'`src/fortran/zrati.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zrati.lo `test -f 'src/fortran/zrati.f' || echo '$(srcdir)/'`src/fortran/zrati.f
 
 libelementaries_functions_la-cusum.lo: src/fortran/cusum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cusum.lo `test -f 'src/fortran/cusum.f' || echo '$(srcdir)/'`src/fortran/cusum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cusum.lo `test -f 'src/fortran/cusum.f' || echo '$(srcdir)/'`src/fortran/cusum.f
 
 libelementaries_functions_la-dbesig.lo: src/fortran/dbesig.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesig.lo `test -f 'src/fortran/dbesig.f' || echo '$(srcdir)/'`src/fortran/dbesig.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesig.lo `test -f 'src/fortran/dbesig.f' || echo '$(srcdir)/'`src/fortran/dbesig.f
 
 libelementaries_functions_la-d1mach.lo: src/fortran/d1mach.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d1mach.lo `test -f 'src/fortran/d1mach.f' || echo '$(srcdir)/'`src/fortran/d1mach.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d1mach.lo `test -f 'src/fortran/d1mach.f' || echo '$(srcdir)/'`src/fortran/d1mach.f
 
 libelementaries_functions_la-wbdiag.lo: src/fortran/wbdiag.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wbdiag.lo `test -f 'src/fortran/wbdiag.f' || echo '$(srcdir)/'`src/fortran/wbdiag.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wbdiag.lo `test -f 'src/fortran/wbdiag.f' || echo '$(srcdir)/'`src/fortran/wbdiag.f
 
 libelementaries_functions_la-ddpow1.lo: src/fortran/ddpow1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddpow1.lo `test -f 'src/fortran/ddpow1.f' || echo '$(srcdir)/'`src/fortran/ddpow1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddpow1.lo `test -f 'src/fortran/ddpow1.f' || echo '$(srcdir)/'`src/fortran/ddpow1.f
 
 libelementaries_functions_la-vpythag.lo: src/fortran/vpythag.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-vpythag.lo `test -f 'src/fortran/vpythag.f' || echo '$(srcdir)/'`src/fortran/vpythag.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-vpythag.lo `test -f 'src/fortran/vpythag.f' || echo '$(srcdir)/'`src/fortran/vpythag.f
 
 libelementaries_functions_la-isova0.lo: src/fortran/isova0.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-isova0.lo `test -f 'src/fortran/isova0.f' || echo '$(srcdir)/'`src/fortran/isova0.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-isova0.lo `test -f 'src/fortran/isova0.f' || echo '$(srcdir)/'`src/fortran/isova0.f
 
 libelementaries_functions_la-wswap.lo: src/fortran/wswap.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wswap.lo `test -f 'src/fortran/wswap.f' || echo '$(srcdir)/'`src/fortran/wswap.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wswap.lo `test -f 'src/fortran/wswap.f' || echo '$(srcdir)/'`src/fortran/wswap.f
 
 libelementaries_functions_la-idmax.lo: src/fortran/idmax.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-idmax.lo `test -f 'src/fortran/idmax.f' || echo '$(srcdir)/'`src/fortran/idmax.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-idmax.lo `test -f 'src/fortran/idmax.f' || echo '$(srcdir)/'`src/fortran/idmax.f
 
 libelementaries_functions_la-dasyjy.lo: src/fortran/dasyjy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dasyjy.lo `test -f 'src/fortran/dasyjy.f' || echo '$(srcdir)/'`src/fortran/dasyjy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dasyjy.lo `test -f 'src/fortran/dasyjy.f' || echo '$(srcdir)/'`src/fortran/dasyjy.f
 
 libelementaries_functions_la-wwpow1.lo: src/fortran/wwpow1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwpow1.lo `test -f 'src/fortran/wwpow1.f' || echo '$(srcdir)/'`src/fortran/wwpow1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwpow1.lo `test -f 'src/fortran/wwpow1.f' || echo '$(srcdir)/'`src/fortran/wwpow1.f
 
 libelementaries_functions_la-dbesi0.lo: src/fortran/dbesi0.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesi0.lo `test -f 'src/fortran/dbesi0.f' || echo '$(srcdir)/'`src/fortran/dbesi0.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesi0.lo `test -f 'src/fortran/dbesi0.f' || echo '$(srcdir)/'`src/fortran/dbesi0.f
 
 libelementaries_functions_la-getdimfromvar.lo: src/fortran/getdimfromvar.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-getdimfromvar.lo `test -f 'src/fortran/getdimfromvar.f' || echo '$(srcdir)/'`src/fortran/getdimfromvar.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-getdimfromvar.lo `test -f 'src/fortran/getdimfromvar.f' || echo '$(srcdir)/'`src/fortran/getdimfromvar.f
 
 libelementaries_functions_la-dbesy.lo: src/fortran/dbesy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesy.lo `test -f 'src/fortran/dbesy.f' || echo '$(srcdir)/'`src/fortran/dbesy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesy.lo `test -f 'src/fortran/dbesy.f' || echo '$(srcdir)/'`src/fortran/dbesy.f
 
 libelementaries_functions_la-zuni1.lo: src/fortran/zuni1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuni1.lo `test -f 'src/fortran/zuni1.f' || echo '$(srcdir)/'`src/fortran/zuni1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuni1.lo `test -f 'src/fortran/zuni1.f' || echo '$(srcdir)/'`src/fortran/zuni1.f
 
 libelementaries_functions_la-dbsi1e.lo: src/fortran/dbsi1e.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsi1e.lo `test -f 'src/fortran/dbsi1e.f' || echo '$(srcdir)/'`src/fortran/dbsi1e.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsi1e.lo `test -f 'src/fortran/dbsi1e.f' || echo '$(srcdir)/'`src/fortran/dbsi1e.f
 
 libelementaries_functions_la-gdcp2i.lo: src/fortran/gdcp2i.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-gdcp2i.lo `test -f 'src/fortran/gdcp2i.f' || echo '$(srcdir)/'`src/fortran/gdcp2i.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-gdcp2i.lo `test -f 'src/fortran/gdcp2i.f' || echo '$(srcdir)/'`src/fortran/gdcp2i.f
 
 libelementaries_functions_la-drdiv.lo: src/fortran/drdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-drdiv.lo `test -f 'src/fortran/drdiv.f' || echo '$(srcdir)/'`src/fortran/drdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-drdiv.lo `test -f 'src/fortran/drdiv.f' || echo '$(srcdir)/'`src/fortran/drdiv.f
 
 libelementaries_functions_la-wmsum.lo: src/fortran/wmsum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmsum.lo `test -f 'src/fortran/wmsum.f' || echo '$(srcdir)/'`src/fortran/wmsum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmsum.lo `test -f 'src/fortran/wmsum.f' || echo '$(srcdir)/'`src/fortran/wmsum.f
 
 libelementaries_functions_la-dbesk1.lo: src/fortran/dbesk1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk1.lo `test -f 'src/fortran/dbesk1.f' || echo '$(srcdir)/'`src/fortran/dbesk1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk1.lo `test -f 'src/fortran/dbesk1.f' || echo '$(srcdir)/'`src/fortran/dbesk1.f
 
 libelementaries_functions_la-dbsk1e.lo: src/fortran/dbsk1e.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsk1e.lo `test -f 'src/fortran/dbsk1e.f' || echo '$(srcdir)/'`src/fortran/dbsk1e.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsk1e.lo `test -f 'src/fortran/dbsk1e.f' || echo '$(srcdir)/'`src/fortran/dbsk1e.f
 
 libelementaries_functions_la-zunk2.lo: src/fortran/zunk2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunk2.lo `test -f 'src/fortran/zunk2.f' || echo '$(srcdir)/'`src/fortran/zunk2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunk2.lo `test -f 'src/fortran/zunk2.f' || echo '$(srcdir)/'`src/fortran/zunk2.f
 
 libelementaries_functions_la-dbesyg.lo: src/fortran/dbesyg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesyg.lo `test -f 'src/fortran/dbesyg.f' || echo '$(srcdir)/'`src/fortran/dbesyg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesyg.lo `test -f 'src/fortran/dbesyg.f' || echo '$(srcdir)/'`src/fortran/dbesyg.f
 
 libelementaries_functions_la-zbesk.lo: src/fortran/zbesk.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesk.lo `test -f 'src/fortran/zbesk.f' || echo '$(srcdir)/'`src/fortran/zbesk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesk.lo `test -f 'src/fortran/zbesk.f' || echo '$(srcdir)/'`src/fortran/zbesk.f
 
 libelementaries_functions_la-corth.lo: src/fortran/corth.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-corth.lo `test -f 'src/fortran/corth.f' || echo '$(srcdir)/'`src/fortran/corth.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-corth.lo `test -f 'src/fortran/corth.f' || echo '$(srcdir)/'`src/fortran/corth.f
 
 libelementaries_functions_la-mtran.lo: src/fortran/mtran.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-mtran.lo `test -f 'src/fortran/mtran.f' || echo '$(srcdir)/'`src/fortran/mtran.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-mtran.lo `test -f 'src/fortran/mtran.f' || echo '$(srcdir)/'`src/fortran/mtran.f
 
 libelementaries_functions_la-zs1s2.lo: src/fortran/zs1s2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zs1s2.lo `test -f 'src/fortran/zs1s2.f' || echo '$(srcdir)/'`src/fortran/zs1s2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zs1s2.lo `test -f 'src/fortran/zs1s2.f' || echo '$(srcdir)/'`src/fortran/zs1s2.f
 
 libelementaries_functions_la-wwpow.lo: src/fortran/wwpow.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwpow.lo `test -f 'src/fortran/wwpow.f' || echo '$(srcdir)/'`src/fortran/wwpow.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwpow.lo `test -f 'src/fortran/wwpow.f' || echo '$(srcdir)/'`src/fortran/wwpow.f
 
 libelementaries_functions_la-dasyik.lo: src/fortran/dasyik.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dasyik.lo `test -f 'src/fortran/dasyik.f' || echo '$(srcdir)/'`src/fortran/dasyik.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dasyik.lo `test -f 'src/fortran/dasyik.f' || echo '$(srcdir)/'`src/fortran/dasyik.f
 
 libelementaries_functions_la-zbeskg.lo: src/fortran/zbeskg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbeskg.lo `test -f 'src/fortran/zbeskg.f' || echo '$(srcdir)/'`src/fortran/zbeskg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbeskg.lo `test -f 'src/fortran/zbeskg.f' || echo '$(srcdir)/'`src/fortran/zbeskg.f
 
 libelementaries_functions_la-dbesy0.lo: src/fortran/dbesy0.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesy0.lo `test -f 'src/fortran/dbesy0.f' || echo '$(srcdir)/'`src/fortran/dbesy0.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesy0.lo `test -f 'src/fortran/dbesy0.f' || echo '$(srcdir)/'`src/fortran/dbesy0.f
 
 libelementaries_functions_la-dvmul.lo: src/fortran/dvmul.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dvmul.lo `test -f 'src/fortran/dvmul.f' || echo '$(srcdir)/'`src/fortran/dvmul.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dvmul.lo `test -f 'src/fortran/dvmul.f' || echo '$(srcdir)/'`src/fortran/dvmul.f
 
 libelementaries_functions_la-wclmat.lo: src/fortran/wclmat.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wclmat.lo `test -f 'src/fortran/wclmat.f' || echo '$(srcdir)/'`src/fortran/wclmat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wclmat.lo `test -f 'src/fortran/wclmat.f' || echo '$(srcdir)/'`src/fortran/wclmat.f
 
 libelementaries_functions_la-zacai.lo: src/fortran/zacai.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zacai.lo `test -f 'src/fortran/zacai.f' || echo '$(srcdir)/'`src/fortran/zacai.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zacai.lo `test -f 'src/fortran/zacai.f' || echo '$(srcdir)/'`src/fortran/zacai.f
 
 libelementaries_functions_la-dsort.lo: src/fortran/dsort.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dsort.lo `test -f 'src/fortran/dsort.f' || echo '$(srcdir)/'`src/fortran/dsort.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dsort.lo `test -f 'src/fortran/dsort.f' || echo '$(srcdir)/'`src/fortran/dsort.f
 
 libelementaries_functions_la-cerr.lo: src/fortran/cerr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cerr.lo `test -f 'src/fortran/cerr.f' || echo '$(srcdir)/'`src/fortran/cerr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-cerr.lo `test -f 'src/fortran/cerr.f' || echo '$(srcdir)/'`src/fortran/cerr.f
 
 libelementaries_functions_la-rcopy.lo: src/fortran/rcopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rcopy.lo `test -f 'src/fortran/rcopy.f' || echo '$(srcdir)/'`src/fortran/rcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rcopy.lo `test -f 'src/fortran/rcopy.f' || echo '$(srcdir)/'`src/fortran/rcopy.f
 
 libelementaries_functions_la-zunhj.lo: src/fortran/zunhj.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunhj.lo `test -f 'src/fortran/zunhj.f' || echo '$(srcdir)/'`src/fortran/zunhj.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zunhj.lo `test -f 'src/fortran/zunhj.f' || echo '$(srcdir)/'`src/fortran/zunhj.f
 
 libelementaries_functions_la-rea2db.lo: src/fortran/rea2db.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rea2db.lo `test -f 'src/fortran/rea2db.f' || echo '$(srcdir)/'`src/fortran/rea2db.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rea2db.lo `test -f 'src/fortran/rea2db.f' || echo '$(srcdir)/'`src/fortran/rea2db.f
 
 libelementaries_functions_la-wdpow.lo: src/fortran/wdpow.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdpow.lo `test -f 'src/fortran/wdpow.f' || echo '$(srcdir)/'`src/fortran/wdpow.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdpow.lo `test -f 'src/fortran/wdpow.f' || echo '$(srcdir)/'`src/fortran/wdpow.f
 
 libelementaries_functions_la-dgamln.lo: src/fortran/dgamln.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamln.lo `test -f 'src/fortran/dgamln.f' || echo '$(srcdir)/'`src/fortran/dgamln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamln.lo `test -f 'src/fortran/dgamln.f' || echo '$(srcdir)/'`src/fortran/dgamln.f
 
 libelementaries_functions_la-xercnt.lo: src/fortran/xercnt.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xercnt.lo `test -f 'src/fortran/xercnt.f' || echo '$(srcdir)/'`src/fortran/xercnt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xercnt.lo `test -f 'src/fortran/xercnt.f' || echo '$(srcdir)/'`src/fortran/xercnt.f
 
 libelementaries_functions_la-comqr3.lo: src/fortran/comqr3.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
 
 libelementaries_functions_la-orthes.lo: src/fortran/orthes.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-orthes.lo `test -f 'src/fortran/orthes.f' || echo '$(srcdir)/'`src/fortran/orthes.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-orthes.lo `test -f 'src/fortran/orthes.f' || echo '$(srcdir)/'`src/fortran/orthes.f
 
 libelementaries_functions_la-wnrm2.lo: src/fortran/wnrm2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wnrm2.lo `test -f 'src/fortran/wnrm2.f' || echo '$(srcdir)/'`src/fortran/wnrm2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wnrm2.lo `test -f 'src/fortran/wnrm2.f' || echo '$(srcdir)/'`src/fortran/wnrm2.f
 
 libelementaries_functions_la-dgefa.lo: src/fortran/dgefa.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgefa.lo `test -f 'src/fortran/dgefa.f' || echo '$(srcdir)/'`src/fortran/dgefa.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgefa.lo `test -f 'src/fortran/dgefa.f' || echo '$(srcdir)/'`src/fortran/dgefa.f
 
 libelementaries_functions_la-waxpy.lo: src/fortran/waxpy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-waxpy.lo `test -f 'src/fortran/waxpy.f' || echo '$(srcdir)/'`src/fortran/waxpy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-waxpy.lo `test -f 'src/fortran/waxpy.f' || echo '$(srcdir)/'`src/fortran/waxpy.f
 
 libelementaries_functions_la-zlog.lo: src/fortran/zlog.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zlog.lo `test -f 'src/fortran/zlog.f' || echo '$(srcdir)/'`src/fortran/zlog.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zlog.lo `test -f 'src/fortran/zlog.f' || echo '$(srcdir)/'`src/fortran/zlog.f
 
 libelementaries_functions_la-coef.lo: src/fortran/coef.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-coef.lo `test -f 'src/fortran/coef.f' || echo '$(srcdir)/'`src/fortran/coef.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-coef.lo `test -f 'src/fortran/coef.f' || echo '$(srcdir)/'`src/fortran/coef.f
 
 libelementaries_functions_la-dwdiv.lo: src/fortran/dwdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwdiv.lo `test -f 'src/fortran/dwdiv.f' || echo '$(srcdir)/'`src/fortran/dwdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwdiv.lo `test -f 'src/fortran/dwdiv.f' || echo '$(srcdir)/'`src/fortran/dwdiv.f
 
 libelementaries_functions_la-arcosh.lo: src/fortran/arcosh.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-arcosh.lo `test -f 'src/fortran/arcosh.f' || echo '$(srcdir)/'`src/fortran/arcosh.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-arcosh.lo `test -f 'src/fortran/arcosh.f' || echo '$(srcdir)/'`src/fortran/arcosh.f
 
 libelementaries_functions_la-wasin.lo: src/fortran/wasin.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wasin.lo `test -f 'src/fortran/wasin.f' || echo '$(srcdir)/'`src/fortran/wasin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wasin.lo `test -f 'src/fortran/wasin.f' || echo '$(srcdir)/'`src/fortran/wasin.f
 
 libelementaries_functions_la-wexpm1.lo: src/fortran/wexpm1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wexpm1.lo `test -f 'src/fortran/wexpm1.f' || echo '$(srcdir)/'`src/fortran/wexpm1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wexpm1.lo `test -f 'src/fortran/wexpm1.f' || echo '$(srcdir)/'`src/fortran/wexpm1.f
 
 libelementaries_functions_la-ddpowe.lo: src/fortran/ddpowe.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddpowe.lo `test -f 'src/fortran/ddpowe.f' || echo '$(srcdir)/'`src/fortran/ddpowe.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddpowe.lo `test -f 'src/fortran/ddpowe.f' || echo '$(srcdir)/'`src/fortran/ddpowe.f
 
 libelementaries_functions_la-rkbesl.lo: src/fortran/rkbesl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rkbesl.lo `test -f 'src/fortran/rkbesl.f' || echo '$(srcdir)/'`src/fortran/rkbesl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rkbesl.lo `test -f 'src/fortran/rkbesl.f' || echo '$(srcdir)/'`src/fortran/rkbesl.f
 
 libelementaries_functions_la-nearfloat.lo: src/fortran/nearfloat.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-nearfloat.lo `test -f 'src/fortran/nearfloat.f' || echo '$(srcdir)/'`src/fortran/nearfloat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-nearfloat.lo `test -f 'src/fortran/nearfloat.f' || echo '$(srcdir)/'`src/fortran/nearfloat.f
 
 libelementaries_functions_la-dmprod.lo: src/fortran/dmprod.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmprod.lo `test -f 'src/fortran/dmprod.f' || echo '$(srcdir)/'`src/fortran/dmprod.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmprod.lo `test -f 'src/fortran/dmprod.f' || echo '$(srcdir)/'`src/fortran/dmprod.f
 
 libelementaries_functions_la-dgamma.lo: src/fortran/dgamma.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamma.lo `test -f 'src/fortran/dgamma.f' || echo '$(srcdir)/'`src/fortran/dgamma.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamma.lo `test -f 'src/fortran/dgamma.f' || echo '$(srcdir)/'`src/fortran/dgamma.f
 
 libelementaries_functions_la-dbsknu.lo: src/fortran/dbsknu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsknu.lo `test -f 'src/fortran/dbsknu.f' || echo '$(srcdir)/'`src/fortran/dbsknu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsknu.lo `test -f 'src/fortran/dbsknu.f' || echo '$(srcdir)/'`src/fortran/dbsknu.f
 
 libelementaries_functions_la-dbesj.lo: src/fortran/dbesj.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesj.lo `test -f 'src/fortran/dbesj.f' || echo '$(srcdir)/'`src/fortran/dbesj.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesj.lo `test -f 'src/fortran/dbesj.f' || echo '$(srcdir)/'`src/fortran/dbesj.f
 
 libelementaries_functions_la-wwpowe.lo: src/fortran/wwpowe.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwpowe.lo `test -f 'src/fortran/wwpowe.f' || echo '$(srcdir)/'`src/fortran/wwpowe.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wwpowe.lo `test -f 'src/fortran/wwpowe.f' || echo '$(srcdir)/'`src/fortran/wwpowe.f
 
 libelementaries_functions_la-wdotci.lo: src/fortran/wdotci.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdotci.lo `test -f 'src/fortran/wdotci.f' || echo '$(srcdir)/'`src/fortran/wdotci.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wdotci.lo `test -f 'src/fortran/wdotci.f' || echo '$(srcdir)/'`src/fortran/wdotci.f
 
 libelementaries_functions_la-zbunk.lo: src/fortran/zbunk.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbunk.lo `test -f 'src/fortran/zbunk.f' || echo '$(srcdir)/'`src/fortran/zbunk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbunk.lo `test -f 'src/fortran/zbunk.f' || echo '$(srcdir)/'`src/fortran/zbunk.f
 
 libelementaries_functions_la-dmcopy.lo: src/fortran/dmcopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmcopy.lo `test -f 'src/fortran/dmcopy.f' || echo '$(srcdir)/'`src/fortran/dmcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmcopy.lo `test -f 'src/fortran/dmcopy.f' || echo '$(srcdir)/'`src/fortran/dmcopy.f
 
 libelementaries_functions_la-d9b0mp.lo: src/fortran/d9b0mp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9b0mp.lo `test -f 'src/fortran/d9b0mp.f' || echo '$(srcdir)/'`src/fortran/d9b0mp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9b0mp.lo `test -f 'src/fortran/d9b0mp.f' || echo '$(srcdir)/'`src/fortran/d9b0mp.f
 
 libelementaries_functions_la-wexchn.lo: src/fortran/wexchn.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wexchn.lo `test -f 'src/fortran/wexchn.f' || echo '$(srcdir)/'`src/fortran/wexchn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wexchn.lo `test -f 'src/fortran/wexchn.f' || echo '$(srcdir)/'`src/fortran/wexchn.f
 
 libelementaries_functions_la-isoval.lo: src/fortran/isoval.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-isoval.lo `test -f 'src/fortran/isoval.f' || echo '$(srcdir)/'`src/fortran/isoval.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-isoval.lo `test -f 'src/fortran/isoval.f' || echo '$(srcdir)/'`src/fortran/isoval.f
 
 libelementaries_functions_la-dwrdiv.lo: src/fortran/dwrdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwrdiv.lo `test -f 'src/fortran/dwrdiv.f' || echo '$(srcdir)/'`src/fortran/dwrdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwrdiv.lo `test -f 'src/fortran/dwrdiv.f' || echo '$(srcdir)/'`src/fortran/dwrdiv.f
 
 libelementaries_functions_la-zasyi.lo: src/fortran/zasyi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zasyi.lo `test -f 'src/fortran/zasyi.f' || echo '$(srcdir)/'`src/fortran/zasyi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zasyi.lo `test -f 'src/fortran/zasyi.f' || echo '$(srcdir)/'`src/fortran/zasyi.f
 
 libelementaries_functions_la-zuoik.lo: src/fortran/zuoik.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuoik.lo `test -f 'src/fortran/zuoik.f' || echo '$(srcdir)/'`src/fortran/zuoik.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuoik.lo `test -f 'src/fortran/zuoik.f' || echo '$(srcdir)/'`src/fortran/zuoik.f
 
 libelementaries_functions_la-dbsynu.lo: src/fortran/dbsynu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsynu.lo `test -f 'src/fortran/dbsynu.f' || echo '$(srcdir)/'`src/fortran/dbsynu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsynu.lo `test -f 'src/fortran/dbsynu.f' || echo '$(srcdir)/'`src/fortran/dbsynu.f
 
 libelementaries_functions_la-wipow.lo: src/fortran/wipow.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wipow.lo `test -f 'src/fortran/wipow.f' || echo '$(srcdir)/'`src/fortran/wipow.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wipow.lo `test -f 'src/fortran/wipow.f' || echo '$(srcdir)/'`src/fortran/wipow.f
 
 libelementaries_functions_la-dbesi1.lo: src/fortran/dbesi1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesi1.lo `test -f 'src/fortran/dbesi1.f' || echo '$(srcdir)/'`src/fortran/dbesi1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesi1.lo `test -f 'src/fortran/dbesi1.f' || echo '$(srcdir)/'`src/fortran/dbesi1.f
 
 libelementaries_functions_la-zuni2.lo: src/fortran/zuni2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuni2.lo `test -f 'src/fortran/zuni2.f' || echo '$(srcdir)/'`src/fortran/zuni2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zuni2.lo `test -f 'src/fortran/zuni2.f' || echo '$(srcdir)/'`src/fortran/zuni2.f
 
 libelementaries_functions_la-wlog.lo: src/fortran/wlog.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wlog.lo `test -f 'src/fortran/wlog.f' || echo '$(srcdir)/'`src/fortran/wlog.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wlog.lo `test -f 'src/fortran/wlog.f' || echo '$(srcdir)/'`src/fortran/wlog.f
 
 libelementaries_functions_la-fdump.lo: src/fortran/fdump.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-fdump.lo `test -f 'src/fortran/fdump.f' || echo '$(srcdir)/'`src/fortran/fdump.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-fdump.lo `test -f 'src/fortran/fdump.f' || echo '$(srcdir)/'`src/fortran/fdump.f
 
 libelementaries_functions_la-dbskes.lo: src/fortran/dbskes.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbskes.lo `test -f 'src/fortran/dbskes.f' || echo '$(srcdir)/'`src/fortran/dbskes.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbskes.lo `test -f 'src/fortran/dbskes.f' || echo '$(srcdir)/'`src/fortran/dbskes.f
 
 libelementaries_functions_la-infinity.lo: src/fortran/infinity.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-infinity.lo `test -f 'src/fortran/infinity.f' || echo '$(srcdir)/'`src/fortran/infinity.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-infinity.lo `test -f 'src/fortran/infinity.f' || echo '$(srcdir)/'`src/fortran/infinity.f
 
 libelementaries_functions_la-zbesh.lo: src/fortran/zbesh.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesh.lo `test -f 'src/fortran/zbesh.f' || echo '$(srcdir)/'`src/fortran/zbesh.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesh.lo `test -f 'src/fortran/zbesh.f' || echo '$(srcdir)/'`src/fortran/zbesh.f
 
 libelementaries_functions_la-dbkisr.lo: src/fortran/dbkisr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbkisr.lo `test -f 'src/fortran/dbkisr.f' || echo '$(srcdir)/'`src/fortran/dbkisr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbkisr.lo `test -f 'src/fortran/dbkisr.f' || echo '$(srcdir)/'`src/fortran/dbkisr.f
 
 libelementaries_functions_la-dhkseq.lo: src/fortran/dhkseq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dhkseq.lo `test -f 'src/fortran/dhkseq.f' || echo '$(srcdir)/'`src/fortran/dhkseq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dhkseq.lo `test -f 'src/fortran/dhkseq.f' || echo '$(srcdir)/'`src/fortran/dhkseq.f
 
 libelementaries_functions_la-dwpow1.lo: src/fortran/dwpow1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwpow1.lo `test -f 'src/fortran/dwpow1.f' || echo '$(srcdir)/'`src/fortran/dwpow1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dwpow1.lo `test -f 'src/fortran/dwpow1.f' || echo '$(srcdir)/'`src/fortran/dwpow1.f
 
 libelementaries_functions_la-gamma.lo: src/fortran/gamma.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-gamma.lo `test -f 'src/fortran/gamma.f' || echo '$(srcdir)/'`src/fortran/gamma.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-gamma.lo `test -f 'src/fortran/gamma.f' || echo '$(srcdir)/'`src/fortran/gamma.f
 
 libelementaries_functions_la-icopy.lo: src/fortran/icopy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
 
 libelementaries_functions_la-zbesig.lo: src/fortran/zbesig.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesig.lo `test -f 'src/fortran/zbesig.f' || echo '$(srcdir)/'`src/fortran/zbesig.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesig.lo `test -f 'src/fortran/zbesig.f' || echo '$(srcdir)/'`src/fortran/zbesig.f
 
 libelementaries_functions_la-wmul.lo: src/fortran/wmul.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmul.lo `test -f 'src/fortran/wmul.f' || echo '$(srcdir)/'`src/fortran/wmul.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wmul.lo `test -f 'src/fortran/wmul.f' || echo '$(srcdir)/'`src/fortran/wmul.f
 
 libelementaries_functions_la-zexp.lo: src/fortran/zexp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zexp.lo `test -f 'src/fortran/zexp.f' || echo '$(srcdir)/'`src/fortran/zexp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zexp.lo `test -f 'src/fortran/zexp.f' || echo '$(srcdir)/'`src/fortran/zexp.f
 
 libelementaries_functions_la-dbesy1.lo: src/fortran/dbesy1.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesy1.lo `test -f 'src/fortran/dbesy1.f' || echo '$(srcdir)/'`src/fortran/dbesy1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesy1.lo `test -f 'src/fortran/dbesy1.f' || echo '$(srcdir)/'`src/fortran/dbesy1.f
 
 libelementaries_functions_la-dad.lo: src/fortran/dad.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dad.lo `test -f 'src/fortran/dad.f' || echo '$(srcdir)/'`src/fortran/dad.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dad.lo `test -f 'src/fortran/dad.f' || echo '$(srcdir)/'`src/fortran/dad.f
 
 libelementaries_functions_la-dexint.lo: src/fortran/dexint.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dexint.lo `test -f 'src/fortran/dexint.f' || echo '$(srcdir)/'`src/fortran/dexint.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dexint.lo `test -f 'src/fortran/dexint.f' || echo '$(srcdir)/'`src/fortran/dexint.f
 
 libelementaries_functions_la-dbesjg.lo: src/fortran/dbesjg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesjg.lo `test -f 'src/fortran/dbesjg.f' || echo '$(srcdir)/'`src/fortran/dbesjg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesjg.lo `test -f 'src/fortran/dbesjg.f' || echo '$(srcdir)/'`src/fortran/dbesjg.f
 
 libelementaries_functions_la-dset.lo: src/fortran/dset.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dset.lo `test -f 'src/fortran/dset.f' || echo '$(srcdir)/'`src/fortran/dset.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dset.lo `test -f 'src/fortran/dset.f' || echo '$(srcdir)/'`src/fortran/dset.f
 
 libelementaries_functions_la-dtild.lo: src/fortran/dtild.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dtild.lo `test -f 'src/fortran/dtild.f' || echo '$(srcdir)/'`src/fortran/dtild.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dtild.lo `test -f 'src/fortran/dtild.f' || echo '$(srcdir)/'`src/fortran/dtild.f
 
 libelementaries_functions_la-wpade.lo: src/fortran/wpade.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wpade.lo `test -f 'src/fortran/wpade.f' || echo '$(srcdir)/'`src/fortran/wpade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wpade.lo `test -f 'src/fortran/wpade.f' || echo '$(srcdir)/'`src/fortran/wpade.f
 
 libelementaries_functions_la-i1mach.lo: src/fortran/i1mach.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-i1mach.lo `test -f 'src/fortran/i1mach.f' || echo '$(srcdir)/'`src/fortran/i1mach.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-i1mach.lo `test -f 'src/fortran/i1mach.f' || echo '$(srcdir)/'`src/fortran/i1mach.f
 
 libelementaries_functions_la-zbesyg.lo: src/fortran/zbesyg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesyg.lo `test -f 'src/fortran/zbesyg.f' || echo '$(srcdir)/'`src/fortran/zbesyg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesyg.lo `test -f 'src/fortran/zbesyg.f' || echo '$(srcdir)/'`src/fortran/zbesyg.f
 
 libelementaries_functions_la-dclmat.lo: src/fortran/dclmat.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dclmat.lo `test -f 'src/fortran/dclmat.f' || echo '$(srcdir)/'`src/fortran/dclmat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dclmat.lo `test -f 'src/fortran/dclmat.f' || echo '$(srcdir)/'`src/fortran/dclmat.f
 
 libelementaries_functions_la-ortran.lo: src/fortran/ortran.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ortran.lo `test -f 'src/fortran/ortran.f' || echo '$(srcdir)/'`src/fortran/ortran.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ortran.lo `test -f 'src/fortran/ortran.f' || echo '$(srcdir)/'`src/fortran/ortran.f
 
 libelementaries_functions_la-bdiag.lo: src/fortran/bdiag.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-bdiag.lo `test -f 'src/fortran/bdiag.f' || echo '$(srcdir)/'`src/fortran/bdiag.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-bdiag.lo `test -f 'src/fortran/bdiag.f' || echo '$(srcdir)/'`src/fortran/bdiag.f
 
 libelementaries_functions_la-dbesj0.lo: src/fortran/dbesj0.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesj0.lo `test -f 'src/fortran/dbesj0.f' || echo '$(srcdir)/'`src/fortran/dbesj0.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesj0.lo `test -f 'src/fortran/dbesj0.f' || echo '$(srcdir)/'`src/fortran/dbesj0.f
 
 libelementaries_functions_la-dgamrn.lo: src/fortran/dgamrn.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamrn.lo `test -f 'src/fortran/dgamrn.f' || echo '$(srcdir)/'`src/fortran/dgamrn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dgamrn.lo `test -f 'src/fortran/dgamrn.f' || echo '$(srcdir)/'`src/fortran/dgamrn.f
 
 libelementaries_functions_la-wvmul.lo: src/fortran/wvmul.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wvmul.lo `test -f 'src/fortran/wvmul.f' || echo '$(srcdir)/'`src/fortran/wvmul.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wvmul.lo `test -f 'src/fortran/wvmul.f' || echo '$(srcdir)/'`src/fortran/wvmul.f
 
 libelementaries_functions_la-xersve.lo: src/fortran/xersve.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xersve.lo `test -f 'src/fortran/xersve.f' || echo '$(srcdir)/'`src/fortran/xersve.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xersve.lo `test -f 'src/fortran/xersve.f' || echo '$(srcdir)/'`src/fortran/xersve.f
 
 libelementaries_functions_la-dmmul.lo: src/fortran/dmmul.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmmul.lo `test -f 'src/fortran/dmmul.f' || echo '$(srcdir)/'`src/fortran/dmmul.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dmmul.lo `test -f 'src/fortran/dmmul.f' || echo '$(srcdir)/'`src/fortran/dmmul.f
 
 libelementaries_functions_la-wsort.lo: src/fortran/wsort.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wsort.lo `test -f 'src/fortran/wsort.f' || echo '$(srcdir)/'`src/fortran/wsort.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wsort.lo `test -f 'src/fortran/wsort.f' || echo '$(srcdir)/'`src/fortran/wsort.f
 
 libelementaries_functions_la-zshch.lo: src/fortran/zshch.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zshch.lo `test -f 'src/fortran/zshch.f' || echo '$(srcdir)/'`src/fortran/zshch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zshch.lo `test -f 'src/fortran/zshch.f' || echo '$(srcdir)/'`src/fortran/zshch.f
 
 libelementaries_functions_la-wsqrt.lo: src/fortran/wsqrt.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wsqrt.lo `test -f 'src/fortran/wsqrt.f' || echo '$(srcdir)/'`src/fortran/wsqrt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-wsqrt.lo `test -f 'src/fortran/wsqrt.f' || echo '$(srcdir)/'`src/fortran/wsqrt.f
 
 libelementaries_functions_la-rjbesl.lo: src/fortran/rjbesl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rjbesl.lo `test -f 'src/fortran/rjbesl.f' || echo '$(srcdir)/'`src/fortran/rjbesl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rjbesl.lo `test -f 'src/fortran/rjbesl.f' || echo '$(srcdir)/'`src/fortran/rjbesl.f
 
 libelementaries_functions_la-djairy.lo: src/fortran/djairy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-djairy.lo `test -f 'src/fortran/djairy.f' || echo '$(srcdir)/'`src/fortran/djairy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-djairy.lo `test -f 'src/fortran/djairy.f' || echo '$(srcdir)/'`src/fortran/djairy.f
 
 libelementaries_functions_la-rat.lo: src/fortran/rat.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-rat.lo `test -f 'src/fortran/rat.f' || echo '$(srcdir)/'`src/fortran/rat.f
 
 libelementaries_functions_la-dbesk.lo: src/fortran/dbesk.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk.lo `test -f 'src/fortran/dbesk.f' || echo '$(srcdir)/'`src/fortran/dbesk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbesk.lo `test -f 'src/fortran/dbesk.f' || echo '$(srcdir)/'`src/fortran/dbesk.f
 
 libelementaries_functions_la-sci_f_isequal.lo: sci_gateway/fortran/sci_f_isequal.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_isequal.lo `test -f 'sci_gateway/fortran/sci_f_isequal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isequal.f
 
 libelementaries_functions_la-sci_f_maxi.lo: sci_gateway/fortran/sci_f_maxi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_maxi.lo `test -f 'sci_gateway/fortran/sci_f_maxi.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_maxi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_maxi.lo `test -f 'sci_gateway/fortran/sci_f_maxi.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_maxi.f
 
 libelementaries_functions_la-sci_f_testmatrix.lo: sci_gateway/fortran/sci_f_testmatrix.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_testmatrix.lo `test -f 'sci_gateway/fortran/sci_f_testmatrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_testmatrix.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_testmatrix.lo `test -f 'sci_gateway/fortran/sci_f_testmatrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_testmatrix.f
 
 libelementaries_functions_la-sci_f_prod.lo: sci_gateway/fortran/sci_f_prod.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_prod.lo `test -f 'sci_gateway/fortran/sci_f_prod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_prod.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_prod.lo `test -f 'sci_gateway/fortran/sci_f_prod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_prod.f
 
 libelementaries_functions_la-sci_f_matrix.lo: sci_gateway/fortran/sci_f_matrix.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_matrix.lo `test -f 'sci_gateway/fortran/sci_f_matrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_matrix.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_matrix.lo `test -f 'sci_gateway/fortran/sci_f_matrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_matrix.f
 
 libelementaries_functions_la-sci_f_expm.lo: sci_gateway/fortran/sci_f_expm.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_expm.lo `test -f 'sci_gateway/fortran/sci_f_expm.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_expm.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_expm.lo `test -f 'sci_gateway/fortran/sci_f_expm.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_expm.f
 
 libelementaries_functions_la-sci_f_size.lo: sci_gateway/fortran/sci_f_size.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_size.lo `test -f 'sci_gateway/fortran/sci_f_size.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_size.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_size.lo `test -f 'sci_gateway/fortran/sci_f_size.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_size.f
 
 libelementaries_functions_la-sci_f_tril.lo: sci_gateway/fortran/sci_f_tril.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_tril.lo `test -f 'sci_gateway/fortran/sci_f_tril.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tril.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_tril.lo `test -f 'sci_gateway/fortran/sci_f_tril.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tril.f
 
 libelementaries_functions_la-sci_f_ceil.lo: sci_gateway/fortran/sci_f_ceil.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_ceil.lo `test -f 'sci_gateway/fortran/sci_f_ceil.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ceil.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_ceil.lo `test -f 'sci_gateway/fortran/sci_f_ceil.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ceil.f
 
 libelementaries_functions_la-sci_f_imag.lo: sci_gateway/fortran/sci_f_imag.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_imag.lo `test -f 'sci_gateway/fortran/sci_f_imag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_imag.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_imag.lo `test -f 'sci_gateway/fortran/sci_f_imag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_imag.f
 
 libelementaries_functions_la-sci_f_log.lo: sci_gateway/fortran/sci_f_log.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_log.lo `test -f 'sci_gateway/fortran/sci_f_log.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_log.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_log.lo `test -f 'sci_gateway/fortran/sci_f_log.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_log.f
 
 libelementaries_functions_la-sci_f_log1p.lo: sci_gateway/fortran/sci_f_log1p.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_log1p.lo `test -f 'sci_gateway/fortran/sci_f_log1p.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_log1p.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_log1p.lo `test -f 'sci_gateway/fortran/sci_f_log1p.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_log1p.f
 
 libelementaries_functions_la-sci_f_clean.lo: sci_gateway/fortran/sci_f_clean.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_clean.lo `test -f 'sci_gateway/fortran/sci_f_clean.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_clean.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_clean.lo `test -f 'sci_gateway/fortran/sci_f_clean.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_clean.f
 
 libelementaries_functions_la-sci_f_eye.lo: sci_gateway/fortran/sci_f_eye.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_eye.lo `test -f 'sci_gateway/fortran/sci_f_eye.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_eye.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_eye.lo `test -f 'sci_gateway/fortran/sci_f_eye.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_eye.f
 
 libelementaries_functions_la-sci_f_tan.lo: sci_gateway/fortran/sci_f_tan.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_tan.lo `test -f 'sci_gateway/fortran/sci_f_tan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_tan.lo `test -f 'sci_gateway/fortran/sci_f_tan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tan.f
 
 libelementaries_functions_la-sci_f_atan.lo: sci_gateway/fortran/sci_f_atan.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_atan.lo `test -f 'sci_gateway/fortran/sci_f_atan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_atan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_atan.lo `test -f 'sci_gateway/fortran/sci_f_atan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_atan.f
 
 libelementaries_functions_la-sci_f_triu.lo: sci_gateway/fortran/sci_f_triu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_triu.lo `test -f 'sci_gateway/fortran/sci_f_triu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_triu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_triu.lo `test -f 'sci_gateway/fortran/sci_f_triu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_triu.f
 
 libelementaries_functions_la-sci_f_frexp.lo: sci_gateway/fortran/sci_f_frexp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_frexp.lo `test -f 'sci_gateway/fortran/sci_f_frexp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_frexp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_frexp.lo `test -f 'sci_gateway/fortran/sci_f_frexp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_frexp.f
 
 libelementaries_functions_la-sci_f_cos.lo: sci_gateway/fortran/sci_f_cos.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_cos.lo `test -f 'sci_gateway/fortran/sci_f_cos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cos.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_cos.lo `test -f 'sci_gateway/fortran/sci_f_cos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cos.f
 
 libelementaries_functions_la-sci_f_rand.lo: sci_gateway/fortran/sci_f_rand.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_rand.lo `test -f 'sci_gateway/fortran/sci_f_rand.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rand.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_rand.lo `test -f 'sci_gateway/fortran/sci_f_rand.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rand.f
 
 libelementaries_functions_la-sci_f_acos.lo: sci_gateway/fortran/sci_f_acos.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_acos.lo `test -f 'sci_gateway/fortran/sci_f_acos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_acos.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_acos.lo `test -f 'sci_gateway/fortran/sci_f_acos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_acos.f
 
 libelementaries_functions_la-sci_f_sort.lo: sci_gateway/fortran/sci_f_sort.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sort.lo `test -f 'sci_gateway/fortran/sci_f_sort.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sort.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sort.lo `test -f 'sci_gateway/fortran/sci_f_sort.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sort.f
 
 libelementaries_functions_la-sci_f_sin.lo: sci_gateway/fortran/sci_f_sin.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sin.lo `test -f 'sci_gateway/fortran/sci_f_sin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sin.lo `test -f 'sci_gateway/fortran/sci_f_sin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sin.f
 
 libelementaries_functions_la-sci_f_sqrt.lo: sci_gateway/fortran/sci_f_sqrt.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sqrt.lo `test -f 'sci_gateway/fortran/sci_f_sqrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sqrt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sqrt.lo `test -f 'sci_gateway/fortran/sci_f_sqrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sqrt.f
 
 libelementaries_functions_la-sci_f_asin.lo: sci_gateway/fortran/sci_f_asin.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_asin.lo `test -f 'sci_gateway/fortran/sci_f_asin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_asin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_asin.lo `test -f 'sci_gateway/fortran/sci_f_asin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_asin.f
 
 libelementaries_functions_la-sci_f_sign.lo: sci_gateway/fortran/sci_f_sign.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sign.lo `test -f 'sci_gateway/fortran/sci_f_sign.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sign.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sign.lo `test -f 'sci_gateway/fortran/sci_f_sign.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sign.f
 
 libelementaries_functions_la-sci_f_zeros.lo: sci_gateway/fortran/sci_f_zeros.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_zeros.lo `test -f 'sci_gateway/fortran/sci_f_zeros.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_zeros.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_zeros.lo `test -f 'sci_gateway/fortran/sci_f_zeros.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_zeros.f
 
 libelementaries_functions_la-sci_f_ones.lo: sci_gateway/fortran/sci_f_ones.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_ones.lo `test -f 'sci_gateway/fortran/sci_f_ones.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ones.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_ones.lo `test -f 'sci_gateway/fortran/sci_f_ones.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ones.f
 
 libelementaries_functions_la-sci_f_diag.lo: sci_gateway/fortran/sci_f_diag.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_diag.lo `test -f 'sci_gateway/fortran/sci_f_diag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_diag.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_diag.lo `test -f 'sci_gateway/fortran/sci_f_diag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_diag.f
 
 libelementaries_functions_la-sci_f_number_properties.lo: sci_gateway/fortran/sci_f_number_properties.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_number_properties.lo `test -f 'sci_gateway/fortran/sci_f_number_properties.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_number_properties.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_number_properties.lo `test -f 'sci_gateway/fortran/sci_f_number_properties.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_number_properties.f
 
 libelementaries_functions_la-sci_f_sum.lo: sci_gateway/fortran/sci_f_sum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sum.lo `test -f 'sci_gateway/fortran/sci_f_sum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_sum.lo `test -f 'sci_gateway/fortran/sci_f_sum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sum.f
 
 libelementaries_functions_la-sci_f_cumprod.lo: sci_gateway/fortran/sci_f_cumprod.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_cumprod.lo `test -f 'sci_gateway/fortran/sci_f_cumprod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cumprod.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_cumprod.lo `test -f 'sci_gateway/fortran/sci_f_cumprod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cumprod.f
 
 libelementaries_functions_la-sci_f_abs.lo: sci_gateway/fortran/sci_f_abs.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_abs.lo `test -f 'sci_gateway/fortran/sci_f_abs.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_abs.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_abs.lo `test -f 'sci_gateway/fortran/sci_f_abs.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_abs.f
 
 libelementaries_functions_la-sci_f_spones.lo: sci_gateway/fortran/sci_f_spones.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_spones.lo `test -f 'sci_gateway/fortran/sci_f_spones.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_spones.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_spones.lo `test -f 'sci_gateway/fortran/sci_f_spones.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_spones.f
 
 libelementaries_functions_la-sci_f_kron.lo: sci_gateway/fortran/sci_f_kron.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_kron.lo `test -f 'sci_gateway/fortran/sci_f_kron.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_kron.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_kron.lo `test -f 'sci_gateway/fortran/sci_f_kron.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_kron.f
 
 libelementaries_functions_la-sci_f_dsearch.lo: sci_gateway/fortran/sci_f_dsearch.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_dsearch.lo `test -f 'sci_gateway/fortran/sci_f_dsearch.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dsearch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_dsearch.lo `test -f 'sci_gateway/fortran/sci_f_dsearch.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dsearch.f
 
 libelementaries_functions_la-sci_f_cumsum.lo: sci_gateway/fortran/sci_f_cumsum.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_cumsum.lo `test -f 'sci_gateway/fortran/sci_f_cumsum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cumsum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_cumsum.lo `test -f 'sci_gateway/fortran/sci_f_cumsum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cumsum.f
 
 libelementaries_functions_la-sci_f_nearfloat.lo: sci_gateway/fortran/sci_f_nearfloat.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_nearfloat.lo `test -f 'sci_gateway/fortran/sci_f_nearfloat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_nearfloat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_nearfloat.lo `test -f 'sci_gateway/fortran/sci_f_nearfloat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_nearfloat.f
 
 libelementaries_functions_la-sci_f_chinesehat.lo: sci_gateway/fortran/sci_f_chinesehat.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_chinesehat.lo `test -f 'sci_gateway/fortran/sci_f_chinesehat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_chinesehat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_chinesehat.lo `test -f 'sci_gateway/fortran/sci_f_chinesehat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_chinesehat.f
 
 libelementaries_functions_la-sci_f_isreal.lo: sci_gateway/fortran/sci_f_isreal.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_isreal.lo `test -f 'sci_gateway/fortran/sci_f_isreal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isreal.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_isreal.lo `test -f 'sci_gateway/fortran/sci_f_isreal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_isreal.f
 
 libelementaries_functions_la-sci_f_floor.lo: sci_gateway/fortran/sci_f_floor.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_floor.lo `test -f 'sci_gateway/fortran/sci_f_floor.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_floor.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_floor.lo `test -f 'sci_gateway/fortran/sci_f_floor.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_floor.f
 
 libelementaries_functions_la-sci_f_real.lo: sci_gateway/fortran/sci_f_real.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_real.lo `test -f 'sci_gateway/fortran/sci_f_real.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_real.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_real.lo `test -f 'sci_gateway/fortran/sci_f_real.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_real.f
 
 libelementaries_functions_la-sci_f_round.lo: sci_gateway/fortran/sci_f_round.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_round.lo `test -f 'sci_gateway/fortran/sci_f_round.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_round.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_round.lo `test -f 'sci_gateway/fortran/sci_f_round.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_round.f
 
 libelementaries_functions_la-sci_f_conj.lo: sci_gateway/fortran/sci_f_conj.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_conj.lo `test -f 'sci_gateway/fortran/sci_f_conj.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_conj.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_conj.lo `test -f 'sci_gateway/fortran/sci_f_conj.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_conj.f
 
 libelementaries_functions_la-sci_f_int.lo: sci_gateway/fortran/sci_f_int.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_int.lo `test -f 'sci_gateway/fortran/sci_f_int.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_int.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_int.lo `test -f 'sci_gateway/fortran/sci_f_int.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_int.f
 
 libelementaries_functions_la-sci_f_imult.lo: sci_gateway/fortran/sci_f_imult.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_imult.lo `test -f 'sci_gateway/fortran/sci_f_imult.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_imult.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_imult.lo `test -f 'sci_gateway/fortran/sci_f_imult.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_imult.f
 
 libelementaries_functions_la-sci_f_exp.lo: sci_gateway/fortran/sci_f_exp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_exp.lo `test -f 'sci_gateway/fortran/sci_f_exp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_exp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-sci_f_exp.lo `test -f 'sci_gateway/fortran/sci_f_exp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_exp.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

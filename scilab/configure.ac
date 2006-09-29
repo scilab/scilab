@@ -19,7 +19,6 @@ dnl Process this file with autoconf to produce a configure script.
 ## idem pour : routines/calelm/icopy.f et unsfdcopy.f
 ## Rajouter le fortran dans le texte final
 ## Comportement par defaut quand il n'y a pas de parametre au ./configure ???
-## Fortran F77 est tres largement factorisable grace aux macros M4 qui existent
 ## Regarder ou est utilisé FLIBS dans les autres fichiers de conf
 ## Regarder si LD=ld est utile (sans doute pas vu qu'il devient caduc par l'utilisation de libtool)
 ## Penser a rajouter les flags $with_prof et  $with_gprof (cf imagemagick l2600 environ)
@@ -78,7 +77,6 @@ AC_INIT([scilab],[0],[http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.c
 AC_PREREQ(2.60)
 
 
-#echo "CFLAGS $CFLAGS"
 SCIDIR=$srcdir
 SCIDIRFULL=`cd $SCIDIR && pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -90,6 +88,17 @@ AM_PROG_INSTALL_STRIP
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_PROG_FC
+if test -z "$FC"; then
+   # No fortran 90 found. Try with a F77
+   AC_PROG_F77
+   FC=$F77
+   FCFLAGS=$FFLAGS $RFLAGS
+   AM_FCFLAGS=$AM_FFLAGS
+   FCCOMPILE=$F77COMPILE
+   FCLINK=$FLINK
+else
+  AC_DEFINE([G95_FORTRAN],[],[Uses G95 fortran])
+fi
 AC_PROG_CC
 
 dnl Get system type
@@ -295,7 +304,6 @@ IMPENV=
 PERIX11NOPT=periX11darwin
 NMOPT=
 
-AC_CHECK_LIB(ieee,main,[LIEEELIB=-lieee])
 ######################
 ######## Set compilation options for intel C/Fortran compilers
 ######################
@@ -323,7 +331,7 @@ if test "$with_intelcompilers" = yes; then
 			FFLAGS="-O $FFLAGS "
 			FFLAGS_O0="$FFLAGS "
 		fi
-		# TODO : voir si obligatoire
+		# TODO : voir si obligatoire vu que c'est en partie le boulot de AC_PROG_C
 fi
 
 ########### FORTRAN ######################
@@ -412,7 +420,10 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 
 ##########" 
 
-GCCFIX=
+AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
+
+LDFLAGS="$LDFLAGS $LIEEE"
+FC_LDFLAGS="$FC_LDFLAGS $LIEEE"
 
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
@@ -426,7 +437,6 @@ if test "$CC" = "gcc"; then
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
 	    CFLAGS='$CFLAGS -Dlinux -fwritable-strings'
-		LDFLAGS="$LDFLAGS $LIEEELIB"
 	;;
 	 x86_64-*-linux-gnu)
 		CFLAGS="$CFLAGS -Dlinux -DNARROWPROTO -march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64"
@@ -440,7 +450,6 @@ if test "$CC" = "gcc"; then
 	;;
 	 powerpc-*-linux-gnu)
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -Dlinux -fwritable-strings"
-		LDFLAGS="$LDFLAGS $LIEEELIB"
 	;;
 	 *-*-solaris*)
 	    if test "$enable_debug" != yes; then 
@@ -491,11 +500,11 @@ case "$host" in
 # Dec Alpha OSF 4
   alpha*-dec-osf4.*)
       CFLAGS='$CFLAGS -std -ieee_with_inexact' 
-      LD_LDFLAGS='-ieee_with_inexact'
+      LDFLAGS='$LDFLAGS -ieee_with_inexact'
 	  ;;
   alpha*-dec-osf*)
       CFLAGS='$CFLAGS -ieee_with_inexact' 
-      LD_LDFLAGS='-ieee_with_inexact'
+      LDFLAGS='$LDFLAGS -ieee_with_inexact'
       ;;
   rs6000-*-*) # IBM AIX RS 6000 (NO LONGER SUPPORTED)
     CFLAGS='-Daix -DSYSV'
@@ -617,8 +626,6 @@ if test "x$GUI" = "xX11"; then
 		X_LIB_PATH=/usr/X11R6/lib/
         AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <X11/IntrinsicP.h> #include <X11/Xaw3d/ViewportP.h>]], [[]])],[],[AC_MSG_ERROR(Include file "ViewportP.h" for Xaw3d not found. 
 			       Get and put it in <X11/Xaw3d/> .)])
-	CFLAGS=$save_cflags
-
       fi
     fi
   fi 
@@ -900,15 +907,6 @@ fi
 #########################
 
 
-
-if test -n $FC; then 
-   # LIBTOOL uses F77 as var for the fortran compiler
-   F77=$FC
-   FFLAGS="$FFLAGS $FCFLAGS"
-fi
-
-echo "CC 4 : $CC"
-
 AM_PROG_LIBTOOL
 LT_INIT
 
@@ -1052,25 +1050,15 @@ AC_SUBST(SCIDIR)
 AC_SUBST(tcldir)
 
 AC_SUBST(RM)
-AC_SUBST(AR)
-AC_SUBST(AR_FLAGS)
-AC_SUBST(FILES_TO_CLEAN)
 AC_SUBST(CC)
 AC_SUBST(CC_OPTIONS)
 AC_SUBST(CC_LDFLAGS)
-AC_SUBST(CC_PICFLAGS)
-AC_SUBST(CXX)
-AC_SUBST(CXXFLAGS)
-AC_SUBST(CXXCPP)
-AC_SUBST(FC)
 
+AC_SUBST(FC)
 
 AC_SUBST(FFLAGS)
 AC_SUBST(FFLAGS1)
-AC_SUBST(FC_LDFLAGS)
-AC_SUBST(FC_PICFLAGS)
 AC_SUBST(LD)
-AC_SUBST(LD_LDFLAGS)
 AC_SUBST(SCILAB_GS)
 AC_SUBST(SCILABSCRIPT)
 AC_SUBST(HPPA_OLD)
@@ -1154,7 +1142,6 @@ AC_SUBST(MANGENERATOR)
 
 AC_SUBST(JAVA_JNI_INCLUDE)
 AC_SUBST(JAVA_JNI_LIBS)
-AC_SUBST(GCCFIX)
 
 ## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
 

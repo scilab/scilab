@@ -14,17 +14,15 @@ libhashtable_la_include_HEADERS = ./hashtable_itr.h \
 ./hashtable.h \
 ./hashtable_utility.h
 
+#libhashtable_la_CFLAGS=  
 
-#libhashtable_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
 lib_LTLIBRARIES = libhashtable.la
 
 libhashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 
-libhashtable_la_DEPENDENCIES = 
+libhashtable_la_DEPENDENCIES =
 
 
 
 libhashtable_la_LIBADD = $(libhashtable_la_DEPENDENCIES)
-
 libhashtable_la_PKGCONFIG = hashtable.pc

@@ -23,15 +23,18 @@ scilex_SOURCES		= $(top_srcdir)/modules/core/src/fortran/mainsci.f
 scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la
 scilex_LDADD = $(scilex_DEPENDENCIES)
 
-tcl_DATA = modules/tclsci/tcl/TK_Scilab.tcl \
-	modules/tclsci/tcl/misc.tcl \
-	modules/tclsci/tcl/callbacks.tcl \
-	modules/tclsci/tcl/tkcontrols.tcl \
-	modules/tclsci/tcl/set.tcl \
-	modules/tclsci/tcl/get.tcl \
-	modules/tclsci/tcl/figure.tcl \
-	modules/tclsci/tcl/uicontrol.tcl \
-	modules/tclsci/tcl/uimenu.tcl
+sysconf_DATA = $(top_srcdir)/etc/scilab.start \
+$(top_srcdir)/etc/scilab.quit
+
+tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
 
 
 ##$(top_srcdir)/routines/arpack/libarpack.la 

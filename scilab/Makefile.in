@@ -65,7 +65,8 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(tcldir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)" \
+	"$(DESTDIR)$(tcldir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilex_OBJECTS = mainsci.$(OBJEXT)
@@ -73,10 +74,11 @@ scilex_OBJECTS = $(am_scilex_OBJECTS)
 am__DEPENDENCIES_1 = $(top_builddir)/modules/libscilab.la
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(scilex_SOURCES)
 DIST_SOURCES = $(scilex_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
@@ -91,8 +93,9 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+sysconfDATA_INSTALL = $(INSTALL_DATA)
 tclDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(tcl_DATA)
+DATA = $(sysconf_DATA) $(tcl_DATA)
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
@@ -112,7 +115,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -123,13 +125,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -144,18 +142,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -189,7 +184,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -278,6 +272,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -334,15 +329,18 @@ scilex_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
 #CFLAGS = -L/home/sylvestre/dev/scilab4/routines/.libs -lscilab
 scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la
 scilex_LDADD = $(scilex_DEPENDENCIES)
-tcl_DATA = modules/tclsci/tcl/TK_Scilab.tcl \
-	modules/tclsci/tcl/misc.tcl \
-	modules/tclsci/tcl/callbacks.tcl \
-	modules/tclsci/tcl/tkcontrols.tcl \
-	modules/tclsci/tcl/set.tcl \
-	modules/tclsci/tcl/get.tcl \
-	modules/tclsci/tcl/figure.tcl \
-	modules/tclsci/tcl/uicontrol.tcl \
-	modules/tclsci/tcl/uimenu.tcl
+sysconf_DATA = $(top_srcdir)/etc/scilab.start \
+$(top_srcdir)/etc/scilab.quit
+
+tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
 
 all: all-recursive
 
@@ -460,6 +458,23 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool
 uninstall-info-am:
+install-sysconfDATA: $(sysconf_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(sysconfdir)" || $(mkdir_p) "$(DESTDIR)$(sysconfdir)"
+	@list='$(sysconf_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(sysconfDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(sysconfdir)/$$f'"; \
+	  $(sysconfDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(sysconfdir)/$$f"; \
+	done
+
+uninstall-sysconfDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(sysconf_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(sysconfdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(sysconfdir)/$$f"; \
+	done
 install-tclDATA: $(tcl_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(tcldir)" || $(mkdir_p) "$(DESTDIR)$(tcldir)"
@@ -758,7 +773,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(tcldir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)" "$(DESTDIR)$(tcldir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-recursive
@@ -807,7 +822,7 @@ info-am:
 
 install-data-am: install-tclDATA
 
-install-exec-am: install-binPROGRAMS
+install-exec-am: install-binPROGRAMS install-sysconfDATA
 
 install-info: install-info-recursive
 
@@ -835,7 +850,7 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-info-am \
-	uninstall-tclDATA
+	uninstall-sysconfDATA uninstall-tclDATA
 
 uninstall-info: uninstall-info-recursive
 
@@ -849,12 +864,14 @@ uninstall-info: uninstall-info-recursive
 	html-am info info-am install install-am install-binPROGRAMS \
 	install-data install-data-am install-exec install-exec-am \
 	install-info install-info-am install-man install-strip \
-	install-tclDATA installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	maintainer-clean-recursive mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool mostlyclean-recursive \
-	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-binPROGRAMS uninstall-info-am uninstall-tclDATA
+	install-sysconfDATA install-tclDATA installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic maintainer-clean-recursive \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool mostlyclean-recursive pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
+	uninstall-binPROGRAMS uninstall-info-am uninstall-sysconfDATA \
+	uninstall-tclDATA
 
 
 #\

@@ -107,10 +107,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libdata_structures_la_SOURCES)
 DIST_SOURCES = $(libdata_structures_la_SOURCES)
 libdata_structures_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -123,7 +124,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -134,13 +134,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -155,18 +151,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -200,7 +193,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -289,6 +281,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -599,58 +592,58 @@ libdata_structures_la-sci_tlist.lo: sci_gateway/c/sci_tlist.c
 	$(LTF77COMPILE) -c -o $@ $<
 
 extractfields.lo: src/fortran/extractfields.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o extractfields.lo `test -f 'src/fortran/extractfields.f' || echo '$(srcdir)/'`src/fortran/extractfields.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o extractfields.lo `test -f 'src/fortran/extractfields.f' || echo '$(srcdir)/'`src/fortran/extractfields.f
 
 forcerhs.lo: src/fortran/forcerhs.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o forcerhs.lo `test -f 'src/fortran/forcerhs.f' || echo '$(srcdir)/'`src/fortran/forcerhs.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o forcerhs.lo `test -f 'src/fortran/forcerhs.f' || echo '$(srcdir)/'`src/fortran/forcerhs.f
 
 intl_i.lo: src/fortran/intl_i.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intl_i.lo `test -f 'src/fortran/intl_i.f' || echo '$(srcdir)/'`src/fortran/intl_i.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intl_i.lo `test -f 'src/fortran/intl_i.f' || echo '$(srcdir)/'`src/fortran/intl_i.f
 
 lsstyp.lo: src/fortran/lsstyp.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lsstyp.lo `test -f 'src/fortran/lsstyp.f' || echo '$(srcdir)/'`src/fortran/lsstyp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lsstyp.lo `test -f 'src/fortran/lsstyp.f' || echo '$(srcdir)/'`src/fortran/lsstyp.f
 
 udptr.lo: src/fortran/udptr.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o udptr.lo `test -f 'src/fortran/udptr.f' || echo '$(srcdir)/'`src/fortran/udptr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o udptr.lo `test -f 'src/fortran/udptr.f' || echo '$(srcdir)/'`src/fortran/udptr.f
 
 followpath.lo: src/fortran/followpath.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o followpath.lo `test -f 'src/fortran/followpath.f' || echo '$(srcdir)/'`src/fortran/followpath.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o followpath.lo `test -f 'src/fortran/followpath.f' || echo '$(srcdir)/'`src/fortran/followpath.f
 
 rattyp.lo: src/fortran/rattyp.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rattyp.lo `test -f 'src/fortran/rattyp.f' || echo '$(srcdir)/'`src/fortran/rattyp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rattyp.lo `test -f 'src/fortran/rattyp.f' || echo '$(srcdir)/'`src/fortran/rattyp.f
 
 lstops.lo: src/fortran/lstops.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lstops.lo `test -f 'src/fortran/lstops.f' || echo '$(srcdir)/'`src/fortran/lstops.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lstops.lo `test -f 'src/fortran/lstops.f' || echo '$(srcdir)/'`src/fortran/lstops.f
 
 gratyp.lo: src/fortran/gratyp.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gratyp.lo `test -f 'src/fortran/gratyp.f' || echo '$(srcdir)/'`src/fortran/gratyp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gratyp.lo `test -f 'src/fortran/gratyp.f' || echo '$(srcdir)/'`src/fortran/gratyp.f
 
 mlist.lo: src/fortran/mlist.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mlist.lo `test -f 'src/fortran/mlist.f' || echo '$(srcdir)/'`src/fortran/mlist.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mlist.lo `test -f 'src/fortran/mlist.f' || echo '$(srcdir)/'`src/fortran/mlist.f
 
 insertfield.lo: src/fortran/insertfield.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o insertfield.lo `test -f 'src/fortran/insertfield.f' || echo '$(srcdir)/'`src/fortran/insertfield.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o insertfield.lo `test -f 'src/fortran/insertfield.f' || echo '$(srcdir)/'`src/fortran/insertfield.f
 
 intl_e.lo: src/fortran/intl_e.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intl_e.lo `test -f 'src/fortran/intl_e.f' || echo '$(srcdir)/'`src/fortran/intl_e.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intl_e.lo `test -f 'src/fortran/intl_e.f' || echo '$(srcdir)/'`src/fortran/intl_e.f
 
 sci_definedfields.lo: sci_gateway/fortran/sci_definedfields.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_definedfields.lo `test -f 'sci_gateway/fortran/sci_definedfields.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_definedfields.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_definedfields.lo `test -f 'sci_gateway/fortran/sci_definedfields.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_definedfields.f
 
 sci_lstsize.lo: sci_gateway/fortran/sci_lstsize.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_lstsize.lo `test -f 'sci_gateway/fortran/sci_lstsize.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_lstsize.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_lstsize.lo `test -f 'sci_gateway/fortran/sci_lstsize.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_lstsize.f
 
 sci_setfield.lo: sci_gateway/fortran/sci_setfield.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setfield.lo `test -f 'sci_gateway/fortran/sci_setfield.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setfield.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setfield.lo `test -f 'sci_gateway/fortran/sci_setfield.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setfield.f
 
 sci_getfield.lo: sci_gateway/fortran/sci_getfield.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_getfield.lo `test -f 'sci_gateway/fortran/sci_getfield.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_getfield.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_getfield.lo `test -f 'sci_gateway/fortran/sci_getfield.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_getfield.f
 
 sci_lstcat.lo: sci_gateway/fortran/sci_lstcat.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_lstcat.lo `test -f 'sci_gateway/fortran/sci_lstcat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_lstcat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_lstcat.lo `test -f 'sci_gateway/fortran/sci_lstcat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_lstcat.f
 
 sci_list.lo: sci_gateway/fortran/sci_list.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_list.lo `test -f 'sci_gateway/fortran/sci_list.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_list.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_list.lo `test -f 'sci_gateway/fortran/sci_list.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_list.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

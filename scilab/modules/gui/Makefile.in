@@ -122,10 +122,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libgui_la_SOURCES)
 DIST_SOURCES = $(libgui_la_SOURCES)
 libgui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -138,7 +139,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -149,13 +149,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -170,18 +166,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -215,7 +208,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -304,6 +296,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -1065,34 +1058,34 @@ libgui_la-sci_setmenu_old.lo: sci_gateway/c/sci_setmenu_old.c
 	$(LTF77COMPILE) -c -o $@ $<
 
 sci_setmenu_old.lo: sci_gateway/fortran/sci_setmenu_old.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setmenu_old.lo `test -f 'sci_gateway/fortran/sci_setmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setmenu_old.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setmenu_old.lo `test -f 'sci_gateway/fortran/sci_setmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setmenu_old.f
 
 sci_choices.lo: sci_gateway/fortran/sci_choices.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_choices.lo `test -f 'sci_gateway/fortran/sci_choices.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_choices.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_choices.lo `test -f 'sci_gateway/fortran/sci_choices.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_choices.f
 
 sci_delmenu_old.lo: sci_gateway/fortran/sci_delmenu_old.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delmenu_old.lo `test -f 'sci_gateway/fortran/sci_delmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delmenu_old.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delmenu_old.lo `test -f 'sci_gateway/fortran/sci_delmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delmenu_old.f
 
 sci_x_mdialog.lo: sci_gateway/fortran/sci_x_mdialog.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_mdialog.lo `test -f 'sci_gateway/fortran/sci_x_mdialog.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_mdialog.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_mdialog.lo `test -f 'sci_gateway/fortran/sci_x_mdialog.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_mdialog.f
 
 sci_x_dialog.lo: sci_gateway/fortran/sci_x_dialog.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_dialog.lo `test -f 'sci_gateway/fortran/sci_x_dialog.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_dialog.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_dialog.lo `test -f 'sci_gateway/fortran/sci_x_dialog.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_dialog.f
 
 sci_x_message_modeless.lo: sci_gateway/fortran/sci_x_message_modeless.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_message_modeless.lo `test -f 'sci_gateway/fortran/sci_x_message_modeless.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_message_modeless.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_message_modeless.lo `test -f 'sci_gateway/fortran/sci_x_message_modeless.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_message_modeless.f
 
 sci_x_choose.lo: sci_gateway/fortran/sci_x_choose.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_choose.lo `test -f 'sci_gateway/fortran/sci_x_choose.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_choose.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_choose.lo `test -f 'sci_gateway/fortran/sci_x_choose.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_choose.f
 
 sci_xgetfile.lo: sci_gateway/fortran/sci_xgetfile.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_xgetfile.lo `test -f 'sci_gateway/fortran/sci_xgetfile.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_xgetfile.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_xgetfile.lo `test -f 'sci_gateway/fortran/sci_xgetfile.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_xgetfile.f
 
 sci_addmenu_old.lo: sci_gateway/fortran/sci_addmenu_old.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_addmenu_old.lo `test -f 'sci_gateway/fortran/sci_addmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_addmenu_old.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_addmenu_old.lo `test -f 'sci_gateway/fortran/sci_addmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_addmenu_old.f
 
 sci_x_message.lo: sci_gateway/fortran/sci_x_message.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_message.lo `test -f 'sci_gateway/fortran/sci_x_message.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_message.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_message.lo `test -f 'sci_gateway/fortran/sci_x_message.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_message.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

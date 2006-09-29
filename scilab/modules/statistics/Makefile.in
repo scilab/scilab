@@ -105,10 +105,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libstatistics_la_SOURCES)
 DIST_SOURCES = $(libstatistics_la_SOURCES)
 libstatistics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -121,7 +122,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -132,13 +132,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -153,18 +149,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -198,7 +191,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -287,6 +279,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -646,214 +639,214 @@ libstatistics_la-sci_cdfnor.lo: sci_gateway/c/sci_cdfnor.c
 	$(LTF77COMPILE) -c -o $@ $<
 
 psi.lo: src/dcdflib/psi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o psi.lo `test -f 'src/dcdflib/psi.f' || echo '$(srcdir)/'`src/dcdflib/psi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o psi.lo `test -f 'src/dcdflib/psi.f' || echo '$(srcdir)/'`src/dcdflib/psi.f
 
 dexpm1.lo: src/dcdflib/dexpm1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dexpm1.lo `test -f 'src/dcdflib/dexpm1.f' || echo '$(srcdir)/'`src/dcdflib/dexpm1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dexpm1.lo `test -f 'src/dcdflib/dexpm1.f' || echo '$(srcdir)/'`src/dcdflib/dexpm1.f
 
 alngam.lo: src/dcdflib/alngam.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alngam.lo `test -f 'src/dcdflib/alngam.f' || echo '$(srcdir)/'`src/dcdflib/alngam.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alngam.lo `test -f 'src/dcdflib/alngam.f' || echo '$(srcdir)/'`src/dcdflib/alngam.f
 
 erfc1.lo: src/dcdflib/erfc1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o erfc1.lo `test -f 'src/dcdflib/erfc1.f' || echo '$(srcdir)/'`src/dcdflib/erfc1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o erfc1.lo `test -f 'src/dcdflib/erfc1.f' || echo '$(srcdir)/'`src/dcdflib/erfc1.f
 
 cdff.lo: src/dcdflib/cdff.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdff.lo `test -f 'src/dcdflib/cdff.f' || echo '$(srcdir)/'`src/dcdflib/cdff.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdff.lo `test -f 'src/dcdflib/cdff.f' || echo '$(srcdir)/'`src/dcdflib/cdff.f
 
 spmpar.lo: src/dcdflib/spmpar.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spmpar.lo `test -f 'src/dcdflib/spmpar.f' || echo '$(srcdir)/'`src/dcdflib/spmpar.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spmpar.lo `test -f 'src/dcdflib/spmpar.f' || echo '$(srcdir)/'`src/dcdflib/spmpar.f
 
 cumnor.lo: src/dcdflib/cumnor.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumnor.lo `test -f 'src/dcdflib/cumnor.f' || echo '$(srcdir)/'`src/dcdflib/cumnor.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumnor.lo `test -f 'src/dcdflib/cumnor.f' || echo '$(srcdir)/'`src/dcdflib/cumnor.f
 
 cdfpoi.lo: src/dcdflib/cdfpoi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfpoi.lo `test -f 'src/dcdflib/cdfpoi.f' || echo '$(srcdir)/'`src/dcdflib/cdfpoi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfpoi.lo `test -f 'src/dcdflib/cdfpoi.f' || echo '$(srcdir)/'`src/dcdflib/cdfpoi.f
 
 bcorr.lo: src/dcdflib/bcorr.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bcorr.lo `test -f 'src/dcdflib/bcorr.f' || echo '$(srcdir)/'`src/dcdflib/bcorr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bcorr.lo `test -f 'src/dcdflib/bcorr.f' || echo '$(srcdir)/'`src/dcdflib/bcorr.f
 
 cumchi.lo: src/dcdflib/cumchi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumchi.lo `test -f 'src/dcdflib/cumchi.f' || echo '$(srcdir)/'`src/dcdflib/cumchi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumchi.lo `test -f 'src/dcdflib/cumchi.f' || echo '$(srcdir)/'`src/dcdflib/cumchi.f
 
 apser.lo: src/dcdflib/apser.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o apser.lo `test -f 'src/dcdflib/apser.f' || echo '$(srcdir)/'`src/dcdflib/apser.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o apser.lo `test -f 'src/dcdflib/apser.f' || echo '$(srcdir)/'`src/dcdflib/apser.f
 
 gamln1.lo: src/dcdflib/gamln1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln1.lo `test -f 'src/dcdflib/gamln1.f' || echo '$(srcdir)/'`src/dcdflib/gamln1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln1.lo `test -f 'src/dcdflib/gamln1.f' || echo '$(srcdir)/'`src/dcdflib/gamln1.f
 
 dlanor.lo: src/dcdflib/dlanor.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlanor.lo `test -f 'src/dcdflib/dlanor.f' || echo '$(srcdir)/'`src/dcdflib/dlanor.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlanor.lo `test -f 'src/dcdflib/dlanor.f' || echo '$(srcdir)/'`src/dcdflib/dlanor.f
 
 cdft.lo: src/dcdflib/cdft.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdft.lo `test -f 'src/dcdflib/cdft.f' || echo '$(srcdir)/'`src/dcdflib/cdft.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdft.lo `test -f 'src/dcdflib/cdft.f' || echo '$(srcdir)/'`src/dcdflib/cdft.f
 
 gaminv.lo: src/dcdflib/gaminv.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gaminv.lo `test -f 'src/dcdflib/gaminv.f' || echo '$(srcdir)/'`src/dcdflib/gaminv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gaminv.lo `test -f 'src/dcdflib/gaminv.f' || echo '$(srcdir)/'`src/dcdflib/gaminv.f
 
 cumnbn.lo: src/dcdflib/cumnbn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumnbn.lo `test -f 'src/dcdflib/cumnbn.f' || echo '$(srcdir)/'`src/dcdflib/cumnbn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumnbn.lo `test -f 'src/dcdflib/cumnbn.f' || echo '$(srcdir)/'`src/dcdflib/cumnbn.f
 
 cdffnc.lo: src/dcdflib/cdffnc.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdffnc.lo `test -f 'src/dcdflib/cdffnc.f' || echo '$(srcdir)/'`src/dcdflib/cdffnc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdffnc.lo `test -f 'src/dcdflib/cdffnc.f' || echo '$(srcdir)/'`src/dcdflib/cdffnc.f
 
 rlog1.lo: src/dcdflib/rlog1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog1.lo `test -f 'src/dcdflib/rlog1.f' || echo '$(srcdir)/'`src/dcdflib/rlog1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog1.lo `test -f 'src/dcdflib/rlog1.f' || echo '$(srcdir)/'`src/dcdflib/rlog1.f
 
 cdfchn.lo: src/dcdflib/cdfchn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfchn.lo `test -f 'src/dcdflib/cdfchn.f' || echo '$(srcdir)/'`src/dcdflib/cdfchn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfchn.lo `test -f 'src/dcdflib/cdfchn.f' || echo '$(srcdir)/'`src/dcdflib/cdfchn.f
 
 dt1.lo: src/dcdflib/dt1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dt1.lo `test -f 'src/dcdflib/dt1.f' || echo '$(srcdir)/'`src/dcdflib/dt1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dt1.lo `test -f 'src/dcdflib/dt1.f' || echo '$(srcdir)/'`src/dcdflib/dt1.f
 
 bgrat.lo: src/dcdflib/bgrat.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgrat.lo `test -f 'src/dcdflib/bgrat.f' || echo '$(srcdir)/'`src/dcdflib/bgrat.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgrat.lo `test -f 'src/dcdflib/bgrat.f' || echo '$(srcdir)/'`src/dcdflib/bgrat.f
 
 dinvnr.lo: src/dcdflib/dinvnr.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvnr.lo `test -f 'src/dcdflib/dinvnr.f' || echo '$(srcdir)/'`src/dcdflib/dinvnr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvnr.lo `test -f 'src/dcdflib/dinvnr.f' || echo '$(srcdir)/'`src/dcdflib/dinvnr.f
 
 dlngam.lo: src/dcdflib/dlngam.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlngam.lo `test -f 'src/dcdflib/dlngam.f' || echo '$(srcdir)/'`src/dcdflib/dlngam.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlngam.lo `test -f 'src/dcdflib/dlngam.f' || echo '$(srcdir)/'`src/dcdflib/dlngam.f
 
 rlog.lo: src/dcdflib/rlog.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog.lo `test -f 'src/dcdflib/rlog.f' || echo '$(srcdir)/'`src/dcdflib/rlog.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rlog.lo `test -f 'src/dcdflib/rlog.f' || echo '$(srcdir)/'`src/dcdflib/rlog.f
 
 basym.lo: src/dcdflib/basym.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basym.lo `test -f 'src/dcdflib/basym.f' || echo '$(srcdir)/'`src/dcdflib/basym.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basym.lo `test -f 'src/dcdflib/basym.f' || echo '$(srcdir)/'`src/dcdflib/basym.f
 
 bfrac.lo: src/dcdflib/bfrac.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bfrac.lo `test -f 'src/dcdflib/bfrac.f' || echo '$(srcdir)/'`src/dcdflib/bfrac.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bfrac.lo `test -f 'src/dcdflib/bfrac.f' || echo '$(srcdir)/'`src/dcdflib/bfrac.f
 
 cumbin.lo: src/dcdflib/cumbin.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumbin.lo `test -f 'src/dcdflib/cumbin.f' || echo '$(srcdir)/'`src/dcdflib/cumbin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumbin.lo `test -f 'src/dcdflib/cumbin.f' || echo '$(srcdir)/'`src/dcdflib/cumbin.f
 
 cumbet.lo: src/dcdflib/cumbet.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumbet.lo `test -f 'src/dcdflib/cumbet.f' || echo '$(srcdir)/'`src/dcdflib/cumbet.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumbet.lo `test -f 'src/dcdflib/cumbet.f' || echo '$(srcdir)/'`src/dcdflib/cumbet.f
 
 rcomp.lo: src/dcdflib/rcomp.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rcomp.lo `test -f 'src/dcdflib/rcomp.f' || echo '$(srcdir)/'`src/dcdflib/rcomp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rcomp.lo `test -f 'src/dcdflib/rcomp.f' || echo '$(srcdir)/'`src/dcdflib/rcomp.f
 
 cdfgam.lo: src/dcdflib/cdfgam.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfgam.lo `test -f 'src/dcdflib/cdfgam.f' || echo '$(srcdir)/'`src/dcdflib/cdfgam.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfgam.lo `test -f 'src/dcdflib/cdfgam.f' || echo '$(srcdir)/'`src/dcdflib/cdfgam.f
 
 gratio.lo: src/dcdflib/gratio.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gratio.lo `test -f 'src/dcdflib/gratio.f' || echo '$(srcdir)/'`src/dcdflib/gratio.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gratio.lo `test -f 'src/dcdflib/gratio.f' || echo '$(srcdir)/'`src/dcdflib/gratio.f
 
 gam1.lo: src/dcdflib/gam1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gam1.lo `test -f 'src/dcdflib/gam1.f' || echo '$(srcdir)/'`src/dcdflib/gam1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gam1.lo `test -f 'src/dcdflib/gam1.f' || echo '$(srcdir)/'`src/dcdflib/gam1.f
 
 exparg.lo: src/dcdflib/exparg.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o exparg.lo `test -f 'src/dcdflib/exparg.f' || echo '$(srcdir)/'`src/dcdflib/exparg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o exparg.lo `test -f 'src/dcdflib/exparg.f' || echo '$(srcdir)/'`src/dcdflib/exparg.f
 
 ipmpar.lo: src/dcdflib/ipmpar.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ipmpar.lo `test -f 'src/dcdflib/ipmpar.f' || echo '$(srcdir)/'`src/dcdflib/ipmpar.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ipmpar.lo `test -f 'src/dcdflib/ipmpar.f' || echo '$(srcdir)/'`src/dcdflib/ipmpar.f
 
 cumf.lo: src/dcdflib/cumf.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumf.lo `test -f 'src/dcdflib/cumf.f' || echo '$(srcdir)/'`src/dcdflib/cumf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumf.lo `test -f 'src/dcdflib/cumf.f' || echo '$(srcdir)/'`src/dcdflib/cumf.f
 
 cumpoi.lo: src/dcdflib/cumpoi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumpoi.lo `test -f 'src/dcdflib/cumpoi.f' || echo '$(srcdir)/'`src/dcdflib/cumpoi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumpoi.lo `test -f 'src/dcdflib/cumpoi.f' || echo '$(srcdir)/'`src/dcdflib/cumpoi.f
 
 gamln.lo: src/dcdflib/gamln.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln.lo `test -f 'src/dcdflib/gamln.f' || echo '$(srcdir)/'`src/dcdflib/gamln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamln.lo `test -f 'src/dcdflib/gamln.f' || echo '$(srcdir)/'`src/dcdflib/gamln.f
 
 dstrem.lo: src/dcdflib/dstrem.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dstrem.lo `test -f 'src/dcdflib/dstrem.f' || echo '$(srcdir)/'`src/dcdflib/dstrem.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dstrem.lo `test -f 'src/dcdflib/dstrem.f' || echo '$(srcdir)/'`src/dcdflib/dstrem.f
 
 dln1mx.lo: src/dcdflib/dln1mx.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dln1mx.lo `test -f 'src/dcdflib/dln1mx.f' || echo '$(srcdir)/'`src/dcdflib/dln1mx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dln1mx.lo `test -f 'src/dcdflib/dln1mx.f' || echo '$(srcdir)/'`src/dcdflib/dln1mx.f
 
 betaln.lo: src/dcdflib/betaln.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o betaln.lo `test -f 'src/dcdflib/betaln.f' || echo '$(srcdir)/'`src/dcdflib/betaln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o betaln.lo `test -f 'src/dcdflib/betaln.f' || echo '$(srcdir)/'`src/dcdflib/betaln.f
 
 stvaln.lo: src/dcdflib/stvaln.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stvaln.lo `test -f 'src/dcdflib/stvaln.f' || echo '$(srcdir)/'`src/dcdflib/stvaln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stvaln.lo `test -f 'src/dcdflib/stvaln.f' || echo '$(srcdir)/'`src/dcdflib/stvaln.f
 
 cumt.lo: src/dcdflib/cumt.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumt.lo `test -f 'src/dcdflib/cumt.f' || echo '$(srcdir)/'`src/dcdflib/cumt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumt.lo `test -f 'src/dcdflib/cumt.f' || echo '$(srcdir)/'`src/dcdflib/cumt.f
 
 esum.lo: src/dcdflib/esum.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o esum.lo `test -f 'src/dcdflib/esum.f' || echo '$(srcdir)/'`src/dcdflib/esum.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o esum.lo `test -f 'src/dcdflib/esum.f' || echo '$(srcdir)/'`src/dcdflib/esum.f
 
 bpser.lo: src/dcdflib/bpser.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bpser.lo `test -f 'src/dcdflib/bpser.f' || echo '$(srcdir)/'`src/dcdflib/bpser.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bpser.lo `test -f 'src/dcdflib/bpser.f' || echo '$(srcdir)/'`src/dcdflib/bpser.f
 
 cdfnor.lo: src/dcdflib/cdfnor.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfnor.lo `test -f 'src/dcdflib/cdfnor.f' || echo '$(srcdir)/'`src/dcdflib/cdfnor.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfnor.lo `test -f 'src/dcdflib/cdfnor.f' || echo '$(srcdir)/'`src/dcdflib/cdfnor.f
 
 cumfnc.lo: src/dcdflib/cumfnc.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumfnc.lo `test -f 'src/dcdflib/cumfnc.f' || echo '$(srcdir)/'`src/dcdflib/cumfnc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumfnc.lo `test -f 'src/dcdflib/cumfnc.f' || echo '$(srcdir)/'`src/dcdflib/cumfnc.f
 
 erf.lo: src/dcdflib/erf.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o erf.lo `test -f 'src/dcdflib/erf.f' || echo '$(srcdir)/'`src/dcdflib/erf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o erf.lo `test -f 'src/dcdflib/erf.f' || echo '$(srcdir)/'`src/dcdflib/erf.f
 
 alnrel.lo: src/dcdflib/alnrel.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alnrel.lo `test -f 'src/dcdflib/alnrel.f' || echo '$(srcdir)/'`src/dcdflib/alnrel.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o alnrel.lo `test -f 'src/dcdflib/alnrel.f' || echo '$(srcdir)/'`src/dcdflib/alnrel.f
 
 cumchn.lo: src/dcdflib/cumchn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumchn.lo `test -f 'src/dcdflib/cumchn.f' || echo '$(srcdir)/'`src/dcdflib/cumchn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumchn.lo `test -f 'src/dcdflib/cumchn.f' || echo '$(srcdir)/'`src/dcdflib/cumchn.f
 
 rexp.lo: src/dcdflib/rexp.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rexp.lo `test -f 'src/dcdflib/rexp.f' || echo '$(srcdir)/'`src/dcdflib/rexp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rexp.lo `test -f 'src/dcdflib/rexp.f' || echo '$(srcdir)/'`src/dcdflib/rexp.f
 
 fpser.lo: src/dcdflib/fpser.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fpser.lo `test -f 'src/dcdflib/fpser.f' || echo '$(srcdir)/'`src/dcdflib/fpser.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fpser.lo `test -f 'src/dcdflib/fpser.f' || echo '$(srcdir)/'`src/dcdflib/fpser.f
 
 bratio.lo: src/dcdflib/bratio.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bratio.lo `test -f 'src/dcdflib/bratio.f' || echo '$(srcdir)/'`src/dcdflib/bratio.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bratio.lo `test -f 'src/dcdflib/bratio.f' || echo '$(srcdir)/'`src/dcdflib/bratio.f
 
 cdfchi.lo: src/dcdflib/cdfchi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfchi.lo `test -f 'src/dcdflib/cdfchi.f' || echo '$(srcdir)/'`src/dcdflib/cdfchi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfchi.lo `test -f 'src/dcdflib/cdfchi.f' || echo '$(srcdir)/'`src/dcdflib/cdfchi.f
 
 gamma.lo: src/dcdflib/gamma.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamma.lo `test -f 'src/dcdflib/gamma.f' || echo '$(srcdir)/'`src/dcdflib/gamma.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gamma.lo `test -f 'src/dcdflib/gamma.f' || echo '$(srcdir)/'`src/dcdflib/gamma.f
 
 dinvr.lo: src/dcdflib/dinvr.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvr.lo `test -f 'src/dcdflib/dinvr.f' || echo '$(srcdir)/'`src/dcdflib/dinvr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dinvr.lo `test -f 'src/dcdflib/dinvr.f' || echo '$(srcdir)/'`src/dcdflib/dinvr.f
 
 brcomp.lo: src/dcdflib/brcomp.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o brcomp.lo `test -f 'src/dcdflib/brcomp.f' || echo '$(srcdir)/'`src/dcdflib/brcomp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o brcomp.lo `test -f 'src/dcdflib/brcomp.f' || echo '$(srcdir)/'`src/dcdflib/brcomp.f
 
 devlpl.lo: src/dcdflib/devlpl.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o devlpl.lo `test -f 'src/dcdflib/devlpl.f' || echo '$(srcdir)/'`src/dcdflib/devlpl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o devlpl.lo `test -f 'src/dcdflib/devlpl.f' || echo '$(srcdir)/'`src/dcdflib/devlpl.f
 
 cdfnbn.lo: src/dcdflib/cdfnbn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfnbn.lo `test -f 'src/dcdflib/cdfnbn.f' || echo '$(srcdir)/'`src/dcdflib/cdfnbn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfnbn.lo `test -f 'src/dcdflib/cdfnbn.f' || echo '$(srcdir)/'`src/dcdflib/cdfnbn.f
 
 dzror.lo: src/dcdflib/dzror.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dzror.lo `test -f 'src/dcdflib/dzror.f' || echo '$(srcdir)/'`src/dcdflib/dzror.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dzror.lo `test -f 'src/dcdflib/dzror.f' || echo '$(srcdir)/'`src/dcdflib/dzror.f
 
 gsumln.lo: src/dcdflib/gsumln.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gsumln.lo `test -f 'src/dcdflib/gsumln.f' || echo '$(srcdir)/'`src/dcdflib/gsumln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gsumln.lo `test -f 'src/dcdflib/gsumln.f' || echo '$(srcdir)/'`src/dcdflib/gsumln.f
 
 dln1px.lo: src/dcdflib/dln1px.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dln1px.lo `test -f 'src/dcdflib/dln1px.f' || echo '$(srcdir)/'`src/dcdflib/dln1px.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dln1px.lo `test -f 'src/dcdflib/dln1px.f' || echo '$(srcdir)/'`src/dcdflib/dln1px.f
 
 algdiv.lo: src/dcdflib/algdiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o algdiv.lo `test -f 'src/dcdflib/algdiv.f' || echo '$(srcdir)/'`src/dcdflib/algdiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o algdiv.lo `test -f 'src/dcdflib/algdiv.f' || echo '$(srcdir)/'`src/dcdflib/algdiv.f
 
 dlnbet.lo: src/dcdflib/dlnbet.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlnbet.lo `test -f 'src/dcdflib/dlnbet.f' || echo '$(srcdir)/'`src/dcdflib/dlnbet.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlnbet.lo `test -f 'src/dcdflib/dlnbet.f' || echo '$(srcdir)/'`src/dcdflib/dlnbet.f
 
 cumgam.lo: src/dcdflib/cumgam.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumgam.lo `test -f 'src/dcdflib/cumgam.f' || echo '$(srcdir)/'`src/dcdflib/cumgam.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cumgam.lo `test -f 'src/dcdflib/cumgam.f' || echo '$(srcdir)/'`src/dcdflib/cumgam.f
 
 dbetrm.lo: src/dcdflib/dbetrm.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbetrm.lo `test -f 'src/dcdflib/dbetrm.f' || echo '$(srcdir)/'`src/dcdflib/dbetrm.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dbetrm.lo `test -f 'src/dcdflib/dbetrm.f' || echo '$(srcdir)/'`src/dcdflib/dbetrm.f
 
 grat1.lo: src/dcdflib/grat1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o grat1.lo `test -f 'src/dcdflib/grat1.f' || echo '$(srcdir)/'`src/dcdflib/grat1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o grat1.lo `test -f 'src/dcdflib/grat1.f' || echo '$(srcdir)/'`src/dcdflib/grat1.f
 
 brcmp1.lo: src/dcdflib/brcmp1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o brcmp1.lo `test -f 'src/dcdflib/brcmp1.f' || echo '$(srcdir)/'`src/dcdflib/brcmp1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o brcmp1.lo `test -f 'src/dcdflib/brcmp1.f' || echo '$(srcdir)/'`src/dcdflib/brcmp1.f
 
 cdfbin.lo: src/dcdflib/cdfbin.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfbin.lo `test -f 'src/dcdflib/cdfbin.f' || echo '$(srcdir)/'`src/dcdflib/cdfbin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfbin.lo `test -f 'src/dcdflib/cdfbin.f' || echo '$(srcdir)/'`src/dcdflib/cdfbin.f
 
 bup.lo: src/dcdflib/bup.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bup.lo `test -f 'src/dcdflib/bup.f' || echo '$(srcdir)/'`src/dcdflib/bup.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bup.lo `test -f 'src/dcdflib/bup.f' || echo '$(srcdir)/'`src/dcdflib/bup.f
 
 cdfbet.lo: src/dcdflib/cdfbet.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfbet.lo `test -f 'src/dcdflib/cdfbet.f' || echo '$(srcdir)/'`src/dcdflib/cdfbet.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cdfbet.lo `test -f 'src/dcdflib/cdfbet.f' || echo '$(srcdir)/'`src/dcdflib/cdfbet.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

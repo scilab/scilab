@@ -110,10 +110,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libsignal_processing_la_SOURCES)
 DIST_SOURCES = $(libsignal_processing_la_SOURCES)
 libsignal_processing_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -126,7 +127,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -137,13 +137,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -158,18 +154,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -203,7 +196,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -292,6 +284,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -617,226 +610,226 @@ libsignal_processing_la-sci_syredi.lo: sci_gateway/c/sci_syredi.c
 	$(LTF77COMPILE) -c -o $@ $<
 
 sci_ffir.lo: src/fortran/sci_ffir.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ffir.lo `test -f 'src/fortran/sci_ffir.f' || echo '$(srcdir)/'`src/fortran/sci_ffir.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ffir.lo `test -f 'src/fortran/sci_ffir.f' || echo '$(srcdir)/'`src/fortran/sci_ffir.f
 
 degree.lo: src/fortran/degree.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o degree.lo `test -f 'src/fortran/degree.f' || echo '$(srcdir)/'`src/fortran/degree.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o degree.lo `test -f 'src/fortran/degree.f' || echo '$(srcdir)/'`src/fortran/degree.f
 
 parcha.lo: src/fortran/parcha.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o parcha.lo `test -f 'src/fortran/parcha.f' || echo '$(srcdir)/'`src/fortran/parcha.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o parcha.lo `test -f 'src/fortran/parcha.f' || echo '$(srcdir)/'`src/fortran/parcha.f
 
 ouch.lo: src/fortran/ouch.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ouch.lo `test -f 'src/fortran/ouch.f' || echo '$(srcdir)/'`src/fortran/ouch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ouch.lo `test -f 'src/fortran/ouch.f' || echo '$(srcdir)/'`src/fortran/ouch.f
 
 dfftbi.lo: src/fortran/dfftbi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfftbi.lo `test -f 'src/fortran/dfftbi.f' || echo '$(srcdir)/'`src/fortran/dfftbi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfftbi.lo `test -f 'src/fortran/dfftbi.f' || echo '$(srcdir)/'`src/fortran/dfftbi.f
 
 dsqrtc.lo: src/fortran/dsqrtc.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsqrtc.lo `test -f 'src/fortran/dsqrtc.f' || echo '$(srcdir)/'`src/fortran/dsqrtc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsqrtc.lo `test -f 'src/fortran/dsqrtc.f' || echo '$(srcdir)/'`src/fortran/dsqrtc.f
 
 tranze.lo: src/fortran/tranze.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tranze.lo `test -f 'src/fortran/tranze.f' || echo '$(srcdir)/'`src/fortran/tranze.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tranze.lo `test -f 'src/fortran/tranze.f' || echo '$(srcdir)/'`src/fortran/tranze.f
 
 chebc.lo: src/fortran/chebc.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o chebc.lo `test -f 'src/fortran/chebc.f' || echo '$(srcdir)/'`src/fortran/chebc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o chebc.lo `test -f 'src/fortran/chebc.f' || echo '$(srcdir)/'`src/fortran/chebc.f
 
 tscccf.lo: src/fortran/tscccf.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tscccf.lo `test -f 'src/fortran/tscccf.f' || echo '$(srcdir)/'`src/fortran/tscccf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tscccf.lo `test -f 'src/fortran/tscccf.f' || echo '$(srcdir)/'`src/fortran/tscccf.f
 
 dsn2.lo: src/fortran/dsn2.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsn2.lo `test -f 'src/fortran/dsn2.f' || echo '$(srcdir)/'`src/fortran/dsn2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsn2.lo `test -f 'src/fortran/dsn2.f' || echo '$(srcdir)/'`src/fortran/dsn2.f
 
 hammin.lo: src/fortran/hammin.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hammin.lo `test -f 'src/fortran/hammin.f' || echo '$(srcdir)/'`src/fortran/hammin.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hammin.lo `test -f 'src/fortran/hammin.f' || echo '$(srcdir)/'`src/fortran/hammin.f
 
 bounn.lo: src/fortran/bounn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bounn.lo `test -f 'src/fortran/bounn.f' || echo '$(srcdir)/'`src/fortran/bounn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bounn.lo `test -f 'src/fortran/bounn.f' || echo '$(srcdir)/'`src/fortran/bounn.f
 
 nstabl.lo: src/fortran/nstabl.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o nstabl.lo `test -f 'src/fortran/nstabl.f' || echo '$(srcdir)/'`src/fortran/nstabl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o nstabl.lo `test -f 'src/fortran/nstabl.f' || echo '$(srcdir)/'`src/fortran/nstabl.f
 
 ino.lo: src/fortran/ino.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ino.lo `test -f 'src/fortran/ino.f' || echo '$(srcdir)/'`src/fortran/ino.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ino.lo `test -f 'src/fortran/ino.f' || echo '$(srcdir)/'`src/fortran/ino.f
 
 desia.lo: src/fortran/desia.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desia.lo `test -f 'src/fortran/desia.f' || echo '$(srcdir)/'`src/fortran/desia.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desia.lo `test -f 'src/fortran/desia.f' || echo '$(srcdir)/'`src/fortran/desia.f
 
 desi11.lo: src/fortran/desi11.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi11.lo `test -f 'src/fortran/desi11.f' || echo '$(srcdir)/'`src/fortran/desi11.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi11.lo `test -f 'src/fortran/desi11.f' || echo '$(srcdir)/'`src/fortran/desi11.f
 
 cmpse3.lo: src/fortran/cmpse3.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cmpse3.lo `test -f 'src/fortran/cmpse3.f' || echo '$(srcdir)/'`src/fortran/cmpse3.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cmpse3.lo `test -f 'src/fortran/cmpse3.f' || echo '$(srcdir)/'`src/fortran/cmpse3.f
 
 cheby.lo: src/fortran/cheby.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cheby.lo `test -f 'src/fortran/cheby.f' || echo '$(srcdir)/'`src/fortran/cheby.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cheby.lo `test -f 'src/fortran/cheby.f' || echo '$(srcdir)/'`src/fortran/cheby.f
 
 trbize.lo: src/fortran/trbize.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o trbize.lo `test -f 'src/fortran/trbize.f' || echo '$(srcdir)/'`src/fortran/trbize.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o trbize.lo `test -f 'src/fortran/trbize.f' || echo '$(srcdir)/'`src/fortran/trbize.f
 
 r2tx.lo: src/fortran/r2tx.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r2tx.lo `test -f 'src/fortran/r2tx.f' || echo '$(srcdir)/'`src/fortran/r2tx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r2tx.lo `test -f 'src/fortran/r2tx.f' || echo '$(srcdir)/'`src/fortran/r2tx.f
 
 deli2.lo: src/fortran/deli2.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli2.lo `test -f 'src/fortran/deli2.f' || echo '$(srcdir)/'`src/fortran/deli2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli2.lo `test -f 'src/fortran/deli2.f' || echo '$(srcdir)/'`src/fortran/deli2.f
 
 gee.lo: src/fortran/gee.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gee.lo `test -f 'src/fortran/gee.f' || echo '$(srcdir)/'`src/fortran/gee.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o gee.lo `test -f 'src/fortran/gee.f' || echo '$(srcdir)/'`src/fortran/gee.f
 
 r4tx.lo: src/fortran/r4tx.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r4tx.lo `test -f 'src/fortran/r4tx.f' || echo '$(srcdir)/'`src/fortran/r4tx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r4tx.lo `test -f 'src/fortran/r4tx.f' || echo '$(srcdir)/'`src/fortran/r4tx.f
 
 transn.lo: src/fortran/transn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o transn.lo `test -f 'src/fortran/transn.f' || echo '$(srcdir)/'`src/fortran/transn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o transn.lo `test -f 'src/fortran/transn.f' || echo '$(srcdir)/'`src/fortran/transn.f
 
 r8tx.lo: src/fortran/r8tx.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r8tx.lo `test -f 'src/fortran/r8tx.f' || echo '$(srcdir)/'`src/fortran/r8tx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o r8tx.lo `test -f 'src/fortran/r8tx.f' || echo '$(srcdir)/'`src/fortran/r8tx.f
 
 kaiser.lo: src/fortran/kaiser.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o kaiser.lo `test -f 'src/fortran/kaiser.f' || echo '$(srcdir)/'`src/fortran/kaiser.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o kaiser.lo `test -f 'src/fortran/kaiser.f' || echo '$(srcdir)/'`src/fortran/kaiser.f
 
 deli11.lo: src/fortran/deli11.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli11.lo `test -f 'src/fortran/deli11.f' || echo '$(srcdir)/'`src/fortran/deli11.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli11.lo `test -f 'src/fortran/deli11.f' || echo '$(srcdir)/'`src/fortran/deli11.f
 
 compel.lo: src/fortran/compel.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o compel.lo `test -f 'src/fortran/compel.f' || echo '$(srcdir)/'`src/fortran/compel.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o compel.lo `test -f 'src/fortran/compel.f' || echo '$(srcdir)/'`src/fortran/compel.f
 
 filbut.lo: src/fortran/filbut.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o filbut.lo `test -f 'src/fortran/filbut.f' || echo '$(srcdir)/'`src/fortran/filbut.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o filbut.lo `test -f 'src/fortran/filbut.f' || echo '$(srcdir)/'`src/fortran/filbut.f
 
 desi01.lo: src/fortran/desi01.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi01.lo `test -f 'src/fortran/desi01.f' || echo '$(srcdir)/'`src/fortran/desi01.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi01.lo `test -f 'src/fortran/desi01.f' || echo '$(srcdir)/'`src/fortran/desi01.f
 
 desi22.lo: src/fortran/desi22.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi22.lo `test -f 'src/fortran/desi22.f' || echo '$(srcdir)/'`src/fortran/desi22.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi22.lo `test -f 'src/fortran/desi22.f' || echo '$(srcdir)/'`src/fortran/desi22.f
 
 amell.lo: src/fortran/amell.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o amell.lo `test -f 'src/fortran/amell.f' || echo '$(srcdir)/'`src/fortran/amell.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o amell.lo `test -f 'src/fortran/amell.f' || echo '$(srcdir)/'`src/fortran/amell.f
 
 desi24.lo: src/fortran/desi24.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi24.lo `test -f 'src/fortran/desi24.f' || echo '$(srcdir)/'`src/fortran/desi24.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi24.lo `test -f 'src/fortran/desi24.f' || echo '$(srcdir)/'`src/fortran/desi24.f
 
 dellk.lo: src/fortran/dellk.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dellk.lo `test -f 'src/fortran/dellk.f' || echo '$(srcdir)/'`src/fortran/dellk.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dellk.lo `test -f 'src/fortran/dellk.f' || echo '$(srcdir)/'`src/fortran/dellk.f
 
 syredi.lo: src/fortran/syredi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o syredi.lo `test -f 'src/fortran/syredi.f' || echo '$(srcdir)/'`src/fortran/syredi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o syredi.lo `test -f 'src/fortran/syredi.f' || echo '$(srcdir)/'`src/fortran/syredi.f
 
 dpspln.lo: src/fortran/dpspln.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpspln.lo `test -f 'src/fortran/dpspln.f' || echo '$(srcdir)/'`src/fortran/dpspln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dpspln.lo `test -f 'src/fortran/dpspln.f' || echo '$(srcdir)/'`src/fortran/dpspln.f
 
 coeft.lo: src/fortran/coeft.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o coeft.lo `test -f 'src/fortran/coeft.f' || echo '$(srcdir)/'`src/fortran/coeft.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o coeft.lo `test -f 'src/fortran/coeft.f' || echo '$(srcdir)/'`src/fortran/coeft.f
 
 tranpo.lo: src/fortran/tranpo.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tranpo.lo `test -f 'src/fortran/tranpo.f' || echo '$(srcdir)/'`src/fortran/tranpo.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tranpo.lo `test -f 'src/fortran/tranpo.f' || echo '$(srcdir)/'`src/fortran/tranpo.f
 
 blnumz.lo: src/fortran/blnumz.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o blnumz.lo `test -f 'src/fortran/blnumz.f' || echo '$(srcdir)/'`src/fortran/blnumz.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o blnumz.lo `test -f 'src/fortran/blnumz.f' || echo '$(srcdir)/'`src/fortran/blnumz.f
 
 sn.lo: src/fortran/sn.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sn.lo `test -f 'src/fortran/sn.f' || echo '$(srcdir)/'`src/fortran/sn.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sn.lo `test -f 'src/fortran/sn.f' || echo '$(srcdir)/'`src/fortran/sn.f
 
 bldenz.lo: src/fortran/bldenz.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bldenz.lo `test -f 'src/fortran/bldenz.f' || echo '$(srcdir)/'`src/fortran/bldenz.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bldenz.lo `test -f 'src/fortran/bldenz.f' || echo '$(srcdir)/'`src/fortran/bldenz.f
 
 dspln.lo: src/fortran/dspln.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspln.lo `test -f 'src/fortran/dspln.f' || echo '$(srcdir)/'`src/fortran/dspln.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dspln.lo `test -f 'src/fortran/dspln.f' || echo '$(srcdir)/'`src/fortran/dspln.f
 
 belan.lo: src/fortran/belan.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o belan.lo `test -f 'src/fortran/belan.f' || echo '$(srcdir)/'`src/fortran/belan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o belan.lo `test -f 'src/fortran/belan.f' || echo '$(srcdir)/'`src/fortran/belan.f
 
 desib.lo: src/fortran/desib.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desib.lo `test -f 'src/fortran/desib.f' || echo '$(srcdir)/'`src/fortran/desib.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desib.lo `test -f 'src/fortran/desib.f' || echo '$(srcdir)/'`src/fortran/desib.f
 
 freque.lo: src/fortran/freque.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o freque.lo `test -f 'src/fortran/freque.f' || echo '$(srcdir)/'`src/fortran/freque.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o freque.lo `test -f 'src/fortran/freque.f' || echo '$(srcdir)/'`src/fortran/freque.f
 
 desi12.lo: src/fortran/desi12.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi12.lo `test -f 'src/fortran/desi12.f' || echo '$(srcdir)/'`src/fortran/desi12.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi12.lo `test -f 'src/fortran/desi12.f' || echo '$(srcdir)/'`src/fortran/desi12.f
 
 cmpse2.lo: src/fortran/cmpse2.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cmpse2.lo `test -f 'src/fortran/cmpse2.f' || echo '$(srcdir)/'`src/fortran/cmpse2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cmpse2.lo `test -f 'src/fortran/cmpse2.f' || echo '$(srcdir)/'`src/fortran/cmpse2.f
 
 desi14.lo: src/fortran/desi14.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi14.lo `test -f 'src/fortran/desi14.f' || echo '$(srcdir)/'`src/fortran/desi14.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi14.lo `test -f 'src/fortran/desi14.f' || echo '$(srcdir)/'`src/fortran/desi14.f
 
 delip.lo: src/fortran/delip.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o delip.lo `test -f 'src/fortran/delip.f' || echo '$(srcdir)/'`src/fortran/delip.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o delip.lo `test -f 'src/fortran/delip.f' || echo '$(srcdir)/'`src/fortran/delip.f
 
 deli1.lo: src/fortran/deli1.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli1.lo `test -f 'src/fortran/deli1.f' || echo '$(srcdir)/'`src/fortran/deli1.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deli1.lo `test -f 'src/fortran/deli1.f' || echo '$(srcdir)/'`src/fortran/deli1.f
 
 trbipo.lo: src/fortran/trbipo.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o trbipo.lo `test -f 'src/fortran/trbipo.f' || echo '$(srcdir)/'`src/fortran/trbipo.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o trbipo.lo `test -f 'src/fortran/trbipo.f' || echo '$(srcdir)/'`src/fortran/trbipo.f
 
 rpem.lo: src/fortran/rpem.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rpem.lo `test -f 'src/fortran/rpem.f' || echo '$(srcdir)/'`src/fortran/rpem.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rpem.lo `test -f 'src/fortran/rpem.f' || echo '$(srcdir)/'`src/fortran/rpem.f
 
 dfft2.lo: src/fortran/dfft2.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfft2.lo `test -f 'src/fortran/dfft2.f' || echo '$(srcdir)/'`src/fortran/dfft2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfft2.lo `test -f 'src/fortran/dfft2.f' || echo '$(srcdir)/'`src/fortran/dfft2.f
 
 dgee01.lo: src/fortran/dgee01.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dgee01.lo `test -f 'src/fortran/dgee01.f' || echo '$(srcdir)/'`src/fortran/dgee01.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dgee01.lo `test -f 'src/fortran/dgee01.f' || echo '$(srcdir)/'`src/fortran/dgee01.f
 
 romeg.lo: src/fortran/romeg.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o romeg.lo `test -f 'src/fortran/romeg.f' || echo '$(srcdir)/'`src/fortran/romeg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o romeg.lo `test -f 'src/fortran/romeg.f' || echo '$(srcdir)/'`src/fortran/romeg.f
 
 snell.lo: src/fortran/snell.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o snell.lo `test -f 'src/fortran/snell.f' || echo '$(srcdir)/'`src/fortran/snell.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o snell.lo `test -f 'src/fortran/snell.f' || echo '$(srcdir)/'`src/fortran/snell.f
 
 fft842.lo: src/fortran/fft842.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fft842.lo `test -f 'src/fortran/fft842.f' || echo '$(srcdir)/'`src/fortran/fft842.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fft842.lo `test -f 'src/fortran/fft842.f' || echo '$(srcdir)/'`src/fortran/fft842.f
 
 tg02ad.lo: src/fortran/tg02ad.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tg02ad.lo `test -f 'src/fortran/tg02ad.f' || echo '$(srcdir)/'`src/fortran/tg02ad.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tg02ad.lo `test -f 'src/fortran/tg02ad.f' || echo '$(srcdir)/'`src/fortran/tg02ad.f
 
 remez.lo: src/fortran/remez.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o remez.lo `test -f 'src/fortran/remez.f' || echo '$(srcdir)/'`src/fortran/remez.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o remez.lo `test -f 'src/fortran/remez.f' || echo '$(srcdir)/'`src/fortran/remez.f
 
 poles.lo: src/fortran/poles.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o poles.lo `test -f 'src/fortran/poles.f' || echo '$(srcdir)/'`src/fortran/poles.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o poles.lo `test -f 'src/fortran/poles.f' || echo '$(srcdir)/'`src/fortran/poles.f
 
 desi00.lo: src/fortran/desi00.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi00.lo `test -f 'src/fortran/desi00.f' || echo '$(srcdir)/'`src/fortran/desi00.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi00.lo `test -f 'src/fortran/desi00.f' || echo '$(srcdir)/'`src/fortran/desi00.f
 
 desi21.lo: src/fortran/desi21.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi21.lo `test -f 'src/fortran/desi21.f' || echo '$(srcdir)/'`src/fortran/desi21.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o desi21.lo `test -f 'src/fortran/desi21.f' || echo '$(srcdir)/'`src/fortran/desi21.f
 
 dfftmx.lo: src/fortran/dfftmx.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfftmx.lo `test -f 'src/fortran/dfftmx.f' || echo '$(srcdir)/'`src/fortran/dfftmx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfftmx.lo `test -f 'src/fortran/dfftmx.f' || echo '$(srcdir)/'`src/fortran/dfftmx.f
 
 sci_delip.lo: sci_gateway/fortran/sci_delip.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delip.lo `test -f 'sci_gateway/fortran/sci_delip.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delip.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delip.lo `test -f 'sci_gateway/fortran/sci_delip.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delip.f
 
 sci_fft.lo: sci_gateway/fortran/sci_fft.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_fft.lo `test -f 'sci_gateway/fortran/sci_fft.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_fft.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_fft.lo `test -f 'sci_gateway/fortran/sci_fft.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_fft.f
 
 sci_syredi.lo: sci_gateway/fortran/sci_syredi.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_syredi.lo `test -f 'sci_gateway/fortran/sci_syredi.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_syredi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_syredi.lo `test -f 'sci_gateway/fortran/sci_syredi.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_syredi.f
 
 sci_remez.lo: sci_gateway/fortran/sci_remez.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_remez.lo `test -f 'sci_gateway/fortran/sci_remez.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_remez.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_remez.lo `test -f 'sci_gateway/fortran/sci_remez.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_remez.f
 
 sci_rpem.lo: sci_gateway/fortran/sci_rpem.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_rpem.lo `test -f 'sci_gateway/fortran/sci_rpem.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_rpem.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_rpem.lo `test -f 'sci_gateway/fortran/sci_rpem.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_rpem.f
 
 sci_corr.lo: sci_gateway/fortran/sci_corr.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_corr.lo `test -f 'sci_gateway/fortran/sci_corr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_corr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_corr.lo `test -f 'sci_gateway/fortran/sci_corr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_corr.f
 
 sci_fiir.lo: sci_gateway/fortran/sci_fiir.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_fiir.lo `test -f 'sci_gateway/fortran/sci_fiir.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_fiir.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_fiir.lo `test -f 'sci_gateway/fortran/sci_fiir.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_fiir.f
 
 sci_amell.lo: sci_gateway/fortran/sci_amell.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_amell.lo `test -f 'sci_gateway/fortran/sci_amell.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_amell.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_amell.lo `test -f 'sci_gateway/fortran/sci_amell.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_amell.f
 
 bgetx.lo: sci_gateway/fortran/bgetx.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgetx.lo `test -f 'sci_gateway/fortran/bgetx.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgetx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgetx.lo `test -f 'sci_gateway/fortran/bgetx.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgetx.f
 
 bgety.lo: sci_gateway/fortran/bgety.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgety.lo `test -f 'sci_gateway/fortran/bgety.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgety.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bgety.lo `test -f 'sci_gateway/fortran/bgety.f' || echo '$(srcdir)/'`sci_gateway/fortran/bgety.f
 
 Ex-corr.lo: sci_gateway/fortran/Ex-corr.f
-	$(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-corr.lo `test -f 'sci_gateway/fortran/Ex-corr.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-corr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-corr.lo `test -f 'sci_gateway/fortran/Ex-corr.f' || echo '$(srcdir)/'`sci_gateway/fortran/Ex-corr.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

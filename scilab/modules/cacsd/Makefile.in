@@ -182,10 +182,11 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
+	$(FFLAGS)
 F77LD = $(F77)
-F77LINK = $(LIBTOOL) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
+	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libcacsd_la_SOURCES)
 DIST_SOURCES = $(libcacsd_la_SOURCES)
 libcacsd_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -198,7 +199,6 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
-AR_FLAGS = @AR_FLAGS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -209,13 +209,9 @@ CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CC_LDFLAGS = @CC_LDFLAGS@
 CC_OPTIONS = @CC_OPTIONS@
-CC_PICFLAGS = @CC_PICFLAGS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -230,18 +226,15 @@ EGREP = @EGREP@
 EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
+F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_LDFLAGS = @FC_LDFLAGS@
-FC_PICFLAGS = @FC_PICFLAGS@
 FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
-FILES_TO_CLEAN = @FILES_TO_CLEAN@
 FLIBS = @FLIBS@
 GCC = @GCC@
-GCCFIX = @GCCFIX@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -275,7 +268,6 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LD_LDFLAGS = @LD_LDFLAGS@
 LIBM = @LIBM@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
@@ -364,6 +356,7 @@ X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
+ac_ct_F77 = @ac_ct_F77@
 ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
@@ -887,544 +880,544 @@ libcacsd_la-gw_cacsd3.lo: sci_gateway/c/gw_cacsd3.c
 	$(LTF77COMPILE) -c -o $@ $<
 
 libcacsd_la-riccpack.lo: src/fortran/riccpack.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-riccpack.lo `test -f 'src/fortran/riccpack.f' || echo '$(srcdir)/'`src/fortran/riccpack.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-riccpack.lo `test -f 'src/fortran/riccpack.f' || echo '$(srcdir)/'`src/fortran/riccpack.f
 
 libcacsd_la-jacl2.lo: src/fortran/jacl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-jacl2.lo `test -f 'src/fortran/jacl2.f' || echo '$(srcdir)/'`src/fortran/jacl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-jacl2.lo `test -f 'src/fortran/jacl2.f' || echo '$(srcdir)/'`src/fortran/jacl2.f
 
 libcacsd_la-onface.lo: src/fortran/onface.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-onface.lo `test -f 'src/fortran/onface.f' || echo '$(srcdir)/'`src/fortran/onface.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-onface.lo `test -f 'src/fortran/onface.f' || echo '$(srcdir)/'`src/fortran/onface.f
 
 libcacsd_la-hhdml.lo: src/fortran/hhdml.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-hhdml.lo `test -f 'src/fortran/hhdml.f' || echo '$(srcdir)/'`src/fortran/hhdml.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-hhdml.lo `test -f 'src/fortran/hhdml.f' || echo '$(srcdir)/'`src/fortran/hhdml.f
 
 libcacsd_la-tild.lo: src/fortran/tild.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-tild.lo `test -f 'src/fortran/tild.f' || echo '$(srcdir)/'`src/fortran/tild.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-tild.lo `test -f 'src/fortran/tild.f' || echo '$(srcdir)/'`src/fortran/tild.f
 
 libcacsd_la-degl2.lo: src/fortran/degl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-degl2.lo `test -f 'src/fortran/degl2.f' || echo '$(srcdir)/'`src/fortran/degl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-degl2.lo `test -f 'src/fortran/degl2.f' || echo '$(srcdir)/'`src/fortran/degl2.f
 
 libcacsd_la-dqrdc.lo: src/fortran/dqrdc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dqrdc.lo `test -f 'src/fortran/dqrdc.f' || echo '$(srcdir)/'`src/fortran/dqrdc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dqrdc.lo `test -f 'src/fortran/dqrdc.f' || echo '$(srcdir)/'`src/fortran/dqrdc.f
 
 libcacsd_la-qvalz.lo: src/fortran/qvalz.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
 
 libcacsd_la-ssxmc.lo: src/fortran/ssxmc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ssxmc.lo `test -f 'src/fortran/ssxmc.f' || echo '$(srcdir)/'`src/fortran/ssxmc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ssxmc.lo `test -f 'src/fortran/ssxmc.f' || echo '$(srcdir)/'`src/fortran/ssxmc.f
 
 libcacsd_la-dfrmg.lo: src/fortran/dfrmg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dfrmg.lo `test -f 'src/fortran/dfrmg.f' || echo '$(srcdir)/'`src/fortran/dfrmg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dfrmg.lo `test -f 'src/fortran/dfrmg.f' || echo '$(srcdir)/'`src/fortran/dfrmg.f
 
 libcacsd_la-hessl2.lo: src/fortran/hessl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-hessl2.lo `test -f 'src/fortran/hessl2.f' || echo '$(srcdir)/'`src/fortran/hessl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-hessl2.lo `test -f 'src/fortran/hessl2.f' || echo '$(srcdir)/'`src/fortran/hessl2.f
 
 libcacsd_la-ZB03OD.lo: src/fortran/ZB03OD.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ZB03OD.lo `test -f 'src/fortran/ZB03OD.f' || echo '$(srcdir)/'`src/fortran/ZB03OD.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ZB03OD.lo `test -f 'src/fortran/ZB03OD.f' || echo '$(srcdir)/'`src/fortran/ZB03OD.f
 
 libcacsd_la-rtitr.lo: src/fortran/rtitr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-rtitr.lo `test -f 'src/fortran/rtitr.f' || echo '$(srcdir)/'`src/fortran/rtitr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-rtitr.lo `test -f 'src/fortran/rtitr.f' || echo '$(srcdir)/'`src/fortran/rtitr.f
 
 libcacsd_la-watfac.lo: src/fortran/watfac.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-watfac.lo `test -f 'src/fortran/watfac.f' || echo '$(srcdir)/'`src/fortran/watfac.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-watfac.lo `test -f 'src/fortran/watfac.f' || echo '$(srcdir)/'`src/fortran/watfac.f
 
 libcacsd_la-sszer.lo: src/fortran/sszer.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sszer.lo `test -f 'src/fortran/sszer.f' || echo '$(srcdir)/'`src/fortran/sszer.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sszer.lo `test -f 'src/fortran/sszer.f' || echo '$(srcdir)/'`src/fortran/sszer.f
 
 libcacsd_la-mzdivq.lo: src/fortran/mzdivq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mzdivq.lo `test -f 'src/fortran/mzdivq.f' || echo '$(srcdir)/'`src/fortran/mzdivq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mzdivq.lo `test -f 'src/fortran/mzdivq.f' || echo '$(srcdir)/'`src/fortran/mzdivq.f
 
 libcacsd_la-expan.lo: src/fortran/expan.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-expan.lo `test -f 'src/fortran/expan.f' || echo '$(srcdir)/'`src/fortran/expan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-expan.lo `test -f 'src/fortran/expan.f' || echo '$(srcdir)/'`src/fortran/expan.f
 
 libcacsd_la-optml2.lo: src/fortran/optml2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-optml2.lo `test -f 'src/fortran/optml2.f' || echo '$(srcdir)/'`src/fortran/optml2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-optml2.lo `test -f 'src/fortran/optml2.f' || echo '$(srcdir)/'`src/fortran/optml2.f
 
 libcacsd_la-wdegre.lo: src/fortran/wdegre.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wdegre.lo `test -f 'src/fortran/wdegre.f' || echo '$(srcdir)/'`src/fortran/wdegre.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wdegre.lo `test -f 'src/fortran/wdegre.f' || echo '$(srcdir)/'`src/fortran/wdegre.f
 
 libcacsd_la-phi.lo: src/fortran/phi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-phi.lo `test -f 'src/fortran/phi.f' || echo '$(srcdir)/'`src/fortran/phi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-phi.lo `test -f 'src/fortran/phi.f' || echo '$(srcdir)/'`src/fortran/phi.f
 
 libcacsd_la-dgeco.lo: src/fortran/dgeco.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dgeco.lo `test -f 'src/fortran/dgeco.f' || echo '$(srcdir)/'`src/fortran/dgeco.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dgeco.lo `test -f 'src/fortran/dgeco.f' || echo '$(srcdir)/'`src/fortran/dgeco.f
 
 libcacsd_la-ricd.lo: src/fortran/ricd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ricd.lo `test -f 'src/fortran/ricd.f' || echo '$(srcdir)/'`src/fortran/ricd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ricd.lo `test -f 'src/fortran/ricd.f' || echo '$(srcdir)/'`src/fortran/ricd.f
 
 libcacsd_la-shrslv.lo: src/fortran/shrslv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-shrslv.lo `test -f 'src/fortran/shrslv.f' || echo '$(srcdir)/'`src/fortran/shrslv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-shrslv.lo `test -f 'src/fortran/shrslv.f' || echo '$(srcdir)/'`src/fortran/shrslv.f
 
 libcacsd_la-qhesz.lo: src/fortran/qhesz.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-qhesz.lo `test -f 'src/fortran/qhesz.f' || echo '$(srcdir)/'`src/fortran/qhesz.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-qhesz.lo `test -f 'src/fortran/qhesz.f' || echo '$(srcdir)/'`src/fortran/qhesz.f
 
 libcacsd_la-rilac.lo: src/fortran/rilac.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-rilac.lo `test -f 'src/fortran/rilac.f' || echo '$(srcdir)/'`src/fortran/rilac.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-rilac.lo `test -f 'src/fortran/rilac.f' || echo '$(srcdir)/'`src/fortran/rilac.f
 
 libcacsd_la-inva.lo: src/fortran/inva.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-inva.lo `test -f 'src/fortran/inva.f' || echo '$(srcdir)/'`src/fortran/inva.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-inva.lo `test -f 'src/fortran/inva.f' || echo '$(srcdir)/'`src/fortran/inva.f
 
 libcacsd_la-scaleg.lo: src/fortran/scaleg.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-scaleg.lo `test -f 'src/fortran/scaleg.f' || echo '$(srcdir)/'`src/fortran/scaleg.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-scaleg.lo `test -f 'src/fortran/scaleg.f' || echo '$(srcdir)/'`src/fortran/scaleg.f
 
 libcacsd_la-arl2.lo: src/fortran/arl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-arl2.lo `test -f 'src/fortran/arl2.f' || echo '$(srcdir)/'`src/fortran/arl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-arl2.lo `test -f 'src/fortran/arl2.f' || echo '$(srcdir)/'`src/fortran/arl2.f
 
 libcacsd_la-wesidu.lo: src/fortran/wesidu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wesidu.lo `test -f 'src/fortran/wesidu.f' || echo '$(srcdir)/'`src/fortran/wesidu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wesidu.lo `test -f 'src/fortran/wesidu.f' || echo '$(srcdir)/'`src/fortran/wesidu.f
 
 libcacsd_la-dzdivq.lo: src/fortran/dzdivq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dzdivq.lo `test -f 'src/fortran/dzdivq.f' || echo '$(srcdir)/'`src/fortran/dzdivq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dzdivq.lo `test -f 'src/fortran/dzdivq.f' || echo '$(srcdir)/'`src/fortran/dzdivq.f
 
 libcacsd_la-arl2a.lo: src/fortran/arl2a.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-arl2a.lo `test -f 'src/fortran/arl2a.f' || echo '$(srcdir)/'`src/fortran/arl2a.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-arl2a.lo `test -f 'src/fortran/arl2a.f' || echo '$(srcdir)/'`src/fortran/arl2a.f
 
 libcacsd_la-wgeco.lo: src/fortran/wgeco.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wgeco.lo `test -f 'src/fortran/wgeco.f' || echo '$(srcdir)/'`src/fortran/wgeco.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wgeco.lo `test -f 'src/fortran/wgeco.f' || echo '$(srcdir)/'`src/fortran/wgeco.f
 
 libcacsd_la-lq.lo: src/fortran/lq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-lq.lo `test -f 'src/fortran/lq.f' || echo '$(srcdir)/'`src/fortran/lq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-lq.lo `test -f 'src/fortran/lq.f' || echo '$(srcdir)/'`src/fortran/lq.f
 
 libcacsd_la-outl2.lo: src/fortran/outl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-outl2.lo `test -f 'src/fortran/outl2.f' || echo '$(srcdir)/'`src/fortran/outl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-outl2.lo `test -f 'src/fortran/outl2.f' || echo '$(srcdir)/'`src/fortran/outl2.f
 
 libcacsd_la-dhetr.lo: src/fortran/dhetr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dhetr.lo `test -f 'src/fortran/dhetr.f' || echo '$(srcdir)/'`src/fortran/dhetr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dhetr.lo `test -f 'src/fortran/dhetr.f' || echo '$(srcdir)/'`src/fortran/dhetr.f
 
 libcacsd_la-ereduc.lo: src/fortran/ereduc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ereduc.lo `test -f 'src/fortran/ereduc.f' || echo '$(srcdir)/'`src/fortran/ereduc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ereduc.lo `test -f 'src/fortran/ereduc.f' || echo '$(srcdir)/'`src/fortran/ereduc.f
 
 libcacsd_la-domout.lo: src/fortran/domout.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-domout.lo `test -f 'src/fortran/domout.f' || echo '$(srcdir)/'`src/fortran/domout.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-domout.lo `test -f 'src/fortran/domout.f' || echo '$(srcdir)/'`src/fortran/domout.f
 
 libcacsd_la-polmc.lo: src/fortran/polmc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-polmc.lo `test -f 'src/fortran/polmc.f' || echo '$(srcdir)/'`src/fortran/polmc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-polmc.lo `test -f 'src/fortran/polmc.f' || echo '$(srcdir)/'`src/fortran/polmc.f
 
 libcacsd_la-rootgp.lo: src/fortran/rootgp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-rootgp.lo `test -f 'src/fortran/rootgp.f' || echo '$(srcdir)/'`src/fortran/rootgp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-rootgp.lo `test -f 'src/fortran/rootgp.f' || echo '$(srcdir)/'`src/fortran/rootgp.f
 
 libcacsd_la-feq.lo: src/fortran/feq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-feq.lo `test -f 'src/fortran/feq.f' || echo '$(srcdir)/'`src/fortran/feq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-feq.lo `test -f 'src/fortran/feq.f' || echo '$(srcdir)/'`src/fortran/feq.f
 
 libcacsd_la-dgedi.lo: src/fortran/dgedi.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dgedi.lo `test -f 'src/fortran/dgedi.f' || echo '$(srcdir)/'`src/fortran/dgedi.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dgedi.lo `test -f 'src/fortran/dgedi.f' || echo '$(srcdir)/'`src/fortran/dgedi.f
 
 libcacsd_la-fout.lo: src/fortran/fout.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-fout.lo `test -f 'src/fortran/fout.f' || echo '$(srcdir)/'`src/fortran/fout.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-fout.lo `test -f 'src/fortran/fout.f' || echo '$(srcdir)/'`src/fortran/fout.f
 
 libcacsd_la-deg1l2.lo: src/fortran/deg1l2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-deg1l2.lo `test -f 'src/fortran/deg1l2.f' || echo '$(srcdir)/'`src/fortran/deg1l2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-deg1l2.lo `test -f 'src/fortran/deg1l2.f' || echo '$(srcdir)/'`src/fortran/deg1l2.f
 
 libcacsd_la-modul.lo: src/fortran/modul.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-modul.lo `test -f 'src/fortran/modul.f' || echo '$(srcdir)/'`src/fortran/modul.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-modul.lo `test -f 'src/fortran/modul.f' || echo '$(srcdir)/'`src/fortran/modul.f
 
 libcacsd_la-scapol.lo: src/fortran/scapol.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
 
 libcacsd_la-wgesl.lo: src/fortran/wgesl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wgesl.lo `test -f 'src/fortran/wgesl.f' || echo '$(srcdir)/'`src/fortran/wgesl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wgesl.lo `test -f 'src/fortran/wgesl.f' || echo '$(srcdir)/'`src/fortran/wgesl.f
 
 libcacsd_la-dlslv.lo: src/fortran/dlslv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
 
 libcacsd_la-giv.lo: src/fortran/giv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f
 
 libcacsd_la-dqrsl.lo: src/fortran/dqrsl.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dqrsl.lo `test -f 'src/fortran/dqrsl.f' || echo '$(srcdir)/'`src/fortran/dqrsl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dqrsl.lo `test -f 'src/fortran/dqrsl.f' || echo '$(srcdir)/'`src/fortran/dqrsl.f
 
 libcacsd_la-storl2.lo: src/fortran/storl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-storl2.lo `test -f 'src/fortran/storl2.f' || echo '$(srcdir)/'`src/fortran/storl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-storl2.lo `test -f 'src/fortran/storl2.f' || echo '$(srcdir)/'`src/fortran/storl2.f
 
 libcacsd_la-dqrsm.lo: src/fortran/dqrsm.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dqrsm.lo `test -f 'src/fortran/dqrsm.f' || echo '$(srcdir)/'`src/fortran/dqrsm.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-dqrsm.lo `test -f 'src/fortran/dqrsm.f' || echo '$(srcdir)/'`src/fortran/dqrsm.f
 
 libcacsd_la-calsca.lo: src/fortran/calsca.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-calsca.lo `test -f 'src/fortran/calsca.f' || echo '$(srcdir)/'`src/fortran/calsca.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-calsca.lo `test -f 'src/fortran/calsca.f' || echo '$(srcdir)/'`src/fortran/calsca.f
 
 libcacsd_la-qitz.lo: src/fortran/qitz.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-qitz.lo `test -f 'src/fortran/qitz.f' || echo '$(srcdir)/'`src/fortran/qitz.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-qitz.lo `test -f 'src/fortran/qitz.f' || echo '$(srcdir)/'`src/fortran/qitz.f
 
 libcacsd_la-fstair.lo: src/fortran/fstair.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-fstair.lo `test -f 'src/fortran/fstair.f' || echo '$(srcdir)/'`src/fortran/fstair.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-fstair.lo `test -f 'src/fortran/fstair.f' || echo '$(srcdir)/'`src/fortran/fstair.f
 
 libcacsd_la-front.lo: src/fortran/front.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
 
 libcacsd_la-calcsc.lo: src/fortran/calcsc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-calcsc.lo `test -f 'src/fortran/calcsc.f' || echo '$(srcdir)/'`src/fortran/calcsc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-calcsc.lo `test -f 'src/fortran/calcsc.f' || echo '$(srcdir)/'`src/fortran/calcsc.f
 
 libcacsd_la-wgefa.lo: src/fortran/wgefa.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wgefa.lo `test -f 'src/fortran/wgefa.f' || echo '$(srcdir)/'`src/fortran/wgefa.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-wgefa.lo `test -f 'src/fortran/wgefa.f' || echo '$(srcdir)/'`src/fortran/wgefa.f
 
 libcacsd_la-sb04pd.lo: src/slicot/sb04pd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04pd.lo `test -f 'src/slicot/sb04pd.f' || echo '$(srcdir)/'`src/slicot/sb04pd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04pd.lo `test -f 'src/slicot/sb04pd.f' || echo '$(srcdir)/'`src/slicot/sb04pd.f
 
 libcacsd_la-ib01ad.lo: src/slicot/ib01ad.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01ad.lo `test -f 'src/slicot/ib01ad.f' || echo '$(srcdir)/'`src/slicot/ib01ad.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01ad.lo `test -f 'src/slicot/ib01ad.f' || echo '$(srcdir)/'`src/slicot/ib01ad.f
 
 libcacsd_la-tb01wd.lo: src/slicot/tb01wd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-tb01wd.lo `test -f 'src/slicot/tb01wd.f' || echo '$(srcdir)/'`src/slicot/tb01wd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-tb01wd.lo `test -f 'src/slicot/tb01wd.f' || echo '$(srcdir)/'`src/slicot/tb01wd.f
 
 libcacsd_la-ib01py.lo: src/slicot/ib01py.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01py.lo `test -f 'src/slicot/ib01py.f' || echo '$(srcdir)/'`src/slicot/ib01py.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01py.lo `test -f 'src/slicot/ib01py.f' || echo '$(srcdir)/'`src/slicot/ib01py.f
 
 libcacsd_la-mb01rx.lo: src/slicot/mb01rx.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01rx.lo `test -f 'src/slicot/mb01rx.f' || echo '$(srcdir)/'`src/slicot/mb01rx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01rx.lo `test -f 'src/slicot/mb01rx.f' || echo '$(srcdir)/'`src/slicot/mb01rx.f
 
 libcacsd_la-ib01md.lo: src/slicot/ib01md.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01md.lo `test -f 'src/slicot/ib01md.f' || echo '$(srcdir)/'`src/slicot/ib01md.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01md.lo `test -f 'src/slicot/ib01md.f' || echo '$(srcdir)/'`src/slicot/ib01md.f
 
 libcacsd_la-sb02ru.lo: src/slicot/sb02ru.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ru.lo `test -f 'src/slicot/sb02ru.f' || echo '$(srcdir)/'`src/slicot/sb02ru.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ru.lo `test -f 'src/slicot/sb02ru.f' || echo '$(srcdir)/'`src/slicot/sb02ru.f
 
 libcacsd_la-sb04nw.lo: src/slicot/sb04nw.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nw.lo `test -f 'src/slicot/sb04nw.f' || echo '$(srcdir)/'`src/slicot/sb04nw.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nw.lo `test -f 'src/slicot/sb04nw.f' || echo '$(srcdir)/'`src/slicot/sb04nw.f
 
 libcacsd_la-sb10dd.lo: src/slicot/sb10dd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10dd.lo `test -f 'src/slicot/sb10dd.f' || echo '$(srcdir)/'`src/slicot/sb10dd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10dd.lo `test -f 'src/slicot/sb10dd.f' || echo '$(srcdir)/'`src/slicot/sb10dd.f
 
 libcacsd_la-mb04id.lo: src/slicot/mb04id.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04id.lo `test -f 'src/slicot/mb04id.f' || echo '$(srcdir)/'`src/slicot/mb04id.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04id.lo `test -f 'src/slicot/mb04id.f' || echo '$(srcdir)/'`src/slicot/mb04id.f
 
 libcacsd_la-sb04ny.lo: src/slicot/sb04ny.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04ny.lo `test -f 'src/slicot/sb04ny.f' || echo '$(srcdir)/'`src/slicot/sb04ny.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04ny.lo `test -f 'src/slicot/sb04ny.f' || echo '$(srcdir)/'`src/slicot/sb04ny.f
 
 libcacsd_la-ib01qd.lo: src/slicot/ib01qd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01qd.lo `test -f 'src/slicot/ib01qd.f' || echo '$(srcdir)/'`src/slicot/ib01qd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01qd.lo `test -f 'src/slicot/ib01qd.f' || echo '$(srcdir)/'`src/slicot/ib01qd.f
 
 libcacsd_la-sb04px.lo: src/slicot/sb04px.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04px.lo `test -f 'src/slicot/sb04px.f' || echo '$(srcdir)/'`src/slicot/sb04px.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04px.lo `test -f 'src/slicot/sb04px.f' || echo '$(srcdir)/'`src/slicot/sb04px.f
 
 libcacsd_la-sb04rw.lo: src/slicot/sb04rw.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rw.lo `test -f 'src/slicot/sb04rw.f' || echo '$(srcdir)/'`src/slicot/sb04rw.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rw.lo `test -f 'src/slicot/sb04rw.f' || echo '$(srcdir)/'`src/slicot/sb04rw.f
 
 libcacsd_la-sb04ry.lo: src/slicot/sb04ry.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04ry.lo `test -f 'src/slicot/sb04ry.f' || echo '$(srcdir)/'`src/slicot/sb04ry.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04ry.lo `test -f 'src/slicot/sb04ry.f' || echo '$(srcdir)/'`src/slicot/sb04ry.f
 
 libcacsd_la-mb01qd.lo: src/slicot/mb01qd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01qd.lo `test -f 'src/slicot/mb01qd.f' || echo '$(srcdir)/'`src/slicot/mb01qd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01qd.lo `test -f 'src/slicot/mb01qd.f' || echo '$(srcdir)/'`src/slicot/mb01qd.f
 
 libcacsd_la-mb01ud.lo: src/slicot/mb01ud.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01ud.lo `test -f 'src/slicot/mb01ud.f' || echo '$(srcdir)/'`src/slicot/mb01ud.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01ud.lo `test -f 'src/slicot/mb01ud.f' || echo '$(srcdir)/'`src/slicot/mb01ud.f
 
 libcacsd_la-sb02od.lo: src/slicot/sb02od.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02od.lo `test -f 'src/slicot/sb02od.f' || echo '$(srcdir)/'`src/slicot/sb02od.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02od.lo `test -f 'src/slicot/sb02od.f' || echo '$(srcdir)/'`src/slicot/sb02od.f
 
 libcacsd_la-mb02ud.lo: src/slicot/mb02ud.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb02ud.lo `test -f 'src/slicot/mb02ud.f' || echo '$(srcdir)/'`src/slicot/mb02ud.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb02ud.lo `test -f 'src/slicot/mb02ud.f' || echo '$(srcdir)/'`src/slicot/mb02ud.f
 
 libcacsd_la-sb10pd.lo: src/slicot/sb10pd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10pd.lo `test -f 'src/slicot/sb10pd.f' || echo '$(srcdir)/'`src/slicot/sb10pd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10pd.lo `test -f 'src/slicot/sb10pd.f' || echo '$(srcdir)/'`src/slicot/sb10pd.f
 
 libcacsd_la-sb03od.lo: src/slicot/sb03od.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03od.lo `test -f 'src/slicot/sb03od.f' || echo '$(srcdir)/'`src/slicot/sb03od.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03od.lo `test -f 'src/slicot/sb03od.f' || echo '$(srcdir)/'`src/slicot/sb03od.f
 
 libcacsd_la-mb03ud.lo: src/slicot/mb03ud.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb03ud.lo `test -f 'src/slicot/mb03ud.f' || echo '$(srcdir)/'`src/slicot/mb03ud.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb03ud.lo `test -f 'src/slicot/mb03ud.f' || echo '$(srcdir)/'`src/slicot/mb03ud.f
 
 libcacsd_la-sb02sd.lo: src/slicot/sb02sd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02sd.lo `test -f 'src/slicot/sb02sd.f' || echo '$(srcdir)/'`src/slicot/sb02sd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02sd.lo `test -f 'src/slicot/sb02sd.f' || echo '$(srcdir)/'`src/slicot/sb02sd.f
 
 libcacsd_la-ib01oy.lo: src/slicot/ib01oy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01oy.lo `test -f 'src/slicot/ib01oy.f' || echo '$(srcdir)/'`src/slicot/ib01oy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01oy.lo `test -f 'src/slicot/ib01oy.f' || echo '$(srcdir)/'`src/slicot/ib01oy.f
 
 libcacsd_la-sb02ms.lo: src/slicot/sb02ms.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ms.lo `test -f 'src/slicot/sb02ms.f' || echo '$(srcdir)/'`src/slicot/sb02ms.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ms.lo `test -f 'src/slicot/sb02ms.f' || echo '$(srcdir)/'`src/slicot/sb02ms.f
 
 libcacsd_la-ab13md.lo: src/slicot/ab13md.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ab13md.lo `test -f 'src/slicot/ab13md.f' || echo '$(srcdir)/'`src/slicot/ab13md.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ab13md.lo `test -f 'src/slicot/ab13md.f' || echo '$(srcdir)/'`src/slicot/ab13md.f
 
 libcacsd_la-sb03or.lo: src/slicot/sb03or.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03or.lo `test -f 'src/slicot/sb03or.f' || echo '$(srcdir)/'`src/slicot/sb03or.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03or.lo `test -f 'src/slicot/sb03or.f' || echo '$(srcdir)/'`src/slicot/sb03or.f
 
 libcacsd_la-mb03oy.lo: src/slicot/mb03oy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb03oy.lo `test -f 'src/slicot/mb03oy.f' || echo '$(srcdir)/'`src/slicot/mb03oy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb03oy.lo `test -f 'src/slicot/mb03oy.f' || echo '$(srcdir)/'`src/slicot/mb03oy.f
 
 libcacsd_la-ma02fd.lo: src/slicot/ma02fd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ma02fd.lo `test -f 'src/slicot/ma02fd.f' || echo '$(srcdir)/'`src/slicot/ma02fd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ma02fd.lo `test -f 'src/slicot/ma02fd.f' || echo '$(srcdir)/'`src/slicot/ma02fd.f
 
 libcacsd_la-sb03ot.lo: src/slicot/sb03ot.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03ot.lo `test -f 'src/slicot/sb03ot.f' || echo '$(srcdir)/'`src/slicot/sb03ot.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03ot.lo `test -f 'src/slicot/sb03ot.f' || echo '$(srcdir)/'`src/slicot/sb03ot.f
 
 libcacsd_la-mb04oy.lo: src/slicot/mb04oy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04oy.lo `test -f 'src/slicot/mb04oy.f' || echo '$(srcdir)/'`src/slicot/mb04oy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04oy.lo `test -f 'src/slicot/mb04oy.f' || echo '$(srcdir)/'`src/slicot/mb04oy.f
 
 libcacsd_la-sb04mu.lo: src/slicot/sb04mu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04mu.lo `test -f 'src/slicot/sb04mu.f' || echo '$(srcdir)/'`src/slicot/sb04mu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04mu.lo `test -f 'src/slicot/sb04mu.f' || echo '$(srcdir)/'`src/slicot/sb04mu.f
 
 libcacsd_la-sb03mw.lo: src/slicot/sb03mw.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03mw.lo `test -f 'src/slicot/sb03mw.f' || echo '$(srcdir)/'`src/slicot/sb03mw.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03mw.lo `test -f 'src/slicot/sb03mw.f' || echo '$(srcdir)/'`src/slicot/sb03mw.f
 
 libcacsd_la-sb02ov.lo: src/slicot/sb02ov.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ov.lo `test -f 'src/slicot/sb02ov.f' || echo '$(srcdir)/'`src/slicot/sb02ov.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ov.lo `test -f 'src/slicot/sb02ov.f' || echo '$(srcdir)/'`src/slicot/sb02ov.f
 
 libcacsd_la-sb03ov.lo: src/slicot/sb03ov.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03ov.lo `test -f 'src/slicot/sb03ov.f' || echo '$(srcdir)/'`src/slicot/sb03ov.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03ov.lo `test -f 'src/slicot/sb03ov.f' || echo '$(srcdir)/'`src/slicot/sb03ov.f
 
 libcacsd_la-sb04mw.lo: src/slicot/sb04mw.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04mw.lo `test -f 'src/slicot/sb04mw.f' || echo '$(srcdir)/'`src/slicot/sb04mw.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04mw.lo `test -f 'src/slicot/sb04mw.f' || echo '$(srcdir)/'`src/slicot/sb04mw.f
 
 libcacsd_la-sb03my.lo: src/slicot/sb03my.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03my.lo `test -f 'src/slicot/sb03my.f' || echo '$(srcdir)/'`src/slicot/sb03my.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03my.lo `test -f 'src/slicot/sb03my.f' || echo '$(srcdir)/'`src/slicot/sb03my.f
 
 libcacsd_la-sb04my.lo: src/slicot/sb04my.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04my.lo `test -f 'src/slicot/sb04my.f' || echo '$(srcdir)/'`src/slicot/sb04my.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04my.lo `test -f 'src/slicot/sb04my.f' || echo '$(srcdir)/'`src/slicot/sb04my.f
 
 libcacsd_la-sb04qu.lo: src/slicot/sb04qu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qu.lo `test -f 'src/slicot/sb04qu.f' || echo '$(srcdir)/'`src/slicot/sb04qu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qu.lo `test -f 'src/slicot/sb04qu.f' || echo '$(srcdir)/'`src/slicot/sb04qu.f
 
 libcacsd_la-ib01pd.lo: src/slicot/ib01pd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01pd.lo `test -f 'src/slicot/ib01pd.f' || echo '$(srcdir)/'`src/slicot/ib01pd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01pd.lo `test -f 'src/slicot/ib01pd.f' || echo '$(srcdir)/'`src/slicot/ib01pd.f
 
 libcacsd_la-sb03qy.lo: src/slicot/sb03qy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03qy.lo `test -f 'src/slicot/sb03qy.f' || echo '$(srcdir)/'`src/slicot/sb03qy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03qy.lo `test -f 'src/slicot/sb03qy.f' || echo '$(srcdir)/'`src/slicot/sb03qy.f
 
 libcacsd_la-sb03sx.lo: src/slicot/sb03sx.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03sx.lo `test -f 'src/slicot/sb03sx.f' || echo '$(srcdir)/'`src/slicot/sb03sx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03sx.lo `test -f 'src/slicot/sb03sx.f' || echo '$(srcdir)/'`src/slicot/sb03sx.f
 
 libcacsd_la-sb04qy.lo: src/slicot/sb04qy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qy.lo `test -f 'src/slicot/sb04qy.f' || echo '$(srcdir)/'`src/slicot/sb04qy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qy.lo `test -f 'src/slicot/sb04qy.f' || echo '$(srcdir)/'`src/slicot/sb04qy.f
 
 libcacsd_la-mb01pd.lo: src/slicot/mb01pd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01pd.lo `test -f 'src/slicot/mb01pd.f' || echo '$(srcdir)/'`src/slicot/mb01pd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01pd.lo `test -f 'src/slicot/mb01pd.f' || echo '$(srcdir)/'`src/slicot/mb01pd.f
 
 libcacsd_la-mb02pd.lo: src/slicot/mb02pd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb02pd.lo `test -f 'src/slicot/mb02pd.f' || echo '$(srcdir)/'`src/slicot/mb02pd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb02pd.lo `test -f 'src/slicot/mb02pd.f' || echo '$(srcdir)/'`src/slicot/mb02pd.f
 
 libcacsd_la-mb01td.lo: src/slicot/mb01td.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01td.lo `test -f 'src/slicot/mb01td.f' || echo '$(srcdir)/'`src/slicot/mb01td.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01td.lo `test -f 'src/slicot/mb01td.f' || echo '$(srcdir)/'`src/slicot/mb01td.f
 
 libcacsd_la-sb02nd.lo: src/slicot/sb02nd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02nd.lo `test -f 'src/slicot/sb02nd.f' || echo '$(srcdir)/'`src/slicot/sb02nd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02nd.lo `test -f 'src/slicot/sb02nd.f' || echo '$(srcdir)/'`src/slicot/sb02nd.f
 
 libcacsd_la-sb04nd.lo: src/slicot/sb04nd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nd.lo `test -f 'src/slicot/sb04nd.f' || echo '$(srcdir)/'`src/slicot/sb04nd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nd.lo `test -f 'src/slicot/sb04nd.f' || echo '$(srcdir)/'`src/slicot/sb04nd.f
 
 libcacsd_la-sb02rd.lo: src/slicot/sb02rd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02rd.lo `test -f 'src/slicot/sb02rd.f' || echo '$(srcdir)/'`src/slicot/sb02rd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02rd.lo `test -f 'src/slicot/sb02rd.f' || echo '$(srcdir)/'`src/slicot/sb02rd.f
 
 libcacsd_la-sb04rd.lo: src/slicot/sb04rd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rd.lo `test -f 'src/slicot/sb04rd.f' || echo '$(srcdir)/'`src/slicot/sb04rd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rd.lo `test -f 'src/slicot/sb04rd.f' || echo '$(srcdir)/'`src/slicot/sb04rd.f
 
 libcacsd_la-ib01cd.lo: src/slicot/ib01cd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01cd.lo `test -f 'src/slicot/ib01cd.f' || echo '$(srcdir)/'`src/slicot/ib01cd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01cd.lo `test -f 'src/slicot/ib01cd.f' || echo '$(srcdir)/'`src/slicot/ib01cd.f
 
 libcacsd_la-ib01px.lo: src/slicot/ib01px.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01px.lo `test -f 'src/slicot/ib01px.f' || echo '$(srcdir)/'`src/slicot/ib01px.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01px.lo `test -f 'src/slicot/ib01px.f' || echo '$(srcdir)/'`src/slicot/ib01px.f
 
 libcacsd_la-ma02ad.lo: src/slicot/ma02ad.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ma02ad.lo `test -f 'src/slicot/ma02ad.f' || echo '$(srcdir)/'`src/slicot/ma02ad.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ma02ad.lo `test -f 'src/slicot/ma02ad.f' || echo '$(srcdir)/'`src/slicot/ma02ad.f
 
 libcacsd_la-ab01od.lo: src/slicot/ab01od.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ab01od.lo `test -f 'src/slicot/ab01od.f' || echo '$(srcdir)/'`src/slicot/ab01od.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ab01od.lo `test -f 'src/slicot/ab01od.f' || echo '$(srcdir)/'`src/slicot/ab01od.f
 
 libcacsd_la-mb01ru.lo: src/slicot/mb01ru.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01ru.lo `test -f 'src/slicot/mb01ru.f' || echo '$(srcdir)/'`src/slicot/mb01ru.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01ru.lo `test -f 'src/slicot/mb01ru.f' || echo '$(srcdir)/'`src/slicot/mb01ru.f
 
 libcacsd_la-ma02ed.lo: src/slicot/ma02ed.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ma02ed.lo `test -f 'src/slicot/ma02ed.f' || echo '$(srcdir)/'`src/slicot/ma02ed.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ma02ed.lo `test -f 'src/slicot/ma02ed.f' || echo '$(srcdir)/'`src/slicot/ma02ed.f
 
 libcacsd_la-mb04ny.lo: src/slicot/mb04ny.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04ny.lo `test -f 'src/slicot/mb04ny.f' || echo '$(srcdir)/'`src/slicot/mb04ny.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04ny.lo `test -f 'src/slicot/mb04ny.f' || echo '$(srcdir)/'`src/slicot/mb04ny.f
 
 libcacsd_la-mb01ry.lo: src/slicot/mb01ry.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01ry.lo `test -f 'src/slicot/mb01ry.f' || echo '$(srcdir)/'`src/slicot/mb01ry.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01ry.lo `test -f 'src/slicot/mb01ry.f' || echo '$(srcdir)/'`src/slicot/mb01ry.f
 
 libcacsd_la-sb04nv.lo: src/slicot/sb04nv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nv.lo `test -f 'src/slicot/sb04nv.f' || echo '$(srcdir)/'`src/slicot/sb04nv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nv.lo `test -f 'src/slicot/sb04nv.f' || echo '$(srcdir)/'`src/slicot/sb04nv.f
 
 libcacsd_la-ib01od.lo: src/slicot/ib01od.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01od.lo `test -f 'src/slicot/ib01od.f' || echo '$(srcdir)/'`src/slicot/ib01od.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01od.lo `test -f 'src/slicot/ib01od.f' || echo '$(srcdir)/'`src/slicot/ib01od.f
 
 libcacsd_la-sb04nx.lo: src/slicot/sb04nx.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nx.lo `test -f 'src/slicot/sb04nx.f' || echo '$(srcdir)/'`src/slicot/sb04nx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04nx.lo `test -f 'src/slicot/sb04nx.f' || echo '$(srcdir)/'`src/slicot/sb04nx.f
 
 libcacsd_la-sb10fd.lo: src/slicot/sb10fd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10fd.lo `test -f 'src/slicot/sb10fd.f' || echo '$(srcdir)/'`src/slicot/sb10fd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10fd.lo `test -f 'src/slicot/sb10fd.f' || echo '$(srcdir)/'`src/slicot/sb10fd.f
 
 libcacsd_la-select.lo: src/slicot/select.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-select.lo `test -f 'src/slicot/select.f' || echo '$(srcdir)/'`src/slicot/select.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-select.lo `test -f 'src/slicot/select.f' || echo '$(srcdir)/'`src/slicot/select.f
 
 libcacsd_la-sb04rv.lo: src/slicot/sb04rv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rv.lo `test -f 'src/slicot/sb04rv.f' || echo '$(srcdir)/'`src/slicot/sb04rv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rv.lo `test -f 'src/slicot/sb04rv.f' || echo '$(srcdir)/'`src/slicot/sb04rv.f
 
 libcacsd_la-mb04kd.lo: src/slicot/mb04kd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04kd.lo `test -f 'src/slicot/mb04kd.f' || echo '$(srcdir)/'`src/slicot/mb04kd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04kd.lo `test -f 'src/slicot/mb04kd.f' || echo '$(srcdir)/'`src/slicot/mb04kd.f
 
 libcacsd_la-sb04py.lo: src/slicot/sb04py.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04py.lo `test -f 'src/slicot/sb04py.f' || echo '$(srcdir)/'`src/slicot/sb04py.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04py.lo `test -f 'src/slicot/sb04py.f' || echo '$(srcdir)/'`src/slicot/sb04py.f
 
 libcacsd_la-sb04rx.lo: src/slicot/sb04rx.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rx.lo `test -f 'src/slicot/sb04rx.f' || echo '$(srcdir)/'`src/slicot/sb04rx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04rx.lo `test -f 'src/slicot/sb04rx.f' || echo '$(srcdir)/'`src/slicot/sb04rx.f
 
 libcacsd_la-mb03od.lo: src/slicot/mb03od.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb03od.lo `test -f 'src/slicot/mb03od.f' || echo '$(srcdir)/'`src/slicot/mb03od.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb03od.lo `test -f 'src/slicot/mb03od.f' || echo '$(srcdir)/'`src/slicot/mb03od.f
 
 libcacsd_la-mb04od.lo: src/slicot/mb04od.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04od.lo `test -f 'src/slicot/mb04od.f' || echo '$(srcdir)/'`src/slicot/mb04od.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04od.lo `test -f 'src/slicot/mb04od.f' || echo '$(srcdir)/'`src/slicot/mb04od.f
 
 libcacsd_la-mb01sd.lo: src/slicot/mb01sd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01sd.lo `test -f 'src/slicot/mb01sd.f' || echo '$(srcdir)/'`src/slicot/mb01sd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01sd.lo `test -f 'src/slicot/mb01sd.f' || echo '$(srcdir)/'`src/slicot/mb01sd.f
 
 libcacsd_la-sb03md.lo: src/slicot/sb03md.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03md.lo `test -f 'src/slicot/sb03md.f' || echo '$(srcdir)/'`src/slicot/sb03md.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03md.lo `test -f 'src/slicot/sb03md.f' || echo '$(srcdir)/'`src/slicot/sb03md.f
 
 libcacsd_la-sb04md.lo: src/slicot/sb04md.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04md.lo `test -f 'src/slicot/sb04md.f' || echo '$(srcdir)/'`src/slicot/sb04md.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04md.lo `test -f 'src/slicot/sb04md.f' || echo '$(srcdir)/'`src/slicot/sb04md.f
 
 libcacsd_la-sb02qd.lo: src/slicot/sb02qd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02qd.lo `test -f 'src/slicot/sb02qd.f' || echo '$(srcdir)/'`src/slicot/sb02qd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02qd.lo `test -f 'src/slicot/sb02qd.f' || echo '$(srcdir)/'`src/slicot/sb02qd.f
 
 libcacsd_la-sb10rd.lo: src/slicot/sb10rd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10rd.lo `test -f 'src/slicot/sb10rd.f' || echo '$(srcdir)/'`src/slicot/sb10rd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10rd.lo `test -f 'src/slicot/sb10rd.f' || echo '$(srcdir)/'`src/slicot/sb10rd.f
 
 libcacsd_la-sb04qd.lo: src/slicot/sb04qd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qd.lo `test -f 'src/slicot/sb04qd.f' || echo '$(srcdir)/'`src/slicot/sb04qd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qd.lo `test -f 'src/slicot/sb04qd.f' || echo '$(srcdir)/'`src/slicot/sb04qd.f
 
 libcacsd_la-ib01my.lo: src/slicot/ib01my.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01my.lo `test -f 'src/slicot/ib01my.f' || echo '$(srcdir)/'`src/slicot/ib01my.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01my.lo `test -f 'src/slicot/ib01my.f' || echo '$(srcdir)/'`src/slicot/ib01my.f
 
 libcacsd_la-ib01bd.lo: src/slicot/ib01bd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01bd.lo `test -f 'src/slicot/ib01bd.f' || echo '$(srcdir)/'`src/slicot/ib01bd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01bd.lo `test -f 'src/slicot/ib01bd.f' || echo '$(srcdir)/'`src/slicot/ib01bd.f
 
 libcacsd_la-mb04iy.lo: src/slicot/mb04iy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04iy.lo `test -f 'src/slicot/mb04iy.f' || echo '$(srcdir)/'`src/slicot/mb04iy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04iy.lo `test -f 'src/slicot/mb04iy.f' || echo '$(srcdir)/'`src/slicot/mb04iy.f
 
 libcacsd_la-sb02mr.lo: src/slicot/sb02mr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02mr.lo `test -f 'src/slicot/sb02mr.f' || echo '$(srcdir)/'`src/slicot/sb02mr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02mr.lo `test -f 'src/slicot/sb02mr.f' || echo '$(srcdir)/'`src/slicot/sb02mr.f
 
 libcacsd_la-ab01nd.lo: src/slicot/ab01nd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ab01nd.lo `test -f 'src/slicot/ab01nd.f' || echo '$(srcdir)/'`src/slicot/ab01nd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ab01nd.lo `test -f 'src/slicot/ab01nd.f' || echo '$(srcdir)/'`src/slicot/ab01nd.f
 
 libcacsd_la-sb02mt.lo: src/slicot/sb02mt.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02mt.lo `test -f 'src/slicot/sb02mt.f' || echo '$(srcdir)/'`src/slicot/sb02mt.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02mt.lo `test -f 'src/slicot/sb02mt.f' || echo '$(srcdir)/'`src/slicot/sb02mt.f
 
 libcacsd_la-sb04mr.lo: src/slicot/sb04mr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04mr.lo `test -f 'src/slicot/sb04mr.f' || echo '$(srcdir)/'`src/slicot/sb04mr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04mr.lo `test -f 'src/slicot/sb04mr.f' || echo '$(srcdir)/'`src/slicot/sb04mr.f
 
 libcacsd_la-sb03mv.lo: src/slicot/sb03mv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03mv.lo `test -f 'src/slicot/sb03mv.f' || echo '$(srcdir)/'`src/slicot/sb03mv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03mv.lo `test -f 'src/slicot/sb03mv.f' || echo '$(srcdir)/'`src/slicot/sb03mv.f
 
 libcacsd_la-sb02ou.lo: src/slicot/sb02ou.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ou.lo `test -f 'src/slicot/sb02ou.f' || echo '$(srcdir)/'`src/slicot/sb02ou.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02ou.lo `test -f 'src/slicot/sb02ou.f' || echo '$(srcdir)/'`src/slicot/sb02ou.f
 
 libcacsd_la-mb02qy.lo: src/slicot/mb02qy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb02qy.lo `test -f 'src/slicot/mb02qy.f' || echo '$(srcdir)/'`src/slicot/mb02qy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb02qy.lo `test -f 'src/slicot/mb02qy.f' || echo '$(srcdir)/'`src/slicot/mb02qy.f
 
 libcacsd_la-sb03ou.lo: src/slicot/sb03ou.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03ou.lo `test -f 'src/slicot/sb03ou.f' || echo '$(srcdir)/'`src/slicot/sb03ou.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03ou.lo `test -f 'src/slicot/sb03ou.f' || echo '$(srcdir)/'`src/slicot/sb03ou.f
 
 libcacsd_la-sb04qr.lo: src/slicot/sb04qr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qr.lo `test -f 'src/slicot/sb04qr.f' || echo '$(srcdir)/'`src/slicot/sb04qr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb04qr.lo `test -f 'src/slicot/sb04qr.f' || echo '$(srcdir)/'`src/slicot/sb04qr.f
 
 libcacsd_la-sb03mx.lo: src/slicot/sb03mx.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03mx.lo `test -f 'src/slicot/sb03mx.f' || echo '$(srcdir)/'`src/slicot/sb03mx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03mx.lo `test -f 'src/slicot/sb03mx.f' || echo '$(srcdir)/'`src/slicot/sb03mx.f
 
 libcacsd_la-ib01nd.lo: src/slicot/ib01nd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01nd.lo `test -f 'src/slicot/ib01nd.f' || echo '$(srcdir)/'`src/slicot/ib01nd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01nd.lo `test -f 'src/slicot/ib01nd.f' || echo '$(srcdir)/'`src/slicot/ib01nd.f
 
 libcacsd_la-sb02oy.lo: src/slicot/sb02oy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02oy.lo `test -f 'src/slicot/sb02oy.f' || echo '$(srcdir)/'`src/slicot/sb02oy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb02oy.lo `test -f 'src/slicot/sb02oy.f' || echo '$(srcdir)/'`src/slicot/sb02oy.f
 
 libcacsd_la-sb03oy.lo: src/slicot/sb03oy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03oy.lo `test -f 'src/slicot/sb03oy.f' || echo '$(srcdir)/'`src/slicot/sb03oy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03oy.lo `test -f 'src/slicot/sb03oy.f' || echo '$(srcdir)/'`src/slicot/sb03oy.f
 
 libcacsd_la-sb03qx.lo: src/slicot/sb03qx.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03qx.lo `test -f 'src/slicot/sb03qx.f' || echo '$(srcdir)/'`src/slicot/sb03qx.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03qx.lo `test -f 'src/slicot/sb03qx.f' || echo '$(srcdir)/'`src/slicot/sb03qx.f
 
 libcacsd_la-ib01rd.lo: src/slicot/ib01rd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01rd.lo `test -f 'src/slicot/ib01rd.f' || echo '$(srcdir)/'`src/slicot/ib01rd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-ib01rd.lo `test -f 'src/slicot/ib01rd.f' || echo '$(srcdir)/'`src/slicot/ib01rd.f
 
 libcacsd_la-sb03sy.lo: src/slicot/sb03sy.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03sy.lo `test -f 'src/slicot/sb03sy.f' || echo '$(srcdir)/'`src/slicot/sb03sy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb03sy.lo `test -f 'src/slicot/sb03sy.f' || echo '$(srcdir)/'`src/slicot/sb03sy.f
 
 libcacsd_la-mb04nd.lo: src/slicot/mb04nd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04nd.lo `test -f 'src/slicot/mb04nd.f' || echo '$(srcdir)/'`src/slicot/mb04nd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb04nd.lo `test -f 'src/slicot/mb04nd.f' || echo '$(srcdir)/'`src/slicot/mb04nd.f
 
 libcacsd_la-mb01rd.lo: src/slicot/mb01rd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01rd.lo `test -f 'src/slicot/mb01rd.f' || echo '$(srcdir)/'`src/slicot/mb01rd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01rd.lo `test -f 'src/slicot/mb01rd.f' || echo '$(srcdir)/'`src/slicot/mb01rd.f
 
 libcacsd_la-mb01vd.lo: src/slicot/mb01vd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01vd.lo `test -f 'src/slicot/mb01vd.f' || echo '$(srcdir)/'`src/slicot/mb01vd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-mb01vd.lo `test -f 'src/slicot/mb01vd.f' || echo '$(srcdir)/'`src/slicot/mb01vd.f
 
 libcacsd_la-sb10qd.lo: src/slicot/sb10qd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10qd.lo `test -f 'src/slicot/sb10qd.f' || echo '$(srcdir)/'`src/slicot/sb10qd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sb10qd.lo `test -f 'src/slicot/sb10qd.f' || echo '$(srcdir)/'`src/slicot/sb10qd.f
 
 libcacsd_la-sci_f_hinf.lo: sci_gateway/fortran/sci_f_hinf.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_hinf.lo `test -f 'sci_gateway/fortran/sci_f_hinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_hinf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_hinf.lo `test -f 'sci_gateway/fortran/sci_f_hinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_hinf.f
 
 libcacsd_la-sci_f_zrankqr.lo: sci_gateway/fortran/sci_f_zrankqr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_zrankqr.lo `test -f 'sci_gateway/fortran/sci_f_zrankqr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_zrankqr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_zrankqr.lo `test -f 'sci_gateway/fortran/sci_f_zrankqr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_zrankqr.f
 
 libcacsd_la-sci_f_tzer.lo: sci_gateway/fortran/sci_f_tzer.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_tzer.lo `test -f 'sci_gateway/fortran/sci_f_tzer.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tzer.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_tzer.lo `test -f 'sci_gateway/fortran/sci_f_tzer.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tzer.f
 
 libcacsd_la-sci_f_residu.lo: sci_gateway/fortran/sci_f_residu.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_residu.lo `test -f 'sci_gateway/fortran/sci_f_residu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_residu.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_residu.lo `test -f 'sci_gateway/fortran/sci_f_residu.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_residu.f
 
 libcacsd_la-sci_f_sylv.lo: sci_gateway/fortran/sci_f_sylv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_sylv.lo `test -f 'sci_gateway/fortran/sci_f_sylv.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sylv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_sylv.lo `test -f 'sci_gateway/fortran/sci_f_sylv.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sylv.f
 
 libcacsd_la-sci_f_ppol.lo: sci_gateway/fortran/sci_f_ppol.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ppol.lo `test -f 'sci_gateway/fortran/sci_f_ppol.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ppol.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ppol.lo `test -f 'sci_gateway/fortran/sci_f_ppol.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ppol.f
 
 libcacsd_la-sci_f_freq.lo: sci_gateway/fortran/sci_f_freq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_freq.lo `test -f 'sci_gateway/fortran/sci_f_freq.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_freq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_freq.lo `test -f 'sci_gateway/fortran/sci_f_freq.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_freq.f
 
 libcacsd_la-sci_f_ldiv.lo: sci_gateway/fortran/sci_f_ldiv.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ldiv.lo `test -f 'sci_gateway/fortran/sci_f_ldiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ldiv.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ldiv.lo `test -f 'sci_gateway/fortran/sci_f_ldiv.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ldiv.f
 
 libcacsd_la-sci_f_ricc.lo: sci_gateway/fortran/sci_f_ricc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ricc.lo `test -f 'sci_gateway/fortran/sci_f_ricc.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ricc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ricc.lo `test -f 'sci_gateway/fortran/sci_f_ricc.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ricc.f
 
 libcacsd_la-sci_f_sident.lo: sci_gateway/fortran/sci_f_sident.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_sident.lo `test -f 'sci_gateway/fortran/sci_f_sident.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sident.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_sident.lo `test -f 'sci_gateway/fortran/sci_f_sident.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sident.f
 
 libcacsd_la-sci_f_lyap.lo: sci_gateway/fortran/sci_f_lyap.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_lyap.lo `test -f 'sci_gateway/fortran/sci_f_lyap.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_lyap.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_lyap.lo `test -f 'sci_gateway/fortran/sci_f_lyap.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_lyap.f
 
 libcacsd_la-sci_f_rtitr.lo: sci_gateway/fortran/sci_f_rtitr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_rtitr.lo `test -f 'sci_gateway/fortran/sci_f_rtitr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rtitr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_rtitr.lo `test -f 'sci_gateway/fortran/sci_f_rtitr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rtitr.f
 
 libcacsd_la-sci_f_sorder.lo: sci_gateway/fortran/sci_f_sorder.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_sorder.lo `test -f 'sci_gateway/fortran/sci_f_sorder.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sorder.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_sorder.lo `test -f 'sci_gateway/fortran/sci_f_sorder.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sorder.f
 
 libcacsd_la-sci_f_mucomp.lo: sci_gateway/fortran/sci_f_mucomp.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_mucomp.lo `test -f 'sci_gateway/fortran/sci_f_mucomp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_mucomp.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_mucomp.lo `test -f 'sci_gateway/fortran/sci_f_mucomp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_mucomp.f
 
 libcacsd_la-sci_f_ltitr.lo: sci_gateway/fortran/sci_f_ltitr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ltitr.lo `test -f 'sci_gateway/fortran/sci_f_ltitr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ltitr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ltitr.lo `test -f 'sci_gateway/fortran/sci_f_ltitr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ltitr.f
 
 libcacsd_la-sci_f_dhinf.lo: sci_gateway/fortran/sci_f_dhinf.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_dhinf.lo `test -f 'sci_gateway/fortran/sci_f_dhinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dhinf.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_dhinf.lo `test -f 'sci_gateway/fortran/sci_f_dhinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_dhinf.f
 
 libcacsd_la-sci_f_ricc2.lo: sci_gateway/fortran/sci_f_ricc2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ricc2.lo `test -f 'sci_gateway/fortran/sci_f_ricc2.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ricc2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ricc2.lo `test -f 'sci_gateway/fortran/sci_f_ricc2.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ricc2.f
 
 libcacsd_la-sci_f_arl2.lo: sci_gateway/fortran/sci_f_arl2.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_arl2.lo `test -f 'sci_gateway/fortran/sci_f_arl2.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_arl2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_arl2.lo `test -f 'sci_gateway/fortran/sci_f_arl2.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_arl2.f
 
 libcacsd_la-sci_f_gschur.lo: sci_gateway/fortran/sci_f_gschur.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_gschur.lo `test -f 'sci_gateway/fortran/sci_f_gschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_gschur.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_gschur.lo `test -f 'sci_gateway/fortran/sci_f_gschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_gschur.f
 
 libcacsd_la-sci_f_ereduc.lo: sci_gateway/fortran/sci_f_ereduc.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ereduc.lo `test -f 'sci_gateway/fortran/sci_f_ereduc.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ereduc.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_ereduc.lo `test -f 'sci_gateway/fortran/sci_f_ereduc.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ereduc.f
 
 libcacsd_la-sci_f_findbd.lo: sci_gateway/fortran/sci_f_findbd.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_findbd.lo `test -f 'sci_gateway/fortran/sci_f_findbd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_findbd.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_findbd.lo `test -f 'sci_gateway/fortran/sci_f_findbd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_findbd.f
 
 libcacsd_la-sci_f_fstair.lo: sci_gateway/fortran/sci_f_fstair.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_fstair.lo `test -f 'sci_gateway/fortran/sci_f_fstair.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_fstair.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_fstair.lo `test -f 'sci_gateway/fortran/sci_f_fstair.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_fstair.f
 
 libcacsd_la-sci_f_gspec.lo: sci_gateway/fortran/sci_f_gspec.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_gspec.lo `test -f 'sci_gateway/fortran/sci_f_gspec.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_gspec.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_gspec.lo `test -f 'sci_gateway/fortran/sci_f_gspec.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_gspec.f
 
 libcacsd_la-sci_f_linmeq.lo: sci_gateway/fortran/sci_f_linmeq.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_linmeq.lo `test -f 'sci_gateway/fortran/sci_f_linmeq.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_linmeq.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_linmeq.lo `test -f 'sci_gateway/fortran/sci_f_linmeq.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_linmeq.f
 
 libcacsd_la-sci_f_rankqr.lo: sci_gateway/fortran/sci_f_rankqr.f
-	$(LIBTOOL) --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_rankqr.lo `test -f 'sci_gateway/fortran/sci_f_rankqr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rankqr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libcacsd_la_FFLAGS) $(FFLAGS) -c -o libcacsd_la-sci_f_rankqr.lo `test -f 'sci_gateway/fortran/sci_f_rankqr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rankqr.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

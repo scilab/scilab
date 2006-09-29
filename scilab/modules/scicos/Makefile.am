@@ -53,7 +53,6 @@ src/c/cscope.c \
 src/c/summation.c \
 src/c/selector.c \
 src/c/deadband.c \
-src/c/writef4.c \
 src/c/acosh_blk.c \
 src/c/csslti4.c \
 src/c/dsslti4.c \
@@ -62,7 +61,6 @@ src/c/tcslti4.c \
 src/c/sinh_blk.c \
 src/c/dollar4.c \
 src/c/evaluate_expr.c \
-src/c/readf4.c \
 src/c/deriv.c \
 src/c/extractor.c \
 src/c/mswitch.c \
@@ -218,7 +216,7 @@ includes/blocks.h:
 CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames 
 
 libscicos_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
-libscicos_la_LDFLAGS = -lf2c
+#libscicos_la_LDFLAGS = -lf2c
 lib_LTLIBRARIES = libscicos.la
 
 libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)

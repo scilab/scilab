@@ -208,7 +208,6 @@ dlanv2.f \
 zunmlq.f \
 dlae2.f \
 zunml2.f \
-dlamch.f \
 dlatrs.f \
 dtgex2.f \
 dlaic1.f \
@@ -275,13 +274,17 @@ dlagv2.f \
 dggbak.f \
 dtzrzf.f
 
-lib_LTLIBRARIES = liblapack.la
+lib_LTLIBRARIES = liblapack.la 
 
 liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 
-liblapack_la_DEPENDENCIES = \
+noinst_LTLIBRARIES = libdummy-lapack.la
+libdummy_lapack_la_SOURCES = dlamch.f
+libdummy_lapack_la_FFLAGS = -O0
+
+liblapack_la_DEPENDENCIES = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la 
 
-liblapack_la_LIBADD = $(liblapack_la_DEPENDENCIES)
+liblapack_la_LIBADD =   $(liblapack_la_DEPENDENCIES)
 
 liblapack_la_PKGCONFIG = lapack.pc
