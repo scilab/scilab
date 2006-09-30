@@ -31,7 +31,6 @@
 			/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description=""
 				CommandLine=""
 				ExecutionBucket="2"
 			/>
@@ -111,7 +110,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
 				ExecutionBucket="17"
 			/>
@@ -127,27 +125,31 @@
 			CharacterSet="2"
 			>
 			<Tool
+				Name="f2c rule"
+				ExecutionBucket="1"
+			/>
+			<Tool
 				Name="VCPreBuildEventTool"
-				Description=""
 				CommandLine=""
+				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="f2c rule"
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
+				ExecutionBucket="5"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../../f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
@@ -162,45 +164,55 @@
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Build Lapack.def file"
 				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n lapack.dll %%f &gt;nul&#x0D;&#x0A;copy *.def lapack1.def &gt;nul&#x0D;&#x0A;copy  ..\lapack.def+lapack1.def ..\..\..\..\bin\lapack.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				ExecutionBucket="9"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				ExecutionBucket="10"
 				OutputFile="../../../bin/lapack.dll"
 				ModuleDefinitionFile="..\..\..\bin\lapack.def"
 			/>
 			<Tool
 				Name="VCALinkTool"
+				ExecutionBucket="11"
 			/>
 			<Tool
 				Name="VCManifestTool"
+				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
+				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				ExecutionBucket="14"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
+				ExecutionBucket="15"
 			/>
 			<Tool
 				Name="VCWebDeploymentTool"
+				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description=""
 				CommandLine=""
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 	</Configurations>

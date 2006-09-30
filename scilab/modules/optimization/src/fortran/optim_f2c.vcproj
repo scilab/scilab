@@ -110,25 +110,31 @@
 			WholeProgramOptimization="1"
 			>
 			<Tool
+				Name="f2c rule"
+				ExecutionBucket="1"
+			/>
+			<Tool
 				Name="VCPreBuildEventTool"
+				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="f2c rule"
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
+				ExecutionBucket="5"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
+				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../../../libs/f2c"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
@@ -139,33 +145,42 @@
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				ExecutionBucket="9"
 			/>
 			<Tool
 				Name="VCLibrarianTool"
+				ExecutionBucket="10"
 				OutputFile="../../../../libs/optim_f.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
+				ExecutionBucket="11"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
+				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCFxCopTool"
+				ExecutionBucket="14"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Build optim_f.def"
 				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def optim_f.def &gt;nul&#x0D;&#x0A;copy optim_f.def ..\..\..\..\..\libs\optim_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				ExecutionBucket="15"
 			/>
 		</Configuration>
 	</Configurations>
