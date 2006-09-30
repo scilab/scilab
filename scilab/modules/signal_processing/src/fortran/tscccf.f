@@ -1,4 +1,3 @@
-C/MEMBR ADD NAME=TSCCCF,SSI=0
        subroutine tscccf(x,y,n,cxy,xymean,lag,ierr)
 c!
 c     purposes  :  function tscccf computes lag crosscovariance cxy
