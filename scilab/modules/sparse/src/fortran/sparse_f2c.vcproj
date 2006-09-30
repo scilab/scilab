@@ -1121,6 +1121,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\sparse.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

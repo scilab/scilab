@@ -1001,6 +1001,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\metanet.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

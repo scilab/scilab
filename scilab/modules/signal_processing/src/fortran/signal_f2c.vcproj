@@ -801,6 +801,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\signal.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -1545,6 +1545,18 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\core.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\user.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -857,6 +857,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\polynomials.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

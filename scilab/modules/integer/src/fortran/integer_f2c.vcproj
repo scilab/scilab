@@ -713,6 +713,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\integer.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

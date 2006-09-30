@@ -273,6 +273,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\special_functions1.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\special_functions2.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

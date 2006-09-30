@@ -697,6 +697,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\linear_algebra1.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\linear_algebra2.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

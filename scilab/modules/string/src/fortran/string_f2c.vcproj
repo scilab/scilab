@@ -345,6 +345,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\string.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

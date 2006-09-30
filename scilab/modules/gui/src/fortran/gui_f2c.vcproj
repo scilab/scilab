@@ -289,6 +289,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\gui.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

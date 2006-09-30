@@ -1137,6 +1137,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\optim.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

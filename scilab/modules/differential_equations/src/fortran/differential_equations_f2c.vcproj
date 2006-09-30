@@ -889,6 +889,30 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\differential_equations1.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\differential_equations2.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\differential_equations3.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\differential_equations4.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\differential_equations5.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\differential_equations6.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

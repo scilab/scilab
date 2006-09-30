@@ -241,6 +241,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\boolean.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -393,6 +393,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\randlib.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

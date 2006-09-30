@@ -249,6 +249,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\interpolation.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

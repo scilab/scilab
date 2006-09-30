@@ -18,11 +18,6 @@
 	#pragma comment(lib,"libirc.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#if WITH_TK
-#pragma comment(lib,"../../bin/tcl84.lib")
-#pragma comment(lib,"../../bin/tk84.lib")
-#endif
-/*-----------------------------------------------------------------------------------*/ 
 #if WITH_PVM
 #pragma comment(lib,"../../pvm3/lib/WIN32/libpvm3.lib")
 #pragma comment(lib,"../../pvm3/lib/WIN32/libgpvm3.lib")

@@ -353,6 +353,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\data_structures1.fundef"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\data_structures2.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

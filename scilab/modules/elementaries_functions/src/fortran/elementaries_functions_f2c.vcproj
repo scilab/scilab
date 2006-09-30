@@ -2433,6 +2433,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\elementaries_functions.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
