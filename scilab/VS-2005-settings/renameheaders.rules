@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Rename Header Files"
+	Version="8,00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="Copy header files"
+			DisplayName="Copy header files"
+			CommandLine="copy $(InputDir)$(InputFileName) $(InputDir)$(InputName).h 1>NUL"
+			Outputs="$(InputDir)$(InputName).h "
+			FileExtensions="*.vc"
+			ExecutionDescription="Copy $(InputDir)$(InputFileName) --> $(InputDir)$(InputName).h"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

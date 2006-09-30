@@ -11,6 +11,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\..\VS-2005-settings\renameheaders.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -23,24 +26,32 @@
 			CharacterSet="2"
 			>
 			<Tool
+				Name="Copy header files"
+				ExecutionBucket="1"
+			/>
+			<Tool
 				Name="VCPreBuildEventTool"
+				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
+				ExecutionBucket="5"
 				TypeLibraryName="$(ConfigurationName)/Dumpexts.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
 				Optimization="0"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="3"
@@ -56,17 +67,21 @@
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
 				PreprocessorDefinitions="_DEBUG"
 				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				ExecutionBucket="9"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				ExecutionBucket="10"
 				OutputFile="../../bin/Dumpexts.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -77,28 +92,35 @@
 			/>
 			<Tool
 				Name="VCALinkTool"
+				ExecutionBucket="11"
 			/>
 			<Tool
 				Name="VCManifestTool"
+				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
+				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				ExecutionBucket="14"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
+				ExecutionBucket="15"
 			/>
 			<Tool
 				Name="VCWebDeploymentTool"
+				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="@cd ..&#x0D;&#x0A;@cd ..&#x0D;&#x0A;@configheaders.bat&#x0D;&#x0A;"
+				CommandLine=""
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 		<Configuration
@@ -111,24 +133,32 @@
 			CharacterSet="2"
 			>
 			<Tool
+				Name="Copy header files"
+				ExecutionBucket="1"
+			/>
+			<Tool
 				Name="VCPreBuildEventTool"
+				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="4"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
+				ExecutionBucket="5"
 				TypeLibraryName="$(ConfigurationName)/Dumpexts.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				ExecutionBucket="6"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -147,17 +177,21 @@
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="7"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				ExecutionBucket="8"
 				PreprocessorDefinitions="NDEBUG"
 				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				ExecutionBucket="9"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				ExecutionBucket="10"
 				OutputFile="../../bin/Dumpexts.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -167,28 +201,35 @@
 			/>
 			<Tool
 				Name="VCALinkTool"
+				ExecutionBucket="11"
 			/>
 			<Tool
 				Name="VCManifestTool"
+				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
+				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				ExecutionBucket="14"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
+				ExecutionBucket="15"
 			/>
 			<Tool
 				Name="VCWebDeploymentTool"
+				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="@cd ..&#x0D;&#x0A;@cd ..&#x0D;&#x0A;@configheaders.bat&#x0D;&#x0A;"
+				CommandLine=""
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 	</Configurations>
@@ -232,6 +273,18 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
+		</Filter>
+		<Filter
+			Name="Rename Header Files"
+			>
+			<File
+				RelativePath="..\..\modules\scicos\includes\blocks.vc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\modules\core\includes\machine.vc"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
