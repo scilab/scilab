@@ -9,8 +9,7 @@ demolist=['Spectral Estimation',                'spect.dem'
 	  'Bode plots',                         'bode.dem'
 	  'Arma simulation and identification'  'arma/arma1.dem'
 	  'Arma, bidimensional version'         'arma/arma2.dem'
-	  'Arma, Spectral power estimation'     'arma/arma3.dem' 
-	  'Sound',                              'sound/sound.dem'];
+	  'Arma, Spectral power estimation'     'arma/arma3.dem'];
 
 deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
 
