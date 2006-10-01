@@ -142,6 +142,7 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 		#endif
 		exit(1);
 	}
+	printf("SCI defined to : %s\n",buf);
 	setSCIpath(buf);
 	*nbuf = strlen(buf);
 	return 0;

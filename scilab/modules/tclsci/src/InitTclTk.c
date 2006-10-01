@@ -50,7 +50,7 @@ void initTCLTK(void)
 /*-----------------------------------------------------------------------------------*/
 int OpenTCLsci(void)
 /* Checks if tcl/tk has already been initialised and if not */
-/* initialise it. It must find the tcl script */
+/* initialise it. The tcl script must be found. */
 {
   char *SciPath=NULL;
   char TkScriptpath[2048];
@@ -73,7 +73,7 @@ int OpenTCLsci(void)
   #endif
 #endif
   SciPath=GetSciPath();
-  
+  sciprint("a : %s\n",SciPath);  
   /* test SCI validity */
   if (SciPath==NULL)
     {
@@ -93,6 +93,9 @@ int OpenTCLsci(void)
     }
   else fclose(tmpfile);
 #else
+  sciprint(SciPath);
+  strcat(SciPath, " plop ");
+  sciprint(SciPath);
   tmpdir=opendir(SciPath);
   if (tmpdir==NULL) 
     {

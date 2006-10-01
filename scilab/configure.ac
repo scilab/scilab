@@ -4,7 +4,7 @@
 ##########
 dnl Process this file with autoconf to produce a configure script.
 
-## Copyright INRIA/Enpc
+## Copyright INRIA
 ## TODO :
 ## Installer tous les fichiers dans les bons paths
 ## Faire en sorte qu'il copie bien les libs au bon endroit
@@ -91,11 +91,15 @@ AC_PROG_FC
 if test -z "$FC"; then
    # No fortran 90 found. Try with a F77
    AC_PROG_F77
-   FC=$F77
-   FCFLAGS=$FFLAGS $RFLAGS
-   AM_FCFLAGS=$AM_FFLAGS
-   FCCOMPILE=$F77COMPILE
-   FCLINK=$FLINK
+   if test -z "$F77"; then
+	  AC_MSG_ERROR([No fortran Compiler. Cannot compile Scilab without a Fortran compiler])
+   else
+      FC=$F77
+	  FCFLAGS=$FFLAGS $RFLAGS
+	  AM_FCFLAGS=$AM_FFLAGS
+	  FCCOMPILE=$F77COMPILE
+	  FCLINK=$FLINK
+   fi
 else
   AC_DEFINE([G95_FORTRAN],[],[Uses G95 fortran])
 fi
@@ -432,7 +436,6 @@ if test "$CC" = "gcc"; then
    else
 	  CFLAGS="$CFLAGS -g -Wall -ANSI "
    fi
-   echo $CFLAGS
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
 	 sparc-*-linux-gnu|*-pc-linux-gnuaout)
