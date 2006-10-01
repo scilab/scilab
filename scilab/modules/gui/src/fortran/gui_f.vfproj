@@ -10,7 +10,7 @@
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def GUI_f.def &gt;nul
-copy GUI_f.def ..\..\..\..\..\libs\GUI_f.def &gt;nul
+copy GUI_f.def ..\..\..\..\..\libs\GUI_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -24,7 +24,7 @@ cd .."/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def GUI_f.def &gt;nul
-copy GUI_f.def ..\..\..\..\..\libs\GUI_f.def &gt;nul
+copy GUI_f.def ..\..\..\..\..\libs\GUI_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFCustomBuildTool"/>

@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean.def &gt;nul&#x0D;&#x0A;copy boolean.def ..\..\..\..\..\libs\boolean.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean.def &gt;nul&#x0D;&#x0A;copy boolean.def ..\..\..\..\..\libs\boolean.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean.def &gt;nul&#x0D;&#x0A;copy boolean.def ..\..\..\..\..\libs\boolean.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def boolean.def &gt;nul&#x0D;&#x0A;copy boolean.def ..\..\..\..\..\libs\boolean.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>

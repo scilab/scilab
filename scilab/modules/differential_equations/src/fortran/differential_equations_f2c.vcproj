@@ -96,8 +96,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build differential_equations_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def differential_equations_f.def &gt;nul&#x0D;&#x0A;copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				Description="Build differential_equations_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def differential_equations_f.def &gt;nul&#x0D;&#x0A;copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 				ExecutionBucket="15"
 			/>
 		</Configuration>
@@ -178,8 +178,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build differential_equations_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def differential_equations_f.def &gt;nul&#x0D;&#x0A;copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				Description="Build differential_equations_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def differential_equations_f.def &gt;nul&#x0D;&#x0A;copy differential_equations_f.def ..\..\..\..\..\libs\differential_equations_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 				ExecutionBucket="15"
 			/>
 		</Configuration>

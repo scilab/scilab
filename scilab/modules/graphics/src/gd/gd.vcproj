@@ -84,8 +84,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Create gd.def"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def gd1.def &gt;nul&#x0D;&#x0A;copy gd1.def ..\..\..\..\..\libs\gd.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				Description="Create gd.vcdef"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def gd1.def &gt;nul&#x0D;&#x0A;copy gd1.def ..\..\..\..\..\libs\gd.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -162,8 +162,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Create gd.def"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def gd1.def &gt;nul&#x0D;&#x0A;copy gd1.def ..\..\..\..\..\libs\gd.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
+				Description="Create gd.vcdef"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def gd1.def &gt;nul&#x0D;&#x0A;copy gd1.def ..\..\..\..\..\libs\gd.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd.. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>

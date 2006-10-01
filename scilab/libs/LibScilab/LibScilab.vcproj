@@ -12,6 +12,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\..\VS-2005-settings\CreateLibScilabdef.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -28,15 +31,15 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
+				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="3"
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				ExecutionBucket="4"
 				PreprocessorDefinitions="_DEBUG"
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
@@ -45,7 +48,11 @@
 				HeaderFileName=""
 			/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
 				Name="VCCLCompilerTool"
+				ExecutionBucket="5"
 				Optimization="0"
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
@@ -61,19 +68,26 @@
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="6"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				ExecutionBucket="7"
 				PreprocessorDefinitions="_DEBUG"
 				Culture="1036"
 			/>
 			<Tool
+				Name="libscilab rule"
+				ExecutionBucket="8"
+			/>
+			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Create LibScilab.def"
-				CommandLine="cd ..&#x0D;&#x0A;Libscilabdef.bat&#x0D;&#x0A;cd LibScilab&#x0D;&#x0A;"
+				CommandLine=""
+				ExecutionBucket="9"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				ExecutionBucket="10"
 				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
@@ -88,27 +102,34 @@
 			/>
 			<Tool
 				Name="VCALinkTool"
+				ExecutionBucket="11"
 			/>
 			<Tool
 				Name="VCManifestTool"
+				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
+				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				ExecutionBucket="14"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
+				ExecutionBucket="15"
 			/>
 			<Tool
 				Name="VCWebDeploymentTool"
+				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 		<Configuration
@@ -125,15 +146,15 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
+				ExecutionBucket="2"
 			/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"
+				ExecutionBucket="3"
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				ExecutionBucket="4"
 				PreprocessorDefinitions="NDEBUG"
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
@@ -142,7 +163,11 @@
 				HeaderFileName=""
 			/>
 			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
 				Name="VCCLCompilerTool"
+				ExecutionBucket="5"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
@@ -163,19 +188,26 @@
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
+				ExecutionBucket="6"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
+				ExecutionBucket="7"
 				PreprocessorDefinitions="NDEBUG"
 				Culture="1036"
 			/>
 			<Tool
+				Name="libscilab rule"
+				ExecutionBucket="8"
+			/>
+			<Tool
 				Name="VCPreLinkEventTool"
-				Description="Create LibScilab.def"
-				CommandLine="cd ..&#x0D;&#x0A;Libscilabdef.bat&#x0D;&#x0A;cd LibScilab&#x0D;&#x0A;"
+				CommandLine=""
+				ExecutionBucket="9"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				ExecutionBucket="10"
 				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
@@ -192,27 +224,34 @@
 			/>
 			<Tool
 				Name="VCALinkTool"
+				ExecutionBucket="11"
 			/>
 			<Tool
 				Name="VCManifestTool"
+				ExecutionBucket="12"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
+				ExecutionBucket="13"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
+				ExecutionBucket="14"
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
+				ExecutionBucket="15"
 			/>
 			<Tool
 				Name="VCWebDeploymentTool"
+				ExecutionBucket="16"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				ExecutionBucket="17"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 		</Configuration>
 	</Configurations>
@@ -375,11 +414,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
 				>
 			</File>
 			<File
@@ -417,6 +456,226 @@
 			>
 			<File
 				RelativePath="..\..\modules\gui\src\c\wsci\resource.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Create LibScilab.def"
+			>
+			<File
+				RelativePath="..\boolean.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\boolean_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\cacsd.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\cacsd_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\core.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\core_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\data_structures.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\data_structures_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\dcd_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\differential_equations.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\differential_equations_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\double.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\double_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\elementaries_functions.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\elementaries_functions_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\fileio.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\gd.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\graphics.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\GUI.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\GUI_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\integer.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\integer_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\interpolation.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\interpolation_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\intersci.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\io.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\io_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\linear_algebra.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\linear_algebra_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\metanet.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\metanet_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\optim.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\optim_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\polynomials.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\polynomials_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\randlib.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\randlib_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\scicos.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\scicos_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\signal.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\signal_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\slicot_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\sparse.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\sparse_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\special_functions.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\special_functions_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\statistics.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\string.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\string_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\symbolic.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\symbolic_f.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\Wintools.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\wsci.vcdef"
+				>
+			</File>
+			<File
+				RelativePath="..\xdr.vcdef"
 				>
 			</File>
 		</Filter>

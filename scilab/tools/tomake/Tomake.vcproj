@@ -157,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../Tomake.exe"
+				OutputFile="Tomake.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Tomake.pdb"

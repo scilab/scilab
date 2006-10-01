@@ -9,7 +9,7 @@
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def linear_algebra_f.def &gt;nul
-copy linear_algebra_f.def ..\..\..\..\..\libs\linear_algebra_f.def &gt;nul
+copy linear_algebra_f.def ..\..\..\..\..\libs\linear_algebra_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../includes;../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
@@ -23,7 +23,7 @@ cd .."/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def linear_algebra_f.def &gt;nul
-copy linear_algebra_f.def ..\..\..\..\..\libs\linear_algebra_f.def &gt;nul
+copy linear_algebra_f.def ..\..\..\..\..\libs\linear_algebra_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../includes;../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>

@@ -1,7 +1,7 @@
 function help(key)
 	
 	//for compatibility with toolboxes making use of old cat files
-	if (fileinfo('SCI/man') <> []) then
+	if (fileinfo('SCI/modules/helptools/help') <> []) then
 		
 		change_old_man()
 		INDEX=make_help_index()

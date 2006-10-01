@@ -84,7 +84,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileio1.def &gt;nul&#x0D;&#x0A;copy fileio1.def ..\..\..\libs\fileio.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileio1.def &gt;nul&#x0D;&#x0A;copy fileio1.def ..\..\..\libs\fileio.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -161,7 +161,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileio1.def &gt;nul&#x0D;&#x0A;copy fileio1.def ..\..\..\libs\fileio.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def fileio1.def &gt;nul&#x0D;&#x0A;copy fileio1.def ..\..\..\libs\fileio.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>

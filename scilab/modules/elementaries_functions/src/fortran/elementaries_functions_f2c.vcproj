@@ -96,8 +96,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build elementaries_functions_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementaries_functions_f.def &gt;nul&#x0D;&#x0A;copy elementaries_functions_f.def ..\..\..\..\..\libs\elementaries_functions_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				Description="Build elementaries_functions_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementaries_functions_f.def &gt;nul&#x0D;&#x0A;copy elementaries_functions_f.def ..\..\..\..\..\libs\elementaries_functions_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 				ExecutionBucket="15"
 			/>
 		</Configuration>
@@ -178,8 +178,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Build elementaries_functions_f.def"
-				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementaries_functions_f.def &gt;nul&#x0D;&#x0A;copy elementaries_functions_f.def ..\..\..\..\..\libs\elementaries_functions_f.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
+				Description="Build elementaries_functions_f.vcdef"
+				CommandLine="cd $(IntDir)&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul&#x0D;&#x0A;copy *.def elementaries_functions_f.def &gt;nul&#x0D;&#x0A;copy elementaries_functions_f.def ..\..\..\..\..\libs\elementaries_functions_f.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd ..&#x0D;&#x0A;"
 				ExecutionBucket="15"
 			/>
 		</Configuration>

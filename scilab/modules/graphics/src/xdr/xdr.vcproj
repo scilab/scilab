@@ -84,8 +84,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Create xdr.def"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def xdr.def &gt;nul&#x0D;&#x0A;copy xdr.def ..\..\..\..\..\libs\xdr.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				Description="Create xdr.vcdef"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def xdr.def &gt;nul&#x0D;&#x0A;copy xdr.def ..\..\..\..\..\libs\xdr.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -162,8 +162,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Create xdr.def"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def xdr.def &gt;nul&#x0D;&#x0A;copy xdr.def ..\..\..\..\..\libs\xdr.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				Description="Create xdr.vcdef"
+				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def xdr.def &gt;nul&#x0D;&#x0A;copy xdr.def ..\..\..\..\..\libs\xdr.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
