@@ -69,7 +69,8 @@ libarnoldi_la_includedir=$(includedir)/arnoldi
 
 libarnoldi_la_include_HEADERS = 
 
-libarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/
+libarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/arpack/
+
 lib_LTLIBRARIES = libarnoldi.la
 
 libarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
