@@ -69,7 +69,7 @@ else
 end
 rect=[ox,oy,w,h]
 btn=rep(3)
-
+f.pixmap=pix
 endfunction
 
   
