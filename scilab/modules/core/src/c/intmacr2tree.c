@@ -4,10 +4,14 @@
 /* Copyright INRIA                                */
 /* V.C. - 2004                                    */
 /**************************************************/
-#include "MALLOC.h"
 
 #include "intmacr2tree.h"
 
+#ifdef WIN32
+#include "../os_specific/win_mem_alloc.h"  /* malloc */
+#else
+#include "../os_specific/sci_mem_alloc.h"  /* malloc */
+#endif
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
 
@@ -16,8 +20,6 @@ static int nbvars = 0;
 
 /* Store stack index for last EOL */
 static int last_eol_pos = 0;
-
-extern void sciprint __PARAMS((char *fmt,...));
 
 /****************************************************************
  Function name: macr2tree
@@ -542,7 +544,8 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
     break;
   case 25: /* Compute profiling data */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
+ /* This code is ignored */
+    *index += 2;
     break;
   case 26: /* Vector of strings */
     Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
