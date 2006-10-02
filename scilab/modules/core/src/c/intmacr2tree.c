@@ -4,14 +4,10 @@
 /* Copyright INRIA                                */
 /* V.C. - 2004                                    */
 /**************************************************/
+#include "MALLOC.h"
 
 #include "intmacr2tree.h"
 
-#ifdef WIN32
-#include "../os_specific/win_mem_alloc.h"  /* malloc */
-#else
-#include "../os_specific/sci_mem_alloc.h"  /* malloc */
-#endif
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
 
@@ -21,6 +17,7 @@ static int nbvars = 0;
 /* Store stack index for last EOL */
 static int last_eol_pos = 0;
 
+extern void sciprint __PARAMS((char *fmt,...));
 /****************************************************************
  Function name: macr2tree
 ****************************************************************/
