@@ -10,7 +10,7 @@ function xdemo(info,str)
 	execstr(str);
 endfunction
 
-exec('SCI/demos/graphics/dessin-1.dem');
+exec('SCI/modules/graphics/demos/dessin-1.dem');
 
 nn=prod(size(str_l));
 

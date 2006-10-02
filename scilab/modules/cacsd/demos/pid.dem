@@ -15,7 +15,7 @@ mode(2)
 
 s=poly(0,'s');z=poly(0,'z');
 x_message(['Example of PID Design '
-	   'file: '+SCI+'/demos/control/pid.dem'])	
+	   'file: '+SCI+'/modules/cacsd/demos/pid.dem'])	
 
 n=tk_choose(['Continuous time';'Discrete time'],'Select time domain');
 select n

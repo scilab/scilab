@@ -10,14 +10,17 @@ global LANGUAGE
 
 path = get_absolute_file_path('randlib.start');
 path = getshortpathname(path);
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/random.dem',%f,%f);
 
 if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("randlib",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("randlib",pathhelp);
+	add_demo("randlib",pathdemos);
 elseif LANGUAGE == 'eng' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("randlib",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("randlib",pathhelp);
+	add_demo("randlib",pathdemos);
 end
 
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

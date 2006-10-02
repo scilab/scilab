@@ -1,4 +1,4 @@
-deff('[]=demoexc(fil)','exec(''SCI/demos/control/''+fil)')
+deff('[]=demoexc(fil)','exec(''SCI/modules/cacsd/demos/''+fil)')
 // Copyright INRIA
 while %t do
   n=tk_choose(['LQG','Mixed-sensitivity','PID'],'Select a demo');

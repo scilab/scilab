@@ -10,14 +10,17 @@ global LANGUAGE
 
 path = get_absolute_file_path('tclsci.start');
 path = getshortpathname(path);
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/tk/tk.dem',%f,%f);
 
 if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Interface Tcl/Tk",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("Interface Tcl/Tk",pathhelp);
+	add_demo('Interface Tcl/Tk',pathdemos);
 elseif LANGUAGE == 'eng' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
 	add_help_chapter("Tcl/Tk Interface",path);
+	add_demo('Tcl/Tk Interface',pathdemos);
 end
 
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

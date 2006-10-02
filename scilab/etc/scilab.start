@@ -69,6 +69,11 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear  larg L
 
+// Define Initial demo tables  ========================================
+// demolist is a two column matrix of strings
+global demolist
+demolist=[];
+
 // loads modules ======================================================
 modules=getmodules();
 index=size(modules);
@@ -77,7 +82,7 @@ for i=1:index(1) do
  exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end  
 
-clear stripblanks modules index i
+clear stripblanks modules index i add_demo
 
 // Create some configuration variables ================================
 [home,SCIHOME]=sethomedirectory();
@@ -93,11 +98,7 @@ else
 end
 setenv("VERSION",getversion())
  
- // Define Initial demo tables, ========================================
-//demolist is a two column matrix of strings
-global demolist
-demolist=initial_demos_tables()
-clear initial_demos_tables demolist
+
 
 // Set the preferred browser  ==========================================
 global %browsehelp

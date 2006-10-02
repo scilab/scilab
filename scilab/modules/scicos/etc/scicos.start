@@ -11,16 +11,20 @@ global LANGUAGE
 path=get_absolute_file_path('scicos.start');
 path=getshortpathname(path);
 path=strsubst(path,'\','/');
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/scicos.dem',%f,%f);
+
 if (LANGUAGE=='fr') then
-  path=strsubst(path,'/etc/','/help/fr');
-  add_help_chapter("Scicos",path);
+  pathhelp=strsubst(path,'/etc/','/help/fr');
+  add_help_chapter("Scicos",pathhelp);
+  add_demo("Scicos",pathdemos);
 end
 
 if (LANGUAGE=='eng') then
-  path=strsubst(path,'/etc/','/help/eng');
-  add_help_chapter("Scicos",path)
+  pathhelp=strsubst(path,'/etc/','/help/eng');
+  add_help_chapter("Scicos",pathhelp);
+  add_demo("Scicos",pathdemos);
 end
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 // Define Scicos data tables ===========================================
  clear  scicos_pal // explicitly clear %helps scicos_pal variables
  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..

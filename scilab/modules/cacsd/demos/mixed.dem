@@ -14,7 +14,7 @@ xtitle('PLANT   and   CONTROLLER')
 mode(2)
 
 x_message(['Mixed Sensitivity Controller Design';
-           'file: '+SCI+'/demos/control/mixed.dem'])
+           'file: '+SCI+'/modules/cacsd/demos/mixed.dem'])
 mode(1)
 s=poly(0,'s');
 str='[(s-1)/((s-1)^2*(s+2))]';

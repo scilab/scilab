@@ -10,14 +10,17 @@ global LANGUAGE
 
 path = get_absolute_file_path('sound.start');
 path = getshortpathname(path);
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/sound.dem',%f,%f);
 
 if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Manipulation de fichiers sons",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("Manipulation de fichiers sons",pathhelp);
+	add_demo('Manipulation de fichiers sons',pathdemos);
 elseif LANGUAGE == 'eng' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("Sound file handling",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("Sound file handling",pathhelp);
+	add_demo('Sound file handling',pathdemos);
 end
 
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

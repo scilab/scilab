@@ -542,7 +542,7 @@ void Callback_DEMOS(void)
 	LPTW lptw=GetTextWinScilab();
 
 	SendCTRLandAKey(CTRLU);
-	WriteIntoScilab(lptw,"exec('SCI/demos/alldems.dem');");
+	WriteIntoScilab(lptw,"scilab_demos();");
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_WEB(void)

@@ -7,7 +7,7 @@ end
 oldln=lines();
 lines(0)
 deff('[]=demoex(num)','execstr(demolist(num,2))')
-tkpath=SCI+'/demos/tk/'
+tkpath=SCI+'/modules/tclsci/demos/tk/'
 if MSDOS then tkpath=strsubst(tkpath,'/','\'),end
 
 demolist=[
