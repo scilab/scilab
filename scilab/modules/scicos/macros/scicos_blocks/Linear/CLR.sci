@@ -27,7 +27,10 @@ case 'set' then
 
     if ~ok then break,end
     if degree(num)>degree(den) then
-      message('Transfer must be proper or strictly proper')
+      message('Transfer function must be proper or strictly proper.')
+      ok=%f
+    elseif degree(den)==0 then
+      message('This transfer function is constant; use a gain block instead.')
       ok=%f
     end
     if ok then

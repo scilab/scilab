@@ -23,7 +23,10 @@ case 'set' then
  	list('pol',1,'pol',1),exprs)
     if ~ok then break,end
     if degree(num)>degree(den) then
-      message('Transfer must be proper')
+      message('Transfer function must be proper')
+      ok=%f
+    elseif degree(den)==0 then
+      message('This transfer function is constant; use a gain block instead.')
       ok=%f
     end
     if ok then
