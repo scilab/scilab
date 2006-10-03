@@ -18,7 +18,7 @@ if LANGUAGE == 'fr' then
 	add_demo("CACSD",pathdemos);
 elseif LANGUAGE == 'eng' then
 	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("CACSD",path);
+	add_help_chapter("CACSD",pathhelp);
 	add_demo("CACSD",pathdemos);
 end
 
