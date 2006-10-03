@@ -348,7 +348,7 @@ endfunction
 function ged_Compound(h)
   global ged_handle;ged_handle=h;
   TCL_SetVar("curvis",h.visible)
-  TCL_EvalFile(SCI+'/tcl/ged/Compound.tcl')
+  TCL_EvalFile(SCI+'modules/graphics/tcl/ged/Compound.tcl')
 endfunction
 
 
@@ -371,7 +371,7 @@ function ged_figure(h)
   TCL_SetVar("curpdm",h.pixel_drawing_mode)
   TCL_SetVar("curautoresize",h.auto_resize)
   TCL_SetVar("currotation_style",h.rotation_style)
-  TCL_EvalFile(SCI+'/tcl/ged/Figure.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Figure.tcl')
 endfunction
 
 
@@ -555,7 +555,7 @@ function ged_axes(h)
     TCL_SetVar("dbzmax",string(h.data_bounds(2,3)))
   end
  
-  TCL_EvalFile(SCI+'/tcl/ged/Axes.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Axes.tcl')
 endfunction
 
 function ged_rectangle(h)
@@ -622,7 +622,7 @@ function ged_rectangle(h)
     TCL_SetVar("Wval",string(h.data(4)))
     TCL_SetVar("Hval",string(h.data(5)))
   end
-  TCL_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Rectangle.tcl')
 endfunction
 
 function ged_polyline(h)
@@ -687,7 +687,7 @@ function ged_polyline(h)
       case "3d"
       TCL_SetVar("nbcol",string(3));
     end
-    TCL_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
+    TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Polyline.tcl')
 endfunction
 
 
@@ -748,7 +748,7 @@ function ged_plot3d(h)
     d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
     TCL_SetVar("curdata_color",d);
   end
-  TCL_EvalFile(SCI+'/tcl/ged/Plot3d.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Plot3d.tcl')
 endfunction
 
 
@@ -811,7 +811,7 @@ function ged_fac3d(h)
   end
 
 
-  TCL_EvalFile(SCI+'/tcl/ged/Fac3d.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Fac3d.tcl')
 endfunction
 
 
@@ -867,7 +867,7 @@ function ged_text(h)
   TCL_SetVar("textBoxHeight", string( h.text_box(2) ) ) ;
   TCL_SetVar("curAlignment",string(h.alignment) ) ;
   
-  TCL_EvalFile(SCI+'/tcl/ged/Text.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Text.tcl')
 endfunction
 
 
