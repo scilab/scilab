@@ -42,7 +42,7 @@ indexFor(unsigned int tablelength, unsigned int hashvalue)
 */
 
 /*****************************************************************************/
-#define freekey(X) free(X)
+#define freekey(X) FREE(X)
 /*define freekey(X) ; */
 
 
