@@ -2,7 +2,7 @@ mode(-1)
 // Copyright INRIA
 oldln=lines();
 lines(0)
-deff('[]=demoex(num)','exec(''SCI/demos/simulation/ode/''+demolist(num,2),-1)')
+deff('[]=demoex(num)','exec(''SCI/modules/others/demos/simulation/ode/''+demolist(num,2),-1)')
 
 demolist=[
 'Simple ODE','ode1.dem';

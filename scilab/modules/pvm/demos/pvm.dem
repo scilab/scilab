@@ -24,7 +24,7 @@ end
 demos_name=[
     'Master and slave'
     ]
-exec('SCI/demos/pvm/pvm1.sce');
+exec('SCI/modules/pvm/demos/pvm1.sce');
 return
 while %t do
   n=tk_choose(demos_name,'Choose a demo')
@@ -32,7 +32,7 @@ while %t do
   case 0 then 
     break
   case 1 then  
-    exec('SCI/demos/pvm/pvm1.sce');
+    exec('SCI/modules/pvm/demos/pvm1.sce');
 
   end
 end

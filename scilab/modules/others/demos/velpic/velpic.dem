@@ -6,7 +6,12 @@ function []=velpic_build_and_load()
   if ~c_link('testpt') then
     curdir = getcwd(); 
     chdir(TMPDIR); 
-    unix_s('cp '+SCI+'/demos/velpic/*.f .'); 
+    if MSDOS then
+     unix_s('copy /Y '+pathconvert(SCI+'/modules/others/demos/velpic',%f,%f,'w')+'\*.f *.f'); 
+    else
+     unix_s('cp '+SCI+'/modules/others/demos/velpic/*.f .'); 
+    end
+    
     files = ['id_rgn.o','testpt.o' ];
     ilib_for_link(['testpt';'idrgn'],files,[],"f");
     exec loader.sce 
@@ -17,7 +22,7 @@ velpic_build_and_load()
 
 // Copyright INRIA
 
-getf('SCI/demos/velpic/velpic.sci')
+getf('SCI/modules/others/demos/velpic/velpic.sci')
 
 xselect()
 x=velpic(20,20);

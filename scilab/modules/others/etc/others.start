@@ -10,14 +10,20 @@ global LANGUAGE
 
 path = get_absolute_file_path('others.start');
 path = getshortpathname(path);
+pathdemos1 = pathconvert(part(path,1:(length(path)-5))+'/demos/simulation/simulation.dem',%f,%f);
+pathdemos2 = pathconvert(part(path,1:(length(path)-5))+'/demos/velpic/velpic.dem',%f,%f);
 
 if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Autres",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("Autres",pathhelp);
+	add_demo("Simulation",pathdemos1);
+	add_demo("Autres",pathdemos2);
 elseif LANGUAGE == 'eng' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("Others",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("Others",pathhelp);
+	add_demo("Simulation",pathdemos1);
+	add_demo("Others",pathdemos2);
 end
 
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathhelp pathdemos1 pathdemos2 get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

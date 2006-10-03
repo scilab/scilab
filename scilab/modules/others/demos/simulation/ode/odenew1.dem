@@ -1,7 +1,7 @@
 // Copyright INRIA
 
 mode(-1)
-deff("[]=demoexc(fil)","exec(""SCI/demos/ode/""+fil)")
+deff("[]=demoexc(fil)","exec(""SCI/modules/others/demos/simulation/ode/""+fil)")
 
 x_message(["Examples of ODE''s in 1 dimension";" ";
            "A trajectory is plotted by clicking on the";

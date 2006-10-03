@@ -10,13 +10,16 @@ global LANGUAGE
 
 path = get_absolute_file_path('pvm.start');
 path = getshortpathname(path);
+pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/pvm.dem',%f,%f);
 
 if LANGUAGE == 'fr' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("Calculs Parallele avec PVM",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("Calculs Parallele avec PVM",pathhelp);
+	add_demo("Calculs Parallele avec PVM",pathdemos);
 elseif LANGUAGE == 'eng' then
-	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("PVM parallel Toolbox",path);
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("PVM parallel Toolbox",pathhelp);
+	add_demo("PVM parallel Toolbox",pathdemos);
 end
 // ====================================================================
 if MSDOS then
@@ -26,5 +29,5 @@ if MSDOS then
   end
 end
 // ====================================================================
-clear path get_absolute_file_path add_help_chapter LANGUAGE;
+clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

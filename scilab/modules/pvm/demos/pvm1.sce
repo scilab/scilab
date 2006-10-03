@@ -10,15 +10,15 @@ if ok<>0 then disp('pvm daemon already active'),end;
 
 mes=x_message(['Start another Scilab process under PVM with the following instruction:';
            ' '
-	   '[task_id,numt] = pvm_spawn(SCI+''/demos/pvm/script.sce'',1)'
+	   '[task_id,numt] = pvm_spawn(SCI+''/modules/pvm/demos/script.sce'',1)'
 	   ' '
-	   'SCI+''/demos/pvm/script.sce'' file is: '
+	   'SCI+''/modules/pvm/demos/script.sce'' file is: '
 	   '======================================='
-	   read(SCI+'/demos/pvm/script.sce',-1,1,'(a)')],..
+	   read(SCI+'/modules/pvm/demos/script.sce',-1,1,'(a)')],..
            ['Ok','Cancel'])
 if mes==2 then return, end   
 
-[task_id,numt] = pvm_spawn(SCI+'/demos/pvm/script.sce',1)
+[task_id,numt] = pvm_spawn(SCI+'/modules/pvm/demos/script.sce',1)
 if numt<0 then
   x_message(['pvm_spawn aborts to create a new process'])
   return

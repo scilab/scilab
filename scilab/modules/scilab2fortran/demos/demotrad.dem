@@ -1,8 +1,8 @@
 mode(-1)
 // Copyright INRIA
-getf('SCI/demos/sci2for/printspecs.sci','c')
+getf('SCI/modules/scilab2fortran/demos/printspecs.sci','c')
 deff('[]=message(txt)','write(%io(2),txt,''(a)'')')
-path='SCI/demos/sci2for/'
+path='SCI/modules/scilab2fortran/demos/'
 deff('[]=demoexc(fil)','exec(path+fil,-1)')
 
 while %t do

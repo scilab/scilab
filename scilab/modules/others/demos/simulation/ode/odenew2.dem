@@ -1,7 +1,7 @@
 // Copyright INRIA
 
 mode(-1)
-deff("[]=demoexc(fil)","exec(""SCI/demos/ode/""+fil)")
+deff("[]=demoexc(fil)","exec(""SCI/modules/others/demos/simulation/ode/""+fil)")
 
 x_message(["Examples of autonomous ODE''s in 2 dimensions";" ";
            "A trajectory is plotted on the plane phase";

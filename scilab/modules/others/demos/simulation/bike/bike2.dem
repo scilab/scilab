@@ -1,6 +1,6 @@
 mode(0);
 // Copyright INRIA
-path='SCI/demos/bike/';
+path='SCI/modules/others/demos/simulation/bike/';
 xbasc();
 fs = get('figure_style');
 set("figure_style","old");

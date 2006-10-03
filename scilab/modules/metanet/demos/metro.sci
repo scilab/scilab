@@ -4,7 +4,7 @@ function []=metro()
 //of the stations
 //needs the execution of the program 'metrostart' for the data of the graph
 // Copyright INRIA
-  inin=file('open',SCI+'/demos/metanet/node2station','old');
+  inin=file('open',SCI+'/modules/metanet/demos/node2station','old');
   mamat=read(inin,388,1,'(a40)');
   file('close',inin);
   La=['Abbesses','Alesia','Alexandre Dumas','Alfort-Ecole Veterinaire',..
@@ -148,8 +148,8 @@ function []=metro()
 	  Lnode(Arrivee)=-1;  
 	end
       end
-      g=load_graph(SCI+'/demos/metanet/paris');
-      gg=load_graph(SCI+'/demos/metanet/paris2');
+      g=load_graph(SCI+'/modules/metanet/demos/paris');
+      gg=load_graph(SCI+'/modules/metanet/demos/paris2');
       gg.default_font_size=8;
       gg.node_y=abs(gg.node_y-max(gg.node_y))
       win=show_graph(gg,'rep');

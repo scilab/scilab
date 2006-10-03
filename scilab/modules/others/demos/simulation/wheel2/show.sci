@@ -129,7 +129,7 @@ function []=wheel_build_and_load()
   if ~c_link('wheel') then
     cd = getcwd(); 
     chdir(TMPDIR); 
-    path='SCI/demos/simulation/wheel2/Maple/'
+    path=SCI+'/modules/others/demos/simulation/wheel2/Maple/'
     fcode=mgetl(path+'/dlslv.f');mputl(fcode,'dlslv.f')
     fcode=mgetl(path+'/wheel.f');mputl(fcode,'wheel.f')
     fcode=mgetl(path+'/wheelg.f');mputl(fcode,'wheelg.f')

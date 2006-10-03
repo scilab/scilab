@@ -1,4 +1,4 @@
-getf(SCI+'/demos/metanet/metro.sci','c');
+getf(SCI+'/modules/metanet/demos/metro.sci','c');
 // Copyright INRIA
 mode(0);
 num=x_message([' ';

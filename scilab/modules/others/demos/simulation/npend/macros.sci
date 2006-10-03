@@ -91,16 +91,16 @@ function []=npend_build_and_load()
 // we use TMPDIR 
 
   if ~c_link('npend') then
-    cd = getcwd(); 
+    cdpath = getcwd(); 
     chdir(TMPDIR); 
-    fcode=mgetl(SCI+'/demos/npend/Maple/dlslv.f');mputl(fcode,'dlslv.f')
-    fcode=mgetl(SCI+'/demos/npend/Maple/ener.f');mputl(fcode,'ener.f')
-    fcode=mgetl(SCI+'/demos/npend/Maple/np.f');mputl(fcode,'np.f')
-    fcode=mgetl(SCI+'/demos/npend/Maple/npend.f');mputl(fcode,'npend.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/dlslv.f');mputl(fcode,'dlslv.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/ener.f');mputl(fcode,'ener.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/np.f');mputl(fcode,'np.f')
+    fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/npend.f');mputl(fcode,'npend.f')
     files = ['npend.o','np.o','ener.o','dlslv.o' ];
     ilib_for_link(['npend';'np';'ener'],files,[],"f");
     exec loader.sce 
-    chdir(cd) 
+    chdir(cdpath) 
   end
 endfunction 
 
