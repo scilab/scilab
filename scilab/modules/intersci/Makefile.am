@@ -1,7 +1,12 @@
 INTERSCI_LIB_C_SOURCES = \
 src/lib/libinter.c \
 src/lib/erro.c \
-src/lib/out.c
+src/lib/out.c \
+src/lib/cdouble.c \
+src/lib/cerro.c \
+src/lib/cdoublef.c \
+src/lib/cout.c \
+   src/lib/libinter.c
 
 INTERSCI_EXE_C_SOURCES = \
 src/exe/intersci-n.c \
