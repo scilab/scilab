@@ -14,10 +14,16 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_clip_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_clip_box_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int status1 ;
   int status2 ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property clip_box.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
 
   /* On doit avoir avoir une matrice 4x1 */
   if ( nbRow * nbCol != 4 )

@@ -14,17 +14,17 @@ SetPropertyStatus sciSetFinalStatus( SetPropertyStatus status1, SetPropertyStatu
   if ( status1 == SET_PROPERTY_ERROR || status2 == SET_PROPERTY_ERROR )
   {
     /* problem */
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   else if ( status1 == SET_PROPERTY_UNCHANGED && status2 == SET_PROPERTY_UNCHANGED )
   {
     /* nothing changed */
-    return 1 ;
+    return SET_PROPERTY_UNCHANGED ;
   }
   else
   {
     /* everything should be ok */
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
 }
 

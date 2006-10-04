@@ -11,16 +11,23 @@
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_arrow_size_factor_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_arrow_size_factor_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property arrow_size_factor.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
     sciprint( "arrow_size_factor property undefined for this handle.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE(pobj)->arsize_factor = getDoubleFromStack( stackPointer ) ;
-  return 0 ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

@@ -10,10 +10,10 @@
  *    This file contains all functions used in graphics handle management.
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
-
 #ifndef __SCI_HANDLE_MANAGEMENT__
 #define __SCI_HANDLE_MANAGEMENT__
+
+#include "ObjectStructure.h"
 
 /* Handle functions */
 extern void sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue);

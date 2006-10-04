@@ -10,10 +10,17 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_fill_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_fill_mode_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property fill_mode.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
     return sciSetIsFilled( pobj, TRUE ) ;
@@ -25,8 +32,8 @@ int set_fill_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int
   else
   {
     sciprint( "Nothing to do (value must be 'on/off').\n" ) ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

@@ -14,8 +14,14 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_clear_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_auto_clear_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property auto_clear.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
     return sciSetAddPlot( pobj, FALSE ) ;

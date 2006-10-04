@@ -12,10 +12,17 @@
 #include "Interaction.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_callbackmevent_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_callbackmevent_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property callbackmevent.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   return sciSetCallbackMouseEvent( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
 }
 /*------------------------------------------------------------------------*/

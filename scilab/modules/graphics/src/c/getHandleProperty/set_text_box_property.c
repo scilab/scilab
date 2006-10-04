@@ -14,9 +14,16 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_text_box_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property text_box.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if (sciGetEntityType (pobj) != SCI_TEXT)
   {
     sciprint("text_box property does not exist for this handle.\n");

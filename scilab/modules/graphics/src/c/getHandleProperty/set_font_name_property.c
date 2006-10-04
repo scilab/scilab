@@ -9,10 +9,18 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_name_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_font_name_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property font_name.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   return sciSetFontName( pobj, getStringFromStack(stackPointer), nbRow * nbCol );
 }
 /*------------------------------------------------------------------------*/

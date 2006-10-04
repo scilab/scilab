@@ -12,6 +12,7 @@
 #include "Format.h"
 #include "get_ticks_utils.h"
 #include "MALLOC.h"
+#include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
 int get_x_ticks_property( sciPointObj * pobj )
@@ -32,19 +33,19 @@ int get_x_ticks_property( sciPointObj * pobj )
   if( ppSubWin->axes.auto_ticks[0] )
   {
     int       nbtics        = ppSubWin->axes.nxgrads ;
-    char   ** ticklabel     = NULL                   ;
+    char   ** tickslabel    = NULL                   ;
     double *  ticksPosition = NULL                   ;
     
     ticksPosition = ReBuildTicksLog2Lin( ppSubWin->logflags[0], nbtics, ppSubWin->axes.xgrads ) ;
     
     /* convert double to strings */
-    ticklabel = copyFormatedArray( ticksPosition, nbtics, c_format, 100 ) ;
+    tickslabel = copyFormatedArray( ticksPosition, nbtics, c_format, 100 ) ;
     
     /* construction de la tlist */
-    buildTListForTicks( ticksPosition, ticklabel, nbtics ) ;
+    buildTListForTicks( ticksPosition, tickslabel, nbtics ) ;
     
-    /* free ticklabel */
-    destroyStringArray( ticklabel, nbtics ) ;
+    /* free tickslabel */
+    destroyStringArray( tickslabel, nbtics ) ;
     FREE( ticksPosition ) ;
     return 0 ;
   }

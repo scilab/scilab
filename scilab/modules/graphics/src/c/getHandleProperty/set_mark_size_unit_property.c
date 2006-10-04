@@ -10,10 +10,17 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_size_unit_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_mark_size_unit_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property mark_size_unit.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( isStringParamEqual( stackPointer, "point") )
   {
     return sciSetMarkSizeUnit( pobj, 1 ) ; /* 1 : points, 2 : tabulated */
@@ -25,8 +32,8 @@ int set_mark_size_unit_property( sciPointObj * pobj, int stackPointer, int nbRow
   else
   {
     sciprint("Value must be 'point/tabulated'.\n") ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

@@ -10,10 +10,17 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_size_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_mark_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property mark_size.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   /* sciSetIsMark((sciPointObj *) pobj, TRUE); */ 
   /* F.Leray 27.01.05 commented because mark_size is automatically launched */
   /* in tcl/tk editor (which causes marks appearance even when unwanted). */

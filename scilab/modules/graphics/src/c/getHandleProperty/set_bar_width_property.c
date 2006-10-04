@@ -11,16 +11,24 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_bar_width_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_bar_width_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property bar_width.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType (pobj) != SCI_POLYLINE )
   {
     sciprint( "Object has no bar shift.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   pPOLYLINE_FEATURE (pobj)->bar_width = getDoubleFromStack( stackPointer ) ;
-  return 0 ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

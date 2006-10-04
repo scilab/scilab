@@ -11,14 +11,22 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_interp_color_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_interp_color_mode_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property interp_color_mode.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
     sciprint("interp_color_mode can only be set on Polyline objects.\n") ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
 
   if( isStringParamEqual( stackPointer, "on" ) )
@@ -26,7 +34,7 @@ int set_interp_color_mode_property( sciPointObj * pobj, int stackPointer, int nb
     if ( sciGetInterpVector(pobj) == NULL )
     {
       sciprint("You must first specify an interp_color_vector for this object.\n") ;
-      return -1 ;
+      return SET_PROPERTY_ERROR ;
     }
     else
     {
@@ -40,9 +48,9 @@ int set_interp_color_mode_property( sciPointObj * pobj, int stackPointer, int nb
   else
   {
     sciprint("Property must be set to 'on' or 'off'.\n") ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
-  return 0 ;
+  return SET_PROPERTY_SUCCEED ;
 
 }
 /*------------------------------------------------------------------------*/

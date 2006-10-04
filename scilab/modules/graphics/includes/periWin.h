@@ -54,6 +54,8 @@
 
  void C2F(getwins)( integer * Num, integer Ids[] , integer * flag) ;
 
+ void wininfo(char *fmt,...) ;
+
 #endif /* __PERIWIN_H__ */
 
 

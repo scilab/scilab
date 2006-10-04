@@ -10,16 +10,25 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_entity_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_current_entity_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  sciPointObj * curEntity = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
+  sciPointObj * curEntity = NULL ;
   
+  if ( !isParameterHandle( valueType ) )
+  {
+    sciprint("Incompatible type for property current_entity.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  curEntity = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
+
   if ( curEntity == NULL )
   {
     sciprint( "Object is not valid.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   
   return sciSetCurrentObj( curEntity ) ;

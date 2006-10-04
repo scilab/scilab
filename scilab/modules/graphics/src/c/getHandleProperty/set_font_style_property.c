@@ -11,15 +11,23 @@
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_font_style_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int value = (int) getDoubleFromStack( stackPointer ) ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property font_style.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( value > 10 || value < 0 )
   {
     sciprint( "The value must be in [0 10].\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   
   return sciSetFontStyle( pobj, value ) ;

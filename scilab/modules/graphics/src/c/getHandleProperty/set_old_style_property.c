@@ -10,26 +10,34 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_old_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_old_style_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   char * value = getStringFromStack( stackPointer ) ;
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property old_style.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
     setVersionFlag( 1 ) ;
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
     setVersionFlag( 0 ) ;
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
   else
   {
     sciprint("old_style must be 'on' or 'off'.\n");
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

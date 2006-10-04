@@ -605,14 +605,14 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
   return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/
-int set_data_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_data_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   if( sciGetEntityType(pobj) == SCI_SEGS && pSEGS_FEATURE(pobj)->ptype == 1 )
   {
     AssignedList * tlist = NULL ;
     int status = -1 ;
 
-    if( !isParameterTlist(3) )
+    if( !isParameterTlist( valueType ) )
     {
       sciprint( "Incorrect argument, must be a Tlist!\r\n" ) ;
       return SET_PROPERTY_ERROR ;
@@ -634,7 +634,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCo
     AssignedList * tlist = NULL ;
     int status = -1 ;
 
-    if( !isParameterTlist(3) )
+    if( !isParameterTlist( valueType ) )
     {
       sciprint( "Incorrect argument, must be a Tlist!\r\n" ) ;
       return SET_PROPERTY_ERROR ;
@@ -657,7 +657,7 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCo
     int status = -1 ;
     int listSize = 0 ;
 
-    if( !isParameterTlist(3) )
+    if( !isParameterTlist( valueType ) )
     {
       sciprint( "Incorrect argument, must be a Tlist!\r\n" ) ;
       return SET_PROPERTY_ERROR ;
@@ -689,16 +689,21 @@ int set_data_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCo
     return status ;
 
   }
-  else if ( sciGetEntityType(pobj) == SCI_POLYLINE ) /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
+  else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
   {
-    CheckAndUpdate_x_shift( pobj, nbRow ) ; /* used only on Polyline */
-    CheckAndUpdate_y_shift( pobj, nbRow ) ; /* used only on Polyline */
-    CheckAndUpdate_z_shift( pobj, nbRow ) ; /* used only on Polyline */
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+      sciprint("Incompatible type for property data.\n") ;
+      return SET_PROPERTY_ERROR ;
+    }
 
-    return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
-  }
-  else
-  {
+    if ( sciGetEntityType(pobj) == SCI_POLYLINE )
+    {
+      CheckAndUpdate_x_shift( pobj, nbRow ) ; /* used only on Polyline */
+      CheckAndUpdate_y_shift( pobj, nbRow ) ; /* used only on Polyline */
+      CheckAndUpdate_z_shift( pobj, nbRow ) ; /* used only on Polyline */
+    }
+
     return sciSetPoint( pobj, getDoubleMatrixFromStack( stackPointer ), &nbRow, &nbCol );
   }
   return SET_PROPERTY_ERROR ;

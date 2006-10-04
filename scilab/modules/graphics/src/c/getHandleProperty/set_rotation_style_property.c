@@ -11,33 +11,40 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_rotation_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_rotation_style_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   char * value = getStringFromStack( stackPointer ) ;
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property rotation_style.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE ) 
   {
     sciprint( "rotation_style_property undefined for this object.\n" ) ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
 
   if ( isStringParamEqual( stackPointer, "unary" ) )
   {
     pFIGURE_FEATURE(pobj)->rotstyle = 0 ;
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
   else if ( isStringParamEqual( stackPointer, "multiple" ) )
   {
     pFIGURE_FEATURE(pobj)->rotstyle = 1 ;
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
   else
   {
     sciprint("Nothing to do (value must be 'unary/multiple').\n");
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

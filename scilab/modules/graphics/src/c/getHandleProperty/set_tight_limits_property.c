@@ -14,8 +14,15 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_tight_limits_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_tight_limits_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property tight_limits.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     sciprint("tight_limits property does not exists for this handle.\n") ;

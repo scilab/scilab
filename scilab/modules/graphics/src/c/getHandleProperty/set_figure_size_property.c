@@ -13,15 +13,23 @@
 #include "Xcall1.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_size_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_figure_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property figure_size.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     sciprint("figure_size property undefined for this object" ) ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
 
   pFIGURE_FEATURE( pobj )->figuredimwidth  = (int) values[0] ;  
@@ -41,6 +49,6 @@ int set_figure_size_property( sciPointObj * pobj, int stackPointer, int nbRow, i
       PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     C2F(dr)("xset","window",&curFigNum,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
-  return 0 ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

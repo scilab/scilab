@@ -9,10 +9,18 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_size_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_font_size_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property font_size.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   return sciSetFontDeciWidth( pobj, ((int)getDoubleFromStack( stackPointer )) );
 }
 /*------------------------------------------------------------------------*/

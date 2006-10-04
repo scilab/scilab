@@ -12,22 +12,30 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "pixel_mode.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_pixel_drawing_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_pixel_drawing_mode_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int v = -1 ;
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property pixel_drawing_mode.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
     sciprint( "pixel_drawing_mode: unknown property for this handle.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   v = getPixelModeIndex( getStringFromStack( stackPointer ) ) ;
 
   if ( v < 0 )
   {
     sciprint( "pixel_drawing_mode: unknown property for this handle.\n" ) ;
+    return SET_PROPERTY_ERROR ;
   }
 
   return sciSetXorMode( pobj, v );

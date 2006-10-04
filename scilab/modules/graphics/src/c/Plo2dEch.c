@@ -635,13 +635,18 @@ void get_margin_in_pixel(integer Margin[])
  *           when using log scales 
  *-------------------------------------------*/
 
-void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
-     char flag[6];            /* flag[i] = 't' or 'f' */
-     double  subwin[4];       /* subwindow specification */ /* <=> WRect*/
-     double  frame_values[4]; /* [xmin,ymin,xmax,ymax] */
-     integer aaint[4];        /* [xint,x_subint,y_int,y_subint]*/
-     char logflag[3];         /* [xlogflag,ylogflag,zlogflag (NOT USED HERE)] */
-     double axis_values[4];   /* [mfact_xl, mfact_xr,mfact_yu,mfact_yd]; */
+void set_scale( char    flag[6]        ,
+                double  subwin[4]      ,
+                double  frame_values[4],
+                integer aaint[4]       ,
+                char    logflag[3]     ,
+                double  axis_values[4]  )
+     /* flag[i] = 't' or 'f' */
+     /* subwindow specification */ /* <=> WRect*/
+     /* [xmin,ymin,xmax,ymax] */
+     /* [xint,x_subint,y_int,y_subint]*/
+     /* [xlogflag,ylogflag,zlogflag (NOT USED HERE)] */
+     /* [mfact_xl, mfact_xr,mfact_yu,mfact_yd]; */
 {
   char c;
   char wdim_changed= 'f',subwin_changed='f';

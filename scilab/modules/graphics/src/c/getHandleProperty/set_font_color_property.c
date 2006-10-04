@@ -11,11 +11,20 @@
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_font_color_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_font_color_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
   int value = (int) getDoubleFromStack( stackPointer ) ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property font_color.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
     pAXES_FEATURE (pobj)->textcolor = value ;

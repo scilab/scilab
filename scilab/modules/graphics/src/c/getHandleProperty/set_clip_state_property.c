@@ -14,8 +14,21 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_clip_state_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_clip_state_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property clip_state.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property axes_visible.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( isStringParamEqual( stackPointer, "clipgrf" ) )
   {
     return sciSetIsClipping( pobj, 0 ) ;

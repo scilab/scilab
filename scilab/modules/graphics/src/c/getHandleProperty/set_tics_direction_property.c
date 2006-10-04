@@ -14,8 +14,15 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_tics_direction_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_tics_direction_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property tics_direction.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
     sciprint("tics_direction property does not exist for this handle.\n" ) ;

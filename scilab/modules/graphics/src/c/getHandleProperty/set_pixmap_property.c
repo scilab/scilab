@@ -13,7 +13,7 @@
 #include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
-int set_pixmap_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_pixmap_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {

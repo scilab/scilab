@@ -1,0 +1,209 @@
+/*------------------------------------------------------------------------*/
+/* file: set_data_bounds_property.c                                       */
+/* Copyright INRIA 2006                                                   */
+/* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
+/* desc : function to modify in Scilab the data_bounds field of           */
+/*        a handle                                                        */
+/*------------------------------------------------------------------------*/
+
+#include <string.h>
+
+#include "setHandleProperty.h"
+#include "SetProperty.h"
+#include "getPropertyAssignedValue.h"
+#include "SetPropertyStatus.h"
+#include "GetProperty.h"
+#include "sciprint.h"
+
+/*------------------------------------------------------------------------*/
+/**
+ * fill bounds (xMin, xMax, yMin,... ) from the assigned value in the stack
+ * beacause it might have several possible size.
+ */
+int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
+                             double * xMin, double * xMax,
+                             double * yMin, double * yMax,
+                             double * zMin, double * zMax )
+{
+  double * bounds = getDoubleMatrixFromStack( stackPointer ) ;
+  
+  /* initialize zMin and zMax to avoid checking between 2D and 3D */
+  *zMin = 1.0 ;
+  *zMax = 2.0 ;
+
+  switch ( nbRow )
+  {
+  case 1 : /* row vector */
+    if ( nbCol == 4 )
+    {
+      *xMin = bounds[0] ;
+      *xMax = bounds[1] ;
+      *yMin = bounds[2] ;
+      *yMax = bounds[3] ;
+    }
+    else if( nbCol == 6 )
+    {
+      *xMin = bounds[0] ;
+      *xMax = bounds[1] ;
+      *yMin = bounds[2] ;
+      *yMax = bounds[3] ;
+      *zMin = bounds[4] ;
+      *zMax = bounds[5] ;
+    }
+    else
+    {
+      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      return SET_PROPERTY_ERROR ;
+    }
+    break ;
+
+  case 2 : /* 2x2 or 2x3 matrix */
+    if ( nbCol == 2 )
+    {
+      *xMin = bounds[0] ;
+      *yMin = bounds[2] ;
+      *xMax = bounds[1] ;
+      *yMax = bounds[3] ;
+    }
+    else if ( nbCol == 3 )
+    {
+      *xMin = bounds[0] ;
+      *yMin = bounds[2] ;
+      *zMin = bounds[4] ;
+      *xMax = bounds[1] ;
+      *yMax = bounds[3] ;
+      *zMax = bounds[5] ;
+    }
+    else
+    {
+      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      return SET_PROPERTY_ERROR ;
+    }
+    break ;
+
+  case 4 : /* column vector for 2D */
+    if ( nbCol == 1 )
+    {
+      *xMin = bounds[0] ;
+      *xMax = bounds[1] ;
+      *yMin = bounds[2] ;
+      *yMax = bounds[3] ;
+    }
+    else
+    {
+      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      return SET_PROPERTY_ERROR ;
+    }
+    break ;
+  case 6 : /* column vector for 3D */
+    if ( nbCol == 1 )
+    {
+      *xMin = bounds[0] ;
+      *xMax = bounds[1] ;
+      *yMin = bounds[2] ;
+      *yMax = bounds[3] ;
+      *zMin = bounds[4] ;
+      *zMax = bounds[5] ;
+    }
+    else
+    {
+      sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+      return SET_PROPERTY_ERROR ;
+    }
+    break ;
+  default:
+    sciprint( "Second argument should be a 2x2, 2x3, 1x4, 4x1, 1x6 or 6x1 matrix." ) ;
+    return SET_PROPERTY_ERROR ;
+  }
+  return SET_PROPERTY_SUCCEED ;
+}
+
+/*------------------------------------------------------------------------*/
+int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
+{
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property data_bounds.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  if (sciGetEntityType (pobj) == SCI_SUBWIN)
+  {
+
+    /* JB Silvy 09/11/05 */
+    sciSubWindow * ppSubWin = pSUBWIN_FEATURE (pobj) ;
+    double   xMin ;
+    double   xMax ;
+    double   yMin ;
+    double   yMax ;
+    double   zMin ;
+    double   zMax ;
+
+    /* get the bounds */
+    if ( getdDataBoundsFromStack( stackPointer, nbRow, nbCol, &xMin, &xMax, &yMin, &yMax, &zMin, &zMax ) == SET_PROPERTY_ERROR )
+    {
+      return SET_PROPERTY_ERROR ;
+    }
+
+    /* check if the bounds are corrects */
+    /* allows equality with bounds since it is working */
+    if ( xMin > xMax || yMin > yMax || zMin > zMax )
+    {
+      sciprint("Error : Min and Max values for one axis do not verify Min <= Max.\n");
+      return SET_PROPERTY_ERROR ;
+    }
+
+    /* check for logflags that values are greater than 0 */
+    if (   ( ppSubWin->logflags[0] == 'l' && xMin <= 0.0 )
+      || ( ppSubWin->logflags[1] == 'l' && yMin <= 0.0 )
+      || ( ppSubWin->logflags[2] == 'l' && zMin <= 0.0 ) )
+    {
+      sciprint("Error: bounds on axis must be strictly positive to use logarithmic mode\n" ) ;
+      return SET_PROPERTY_ERROR ;
+    }
+
+    /* copy the values in the axis */
+    if ( nbRow * nbCol == 4 )
+    { 
+      /* 2D */
+      ppSubWin->SRect[0] = xMin ;
+      ppSubWin->SRect[1] = xMax ;
+      ppSubWin->SRect[2] = yMin ;
+      ppSubWin->SRect[3] = yMax ;
+    }
+    else
+    {
+      /* 3D */
+      ppSubWin->SRect[0] = xMin ;
+      ppSubWin->SRect[1] = xMax ;
+      ppSubWin->SRect[2] = yMin ;
+      ppSubWin->SRect[3] = yMax ;
+      ppSubWin->SRect[4] = zMin ;
+      ppSubWin->SRect[5] = zMax ;
+    }
+
+    ppSubWin->FirstPlot = FALSE;
+
+    return SET_PROPERTY_SUCCEED ;
+  }
+  else if ( sciGetEntityType(pobj) == SCI_SURFACE )
+  {
+    if ( nbRow * nbCol != 6 )
+    {
+      sciprint( "Second argument must have 6 elements.\n" ) ;
+      return SET_PROPERTY_ERROR ;
+    }
+
+    copyDoubleVectorFromStack( stackPointer, pSURFACE_FEATURE(pobj)->ebox, 6 ) ;
+
+    return SET_PROPERTY_SUCCEED ;
+  }
+  else
+  {
+    sciprint("data_bounds property does not exist for this handle.\n") ; 
+    return SET_PROPERTY_ERROR ;
+  }
+
+  return SET_PROPERTY_ERROR ;
+}
+/*------------------------------------------------------------------------*/

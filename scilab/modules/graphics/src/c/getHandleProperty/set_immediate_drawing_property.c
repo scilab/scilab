@@ -11,33 +11,40 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_immediate_drawing_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property immediate_drawing.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
     sciprint( "immediate_drawing property undefined for this object.\n" ) ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
   
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
     pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = TRUE ;
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
     pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = FALSE ;
-    return 0 ;
+    return SET_PROPERTY_SUCCEED ;
   }
   else
   {
     sciprint("Nothing to do (value must be 'on/off')") ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

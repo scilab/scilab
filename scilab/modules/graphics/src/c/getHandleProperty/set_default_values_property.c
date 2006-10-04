@@ -11,14 +11,21 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "InitObjects.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_default_values_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_default_values_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property default_values.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( getDoubleFromStack( stackPointer ) != 1 )
   {
     sciprint( "Value must be 1 to set default values.\n" ) ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
 
   if ( pobj == getFigureModel() )
@@ -33,6 +40,6 @@ int set_default_values_property( sciPointObj * pobj, int stackPointer, int nbRow
   {
     return sciSetDefaultValues();
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

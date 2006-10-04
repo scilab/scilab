@@ -14,8 +14,14 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_callback_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_callback_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-   return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property callback.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;
 }
 /*------------------------------------------------------------------------*/

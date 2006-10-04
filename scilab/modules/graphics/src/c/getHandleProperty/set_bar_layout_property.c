@@ -11,14 +11,22 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_bar_layout_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_bar_layout_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property bar_layout.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
     sciprint( "bar_layout property does not exist for this handle.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
   
   if( isStringParamEqual( stackPointer, "grouped" ) )
@@ -32,9 +40,9 @@ int set_bar_layout_property( sciPointObj * pobj, int stackPointer, int nbRow, in
   else
   {
     sciprint( "bar_layout must be set to 'grouped' or 'stacked'.\n" ) ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
 
-  return -1 ;
+  return SET_PROPERTY_SUCCEED ;
 }
 /*------------------------------------------------------------------------*/

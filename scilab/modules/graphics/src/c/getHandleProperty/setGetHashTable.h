@@ -36,7 +36,6 @@ typedef int (*getPropertyFunc)(sciPointObj *) ;
 /*-----------------------------------------------------------------------------------*/
 /**
  * Create a new hashTable of get functions
- * Use singleton pattern. Only one hashTable is created
  */
 GetPropertyHashTable * createGetHashTable( void ) ;
 

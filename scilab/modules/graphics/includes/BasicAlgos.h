@@ -34,11 +34,21 @@ int C2F(entier2d)( integer * n, double * dx,integer * s ) ;
  * @param nbElement must be greater than 2.
  */
 int checkMonotony( double vector[], int nbElement ) ;
-
+/*-----------------------------------------------------------------------------------*/
 /**
  * copy an array into an other
  */
 void doubleArrayCopy( double dest[], const double src[], int nbElement ) ;
+
+/**
+ * copy an int array into an other
+ */
+void intArrayCopy( int dest[], const int src[], int nbElement ) ;
+
+/**
+ * copy a char * array into an other
+ */
+void stringArrayCopy( char * dest[], const char * src[], int nbElement ) ;
 
 /**
  * set each element of an array to a certain value
@@ -53,5 +63,21 @@ void setDoubleArraySingleValue( double dest[], double value, int nbElement ) ;
  * @return  the newly created array or NULL if an error occured
  */
 double * createNewArrayFromSource( int destSize, const double src[], int srcSize ) ;
+
+/**
+ * free an array of strings
+ */
+void destroyStringArray( char * src[], int nbStrings ) ;
+
+/**
+ * allocate a copy of a int array.
+ */
+int * createIntArrayCopy( const int src[], int nbElement ) ;
+
+/**
+ * allocate a copy of a string array
+ */
+char ** createStringArrayCopy( const char * src[], int nbElement ) ;
+/*-----------------------------------------------------------------------------------*/
 
 #endif /* _BASIC_ALGOS_H_ */

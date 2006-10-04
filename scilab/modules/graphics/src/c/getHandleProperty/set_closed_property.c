@@ -14,8 +14,15 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_closed_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_closed_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property closed.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if(sciGetEntityType(pobj) != SCI_POLYLINE)
   {
     sciprint( "closed property does not exist for this handle.\n" ) ;

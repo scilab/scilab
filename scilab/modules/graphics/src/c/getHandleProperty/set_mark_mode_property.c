@@ -10,10 +10,17 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_mark_mode_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property mark_mode.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
     return sciSetIsMark( pobj, TRUE ) ;
@@ -25,7 +32,7 @@ int set_mark_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int
   else
   {
     sciprint("Value must be 'on/off'.\n") ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
 }
 /*------------------------------------------------------------------------*/

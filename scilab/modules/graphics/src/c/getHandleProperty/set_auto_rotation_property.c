@@ -14,8 +14,14 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_auto_rotation_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_auto_rotation_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property auto_resize.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_LABEL )
   {
     sciprint("auto_rotation does not exist for this handle.\n") ;

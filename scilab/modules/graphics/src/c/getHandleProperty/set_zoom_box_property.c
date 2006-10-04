@@ -15,8 +15,15 @@
 #include "PloEch.h"
 
 /*------------------------------------------------------------------------*/
-int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_zoom_box_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property zoom_box.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     sciprint( "zoom_box property does nor exist for this handle.\n" ) ;

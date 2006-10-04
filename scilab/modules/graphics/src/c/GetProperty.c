@@ -4384,7 +4384,10 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
 }
 
 
-
+/**
+ * Don't use this ugly function !!!! (Jb Silvy)
+ * 130 strcmp for to know the type of a parameter
+ */
 int sciType (marker, pobj)
      char *marker;
      sciPointObj * pobj;

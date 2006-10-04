@@ -15,15 +15,23 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_axes_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_current_axes_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  sciPointObj * curAxes   = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) );
+  sciPointObj * curAxes   = NULL ;
   sciPointObj * parentFig = NULL ;
   int num = -1 ;
   int v    = 1 ;
   int status1 = 1 ;
   int status2 = 1 ;
   
+  if ( !isParameterHandle( valueType ) )
+  {
+    sciprint("Incompatible type for property current_axes.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+  curAxes = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
+
   if ( curAxes == NULL)
   {
     sciprint("Object is not valid.\n") ;

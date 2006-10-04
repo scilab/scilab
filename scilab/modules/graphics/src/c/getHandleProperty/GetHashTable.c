@@ -197,7 +197,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
   if ( accessor == NULL )
   {
     sciprint( "Unknown property.\n" ) ;
-    return 1 ;
+    return -1 ;
   }
   return accessor( pObj ) ;
 }

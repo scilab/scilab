@@ -14,11 +14,11 @@
 #include "Xcall1.h"
 
 /*------------------------------------------------------------------------*/
-int set_current_figure_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_current_figure_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int figNum = -1 ;
 
-  if ( isParameterHandle(2) )
+  if ( isParameterHandle( valueType ) )
   {
     sciPointObj * curFig = sciGetPointerFromHandle( getHandleFromStack( stackPointer ) ) ;
     
@@ -34,7 +34,7 @@ int set_current_figure_property( sciPointObj * pobj, int stackPointer, int nbRow
     }
     figNum = sciGetNum( curFig ) ;
   }
-  else if ( isParameterDoubleMatrix(2) )
+  else if ( isParameterDoubleMatrix( valueType ) )
   {
     figNum = (int) getDoubleFromStack( stackPointer ) ;
   }

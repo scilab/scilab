@@ -81,6 +81,31 @@ void doubleArrayCopy( double dest[], const double src[], int nbElement )
   memcpy( dest, src, nbElement * sizeof(double) ) ;
 }
 /*------------------------------------------------------------------------*/
+void intArrayCopy( int dest[], const int src[], int nbElement )
+{
+  memcpy( dest, src, nbElement * sizeof(int) ) ;
+}
+/*------------------------------------------------------------------------*/
+void stringArrayCopy( char * dest[], const char * src[], int nbElement )
+{
+  int i ;
+  for ( i = 0 ; i < nbElement ; i++ )
+  {
+    int elemSize = strlen( src[i] ) + 1 ;
+    FREE( dest[i] ) ;
+
+    dest[i] = MALLOC( elemSize * sizeof(char) ) ;
+
+    if ( dest[i] == NULL )
+    {
+      destroyStringArray( dest, nbElement ) ;
+      return ;
+    }
+
+    strcpy( dest[i], src[i] ) ;
+  }
+}
+/*------------------------------------------------------------------------*/
 void setDoubleArraySingleValue( double dest[], double value, int nbElement )
 {
   int i ;
@@ -114,3 +139,49 @@ double * createNewArrayFromSource( int destSize, const double src[], int srcSize
 
 }
 /*------------------------------------------------------------------------*/
+void destroyStringArray( char * src[], int nbStrings )
+{
+  int i ;
+  for ( i = 0 ; i < nbStrings ; i++ )
+  {
+    FREE( src[i] ) ;
+    src[i] = NULL ;
+  }
+  FREE( src ) ;
+}
+/*-----------------------------------------------------------------------------------*/
+int * createIntArrayCopy( const int src[], int nbElement )
+{
+  int * res = MALLOC( nbElement * sizeof(int) ) ;
+  
+  if ( res == NULL )
+  {
+    return NULL ;
+  }
+  
+  memcpy( res, src, nbElement * sizeof(int) ) ;
+
+  return res ;
+}
+/*-----------------------------------------------------------------------------------*/
+char ** createStringArrayCopy( const char * src[], int nbElement )
+{
+  int i ;
+  char ** res = MALLOC( nbElement * sizeof(char *) ) ;
+
+  if ( res == NULL )
+  {
+    return NULL ;
+  }
+
+  for ( i = 0 ; i < nbElement; i++ )
+  {
+    res[i] = NULL ;
+  }
+
+  stringArrayCopy( res, src, nbElement ) ;
+
+  return res ;
+
+}
+/*-----------------------------------------------------------------------------------*/

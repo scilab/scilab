@@ -10,12 +10,22 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_mark_style_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int status1 = sciSetIsMark( pobj, TRUE ) ;
-  int status2 = sciSetMarkStyle( pobj, (int) getDoubleFromStack(stackPointer) ) ;
+  int status1 ;
+  int status2 ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property mark_style.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+   status1 = sciSetIsMark( pobj, TRUE ) ;
+   status2 = sciSetMarkStyle( pobj, (int) getDoubleFromStack(stackPointer) ) ;
 
   return sciSetFinalStatus( status1, status2 ) ;
 }

@@ -11,17 +11,24 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_surface_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_surface_mode_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property surface_mode.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_PLOT3D &&
        sciGetEntityType(pobj) != SCI_FAC3D  &&
        sciGetEntityType(pobj) != SCI_SURFACE   )
   {
     sciprint( "Surface_mode can not be set with this object, use line_mode.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
 
   if ( isStringParamEqual( stackPointer, "on" ) )
@@ -35,8 +42,8 @@ int set_surface_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, 
   else
   {
     sciprint( "Value must be 'on/off'.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

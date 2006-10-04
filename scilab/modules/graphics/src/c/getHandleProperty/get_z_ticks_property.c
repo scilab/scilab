@@ -12,6 +12,7 @@
 #include "get_ticks_utils.h"
 #include "Format.h"
 #include "MALLOC.h"
+#include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
 int get_z_ticks_property( sciPointObj * pobj )

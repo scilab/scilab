@@ -14,11 +14,12 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_y_label_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_y_label_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint("z_label property undefined for this object.\n") ;
+    sciprint("y_label property undefined for this object.\n") ;
     return SET_PROPERTY_ERROR ;
   }
   else

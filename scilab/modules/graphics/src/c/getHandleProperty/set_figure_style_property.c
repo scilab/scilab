@@ -16,6 +16,7 @@
 #include "DrawObjects.h"
 #include "DestroyObjects.h"
 #include "BuildObjects.h"
+#include "SetPropertyStatus.h"
 
 /*-----------------------------------------------------------------------------------*/
 /* removeNewStyleMenu                                                                */
@@ -44,7 +45,7 @@ void updateMenus( struct BCG * XGC )
 
 }
 /*------------------------------------------------------------------------*/
-int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_figure_style_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   struct BCG * XGC = NULL ;
   int    verb = 0   ;
@@ -53,11 +54,17 @@ int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, 
   int    num        ;
   int    na         ;
 
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property figure_style.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
 
   if ( pobj == getFigureModel() )
   {
     sciprint("Can not set the style of a model.\n");    
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
     
   if ( isStringParamEqual( stackPointer, "old" ) )
@@ -84,12 +91,12 @@ int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, 
 
       /* Add xclear to refresh toolbar for Windows */
       C2F (dr) ( "xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L ) ;
-      return 0 ;
+      return SET_PROPERTY_SUCCEED ;
     }
     else
     {
       /* nothing to do */
-      return 0 ;
+      return SET_PROPERTY_UNCHANGED ;
     }
   }
   else if ( isStringParamEqual( stackPointer, "new" ) )
@@ -121,20 +128,20 @@ int set_figure_style_property( sciPointObj * pobj, int stackPointer, int nbRow, 
         }
         /* Refresh toolbar and Menus */
         updateMenus( XGC ) ;
-        return 0 ;
+        return SET_PROPERTY_SUCCEED ;
       }
     }
     else
     {
       /* nothing to do */
-      return 0 ;
+      return SET_PROPERTY_UNCHANGED ;
     }
   }
   else
   {
     sciprint("Figure style must be 'old' or 'new'.\n") ;
-    return -1;
+    return SET_PROPERTY_ERROR ;
   }
-  return -1 ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

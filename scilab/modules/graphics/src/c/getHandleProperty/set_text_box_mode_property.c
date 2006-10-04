@@ -14,8 +14,15 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_box_mode_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_text_box_mode_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property text_box_mode.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_TEXT )
   {
     sciprint( "text_box_mode property does not exist for this handle.\n" ) ;

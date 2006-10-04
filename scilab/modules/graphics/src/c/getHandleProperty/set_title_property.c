@@ -15,8 +15,9 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_title_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_title_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     sciprint("title property undefined for this object.\n") ;

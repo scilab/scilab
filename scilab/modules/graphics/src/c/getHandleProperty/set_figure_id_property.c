@@ -15,9 +15,16 @@
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_id_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_figure_id_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int id = (int) getDoubleFromStack( stackPointer ) ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property figure_id.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     sciprint("figure_id property undefined for this object.\n") ;

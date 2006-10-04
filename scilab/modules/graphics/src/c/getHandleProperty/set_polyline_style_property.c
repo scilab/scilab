@@ -11,26 +11,34 @@
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
 #include "GetProperty.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_polyline_style_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_polyline_style_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int value = 0 ;
+
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property polyline_style.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if (sciGetEntityType (pobj) != SCI_POLYLINE)
   {
     sciprint( "polyline_style property does not exist for this handle.\n" ) ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
     
   value = (int) getDoubleFromStack( stackPointer ) ;
   if ( value < 1 || value > 7 )
   {
     sciprint("Style must be 1,2,3,4,5,6 or 7.\n") ;
-    return -1 ;
+    return SET_PROPERTY_ERROR ;
   }
 
   pPOLYLINE_FEATURE (pobj)->plot = value ;
-  return 0 ;
+  return SET_PROPERTY_SUCCEED ;
   
 }
 /*------------------------------------------------------------------------*/

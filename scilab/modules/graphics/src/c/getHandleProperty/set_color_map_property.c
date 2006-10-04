@@ -9,10 +9,18 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_map_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_color_map_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterDoubleMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property color_map.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   return sciSetColormap( pobj, getDoubleMatrixFromStack( stackPointer), nbRow, nbCol ) ;
 }
 /*------------------------------------------------------------------------*/

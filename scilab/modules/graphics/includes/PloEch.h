@@ -61,6 +61,13 @@ int C2F(Nsetscale2d)( double    WRect[4],
 
 int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[4] ) ;
 
+void set_scale( char    flag[6]        ,
+                double  subwin[4]      ,
+                double  frame_values[4],
+                integer aaint[4]       ,
+                char    logflag[3]     ,
+                double  axis_values[4]  ) ;
+
 int zoom( void ) ;
 int zoom_box( double * bbox, int * x_pixel, int * y_pixel ) ;
 

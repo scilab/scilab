@@ -19,6 +19,7 @@
 #include "Format.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
+#include "BasicAlgos.h"
 
 /* Add those lines for FD algo on Theticks */
 #define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
@@ -1328,17 +1329,6 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
 
   return res ;
 
-}
-/*-----------------------------------------------------------------------------------*/
-void destroyStringArray( char * src[], int nbStrings )
-{
-  int i ;
-  for ( i = 0 ; i < nbStrings ; i++ )
-  {
-    FREE( src[i] ) ;
-    src[i] = NULL ;
-  }
-  FREE( src ) ;
 }
 /*-----------------------------------------------------------------------------------*/
 

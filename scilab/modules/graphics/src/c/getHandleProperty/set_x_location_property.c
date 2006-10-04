@@ -14,8 +14,15 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_x_location_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_x_location_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property x_location.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     sciprint("x_location property does not exist for this handle.\n") ;

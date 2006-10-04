@@ -10,10 +10,17 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int set_figure_name_property( sciPointObj * pobj, int stackPointer, int nbRow, int nbCol )
+int set_figure_name_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
+  if ( !isParameterStringMatrix( valueType ) )
+  {
+    sciprint("Incompatible type for property figure_name.\n") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
   return sciSetName( pobj, getStringFromStack( stackPointer ), nbCol * nbRow ) ;
 }
 /*------------------------------------------------------------------------*/
