@@ -31,6 +31,15 @@ typedef struct hashtable SetPropertyHashTable ;
  * The return value is 0 if the call was successful and -1 otherwise.
  */
 typedef int (*getPropertyFunc)(sciPointObj *) ;
+
+/**
+* Prototype of functions used to set a specific property of an handle.
+* The sciPointObj is the object to get the property from
+* The return value is SET_PROERTY_SUCEED if the call was successful and a redraw is needed
+* SET_PROPERTY_UNCHANGED if nothing was actually changed and SET_PROPERTY_ERROR if
+* an error occurred.
+*/
+typedef int (*setPropertyFunc)(sciPointObj *, int, int, int, int ) ;
 /*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
@@ -55,5 +64,28 @@ getPropertyFunc searchGetHashtable( GetPropertyHashTable * hashTable , char * ke
  */
 int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropertyFunc value ) ;
 
+/*-----------------------------------------------------------------------------------*/
+/**
+* Create a new hashTable of set functions
+*/
+GetPropertyHashTable * createSetHashTable( void ) ;
+
+/**
+* destroy the hashtable and free the used resources.
+*/
+void destroySetHashTable( SetPropertyHashTable * hashTable ) ;
+
+/**
+* Search for a key in a hashtable. if succeed, return the value needed. if failed, return NULL
+* @return The corresponding value if the key was found, NULL otherwise.
+*/
+setPropertyFunc searchSetHashtable( SetPropertyHashTable * hashTable , char * key ) ;
+
+/*
+* Insert a new element in the hashtable
+*/
+int insertSetHashtable( SetPropertyHashTable * hashTable, char * key, setPropertyFunc value ) ;
+
 /*-----------------------------------------------------------------------------------*/ 
+
 #endif /* _SET_GET_HASHTABLE_H_ */

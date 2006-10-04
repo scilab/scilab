@@ -137,10 +137,10 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "labels_font_size"   , get_labels_font_size_property    },
   { "labels_font_color"  , get_labels_font_color_property   },
   { "labels_font_style"  , get_labels_font_style_property   },
-  { "format_n"           , get_labels_format_n_property     },
+  { "format_n"           , get_format_n_property            },
   { "xtics_coord"        , get_xtics_coord_property         },
   { "ytics_coord"        , get_ytics_coord_property         },
-  { "tics_labels"        , get_tics_label_property          },
+  { "tics_labels"        , get_tics_labels_property         },
   { "box"                , get_box_property                 },
   { "grid"               , get_grid_property                },
   { "axes_visible"       , get_axes_visible_property        },
@@ -202,7 +202,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
   return accessor( pObj ) ;
 }
 /*-----------------------------------------------------------------------------------*/
-void destroyScilabHashTable( void )
+void destroyScilabGetHashTable( void )
 {
   if ( !getHashTableCreated )
   {

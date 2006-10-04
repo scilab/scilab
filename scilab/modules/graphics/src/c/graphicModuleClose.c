@@ -6,13 +6,16 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty/GetHashTable.h"
+#include "getHandleProperty/SetHashTable.h"
 #include "DestroyObjects.h"
 
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
 {
-  /* destroy get hashtable */
-  destroyScilabHashTable() ;
+  /* destroy hashtables */
+  destroyScilabGetHashTable() ;
+  destroyScilabSetHashTable() ;
+
 
   /* destroy all graphic windows */
   AllGraphWinDelete() ;

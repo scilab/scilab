@@ -1322,6 +1322,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_children_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_clip_box_property.c"
 				>
 			</File>
@@ -1530,6 +1534,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_parent_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_pixel_drawing_mode_property.c"
 				>
 			</File>
@@ -1695,6 +1703,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\setGetHashTable.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\SetHashTable.c"
 				>
 			</File>
 			<File
@@ -2292,6 +2304,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\setHandleProperty.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\SetHashTable.h"
 				>
 			</File>
 			<File

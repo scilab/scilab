@@ -57,7 +57,36 @@ getPropertyFunc searchGetHashtable( GetPropertyHashTable * hashTable, char * key
 /*-----------------------------------------------------------------------------------*/
 int insertGetHashtable( GetPropertyHashTable * hashTable, char * key, getPropertyFunc value )
 {
-  /* allocate a new key because the hashable claims ownership */
+  /* allocate a new key because the hashtable claims ownership */
+  /* and will free it when destroyed */
+  char * copyKey   = NULL ;
+  int    keyLength = strlen( key ) + 1 ;
+
+  copyKey = MALLOC( keyLength * sizeof(char) ) ;
+  strcpy( copyKey, key ) ;
+
+  return hashtable_insert( hashTable, copyKey, value ) ;
+}
+/*-----------------------------------------------------------------------------------*/
+SetPropertyHashTable * createSetHashTable( void )
+{
+  return create_hashtable(16, setGetHashTableHash, setGetHashTableEqualKeys ) ;
+}
+/*-----------------------------------------------------------------------------------*/
+void destroySetHashTable( SetPropertyHashTable * hashTable )
+{
+  /* we just store pointers */
+  hashtable_destroy( hashTable, 0 ) ;
+}
+/*-----------------------------------------------------------------------------------*/
+setPropertyFunc searchSetHashtable( SetPropertyHashTable * hashTable, char * key )
+{
+  return (setPropertyFunc) hashtable_search( hashTable, key ) ;
+}
+/*-----------------------------------------------------------------------------------*/
+int insertSetHashtable( SetPropertyHashTable * hashTable, char * key, setPropertyFunc value )
+{
+  /* allocate a new key because the hashtable claims ownership */
   /* and will free it when destroyed */
   char * copyKey   = NULL ;
   int    keyLength = strlen( key ) + 1 ;

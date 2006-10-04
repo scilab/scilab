@@ -110,7 +110,7 @@ int set_log_flags_property( sciPointObj * pobj, int stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
   
-  if ( nbRow * nbCol != 2 || nbRow * nbCol != 3 )
+  if ( nbRow * nbCol != 2 && nbRow * nbCol != 3 )
   {
     sciprint( "log_flags must have a size of 2 or 3.\n" ) ;
     return SET_PROPERTY_ERROR ;

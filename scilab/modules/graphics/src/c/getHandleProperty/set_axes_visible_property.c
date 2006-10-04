@@ -71,10 +71,10 @@ int set_axes_visible_property( sciPointObj * pobj, int stackPointer, int valueTy
       else
       {
         sciprint("Second argument must be 'on' or 'off'.\n") ;
-        return -1 ;
+        return SET_PROPERTY_ERROR ;
       }
-      return SET_PROPERTY_SUCCEED ;
     }
+    return SET_PROPERTY_SUCCEED ;
   }
   else
   {

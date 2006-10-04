@@ -1,8 +1,8 @@
 /*------------------------------------------------------------------------*/
-/* file: get_tics_label_property.c                                        */
+/* file: get_tics_labels_property.c                                       */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the tics_label field of          */
+/* desc : function to retrieve in Scilab the tics_labels field of         */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -13,7 +13,7 @@
 #include "Format.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_label_property( sciPointObj * pobj )
+int get_tics_labels_property( sciPointObj * pobj )
 {
 
   

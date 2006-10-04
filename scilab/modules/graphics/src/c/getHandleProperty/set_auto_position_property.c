@@ -16,7 +16,7 @@
 /*------------------------------------------------------------------------*/
 int set_auto_position_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterDoubleMatrix( valueType ) )
+  if ( !isParameterStringMatrix( valueType ) )
   {
     sciprint("Incompatible type for property auto_position.\n") ;
     return SET_PROPERTY_ERROR ;

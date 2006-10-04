@@ -396,8 +396,8 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     
     mark_mode      = toggle(mget(1,'c',fd)) // mark_mode
-    mark_style     = mget(1,'c',fd); // mark_style
-    mark_size      = mget(1,'c',fd); // mark_size
+    mark_style     = mget(1,'il',fd); // mark_style
+    mark_size      = mget(1,'il',fd); // mark_size
     msu='tabulated'
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,'c',fd))=='t' then // mark_size_unit

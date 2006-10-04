@@ -1,33 +1,33 @@
 /*------------------------------------------------------------------------*/
-/* file: GetHashTable.h                                                   */
+/* file: SetHashTable.h                                                   */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
-/* desc : implementation of the scilab hashtable for the get procedure    */
+/* desc : implementation of the scilab hashtable for the set procedure    */
 /*------------------------------------------------------------------------*/
 
-#ifndef _GET_HASH_TABLE_H_
-#define _GET_HASH_TABLE_H_
+#ifndef _SET_HASH_TABLE_H_
+#define _SET_HASH_TABLE_H_
 
 #include "setGetHashTable.h"
 #include "ObjectStructure.h"
 
 /**
- * create the fill hash table already filled for get functions
+ * create the fill hash table already filled for set functions
  * this use the singleton pattern since only one hashtable is useful.
  */
-GetPropertyHashTable * createScilabGetHashTable( void ) ;
+SetPropertyHashTable * createScilabSetHashTable( void ) ;
 
 /**
- * Delete the scilab get hashtable
+ * Delete the scilab set hashtable
  */
-void destroyScilabGetHashTable( void ) ;
+void destroyScilabSetHashTable( void ) ;
 
-/**
+/** 
  * call the function which the property propertyName of object pObj
  * @return  0 if successful
  *         -1 if an error occured in the get function
  *          1 if the property was not found
  */
-int callGetProperty( sciPointObj * pObj, char * propertyName ) ;
+int callSetProperty( sciPointObj * pObj, int stackPointer, int valueType, int nbRow, int nbCol, char * propertyName ) ;
 
-#endif /* _GET_HASH_TABLE_H_ */
+#endif /* _SET_HASH_TABLE_H_ */

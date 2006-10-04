@@ -1,24 +1,21 @@
 /*------------------------------------------------------------------------*/
-/* file: get_format_n_property.c                                          */
+/* file: set_children_property.c                                          */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Fabrice Leray, Allan Cornet, Jean-Baptiste Silvy             */
-/* desc : function to retrieve in Scilab the format_n field of            */
+/* desc : function to modify in Scilab the children field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "getHandleProperty.h"
-#include "GetProperty.h"
-#include "returnProperty.h"
+#include "setHandleProperty.h"
+#include "SetProperty.h"
+#include "getPropertyAssignedValue.h"
 #include "sciprint.h"
+#include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
-int get_format_n_property( sciPointObj * pobj )
+int set_children_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( sciGetEntityType (pobj) != SCI_AXES )
-  {
-    sciprint("format_n property does not exist for this handle.\n");
-    return -1;
-  }
-  return sciReturnString( pAXES_FEATURE (pobj)->format ) ;
+  sciprint( "Children property can not be modified directly.\n" ) ;
+  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

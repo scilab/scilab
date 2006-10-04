@@ -224,8 +224,8 @@ function save_graphichandle(h,fd)
     mput( bool2s(h.interp_color_mode=='on'), 'c', fd ) ; // interp_color_mode
     
     mput(bool2s(h.mark_mode=='on'),'c',fd) // mark_mode
-    mput(h.mark_style,'c',fd) // mark_style
-    mput(h.mark_size,'c',fd) // mark_size
+    mput(h.mark_style,'il',fd) // mark_style
+    mput(h.mark_size,'il',fd) // mark_size
     mput(ascii(part(h.mark_size_unit,1)),'c',fd) // mark_size_unit
     mput(h.foreground,'il',fd) // foreground
     mput(h.background,'il',fd) // background
