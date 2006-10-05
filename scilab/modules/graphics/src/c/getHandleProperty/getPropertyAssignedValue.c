@@ -186,7 +186,7 @@ int getAssignedListNbElement( AssignedList * list )
   return list->nbElement - 1 ;
 }
 /*-----------------------------------------------------------------------------------*/
-void rewindAssingnedList( AssignedList * list )
+void rewindAssignedList( AssignedList * list )
 {
   list->curElement = 2 ;
 }

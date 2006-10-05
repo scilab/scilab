@@ -126,7 +126,7 @@ int getAssignedListNbElement( AssignedList * list ) ;
 /**
  * set the current element to the first
  */
-void rewindAssingnedList( AssignedList * list ) ;
+void rewindAssignedList( AssignedList * list ) ;
 
 /**
  * Return whether the current element of the list is a double matrix or not.

@@ -312,7 +312,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   FREE(psurf->inputCMoV);psurf->inputCMoV = NULL; /* F.Leray 23.03.04*/
 
   /* copy the values now */
-  rewindAssingnedList( tlist ) ;
+  rewindAssignedList( tlist ) ;
   pvecx = createCopyDoubleMatrixFromList( tlist, &m1, &n1 ) ;
   pvecy = createCopyDoubleMatrixFromList( tlist, &m2, &n2 ) ;
   pvecz = createCopyDoubleMatrixFromList( tlist, &m3, &n3 ) ;
@@ -320,7 +320,6 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
 
   if( getAssignedListNbElement( tlist ) == 4 ) /* F.Leray There is a color matrix */
   {
-    int nc = 0 ;
     int j ;
     int i ;
 
@@ -354,11 +353,9 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     /* case flagcolor == 2*/
     if( psurf->flagcolor == 2 && ( m3n == 1 || n3n == 1) ) /* it means we have a vector in Color input: 1 color per facet in input*/
     {
+      doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
       /* We have just enough information to fill the psurf->zcol array*/
-      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-      {
-        psurf->zcol[j] = psurf->inputCMoV[j];  /* DJ.A 2003 */
-      }
+      /* nc value is dimzx*dimzy == m3 * n3 */
     }
     else if( psurf->flagcolor == 2 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
     {
@@ -393,20 +390,16 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     else if( psurf->flagcolor==3 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
     {
       /* We have just enough information to fill the psurf->zcol array*/
-      for (j = 0;j < nc; j++)
-      {   /* nc value is dimzy*/
-        psurf->zcol[j]= psurf->inputCMoV[j] ;
-      }
+      /* nc value is dimzy*/
+      doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
     }  
     /* case flagcolor == 4*/
     else if(psurf->flagcolor==4 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
     {
       /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
       /* We repeat the data:*/
-      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-      {
-        psurf->zcol[j] = psurf->inputCMoV[j];
-      }
+      /* nc value is dimzx*dimzy == m3n * n3n */
+      doubleArrayCopy( psurf->zcol, psurf->inputCMoV, nc ) ;
     }
     else if ( psurf->flagcolor == 4 ) /* it means we have a matrix in Color input: 1 color per vertex in input*/
     {
@@ -499,6 +492,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
       int i ;
 
       FREE(psurf->color);
+      psurf->color = NULL ;
 
       if( nc > 0 )
       {
@@ -506,11 +500,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
         {
           return -1;
         }
-      }
-
-      for(i=0;i<nc;i++)
-      {
-        psurf->color[i] = psurf->zcol[i];
+        doubleArrayCopy( psurf->color, psurf->zcol, nc ) ;
       }
       /* copy zcol that has just been freed and re-alloc + filled in */
     }

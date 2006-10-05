@@ -53,7 +53,7 @@ AssignedList * createTlistForTicks( void )
     }
   }
 
-  rewindAssingnedList( tlist ) ;
+  rewindAssignedList( tlist ) ;
 
   return tlist ;
   

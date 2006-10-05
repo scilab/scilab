@@ -56,6 +56,8 @@ int set_xtics_coord_property( sciPointObj * pobj, int stackPointer, int valueTyp
 
   /* what follows remains here as it was */
 
+  pAXES_FEATURE(pobj)->nx = nbCol ;
+
   FREE(pAXES_FEATURE(pobj)->vx); pAXES_FEATURE(pobj)->vx = NULL;
 
   pAXES_FEATURE(pobj)->vx = createCopyDoubleVectorFromStack( stackPointer, nbCol ) ;

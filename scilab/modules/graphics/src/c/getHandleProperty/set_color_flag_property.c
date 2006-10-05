@@ -241,6 +241,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
       if( psurf->cdatamapping == 0 )
       { /* scaled */
         FREE(psurf->color);
+        psurf->color = NULL ;
         LinearScaling2Colormap(pobj);
       }
       else
@@ -248,6 +249,7 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
         int nc = psurf->nc;
 
         FREE(psurf->color);
+        psurf->color = NULL ;
 
         if( nc > 0 )
         {
@@ -256,9 +258,8 @@ int set_color_flag_property( sciPointObj * pobj, int stackPointer, int valueType
             sciprint( "Unable to create color vector, memory full.\n" ) ;
             return -1;
           }
+          doubleArrayCopy( psurf->color, psurf->zcol, nc ) ;
         }
-
-        doubleArrayCopy( psurf->color, psurf->zcol, nc ) ;
         /* copy zcol that has just been freed and re-alloc + filled in */
       }
     }
