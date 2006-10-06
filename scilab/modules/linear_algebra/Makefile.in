@@ -68,7 +68,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(liblinear_algebra_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/lapack/liblapack.la \
+liblinear_algebra_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = intdggbal.lo intzgeqpf4.lo intzheev.lo intzgehrd.lo \
@@ -424,11 +425,10 @@ liblinear_algebra_la_include_HEADERS = includes/gw_linear_algebra2.h  \
 liblinear_algebra_la_CFLAGS = -Iincludes/ 
 lib_LTLIBRARIES = liblinear_algebra.la
 liblinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-liblinear_algebra_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
+liblinear_algebra_la_LIBADD = $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/blas/libblas.la \
 $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 
-liblinear_algebra_la_LIBADD = $(liblinear_algebra_la_DEPENDENCIES)
 liblinear_algebra_la_PKGCONFIG = linear_algebra.pc
 all: all-am
 

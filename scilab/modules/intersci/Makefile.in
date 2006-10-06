@@ -62,7 +62,8 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/MALLOC/libmalloc.la
+libintersci_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libintersci_la-libinter.lo libintersci_la-erro.lo \
 	libintersci_la-out.lo
 am_libintersci_la_OBJECTS = $(am__objects_1)
@@ -323,10 +324,9 @@ lib_LTLIBRARIES = libintersci.la
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 libintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
-libintersci_la_DEPENDENCIES = \
+libintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
-libintersci_la_LIBADD = $(libintersci_la_DEPENDENCIES)
 libintersci_la_PKGCONFIG = intersci.pc
 all: all-am
 

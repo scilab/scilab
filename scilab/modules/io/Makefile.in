@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libio_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/sparse/libsparse.la \
+libio_la_DEPENDENCIES = $(top_builddir)/modules/sparse/libsparse.la \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libio_la-getpidc.lo libio_la-setenvc.lo \
@@ -401,12 +401,11 @@ includes/sci_getrelativefilename.h
 libio_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libio.la
 libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libio_la_DEPENDENCIES = \
+libio_la_LIBADD = \
 	$(top_builddir)/modules/sparse/libsparse.la \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
-libio_la_LIBADD = $(libio_la_DEPENDENCIES)
 libio_la_PKGCONFIG = io.pc
 all: all-am
 

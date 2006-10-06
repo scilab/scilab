@@ -63,7 +63,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libdifferential_equations_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/blas/libblas.la \
+libdifferential_equations_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = libdifferential_equations_la-dassl.lo
 am__objects_2 = rscar1.lo prja.lo vnorm.lo lsoda.lo lsodar.lo ainvg.lo \
@@ -441,11 +442,10 @@ libdifferential_equations_la_CFLAGS =
 #-Isrc/c/
 lib_LTLIBRARIES = libdifferential_equations.la
 libdifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libdifferential_equations_la_DEPENDENCIES = \
+libdifferential_equations_la_LIBADD = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-libdifferential_equations_la_LIBADD = $(libdifferential_equations_la_DEPENDENCIES)
 libdifferential_equations_la_PKGCONFIG = differential_equations.pc
 all: all-am
 

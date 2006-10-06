@@ -63,7 +63,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libinterpolation_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/core/libcore.la \
+libinterpolation_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = libinterpolation_la-interpolation.lo \
 	libinterpolation_la-someinterp.lo
@@ -348,11 +349,10 @@ libinterpolation_la_FFLAGS = -Iincludes/
 libinterpolation_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libinterpolation.la
 libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
-libinterpolation_la_DEPENDENCIES = \
+libinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-libinterpolation_la_LIBADD = $(libinterpolation_la_DEPENDENCIES)
 libinterpolation_la_PKGCONFIG = interpolation.pc
 all: all-am
 

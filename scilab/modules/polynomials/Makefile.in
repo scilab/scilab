@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libpolynomials_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
+libpolynomials_la_DEPENDENCIES =
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
 	recbez.lo sfact1.lo dmptld.lo dpodiv.lo dmptra.lo dmpins.lo \
@@ -441,11 +441,10 @@ libpolynomials_la_CFLAGS = -Iincludes/
 #-Isrc/c/
 lib_LTLIBRARIES = libpolynomials.la
 libpolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libpolynomials_la_DEPENDENCIES = 
+libpolynomials_la_LIBADD = 
 # Cyclic dependencies : 
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 #	$(top_builddir)/modules/core/libcore.la 
-libpolynomials_la_LIBADD = $(libpolynomials_la_DEPENDENCIES)
 libpolynomials_la_PKGCONFIG = polynomials.pc
 all: all-am
 

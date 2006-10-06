@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libscipvm_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-@PVM_TRUE@am__DEPENDENCIES_1 =  \
+@PVM_TRUE@libscipvm_la_DEPENDENCIES =  \
 @PVM_TRUE@	$(top_builddir)/modules/core/libcore.la \
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__libscipvm_la_SOURCES_DIST = src/pvm_proc_ctrl.c src/sci_tools.c \
@@ -460,12 +460,11 @@ tcldir = @tcldir@
 @PVM_TRUE@libscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 @PVM_TRUE@lib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
-@PVM_TRUE@libscipvm_la_DEPENDENCIES = \
+@PVM_TRUE@libscipvm_la_LIBADD = \
 @PVM_TRUE@	$(top_builddir)/modules/core/libcore.la \
 @PVM_TRUE@	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 @PVM_TRUE@libscipvm_la_LDFLAGS = $(PVM_LIB)
-@PVM_TRUE@libscipvm_la_LIBADD = $(libscipvm_la_DEPENDENCIES)
 @PVM_TRUE@libscipvm_la_PKGCONFIG = scipvm.pc
 all: all-am
 

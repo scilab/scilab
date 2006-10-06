@@ -60,7 +60,7 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
+libblas_la_DEPENDENCIES =
 am__objects_1 = zrotg.lo zhpr2.lo zher2k.lo dspr.lo xerbla.lo dcopy.lo \
 	dsyr2k.lo zsymm.lo zhemm.lo dtbsv.lo dtrmm.lo dscal.lo ddot.lo \
 	dgbmv.lo dtpsv.lo dtrsv.lo dgemv.lo idamax.lo dzasum.lo \
@@ -369,8 +369,7 @@ zher2.f
 
 lib_LTLIBRARIES = libblas.la
 libblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
-libblas_la_DEPENDENCIES = 
-libblas_la_LIBADD = $(libblas_la_DEPENDENCIES)
+libblas_la_LIBADD = 
 libblas_la_PKGCONFIG = blas.pc
 all: all-am
 

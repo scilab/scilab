@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libwintools_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/core/libcore.la \
+libwintools_la_DEPENDENCIES = $(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libwintools_la-sci_mcisendstring.lo \
 	libwintools_la-sci_toolbar.lo libwintools_la-sci_printbox.lo \
@@ -350,11 +350,10 @@ includes/TextToPrint.h
 libwintools_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libwintools.la
 libwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
-libwintools_la_DEPENDENCIES = \
+libwintools_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
-libwintools_la_LIBADD = $(libwintools_la_DEPENDENCIES)
 libwintools_la_PKGCONFIG = wintools.pc
 all: all-am
 

@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libmexlib_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/core/libcore.la \
+libmexlib_la_DEPENDENCIES = $(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la
 am__objects_1 = libmexlib_la-mexlib.lo
 am_libmexlib_la_OBJECTS = $(am__objects_1)
@@ -305,13 +305,12 @@ libmexlib_la_include_HEADERS = includes/mex.h
 libmexlib_la_CFLAGS = -Iincludes/ 
 lib_LTLIBRARIES = libmexlib.la
 libmexlib_la_SOURCES = $(MEXLIB_C_SOURCES)
-libmexlib_la_DEPENDENCIES = \
+libmexlib_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la 
 
 #	$(top_builddir)/libs/blas/libblas.la \
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la
-libmexlib_la_LIBADD = $(libmexlib_la_DEPENDENCIES)
 libmexlib_la_PKGCONFIG = mexlib.pc
 all: all-am
 

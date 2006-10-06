@@ -68,7 +68,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
 libdummy_lapack_la_LIBADD =
 am_libdummy_lapack_la_OBJECTS = libdummy_lapack_la-dlamch.lo
 libdummy_lapack_la_OBJECTS = $(am_libdummy_lapack_la_OBJECTS)
-am__DEPENDENCIES_1 = libdummy-lapack.la \
+liblapack_la_DEPENDENCIES = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la
 am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	zlanhs.lo zgebak.lo zbdsqr.lo zunmrz.lo dgetc2.lo zlaqp2.lo \
@@ -614,10 +614,9 @@ liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 noinst_LTLIBRARIES = libdummy-lapack.la
 libdummy_lapack_la_SOURCES = dlamch.f
 libdummy_lapack_la_FFLAGS = -O0
-liblapack_la_DEPENDENCIES = libdummy-lapack.la \
+liblapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la 
 
-liblapack_la_LIBADD = $(liblapack_la_DEPENDENCIES)
 liblapack_la_PKGCONFIG = lapack.pc
 all: all-am
 

@@ -68,7 +68,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libstatistics_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/lapack/liblapack.la
+libstatistics_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/lapack/liblapack.la
 am__objects_1 = libstatistics_la-CdfBase.lo \
 	libstatistics_la-ipmpar1.lo
 am__objects_2 = psi.lo dexpm1.lo alngam.lo erfc1.lo cdff.lo spmpar.lo \
@@ -418,13 +419,12 @@ libstatistics_la_CFLAGS = -Iincludes/
 #-Isrc/c/
 lib_LTLIBRARIES = libstatistics.la
 libstatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libstatistics_la_DEPENDENCIES = \
+libstatistics_la_LIBADD = \
 	$(top_builddir)/libs/lapack/liblapack.la
 
 
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-libstatistics_la_LIBADD = $(libstatistics_la_DEPENDENCIES)
 libstatistics_la_PKGCONFIG = statistics.pc
 all: all-am
 

@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libscijvm_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
+libscijvm_la_DEPENDENCIES = $(top_builddir)/modules/gui/libgui.la
 am__objects_1 = libscijvm_la-JVM_CONSOLE.lo libscijvm_la-JVM_Unix.lo \
 	libscijvm_la-jvms.lo
 am_libscijvm_la_OBJECTS = $(am__objects_1)
@@ -309,11 +309,9 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
 lib_LTLIBRARIES = libscijvm.la
 libscijvm_la_SOURCES = $(JVM_C_SOURCES)
-libscijvm_la_DEPENDENCIES = 
+libscijvm_la_LIBADD = \
+$(top_builddir)/modules/gui/libgui.la
 
-# Causes a little issue when activated (don't know why) 
-#$(top_builddir)/modules/gui/libgui.la
-libscijvm_la_LIBADD = $(libscijvm_la_DEPENDENCIES)
 libscijvm_la_PKGCONFIG = scijvm.pc
 all: all-am
 

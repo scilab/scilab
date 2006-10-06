@@ -68,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libcacsd_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/lapack/liblapack.la \
+libcacsd_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la
 am__objects_1 = libcacsd_la-riccpack.lo libcacsd_la-jacl2.lo \
@@ -616,7 +616,7 @@ libcacsd_la_FFLAGS = -Iincludes/
 libcacsd_la_CFLAGS = -Iincludes/ 
 lib_LTLIBRARIES = libcacsd.la
 libcacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libcacsd_la_DEPENDENCIES = \
+libcacsd_la_LIBADD = \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la
@@ -625,7 +625,6 @@ libcacsd_la_DEPENDENCIES = \
 
 # Cyclic deps
 #	$(top_builddir)/modules/core/libcore.la 
-libcacsd_la_LIBADD = $(libcacsd_la_DEPENDENCIES)
 libcacsd_la_PKGCONFIG = cacsd.pc
 all: all-am
 

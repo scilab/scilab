@@ -68,8 +68,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libmalloc_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
-am__objects_1 = sci_mem_alloc.lo
+libmalloc_la_DEPENDENCIES =
+am__objects_1 = libmalloc_la-sci_mem_alloc.lo
 am_libmalloc_la_OBJECTS = $(am__objects_1)
 libmalloc_la_OBJECTS = $(am_libmalloc_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
@@ -303,13 +303,10 @@ libmalloc_la_includedir = $(includedir)/malloc
 libmalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h
 
-
-#libmalloc_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+libmalloc_la_CFLAGS = 
 lib_LTLIBRARIES = libmalloc.la
 libmalloc_la_SOURCES = $(MALLOC_C_SOURCES)
-libmalloc_la_DEPENDENCIES = 
-libmalloc_la_LIBADD = $(libmalloc_la_DEPENDENCIES)
+libmalloc_la_LIBADD = 
 libmalloc_la_PKGCONFIG = malloc.pc
 all: all-am
 
@@ -380,7 +377,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sci_mem_alloc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmalloc_la-sci_mem_alloc.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	if $(COMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -403,12 +400,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-sci_mem_alloc.lo: src/sci_mem_alloc.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_mem_alloc.lo -MD -MP -MF "$(DEPDIR)/sci_mem_alloc.Tpo" -c -o sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/sci_mem_alloc.Tpo" "$(DEPDIR)/sci_mem_alloc.Plo"; else rm -f "$(DEPDIR)/sci_mem_alloc.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sci_mem_alloc.c' object='sci_mem_alloc.lo' libtool=yes @AMDEPBACKSLASH@
+libmalloc_la-sci_mem_alloc.lo: src/sci_mem_alloc.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmalloc_la_CFLAGS) $(CFLAGS) -MT libmalloc_la-sci_mem_alloc.lo -MD -MP -MF "$(DEPDIR)/libmalloc_la-sci_mem_alloc.Tpo" -c -o libmalloc_la-sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libmalloc_la-sci_mem_alloc.Tpo" "$(DEPDIR)/libmalloc_la-sci_mem_alloc.Plo"; else rm -f "$(DEPDIR)/libmalloc_la-sci_mem_alloc.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/sci_mem_alloc.c' object='libmalloc_la-sci_mem_alloc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmalloc_la_CFLAGS) $(CFLAGS) -c -o libmalloc_la-sci_mem_alloc.lo `test -f 'src/sci_mem_alloc.c' || echo '$(srcdir)/'`src/sci_mem_alloc.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

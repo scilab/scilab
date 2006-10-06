@@ -68,7 +68,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(liblocalization_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/MALLOC/libmalloc.la \
+liblocalization_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/MALLOC/libmalloc.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la
 am__objects_1 = liblocalization_la-hashtable_localization.lo \
 	liblocalization_la-localization.lo
@@ -309,10 +310,9 @@ liblocalization_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/inclu
 liblocalization_la_LDFLAGS = $(XML_LIBS)
 lib_LTLIBRARIES = liblocalization.la
 liblocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
-liblocalization_la_DEPENDENCIES = $(top_builddir)/libs/MALLOC/libmalloc.la \
+liblocalization_la_LIBADD = $(top_builddir)/libs/MALLOC/libmalloc.la \
 $(top_builddir)/libs/hashtable/libhashtable.la
 
-liblocalization_la_LIBADD = $(liblocalization_la_DEPENDENCIES)
 liblocalization_la_PKGCONFIG = localization.pc
 all: all-am
 

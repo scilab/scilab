@@ -69,7 +69,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(tcldir)" \
 	"$(DESTDIR)$(libtclsci_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 =
+libtclsci_la_DEPENDENCIES =
 am__objects_1 = libtclsci_la-GedManagement.lo libtclsci_la-TclUiGet.lo \
 	libtclsci_la-TCL_Global.lo libtclsci_la-tksynchro.lo \
 	libtclsci_la-InitTclTk.lo libtclsci_la-ScilabEval.lo \
@@ -400,8 +400,7 @@ libtclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_IN
 libtclsci_la_LDFLAGS = $(TCLTK_LIBS)
 lib_LTLIBRARIES = libtclsci.la
 libtclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
-libtclsci_la_DEPENDENCIES = 
-libtclsci_la_LIBADD = $(libtclsci_la_DEPENDENCIES)
+libtclsci_la_LIBADD = 
 libtclsci_la_PKGCONFIG = tclsci.pc
 all: all-am
 

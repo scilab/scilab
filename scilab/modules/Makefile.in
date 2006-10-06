@@ -69,7 +69,8 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 @PVM_TRUE@am__DEPENDENCIES_1 =  \
 @PVM_TRUE@	$(top_builddir)/modules/pvm/libscipvm.la
-am__DEPENDENCIES_2 = $(top_builddir)/modules/mexlib/libmexlib.la \
+libscilab_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/boolean/libboolean.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
@@ -127,10 +128,10 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
-	arnoldi boolean linear_algebra core metanet optimization \
-	differential_equations interpolation localization sound \
+	arnoldi boolean linear_algebra differential_equations string \
+	core metanet optimization interpolation localization sound \
 	statistics time jvm fileio integer special_functions double \
-	randlib data_structures mexlib symbolic tclsci sparse string \
+	randlib data_structures mexlib symbolic tclsci sparse \
 	signal_processing io gui graphics scicos wintools pvm .
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -344,10 +345,10 @@ tcldir = @tcldir@
 
 # The order DOES matter !!!
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
-	boolean linear_algebra core metanet optimization \
-	differential_equations interpolation localization sound \
+	boolean linear_algebra differential_equations string core \
+	metanet optimization interpolation localization sound \
 	statistics time jvm fileio integer special_functions double \
-	randlib data_structures mexlib symbolic tclsci sparse string \
+	randlib data_structures mexlib symbolic tclsci sparse \
 	signal_processing io gui graphics scicos wintools \
 	$(am__append_1) .
 
@@ -356,8 +357,7 @@ lib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
 
 # Core modules
-libscilab_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/mexlib/libmexlib.la \
+libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/boolean/libboolean.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
@@ -393,7 +393,6 @@ libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-libscilab_la_LIBADD = $(libscilab_la_DEPENDENCIES)
 all: all-recursive
 
 .SUFFIXES:

@@ -68,8 +68,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/core/libcore.la
+libsignal_processing_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = sci_ffir.lo degree.lo parcha.lo ouch.lo dfftbi.lo \
 	dsqrtc.lo tranze.lo chebc.lo tscccf.lo dsn2.lo hammin.lo \
 	bounn.lo nstabl.lo ino.lo desia.lo desi11.lo cmpse3.lo \
@@ -423,11 +422,11 @@ libsignal_processing_la_CFLAGS = -Iincludes/
 #-Isrc/c/
 lib_LTLIBRARIES = libsignal_processing.la
 libsignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsignal_processing_la_DEPENDENCIES = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/core/libcore.la
+libsignal_processing_la_LIBADD = \
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-libsignal_processing_la_LIBADD = $(libsignal_processing_la_DEPENDENCIES)
+# Cyclic deps
+#	$(top_builddir)/modules/core/libcore.la
 libsignal_processing_la_PKGCONFIG = signal_processing.pc
 all: all-am
 

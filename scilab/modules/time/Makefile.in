@@ -74,7 +74,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libtime_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/intersci/libintersci.la \
+libtime_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libtime_la-realtime.lo libtime_la-timer.lo \
@@ -417,12 +418,11 @@ includes/sci_sleep.h
 libtime_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libtime.la
 libtime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
-libtime_la_DEPENDENCIES = \
+libtime_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
-libtime_la_LIBADD = $(libtime_la_DEPENDENCIES)
 libtime_la_PKGCONFIG = time.pc
 all: all-am
 
