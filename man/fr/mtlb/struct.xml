@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>struct</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>Octobre 2006</DATE>
+
+  <SHORT_DESCRIPTION name="struct">creer une struct</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>st=struct(field1,value1,field2,value2,
+    ...)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>field1, field2, ...</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: noms des champs (chaines de caracteres)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>value1, value2, ...</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: les valeurs des champs (acceptent tous types de données
+          (double, matrice de doubles,des cells, char, ...)</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>La fonction <VERB>struc</VERB>t retourne une struct avec des noms de
+    champs <VERB>field1</VERB>, <VERB>field2</VERB>, .., et dont les valeurs
+    respectives sont <VERB>value</VERB><VERB>1</VERB>, <VERB>value2</VERB>,
+    ...</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
+date=struct('jour',25,'mois','DEC','annee',2006)
+// changer la valeur des champs
+date.jour=19;
+date.mois='AOU';
+date.annee=1973;
+// ajouter un champ 'semaine'
+date.semaine=32]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cell</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
