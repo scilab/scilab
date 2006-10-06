@@ -356,8 +356,11 @@ lib_LTLIBRARIES = libelementaries_functions.la
 libelementaries_functions_la_SOURCES = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libelementaries_functions_la_DEPENDENCIES = \
+	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
+#	$(top_builddir)/modules/sparse/libsparse.la \
+#	$(top_builddir)/modules/polynomials/libpolynomials.la
 
 libelementaries_functions_la_LIBADD = $(libelementaries_functions_la_DEPENDENCIES)
 

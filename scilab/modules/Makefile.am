@@ -28,6 +28,7 @@ special_functions \
 double \
 randlib \
 data_structures \
+mexlib \
 symbolic \
 tclsci \
 sparse \
@@ -51,6 +52,7 @@ libscilab_la_SOURCES =
 
 # Core modules
 libscilab_la_DEPENDENCIES = \
+	$(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/boolean/libboolean.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
@@ -79,6 +81,7 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/scicos/libscicos.la \
 	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
+	$(top_builddir)/modules/statistics/libstatistics.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la
 

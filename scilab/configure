@@ -8510,7 +8510,7 @@ if test "$CC" = "gcc"; then
    if test "$enable_debug" != yes; then
 	  CFLAGS="$CFLAGS -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
    else
-	  CFLAGS="$CFLAGS -g -Wall -ANSI "
+	  CFLAGS="$CFLAGS -g -Wall "
    fi
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
@@ -8689,7 +8689,7 @@ if test "x$GUI" = "xX11"; then
   if test -n "$x_libraries"; then
     LDFLAGS="$LDFLAGS -L$x_libraries"
   fi
-
+echo "CFLAGS : $CFLAGS FFLAGS : $FFLAGS"
 ##test Xaw3d (can be build locally)
   if test "$with_local_xaw" = yes; then
     XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
@@ -26954,7 +26954,80 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
+# Check whether --enable-shared was given.
+if test "${enable_shared+set}" = set; then
+  enableval=$enable_shared; p=${PACKAGE-default}
+    case $enableval in
+    yes) enable_shared=yes ;;
+    no) enable_shared=no ;;
+    *)
+      enable_shared=no
+      # Look at the argument we got.  We use all the common list separators.
+      lt_save_ifs="$IFS"; IFS="${IFS}$PATH_SEPARATOR,"
+      for pkg in $enableval; do
+	IFS="$lt_save_ifs"
+	if test "X$pkg" = "X$p"; then
+	  enable_shared=yes
+	fi
+      done
+      IFS="$lt_save_ifs"
+      ;;
+    esac
+else
+  enable_shared=yes
+fi
 
+
+
+
+
+
+
+# Check whether --enable-static was given.
+if test "${enable_static+set}" = set; then
+  enableval=$enable_static; p=${PACKAGE-default}
+    case $enableval in
+    yes) enable_static=yes ;;
+    no) enable_static=no ;;
+    *)
+     enable_static=no
+      # Look at the argument we got.  We use all the common list separators.
+      lt_save_ifs="$IFS"; IFS="${IFS}$PATH_SEPARATOR,"
+      for pkg in $enableval; do
+	IFS="$lt_save_ifs"
+	if test "X$pkg" = "X$p"; then
+	  enable_static=yes
+	fi
+      done
+      IFS="$lt_save_ifs"
+      ;;
+    esac
+else
+  enable_static=yes
+fi
+
+
+
+
+
+
+
+
+
+
+# Check to see if building shared libraries
+libtool_build_shared_libs='no'
+if test "$enable_shared" = 'yes'
+then
+  libtool_build_shared_libs='yes'
+fi
+
+# Check to see if building static libraries
+libtool_build_static_libs='no'
+if test "$enable_static" = 'yes'
+then
+  libtool_build_static_libs='yes'
+fi
 
 
 #################
@@ -27763,7 +27836,7 @@ fi
 
 ## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
 
-ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/hashtable/Makefile libs/f2c/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementaries_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/wintools/Makefile modules/core/Makefile modules/scicos/Makefile modules/Makefile libs/Makefile Makefile"
+ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/hashtable/Makefile libs/f2c/Makefile modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementaries_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/wintools/Makefile modules/core/Makefile modules/scicos/Makefile modules/Makefile libs/Makefile Makefile"
 #MAN_FR MAN_ENG
 
 
@@ -28836,6 +28909,7 @@ do
     "modules/jvm/Makefile") CONFIG_FILES="$CONFIG_FILES modules/jvm/Makefile" ;;
     "modules/sound/Makefile") CONFIG_FILES="$CONFIG_FILES modules/sound/Makefile" ;;
     "modules/statistics/Makefile") CONFIG_FILES="$CONFIG_FILES modules/statistics/Makefile" ;;
+    "modules/mexlib/Makefile") CONFIG_FILES="$CONFIG_FILES modules/mexlib/Makefile" ;;
     "modules/sparse/Makefile") CONFIG_FILES="$CONFIG_FILES modules/sparse/Makefile" ;;
     "modules/linear_algebra/Makefile") CONFIG_FILES="$CONFIG_FILES modules/linear_algebra/Makefile" ;;
     "modules/polynomials/Makefile") CONFIG_FILES="$CONFIG_FILES modules/polynomials/Makefile" ;;
@@ -30639,8 +30713,8 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries..		--enable-shared=$enable_shared	$libtool_build_shared_libs"
-echo "Static libraries..		--enable-static=$enable_static	$libtool_build_static_libs"
+echo "Shared libraries..		--enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
+echo "Static libraries..		--enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
 echo "Module support....		--with-modules=$with_modules	$with_modules"
 echo "GNU ld............		--with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
 echo "Enable debug......		--enable-debug=$enable_debug	$enable_debug"

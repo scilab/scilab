@@ -434,7 +434,7 @@ if test "$CC" = "gcc"; then
    if test "$enable_debug" != yes; then 
 	  CFLAGS="$CFLAGS -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
    else
-	  CFLAGS="$CFLAGS -g -Wall -ANSI "
+	  CFLAGS="$CFLAGS -g -Wall "
    fi
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
@@ -604,7 +604,7 @@ if test "x$GUI" = "xX11"; then
   if test -n "$x_libraries"; then
     LDFLAGS="$LDFLAGS -L$x_libraries"
   fi
-
+echo "CFLAGS : $CFLAGS FFLAGS : $FFLAGS"
 ##test Xaw3d (can be build locally)
   if test "$with_local_xaw" = yes; then
     XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
@@ -912,7 +912,24 @@ fi
 
 AM_PROG_LIBTOOL
 LT_INIT
+AC_ENABLE_SHARED
+AC_ENABLE_STATIC
 
+
+
+# Check to see if building shared libraries
+libtool_build_shared_libs='no'
+if test "$enable_shared" = 'yes'
+then
+  libtool_build_shared_libs='yes'
+fi
+
+# Check to see if building static libraries
+libtool_build_static_libs='no'
+if test "$enable_static" = 'yes'
+then
+  libtool_build_static_libs='yes'
+fi
 
 		
 #################
@@ -1163,6 +1180,7 @@ modules/io/Makefile
 modules/jvm/Makefile
 modules/sound/Makefile
 modules/statistics/Makefile
+modules/mexlib/Makefile
 modules/sparse/Makefile
 modules/linear_algebra/Makefile
 modules/polynomials/Makefile
@@ -1222,8 +1240,8 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries..		--enable-shared=$enable_shared	$libtool_build_shared_libs"
-echo "Static libraries..		--enable-static=$enable_static	$libtool_build_static_libs"
+echo "Shared libraries..		--enable-shared=$libtool_build_shared_libs	$libtool_build_shared_libs"
+echo "Static libraries..		--enable-static=$libtool_build_static_libs	$libtool_build_static_libs"
 echo "Module support....		--with-modules=$with_modules	$with_modules"
 echo "GNU ld............		--with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
 echo "Enable debug......		--enable-debug=$enable_debug	$enable_debug"

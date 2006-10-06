@@ -20,6 +20,7 @@
 ##########
 
 
+
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -64,7 +65,7 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" \
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(tcldir)" \
 	"$(DESTDIR)$(libtclsci_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -103,6 +104,8 @@ LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libtclsci_la_SOURCES)
 DIST_SOURCES = $(libtclsci_la_SOURCES)
+tclDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(tcl_DATA)
 libtclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libtclsci_la_include_HEADERS)
 ETAGS = etags
@@ -382,6 +385,16 @@ includes/sci_TCL_GetVersion.h \
 includes/sci_TCL_EvalFile.h \
 includes/Warnings.h \
 includes/sci_TCL_GetVar.h
+
+tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
 
 libtclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
 libtclsci_la_LDFLAGS = $(TCLTK_LIBS)
@@ -730,6 +743,23 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool
 uninstall-info-am:
+install-tclDATA: $(tcl_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(tcldir)" || $(mkdir_p) "$(DESTDIR)$(tcldir)"
+	@list='$(tcl_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(tcldir)/$$f'"; \
+	  $(tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(tcldir)/$$f"; \
+	done
+
+uninstall-tclDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(tcl_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(tcldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(tcldir)/$$f"; \
+	done
 install-libtclsci_la_includeHEADERS: $(libtclsci_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libtclsci_la_includedir)" || $(mkdir_p) "$(DESTDIR)$(libtclsci_la_includedir)"
@@ -826,9 +856,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libtclsci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(tcldir)" "$(DESTDIR)$(libtclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -876,7 +906,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libtclsci_la_includeHEADERS
+install-data-am: install-libtclsci_la_includeHEADERS install-tclDATA
 
 install-exec-am: install-libLTLIBRARIES
 
@@ -905,7 +935,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
-	uninstall-libtclsci_la_includeHEADERS
+	uninstall-libtclsci_la_includeHEADERS uninstall-tclDATA
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
 	clean-libLTLIBRARIES clean-libtool ctags distclean \
@@ -914,12 +944,13 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-exec \
 	install-exec-am install-info install-info-am \
 	install-libLTLIBRARIES install-libtclsci_la_includeHEADERS \
-	install-man install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-info-am uninstall-libLTLIBRARIES \
-	uninstall-libtclsci_la_includeHEADERS
+	install-man install-strip install-tclDATA installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-info-am \
+	uninstall-libLTLIBRARIES uninstall-libtclsci_la_includeHEADERS \
+	uninstall-tclDATA
 
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \

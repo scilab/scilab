@@ -68,7 +68,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/blas/libblas.la \
+am__DEPENDENCIES_1 = $(top_builddir)/modules/cacsd/libcacsd.la \
+	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libelementaries_functions_la-sci_tools.lo \
 	libelementaries_functions_la-finite.lo \
@@ -988,9 +989,12 @@ libelementaries_functions_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/in
 lib_LTLIBRARIES = libelementaries_functions.la
 libelementaries_functions_la_SOURCES = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libelementaries_functions_la_DEPENDENCIES = \
+	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
+#	$(top_builddir)/modules/sparse/libsparse.la \
+#	$(top_builddir)/modules/polynomials/libpolynomials.la
 libelementaries_functions_la_LIBADD = $(libelementaries_functions_la_DEPENDENCIES)
 libelementaries_functions_la_PKGCONFIG = elementaries_functions.pc
 all: all-am

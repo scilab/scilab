@@ -72,6 +72,17 @@ includes/Warnings.h \
 includes/sci_TCL_GetVar.h
 
 
+tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
+	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
+
+
 libtclsci_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
 libtclsci_la_LDFLAGS= $(TCLTK_LIBS)
 lib_LTLIBRARIES = libtclsci.la

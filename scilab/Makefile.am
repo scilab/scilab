@@ -18,29 +18,22 @@ bin_PROGRAMS		= scilex
 
 scilex_SOURCES		= $(top_srcdir)/modules/core/src/fortran/mainsci.f
 
-#CFLAGS = -L/home/sylvestre/dev/scilab4/routines/.libs -lscilab
-
 scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la
 scilex_LDADD = $(scilex_DEPENDENCIES)
 
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
-tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
+all-local:
+#	.libs/scilex -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;
+#	.libs/scilex -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;
 
 
-##$(top_srcdir)/routines/arpack/libarpack.la 
-#\
-#	$(top_srcdir)/routines/console/libconsole.la
-#$(SCILIBS)
-#scilex_DEPENDENCIES		= $(top_srcdir)/routines/console/libconsole.la
-#$(top_srcdir)/routines/arpack/libarpack.la 
-#$(SCILIBS)
+check-local:
+#	@..\..\..\bin\scilex -nb -l fr -e check_help();exit;
+#	@..\..\..\bin\scilex -nb -l eng -e check_help();exit;
+
+distclean-local::	
+clean-local:
+#	@..\..\..\bin\scilex -nb -l eng -nouserstartup -nwni -e clean_help();exit;
+#	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;

@@ -65,8 +65,7 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)" \
-	"$(DESTDIR)$(tcldir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilex_OBJECTS = mainsci.$(OBJEXT)
@@ -94,8 +93,7 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 sysconfDATA_INSTALL = $(INSTALL_DATA)
-tclDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(sysconf_DATA) $(tcl_DATA)
+DATA = $(sysconf_DATA)
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = $(SUBDIRS)
@@ -325,22 +323,10 @@ SUBDIRS = libs \
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 scilex_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
-
-#CFLAGS = -L/home/sylvestre/dev/scilab4/routines/.libs -lscilab
 scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la
 scilex_LDADD = $(scilex_DEPENDENCIES)
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
-
-tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
 
 all: all-recursive
 
@@ -474,23 +460,6 @@ uninstall-sysconfDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(sysconfdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(sysconfdir)/$$f"; \
-	done
-install-tclDATA: $(tcl_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(tcldir)" || $(mkdir_p) "$(DESTDIR)$(tcldir)"
-	@list='$(tcl_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(tcldir)/$$f'"; \
-	  $(tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(tcldir)/$$f"; \
-	done
-
-uninstall-tclDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(tcl_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(tcldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(tcldir)/$$f"; \
 	done
 
 # This directory's subdirectories are mostly independent; you can cd
@@ -769,11 +738,12 @@ distcleancheck: distclean
 	       $(distcleancheck_listfiles) ; \
 	       exit 1; } >&2
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
-all-am: Makefile $(PROGRAMS) $(DATA)
+all-am: Makefile $(PROGRAMS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)" "$(DESTDIR)$(tcldir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-recursive
@@ -802,13 +772,14 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-recursive
 
-clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic clean-libtool clean-local \
+	mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-hdr distclean-libtool distclean-tags
+	distclean-hdr distclean-libtool distclean-local distclean-tags
 
 dvi: dvi-recursive
 
@@ -820,7 +791,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-tclDATA
+install-data-am:
 
 install-exec-am: install-binPROGRAMS install-sysconfDATA
 
@@ -850,36 +821,41 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-info-am \
-	uninstall-sysconfDATA uninstall-tclDATA
+	uninstall-sysconfDATA
 
 uninstall-info: uninstall-info-recursive
 
-.PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am am--refresh check \
-	check-am clean clean-binPROGRAMS clean-generic clean-libtool \
-	clean-recursive ctags ctags-recursive dist dist-all dist-bzip2 \
-	dist-gzip dist-shar dist-tarZ dist-zip distcheck distclean \
-	distclean-compile distclean-generic distclean-hdr \
-	distclean-libtool distclean-recursive distclean-tags \
+.PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am all-local \
+	am--refresh check check-am check-local clean clean-binPROGRAMS \
+	clean-generic clean-libtool clean-local clean-recursive ctags \
+	ctags-recursive dist dist-all dist-bzip2 dist-gzip dist-shar \
+	dist-tarZ dist-zip distcheck distclean distclean-compile \
+	distclean-generic distclean-hdr distclean-libtool \
+	distclean-local distclean-recursive distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
 	html-am info info-am install install-am install-binPROGRAMS \
 	install-data install-data-am install-exec install-exec-am \
 	install-info install-info-am install-man install-strip \
-	install-sysconfDATA install-tclDATA installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic maintainer-clean-recursive \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool mostlyclean-recursive pdf pdf-am ps ps-am \
-	tags tags-recursive uninstall uninstall-am \
-	uninstall-binPROGRAMS uninstall-info-am uninstall-sysconfDATA \
-	uninstall-tclDATA
+	install-sysconfDATA installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	maintainer-clean-recursive mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool mostlyclean-recursive \
+	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
+	uninstall-binPROGRAMS uninstall-info-am uninstall-sysconfDATA
 
 
-#\
-#	$(top_srcdir)/routines/console/libconsole.la
-#$(SCILIBS)
-#scilex_DEPENDENCIES		= $(top_srcdir)/routines/console/libconsole.la
-#$(top_srcdir)/routines/arpack/libarpack.la 
-#$(SCILIBS)
+all-local:
+#	.libs/scilex -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;
+#	.libs/scilex -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;
+
+check-local:
+#	@..\..\..\bin\scilex -nb -l fr -e check_help();exit;
+#	@..\..\..\bin\scilex -nb -l eng -e check_help();exit;
+
+distclean-local::	
+clean-local:
+#	@..\..\..\bin\scilex -nb -l eng -nouserstartup -nwni -e clean_help();exit;
+#	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
