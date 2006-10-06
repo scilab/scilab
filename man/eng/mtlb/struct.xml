@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>struct</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE> October 2006</DATE>
+
+  <SHORT_DESCRIPTION name="cell">create a struct</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>st=struct(field1,value1,field2,value2...)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>field1, field2, ..</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: strings represents the fields names</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>value1, value2, ..</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: all data type (double, char, int, ...), represents the fields
+          values </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>This function returns a struct with the fields names
+    <VERB>fields1</VERB>, <VERB>field2</VERB>, ..., and the fields values
+    corresponding <VERB>value1</VERB>, <VERB>value2</VERB>, ...</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// create a struct date
+date=struct('day',25,'month' ,'DEC','year',2006)
+//change the month
+date.month='AUG';
+// change the year
+date.year=1973;
+//change the day
+date.day=19;
+
+
+
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cell</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
