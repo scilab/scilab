@@ -29,10 +29,8 @@ lib_LTLIBRARIES = libsound.la
 
 libsound_la_SOURCES = $(SOUND_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libsound_la_DEPENDENCIES = \
+libsound_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
 	$(top_builddir)/modules/core/libcore.la
-
-libsound_la_LIBADD = $(libsound_la_DEPENDENCIES)
 
 libsound_la_PKGCONFIG = sound.pc

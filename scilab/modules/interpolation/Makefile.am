@@ -34,12 +34,8 @@ lib_LTLIBRARIES = libinterpolation.la
 
 libinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) 
 
-libinterpolation_la_DEPENDENCIES = \
+libinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-
-
-libinterpolation_la_LIBADD = $(libinterpolation_la_DEPENDENCIES)
 
 libinterpolation_la_PKGCONFIG = interpolation.pc

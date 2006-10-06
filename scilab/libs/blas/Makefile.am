@@ -77,8 +77,6 @@ lib_LTLIBRARIES = libblas.la
 
 libblas_la_SOURCES = $(BLAS_FORTRAN_SOURCES)
 
-libblas_la_DEPENDENCIES =
-
-libblas_la_LIBADD = $(libblas_la_DEPENDENCIES)
+libblas_la_LIBADD =
 
 libblas_la_PKGCONFIG = blas.pc

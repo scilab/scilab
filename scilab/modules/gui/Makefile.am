@@ -104,15 +104,14 @@ lib_LTLIBRARIES = libgui.la
 
 libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libgui_la_DEPENDENCIES = \
+libgui_la_LIBADD = \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/core/libcore.la \
-	$(top_builddir)/modules/string/libstring.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+	$(top_builddir)/modules/string/libstring.la
+
 
 # Cyclic dep
 #	$(top_builddir)/modules/graphics/libgraphics.la
-
-libgui_la_LIBADD = $(libgui_la_DEPENDENCIES)
+#	$(top_builddir)/modules/jvm/libscijvm.la
 
 libgui_la_PKGCONFIG = gui.pc

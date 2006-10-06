@@ -226,7 +226,7 @@ lib_LTLIBRARIES = libcacsd.la
 
 libcacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libcacsd_la_DEPENDENCIES = \
+libcacsd_la_LIBADD = \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la
@@ -235,7 +235,5 @@ libcacsd_la_DEPENDENCIES = \
 
 # Cyclic deps
 #	$(top_builddir)/modules/core/libcore.la 
-
-libcacsd_la_LIBADD = $(libcacsd_la_DEPENDENCIES)
 
 libcacsd_la_PKGCONFIG = cacsd.pc

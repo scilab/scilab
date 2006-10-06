@@ -12,10 +12,11 @@ elementaries_functions \
 arnoldi \
 boolean \
 linear_algebra \
+differential_equations \
+string \
 core \
 metanet \
 optimization \
-differential_equations \
 interpolation \
 localization \
 sound \
@@ -32,7 +33,6 @@ mexlib \
 symbolic \
 tclsci \
 sparse \
-string \
 signal_processing \
 io \
 gui \
@@ -51,7 +51,7 @@ lib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
 
 # Core modules
-libscilab_la_DEPENDENCIES = \
+libscilab_la_LIBADD = \
 	$(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/boolean/libboolean.la \
@@ -86,14 +86,12 @@ libscilab_la_DEPENDENCIES = \
 	$(top_builddir)/modules/wintools/libwintools.la
 
 if PVM
-libscilab_la_DEPENDENCIES += $(top_builddir)/modules/pvm/libscipvm.la
+libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libscipvm.la
 endif
 
 ## Libs 
-libscilab_la_DEPENDENCIES += \
+libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libblas.la \
 $(top_builddir)/libs/hashtable/libhashtable.la \
 $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/MALLOC/libmalloc.la 
-
-libscilab_la_LIBADD = $(libscilab_la_DEPENDENCIES)

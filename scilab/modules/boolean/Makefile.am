@@ -27,11 +27,9 @@ lib_LTLIBRARIES = libboolean.la
 
 libboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libboolean_la_DEPENDENCIES = \
+libboolean_la_LIBADD = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-libboolean_la_LIBADD = $(libboolean_la_DEPENDENCIES)
 
 libboolean_la_PKGCONFIG = boolean.pc

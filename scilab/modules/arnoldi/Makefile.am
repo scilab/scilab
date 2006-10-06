@@ -75,14 +75,12 @@ libarnoldi_la_FFLAGS= -Isrc/arpack/
 lib_LTLIBRARIES = libarnoldi.la
 
 libarnoldi_la_SOURCES =  $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
-libarnoldi_la_DEPENDENCIES = $(top_builddir)/libs/lapack/liblapack.la \
+
+libarnoldi_la_LIBADD = $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/blas/libblas.la \
 $(top_builddir)/libs/MALLOC/libmalloc.la
 
 # Cyclic deps
 #$(top_builddir)/modules/core/libcore.la
-
-
-libarnoldi_la_LIBADD = $(libarnoldi_la_DEPENDENCIES)
 
 libarnoldi_la_PKGCONFIG = arnoldi.pc

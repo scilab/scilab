@@ -19,11 +19,7 @@ lib_LTLIBRARIES = libscijvm.la
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES)
 
-libscijvm_la_DEPENDENCIES =
-
-# Causes a little issue when activated (don't know why) 
-#$(top_builddir)/modules/gui/libgui.la
-
-libscijvm_la_LIBADD = $(libscijvm_la_DEPENDENCIES)
+libscijvm_la_LIBADD = \
+$(top_builddir)/modules/gui/libgui.la
 
 libscijvm_la_PKGCONFIG = scijvm.pc

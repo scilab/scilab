@@ -17,9 +17,7 @@ lib_LTLIBRARIES = liblocalization.la
 
 liblocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES) 
 
-liblocalization_la_DEPENDENCIES = 	$(top_builddir)/libs/MALLOC/libmalloc.la \
+liblocalization_la_LIBADD = 	$(top_builddir)/libs/MALLOC/libmalloc.la \
 $(top_builddir)/libs/hashtable/libhashtable.la
-
-liblocalization_la_LIBADD = $(liblocalization_la_DEPENDENCIES)
 
 liblocalization_la_PKGCONFIG = localization.pc

@@ -79,12 +79,9 @@ lib_LTLIBRARIES = libio.la
 
 libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libio_la_DEPENDENCIES = \
+libio_la_LIBADD = \
 	$(top_builddir)/modules/sparse/libsparse.la \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-
-libio_la_LIBADD = $(libio_la_DEPENDENCIES)
 
 libio_la_PKGCONFIG = io.pc

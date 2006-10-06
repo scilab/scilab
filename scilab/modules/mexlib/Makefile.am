@@ -15,13 +15,10 @@ lib_LTLIBRARIES = libmexlib.la
 
 libmexlib_la_SOURCES = $(MEXLIB_C_SOURCES)
 
-libmexlib_la_DEPENDENCIES = \
+libmexlib_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la 
 #	$(top_builddir)/libs/blas/libblas.la \
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la
-
-
-libmexlib_la_LIBADD = $(libmexlib_la_DEPENDENCIES)
 
 libmexlib_la_PKGCONFIG = mexlib.pc

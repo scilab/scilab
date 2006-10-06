@@ -125,13 +125,11 @@ lib_LTLIBRARIES = libmetanet.la
 
 libmetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libmetanet_la_DEPENDENCIES = \
+libmetanet_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
-
-libmetanet_la_LIBADD = $(libmetanet_la_DEPENDENCIES)
 
 libmetanet_la_PKGCONFIG = metanet.pc

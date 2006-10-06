@@ -50,11 +50,8 @@ lib_LTLIBRARIES = libwintools.la
 
 libwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
 
-libwintools_la_DEPENDENCIES = \
+libwintools_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-
-libwintools_la_LIBADD = $(libwintools_la_DEPENDENCIES)
 
 libwintools_la_PKGCONFIG = wintools.pc

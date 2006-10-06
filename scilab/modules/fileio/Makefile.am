@@ -29,10 +29,9 @@ lib_LTLIBRARIES = libfileio.la
 
 libfileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 
-libfileio_la_DEPENDENCIES = \
-	$(top_builddir)/modules/core/libcore.la \
+libfileio_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-libfileio_la_LIBADD = $(libfileio_la_DEPENDENCIES)
+# cyclic deps
+#	$(top_builddir)/modules/core/libcore.la
 
 libfileio_la_PKGCONFIG = fileio.pc

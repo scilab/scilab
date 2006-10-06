@@ -51,13 +51,10 @@ lib_LTLIBRARIES = libdata_structures.la
 
 libdata_structures_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libdata_structures_la_DEPENDENCIES = \
+libdata_structures_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/integer/libinteger.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-
-libdata_structures_la_LIBADD = $(libdata_structures_la_DEPENDENCIES)
 
 libdata_structures_la_PKGCONFIG = data_structures.pc

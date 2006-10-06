@@ -105,12 +105,10 @@ lib_LTLIBRARIES = libtime.la
 
 libtime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libtime_la_DEPENDENCIES = \
+libtime_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-libtime_la_LIBADD = $(libtime_la_DEPENDENCIES)
 
 libtime_la_PKGCONFIG = time.pc
 

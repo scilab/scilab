@@ -100,14 +100,10 @@ lib_LTLIBRARIES = libstatistics.la
 
 libstatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libstatistics_la_DEPENDENCIES = \
+libstatistics_la_LIBADD = \
 	$(top_builddir)/libs/lapack/liblapack.la
 
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-
-
-
-libstatistics_la_LIBADD = $(libstatistics_la_DEPENDENCIES)
 
 libstatistics_la_PKGCONFIG = statistics.pc

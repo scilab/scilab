@@ -339,16 +339,16 @@ lib_LTLIBRARIES = libcore.la
 
 libcore_la_SOURCES = $(CORE_C_SOURCES) $(CORE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libcore_la_DEPENDENCIES = \
+libcore_la_LIBADD = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
+	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
-#	$(top_builddir)/modules/string/libstring.la 
-#	$(top_builddir)/modules/fileio/libfileio.la
-
-libcore_la_LIBADD = $(libcore_la_DEPENDENCIES)
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
+	$(top_builddir)/modules/string/libstring.la \
+	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
+	$(top_builddir)/modules/fileio/libfileio.la
 
 libcore_la_PKGCONFIG = core.pc

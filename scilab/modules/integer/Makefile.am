@@ -126,12 +126,9 @@ lib_LTLIBRARIES = libinteger.la
 
 libinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libinteger_la_DEPENDENCIES = \
+libinteger_la_LIBADD = \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/fileio/libfileio.la 
-
-
-libinteger_la_LIBADD = $(libinteger_la_DEPENDENCIES)
 
 libinteger_la_PKGCONFIG = integer.pc

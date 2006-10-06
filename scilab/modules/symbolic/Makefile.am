@@ -24,9 +24,7 @@ lib_LTLIBRARIES = libsymbolic.la
 
 libsymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libsymbolic_la_DEPENDENCIES = \
+libsymbolic_la_LIBADD = \
 $(top_builddir)/modules/core/libcore.la
-
-libsymbolic_la_LIBADD = $(libsymbolic_la_DEPENDENCIES)
 
 libsymbolic_la_PKGCONFIG = symbolic.pc

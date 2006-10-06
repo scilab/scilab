@@ -145,15 +145,10 @@ lib_LTLIBRARIES = liboptimization.la
 
 liboptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-liboptimization_la_DEPENDENCIES = \
+liboptimization_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/lapack/liblapack.la\
 	$(top_builddir)/modules/core/libcore.la
-
-
-
-
-liboptimization_la_LIBADD = $(liboptimization_la_DEPENDENCIES)
 
 liboptimization_la_PKGCONFIG = optimization.pc

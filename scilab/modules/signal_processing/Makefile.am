@@ -100,10 +100,9 @@ lib_LTLIBRARIES = libsignal_processing.la
 
 libsignal_processing_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libsignal_processing_la_DEPENDENCIES = \
-	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
-	$(top_builddir)/modules/core/libcore.la
-
-libsignal_processing_la_LIBADD = $(libsignal_processing_la_DEPENDENCIES)
+libsignal_processing_la_LIBADD = \
+	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
+# Cyclic deps
+#	$(top_builddir)/modules/core/libcore.la
 
 libsignal_processing_la_PKGCONFIG = signal_processing.pc

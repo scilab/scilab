@@ -32,14 +32,11 @@ lib_LTLIBRARIES = libdouble.la
 
 libdouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libdouble_la_DEPENDENCIES = \
+libdouble_la_LIBADD = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/intersci/libintersci.la
-
-
-libdouble_la_LIBADD = $(libdouble_la_DEPENDENCIES)
 
 libdouble_la_PKGCONFIG = double.pc

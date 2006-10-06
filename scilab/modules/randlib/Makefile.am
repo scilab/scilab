@@ -52,15 +52,12 @@ lib_LTLIBRARIES = librandlib.la
 
 librandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 
-librandlib_la_DEPENDENCIES = \
+librandlib_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la
 
 #	$(top_builddir)/libs/blas/libblas.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
-
-
-librandlib_la_LIBADD = $(librandlib_la_DEPENDENCIES)
 
 librandlib_la_PKGCONFIG = randlib.pc

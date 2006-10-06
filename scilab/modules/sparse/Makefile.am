@@ -172,11 +172,9 @@ lib_LTLIBRARIES = libsparse.la
 
 libsparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libsparse_la_DEPENDENCIES = \
+libsparse_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/intersci/libintersci.la
-
-libsparse_la_LIBADD = $(libsparse_la_DEPENDENCIES)
 
 libsparse_la_PKGCONFIG = sparse.pc

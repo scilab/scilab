@@ -116,11 +116,9 @@ lib_LTLIBRARIES = libpolynomials.la
 
 libpolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
-libpolynomials_la_DEPENDENCIES =
+libpolynomials_la_LIBADD =
 # Cyclic dependencies : 
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 #	$(top_builddir)/modules/core/libcore.la 
-
-libpolynomials_la_LIBADD = $(libpolynomials_la_DEPENDENCIES)
 
 libpolynomials_la_PKGCONFIG = polynomials.pc

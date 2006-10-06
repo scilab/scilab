@@ -91,15 +91,11 @@ lib_LTLIBRARIES = libscipvm.la
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libscipvm_la_DEPENDENCIES = \
+libscipvm_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libscipvm_la_LDFLAGS = $(PVM_LIB)
-
-
-
-libscipvm_la_LIBADD = $(libscipvm_la_DEPENDENCIES)
 
 libscipvm_la_PKGCONFIG = scipvm.pc
 else

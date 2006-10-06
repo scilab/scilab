@@ -20,9 +20,6 @@ lib_LTLIBRARIES = libhashtable.la
 
 libhashtable_la_SOURCES = $(HASHTABLE_C_SOURCES)
 
-libhashtable_la_DEPENDENCIES =
+libhashtable_la_LIBADD = 
 
-
-
-libhashtable_la_LIBADD = $(libhashtable_la_DEPENDENCIES)
 libhashtable_la_PKGCONFIG = hashtable.pc

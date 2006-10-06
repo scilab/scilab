@@ -54,13 +54,12 @@ lib_LTLIBRARIES = libstring.la
 
 libstring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libstring_la_DEPENDENCIES = \
+libstring_la_LIBADD = \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
-	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
+# Cyclic deps
+#	$(top_builddir)/modules/core/libcore.la
 
-
-libstring_la_LIBADD = $(libstring_la_DEPENDENCIES)
 
 libstring_la_PKGCONFIG = string.pc

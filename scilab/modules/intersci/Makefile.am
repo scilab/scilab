@@ -28,9 +28,7 @@ libintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 
 libintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/
 
-libintersci_la_DEPENDENCIES = \
+libintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-libintersci_la_LIBADD = $(libintersci_la_DEPENDENCIES)
 
 libintersci_la_PKGCONFIG = intersci.pc

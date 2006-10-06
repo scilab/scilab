@@ -89,12 +89,9 @@ lib_LTLIBRARIES = libtclsci.la
 
 libtclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libtclsci_la_DEPENDENCIES = 
+libtclsci_la_LIBADD = 
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-
-libtclsci_la_LIBADD = $(libtclsci_la_DEPENDENCIES)
 
 libtclsci_la_PKGCONFIG = tclsci.pc

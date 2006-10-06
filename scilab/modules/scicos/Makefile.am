@@ -221,7 +221,7 @@ lib_LTLIBRARIES = libscicos.la
 
 libscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(SCICOS_FORTRAN_SOURCES_EXT) $(SCICOS_C_SOURCES_EXT)
 
-libscicos_la_DEPENDENCIES = \
+libscicos_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
 	$(top_builddir)/modules/differential_equations/libdifferential_equations.la \
 	$(top_builddir)/modules/core/libcore.la \
@@ -230,8 +230,5 @@ libscicos_la_DEPENDENCIES = \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/modules/graphics/libgraphics.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
-
-
-libscicos_la_LIBADD = $(libscicos_la_DEPENDENCIES)
 
 libscicos_la_PKGCONFIG = scicos.pc

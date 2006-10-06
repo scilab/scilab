@@ -372,19 +372,17 @@ libgraphics_la_include_HEADERS = includes/gw_graphics.h
 libgraphics_la_CFLAGS =  -Iincludes/ -Isrc/c/ -Isrc/gd/ -Isrc/gd/xdr/ -Isrc/gd/gdfonts/ $(TCL_INC_PATH) $(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
 libgraphics_la_LDFLAGS = $(TCLTK_LIBS) $(X_LIBS)
-#-Isrc/c/
+
 lib_LTLIBRARIES = libgraphics.la
 
 libgraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 
-libgraphics_la_DEPENDENCIES = \
+libgraphics_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/data_structures/libdata_structures.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/string/libstring.la
 
 #	$(top_builddir)/modules/gui/libgui.la
-
-libgraphics_la_LIBADD = $(libgraphics_la_DEPENDENCIES)
 
 libgraphics_la_PKGCONFIG = graphics.pc
