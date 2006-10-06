@@ -64,9 +64,7 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 = $(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libintersci_la-libinter.lo libintersci_la-erro.lo \
-	libintersci_la-out.lo libintersci_la-cdouble.lo \
-	libintersci_la-cerro.lo libintersci_la-cdoublef.lo \
-	libintersci_la-cout.lo libintersci_la-libinter.lo
+	libintersci_la-out.lo
 am_libintersci_la_OBJECTS = $(am__objects_1)
 libintersci_la_OBJECTS = $(am_libintersci_la_OBJECTS)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
@@ -305,13 +303,10 @@ tcldir = @tcldir@
 INTERSCI_LIB_C_SOURCES = \
 src/lib/libinter.c \
 src/lib/erro.c \
-src/lib/out.c \
-src/lib/cdouble.c \
-src/lib/cerro.c \
-src/lib/cdoublef.c \
-src/lib/cout.c \
-   src/lib/libinter.c
+src/lib/out.c
 
+
+#src/lib/cdouble.c src/lib/cerro.c src/lib/cdoublef.c src/lib/cout.c
 INTERSCI_EXE_C_SOURCES = \
 src/exe/intersci-n.c \
 src/exe/getrhs.c \
@@ -441,10 +436,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fornames.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getrhs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/intersci-n.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-cdouble.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-cdoublef.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-cerro.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-cout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-erro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-libinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libintersci_la-out.Plo@am__quote@
@@ -495,34 +486,6 @@ libintersci_la-out.lo: src/lib/out.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/out.c' object='libintersci_la-out.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-out.lo `test -f 'src/lib/out.c' || echo '$(srcdir)/'`src/lib/out.c
-
-libintersci_la-cdouble.lo: src/lib/cdouble.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-cdouble.lo -MD -MP -MF "$(DEPDIR)/libintersci_la-cdouble.Tpo" -c -o libintersci_la-cdouble.lo `test -f 'src/lib/cdouble.c' || echo '$(srcdir)/'`src/lib/cdouble.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libintersci_la-cdouble.Tpo" "$(DEPDIR)/libintersci_la-cdouble.Plo"; else rm -f "$(DEPDIR)/libintersci_la-cdouble.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/cdouble.c' object='libintersci_la-cdouble.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-cdouble.lo `test -f 'src/lib/cdouble.c' || echo '$(srcdir)/'`src/lib/cdouble.c
-
-libintersci_la-cerro.lo: src/lib/cerro.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-cerro.lo -MD -MP -MF "$(DEPDIR)/libintersci_la-cerro.Tpo" -c -o libintersci_la-cerro.lo `test -f 'src/lib/cerro.c' || echo '$(srcdir)/'`src/lib/cerro.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libintersci_la-cerro.Tpo" "$(DEPDIR)/libintersci_la-cerro.Plo"; else rm -f "$(DEPDIR)/libintersci_la-cerro.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/cerro.c' object='libintersci_la-cerro.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-cerro.lo `test -f 'src/lib/cerro.c' || echo '$(srcdir)/'`src/lib/cerro.c
-
-libintersci_la-cdoublef.lo: src/lib/cdoublef.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-cdoublef.lo -MD -MP -MF "$(DEPDIR)/libintersci_la-cdoublef.Tpo" -c -o libintersci_la-cdoublef.lo `test -f 'src/lib/cdoublef.c' || echo '$(srcdir)/'`src/lib/cdoublef.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libintersci_la-cdoublef.Tpo" "$(DEPDIR)/libintersci_la-cdoublef.Plo"; else rm -f "$(DEPDIR)/libintersci_la-cdoublef.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/cdoublef.c' object='libintersci_la-cdoublef.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-cdoublef.lo `test -f 'src/lib/cdoublef.c' || echo '$(srcdir)/'`src/lib/cdoublef.c
-
-libintersci_la-cout.lo: src/lib/cout.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -MT libintersci_la-cout.lo -MD -MP -MF "$(DEPDIR)/libintersci_la-cout.Tpo" -c -o libintersci_la-cout.lo `test -f 'src/lib/cout.c' || echo '$(srcdir)/'`src/lib/cout.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libintersci_la-cout.Tpo" "$(DEPDIR)/libintersci_la-cout.Plo"; else rm -f "$(DEPDIR)/libintersci_la-cout.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/lib/cout.c' object='libintersci_la-cout.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libintersci_la_CFLAGS) $(CFLAGS) -c -o libintersci_la-cout.lo `test -f 'src/lib/cout.c' || echo '$(srcdir)/'`src/lib/cout.c
 
 intersci-n.o: src/exe/intersci-n.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT intersci-n.o -MD -MP -MF "$(DEPDIR)/intersci-n.Tpo" -c -o intersci-n.o `test -f 'src/exe/intersci-n.c' || echo '$(srcdir)/'`src/exe/intersci-n.c; \
