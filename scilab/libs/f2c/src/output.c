@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990-1996, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -126,7 +126,7 @@ table_entry opcode_table[] = {
 
 #define OPNEG_KLUDGE (sizeof(opcode_table)/sizeof(table_entry) - 1)
 
-extern int dneg;
+extern int dneg, trapuv;
 static char opeqable[sizeof(opcode_table)/sizeof(table_entry)];
 
 
@@ -147,6 +147,10 @@ expr_out(fp, e)
 expr_out(FILE *fp, expptr e)
 #endif
 {
+	Namep var;
+	expptr leftp, rightp;
+	int opcode;
+
     if (e == (expptr) NULL)
 	return;
 
@@ -183,15 +187,12 @@ expr_out(FILE *fp, expptr e)
 
 /* Optimize on simple expressions, such as "a = a + b" ==> "a += b" */
 
-    if (e -> exprblock.opcode == OPASSIGN && e -> exprblock.rightp &&
-	e -> exprblock.rightp -> tag == TEXPR) {
-	int opcode;
-
+    if (e -> exprblock.opcode == OPASSIGN && e -> exprblock.rightp)
+      switch(e->exprblock.rightp->tag) {
+	case TEXPR:
 	opcode = e -> exprblock.rightp -> exprblock.opcode;
 
 	if (opeqable[opcode]) {
-	    expptr leftp, rightp;
-
 	    if ((leftp = e -> exprblock.leftp) &&
 		(rightp = e -> exprblock.rightp -> exprblock.leftp)) {
 
@@ -206,15 +207,30 @@ expr_out(FILE *fp, expptr e)
 		} /* if same_ident (leftp, rightp) */
 	    } /* if leftp && rightp */
 	} /* if opcode == OPPLUS || */
-    } /* if e -> exprblock.opcode == OPASSIGN */
+	break;
+
+	case TNAME:
+	  if (trapuv) {
+		var = &e->exprblock.rightp->nameblock;
+		if (ISREAL(var->vtype)
+		 && var->vclass == CLVAR
+		 && ONEOF(var->vstg, M(STGAUTO)|M(STGBSS))
+		 && !var->vsave) {
+			expr_out(fp, e -> exprblock.leftp);
+			nice_printf(fp, " = _0 + ");
+			expr_out(fp, e->exprblock.rightp);
+			goto done;
+			}
+		}
+      } /* if e -> exprblock.opcode == OPASSIGN */
 
 
 /* Optimize on increment or decrement by 1 */
 
     {
-	int opcode = e -> exprblock.opcode;
-	expptr leftp = e -> exprblock.leftp;
-	expptr rightp = e -> exprblock.rightp;
+	opcode = e -> exprblock.opcode;
+	leftp = e -> exprblock.leftp;
+	rightp = e -> exprblock.rightp;
 
 	if (leftp && rightp && (leftp -> headblock.vstg == STGARG ||
 		ISINT (leftp -> headblock.vtype)) &&
@@ -251,6 +267,7 @@ expr_out(FILE *fp, expptr e)
     else
 	erri ("expr_out: bad opcode '%d'", (int) e -> exprblock.opcode);
 
+ done:
     free((char *)e);
 
 } /* expr_out */
@@ -443,8 +460,6 @@ out_name(FILE *fp, Namep namep)
 } /* out_name */
 
 
-static char *Longfmt = "%ld";
-
 #define cpd(n) cp->vstg ? cp->Const.cds[n] : dtos(cp->Const.cd[n])
 
  void
@@ -457,6 +472,7 @@ out_const(FILE *fp, register Constp cp)
 #endif
 {
     static char real_buf[50], imag_buf[50];
+    ftnint j;
     unsigned int k;
     int type = cp->vtype;
 
@@ -466,11 +482,19 @@ out_const(FILE *fp, register Constp cp)
 	    nice_printf (fp, "%ld", cp->Const.ci);	/* don't cast ci! */
 	    break;
 	case TYLONG:
-#ifdef TYQUAD
+#ifdef TYQUAD0
 	case TYQUAD:
 #endif
-	    nice_printf (fp, Longfmt, cp->Const.ci);	/* don't cast ci! */
+	    nice_printf (fp, "%ld", cp->Const.ci);	/* don't cast ci! */
 	    break;
+#ifndef NO_LONG_LONG
+	case TYQUAD:
+		if (cp->Const.cd[1] == 123.456)
+			nice_printf (fp, "%s", cp->Const.cds[0]);
+		else
+			nice_printf (fp, "%lld", cp->Const.cq);
+		break;
+#endif
 	case TYREAL:
 	    nice_printf(fp, "%s", flconst(real_buf, cpd(0)));
 	    break;
@@ -501,9 +525,9 @@ out_const(FILE *fp, register Constp cp)
 	    ce = c + cp->vleng->constblock.Const.ci;
 	    while(c < ce) {
 		k = *(unsigned char *)c++;
-		nice_printf(fp, str_fmt[k], k);
+		nice_printf(fp, str_fmt[k]);
 		}
-	    for(k = cp->Const.ccp1.blanks; k > 0; k--)
+	    for(j = cp->Const.ccp1.blanks; j > 0; j--)
 		nice_printf(fp, " ");
 	    nice_printf (fp, "\"");
 	    break;
@@ -923,11 +947,13 @@ opconv_fudge(FILE *fp, struct Exprblock *e)
 	if (lt != e->vtype) {
 		s = c_type_decl(e->vtype, 0);
 		if (ISCOMPLEX(lt)) {
+ tryagain:
 			np = (Namep)e->leftp;
 			switch(np->tag) {
 			  case TNAME:
-				nice_printf(fp, "(%s) %s.r", s,
-					np->cvarname);
+				nice_printf(fp, "(%s) %s%sr", s,
+					np->cvarname,
+					np->vstg == STGARG ? "->" : ".");
 				return 1;
 			  case TADDR:
 				ap = (Addrp)np;
@@ -941,7 +967,22 @@ opconv_fudge(FILE *fp, struct Exprblock *e)
 					out_addr(fp, ap);
 					nice_printf(fp, ".r");
 					return 1;
+				  case UNAM_REF:
+					nice_printf(fp, "(%s) %s_%s(",
+					 s, ap->user.name->cvarname,
+					 ap->cmplx_sub ? "subscr" : "ref");
+					out_args(fp, ap->memoffset);
+					nice_printf(fp, ").r");
+					return 1;
+				  default:
+					fatali(
+					 "Bad uname_tag %d in opconv_fudge",
+						ap->uname_tag);
 				  }
+			  case TEXPR:
+				e = (Exprp)np;
+				if (e->opcode == OPWHATSIN)
+					goto tryagain;
 			  default:
 				fatali("Unexpected tag %d in opconv_fudge",
 					np->tag);
@@ -963,7 +1004,6 @@ output_binary(FILE *fp, struct Exprblock *e)
 #endif
 {
     char *format;
-    extern table_entry opcode_table[];
     int prec;
 
     if (e == NULL || e -> tag != TEXPR)
@@ -1211,7 +1251,7 @@ out_call(FILE *outfile, int op, int ftype, expptr len, expptr name, expptr args)
 			if (Ac && narg < at->dnargs
 			 && q->headblock.vtype != (t = Ac[narg].type)
 			 && t > TYADDR && t < TYSUBR)
-				nice_printf(outfile, "(%s*)", typename[t]);
+				nice_printf(outfile, "(%s*)", Typename[t]);
 
 			/* &x[0] == x */
 			/* This also prevents &sizeof(doublereal)[0] */
@@ -1263,7 +1303,7 @@ out_call(FILE *outfile, int op, int ftype, expptr len, expptr name, expptr args)
 	else if (Ac && narg < at->dnargs
 		&& q->headblock.vtype != (t = Ac[narg].type)
 		&& t > TYADDR && t < TYSUBR)
-		nice_printf(outfile, "(%s*)", typename[t]);
+		nice_printf(outfile, "(%s*)", Typename[t]);
 
 	if ((q -> tag == TADDR || q-> tag == TNAME) &&
 		(byvalue || q -> headblock.vstg != STGREG)) {
@@ -1286,17 +1326,16 @@ out_call(FILE *outfile, int op, int ftype, expptr len, expptr name, expptr args)
 	      } else {
 		expptr memoffset;
 
-		if (q->tag == TADDR &&
+		if (q->tag == TADDR && (
 			!ONEOF (q -> addrblock.vstg, M(STGEXT)|M(STGLENG))
-			&& (
-			ONEOF(q->addrblock.vstg,
+			&& (ONEOF(q->addrblock.vstg,
 				M(STGCOMMON)|M(STGEQUIV)|M(STGMEMNO))
-			|| ((memoffset = q->addrblock.memoffset)
+			    || ((memoffset = q->addrblock.memoffset)
 				&& (!ISICON(memoffset)
 				|| memoffset->constblock.Const.ci)))
 			|| ONEOF(q->addrblock.vstg,
 					M(STGINIT)|M(STGAUTO)|M(STGBSS))
-				&& !q->addrblock.isarray)
+				&& !q->addrblock.isarray))
 		    nice_printf (outfile, "&");
 		else if (q -> tag == TNAME
 			&& !oneof_stg(&q->nameblock, q -> nameblock.vstg,
@@ -1310,10 +1349,11 @@ out_call(FILE *outfile, int op, int ftype, expptr len, expptr name, expptr args)
 /* Might be a Constant expression, e.g. string length, character constants */
 
 	else if (q -> tag == TCONST) {
-	    if (tyioint == TYLONG)
-	   	Longfmt = "%ldL";
-	    out_const(outfile, &q->constblock);
-	    Longfmt = "%ld";
+		if (q->constblock.vtype == TYLONG)
+			nice_printf(outfile, "(ftnlen)%ld",
+				q->constblock.Const.ci);
+		else
+			out_const(outfile, &q->constblock);
 	    }
 
 /* Must be some other kind of expression, or register var, or constant.
@@ -1324,7 +1364,16 @@ out_call(FILE *outfile, int op, int ftype, expptr len, expptr name, expptr args)
 	    int use_paren = q -> tag == TEXPR &&
 		    op_precedence (q -> exprblock.opcode) <=
 		    op_precedence (OPCOMMA);
-
+	    if (q->headblock.vtype == TYREAL) {
+		if (forcereal) {
+			nice_printf(outfile, "(real)");
+			use_paren = 1;
+			}
+		}
+	    else if (!Ansi && ISINT(q->headblock.vtype)) {
+		nice_printf(outfile, "(ftnlen)");
+		use_paren = 1;
+		}
 	    if (use_paren) nice_printf (outfile, "(");
 	    expr_out (outfile, q);
 	    if (use_paren) nice_printf (outfile, ")");
@@ -1403,7 +1452,7 @@ out_init(Void)
 /* Set the output format for both types of floating point constants */
 
     if (fl_fmt_string == NULL || *fl_fmt_string == '\0')
-	fl_fmt_string = Ansi == 1 ? "%sf" : "(float)%s";
+	fl_fmt_string = (char*)(Ansi == 1 ? "%sf" : "(float)%s");
 
     if (db_fmt_string == NULL || *db_fmt_string == '\0')
 	db_fmt_string = "%.17g";

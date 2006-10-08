@@ -51,9 +51,10 @@
 
 	  The following	options	are peculiar to	f2c.
 
-	  -A   Produce ANSI C.	Default	is old-style C.
+	  -A   Produce ANSI C (default,	starting 20020621).  For old-
+	       style C,	use option -K.
 
-     Page 1					     (printed 5/12/96)
+     Page 1					     (printed 6/21/02)
 
      F2C(1)		       UNIX System V			F2C(1)
 
@@ -67,7 +68,8 @@
 
 	  -cd  Do not recognize	cdabs, cdcos, cdexp, cdlog, cdsin, and
 	       cdsqrt as synonyms for the double complex intrinsics
-	       zabs, zcos, zexp, zlog, zsin, and zsqrt,	respectively.
+	       zabs, zcos, zexp, zlog, zsin, and zsqrt,	respectively,
+	       nor dreal as a synonym for dble.
 
 	  -ddir
 	       Write `.c' files	in directory dir instead of the	cur-
@@ -108,11 +110,12 @@
 	       evaluation where	K&R (first edition) parenthesization
 	       rules allow rearrangement.  If the option is `-krd',
 	       use double precision temporaries	even for single-
-	       precision operands.
 
-     Page 2					     (printed 5/12/96)
+     Page 2					     (printed 6/21/02)
 
      F2C(1)		       UNIX System V			F2C(1)
+
+	       precision operands.
 
 	  -P   Write a file.P of ANSI (or C++) prototypes for defini-
 	       tions in	each input file.f or file.F.  When reading
@@ -128,8 +131,8 @@
 	       PRECISION.  Option `-!R'	confirms the default, which
 	       imitates	f77.
 
-	  -r   Cast values of REAL functions (including	intrinsics) to
-	       REAL.
+	  -r   Cast REAL arguments of intrinsic	functions and values
+	       of REAL functions (including intrinsics)	to REAL.
 
 	  -r8  Promote REAL to DOUBLE PRECISION, COMPLEX to DOUBLE
 	       COMPLEX.
@@ -139,6 +142,13 @@
 
 	  -Tdir
 	       Put temporary files in directory	dir.
+
+	  -trapuv
+	       Dynamically initialize local variables, except those
+	       appearing in SAVE or DATA statements, with values that
+	       may help	find references	to uninitialized variables.
+	       For example, with IEEE arithmetic, initialize local
+	       floating-point variables	to signaling NaNs.
 
 	  -w8  Suppress	warnings when COMMON or	EQUIVALENCE forces
 	       odd-word	alignment of doubles.
@@ -155,7 +165,14 @@
 
 	  -!I  Reject include statements.
 
-	  -!i8 Disallow	INTEGER*8.
+	  -!i8 Disallow	INTEGER*8 , or,	if the option is `-!i8const',
+	       permit INTEGER*8	but do not promote integer constants
+
+     Page 3					     (printed 6/21/02)
+
+     F2C(1)		       UNIX System V			F2C(1)
+
+	       to INTEGER*8 when they involve more than	32 bits.
 
 	  -!it Don't infer types of untyped EXTERNAL procedures	from
 	       use as parameters to previously defined or prototyped
@@ -166,11 +183,6 @@
 
 	  The resulting	C invokes the support routines of f77; object
 	  code should be loaded	by f77 or with ld(1) or	cc(1) options
-
-     Page 3					     (printed 5/12/96)
-
-     F2C(1)		       UNIX System V			F2C(1)
-
 	  -lF77	-lI77 -lm.  Calling conventions	are those of f77: see
 	  the reference	below.
 
@@ -203,6 +215,8 @@
 	  they are typically accurate to at most 16 or 17 decimal
 	  places.
 	  Untypable EXTERNAL functions are declared int.
+	  There	is no notation for INTEGER*8 constants.
+	  Some intrinsic functions do not yet work with	INTEGER*8 .
 
-     Page 4					     (printed 5/12/96)
+     Page 4					     (printed 6/21/02)
 

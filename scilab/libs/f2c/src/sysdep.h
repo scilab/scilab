@@ -61,8 +61,11 @@ use or performance of this software.
 #include <stddef.h>
 #include <stdlib.h>
 #else
-char *calloc(), *malloc(), *memcpy(), *memset(), *realloc();
-typedef int size_t;
+char *calloc(), *malloc(), *realloc();
+void *memcpy(), *memset();
+#ifndef _SIZE_T
+typedef unsigned int size_t;
+#endif
 #ifndef atol
     long atol();
 #endif

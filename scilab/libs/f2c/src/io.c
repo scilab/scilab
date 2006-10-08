@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1991, 1993, 1994, 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1991, 1993, 1994, 1996, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -321,10 +321,8 @@ setfmt(lp)
 setfmt(struct Labelblock *lp)
 #endif
 {
-	int n, parity;
-	char *s0;
-	register char *s, *se, *t;
-	register int k;
+	char *s, *s0, *sc, *se, *t;
+	int k, n, parity;
 
 	s0 = s = lexline(&n);
 	se = t = s + n;
@@ -351,46 +349,49 @@ setfmt(struct Labelblock *lp)
 	/* fix MYQUOTES (\002's) and \\'s */
 
 	parity = 1;
-	while(s < se)
-		switch(*s++) {
-			case 2:
-				if ((parity ^= 1) && *s == 2) {
-					t -= 2;
-					++s;
-					}
-				else
-					t += 3;
-				break;
-			case '"':
-			case '\\':
-				t++; break;
+	str_fmt['%'] = "%";
+	while(s < se) {
+		k = *(unsigned char *)s++;
+		if (k == 2) {
+			if ((parity ^= 1) && *s == 2) {
+				t -= 2;
+				++s;
+				}
+			else
+				t += 3;
 			}
+		else {
+			sc = str_fmt[k];
+			while(*++sc)
+				t++;
+			}
+		}
 	s = s0;
 	parity = 1;
 	if (lp) {
 		lp->fmtstring = t = mem((int)(t - s + 1), 0);
-		while(s < se)
-			switch(k = *s++) {
-				case 2:
-					if ((parity ^= 1) && *s == 2)
-						s++;
-					else {
-						t[0] = '\\';
-						t[1] = '0';
-						t[2] = '0';
-						t[3] = '2';
-						t += 4;
-						}
-					break;
-				case '"':
-				case '\\':
-					*t++ = '\\';
-					/* no break */
-				default:
-					*t++ = k;
+		while(s < se) {
+			k = *(unsigned char *)s++;
+			if (k == 2) {
+				if ((parity ^= 1) && *s == 2)
+					s++;
+				else {
+					t[0] = '\\';
+					t[1] = '0';
+					t[2] = '0';
+					t[3] = '2';
+					t += 4;
+					}
 				}
+			else {
+				sc = str_fmt[k];
+				do *t++ = *sc++;
+				   while(*sc);
+				}
+			}
 		*t = 0;
 		}
+	str_fmt['%'] = "%%";
 	flline();
 }
 
@@ -802,7 +803,7 @@ putio(expptr nelt, register expptr addr)
 		c->memoffset = ICON(0);
 		c->uname_tag = UNAM_IDENT;
 		c->charleng = 1;
-		sprintf(c->user.ident, "(ftnlen)sizeof(%s)", typename[type]);
+		sprintf(c->user.ident, "(ftnlen)sizeof(%s)", Typename[type]);
 		addr = mkexpr(OPCHARCAST, addr, ENULL);
 		}
 
@@ -813,10 +814,10 @@ putio(expptr nelt, register expptr addr)
 			: call3(TYINT, "do_lio", mc, nelt, addr);
 		}
 	else {
-		char *s = ioformatted==FORMATTED ? "do_fio"
+		char *s = (char*)(ioformatted==FORMATTED ? "do_fio"
 			: !byterev ? "do_uio"
 			: ONEOF(type, M(TYCHAR)|M(TYINT1)|M(TYLOGICAL1))
-			? "do_ucio" : "do_unio";
+			? "do_ucio" : "do_unio");
 		q = c	? call3(TYINT, s, nelt, addr, (expptr)c)
 			: call2(TYINT, s, nelt, addr);
 		}

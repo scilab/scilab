@@ -48,6 +48,7 @@ extern flag intonly;
 static chainp datastack;
 extern long laststfcn, thisstno;
 extern int can_include;	/* for netlib */
+extern void endcheck Argdcl((void));
 extern struct Primblock *primchk Argdcl((expptr));
 
 #define ESNULL (Extsym *)0
@@ -152,6 +153,7 @@ stat:	  thislabel  entry
 	| thislabel  SEND  end_spec
 		{ if ($1)
 			lastwasbranch = NO;
+		  endcheck();
 		  endproc(); /* lastwasbranch = NO; -- set in endproc() */
 		}
 	| thislabel SUNKNOWN

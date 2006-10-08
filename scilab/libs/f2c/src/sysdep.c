@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 - 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990 - 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -35,23 +35,56 @@ char *p1_bakfile	= "p1_file.BAK";
 char *sortfname		= "init_file";
 char *proto_fname	= "proto_file";
 
-char link_msg[]		= "-lf2c -lm"; /* was "-lF77 -lI77 -lm -lc"; */
+char link_msg[]	= "on Microsoft Windows system, link with libf2c.lib;\n\
+	on Linux or Unix systems, link with .../path/to/libf2c.a -lm\n\
+	or, if you install libf2c.a in a standard place, with -lf2c -lm\n\
+	-- in that order, at the end of the command line, as in\n\
+		cc *.o -lf2c -lm\n\
+	Source for libf2c is in /netlib/f2c/libf2c.zip, e.g.,\n\n\
+		http://www.netlib.org/f2c/libf2c.zip";
 
 char *outbuf = "", *outbtail;
 
-#ifndef TMPDIR
+#undef WANT_spawnvp
 #ifdef MSDOS
-#define TMPDIR ""
-#else
-#define TMPDIR "/tmp"
+#ifndef NO_spawnvp
+#define WANT_spawnvp
 #endif
 #endif
 
-char *tmpdir = TMPDIR;
-#ifndef MSDOS
-#ifndef KR_headers
-extern int getpid(void);
+#ifdef _WIN32
+#include <windows.h>	/* for GetVolumeInformation */
+#undef WANT_spawnvp
+#define WANT_spawnvp
+#undef  MSDOS
+#define MSDOS
 #endif
+
+#ifdef WANT_spawnvp
+#include <process.h>
+#ifndef _P_WAIT
+#define _P_WAIT P_WAIT	/* Symantec C/C++ */
+#endif
+static char **spargv, **pfname;
+#endif
+
+char *tmpdir = "";
+
+#ifdef __cplusplus
+#define Cextern extern "C"
+extern "C" {
+ static void flovflo(int), killed(int);
+ static int compare(const void *a, const void *b);
+}
+#else
+#define Cextern extern
+#endif
+
+Cextern int unlink Argdcl((const char *));
+Cextern int fork Argdcl((void)), getpid Argdcl((void)), wait Argdcl((int*));
+
+#if _MSC_VER
+	#define unlink _unlink
 #endif
 
  void
@@ -62,13 +95,6 @@ Un_link_all(cdelete)
 Un_link_all(int cdelete)
 #endif
 {
-#ifndef KR_headers
-	#if _MSC_VER
-	#define unlink _unlink
-	#else
-	extern int unlink(const char *);
-	#endif
-#endif
 	if (!debugflag) {
 		unlink(c_functions);
 		unlink(initfname);
@@ -80,13 +106,28 @@ Un_link_all(int cdelete)
 		}
 	}
 
- void
-set_tmp_names(Void)
+#ifndef _MSC_VER
+#ifndef NO_TEMPDIR
+ static void rmtdir(Void)
 {
-	int k;
-	if (debugflag == 1)
-		return;
-	k = strlen(tmpdir) + 24;
+	char *s;
+	if (*(s = tmpdir)) 
+	{
+		tmpdir = "";
+		rmdir(s);
+	}
+}
+#endif /*NO_TEMPDIR*/
+#endif
+
+#ifndef MSDOS
+#include "sysdep.hd"
+#endif
+
+ static void
+alloc_names(Void)
+{
+	int k = strlen(tmpdir) + 24;
 	c_functions = (char *)ckalloc(7*k);
 	initfname = c_functions + k;
 	initbname = initfname + k;
@@ -94,9 +135,31 @@ set_tmp_names(Void)
 	p1_file = blkdfname + k;
 	p1_bakfile = p1_file + k;
 	sortfname = p1_bakfile + k;
-	{
+	}
+
+ void
+set_tmp_names(Void)
+{
 #ifdef MSDOS
 	char buf[64], *s, *t;
+#ifdef _WIN32
+	DWORD flags, maxlen, volser;
+	char volname[512], f2c[24], fsname[512];
+	int i;
+
+	if (debugflag == 1)
+		return;
+	i = sprintf(f2c, "%x", _getpid());
+	if (!GetVolumeInformation(NULL, volname, sizeof(volname), &volser, &maxlen,
+			&flags, fsname, sizeof(fsname))
+	 || maxlen < (DWORD)(i+8)) /* FAT16 */
+		strcpy(f2c, "f2c_");
+#else
+	static char f2c[] = "f2c_";
+	if (debugflag == 1)
+		return;
+#endif
+
 	if (!*tmpdir || *tmpdir == '.' && !tmpdir[1])
 		t = "";
 	else {
@@ -112,23 +175,75 @@ set_tmp_names(Void)
 		*t = 0;
 		t = buf;
 		}
-	sprintf(c_functions, "%sf2c_func", t);
-	sprintf(initfname, "%sf2c_rd", t);
-	sprintf(blkdfname, "%sf2c_blkd", t);
-	sprintf(p1_file, "%sf2c_p1f", t);
-	sprintf(p1_bakfile, "%sf2c_p1fb", t);
-	sprintf(sortfname, "%sf2c_sort", t);
+	alloc_names();
+	sprintf(c_functions, "%s%sfunc", t, f2c);
+	sprintf(initfname, "%s%srd", t, f2c);
+	sprintf(blkdfname, "%s%sblkd", t, f2c);
+	sprintf(p1_file, "%s%sp1f", t, f2c);
+	sprintf(p1_bakfile, "%s%sp1fb", t, f2c);
+	sprintf(sortfname, "%s%ssort", t, f2c);
+#else /*!MSDOS*/
+	long pid;
+
+#define L_TDNAME 20
+#ifdef NO_MKDTEMP
+#ifdef NO_MKSTEMP
+#undef  L_TDNAME
+#define L_TDNAME L_tmpnam
+#endif
+#endif
+	static char tdbuf[L_TDNAME];
+
+	if (debugflag == 1)
+		return;
+	pid = getpid();
+	if (!*tmpdir) {
+#ifdef NO_TEMPDIR
+		tmpdir = "/tmp";
 #else
-	long pid = getpid();
+#ifdef NO_MKDTEMP
+#ifdef NO_MKSTEMP
+		if (!(tmpdir = tmpnam(tdbuf))) {
+			fprintf(stderr, "tmpnam failed (for -T)\n");
+			exit(1);
+			}
+#else
+		int f;
+		strcpy(tdbuf, "/tmp/f2ctd_XXXXXX");
+		f = mkstemp(tdbuf);
+		if (f >= 0) {
+			close(f);
+			remove(tmpdir = tdbuf);
+			}
+		else {
+			fprintf(stderr, "mkstemp failed (for -T)\n");
+			exit(1);
+			}
+#endif /*NO_MKSTEMP*/
+		if (mkdir(tdbuf,0700)) {
+			fprintf(stderr, "mkdir failed (for -T)\n");
+			exit(1);
+			}
+#else /*!NO_MKDTEMP*/
+		strcpy(tdbuf, "/tmp/f2ctd_XXXXXX");
+		if (!(tmpdir = mkdtemp(tdbuf))) {
+			fprintf(stderr, "mkdtemp failed (for -T)\n");
+			exit(1);
+			}
+#endif /*NO_MKDTEMP*/
+		if (!debugflag)
+			atexit(rmtdir);
+#endif /*NO_TEMPDIR*/
+		}
+	alloc_names();
 	sprintf(c_functions, "%s/f2c%ld_func", tmpdir, pid);
 	sprintf(initfname, "%s/f2c%ld_rd", tmpdir, pid);
 	sprintf(blkdfname, "%s/f2c%ld_blkd", tmpdir, pid);
 	sprintf(p1_file, "%s/f2c%ld_p1f", tmpdir, pid);
 	sprintf(p1_bakfile, "%s/f2c%ld_p1fb", tmpdir, pid);
 	sprintf(sortfname, "%s/f2c%ld_sort", tmpdir, pid);
-#endif
+#endif /*MSDOS*/
 	sprintf(initbname, "%s.b", initfname);
-	}
 	if (debugflag)
 		fprintf(diagfile, "%s %s %s %s %s %s\n", c_functions,
 			initfname, blkdfname, p1_file, p1_bakfile, sortfname);
@@ -232,17 +347,77 @@ sigcatch(int sig)
 	signal(SIGFPE, flovflo);  /* catch overflows */
 	}
 
+/* argkludge permits wild-card expansion and caching of the original or expanded */
+/* argv to kludge around the lack of fork() and exec() when necessary. */
 
-dofork(Void)
-{
-#ifdef MSDOS
-	Fatal("Only one Fortran input file allowed under MS-DOS");
+ void
+#ifdef KR_headers
+argkludge(pargc, pargv) int *pargc; char ***pargv;
 #else
-#ifndef KR_headers
-	extern int fork(void), wait(int*);
+argkludge(int *pargc, char ***pargv)
 #endif
-	int pid, status, w;
+{
+#ifdef WANT_spawnvp
+	size_t L, L1;
+	int argc, i, nf;
+	char **a, **argv, *s, *t, *t0;
+
+	/* Assume wild-card expansion has been done by Microsoft's setargv.obj */
+
+	/* Count Fortran input files. */
+
+	L = argc = *pargc;
+	argv = *pargv;
+	for(i = nf = 0; i < argc; i++) {
+		L += L1 = strlen(s = argv[i]);
+		if (L1 > 2 && s[L1-2] == '.')
+			switch(s[L1-1]) {
+			  case 'f':
+			  case 'F':
+				nf++;
+			  }
+		}
+	if (nf <= 1)
+		return;
+
+	/* Cache inputs */
+
+	i = argc - nf + 2;
+	a = spargv = (char**)Alloc(i*sizeof(char*) + L);
+	t = (char*)(a + i);
+	for(i = 0; i < argc; i++) {
+		*a++ = t0 = t;
+		for(s = argv[i]; *t++ = *s; s++);
+		if (t-t0 > 3 && s[-2] == '.')
+			switch(s[-1]) {
+			  case 'f':
+			  case 'F':
+				--a;
+				t = t0;
+			  }
+		}
+	pfname = a++;
+	*a = 0;
+#endif
+	}
+
+ int
+#ifdef KR_headers
+dofork(fname) char *fname;
+#else
+dofork(char *fname)
+#endif
+{
 	extern int retcode;
+#ifdef MSDOS
+#ifdef WANT_spawnvp
+	*pfname = fname;
+	retcode |= _spawnvp(_P_WAIT, spargv[0], (char const*const*)spargv);
+#else /*_WIN32*/
+	Fatal("Only one Fortran input file allowed under MS-DOS");
+#endif /*_WIN32*/
+#else
+	int pid, status, w;
 
 	if (!(pid = fork()))
 		return 1;
@@ -312,7 +487,7 @@ char *chr_fmt[Table_size] = {
 fmt_init(Void)
 {
 	static char *str1fmt[6] =
-		{ "\\b", "\\t", "\\n", "\\f", "\\r", "\\%03o" };
+		{ "\\b", "\\t", "\\n", "\\f", "\\r", "\\013" };
 	register int i, j;
 	register char *s;
 
@@ -323,8 +498,11 @@ fmt_init(Void)
 #else
 	i = 127;
 #endif
-	for(; i < Table_size; i++)
-		str_fmt[i] = "\\%03o";
+	s = Alloc(5*(Table_size - i));
+	for(; i < Table_size; i++) {
+		sprintf(str_fmt[i] = s, "\\%03o", i);
+		s += 5;
+		}
 #ifdef non_ASCII
 	for(i = 32; i < 127; i++) {
 		s = str0fmt[i];
@@ -377,7 +555,7 @@ fmt_init(Void)
 	for(s = "\b\t\n\f\r\v", i = 0; j = *(unsigned char *)s++;)
 		str_fmt[j] = chr_fmt[j] = str1fmt[i++];
 	/* '\v' = 11 for both EBCDIC and ASCII... */
-	chr_fmt[11] = Ansi ? "\\v" : "\\13";
+	chr_fmt[11] = (char*)(Ansi ? "\\v" : "\\13");
 	}
 
  void
@@ -433,6 +611,7 @@ dsort(char *from, char *to)
 #endif
 { return strcmp(*(char **)a, *(char **)b); }
 
+ int
 #ifdef KR_headers
 dsort(from, to)
 	char *from;

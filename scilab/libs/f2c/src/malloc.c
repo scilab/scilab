@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -161,5 +161,23 @@ realloc(Char *f, Unsigned size)
 	if (q && q != f)
 		memcpy(q, f, s1);
 	return q;
+	}
+
+/* The following (calloc) should really be in a separate file, */
+/* but defining it here sometimes avoids confusion on systems */
+/* that do not provide calloc in its own file. */
+
+ Char *
+#ifdef KR_headers
+calloc(n, m) Unsigned m, n;
+#else
+calloc(Unsigned n, Unsigned m)
+#endif
+{
+	Char *rv;
+	rv = malloc(n *= m);
+	if (n && rv)
+		memset(rv, 0, n);
+	return rv;
 	}
 #endif

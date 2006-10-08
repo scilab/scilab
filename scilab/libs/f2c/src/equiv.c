@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1993-6 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1993-6, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -52,7 +52,6 @@ doequiv(Void)
 	int k, k1, ns, pref, t;
 	chainp cp;
 	extern int type_pref[];
-	/*char *s;*/
 
 	for(i = 0 ; i < nequiv ; ++i)
 	{

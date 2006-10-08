@@ -1,15 +1,11 @@
 /* f2c.h  --  Standard Fortran to C header file */
+
 /**  barf  [ba:rf]  2.  "He suggested using FORTRAN, and everybody barfed."
+
 	- From The Shogakukan DICTIONARY OF NEW ENGLISH (Second edition) */
-/* updated for scilab: Jean-Philippe Chancelier */
 
 #ifndef F2C_INCLUDE
 #define F2C_INCLUDE
-
-/** added for Scilab addinter  vc++ version **/
-/* XXXXX pour gcc -3.1 il faut un extern devant le 
- * __declspec(dllimport) 
- */ 
 
 #ifdef FORDLL 
 #define IMPORT extern  __declspec (dllimport)
@@ -18,7 +14,7 @@
 #endif
 
 typedef long int integer;
-typedef unsigned long uinteger;
+typedef unsigned long int uinteger;
 typedef char *address;
 typedef short int shortint;
 typedef float real;
@@ -29,7 +25,7 @@ typedef long int logical;
 typedef short int shortlogical;
 typedef char logical1;
 typedef char integer1;
-#if 0	/* Adjust for integer*8. */
+#ifdef INTEGER_STAR_8	/* Adjust for integer*8. */
 typedef long long longint;		/* system-dependent */
 typedef unsigned long long ulongint;	/* system-dependent */
 #define qbit_clear(a,b)	((a) & ~((ulongint)1 << (b)))

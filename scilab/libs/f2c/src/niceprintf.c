@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1991, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1991, 1993, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -39,7 +39,7 @@ int in_define = 0;
  extern int gflag1;
  extern char filename[];
 
- static void ind_printf Argdcl((int, FILE*, char*, va_list));
+ static void ind_printf Argdcl((int, FILE*, const char*, va_list));
 
  static void
 #ifdef KR_headers
@@ -117,7 +117,7 @@ write_indent(FILE *fp, int use_indent, int extra_indent, char *start, char *end)
 #define SPRINTF(x,a,b,c,d,e,f,g) vsprintf(x,a,ap)
 
   void
- margin_printf(FILE *fp, char *fmt, ...)
+ margin_printf(FILE *fp, const char *fmt, ...)
 {
 	va_list ap;
 	va_start(ap,fmt);
@@ -126,7 +126,7 @@ write_indent(FILE *fp, int use_indent, int extra_indent, char *start, char *end)
 	}
 
   void
- nice_printf(FILE *fp, char *fmt, ...)
+ nice_printf(FILE *fp, const char *fmt, ...)
 {
 	va_list ap;
 	va_start(ap,fmt);
@@ -222,14 +222,14 @@ fwd_strcpy(register char *t, register char *s)
   char *a;
   long b, c, d, e, f, g;
 #else
- ind_printf (int use_indent, FILE *fp, char *a, va_list ap)
+ ind_printf (int use_indent, FILE *fp, const char *a, va_list ap)
 #endif
 {
     extern int max_line_len;
     extern FILEP c_file;
     extern char tr_tab[];	/* in output.c */
     register char *Tr = tr_tab;
-    int ch, inc, ind;
+    int ch, cmax, inc, ind;
     static int extra_indent, last_indent, set_cursor = 1;
 
     cursor_pos += indent - last_indent;
@@ -250,13 +250,17 @@ fwd_strcpy(register char *t, register char *s)
 		ind = indent <= MAX_INDENT
 			? indent
 			: MIN_INDENT + indent % (MAX_INDENT - MIN_INDENT);
-		cursor_pos = ind + extra_indent;
+		cursor_pos = extra_indent;
+		if (use_indent)
+			cursor_pos += ind;
 		set_cursor = 0;
 		}
-	if (in_comment)
+	if (in_comment) {
+		cmax = max_line_len + 32;	/* let comments be wider */
         	for (pointer = next_slot; *pointer && *pointer != '\n' &&
-				cursor_pos <= max_line_len; pointer++)
+				cursor_pos <= cmax; pointer++)
 			cursor_pos++;
+		}
 	else
           for (pointer = next_slot; *pointer && *pointer != '\n' &&
 		cursor_pos <= max_line_len; pointer++) {

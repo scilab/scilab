@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1993, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software and its
 documentation for any purpose and without fee is hereby granted,
@@ -19,13 +19,16 @@ contract, negligence or other tortious action, arising out of or in
 connection with the use or performance of this software.
 ****************************************************************/
 
+#undef  _POSIX_SOURCE
 #define _POSIX_SOURCE
 #include "stdio.h"
 #ifndef KR_headers
 #include "stdlib.h"
 #include "sys/types.h"
-#include "fcntl.h"	/* for declaration of open, O_RDONLY */
+#ifndef MSDOS
 #include "unistd.h"	/* for read, close */
+#endif
+#include "fcntl.h"	/* for declaration of open, O_RDONLY */
 #endif
 #ifdef MSDOS
 #include "io.h"
@@ -36,6 +39,8 @@ connection with the use or performance of this software.
 #ifndef O_BINARY
 #define O_BINARY O_RDONLY
 #endif
+
+
 
  char *progname;
  static int ignore_cr;
@@ -171,6 +176,12 @@ process(s, x)
 #else
 process(char *s, int x)
 #endif
+
+#if _MSC_VER
+#define read _read
+#define close _close
+#endif
+
 {
 	register int n;
 	long fsize, sum;

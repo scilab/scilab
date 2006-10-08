@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1992, 1994-6 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1992, 1994-6, 1998 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -51,8 +51,8 @@ LOCAL struct Intrblock
 "int", 		{ INTRCONV, TYLONG },
 "real", 	{ INTRCONV, TYREAL, 1 },
 		/* 1 ==> real(TYDCOMPLEX) yields TYDREAL */
-"dreal", 	{ INTRCONV, TYREAL, 1 },
 "dble", 	{ INTRCONV, TYDREAL },
+"dreal",	{ INTRCONV, TYDREAL, 0, 0, 0, 1 },
 "cmplx", 	{ INTRCONV, TYCOMPLEX },
 "dcmplx", 	{ INTRCONV, TYDCOMPLEX, 0, 1 },
 "ifix", 	{ INTRCONV, TYLONG },
@@ -495,6 +495,108 @@ r8fix(Void)	/* adjust tables for -r8 */
 		}
 	}
 
+ static expptr
+#ifdef KR_headers
+foldminmax(ismin, argsp) int ismin; struct Listblock *argsp;
+#else
+foldminmax(int ismin, struct Listblock *argsp)
+#endif
+{
+#ifndef NO_LONG_LONG
+	Llong cq, cq1;
+#endif
+	Constp h;
+	double cd, cd1;
+	ftnint ci;
+	int mtype;
+	struct Chain *cp, *cpx;
+
+	mtype = argsp->vtype;
+	cp = cpx = argsp->listp;
+	h = &((expptr)cp->datap)->constblock;
+#ifndef NO_LONG_LONG
+	if (mtype == TYQUAD) {
+		cq = h->vtype == TYQUAD ? h->Const.cq : h->Const.ci;
+		while(cp = cp->nextp) {
+			h = &((expptr)cp->datap)->constblock;
+			cq1 = h->vtype == TYQUAD ? h->Const.cq : h->Const.ci;
+			if (ismin) {
+				if (cq > cq1) {
+					cq = cq1;
+					cpx = cp;
+					}
+				}
+			else {
+				if (cq < cq1) {
+					cq = cq1;
+					cpx = cp;
+					}
+				}
+			}
+		}
+	else
+#endif
+	if (ISINT(mtype)) {
+		ci = h->Const.ci;
+		if (ismin)
+			while(cp = cp->nextp) {
+				h = &((expptr)cp->datap)->constblock;
+				if (ci > h->Const.ci) {
+					ci = h->Const.ci;
+					cpx = cp;
+					}
+				}
+		else
+			while(cp = cp->nextp) {
+				h = &((expptr)cp->datap)->constblock;
+				if (ci < h->Const.ci) {
+					ci = h->Const.ci;
+					cpx = cp;
+					}
+				}
+		}
+	else {
+		if (ISREAL(h->vtype))
+			cd = h->vstg ? atof(h->Const.cds[0]) : h->Const.cd[0];
+#ifndef NO_LONG_LONG
+		else if (h->vtype == TYQUAD)
+			cd = (double)(h->Const.cq);
+#endif
+		else
+			cd = h->Const.ci;
+		while(cp = cp->nextp) {
+			h = &((expptr)cp->datap)->constblock;
+			if (ISREAL(h->vtype))
+				cd1 = h->vstg	? atof(h->Const.cds[0])
+						: h->Const.cd[0];
+#ifndef NO_LONG_LONG
+			else if (h->vtype == TYQUAD)
+				cd1 = (double)(h->Const.cq);
+#endif
+			else
+				cd1 = h->Const.ci;
+			if (ismin) {
+				if (cd > cd1) {
+					cd = cd1;
+					cpx = cp;
+					}
+				}
+			else {
+				if (cd < cd1) {
+					cd = cd1;
+					cpx = cp;
+					}
+				}
+			}
+		}
+	h = &((expptr)cpx->datap)->constblock;
+	cpx->datap = 0;
+	frexpr((tagptr)argsp);
+	if (h->vtype != mtype)
+		return mkconv(mtype, (expptr)h);
+	return (expptr)h;
+	}
+
 
  expptr
 #ifdef KR_headers
@@ -507,12 +609,12 @@ intrcall(Namep np, struct Listblock *argsp, int nargs)
 #endif
 {
 	int i, rettype;
+	ftnint k;
 	Addrp ap;
 	register struct Specblock *sp;
 	register struct Chain *cp;
 	expptr q, ep;
-	int mtype;
-	int op;
+	int constargs, mtype, op;
 	int f1field, f2field, f3field;
 	char *s;
 	static char	bit_bits[] =	"?bit_bits",
@@ -529,10 +631,13 @@ intrcall(Namep np, struct Listblock *argsp, int nargs)
 		goto badnargs;
 
 	mtype = 0;
+	constargs = 1;
 	for(cp = argsp->listp ; cp ; cp = cp->nextp)
 	{
 		ep = (expptr)cp->datap;
-		if( ISCONST(ep) && ep->headblock.vtype==TYSHORT )
+		if (!ISCONST(ep))
+			constargs = 0;
+		else if( ep->headblock.vtype==TYSHORT )
 			cp->datap = (char *) mkconv(tyint, ep);
 		mtype = maxtype(mtype, ep->headblock.vtype);
 	}
@@ -573,10 +678,10 @@ intrcall(Namep np, struct Listblock *argsp, int nargs)
 		if (op == OPBITSH) {
 			ep = (expptr)argsp->listp->nextp->datap;
 			if (ISCONST(ep)) {
-				if ((i = ep->constblock.Const.ci) < 0) {
+				if ((k = ep->constblock.Const.ci) < 0) {
 					q = (expptr)argsp->listp->datap;
 					if (ISCONST(q)) {
-						ep->constblock.Const.ci = -i;
+						ep->constblock.Const.ci = -k;
 						op = OPRSHIFT;
 						goto intrbool2;
 						}
@@ -790,7 +895,11 @@ specfunct:
 		if( ! ONEOF(mtype, MSKINT|MSKREAL) )
 			goto badtype;
 		argsp->vtype = mtype;
-		q = mkexpr( (f1field==INTRMIN ? OPMIN : OPMAX), (expptr)argsp, ENULL);
+		if (constargs)
+			q = foldminmax(f1field==INTRMIN, argsp);
+		else
+			q = mkexpr(f1field==INTRMIN ? OPMIN : OPMAX,
+					(expptr)argsp, ENULL);
 
 		q->headblock.vtype = mtype;
 		rettype = f2field;

@@ -13,7 +13,7 @@ funargs:  expr
 
 expr:	  uexpr
 	| SLPAR expr SRPAR	{ $$ = $2; if ($$->tag == TPRIM)
-					$$->primblock.parenused = 1; }
+					paren_used(&$$->primblock); }
 	| complex_const
 	;
 
@@ -30,7 +30,11 @@ uexpr:	  lhs
 	| addop expr  %prec SSTAR
 		{ if($1 == OPMINUS)
 			$$ = mkexpr(OPNEG, $2, ENULL);
-		  else 	$$ = $2;
+		  else {
+			$$ = $2;
+			if ($$->tag == TPRIM)
+				paren_used(&$$->primblock);
+			}
 		}
 	| expr relop expr  %prec SEQ
 		{ $$ = mkexpr($2, $1, $3); }
@@ -95,7 +99,7 @@ simple:	  name
 simple_const:   STRUE	{ $$ = mklogcon(1); }
 	| SFALSE	{ $$ = mklogcon(0); }
 	| SHOLLERITH  { $$ = mkstrcon(toklen, token); }
-	| SICON	= { $$ = mkintcon( convci(toklen, token) ); }
+	| SICON	= { $$ = mkintqcon(toklen, token); }
 	| SRCON	= { $$ = mkrealcon(tyreal, token); }
 	| SDCON	= { $$ = mkrealcon(TYDREAL, token); }
 	| bit_const
@@ -134,7 +138,7 @@ unpar_fexpr:	  lhs
 	| addop fexpr  %prec SSTAR
 		{ if($1 == OPMINUS)
 			$$ = mkexpr(OPNEG, $2, ENULL);
-		  else	$$ = $2;
+		  else $$ = $2;
 		}
 	| fexpr SCONCAT fexpr
 		{ NO66("concatenation operator //");

@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1992 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1992-1996, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -104,7 +104,7 @@ int typealign[NTYPES] = {
 
 int type_choice[4] = { TYDREAL, TYSHORT, TYLONG,  TYSHORT };
 
-char *typename[] = {
+char *Typename[] = {
 	"<<unknown>>",
 	"address",
 	"integer1",
@@ -172,7 +172,7 @@ static char *dflt0proc[] = {
 	"(logical (*)())0", "(char (*)())0", "(int (*)())0"
 	};
 
-char *dflt1proc[] = { "(U_fp)0", "(??bug??)0", "(I1_fp)0",
+char *dflt1proc[] = { "(U_fp)0", "( ??bug?? )0", "(I1_fp)0",
 	"(J_fp)0", "(I_fp)0",
 #ifdef TYQUAD
 	"(Q_fp)0",
@@ -284,9 +284,12 @@ struct Literal *litpool;
 int nliterals;
 
 char dflttype[26];
-char hextoi_tab[Table_size], Letters[Table_size];
+unsigned char hextoi_tab[Table_size], Letters[Table_size];
 char *ei_first, *ei_next, *ei_last;
 char *wh_first, *wh_next, *wh_last;
+#ifdef TYQUAD
+unsigned long ff;
+#endif
 
 #define ALLOCN(n,x)	(struct x *) ckalloc((n)*sizeof(struct x))
 
@@ -315,7 +318,12 @@ fileinit(Void)
 		hextoi(*s) = i;
 	for(j = 0, s = "abcdefghijklmnopqrstuvwxyz"; i = *s++; j++)
 		Letters[i] = Letters[i+'A'-'a'] = j;
-
+#ifdef TYQUAD
+	/* Older C compilers may not understand UL suffixes. */
+	/* It would be much simpler to use 0xffffffffUL some places... */
+	ff = 0xffff;
+	ff = (ff << 16) | ff;
+#endif
 	ctls = ALLOCN(maxctl+1, Ctlframe);
 	extsymtab = ALLOCN(maxext, Extsym);
 	eqvclass = ALLOCN(maxequiv, Equivblock);
@@ -375,6 +383,9 @@ hashclear(Void)	/* clear hash table */
 		}
 	}
 
+ extern struct memblock *curmemblock, *firstmemblock;
+ extern char *mem_first, *mem_next, *mem_last, *mem0_last;
+
  void
 procinit(Void)
 {
@@ -382,8 +393,6 @@ procinit(Void)
 	struct Chain *cp;
 	int i;
 	struct memblock;
-	extern struct memblock *curmemblock, *firstmemblock;
-	extern char *mem_first, *mem_next, *mem_last, *mem0_last;
 
 	curmemblock = firstmemblock;
 	mem_next = mem_first;

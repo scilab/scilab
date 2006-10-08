@@ -63,7 +63,9 @@ file	f2c/src/machdefs.h
 
 file	f2c/src/main.c
 
-file	f2c/src/makefile
+file	f2c/src/makefile.u
+
+file	f2c/src/makefile.vc
 
 file	f2c/src/malloc.c
 
@@ -72,6 +74,9 @@ file	f2c/src/mem.c
 file	f2c/src/memset.c
 
 file	f2c/src/misc.c
+
+file	f2c/src/mkfile.plan9
+for	making f2c under plan 9 (mk -f mkfile.plan9)
 
 file	f2c/src/names.c
 
@@ -110,6 +115,8 @@ file	f2c/src/sysdep.c
 file	f2c/src/sysdep.h
 
 file	f2c/src/tokens
+
+file	f2c/src/tokdefs.h
 
 file	f2c/src/usignal.h
 

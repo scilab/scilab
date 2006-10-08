@@ -5,13 +5,26 @@
  *	TYDREAL-TYREAL = TYDCOMPLEX-TYCOMPLEX
  */
 
+#undef TYQUAD0
 #ifdef NO_TYQUAD
 #undef TYQUAD
 #define TYQUAD_inc 0
+#undef NO_LONG_LONG
+#define NO_LONG_LONG
 #else
 #define TYQUAD 5
 #define TYQUAD_inc 1
+#ifdef NO_LONG_LONG
+#define TYQUAD0
+#else
+#ifndef Llong
+typedef long long Llong;
 #endif
+#ifndef ULlong
+typedef unsigned long long ULlong;
+#endif
+#endif /*NO_LONG_LONG*/
+#endif /*NO_TYQUAD*/
 
 #define TYUNKNOWN 0
 #define TYADDR 1

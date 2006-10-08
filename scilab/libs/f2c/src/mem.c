@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1991, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1991, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -26,6 +26,10 @@ use or performance of this software.
 
 #define MEMBSIZE	32000
 #define GMEMBSIZE	16000
+
+#ifdef _WIN32
+#undef MSDOS
+#endif
 
  char *
 #ifdef KR_headers

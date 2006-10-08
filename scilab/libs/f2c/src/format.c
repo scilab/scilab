@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990-1996, 1999-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -79,7 +79,8 @@ static void proto Argdcl((FILEP, Argtypes*, char*));
 
 extern chainp assigned_fmts;
 char filename[P1_FILENAME_MAX];
-extern int gflag, sharp_line;
+extern int gflag, sharp_line, trapuv;
+extern int typeconv[];
 int gflag1;
 extern char *parens;
 
@@ -328,7 +329,7 @@ do_p1_comment(infile, outfile)
 do_p1_comment(FILE *infile, FILE *outfile)
 #endif
 {
-    extern int c_output_line_length, in_comment;
+    extern int in_comment;
 
     char storage[COMMENT_BUFFER_SIZE + 1];
     int length;
@@ -340,10 +341,7 @@ do_p1_comment(FILE *infile, FILE *outfile)
 
     gflag1 = sharp_line = 0;
     in_comment = 1;
-    if (length > c_output_line_length - 6)
-	margin_printf(outfile, "/*%s*/\n", storage);
-    else
-	margin_printf(outfile, length ? "/* %s */\n" : "\n", storage);
+    margin_printf(outfile, length ? "/* %s */\n" : "\n", storage);
     in_comment = 0;
     gflag1 = sharp_line = gflag;
 } /* do_p1_comment */
@@ -388,8 +386,8 @@ do_p1_name_pointer(FILE *infile)
     if (status == EOF)
 	err ("do_p1_name_pointer:  Missing pointer at end of file\n");
     else if (status == 0 || namep == (Namep) NULL)
-	erri ("do_p1_name_pointer:  Illegal name pointer in p1 file: '%x'\n",
-		(int) namep);
+	erri ("do_p1_name_pointer:  Illegal name pointer in p1 file: '#%lx'\n",
+		(unsigned long) namep);
 
     return (expptr) namep;
 } /* do_p1_name_pointer */
@@ -442,7 +440,7 @@ addrlit(Addrp addrp)
 	lastlit = litpool + nliterals;
 	for (litp = litpool; litp < lastlit; litp++)
 	    if (litp->litnum == memno) {
-		addrp->vtype = (field) litp->littype;
+		addrp->vtype = (field)(litp->littype);
 		*((union Constant *) &(addrp->user)) =
 			*((union Constant *) &(litp->litval));
 		addrp->vstg = STGMEMNO;
@@ -797,8 +795,8 @@ do_p1_expr(FILE *infile, FILE *outfile)
 	    result = ALLOC (Exprblock);
 
 	    result -> tag = TEXPR;
-	    result -> vtype = (field) type;
-	    result -> opcode = opcode;
+	    result -> vtype = (field)type;
+	    result -> opcode = (unsigned int)opcode;
 	    result -> vleng = do_format (infile, outfile);
 
 	    if (is_unary_op (opcode))
@@ -878,7 +876,7 @@ do_p1_charp(FILE *infile)
 	else if (status == 0 || vtype < 0 || vtype >= NTYPES)
 	    errl("do_p1_ident:  Bad type in intermediate file: %ld\n", vtype);
 	else
-	    addrp -> vtype = (field) vtype;
+	    addrp -> vtype = (field)vtype;
 
 	status = p1getd (infile, &vstg);
 	if (status == EOF)
@@ -942,10 +940,10 @@ do_p1_head(FILE *infile, FILE *outfile)
 {
     int status;
     int add_n_;
-    long class;
+    long Class;
     char storage[256];
 
-    status = p1getd (infile, &class);
+    status = p1getd (infile, &Class);
     if (status == EOF)
 	err ("do_p1_head:  missing header class at end of file");
     else if (status == 0)
@@ -956,17 +954,17 @@ do_p1_head(FILE *infile, FILE *outfile)
 	    storage[0] = '\0';
     } /* else */
 
-    if (class == CLPROC || class == CLMAIN) {
+    if (Class == CLPROC || Class == CLMAIN) {
 	chainp lengths;
 
 	add_n_ = nentry > 1;
 	lengths = length_comp(entries, add_n_);
 
-	if (!add_n_ && protofile && class != CLMAIN)
+	if (!add_n_ && protofile && Class != CLMAIN)
 		protowrite(protofile, proctype, storage, entries, lengths);
 
-	if (class == CLMAIN)
-	    nice_printf (outfile, "/* Main program */ ");
+	if (Class == CLMAIN)
+	    nice_printf (outfile, "/* Main program */ int ");
 	else
 	    nice_printf(outfile, "%s ", multitype ? "VOID"
 			: c_type_decl(proctype, 1));
@@ -983,10 +981,10 @@ do_p1_head(FILE *infile, FILE *outfile)
 	strcpy(this_proc_name, storage);
 	list_decls (outfile);
 
-    } else if (class == CLBLOCK)
+    } else if (Class == CLBLOCK)
         next_tab (outfile);
     else
-	errl("do_p1_head: got class %ld", class);
+	errl("do_p1_head: got class %ld", Class);
 
     return NULL;
 } /* do_p1_head */
@@ -1227,24 +1225,24 @@ list_arg_types(FILE *outfile, struct Entrypoint *entryp, chainp lengths, int add
    exception is character lengths, which are passed by value. */
 
 	if (arg) {
-	    int type = arg -> vtype, class = arg -> vclass;
+	    int type = arg -> vtype, vclass = arg -> vclass;
 
-	    if (class == CLPROC)
+	    if (vclass == CLPROC)
 		if (arg->vimpltype)
 			type = Castargs ? TYUNKNOWN : TYSUBR;
 		else if (type == TYREAL && forcedouble && !Castargs)
 			type = TYDREAL;
 
-	    if (type == last_type && class == last_class && did_one)
+	    if (type == last_type && vclass == last_class && did_one)
 		nice_printf (outfile, ", ");
 	    else
-		if ((is_ext = class == CLPROC) && Castargs)
+		if ((is_ext = vclass == CLPROC) && Castargs)
 			nice_printf(outfile, "%s%s ", sep,
 				usedcasts[type] = casttypes[type]);
 		else
 			nice_printf(outfile, "%s%s ", sep,
 				c_type_decl(type, is_ext));
-	    if (class == CLPROC)
+	    if (vclass == CLPROC)
 		if (Castargs)
 			out_name(outfile, arg);
 		else {
@@ -1258,7 +1256,7 @@ list_arg_types(FILE *outfile, struct Entrypoint *entryp, chainp lengths, int add
 		}
 
 	    last_type = type;
-	    last_class = class;
+	    last_class = vclass;
 	    did_one = done_one;
 	    sep = sep1;
 	} /* if (arg) */
@@ -1359,8 +1357,9 @@ write_assigned_fmts(FILE *outfile)
 			type = "";
 			}
 		else {
-			comma = did_one ? ";\n" : "";
-			type = np->vstg == STGAUTO ? "char " : "static char ";
+			comma = (char*)(did_one ? ";\n" : "");
+			type = (char*)(np->vstg == STGAUTO
+						? "char " : "static char ");
 			did_one = np->vstg;
 			}
 		nice_printf(outfile, "%s%s*%s_fmt", comma, type, np->fvarname);
@@ -1391,7 +1390,7 @@ to_upper(register char *s)
 	struct Vardesc {
 		char *name;
 		char *addr;
-		ftnlen *dims;	/* laid out as struct dimensions below *//*
+		ftnlen *dims;	*//* laid out as struct dimensions below *//*
 		int  type;
 		};
 	typedef struct Vardesc Vardesc;
@@ -1431,7 +1430,6 @@ write_namelists(chainp nmch, FILE *outfile)
 	char *comma, *name;
 	register chainp q;
 	register Namep v;
-	extern int typeconv[];
 
 	nice_printf(outfile, "/* Namelist stuff */\n\n");
 	for (entry = hashtab; entry < lasthash; ++entry) {
@@ -1607,6 +1605,28 @@ ref_defs(FILE *outfile, chainp refdefs)
 	frchain(&refdefs);
 	}
 
+ static long
+#ifdef KR_headers
+n_elt(vd) struct Dimblock *vd;
+#else
+n_elt(struct Dimblock *vd)
+#endif
+{
+	expptr ne;
+	long nv = 1;
+	if (vd) {
+		if (!(ne = vd->nelt))
+			Fatal("Null nelt in n_elt");
+		if (ne->tag != TCONST)
+			fatali("Unexpected nelt tag %d in n_elt", ne->tag);
+		if (!ISINT(ne->constblock.vtype))
+			fatali("Unexpected vtype %d in n_elt",
+				ne->constblock.vtype);
+		nv = ne->constblock.Const.ci;
+		}
+	return nv;
+	}
+
  void
 #ifdef KR_headers
 list_decls(outfile)
@@ -1621,7 +1641,7 @@ list_decls(FILE *outfile)
     int write_header = 1;
     int last_class = -1, last_stg = -1;
     Namep var;
-    int Alias, Define, did_one, last_type, type;
+    int Alias, Define, did_one, last_type, stg, type;
     extern int def_equivs, useauto;
     extern chainp new_vars;	/* Compiler-generated locals */
     chainp namelists = 0, refdefs = 0;
@@ -1644,6 +1664,7 @@ list_decls(FILE *outfile)
 	chainp args, next_var, this_var;
 	chainp nv[TYVOID], nv1[TYVOID];
 	int i, j;
+	ftnint k;
 	Addrp Var;
 	Namep arg;
 
@@ -1722,8 +1743,8 @@ list_decls(FILE *outfile)
 	    write_nv_ident(outfile, (Addrp)this_var->datap);
 	    if (Var -> vtype == TYCHAR && Var->vclass != CLPROC &&
 		    ISICON((Var -> vleng))
-			&& (i = Var->vleng->constblock.Const.ci) > 0)
-		nice_printf (outfile, "[%d]", i);
+			&& (k = Var->vleng->constblock.Const.ci) > 0)
+		nice_printf (outfile, "[%ld]", (long)k);
 
 	    did_one = 1;
 	    last_type = nv_type (Var);
@@ -1788,8 +1809,8 @@ list_decls(FILE *outfile)
 	if (var) {
 	    int procclass = var -> vprocclass;
 	    char *comment = NULL;
-	    int stg = var -> vstg;
-	    int class = var -> vclass;
+	    int vclass = var -> vclass;
+	    stg = var -> vstg;
 	    type = var -> vtype;
 
 	    if (var->vrefused)
@@ -1805,7 +1826,7 @@ list_decls(FILE *outfile)
 	    if (useauto1 && stg == STGBSS && !var->vsave)
 		stg = STGAUTO;
 
-	    switch (class) {
+	    switch (vclass) {
 	        case CLVAR:
 		    break;
 		case CLPROC:
@@ -1844,7 +1865,7 @@ list_decls(FILE *outfile)
 			continue;
 		default:
 		    erri("list_decls:  can't handle class '%d' yet",
-			    class);
+			    vclass);
 		    Fatal(var->fvarname);
 		    continue;
 	    } /* switch */
@@ -1871,7 +1892,7 @@ list_decls(FILE *outfile)
 		def_start(outfile, var->cvarname, CNULL, "(");
 		goto Alias1;
 		}
-	    else if (type == last_type && class == last_class &&
+	    else if (type == last_type && vclass == last_class &&
 		    stg == last_stg && !write_header)
 		nice_printf (outfile, ", ");
 	    else {
@@ -1907,7 +1928,7 @@ list_decls(FILE *outfile)
 			continue;
 		} /* switch */
 
-		if (type == TYCHAR && halign && class != CLPROC
+		if (type == TYCHAR && halign && vclass != CLPROC
 		&& ISICON(var->vleng)) {
 			nice_printf(outfile, "struct { %s fill; char val",
 				halign);
@@ -1924,19 +1945,19 @@ list_decls(FILE *outfile)
 			continue;
 			}
 		nice_printf(outfile, "%s ",
-			c_type_decl(type, class == CLPROC));
+			c_type_decl(type, vclass == CLPROC));
 	    } /* else */
 
 /* Character type is really a string type.  Put out a '*' for variable
    length strings, and also for equivalences */
 
-	    if (type == TYCHAR && class != CLPROC
+	    if (type == TYCHAR && vclass != CLPROC
 		    && (!var->vleng || !ISICON (var -> vleng))
 	    || oneof_stg(var, stg, M(STGEQUIV)|M(STGCOMMON)))
 		nice_printf (outfile, "*%s", var->cvarname);
 	    else {
 		nice_printf (outfile, "%s", var->cvarname);
-		if (class == CLPROC) {
+		if (vclass == CLPROC) {
 			Argtypes *at;
 			if (!(at = var->arginfo)
 			 && var->vprocclass == PEXTERNAL)
@@ -1945,7 +1966,7 @@ list_decls(FILE *outfile)
 			}
 		else if (type == TYCHAR && ISICON ((var -> vleng)))
 			wr_char_len(outfile, var->vdim,
-				(int)var->vleng->constblock.Const.ci, 0);
+				var->vleng->constblock.Const.ci, 0);
 		else if (var -> vdim &&
 		    !oneof_stg (var, stg, M(STGEQUIV)|M(STGCOMMON)))
 			comment = wr_ardecls(outfile, var->vdim, 1L);
@@ -2044,7 +2065,7 @@ list_decls(FILE *outfile)
 		}
 	    write_header = 0;
 	    last_type = type;
-	    last_class = class;
+	    last_class = vclass;
 	    last_stg = stg;
 	} /* if (var) */
     } /* for (entry = hashtab */
@@ -2069,6 +2090,18 @@ list_decls(FILE *outfile)
 
     if (refdefs)
 	ref_defs(outfile, refdefs);
+
+    if (trapuv) {
+	for (entry = hashtab; entry < lasthash; ++entry)
+	    if ((var = entry->varp)
+		&& ONEOF(var->vstg, M(STGAUTO)|M(STGBSS))
+		&& ISNUMERIC(var->vtype)
+		&& var->vclass == CLVAR
+		&& !var->vsave)
+			nice_printf(outfile, "_uninit_f2c(&%s,%d,%ldL);\n",
+				var->cvarname, typeconv[var->vtype],
+				n_elt(var->vdim));
+	}
 
 } /* list_decls */
 
@@ -2234,6 +2267,56 @@ p1gets(FILE *fp, char *str, int size)
 } /* p1gets */
 
 
+#ifndef NO_LONG_LONG
+ static int
+#ifdef KR_headers
+p1getq(infile, result) FILE *infile; Llong *result;
+#else
+p1getq(FILE *infile, Llong *result)
+#endif
+{
+#ifdef __FreeBSD__
+#ifndef NO_FSCANF_LL_BUG
+#define FSCANF_LL_BUG
+#endif
+#endif
+#ifdef FSCANF_LL_BUG
+	ULlong x = 0;
+	int c, have_c = 0;
+	for(;;) {
+		c = getc(infile);
+		if (c == EOF)
+			break;
+		if (c <= ' ') {
+			if (!have_c)
+				continue;
+			goto done;
+			}
+		if (c >= '0' && c <= '9')
+			c -= '0';
+		else if (c >= 'a' && c <= 'f')
+			c += 10 - 'a';
+		else if (c >= 'A' && c <= 'F')
+			c += 10 - 'A';
+		else {
+ done:
+			ungetc(c, infile);
+			break;
+			}
+		x = x << 4 | c;
+		have_c = 1;
+		}
+	if (have_c) {
+		*result = (Llong)x;
+		return 1;
+		}
+	return 0;
+#else
+	return fscanf(infile, "%llx", result);
+#endif
+	}
+#endif
+
  static int
 #ifdef KR_headers
 p1get_const(infile, type, resultp)
@@ -2258,13 +2341,15 @@ p1get_const(FILE *infile, int type, struct Constblock **resultp)
         case TYSHORT:
 	case TYLONG:
 	case TYLOGICAL:
-#ifdef TYQUAD
-	case TYQUAD:
-#endif
 	case TYLOGICAL1:
 	case TYLOGICAL2:
 	    status = p1getd (infile, &(result -> Const.ci));
 	    break;
+#ifndef NO_LONG_LONG
+	case TYQUAD:
+		status = p1getq(infile, &result->Const.cq);
+		break;
+#endif
 	case TYREAL:
 	case TYDREAL:
 	    status = p1getf(infile, &result->Const.cds[0]);
@@ -2428,6 +2513,8 @@ proto(FILE *outfile,  Argtypes *at,  char *fname)
 			nice_printf(outfile, "%schar **", comma);
 		else if (k >= 200) {
 			k -= 200;
+			if (k >= 100)
+				k -= 100;
 			nice_printf(outfile, "%s%s", comma,
 				usedcasts[k] = casttypes[k]);
 			}

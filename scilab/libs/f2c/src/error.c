@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1993, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -43,7 +43,7 @@ warn1(s, t)
 	char *s;
 	char *t;
 #else
-warn1(char *s, char *t)
+warn1(const char *s, const char *t)
 #endif
 {
 	char buff[100];
@@ -76,7 +76,7 @@ errstr(s, t)
 	char *s;
 	char *t;
 #else
-errstr(char *s, char *t)
+errstr(const char *s, const char *t)
 #endif
 {
 	char buff[100];
@@ -154,7 +154,7 @@ dclerr(s, v)
 	char *s;
 	Namep v;
 #else
-dclerr(char *s, Namep v)
+dclerr(const char *s, Namep v)
 #endif
 {
 	char buff[100];

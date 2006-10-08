@@ -1,4 +1,4 @@
-#define DEF_C_LINE_LENGTH 500
+#define DEF_C_LINE_LENGTH 77
 /* actual max will be 79 */
 
 extern int c_output_line_length;	/* max # chars per line in C source

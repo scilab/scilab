@@ -26,6 +26,8 @@ io1:	  iofmove ioctl
 		{ doio(CHNULL); }
 	| write ioctl outlist
 		{ doio(revchain($3)); }
+	| write ioctl SCOMMA outlist
+		{ doio(revchain($4)); }
 	| print
 		{ doio(CHNULL); }
 	| print SCOMMA outlist

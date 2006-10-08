@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1992, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1992, 1993, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -164,7 +164,7 @@ checkreal(int k)
 	if (k == forcedouble || warned)
 		return;
 	warned = 1;
-	badflag("REAL return", k ? "!R" : "R");
+	badflag("REAL return", (char*)(k ? "!R" : "R"));
 	}
 
  static void

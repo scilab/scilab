@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1992 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1992 - 1996, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -90,7 +90,7 @@ c_type_decl(int type, int is_extern)
 #endif
 	case TYLOGICAL1:
 	case TYLOGICAL2:
-	case TYLOGICAL:	strcpy(buff, typename[type]);
+	case TYLOGICAL:	strcpy(buff, Typename[type]);
 			break;
 	case TYCHAR:	if (is_extern)
 			    strcpy (buff, "/* Character */ VOID");
@@ -362,7 +362,7 @@ wr_globals(FILE *outfile)
 		margin_printf(outfile, "/* Table of constant values */\n\n");
 		did_one = 1;
 		}
-	cb.vtype = (field)litp->littype;
+	cb.vtype = (field)(litp->littype);
 	if (litp->littype == TYCHAR) {
 		x = litp->litval.litival2[0] + litp->litval.litival2[1];
 		if (y = x % hsize)
@@ -547,22 +547,8 @@ wr_common_decls(FILE *outfile)
 		    nice_printf (outfile, "struct %s%d_ {\n",
 			    ext->cextname, count);
 		else
-		  {
-		    /** jpc 1998 **/
-		    if ( strcmp(ext->cextname,"stack_")==0 || 
-			 strcmp(ext->cextname,"vstk_")==0 || 
-			 strcmp(ext->cextname,"recu_")==0 || 
-			 strcmp(ext->cextname,"iop_")==0 || 
-			 strcmp(ext->cextname,"errgst_")==0  ||
-			 strcmp(ext->cextname,"com_")==0 ||
-			 strcmp(ext->cextname,"adre_")==0 ||
-			 strcmp(ext->cextname,"intersci_")==0 ||
-			 strcmp(ext->cextname,"cha1_")==0 
-			 )
-		      nice_printf (outfile, "IMPORT struct {\n");
-		    else
-		      nice_printf (outfile, "%sstruct {\n", E);
-		  }
+		    nice_printf (outfile, "%sstruct {\n", E);
+
 		next_tab (c_file);
 
 		wr_struct (outfile, (chainp) comm -> datap);
@@ -820,14 +806,14 @@ def_commons(FILE *of)
 char *c_keywords[] = {
 	"Long", "Multitype", "Namelist", "Vardesc", "abs", "acos",
 	"addr", "address", "aerr", "alist", "asin", "asm", "atan",
-	"atan2", "aunit", "auto", "break", "c", "case", "catch", "cerr",
-	"char", "ciend", "cierr", "cifmt", "cilist", "cirec", "ciunit",
-	"class", "cllist", "complex", "const", "continue", "cos",
+	"atan2", "aunit", "auto", "break", "c", "case", "catch", "cdecl",
+	"cerr", "char", "ciend", "cierr", "cifmt", "cilist", "cirec",
+	"ciunit", "class", "cllist", "complex", "const", "continue", "cos",
 	"cosh", "csta", "cunit", "d", "dabs", "default", "defined",
 	"delete", "dims", "dmax", "dmin", "do", "double",
 	"doublecomplex", "doublereal", "else", "entry", "enum", "exp",
-	"extern", "far", "flag", "float", "for", "friend", "ftnint",
-	"ftnlen", "goto", "h", "huge", "i", "iciend", "icierr",
+	"extern", "false", "far", "flag", "float", "for", "friend",
+	"ftnint", "ftnlen", "goto", "h", "huge", "i", "iciend", "icierr",
 	"icifmt", "icilist", "icirlen", "icirnum", "iciunit", "if",
 	"inacc", "inacclen", "inblank", "inblanklen", "include",
 	"indir", "indirlen", "inerr", "inex", "infile", "infilen",
@@ -841,7 +827,7 @@ char *c_keywords[] = {
 	"protected", "public", "r", "real", "register", "return",
 	"short", "shortint", "shortlogical", "signed", "sin", "sinh",
 	"sizeof", "sqrt", "static", "struct", "switch", "tan", "tanh",
-	"template", "this", "try", "type", "typedef", "uinteger",
+	"template", "this", "true", "try", "type", "typedef", "uinteger",
 	"ulongint", "union", "unsigned", "vars", "virtual", "void",
 	"volatile", "while", "z"
 	}; /* c_keywords */

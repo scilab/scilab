@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1991, 1993, 1994, 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990-1991, 1993-1994, 1996, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -36,6 +36,7 @@ use or performance of this software.
 #define LIT_CHAR 1
 #define LIT_FLOAT 2
 #define LIT_INT 3
+#define LIT_INTQ 4
 
 
 /*
@@ -314,7 +315,7 @@ putconst(register Constp p)
 		if (halign) {
 			strp = p->Const.ccp;
 			nblanks = p->Const.ccp1.blanks;
-			len = p->vleng->constblock.Const.ci;
+			len = (int)p->vleng->constblock.Const.ci;
 			litflavor = LIT_CHAR;
 			goto loop;
 			}
@@ -337,13 +338,19 @@ putconst(register Constp p)
 			ds[0] = cds(dtos(cd[0] = p->Const.cd[0]), cdsbuf0);
 		goto loop;
 
+#ifndef NO_LONG_LONG
+	case TYQUAD:
+		litflavor = LIT_INTQ;
+		goto loop;
+#endif
+
 	case TYLOGICAL1:
 	case TYLOGICAL2:
 	case TYLOGICAL:
 	case TYLONG:
 	case TYSHORT:
 	case TYINT1:
-#ifdef TYQUAD
+#ifdef TYQUAD0
 	case TYQUAD:
 #endif
 		litflavor = LIT_INT;
@@ -388,6 +395,12 @@ ret:
 				if(p->Const.ci == litp->litval.litival)
 					goto ret;
 				break;
+#ifndef NO_LONG_LONG
+			case LIT_INTQ:
+				if(p->Const.cq == litp->litval.litqval)
+					goto ret;
+				break;
+#endif
 			}
 
 /* If there's room in the literal pool, add this new value to the pool */
@@ -405,7 +418,7 @@ ret:
 			case LIT_CHAR:
 				litp->litval.litival2[0] = len;
 				litp->litval.litival2[1] = nblanks;
-				q->user.Const.ccp = litp->cds[0] =
+				q->user.Const.ccp = litp->cds[0] = (char*)
 					memcpy(gmem(len,0), strp, len);
 				break;
 
@@ -421,6 +434,11 @@ ret:
 			case LIT_INT:
 				litp->litval.litival = p->Const.ci;
 				break;
+#ifndef NO_LONG_LONG
+			case LIT_INTQ:
+				litp->litval.litqval = p->Const.cq;
+				break;
+#endif
 			} /* switch (litflavor) */
 		}
 		else

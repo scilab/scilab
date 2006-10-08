@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1992, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1992-1994, 2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -42,6 +42,17 @@ prconi(FILEP fp, ftnint n)
 	fprintf(fp, "\t%ld\n", n);
 }
 
+#ifndef NO_LONG_LONG
+ void
+#ifdef KR_headers
+prconq(fp, n) FILEP fp; Llong n;
+#else
+prconq(FILEP fp, Llong n)
+#endif
+{
+	fprintf(fp, "\t%lld\n", n);
+	}
+#endif
 
 
 /* Put out a constant address */
@@ -141,13 +152,20 @@ make_int_expr(expptr e)
 {
     chainp listp;
     Addrp ap;
+    expptr e1;
 
     if (e != ENULL)
 	switch (e -> tag) {
 	    case TADDR:
-	        if (e -> addrblock.vstg == STGARG
-		 && !e->addrblock.isarray)
-		    e = mkexpr (OPWHATSIN, e, ENULL);
+		if (e->addrblock.isarray) {
+			if (e1 = e->addrblock.memoffset)
+				e->addrblock.memoffset = make_int_expr(e1);
+			}
+		else if (e->addrblock.vstg == STGARG
+			|| e->addrblock.vstg == STGCOMMON
+				&& e->addrblock.uname_tag == UNAM_NAME
+				&& e->addrblock.user.name->vcommequiv)
+			e = mkexpr(OPWHATSIN, e, ENULL);
 	        break;
 	    case TEXPR:
 	        e -> exprblock.leftp = make_int_expr (e -> exprblock.leftp);
@@ -423,7 +441,8 @@ prolog(outfile, p)
 prolog(FILE *outfile, register chainp p)
 #endif
 {
-	int addif, addif0, i, nd, size;
+	int addif, addif0, i, nd;
+	ftnint size;
 	int *ac;
 	register Namep q;
 	register struct Dimblock *dp;

@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1991, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1991, 1993, 1994, 1999-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -26,8 +26,6 @@ use or performance of this software.
 #include "output.h"
 #include "names.h"
 
-/** XXXX **/
-#define __cplusplus 
 
 static void p1_addr Argdcl((Addrp));
 static void p1_big_addr Argdcl((Addrp));
@@ -173,7 +171,7 @@ p1_const(register Constp cp)
 	case TYINT1:
         case TYSHORT:
 	case TYLONG:
-#ifdef TYQUAD
+#ifdef TYQUAD0
 	case TYQUAD:
 #endif
 	case TYLOGICAL:
@@ -181,6 +179,11 @@ p1_const(register Constp cp)
 	case TYLOGICAL2:
 	    fprintf(pass1_file, "%d: %d %ld\n", P1_CONST, type, c->ci);
 	    break;
+#ifndef NO_LONG_LONG
+	case TYQUAD:
+	    fprintf(pass1_file, "%d: %d %llx\n", P1_CONST, type, c->cq);
+	    break;
+#endif
 	case TYREAL:
 	case TYDREAL:
 		fprintf(pass1_file, "%d: %d %s\n", P1_CONST, type,
@@ -201,7 +204,7 @@ p1_const(register Constp cp)
 	    break;
 	case TYCHAR:
 	    if (vleng && !ISICON (vleng))
-		erri("p1_const:  bad vleng '%d'\n", (int) vleng);
+		err("p1_const:  bad vleng\n");
 	    else
 		fprintf(pass1_file, "%d: %d %lx\n", P1_CONST, type,
 			cpexpr((expptr)cp));
@@ -498,14 +501,14 @@ p1_binary(struct Exprblock *e)
 
  void
 #ifdef KR_headers
-p1_head(class, name)
-	int class;
+p1_head(Class, name)
+	int Class;
 	char *name;
 #else
-p1_head(int class, char *name)
+p1_head(int Class, char *name)
 #endif
 {
-    p1putds (P1_HEAD, class, name ? name : "");
+    p1putds (P1_HEAD, Class, (char*)(name ? name : ""));
 } /* p1_head */
 
 

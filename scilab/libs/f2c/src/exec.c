@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1993 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1993 - 1996, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -158,10 +158,10 @@ poplab(Void)
 		if(lp->labdefined)
 		{
 			/* mark all labels in inner blocks unreachable */
-			if( (int) lp->blklevel > blklevel)
+			if(lp->blklevel > (unsigned int)(blklevel))
 				lp->labinacc = YES;
 		}
-		else if( (int) lp->blklevel > blklevel)
+		else if(lp->blklevel > (unsigned int)(blklevel))
 		{
 			/* move all labels referred to in inner blocks out a level */
 			lp->blklevel = blklevel;
@@ -184,8 +184,55 @@ exgoto(struct Labelblock *lab)
 }
 
 
+ static expptr
+#ifdef KR_headers
+cktype1(p) expptr p;
+#else
+cktype1(expptr p)
+#endif
+{
+	/* Do things omitted because we might have been parsing a */
+	/* statement function...  Check types and fold constants. */
 
+	chainp c;
+	tagptr t;
 
+	if(p == 0)
+		return(0);
+
+	switch(p->tag) {
+	  case TCONST:
+	  case TADDR:
+	  case TERROR:
+		break;
+
+/* This case means that   fixexpr   can't call   fixtype   with any expr,
+   only a subexpr of its parameter. */
+
+	  case TEXPR:
+		t = mkexpr(p->exprblock.opcode, cktype1(p->exprblock.leftp),
+				cktype1(p->exprblock.rightp));
+		free((charptr)p);
+		p = (expptr) t;
+		break;
+
+	  case TLIST:
+		for(c = p->listblock.listp; c; c = c->nextp)
+			c->datap = (char*)cktype1((expptr)c->datap);
+		break;
+
+	  case TPRIM:
+		p->primblock.argsp = (struct Listblock*)
+			cktype1((expptr)p->primblock.argsp);
+		p->primblock.fcharp = cktype1(p->primblock.fcharp);
+		p->primblock.lcharp = cktype1(p->primblock.lcharp);
+		break;
+
+	  default:
+		badtag("cktype1", p->tag);
+	  }
+	return p;
+	}
 
 
  void
@@ -216,8 +263,11 @@ exequals(register struct Primblock *lp, register expptr rp)
 	{
 		expptr new_lp, new_rp;
 
-		if(parstate < INDATA)
+		if(parstate < INDATA) {
 			enddcl();
+			lp = (struct Primblock *)cktype1((expptr)lp);
+			rp = cktype1(rp);
+			}
 		new_lp = mklhs (lp, keepsubs);
 		new_rp = fixtype (rp);
 		puteq(new_lp, new_rp);
@@ -387,7 +437,7 @@ exstop(int stop, register expptr p)
     {
 	expptr subr_call;
 
-	subr_call = call1(TYSUBR, (stop ? "s_stop" : "s_paus"), p);
+	subr_call = call1(TYSUBR, (char*)(stop ? "s_stop" : "s_paus"), p);
 	putexpr( subr_call );
     }
 }
@@ -816,7 +866,7 @@ exarif(expr, neglab, zerlab, poslab)
 exarif(expptr expr, struct Labelblock *neglab, struct Labelblock *zerlab, struct Labelblock *poslab)
 #endif
 {
-    register int lm, lz, lp;
+    ftnint lm, lz, lp;
 
     lm = neglab->stateno;
     lz = zerlab->stateno;

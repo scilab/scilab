@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1994-6 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1994-6, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -183,6 +183,8 @@ putentries(FILE *outfile)
 	if (!e->enamep) /* only possible with erroneous input */
 		return;
 	nL = (nallargs + nallchargs) * sizeof(Namep *);
+	if (!nL)
+		nL = 8;
 	A = (Namep *)ckalloc(nL + nallargs*sizeof(Namep **));
 	Ae = A + nallargs;
 	Alp = (Namep **)(Ae1 = Ae + nallchargs);
@@ -426,17 +428,17 @@ enddcl(Void)
 
  void
 #ifdef KR_headers
-startproc(progname, class)
+startproc(progname, Class)
 	Extsym *progname;
-	int class;
+	int Class;
 #else
-startproc(Extsym *progname, int class)
+startproc(Extsym *progname, int Class)
 #endif
 {
 	register struct Entrypoint *p;
 
 	p = ALLOC(Entrypoint);
-	if(class == CLMAIN) {
+	if(Class == CLMAIN) {
 		puthead(CNULL, CLMAIN);
 		if (progname)
 		    strcpy (main_alias, progname->cextname);
@@ -452,13 +454,13 @@ startproc(Extsym *progname, int class)
 			}
 		puthead(CNULL, CLBLOCK);
 		}
-	if(class == CLMAIN)
+	if(Class == CLMAIN)
 		newentry( mkname(" MAIN"), 0 )->extinit = 1;
 	p->entryname = progname;
 	entries = p;
 
-	procclass = class;
-	fprintf(diagfile, "   %s", (class==CLMAIN ? "MAIN" : "BLOCK DATA") );
+	procclass = Class;
+	fprintf(diagfile, "   %s", (Class==CLMAIN ? "MAIN" : "BLOCK DATA") );
 	if(progname) {
 		fprintf(diagfile, " %s", progname->fextname);
 		procname = progname->cextname;
@@ -511,21 +513,21 @@ newentry(register Namep v, int substmsg)
 
  void
 #ifdef KR_headers
-entrypt(class, type, length, entry, args)
-	int class;
+entrypt(Class, type, length, entry, args)
+	int Class;
 	int type;
 	ftnint length;
 	Extsym *entry;
 	chainp args;
 #else
-entrypt(int class, int type, ftnint length, Extsym *entry, chainp args)
+entrypt(int Class, int type, ftnint length, Extsym *entry, chainp args)
 #endif
 {
 	register Namep q;
 	register struct Entrypoint *p;
 
-	if(class != CLENTRY)
-		puthead( procname = entry->cextname, class);
+	if(Class != CLENTRY)
+		puthead( procname = entry->cextname, Class);
 	else
 		fprintf(diagfile, "       entry ");
 	fprintf(diagfile, "   %s:\n", entry->fextname);
@@ -535,7 +537,7 @@ entrypt(int class, int type, ftnint length, Extsym *entry, chainp args)
 		q->vstg = STGEXT;
 
 	type = lengtype(type, length);
-	if(class == CLPROC)
+	if(Class == CLPROC)
 	{
 		procclass = CLPROC;
 		proctype = type;
@@ -551,14 +553,14 @@ entrypt(int class, int type, ftnint length, Extsym *entry, chainp args)
 	p->arglist = revchain(args);
 	p->enamep = q;
 
-	if(class == CLENTRY)
+	if(Class == CLENTRY)
 	{
-		class = CLPROC;
+		Class = CLPROC;
 		if(proctype == TYSUBR)
 			type = TYSUBR;
 	}
 
-	q->vclass = class;
+	q->vclass = Class;
 	q->vprocclass = 0;
 	settype(q, type, length);
 	q->vprocclass = PTHISPROC;
@@ -739,8 +741,11 @@ doentry(struct Entrypoint *ep)
 /* The main program isn't allowed to have parameters, so any given
    parameters are ignored */
 
-	if(procclass == CLMAIN || procclass == CLBLOCK)
+	if(procclass == CLMAIN && !ep->arglist || procclass == CLBLOCK)
 		return;
+
+	/* Entry points in MAIN are an error, but we process them here */
+	/* to prevent faults elsewhere. */
 
 /* So now we're working with something other than CLMAIN or CLBLOCK.
    Determine the type of its return value. */
@@ -912,8 +917,8 @@ dim_check(Namep q)
 	else if (!ONEOF(nelt->headblock.vtype, MSKINT|MSKREAL))
 		bad_dimtype(q);
 	else if (ISINT(nelt->headblock.vtype)
-		    && nelt->constblock.Const.ci <= 0
-		 || nelt->constblock.Const.cd[0] <= 0)
+			? nelt->constblock.Const.ci <= 0
+			: nelt->constblock.Const.cd[0] <= 0.)
 		dclerr("nonpositive dimension", q);
 	}
 
@@ -1505,7 +1510,7 @@ settype(register Namep v, register int type, register ftnint length)
 				}
 			}
 	}
-	else if(v->vtype!=type) {
+	else if(v->vtype != type && v->vtype != lengtype(type, length)) {
  incompat:
 		dclerr("incompatible type declarations", v);
 		}
@@ -1571,10 +1576,6 @@ lengtype(register int type, ftnint len)
 			case 2: return TYLOGICAL2;
 			case 4: goto ret;
 			}
-#if 0 /*!!??!!*/
-		if(length == typesize[TYLOGICAL])
-			goto ret;
-#endif
 		break;
 
 	case TYLONG:
@@ -1679,11 +1680,11 @@ setbound(v, nd, dims)
 	int nd;
 	struct Dims *dims;
 #else
-setbound(register Namep v, int nd, struct Dims *dims)
+setbound(Namep v, int nd, struct Dims *dims)
 #endif
 {
-	register expptr q, t;
-	register struct Dimblock *p;
+	expptr q, q0, t;
+	struct Dimblock *p;
 	int i;
 	extern chainp new_vars;
 	char buf[256];
@@ -1762,17 +1763,25 @@ setbound(register Namep v, int nd, struct Dims *dims)
 	}
 
 	q = dims[nd].lb;
+	q0 = 0;
 	if(q == NULL)
-		q = ICON(1);
+		q = q0 = ICON(1);
 
 	for(i = nd-1 ; i>=0 ; --i)
 	{
 		t = dims[i].lb;
 		if(t == NULL)
 			t = ICON(1);
-		if(p->dims[i].dimsize)
-			q = mkexpr(OPPLUS, t,
-				mkexpr(OPSTAR, cpexpr(p->dims[i].dimsize), q));
+		if(p->dims[i].dimsize) {
+			if (q == q0) {
+				q0 = 0;
+				frexpr(q);
+				q = cpexpr(p->dims[i].dimsize);
+				}
+			else
+				q = mkexpr(OPSTAR, cpexpr(p->dims[i].dimsize), q);
+			q = mkexpr(OPPLUS, t, q);
+			}
 	}
 
 	if( ISCONST(q) )

@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1993 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1993-1996, 1999, 2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -38,8 +38,7 @@ dataval(repp, valp)
 dataval(register expptr repp, register expptr valp)
 #endif
 {
-	int i, nrep;
-	ftnint elen;
+	ftnint elen, i, nrep;
 	register Addrp p;
 
 	if (parstate < INDATA) {
@@ -115,8 +114,12 @@ nextdata(ftnint *elenp)
 		if(p->tag == TIMPLDO)
 		{
 			ip = &(p->impldoblock);
-			if(ip->implb==NULL || ip->impub==NULL || ip->varnp==NULL)
-				fatali("bad impldoblock 0%o", (int) ip);
+			if(ip->implb==NULL || ip->impub==NULL || ip->varnp==NULL) {
+				char buf[100];
+				sprintf(buf, "bad impldoblock #%lx",
+					(unsigned long)ip);
+				Fatal(buf);
+				}
 			if(ip->isactive)
 				ip->varvp->Const.ci += ip->impdiff;
 			else
@@ -250,12 +253,12 @@ setdata(register Addrp varp, register Constp valp, ftnint elen)
 {
 	struct Constblock con;
 	register int type;
-	int i, k, valtype;
-	ftnint offset;
+	int j, valtype;
+	ftnint i, k, offset;
 	char *varname;
 	static Addrp badvar;
 	register unsigned char *s;
-	static int last_lineno;
+	static long last_lineno;
 	static char *last_varname;
 
 	if (varp->vstg == STGCOMMON) {
@@ -308,7 +311,7 @@ setdata(register Addrp varp, register Constp valp, ftnint elen)
 		else	consconv(type, &con, valp);
 	}
 
-	k = 1;
+	j = 1;
 
 	switch(type)
 	{
@@ -318,12 +321,18 @@ setdata(register Addrp varp, register Constp valp, ftnint elen)
 	case TYLOGICAL2:
 	case TYSHORT:
 	case TYLONG:
-#ifdef TYQUAD
+#ifdef TYQUAD0
 	case TYQUAD:
 #endif
 		dataline(varname, offset, type);
 		prconi(dfile, con.Const.ci);
 		break;
+#ifndef NO_LONG_LONG
+	case TYQUAD:
+		dataline(varname, offset, type);
+		prconq(dfile, con.Const.cq);
+		break;
+#endif
 
 	case TYADDR:
 		dataline(varname, offset, type);
@@ -332,11 +341,11 @@ setdata(register Addrp varp, register Constp valp, ftnint elen)
 
 	case TYCOMPLEX:
 	case TYDCOMPLEX:
-		k = 2;
+		j = 2;
 	case TYREAL:
 	case TYDREAL:
 		dataline(varname, offset, type);
-		prconr(dfile, &con, k);
+		prconr(dfile, &con, j);
 		break;
 
 	case TYCHAR:

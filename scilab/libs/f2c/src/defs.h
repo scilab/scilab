@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990 - 1996, 1999-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -32,14 +32,14 @@ use or performance of this software.
 #define MAXLITERALS 200		/* Max number of constants in the literal
 				   pool */
 #define MAXCTL 20
-#define MAXHASH 401
+#define MAXHASH 802
 #define MAXSTNO 801
-#define MAXEXT 200
-#define MAXEQUIV 150
+#define MAXEXT 400
+#define MAXEQUIV 300
 #define MAXLABLIST 258		/* Max number of labels in an alternate
 				   return CALL or computed GOTO */
 #define MAXCONTIN 99		/* Max continuation lines */
-
+#define MAX_SHARPLINE_LEN 1000	/* Elbow room for #line lines with long names */
 /* These are the primary pointer types used in the compiler */
 
 typedef union Expression *expptr, *tagptr;
@@ -126,7 +126,7 @@ extern int tylog, tylogical;	/* TY____ of the implementation of   logical.
 				   This will be LONG unless '-2' is given
 				   on the command line */
 extern int type_choice[];
-extern char *typename[];
+extern char *Typename[];
 
 extern int typesize[];	/* size (in bytes) of an object of each
 				   type.  Indexed by TY___ macros */
@@ -484,7 +484,7 @@ struct Exprblock
 	field vstg;
 	expptr vleng;		/* in the case of a character expression, this
 				   value is inherited from the children */
-	unsigned opcode;
+	unsigned int opcode;
 	expptr leftp;
 	expptr rightp;
 	int typefixed;
@@ -497,7 +497,11 @@ union Constant
 		char *ccp0;
 		ftnint blanks;
 		} ccp1;
-	ftnint ci;		/* Constant longeger */
+	ftnint ci;		/* Constant integer */
+#ifndef NO_LONG_LONG
+	Llong cq;		/* for TYQUAD integer */
+	ULlong ucq;
+#endif
 	double cd[2];
 	char *cds[2];
 	};
@@ -722,13 +726,16 @@ struct Literal
 		ftnint litival;
 		double litdval[2];
 		ftnint litival2[2];	/* length, nblanks for strings */
+#ifndef NO_LONG_LONG
+		Llong litqval;
+#endif
 		} litval;
 	char *cds[2];
 	};
 
 extern struct Literal *litpool;
 extern int maxliterals, nliterals;
-extern char Letters[];
+extern unsigned char Letters[];
 #define letter(x) Letters[x]
 
 struct Dims { expptr lb, ub; };
@@ -736,7 +743,7 @@ struct Dims { expptr lb, ub; };
 extern int forcedouble;		/* force real functions to double */
 extern int doin_setbound;	/* special handling for array bounds */
 extern int Ansi;
-extern char hextoi_tab[];
+extern unsigned char hextoi_tab[];
 #define hextoi(x) hextoi_tab[(x) & 0xff]
 extern char *casttypes[], *ftn_types[], *protorettypes[], *usedcasts[];
 extern int Castargs, infertypes;
@@ -748,7 +755,11 @@ extern char *halign, *outbuf, *outbtail;
 extern flag keepsubs;
 #ifdef TYQUAD
 extern flag use_tyquad;
+extern unsigned long ff;
+#ifndef NO_LONG_LONG
+extern flag allow_i8c;
 #endif
+#endif /*TYQUAD*/
 extern int n_keywords;
 extern char *c_keywords[];
 
@@ -773,6 +784,7 @@ void	add_extern_to_list Argdcl((Addrp, chainp*));
 int	addressable Argdcl((tagptr));
 tagptr	addrof Argdcl((tagptr));
 char*	addunder Argdcl((char*));
+void	argkludge Argdcl((int*, char***));
 Addrp	autovar Argdcl((int, int, tagptr, char*));
 void	backup Argdcl((char*, char*));
 void	bad_atypes Argdcl((Argtypes*, char*, int, int, int, char*, char*));
@@ -814,13 +826,13 @@ char*	cpstring Argdcl((char*));
 void	dataline Argdcl((char*, long, int));
 char*	dataname Argdcl((int, long));
 void	dataval Argdcl((tagptr, tagptr));
-void	dclerr Argdcl((char*, Namep));
+void	dclerr Argdcl((const char*, Namep));
 void	def_commons Argdcl((FILEP));
 void	def_start Argdcl((FILEP, char*, char*, char*));
 void	deregister Argdcl((Namep));
 void	do_uninit_equivs Argdcl((FILEP, ptr));
 void	doequiv(Void);
-int	dofork(Void);
+int	dofork Argdcl((char*));
 void	doinclude Argdcl((char*));
 void	doio Argdcl((chainp));
 void	done Argdcl((int));
@@ -843,7 +855,7 @@ void	errext Argdcl((char*));
 void	erri Argdcl((char*, int));
 void	errl Argdcl((char*, long));
 tagptr	errnode(Void);
-void	errstr Argdcl((char*, char*));
+void	errstr Argdcl((const char*, const char*));
 void	exarif Argdcl((tagptr, struct Labelblock*, struct Labelblock*, struct Labelblock*));
 void	exasgoto Argdcl((Namep));
 void	exassign Argdcl((Namep, struct Labelblock*));
@@ -898,7 +910,7 @@ long	int iarrlen Argdcl((Namep));
 long	int lencat Argdcl((expptr));
 long	int lmax Argdcl((long, long));
 long	int lmin Argdcl((long, long));
-long	int wr_char_len Argdcl((FILEP, struct Dimblock*, int, int));
+long	int wr_char_len Argdcl((FILEP, struct Dimblock*, ftnint, int));
 Addrp	intraddr Argdcl((Namep));
 tagptr	intrcall Argdcl((Namep, struct Listblock*, int));
 int	intrfunct Argdcl((char*));
@@ -922,7 +934,7 @@ int	main Argdcl((int, char**));
 expptr	make_int_expr Argdcl((expptr));
 void	make_param Argdcl((struct Paramblock*, tagptr));
 void	many Argdcl((char*, char, int));
-void	margin_printf Argdcl((FILEP, char*, ...));
+void	margin_printf Argdcl((FILEP, const char*, ...));
 int	maxtype Argdcl((int, int));
 char*	mem Argdcl((int, int));
 void	mem_init(Void);
@@ -942,6 +954,7 @@ Extsym*	mkext1 Argdcl((char*, char*));
 Addrp	mkfield Argdcl((Addrp, char*, int));
 tagptr	mkfunct Argdcl((tagptr));
 tagptr	mkintcon Argdcl((long));
+tagptr	mkintqcon Argdcl((int, char*));
 tagptr	mklhs Argdcl((struct Primblock*, int));
 tagptr	mklogcon Argdcl((int));
 Namep	mkname Argdcl((char*));
@@ -962,7 +975,7 @@ Extsym*	newentry Argdcl((Namep, int));
 long	newlabel(Void);
 void	newproc(Void);
 Addrp	nextdata Argdcl((long*));
-void	nice_printf Argdcl((FILEP, char*, ...));
+void	nice_printf Argdcl((FILEP, const char*, ...));
 void	not_both Argdcl((char*));
 void	np_init(Void);
 int	oneof_stg Argdcl((Namep, int, int));
@@ -978,8 +991,12 @@ void	out_for Argdcl((FILEP, tagptr, tagptr, tagptr));
 void	out_init(Void);
 void	outbuf_adjust(Void);
 void	p1_label Argdcl((long));
+void	paren_used Argdcl((struct Primblock*));
 void	prcona Argdcl((FILEP, long));
 void	prconi Argdcl((FILEP, long));
+#ifndef NO_LONG_LONG
+void	prconq Argdcl((FILEP, Llong));
+#endif
 void	prconr Argdcl((FILEP, Constp, int));
 void	procinit(Void);
 void	procode Argdcl((FILEP));
@@ -1034,8 +1051,9 @@ void	unamstring Argdcl((Addrp, char*));
 void	unclassifiable(Void);
 void	vardcl Argdcl((Namep));
 void	warn Argdcl((char*));
-void	warn1 Argdcl((char*, char*));
+void	warn1 Argdcl((const char*, const char*));
 void	warni Argdcl((char*, int));
+void	westart Argdcl((int));
 void	wr_abbrevs Argdcl((FILEP, int, chainp));
 char*	wr_ardecls Argdcl((FILE*, struct Dimblock*, long));
 void	wr_array_init Argdcl((FILEP, int, chainp));

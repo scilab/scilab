@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990-1996, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -44,6 +44,7 @@ static Addrp putcxeq Argdcl((tagptr));
 static tagptr putmnmx Argdcl((tagptr));
 static tagptr putop Argdcl((tagptr));
 static tagptr putpower Argdcl((tagptr));
+static long p1_where;
 
 extern int init_ac[TYSUBR+1];
 extern int ops2[];
@@ -57,17 +58,17 @@ extern int krparens;
 
  void
 #ifdef KR_headers
-puthead(s, class)
+puthead(s, Class)
 	char *s;
-	int class;
+	int Class;
 #else
-puthead(char *s, int class)
+puthead(char *s, int Class)
 #endif
 {
 	if (headerdone == NO) {
-		if (class == CLMAIN)
+		if (Class == CLMAIN)
 			s = "MAIN__";
-		p1_head (class, s);
+		p1_head (Class, s);
 		headerdone = YES;
 		}
 }
@@ -81,14 +82,8 @@ putif(p, else_if_p)
 putif(register expptr p, int else_if_p)
 #endif
 {
-	register int k;
-	int n;
-	long where;
+	int k, n;
 
-	if (else_if_p) {
-		p1put(P1_ELSEIFSTART);
-		where = ftell(pass1_file);
-		}
 	if( !ISLOGICAL((k = (p = fixtype(p))->headblock.vtype )) )
 	{
 		if(k != TYERROR)
@@ -109,7 +104,7 @@ putif(register expptr p, int else_if_p)
 				ei_last = ei_first + n;
 				}
 			p = putx(p);
-			if (*ei_next++ = ftell(pass1_file) > where) {
+			if (*ei_next++ = ftell(pass1_file) > p1_where) {
 				p1_if(p);
 				new_endif();
 				}
@@ -514,7 +509,7 @@ putop(expptr p)
 	lp = p->exprblock.leftp = putx(p->exprblock.leftp);
 	if (p -> exprblock.rightp) {
 		tp = p->exprblock.rightp = putx(p->exprblock.rightp);
-		if (ISCONST(tp) && ISCONST(lp))
+		if (tp && ISCONST(tp) && ISCONST(lp))
 			p = fold(p);
 		}
 	return p;
@@ -559,6 +554,10 @@ putpower(expptr p)
 /* Write the power computation out immediately */
 		putout (p);
 		p = putx( mkexpr(OPSTAR, cpexpr((expptr)t1), cpexpr((expptr)t1)));
+	} else if (k == 3) {
+		putout(p);
+		p = putx( mkexpr(OPSTAR, cpexpr((expptr)t1),
+		    mkexpr(OPSTAR, cpexpr((expptr)t1), cpexpr((expptr)t1))));
 	} else {
 		t2 = mktmp(type, ENULL);
 		p = mkexpr (OPCOMMA, p, putassign(cpexpr((expptr)t2),
@@ -1606,9 +1605,6 @@ get_argtypes(Exprp p, Argtypes ***pat0, Argtypes ***pat1)
 	Addrp a;
 	Argtypes **at0, **at1;
 	Namep np;
-	#ifndef _MSC_VER
-		expptr rp;
-	#endif
 	Extsym *e;
 	char *fname;
 
@@ -1902,7 +1898,77 @@ putcall(expptr p0, Addrp *temp)
     return (expptr) p;
 }
 
+ static expptr
+#ifdef KR_headers
+foldminmax(op, type, p) int op; int type; chainp p;
+#else
+foldminmax(int op, int type, chainp p)
+#endif
+{
+	Constp c, c1;
+	ftnint i, i1;
+	double d, d1;
+	int dstg, d1stg;
+	char *s, *s1;
 
+	c = ALLOC(Constblock);
+	c->tag = TCONST;
+	c->vtype = type;
+	s = s1 = 0;
+
+	switch(type) {
+	  case TYREAL:
+	  case TYDREAL:
+		c1 = (Constp)p->datap;
+		d = ISINT(c1->vtype) ? (double)c1->Const.ci
+			: c1->vstg ? atof(c1->Const.cds[0]) : c1->Const.cd[0];
+		dstg = 0;
+		if (ISINT(c1->vtype))
+			d = (double)c1->Const.ci;
+		else if (dstg = c1->vstg)
+			d = atof(s = c1->Const.cds[0]);
+		else
+			d = c1->Const.cd[0];
+		while(p = p->nextp) {
+			c1 = (Constp)p->datap;
+			d1stg = 0;
+			if (ISINT(c1->vtype))
+				d1 = (double)c1->Const.ci;
+			else if (d1stg = c1->vstg)
+				d1 = atof(s1 = c1->Const.cds[0]);
+			else
+				d1 = c1->Const.cd[0];
+			if (op == OPMIN) {
+				if (d > d1)
+					goto d1copy;
+				}
+			else if (d < d1) {
+ d1copy:
+				d = d1;
+				dstg = d1stg;
+				s = s1;
+				}
+			}
+		if (c->vstg = dstg)
+			c->Const.cds[0] = s;
+		else
+			c->Const.cd[0] = d;
+		break;
+	  default:
+		i = ((Constp)p->datap)->Const.ci;
+		while(p = p->nextp) {
+			i1 = ((Constp)p->datap)->Const.ci;
+			if (op == OPMIN) {
+				if (i > i1)
+					i = i1;
+				}
+			else if (i < i1)
+				i = i1;
+			}
+		c->Const.ci = i;
+		}
+	return (expptr)c;
+	}
 
 /* putmnmx -- Put min or max.   p   must point to an EXPR, not just a
    CONST */
@@ -1931,6 +1997,19 @@ putmnmx(register expptr p)
 	p0 = p->exprblock.leftp->listblock.listp;
 	free( (charptr) (p->exprblock.leftp) );
 	free( (charptr) p );
+
+	/* for param statements, deal with constant expressions now */
+
+	for(p1 = p0;; p1 = p1->nextp) {
+		if (!p1) {
+			/* all constants */
+			p = foldminmax(op, type, p0);
+			frchain(&p0);
+			return p;
+			}
+		else if (!ISCONST(((expptr)p1->datap)))
+			break;
+		}
 
 	/* special case for two addressable operands */
 
@@ -2046,7 +2125,6 @@ putwhile(p)
 putwhile(expptr p)
 #endif
 {
-	long where;
 	int k, n;
 
 	if (wh_next >= wh_last)
@@ -2061,8 +2139,6 @@ putwhile(expptr p)
 		wh_next += k;
 		wh_last = wh_first + n;
 		}
-	p1put(P1_WHILE1START);
-	where = ftell(pass1_file);
 	if( !ISLOGICAL((k = (p = fixtype(p))->headblock.vtype)))
 		{
 		if(k != TYERROR)
@@ -2070,8 +2146,20 @@ putwhile(expptr p)
 		}
 	else	{
 		p = putx(p);
-		*wh_next++ = ftell(pass1_file) > where;
+		*wh_next++ = ftell(pass1_file) > p1_where;
 		p1put(P1_WHILE2START);
 		p1_expr(p);
 		}
+	}
+
+ void
+#ifdef KR_headers
+westart(elseif) int elseif;
+#else
+westart(int elseif)
+#endif
+{
+	static int we[2] = { P1_WHILE1START, P1_ELSEIFSTART };
+	p1put(we[elseif]);
+	p1_where = ftell(pass1_file);
 	}

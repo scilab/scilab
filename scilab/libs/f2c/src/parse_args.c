@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1994-5 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1994-5, 2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -154,6 +154,7 @@ parse_args(int argc, char **argv, arg_info *table, int entries, char **others, i
 		} /* if (others) */
 		argv0 = *++argv;
 		argc--;
+		use_prefix = TRUE;
 	    } else {
 
 /* A match was found */

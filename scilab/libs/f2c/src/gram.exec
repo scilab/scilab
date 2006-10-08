@@ -1,10 +1,10 @@
 exec:	  iffable
-	| SDO end_spec intonlyon label intonlyoff opt_comma dospecw
+	| SDO end_spec label opt_comma dospecw
 		{
-		if($4->labdefined)
+		if($3->labdefined)
 			execerr("no backward DO loops", CNULL);
-		$4->blklevel = blklevel+1;
-		exdo($4->labelno, NPNULL, $7);
+		$3->blklevel = blklevel+1;
+		exdo($3->labelno, NPNULL, $5);
 		}
 	| SDO end_spec opt_comma dospecw
 		{
@@ -16,8 +16,8 @@ exec:	  iffable
 	| logif iffable
 		{ exendif();  thiswasbranch = NO; }
 	| logif STHEN
-	| SELSEIF end_spec SLPAR expr SRPAR STHEN
-		{ exelif($4); lastwasbranch = NO; }
+	| SELSEIF end_spec SLPAR {westart(1);} expr SRPAR STHEN
+		{ exelif($5); lastwasbranch = NO; }
 	| SELSE end_spec
 		{ exelse(); lastwasbranch = NO; }
 	| SENDIF end_spec
@@ -33,8 +33,8 @@ dospec:	  name SEQUALS exprlist
 	;
 
 dospecw:  dospec
-	| SWHILE SLPAR expr SRPAR
-		{ $$ = mkchain(CNULL, (chainp)$3); }
+	| SWHILE {westart(0);} SLPAR expr SRPAR
+		{ $$ = mkchain(CNULL, (chainp)$4); }
 	;
 
 iffable:  let lhs SEQUALS expr

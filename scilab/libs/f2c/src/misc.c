@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1992 - 1995 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1992-1995, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -90,7 +90,7 @@ Alloc(int n)
 	char errbuf[32];
 	register char *rv;
 
-	rv = malloc(n);
+	rv = (char*)malloc(n);
 	if (!rv) {
 		sprintf(errbuf, "malloc(%d) failure!", n);
 		Fatal(errbuf);
@@ -396,7 +396,7 @@ convic(ftnint n)
 	t = s+19;
 
 	do	{
-		*--t =(char) ('0' + n%10);
+		*--t = '0' + (char)(n)%10;
 		n /= 10;
 	} while(n > 0);
 
@@ -654,10 +654,10 @@ add_extern_to_list(Addrp addr, chainp *list_store)
     memno = addr -> memno;
 
     for (;list; last = list, list = list -> nextp) {
-	Addrp this = (Addrp) (list -> datap);
+	Addrp This = (Addrp) (list -> datap);
 
-	if (this -> tag == TADDR && this -> uname_tag == UNAM_EXTERN &&
-		this -> memno == memno)
+	if (This -> tag == TADDR && This -> uname_tag == UNAM_EXTERN &&
+		This -> memno == memno)
 	    return;
     } /* for */
 
@@ -755,7 +755,7 @@ lmin(ftnint a, ftnint b)
 
 
 
-
+ int
 #ifdef KR_headers
 maxtype(t1, t2)
 	int t1;
@@ -1041,24 +1041,21 @@ isstatic(register expptr p)
 
  int
 #ifdef KR_headers
-addressable(p)
-	register expptr p;
+addressable(p) expptr p;
 #else
-addressable(register expptr p)
+addressable(expptr p)
 #endif
 {
-	switch(p->tag)
-	{
-	case TCONST:
-		return(YES);
+	if (p)
+		switch(p->tag) {
+		 case TCONST:
+			return(YES);
 
-	case TADDR:
-		return( addressable(p->addrblock.memoffset) );
-
-	default:
-		return(NO);
+		 case TADDR:
+			return( addressable(p->addrblock.memoffset) );
+		 }
+	return(NO);
 	}
-}
 
 
 /* isnegative_const -- returns true if the constant is negative.  Returns
@@ -1165,19 +1162,18 @@ negate_const(Constp cp)
 
  void
 #ifdef KR_headers
-ffilecopy(infp, outfp)
-	FILE *infp;
-	FILE *outfp;
+ffilecopy(infp, outfp) FILE *infp, *outfp;
 #else
 ffilecopy(FILE *infp, FILE *outfp)
 #endif
 {
-    while (!feof (infp)) {
-	register int c = getc (infp);
-	if (!feof (infp))
-	putc (c, outfp);
-    } /* while */
-} /* ffilecopy */
+	int c;
+	while (!feof(infp)) {
+		c = getc(infp);
+		if (!feof(infp))
+			putc(c, outfp);
+		}
+	}
 
 
 /* in_vector -- verifies whether   str   is in c_keywords.
@@ -1327,3 +1323,76 @@ struct_eq(chainp s1, chainp s2)
 
     return s1 == CHNULL && s2 == CHNULL;
 } /* struct_eq */
+
+ static int
+#ifdef KR_headers
+int_trunc(n0, s0) int n0; char *s0;
+#else
+int_trunc(int n0, char *s0)
+#endif
+{
+	char buff[100];
+
+	if (n0 > 60)
+		n0 = 60;
+	sprintf(buff, "integer constant %.*s truncated.", n0, s0);
+	err(buff);
+	return 1;
+	}
+
+ tagptr
+#ifdef KR_headers
+mkintqcon(n, s) int n; char *s;
+#else
+mkintqcon(int n, char *s)
+#endif
+{
+#ifdef NO_LONG_LONG
+	return mkintcon(convci(n, s));
+#else
+#ifndef LLONG_MAX
+#ifdef LONGLONG_MAX
+#define LLONG_MAX LONGLONG_MAX
+#else
+#define LLONG_MAX 0x7fffffffffffffffLL
+#endif
+#endif
+	Constp p;
+	Llong sum, t;
+	char *s0;
+	int n0, warned = 0;
+
+	s0 = s;
+	n0 = n;
+	sum = 0;
+	while(n-- > 0) {
+		/* sum = 10*sum + (*s++ - '0'); */
+		t = *s++ - '0';
+		if (sum > LLONG_MAX/10) {
+ ovfl:
+			warned = int_trunc(n0,s0);
+			sum = LLONG_MAX;
+			break;
+			}
+		sum *= 10;
+		if (sum > LLONG_MAX - t)
+			goto ovfl;
+		sum += t;
+		}
+	p = mkconst(tyint);
+	if (sum > LONG_MAX) {
+		if (allow_i8c) {
+			p->vtype = TYQUAD;
+			p->Const.cq = sum;
+			}
+		else {
+			p->Const.ci = LONG_MAX;
+			if (!warned)
+				int_trunc(n0,s0);
+			}
+		}
+	else
+		p->Const.ci = (ftnint) sum;
+	return (tagptr)p;
+#endif
+	}

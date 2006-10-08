@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -30,11 +30,13 @@ use or performance of this software.
  */
 
  int
-memcmp(s1, s2, n)
- register char *s1, *s2;
- int n;
+#ifdef KR_headers
+memcmp(s1, s2, n) char *s1, *s2; int n;
+#else
+memcmp(char *s1, char *s2, int n)
+#endif
 {
-	register char *se;
+	char *se;
 
 	for(se = s1 + n; s1 < se; s1++, s2++)
 		if (*s1 != *s2)
@@ -43,23 +45,27 @@ memcmp(s1, s2, n)
 	}
 
  char *
-memcpy(s1, s2, n)
- register char *s1, *s2;
- int n;
+#ifdef KR_headers
+memcpy(s1, s2, n) char *s1, *s2; int n;
+#else
+memcpy(char *s1, char *s2, int n)
+#endif
 {
-	register char *s0 = s1, *se = s1 + n;
+	char *s0 = s1, *se = s1 + n;
 
 	while(s1 < se)
 		*s1++ = *s2++;
 	return s0;
 	}
 
-memset(s, c, n)
- register char *s;
- register int c;
- int n;
+ void
+#ifdef KR_headers
+memset(s, c, n) char *s; int c, n;
+#else
+memset(char *s, int c, int n)
+#endif
 {
-	register char *se = s + n;
+	char *se = s + n;
 
 	while(s < se)
 		*s++ = c;

@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990, 1993, 1994 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990, 1993, 1994, 2000 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -142,7 +142,7 @@ cds(char *s, char *z0)
 		if (!z0)
 			z0 = mem(4,0);
 		strcpy(z0, "-0.");
-		sign = 0;
+		/* sign = 0; */ /* 20010820: preserve sign of 0. */
 		}
 	else if (ex > 2 || ex + nd < -2) {
 		sprintf(ebuf, "%ld", ex + nd - 1);
@@ -168,7 +168,7 @@ cds(char *s, char *z0)
 		if (k < 0)
 			i -= k;
 		else if (ex > 0)
-			i += ex;
+			i += (int)ex;
 		if (!z0)
 			z0 = mem(i,0);
 		z = z0;

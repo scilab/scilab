@@ -107,8 +107,8 @@ The following options are peculiar to
 .B -A
 Produce
 .SM ANSI
-C.
-Default is old-style C.
+C (default, starting 20020621).
+For old-style C, use option \f(CW-K\fP.
 .TP
 .B -a
 Make local variables automatic rather than static
@@ -127,7 +127,8 @@ Include original Fortran source as comments.
 .B -cd
 Do not recognize cdabs, cdcos, cdexp, cdlog, cdsin, and cdsqrt
 as synonyms for the double complex intrinsics
-zabs, zcos, zexp, zlog, zsin, and zsqrt, respectively.
+zabs, zcos, zexp, zlog, zsin, and zsqrt, respectively,
+nor dreal as a synonym for dble.
 .TP
 .BI -d dir
 Write
@@ -241,7 +242,8 @@ confirms the default, which imitates
 .IR f\^77 .
 .TP
 .B -r
-Cast values of REAL functions (including intrinsics) to REAL.
+Cast REAL arguments of intrinsic functions and values of REAL
+functions (including intrinsics) to REAL.
 .TP
 .B -r8
 Promote
@@ -259,6 +261,15 @@ Preserve multidimensional subscripts.  Suppressed by option
 .BI -T dir
 Put temporary files in directory
 .I dir.
+.TP
+.B -trapuv
+Dynamically initialize local variables, except those appearing in
+.SM SAVE
+or
+.SM DATA
+statements, with values that may help find references to
+uninitialized variables.  For example, with IEEE arithmetic,
+initialize local floating-point variables to signaling NaNs.
 .TP
 .B -w8
 Suppress warnings when
@@ -293,7 +304,15 @@ statements.
 .TP
 .B -!i8
 Disallow
-.SM INTEGER*8.
+.SM INTEGER*8 ,
+or, if the option is
+.LR -!i8const ,
+permit
+.SM INTEGER*8
+but do not promote integer
+constants to
+.SM INTEGER*8
+when they involve more than 32 bits.
 .TP
 .B -!it
 Don't infer types of untyped
@@ -363,3 +382,10 @@ Untypable
 .SM EXTERNAL
 functions are declared
 .BR int .
+.br
+There is no notation for
+.SM INTEGER*8
+constants.
+.br
+Some intrinsic functions do not yet work with
+.SM INTEGER*8 .

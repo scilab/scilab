@@ -1,5 +1,5 @@
 /****************************************************************
-Copyright 1990 - 1996 by AT&T, Lucent Technologies and Bellcore.
+Copyright 1990-1996, 2000-2001 by AT&T, Lucent Technologies and Bellcore.
 
 Permission to use, copy, modify, and distribute this software
 and its documentation for any purpose and without fee is hereby
@@ -53,6 +53,9 @@ int intr_omit;
 static int no_cd, no_i90;
 #ifdef TYQUAD
 flag use_tyquad = YES;
+#ifndef NO_LONG_LONG
+flag allow_i8c = YES;
+#endif
 #endif
 int tyreal = TYREAL;
 int tycomplex = TYCOMPLEX;
@@ -77,7 +80,7 @@ int addftnsrc = NO;		/* Include ftn source in output */
 int usedefsforcommon = NO;	/* Use #defines for common reference */
 int forcedouble = YES;		/* force real functions to double */
 int dneg = NO;			/* f77 treatment of unary minus */
-int Ansi = NO;
+int Ansi = YES;
 int def_equivs = YES;
 int tyioint = TYLONG;
 int szleng = SZLENG;
@@ -85,7 +88,7 @@ int inqmask = M(TYLONG)|M(TYLOGICAL);
 int wordalign = NO;
 int forcereal = NO;
 int warn72 = NO;
-static int skipC, skipversion;
+static int help, showver, skipC, skipversion;
 char *file_name, *filename0, *parens;
 int Castargs = 1;
 static int Castargs1;
@@ -99,6 +102,7 @@ char *halign, *ohalign;
 int krparens = NO;
 int hsize;	/* for padding under -h */
 int htype;	/* for wr_equiv_init under -h */
+int trapuv;
 chainp Iargs;
 
 #define f2c_entry(swit,count,type,store,size) \
@@ -129,6 +133,7 @@ static arg_info table[] = {
     f2c_entry ("R", P_NO_ARGS, P_INT, &forcedouble, NO),
     f2c_entry ("!R", P_NO_ARGS, P_INT, &forcedouble, YES),
     f2c_entry ("A", P_NO_ARGS, P_INT, &Ansi, YES),
+    f2c_entry ("K", P_NO_ARGS, P_INT, &Ansi, NO),
     f2c_entry ("ext", P_NO_ARGS, P_INT, &noextflag, YES),
     f2c_entry ("z", P_NO_ARGS, P_INT, &zflag, NO),
     f2c_entry ("a", P_NO_ARGS, P_INT, &useauto, YES),
@@ -160,7 +165,11 @@ static arg_info table[] = {
     f2c_entry ("d", P_ONE_ARG, P_STRING, &outbuf, 0),
     f2c_entry ("cd", P_NO_ARGS, P_INT, &no_cd, 1),
     f2c_entry ("i90", P_NO_ARGS, P_INT, &no_i90, 2),
+    f2c_entry ("trapuv", P_NO_ARGS, P_INT, &trapuv, 1),
 #ifdef TYQUAD
+#ifndef NO_LONG_LONG
+    f2c_entry ("!i8const", P_NO_ARGS, P_INT, &allow_i8c, NO),
+#endif
     f2c_entry ("!i8", P_NO_ARGS, P_INT, &use_tyquad, NO),
 #endif
 
@@ -203,7 +212,16 @@ static arg_info table[] = {
 	/* treatment of unary minus of REAL expressions by	*/
 	/* promoting them to DOUBLE PRECISION . */
 
-    f2c_entry ("dneg", P_NO_ARGS, P_INT, &dneg, YES)
+    f2c_entry ("dneg", P_NO_ARGS, P_INT, &dneg, YES),
+
+	/* -?, --help, -v, --version */
+
+    f2c_entry ("?", P_NO_ARGS, P_INT, &help, YES),
+    f2c_entry ("-help", P_NO_ARGS, P_INT, &help, YES),
+
+    f2c_entry ("v", P_NO_ARGS, P_INT, &showver, YES),
+    f2c_entry ("-version", P_NO_ARGS, P_INT, &showver, YES)
+
 }; /* table */
 
 extern char *c_functions;	/* "c_functions"	*/
@@ -290,6 +308,11 @@ set_externs(Void)
     else
 	dneg = 0;
 
+#ifndef NO_LONG_LONG
+    if (!use_tyquad)
+	allow_i8c = 0;
+#endif
+
     if (maxregvar > MAXREGVAR) {
 	warni("-O%d: too many register variables", maxregvar);
 	maxregvar = MAXREGVAR;
@@ -339,7 +362,7 @@ write_typedefs(FILE *outfile)
 	for(i = 0; i <= TYSUBR; i++)
 		if (s = usedcasts[i]) {
 			if (!p) {
-				p = Ansi == 1 ? "()" : "(...)";
+				p = (char*)(Ansi == 1 ? "()" : "(...)");
 				nice_printf(outfile,
 				"/* Types for casting procedure arguments: */\
 \n\n#ifndef F2C_proc_par_types\n");
@@ -357,7 +380,7 @@ write_typedefs(FILE *outfile)
 		if (used_rets[st[i]])
 			nice_printf(outfile,
 				"typedef %s %c_f; /* %s function */\n",
-				p = i ? "VOID" : "doublereal",
+				p = (char*)(i ? "VOID" : "doublereal"),
 				stl[i], ftn_types[st[i]]);
 	if (p)
 		nice_printf(outfile, "#endif\n\n");
@@ -455,6 +478,62 @@ I_args(int argc, char **a)
 	return a1 - a0;
 	}
 
+ static void
+omit_non_f(Void)
+{
+	/* complain about ftn_files that do not end in .f or .F */
+
+	char *s, *s1;
+	int i, k;
+
+	for(i = k = 0; s = ftn_files[k]; k++) {
+		s1 = s + strlen(s);
+		if (s1 - s >= 3) {
+			s1 -= 2;
+			if (*s1 == '.') switch(s1[1]) {
+			  case 'f':
+			  case 'F':
+				ftn_files[i++] = s;
+				continue;
+			  }
+			}
+		fprintf(diagfile, "\"%s\" does not end in .f or .F\n", s);
+		}
+	if (i != k) {
+		fflush(diagfile);
+		if (!i)
+			exit(1);
+		ftn_files[i] = 0;
+		}
+	}
+
+ static void
+show_version(Void)
+{
+	printf("f2c (Fortran to C Translator) version %s.\n", F2C_version);
+	}
+
+ static void
+#ifdef KR_headers
+show_help(progname) char *progname;
+#else
+show_help(char *progname)
+#endif
+{
+	show_version();
+	if (!progname)
+		progname = "f2c";
+	printf("Usage: %s [ option ... ] [file ...]\n%s%s%s%s%s%s%s",
+	progname,
+	"For usage details, see the man page, f2c.1.\n",
+	"For technical details, see the f2c report.\n",
+	"Both are available from netlib, e.g.,\n",
+	"\thttp://netlib.bell-labs.com/netlib/f2c/f2c.1.gz\n",
+	"\thttp://netlib.bell-labs.com/netlib/f2c/f2c.pdf\n",
+	"or\n\thttp://www.netlib.org/f2c/f2c.1\n",
+	"\thttp://www.netlib.org/f2c/f2c.pdf\n");
+	}
+
  int retcode = 0;
 
  int
@@ -476,6 +555,7 @@ main(int argc, char **argv)
 	diagfile = stderr;
 	setbuf(stderr, stderrbuf);	/* arrange for fast error msgs */
 
+	argkludge(&argc, &argv);		/* for _WIN32 */
 	argc = I_args(argc, argv);	/* extract -I args */
 	Max_ftn_files = argc - 1;
 	ftn_files = (char **)ckalloc((argc+1)*sizeof(char *));
@@ -484,6 +564,14 @@ main(int argc, char **argv)
 		ftn_files, Max_ftn_files);
 	if (badargs)
 		return 1;
+	if (help) {
+		show_help(argv[0]);
+		return 0;
+		}
+	if (showver && !ftn_files[0]) {
+		show_version();
+		return 0;
+		}
 	intr_omit = no_cd | no_i90;
 	if (keepsubs && checksubs) {
 		warn("-C suppresses -s\n");
@@ -501,7 +589,7 @@ main(int argc, char **argv)
 		parens = "()";
 		}
 	else if (!Castargs)
-		parens = Ansi == 1 ? "()" : "(...)";
+		parens = (char*)(Ansi == 1 ? "()" : "(...)");
 	else
 		dfltproc = dflt1proc;
 
@@ -509,11 +597,12 @@ main(int argc, char **argv)
 	set_externs();
 	fileinit();
 	read_Pfiles(ftn_files);
+	omit_non_f();
 
-	for(k = 1; ftn_files[k]; k++)
-		if (dofork())
+	for(k = 0; ftn_files[k+1]; k++)
+		if (dofork(ftn_files[k]))
 			break;
-	filename0 = file_name = ftn_files[current_ftn_file = k - 1];
+	filename0 = file_name = ftn_files[current_ftn_file = k];
 
 	set_tmp_names();
 	sigcatch(0);
@@ -590,13 +679,16 @@ sed \"s/^\\/\\*>>>'\\(.*\\)'<<<\\*\\/\\$/cat >'\\1' <<'\\/*<<<\\1>>>*\\/'/\" | /
 		nice_printf (c_output, "/* %s -- translated by f2c ", file_name);
 		nice_printf (c_output, "(version %s).\n", F2C_version);
 		nice_printf (c_output,
-	"   You must link the resulting object file with the libraries:\n\
-	%s   (in that order)\n*/\n\n", link_msg);
+	"   You must link the resulting object file with libf2c:\n\
+	%s\n*/\n\n", link_msg);
 		}
 	if (Ansi == 2)
 		nice_printf(c_output,
 			"#ifdef __cplusplus\nextern \"C\" {\n#endif\n");
 	nice_printf (c_output, "%s#include \"f2c.h\"\n\n", def_i2);
+	if (trapuv)
+		nice_printf(c_output, "extern void _uninit_f2c(%s);\n%s\n\n",
+			Ansi ? "void*,int,long" : "", "extern double _0;");
 	if (gflag)
 		nice_printf (c_output, "#line 1 \"%s\"\n", file_name);
 	if (Castargs && typedefs)
