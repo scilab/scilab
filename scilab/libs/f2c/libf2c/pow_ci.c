@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef KR_headers
 VOID pow_ci(p, a, b) 	/* p = a**b  */
@@ -15,6 +18,9 @@ a1.i = a->i;
 
 pow_zi(&p1, &a1, b);
 
-p->r = (real) p1.r;
-p->i = (real) p1.i;
+p->r = (real)(p1.r);
+p->i = (real)(p1.i);
 }
+#ifdef __cplusplus
+}
+#endif

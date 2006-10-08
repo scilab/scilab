@@ -14,7 +14,16 @@ extern void exit_();
 F77_aloc(Len, whence) integer Len; char *whence;
 #else
 #include "stdlib.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void exit_(integer*);
+#ifdef __cplusplus
+	}
+#endif
 
  char *
 F77_aloc(integer Len, char *whence)
@@ -30,3 +39,6 @@ F77_aloc(integer Len, char *whence)
 		}
 	return rv;
 	}
+#ifdef __cplusplus
+}
+#endif

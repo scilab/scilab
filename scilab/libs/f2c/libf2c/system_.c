@@ -12,6 +12,9 @@ system_(s, n) register char *s; ftnlen n;
 #undef min
 #undef max
 #include "stdlib.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern char *F77_aloc(ftnlen, char*);
 
  integer
@@ -34,3 +37,6 @@ system_(register char *s, ftnlen n)
 		free(buff);
 	return rv;
 	}
+#ifdef __cplusplus
+}
+#endif

@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef KR_headers
 shortint h_indx(a, b, la, lb) char *a, *b; ftnlen la, lb;
@@ -24,3 +27,6 @@ for(i = 0 ; i < n ; ++i)
 	}
 return(0);
 }
+#ifdef __cplusplus
+}
+#endif

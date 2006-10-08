@@ -1,9 +1,8 @@
-#ifndef __FMT_H__
-#define __FMT_H__
-
 struct syl
-{	int op,p1,p2,p3;
-};
+{	int op;
+	int p1;
+	union { int i[2]; char *s;} p2;
+	};
 #define RET1 1
 #define REVERT 2
 #define GOTO 3
@@ -40,7 +39,6 @@ struct syl
 #define OM 34
 #define Z 35
 #define ZM 36
-extern struct syl f__syl[];
 extern int f__pc,f__parenlvl,f__revloc;
 typedef union
 {	real pf;
@@ -62,15 +60,20 @@ extern int (*f__doed)(),(*f__doned)();
 extern int (*f__dorevert)();
 extern int rd_ed(),rd_ned();
 extern int w_ed(),w_ned();
+extern int signbit_f2c();
 #else
 #ifdef __cplusplus
 extern "C" {
+#define Cextern extern "C"
+#else
+#define Cextern extern
 #endif
 extern int (*f__doed)(struct syl*, char*, ftnlen),(*f__doned)(struct syl*);
 extern int (*f__dorevert)(void);
 extern void fmt_bg(void);
 extern int pars_f(char*);
 extern int rd_ed(struct syl*, char*, ftnlen),rd_ned(struct syl*);
+extern int signbit_f2c(double*);
 extern int w_ed(struct syl*, char*, ftnlen),w_ned(struct syl*);
 extern int wrt_E(ufloat*, int, int, int, ftnlen);
 extern int wrt_F(ufloat*, int, int, ftnlen);
@@ -85,7 +88,6 @@ extern int f__scale;
 #define GET(x) if((x=(*f__getn)())<0) return(x)
 #define VAL(x) (x!='\n'?x:' ')
 #define PUT(x) (*f__putn)(x)
-extern int f__cursor;
 
 #undef TYQUAD
 #ifndef Allow_TYQUAD
@@ -98,7 +100,5 @@ extern int f__cursor;
 #ifdef KR_headers
 extern char *f__icvt();
 #else
-extern char *f__icvt(longint, int*, int*, int);
+Cextern char *f__icvt(longint, int*, int*, int);
 #endif
-
-#endif /* __FMT_H__ */

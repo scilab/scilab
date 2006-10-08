@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,4 +20,7 @@ integer do_lio(ftnint *type, ftnint *number, char *ptr, ftnlen len)
 }
 #ifdef __cplusplus
 	}
+#endif
+#ifdef __cplusplus
+}
 #endif

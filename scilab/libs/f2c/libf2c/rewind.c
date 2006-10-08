@@ -1,5 +1,8 @@
 #include "f2c.h"
 #include "fio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 #ifdef KR_headers
 integer f_rew(a) alist *a;
 #else
@@ -22,3 +25,6 @@ integer f_rew(alist *a)
 	b->uend=0;
 	return(0);
 }
+#ifdef __cplusplus
+}
+#endif

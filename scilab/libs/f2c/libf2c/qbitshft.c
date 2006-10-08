@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
  longint
 #ifdef KR_headers
@@ -9,3 +12,6 @@ qbit_shift(longint a, integer b)
 {
 	return b >= 0 ? a << b : (longint)((ulongint)a >> -b);
 	}
+#ifdef __cplusplus
+}
+#endif

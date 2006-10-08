@@ -1,9 +1,9 @@
-#if !(defined NON_UNIX_STDIO)
-#include "sys/types.h"
-#include "sys/stat.h"
-#endif
+#include "sysdep1.h"	/* here to get stat64 on some badly designed Linux systems */
 #include "f2c.h"
 #include "fio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
  VOID
 #ifdef KR_headers
@@ -43,9 +43,12 @@ long f__inode(a, dev) char *a; int *dev;
 #else
 long f__inode(char *a, int *dev)
 #endif
-{	struct stat x;
-	if(stat(a,&x)<0) return(-1);
+{	struct STAT_ST x;
+	if(STAT(a,&x)<0) return(-1);
 	*dev = x.st_dev;
 	return(x.st_ino);
+}
+#endif
+#ifdef __cplusplus
 }
 #endif

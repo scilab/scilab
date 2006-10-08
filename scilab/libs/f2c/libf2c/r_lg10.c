@@ -8,8 +8,14 @@ double r_lg10(x) real *x;
 #else
 #undef abs
 #include "math.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 double r_lg10(real *x)
 #endif
 {
 return( log10e * log(*x) );
 }
+#ifdef __cplusplus
+}
+#endif

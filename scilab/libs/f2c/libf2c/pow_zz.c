@@ -6,6 +6,9 @@ VOID pow_zz(r,a,b) doublecomplex *r, *a, *b;
 #else
 #undef abs
 #include "math.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern double f__cabs(double,double);
 void pow_zz(doublecomplex *r, doublecomplex *a, doublecomplex *b)
 #endif
@@ -21,3 +24,6 @@ y = logr * b->i + logi * b->r;
 r->r = x * cos(y);
 r->i = x * sin(y);
 }
+#ifdef __cplusplus
+}
+#endif

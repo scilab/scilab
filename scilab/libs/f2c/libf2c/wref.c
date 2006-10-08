@@ -1,10 +1,5 @@
 #include "f2c.h"
 #include "fio.h"
-#include "fmt.h"
-#include "fp.h"
-#ifndef VAX
-#include "ctype.h"
-#endif
 
 #ifndef KR_headers
 #undef abs
@@ -14,6 +9,16 @@
 #include "string.h"
 #endif
 
+#include "fmt.h"
+#include "fp.h"
+#ifndef VAX
+#include "ctype.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
+#endif
+
+ int
 #ifdef KR_headers
 wrt_E(p,w,d,e,len) ufloat *p; ftnlen len;
 #else
@@ -50,8 +55,13 @@ wrt_E(ufloat *p, int w, int d, int e, ftnlen len)
 		sign = 0;
 		signspace = (int)f__cplus;
 #ifndef VAX
-		if (!dd)
+		if (!dd) {
+#ifdef SIGNED_ZEROS
+			if (signbit_f2c(&dd))
+				signspace = sign = 1;
+#endif
 			dd = 0.;	/* avoid -0 */
+			}
 #endif
 		}
 	delta = w - (2 /* for the . and the d adjustment above */
@@ -190,6 +200,7 @@ nogood:
 	return 0;
 	}
 
+ int
 #ifdef KR_headers
 wrt_F(p,w,d,len) ufloat *p; ftnlen len;
 #else
@@ -212,8 +223,13 @@ wrt_F(ufloat *p, int w, int d, ftnlen len)
 	else {
 		sign = 0;
 #ifndef VAX
-		if (!x)
+		if (!x) {
+#ifdef SIGNED_ZEROS
+			if (signbit_f2c(&x))
+				sign = 2;
+#endif
 			x = 0.;
+			}
 #endif
 		}
 
@@ -234,7 +250,7 @@ wrt_F(ufloat *p, int w, int d, ftnlen len)
 	if (buf[0] == '0' && d)
 		{ ++b; --n; }
 #endif
-	if (sign) {
+	if (sign == 1) {
 		/* check for all zeros */
 		for(s = b;;) {
 			while(*s == '0') s++;
@@ -273,3 +289,6 @@ wrt_F(ufloat *p, int w, int d, ftnlen len)
 		PUT('0');
 	return 0;
 	}
+#ifdef __cplusplus
+}
+#endif

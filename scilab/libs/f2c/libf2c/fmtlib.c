@@ -2,6 +2,9 @@
 #define MAXINTLENGTH 23
 
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 #ifndef Allow_TYQUAD
 #undef longint
 #define longint long
@@ -43,3 +46,6 @@ char *f__icvt(longint value, int *ndigit, int *sign, int base)
 	*ndigit = MAXINTLENGTH - i;
 	return &buf[i];
 	}
+#ifdef __cplusplus
+}
+#endif

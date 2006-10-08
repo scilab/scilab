@@ -4,6 +4,9 @@ double f__cabs(real, imag) double real, imag;
 #else
 #undef abs
 #include "math.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 double f__cabs(double real, double imag)
 #endif
 {
@@ -25,3 +28,6 @@ temp = imag/real;
 temp = real*sqrt(1.0 + temp*temp);  /*overflow!!*/
 return(temp);
 }
+#ifdef __cplusplus
+}
+#endif

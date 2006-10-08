@@ -2,7 +2,11 @@
 #include "f2c.h"
 #include "fio.h"
 #include "fmt.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+ int
 xrd_SL(Void)
 {	int ch;
 	if(!f__curunit->uend)
@@ -14,6 +18,8 @@ xrd_SL(Void)
 	f__cursor=f__recpos=0;
 	return(1);
 }
+
+ int
 x_getc(Void)
 {	int ch;
 	if(f__curunit->uend) return(EOF);
@@ -33,11 +39,15 @@ x_getc(Void)
 	}
 	return(-1);
 }
+
+ int
 x_endp(Void)
 {
 	xrd_SL();
 	return f__curunit->uend == 1 ? EOF : 0;
 }
+
+ int
 x_rev(Void)
 {
 	(void) xrd_SL();
@@ -50,16 +60,15 @@ integer s_rsfe(cilist *a) /* start */
 #endif
 {	int n;
 	if(!f__init) f_init();
-	if(n=c_sfe(a)) return(n);
 	f__reading=1;
 	f__sequential=1;
 	f__formatted=1;
 	f__external=1;
+	if(n=c_sfe(a)) return(n);
 	f__elist=a;
 	f__cursor=f__recpos=0;
 	f__scale=0;
 	f__fmtbuf=a->cifmt;
-	f__curunit= &f__units[a->ciunit];
 	f__cf=f__curunit->ufd;
 	if(pars_f(f__fmtbuf)<0) err(a->cierr,100,"startio");
 	f__getn= x_getc;
@@ -77,3 +86,6 @@ integer s_rsfe(cilist *a) /* start */
 		err(f__elist->ciend,(EOF),"read start");
 	return(0);
 }
+#ifdef __cplusplus
+}
+#endif

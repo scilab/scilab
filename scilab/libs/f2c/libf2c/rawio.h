@@ -1,14 +1,14 @@
-#ifdef KR_headers
-extern FILE *fdopen();
-#else
-#if (defined MSDOS)
+#ifndef KR_headers
+#ifdef MSDOS
 #include "io.h"
+#ifndef WATCOM
 #define close _close
 #define creat _creat
 #define open _open
 #define read _read
 #define write _write
-#endif
+#endif /*WATCOM*/
+#endif /*MSDOS*/
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -17,25 +17,16 @@ extern "C" {
 extern int creat(const char*,int), open(const char*,int);
 #endif
 extern int close(int);
-#ifdef lint5
 extern int read(int,void*,size_t), write(int,void*,size_t);
-#else
-extern int read(int,void*,unsigned), write(int,void*,unsigned);
-#endif
 extern int unlink(const char*);
 #ifndef _POSIX_SOURCE
 #ifndef NON_UNIX_STDIO
 extern FILE *fdopen(int, const char*);
 #endif
 #endif
-#endif
+#endif /*KR_HEADERS*/
 
-#ifdef _MSC_VER
-	#define mktemp _mktemp
-#else
-	extern char *mktemp(char*);
-#endif
-
+extern char *mktemp(char*);
 
 #ifdef __cplusplus
 	}
@@ -48,5 +39,3 @@ extern FILE *fdopen(int, const char*);
 #define O_RDONLY 0
 #define O_WRONLY 1
 #endif
-
-

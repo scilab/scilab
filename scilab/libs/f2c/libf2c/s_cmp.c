@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* compare two strings */
 
@@ -42,3 +45,6 @@ else
 	}
 return(0);
 }
+#ifdef __cplusplus
+}
+#endif

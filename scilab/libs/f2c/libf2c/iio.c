@@ -1,11 +1,15 @@
 #include "f2c.h"
 #include "fio.h"
 #include "fmt.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern char *f__icptr;
 char *f__icend;
 extern icilist *f__svic;
 int f__icnum;
-extern int f__hiwater;
+
+ int
 z_getc(Void)
 {
 	if(f__recpos++ < f__svic->icirlen) {
@@ -14,18 +18,19 @@ z_getc(Void)
 		}
 	return '\n';
 }
+
+ void
 #ifdef KR_headers
 z_putc(c)
 #else
 z_putc(int c)
 #endif
 {
-	if(f__icptr >= f__icend) err(f__svic->icierr,110,"inwrite");
-	if(f__recpos++ < f__svic->icirlen)
+	if (f__icptr < f__icend && f__recpos++ < f__svic->icirlen)
 		*f__icptr++ = c;
-	else	err(f__svic->icierr,110,"recend");
-	return 0;
 }
+
+ int
 z_rnew(Void)
 {
 	f__icptr = f__svic->iciunit + (++f__icnum)*f__svic->icirlen;
@@ -42,6 +47,7 @@ z_endp(Void)
 	return 0;
 	}
 
+ int
 #ifdef KR_headers
 c_si(a) icilist *a;
 #else
@@ -50,11 +56,12 @@ c_si(icilist *a)
 {
 	f__elist = (cilist *)a;
 	f__fmtbuf=a->icifmt;
+	f__curunit = 0;
+	f__sequential=f__formatted=1;
+	f__external=0;
 	if(pars_f(f__fmtbuf)<0)
 		err(a->icierr,100,"startint");
 	fmt_bg();
-	f__sequential=f__formatted=1;
-	f__external=0;
 	f__cblank=f__cplus=f__scale=0;
 	f__svic=a;
 	f__icnum=f__recpos=0;
@@ -62,7 +69,6 @@ c_si(icilist *a)
 	f__hiwater = 0;
 	f__icptr = a->iciunit;
 	f__icend = f__icptr + a->icirlen*a->icirnum;
-	f__curunit = 0;
 	f__cf = 0;
 	return(0);
 }
@@ -93,6 +99,7 @@ integer s_rsfi(icilist *a)
 	return(0);
 }
 
+ int
 z_wnew(Void)
 {
 	if (f__recpos < f__hiwater) {
@@ -124,8 +131,7 @@ integer s_wsfi(icilist *a)
 	return(0);
 }
 integer e_rsfi(Void)
-{	int n;
-	n = en_fio();
+{	int n = en_fio();
 	f__fmtbuf = NULL;
 	return(n);
 }
@@ -134,9 +140,20 @@ integer e_wsfi(Void)
 	int n;
 	n = en_fio();
 	f__fmtbuf = NULL;
-	if(f__icnum >= f__svic->icirnum)
-		return(n);
+	if(f__svic->icirnum != 1
+	 && (f__icnum >  f__svic->icirnum
+	 || (f__icnum == f__svic->icirnum && (f__recpos | f__hiwater))))
+		err(f__svic->icierr,110,"inwrite");
+	if (f__recpos < f__hiwater)
+		f__recpos = f__hiwater;
+	if (f__recpos >= f__svic->icirlen)
+		err(f__svic->icierr,110,"recend");
+	if (!f__recpos && f__icnum)
+		return n;
 	while(f__recpos++ < f__svic->icirlen)
 		*f__icptr++ = ' ';
-	return(n);
+	return n;
 }
+#ifdef __cplusplus
+}
+#endif

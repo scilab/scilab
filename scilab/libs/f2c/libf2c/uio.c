@@ -1,7 +1,11 @@
 #include "f2c.h"
 #include "fio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 uiolen f__reclen;
 
+ int
 #ifdef KR_headers
 do_us(number,ptr,len) ftnint *number; char *ptr; ftnlen len;
 #else
@@ -66,3 +70,6 @@ integer do_uio(ftnint *number, char *ptr, ftnlen len)
 		return(do_us(number,ptr,len));
 	else	return(do_ud(number,ptr,len));
 }
+#ifdef __cplusplus
+}
+#endif

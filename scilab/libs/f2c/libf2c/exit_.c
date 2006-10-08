@@ -17,6 +17,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern void f_exit(void);
 #endif
 
@@ -32,6 +35,9 @@ exit_(integer *rc)
 #endif
 	exit(*rc);
 	}
+#ifdef __cplusplus
+}
+#endif
 #ifdef __cplusplus
 }
 #endif

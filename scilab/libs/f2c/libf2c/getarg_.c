@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * subroutine getarg(k, c)
@@ -6,19 +9,8 @@
  * variable argument c
 */
 
-/** JPC 1998 : pour faire un dll **/
 int xargc;
 char **xargv;
-
-#ifdef KR_headers
-VOID send_xarg(xxargc,xxargv) int xxargc; char **xxargv;
-#else
-void send_xarg(int xxargc, char **xxargv)
-#endif
-{
-  xargc=xxargc;
-  xargv=xxargv;
-}
 
 #ifdef KR_headers
 VOID getarg_(n, s, ls) ftnint *n; register char *s; ftnlen ls;
@@ -26,6 +18,8 @@ VOID getarg_(n, s, ls) ftnint *n; register char *s; ftnlen ls;
 void getarg_(ftnint *n, register char *s, ftnlen ls)
 #endif
 {
+extern int xargc;
+extern char **xargv;
 register char *t;
 register int i;
 
@@ -38,3 +32,6 @@ for(i = 0; i<ls && *t!='\0' ; ++i)
 for( ; i<ls ; ++i)
 	*s++ = ' ';
 }
+#ifdef __cplusplus
+}
+#endif

@@ -1,12 +1,23 @@
 #include "f2c.h"
 
-/* math.h in vc++ conflicts with f2c.h */ 
-
+#ifdef KR_headers
 extern double sin(), cos(), sinh(), cosh();
 
-void c_cos(complex *r, complex *z)
-{
-  r->r = (real) (cos(z->r) * cosh(z->i));
-  r->i =(real) (- sin(z->r) * sinh(z->i));
-}
+VOID c_cos(r, z) complex *r, *z;
+#else
+#undef abs
+#include "math.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+void c_cos(complex *r, complex *z)
+#endif
+{
+	double zi = z->i, zr = z->r;
+	r->r =   (real)(cos(zr) * cosh(zi));
+	r->i =  (real)(- sin(zr) * sinh(zi));
+	}
+#ifdef __cplusplus
+}
+#endif

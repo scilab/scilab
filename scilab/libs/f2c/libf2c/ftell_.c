@@ -1,37 +1,52 @@
 #include "f2c.h"
 #include "fio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
  static FILE *
 #ifdef KR_headers
-unit_chk(unit, who) integer unit; char *who;
+unit_chk(Unit, who) integer Unit; char *who;
 #else
-unit_chk(integer unit, char *who)
+unit_chk(integer Unit, char *who)
 #endif
 {
-	if (unit >= MXUNIT || unit < 0)
+	if (Unit >= MXUNIT || Unit < 0)
 		f__fatal(101, who);
-	return f__units[unit].ufd;
+	return f__units[Unit].ufd;
 	}
 
  integer
 #ifdef KR_headers
-ftell_(unit) integer *unit;
+ftell_(Unit) integer *Unit;
 #else
-ftell_(integer *unit)
+ftell_(integer *Unit)
 #endif
 {
 	FILE *f;
-	return (f = unit_chk(*unit, "ftell")) ? ftell(f) : -1L;
+	return (f = unit_chk(*Unit, "ftell")) ? ftell(f) : -1L;
 	}
 
  int
 #ifdef KR_headers
-fseek_(unit, offset, whence) integer *unit, *offset, *whence;
+fseek_(Unit, offset, whence) integer *Unit, *offset, *whence;
 #else
-fseek_(integer *unit, integer *offset, integer *whence)
+fseek_(integer *Unit, integer *offset, integer *whence)
 #endif
 {
 	FILE *f;
-	return	!(f = unit_chk(*unit, "fseek"))
-		|| fseek(f, *offset, (int)*whence) ? 1 : 0;
+	int w = (int)*whence;
+#ifdef SEEK_SET
+	static int wohin[3] = { SEEK_SET, SEEK_CUR, SEEK_END };
+#endif
+	if (w < 0 || w > 2)
+		w = 0;
+#ifdef SEEK_SET
+	w = wohin[w];
+#endif
+	return	!(f = unit_chk(*Unit, "fseek"))
+		|| fseek(f, *offset, w) ? 1 : 0;
 	}
+#ifdef __cplusplus
+}
+#endif

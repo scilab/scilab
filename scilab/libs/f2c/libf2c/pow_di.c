@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef KR_headers
 double pow_di(ap, bp) doublereal *ap; integer *bp;
@@ -33,3 +36,6 @@ if(n != 0)
 	}
 return(pow);
 }
+#ifdef __cplusplus
+}
+#endif

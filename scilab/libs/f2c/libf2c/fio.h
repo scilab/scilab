@@ -1,4 +1,6 @@
-
+#ifndef SYSDEP_H_INCLUDED
+#include "sysdep1.h"
+#endif
 #include "stdio.h"
 #include "errno.h"
 #ifndef NULL
@@ -10,6 +12,38 @@
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2
+#endif
+
+#ifndef FOPEN
+#define FOPEN fopen
+#endif
+
+#ifndef FREOPEN
+#define FREOPEN freopen
+#endif
+
+#ifndef FSEEK
+#define FSEEK fseek
+#endif
+
+#ifndef FSTAT
+#define FSTAT fstat
+#endif
+
+#ifndef FTELL
+#define FTELL ftell
+#endif
+
+#ifndef OFF_T
+#define OFF_T long
+#endif
+
+#ifndef STAT_ST
+#define STAT_ST stat
+#endif
+
+#ifndef STAT
+#define STAT stat
 #endif
 
 #ifdef MSDOS
@@ -35,7 +69,7 @@ typedef struct
 	int url;	/*0=sequential*/
 	flag useek;	/*true=can backspace, use dir, ...*/
 	flag ufmt;
-	flag uprnt;
+	flag urw;	/* (1 for can read) | (2 for can write) */
 	flag ublnk;
 	flag uend;
 	flag uwrt;	/*last io was write*/
@@ -48,17 +82,21 @@ extern flag f__reading,f__external,f__sequential,f__formatted;
 #undef Void
 #ifdef KR_headers
 #define Void /*void*/
-extern int (*f__getn)(),(*f__putn)();	/*for formatted io*/
+extern int (*f__getn)();	/* for formatted input */
+extern void (*f__putn)();	/* for formatted output */
+extern void x_putc();
 extern long f__inode();
 extern VOID sig_die();
 extern int (*f__donewrec)(), t_putc(), x_wSL();
-extern int c_sfe(), err__fl(), xrd_SL();
+extern int c_sfe(), err__fl(), xrd_SL(), f__putbuf();
 #else
 #define Void void
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern int (*f__getn)(void),(*f__putn)(int);	/*for formatted io*/
+extern int (*f__getn)(void);	/* for formatted input */
+extern void (*f__putn)(int);	/* for formatted output */
+extern void x_putc(int);
 extern long f__inode(char*,int*);
 extern void sig_die(char*,int);
 extern void f__fatal(int,char*);
@@ -70,15 +108,12 @@ extern void f_init(void);
 extern int (*f__donewrec)(void), t_putc(int), x_wSL(void);
 extern void b_char(char*,char*,ftnlen), g_char(char*,ftnlen,char*);
 extern int c_sfe(cilist*), z_rnew(void);
-
 #ifndef _MSC_VER
-	extern int isatty(int);
-#else
-	#define isatty _isatty
+extern int isatty(int);
 #endif
-
 extern int err__fl(int,int,char*);
 extern int xrd_SL(void);
+extern int f__putbuf(int);
 #ifdef __cplusplus
 	}
 #endif
@@ -94,8 +129,8 @@ extern unit f__units[];
 #define MXUNIT 100
 
 extern int f__recpos;	/*position in current record*/
-extern int f__cursor;	/* offset to move to */
-extern int f__hiwater;	/* so TL doesn't confuse us */
+extern OFF_T f__cursor;	/* offset to move to */
+extern OFF_T f__hiwater;	/* so TL doesn't confuse us */
 
 #define WRITE	1
 #define READ	2

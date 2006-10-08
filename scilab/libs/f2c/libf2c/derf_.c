@@ -1,5 +1,10 @@
 #include "f2c.h"
+#ifdef _MSC_VER
 #include <stdio.h>
+#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef KR_headers
 double erf();
@@ -16,3 +21,6 @@ return(0);
 return( erf(*x) );
 #endif 
 }
+#ifdef __cplusplus
+}
+#endif

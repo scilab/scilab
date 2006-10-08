@@ -1,4 +1,7 @@
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef KR_headers
 ftnint iargc_()
@@ -9,3 +12,6 @@ ftnint iargc_(void)
 extern int xargc;
 return ( xargc - 1 );
 }
+#ifdef __cplusplus
+}
+#endif

@@ -1,14 +1,17 @@
 #include "f2c.h"
 #include "fio.h"
 #include "lio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 extern char *f__icptr;
 extern char *f__icend;
 extern icilist *f__svic;
 extern int f__icnum;
 #ifdef KR_headers
-extern int z_putc();
+extern void z_putc();
 #else
-extern int z_putc(int);
+extern void z_putc(int);
 #endif
 
  static int
@@ -19,7 +22,7 @@ z_wSL(Void)
 	return z_rnew();
 	}
 
- VOID
+ static void
 #ifdef KR_headers
 c_liw(a) icilist *a;
 #else
@@ -75,3 +78,6 @@ integer e_wsli(Void)
 	z_wSL();
 	return(0);
 	}
+#ifdef __cplusplus
+}
+#endif

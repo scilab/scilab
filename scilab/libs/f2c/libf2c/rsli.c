@@ -2,6 +2,9 @@
 #include "fio.h"
 #include "lio.h"
 #include "fmt.h" /* for f__doend */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern flag f__lquit;
 extern int f__lcount;
@@ -101,3 +104,6 @@ integer s_rsni(icilist *a)
 	nml_read = 0;
 	return rv;
 	}
+#ifdef __cplusplus
+}
+#endif

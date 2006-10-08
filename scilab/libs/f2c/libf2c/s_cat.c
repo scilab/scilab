@@ -12,21 +12,27 @@
  extern void free();
  extern void exit_();
 #else
-#ifdef _MSC_VER
-#undef max
 #undef min
-#endif
+#undef max
 #include "stdlib.h"
- extern char *F77_aloc(ftnlen, char*);
+extern
+#ifdef __cplusplus
+	"C"
+#endif
+	char *F77_aloc(ftnlen, char*);
 #endif
 #include "string.h"
 #endif /* NO_OVERWRITE */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
  VOID
 #ifdef KR_headers
-s_cat(lp, rpp, rnp, np, ll) char *lp, *rpp[]; ftnlen rnp[], *np, ll;
+s_cat(lp, rpp, rnp, np, ll) char *lp, *rpp[]; ftnint rnp[], *np; ftnlen ll;
 #else
-s_cat(char *lp, char *rpp[], ftnlen rnp[], ftnlen *np, ftnlen ll)
+s_cat(char *lp, char *rpp[], ftnint rnp[], ftnint *np, ftnlen ll)
 #endif
 {
 	ftnlen i, nc;
@@ -75,3 +81,6 @@ s_cat(char *lp, char *rpp[], ftnlen rnp[], ftnlen *np, ftnlen ll)
 		}
 #endif
 	}
+#ifdef __cplusplus
+}
+#endif

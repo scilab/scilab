@@ -5,6 +5,9 @@
  */
 
 #include "f2c.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* assign strings:  a = b */
 
@@ -49,3 +52,6 @@ void s_copy(register char *a, register char *b, ftnlen la, ftnlen lb)
 			*a++ = ' ';
 		}
 	}
+#ifdef __cplusplus
+}
+#endif

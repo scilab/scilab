@@ -8,7 +8,7 @@
 #define F2C_INCLUDE
 
 typedef long int integer;
-typedef unsigned long uinteger;
+typedef unsigned long int uinteger;
 typedef char *address;
 typedef short int shortint;
 typedef float real;
@@ -18,8 +18,8 @@ typedef struct { doublereal r, i; } doublecomplex;
 typedef long int logical;
 typedef short int shortlogical;
 typedef char logical1;
-typedef signed char integer1;
-#if 0	/* Adjust for integer*8. */
+typedef char integer1;
+#ifdef INTEGER_STAR_8	/* Adjust for integer*8. */
 typedef long long longint;		/* system-dependent */
 typedef unsigned long long ulongint;	/* system-dependent */
 #define qbit_clear(a,b)	((a) & ~((ulongint)1 << (b)))
@@ -154,17 +154,12 @@ struct Namelist {
 	};
 typedef struct Namelist Namelist;
 
-#ifdef _MSC_VER
-#undef min
-#undef max
-#endif
-
 #define abs(x) ((x) >= 0 ? (x) : -(x))
 #define dabs(x) (doublereal)abs(x)
-#undef min
-#undef max
+#ifndef _MSC_VER
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #define max(a,b) ((a) >= (b) ? (a) : (b))
+#endif
 #define dmin(a,b) (doublereal)min(a,b)
 #define dmax(a,b) (doublereal)max(a,b)
 #define bit_test(a,b)	((a) >> (b) & 1)
@@ -228,4 +223,3 @@ typedef doublereal E_f;	/* real function with -R not specified */
 #undef vax
 #endif
 #endif
-

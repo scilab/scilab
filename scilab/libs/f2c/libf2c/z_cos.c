@@ -6,9 +6,16 @@ VOID z_cos(r, z) doublecomplex *r, *z;
 #else
 #undef abs
 #include "math.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 void z_cos(doublecomplex *r, doublecomplex *z)
 #endif
 {
-r->r = cos(z->r) * cosh(z->i);
-r->i = - sin(z->r) * sinh(z->i);
+	double zi = z->i, zr = z->r;
+	r->r =   cos(zr) * cosh(zi);
+	r->i = - sin(zr) * sinh(zi);
+	}
+#ifdef __cplusplus
 }
+#endif

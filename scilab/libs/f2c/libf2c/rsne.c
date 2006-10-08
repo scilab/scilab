@@ -2,6 +2,10 @@
 #include "fio.h"
 #include "lio.h"
 
+#ifdef _MSC_VER
+#include <stdio.h>
+#endif
+
 #define MAX_NL_CACHE 3	/* maximum number of namelist hash tables to cache */
 #define MAXDIM 20	/* maximum number of subscripts */
 
@@ -36,7 +40,7 @@
 
  extern flag f__lquit;
  extern int f__lcount, nml_read;
- extern t_getc(Void);
+ extern int t_getc(Void);
 
 #ifdef KR_headers
  extern char *malloc(), *memset();
@@ -54,18 +58,20 @@ un_getc(x,f__cf) int x; FILE *f__cf;
 #undef abs
 #undef min
 #undef max
- #include <stdio.h>
 #include "stdlib.h"
 #include "string.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifdef ungetc
  static int
 un_getc(int x, FILE *f__cf)
 { return ungetc(x,f__cf); }
 #else
+#ifndef _MSC_VER
 	#define un_getc ungetc
-	#ifndef _MSC_VER
-		extern int ungetc(int, FILE*);	/* for systems with a buggy stdio.h */
+	extern int ungetc(int, FILE*);	/* for systems with a buggy stdio.h */
 	#endif
 #endif
 #endif
@@ -293,6 +299,7 @@ print_ne(cilist *a)
 
  static char where0[] = "namelist read start ";
 
+ int
 #ifdef KR_headers
 x_rsne(a) cilist *a;
 #else
@@ -307,8 +314,8 @@ x_rsne(cilist *a)
 	Vardesc *v;
 	dimen *dn, *dn0, *dn1;
 	ftnlen *dims, *dims1;
-	ftnlen b, b0, b1, ex, no, no1, nomax, size, span;
-	ftnint type;
+	ftnlen b, b0, b1, ex, no, nomax, size, span;
+	ftnint no1, no2, type;
 	char *vaddr;
 	long iva, ivae;
 	dimen dimens[MAXDIM], substr;
@@ -532,13 +539,13 @@ x_rsne(cilist *a)
 			if (readall) {
 				iva += dn0->delta;
 				if (f__lcount > 0) {
-					no1 = (ivae - iva)/size;
-					if (no1 > f__lcount)
-						no1 = f__lcount;
-					iva += no1 * dn0->delta;
-					if (k = l_read(&no1, vaddr + iva,
+					no2 = (ivae - iva)/size;
+					if (no2 > f__lcount)
+						no2 = f__lcount;
+					if (k = l_read(&no2, vaddr + iva,
 							size, type))
 						return k;
+					iva += no2 * dn0->delta;
 					}
 				}
  mustend:
@@ -585,6 +592,10 @@ x_rsne(cilist *a)
 		}
 	}
 
+#if _MSC_VER
+ #define un_getc ungetc
+#endif
+
  integer
 #ifdef KR_headers
 s_rsne(a) cilist *a;
@@ -610,3 +621,6 @@ s_rsne(cilist *a)
 		return n;
 	return e_rsle();
 	}
+#ifdef __cplusplus
+}
+#endif

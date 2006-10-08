@@ -13,6 +13,9 @@ double drem(double, double);
 #else
 #undef abs
 #include "math.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 #endif
 double d_mod(doublereal *x, doublereal *y)
 #endif
@@ -38,3 +41,6 @@ double d_mod(doublereal *x, doublereal *y)
 	return(*x - (*y) * quotient );
 #endif
 }
+#ifdef __cplusplus
+}
+#endif

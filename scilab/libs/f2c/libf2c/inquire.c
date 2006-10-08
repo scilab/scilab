@@ -1,25 +1,35 @@
 #include "f2c.h"
-
+#include "fio.h"
+#include "string.h"
+#ifdef NON_UNIX_STDIO
+#ifndef MSDOS
+#include "unistd.h" /* for access() */
+#endif
+#endif
 #ifdef KR_headers
 integer f_inqu(a) inlist *a;
 #else
+#ifdef __cplusplus
+extern "C" integer f_inqu(inlist*);
+#endif
 #ifdef MSDOS
 #undef abs
 #undef min
 #undef max
-#include "string.h"
 #include "io.h"
-
 #endif
 
-#include "fio.h"
-
+#ifdef _MSC_VER
+#define access _access
+#endif
 
 integer f_inqu(inlist *a)
 #endif
 {	flag byfile;
-	int i,n=0;
-
+	int i;
+#ifndef NON_UNIX_STDIO
+	int n;
+#endif
 	unit *p;
 	char buf[256];
 	long x;
@@ -27,9 +37,6 @@ integer f_inqu(inlist *a)
 	{	byfile=1;
 		g_char(a->infile,a->infilen,buf);
 #ifdef NON_UNIX_STDIO
-	#if _MSC_VER
-		#define access _access
-	#endif
 		x = access(buf,0) ? -1 : 0;
 		for(i=0,p=NULL;i<MXUNIT;i++)
 			if(f__units[i].ufd != NULL
@@ -106,7 +113,7 @@ integer f_inqu(inlist *a)
 	if(a->inrecl!=NULL && p!=NULL)
 		*a->inrecl=p->url;
 	if(a->innrec!=NULL && p!=NULL && p->url>0)
-		*a->innrec=ftell(p->ufd)/p->url+1;
+		*a->innrec=(ftnint)(FTELL(p->ufd)/p->url+1);
 	if(a->inblank && p!=NULL && p->ufmt)
 		if(p->ublnk)
 			b_char("ZERO",a->inblank,a->inblanklen);
