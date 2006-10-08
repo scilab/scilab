@@ -16,7 +16,7 @@ X=(Type *)x;\
     --iw;\
     --X;\
     m = Abs(*mm); n = Abs(*nn);\
-    dl = ' '; if (m * n > 1) dl = '!';\
+    dl = ' '; if (m * n > 1) dl = ' ';\
     lbloc = n; nbloc = 1;\
     iw[lbloc + nbloc] = n;\
     lp = -(*nx);s = 0;\
