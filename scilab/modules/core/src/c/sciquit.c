@@ -15,6 +15,7 @@
 
 #include "MALLOC.h"
 #include "sciquit.h"
+#include "getmodules.h"
 #include "../../../graphics/includes/DestroyObjects.h"
 #include "../../../graphics/includes/graphicModuleClose.h"
 /*-----------------------------------------------------------------------------------*/ 
@@ -99,6 +100,8 @@ int ExitScilab(void)
 	#ifdef _MSC_VER
 		TerminateJVMs();
 	#endif
+
+	DisposeModulesInfo();
 
 	/** clean tmpfiles **/
 	C2F(tmpdirc)();

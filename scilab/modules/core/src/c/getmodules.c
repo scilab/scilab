@@ -32,6 +32,34 @@ struct MODULESLIST *getmodules(void)
 	return ScilabModules;
 }
 /*-----------------------------------------------------------------------------------*/ 
+BOOL DisposeModulesInfo(void)
+{
+	BOOL bOK=FALSE;
+	if (ScilabModules)
+	{
+		int i=0;
+		for (i=0;i<ScilabModules->numberofModules;i++)
+		{
+			if (ScilabModules->ModuleList[i])
+			{
+				FREE(ScilabModules->ModuleList[i]);
+				ScilabModules->ModuleList[i]=NULL;
+			}
+		}
+		if (ScilabModules->ModuleList)
+		{
+			FREE(ScilabModules->ModuleList);
+			ScilabModules->ModuleList=NULL;
+		}
+		ScilabModules->numberofModules=0;
+		FREE(ScilabModules);
+		ScilabModules=NULL;
+
+	}
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/ 
 static BOOL ReadModulesFile(void)
 {
 	BOOL bOK=FALSE;

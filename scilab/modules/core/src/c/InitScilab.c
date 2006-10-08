@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "InitScilab.h"
 #include "MALLOC.h"
+#include "getmodules.h"
 
 #ifdef _MSC_VER
 extern void SciEnv(void);
@@ -23,6 +24,8 @@ int C2F(initscilab)(void)
 	#ifdef _MSC_VER
 	SciEnv();
 	#endif
+
+	getmodules();
 
 	#ifdef WITH_TK
 		initTCLTK();
