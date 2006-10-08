@@ -489,8 +489,6 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     }
     else
     {
-      int i ;
-
       FREE(psurf->color);
       psurf->color = NULL ;
 
