@@ -87,23 +87,16 @@ AM_PROG_INSTALL_STRIP
 #AC_PACKAGE_VERSION([4.0])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
-AC_PROG_FC
-if test -z "$FC"; then
-   # No fortran 90 found. Try with a F77
-   AC_PROG_F77
-   if test -z "$F77"; then
-	  AC_MSG_ERROR([No fortran Compiler. Cannot compile Scilab without a Fortran compiler])
-   else
-      FC=$F77
-	  FCFLAGS=$FFLAGS $RFLAGS
-	  AM_FCFLAGS=$AM_FFLAGS
-	  FCCOMPILE=$F77COMPILE
-	  FCLINK=$FLINK
-   fi
+AC_PROG_CC
+AC_PROG_F77
+if test -z "$F77"; then
+  AC_MSG_ERROR([No fortran Compiler. Cannot compile Scilab without a Fortran compiler])
 else
   AC_DEFINE([G95_FORTRAN],[],[Uses G95 fortran])
 fi
-AC_PROG_CC
+echo "plop $F77"
+
+
 
 dnl Get system type
 dnl use "config.guess" and "config.sub" from directory "config"
@@ -247,14 +240,8 @@ fi
 
 AC_PATH_XTRA
 
-if test "$no_x" != 'yes'
-then
-#  LDFLAGS="$LDFLAGS $X_LIBS"
-  X11_LIBS="$X_PRE_LIBS $X_EXTRA_LIBS"
-#  CFLAGS="$CFLAGS $X_CFLAGS"
-else
+if test "$no_x" == 'yes'; then
   AC_MSG_ERROR([Scilab requires the X Window System header files and libraries !])
-  exit 1
 fi
 #AC_SUBST(X11_LIBS)
 
@@ -345,7 +332,7 @@ fi
 ######## With F77 / G77 / GFortran ...
 ######################
 
-if test -n "$FC"; then
+if test -n "$F77"; then
 # TODOO : il faut peut etre verifier que c'est bien gfortran
    if test "$enable_debug" != yes; then 
 	  FFLAGS="$FFLAGS -DNDEBUG -D_FORTIFY_SOURCE=2"
@@ -378,7 +365,7 @@ if test -n "$FC"; then
 			else
 			    FFLAGS='+E4 +Z +DAportable -Dhpux'
 			fi
-#		    FC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
+#		    F77_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
 
 			;;
 		  *-*-hpux11.*)
@@ -393,7 +380,7 @@ if test -n "$FC"; then
     #AC_F77_LIBRARY_LDFLAGS
 	# TODO : check why and if it is still the case
 
-#    FC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
+#    F77_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
 	 ;;
 	  esac
 #	   FFLAGS_O0=`echo $FFLAGS | sed 's/-O[0-9]*//g'`
@@ -427,7 +414,7 @@ AM_CONDITIONAL(IS_MIPS_SGI_IRIX, test -n "$MIPS_SGI_IRIX")
 AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
 
 LDFLAGS="$LDFLAGS $LIEEE"
-FC_LDFLAGS="$FC_LDFLAGS $LIEEE"
+F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
@@ -613,6 +600,7 @@ echo "CFLAGS : $CFLAGS FFLAGS : $FFLAGS"
     XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
     XAW_LOCAL_SUBDIR=X11
     XAW=Xaw3d
+	X_LIBS="$X_LIBS -lXaw3d -lXmu"
   else
 ##test Xmu (Required)
     AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
@@ -984,7 +972,7 @@ if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
 else
 		AC_CHECK_PROGS(XML_CONFIG,xml2-config,no)
 		if test "x$XML_CONFIG" = "xno"; then
-				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check  your installation of libxml2])
+				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check your installation of libxml2])
 		fi
 fi
 XML_FLAGS=`$XML_CONFIG --cflags`
@@ -1315,9 +1303,9 @@ echo "  LDFLAGS          = $LDFLAGS"
 echo "  LIBS             = $LIBS"
 #echo "  CXX              = $CXX"
 #echo "  CXXFLAGS         = $CXXFLAGS"
-echo "  FC               = $FC"
+echo "  F77              = $F77"
 echo "  FFLAGS           = $FFLAGS"
-echo "  FC_LDFLAGS       = $FC_LDFLAGS"
+echo "  F77_LDFLAGS      = $F77_LDFLAGS"
 echo "  XML_FLAGS        = $XML_FLAGS"
 echo "  XML_LIBS         = $XML_LIBS"
 echo "  TERMCAP_LIB      = $TERMCAP_LIB"
