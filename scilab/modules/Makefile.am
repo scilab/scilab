@@ -14,6 +14,8 @@ boolean \
 linear_algebra \
 differential_equations \
 string \
+signal_processing \
+fileio \
 core \
 metanet \
 optimization \
@@ -22,8 +24,6 @@ localization \
 sound \
 statistics \
 time \
-jvm \
-fileio \
 integer \
 special_functions \
 double \
@@ -33,9 +33,9 @@ mexlib \
 symbolic \
 tclsci \
 sparse \
-signal_processing \
 io \
 gui \
+jvm \
 graphics \
 scicos \
 wintools
