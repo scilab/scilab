@@ -129,10 +129,11 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	arnoldi boolean linear_algebra differential_equations string \
-	core metanet optimization interpolation localization sound \
-	statistics time jvm fileio integer special_functions double \
-	randlib data_structures mexlib symbolic tclsci sparse \
-	signal_processing io gui graphics scicos wintools pvm .
+	signal_processing fileio core metanet optimization \
+	interpolation localization sound statistics time integer \
+	special_functions double randlib data_structures mexlib \
+	symbolic tclsci sparse io gui jvm graphics scicos wintools pvm \
+	.
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMDEP_FALSE = @AMDEP_FALSE@
@@ -345,11 +346,11 @@ tcldir = @tcldir@
 
 # The order DOES matter !!!
 SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
-	boolean linear_algebra differential_equations string core \
-	metanet optimization interpolation localization sound \
-	statistics time jvm fileio integer special_functions double \
-	randlib data_structures mexlib symbolic tclsci sparse \
-	signal_processing io gui graphics scicos wintools \
+	boolean linear_algebra differential_equations string \
+	signal_processing fileio core metanet optimization \
+	interpolation localization sound statistics time integer \
+	special_functions double randlib data_structures mexlib \
+	symbolic tclsci sparse io gui jvm graphics scicos wintools \
 	$(am__append_1) .
 
 # 
