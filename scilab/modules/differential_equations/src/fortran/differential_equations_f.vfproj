@@ -35,7 +35,6 @@ cd .."/>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="ainvg.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\badd.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bbvode.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bfeval.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\bint2d.f"/>
