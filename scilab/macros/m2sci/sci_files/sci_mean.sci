@@ -13,7 +13,7 @@ if rhs==1 then
   A = getrhs(tree)
 
   // Because %b_mean and %C_mean are not defined
-  A = convert2double(A)
+  //A = convert2double(A)
   tree.rhs=Rhs(A,"m")
   
   if is_real(A) then
@@ -43,22 +43,22 @@ else
   [A,dim] = getrhs(tree)
   
   // Because %b_mean and %C_mean are not defined
-  A=convert2double(A)
-  dim=convert2double(dim)
+  //A=convert2double(A)
+  //dim=convert2double(dim)
   tree.rhs=Rhs(A,dim)
   
   
   if typeof(dim)=="cste" then
     if dim.value>size(A.dims) then
       // Scilab mean() does not work when dim  is greater than number of dims A
-      tree.name="mtlb_mean"
+      //tree.name="mtlb_mean"
       tree.lhs(1).dims=allunknown(A.dims)
     else
       tree.lhs(1).dims=A.dims
       tree.lhs(1).dims(dim.value)=1
     end
   else
-    tree.name="mtlb_mean"
+    //tree.name="mtlb_mean"
     tree.lhs(1).dims=allunknown(A.dims)
   end
   
