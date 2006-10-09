@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -30,7 +30,7 @@
         <PARAM_NAME>value1, value2, ...</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: les valeurs des champs (acceptent tous types de donnÃ©es
+          <SP>: les valeurs des champs (acceptent tous types de données
           (double, matrice de doubles,des cells, char, ...)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
