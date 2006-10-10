@@ -25,6 +25,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, struct ha
 /*return pointer on HashTable Scilab Errors*/
 IMPORT_EXPORT_LOCALIZATION_DLL struct hashtable *GetHashTableScilabErrors(void);
 IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH);
+IMPORT_EXPORT_LOCALIZATION_DLL int DisposeHashTableScilabErrors(void);
 IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag);
 /*-----------------------------------------------------------------------------------*/ 
 #endif /* __LOCALIZATION_H__ */

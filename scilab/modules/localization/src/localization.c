@@ -202,6 +202,16 @@ IMPORT_EXPORT_LOCALIZATION_DLL int InitializeHashTableScilabErrors(char* SCIPATH
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
+IMPORT_EXPORT_LOCALIZATION_DLL int DisposeHashTableScilabErrors(void)
+{
+	if (Table_Scilab_Errors)
+	{
+		hashtable_destroy( Table_Scilab_Errors, 0 ) ;
+		Table_Scilab_Errors=NULL;
+	}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/ 
 IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 {	
 	char oldpiece[8];

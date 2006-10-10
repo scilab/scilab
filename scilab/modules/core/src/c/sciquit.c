@@ -34,6 +34,7 @@ extern LPTW GetTextWinScilab(void);
 extern BOOL IsWindowInterface(void);
 extern void RestoreConsoleColors(void);
 extern int TerminateJVMs(void);
+extern int DisposeHashTableScilabErrors(void);
 #endif
 
 #ifdef WITH_TK
@@ -102,6 +103,10 @@ int ExitScilab(void)
 	#endif
 
 	DisposeModulesInfo();
+
+	#ifdef _MSC_VER
+	DisposeHashTableScilabErrors();
+	#endif
 
 	/** clean tmpfiles **/
 	C2F(tmpdirc)();

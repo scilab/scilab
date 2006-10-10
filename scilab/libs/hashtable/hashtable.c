@@ -248,8 +248,7 @@ hashtable_remove(struct hashtable *h, void *k)
 
 /*****************************************************************************/
 /* destroy */
-void
-hashtable_destroy(struct hashtable *h, int free_values)
+void hashtable_destroy(struct hashtable *h, int free_values)
 {
     unsigned int i;
     struct entry *e, *f;
