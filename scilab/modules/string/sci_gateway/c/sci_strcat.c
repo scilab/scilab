@@ -6,12 +6,12 @@
 #include "stack-c.h"
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intstrcat) _PARAMS((int *id));
+extern int C2F(instrcat) _PARAMS((int *id));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_strcat) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
-	C2F(intstrcat)(id);
+	C2F(instrcat)(id);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

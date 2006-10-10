@@ -35,7 +35,7 @@ static StringTable Tab[]=
 	{C2F(sci_str2code),"str2code"},
 	{C2F(sci_code2str),"code2str"},
 	{C2F(sci_ssort),"sort"},
-	{C2F(sci_strcat),"strcat "},
+	{C2F(sci_strcat),"strcat"},
 	{C2F(sci_strindex),"strindex"},
 	{C2F(sci_strsubst),"strsubst"},
 	{C2F(sci_ascii),"ascii"},
