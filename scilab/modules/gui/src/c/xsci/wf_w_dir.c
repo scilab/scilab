@@ -61,6 +61,7 @@
 #endif
 
 #include "machine.h"
+#include "setgetSCIpath.h"
 #include "All-extern.h"
 
 /* External variables */
@@ -152,7 +153,7 @@ GoScilab(w, client_data, ret_val)
     XtPointer	    client_data;
     XtPointer	    ret_val;
 {
-  strcpy(cur_dir,getenv("SCI"));
+  strcpy(cur_dir,getSCIpath());
   DoChangeDir(cur_dir);
 }
 

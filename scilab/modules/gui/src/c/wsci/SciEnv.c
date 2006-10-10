@@ -149,7 +149,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 	char env[MAX_PATH + 1 + 10];
 	char *GetSCIpath=NULL;
 
-	GetSCIpath=getenv ("SCI");
+	GetSCIpath=getSCIpath();
 
 	if (GetSCIpath) 
 	{
@@ -282,7 +282,7 @@ BOOL Set_LCC_PATH(char *DefaultPath)
 	if (PathTemp)
 	{
 		char *NewPath=NULL;
-		char *PathWsci= getenv ("SCI");
+		char *PathWsci= getSCIpath();
 
 		if ( PathWsci == NULL )
 		{

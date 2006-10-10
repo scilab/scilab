@@ -438,9 +438,9 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
      for ( i=0 ; i < argc ; i++) 
        sciprint("arg[%d]=%s\r\n",i,argv[i]);
 #endif	
-     exec_cpp = (char *) malloc((strlen(getenv("SCI")) + 16) * 
+     exec_cpp = (char *) malloc((strlen((char *)getSCIpath()) + 16) * 
 			     sizeof(char));
-     strcpy(exec_cpp,getenv("SCI"));
+     strcpy(exec_cpp,(char *)getSCIpath());
      strcat(exec_cpp,"/scripts/sc_cpp");
 
      if ((pid = vfork()) == 0) {

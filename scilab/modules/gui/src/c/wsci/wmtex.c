@@ -29,7 +29,7 @@ int ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, dou
   int flag = 0, rep;
   FILE *fo;
   char *env;
-  env = getenv ("SCI");
+  env = getSCIpath();
   if (env == NULL)
     {
       sciprint (MSG_ERROR49);

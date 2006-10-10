@@ -129,10 +129,16 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   return 0;
 }
 /*************************************************************************************************/
+
+/**
+ * Get the SCI path and initialize the scilab environement path
+ *
+ */
 int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 {
 	int ierr,iflag=0,l1buf=lbuf;
 	C2F(getenvc)(&ierr,"SCI",buf,&l1buf,&iflag);
+
 	if ( ierr== 1) 
 	{
 		#if  _MSC_VER
@@ -170,7 +176,7 @@ BOOL ExistModelicac(void)
 	#define ModelicacName "/modules/scicos/bin/modelicac.exe"
 
 	BOOL bOK=FALSE;
-	char *SCIPATH = (char*)getenv ("SCI");
+	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathModelicac=NULL;
 	
 	fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
@@ -185,7 +191,7 @@ BOOL ExistJavaSciWin(void)
 	#define JavaSCIName "/bin/javasci.dll"
 
 	BOOL bOK=FALSE;
-	char *SCIPATH = (char*)getenv ("SCI");
+	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathJavaSci=NULL;
 	
 	fullpathJavaSci=(char*)MALLOC((strlen(SCIPATH)+strlen(JavaSCIName)+1)*sizeof(char));
@@ -200,7 +206,7 @@ BOOL ExistScicos(void)
 	#define ScicosMacrosDirectory "/modules/scicos/macros/scicos"
 
 	BOOL bOK=FALSE;
-	char *SCIPATH = (char*)getenv ("SCI");
+	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathScicos=NULL;
 	
 	fullpathScicos=(char*)MALLOC((strlen(SCIPATH)+strlen(ScicosMacrosDirectory)+1)*sizeof(char));
@@ -214,7 +220,7 @@ BOOL ExistScicos(void)
 int ExistJavaSciUnix(void)
 {
 	int bOK=0;
-	char *SCIPATH = (char*)getenv ("SCI");
+	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathJavaSci=NULL;
 
 #ifndef _MSC_VER

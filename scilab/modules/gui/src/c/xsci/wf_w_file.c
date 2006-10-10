@@ -234,7 +234,7 @@ void ok_prep(filemask,dirname,title,flag,err)
 void parsescipath(path,longpath)
      char *path,*longpath;
 {
-  strcpy(longpath,getenv("SCI"));
+  strcpy(longpath,(char*)getSCIpath());
   if (strlen(path)==3)		/* nothing after the SCI, we have the full path */
     return;
   strcat(longpath,&path[3]);	/* append the rest of the path */

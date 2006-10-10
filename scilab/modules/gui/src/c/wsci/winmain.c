@@ -484,7 +484,7 @@ void InitWindowGraphDll(void)
 		char *ScilabDirectory=NULL;
 
 		HINSTANCE hdllInstanceTmp=NULL;
-		char *p1 = (char*)getenv ("SCI");
+		char *p1 = (char*)getSCIpath();
 		hdllInstanceTmp=(HINSTANCE)GetModuleHandle(MSG_SCIMSG11);
 
 		if (hdllInstanceTmp==NULL) 
