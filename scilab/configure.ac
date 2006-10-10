@@ -92,7 +92,11 @@ AC_PROG_F77
 if test -z "$F77"; then
   AC_MSG_ERROR([No fortran Compiler. Cannot compile Scilab without a Fortran compiler])
 else
-  AC_DEFINE([G95_FORTRAN],[],[Uses G95 fortran])
+		case "$F77" in
+		 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
+		 AC_DEFINE([G95_FORTRAN],[],[Uses G95 fortran])
+		 ;;
+		 esac
 fi
 echo "plop $F77"
 
