@@ -31,7 +31,10 @@ case 'getorigin' then
       if %r==2 then 
 	typ=list()
 	%exit=resume(%t),
-
+      else
+	if ~or(curwin==winsid()) then  // in case super block is closed
+	  xset("window",curwin)
+	end
       end
     end
   end
