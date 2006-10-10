@@ -35,7 +35,7 @@ void Initialize()
   #endif
 
   
-	char *p1 = (char*)getSCIpath();
+  char *p1 = (char*)getenv ("SCI");
   
   
   #if _MSC_VER

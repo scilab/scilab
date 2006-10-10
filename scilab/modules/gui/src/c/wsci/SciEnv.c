@@ -149,7 +149,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 	char env[MAX_PATH + 1 + 10];
 	char *GetSCIpath=NULL;
 
-	GetSCIpath=getSCIpath();
+	GetSCIpath=getenv ("SCI");
 
 	if (GetSCIpath) 
 	{
