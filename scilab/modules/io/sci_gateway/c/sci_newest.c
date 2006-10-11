@@ -24,7 +24,15 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 	CheckLhs(1,1);
 	if (Rhs < 1)
 	{
-		Scierror(77,"%s: wrong number of rhs arguments.\n",fname);
+		/* newest() --> [] */
+		int m1,n1,l1;	
+		m1=0;
+		n1=0;
+		l1=0;
+
+		CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+		LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
 		return 0;
 	}
 	else
@@ -35,6 +43,33 @@ int C2F(sci_newest) _PARAMS((char *fname,unsigned long fname_len))
 
 		for (j=1;j<=Rhs;j++)
 		{
+			if (j == 1)
+			{
+				/* newest([]) --> [] */
+				if (GetType(j) == sci_matrix)
+				{
+					GetRhsVar(j,"i",&m1,&n1,&l1);
+
+					if ( (m1==0) && (n1==0) )
+					{
+						m1=0;
+						n1=0;
+						l1=0;
+
+						CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+						LhsVar(1)=Rhs+1;
+						C2F(putlhsvar)();
+						return 0;
+					}
+					else
+					{
+						Scierror(999,"%s: incorrect %dst parameter.\n",fname,j);
+						return 0;
+
+					}
+				}
+			}
+
 			if (GetType(j) != sci_strings)
 			{
 				Scierror(999,"%s: incorrect %dth parameter(s).\n",fname,j);

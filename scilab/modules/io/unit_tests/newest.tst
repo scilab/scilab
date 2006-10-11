@@ -103,3 +103,14 @@ newest(['SCI\etc\scilab.start','SCI/nofile.txt','SCI\etc\scilab.quit'])
 newest('rrr','SCI\bin\libscilab.dll',3)
 //                                        !--error 999
 //newest: incorrect 3th parameter(s). 
+
+newest([])
+// ans  =
+//
+//     []
+
+newest()
+// ans  =
+//
+//     []
+  
