@@ -27,3 +27,4 @@
 {"getio",			IN_matio,	27,	1},
 {"setenv",		IN_matio,	28,	1},
 {"getrelativefilename",		IN_matio,	29,	1},
+{"newest",		IN_matio,	30,	1},

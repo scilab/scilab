@@ -21,7 +21,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>paths</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a character string vector (or list), paths(i) is the pathname of ith file</SP>
+          <SP>: a character string vector, paths(i) is the pathname of ith file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -39,8 +39,9 @@
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
-newest('SCI/macros/xdess/bode.sci','SCI/macros/xdess/bode.bin')
-newest('SCI/macros/xdess/bode.'+['sci','bin'])
+newest('SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin')
+newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin'])
+newest('SCI/modules/graphics/macros/bode.'+['sci','bin'])
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
