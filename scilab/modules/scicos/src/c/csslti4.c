@@ -1,5 +1,5 @@
 #include "scicos_block.h"
-#include "machine.h"
+#include "../machine.h"
 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
@@ -31,9 +31,14 @@ void csslti4(scicos_block *block,int flag)
   if (flag ==1 || flag ==6){
     /* y=c*x+d*u     */
     ld=lc+nx*outsz[0];
-    C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
-    C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    if (nx==0) {
+      C2F(dmmul)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    }else{
+      C2F(dmmul)(&rpar[lc],outsz,x,&nx,y,outsz,outsz,&nx,&un);
+      C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    }
   }
+
   else if (flag ==0){
     /* xd=a*x+b*u */
     C2F(dmmul)(&rpar[0],&nx,x,&nx,xd,&nx,&nx,&nx,&un);
