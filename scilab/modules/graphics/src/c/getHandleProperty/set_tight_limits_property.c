@@ -31,11 +31,11 @@ int set_tight_limits_property( sciPointObj * pobj, int stackPointer, int valueTy
 
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    pSUBWIN_FEATURE (pobj)->tight_limits = FALSE;
+    pSUBWIN_FEATURE (pobj)->tight_limits = TRUE ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    pSUBWIN_FEATURE (pobj)->tight_limits = TRUE;
+    pSUBWIN_FEATURE (pobj)->tight_limits = FALSE ;
   }
   else
   {
