@@ -47,7 +47,7 @@ int sci_fec(char *fname,unsigned long fname_len)
   if (Rhs <= 0)
   {
     int one = 1 ;
-    sci_demo (fname," exec(\"SCI/demos/graphics/fec/fec.ex1\");",&one);
+    sci_demo (fname," exec(\"SCI/modules/graphics/demos/fec/fec.ex1\");",&one);
     return 0;
   }
 

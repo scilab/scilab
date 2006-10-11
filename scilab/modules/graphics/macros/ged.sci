@@ -883,7 +883,7 @@ function ged_legend(h)
   TCL_SetVar("curfontsize",string(h.font_size))
   TCL_SetVar("curtext",h.text)
 
-  TCL_EvalFile(SCI+'/tcl/ged/Legend.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Legend.tcl')
 endfunction
 
 
@@ -950,7 +950,7 @@ function ged_arc(h)
     TCL_SetVar("A1val",string(h.data(6)))
     TCL_SetVar("A2val",string(h.data(7)))
   end
-  TCL_EvalFile(SCI+'/tcl/ged/Arc.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Arc.tcl')
 endfunction
 
 
@@ -1007,7 +1007,7 @@ function ged_segs(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI+'/tcl/ged/Segs.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Segs.tcl')
 endfunction
 
 
@@ -1051,7 +1051,7 @@ function ged_champ(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI+'/tcl/ged/Champ.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Champ.tcl')
 endfunction
 
 function ged_fec(h)
@@ -1107,7 +1107,7 @@ function ged_grayplot(h)
   d="["+strcat(string(size(h.data.z)),'x')+" double array]"
   TCL_SetVar("curdata_z",d);
 
-  TCL_EvalFile(SCI+'/tcl/ged/Grayplot.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Grayplot.tcl')
 
 endfunction
 
@@ -1118,7 +1118,7 @@ function ged_matplot(h)
   d="["+strcat(string(size(h.data)),'x')+" double array]"
   TCL_SetVar("curdata",d);
 
-  TCL_EvalFile(SCI+'/tcl/ged/Matplot.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Matplot.tcl')
 
 endfunction
 
@@ -1160,7 +1160,7 @@ function ged_axis(h)
   end
   TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI+'/tcl/ged/Axis.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Axis.tcl')
 endfunction
 
 

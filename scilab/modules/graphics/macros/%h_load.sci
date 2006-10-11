@@ -144,10 +144,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(titl,"font_size"        , mget(1,'c',fd)); // title.font_size
 
     if is_higher_than([3 1 0 0]) then
-      set(titl,"auto_rotation", toggle(mget(1,'c',fd))) // title.auto_rotation
+      auto_rotation =  toggle(mget(1,'c',fd)) ; // title.auto_rotation
       set(titl,"font_angle"   , mget(1,'dl',fd)); // title.font_angle
-      set(titl,"auto_position", toggle(mget(1,'c',fd))) // title.auto_position
+      auto_position = toggle(mget(1,'c',fd)) ;  // title.auto_position
       set(titl,"position"     , mget(2,'dl',fd)); // title.position
+      set( titl, "auto_rotation", auto_rotation ) ;
+      set( titl, "auto_position", auto_position ) ;
     end
     
     // x_label
@@ -169,10 +171,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(x_label,"font_size"      , mget(1,'c',fd)); // x_label.font_size
     
     if is_higher_than([3 0 0 0]) then
-      set(x_label,"auto_rotation"         , toggle(mget(1,'c',fd))) // x_label.auto_rotation
-      set(x_label,"font_angle"            , mget(1,'dl',fd)); // x_label.font_angle
-      set(x_label,"auto_position"         , toggle(mget(1,'c',fd))) // x_label.auto_position
-      set(x_label,"position"              , mget(2,'dl',fd)); // x_label.position
+      auto_rotation =  toggle(mget(1,'c',fd)) ; // x_label.auto_rotation
+      set(x_label,"font_angle"   , mget(1,'dl',fd)); // x_label.font_angle
+      auto_position = toggle(mget(1,'c',fd)) ; // x_label.auto_position
+      set( x_label,"position"     , mget(2,'dl',fd)); // x_label.position
+      set( x_label, "auto_rotation", auto_rotation ) ;
+      set( x_label, "auto_position", auto_position ) ;
     end
     
     // y_label
@@ -194,10 +198,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(y_label,"font_size"      , mget(1,'c',fd));
     
     if is_higher_than([3 0 0 0]) then
-      set(y_label,"auto_rotation"         , toggle(mget(1,'c',fd)))
-      set(y_label,"font_angle"            , mget(1,'dl',fd));
-      set(y_label,"auto_position"         , toggle(mget(1,'c',fd)))
-      set(y_label,"position"              , mget(2,'dl',fd));
+      auto_rotation =  toggle(mget(1,'c',fd)) ; // y_label.auto_rotation
+      set(y_label,"font_angle"   , mget(1,'dl',fd)); // y_label.font_angle
+      auto_position = toggle(mget(1,'c',fd)) ; // y_label.auto_position
+      set( y_label,"position"     , mget(2,'dl',fd)); // y_label.position
+      set( y_label, "auto_rotation", auto_rotation ) ;
+      set( y_label, "auto_position", auto_position ) ;
     end
     
     if view=='3d' then
@@ -221,10 +227,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(z_label,"font_size"      , mget(1,'c',fd));
       
       if is_higher_than([3 0 0 0]) then
-	set(z_label,"auto_rotation"         , toggle(mget(1,'c',fd)))
-	set(z_label,"font_angle"            , mget(1,'dl',fd));
-	set(z_label,"auto_position"         , toggle(mget(1,'c',fd)))
-	set(z_label,"position"              , mget(2,'dl',fd));
+	auto_rotation =  toggle(mget(1,'c',fd)) ; // z_label.auto_rotation
+        set(z_label,"font_angle"   , mget(1,'dl',fd)); // z_label.font_angle
+        auto_position = toggle(mget(1,'c',fd)) ; // z_label.auto_position
+        set( z_label,"position"     , mget(2,'dl',fd)); // z_label.position
+        set( z_label, "auto_rotation", auto_rotation ) ;
+        set( z_label, "auto_position", auto_position ) ;
       end
     end
     
@@ -811,7 +819,8 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     
     n=mget(1,'il',fd) // segs_color
     set(h,"segs_color",mget(n,'il',fd))
-    set(h,"mark_mode" ,toggle(mget(1,'c',fd))) // mark_mode
+    // it is needed to set it at the end, ut I don't know why
+    mark_mode = toggle(mget(1,'c',fd)) ; // mark_mode
     set(h,"mark_style"           , mget(1,'c',fd)) // mark_style
     set(h,"mark_size"            , mget(1,'c',fd)) // mark_size
     if is_higher_than([3 0 0 0]) then
@@ -826,6 +835,8 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       set(h,"mark_size_unit"     , 'tabulated') ; // mark_size_unit
     end
+
+    set(h,"mark_mode", mark_mode ) ;
     
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd)) // clip_state
     if clip_state=='on' then
@@ -1023,9 +1034,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       n                = mget(1,'il',fd) // tics_direction
       tics_direction   = ascii(mget(n,'c',fd));
       nx               = mget(1,'il',fd) // xtics_coord
-      xtics_coord      = mget(nx,'dl',fd)
+      xtics_coord      = mget(nx,'dl',fd)'
       ny               = mget(1,'il',fd) // ytics_coord
-      ytics_coord      = mget(ny,'dl',fd)
+      ytics_coord      = mget(ny,'dl',fd)'
       if nx>1 then dir='u',else dir='l',end
       drawaxis(x=xtics_coord,y=ytics_coord,dir=dir);
       h=gce()
