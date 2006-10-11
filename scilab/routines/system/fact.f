@@ -8,7 +8,7 @@ c     Copyright INRIA
 c     
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       logical eqid,eptover
-      integer r,excnt,psym,chars
+      integer r,excnt,psym,chars,p
       integer id(nsiz),op,fun1
       integer star,dstar,semi,eol,blank,percen
       integer comma,lparen,rparen,hat,dot,equal
@@ -63,12 +63,31 @@ c     call eye()
       if (sym .eq. lparen) go to 36
 
       if(err1.gt.0) then
-         pt=pt+1
- 02      pt=pt-1
-         r=rstk(pt)
+c     .  check for error in short circuit skip mode
+         p=pt-5
+         if(p.gt.0.and.rstk(p).eq.106) then
+c     .     in short circuit skip mode
+            if(int(abs(-errct)/100000).ne.0.and.err1.ne.9191919) then
+c     .        while in errcatch mode (see expr.f)
+               call error(2)
+c               pt=p
+               return
+            else
+c     .        errcatch mode off, really send an error
+               err1=0
+               call error(2)
+               return
+            endif
+         endif
+         p=pt+1
+ 02      p=p-1
+         if(p.le.0) goto 03
+         r=rstk(p)
          if(int(r/100).ne.3) goto 02
+         pt=p
          goto(25,26,99,29,99,51,43,48,55,62,65,66),r-300
       endif
+ 03   continue
       call error(2)
 c      if (err .gt. 0) return
       return
