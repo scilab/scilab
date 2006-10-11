@@ -22,7 +22,7 @@
 #define LCCLIB		"\\lcc\\lib" 
 #define MAXSTR 256
 /*-----------------------------------------------------------------------------------*/
-void SciEnv(void);
+void SciEnvForWindows(void);
 char *GetScilabDirectory(BOOL UnixStyle);
 void set_sci_env(char *DefaultSCIPATH) ;
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);

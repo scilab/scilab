@@ -1,34 +1,30 @@
-#include "SciEnv.h"
+/*-----------------------------------------------------------------------------------*/
+/* Allan CORNET */
+/* Sylvestre LEDRU */
+/* INRIA 2006 */
+/*-----------------------------------------------------------------------------------*/
 #include "machine.h"
-#define PATH_MAX 1024
-
-
-/********************************************************************************************************/
-/* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
-/* sont définies directement dans scilex */
-/* scilex peut donc etre executé seul */
-/********************************************************************************************************/
-void SciEnv(void) {
+/*-----------------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	char *SCIPathName=NULL;
-
-	SCIPathName=GetScilabDirectory(TRUE);
-
-	// Correction Bug 1579
-	if (!IsTheGoodShell()) 
-	{
-		if ( (!Set_Shell()) || (!IsTheGoodShell()))
-		{
-			MessageBox(NULL,MSG_SCIMSG121,MSG_WARNING22,MB_ICONWARNING|MB_OK);
-		}
-	}
-
-	set_sci_env(SCIPathName);
-	if (SCIPathName) {FREE(SCIPathName);SCIPathName=NULL;}
+	extern void SciEnvForWindows(void);
 #else
+	extern int C2F(getsci)(char *buf,int *nbuf,long int lbuf);
+#endif
+/*-----------------------------------------------------------------------------------*/
+/**
+* Define SCI and some others Environments variables 
+*/
+void SciEnv(void) 
+{
+#ifdef _MSC_VER
+	SciEnvForWindows(); 
+#else
+	#define PATH_MAX 1024
+
 	char *buf;
 	int  *nbuf;
 	long int  lbuf;
 	C2F(getsci)(buf,nbuf,PATH_MAX);
 #endif
 }
+/*-----------------------------------------------------------------------------------*/
