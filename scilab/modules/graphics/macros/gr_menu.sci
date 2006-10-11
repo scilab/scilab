@@ -1,7 +1,7 @@
 function [sd]=gr_menu(sd,flag,noframe)
 // Copyright INRIA
   set figure_style old
-  getf('SCI/macros/xdess/gr_macros.sce','c');
+  getf('SCI/modules/graphics/macros/gr_macros.sce','c');
 
   deff('[modek]=clearmode()',['modek=xget(''alufunction'')';
 		    'xset(''alufunction'',6);']);

@@ -21,6 +21,6 @@ int set_font_size_property( sciPointObj * pobj, int stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetFontDeciWidth( pobj, ((int)getDoubleFromStack( stackPointer )) );
+  return sciSetFontDeciWidth( pobj, ((int)getDoubleFromStack( stackPointer )) * 100 );
 }
 /*------------------------------------------------------------------------*/

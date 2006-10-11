@@ -99,9 +99,15 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
   set('current_obj',a);
   a.foreground=fg
-  if flag(3)<2 then
+  if flag(3) == 0 then
     a.axes_visible='off';
     a.box='off';
+  elseif flag(3) == 1 then
+    a.axes_visible='off';
+    a.box='off';
+  elseif flag(3) == 2 then
+    a.axes_visible='off';
+    a.box='back_half';
   elseif flag(3)==3 then
     a.axes_visible='off';
     a.box='on';
