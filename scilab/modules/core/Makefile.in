@@ -98,8 +98,8 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/errmsg.c src/c/scimem.c src/c/banier.c \
 	src/c/callinterf.c src/c/isanan.c src/c/parse.c src/c/matus2.c \
 	src/c/timer.c src/c/stack2.c src/c/Scierror.c src/c/sciprint.c \
-	src/c/link.c src/c/xscion.c src/c/getarg-hpux.c src/c/getarg.c \
-	src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/link.c src/c/xscion.c src/c/SciEnv.c src/c/getarg-hpux.c \
+	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
 	src/fortran/getlin.f src/fortran/isany.f \
@@ -247,7 +247,7 @@ am__objects_3 = libcore_la-history.lo libcore_la-inffic.lo \
 	libcore_la-parse.lo libcore_la-matus2.lo libcore_la-timer.lo \
 	libcore_la-stack2.lo libcore_la-Scierror.lo \
 	libcore_la-sciprint.lo libcore_la-link.lo libcore_la-xscion.lo \
-	$(am__objects_1) $(am__objects_2)
+	libcore_la-SciEnv.lo $(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -351,6 +351,7 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
+AS = @AS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -570,7 +571,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/errmsg.c src/c/scimem.c src/c/banier.c \
 	src/c/callinterf.c src/c/isanan.c src/c/parse.c src/c/matus2.c \
 	src/c/timer.c src/c/stack2.c src/c/Scierror.c src/c/sciprint.c \
-	src/c/link.c src/c/xscion.c $(am__append_2) $(am__append_4)
+	src/c/link.c src/c/xscion.c src/c/SciEnv.c $(am__append_2) \
+	$(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -850,6 +852,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-Funtab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-InitScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-IsAScalar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-SciEnv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-Scierror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-banier.Plo@am__quote@
@@ -1374,6 +1377,13 @@ libcore_la-xscion.lo: src/c/xscion.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xscion.c' object='libcore_la-xscion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-xscion.lo `test -f 'src/c/xscion.c' || echo '$(srcdir)/'`src/c/xscion.c
+
+libcore_la-SciEnv.lo: src/c/SciEnv.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-SciEnv.lo -MD -MP -MF "$(DEPDIR)/libcore_la-SciEnv.Tpo" -c -o libcore_la-SciEnv.lo `test -f 'src/c/SciEnv.c' || echo '$(srcdir)/'`src/c/SciEnv.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libcore_la-SciEnv.Tpo" "$(DEPDIR)/libcore_la-SciEnv.Plo"; else rm -f "$(DEPDIR)/libcore_la-SciEnv.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SciEnv.c' object='libcore_la-SciEnv.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-SciEnv.lo `test -f 'src/c/SciEnv.c' || echo '$(srcdir)/'`src/c/SciEnv.c
 
 libcore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-getarg-hpux.lo -MD -MP -MF "$(DEPDIR)/libcore_la-getarg-hpux.Tpo" -c -o libcore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c; \

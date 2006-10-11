@@ -67,7 +67,7 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-am__DEPENDENCIES_1 = $(top_builddir)/libs/blas/libblas.la
+libf2c_la_DEPENDENCIES = $(top_builddir)/libs/blas/libblas.la
 am__objects_1 = libf2c_la-lbitbits.lo libf2c_la-r_imag.lo \
 	libf2c_la-dfe.lo libf2c_la-pow_ri.lo libf2c_la-d_cosh.lo \
 	libf2c_la-d_sign.lo libf2c_la-close.lo libf2c_la-pow_zi.lo \
@@ -158,6 +158,7 @@ AMDEP_FALSE = @AMDEP_FALSE@
 AMDEP_TRUE = @AMDEP_TRUE@
 AMTAR = @AMTAR@
 AR = @AR@
+AS = @AS@
 ATLAS_DIR = @ATLAS_DIR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -553,10 +554,7 @@ f2c_SOURCES = $(F2C_SOURCES)
 lib_LTLIBRARIES = libf2c.la
 libf2c_la_SOURCES = $(F2C_LIB_SOURCES)
 libf2c_la_CFLAGS = -D_POSIX_SOURCE  -DSkip_f2c_Undefs
-libf2c_la_DEPENDENCIES = \
-	$(top_builddir)/libs/blas/libblas.la 
-
-libf2c_la_LIBADD = $(libf2c_la_DEPENDENCIES)
+libf2c_la_LIBADD = $(top_builddir)/libs/blas/libblas.la 
 libf2c_la_PKGCONFIG = f2c.pc
 all: all-am
 

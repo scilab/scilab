@@ -828,7 +828,7 @@ if test "$with_tk" != no; then
 	saved_cppflags="$CPPFLAGS"
 	
 	AC_CHECK_LIB(dl, main,TCLTK_LIBS=" -ldl")
-	AC_CHECK_TCLTK()
+	AC_CHECK_TCLTK
 	
 	# set variables
 	if test $WITH_TKSCI = 1; then
@@ -902,11 +902,7 @@ fi
 #########################
 
 
-AM_PROG_LIBTOOL
-LT_INIT
-AC_ENABLE_SHARED
-AC_ENABLE_STATIC
-
+LT_INIT([shared static dlopen win32-dll])
 
 
 # Check to see if building shared libraries

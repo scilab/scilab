@@ -1,6 +1,6 @@
 # Generated from ltmain.m4sh; do not edit by hand
 
-# ltmain.sh (GNU libtool 1.2316 2006/08/03 14:06:35) 2.1a
+# ltmain.sh (GNU libtool 1.2345 2006/09/20 19:08:21) 2.1a
 # Written by Gordon Matzigkeit <gord@gnu.ai.mit.edu>, 1996
 
 # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005, 2006
@@ -64,7 +64,7 @@
 #       compiler:		$LTCC
 #       compiler flags:		$LTCFLAGS
 #       linker:		$LD (gnu? $with_gnu_ld)
-#       $progname:		(GNU libtool 1.2316 2006/08/03 14:06:35) 2.1a
+#       $progname:		(GNU libtool 1.2345 2006/09/20 19:08:21) 2.1a
 #       automake:		$automake_version
 #       autoconf:		$autoconf_version
 #
@@ -73,8 +73,8 @@
 PROGRAM=ltmain.sh
 PACKAGE=libtool
 VERSION=2.1a
-TIMESTAMP=" 1.2316 2006/08/03 14:06:35"
-package_revision=1.2316
+TIMESTAMP=" 1.2345 2006/09/20 19:08:21"
+package_revision=1.2345
 
 # Be Bourne compatible
 if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then
@@ -109,15 +109,15 @@ $lt_unset CDPATH
 
 : ${CP="cp -f"}
 : ${ECHO="echo"}
-: ${EGREP="grep -E"}
-: ${FGREP="grep -F"}
-: ${GREP="grep"}
+: ${EGREP="/bin/grep -E"}
+: ${FGREP="/bin/grep -F"}
+: ${GREP="/bin/grep"}
 : ${LN_S="ln -s"}
 : ${MAKE="make"}
 : ${MKDIR="mkdir"}
 : ${MV="mv -f"}
 : ${RM="rm -f"}
-: ${SED="/usr/bin/sed"}
+: ${SED="/bin/sed"}
 : ${SHELL="${CONFIG_SHELL-/bin/sh}"}
 : ${Xsed="$SED -e 1s/^X//"}
 
@@ -1308,31 +1308,29 @@ extern \"C\" {
 	  $ECHO >> "$output_objdir/$my_dlsyms" "\
 
 /* The mapping between symbol names and symbols.  */
+typedef struct {
+  const char *name;
+  void *address;
+} lt_dlsymlist;
 "
 	  case $host in
 	  *cygwin* | *mingw* )
 	    $ECHO >> "$output_objdir/$my_dlsyms" "\
 /* DATA imports from DLLs on WIN32 con't be const, because
    runtime relocations are performed -- see ld's documentation
-   on pseudo-relocs.  */
-   struct {
-"
-	    ;;
+   on pseudo-relocs.  */"
+	    lt_dlsym_const= ;;
 	  *)
-	    $ECHO >> "$output_objdir/$my_dlsyms" "\
-const struct {
-"
-	    ;;
+	    lt_dlsym_const=const ;;
 	  esac
 
 	  $ECHO >> "$output_objdir/$my_dlsyms" "\
-   const char *name;
-   void *address;
-}
+extern $lt_dlsym_const lt_dlsymlist
+lt_${my_prefix}_LTX_preloaded_symbols[];
+$lt_dlsym_const lt_dlsymlist
 lt_${my_prefix}_LTX_preloaded_symbols[] =
 {\
-  { \"$my_originator\", (void *) 0 },
-"
+  { \"$my_originator\", (void *) 0 },"
 
 	  eval "$global_symbol_to_c_name_address" < "$nlist" >> "$output_objdir/$my_dlsyms"
 
@@ -1682,7 +1680,7 @@ func_mode_compile ()
     *.class) xform=class ;;
     *.cpp) xform=cpp ;;
     *.cxx) xform=cxx ;;
-    *.f90) xform=f90 ;;
+    *.f9?) xform=f9. ;;
     *.for) xform=for ;;
     *.java) xform=java ;;
     *.obj) xform=obj ;;
@@ -1961,7 +1959,9 @@ func_mode_execute ()
 	if test -f "$dir/$objdir/$dlname"; then
 	  dir="$dir/$objdir"
 	else
-	  func_fatal_error "cannot find \`$dlname' in \`$dir' or \`$dir/$objdir'"
+	  if test ! -f "$dir/$dlname"; then
+	    func_fatal_error "cannot find \`$dlname' in \`$dir' or \`$dir/$objdir'"
+	  fi
 	fi
 	;;
 
@@ -3269,9 +3269,10 @@ func_mode_link ()
       # -q* pass through compiler args for the IBM compiler
       # -m*, -t[45]*, -txscale* pass through architecture-specific
       # compiler args for GCC
+      # -pg, --coverage pass through profiling flag for GCC
       # @file GCC response files
       -64|-mips[0-9]|-r[0-9][0-9]*|-xarch=*|-xtarget=*|+DA*|+DD*|-q*|-m*| \
-      -t[45]*|-txscale*|@*)
+      -t[45]*|-txscale*|-pg|--coverage|@*)
         func_quote_for_eval "$arg"
 	arg="$func_quote_for_eval_result"
         func_append compile_command " $arg"
@@ -5597,7 +5598,7 @@ EOF
 	    $ECHO 'INPUT (' > $output
 	    for obj in $save_libobjs
 	    do
-	      $ECHO \""$obj"\" >> $output
+	      $ECHO "$obj" >> $output
 	    done
 	    $ECHO ')' >> $output
 	    delfiles="$delfiles $output"
@@ -7140,7 +7141,7 @@ func_mode_uninstall ()
       *.la)
 	# Possibly a libtool archive, so verify it.
 	if func_lalib_p "$file"; then
-	  . $dir/$name
+	  func_source $dir/$name
 
 	  # Delete the libtool libraries and symlinks.
 	  for n in $library_names; do
@@ -7178,7 +7179,7 @@ func_mode_uninstall ()
 	if func_lalib_p "$file"; then
 
 	  # Read the .lo file
-	  . $dir/$name
+	  func_source $dir/$name
 
 	  # Add PIC object to the list of files to remove.
 	  if test -n "$pic_object" &&
@@ -7211,7 +7212,7 @@ func_mode_uninstall ()
 	  # Do a test to see if this is a libtool program.
 	  if func_ltwrapper_p "$file"; then
 	    relink_command=
-	    . $dir/$noexename
+	    func_source $dir/$noexename
 
 	    # note $name still contains .exe if it was in $file originally
 	    # as does the version of $file that was added into $rmfiles
