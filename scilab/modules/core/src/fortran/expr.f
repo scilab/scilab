@@ -180,8 +180,10 @@ c     .     evaluation shortcircuit
                   if ( istrue(0)) then
 c     .              first term is true there is no use to evaluate the other
                      ids(1,pt)=1
-c     .              err1 <>0 sets interpretation without evaluation
-                     err1=1
+c     .              err1 <>0 sets interpretation without evaluation 
+c     .              use special value to be able to distinguish from
+c     .              recovered errors
+                     err1=9191919
                   endif
                endif
             endif
@@ -200,7 +202,14 @@ c     *call* lterm
       if(op.eq.0) goto 75
       if(comp(1).eq.0.and.ids(1,pt+1).eq.1) then
 c     . term has not been evaluated
-         err1=ids(2,pt+1)
+         if(int(abs(-errct)/100000).eq.0) then
+            err1=ids(2,pt+1)
+         elseif (ids(2,pt+1).ne.0) then
+            err1=ids(2,pt+1)
+         else
+            if(err1.eq.9191919) err1=0
+         endif
+         if(err1.gt.0) return
          goto 75
       endif
       icall=4
@@ -270,7 +279,15 @@ c     *call* lfact
       if(op.eq.0) goto 84
       if(comp(1).eq.0.and.ids(1,pt+1).eq.1) then
 c     . term has not been evaluated
-         err1=ids(2,pt+1)
+         if(int(abs(-errct)/100000).eq.0) then
+            err1=ids(2,pt+1)
+         elseif (ids(2,pt+1).ne.0) then
+c     .     error detected before if expression evaluation (should not occur ?)
+            err1=ids(2,pt+1)
+         else
+            if(err1.eq.9191919) err1=0
+         endif
+         if(err1.gt.0) return
          goto 84
       endif
 
