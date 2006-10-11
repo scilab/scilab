@@ -11,30 +11,6 @@
 #include "setgetSCIpath.h"
 
 #define putenv _putenv
-/********************************************************************************************************/
-/* Les variables d'environnements SCI,TCL_LIBRARY,TK_LIBRARY */
-/* sont définies directement dans scilex */
-/* scilex peut donc etre executé seul */
-/********************************************************************************************************/
-void SciEnv(void)
-{
-	char *SCIPathName=NULL;
-
-	SCIPathName=GetScilabDirectory(TRUE);
-
-	// Correction Bug 1579
-	if (!IsTheGoodShell()) 
-	{
-		if ( (!Set_Shell()) || (!IsTheGoodShell()))
-		{
-			MessageBox(NULL,MSG_SCIMSG121,MSG_WARNING22,MB_ICONWARNING|MB_OK);
-		}
-	}
-
-	set_sci_env(SCIPathName);
-	if (SCIPathName) {FREE(SCIPathName);SCIPathName=NULL;}
-
-}
 /*----------------------------------------------------
 * set env variables (used when calling scilab from
 * other programs)

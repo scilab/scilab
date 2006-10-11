@@ -58,7 +58,8 @@ src/c/stack2.c \
 src/c/Scierror.c \
 src/c/sciprint.c \
 src/c/link.c \
-src/c/xscion.c
+src/c/xscion.c \
+src/c/SciEnv.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \

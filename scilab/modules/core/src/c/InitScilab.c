@@ -6,8 +6,9 @@
 #include "MALLOC.h"
 #include "getmodules.h"
 
-#ifdef _MSC_VER
 extern void SciEnv(void);
+
+#ifdef _MSC_VER
 extern int InitializeHashTableScilabErrors(char* SCIPATH);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern int StartJVMs(char *SCILAB_PATH); 
@@ -21,9 +22,7 @@ int C2F(initscilab)(void)
 {
 	char *SCIPATH=NULL;
 
-	#ifdef _MSC_VER
 	SciEnv();
-	#endif
 
 	getmodules();
 
