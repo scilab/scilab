@@ -97,7 +97,6 @@ else
   end
 end
 setenv("VERSION",getversion())
- 
 
 
 // Set the preferred browser  ==========================================
@@ -123,14 +122,6 @@ if grep(args,'scilex')<>[] then
 end
 clear ans  %b_h_s args with_tk LANGUAGE delmenu addmenu
 
-// LCC initialization =================================================
-global LCC
-if MSDOS then
-  LCC=%f;
-else
-  LCC=%f
-end
-clear LCC 
 
 // Protect variable previously defined  ================================
 predef('all') 
@@ -164,14 +155,6 @@ if (sciargs()<>'-nouserstartup') & (sciargs()<>"-nwni") then
   else
     loadhistory(SCIHOME+'/.history.scilab')
   end
-end
-
-
-// Configure Environment Variables for Ms Visual C ====================
-if MSDOS then
-  configure_msvc()
-  clear configure_msvc setmsvc71 setmsvc70 setmsvc60 setmsvc50
-  clear setmsvc80std setmsvc80pro setmsvc80express
 end
 
 // calling user initialization =========================================
@@ -208,4 +191,4 @@ if sciargs()<>'-nouserstartup' then
   end
 end
 clear startup ierr
-
+// =====================================================================

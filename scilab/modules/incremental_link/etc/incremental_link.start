@@ -20,4 +20,23 @@ elseif LANGUAGE == 'eng' then
 end
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
+
+// LCC initialization =================================================
+global LCC
+if MSDOS then
+  LCC=%f;
+else
+  LCC=%f
+end
+clear LCC 
+
+// Configure Environment Variables for Ms Visual C ====================
+if MSDOS then
+	if (~isdef('WSCI')) then
+	 WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
+	end
+  configure_msvc()
+  clear configure_msvc setmsvc71 setmsvc70 setmsvc60 setmsvc50
+  clear setmsvc80std setmsvc80pro setmsvc80express
+end
 // ====================================================================
