@@ -67,7 +67,14 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES)
+LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
+libdummy_elementaries_functions_la_LIBADD =
+am_libdummy_elementaries_functions_la_OBJECTS =  \
+	libdummy_elementaries_functions_la-hqror2.lo \
+	libdummy_elementaries_functions_la-comqr3.lo \
+	libdummy_elementaries_functions_la-pade.lo
+libdummy_elementaries_functions_la_OBJECTS =  \
+	$(am_libdummy_elementaries_functions_la_OBJECTS)
 libelementaries_functions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/libs/blas/libblas.la \
@@ -184,7 +191,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-dlblks.lo \
 	libelementaries_functions_la-kronc.lo \
 	libelementaries_functions_la-ddrdiv.lo \
-	libelementaries_functions_la-hqror2.lo \
 	libelementaries_functions_la-d9knus.lo \
 	libelementaries_functions_la-dbdiff.lo \
 	libelementaries_functions_la-d9lgmc.lo \
@@ -242,7 +248,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-wdpow.lo \
 	libelementaries_functions_la-dgamln.lo \
 	libelementaries_functions_la-xercnt.lo \
-	libelementaries_functions_la-comqr3.lo \
 	libelementaries_functions_la-orthes.lo \
 	libelementaries_functions_la-wnrm2.lo \
 	libelementaries_functions_la-dgefa.lo \
@@ -427,8 +432,10 @@ LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
 F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
 	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(libelementaries_functions_la_SOURCES)
-DIST_SOURCES = $(libelementaries_functions_la_SOURCES)
+SOURCES = $(libdummy_elementaries_functions_la_SOURCES) \
+	$(libelementaries_functions_la_SOURCES)
+DIST_SOURCES = $(libdummy_elementaries_functions_la_SOURCES) \
+	$(libelementaries_functions_la_SOURCES)
 libelementaries_functions_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libelementaries_functions_la_include_HEADERS)
 ETAGS = etags
@@ -470,7 +477,6 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
@@ -756,7 +762,6 @@ src/fortran/wscal.f \
 src/fortran/dlblks.f \
 src/fortran/kronc.f \
 src/fortran/ddrdiv.f \
-src/fortran/hqror2.f \
 src/fortran/d9knus.f \
 src/fortran/dbdiff.f \
 src/fortran/d9lgmc.f \
@@ -814,7 +819,6 @@ src/fortran/rea2db.f \
 src/fortran/wdpow.f \
 src/fortran/dgamln.f \
 src/fortran/xercnt.f \
-src/fortran/comqr3.f \
 src/fortran/orthes.f \
 src/fortran/wnrm2.f \
 src/fortran/dgefa.f \
@@ -981,6 +985,14 @@ sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
 
+
+# Disable optimisation of the file hqror2.f comqr3.f pade.f 
+noinst_LTLIBRARIES = libdummy-elementaries_functions.la
+libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
+	src/fortran/comqr3.f \
+	src/fortran/pade.f
+
+libdummy_elementaries_functions_la_FFLAGS = -O0
 libelementaries_functions_la_includedir = $(includedir)/elementaries_functions
 libelementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
@@ -1058,6 +1070,17 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libdummy-elementaries_functions.la: $(libdummy_elementaries_functions_la_OBJECTS) $(libdummy_elementaries_functions_la_DEPENDENCIES) 
+	$(F77LINK)  $(libdummy_elementaries_functions_la_LDFLAGS) $(libdummy_elementaries_functions_la_OBJECTS) $(libdummy_elementaries_functions_la_LIBADD) $(LIBS)
 libelementaries_functions.la: $(libelementaries_functions_la_OBJECTS) $(libelementaries_functions_la_DEPENDENCIES) 
 	$(F77LINK) -rpath $(libdir) $(libelementaries_functions_la_LDFLAGS) $(libelementaries_functions_la_OBJECTS) $(libelementaries_functions_la_LIBADD) $(LIBS)
 
@@ -1546,6 +1569,15 @@ libelementaries_functions_la-sci_maxi.lo: sci_gateway/c/sci_maxi.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
+libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libdummy_elementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
+
+libdummy_elementaries_functions_la-comqr3.lo: src/fortran/comqr3.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libdummy_elementaries_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
+
+libdummy_elementaries_functions_la-pade.lo: src/fortran/pade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libdummy_elementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
+
 libelementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
 
@@ -1858,9 +1890,6 @@ libelementaries_functions_la-kronc.lo: src/fortran/kronc.f
 libelementaries_functions_la-ddrdiv.lo: src/fortran/ddrdiv.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-ddrdiv.lo `test -f 'src/fortran/ddrdiv.f' || echo '$(srcdir)/'`src/fortran/ddrdiv.f
 
-libelementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
-
 libelementaries_functions_la-d9knus.lo: src/fortran/d9knus.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-d9knus.lo `test -f 'src/fortran/d9knus.f' || echo '$(srcdir)/'`src/fortran/d9knus.f
 
@@ -2031,9 +2060,6 @@ libelementaries_functions_la-dgamln.lo: src/fortran/dgamln.f
 
 libelementaries_functions_la-xercnt.lo: src/fortran/xercnt.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-xercnt.lo `test -f 'src/fortran/xercnt.f' || echo '$(srcdir)/'`src/fortran/xercnt.f
-
-libelementaries_functions_la-comqr3.lo: src/fortran/comqr3.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
 
 libelementaries_functions_la-orthes.lo: src/fortran/orthes.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-orthes.lo `test -f 'src/fortran/orthes.f' || echo '$(srcdir)/'`src/fortran/orthes.f
@@ -2517,7 +2543,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
-	mostlyclean-am
+	clean-noinstLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -2567,12 +2593,12 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
 	uninstall-libelementaries_functions_la_includeHEADERS
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libLTLIBRARIES clean-libtool ctags distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am \
-	install-libLTLIBRARIES \
+	clean-libLTLIBRARIES clean-libtool clean-noinstLTLIBRARIES \
+	ctags distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-exec install-exec-am install-info \
+	install-info-am install-libLTLIBRARIES \
 	install-libelementaries_functions_la_includeHEADERS \
 	install-man install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \

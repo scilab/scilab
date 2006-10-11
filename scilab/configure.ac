@@ -98,7 +98,6 @@ else
 		 ;;
 		 esac
 fi
-echo "plop $F77"
 
 
 
@@ -547,44 +546,9 @@ fi
 #  fi
 #fi
 
-
-
-
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
 FFLAGS="$FFLAGS -I${SCIDIRFULL}/modules/core/includes"
-
-###################
-## find X11 release
-###################
-
-if test "x$GUI" = "xX11"; then 
-   AC_CACHE_CHECK([for X11 release],ac_cv_X11_release,
-   [
-   cat << EOF > testX11.c
-#include <X11/Xlib.h>
-main()
-{
-#ifdef XlibSpecificationRelease
-if (XlibSpecificationRelease == 5)
-printf("R5\n");
-else if (XlibSpecificationRelease == 6)
-printf("R6\n");
-else
-printf("R?\n");
-#else
-printf("R4\n");
-#endif
-}
-EOF
-	eval "$CC $X_CFLAGS -o testX11 testX11.c > /dev/null 2>&1"
-	ac_cv_X11_release=`./testX11`
-	$RM testX11.c testX11
-	])
-	if test "$ac_cv_X11_release" = R4; then
-	   AC_MSG_ERROR([Scilab cannot be installed with X11R4.])
-	fi
-fi
 
 ##########################################
 ## test for X11 and Xaw3d  Athena widgets
@@ -595,7 +559,6 @@ if test "x$GUI" = "xX11"; then
   if test -n "$x_libraries"; then
     LDFLAGS="$LDFLAGS -L$x_libraries"
   fi
-echo "CFLAGS : $CFLAGS FFLAGS : $FFLAGS"
 ##test Xaw3d (can be build locally)
   if test "$with_local_xaw" = yes; then
     XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
@@ -671,6 +634,10 @@ if test "$with_java" != no; then
 		fi
 	fi
 fi
+
+AC_SUBST(JAVA_JNI_INCLUDE)
+AC_SUBST(JAVA_JNI_LIBS)
+
 AM_CONDITIONAL(JAVA, test "$JAVA_OK" = "1")
 
 ##############################################################
@@ -896,29 +863,6 @@ if test "$with_ocaml" != no; then
    AC_CHECK_PROG_OCAML()
 fi
 
-
-#########################
-## libtool 
-#########################
-
-
-LT_INIT([shared static dlopen win32-dll])
-
-
-# Check to see if building shared libraries
-libtool_build_shared_libs='no'
-if test "$enable_shared" = 'yes'
-then
-  libtool_build_shared_libs='yes'
-fi
-
-# Check to see if building static libraries
-libtool_build_static_libs='no'
-if test "$enable_static" = 'yes'
-then
-  libtool_build_static_libs='yes'
-fi
-
 		
 #################
 ## Man management
@@ -947,7 +891,7 @@ if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
 fi
 
 #######################
-## test for underscores
+## test for underscores (name mangling issues between C and fortran)
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
@@ -962,8 +906,9 @@ AC_ARG_WITH(libxml2,
 		)
 
 if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
+   # Look if xml-config xml2_config (which provides cflags and ldflags) is available
    AC_MSG_CHECKING([libxml2, for xml-config])
-   XML2_CONFIG="$with_libxml2/bin/xml2-config"
+   XML2_CONFIG="$with_libxml2/bin/xml2-config" 
         if test -x "$XML_CONFIG"; then
                 AC_MSG_RESULT([$XML_CONFIG])
         else
@@ -975,10 +920,41 @@ else
 				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check your installation of libxml2])
 		fi
 fi
+# Gets compilation and library flags
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
+
+
+
+#########################
+## libtool 
+#########################
+
+
+LT_INIT([shared static dlopen win32-dll])
+
+
+# Check to see if building shared libraries
+libtool_build_shared_libs='no'
+if test "$enable_shared" = 'yes'
+then
+  libtool_build_shared_libs='yes'
+fi
+
+# Check to see if building static libraries
+libtool_build_static_libs='no'
+if test "$enable_static" = 'yes'
+then
+  libtool_build_static_libs='yes'
+fi
+
 AC_C_CONST()
 AC_C_INLINE()
+
+
+#######################
+###### Creation of the header file (machine.h)
+#######################
 
 AH_TOP([#ifndef MACHINE_H 
 #define MACHINE_H 
@@ -1044,12 +1020,10 @@ AM_CONDITIONAL(GUI_WIN32, test "$GUI" = "WIN32")
 AM_CONDITIONAL(TERM_ZTERM, test "$TERM_NAME" = "zterm")
 AM_CONDITIONAL(TERM_VTE, test "$GUI" = "vte")
 
-
-
 AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/gui/src/c/xsci/ad2c.sh])
 AC_CONFIG_COMMANDS_POST([chmod +x $SCIDIR/modules/scicos/src/c/GenBlocks.sh])
-dnl #########################
 
+dnl #########################
 dnl ## substituting variables
 dnl #########################
 
@@ -1061,8 +1035,6 @@ AC_SUBST(RM)
 AC_SUBST(CC)
 AC_SUBST(CC_OPTIONS)
 AC_SUBST(CC_LDFLAGS)
-
-AC_SUBST(FC)
 
 AC_SUBST(FFLAGS)
 AC_SUBST(FFLAGS1)
@@ -1134,7 +1106,6 @@ AC_SUBST(LIBS)
 AC_SUBST(FLIBS)
 #AC_SUBST(CC)
 AC_SUBST(CFLAGS)
-AC_SUBST(FC_SUBDIR)
 AC_SUBST(BLPR_SCRIPTS)
 AC_SUBST(SED_CYGDRIVE)
 AC_SUBST(EXAMPLES_TESTS)
@@ -1147,9 +1118,6 @@ AC_SUBST(XXTXEXT)
 AC_SUBST(PERIX11NOPT)
 AC_SUBST(GETLIBTK)
 AC_SUBST(MANGENERATOR)
-
-AC_SUBST(JAVA_JNI_INCLUDE)
-AC_SUBST(JAVA_JNI_LIBS)
 
 ## Faudriat mettre -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/ juste dans les modules ou c'est necessaire
 

@@ -67,8 +67,12 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libio_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
-LTLIBRARIES = $(lib_LTLIBRARIES)
-libio_la_DEPENDENCIES = $(top_builddir)/modules/sparse/libsparse.la \
+LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
+libdummy_io_la_LIBADD =
+am_libdummy_io_la_OBJECTS = libdummy_io_la-intmgetl.lo
+libdummy_io_la_OBJECTS = $(am_libdummy_io_la_OBJECTS)
+libio_la_DEPENDENCIES = libdummy-io.la \
+	$(top_builddir)/modules/sparse/libsparse.la \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libio_la-getpidc.lo libio_la-setenvc.lo \
@@ -88,12 +92,13 @@ am__objects_3 = libio_la-sci_execstr.lo libio_la-sci_read4b.lo \
 	libio_la-sci_write4b.lo libio_la-sci_load.lo \
 	libio_la-intfilestat.lo libio_la-sci_unix.lo \
 	libio_la-sci_getf.lo libio_la-sci_oldsave.lo \
-	libio_la-sci_save.lo libio_la-sci_disp.lo
+	libio_la-sci_save.lo libio_la-sci_disp.lo \
+	libio_la-sci_newest.lo
 am__objects_4 = oldloadsave.lo intwrite4b.lo intexec.lo intgetf.lo \
 	intrat.lo intwritb.lo intgetenv.lo intwrite.lo intprint.lo \
 	intdisp.lo intread4b.lo intdeff.lo intlib.lo intgetio.lo \
-	intmgetl.lo intdiary.lo intread.lo intgetpid.lo inthost.lo \
-	intexecstr.lo intreadb.lo intfile.lo
+	intdiary.lo intread.lo intgetpid.lo inthost.lo intexecstr.lo \
+	intreadb.lo intfile.lo
 am_libio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libio_la_OBJECTS = $(am_libio_la_OBJECTS)
@@ -114,8 +119,8 @@ LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
 F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
 	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(libio_la_SOURCES)
-DIST_SOURCES = $(libio_la_SOURCES)
+SOURCES = $(libdummy_io_la_SOURCES) $(libio_la_SOURCES)
+DIST_SOURCES = $(libdummy_io_la_SOURCES) $(libio_la_SOURCES)
 libio_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libio_la_include_HEADERS)
 ETAGS = etags
@@ -157,7 +162,6 @@ EXEEXT = @EXEEXT@
 F77 = @F77@
 FC = @FC@
 FCFLAGS = @FCFLAGS@
-FC_SUBDIR = @FC_SUBDIR@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
@@ -370,7 +374,8 @@ sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
-sci_gateway/c/sci_disp.c
+sci_gateway/c/sci_disp.c \
+sci_gateway/c/sci_newest.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/oldloadsave.f \
 sci_gateway/fortran/intwrite4b.f \
@@ -386,7 +391,6 @@ sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intgetio.f \
-sci_gateway/fortran/intmgetl.f \
 sci_gateway/fortran/intdiary.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intgetpid.f \
@@ -395,6 +399,12 @@ sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
+
+# Disable optimisation of the file intmgetl.f
+noinst_LTLIBRARIES = libdummy-io.la
+libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
+libdummy_io_la_FFLAGS = -O0
+#"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
 libio_la_includedir = $(includedir)/io
 libio_la_include_HEADERS = includes/gw_io.h \
 includes/sci_getrelativefilename.h
@@ -402,7 +412,7 @@ includes/sci_getrelativefilename.h
 libio_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libio.la
 libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libio_la_LIBADD = \
+libio_la_LIBADD = libdummy-io.la \
 	$(top_builddir)/modules/sparse/libsparse.la \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
@@ -468,6 +478,17 @@ clean-libLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libdummy-io.la: $(libdummy_io_la_OBJECTS) $(libdummy_io_la_DEPENDENCIES) 
+	$(F77LINK)  $(libdummy_io_la_LDFLAGS) $(libdummy_io_la_OBJECTS) $(libdummy_io_la_LIBADD) $(LIBS)
 libio.la: $(libio_la_OBJECTS) $(libio_la_DEPENDENCIES) 
 	$(F77LINK) -rpath $(libdir) $(libio_la_LDFLAGS) $(libio_la_OBJECTS) $(libio_la_LIBADD) $(LIBS)
 
@@ -498,6 +519,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_lib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_load.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_mgetl.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_newest.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_oldload.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_oldsave.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libio_la-sci_print.Plo@am__quote@
@@ -787,6 +809,13 @@ libio_la-sci_disp.lo: sci_gateway/c/sci_disp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libio_la_CFLAGS) $(CFLAGS) -c -o libio_la-sci_disp.lo `test -f 'sci_gateway/c/sci_disp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disp.c
 
+libio_la-sci_newest.lo: sci_gateway/c/sci_newest.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libio_la_CFLAGS) $(CFLAGS) -MT libio_la-sci_newest.lo -MD -MP -MF "$(DEPDIR)/libio_la-sci_newest.Tpo" -c -o libio_la-sci_newest.lo `test -f 'sci_gateway/c/sci_newest.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newest.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libio_la-sci_newest.Tpo" "$(DEPDIR)/libio_la-sci_newest.Plo"; else rm -f "$(DEPDIR)/libio_la-sci_newest.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_newest.c' object='libio_la-sci_newest.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libio_la_CFLAGS) $(CFLAGS) -c -o libio_la-sci_newest.lo `test -f 'sci_gateway/c/sci_newest.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newest.c
+
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -795,6 +824,9 @@ libio_la-sci_disp.lo: sci_gateway/c/sci_disp.c
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
+
+libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) $(FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 
 v2unit.lo: src/fortran/v2unit.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o v2unit.lo `test -f 'src/fortran/v2unit.f' || echo '$(srcdir)/'`src/fortran/v2unit.f
@@ -846,9 +878,6 @@ intlib.lo: sci_gateway/fortran/intlib.f
 
 intgetio.lo: sci_gateway/fortran/intgetio.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intgetio.lo `test -f 'sci_gateway/fortran/intgetio.f' || echo '$(srcdir)/'`sci_gateway/fortran/intgetio.f
-
-intmgetl.lo: sci_gateway/fortran/intmgetl.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 
 intdiary.lo: sci_gateway/fortran/intdiary.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdiary.lo `test -f 'sci_gateway/fortran/intdiary.f' || echo '$(srcdir)/'`sci_gateway/fortran/intdiary.f
@@ -1008,7 +1037,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
-	mostlyclean-am
+	clean-noinstLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1058,18 +1087,18 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
 	uninstall-libio_la_includeHEADERS
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libLTLIBRARIES clean-libtool ctags distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am \
-	install-libLTLIBRARIES install-libio_la_includeHEADERS \
-	install-man install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-info-am uninstall-libLTLIBRARIES \
-	uninstall-libio_la_includeHEADERS
+	clean-libLTLIBRARIES clean-libtool clean-noinstLTLIBRARIES \
+	ctags distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-tags distdir dvi dvi-am html \
+	html-am info info-am install install-am install-data \
+	install-data-am install-exec install-exec-am install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libio_la_includeHEADERS install-man install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-info-am \
+	uninstall-libLTLIBRARIES uninstall-libio_la_includeHEADERS
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

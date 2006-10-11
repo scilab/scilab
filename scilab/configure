@@ -855,6 +855,8 @@ IS_SPARC_FALSE
 IS_MIPS_SGI_IRIX_TRUE
 IS_MIPS_SGI_IRIX_FALSE
 JAVAC
+JAVA_JNI_INCLUDE
+JAVA_JNI_LIBS
 JAVA_TRUE
 JAVA_FALSE
 GREP
@@ -871,6 +873,8 @@ OCAMLDEP
 OCAMLTARGET
 OCAMLTARGET_DISTCLEAN
 WITH_OCAML
+WITH
+XML_CONFIG
 AS
 DLLTOOL
 OBJDUMP
@@ -885,8 +889,6 @@ LN_S
 AR
 RANLIB
 lt_ECHO
-WITH
-XML_CONFIG
 GUI_X11_TRUE
 GUI_X11_FALSE
 GUI_WIN32_TRUE
@@ -943,7 +945,6 @@ LIBTOOL_DEPS
 STATIC
 SCIVERSION
 FLIBS
-FC_SUBDIR
 BLPR_SCRIPTS
 SED_CYGDRIVE
 EXAMPLES_TESTS
@@ -955,8 +956,6 @@ XXTXEXT
 PERIX11NOPT
 GETLIBTK
 MANGENERATOR
-JAVA_JNI_INCLUDE
-JAVA_JNI_LIBS
 LIBOBJS
 LTLIBOBJS'
 ac_subst_files=''
@@ -1586,12 +1585,12 @@ Optional Packages:
   --with-tk-library=DIR   Tk library files are in DIR
   --with-tk-include=DIR   Tk include files are in DIR
   --with-atlas-library=DIR  Atlas library files are in DIR and we use Atlas
-  --with-pic              try to use only PIC/non-PIC objects [default=use
-                          both]
-  --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
   --with-sablotron compile man pages with sablotron
   --with-xsltproc  compile man pages with xsltproc
   --with-libxml2=PREFIX    set the path to your libxml2 installation
+  --with-pic              try to use only PIC/non-PIC objects [default=use
+                          both]
+  --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
 
 Some influential environment variables:
   CC          C compiler command
@@ -4105,7 +4104,6 @@ _ACEOF
 		 ;;
 		 esac
 fi
-echo "plop $F77"
 
 
 
@@ -8352,53 +8350,9 @@ fi
 #  fi
 #fi
 
-
-
-
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS -I${SCIDIRFULL}/libs/MALLOC/includes/"
 FFLAGS="$FFLAGS -I${SCIDIRFULL}/modules/core/includes"
-
-###################
-## find X11 release
-###################
-
-if test "x$GUI" = "xX11"; then
-   { echo "$as_me:$LINENO: checking for X11 release" >&5
-echo $ECHO_N "checking for X11 release... $ECHO_C" >&6; }
-if test "${ac_cv_X11_release+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-
-   cat << EOF > testX11.c
-#include <X11/Xlib.h>
-main()
-{
-#ifdef XlibSpecificationRelease
-if (XlibSpecificationRelease == 5)
-printf("R5\n");
-else if (XlibSpecificationRelease == 6)
-printf("R6\n");
-else
-printf("R?\n");
-#else
-printf("R4\n");
-#endif
-}
-EOF
-	eval "$CC $X_CFLAGS -o testX11 testX11.c > /dev/null 2>&1"
-	ac_cv_X11_release=`./testX11`
-	$RM testX11.c testX11
-
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_X11_release" >&5
-echo "${ECHO_T}$ac_cv_X11_release" >&6; }
-	if test "$ac_cv_X11_release" = R4; then
-	   { { echo "$as_me:$LINENO: error: Scilab cannot be installed with X11R4." >&5
-echo "$as_me: error: Scilab cannot be installed with X11R4." >&2;}
-   { (exit 1); exit 1; }; }
-	fi
-fi
 
 ##########################################
 ## test for X11 and Xaw3d  Athena widgets
@@ -8409,7 +8363,6 @@ if test "x$GUI" = "xX11"; then
   if test -n "$x_libraries"; then
     LDFLAGS="$LDFLAGS -L$x_libraries"
   fi
-echo "CFLAGS : $CFLAGS FFLAGS : $FFLAGS"
 ##test Xaw3d (can be build locally)
   if test "$with_local_xaw" = yes; then
     XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
@@ -8842,7 +8795,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 8845 "configure"
+// #line 8798 "configure"
 
 
 public class conftest {
@@ -8892,7 +8845,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 8895 "configure"
+// #line 8848 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -8940,7 +8893,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 8943 "configure"
+// #line 8896 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -8967,7 +8920,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 8970 "configure"
+// #line 8923 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -9459,6 +9412,10 @@ echo "$as_me: WARNING: We do not support $ac_java_jvm_name yet" >&2;}
 		fi
 	fi
 fi
+
+
+
+
 
 
 if test "$JAVA_OK" = "1"; then
@@ -13825,7 +13782,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 13828 "configure"
+#line 13785 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -14171,7 +14128,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 { echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14174 "configure"
+#line 14131 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -14738,6 +14695,452 @@ _ACEOF
 
 
 fi
+
+
+#################
+## Man management
+#################
+
+
+# Check whether --with-sablotron was given.
+if test "${with_sablotron+set}" = set; then
+  withval=$with_sablotron; with_sablotron=$withval
+else
+  with_sablotron=''
+
+fi
+
+
+
+# Check whether --with-xsltproc was given.
+if test "${with_xsltproc+set}" = set; then
+  withval=$with_xsltproc; with_xsltproc=$withval
+else
+  with_xsltproc=''
+
+fi
+
+
+if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
+	{ { echo "$as_me:$LINENO: error: Conflicting options : you specified two xsl compilers (sablotron & sabcmd)" >&5
+echo "$as_me: error: Conflicting options : you specified two xsl compilers (sablotron & sabcmd)" >&2;}
+   { (exit 1); exit 1; }; }
+fi
+
+
+	with=$with_sablotron
+	progname=Sablotron
+	prog=sabcmd
+
+	if test "x$with" != 'x' -a "x$with" != "xyes"; then
+      { echo "$as_me:$LINENO: checking $progname" >&5
+echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
+   MANBIN="$with/bin/$prog"
+        if test -x "$MANBIN"; then
+                { echo "$as_me:$LINENO: result: $MANBIN" >&5
+echo "${ECHO_T}$MANBIN" >&6; }
+        else
+			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
+echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
+else
+	# Extract the first word of "$prog", so it can be a program name with args.
+set dummy $prog; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH"; then
+  ac_cv_prog_WITH="$WITH" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
+fi
+fi
+WITH=$ac_cv_prog_WITH
+if test -n "$WITH"; then
+  { echo "$as_me:$LINENO: result: $WITH" >&5
+echo "${ECHO_T}$WITH" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+	if test "x$WITH" = "xyes"; then
+		MANTARGET=man
+		MANGENERATOR=$prog
+	else
+	if test "x$with" != "x"; then
+				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
+echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+fi
+
+fi
+unset ac_cv_prog_WITH # Void the caching of WITH
+unset WITH
+
+
+if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
+
+	with=$with_xsltproc
+	progname=xsltproc
+	prog=xsltproc
+
+	if test "x$with" != 'x' -a "x$with" != "xyes"; then
+      { echo "$as_me:$LINENO: checking $progname" >&5
+echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
+   MANBIN="$with/bin/$prog"
+        if test -x "$MANBIN"; then
+                { echo "$as_me:$LINENO: result: $MANBIN" >&5
+echo "${ECHO_T}$MANBIN" >&6; }
+        else
+			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
+echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
+else
+	# Extract the first word of "$prog", so it can be a program name with args.
+set dummy $prog; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH"; then
+  ac_cv_prog_WITH="$WITH" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
+fi
+fi
+WITH=$ac_cv_prog_WITH
+if test -n "$WITH"; then
+  { echo "$as_me:$LINENO: result: $WITH" >&5
+echo "${ECHO_T}$WITH" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+	if test "x$WITH" = "xyes"; then
+		MANTARGET=man
+		MANGENERATOR=$prog
+	else
+	if test "x$with" != "x"; then
+				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
+echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
+   { (exit 1); exit 1; }; }
+	fi
+fi
+
+fi
+unset ac_cv_prog_WITH # Void the caching of WITH
+unset WITH
+
+
+fi
+
+#######################
+## test for underscores (name mangling issues between C and fortran)
+#######################
+
+{ echo "$as_me:$LINENO: checking for leading underscores with Fortran" >&5
+echo $ECHO_N "checking for leading underscores with Fortran... $ECHO_C" >&6; }
+cat << EOF > pipof.f
+       subroutine pipof
+       end
+EOF
+
+eval "$F77 -c pipof.f > /dev/null 2>&1"
+
+FC_LEADING_UNDERSCORE=no
+FC_TRAILING_UNDERSCORE=no
+
+output=`nm $NMOPT pipof.o|grep _pipof 2>&1`
+if test ! -z "$output"; then
+  FC_LEADING_UNDERSCORE=yes
+  FC_TRAILING_UNDERSCORE=no
+fi
+
+output=`nm $NMOPT pipof.o|grep pipof_ 2>&1`
+if test ! -z "$output"; then
+  FC_LEADING_UNDERSCORE=no
+  FC_TRAILING_UNDERSCORE=yes
+fi
+
+output=`nm $NMOPT pipof.o|grep _pipof_ 2>&1`
+if test ! -z "$output"; then
+  FC_LEADING_UNDERSCORE=yes
+  FC_TRAILING_UNDERSCORE=yes
+fi
+
+if test "$FC_LEADING_UNDERSCORE" = yes; then
+
+cat >>confdefs.h <<\_ACEOF
+#define WLU
+_ACEOF
+
+fi
+if test "$FC_TRAILING_UNDERSCORE" = yes; then
+
+cat >>confdefs.h <<\_ACEOF
+#define WTU
+_ACEOF
+
+fi
+
+$RM pipof.f pipof.o
+
+{ echo "$as_me:$LINENO: result: $FC_LEADING_UNDERSCORE" >&5
+echo "${ECHO_T}$FC_LEADING_UNDERSCORE" >&6; }
+{ echo "$as_me:$LINENO: checking for trailing underscores with Fortran" >&5
+echo $ECHO_N "checking for trailing underscores with Fortran... $ECHO_C" >&6; }
+{ echo "$as_me:$LINENO: result: $FC_TRAILING_UNDERSCORE" >&5
+echo "${ECHO_T}$FC_TRAILING_UNDERSCORE" >&6; }
+
+#####################
+## test for sharpsign
+#####################
+
+{ echo "$as_me:$LINENO: checking use of the sharpsign in CPP" >&5
+echo $ECHO_N "checking use of the sharpsign in CPP... $ECHO_C" >&6; }
+
+cat >conftest.$ac_ext <<_ACEOF
+
+		/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#define C2F(name) name##_
+int
+main ()
+{
+C2F(toto)()
+
+  ;
+  return 0;
+}
+
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
+  { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest.$ac_objext'
+  { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  { echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6; }
+
+cat >>confdefs.h <<\_ACEOF
+#define CNAME(name1,name2) name1##name2
+_ACEOF
+
+	USE_SHARP_SIGN=yes
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	{ echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+
+cat >>confdefs.h <<\_ACEOF
+#define CNAME(name1,name2) name1/**/name2
+_ACEOF
+
+	USE_SHARP_SIGN=no
+
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+
+## Define  C2F and F2C entry point conversion ##
+if test "$FC_TRAILING_UNDERSCORE" = yes; then
+	if test "$USE_SHARP_SIGN" = yes; then
+	echo "Define C2F with Trailing Underscore and Sharp Sign"
+
+cat >>confdefs.h <<\_ACEOF
+#define C2F(name) name##_
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define F2C(name) name##_
+_ACEOF
+
+	else
+	echo "Define C2F with Trailing Underscore and without Sharp Sign"
+
+cat >>confdefs.h <<\_ACEOF
+#define C2F(name) name/**/_
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define F2C(name) name/**/_
+_ACEOF
+
+	fi
+else
+		echo "Define C2F without Trailing Underscore"
+
+cat >>confdefs.h <<\_ACEOF
+#define C2F(name) name
+_ACEOF
+
+
+cat >>confdefs.h <<\_ACEOF
+#define F2C(name) name
+_ACEOF
+
+fi
+
+
+
+#######################
+## Test for libxml
+#######################
+
+
+# Check whether --with-libxml2 was given.
+if test "${with_libxml2+set}" = set; then
+  withval=$with_libxml2; with_libxml2=$withval
+else
+  with_libxml2='yes'
+
+fi
+
+
+if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
+   # Look if xml-config xml2_config (which provides cflags and ldflags) is available
+   { echo "$as_me:$LINENO: checking libxml2, for xml-config" >&5
+echo $ECHO_N "checking libxml2, for xml-config... $ECHO_C" >&6; }
+   XML2_CONFIG="$with_libxml2/bin/xml2-config"
+        if test -x "$XML_CONFIG"; then
+                { echo "$as_me:$LINENO: result: $XML_CONFIG" >&5
+echo "${ECHO_T}$XML_CONFIG" >&6; }
+        else
+                { { echo "$as_me:$LINENO: error: Unable to find $XML_CONFIG. Please check the path you provided" >&5
+echo "$as_me: error: Unable to find $XML_CONFIG. Please check the path you provided" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
+else
+		for ac_prog in xml2-config
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_XML_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$XML_CONFIG"; then
+  ac_cv_prog_XML_CONFIG="$XML_CONFIG" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_XML_CONFIG="$ac_prog"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+fi
+fi
+XML_CONFIG=$ac_cv_prog_XML_CONFIG
+if test -n "$XML_CONFIG"; then
+  { echo "$as_me:$LINENO: result: $XML_CONFIG" >&5
+echo "${ECHO_T}$XML_CONFIG" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+  test -n "$XML_CONFIG" && break
+done
+test -n "$XML_CONFIG" || XML_CONFIG="no"
+
+		if test "x$XML_CONFIG" = "xno"; then
+				{ { echo "$as_me:$LINENO: error: Unable to find xml2-config in the path. Please check your installation of libxml2" >&5
+echo "$as_me: error: Unable to find xml2-config in the path. Please check your installation of libxml2" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
+fi
+# Gets compilation and library flags
+XML_FLAGS=`$XML_CONFIG --cflags`
+XML_LIBS=`$XML_CONFIG --libs`
+
 
 
 #########################
@@ -15680,13 +16083,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:15683: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:16086: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:15686: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:16089: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:15689: output\"" >&5)
+  (eval echo "\"\$as_me:16092: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -16783,7 +17186,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 16786 "configure"' > conftest.$ac_ext
+  echo '#line 17189 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -18040,11 +18443,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18043: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:18446: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:18047: \$? = $ac_status" >&5
+   echo "$as_me:18450: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -18362,11 +18765,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18365: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:18768: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:18369: \$? = $ac_status" >&5
+   echo "$as_me:18772: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -18467,11 +18870,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18470: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:18873: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:18474: \$? = $ac_status" >&5
+   echo "$as_me:18877: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -18522,11 +18925,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:18525: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:18928: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:18529: \$? = $ac_status" >&5
+   echo "$as_me:18932: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -21414,7 +21817,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 21417 "configure"
+#line 21820 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -21514,7 +21917,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 21517 "configure"
+#line 21920 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -22155,11 +22558,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22158: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22561: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:22162: \$? = $ac_status" >&5
+   echo "$as_me:22565: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -22254,11 +22657,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22257: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22660: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:22261: \$? = $ac_status" >&5
+   echo "$as_me:22664: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -22306,11 +22709,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:22309: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:22712: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:22313: \$? = $ac_status" >&5
+   echo "$as_me:22716: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -24912,11 +25315,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:24915: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25318: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:24919: \$? = $ac_status" >&5
+   echo "$as_me:25322: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -25011,11 +25414,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:25014: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25417: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:25018: \$? = $ac_status" >&5
+   echo "$as_me:25421: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -25063,11 +25466,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:25066: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:25469: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:25070: \$? = $ac_status" >&5
+   echo "$as_me:25473: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -27132,449 +27535,6 @@ then
   libtool_build_static_libs='yes'
 fi
 
-
-#################
-## Man management
-#################
-
-
-# Check whether --with-sablotron was given.
-if test "${with_sablotron+set}" = set; then
-  withval=$with_sablotron; with_sablotron=$withval
-else
-  with_sablotron=''
-
-fi
-
-
-
-# Check whether --with-xsltproc was given.
-if test "${with_xsltproc+set}" = set; then
-  withval=$with_xsltproc; with_xsltproc=$withval
-else
-  with_xsltproc=''
-
-fi
-
-
-if test "x$with_xsltproc" != 'x' -a "x$with_sablotron" != 'x'; then
-	{ { echo "$as_me:$LINENO: error: Conflicting options : you specified two xsl compilers (sablotron & sabcmd)" >&5
-echo "$as_me: error: Conflicting options : you specified two xsl compilers (sablotron & sabcmd)" >&2;}
-   { (exit 1); exit 1; }; }
-fi
-
-
-	with=$with_sablotron
-	progname=Sablotron
-	prog=sabcmd
-
-	if test "x$with" != 'x' -a "x$with" != "xyes"; then
-      { echo "$as_me:$LINENO: checking $progname" >&5
-echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
-   MANBIN="$with/bin/$prog"
-        if test -x "$MANBIN"; then
-                { echo "$as_me:$LINENO: result: $MANBIN" >&5
-echo "${ECHO_T}$MANBIN" >&6; }
-        else
-			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
-echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
-   { (exit 1); exit 1; }; }
-		fi
-else
-	# Extract the first word of "$prog", so it can be a program name with args.
-set dummy $prog; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH"; then
-  ac_cv_prog_WITH="$WITH" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
-fi
-fi
-WITH=$ac_cv_prog_WITH
-if test -n "$WITH"; then
-  { echo "$as_me:$LINENO: result: $WITH" >&5
-echo "${ECHO_T}$WITH" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-	if test "x$WITH" = "xyes"; then
-		MANTARGET=man
-		MANGENERATOR=$prog
-	else
-	if test "x$with" != "x"; then
-				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
-echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
-   { (exit 1); exit 1; }; }
-	fi
-fi
-
-fi
-unset ac_cv_prog_WITH # Void the caching of WITH
-unset WITH
-
-
-if test "x$MANGENERATOR" == 'x' -o "x$with_xsltproc" != 'x'; then
-
-	with=$with_xsltproc
-	progname=xsltproc
-	prog=xsltproc
-
-	if test "x$with" != 'x' -a "x$with" != "xyes"; then
-      { echo "$as_me:$LINENO: checking $progname" >&5
-echo $ECHO_N "checking $progname... $ECHO_C" >&6; }
-   MANBIN="$with/bin/$prog"
-        if test -x "$MANBIN"; then
-                { echo "$as_me:$LINENO: result: $MANBIN" >&5
-echo "${ECHO_T}$MANBIN" >&6; }
-        else
-			                   { { echo "$as_me:$LINENO: error: Unable to find $PROGNAME. Please check the path you provided" >&5
-echo "$as_me: error: Unable to find $PROGNAME. Please check the path you provided" >&2;}
-   { (exit 1); exit 1; }; }
-		fi
-else
-	# Extract the first word of "$prog", so it can be a program name with args.
-set dummy $prog; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH"; then
-  ac_cv_prog_WITH="$WITH" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH" && ac_cv_prog_WITH="no"
-fi
-fi
-WITH=$ac_cv_prog_WITH
-if test -n "$WITH"; then
-  { echo "$as_me:$LINENO: result: $WITH" >&5
-echo "${ECHO_T}$WITH" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-	if test "x$WITH" = "xyes"; then
-		MANTARGET=man
-		MANGENERATOR=$prog
-	else
-	if test "x$with" != "x"; then
-				{ { echo "$as_me:$LINENO: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&5
-echo "$as_me: error: Unable to find $progname in the path. Please check your installation of $progname or try to use the other XSL processor if available" >&2;}
-   { (exit 1); exit 1; }; }
-	fi
-fi
-
-fi
-unset ac_cv_prog_WITH # Void the caching of WITH
-unset WITH
-
-
-fi
-
-#######################
-## test for underscores
-#######################
-
-{ echo "$as_me:$LINENO: checking for leading underscores with Fortran" >&5
-echo $ECHO_N "checking for leading underscores with Fortran... $ECHO_C" >&6; }
-cat << EOF > pipof.f
-       subroutine pipof
-       end
-EOF
-
-eval "FC1=\"$FC\""
-eval "$FC1 -c pipof.f > /dev/null 2>&1"
-
-FC_LEADING_UNDERSCORE=no
-FC_TRAILING_UNDERSCORE=no
-
-output=`nm $NMOPT pipof.o|grep _pipof 2>&1`
-if test ! -z "$output"; then
-  FC_LEADING_UNDERSCORE=yes
-  FC_TRAILING_UNDERSCORE=no
-fi
-
-output=`nm $NMOPT pipof.o|grep pipof_ 2>&1`
-if test ! -z "$output"; then
-  FC_LEADING_UNDERSCORE=no
-  FC_TRAILING_UNDERSCORE=yes
-fi
-
-output=`nm $NMOPT pipof.o|grep _pipof_ 2>&1`
-if test ! -z "$output"; then
-  FC_LEADING_UNDERSCORE=yes
-  FC_TRAILING_UNDERSCORE=yes
-fi
-
-if test "$FC_LEADING_UNDERSCORE" = yes; then
-
-cat >>confdefs.h <<\_ACEOF
-#define WLU
-_ACEOF
-
-fi
-if test "$FC_TRAILING_UNDERSCORE" = yes; then
-
-cat >>confdefs.h <<\_ACEOF
-#define WTU
-_ACEOF
-
-fi
-
-$RM pipof.f pipof.o
-
-{ echo "$as_me:$LINENO: result: $FC_LEADING_UNDERSCORE" >&5
-echo "${ECHO_T}$FC_LEADING_UNDERSCORE" >&6; }
-{ echo "$as_me:$LINENO: checking for trailing underscores with Fortran" >&5
-echo $ECHO_N "checking for trailing underscores with Fortran... $ECHO_C" >&6; }
-{ echo "$as_me:$LINENO: result: $FC_TRAILING_UNDERSCORE" >&5
-echo "${ECHO_T}$FC_TRAILING_UNDERSCORE" >&6; }
-
-#####################
-## test for sharpsign
-#####################
-
-{ echo "$as_me:$LINENO: checking use of the sharpsign in CPP" >&5
-echo $ECHO_N "checking use of the sharpsign in CPP... $ECHO_C" >&6; }
-
-cat >conftest.$ac_ext <<_ACEOF
-
-		/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-#define C2F(name) name##_
-int
-main ()
-{
-C2F(toto)()
-
-  ;
-  return 0;
-}
-
-_ACEOF
-rm -f conftest.$ac_objext
-if { (ac_try="$ac_compile"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_compile") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest.$ac_objext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  { echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6; }
-
-cat >>confdefs.h <<\_ACEOF
-#define CNAME(name1,name2) name1##name2
-_ACEOF
-
-	USE_SHARP_SIGN=yes
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	{ echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-
-cat >>confdefs.h <<\_ACEOF
-#define CNAME(name1,name2) name1/**/name2
-_ACEOF
-
-	USE_SHARP_SIGN=no
-
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-
-## Define  C2F and F2C entry point conversion ##
-if test "$FC_TRAILING_UNDERSCORE" = yes; then
-	if test "$USE_SHARP_SIGN" = yes; then
-	echo "Define C2F with Trailing Underscore and Sharp Sign"
-
-cat >>confdefs.h <<\_ACEOF
-#define C2F(name) name##_
-_ACEOF
-
-
-cat >>confdefs.h <<\_ACEOF
-#define F2C(name) name##_
-_ACEOF
-
-	else
-	echo "Define C2F with Trailing Underscore and without Sharp Sign"
-
-cat >>confdefs.h <<\_ACEOF
-#define C2F(name) name/**/_
-_ACEOF
-
-
-cat >>confdefs.h <<\_ACEOF
-#define F2C(name) name/**/_
-_ACEOF
-
-	fi
-else
-		echo "Define C2F without Trailing Underscore"
-
-cat >>confdefs.h <<\_ACEOF
-#define C2F(name) name
-_ACEOF
-
-
-cat >>confdefs.h <<\_ACEOF
-#define F2C(name) name
-_ACEOF
-
-fi
-
-
-
-#######################
-## Test for libxml
-#######################
-
-
-# Check whether --with-libxml2 was given.
-if test "${with_libxml2+set}" = set; then
-  withval=$with_libxml2; with_libxml2=$withval
-else
-  with_libxml2='yes'
-
-fi
-
-
-if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
-   { echo "$as_me:$LINENO: checking libxml2, for xml-config" >&5
-echo $ECHO_N "checking libxml2, for xml-config... $ECHO_C" >&6; }
-   XML2_CONFIG="$with_libxml2/bin/xml2-config"
-        if test -x "$XML_CONFIG"; then
-                { echo "$as_me:$LINENO: result: $XML_CONFIG" >&5
-echo "${ECHO_T}$XML_CONFIG" >&6; }
-        else
-                { { echo "$as_me:$LINENO: error: Unable to find $XML_CONFIG. Please check the path you provided" >&5
-echo "$as_me: error: Unable to find $XML_CONFIG. Please check the path you provided" >&2;}
-   { (exit 1); exit 1; }; }
-		fi
-else
-		for ac_prog in xml2-config
-do
-  # Extract the first word of "$ac_prog", so it can be a program name with args.
-set dummy $ac_prog; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_XML_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$XML_CONFIG"; then
-  ac_cv_prog_XML_CONFIG="$XML_CONFIG" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_XML_CONFIG="$ac_prog"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-fi
-fi
-XML_CONFIG=$ac_cv_prog_XML_CONFIG
-if test -n "$XML_CONFIG"; then
-  { echo "$as_me:$LINENO: result: $XML_CONFIG" >&5
-echo "${ECHO_T}$XML_CONFIG" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-  test -n "$XML_CONFIG" && break
-done
-test -n "$XML_CONFIG" || XML_CONFIG="no"
-
-		if test "x$XML_CONFIG" = "xno"; then
-				{ { echo "$as_me:$LINENO: error: Unable to find xml2-config in the path. Please check your installation of libxml2" >&5
-echo "$as_me: error: Unable to find xml2-config in the path. Please check your installation of libxml2" >&2;}
-   { (exit 1); exit 1; }; }
-		fi
-fi
-XML_FLAGS=`$XML_CONFIG --cflags`
-XML_LIBS=`$XML_CONFIG --libs`
 { echo "$as_me:$LINENO: checking for an ANSI C-conforming const" >&5
 echo $ECHO_N "checking for an ANSI C-conforming const... $ECHO_C" >&6; }
 if test "${ac_cv_c_const+set}" = set; then
@@ -27786,6 +27746,11 @@ esac
 
 
 
+#######################
+###### Creation of the header file (machine.h)
+#######################
+
+
 
 
 
@@ -27890,10 +27855,6 @@ fi
 
 
 
-
-
-
-
 # for Makemex
 
 
@@ -27926,11 +27887,7 @@ fi
 
 
 
-
 #AC_SUBST(STRIP)
-
-
-
 
 
 
@@ -29253,6 +29210,8 @@ IS_SPARC_FALSE!$IS_SPARC_FALSE$ac_delim
 IS_MIPS_SGI_IRIX_TRUE!$IS_MIPS_SGI_IRIX_TRUE$ac_delim
 IS_MIPS_SGI_IRIX_FALSE!$IS_MIPS_SGI_IRIX_FALSE$ac_delim
 JAVAC!$JAVAC$ac_delim
+JAVA_JNI_INCLUDE!$JAVA_JNI_INCLUDE$ac_delim
+JAVA_JNI_LIBS!$JAVA_JNI_LIBS$ac_delim
 JAVA_TRUE!$JAVA_TRUE$ac_delim
 JAVA_FALSE!$JAVA_FALSE$ac_delim
 GREP!$GREP$ac_delim
@@ -29269,6 +29228,8 @@ OCAMLDEP!$OCAMLDEP$ac_delim
 OCAMLTARGET!$OCAMLTARGET$ac_delim
 OCAMLTARGET_DISTCLEAN!$OCAMLTARGET_DISTCLEAN$ac_delim
 WITH_OCAML!$WITH_OCAML$ac_delim
+WITH!$WITH$ac_delim
+XML_CONFIG!$XML_CONFIG$ac_delim
 AS!$AS$ac_delim
 DLLTOOL!$DLLTOOL$ac_delim
 OBJDUMP!$OBJDUMP$ac_delim
@@ -29283,8 +29244,6 @@ LN_S!$LN_S$ac_delim
 AR!$AR$ac_delim
 RANLIB!$RANLIB$ac_delim
 lt_ECHO!$lt_ECHO$ac_delim
-WITH!$WITH$ac_delim
-XML_CONFIG!$XML_CONFIG$ac_delim
 GUI_X11_TRUE!$GUI_X11_TRUE$ac_delim
 GUI_X11_FALSE!$GUI_X11_FALSE$ac_delim
 GUI_WIN32_TRUE!$GUI_WIN32_TRUE$ac_delim
@@ -29339,8 +29298,6 @@ MANTARGET!$MANTARGET$ac_delim
 LIBM!$LIBM$ac_delim
 LIBTOOL_DEPS!$LIBTOOL_DEPS$ac_delim
 STATIC!$STATIC$ac_delim
-SCIVERSION!$SCIVERSION$ac_delim
-FLIBS!$FLIBS$ac_delim
 _ACEOF
 
   if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 97; then
@@ -29382,7 +29339,8 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
-FC_SUBDIR!$FC_SUBDIR$ac_delim
+SCIVERSION!$SCIVERSION$ac_delim
+FLIBS!$FLIBS$ac_delim
 BLPR_SCRIPTS!$BLPR_SCRIPTS$ac_delim
 SED_CYGDRIVE!$SED_CYGDRIVE$ac_delim
 EXAMPLES_TESTS!$EXAMPLES_TESTS$ac_delim
@@ -29394,13 +29352,11 @@ XXTXEXT!$XXTXEXT$ac_delim
 PERIX11NOPT!$PERIX11NOPT$ac_delim
 GETLIBTK!$GETLIBTK$ac_delim
 MANGENERATOR!$MANGENERATOR$ac_delim
-JAVA_JNI_INCLUDE!$JAVA_JNI_INCLUDE$ac_delim
-JAVA_JNI_LIBS!$JAVA_JNI_LIBS$ac_delim
 LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 16; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 15; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

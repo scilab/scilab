@@ -60,7 +60,6 @@ sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intgetio.f \
-sci_gateway/fortran/intmgetl.f \
 sci_gateway/fortran/intdiary.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intgetpid.f \
@@ -68,6 +67,13 @@ sci_gateway/fortran/inthost.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
+
+# Disable optimisation of the file intmgetl.f
+noinst_LTLIBRARIES = libdummy-io.la
+libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
+libdummy_io_la_FFLAGS = -O0
+#"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
+
 
 libio_la_includedir=$(includedir)/io
 
@@ -80,7 +86,7 @@ lib_LTLIBRARIES = libio.la
 
 libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
-libio_la_LIBADD = \
+libio_la_LIBADD = libdummy-io.la \
 	$(top_builddir)/modules/sparse/libsparse.la \
 	$(top_builddir)/modules/fileio/libfileio.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la

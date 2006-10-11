@@ -116,7 +116,6 @@ src/fortran/wscal.f \
 src/fortran/dlblks.f \
 src/fortran/kronc.f \
 src/fortran/ddrdiv.f \
-src/fortran/hqror2.f \
 src/fortran/d9knus.f \
 src/fortran/dbdiff.f \
 src/fortran/d9lgmc.f \
@@ -174,7 +173,6 @@ src/fortran/rea2db.f \
 src/fortran/wdpow.f \
 src/fortran/dgamln.f \
 src/fortran/xercnt.f \
-src/fortran/comqr3.f \
 src/fortran/orthes.f \
 src/fortran/wnrm2.f \
 src/fortran/dgefa.f \
@@ -341,6 +339,18 @@ sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
+
+
+
+# Disable optimisation of the file hqror2.f comqr3.f pade.f 
+noinst_LTLIBRARIES = libdummy-elementaries_functions.la
+libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
+	src/fortran/comqr3.f \
+	src/fortran/pade.f \
+	src/fortran/unsfdcopy.f \
+	src/fortran/icopy.f
+
+libdummy_elementaries_functions_la_FFLAGS = -O0
 
 libelementaries_functions_la_includedir=$(includedir)/elementaries_functions
 

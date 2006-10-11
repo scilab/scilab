@@ -281,6 +281,7 @@ liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 noinst_LTLIBRARIES = libdummy-lapack.la
 libdummy_lapack_la_SOURCES = dlamch.f
 libdummy_lapack_la_FFLAGS = -O0
+#"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
 
 liblapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la 
