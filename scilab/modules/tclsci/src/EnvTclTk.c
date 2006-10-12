@@ -44,7 +44,7 @@ BOOL Set_TCL_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-5.0\modules\tclsci\tcl\tcl8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		fprintf(stderr,"\n%s%s%s.\n",TCL_ERROR35,TCL_ERROR37,DefaultPath);
+		fprintf(stderr,"\n%s\n%s%s.\n",TCL_ERROR35,TCL_ERROR37,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
@@ -94,7 +94,7 @@ BOOL Set_TK_LIBRARY_PATH(char *DefaultPath)
 	/* c:\progra~1\scilab-3.1\modules\tclsci\tcl\tk8.4 */
 	if (GetShortPathName(DefaultPath,ShortPath,MAX_PATH)==0)
 	{
-		fprintf(stderr,"\n%s%s%s.\n",TCL_ERROR35,TCL_ERROR38,DefaultPath);
+		fprintf(stderr,"\n%s\n%s%s.\n",TCL_ERROR36,TCL_ERROR38,DefaultPath);
 		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
 
 		ConvertPathUnixToWindowsFormat(ShortPath,CopyOfDefaultPath);
