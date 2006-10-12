@@ -65,7 +65,7 @@
     This function will determine the correct semantic at run time (axis
     <VERB>fill</VERB>, axis <VERB>image</VERB> and axis <VERB>normal</VERB>
     are not implemented). If you want to have a more efficient code it is
-    possible to replace <VERB>mtlb_fft</VERB> call by <VERB>get(axeshandle,
+    possible to replace <VERB>mtlb_axis</VERB> call by <VERB>get(axeshandle,
     prop)</VERB> call (prop is a axes property, see
     <LINK>axis_properties</LINK>)</P>
 

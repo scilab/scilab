@@ -86,7 +86,7 @@
     when it was not possible to know what were the inputs while porting Matlab
     code to Scilab. This function will determine the correct semantic at run
     time. If you want to have a more efficient code it is possible to replace
-    <VERB>mtlb_fft</VERB> call:</P>
+    <VERB>mtlb_legendre</VERB> call:</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM>

@@ -7,7 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE> October 2006</DATE>
+  <DATE>October 2006</DATE>
 
   <SHORT_DESCRIPTION name="cell">create a struct</SHORT_DESCRIPTION>
 
@@ -30,7 +30,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: all data type (double, char, int, ...), represents the fields
-          values </SP>
+          values</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -50,7 +50,8 @@ date.month='AUG';
 date.year=1973;
 //change the day
 date.day=19;
-
+// add a new field
+date.semaine=32
 
 
   ]]></EXAMPLE>
