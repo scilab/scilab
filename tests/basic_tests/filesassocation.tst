@@ -5,6 +5,18 @@
 //---------------------------------------------------------------------------------
 global LANGUAGE;
 //---------------------------------------------------------------------------------
+v=getversion('scilab');
+
+if (v(4)<>0) then
+ VERSTRING='Scilab '+string(v(1))+'.'+string(v(2))+'.'+string(v(3))+'.'+string(v(4));
+else
+ if (v(3)<>0) then
+	VERSTRING='Scilab '+string(v(1))+'.'+string(v(2))+'.'+string(v(3));
+ else
+	VERSTRING='Scilab '+string(v(1))+'.'+string(v(2));
+ end
+end
+// ============================================================
 function [PathOut,OptionsOut]=GetPathAndOptionsInThisString(StringIn)
   IndexGuillemets=strindex(StringIn,'""');
   PathOut=part(StringIn,[IndexGuillemets(1)+1:IndexGuillemets(2)-1]); 
@@ -29,9 +41,9 @@ end;
 clear SCE1DIA PATHSCE1DIA OPTIONSSCE1DIA OPTIONSSCE1REF;
 //---------------------------------------------------------------------------------
 if (LANGUAGE=='fr') then
-  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Executer avec '+getversion()+'\command');
+  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Executer avec '+VERSTRING+'\command');
 else
-  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Run with '+getversion()+'\command');
+  SCE2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCE_scilab_file\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHSCE2DIA,OPTIONSSCE2DIA]=GetPathAndOptionsInThisString(SCE2DIA);
 OPTIONSSCE2REF='""'+' -X ""%1""'; 
@@ -69,9 +81,9 @@ end;
 clear SCI1DIA PATHSCI1DIA OPTIONSSCI1DIA OPTIONSSCI1REF;
 //---------------------------------------------------------------------------------
 if (LANGUAGE=='fr') then
-  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Executer avec '+getversion()+'\command');
+  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Executer avec '+VERSTRING+'\command');
 else
-  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Run with '+getversion()+'\command');
+  SCI2DIA=winqueryreg('HKEY_CLASSES_ROOT','SCI_scilab_file\shell\Run with '+VERSTRING+'\command');
 end
 [PATHSCI2DIA,OPTIONSSCI2DIA]=GetPathAndOptionsInThisString(SCI2DIA);
 OPTIONSSCI2REF='""'+' -X ""%1""'; 
@@ -109,9 +121,9 @@ end;
 clear TST1DIA PATHTST1DIA OPTIONSTST1DIA OPTIONSTST1REF;
 //---------------------------------------------------------------------------------
 if (LANGUAGE=='fr') then
-  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Executer avec '+getversion()+'\command');
+  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Executer avec '+VERSTRING+'\command');
 else
-  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Run with '+getversion()+'\command');
+  TST2DIA=winqueryreg('HKEY_CLASSES_ROOT','TST_scilab_file\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHTST2DIA,OPTIONSTST2DIA]=GetPathAndOptionsInThisString(TST2DIA);
 OPTIONSTST2REF='""'+' -X ""%1""'; 
@@ -149,9 +161,9 @@ end;
 clear DEM1DIA PATHDEM1DIA OPTIONSDEM1DIA OPTIONSDEM1REF;
 //---------------------------------------------------------------------------------
 if (LANGUAGE=='fr') then
-  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Executer avec '+getversion()+'\command');
+  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Executer avec '+VERSTRING+'\command');
 else
-  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Run with '+getversion()+'\command');
+  DEM2DIA=winqueryreg('HKEY_CLASSES_ROOT','DEM_scilab_file\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHDEM2DIA,OPTIONSDEM2DIA]=GetPathAndOptionsInThisString(DEM2DIA);
 OPTIONSDEM2REF='""'+' -X ""%1""'; 
@@ -230,24 +242,14 @@ else
   disp('bin not associate (Default)');  
 end;
 //---------------------------------------------------------------------------------  
-if %scicos then
-  if ( (NBRTESTOK==17) | (NBRTESTOK==18) | (NBRTESTOK==19) ) then
-    disp('Entries in Regitry OK (Not Default Installation)');
-  else
-    disp('Entries in Regitry NOK');
-    pause;
-  end
-else
-  if ( (NBRTESTOK==14) | (NBRTESTOK==15) | (NBRTESTOK==16) ) then
-    if (NBRTESTOK==14) then
+if ( (NBRTESTOK==14) | (NBRTESTOK==15) | (NBRTESTOK==16) ) then
+  if (NBRTESTOK==14) then
       disp('Entries in Regitry OK (Default Installation)');
     else
       disp('Entries in Regitry OK (Not Default Installation)');
-    end
-  else
-    disp('Entries in Regitry NOK');
-    pause;
   end
+else
+    disp('Entries in Regitry NOK');
 end
 //---------------------------------------------------------------------------------  
 clear GetPathAndOptionsInThisString PATHREF;
