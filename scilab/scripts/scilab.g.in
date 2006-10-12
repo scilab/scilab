@@ -137,11 +137,38 @@ do_print()
 do_save() 
 {
 	case $3 in 
-          Postscript)
-		$SCI/bin/BEpsf $1 $2 
-          	 ;;
+           Postscript)
+		
+                wantedName=$2.eps #add a .eps because BEpsf will do it wrong
+                mv $2 $wantedName
+                
+                $SCI/bin/BEpsf $1 $wantedName
+                rm -f $wantedName.temp 1> /dev/null  2>&1
+                ;;
           Postscript-Latex)
-		$SCI/bin/Blatexpr $1 1.0 1.0 $2 
+
+                wantedEpsName=$2.eps
+                newEps=$(echo $2 | cut -d . -f1).eps
+                # move the file in case BEpsf will destroy it
+                mv $newEps $newEps.scilab.temp 1> /dev/null  2>&1
+
+                wantedTexName=$2.tex
+                newTex=$(echo $2 | cut -d . -f1).tex # get the name created by Blatexpr
+                # move the file in case BEpsf will destroy it
+                mv $newTex $newTex.scilab.temp 1> /dev/null  2>&1
+
+		$SCI/bin/Blatexpr $1 1.0 1.0 $2
+                
+                if test $newEps != $wantedEpsName ; then
+                        mv $newEps $wantedEpsName
+                        mv $newEps.scilab.temp $newEps 1> /dev/null  2>&1 #move the temp file back
+                fi
+
+                
+                if test $newTex != $wantedTexName ; then
+                        mv $newTex $wantedTexName
+                        mv $newTex.scilab.temp $newTex 1> /dev/null  2>&1 #move the temp file back
+                fi
 	   	;;
 	  Xfig)
 		case $1 in
