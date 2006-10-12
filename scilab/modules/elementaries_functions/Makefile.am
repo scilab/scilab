@@ -12,7 +12,7 @@ src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c 
 
-ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = src/fortran/unsfdcopy.f \
+ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
@@ -45,7 +45,6 @@ src/fortran/dbsi0e.f \
 src/fortran/dsum.f \
 src/fortran/dbesj1.f \
 src/fortran/dbsk0e.f \
-src/fortran/pade.f \
 src/fortran/urand.f \
 src/fortran/intp.f \
 src/fortran/watan.f \
@@ -213,7 +212,6 @@ src/fortran/dbkisr.f \
 src/fortran/dhkseq.f \
 src/fortran/dwpow1.f \
 src/fortran/gamma.f \
-src/fortran/icopy.f \
 src/fortran/zbesig.f \
 src/fortran/wmul.f \
 src/fortran/zexp.f \
@@ -366,6 +364,7 @@ lib_LTLIBRARIES = libelementaries_functions.la
 libelementaries_functions_la_SOURCES = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 libelementaries_functions_la_LIBADD = \
+	libdummy-elementaries_functions.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la

@@ -72,10 +72,13 @@ libdummy_elementaries_functions_la_LIBADD =
 am_libdummy_elementaries_functions_la_OBJECTS =  \
 	libdummy_elementaries_functions_la-hqror2.lo \
 	libdummy_elementaries_functions_la-comqr3.lo \
-	libdummy_elementaries_functions_la-pade.lo
+	libdummy_elementaries_functions_la-pade.lo \
+	libdummy_elementaries_functions_la-unsfdcopy.lo \
+	libdummy_elementaries_functions_la-icopy.lo
 libdummy_elementaries_functions_la_OBJECTS =  \
 	$(am_libdummy_elementaries_functions_la_OBJECTS)
 libelementaries_functions_la_DEPENDENCIES =  \
+	libdummy-elementaries_functions.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
@@ -87,8 +90,7 @@ am__objects_1 = libelementaries_functions_la-sci_tools.lo \
 	libelementaries_functions_la-xerhlt.lo \
 	libelementaries_functions_la-vfloor.lo \
 	libelementaries_functions_la-vfrexp.lo
-am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
-	libelementaries_functions_la-psi.lo \
+am__objects_2 = libelementaries_functions_la-psi.lo \
 	libelementaries_functions_la-wasum.lo \
 	libelementaries_functions_la-dexpm1.lo \
 	libelementaries_functions_la-idmin.lo \
@@ -120,7 +122,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-dsum.lo \
 	libelementaries_functions_la-dbesj1.lo \
 	libelementaries_functions_la-dbsk0e.lo \
-	libelementaries_functions_la-pade.lo \
 	libelementaries_functions_la-urand.lo \
 	libelementaries_functions_la-intp.lo \
 	libelementaries_functions_la-watan.lo \
@@ -288,7 +289,6 @@ am__objects_2 = libelementaries_functions_la-unsfdcopy.lo \
 	libelementaries_functions_la-dhkseq.lo \
 	libelementaries_functions_la-dwpow1.lo \
 	libelementaries_functions_la-gamma.lo \
-	libelementaries_functions_la-icopy.lo \
 	libelementaries_functions_la-zbesig.lo \
 	libelementaries_functions_la-wmul.lo \
 	libelementaries_functions_la-zexp.lo \
@@ -658,7 +658,7 @@ src/c/xerhlt.c \
 src/c/vfloor.c \
 src/c/vfrexp.c 
 
-ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = src/fortran/unsfdcopy.f \
+ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
 src/fortran/wasum.f \
 src/fortran/dexpm1.f \
@@ -691,7 +691,6 @@ src/fortran/dbsi0e.f \
 src/fortran/dsum.f \
 src/fortran/dbesj1.f \
 src/fortran/dbsk0e.f \
-src/fortran/pade.f \
 src/fortran/urand.f \
 src/fortran/intp.f \
 src/fortran/watan.f \
@@ -859,7 +858,6 @@ src/fortran/dbkisr.f \
 src/fortran/dhkseq.f \
 src/fortran/dwpow1.f \
 src/fortran/gamma.f \
-src/fortran/icopy.f \
 src/fortran/zbesig.f \
 src/fortran/wmul.f \
 src/fortran/zexp.f \
@@ -990,7 +988,9 @@ sci_gateway/fortran/sci_f_exp.f
 noinst_LTLIBRARIES = libdummy-elementaries_functions.la
 libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/comqr3.f \
-	src/fortran/pade.f
+	src/fortran/pade.f \
+	src/fortran/unsfdcopy.f \
+	src/fortran/icopy.f
 
 libdummy_elementaries_functions_la_FFLAGS = -O0
 libelementaries_functions_la_includedir = $(includedir)/elementaries_functions
@@ -1003,6 +1003,7 @@ libelementaries_functions_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/in
 lib_LTLIBRARIES = libelementaries_functions.la
 libelementaries_functions_la_SOURCES = $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libelementaries_functions_la_LIBADD = \
+	libdummy-elementaries_functions.la \
 	$(top_builddir)/modules/cacsd/libcacsd.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
@@ -1578,8 +1579,11 @@ libdummy_elementaries_functions_la-comqr3.lo: src/fortran/comqr3.f
 libdummy_elementaries_functions_la-pade.lo: src/fortran/pade.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libdummy_elementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
-libelementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
+libdummy_elementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libdummy_elementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
+
+libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libdummy_elementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
 
 libelementaries_functions_la-psi.lo: src/fortran/psi.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-psi.lo `test -f 'src/fortran/psi.f' || echo '$(srcdir)/'`src/fortran/psi.f
@@ -1676,9 +1680,6 @@ libelementaries_functions_la-dbesj1.lo: src/fortran/dbesj1.f
 
 libelementaries_functions_la-dbsk0e.lo: src/fortran/dbsk0e.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-dbsk0e.lo `test -f 'src/fortran/dbsk0e.f' || echo '$(srcdir)/'`src/fortran/dbsk0e.f
-
-libelementaries_functions_la-pade.lo: src/fortran/pade.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
 
 libelementaries_functions_la-urand.lo: src/fortran/urand.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-urand.lo `test -f 'src/fortran/urand.f' || echo '$(srcdir)/'`src/fortran/urand.f
@@ -2180,9 +2181,6 @@ libelementaries_functions_la-dwpow1.lo: src/fortran/dwpow1.f
 
 libelementaries_functions_la-gamma.lo: src/fortran/gamma.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-gamma.lo `test -f 'src/fortran/gamma.f' || echo '$(srcdir)/'`src/fortran/gamma.f
-
-libelementaries_functions_la-icopy.lo: src/fortran/icopy.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
 
 libelementaries_functions_la-zbesig.lo: src/fortran/zbesig.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libelementaries_functions_la_FFLAGS) $(FFLAGS) -c -o libelementaries_functions_la-zbesig.lo `test -f 'src/fortran/zbesig.f' || echo '$(srcdir)/'`src/fortran/zbesig.f
