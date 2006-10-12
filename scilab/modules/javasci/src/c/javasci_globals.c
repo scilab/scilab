@@ -56,6 +56,7 @@ void Initialize()
 		else
 		{
 			char *p;
+			MessageBox(NULL,modname,modname,MB_OK);
 			if ((p = strrchr (modname, '\\')) == NULL) exit(1); /* remove \javasci.dll from modname */
 			else
 			{
@@ -64,6 +65,7 @@ void Initialize()
 				else
 				{
 					*p='\0';
+					MessageBox(NULL,modname,modname,MB_OK);
 					set_sci_env(modname);
 				}
 			}
@@ -71,7 +73,10 @@ void Initialize()
     }
     else 
 	{
-		set_sci_env(p1);
+		char *pathSCI=(char*)MALLOC((strlen(p1)+1)*sizeof(char));
+		sprintf(pathSCI,"%s",p1);
+		set_sci_env(pathSCI);
+		if (pathSCI) {FREE(pathSCI);pathSCI=NULL;}
 	}
   #else
    if (p1==NULL)
@@ -79,7 +84,7 @@ void Initialize()
    	fprintf(stderr,"Please define SCI environment variable\n");
    	sprintf (env, "%s=%s", "SCI",SCI);
 	setSCIpath(SCI);
-		putenv (env);
+	putenv (env);
    }
   #endif
   /* set TMPDIR */
