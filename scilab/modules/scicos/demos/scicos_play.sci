@@ -1,7 +1,7 @@
 function scicos_play(fil)
 // Copyright INRIA
 funcprot(0)
-load SCI/modules/scicos/macros/scicos/lib
+load SCI/modules/scicos/macros/lib
 
 global LineCount
 
@@ -99,10 +99,10 @@ deff('GrabPalette_()',..
       'xinit(fname)';
       'xtape(''replay'',c_w);xend();driver(dr)'
       'if MSDOS then'
-      '  comm=pathconvert(SCI+''\bin\BEpsf'',%f,%f,''w'')'
+      '  comm=pathconvert(SCI+''\tools\printer\BEpsf'',%f,%f,''w'')'
       '  rep=unix_g('''''"''+comm+'''''" ''+fname)'
       'else'
-      '  rep=unix_g(SCI+''/bin/BEpsf ''+fname)'
+      '  rep=unix_g(SCI+''/tools/printer/BEpsf ''+fname)'
       'end'
       'txt2=x_dialog([''Enter caption''],'''');'
       'txti=[''\begin{figure}\begin{center}'';''\fbox{\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
@@ -120,10 +120,10 @@ deff('GrabScope_()',..
       'xinit(fname)';
       'xtape(''replay'',c_w);xend();driver(dr)'
       'if MSDOS then'
-      '  comm=pathconvert(SCI+''\bin\BEpsf'',%f,%f,''w'')'
+      '  comm=pathconvert(SCI+''\tools\printer\BEpsf'',%f,%f,''w'')'
       '  rep=unix_g('''''"''+comm+'''''" ''+fname)'
       'else'
-      '  rep=unix_g(SCI+''/bin/BEpsf ''+fname)'
+      '  rep=unix_g(SCI+''/tools/printer/BEpsf ''+fname)'
       'end'
       'txt2=x_dialog([''Enter caption''],'''');'
       'txti=[''\begin{figure}\begin{center}'';''\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
@@ -139,7 +139,7 @@ deff('Comment_()',..
 
 
 
-getf('SCI/demos/scicos/dialogs_play.sci')
+getf('SCI/modules/scicos/demos/dialogs_play.sci')
 execstr('tk_getfile=xgetfile')
 execstr('tk_savefile=xgetfile')
 tk_getcolor=getcolor
