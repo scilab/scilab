@@ -128,16 +128,20 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
   *nbuf = strlen(buf);
   return 0;
 }
+
+
 /*************************************************************************************************/
 
 /**
- * Get the SCI path and initialize the scilab environement path
+ * Set the SCI path and initialize the scilab environement path
  *
  */
-int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
+int SetSci()
 {
-	int ierr,iflag=0,l1buf=lbuf;
-	C2F(getenvc)(&ierr,"SCI",buf,&l1buf,&iflag);
+	int ierr,iflag=0;
+	int lbuf=PATH_MAX;
+	char *buf=MALLOC(PATH_MAX*sizeof(char));
+	C2F(getenvc)(&ierr,"SCI",buf,&lbuf,&iflag);
 
 	if ( ierr== 1) 
 	{
@@ -149,6 +153,20 @@ int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 		exit(1);
 	}
 	setSCIpath(buf);
+	return 0;
+}
+
+/*************************************************************************************************/
+
+/**
+ * Get the SCI path and initialize the scilab environement path
+ *
+ */
+int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
+{
+	SetSci();
+	strcpy(buf,getSCIpath());
+
 	*nbuf = strlen(buf);
 	return 0;
 }
