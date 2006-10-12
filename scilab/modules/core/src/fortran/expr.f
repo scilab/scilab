@@ -260,7 +260,7 @@ c          . logical expression evaluation shortcircuit
 c     .             first term is false there is no use to evaluate the other
                     ids(1,pt)=1
 c     .             err1 <>0 sets interpretation without evaluation
-                    err1=1
+                    err1=9191919
                   endif
                 endif
             endif
