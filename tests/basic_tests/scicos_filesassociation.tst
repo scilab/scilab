@@ -6,8 +6,20 @@
 // 
 // Test file association for scicos ( cos, cosf )
 // ============================================================
-
 global LANGUAGE;
+// ============================================================
+v=getversion('scilab');
+
+if (v(4)<>0) then
+ VERSTRING='Scilab '+string(v(1))+'.'+string(v(2))+'.'+string(v(3))+'.'+string(v(4));
+else
+ if (v(3)<>0) then
+	VERSTRING='Scilab '+string(v(1))+'.'+string(v(2))+'.'+string(v(3));
+ else
+	VERSTRING='Scilab '+string(v(1))+'.'+string(v(2));
+ end
+end
+// ============================================================
 
 function [PathOut,OptionsOut]=GetPathAndOptionsInThisString(StringIn)
 	IndexGuillemets=strindex(StringIn,'""');
@@ -23,9 +35,9 @@ NBRTESTOK=0;
 // ============================================================
 
 if (LANGUAGE=='fr') then
-	SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Executer avec '+getversion()+'\command');
+	SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Executer avec '+VERSTRING+'\command');
 else
-	SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Run with '+getversion()+'\command');
+	SCICOS1DIA=winqueryreg('HKEY_CLASSES_ROOT','COS_scilab_file\shell\Run with '+VERSTRING+'\command');
 end
 [PATHSCICOS1DIA,OPTIONSSCICOS1DIA]=GetPathAndOptionsInThisString(SCICOS1DIA);
 OPTIONSSCICOS1REF='""'+' -X ""%1""'; 
@@ -55,9 +67,9 @@ clear SCICOS2DIA PATHSCICOS2DIA OPTIONSSCICOS2DIA OPTIONSSCICOS2REF;
 // ============================================================
 
 if (LANGUAGE=='fr') then
-	SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Executer avec '+getversion()+'\command');
+	SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Executer avec '+VERSTRING+'\command');
 else
-	SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Run with '+getversion()+'\command');
+	SCICOS3DIA=winqueryreg('HKEY_CLASSES_ROOT','COSF_scilab_file\shell\Run with '+VERSTRING+'\command');
 end  
 [PATHSCICOS3DIA,OPTIONSSCICOS3DIA]=GetPathAndOptionsInThisString(SCICOS3DIA);
 OPTIONSSCICOS3REF='""'+' -X ""%1""'; 
