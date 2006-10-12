@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>mtlb_sort</TITLE>
+
+  <TYPE>Fonction M2SCI</TYPE>
+
+  <DATE>October 2006</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_sort">Fonction d'émulation de la fonction
+  Matlab sort</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>P = mtlb_sort(X)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>P = mtlb_sort(X,dim[,mode])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: un scalaire, un vecteur, une matrice ou hypermatrice
+          d'elements compris dans [-1 1]un scalaire, un vecteur ou une matrice
+          de réels, de booléens ou une string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>ndim</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: un entier positif</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>mode</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>:une chaine de caracteres (<VERB>"ascend"</VERB> or
+          <VERB>"descend"</VERB>) </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>sort</VERB> de
+    Matlab et la fonction <VERB>gsort</VERB> de Scilab se comportent
+    différemment :</P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM>
+        <ITEMIZE>
+          <ITEM>
+            <SP>Si <VERB>X</VERB> est un vecteur alors l'appel de la fonction
+            <VERB>sort(X) </VERB>de Matlab est équivalent à l'appel de la
+            fonction <VERB>sort(X,'g','i')</VERB> de Scilab. </SP>
+          </ITEM>
+
+          <ITEM>
+            <SP><VERB>dim=1</VERB> (resp. <VERB>2</VERB>) de Matlab est
+            equivalent au flag <VERB>'r'</VERB> (resp.<VERB> 'c'</VERB>) de
+            Scilab.</SP>
+          </ITEM>
+
+          <ITEM>
+            <SP><VERB>mode="ascend"</VERB> (resp. <VERB>"descend"</VERB>) est
+            équivalent au flag <VERB>'i'</VERB> (resp <VERB>'d'</VERB>) de
+            Scilab.</SP>
+          </ITEM>
+        </ITEMIZE>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>La fonction <VERB>mtlb_sort(X,dim[,mode])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>sort(X,dim[,mode])</VERB>
+    quand il n'était pas possible de savoir ce qu'étaient les paramètres
+    d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette
+    fonction va déterminer la sémantique correcte pendant l'exécution. Pour
+    obtenir un code plus performant on peut remplacer les appels à
+    <VERB>mtlb_sort</VERB> par des appels <LINK>gsort</LINK>.</P>
+
+    <P>Attention : <VERB>mtlb_sort</VERB> ne doit pas être utilisée pour une
+    programmation manuelle.</P>
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>F.B.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

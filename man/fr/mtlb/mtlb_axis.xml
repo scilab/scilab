@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>mtlb_axis</TITLE>
+
+  <TYPE>Fonction M2SCI</TYPE>
+
+  <DATE>October 2006</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_axis">Fonction d'émulation de la fonction
+  Matlab axis</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mtlb_axis(X)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>mtlb_axis(st)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>mtlb_axis(axeshandle, ...)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[mode,visibility,direction]=mtlb_axis('state')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>X</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: un vecteur de réels ([xmin xmax ymin ymax] ou [xmin xmax ymin
+          ymax zmin zmax])</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>st</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: une chaine de caractères ('auto', 'manual', 'tight', 'ij',
+          'xy', 'equal', 'square', 'vis3d', 'off', 'on')</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>axeshandle</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>:handle sur l'axe courant</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>La fonction Matlab<VERB> axis</VERB> n'a pas de fonction Scilab
+    équivalente :</P>
+
+    <P>La fonction <VERB>mtlb_axis(n,X[,normflag])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>axis(...)</VERB> quand il
+    n'était pas possible de savoir ce qu'étaient les paramètres d'entrée
+    pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution.
+    (<VERB>'fill'</VERB> , <VERB>'image' </VERB> et <VERB>'normal'</VERB> ne
+    sont pas implémentés).Pour obtenir un code plus performant on peut
+    remplacer les appels à <VERB>mtlb_axis</VERB> par les appels à
+    get(axeshandle,prop), ou prop est une propriété des axes (see
+    <LINK>axis_properties</LINK>)</P>
+
+    <P>Attention : <VERB>mtlb_axis</VERB> ne doit pas être utilisée pour une
+    programmation manuelle.</P>
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>F.B.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
