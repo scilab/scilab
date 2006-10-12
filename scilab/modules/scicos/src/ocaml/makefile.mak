@@ -109,7 +109,7 @@ step5:
 	
 step6:
 	@"$(OCAMLPATHBIN)\$(OCAMLOPT)" -o $(EXEC) $(CMXACMX) scicosOptimizingCompiler.ml
-	@copy  $(EXEC) ..\..\..\..\bin\$(EXEC)
+	@copy  $(EXEC) ..\..\bin\$(EXEC)
 	
 	
 clean::
@@ -121,7 +121,7 @@ clean::
 	-$(RM)  lexer.ml
 	-$(RM)  linenum.ml
 	-$(RM)  *.exe
-	-$(RM)  ..\..\..\..\bin\$(EXEC)
+	-$(RM)  ..\..\bin\$(EXEC)
 	
 	
 distclean::
