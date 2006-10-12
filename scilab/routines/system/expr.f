@@ -260,7 +260,7 @@ c          . logical expression evaluation shortcircuit
 c     .             first term is false there is no use to evaluate the other
                     ids(1,pt)=1
 c     .             err1 <>0 sets interpretation without evaluation
-                    err1=1
+                    err1=9191919
                   endif
                 endif
             endif
@@ -278,7 +278,7 @@ c     *call* lfact
       pt=pt-1
       if(op.eq.0) goto 84
       if(comp(1).eq.0.and.ids(1,pt+1).eq.1) then
-c     . term has not been evaluated
+c     .  term has not been evaluated
          if(int(abs(-errct)/100000).eq.0) then
             err1=ids(2,pt+1)
          elseif (ids(2,pt+1).ne.0) then
