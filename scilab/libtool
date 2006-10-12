@@ -137,7 +137,7 @@ old_postuninstall_cmds=""
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-g -O2 -g -Wall  -Dlinux -DNARROWPROTO -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/"
+LTCFLAGS="-g -O2 -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall  -Dlinux -DNARROWPROTO -I/home/sylvestre/dev/scilab5/libs/MALLOC/includes/"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 \\2 \\2/p'"

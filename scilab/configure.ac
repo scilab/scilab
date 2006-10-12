@@ -422,9 +422,9 @@ F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug" != yes; then 
-	  CFLAGS="$CFLAGS -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
+	  CFLAGS="$CFLAGS  -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
    else
-	  CFLAGS="$CFLAGS -g -Wall "
+	  CFLAGS="$CFLAGS -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
    fi
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
@@ -567,7 +567,7 @@ if test "x$GUI" = "xX11"; then
     XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
     XAW_LOCAL_SUBDIR=X11
     XAW=Xaw3d
-	X_LIBS="$X_LIBS -lXaw3d -lXmu"
+	X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
   else
 ##test Xmu (Required)
     AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
@@ -579,7 +579,7 @@ if test "x$GUI" = "xX11"; then
       if test "$XAthena3d" = no; then
 		AC_MSG_ERROR([Cannot find the library Xaw3d (Xathena3d)])	
       else
-		X_LIBS="$X_LIBS -lXaw3d -lXmu"
+		X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
         XAW=Xaw3d
 		X_LIB_PATH=/usr/X11R6/lib/
         AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <X11/IntrinsicP.h> #include <X11/Xaw3d/ViewportP.h>]], [[]])],[],[AC_MSG_ERROR(Include file "ViewportP.h" for Xaw3d not found. 

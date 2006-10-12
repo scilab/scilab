@@ -18,8 +18,8 @@ bin_PROGRAMS		= scilex
 
 scilex_SOURCES		= $(top_srcdir)/modules/core/src/fortran/mainsci.f
 
-scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la
-scilex_LDADD = $(scilex_DEPENDENCIES)
+scilex_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(X_EXTRA_LIBS)
 
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit

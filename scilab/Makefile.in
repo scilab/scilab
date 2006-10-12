@@ -70,7 +70,9 @@ binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilex_OBJECTS = mainsci.$(OBJEXT)
 scilex_OBJECTS = $(am_scilex_OBJECTS)
-am__DEPENDENCIES_1 = $(top_builddir)/modules/libscilab.la
+am__DEPENDENCIES_1 =
+scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
+	$(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
@@ -323,8 +325,9 @@ SUBDIRS = libs \
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
 scilex_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
-scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la
-scilex_LDADD = $(scilex_DEPENDENCIES)
+scilex_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(X_EXTRA_LIBS)
+
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 

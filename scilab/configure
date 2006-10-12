@@ -8226,9 +8226,9 @@ F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug" != yes; then
-	  CFLAGS="$CFLAGS -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
+	  CFLAGS="$CFLAGS  -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
    else
-	  CFLAGS="$CFLAGS -g -Wall "
+	  CFLAGS="$CFLAGS -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
    fi
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
@@ -8539,7 +8539,7 @@ fi
 echo "$as_me: error: Cannot find the library Xaw3d (Xathena3d)" >&2;}
    { (exit 1); exit 1; }; }
       else
-		X_LIBS="$X_LIBS -lXaw3d -lXmu"
+		X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
         XAW=Xaw3d
 		X_LIB_PATH=/usr/X11R6/lib/
         cat >conftest.$ac_ext <<_ACEOF
