@@ -12,8 +12,7 @@ cat << EOF > pipof.f
 EOF
 
 dnl expand possible $SCIDIR in $FC (wizard command...)
-eval "FC1=\"$FC\""
-eval "$FC1 -c pipof.f > /dev/null 2>&1"
+eval "$F77 -c pipof.f > /dev/null 2>&1"
 
 FC_LEADING_UNDERSCORE=no
 FC_TRAILING_UNDERSCORE=no
