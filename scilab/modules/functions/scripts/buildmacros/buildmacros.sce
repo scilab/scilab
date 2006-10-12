@@ -2,7 +2,19 @@
 // Allan CORNET
 // INRIA 2006
 // ------------------------------------
-
+getf(SCI+'/modules/fileio/macros/fileparts.sci');
+getf(SCI+'/modules/core/macros/getshell.sci');
+getf(SCI+'/modules/fileio/macros/pathconvert.sci');
+getf(SCI+'/modules/string/macros/stripblanks.sci');
+getf(SCI+'/modules/fileio/macros/listfiles.sci');
+getf(SCI+'/modules/io/macros/unix_g.sci');
+getf(SCI+'/modules/core/macros/OS_Version.sci');
+getf(SCI+'/modules/fileio/macros/isdir.sci');
+getf(SCI+'/modules/overloading/macros/%c_a_c.sci');
+getf(SCI+'/modules/fileio/macros/basename.sci');
+getf(SCI+'/modules/fileio/macros/mputl.sci');
+getf(SCI+'/modules/functions/macros/genlib.sci');
+// ------------------------------------
 lines(0);
 Directories=[];
 CurrentDirectory=pwd();
@@ -17,7 +29,6 @@ clear modules index i
  
 Dim=size(Directories);
 
-exec('SCI/modules/functions/scripts/buildmacros/genmacros.sce');
 
 for i=1:Dim(1) do 
   chdir(Directories(i));
