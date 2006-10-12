@@ -71,7 +71,10 @@ void Initialize()
     }
     else 
 	{
-		set_sci_env(p1);
+		char *pathSCI=(char*)MALLOC((strlen(p1)+1)*sizeof(char));
+		sprintf(pathSCI,"%s",p1);
+		set_sci_env(pathSCI);
+		if (pathSCI) {FREE(pathSCI);pathSCI=NULL;}
 	}
   #else
    if (p1==NULL)
