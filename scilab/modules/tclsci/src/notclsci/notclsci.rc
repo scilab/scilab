@@ -65,12 +65,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "tclsci module"
+            VALUE "FileDescription", "notclsci module"
             VALUE "FileVersion", "5, 0, 0, 0"
-            VALUE "InternalName", "tclsci module"
+            VALUE "InternalName", "notclsci module"
             VALUE "LegalCopyright", "Copyright (C) 2006"
-            VALUE "OriginalFilename", "tclsci.dll"
-            VALUE "ProductName", " tclsci"
+            VALUE "OriginalFilename", "notclsci.dll"
+            VALUE "ProductName", " notclsci"
             VALUE "ProductVersion", "5, 0, 0, 0"
         END
     END

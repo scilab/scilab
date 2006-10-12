@@ -21,7 +21,7 @@
 
 #ifdef WITH_TK
 extern void flushTKEvents ();
-int TclEventsLoop(void);
+extern int TclEventsLoop(void);
 static int BasicScilab = 0;
 #endif
 

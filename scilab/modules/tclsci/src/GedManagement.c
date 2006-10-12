@@ -29,7 +29,6 @@ int sciDestroyGed( int figureId )
 }
 
 /*-----------------------------------------------------------------------------------------*/
-
 int isGedOpenedOn( int figureId )
 {
   Tcl_Interp * gedInterp = getGedInterpreter() ;

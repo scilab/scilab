@@ -14,7 +14,7 @@
 #include "Xcall1.h"
 
 #ifdef WITH_TK
-extern int GetTclCurrentFigure( void ) ; /* REORGANISATION TEMPORAIRE */
+extern int GetTclCurrentFigure( void ) ;
 #endif
 
 /*-----------------------------------------------------------------------------------*/
