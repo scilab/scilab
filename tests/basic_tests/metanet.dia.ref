@@ -2309,7 +2309,7 @@ g=glist('foo',1,13,ta,he,[],[],[],[],[],[],[],[],[],[],[],..
  
 // graph_2_mat
  
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+'/modules/metanet/demos/colored');
  
 a=graph_2_mat(g)
  a  =
@@ -4163,7 +4163,7 @@ g1=line_graph(g)
  
 // load_graph
  
-g=load_graph(SCI+'/demos/metanet/colored')
+g=load_graph(SCI+'/modules/metanet/demos/colored')
  g  =
  
  
@@ -4842,7 +4842,7 @@ g=make_graph('foo',1,0,ta,he)
  
 // mat_2_graph
  
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+'/modules/metanet/demos/colored');
  
 a=graph_2_mat(g);
  
@@ -5996,7 +5996,7 @@ cir = salesman(g1)
  
 // save_graph
  
-g=load_graph(SCI+'/demos/metanet/mesh100');
+g=load_graph(SCI+'/modules/metanet/demos/mesh100');
  
 if MSDOS then
   if fileinfo('mymesh100.graph')<>[] then

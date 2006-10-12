@@ -165,7 +165,7 @@ g=glist('foo',1,13,ta,he,[],[],[],[],[],[],[],[],[],[],[],..
       [],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[])
 
 // graph_2_mat
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+'/modules/metanet/demos/colored');
 a=graph_2_mat(g)
 
 // graph_center
@@ -242,7 +242,7 @@ g=make_graph('foo',0,8,ta,he);
 g1=line_graph(g)
 
 // load_graph
-g=load_graph(SCI+'/demos/metanet/colored')
+g=load_graph(SCI+'/modules/metanet/demos/colored')
 
 // make_graph
 g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3])
@@ -251,7 +251,7 @@ he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
 g=make_graph('foo',1,0,ta,he)
 
 // mat_2_graph
-g=load_graph(SCI+'/demos/metanet/colored');
+g=load_graph(SCI+'/modules/metanet/demos/colored');
 a=graph_2_mat(g);
 g1=mat_2_graph(a,1)
 
@@ -460,7 +460,7 @@ g1('edge_length')=5+v;
 cir = salesman(g1)
 
 // save_graph
-g=load_graph(SCI+'/demos/metanet/mesh100');
+g=load_graph(SCI+'/modules/metanet/demos/mesh100');
 if MSDOS then
   if fileinfo('mymesh100.graph')<>[] then
     unix_s('del '+'mymesh100.graph');
