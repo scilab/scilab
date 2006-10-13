@@ -38,10 +38,7 @@ static int intersci_push();
  * checkrhs: checks right hand side arguments 
  *-----------------------------------------------*/
 
-int C2F(checkrhs)(fname, iMin, iMax, fname_len)
-     char *fname;
-     integer *iMin, *iMax;
-     unsigned long fname_len;
+int C2F(checkrhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fname_len)
 {
   /*
    * store the name in recu array, fname can be a non null terminated char array  
@@ -62,10 +59,7 @@ int C2F(checkrhs)(fname, iMin, iMax, fname_len)
  * checkrhs: checks left hand side arguments 
  *-----------------------------------------------*/
 
-int C2F(checklhs)(fname, iMin, iMax, fname_len)
-     char *fname;
-     integer *iMin, *iMax;
-     unsigned long fname_len;
+int C2F(checklhs)(char *fname, integer *iMin, integer *iMax, unsigned long  fname_len)
 {
   if ( Lhs < *iMin || Lhs > *iMax) 
     {
