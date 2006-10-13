@@ -7,9 +7,9 @@
 
   <TYPE>Fonction M2SCI</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</DATE>
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_axis">Fonction d'Ã©mulation de la fonction
+  <SHORT_DESCRIPTION name="mtlb_axis">Fonction d'émulation de la fonction
   Matlab axis</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -28,7 +28,7 @@
         <PARAM_NAME>X</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: un vecteur de rÃ©els ([xmin xmax ymin ymax] ou [xmin xmax ymin
+          <SP>: un vecteur de réels ([xmin xmax ymin ymax] ou [xmin xmax ymin
           ymax zmin zmax])</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -37,7 +37,7 @@
         <PARAM_NAME>st</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: une chaine de caractÃ¨res ('auto', 'manual', 'tight', 'ij',
+          <SP>: une chaine de caractères ('auto', 'manual', 'tight', 'ij',
           'xy', 'equal', 'square', 'vis3d', 'off', 'on')</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -54,20 +54,20 @@
 
   <DESCRIPTION>
     <P>La fonction Matlab<VERB> axis</VERB> n'a pas de fonction Scilab
-    Ã©quivalente :</P>
+    équivalente :</P>
 
-    <P>La fonction <VERB>mtlb_axis(n,X[,normflag])</VERB> est utilisÃ©e par
+    <P>La fonction <VERB>mtlb_axis(n,X[,normflag])</VERB> est utilisée par
     <VERB>mfile2sci</VERB> pour remplacer <VERB>axis(...)</VERB> quand il
-    n'Ã©tait pas possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e
+    n'était pas possible de savoir ce qu'étaient les paramètres d'entrée
     pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution.
+    déterminer la sémantique correcte pendant l'exécution.
     (<VERB>'fill'</VERB> , <VERB>'image' </VERB> et <VERB>'normal'</VERB> ne
-    sont pas implÃ©mentÃ©s).Pour obtenir un code plus performant on peut
-    remplacer les appels Ã  <VERB>mtlb_axis</VERB> par les appels Ã 
-    get(axeshandle,prop), ou prop est une propriÃ©tÃ© des axes (see
+    sont pas implémentés).Pour obtenir un code plus performant on peut
+    remplacer les appels à  <VERB>mtlb_axis</VERB> par les appels à 
+    get(axeshandle,prop), ou prop est une propriété des axes (see
     <LINK>axis_properties</LINK>)</P>
 
-    <P>Attention : <VERB>mtlb_axis</VERB> ne doit pas Ãªtre utilisÃ©e pour une
+    <P>Attention : <VERB>mtlb_axis</VERB> ne doit pas être utilisée pour une
     programmation manuelle.</P>
   </DESCRIPTION>
 

@@ -7,9 +7,9 @@
 
   <TYPE>Fonction M2SCI</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</DATE>
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_sort">Fonction d'Ã©mulation de la fonction
+  <SHORT_DESCRIPTION name="mtlb_sort">Fonction d'émulation de la fonction
   Matlab sort</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -26,7 +26,7 @@
         <PARAM_DESCRIPTION>
           <SP>: un scalaire, un vecteur, une matrice ou hypermatrice
           d'elements compris dans [-1 1]un scalaire, un vecteur ou une matrice
-          de rÃ©els, de boolÃ©ens ou une string</SP>
+          de réels, de booléens ou une string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -52,14 +52,14 @@
   <DESCRIPTION>
     <P>Dans plusieurs cas particuliers, la fonction <VERB>sort</VERB> de
     Matlab et la fonction <VERB>gsort</VERB> de Scilab se comportent
-    diffÃ©remment :</P>
+    différemment :</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM>
         <ITEMIZE>
           <ITEM>
             <SP>Si <VERB>X</VERB> est un vecteur alors l'appel de la fonction
-            <VERB>sort(X) </VERB>de Matlab est Ã©quivalent Ã  l'appel de la
+            <VERB>sort(X) </VERB>de Matlab est équivalent à  l'appel de la
             fonction <VERB>sort(X,'g','i')</VERB> de Scilab. </SP>
           </ITEM>
 
@@ -71,22 +71,22 @@
 
           <ITEM>
             <SP><VERB>mode="ascend"</VERB> (resp. <VERB>"descend"</VERB>) est
-            Ã©quivalent au flag <VERB>'i'</VERB> (resp <VERB>'d'</VERB>) de
+            équivalent au flag <VERB>'i'</VERB> (resp <VERB>'d'</VERB>) de
             Scilab.</SP>
           </ITEM>
         </ITEMIZE>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>La fonction <VERB>mtlb_sort(X,dim[,mode])</VERB> est utilisÃ©e par
+    <P>La fonction <VERB>mtlb_sort(X,dim[,mode])</VERB> est utilisée par
     <VERB>mfile2sci</VERB> pour remplacer <VERB>sort(X,dim[,mode])</VERB>
-    quand il n'Ã©tait pas possible de savoir ce qu'Ã©taient les paramÃ¨tres
-    d'entrÃ©e pendant la conversion d'un code Matlab vers Scilab. Cette
-    fonction va dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour
-    obtenir un code plus performant on peut remplacer les appels Ã 
+    quand il n'était pas possible de savoir ce qu'étaient les paramètres
+    d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette
+    fonction va déterminer la sémantique correcte pendant l'exécution. Pour
+    obtenir un code plus performant on peut remplacer les appels à 
     <VERB>mtlb_sort</VERB> par des appels <LINK>gsort</LINK>.</P>
 
-    <P>Attention : <VERB>mtlb_sort</VERB> ne doit pas Ãªtre utilisÃ©e pour une
+    <P>Attention : <VERB>mtlb_sort</VERB> ne doit pas être utilisée pour une
     programmation manuelle.</P>
   </DESCRIPTION>
 

@@ -7,9 +7,9 @@
 
   <TYPE>Fonction M2SCI</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</DATE>
+  <DATE>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoû 2006) $</DATE>
 
-  <SHORT_DESCRIPTION name="mtlb_legendre">Fonction d'Ã©mulation de la fonction
+  <SHORT_DESCRIPTION name="mtlb_legendre">Fonction d'émulation de la fonction
   Matlab legendre</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
@@ -51,23 +51,23 @@
 
   <DESCRIPTION>
     <P>Dans plusieurs cas particuliers, la fonction <VERB>legendre</VERB> se
-    comporte diffÃ©remment dans Matlab et dans Scilab :</P>
+    comporte différemment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM>
         <ITEMIZE>
           <ITEM>
-            <SP>L'appel de fonction Scilab <VERB>legendre(m,n,X)</VERB> Ã©value
-            la fonction de legendre de degrÃ© <VERB>n </VERB> et d'ordre
-            <VERB>m </VERB>pour tous les Ã©lÃ©ments de <VERB>X</VERB>. Par
+            <SP>L'appel de fonction Scilab <VERB>legendre(m,n,X)</VERB> évalue
+            la fonction de legendre de degré <VERB>n </VERB> et d'ordre
+            <VERB>m </VERB>pour tous les éléments de <VERB>X</VERB>. Par
             contre l'appel de fonction Scilab <VERB>legendre(m,n,X)</VERB>
-            Ã©value la fonction de legendre de degrÃ© <VERB>n</VERB> et d'ordre
-            <VERB>m=0,1,...,n </VERB>pour tous les Ã©lÃ©ments de
+            évalue la fonction de legendre de degré <VERB>n</VERB> et d'ordre
+            <VERB>m=0,1,...,n </VERB>pour tous les éléments de
             <VERB>X</VERB>.</SP>
           </ITEM>
 
           <ITEM>
-            <SP>Le mode <VERB>normflag='sch'</VERB> n'est pas implÃ©mentÃ© avec
+            <SP>Le mode <VERB>normflag='sch'</VERB> n'est pas implémenté avec
             Scilab</SP>
           </ITEM>
 
@@ -79,13 +79,13 @@
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>La fonction <VERB>mtlb_legendre(n,X[,normflag])</VERB> est utilisÃ©e par
+    <P>La fonction <VERB>mtlb_legendre(n,X[,normflag])</VERB> est utilisée par
     <VERB>mfile2sci</VERB> pour remplacer
-    <VERB>legendre(n,X[,normflag])</VERB> quand il n'Ã©tait pas possible de
-    savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un
-    code Matlab vers Scilab. Cette fonction va dÃ©terminer la sÃ©mantique
-    correcte pendant l'exÃ©cution. Pour obtenir un code plus performant on peut
-    remplacer les appels Ã  <VERB>mtlb_legendre</VERB> :</P>
+    <VERB>legendre(n,X[,normflag])</VERB> quand il n'était pas possible de
+    savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un
+    code Matlab vers Scilab. Cette fonction va déterminer la sémantique
+    correcte pendant l'exécution. Pour obtenir un code plus performant on peut
+    remplacer les appels à  <VERB>mtlb_legendre</VERB> :</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM>
@@ -99,7 +99,7 @@
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
-    <P>Attention : <VERB>mtlb_legendre</VERB> ne doit pas Ãªtre utilisÃ©e pour
+    <P>Attention : <VERB>mtlb_legendre</VERB> ne doit pas être utilisée pour
     une programmation manuelle.</P>
   </DESCRIPTION>
 
