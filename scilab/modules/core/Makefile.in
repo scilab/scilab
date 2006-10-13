@@ -95,10 +95,10 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/fromc.c src/c/malloc.c src/c/setgetSCIpath.c \
 	src/c/getmemory.c src/c/msgout.c src/c/Funtab.c src/c/mexlib.c \
 	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/errmsg.c src/c/scimem.c src/c/banier.c \
-	src/c/callinterf.c src/c/isanan.c src/c/parse.c src/c/matus2.c \
-	src/c/timer.c src/c/stack2.c src/c/Scierror.c src/c/sciprint.c \
-	src/c/link.c src/c/xscion.c src/c/SciEnv.c src/c/getarg-hpux.c \
+	src/c/scimem.c src/c/banier.c src/c/callinterf.c \
+	src/c/isanan.c src/c/parse.c src/c/matus2.c src/c/timer.c \
+	src/c/stack2.c src/c/Scierror.c src/c/sciprint.c src/c/link.c \
+	src/c/xscion.c src/c/SciEnv.c src/c/getarg-hpux.c \
 	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -241,13 +241,13 @@ am__objects_3 = libcore_la-history.lo libcore_la-inffic.lo \
 	libcore_la-getmemory.lo libcore_la-msgout.lo \
 	libcore_la-Funtab.lo libcore_la-mexlib.lo \
 	libcore_la-csignal.lo libcore_la-prompt.lo \
-	libcore_la-CallScilab.lo libcore_la-errmsg.lo \
-	libcore_la-scimem.lo libcore_la-banier.lo \
-	libcore_la-callinterf.lo libcore_la-isanan.lo \
-	libcore_la-parse.lo libcore_la-matus2.lo libcore_la-timer.lo \
-	libcore_la-stack2.lo libcore_la-Scierror.lo \
-	libcore_la-sciprint.lo libcore_la-link.lo libcore_la-xscion.lo \
-	libcore_la-SciEnv.lo $(am__objects_1) $(am__objects_2)
+	libcore_la-CallScilab.lo libcore_la-scimem.lo \
+	libcore_la-banier.lo libcore_la-callinterf.lo \
+	libcore_la-isanan.lo libcore_la-parse.lo libcore_la-matus2.lo \
+	libcore_la-timer.lo libcore_la-stack2.lo \
+	libcore_la-Scierror.lo libcore_la-sciprint.lo \
+	libcore_la-link.lo libcore_la-xscion.lo libcore_la-SciEnv.lo \
+	$(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -567,11 +567,10 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/fromc.c src/c/malloc.c src/c/setgetSCIpath.c \
 	src/c/getmemory.c src/c/msgout.c src/c/Funtab.c src/c/mexlib.c \
 	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/errmsg.c src/c/scimem.c src/c/banier.c \
-	src/c/callinterf.c src/c/isanan.c src/c/parse.c src/c/matus2.c \
-	src/c/timer.c src/c/stack2.c src/c/Scierror.c src/c/sciprint.c \
-	src/c/link.c src/c/xscion.c src/c/SciEnv.c $(am__append_2) \
-	$(am__append_4)
+	src/c/scimem.c src/c/banier.c src/c/callinterf.c \
+	src/c/isanan.c src/c/parse.c src/c/matus2.c src/c/timer.c \
+	src/c/stack2.c src/c/Scierror.c src/c/sciprint.c src/c/link.c \
+	src/c/xscion.c src/c/SciEnv.c $(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -862,7 +861,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-dynamic_menus.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-errmsg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-flags.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-fromjava.Plo@am__quote@
@@ -1285,13 +1283,6 @@ libcore_la-CallScilab.lo: src/c/CallScilab.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CallScilab.c' object='libcore_la-CallScilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-CallScilab.lo `test -f 'src/c/CallScilab.c' || echo '$(srcdir)/'`src/c/CallScilab.c
-
-libcore_la-errmsg.lo: src/c/errmsg.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-errmsg.lo -MD -MP -MF "$(DEPDIR)/libcore_la-errmsg.Tpo" -c -o libcore_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libcore_la-errmsg.Tpo" "$(DEPDIR)/libcore_la-errmsg.Plo"; else rm -f "$(DEPDIR)/libcore_la-errmsg.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmsg.c' object='libcore_la-errmsg.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
 
 libcore_la-scimem.lo: src/c/scimem.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-scimem.lo -MD -MP -MF "$(DEPDIR)/libcore_la-scimem.Tpo" -c -o libcore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c; \

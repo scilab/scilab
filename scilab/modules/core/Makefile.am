@@ -46,7 +46,6 @@ src/c/mexlib.c \
 src/c/csignal.c \
 src/c/prompt.c \
 src/c/CallScilab.c \
-src/c/errmsg.c \
 src/c/scimem.c \
 src/c/banier.c \
 src/c/callinterf.c \
