@@ -1,5 +1,10 @@
 function ged(k,win)
   //xset, xget used because ged should handle both old and new style
+  
+  if ~%tk then
+   warning('TCL/TK interface not installed.');
+   return
+  end
 
   global ged_current_figure
   global ged_cur_fig_handle
@@ -348,7 +353,7 @@ endfunction
 function ged_Compound(h)
   global ged_handle;ged_handle=h;
   TCL_SetVar("curvis",h.visible)
-  TCL_EvalFile(SCI+'modules/graphics/tcl/ged/Compound.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Compound.tcl')
 endfunction
 
 
