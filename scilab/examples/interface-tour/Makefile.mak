@@ -27,8 +27,8 @@ SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 !include $(SCIDIR1)\Makefile.incl.mak
 
-FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines"
-CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
+FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\modules\core\includes"
+CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/modules/core/includes"
 
 FUNCTIONS = $(CFUNCTIONS) $(FFUNCTIONS)
 
@@ -138,12 +138,39 @@ $(LIBRARY).dll: $(OBJS)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
-	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
 
-EXAMPLES = ex1c.sce + ex2c.sce + ex3456c.sce + ex7c.sce + ex8c.sce + ex9c.sce + ex10c.sce + ex11c.sce + ex12c.sce + ex13c.sce + ex14c.sce + ex15c.sce + ex16c.sce + ex17c.sce + ex1f.sce + ex2f.sce + ex3456f.sce + ex7f.sce + ex8f.sce + ex9f.sce + ex10f.sce + ex11f.sce + ex12f.sce + ex13f.sce + ex14f.sce + ex15f.sce + ex16f.sce + ex17f.sce
+
 
 tests	:
 	@del zlink.dia	
 	@echo exec("examples.sce",-1); > zlink.tst
-        @cat $(EXAMPLES) >> zlink.tst
+  @type ex1c.sce >> zlink.tst
+  @type ex2c.sce >> zlink.tst
+  @type ex3456c.sce >> zlink.tst
+  @type ex7c.sce >> zlink.tst
+  @type ex8c.sce >> zlink.tst
+  @type ex9c.sce >> zlink.tst
+  @type ex10c.sce >> zlink.tst
+  @type ex11c.sce >> zlink.tst
+  @type ex12c.sce >> zlink.tst
+  @type ex13c.sce >> zlink.tst
+  @type ex14c.sce >> zlink.tst
+  @type ex15c.sce >> zlink.tst
+  @type ex16c.sce >> zlink.tst
+  @type ex17c.sce >> zlink.tst
+  @type ex1f.sce >> zlink.tst
+  @type ex2f.sce >> zlink.tst
+  @type ex3456f.sce >> zlink.tst
+  @type ex7f.sce >> zlink.tst
+  @type ex8f.sce >> zlink.tst
+  @type ex9f.sce >> zlink.tst
+  @type ex10f.sce >> zlink.tst
+  @type ex11f.sce >> zlink.tst
+  @type ex12f.sce >> zlink.tst
+  @type ex13f.sce >> zlink.tst
+  @type ex14f.sce >> zlink.tst
+  @type ex15f.sce >> zlink.tst
+  @type ex16f.sce >> zlink.tst
+  @type ex17f.sce >> zlink.tst
 	"$(SCIDIR1)\bin\scilex.exe"  -f zlink.tst 
