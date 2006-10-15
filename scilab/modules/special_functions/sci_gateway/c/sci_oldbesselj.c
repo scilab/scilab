@@ -6,11 +6,11 @@
 #include "stack-c.h"
 #include <string.h>
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intsbesselj) _PARAMS((char *id));
+extern int C2F(intsbesselj) _PARAMS((char *id,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_oldbesselj) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intsbesselj)(fname);
+	C2F(intsbesselj)(fname,fname_len);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

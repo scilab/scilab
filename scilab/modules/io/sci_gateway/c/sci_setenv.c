@@ -5,11 +5,11 @@
 #include "machine.h"
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(intsetenv) _PARAMS((char *fname));
+extern int C2F(intsetenv) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_setenv) _PARAMS((char *fname,unsigned long fname_len))
 {
-	C2F(intsetenv)(fname);
+	C2F(intsetenv)(fname,fname_len);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

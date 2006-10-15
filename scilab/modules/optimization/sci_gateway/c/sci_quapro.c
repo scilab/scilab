@@ -9,9 +9,6 @@ extern int C2F(sciquapro) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_quapro) _PARAMS((char *fname,unsigned long fname_len))
 {
-//	CheckRhs(9,10);
-	//CheckLhs(2,3);
-	
 	C2F(sciquapro)(fname,fname_len);
 	return 0;
 }
