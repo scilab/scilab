@@ -3,21 +3,7 @@
 #----------------------------------------------
 
 all::
-
 MAKE=nmake /f Makefile.mak
-
-#----------------------------------------------
-# Scilab tclsci library 
-#----------------------------------------------
-# SCIDIR1 is set to . in Makefile.mak for compilation 
-# and to scilab full path when used after compilation 
-# for dynamic linking
-USE_MT=-MT 
-TCLTK=$(SCIDIR1)\modules\tclsci\includes\tcltk
-TCLSCI=libs/tclsci.lib 
-TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
-TKLIBSBIN=$(TKLIBS)
-TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 #----------------------------------------------
 # C compiler
 # typically, for compiling use: CFLAGS = $(CC_OPTIONS)
@@ -32,11 +18,10 @@ LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
 # debug for the linker 
 #LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
 
-
 # include options 
 INCLUDES=-I"$(SCIDIR)/libs/f2c" $(TCL_INCLUDES) -I"$(SCIDIR)/modules/mexlib/includes"
 
-CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
+CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(USE_MT)
 
 # standard option for C compiler for VC 2005
 CC_OPTIONS = $(CC_COMMON) -Z7 -W3 -O2 -Gd
@@ -67,10 +52,8 @@ RCVARS=-r -DWIN32
 GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
-# XLIBS is used for linking Scilab
-XLIBS=$(TKLIBS) $(PVMLIB) $(GUILIBS)
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS) "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
+XLIBSBIN= "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib"
 .c.obj	:
 	@echo ------------- Compile file $< --------------
 	$(CC) $(CFLAGS) $< 
