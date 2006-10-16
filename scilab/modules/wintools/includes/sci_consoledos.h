@@ -18,7 +18,7 @@
 #include "WinConsole.h"
 #endif
 
-int C2F(sci_consoledos) _PARAMS((char *fname));
+int C2F(sci_consoledos) _PARAMS((char *fname,unsigned long l));
 
 #endif /* __INTCONSOLEDOS__ */
 /*-----------------------------------------------------------------------------------*/ 
