@@ -181,4 +181,15 @@ extern void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
                                    int           edgesX[4]    ,
                                    int           edgesY[4]     ) ;
 
+extern void drawPolyMarks( sciPointObj * pObj    ,
+                           int           nbMarks ,
+                           int           xCoord[],
+                           int           yCoord[],
+                           int         * DPI      ) ;
+
+extern int computeRealArrowSize( sciPointObj * pSegs,
+                                 int nbSegs         ,
+                                 int xCoord[]       ,
+                                 int yCoord[]         ) ;
+
 #endif /* __SCI_DRAWINGS__ */

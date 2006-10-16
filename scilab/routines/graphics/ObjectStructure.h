@@ -1184,7 +1184,7 @@ typedef struct
   double arrowsize;  /*F.Leray units : hundreds (i.e. 100, 150,...)*/
   double parfact;
   integer ptype; /* if ptype=0, it is segments; if ptype=1, it is champ (champ or champ1)*/
-  integer typeofchamp; /* when ptype=0, if typeofchamp=0 => champ is invoked else champ1 is invoked (typeofchamp==1) */
+  integer typeofchamp; /**< when ptype=0, if typeofchamp=0 => champ is invoked else champ1 is invoked (typeofchamp==1) */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
