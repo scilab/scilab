@@ -7,7 +7,7 @@
 extern int C2F(gratyp)();
 extern int C2F(mtlist)();
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_glist) _PARAMS((char *fname))
+int C2F(sci_glist) _PARAMS((char *fname,unsigned long fname_len))
 {
     C2F(mtlist)(C2F(gratyp));
 	return 0;

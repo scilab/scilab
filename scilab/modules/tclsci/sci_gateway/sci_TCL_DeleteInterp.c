@@ -7,7 +7,7 @@
 extern int CloseTCLsci(void);
 extern void initTCLTK(void);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname))
+int C2F(sci_TCL_DeleteInterp) _PARAMS((char *fname,unsigned long l))
 {
 	CheckRhs(0,1);
 	CheckLhs(1,1);

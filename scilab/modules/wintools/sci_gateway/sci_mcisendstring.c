@@ -10,7 +10,7 @@
 	#pragma comment(lib, "winmm.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_mcisendstring) _PARAMS((char *fname))
+int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l))
 {
 #if _MSC_VER
 	mcisendstringWindowsfunction(fname);

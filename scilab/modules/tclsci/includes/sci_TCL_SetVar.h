@@ -8,7 +8,7 @@
 #include "TCL_Global.h"
 
 
-int C2F(sci_TCL_SetVar) _PARAMS((char *fname));
+int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l));
 
 #endif /* __SCI_TCL_SETVAR__ */
 /*-----------------------------------------------------------------------------------*/ 

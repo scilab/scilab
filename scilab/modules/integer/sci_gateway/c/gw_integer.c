@@ -9,34 +9,34 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sciint32) _PARAMS((char *fname));
-extern int C2F(sciint16) _PARAMS((char *fname));
-extern int C2F(sciint8) _PARAMS((char *fname));
-extern int C2F(sciinttype) _PARAMS((char *fname));
-extern int C2F(scidouble) _PARAMS((char *fname));
-extern int C2F(sciuint32) _PARAMS((char *fname));
-extern int C2F(sciuint16) _PARAMS((char *fname));
-extern int C2F(sciuint8) _PARAMS((char *fname));
-extern int C2F(scimgeti) _PARAMS((char *fname));
-extern int C2F(sciimput) _PARAMS((char *fname));
-extern int C2F(sciiconvert) _PARAMS((char *fname));
-extern int C2F(sciiabs) _PARAMS((char *fname));
-extern int C2F(sciidiag) _PARAMS((char *fname));
-extern int C2F(sciitriu) _PARAMS((char *fname));
-extern int C2F(sciitril) _PARAMS((char *fname));
-extern int C2F(sciisum) _PARAMS((char *fname));
-extern int C2F(sciicumsum) _PARAMS((char *fname));
-extern int C2F(sciimax) _PARAMS((char *fname));
-extern int C2F(sciimin) _PARAMS((char *fname));
-extern int C2F(sciimaxi) _PARAMS((char *fname));
-extern int C2F(sciimini) _PARAMS((char *fname));
-extern int C2F(sciip) _PARAMS((char *fname));
-extern int C2F(sciiconvert) _PARAMS((char *fname));
-extern int C2F(sciimatrix) _PARAMS((char *fname));
-extern int C2F(sciiprod) _PARAMS((char *fname));
-extern int C2F(sciicumprod) _PARAMS((char *fname));
+extern int C2F(sciint32) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciint16) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciint8) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciinttype) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(scidouble) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciuint32) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciuint16) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciuint8) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(scimgeti) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciimput) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciiconvert) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciiabs) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciidiag) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciitriu) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciitril) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciisum) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciicumsum) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciimax) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciimin) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciimaxi) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciimini) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciip) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciiconvert) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciimatrix) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciiprod) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sciicumprod) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/	
-static int C2F(scivoid) _PARAMS((char *fname))
+static int C2F(scivoid) _PARAMS((char *fname,unsigned long fname_len))
 {
 	return 0;
 }
@@ -76,7 +76,7 @@ int C2F(gw_integer)()
 	#ifndef _DEBUG
 		_try
 		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{	
@@ -85,10 +85,10 @@ int C2F(gw_integer)()
 			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 		}
 	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	#endif
 #else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 	return 0;
 }

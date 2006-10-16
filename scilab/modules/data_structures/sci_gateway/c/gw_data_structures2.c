@@ -11,7 +11,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 /*-----------------------------------------------------------------------------------*/
 extern C2F(error)();
 /*-----------------------------------------------------------------------------------*/	
-static int C2F(sci_getfield) _PARAMS((char *fname))
+static int C2F(sci_getfield) _PARAMS((char *fname,unsigned long fname_len))
 {
 	extern int C2F(intgetfield)();
 	
@@ -19,7 +19,7 @@ static int C2F(sci_getfield) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int C2F(sci_setfield) _PARAMS((char *fname))
+static int C2F(sci_setfield) _PARAMS((char *fname,unsigned long fname_len))
 {
 	extern int C2F(intsetfield)();
 	
@@ -47,7 +47,7 @@ int C2F(gwdatastructures2)()
 #ifndef _DEBUG
 	_try
 	{
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	}
 	_except (EXCEPTION_EXECUTE_HANDLER)
 	{	
@@ -56,10 +56,10 @@ int C2F(gwdatastructures2)()
 		if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 	}
 #else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 #else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 	return 0;
 }

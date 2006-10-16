@@ -21,7 +21,7 @@ BOOL WindowsQueryRegistryNumberOfElementsInList(char *ParamIn1,char *ParamIn2,in
 /*-----------------------------------------------------------------------------------*/
 int InterfaceWindowsQueryRegistry _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_winqueryreg) _PARAMS((char *fname))
+int C2F(sci_winqueryreg) _PARAMS((char *fname,unsigned long l))
 {
 #ifdef _MSC_VER
 	InterfaceWindowsQueryRegistry(fname);

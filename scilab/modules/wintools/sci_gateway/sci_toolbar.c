@@ -11,7 +11,7 @@
   extern int GetStateToolBarWin32(int WinNum);
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_hidetoolbar) _PARAMS((char *fname))
+int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l))
 {
  static int l1, m1, n1;	
 

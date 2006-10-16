@@ -10,7 +10,7 @@ int SetTclCurrentFigure(int num);
 extern void flushTKEvents(void);
 extern void set_cf_type(int val);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_gcf) _PARAMS((char *fname))
+int C2F(sci_TCL_gcf) _PARAMS((char *fname,unsigned long l))
 {
 	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
@@ -58,7 +58,7 @@ int GetTclCurrentFigure(void)
 	return ValRet;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_scf) _PARAMS((char *fname))
+int C2F(sci_TCL_scf) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

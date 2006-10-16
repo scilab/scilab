@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_TCL_CreateSlave.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname))
+int C2F(sci_TCL_CreateSlave) _PARAMS((char *fname,unsigned long l))
 {
 	int TypeVar1=0;
 	CheckRhs(1,1);

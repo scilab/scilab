@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_opentk.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_opentk) _PARAMS((char *fname))
+int C2F(sci_opentk) _PARAMS((char *fname,unsigned long l))
 {
 	Tcl_Interp *TCLinterpLocal=NULL;
 

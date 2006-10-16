@@ -15,7 +15,7 @@
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 /* Print from scilab (Windows) for Scipad and figure */
-int C2F(sci_toprint) _PARAMS((char *fname))
+int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));

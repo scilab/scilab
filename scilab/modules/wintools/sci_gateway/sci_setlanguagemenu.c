@@ -9,7 +9,7 @@
 #endif
   extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_setlanguagemenu) _PARAMS((char *fname))
+int C2F(sci_setlanguagemenu) _PARAMS((char *fname,unsigned long l))
 {
 	#define LANGUAGE_MAX 1024 
 	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 

@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scilist)();
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_scilist) _PARAMS((char *fname))
+int C2F(sci_scilist) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(scilist)(fname);
 	return 0;

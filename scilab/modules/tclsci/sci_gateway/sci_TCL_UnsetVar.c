@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_TCL_UnsetVar.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_UnsetVar) _PARAMS((char *fname))
+int C2F(sci_TCL_UnsetVar) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	static int l2,n2,m2;

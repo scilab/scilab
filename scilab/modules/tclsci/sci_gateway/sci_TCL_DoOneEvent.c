@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_TCL_DoOneEvent.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_DoOneEvent) _PARAMS((char *fname))
+int C2F(sci_TCL_DoOneEvent) _PARAMS((char *fname,unsigned long l))
 {
 	CheckRhs(0,0);
 	CheckLhs(1,1);

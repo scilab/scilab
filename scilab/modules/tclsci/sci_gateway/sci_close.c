@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_close) _PARAMS((char *fname))
+int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 {
 	char MyTclCommand[2048];
 	int DoCloseFigure=FALSE;

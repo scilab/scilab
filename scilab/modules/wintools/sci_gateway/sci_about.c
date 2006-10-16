@@ -8,7 +8,7 @@
   extern void Callback_ABOUT(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_about) _PARAMS((char *fname))
+int C2F(sci_about) _PARAMS((char *fname,unsigned long l))
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0) ;

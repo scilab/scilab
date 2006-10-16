@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern C2F(definedfields)();
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_definedfields) _PARAMS((char *fname))
+int C2F(sci_definedfields) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(definedfields)();
 	return 0;

@@ -16,7 +16,7 @@
 #include "stack-c.h"
 
 
-typedef int (*Integer_Interf) __PARAMS((char *fname));
+typedef int (*Integer_Interf) __PARAMS((char *fname,unsigned long fname_len));
 
 typedef struct table_struct 
 {

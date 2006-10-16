@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern int TCL_ArrayExist(Tcl_Interp *TCLinterpreter,char *VarName);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_ExistArray) _PARAMS((char *fname))
+int C2F(sci_TCL_ExistArray) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	static int l2,n2,m2;

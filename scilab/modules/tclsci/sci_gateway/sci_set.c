@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern void flushTKEvents(void);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_set) _PARAMS((char *fname))
+int C2F(sci_TCL_set) _PARAMS((char *fname,unsigned long l))
 {
 	CheckLhs(1,1);
 	CheckRhs(3,3);

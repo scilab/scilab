@@ -7,7 +7,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_consoledos) _PARAMS((char *fname))
+int C2F(sci_consoledos) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	char *Output=NULL;

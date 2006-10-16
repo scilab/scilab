@@ -9,7 +9,7 @@ int SetVarAString(Tcl_Interp *TCLinterpreter,char *VarName,char **Str);
 int SetVarMatrix(Tcl_Interp *TCLinterpreter,char *VarName,int ptrValues,int m,int n);
 int SetVarScalar(Tcl_Interp *TCLinterpreter,char *VarName,double VarValue);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_SetVar) _PARAMS((char *fname))
+int C2F(sci_TCL_SetVar) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	static int l2,n2,m2;

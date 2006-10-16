@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_EvalFile) _PARAMS((char *fname))
+int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 {
   /* execute Tcl scripts */
   int m1,n1,l1;

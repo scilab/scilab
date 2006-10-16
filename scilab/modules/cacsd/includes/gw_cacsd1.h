@@ -16,12 +16,13 @@
 #include "stack-c.h"
 
 
-typedef int (*Cacsd1_Interf) __PARAMS((char *fname));
-
+typedef int (*Cacsd1_Interf)  __PARAMS((char *fname,unsigned long l));
+ 
 typedef struct table_struct 
 {
   Cacsd1_Interf f;    /** function **/
   char *name;      /** its name **/
+
 } Cacsd1Table;
 
 #endif /*  __GW_CACSD1__ */

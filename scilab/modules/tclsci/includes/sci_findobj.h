@@ -7,7 +7,7 @@
 
 #include "TCL_Global.h"
 
-int C2F(sci_findobj) _PARAMS((char *fname));
+int C2F(sci_findobj) _PARAMS((char *fname,unsigned long l));
 
 #endif /* __SCI_FINDOBJ__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_TCL_GetVersion.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_TCL_GetVersion) _PARAMS((char *fname))
+int C2F(sci_TCL_GetVersion) _PARAMS((char *fname,unsigned long l))
 {
 	static int l1,n1,m1;
 	int major=0;

@@ -14,7 +14,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #include "stack-c.h"
 
 
-typedef int (*Differential_Equations2_Interf) __PARAMS((char *fname));
+typedef int (*Differential_Equations2_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 
 {
@@ -22,9 +22,9 @@ typedef struct table_struct
 	char *name;      /** its name **/
 } DifferentialEquations2Table;
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(sciimpl) _PARAMS((char *fname));
-extern int C2F(dassli) _PARAMS((char *fname));
-extern int C2F(dasrti) _PARAMS((char *fname));
+extern int C2F(sciimpl) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(dassli) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(dasrti) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 static DifferentialEquations2Table Tab[]=
 {
@@ -40,7 +40,7 @@ int C2F(gw_differential_equations2)()
 #ifndef _DEBUG
 	_try
 	{
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	}
 	_except (EXCEPTION_EXECUTE_HANDLER)
 	{	
@@ -49,10 +49,10 @@ int C2F(gw_differential_equations2)()
 		if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 	}
 #else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 #else
-	(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+	(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 	return 0;
 }

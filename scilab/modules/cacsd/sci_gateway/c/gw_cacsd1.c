@@ -9,9 +9,9 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/
-extern int C2F(scilyap) _PARAMS((char *fname));
-extern int C2F(scisylv) _PARAMS((char *fname));
-extern int C2F(intricc) _PARAMS((char *fname));
+extern int C2F(scilyap) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(scisylv) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(intricc)  _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 static Cacsd1Table Tab[]=
 {
@@ -26,7 +26,7 @@ int C2F(gw_cacsd1)()
 	#ifndef _DEBUG
 		_try
 		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{	
@@ -35,10 +35,10 @@ int C2F(gw_cacsd1)()
 			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 		}
 	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 	#endif
 #else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name);
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
 #endif
 	return 0;
 }
