@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int C2F(sci_printsetupbox) _PARAMS((char *fname));
+int C2F(sci_printsetupbox) _PARAMS((char *fname,unsigned long l));
 #if _MSC_VER
 	HDC GetPrinterDC(void);
 	char GetPrinterOrientation(void);
