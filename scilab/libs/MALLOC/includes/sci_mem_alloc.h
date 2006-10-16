@@ -45,6 +45,7 @@
  extern void * MyReAlloc(void * lpAddress,int dwSize,char *fichier,int ligne);
  extern void * MyAlloc(unsigned int dwSize,char *fichier,int ligne);
  extern void * MyCalloc(unsigned  int x, unsigned int y, char *fichier,int ligne);
+ extern void MyFree(void *lpAddress,char *fichier,int ligne);
 
  #ifdef lint5
    #include <sys/stdtypes.h>
