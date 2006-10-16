@@ -5554,6 +5554,39 @@ void Merge3d(sciPointObj *psubwin)
   
 }
 
+/*------------------------------------------------------------------------------------------*/
+/**
+* get the coordiantes of the vertices of a facet in a FAC3D object
+* @param[in/out] pobj       surface object of type Fac3d
+* @param         facetIndex index of the facet in the object
+* @param[out]    verticesX  list of X coordinates of the vertices
+* @param[out]    verticesY  list of Y coordinates of the vertices
+* @param[out]    verticesZ  list of Z coordinates of the vertices
+* @param[out]    zOriginal  pointer on the Z coordinate of the first vertex in the fac3d object
+*/
+void retrieveFacetVertices( sciPointObj *  pobj       ,
+                           int            facetIndex ,
+                           double         verticesX[],
+                           double         verticesY[],
+                           double         verticesZ[],
+                           double      ** zOriginal   )
+{
+  int nbFacets = pSURFACE_FEATURE (pobj)->dimzx ;
+  int i ;
+
+  for ( i = 0 ; i < nbFacets ; i++ )
+  {
+    verticesX[i] = pSURFACE_FEATURE(pobj)->pvecx[facetIndex * nbFacets + i] ;
+    verticesY[i] = pSURFACE_FEATURE(pobj)->pvecy[facetIndex * nbFacets + i] ;
+    verticesZ[i] = pSURFACE_FEATURE(pobj)->pvecz[facetIndex * nbFacets + i] ;
+  }
+
+  ReverseDataFor3D( pobj, verticesX, verticesY, verticesZ, nbFacets ) ;
+
+  *zOriginal = &(pSURFACE_FEATURE(pobj)->pvecz[facetIndex * nbFacets]) ;
+}
+/*------------------------------------------------------------------------------------------*/
+
 void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 {
   int N,i,j,index,p,max_p,n1,npoly;
@@ -5575,9 +5608,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   sciMerge     * ppMerge  = pMERGE_FEATURE (pmerge) ;
   int u;
   /* change to static arrays : indeed, no need to recopy each time the entire data of a given object */
-  double xtmp[10]; /* normally max size is 4 for facets (2 for lines and segs) but may be one day we will manage greater complex patchs (that is why the 10) */
-  double ytmp[10];
-  double ztmp[10];
+  double   xtmp[2] ; 
+  double   ytmp[2] ;
+  double   ztmp[2] ;
+
+  double * verticesX = NULL ; /* normally max size is 4 for facets (2 for lines and segs) but may be one day we will manage greater complex patchs (that is why the 10) */
+  double * verticesY = NULL ;  /* no it can have any size, but display of facets with more than 4 edges might not be accurate */
+  double * verticesZ = NULL ;
   
 #ifdef _MSC_VER 
   int hdcflag;
@@ -5691,22 +5728,29 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	x=X;y=Y;z=Z;
 	
       }
-      else{ /* facets */
-	p=pSURFACE_FEATURE (pobj)->dimzx;
+      else
+      {
+        /* facets */
+        p = pSURFACE_FEATURE (pobj)->dimzx; /* number of edges in the facets */
 
-	for(u=0;u<4;u++){
-	  xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[index*p+u];
-	  ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[index*p+u];
-	  ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[index*p+u];
-	}
-	
-	ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,4);
-	
-	x=&(xtmp[0]);
-	y=&(ytmp[0]);
-	z=&(ztmp[0]);
-	
-	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+        verticesX = MALLOC( p * sizeof(double) ) ;
+        verticesY = MALLOC( p * sizeof(double) ) ;
+        verticesZ = MALLOC( p * sizeof(double) ) ;
+
+        if ( verticesX == NULL || verticesY == NULL || verticesZ == NULL )
+        {
+          FREE(verticesX) ;
+          FREE(verticesY) ;
+          FREE(verticesZ) ;
+          sciprint( "sciDrawObj: Unable to allocate temporary vector, memory full.\n" ) ;
+          return ;
+        }
+
+        retrieveFacetVertices( pobj, index, verticesX, verticesY, verticesZ, &Zoriginal ) ;
+
+        x = verticesX ;
+        y = verticesY ;
+        z = verticesZ ;
 
       }
       break;
@@ -5883,6 +5927,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   /* sort the distance in decreasing order */
   C2F(dsort)(dist,&N,locindex); 
 
+  FREE(verticesX) ;
+  FREE(verticesY) ;
+  FREE(verticesZ) ;
+
   /* ========================================================================
    * draw each element in the order given by locindex
    * ========================================================================*/
@@ -5995,22 +6043,29 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  x=X;y=Y;z=Z;
 	  
 	}
-	else{ /* facets */
-	  p=pSURFACE_FEATURE (pobj)->dimzx;
-	  
-	  for(u=0;u<4;u++){
-	    xtmp[u] = pSURFACE_FEATURE (pobj)->pvecx[index*p+u];
-	    ytmp[u] = pSURFACE_FEATURE (pobj)->pvecy[index*p+u];
-	    ztmp[u] = pSURFACE_FEATURE (pobj)->pvecz[index*p+u];
-	  }
-	  
-	  ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,4);
-	  
-	  x=&(xtmp[0]);
-	  y=&(ytmp[0]);
-	  z=&(ztmp[0]);
-	  
-	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+	else
+        {
+          /* facets */
+          p = pSURFACE_FEATURE (pobj)->dimzx; /* number of edges in the facets */
+
+          verticesX = MALLOC( p * sizeof(double) ) ;
+          verticesY = MALLOC( p * sizeof(double) ) ;
+          verticesZ = MALLOC( p * sizeof(double) ) ;
+
+          if ( verticesX == NULL || verticesY == NULL || verticesZ == NULL )
+          {
+            FREE(verticesX) ;
+            FREE(verticesY) ;
+            FREE(verticesZ) ;
+            sciprint( "sciDrawObj: Unable to allocate temporary vector, memory full.\n" ) ;
+            return ;
+          }
+
+          retrieveFacetVertices( pobj, index, verticesX, verticesY, verticesZ, &Zoriginal ) ;
+
+          x = verticesX ;
+          y = verticesY ;
+          z = verticesZ ;
 	}
 	break;
       case  SCI_POLYLINE:
@@ -6469,6 +6524,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	
   }
   FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
+  FREE(verticesX) ;
+  FREE(verticesY) ;
+  FREE(verticesZ) ;
 }
 
 /*------------------------------------------------------------------------------------------*/
