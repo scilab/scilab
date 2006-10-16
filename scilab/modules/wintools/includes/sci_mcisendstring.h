@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "version.h"
 
-int C2F(sci_mcisendstring) _PARAMS((char *fname));
+int C2F(sci_mcisendstring) _PARAMS((char *fname,unsigned long l));
 #if _MSC_VER
 	int mcisendstringWindowsfunction _PARAMS((char *fname));
 #else
