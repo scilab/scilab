@@ -128,19 +128,19 @@ hashtable_iterator_search(struct hashtable_itr *itr,
                           struct hashtable *h, void *k)
 {
     struct entry *e, *parent;
-    unsigned int hashvalue, index;
+    unsigned int hashvalue, index_;
 
     hashvalue = hash(h,k);
-    index = indexFor(h->tablelength,hashvalue);
+    index_ = indexFor(h->tablelength,hashvalue);
 
-    e = h->table[index];
+    e = h->table[index_];
     parent = NULL;
     while (NULL != e)
     {
         /* Check hash value to short circuit heavier comparison */
         if ((hashvalue == e->h) && (h->eqfn(k, e->k)))
         {
-            itr->index = index;
+            itr->index = index_;
             itr->e = e;
             itr->parent = parent;
             itr->h = h;

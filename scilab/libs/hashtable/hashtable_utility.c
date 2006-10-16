@@ -20,10 +20,10 @@ int
 hashtable_change(struct hashtable *h, void *k, void *v)
 {
     struct entry *e;
-    unsigned int hashvalue, index;
+    unsigned int hashvalue, index_;
     hashvalue = hash(h,k);
-    index = indexFor(h->tablelength,hashvalue);
-    e = h->table[index];
+    index_ = indexFor(h->tablelength,hashvalue);
+    e = h->table[index_];
     while (NULL != e)
     {
         /* Check hash value to short circuit heavier comparison */
