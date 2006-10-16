@@ -6613,8 +6613,8 @@ sciDrawObj (sciPointObj * pobj)
   integer *ym = NULL;
   integer *zm = NULL;
   integer n2 = 1, xtmp[4], ytmp[4], *pstyle = NULL/*,rect1[4]*/;
-  integer closeflag = 0,ias,ias1;
-  double w2,h2,as;
+  integer closeflag = 0 ;
+  double w2,h2 ;
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
   integer nn1,nn2, arsize,lstyle,iflag;
@@ -7041,368 +7041,229 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 
-      if (pSEGS_FEATURE (pobj)->ptype == 0) /* ptype == 0 F.Leray : This is NOT A champ */
-        {  
-	  n=pSEGS_FEATURE (pobj)->Nbr1;
-	  /* F.Leray 18.02.04 Correction suivante ANNULEE:
-	     in1 = pSEGS_FEATURE (pobj)->Nbr1; ANNULATION MODIF DU 18.02.04
-	     in2 = pSEGS_FEATURE (pobj)->Nbr2;*/
-	  arsize = (integer) (pSEGS_FEATURE (pobj)->arrowsize); 
-	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1; /* F.Leray 18.02.04 Correction suivante:*/
-	  /*	if ((xm = MALLOC (in1*sizeof (integer))) == NULL)	return -1;*/ /* ANNULATION MODIF DU 18.02.04*/
-	  /*	if ((ym = MALLOC (in2*sizeof (integer))) == NULL)	return -1;*/
-	  if ((pstyle = MALLOC ((int)(n/2)*sizeof (integer))) == NULL)	return -1; /* SS 19.04*/
-	  if (pSEGS_FEATURE (pobj)->iflag == 1) {
-	    for ( i =0 ; i <(int) (n/2) ; i++) {
-	      pstyle[i]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[i]);
-	    }
-	  }
-	  else
-	    pstyle[0]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    {
-	      double * xvect = NULL;
-	      double * yvect = NULL;
-	      double * zvect = NULL;
+      if ( pSEGS_FEATURE (pobj)->ptype == 0 ) /* ptype == 0 F.Leray : This is NOT A champ */
+      {  
 
-	      if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-	      if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-	      if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+        n=pSEGS_FEATURE (pobj)->Nbr1;
 
-	      for(i=0;i<n;i++){
-		xvect[i] = pSEGS_FEATURE (pobj)->vx[i];
-		yvect[i] = pSEGS_FEATURE (pobj)->vy[i];
+        if ((xm = MALLOC (n*sizeof (integer))) == NULL)	{ return -1 ; }
+        if ((ym = MALLOC (n*sizeof (integer))) == NULL)	{ return -1 ; } /* F.Leray 18.02.04 Correction suivante:*/
 
-		if(pSEGS_FEATURE (pobj)->vz!= NULL)
-		  zvect[i] = pSEGS_FEATURE (pobj)->vz[i];
-		else
-		  zvect = (double *) NULL;
-	      }
-	      
-	      ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,zvect,n);
-	      
-	      trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,zvect);
-	      
-	      FREE(xvect); xvect = NULL;
-	      FREE(yvect); yvect = NULL;
-	      FREE(zvect); zvect = NULL;
-	    }
-	  else
-	    {
-	      for ( i =0 ; i <n ; i++) {
-		xm[i]= XScale(pSEGS_FEATURE (pobj)->vx[i]); 
-		ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);}
-	    } 
-#ifdef _MSC_VER 
-	  flag_DO = MaybeSetWinhdc();
-#endif
-	  if (pSEGS_FEATURE (pobj)->arrowsize == 0){
-	    if(sciGetIsMark(pobj))
-	      {
-		x[0] = sciGetMarkForeground(pobj);
-		
-		markidsizenew[0] =  sciGetMarkStyle(pobj);
-		markidsizenew[1] =  sciGetMarkSize(pobj);
-		
-		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			  &dv, &dv, &dv, 5L, 4096);     
-		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			  &dv, &dv, &dv, &dv, 5L, 4096);
-		
-		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			  PD0, PD0, 0L, 0L);
-		DrawNewMarks(pobj,n,xm,ym,DPI);
-	      }	   
-	    
-	    if(sciGetIsLine(pobj)){
-	      
-	      x[0] = sciGetForeground(pobj);
-	      
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
-	      C2F(dr)("xsegs","v",xm,ym,&n,pstyle,&pSEGS_FEATURE (pobj)->iflag,
-		      PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	  }
-	  else{ 
-	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	      {  
-		as=pSEGS_FEATURE (pobj)->arrowsize;
-		C2F(echelle2dl)(&as,&as,&ias,&ias1,&un,&un,"f2i"); 
-	/* 	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->isoview) */
-/* 		  ias=ias*10; */
-/* 		else  */
-		  ias =ias/2;
-		
-		if(sciGetIsMark(pobj))
-		  {
-		    x[0] = sciGetMarkForeground(pobj);
-		    
-		    markidsizenew[0] =  sciGetMarkStyle(pobj);
-		    markidsizenew[1] =  sciGetMarkSize(pobj);
-
-		    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			  &dv, &dv, &dv, 5L, 4096);
-		    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			      &dv, &dv, &dv, &dv, 5L, 4096);
-		    
-		    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			      PD0, PD0, 0L, 0L);
-		    DrawNewMarks(pobj,n,xm,ym,DPI);
-		  }
-		
-		if(sciGetIsLine(pobj)){
-
-		  x[0] = sciGetForeground(pobj);
-		  
-		  C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			    PD0, PD0, PD0, 0L, 0L);    
-		  C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			    PD0, PD0, PD0, 0L, 0L);
-	
-		  C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
-		}
-	      }
-	    else
-	      {
-		  as=pSEGS_FEATURE (pobj)->arrowsize;
-		  C2F(echelle2dl)(&as,&as,&ias,&ias1,&un,&un,"f2i"); 
-		  ias = ias/2;
-		  
-		if(sciGetIsMark(pobj))
-		  {
-		    x[0] = sciGetMarkForeground(pobj);
-		    
-		    markidsizenew[0] =  sciGetMarkStyle(pobj);
-		    markidsizenew[1] =  sciGetMarkSize(pobj);
-
-		    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			      &dv, &dv, &dv, 5L, 4096);
-		    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			      &dv, &dv, &dv, &dv, 5L, 4096);
-		    
-		    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			      PD0, PD0, 0L, 0L);
-		    
-		    DrawNewMarks(pobj,n,xm,ym,DPI);
-		  }
-		
-		if ( sciGetIsLine( pobj ) )
-		{
-		    x[0] = sciGetForeground(pobj);
-		    
-		    C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			      &dv, &dv, &dv, 5L, 4096);
-		    C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			      PD0, PD0, PD0, 0L, 0L);    
-		    C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			      PD0, PD0, PD0, 0L, 0L);
-		    
-		    C2F(dr)("xarrow","v",xm,ym,&n,&ias,pstyle,&pSEGS_FEATURE (pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
-		}
-	
-		/* with C2F(dr)("xarrow",... did not work: why? What does (dr1) routine make more than (dr) in New Graphics mode ?? */
-		/* Answer : dr deals with pixels value (data: xm and ym are integers!!) whereas dr1 deals with double value coming from the user */
-		/* This is true for old and new graphics mode. */
-	      } /***/
-	  }
-#ifdef _MSC_VER 
-	  if ( flag_DO == 1) ReleaseWinHdc ();
-#endif 
-	  FREE(xm);         xm = (integer *) NULL;
-	  FREE(ym);         ym = (integer *) NULL; 
-	  FREE(pstyle); pstyle = (integer *) NULL; /* SS 19.04*/
-	}
-      else    /*ptype == 1*/ /* ptype == 1 F.Leray : This IS A champ */
+        if ((pstyle = MALLOC ((int)(n/2)*sizeof (integer))) == NULL) { return -1 ; } /* SS 19.04*/
+        if (pSEGS_FEATURE (pobj)->iflag == 1)
         {
+          for ( i =0 ; i <(int) (n/2) ; i++)
+          {
+            pstyle[i]=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[i]);
+          }
+        }
+        else
+        {
+          pstyle[0] = sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]) ;
+        }
+        if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+        {
+          double * xvect = NULL;
+          double * yvect = NULL;
+          double * zvect = NULL;
+
+          if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+
+          for( i = 0 ; i < n ; i++ )
+          {
+            xvect[i] = pSEGS_FEATURE (pobj)->vx[i];
+            yvect[i] = pSEGS_FEATURE (pobj)->vy[i];
+          }
+
+          if ( pSEGS_FEATURE (pobj)->vz != NULL )
+          {
+            if ((zvect = MALLOC (n*sizeof (double))) == NULL) { return -1 ; }
+            for( i = 0 ; i < n ; i++ )
+            {
+              zvect[i] = pSEGS_FEATURE (pobj)->vz[i];
+            }
+          }
+
+          ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,zvect,n);
+
+          trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,zvect);
+
+          FREE(xvect); xvect = NULL;
+          FREE(yvect); yvect = NULL;
+          if ( zvect != NULL )
+          {
+            FREE( zvect ) ;
+            zvect = NULL;
+          }
+        }
+        else
+        {
+          for ( i =0 ; i < n ; i++)
+          {
+            xm[i] = XScale(pSEGS_FEATURE (pobj)->vx[i]) ; 
+            ym[i] = YScale(pSEGS_FEATURE (pobj)->vy[i]) ;
+          }
+        }
 #ifdef _MSC_VER 
-	  flag_DO = MaybeSetWinhdc();
+        flag_DO = MaybeSetWinhdc();
 #endif
-	  /*verbose = 1; */ /* debug F.Leray release mode */
-	  C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
-	  if (uc)
-	    C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
-	  else
-	    C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+
+        if( sciGetIsMark(pobj) )
+        {
+          drawPolyMarks( pobj, n, xm, ym, DPI ) ;
+        }
+
+        if( sciGetIsLine( pobj ) )
+        {
+          x[0] = sciGetForeground(pobj);
+
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+            &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+            PD0, PD0, PD0, 0L, 0L);    
+          C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+            PD0, PD0, PD0, 0L, 0L);
+
+          if ( pSEGS_FEATURE (pobj)->arrowsize == 0 )
+          {
+            /* only lines */
+            C2F(dr)("xsegs","v",xm,ym,&n,pstyle,&pSEGS_FEATURE (pobj)->iflag,
+              PI0,PD0,PD0,PD0,PD0,0L,0L);
+          }
+          else
+          {
+            int arrowSize = computeRealArrowSize( pobj, n, xm, ym ) ;      		    
+            C2F(dr)("xarrow","v",xm,ym,&n,&arrowSize,pstyle,&pSEGS_FEATURE(pobj)->iflag,PD0,PD0,PD0,PD0,0L,0L);
+            /* with C2F(dr)("xarrow",... did not work: why? What does (dr1) routine make more than (dr) in New Graphics mode ?? */
+            /* Answer : dr deals with pixels value (data: xm and ym are integers!!) whereas dr1 deals with double value coming from the user */
+            /* This is true for old and new graphics mode. */
+          }
+
+        }
+
+
 #ifdef _MSC_VER 
-	  if ( flag_DO == 1) ReleaseWinHdc ();
+        if ( flag_DO == 1) ReleaseWinHdc ();
+#endif 
+        FREE(xm);         xm = (integer *) NULL;
+        FREE(ym);         ym = (integer *) NULL; 
+        FREE(pstyle); pstyle = (integer *) NULL; /* SS 19.04*/
+      }
+      else    /*ptype == 1*/ /* ptype == 1 F.Leray : This IS A champ */
+      {
+#ifdef _MSC_VER 
+        flag_DO = MaybeSetWinhdc();
+#endif
+        C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+        if (uc)
+          C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+        else
+          C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+#ifdef _MSC_VER 
+        if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
 
-	  n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2));
-	 
+        n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2));
 
-	  /* On laisse tomber le graphic_alloc ICI F.Leray 20.02.04*/
-	  /* 	  xm = graphic_alloc(0,n,sizeof(int));
-		  ym = graphic_alloc(1,n,sizeof(int)); */
 
-	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+        if ((xm = MALLOC (n*sizeof (integer))) == NULL) { return -1 ; }
+        if ((ym = MALLOC (n*sizeof (integer))) == NULL) { return -1 ; }
 
-	  zm = NULL;/* SS 02/04 */
-	  if ( xm == NULL || ym == NULL) 
-	    {
-	      sciprint("Running out of memory \n");
-	      return -1;
-	    }      
-	  if ( pSEGS_FEATURE (pobj)->typeofchamp == 1) { /* champ1 has been called */
-	    /*	    zm = graphic_alloc(2,n/2,sizeof(int)); */ /* F.Leray a voir le n/2... 20.02.04 */
-	    if ((zm = MALLOC (((int) (n/2))*sizeof (integer))) == NULL)	return -1;
-	    
-	    if (  zm == NULL ) 
-	      {
-		sciprint("Running out of memory \n");
-		return -1;
-	      }      
-	  }
-	  /* Prototype de Champ2DRealToPixel:
-	     extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
-	     
-	     integer *xm,*ym,*zm;
-	     integer *na,*arsize,*colored;
-	     integer *n1,*n2;
-	     double *x, *y, *fx, *fy;
-	     double *arfact;
-	  */
+        zm = NULL;/* SS 02/04 */
+        if ( xm == NULL || ym == NULL) 
+        {
+          sciprint("Running out of memory \n");
+          return -1;
+        }      
+        if ( pSEGS_FEATURE (pobj)->typeofchamp == 1 )
+        { /* champ1 has been called */
 
-	  sciChamp2DRealToPixel(xm,ym,zm,&na,&arssize,
-			     pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
-			     pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
-			     &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact),&(pSEGS_FEATURE (pobj)->typeofchamp));
+          if ((zm = MALLOC (((int) (n/2))*sizeof (integer))) == NULL) { return -1 ; }
+
+          if (  zm == NULL ) 
+          {
+            sciprint("Running out of memory \n");
+            return -1;
+          }      
+        }
+
+        sciChamp2DRealToPixel(xm,ym,zm,&na,&arssize,
+          pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
+          pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
+          &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact),&(pSEGS_FEATURE (pobj)->typeofchamp));
 #ifdef _MSC_VER 
-	  flag_DO = MaybeSetWinhdc();
+        flag_DO = MaybeSetWinhdc();
 #endif
 
-	  /* F.Leray Addings here 24.03.04*/
-	  /*  if (pSEGS_FEATURE (pobj)->arrowsize > 1) */
-	  /* 	    arssize = (int) pSEGS_FEATURE (pobj)->arrowsize; */
+        /** size of arrow **/
+        /* a bit tricky */
 
-	  /** size of arrow **/
-	  if (pSEGS_FEATURE (pobj)->arrowsize >= 1){
-	    arsize1= ((double) Cscale.WIRect1[2])/(5*(pSEGS_FEATURE (pobj)->Nbr1));
-	    arsize2= ((double) Cscale.WIRect1[3])/(5*(pSEGS_FEATURE (pobj)->Nbr2));
-	    arssize=  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
-	    arssize = (int)((arssize)*(pSEGS_FEATURE (pobj)->arrowsize));
-	  }
-	  
-	  /* test if we are in 3d HERE */
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    {
-	      double * xvect = NULL;
-	      double * yvect = NULL;
-	      double * zvect = NULL;
-	      
-	      if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-	      if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-	      if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-	      
-	      for(i=0;i<n;i++){
-		xvect[i] = XPi2R(xm[i]);
-		yvect[i] = YPi2R(ym[i]);
-	      }
-	      
-	      /*      for(i=0;i<n;i++) sciprint("xm[%d] =%d\n",i,xm[i]); */
-	      /* 	      for(i=0;i<n;i++) sciprint("ym[%d] =%d\n",i,ym[i]); */
+        /* test if we are in 3d HERE */
+        if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+        {
+          double * xvect = NULL;
+          double * yvect = NULL;
+          double * zvect = NULL;
+
+          if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+
+          for(i=0;i<n;i++){
+            xvect[i] = XPi2R(xm[i]);
+            yvect[i] = YPi2R(ym[i]);
+          }
 
 
-	      /* 	      for(i=0;i<n;i++) sciprint("xvect[%d] =%lf\n",i,xvect[i]); */
-	      /* 	      for(i=0;i<n;i++) sciprint("yvect[%d] =%lf\n",i,yvect[i]); */
-	      /* 	      sciprint("na = %d\n",na); */
-	      /* 	      sciprint("\n"); */
+          /* F.Leray 06.12.04 */
+          /* A REVOIR : ne marche pas en 3D */
+          ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,NULL,n);
 
-	      /* F.Leray 06.12.04 */
-	      /* A REVOIR : ne marche pas en 3D */
+          trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,NULL);
+
+          FREE(xvect); xvect = NULL;
+          FREE(yvect); yvect = NULL;
+          FREE(zvect); zvect = NULL;
+        }
+
+        if ( sciGetIsMark( pobj ) )
+        {
+          drawPolyMarks( pobj, n, xm, ym, DPI ) ;
+        }
+
+        if( sciGetIsLine( pobj ) )
+        {
+          int arrowSize =  computeRealArrowSize( pobj, na, xm, ym ) ;
+          x[0] = sciGetForeground(pobj);
+
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+            &dv, &dv, &dv, 5L, 4096);
+          C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+            PD0, PD0, PD0, 0L, 0L);    
+          C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+            PD0, PD0, PD0, 0L, 0L);
+          if( pSEGS_FEATURE(pobj)->typeofchamp == 0 )
+          {
+            C2F(dr)("xarrow","v",xm,ym,&na,&arrowSize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
+          }
+          else
+          {
+            C2F(dr)("xarrow","v",xm,ym,&na,&arrowSize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);
+          }
+        }
 
 
-	      ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,NULL,n);
-	      
-	      trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,NULL);
-	      
-	      FREE(xvect); xvect = NULL;
-	      FREE(yvect); yvect = NULL;
-	      FREE(zvect); zvect = NULL;
-	    }
-
-	  if (pSEGS_FEATURE (pobj)->typeofchamp == 0){
-	    if(sciGetIsMark(pobj))
-	      {
-		x[0] = sciGetMarkForeground(pobj);
-		
-		markidsizenew[0] =  sciGetMarkStyle(pobj);
-		markidsizenew[1] =  sciGetMarkSize(pobj);
-
-		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			  &dv, &dv, &dv, 5L, 4096);
-		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			  &dv, &dv, &dv, &dv, 5L, 4096);
-		
-		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			  PD0, PD0, 0L, 0L);
-		
-		DrawNewMarks(pobj,n,xm,ym,DPI);
-	      }
-
-	    if(sciGetIsLine(pobj)){
-
-	      x[0] = sciGetForeground(pobj);
-
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
-	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,(sflag=0,&sflag),&dv,&dv,&dv,&dv,0L,0L);
-	    }
-	  }
-	  else{
-	    if(sciGetIsMark(pobj))
-	      {
-		x[0] = sciGetMarkForeground(pobj);
-		
-		markidsizenew[0] =  sciGetMarkStyle(pobj);
-		markidsizenew[1] =  sciGetMarkSize(pobj);
-		
-		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-			  &dv, &dv, &dv, 5L, 4096);
-		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-			  &dv, &dv, &dv, &dv, 5L, 4096);
-		
-		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-			  PD0, PD0, 0L, 0L);
-		
-		DrawNewMarks(pobj,n,xm,ym,DPI);
-	      }
-	    
-	    if(sciGetIsLine(pobj)){
-	      
-	      x[0] = sciGetForeground(pobj);
-	      
-	      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);    
-	      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-			PD0, PD0, PD0, 0L, 0L);
-	      C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);
-	    }
-	  }
 #ifdef _MSC_VER 
-	  if ( flag_DO == 1) ReleaseWinHdc ();
+        if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-	  FREE(xm) ; xm = (integer *) NULL;
-	  FREE(ym) ; ym = (integer *) NULL;/* SS 02/04 */ /* et F.Leray 18.02.04*/
-	  if ( pSEGS_FEATURE (pobj)->typeofchamp == 1) 
-	    {
-	      FREE(zm); zm = (integer *) NULL;/* F.Leray 1802.04 modif ici*/
-	    }
-	}  
+        FREE(xm) ; xm = (integer *) NULL;
+        FREE(ym) ; ym = (integer *) NULL;/* SS 02/04 */ /* et F.Leray 18.02.04*/
+        if ( pSEGS_FEATURE (pobj)->typeofchamp == 1) 
+        {
+          FREE(zm); zm = (integer *) NULL;/* F.Leray 1802.04 modif ici*/
+        }
+      }  
 
       sciUnClip(pobj);
       break;
@@ -12200,6 +12061,94 @@ void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2]
   sciSetPosition( pLabel,
                   XPixel2Double( wantedBlPoint[0] ),
                   YPixel2Double( wantedBlPoint[1] ) ) ;
+
+}
+/*------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------*/
+/**
+* draw the marks at the vertices of a polyline.
+* @param[in] pObj Object on which the marks will be drawn. Might be a polyline, a segs or
+*                 rectangle object.
+* @param[in] nbMarks Number of marks to draw.
+* @param[in] xCoord X coordinates of the marks in pixels.
+* @param[in] yCoord Y coordinates of the marks in pixels.
+* @param     DPI    ???
+*/
+void drawPolyMarks( sciPointObj * pObj, int nbMarks, int xCoord[], int yCoord[], int * DPI )
+{
+  int foreground = sciGetMarkForeground( pObj ) ;
+  int v     = 0   ;
+  double dv = 0.0 ;
+  int markIdSize[2] ;
+
+  markIdSize[0] = sciGetMarkStyle( pObj ) ;
+  markIdSize[1] = sciGetMarkSize(  pObj ) ;
+
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, &v, &v, &v, &v, &dv,
+    &dv, &dv, &dv, 5L, 4096);     
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, &v, &v, &v, &v,
+    &dv, &dv, &dv, &dv, 5L, 4096);
+
+  C2F (dr) ("xset", "mark", &markIdSize[0], &markIdSize[1], PI0, PI0, PI0, PI0, PD0, PD0,
+    PD0, PD0, 0L, 0L);
+
+  DrawNewMarks( pObj, nbMarks, xCoord, yCoord, DPI ) ;
+}
+/*------------------------------------------------------------------------------------------*/
+/**
+* Compute the arrow size which must be used in (dr)(xarrows).
+* @param[in] pSegs object of which we are displaying arrows.
+* @param[in] X coordinates in pixels of the segments
+* @param[in] Y coordinates in pixels of the segments
+* @return    Size to use in xarrows.
+*/
+int computeRealArrowSize( sciPointObj * pSegs, int nbSegs, int xCoord[], int yCoord[] )
+{
+  sciSegs * ppSegs = pSEGS_FEATURE( pSegs ) ;
+  double arrowSize = ppSegs->arrowsize ;
+  int one = 1 ;
+
+  if ( ppSegs->ptype == 0 )
+  {
+    if ( arrowSize > 0 )
+    {
+      int iAs2 = 0 ;
+      int iAs  = 0 ;
+      C2F(echelle2dl)( &arrowSize, &arrowSize, &iAs, &iAs2, &one, &one, "f2i" ) ;
+      return iAs / 2 ;
+    }
+    else
+    {
+      /* taken from Xcall1.c */
+      int i ;
+      double length = 0.0 ;
+      for ( i = 0 ; i < nbSegs / 2 ; i++ )
+      {
+        double dx ;
+        double dy ;
+        dx=( xCoord[2*i+1] - xCoord[2*i] ) ;
+        dy=( yCoord[2*i+1] - yCoord[2*i] ) ;
+        length += sqrt( dx * dx + dy * dy ) ;
+      }
+      if ( nbSegs != 0 )
+      {
+        length /= nbSegs / 2 ;
+      }
+      return round( -arrowSize * length ) ;
+    }
+  }
+  else
+  {
+    if ( ppSegs->arrowsize >= 0 )
+    {
+      double arsize1 = ((double) Cscale.WIRect1[2])/(5*( ppSegs->Nbr1));
+      double arsize2 = ((double) Cscale.WIRect1[3])/(5*( ppSegs->Nbr2));
+      double arsize  =  (arsize1 < arsize2) ? inint(arsize1*10.0) : inint(arsize2*10.0) ;
+      return (int)((arsize)*(ppSegs->arrowsize));
+    }
+  }
+
+  return 0 ;
 
 }
 /*------------------------------------------------------------------------------------------*/

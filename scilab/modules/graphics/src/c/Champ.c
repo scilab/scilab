@@ -150,7 +150,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 /* 	EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
       
       flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
-      arsize1 = 0.5;
+      arsize1 = *arfact;
 
       /* F.Leray Allocation de style[dim = Nbr1] */
       if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL) {
