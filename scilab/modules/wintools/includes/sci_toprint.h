@@ -14,6 +14,6 @@
 #include "stack-c.h"
 #include "version.h"
 
-int C2F(sci_toprint) _PARAMS((char *fname));
+int C2F(sci_toprint) _PARAMS((char *fname, unsigned long fname_len));
 #endif /* __INTTOPRINT__ */
 /*-----------------------------------------------------------------------------------*/ 

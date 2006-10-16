@@ -20,7 +20,7 @@
 #define MAX_PATH_LONG 32767
 #define MAX_PATH_SHORT 260
 
-int C2F(sci_getlongpathname) _PARAMS((char *fname));
-int C2F(sci_getshortpathname) _PARAMS((char *fname));
+int C2F(sci_getlongpathname) _PARAMS((char *fname, unsigned long fname_len));
+int C2F(sci_getshortpathname) _PARAMS((char *fname, unsigned long fname_len));
 #endif /* __INTPATHNAME__ */
 /*-----------------------------------------------------------------------------------*/ 
