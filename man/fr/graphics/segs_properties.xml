@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -64,9 +64,9 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="arrow_size: ">
-        <SP>If the value of this property is 0, segments are drawn, else
-        arrows are drawn and the size of the arrows is given by the absolute
-        value of this property.</SP>
+        <SP>Factor that specify the size of a arrowheads. With a negative
+        value, the size is also dependent of the arrows length. TO draw
+        segment, the value must be set to 0.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="segs_color: ">
