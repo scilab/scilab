@@ -7,7 +7,8 @@
 
   <TYPE>Scilab Data type</TYPE>
 
-  <DATE>$LastChangedDate$</DATE>
+  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006)
+  $</DATE>
 
   <SHORT_DESCRIPTION name="segs_properties">description of the Segments entity
   properties</SHORT_DESCRIPTION>
@@ -64,9 +65,9 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="arrow_size: ">
-        <SP>If the value of this property is 0, segments are drawn, else
-        arrows are drawn and the size of the arrows is given by the absolute
-        value of this property.</SP>
+        <SP>Factor that specify the size of a arrowheads. With a negative
+        value, the size is also dependent of the arrows length. TO draw
+        segment, the value must be set to 0.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="segs_color: ">
