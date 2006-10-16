@@ -2,8 +2,8 @@ function [cpr,ok]=c_pass3(scs_m,cpr)
 // reconstruct the block list structure
 // Copyright INRIA
 bllst=list();
-corinv=cpr.corinv
-sim=cpr.sim
+corinv=cpr.corinv;
+sim=cpr.sim;
 for k=1:size(corinv)
   if type(corinv(k))==1 then
     if size(corinv(k),'*')==1 then
@@ -16,19 +16,20 @@ for k=1:size(corinv)
     m=scicos_model();
 
     //here it is assumed that modelica blocs have only scalar inputs/outputs
-    m.in=ones(1,sim.inpptr(k+1)-sim.inpptr(k))
-    m.out=ones(1,sim.outptr(k+1)-sim.outptr(k))
+    m.in=ones(1,sim.inpptr(k+1)-sim.inpptr(k));
+    m.out=ones(1,sim.outptr(k+1)-sim.outptr(k));
     if sim.funtyp(k)<10000 then
       n=(sim.xptr(k+1)-sim.xptr(k))
     else
       n=2*(sim.xptr(k+1)-sim.xptr(k))
     end
-    m.state=cpr.state.x(sim.xptr(k)+(0:n-1))
-    m.dstate=cpr.state.z(sim.zptr(k):sim.zptr(k+1)-1)
-    m.rpar=sim.rpar(sim.rpptr(k):sim.rpptr(k+1)-1)
-    m.ipar=sim.ipar(sim.ipptr(k):sim.ipptr(k+1)-1)
-    m.label=''
-    m.sim=list(sim.funs(k),sim.funtyp(k))
+    m.state=cpr.state.x(sim.xptr(k)+(0:n-1));
+    m.dstate=cpr.state.z(sim.zptr(k):sim.zptr(k+1)-1);
+
+    m.rpar=sim.rpar(sim.rpptr(k):sim.rpptr(k+1)-1);
+    m.ipar=sim.ipar(sim.ipptr(k):sim.ipptr(k+1)-1);
+    m.label='';
+    m.sim=list(sim.funs(k),sim.funtyp(k));
     //here it is assumed that modelica blocs does not have output events
     bllst(k)=m;
   end
@@ -63,7 +64,7 @@ for i=1:length(bllst)
   end
   
   if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
-    xd0k=var2vec(ll.dstate)
+     if ll.dstate==[] then xd0k=[]; else xd0k=var2vec(ll.dstate);end
   else
     xd0k=ll.dstate(:)
   end
@@ -71,7 +72,7 @@ for i=1:length(bllst)
   zptr=[zptr;zptr($)+size(xd0k,'*')]
   
   if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
-    rpark=var2vec(ll.rpar)
+    if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
   else
     rpark=ll.rpar(:)
   end
