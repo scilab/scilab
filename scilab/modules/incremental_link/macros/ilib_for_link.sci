@@ -117,7 +117,18 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
   mfprintf(fd,"# ------------------------------------------------------\n");
   mfprintf(fd,"SCIDIR = %s\n",SCI);
   mfprintf(fd,"OBJS = ")
-  for x=files(:)' ; mfprintf(fd," %s",x);end
+  
+  // add .a 
+  // for compatibility test if we have already a .a
+  for x=libs(:)' ;
+   [path,fname,extension]=fileparts(x);
+   if (extension == '') then
+     mfprintf(fd," %s.a",x);
+   else
+     mfprintf(fd," %s",x);
+   end
+  end
+  
   mfprintf(fd,"\n") ;
   mfprintf(fd,"OTHERLIBS = ")
   for x=libs(:)' ; mfprintf(fd," %s",x);end
