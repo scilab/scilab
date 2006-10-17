@@ -9,6 +9,7 @@ function Context_()
       if ~exists('%scicos_context') then
 	%scicos_context=struct()
       end
+      disablemenus()
       [%scicos_context,ierr]=script2var(context,%scicos_context)
       //for backward compatibility for scifunc
       if ierr==0 then
@@ -21,6 +22,7 @@ function Context_()
 	end
       end
       //end of for backward compatibility for scifunc
+      enablemenus()
       if ierr <>0 then
 	message(['Error occur when evaluating context:'
 		 lasterror() ])
