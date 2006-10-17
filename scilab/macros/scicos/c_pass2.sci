@@ -131,7 +131,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
       vecordo=vec(primary(:,1))
       ordoclk0=ordo_vecport(primary,vecordo)
       cord=ordoclk0; 
-      ordoclkcont=ordoclk0
+//      ordoclkcont=ordoclk0
     end
 
     while k<=size(ordoclk,1) 
@@ -2006,8 +2006,9 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_t,dep
     vecordo=vec(primary(:,1))
     ordoclk0=ordo_vecport(primary,vecordo)
     cord=ordoclk0;
-    ordoclkcont=ordoclk0
+//    ordoclkcont=ordoclk0
     ordoclk=[ordoclk0;ordoclk]
+    ordoclk=gsort(ordoclk,'lr','i')
   end
   
   while k<=size(ordoclk,1) 
