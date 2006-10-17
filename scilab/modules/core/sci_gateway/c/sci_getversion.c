@@ -13,7 +13,7 @@ static char Version[]=SCI_VERSION;
 extern int C2F(withtk)(int *rep);
 extern int C2F(withpvm)(int *rep);
 extern int C2F(withgtk)(int *rep);
-extern int C2F(withocaml)(int *rep);
+extern int C2F(withmodelicac)(int *rep);
 extern int C2F(withjavasci)(int *rep);
 extern int C2F(getcomp)(char *buf,int *nbuf,long int lbuf);
 /*-----------------------------------------------------------------------------------*/
@@ -42,7 +42,7 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
 			static char *Str[12];
 			char tk[]="tk";
 			char pvm[]="pvm";
-			char ocaml[]="ocaml";
+			char modelicac[]="modelicac";
 			char javasci[]="javasci";
 			char atlas[]="atlas";
 			char debugmode[]="debug";
@@ -63,8 +63,8 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
 			if (irep) {Str[n1]=pvm;n1++;}
 			C2F(withtk)(&irep);
 			if (irep) {Str[n1]=tk;n1++;}
-			C2F(withocaml)(&irep);
-			if (irep) {Str[n1]=ocaml;n1++;}
+			C2F(withmodelicac)(&irep);
+			if (irep) {Str[n1]=modelicac;n1++;}
 			C2F(withjavasci)(&irep);
 			if (irep) {Str[n1]=javasci;n1++;}
 #ifdef WITH_ATLAS

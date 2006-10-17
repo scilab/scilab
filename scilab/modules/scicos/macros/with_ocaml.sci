@@ -1,4 +1,4 @@
 function r=with_ocaml()
-  [v,opt]=getversion()
-  r=or(opt=='ocaml')
+  warning('with_ocaml() obsolete function. Uses with_modelicac()');
+  r=with_modelicac();
 endfunction

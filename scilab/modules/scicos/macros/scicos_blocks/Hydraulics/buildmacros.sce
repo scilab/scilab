@@ -8,5 +8,5 @@ if MSDOS then
 else
   unix("ls *.mo >models");
 end
-if with_ocaml() then exec("../../genmoc.sce");end;
+if with_modelicac() then exec("../../genmoc.sce");end;
 //------------------------------------

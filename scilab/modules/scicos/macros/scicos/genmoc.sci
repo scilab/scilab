@@ -5,8 +5,8 @@ function genmoc(path,force,verbose)
   [lhs,rhs]=argn(0); 
   if rhs <= 2 then force = %f ; end 
   if rhs <= 3 then verbose = %f ; end 
-  if ~with_ocaml() then
-    error('Scilab has not been built with Ocaml, Modelica compiler unavailable')
+  if ~with_modelicac() then
+    error('Modelica compiler unavailable')
   end
   if MSDOS then
     compilerpath=pathconvert(SCI+'/modules/scicos/bin/modelicac.exe',%f,%t)

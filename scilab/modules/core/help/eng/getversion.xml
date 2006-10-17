@@ -21,7 +21,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>opts</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a vector of string with four entries :<VERB>[compiler,pvm,tk,ocaml]</VERB></SP>
+          <SP>: a vector of string with four entries :<VERB>[compiler,pvm,tk,modelicac]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -30,7 +30,7 @@
     <P>
     return in <VERB>version</VERB> the Scilab version name and in
     <VERB>opts</VERB> build options which can be used to determine if scilab
-    has been build with pvm, tk or ocaml.</P>
+    has been build with pvm, tk or modelicac.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

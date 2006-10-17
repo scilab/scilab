@@ -1,10 +1,13 @@
+/*************************************************************************************************/
+/* Scilab */
+/* INRIA */
+/*************************************************************************************************/
 #ifdef _MSC_VER
 #include <windows.h>
 #else
-#include <stdio.h>
 #include <sys/utsname.h>
 #endif
-
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h> /* getenv ! */
 #include "machine.h" 
@@ -12,27 +15,19 @@
 #include "core_math.h" 
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
-
 /*************************************************************************************************/
 #ifdef _MSC_VER
-	extern BOOL FileExist(char *filename);
 	BOOL ExistScicos(void);
-	BOOL ExistModelicac(void);
 	BOOL ExistJavaSciWin(void);
 #endif
-
 static BOOL WITH_GUI=TRUE;
 /*************************************************************************************************/
 void SetWITH_GUI(int ON);
 BOOL  GetWITH_GUI(void);
+BOOL ExistModelicac(void);
 /*************************************************************************************************/
 extern int C2F(withtk)(int *rep);
-/*************************************************************************************************/
-/*-------------------------------------------
- *  get configure options used for compilation 
- *  used in inisci.f
- *  Copyright ENPC/ Jean-Philipe Chancelier 
- *-------------------------------------------*/
+extern BOOL FileExist(char *filename);
 /*************************************************************************************************/
 int C2F(withpvm)(int *rep)
 { 
@@ -65,9 +60,8 @@ int C2F(withscicos)(int *rep)
 }
 
 /*************************************************************************************************/
-int C2F(withocaml)(int *rep)
+int C2F(withmodelicac)(int *rep)
 {
-#ifdef _MSC_VER
 	if (ExistModelicac())
 	{
 		*rep =1;
@@ -76,13 +70,6 @@ int C2F(withocaml)(int *rep)
 	{
 		*rep =0; 
 	}
-#else
-	#ifdef WITH_OCAML
-		*rep =1; 
-	#else 
-		*rep =0; 
-	#endif 
-#endif
   return 0;
 }
 /*************************************************************************************************/
@@ -131,7 +118,6 @@ int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 
 
 /*************************************************************************************************/
-
 /**
  * Set the SCI path and initialize the scilab environement path
  *
@@ -162,7 +148,6 @@ int SetSci()
 }
 
 /*************************************************************************************************/
-
 /**
  * Get the SCI path and initialize the scilab environement path
  *
@@ -193,22 +178,28 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 	return 0;
 }
 /*************************************************************************************************/
-#ifdef _MSC_VER
 BOOL ExistModelicac(void)
 {
-	#define ModelicacName "/modules/scicos/bin/modelicac.exe"
+	#define ModelicacNameWindows "/modules/scicos/bin/modelicac.exe"
+	#define ModelicacNameLinux "/modules/scicos/bin/modelicac"
 
 	BOOL bOK=FALSE;
 	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathModelicac=NULL;
 	
-	fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacName)+1)*sizeof(char));
-	wsprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacName);
+	#if _MSC_VER
+		fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacNameWindows)+1)*sizeof(char));
+		sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacNameWindows);
+	#else
+		fullpathModelicac=(char*)MALLOC((strlen(SCIPATH)+strlen(ModelicacNameLinux)+1)*sizeof(char));
+		sprintf(fullpathModelicac,"%s%s",SCIPATH,ModelicacNameLinux);
+	#endif
 	bOK=FileExist(fullpathModelicac);
 	if (fullpathModelicac) FREE(fullpathModelicac);
 	return bOK;
 }
 /*************************************************************************************************/
+#ifdef _MSC_VER
 BOOL ExistJavaSciWin(void)
 {
 	#define JavaSCIName "/bin/javasci.dll"
