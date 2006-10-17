@@ -121,7 +121,7 @@ plotframe(rect,tics,[%t,%t],..
 ["My plot with grids and automatic bounds","x","y"],[0,0.5,0.5,0.5])
 plot2d(x,y,4,"000")
 plotframe(rect,flags=[%f,%t],tics=tics,..
-   captions=["plot sans grille mais avec bornes automatiques ","x","y"],..
+   captions=["My plot without grids but with automatic bounds ","x","y"],..
    subwin=[0.5,0.5,0.5,0.5])
 plot2d(x,y,5,"000")
 xset("default")
