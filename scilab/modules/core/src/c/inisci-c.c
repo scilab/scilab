@@ -157,6 +157,7 @@ int SetSci()
 		exit(1);
 	}
 	setSCIpath(buf);
+	if (buf) {FREE(buf);buf=NULL;}
 	return 0;
 }
 
