@@ -37,7 +37,6 @@ src/c/msgstore.c \
 src/c/flags.c \
 src/c/getmodules.c \
 src/c/fromc.c \
-src/c/malloc.c \
 src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/msgout.c \
