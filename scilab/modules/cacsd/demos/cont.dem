@@ -6,7 +6,7 @@ while %t do
   case 0
     break
   case 1
-    demoexc('lqg.dem')
+    demoexc('lqg/lqg.dem')
   case 2
     demoexc('mixed.dem')
   case 3
