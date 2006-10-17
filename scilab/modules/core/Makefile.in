@@ -92,17 +92,16 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/readline.c src/c/stack1.c src/c/scicurdir.c \
 	src/c/realmain.c src/c/stack3.c src/c/str2sci.c src/c/cluni0.c \
 	src/c/msgstore.c src/c/flags.c src/c/getmodules.c \
-	src/c/fromc.c src/c/malloc.c src/c/setgetSCIpath.c \
-	src/c/getmemory.c src/c/msgout.c src/c/Funtab.c src/c/mexlib.c \
-	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/scimem.c src/c/banier.c src/c/callinterf.c \
-	src/c/isanan.c src/c/parse.c src/c/matus2.c src/c/timer.c \
-	src/c/stack2.c src/c/Scierror.c src/c/sciprint.c src/c/link.c \
-	src/c/xscion.c src/c/SciEnv.c src/c/getarg-hpux.c \
-	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/complexify.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
-	src/fortran/getlin.f src/fortran/isany.f \
+	src/c/fromc.c src/c/setgetSCIpath.c src/c/getmemory.c \
+	src/c/msgout.c src/c/Funtab.c src/c/mexlib.c src/c/csignal.c \
+	src/c/prompt.c src/c/CallScilab.c src/c/scimem.c \
+	src/c/banier.c src/c/callinterf.c src/c/isanan.c src/c/parse.c \
+	src/c/matus2.c src/c/timer.c src/c/stack2.c src/c/Scierror.c \
+	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
+	src/c/getarg-hpux.c src/c/getarg.c src/fortran/algebre.f \
+	src/fortran/clunit.f src/fortran/complexify.f \
+	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/bcol.f \
+	src/fortran/msgs.f src/fortran/getlin.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/scilab.f src/fortran/functionsforbasout.f \
 	src/fortran/setgetmode.f src/fortran/errmsgf.f \
@@ -237,9 +236,8 @@ am__objects_3 = libcore_la-history.lo libcore_la-inffic.lo \
 	libcore_la-str2sci.lo libcore_la-cluni0.lo \
 	libcore_la-msgstore.lo libcore_la-flags.lo \
 	libcore_la-getmodules.lo libcore_la-fromc.lo \
-	libcore_la-malloc.lo libcore_la-setgetSCIpath.lo \
-	libcore_la-getmemory.lo libcore_la-msgout.lo \
-	libcore_la-Funtab.lo libcore_la-mexlib.lo \
+	libcore_la-setgetSCIpath.lo libcore_la-getmemory.lo \
+	libcore_la-msgout.lo libcore_la-Funtab.lo libcore_la-mexlib.lo \
 	libcore_la-csignal.lo libcore_la-prompt.lo \
 	libcore_la-CallScilab.lo libcore_la-scimem.lo \
 	libcore_la-banier.lo libcore_la-callinterf.lo \
@@ -439,8 +437,6 @@ OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
 OCAMLOPT = @OCAMLOPT@
-OCAMLTARGET = @OCAMLTARGET@
-OCAMLTARGET_DISTCLEAN = @OCAMLTARGET_DISTCLEAN@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -564,13 +560,13 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/readline.c src/c/stack1.c src/c/scicurdir.c \
 	src/c/realmain.c src/c/stack3.c src/c/str2sci.c src/c/cluni0.c \
 	src/c/msgstore.c src/c/flags.c src/c/getmodules.c \
-	src/c/fromc.c src/c/malloc.c src/c/setgetSCIpath.c \
-	src/c/getmemory.c src/c/msgout.c src/c/Funtab.c src/c/mexlib.c \
-	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/scimem.c src/c/banier.c src/c/callinterf.c \
-	src/c/isanan.c src/c/parse.c src/c/matus2.c src/c/timer.c \
-	src/c/stack2.c src/c/Scierror.c src/c/sciprint.c src/c/link.c \
-	src/c/xscion.c src/c/SciEnv.c $(am__append_2) $(am__append_4)
+	src/c/fromc.c src/c/setgetSCIpath.c src/c/getmemory.c \
+	src/c/msgout.c src/c/Funtab.c src/c/mexlib.c src/c/csignal.c \
+	src/c/prompt.c src/c/CallScilab.c src/c/scimem.c \
+	src/c/banier.c src/c/callinterf.c src/c/isanan.c src/c/parse.c \
+	src/c/matus2.c src/c/timer.c src/c/stack2.c src/c/Scierror.c \
+	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
+	$(am__append_2) $(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -878,7 +874,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-intmacr2tree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-isanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-link.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-malloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-matus2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-matusr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-md5.Plo@am__quote@
@@ -1220,13 +1215,6 @@ libcore_la-fromc.lo: src/c/fromc.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fromc.c' object='libcore_la-fromc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
-
-libcore_la-malloc.lo: src/c/malloc.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-malloc.lo -MD -MP -MF "$(DEPDIR)/libcore_la-malloc.Tpo" -c -o libcore_la-malloc.lo `test -f 'src/c/malloc.c' || echo '$(srcdir)/'`src/c/malloc.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libcore_la-malloc.Tpo" "$(DEPDIR)/libcore_la-malloc.Plo"; else rm -f "$(DEPDIR)/libcore_la-malloc.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/malloc.c' object='libcore_la-malloc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-malloc.lo `test -f 'src/c/malloc.c' || echo '$(srcdir)/'`src/c/malloc.c
 
 libcore_la-setgetSCIpath.lo: src/c/setgetSCIpath.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-setgetSCIpath.lo -MD -MP -MF "$(DEPDIR)/libcore_la-setgetSCIpath.Tpo" -c -o libcore_la-setgetSCIpath.lo `test -f 'src/c/setgetSCIpath.c' || echo '$(srcdir)/'`src/c/setgetSCIpath.c; \
