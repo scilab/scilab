@@ -56,7 +56,6 @@ void Initialize()
 		else
 		{
 			char *p;
-			MessageBox(NULL,modname,modname,MB_OK);
 			if ((p = strrchr (modname, '\\')) == NULL) exit(1); /* remove \javasci.dll from modname */
 			else
 			{
@@ -65,7 +64,6 @@ void Initialize()
 				else
 				{
 					*p='\0';
-					MessageBox(NULL,modname,modname,MB_OK);
 					set_sci_env(modname);
 				}
 			}
