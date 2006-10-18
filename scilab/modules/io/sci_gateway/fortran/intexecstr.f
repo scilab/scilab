@@ -172,6 +172,7 @@ c     .     on depile un exec ou une pause
             goto 24
          else
             errpt=ids(5,pt)
+            errct=ids(2,pt)
             il=iadr(lstk(top))
             istk(il)=0
             lstk(top+1)=lstk(top)+1
