@@ -3,9 +3,11 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <windows.h> 
+#ifdef USE_F2C
+	#include "f2c.h"
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
-
 	#pragma comment(lib,"ifconsol.lib")
 	#pragma comment(lib,"libifport.lib")
 	#if _DEBUG

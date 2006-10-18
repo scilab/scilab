@@ -13,6 +13,14 @@
 #define IMPORT 
 #endif
 
+#ifdef FORDLL 
+#define Extern __declspec (dllimport)
+#else 
+#define Extern
+#endif
+
+
+
 typedef long int integer;
 typedef unsigned long int uinteger;
 typedef char *address;
