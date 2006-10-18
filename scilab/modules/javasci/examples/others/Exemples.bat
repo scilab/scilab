@@ -55,6 +55,5 @@ echo ------------------------------------------------------------------------
 %JAVA% Exemple10
 echo ------------------------------------------------------------------------
 pause
-cd ..\examples\callsci\callsciJava\others
+cd ..\modules\javasci\examples\others
 @echo on
-
