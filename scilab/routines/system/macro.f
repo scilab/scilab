@@ -7,7 +7,7 @@ c
       double precision val
       integer eol
       logical eqid,ptover,vargin,vargout,exec,vcopyobj
-      integer blank,r,ival(2),ptr,top1,count,iadr,wmacn
+      integer blank,r,ival(2),ptr,top1,count,iadr,wmacn,p
       integer varargin(nsiz),varargout(nsiz),id(nsiz)
       integer scivarindex
       equivalence (ival(1),val)
@@ -245,11 +245,20 @@ c-----------------------------------------
 c     handle errcatch
       exec=rstk(pt-1).eq.909.or.rstk(pt-1).eq.903
       if(errct.ne.0.and.errpt.ge.pt.and..not.exec) then
-         errct=0
-         errpt=0
-         err1=0
+c     .  looking for a previous execstr(....,'errcatch') see intexecstr
+         p=pt
+ 401     if (rstk(p).eq.903)  goto 402
+         p=p-1
+         if (p.gt.0) goto 401
+ 402     err1=0
          err2=0
          catch=0
+         errct=0
+         errpt=0
+         if (p.gt.0) then
+            if (ids(1,p).eq.1) errct=-900001
+            errpt=p
+         endif
       endif
 
       lhsr=lhs
