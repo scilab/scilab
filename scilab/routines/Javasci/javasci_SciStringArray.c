@@ -3,6 +3,8 @@
 /* Allan CORNET */
 /* INRIA 2006 */
 /********************************************************************************************************/
+#define DefaultMaxlenString 1024
+/********************************************************************************************************/
 /* private static native void Initialize(); */
 JNIEXPORT void JNICALL Java_javasci_SciStringArray_Initialize (JNIEnv *env, jclass cl)
 {
@@ -34,7 +36,6 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job(JNIEnv *env , jobject obj
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 /********************************************************************************************************/
 {
-  #define DefaultMaxlenString 1024
   int cm,cn;
   const char *cname; 
   int indx, indy, nlr;
@@ -85,7 +86,8 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 {
 	const char *cname;
 	const char *cstr;
-	char Job[1024*4];
+	char Job[DefaultMaxlenString];
+	int lencstr=0;
 
 	/* get the class */
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -99,10 +101,27 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 	cname = (*env)->GetStringUTFChars(env, jname, NULL);
 	cstr = (*env)->GetStringUTFChars(env, strarg, NULL);
 
-	sprintf(Job,"%s(%d,%d)=\"\"%s\"\";",cname,indxarg+1,indyarg+1,cstr);
-	if (send_scilab_job(Job))
+	lencstr=(int)strlen(cstr);
+
+	if (!C2F(cwritechain)("TMP_SendString",&lencstr,(char*)cstr,(int)strlen("TMP_SendString"),(int)strlen(cstr)) )
 	{
-		fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine.\n");
+		fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine (1).\n");
+	}
+	else
+	{
+		sprintf(Job,"%s(%d,%d)=TMP_SendString;",cname,indyarg+1,indxarg+1);
+		if (send_scilab_job(Job))
+		{
+			fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine (2).\n");
+		}
+		else
+		{
+			sprintf(Job,"clear TMP_SendString;");
+			if (send_scilab_job(Job))
+			{
+				fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine (3).\n");
+			}
+		}
 	}
 
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
