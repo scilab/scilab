@@ -515,12 +515,23 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 
   if ( typeof3d != SCI_PARAM3D1 ) {/*Distinction here between SCI_PARAM3D1 and others*/
 
-    if(*m1 == 1) /* x is a row vector */
+    if ( *isfac == 1 )
+    {
+      /* x is considered as a matrix */
+      dimvectx = -1 ;
+    }
+    else if(*m1 == 1)
+    { /* x is a row vector */
       dimvectx = *n1;
-    else if(*n1 == 1) /* x is a column vector */
+    }
+    else if(*n1 == 1)
+    { /* x is a column vector */
       dimvectx = *m1;
-    else /* x is a matrix */
+    }
+    else
+    { 
       dimvectx = -1;
+    }
     
     if(dimvectx>1){
       /* test the monotony on x*/
@@ -551,12 +562,23 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	}
     }
     
-    if(*m2 == 1) /* y is a row vector */
+    if ( *isfac == 1 )
+    {
+      /* y is considered as a matrix */
+      dimvecty = -1 ;
+    }
+    else if(*m2 == 1) /* y is a row vector */
+    {
       dimvecty = *n2;
+    }
     else if(*n2 == 1) /* y is a column vector */
+    {
       dimvecty = *m2;
+    }
     else /* y is a matrix */
+    {
       dimvecty = -1;
+    }
    
     if(dimvecty>1){
       /* test the monotony on y*/

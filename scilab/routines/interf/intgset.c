@@ -803,12 +803,23 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
   
   /* check the monotony on x and y */
   
-  if(m1 == 1) /* x is a row vector */
+  if ( psurf->isfac == 1 )
+  {
+    /* x is considered as a matrix */
+    dimvectx = -1 ;
+  }
+  else if(m1 == 1) /* x is a row vector */
+  {
     dimvectx = n1;
+  }
   else if(n1 == 1) /* x is a column vector */
+  {
     dimvectx = m1;
+  }
   else /* x is a matrix */
+  {
     dimvectx = -1;
+  }
   
   if(dimvectx>1){
     /* test the monotony on x*/
@@ -839,13 +850,24 @@ int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc
       }
   }
 
-  if(m2 == 1) /* y is a row vector */
+  if ( psurf->isfac == 1 )
+  {
+    /* y is considered as a matrix */
+    dimvecty = -1 ;
+  }
+  else if( m2 == 1) /* y is a row vector */
+  {
     dimvecty = n2;
-  else if(n2 == 1) /* y is a column vector */
+  }
+  else if( n2 == 1) /* y is a column vector */
+  {
     dimvecty = m2;
+  }
   else /* y is a matrix */
+  {
     dimvecty = -1;
-  
+  }
+
   if(dimvecty>1){
     /* test the monotony on y*/
     if(stk(l2)[0] >= stk(l2)[1]) /* decreasing */
