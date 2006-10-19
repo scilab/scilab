@@ -1081,8 +1081,8 @@ int OLE_follow_minichain( struct OLE_object *ole, int miniFAT_sector_start )
   int chain_length=0;
 
   DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Starting at sector %d",FL, miniFAT_sector_start);
-
-  if (miniFAT_sector_start < 0) return 0;
+  /* ||ole->miniFAT==NULL added by S Steer*/
+  if (miniFAT_sector_start < 0||ole->miniFAT==NULL) return 0;
 
   do {
     /*unsigned int next_sector;*/
@@ -1137,7 +1137,8 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
   if (OLE_DNORMAL(ole->debug)) LOGGER_log("%s:%d:OLE_load_minichain:DEBUG: Loading minichain starting at %d",FL, miniFAT_sector_start);
 
   /* Added this sanity checking 2003 Aug 28*/
-  if (miniFAT_sector_start < 0) return NULL;
+  /*||ole->miniFAT==NULL added by serge Steer */
+  if (miniFAT_sector_start < 0||ole->miniFAT==NULL) return NULL;
 
   chain_length = OLE_follow_minichain( ole, miniFAT_sector_start );
   if (OLE_DNORMAL(ole->debug)) LOGGER_log("%s:%d:OLE_load_minichain:DEBUG: Found %d mini-sectors to load (%d bytes)\n",FL, chain_length, chain_length *ole->header.mini_sector_size);
