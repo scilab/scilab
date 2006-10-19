@@ -20,16 +20,18 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 
   if updateC then
     if MSDOS then
-      modelicac=pathconvert(SCI+'/modules/scicos/bin/modelicac.exe',%f,%t)
+      modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
       if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
       modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
+//      modelicac=modelicac+strcat(' -hpath '+ 'c:\Mylibs\');
       instr=modelicac+' '+fil+' -o '+path+name+'.c -jac'
       
       mputl(instr,path+'genc.bat')
       instr=path+'genc.bat'
     else
-       modelicac=pathconvert(SCI+'/modules/scicos/bin/modelicac',%f,%t)
+       modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
        modelicac=modelicac+strcat(' -L '+mlibs)
+//       modelicac=modelicac+strcat(' -hpath '+ '/home/'+unix_g('whoami')+'/Mylibs/');
        instr=modelicac+' '+fil+' -o '+path+name+'.c -jac'
        
     end
@@ -59,10 +61,16 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     //  build the list of external functions libraries
     libs=[];
     if MSDOS then ext='\*.ilib',else ext='/*.a',end
+    // removing .a or .ilib sufixs
     for k=1:size(mlibs,'*')
-      libs=[libs;listfiles(mlibs(k)+ext)]
+      aa=listfiles(mlibs(k)+ext);
+      for j=1:size(aa,'*')
+	[pathx,fnamex,extensionx]=fileparts(aa(j));
+	libsname= fullfile(pathx,fnamex);
+	libs=[libs;libsname];
+      end
     end
-
+    
     ierr=execstr('libn=ilib_for_link(name,files,libs,''c'',Make,loader)','errcatch')
     if ierr<>0 then 
       ok=%f;x_message(['sorry compilation problem';lasterror()]);
@@ -76,7 +84,7 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     return;
     end
   end
-endfunction
+endfunction 
 
 function [nx,nin,nout,ng,nm,nz]=analyze_c_code(txt)
 // Serge Steer 2003, Copyright INRIA
