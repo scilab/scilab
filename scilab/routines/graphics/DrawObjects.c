@@ -8129,8 +8129,8 @@ sciDrawObj (sciPointObj * pobj)
         n=2*(pSEGS_FEATURE (pobj)->Nbr1)*((pSEGS_FEATURE (pobj)->Nbr2));
 	 
 
-        if ((xm = MALLOC (n*sizeof (integer))) == NULL) { return -1 ; }
-        if ((ym = MALLOC (n*sizeof (integer))) == NULL) { return -1 ; }
+        xm = MALLOC (n*sizeof (integer)) ;
+        ym = MALLOC (n*sizeof (integer)) ;
 
         zm = NULL;/* SS 02/04 */
         if ( xm == NULL || ym == NULL) 
@@ -8141,7 +8141,7 @@ sciDrawObj (sciPointObj * pobj)
         if ( pSEGS_FEATURE (pobj)->typeofchamp == 1 )
         { /* champ1 has been called */
          
-          if ((zm = MALLOC (((int) (n/2))*sizeof (integer))) == NULL) { return -1 ; }
+          zm = MALLOC (((int) (n/2))*sizeof (integer)) ;
 	    
           if (  zm == NULL ) 
           {
@@ -8153,7 +8153,7 @@ sciDrawObj (sciPointObj * pobj)
         sciChamp2DRealToPixel(xm,ym,zm,&na,&arssize,
                               pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
                               pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
-                              &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact),&(pSEGS_FEATURE (pobj)->typeofchamp));
+                              &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact),&(pSEGS_FEATURE (pobj)->typeofchamp),TRUE);
 #ifdef WIN32 
         flag_DO = MaybeSetWinhdc();
 #endif

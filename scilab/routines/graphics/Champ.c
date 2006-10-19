@@ -14,6 +14,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
+#include "ObjectStructure.h"
 
 #if WIN32
 #include "../os_specific/win_mem_alloc.h" /* MALLOC */
@@ -31,6 +32,19 @@ extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+
+void getChampDataBounds( double   xCoords[]  ,
+                         double   yCoords[]  ,
+                         double   xLength[]  ,
+                         double   yLength[]  ,
+                         int      nbRow      ,
+                         int      nbCol      ,
+                         int      typeOfChamp,
+                         double * xMin       ,
+                         double * xMax       ,
+                         double * yMin       ,
+                         double * yMax        ) ;
+
 
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -50,7 +64,7 @@ extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
  -------------------------------------------------------------------*/
 
 void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, 
-	    integer *n2, char *strflag, double *brect, double *arfact, integer lstr)
+	    integer *n2, char *strflag, double *brect, double *arfact, integer lstr )
 {
   static integer aaint[]={2,10,2,10};
   integer *xm = NULL,*ym = NULL,*zm = NULL,na,n;
@@ -65,129 +79,124 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   double drect[6];
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
-  int typeofchamp = 0;
+  
+  /* champ with color inheritated from subwin */
+  /* or champ1 (normed vector + color) is enabled */
+  int typeofchamp = ( colored == 0 ? 0 : 1 ) ;
 
   /* get default dash for arrows **/
   integer verbose=0,narg,xz[10],uc;
 
+    
   C2F(dr)("xget","use color",&verbose, &uc, &narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (uc)
     C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   else
     C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
-  /* n=2*(*n1)*(*n2); */
   n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
-  xx[0]=x[0];xx[1]=x[*n1-1];
-  yy[0]=y[0];yy[1]=y[*n2-1];
   
-  if (version_flag() == 0) {
-      if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-	sciXbasc();  
-	initsubwin();
-	sciRedrawFigure();
-      }  
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-
-      /* Force psubwin->is3d to FALSE: we are in 2D mode */
-      if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-	{
-	  pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-	  pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-	} 
-      else
-	{
-	  pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-	  pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
-	}
-
-      pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-      pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-            
-      /* Force psubwin->axes.aaint to those given by argument aaint*/
-      /*****TO CHANGE F.Leray 10.09.04      for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
-      
-      /* Force "cligrf" clipping */
-      sciSetIsClipping (psubwin,0); 
-
-      /* Force  axes_visible property */
-      /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE; */
-
-      if (sciGetGraphicMode (psubwin)->autoscaling) {
-	/* compute and merge new specified bounds with psubwin->Srect */
-	switch (strflag[1])  {
-	case '0': 
-	  /* do not change psubwin->Srect */
-	  break;
-	case '1' : case '3' : case '5' : case '7':
-	  /* Force psubwin->Srect=brect */
-	  re_index_brect(brect,drect);
-	  break;
-	case '2' : case '4' : case '6' : case '8': case '9':
-	  /* Force psubwin->Srect to the x and y bounds */
-	/*   compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
-	  compute_data_bounds2(0,'g',pSUBWIN_FEATURE (psubwin)->logflags,xx,yy,nn1,nn2,drect);
-	  break;
-	}
-	if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
-	    (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-	  drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-	  drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
-	}
-	
-	if (strflag[1] != '0')
-	  bounds_changed = update_specification_bounds(psubwin, drect,2);
+  /* get the bounding rect of the displayed champ */
+  getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;
+  
+  if (version_flag() == 0)
+  {
+    sciPointObj * newChamp = NULL ;
+    if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
+      sciXbasc();  
+      initsubwin();
+      sciRedrawFigure();
+    }  
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    
+    /* Force psubwin->is3d to FALSE: we are in 2D mode */
+    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+    {
+      pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+      pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+    } 
+    else
+    {
+      pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+      pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+    }
+    
+    pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+    pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+    
+    
+    /* Force "cligrf" clipping */
+    sciSetIsClipping (psubwin,0); 
+    
+    /* Force  axes_visible property */
+    
+    if (sciGetGraphicMode (psubwin)->autoscaling) {
+      /* compute and merge new specified bounds with psubwin->Srect */
+      switch (strflag[1])  {
+      case '0': 
+        /* do not change psubwin->Srect */
+        break;
+      case '1' : case '3' : case '5' : case '7':
+        re_index_brect(brect,drect);
+        break;
+      case '2' : case '4' : case '6' : case '8': case '9':
+        /* Force psubwin->Srect to the x and y bounds */
+        compute_data_bounds2(0,'g',pSUBWIN_FEATURE (psubwin)->logflags,xx,yy,nn1,nn2,drect);
+        break;
+      }
+      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
+          (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9')) { /* merge psubwin->Srect and drect */
+        drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+        drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+        drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+        drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       }
       
-      if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
       
-      axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-      
-      pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
-      
-      if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-	sciDrawObj(sciGetCurrentFigure());
-/* 	EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-      
-      flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
-      arsize1 = *arfact;
+      if (strflag[1] != '0')
+        bounds_changed = update_specification_bounds(psubwin, drect,2);
+    }
+    
+    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+    
+    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+    
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+    
+    if( bounds_changed || axes_properties_changed )
+    {
+      sciDrawObj(sciGetCurrentFigure());
+    }
+    
+    flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
+    arsize1 = *arfact;
+    
+    /* F.Leray Allocation de style[dim = Nbr1] */
+    if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL) {
+      sciprint("No more memory available\n");
+      return;
+    }
+    
+    for( i = 0 ; i < (*n1) ; i++ ) { style[i] = i ; }
 
-      /* F.Leray Allocation de style[dim = Nbr1] */
-      if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL) {
-	sciprint("No more memory available\n");
-	return;
-      }
-      for(i=0;i<(*n1);i++) style[i]=i;
+    newChamp = ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
+                             style,arsize1,colored,*arfact,typeofchamp) ;
 
-
-      if(colored == 0){
-	/* champ with color inheritated from subwin */
-/* 	colored = sciGetForeground(psubwin); */
-	typeofchamp = 0;
-      }
-      else{
-	/*champ1 (normed vector + color) is enabled */
-	typeofchamp = 1;
-      }
-      sciSetCurrentObj(ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
-				     style,arsize1,colored,*arfact,typeofchamp)); 
+    sciSetCurrentObj( newChamp ) ; 
       
- /*      sciDrawObj(sciGetCurrentFigure ()); /\* Adding F.Leray 13.05.04 to insure the drawing *\/ */
-      sciDrawObjIfRequired(sciGetCurrentObj ()); 
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-      /* F.Leray Libération de style[dim = Nbr1]*/
-      if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
+    sciDrawObjIfRequired(sciGetCurrentObj ()); 
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    /* F.Leray Liberation de style[dim = Nbr1]*/
+    if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
   }
   else {
     update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
-
+    
     /* Storing values if using the Record driver */
     if (GetDriver()=='R')
       StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
- 
-
+    
+    
     axis_draw(strflag);
     /** Allocation **/  
     xm = graphic_alloc(0,n,sizeof(int));
@@ -266,15 +275,6 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   int xfacteur = 1;
   int yfacteur = 1;
   
-/*   if(version_flag()==0) */
-/*     { */
-/*       sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); */
-/*       sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
-
-/*       if(ppsubwin->axes.reverse[0] == TRUE) xfacteur = -1; */
-/*       if(ppsubwin->axes.reverse[1] == TRUE) yfacteur = -1; */
-/*     } */
-
 
   /* From double to pixels */
   for ( i = 0 ; i < *n1 ; i++)
@@ -318,10 +318,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
-	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
+	  
 	  xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
 	  xm[2*j]  = (int)(xm[2*i]);
  	  ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
@@ -331,8 +328,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	    {
 	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
 	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
-	      j++;
+              j++;
 	    }
 	}
       *na=2*j;
@@ -386,13 +382,20 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 /* For new graphic style only */
 /* same thing has above (Champ2DRealToPixel) */
 /* only difference is in the typeofchamp treatment (taht replaces the colored flag) */
-extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,typeofchamp)
-     integer *xm,*ym,*zm;
-     integer *na,*arsize;
-     integer *n1,*n2;
-     double *x, *y, *fx, *fy;
-     double *arfact;
-     int * typeofchamp;
+extern void sciChamp2DRealToPixel( integer * xm         ,
+                                   integer * ym         ,
+                                   integer * zm         ,
+                                   integer * na         ,
+                                   integer * arsize     ,
+                                   double  * x          ,
+                                   double  * y          ,
+                                   double  * fx         ,
+                                   double  * fy         ,
+                                   integer * n1         ,
+                                   integer * n2         ,
+                                   double  * arfact     ,
+                                   int     * typeofchamp,
+                                   BOOL      clipping    )
 {  
  
   integer i,j;
@@ -453,22 +456,21 @@ extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,type
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
-	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
-	  xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
+          xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
 	  xm[2*j]  = (int)(xm[2*i]);
  	  ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
 	  ym[2*j]  = (int)(ym[2*i]);
 	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
-	      j++;
-	    }
+	  if ( flag1 !=0 || !clipping )
+          {
+            if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
+            if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
+            j++;
+          }
+          else if ( !clipping )
+          {
+            j++ ;
+          }
 	}
       *na=2*j;
     }
@@ -504,17 +506,124 @@ extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,type
 	  /* end of the modif */
 
 	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      j++;
-	    }
+	  if ( flag1 != 0 )
+          {
+            if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
+            if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
+            j++;
+          }
+          else if ( !clipping )
+          {
+            j++ ;
+          }
 	}
       *na=2*j;
     }
 }
 
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * Compute the size of the area used by a champ object( ie scisegs with ptype = 1).
+ * @param[in]  xCoords     position of the champ grid
+ * @param[in]  yCoords     position of the champ grid
+ * @param[in]  xLength     size of the arrow
+ * @param[in]  yLength     size of the arrow
+ * @param      nbRow       number of row in the champ grid
+ * @param      nbCol       number of column in the champ grid.
+ * @param      typeOfChamp 0 for champ and 1 for champ1
+ * @param[out] xMin        bounding rect of the champ object
+ * @param[out] xMax        bounding rect of the champ object
+ * @param[out] yMin        bounding rect of the champ object
+ * @param[out] yMax        bounding rect of the champ object
+ */
+void getChampDataBounds( double   xCoords[]  ,
+                         double   yCoords[]  ,
+                         double   xLength[]  ,
+                         double   yLength[]  ,
+                         int      nbRow      ,
+                         int      nbCol      ,
+                         int      typeOfChamp,
+                         double * xMin       ,
+                         double * xMax       ,
+                         double * yMin       ,
+                         double * yMax        )
+{
+  int      i                                ;
+  int    * xPixCoords   = NULL              ;
+  int    * yPixCoords   = NULL              ;
+  int    * zPixCoords   = NULL              ;
+  int      nbArrowEnds  = 2 * nbRow * nbCol ; /* 2 time the number of arrows */
+  int      nbArrows                         ;
+  int      arrowSize     = 0                ; /* arrow size does not modify bounds for now */
+  double   arrowSizeFact = 0.0              ;
+    
 
+  if ( nbArrowEnds == 0 )
+  {
+    *xMin = 0.0 ;
+    *xMax = 0.0 ;
+    *yMin = 0.0 ;
+    *yMax = 0.0 ;
+    return ;
+  }
 
+  xPixCoords = MALLOC( nbArrowEnds   * sizeof(int) ) ;
+  yPixCoords = MALLOC( nbArrowEnds   * sizeof(int) ) ;
+  zPixCoords = MALLOC( nbRow * nbCol * sizeof(int) ) ;
 
+  if ( xPixCoords == NULL || yPixCoords == NULL || zPixCoords == NULL )
+  {
+    FREE( xPixCoords ) ;
+    FREE( yPixCoords ) ;
+    FREE( zPixCoords ) ;
+    sciprint( "Cannot allocate temporary vector, memory full.\n" ) ;
+    *xMin = 0.0 ;
+    *xMax = 0.0 ;
+    *yMin = 0.0 ;
+    *yMax = 0.0 ;
+    return ;
+  }
+  
+  /* get the bounds in pixels */
+  sciChamp2DRealToPixel( xPixCoords    ,
+                         yPixCoords    ,
+                         zPixCoords    ,
+                         &nbArrows     ,
+                         &arrowSize    ,
+                         xCoords       ,
+                         yCoords       ,
+                         xLength       ,
+                         yLength       ,
+                         &nbRow        ,
+                         &nbCol        ,
+                         &arrowSizeFact,
+                         &typeOfChamp  ,
+                         FALSE          ) ;
+
+  
+
+  /* get extrema on X and Y */
+  *xMin = XPixel2Double( xPixCoords[0] ) ;
+  *xMax = *xMin ;
+
+  *yMin = YPixel2Double( yPixCoords[0] ) ;
+  *yMax = *yMin ;
+
+  for ( i = 1 ; i < nbArrows ; i++ )
+  {
+    double currentCoordX = XPixel2Double( xPixCoords[i] ) ;
+    double currentCoordY = YPixel2Double( yPixCoords[i] ) ;
+    
+    *xMin = Min( *xMin, currentCoordX ) ;
+    *xMax = Max( *xMax, currentCoordX ) ;
+
+    *yMin = Min( *yMin, currentCoordY ) ;
+    *yMax = Max( *yMax, currentCoordY ) ;
+  }
+
+  FREE( xPixCoords ) ;
+  FREE( yPixCoords ) ;
+  FREE( zPixCoords ) ;
+    
+}
+/*-------------------------------------------------------------------------------------------*/

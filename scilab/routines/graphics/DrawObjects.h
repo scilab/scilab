@@ -44,9 +44,20 @@ extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, in
 extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d4RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
-extern void sciChamp2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
-					 integer *arsize,double *x,double *y,
-                                         double  *fx,double *fy,integer *n1,integer *n2,double *arfact, int * typeofchamp));
+extern void sciChamp2DRealToPixel( integer * xm         ,
+                                   integer * ym         ,
+                                   integer * zm         ,
+                                   integer * na         ,
+                                   integer * arsize     ,
+                                   double  * x          ,
+                                   double  * y          ,
+                                   double  * fx         ,
+                                   double  * fy         ,
+                                   integer * n1         ,
+                                   integer * n2         ,
+                                   double  * arfact     ,
+                                   int     * typeofchamp,
+                                   BOOL      clipping    ) ;
 
 char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
 double * AllocUserGrads(double * u_xgrads, int nb);
