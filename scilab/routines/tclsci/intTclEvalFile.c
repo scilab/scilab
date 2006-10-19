@@ -6,6 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(intTclEvalFile) _PARAMS((char *fname))
 {
+  FILE* tmpFile; 
   /* execute Tcl scripts */
   int m1,n1,l1;
   int m2,n2,l2;
@@ -24,6 +25,16 @@ int C2F(intTclEvalFile) _PARAMS((char *fname))
 		Scierror(999,TCL_ERROR13,fname);
 		return 0;
 	}
+
+	if( (tmpFile=fopen(cstk(l1),"r")) == 0 ) 
+	{ 
+		Scierror(999,TCL_ERROR26,cstk(l1));
+		return 0;
+	} 
+	else 
+	{ 
+		fclose(tmpFile); 
+	} 
 
 	if (Rhs==2)
 	{
