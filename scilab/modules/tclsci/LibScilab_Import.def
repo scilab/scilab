@@ -31,3 +31,4 @@ EXPORTS
  GetExceptionString
  set_cf_type
  getSCIpath
+ FileExist

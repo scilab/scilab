@@ -5,6 +5,7 @@
 #include "sci_TCL_EvalFile.h"
 /*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
+extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 {
@@ -24,6 +25,12 @@ int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))
 	if (TCLinterp == NULL)
 	{
 		Scierror(999,TCL_ERROR13,fname);
+		return 0;
+	}
+
+	if(!FileExist(cstk(l1)))
+	{
+		Scierror(999,TCL_ERROR26,cstk(l1));
 		return 0;
 	}
 
