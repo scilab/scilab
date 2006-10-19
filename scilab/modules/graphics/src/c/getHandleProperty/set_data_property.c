@@ -246,7 +246,12 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
 
   /* check the monotony on x and y */
 
-  if ( m1 == 1 ) /* x is a row vector */
+  if ( psurf->isfac == 1 )
+  {
+    /* x is considered as a matrix */
+    dimvectx = -1 ;
+  }
+  else if ( m1 == 1 ) /* x is a row vector */
   {
     dimvectx = n1 ;
   }
@@ -271,7 +276,12 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     psurf->flag_x = monotony ;
   }
 
-  if(m2 == 1) /* y is a row vector */
+  if ( psurf->isfac == 1 )
+  {
+    /* x is considered as a matrix */
+    dimvecty = -1 ;
+  }
+  else if(m2 == 1) /* y is a row vector */
   {
     dimvecty = n2 ;
   }
@@ -285,7 +295,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   }
   if( dimvecty > 1 )
   {
-    int monotony = checkMonotony( pvecx, dimvectx ) ;
+    int monotony = checkMonotony( pvecx, dimvecty ) ;
     if ( monotony == 0 )
     {
       sciprint("Objplot3d: x vector is not monotonous \t\n.");
