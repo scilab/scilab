@@ -89,15 +89,21 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   SciWin();
   SciGerase() ;
 
-  if ( isDefStrf( strf ) ) {
+  if ( isDefStrf( strf ) )
+  {
     char strfl[4];
     if (version_flag() == 0)
+    {
       strcpy(strfl,DEFSTRFN);
+    }
     else
+    {
       strcpy(strfl,DEFSTRF);
+    }
     strf = strfl;
-    if ( isDefRect( rect ) ) {strf[1]='5';} 
+    if ( !isDefRect( rect ) ) {strf[1]='5';} 
   }
+
 
 
   (*func)(stk(l1 ),stk(l2 ),stk(l3 ),stk(l4 ),&m3,&n3,strf,rect, arfact, 4L);

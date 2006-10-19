@@ -243,7 +243,7 @@ ConstructFigure (XGC)
       return (sciPointObj *) NULL;
     }
   sciInitNum (pobj, &(XGC->CurWindow));		   
-  sciSetName(pobj, sciGetName(getFigureModel()), sciGetNameLength(pfiguremdl));
+  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
   sciInitResize((sciPointObj *) pobj,sciGetResize(pobj));
   pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
   pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;

@@ -66,7 +66,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   double drect[6];
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
-  int typeofchamp = 0;
+  /* champ with color inheritated from subwin */
+  /* or champ1 (normed vector + color) is enabled */
+  int typeofchamp = ( colored == 0 ? 0 : 1 ) ;
 
   /* get default dash for arrows **/
   integer verbose=0,narg,xz[10],uc;
@@ -77,10 +79,10 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   else
     C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
-  /* n=2*(*n1)*(*n2); */
   n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
-  xx[0]=x[0];xx[1]=x[*n1-1];
-  yy[0]=y[0];yy[1]=y[*n2-1];
+  
+  /* get the bounding rect of the displayed champ */
+  getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;
   
   if (version_flag() == 0) {
       
@@ -159,16 +161,6 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       }
       for(i=0;i<(*n1);i++) style[i]=i;
 
-
-      if(colored == 0){
-	/* champ with color inheritated from subwin */
-/* 	colored = sciGetForeground(psubwin); */
-	typeofchamp = 0;
-      }
-      else{
-	/*champ1 (normed vector + color) is enabled */
-	typeofchamp = 1;
-      }
       sciSetCurrentObj(ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
 				     style,arsize1,colored,*arfact,typeofchamp)); 
       
@@ -383,16 +375,23 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 /* F.Leray 11.03.05 */
 /* For new graphic style only */
 /* same thing has above (Champ2DRealToPixel) */
-/* only difference is in the typeofchamp treatment (taht replaces the colored flag) */
-extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,typeofchamp)
-     integer *xm,*ym,*zm;
-     integer *na,*arsize;
-     integer *n1,*n2;
-     double *x, *y, *fx, *fy;
-     double *arfact;
-     int * typeofchamp;
+/* only difference is in the typeofchamp treatment (that replaces the colored flag) */
+void sciChamp2DRealToPixel( integer * xm         ,
+                            integer * ym         ,
+                            integer * zm         ,
+                            integer * na         ,
+                            integer * arsize     ,
+                            double  * x          ,
+                            double  * y          ,
+                            double  * fx         ,
+                            double  * fy         ,
+                            integer * n1         ,
+                            integer * n2         ,
+                            double  * arfact     ,
+                            int     * typeofchamp,
+                            BOOL      clipping    )
 {  
- 
+
   integer i,j;
   double  maxx;
   double  nx,ny,sc,sfx,sfy,sfx2,sfy2;
@@ -401,21 +400,22 @@ extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,type
   integer verbose=0,narg;
   int xfacteur = 1;
   int yfacteur = 1;
-  
+
   sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-  
-  if(ppsubwin->axes.reverse[0] == TRUE) xfacteur = -1;
-  if(ppsubwin->axes.reverse[1] == TRUE) yfacteur = -1;
 
+  if ( ppsubwin->axes.reverse[0] ) { xfacteur = -1 ; }
+  if ( ppsubwin->axes.reverse[1] ) { yfacteur = -1 ; }
 
   /* From double to pixels */
   for ( i = 0 ; i < *n1 ; i++)
+  {
     for ( j =0 ; j < *n2 ; j++)
-      {
-	xm[2*(i +(*n1)*j)]= XScale(x[i]);
-	ym[2*(i +(*n1)*j)]= YScale(y[j]);
-      }
+    {
+      xm[2*(i +(*n1)*j)]= XScale(x[i]);
+      ym[2*(i +(*n1)*j)]= YScale(y[j]);
+    }
+  }
 
   /** Scaling **/
   nx=MiniD(x,*n1)*Cscale.Wscx1;
@@ -426,10 +426,10 @@ extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,type
   sfy2= sfy*sfy;
   maxx = sfx2*fx[0]*fx[0]+sfy2*fy[0]*fy[0];
   for (i = 1;  i < (*n1)*(*n2) ; i++)
-    {
-      double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
-      if ( maxx1 > maxx) maxx=maxx1;
-    }
+  {
+    double maxx1 = sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i];
+    if ( maxx1 > maxx) maxx=maxx1;
+  }
   maxx = ( maxx < SMDOUBLE) ? SMDOUBLE : sqrt(maxx);
   sc=maxx;
   /*sc= Min(nx,ny)/sc;*/
@@ -443,75 +443,201 @@ extern void sciChamp2DRealToPixel(xm,ym,zm,na,arsize,x,y,fx,fy,n1,n2,arfact,type
   *arsize = (int)((*arsize)*(*arfact));
 
   set_clip_box(Cscale.WIRect1[0],Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1],
-	       Cscale.WIRect1[1]+Cscale.WIRect1[3]);
+    Cscale.WIRect1[1]+Cscale.WIRect1[3]);
 
   if ( *typeofchamp == 0 ) 
-    {
-      int j=0;
-      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-	{
-	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
-	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
-	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
-	  xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
-	  xm[2*j]  = (int)(xm[2*i]);
- 	  ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
-	  ym[2*j]  = (int)(ym[2*i]);
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
-	      j++;
-	    }
-	}
-      *na=2*j;
-    }
-  else 
+  {
+    int j=0;
+    for ( i = 0 ; i < (*n1)*(*n2) ; i++)
     {
       integer x1n,y1n,x2n,y2n,flag1=0;
-      integer whiteid;
-      int j=0;
-      C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      for ( i = 0 ; i < (*n1)*(*n2) ; i++)
-	{
-	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-	  zm[j] = inint( ((double) whiteid -1 )*(1.0 - nor/maxx)) +1;
-	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
-
-	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
-	   *        at the point (before the arrow was placed such as the corresponding
-	   *        point was at the middle of the arrow)       
-	   *
-	   *        this is the old code :
-	   *
-	   * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
-	   * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
-	   * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
-	   * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
-	   *
-	   *        the new code :
-	   */
-	  xm[1+2*j]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
-	  xm[2*j]  = (int)(xm[2*i]);
-	  ym[1+2*j]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
-	  ym[2*j]  = (int)(ym[2*i]);
-	  /* end of the modif */
-
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
-	  if (flag1 !=0)
-	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      j++;
-	    }
-	}
-      *na=2*j;
+      xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
+      xm[2*j]  = (int)(xm[2*i]);
+      ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
+      ym[2*j]  = (int)(ym[2*i]);
+      clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+      if ( flag1 != 0 )
+      {
+        if (flag1==1||flag1==3)
+        {
+          xm[2*j] = x1n ;
+          ym[2*j] = y1n ;
+        }
+        if (flag1==2||flag1==3)
+        {
+          xm[2*j+1] = x2n ;
+          ym[2*j+1] = y2n ;
+        }
+        j++;
+      }
+      else if ( !clipping )
+      {
+        j++ ;
+      }
     }
+    *na=2*j;
+  }
+  else 
+  {
+    integer x1n,y1n,x2n,y2n,flag1=0;
+    integer whiteid;
+    int j=0;
+    C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    for ( i = 0 ; i < (*n1)*(*n2) ; i++)
+    {
+      double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
+      zm[j] = inint( ((double) whiteid -1 )*(1.0 - nor/maxx)) +1;
+      nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
+
+      /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
+      *        at the point (before the arrow was placed such as the corresponding
+      *        point was at the middle of the arrow)       
+      *
+      *        this is the old code :
+      *
+      * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
+      * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
+      * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
+      * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
+      *
+      *        the new code :
+      */
+      xm[1+2*j]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
+      xm[2*j]  = (int)(xm[2*i]);
+      ym[1+2*j]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
+      ym[2*j]  = (int)(ym[2*i]);
+      /* end of the modif */
+
+      clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+      if ( flag1 != 0 )
+      {
+        if (flag1==1||flag1==3)
+        {
+          xm[2*j] = x1n ;
+          ym[2*j] = y1n ;
+        }
+        if (flag1==2||flag1==3)
+        {
+          xm[2*j+1] = x2n ;
+          ym[2*j+1] = y2n ;
+        }
+        j++;
+      }
+      else if ( !clipping )
+      {
+        j++ ;
+      }
+    }
+    *na=2*j;
+  }
 }
+
+/*-------------------------------------------------------------------------------------------*/
+/**
+* Compute the size of the area used by a champ object( ie scisegs with ptype = 1).
+* @param[in]  xCoords     position of the champ grid
+* @param[in]  yCoords     position of the champ grid
+* @param[in]  xLength     size of the arrow
+* @param[in]  yLength     size of the arrow
+* @param      nbRow       number of row in the champ grid
+* @param      nbCol       number of column in the champ grid.
+* @param      typeOfChamp 0 for champ and 1 for champ1
+* @param[out] xMin        bounding rect of the champ object
+* @param[out] xMax        bounding rect of the champ object
+* @param[out] yMin        bounding rect of the champ object
+* @param[out] yMax        bounding rect of the champ object
+*/
+void getChampDataBounds( double   xCoords[]  ,
+                        double   yCoords[]  ,
+                        double   xLength[]  ,
+                        double   yLength[]  ,
+                        int      nbRow      ,
+                        int      nbCol      ,
+                        int      typeOfChamp,
+                        double * xMin       ,
+                        double * xMax       ,
+                        double * yMin       ,
+                        double * yMax        )
+{
+  int      i                                ;
+  int    * xPixCoords   = NULL              ;
+  int    * yPixCoords   = NULL              ;
+  int    * zPixCoords   = NULL              ;
+  int      nbArrowEnds  = 2 * nbRow * nbCol ; /* 2 time the number of arrows */
+  int      nbArrows                         ;
+  int      arrowSize     = 0                ; /* arrow size does not modify bounds for now */
+  double   arrowSizeFact = 0.0              ;
+
+
+  if ( nbArrowEnds == 0 )
+  {
+    *xMin = 0.0 ;
+    *xMax = 0.0 ;
+    *yMin = 0.0 ;
+    *yMax = 0.0 ;
+    return ;
+  }
+
+  xPixCoords = MALLOC( nbArrowEnds   * sizeof(int) ) ;
+  yPixCoords = MALLOC( nbArrowEnds   * sizeof(int) ) ;
+  zPixCoords = MALLOC( nbRow * nbCol * sizeof(int) ) ;
+
+  if ( xPixCoords == NULL || yPixCoords == NULL || zPixCoords == NULL )
+  {
+    FREE( xPixCoords ) ;
+    FREE( yPixCoords ) ;
+    FREE( zPixCoords ) ;
+    sciprint( "Cannot allocate temporary vector, memory full.\n" ) ;
+    *xMin = 0.0 ;
+    *xMax = 0.0 ;
+    *yMin = 0.0 ;
+    *yMax = 0.0 ;
+    return ;
+  }
+
+  /* get the bounds in pixels */
+  sciChamp2DRealToPixel( xPixCoords    ,
+    yPixCoords    ,
+    zPixCoords    ,
+    &nbArrows     ,
+    &arrowSize    ,
+    xCoords       ,
+    yCoords       ,
+    xLength       ,
+    yLength       ,
+    &nbRow        ,
+    &nbCol        ,
+    &arrowSizeFact,
+    &typeOfChamp  ,
+    FALSE          ) ;
+
+
+
+  /* get extrema on X and Y */
+  *xMin = XPixel2Double( xPixCoords[0] ) ;
+  *xMax = *xMin ;
+
+  *yMin = YPixel2Double( yPixCoords[0] ) ;
+  *yMax = *yMin ;
+
+  for ( i = 1 ; i < nbArrows ; i++ )
+  {
+    double currentCoordX = XPixel2Double( xPixCoords[i] ) ;
+    double currentCoordY = YPixel2Double( yPixCoords[i] ) ;
+
+    *xMin = Min( *xMin, currentCoordX ) ;
+    *xMax = Max( *xMax, currentCoordX ) ;
+
+    *yMin = Min( *yMin, currentCoordY ) ;
+    *yMax = Max( *yMax, currentCoordY ) ;
+  }
+
+  FREE( xPixCoords ) ;
+  FREE( yPixCoords ) ;
+  FREE( zPixCoords ) ;
+
+}
+/*-------------------------------------------------------------------------------------------*/
 
 
 
