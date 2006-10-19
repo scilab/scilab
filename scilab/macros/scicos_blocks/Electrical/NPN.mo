@@ -15,8 +15,7 @@ class NPN "Simple BJT according to Ebers-Moll"
   parameter Real Gbc=1e-15 "Base-collector conductance";
   parameter Real Gbe=1e-15 "Base-emitter conductance";
   parameter Real Vt=0.02585 "Voltage equivalent of temperature";
-  parameter Real EMin=-100 "if x < EMin, the exp(x) function is linearized";
-  parameter Real EMax=40 "if x > EMax, the exp(x) function is linearized";
+  parameter Real EMinMax=40 "if x > EMax, the exp(x) function is linearized";
   Real vbc;
   Real vbe;
   Real qbk;
@@ -28,30 +27,40 @@ class NPN "Simple BJT according to Ebers-Moll"
   Real ExMax;
   Real Capcje;
   Real Capcjc;
+  Real EMax;
+  Real EMin;
+
   Pin C "Collector";
   Pin B "Base";
   Pin E "Emitter";
 equation 
+  EMax=EMinMax;
+  EMin=-2*EMinMax;
   ExMin = Modelica.Math.exp(EMin);
   ExMax = Modelica.Math.exp(EMax);
   vbc = B.v - C.v;
   vbe = B.v - E.v;
   qbk = 1 - vbc*Vak;
   
-  ibc = if (vbc/Vt < EMin) then Is*(ExMin*(vbc/Vt - EMin + 1) - 1) + vbc*Gbc
-     else if (vbc/Vt > EMax) then Is*(ExMax*(vbc/Vt - EMax + 1) - 1) + vbc*Gbc
+  ibc = if noEvent(vbc/Vt < EMin) then Is*(ExMin*(vbc/Vt - EMin + 1) - 1) + vbc*Gbc
+     else if noEvent(vbc/Vt > EMax) then Is*(ExMax*(vbc/Vt - EMax + 1) - 1) + vbc*Gbc
      else Is*(Modelica.Math.exp(vbc/Vt) - 1) + vbc*Gbc;
-  ibe = if (vbe/Vt < EMin) then Is*(ExMin*(vbe/Vt - EMin + 1) - 1) + vbe*Gbe
-     else if (vbe/Vt > EMax) then Is*(ExMax*(vbe/Vt - EMax + 1) - 1) + vbe*Gbe
+
+  ibe = if noEvent(vbe/Vt < EMin) then Is*(ExMin*(vbe/Vt - EMin + 1) - 1) + vbe*Gbe
+     else if noEvent(vbe/Vt > EMax) then Is*(ExMax*(vbe/Vt - EMax + 1) - 1) + vbe*Gbe
      else Is*(Modelica.Math.exp(vbe/Vt) - 1) + vbe*Gbe;
-  Capcjc = if (vbc/Phic > 0) then Cjc*(1 + Mc*vbc/Phic) else Cjc*(1 - vbc/Phic);
-  Capcje = if (vbe/Phie > 0) then Cje*(1 + Me*vbe/Phie) else Cje*(1 - vbe/Phie);
-  cbc = if (vbc/Vt < EMin) then Taur*Is/Vt*ExMin*(vbc/Vt - EMin + 1) + Capcjc
-     else if (vbc/Vt > EMax) then Taur*Is/Vt*ExMax*(vbc/Vt - EMax + 1) + Capcjc
+
+  Capcjc = if noEvent(vbc/Phic > 0) then Cjc*(1 + Mc*vbc/Phic) else Cjc*(1 - vbc/Phic);
+  Capcje = if noEvent(vbe/Phie > 0) then Cje*(1 + Me*vbe/Phie) else Cje*(1 - vbe/Phie);
+
+  cbc = if noEvent(vbc/Vt < EMin) then Taur*Is/Vt*ExMin*(vbc/Vt - EMin + 1) + Capcjc
+     else if noEvent(vbc/Vt > EMax) then Taur*Is/Vt*ExMax*(vbc/Vt - EMax + 1) + Capcjc
      else Taur*Is/Vt*Modelica.Math.exp(vbc/Vt) + Capcjc;
-  cbe = if (vbe/Vt < EMin) then Tauf*Is/Vt*ExMin*(vbe/Vt - EMin + 1) + Capcje
-     else if (vbe/Vt > EMax) then Tauf*Is/Vt*ExMax*(vbe/Vt - EMax + 1) + Capcje
+
+  cbe = if noEvent(vbe/Vt < EMin) then Tauf*Is/Vt*ExMin*(vbe/Vt - EMin + 1) + Capcje
+     else if noEvent(vbe/Vt > EMax) then Tauf*Is/Vt*ExMax*(vbe/Vt - EMax + 1) + Capcje
      else Tauf*Is/Vt*Modelica.Math.exp(vbe/Vt) + Capcje;
+
   C.i = (ibe - ibc)*qbk - ibc/Br - cbc*der(vbc) + Ccs*der(C.v);
   B.i = ibe/Bf + ibc/Br + cbc*der(vbc) + cbe*der(vbe);
   E.i = -B.i - C.i + Ccs*der(C.v);
