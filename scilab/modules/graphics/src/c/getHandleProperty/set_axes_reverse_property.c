@@ -72,8 +72,8 @@ int set_axes_reverse_property( sciPointObj * pobj, int stackPointer, int valueTy
         sciprint("Second argument must be 'on' or 'off'.\n");
         return SET_PROPERTY_ERROR ;
       }
-      return SET_PROPERTY_SUCCEED ;
-    }	
+    }
+    return SET_PROPERTY_SUCCEED ;
   }
   else
   {

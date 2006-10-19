@@ -5091,8 +5091,10 @@ void DrawAxesIfRequired(sciPointObj * pobj)
 {
   sciPointObj * pfigure = sciGetParentFigure(pobj);
   
-  if(pFIGURE_FEATURE(pfigure)->auto_redraw == TRUE && pFIGURE_FEATURE(pfigure)->visible == TRUE)
+  if( pFIGURE_FEATURE(pfigure)->auto_redraw && pFIGURE_FEATURE(pfigure)->visible )
+  {
     DrawAxes(pobj);
+  }
   
 }
 

@@ -84,7 +84,8 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   /* get the bounding rect of the displayed champ */
   getChampDataBounds( x, y, fx, fy, *n1, *n2,typeofchamp,  &(xx[0]), &(xx[1]), &(yy[0]), &(yy[1]) ) ;
   
-  if (version_flag() == 0) {
+  if (version_flag() == 0)
+  {
       
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       checkRedrawing() ;
@@ -110,10 +111,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       /* Force "cligrf" clipping */
       sciSetIsClipping (psubwin,0); 
 
-      /* Force  axes_visible property */
-      /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE; */
 
-      if (sciGetGraphicMode (psubwin)->autoscaling) {
+      if (sciGetGraphicMode (psubwin)->autoscaling)
+      {
 	/* compute and merge new specified bounds with psubwin->Srect */
 	switch (strflag[1])  {
 	case '0': 
@@ -125,7 +125,6 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 	  break;
 	case '2' : case '4' : case '6' : case '8': case '9':
 	  /* Force psubwin->Srect to the x and y bounds */
-	/*   compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
 	  compute_data_bounds2(0,'g',pSUBWIN_FEATURE (psubwin)->logflags,xx,yy,nn1,nn2,drect);
 	  break;
 	}
@@ -138,7 +137,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 	}
 	
 	if (strflag[1] != '0')
+        {
 	  bounds_changed = update_specification_bounds(psubwin, drect,2);
+        }
       }
       
       if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
@@ -147,36 +148,44 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       
       pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
       
-      if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      if( bounds_changed || axes_properties_changed )
+      {
 	sciDrawObj(sciGetCurrentFigure());
-/* 	EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+      }
       
       flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
       arsize1 = *arfact;
 
       /* F.Leray Allocation de style[dim = Nbr1] */
-      if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL) {
+      if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
+      {
 	sciprint("No more memory available\n");
 	return;
       }
-      for(i=0;i<(*n1);i++) style[i]=i;
+
+      for(i=0;i<(*n1);i++) { style[i] = i ; }
 
       sciSetCurrentObj(ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
 				     style,arsize1,colored,*arfact,typeofchamp)); 
       
- /*      sciDrawObj(sciGetCurrentFigure ()); /\* Adding F.Leray 13.05.04 to insure the drawing *\/ */
-      sciDrawObjIfRequired(sciGetCurrentObj ()); 
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+      sciDrawObjIfRequired( sciGetCurrentObj() ) ; 
+      DrawAxesIfRequired( sciGetCurrentObj() ) ; /* force axes redrawing */
       /* F.Leray Libération de style[dim = Nbr1]*/
-      if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
+      if( style != NULL )
+      {
+        FREE( style ) ;
+        style = NULL;
+      }
   }
-  else {
+  else
+  {
     update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
 
     /* Storing values if using the Record driver */
     if (GetDriver()=='R')
+    {
       StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
- 
+    }
 
     axis_draw(strflag);
     /** Allocation **/  
