@@ -7,8 +7,7 @@
 
   <TYPE></TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoÃ» 2006)
-  $</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="plotframe">plot a frame with scaling and
   grids</SHORT_DESCRIPTION>
