@@ -3,6 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+# SUBDIRS = src/ocaml/
+
 SCICOS_C_SOURCES = src/c/cstblk4.c \
 src/c/readau.c \
 src/c/variable_delay.c \

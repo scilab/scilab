@@ -46,13 +46,13 @@ subdir = modules/sparse
 DIST_COMMON = $(libsparse_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/check_compiler.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -173,13 +173,10 @@ EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
 F77 = @F77@
-FC = @FC@
-FCFLAGS = @FCFLAGS@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
 FLIBS = @FLIBS@
-GCC = @GCC@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -191,8 +188,6 @@ GUI_X11_TRUE = @GUI_X11_TRUE@
 GZVT = @GZVT@
 HPPA_OLD = @HPPA_OLD@
 HTMLFLAGS = @HTMLFLAGS@
-ICC = @ICC@
-IFC = @IFC@
 IMPENV = @IMPENV@
 IMPPREF = @IMPPREF@
 INSTALL_DATA = @INSTALL_DATA@
@@ -232,8 +227,6 @@ OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
 OCAMLOPT = @OCAMLOPT@
-OCAMLTARGET = @OCAMLTARGET@
-OCAMLTARGET_DISTCLEAN = @OCAMLTARGET_DISTCLEAN@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -302,7 +295,6 @@ ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__include = @am__include@

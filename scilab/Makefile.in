@@ -20,6 +20,7 @@
 ##########
 
 
+
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
@@ -42,37 +43,41 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = scilex$(EXEEXT)
+bin_PROGRAMS = scilab-bin$(EXEEXT)
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/configure \
-	$(top_srcdir)/modules/core/includes/machine.h.in config/README \
-	config/compile config/config.guess config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing
+	$(top_srcdir)/modules/core/includes/machine.h.in \
+	$(top_srcdir)/modules/scicos/src/ocaml/Makefile.in \
+	config/README config/compile config/config.guess \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/check_compiler.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
-CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)"
+CONFIG_CLEAN_FILES = modules/scicos/src/ocaml/Makefile
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
+	"$(DESTDIR)$(sysconfdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_scilex_OBJECTS = mainsci.$(OBJEXT)
-scilex_OBJECTS = $(am_scilex_OBJECTS)
+am_scilab_bin_OBJECTS = mainsci.$(OBJEXT)
+scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
-scilex_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
+scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(am__DEPENDENCIES_1)
+binSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(bin_SCRIPTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
@@ -80,8 +85,8 @@ LTF77COMPILE = $(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) \
 F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 --mode=link $(F77LD) $(AM_FFLAGS) \
 	$(FFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(scilex_SOURCES)
-DIST_SOURCES = $(scilex_SOURCES)
+SOURCES = $(scilab_bin_SOURCES)
+DIST_SOURCES = $(scilab_bin_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -144,13 +149,10 @@ EXAMPLES_TESTS = @EXAMPLES_TESTS@
 EXEC_PREFIX_DIR = @EXEC_PREFIX_DIR@
 EXEEXT = @EXEEXT@
 F77 = @F77@
-FC = @FC@
-FCFLAGS = @FCFLAGS@
 FFLAGS = @FFLAGS@
 FFLAGS1 = @FFLAGS1@
 FGREP = @FGREP@
 FLIBS = @FLIBS@
-GCC = @GCC@
 GETLIBTK = @GETLIBTK@
 GREP = @GREP@
 GUI = @GUI@
@@ -162,8 +164,6 @@ GUI_X11_TRUE = @GUI_X11_TRUE@
 GZVT = @GZVT@
 HPPA_OLD = @HPPA_OLD@
 HTMLFLAGS = @HTMLFLAGS@
-ICC = @ICC@
-IFC = @IFC@
 IMPENV = @IMPENV@
 IMPPREF = @IMPPREF@
 INSTALL_DATA = @INSTALL_DATA@
@@ -203,8 +203,6 @@ OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
 OCAMLOPT = @OCAMLOPT@
-OCAMLTARGET = @OCAMLTARGET@
-OCAMLTARGET_DISTCLEAN = @OCAMLTARGET_DISTCLEAN@
 PACKAGE = @PACKAGE@
 PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
@@ -273,7 +271,6 @@ ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
-ac_ct_FC = @ac_ct_FC@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__include = @am__include@
@@ -324,9 +321,10 @@ SUBDIRS = libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES
-scilex_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
-scilex_LDADD = $(top_builddir)/modules/libscilab.la \
-	$(X_EXTRA_LIBS)
+bin_SCRIPTS = scripts/scilab
+scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/fortran/mainsci.f
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
 
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
@@ -385,6 +383,8 @@ $(top_srcdir)/modules/core/includes/machine.h.in:  $(am__configure_deps)
 
 distclean-hdr:
 	-rm -f modules/core/includes/machine.h modules/core/includes/stamp-h1
+modules/scicos/src/ocaml/Makefile: $(top_builddir)/config.status $(top_srcdir)/modules/scicos/src/ocaml/Makefile.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(bindir)" || $(mkdir_p) "$(DESTDIR)$(bindir)"
@@ -413,9 +413,28 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
-scilex$(EXEEXT): $(scilex_OBJECTS) $(scilex_DEPENDENCIES) 
-	@rm -f scilex$(EXEEXT)
-	$(F77LINK) $(scilex_LDFLAGS) $(scilex_OBJECTS) $(scilex_LDADD) $(LIBS)
+scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) 
+	@rm -f scilab-bin$(EXEEXT)
+	$(F77LINK) $(scilab_bin_LDFLAGS) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
+install-binSCRIPTS: $(bin_SCRIPTS)
+	@$(NORMAL_INSTALL)
+	test -z "$(bindir)" || $(mkdir_p) "$(DESTDIR)$(bindir)"
+	@list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  if test -f $$d$$p; then \
+	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	    echo " $(binSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(bindir)/$$f'"; \
+	    $(binSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(bindir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-binSCRIPTS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(bin_SCRIPTS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	  echo " rm -f '$(DESTDIR)$(bindir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(bindir)/$$f"; \
+	done
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -600,7 +619,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/config $(distdir)/m4 $(distdir)/modules/core/includes
+	$(mkdir_p) $(distdir)/config $(distdir)/m4 $(distdir)/modules/core/includes $(distdir)/modules/scicos/src/ocaml
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -743,10 +762,10 @@ distcleancheck: distclean
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
-all-am: Makefile $(PROGRAMS) $(DATA) all-local
+all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-recursive
@@ -796,7 +815,8 @@ info-am:
 
 install-data-am:
 
-install-exec-am: install-binPROGRAMS install-sysconfDATA
+install-exec-am: install-binPROGRAMS install-binSCRIPTS \
+	install-sysconfDATA
 
 install-info: install-info-recursive
 
@@ -823,8 +843,8 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-info-am \
-	uninstall-sysconfDATA
+uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
+	uninstall-info-am uninstall-sysconfDATA
 
 uninstall-info: uninstall-info-recursive
 
@@ -837,14 +857,16 @@ uninstall-info: uninstall-info-recursive
 	distclean-local distclean-recursive distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
 	html-am info info-am install install-am install-binPROGRAMS \
-	install-data install-data-am install-exec install-exec-am \
-	install-info install-info-am install-man install-strip \
-	install-sysconfDATA installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	maintainer-clean-recursive mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool mostlyclean-recursive \
-	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-binPROGRAMS uninstall-info-am uninstall-sysconfDATA
+	install-binSCRIPTS install-data install-data-am install-exec \
+	install-exec-am install-info install-info-am install-man \
+	install-strip install-sysconfDATA installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic maintainer-clean-recursive \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool mostlyclean-recursive pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
+	uninstall-binPROGRAMS uninstall-binSCRIPTS uninstall-info-am \
+	uninstall-sysconfDATA
 
 
 all-local:

@@ -6,8 +6,9 @@ dnl Sylvestre Ledru - June 2006
 dnl Check if Ocaml is available on the system
 AC_DEFUN([AC_CHECK_PROG_OCAML],[
 # checking for ocamlc
-	OCAMLTARGET=ocaml_disabled
-	OCAMLTARGET_DISTCLEAN=ocaml_disabled
+	OCAMLC=
+	OCAMLOPT=
+	OCAMLDEP=
 	AC_CHECK_PROG(OCAMLC,ocamlc,ocamlc,no)
 	if test "$OCAMLC" = no; then
 		AC_MSG_WARN([ocamlc not found: I will not build Modelica compiler])
@@ -22,14 +23,15 @@ AC_DEFUN([AC_CHECK_PROG_OCAML],[
 				AC_MSG_WARN([ocamldep not found: I will not build Modelica compiler])
 			else
 				AC_DEFINE([WITH_OCAML],[],[With OCAML])
-				OCAMLTARGET=scilex-lib
-				OCAMLTARGET_DISTCLEAN=distclean
+				OCAMLC=ocamlc
+				OCAMLOPT=ocamlopt
+				OCAMLDEP=ocamldep
 			fi
 		fi
 	fi
-	AC_SUBST(OCAMLTARGET)
-	AC_SUBST(OCAMLTARGET_DISTCLEAN)
+	AC_SUBST(OCAMLC)
+	AC_SUBST(OCAMLOPT)
+	AC_SUBST(OCAMLDEP)
 	AC_SUBST(WITH_OCAML)
-
 ]
 )

@@ -338,8 +338,6 @@ sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
 sci_gateway/fortran/sci_f_exp.f
 
-
-
 # Disable optimisation of the file hqror2.f comqr3.f pade.f 
 noinst_LTLIBRARIES = libdummy-elementaries_functions.la
 libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \

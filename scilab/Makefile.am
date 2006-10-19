@@ -14,12 +14,14 @@ ACLOCAL_AMFLAGS = -I m4/
 
 changelogs = CHANGES
 
-bin_PROGRAMS		= scilex
+bin_PROGRAMS		= scilab-bin
 
-scilex_SOURCES		= $(top_srcdir)/modules/core/src/fortran/mainsci.f
+bin_SCRIPTS			= scripts/scilab
 
-scilex_LDADD = $(top_builddir)/modules/libscilab.la \
-	$(X_EXTRA_LIBS)
+scilab_bin_SOURCES		= $(top_srcdir)/modules/core/src/fortran/mainsci.f
+
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(X_EXTRA_LIBS) -lXt -lX11 -lSM
 
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit

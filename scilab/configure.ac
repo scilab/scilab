@@ -84,26 +84,134 @@ AC_CONFIG_HEADERS([modules/core/includes/machine.h])
 
 # strip executable
 AM_PROG_INSTALL_STRIP
+AC_PROG_LN_S
+AC_SYS_LARGEFILE
 #AC_PACKAGE_VERSION([4.0])
 
+
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
-AC_PROG_CC
-AC_PROG_F77
+
+AC_CANONICAL_HOST
+
+#################################
+## all the --with-* argument help
+#################################
+
+AC_ARG_ENABLE(debug,
+   [  --enable-debug           compile with "-g" option and do not optimize ])
+
+AC_ARG_WITH(gcc,
+    [  --with-gcc              use gcc C compiler ])
+    
+AC_ARG_WITH(g77,
+    [  --with-g77              use g77, GNU Fortran 77 compiler ])
+
+AC_ARG_WITH(gfortran,
+    [  --with-gfortran         use gfortran, GNU Fortran 95 compiler ])
+
+AC_ARG_WITH(intelcompilers,
+    [  --with-intelcompilers   use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ])
+
+AC_ARG_WITH(local-xaw,
+    [  --with-local-xaw        use Xaw3d widgets given with Scilab ])
+
+AC_ARG_WITH(tk,
+    [  --without-tk            do not compile with TCL/TK ])
+
+AC_ARG_WITH(ocaml,
+    [  --without-ocaml         do not compile with ocaml ])
+
+
+##############################
+##########" compilator detection
+##############################
+
+#####################################################
+## check if options are correct (or not)
+#####################################################
+
+if test "$with_g77" = yes -a "$with_gfortran" = yes; then
+	AC_MSG_ERROR([conflicting options : you specified two fortran compiler])
+fi
+
+if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
+	AC_MSG_ERROR([conflicting options : you specified two compiler series])
+fi
+
+######## fortran ########
+if test "$with_g77" = yes; then
+   AC_PROG_F77(g77)
+   if test -z "$F77"; then
+     AC_MSG_ERROR([you asked me to use g77 but i haven't been able to find it])
+	fi
+fi
+
+if test "$with_gfortran" = yes; then
+   AC_PROG_F77(gfortran)
+   if test -z "$F77"; then
+     AC_MSG_ERROR([you asked me to use gfortran but i haven't been able to find it])
+	fi
+fi
+
+if test "$with_intelcompilers" = yes; then
+   AC_PROG_F77(ifc ifort)
+   if test -z "$F77"; then
+     AC_MSG_ERROR([you asked me to use ifc (intel fortran compiler) but i haven't been able to find it])
+	fi
+fi
+
 if test -z "$F77"; then
-  AC_MSG_ERROR([No fortran Compiler. Cannot compile Scilab without a Fortran compiler])
+## No Frotran compiler specified... We rely on Autoconf to find the best
+   AC_PROG_F77
+fi
+
+if test -z "$F77"; then
+  AC_MSG_ERROR([no fortran compiler. cannot compile scilab without a fortran compiler])
 else
-		case "$F77" in
-		 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
-		 AC_DEFINE([G95_FORTRAN],[],[Uses G95 fortran])
-		 ;;
-		 esac
+	case "$F77" in
+	 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
+	 AC_DEFINE([G95_FORTRAN],[],[uses g95 fortran])
+	 ;;
+	esac
+fi
+
+############ C ###############
+
+
+if test "$with_gcc" = yes; then
+   AC_PROG_CC(gcc)
+   if test -z "$CC"; then
+     AC_MSG_ERROR([you asked me to use gcc but i haven't been able to find it])
+	fi
+fi
+
+if test "$with_intelcompilers" = yes; then
+   AC_PROG_CC(icc ecc)
+   if test -z "$CC"; then
+     AC_MSG_ERROR([You asked me to use icc (intel C compiler) but I haven't been able to find it])
+	fi
+fi
+
+#if test -z "$CC"; then
+## No C compiler specified... We rely on Autoconf to find the best
+   AC_PROG_CC
+#fi
+
+if test -z "$CC"; then
+  AC_MSG_ERROR([No C Compiler. Cannot compile Scilab without a C compiler])
 fi
 
 
 
-dnl Get system type
-dnl use "config.guess" and "config.sub" from directory "config"
-AC_CANONICAL_HOST
+
+if test "$enable_debug" = yes; then
+   FFLAGS="`echo "$FFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
+   CFLAGS="`echo "$CFLAGS"| sed -e 's|-O[0-9+]|-O0|'`"
+   echo "C : $CFLAGS"
+   echo "F : $FFLAGS"
+fi
+
+
 
 #
 # Evaluate shell variable equivalents to Makefile directory variables
@@ -127,37 +235,6 @@ AC_SUBST(EXEC_PREFIX_DIR)
 # default prefix
 ac_default_prefix=/usr
 
-
-#################################
-## all the --with-* argument help
-#################################
-
-AC_ARG_ENABLE(debug,
-   [  --enable-debug          compile with "-g" option and do not optimize ])
-
-AC_ARG_WITH(gcc,
-    [  --with-gcc              use gcc C compiler ])
-    
-AC_ARG_WITH(g77,
-    [  --with-g77              use g77, GNU Fortran 77 compiler ])
-
-AC_ARG_WITH(gfortran,
-    [  --with-gfortran         use gfortran, GNU Fortran 95 compiler ])
-
-AC_ARG_WITH(gnu,
-    [  --with-gnu              use GNU C (gcc) compiler and GNU Fortran compilers (g77 or gfortran) ])
-
-AC_ARG_WITH(intelcompilers,
-    [  --with-intelcompilers   use Intel C (icc) and Fortran (ifort) compilers (GNU/Linux only) ])
-
-AC_ARG_WITH(local-xaw,
-    [  --with-local-xaw        use Xaw3d widgets given with Scilab ])
-
-AC_ARG_WITH(tk,
-    [  --without-tk            do not compile with TCL/TK ])
-
-AC_ARG_WITH(ocam,
-    [  --without-ocaml         do not compile with ocaml ])
 
 #################################
 ## check this is a source version
@@ -196,46 +273,6 @@ RM='rm -f'
 FILES_TO_CLEAN='*.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos *.obj' 
 
 
-
-
-#####################################################
-## Check if options are correct (or not)
-#####################################################
-
-if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-	AC_MSG_ERROR([Conflicting options : you specified two fortran compiler])
-fi
-
-if test "$with_intelcompilers" = yes -a "$with_gnu" = yes; then
-	AC_MSG_ERROR([Conflicting options : you specified two compiler series])
-fi
-
-
-#####################################################
-## if specific compilers are required, check if they exist
-#####################################################
-
-if test "$with_gnu" = yes; then
-	# GNU C and Fortran compilers required
-   AC_CHECK_PROG_GNU()
-fi
-if test "$with_intelcompilers" = yes; then
-	# intel C and Fortran compilers required
-	AC_CHECK_PROG_INTEL()
-fi
-if test "$with_gcc" = yes; then
-	# GNU gcc required
-	AC_CHECK_PROG_GCC()
-fi
-if test "$with_g77" = yes; then
-	# GNU g77 required
-	AC_CHECK_PROG_G77()
-fi
-if test "$with_gfortran" = yes; then
-	# GNU g95 (gfortran) required
-	AC_CHECK_PROG_GFORTRAN()
-fi
-
 #############################################
 ## Find the X11 include and library directories.
 #############################################
@@ -246,8 +283,6 @@ AC_PATH_XTRA
 if test "$no_x" == 'yes'; then
   AC_MSG_ERROR([Scilab requires the X Window System header files and libraries !])
 fi
-#AC_SUBST(X11_LIBS)
-
 
 #############################################
 ## Compilers and options according to machine
@@ -304,10 +339,10 @@ NMOPT=
 
 if test "$with_intelcompilers" = yes; then
 		
-		CFLAGS=' -Dlinux -DNARROWPROTO -mp'
+		CFLAGS=' $CFLAGS -Dlinux -DNARROWPROTO -mp'
 		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
 
-		FFLAGS=' -cm  -w90 -w95 -mp'
+		FFLAGS=' $FFLAGS -cm  -w90 -w95 -mp'
 
 
 		case "$host" in
@@ -424,7 +459,7 @@ if test "$CC" = "gcc"; then
    if test "$enable_debug" != yes; then 
 	  CFLAGS="$CFLAGS  -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
    else
-	  CFLAGS="$CFLAGS -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
+	  CFLAGS="$CFLAGS -Werror -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
    fi
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
@@ -705,9 +740,10 @@ AC_CHECK_FUNCS([setlocale])
 
 AC_CHECK_HEADERS([limits.h values.h]) 
 
-# Added by Sylvestre (16 june 2006)
-
 AC_CHECK_HEADERS([fcntl.h float.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h syslog.h termio.h termios.h wchar.h wctype.h libintl.h])
+
+AC_CHECK_HEADERS([X11/IntrinsicP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xt. Please install the dev package (Debian : libxt-dev)])])
+AC_CHECK_HEADERS([X11/Xaw3d/ViewportP.h],[],[AC_MSG_ERROR([Cannot find headers of the library Xaw3d. Please install the dev package (Debian : xaw3dg-dev)])],[[#include <X11/IntrinsicP.h>]])
 
 
 #######################
@@ -1088,7 +1124,7 @@ AC_SUBST(LD)
 AC_SUBST(LIBM)
 #AC_SUBST(LIBTOOL)
 AC_SUBST(LIBTOOL_DEPS)
-AC_SUBST(LN_S)
+
 AC_SUBST(NM)
 AC_SUBST(OBJDUMP)
 AC_SUBST(PACKAGE)
@@ -1162,6 +1198,7 @@ modules/tclsci/Makefile
 modules/wintools/Makefile
 modules/core/Makefile
 modules/scicos/Makefile
+modules/scicos/src/ocaml/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile
@@ -1203,7 +1240,6 @@ echo "GNU ld............		--with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_ld"
 echo "Enable debug......		--enable-debug=$enable_debug	$enable_debug"
 echo ""
 echo "Compiler Configuration:"
-echo "GNU compilers (--with-gnu) ....... :		$with_gnu"
 echo "Intel (--with-intelcompilers) .... :		$with_intelcompilers"
 echo "GNU gcc (--with-gcc) ............. :		$with_gcc"
 echo "GNU Fortran 77 (--with-g77) ...... :		$with_g77"
