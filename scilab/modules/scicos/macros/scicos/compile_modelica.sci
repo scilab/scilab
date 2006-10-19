@@ -77,8 +77,8 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
       return;
     end
 
-    // link the generated C code
-    if execstr('link(libn,name,''c'')','errcatch')<>0 then 
+    // executing loader file
+     if execstr('exec(loader);','errcatch')<>0 then      
       ok=%f;
       x_message(['Problem while linking generated code';lasterror()]);
     return;
