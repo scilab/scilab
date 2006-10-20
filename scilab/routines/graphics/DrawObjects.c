@@ -6578,7 +6578,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   double * dist;
   double X[5],Y[5],Z[5];
   double * Zoriginal = NULL; /* used to conserve Z wether or not z axis is reversed ! (see plo3dn.c) */
-  double *x,*y,*z;
+  double * x = NULL ;
+  double * y = NULL ; 
+  double * z = NULL ;
   sciPointObj *pobj; 
   int *locindex;
   int *polyx,*polyy,fill[20];/* here we suppose there is no more than 20 edge in a facet */
@@ -6758,16 +6760,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       else
       {
         xtmp[0] = ppPolyLine->pvx[index];
-        xtmp[1] = ppPolyLine->pvx[index+1];
+        xtmp[1] = ppPolyLine->pvx[(index+1)%n1];
         
         ytmp[0] = ppPolyLine->pvy[index];
-        ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+        ytmp[1] = ppPolyLine->pvy[(index+1)%n1]; /* used by trans3d + drawing : case 0,1 and 4 */
       }
       
       if( ppPolyLine->pvz != NULL )
       {
         ztmp[0] = ppPolyLine->pvz[index];
-        ztmp[1] = ppPolyLine->pvz[index+1];
+        ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
       }
       
       if( ppPolyLine->pvz != NULL )
@@ -7071,15 +7073,15 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
           else
           {
             xtmp[0] = ppPolyLine->pvx[index];
-            xtmp[1] = ppPolyLine->pvx[index+1];
+            xtmp[1] = ppPolyLine->pvx[(index+1)%n1];
             
             ytmp[0] = ppPolyLine->pvy[index];
-            ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+            ytmp[1] = ppPolyLine->pvy[(index+1)%n1]; /* used by trans3d + drawing : case 0,1 and 4 */
           }
                    
           if(ppPolyLine->pvz != NULL){
             ztmp[0] = ppPolyLine->pvz[index];
-            ztmp[1] = ppPolyLine->pvz[index+1];
+            ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
           }
           
           if(ppPolyLine->pvz != NULL)
@@ -7263,7 +7265,11 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  int flag = pSURFACE_FEATURE (pobj)->flag[0];
 	  int facteur = 1;
 	  
-	  polyx[p]=polyx[0];polyy[p]=polyy[0];p++; /*close the facet*/
+	  polyx[p]=polyx[0];
+          polyy[p]=polyy[0];
+          p++ ;
+          /*close the facet*/
+          /* beware we got twice the first point !!! */
 
 	  /* facteur is used below */
 	  if(ppsubwin->axes.reverse[0] == TRUE) facteur = -facteur;
@@ -7298,10 +7304,12 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 1:
-	      zl=0;
-	      /* 	      for ( k1= 0 ; k1 < p ; k1++) zl+= z[k1]; */
-	      for ( k1= 0 ; k1 < p ; k1++) zl+= Zoriginal[k1]; /* F.Leray 01.12.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
-	      fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
+	      zl = 0.0 ;
+              /* compute facet barycenter */
+	      for ( k1= 0 ; k1 < (p-1) ; k1++) { zl+= z[k1] ; }
+              zl /= p - 1.0 ;
+	      /* for ( k1= 0 ; k1 < p ; k1++) zl+= Zoriginal[k1]; */ /* F.Leray 01.12.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
+	      fill[0] = inint( (whiteid-1) * (zl-zmin)/(zmax-zmin) ) + 1 ;
 
               if ( flag  < 0 ) fill[0]=-fill[0];
 	      if(sciGetIsLine(pobj)){
