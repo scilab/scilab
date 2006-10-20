@@ -5154,13 +5154,7 @@ integer first_out(n, ideb, vx, vy)
   integer i;
   for (i=ideb  ; i < n ; i++)
     {
-      if ( vx[i]< xleft || vx[i]> xright  || vy[i] < ybot || vy[i] > ytop) 
-	{
-#ifdef DEBUG
-	  sciprint("first out %d->%d=(%d,%d)\r\n",ideb,i,vx[i],vy[i]);
-#endif
-	  return(i);
-	}
+      if ( vx[i]< xleft || vx[i]> xright  || vy[i] < ybot || vy[i] > ytop) return(i);
     }
   return(-1);
 }
