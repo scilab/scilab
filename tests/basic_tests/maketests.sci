@@ -121,11 +121,11 @@ endfunction
 
 function cleantests()
 	if MSDOS then
-		path=SCI+'\tests\'
+		path=SCI+'\tests\basic_tests'
 		file_to_clean=path+strsubst(testslist(),'.tst','.dia')
 		unix_s('del '+'""'+strcat(file_to_clean,'"" ""')+'""')
 	else
-		path=SCI+'/tests/'
+		path=SCI+'/tests/basic_tests'
 		file_to_clean=path+strsubst(testslist(),'.tst','.dia')
 		unix_s('rm -f '+strcat(file_to_clean,' '))
 	end
