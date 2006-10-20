@@ -18,5 +18,5 @@ if m<>2 then  error('xy doit etre un vecteur a 2 lignes [x;y]'),end
 //
 xy=xy-orig*ones(1,n)
 c=cos(teta),s=sin(teta)
-xy=[c s;-s,c]*xy+orig*ones(1,n)
+xy=[c,-s ; s,c]*xy+orig*ones(1,n)
 endfunction
