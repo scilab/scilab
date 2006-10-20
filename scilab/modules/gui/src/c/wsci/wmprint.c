@@ -21,6 +21,8 @@ static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));
 static void ConvertName __PARAMS ((char *filein, char *fileout));
 extern void sciprint __PARAMS ((char *fmt,...));
 
+extern char *getSCIpath(void);
+
 /**************************************************
  * Converts a scilab Eps file to an Epsf file 
  * by adding a preamble 
@@ -39,7 +41,7 @@ int ScilabPsToEps (char orientation, char *filein, char *fileout)
       sciprint (MSG_ERROR49);
       return (1);
     }
-  sprintf (entete, "%s/imp/NperiPos.ps", env);
+  sprintf (entete, "%s/tools/printer/NperiPos.ps", env);
 
   ConvertName (filein, fileout);
   if (strcmp (fileout, filein) == 0)

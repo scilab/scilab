@@ -15,6 +15,8 @@ extern void CallTranslateMacroGraphicWindow(char *string);
 /*-----------------------------------------------------------------------------------*/
 extern LS ls;
 /*-----------------------------------------------------------------------------------*/
+static void ModifyFilenameExtension(char *Filename,char *ext);
+/*-----------------------------------------------------------------------------------*/
 void SavePs (struct BCG *ScilabGC)
 {
   char *d, ori;
@@ -41,6 +43,8 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
+			ModifyFilenameExtension(filename,".pos");
+
 			/** postscript Epsf file **/
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			wininfo (MSG_SCIMSG96);
@@ -54,7 +58,6 @@ void SavePs (struct BCG *ScilabGC)
 		break;
     case 1:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"Postscript No Preamble","*.ps");
 
 			CallTranslateMacroGraphicWindow(str);
@@ -63,16 +66,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".ps")!=0)
-				{
-					strcat(filename,".ps");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".ps");
+			ModifyFilenameExtension(filename,".ps");
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "Pos");
@@ -83,7 +77,6 @@ void SavePs (struct BCG *ScilabGC)
 
     case 2:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"Postscript-Latex","*.tex");
 
 			CallTranslateMacroGraphicWindow(str);
@@ -92,16 +85,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".tex")!=0)
-				{
-					strcat(filename,".tex");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".tex");
+			ModifyFilenameExtension(filename,".tex");
 
 			/** Epsf + Tex file **/
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
@@ -116,7 +100,6 @@ void SavePs (struct BCG *ScilabGC)
     break;
     case 3:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"Xfig","*.fig");
 			CallTranslateMacroGraphicWindow(str);
 			s = str;
@@ -124,16 +107,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".fig")!=0)
-				{
-					strcat(filename,".fig");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".fig");
+			ModifyFilenameExtension(filename,".fig");
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "Fig");
@@ -143,7 +117,6 @@ void SavePs (struct BCG *ScilabGC)
 		break;
     case 4:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"gif","*.gif");
 			CallTranslateMacroGraphicWindow(str);
 			s = str;
@@ -151,17 +124,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".gif")!=0)
-				{
-					strcat(filename,".gif");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".gif");
-
+			ModifyFilenameExtension(filename,".gif");
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "GIF");
@@ -171,7 +134,6 @@ void SavePs (struct BCG *ScilabGC)
 		break;
     case 5:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"PPM","*.ppm");
 			CallTranslateMacroGraphicWindow(str);
 			s = str;
@@ -179,16 +141,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".ppm")!=0)
-				{
-					strcat(filename,".ppm");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".ppm");
+			ModifyFilenameExtension(filename,".ppm");
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			scig_toPs (ScilabGC->CurWindow, ls.colored, filename, "PPM");
@@ -198,7 +151,6 @@ void SavePs (struct BCG *ScilabGC)
     break;
     case 6:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"Bmp","*.bmp");
 			CallTranslateMacroGraphicWindow(str);
 			s = str;
@@ -206,16 +158,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".bmp")!=0)
-				{
-					strcat(filename,".bmp");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".bmp");
+			ModifyFilenameExtension(filename,".bmp");
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			ExportBMP(ScilabGC,filename);
@@ -225,7 +168,6 @@ void SavePs (struct BCG *ScilabGC)
     break;
     case 7:
 		{
-			char *Ext=NULL;
 			wsprintf(str,formatmacro,"Enhanced Metafile","*.emf");
 			CallTranslateMacroGraphicWindow(str);
 			s = str;
@@ -233,16 +175,7 @@ void SavePs (struct BCG *ScilabGC)
 			if (flag == 0 || ierr == 1) return;
 			*d = '\0';
 
-			Ext=GetFileExtension(filename);
-			if (Ext)
-			{
-				if (stricmp(Ext,".emf")!=0)
-				{
-					strcat(filename,".emf");
-				}
-				if (Ext) {FREE(Ext);Ext=NULL;}
-			}
-			else strcat(filename,".emf");
+			ModifyFilenameExtension(filename,".emf");
 
 			SetCursor (LoadCursor (NULL, IDC_WAIT));
 			ExportEMF(ScilabGC,filename);
@@ -300,5 +233,20 @@ char * GetFileExtension(char* filename)
 		StrReturn = NULL;
 	}
 	return StrReturn;
+}
+/*-----------------------------------------------------------------------------------*/
+static void ModifyFilenameExtension(char *Filename,char *ext)
+{
+	char *Ext=NULL;
+	Ext=GetFileExtension(Filename);
+	if (Ext)
+	{
+		if (stricmp(Ext,ext)!=0)
+		{
+			strcat(Filename,ext);
+		}
+		if (Ext) {FREE(Ext);Ext=NULL;}
+	}
+	else strcat(Filename,ext);
 }
 /*-----------------------------------------------------------------------------------*/

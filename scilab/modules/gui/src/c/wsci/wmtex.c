@@ -16,6 +16,8 @@ static int Sed __PARAMS ((int, char *, FILE *, char *, char *, char *, char *, c
 static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));
 static void FileNameChange __PARAMS ((char *filein, char *fileout, char *, char *));
 
+extern char *getSCIpath(void);
+
 /**************************************************
  * Converts a scilab Eps file to an Epsf file 
  * by adding a preamble and produces a tex file
@@ -39,7 +41,7 @@ int ScilabPsToTeX (char orientation, char *filein, char *fileout, double xs, dou
   /** first we produce the epsf file from the scilab file 
     without preamble **/
 
-  sprintf (entete, "%s/imp/NperiPos.ps", env);
+  sprintf (entete, "%s/tools/printer/NperiPos.ps", env);
 
   FileNameChange (filein, fileout, base, "eps");
   if (strcmp (fileout, filein) == 0)
