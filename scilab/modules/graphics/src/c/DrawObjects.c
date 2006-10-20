@@ -5613,7 +5613,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   /* change to static arrays : indeed, no need to recopy each time the entire data of a given object */
   double   xtmp[2] ; 
   double   ytmp[2] ;
-  double   ztmp[2] ;
+  double   ztmp[4] ;
 
   double * verticesX = NULL ; /* normally max size is 4 for facets (2 for lines and segs) but may be one day we will manage greater complex patchs (that is why the 10) */
   double * verticesY = NULL ;  /* no it can have any size, but display of facets with more than 4 edges might not be accurate */
