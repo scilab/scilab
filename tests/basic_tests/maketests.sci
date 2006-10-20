@@ -92,7 +92,7 @@ tests = ['algebra.tst';
 	end
 	
 	if ~with_tk() then
-		tests(find(tests=='links.tst'))=[];
+		tests(find(tests=='TCL_SetGet.tst'))=[];
 	end
 	
 	if ~with_pvm() then
