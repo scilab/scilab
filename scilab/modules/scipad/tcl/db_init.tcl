@@ -39,7 +39,7 @@ set waitmessage [mc "Please wait..."]
 # original size
 set newsizex 32
 set newsizey 32
-set iconspath [file join "$env(SCIPATH)" "modules" "scipad" "tcl" "icons]
+set iconspath [file join "$env(SCIPATH)" "modules" "scipad" "tcl" "icons"]
 image create photo butsetbptimage_o      -file [file join $iconspath setbp.gif]
 image create photo butremoveallimage_o   -file [file join $iconspath removeallbp.gif]
 image create photo butconfigureimage_o   -file [file join $iconspath arrowframe.gif]
