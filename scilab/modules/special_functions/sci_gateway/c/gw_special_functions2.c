@@ -11,6 +11,7 @@
 	extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 #include "stack-c.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern jmp_buf slatec_jmp_env; 
 extern int sci_besselh(char *fname,unsigned long fname_len);

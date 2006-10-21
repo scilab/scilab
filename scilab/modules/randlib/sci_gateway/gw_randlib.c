@@ -9,6 +9,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 
 #include "stack-c.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern int RandI(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/

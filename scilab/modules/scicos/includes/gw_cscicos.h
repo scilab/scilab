@@ -12,7 +12,7 @@
 
 #include "machine.h"
 #include "stack-c.h"
-
+#include "sciprint.h"
 
 typedef int (*scicosc_interf) __PARAMS((char *fname,unsigned long l));
 

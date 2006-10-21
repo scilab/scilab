@@ -15,7 +15,7 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "core_math.h"
-
+#include "sciprint.h"
 typedef int (*Special_Functions_Interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct 

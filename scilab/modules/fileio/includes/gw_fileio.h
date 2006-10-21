@@ -12,6 +12,7 @@
 
 #include "machine.h"
 #include "stack-c.h"
+#include "sciprint.h"
 
 int intsmopen(char *fname,unsigned long fname_len);
 int intsmputstr(char *fname,unsigned long fname_len);

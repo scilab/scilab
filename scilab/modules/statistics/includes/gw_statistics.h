@@ -14,7 +14,7 @@
 
 #include "machine.h"
 #include "stack-c.h"
-
+#include "sciprint.h"
 
 typedef int (*Statistics_Interf) __PARAMS((char *fname,unsigned long l));
 

@@ -12,7 +12,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 
 #include "machine.h"
 #include "stack-c.h"
-
+#include "sciprint.h"
 
 typedef int (*Differential_Equations4_Interf) __PARAMS((char *fname,unsigned long l));
 
