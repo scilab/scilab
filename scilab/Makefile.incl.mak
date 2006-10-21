@@ -67,7 +67,7 @@ XLIBSBIN= "$(SCIDIR1)\bin\atlas.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin
 !IF "$(USE_F2C)" == "YES"
 .f.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 
+	@"$(SCIDIR1)\bin\f2c.exe" -E -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 
 	@$(CC) $(CFLAGS) $*.c 
 	-del $*.c 
 !ELSE 
