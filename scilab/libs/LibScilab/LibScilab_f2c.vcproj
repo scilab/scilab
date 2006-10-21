@@ -414,11 +414,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File
@@ -580,10 +580,6 @@
 			</File>
 			<File
 				RelativePath="..\metanet.vcdef"
-				>
-			</File>
-			<File
-				RelativePath="..\metanet_f.vcdef"
 				>
 			</File>
 			<File
