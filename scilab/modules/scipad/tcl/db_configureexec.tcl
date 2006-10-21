@@ -31,9 +31,9 @@ proc configurefoo_bp {} {
 
     frame $conf.f.f1
     set tl [mc "Function name:"]
-    label $conf.f.f1.label -text $tl -width 20 -font $menuFont
+    label $conf.f.f1.label -text $tl -font $menuFont
     set spin $conf.f.f1.spinbox
-    spinbox $spin -width 30 -font $textFont -command "spinboxbuttoninvoke" \
+    spinbox $spin -width 35 -font $textFont -command "spinboxbuttoninvoke" \
                   -values $funnames -state readonly -takefocus 0
     set oppar [string first "\(" $funnameargs]
     set funname [string range $funnameargs 0 [expr $oppar-1]]
@@ -43,23 +43,27 @@ proc configurefoo_bp {} {
         $spin set [lindex $funnames 0]
         set funname [$spin get]
     }
-    set bl [mc "Obtain"]
-    button $conf.f.f1.buttonObtain -text $bl -command "Obtainall_bp"\
-           -width 10 -font $menuFont
-    pack $conf.f.f1.label $spin $conf.f.f1.buttonObtain \
+    set buttonObtain $conf.f.f1.buttonObtain
+    eval "button $buttonObtain [bl "&Obtain"] \
+            -command \"Obtainall_bp\" \
+            -font \[list $menuFont\] "
+    pack $conf.f.f1.label $spin $buttonObtain \
          -side left -padx 4
     pack $conf.f.f1
 
     frame $conf.f.f2
+    set bestwidth [mcmaxra "Input arguments:" \
+                           "Add/Chan&ge" \
+                           "&Remove"]
     frame $conf.f.f2.f2l
     set tl [mc "Input arguments:"]
     label $conf.f.f2.f2l.label -text $tl -font $menuFont
-    set bl [mc "Add/Change"]
     set buttonAddc $conf.f.f2.f2l.buttonAdd
-    button $buttonAddc -text $bl -width 20 -font $menuFont
-    set bl [mc "Remove"]
+    eval "button $buttonAddc [bl "Add/Chan&ge"] \
+            -width $bestwidth -font \[list $menuFont\] "
     set buttonRemove $conf.f.f2.f2l.buttonRemove
-    button $buttonRemove -text $bl -width 20 -font $menuFont
+    eval "button $buttonRemove [bl "&Remove"] \
+            -width $bestwidth -font \[list $menuFont\] "
     pack $conf.f.f2.f2l.label $buttonAddc $buttonRemove -pady 4
     frame $conf.f.f2.f2r
     set listboxinput $conf.f.f2.f2r.listboxinput
@@ -68,10 +72,10 @@ proc configurefoo_bp {} {
     $buttonRemove configure -command "Removearg_bp $listboxinput $listboxinputval"
     set listboxscrolly $conf.f.f2.f2r.yscroll
     scrollbar $listboxscrolly -command "scrollyboth_bp $listboxinput $listboxinputval"
-    listbox $listboxinput -height 6 -font $textFont -yscrollcommand \
+    listbox $listboxinput -height 6 -width 12 -font $textFont -yscrollcommand \
                           "scrollyrightandscrollbar_bp $listboxscrolly $listboxinput $listboxinputval" \
                           -takefocus 0
-    listbox $listboxinputval -height 6 -font $textFont -yscrollcommand \
+    listbox $listboxinputval -height 6 -width 25 -font $textFont -yscrollcommand \
                           "scrollyleftandscrollbar_bp $listboxscrolly $listboxinput $listboxinputval" \
                           -takefocus 0
     if {[info exists funvars($funname)]} {
@@ -88,11 +92,13 @@ proc configurefoo_bp {} {
     pack $conf.f.f2 -pady 4
 
     frame $conf.f.f9
+    set bestwidth [mcmaxra "OK" \
+                           "Cancel"]
     button $conf.f.f9.buttonOK -text "OK" -command "OKconf_bp $conf"\
-           -width 10 -height 1 -font $menuFont
+           -width $bestwidth -font $menuFont
 #    set bl [mc "Cancel"]
 #    button $conf.f.f9.buttonCancel -text $bl -command "Cancelconf_bp $conf"\
-#           -width 10
+#           -width $bestwidth -font $menuFont
 #    pack $conf.f.f9.buttonOK $conf.f.f9.buttonCancel -side left -padx 10
     pack $conf.f.f9.buttonOK
     pack $conf.f.f9 -pady 4
@@ -112,6 +118,13 @@ proc configurefoo_bp {} {
     bind $conf <Down> {scrollarrows_bp $listboxinput down}
     bind $conf <MouseWheel> {if {%D<0} {scrollarrows_bp $listboxinput down}\
                                        {scrollarrows_bp $listboxinput up}}
+    bind $conf <Shift-Up>   "$spin invoke buttonup"
+    bind $conf <Shift-Down> "$spin invoke buttondown"
+
+    bind $conf <Alt-[fb $buttonObtain]> "$buttonObtain invoke"
+    bind $conf <Alt-[fb $buttonAddc]>   "$buttonAddc invoke"
+    bind $conf <Alt-[fb $buttonRemove]> "$buttonRemove invoke"
+
     focus $buttonAddc
     grab $conf
 
@@ -273,7 +286,14 @@ proc OKconf_bp {w} {
 #        and then relaunches the debugger, the funnameargs string
 #        becomes wrong - this string should be reconstructed on each
 #        debug session launch, i.e. on F11, and not on closure of the
-#        configure box
+#        configure box ...hmmm, to be thought further. What if the
+#        user changes something else in the function definition line
+#        that was used for debugger configuration, e.g. change the name
+#        of the function? $funnameargs becomes also wrong. The real
+#        problem would come when the user changes a variable name for
+#        instance since what was configured in the configure box and
+#        what the function to debug needs as inputs is no longer
+#        consistent...
                 if {$varargincase} {
                     # parameters are passed by value, possibly empty
                     # e.g. foo(1,2,,,9) - strargs will be 1,2,,,9
@@ -454,7 +474,7 @@ proc Obtainall_bp {} {
                 no  {set treatassce false}
             }
         } else {
-            # Pure .sci file
+            # Pure .sci file (or endfunction missing, see proc bufferhaslevelzerocode)
             set treatassce false
         }
     } else {
@@ -526,10 +546,12 @@ proc Obtainall_bp {} {
 
         # add function return instructions
         # note: if these instructions are changed then the number of lines
-        # to adjust lastlogicalline in proc getlogicallinenumbersranges
+        # to adjust $lastlogicalline in proc getlogicallinenumbersranges
         # could need to be updated too
         set txt "\ndb_nam=who(\"local\");db_nam=strcat(db_nam(1:$-predef()),\",\")\n"
         append txt "execstr(\"\[\" + db_nam + \"\]=resume(\" + db_nam + \")\")\n"
+        # the trailing \n below is also very important and related to
+        # adjustment of $lastlogicalline in proc getlogicallinenumbersranges
         append txt "endfunction\n"
         $textarea mark set insert end
         set oldinsert [$textarea index insert]

@@ -12,11 +12,14 @@ set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"
 set showcallstackarea "true"
 set watchalwaysontop 0
+set dockwatch false
 set errmsg ""
 set errnum 0
 set errline 0
 set errfunc ""
 set uabpt_opened_a_file false ;# see proc updateactivebreakpointtag
+array set cursorsinwidgets {}
+set debuggerbusycursor false
 
 # list of functions names that cannot be debugged
 # because they are debugger ancillaries

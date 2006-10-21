@@ -16,7 +16,8 @@ if {$debuglog} {
     timestamp \
     tk_optionMenu \
     escapespecialchars \
-    mc amp mcra keyposn dokeyposn ismodified whichfun modifiedtitle \
+    mc amp mcra mcmax mcmaxra bl \
+    keyposn dokeyposn ismodified whichfun modifiedtitle \
     showinfo delinfo showinfo_menu_file showinfo_menu_wind \
     GetFirstRecentInd extractindexfromlabel \
     checkifanythingchangedondisk checkiffilechangedondisk \

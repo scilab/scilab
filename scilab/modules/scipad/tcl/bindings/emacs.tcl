@@ -17,7 +17,7 @@ sbind Text <Control-h><Control-KeyPress> {validpostfix %A %s "f"; break}
 
 
 #nb: compound bindings like C-x-k defined for $pad need to be defined 
-# also particulatly for Text so that the specific long binding overrides 
+# also particularly for Text so that the specific long binding overrides 
 # that to puttext; the second binding needs to end with break to prevent
 # double firing, the first not, so that the accelerator lookup finds it
 #(that seems to be the easiest way to get out of the prefix troubles)
@@ -34,6 +34,7 @@ sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
 sbind Text <Control-k> {}
 sbind Text <Control-t> {}
 sbind Text <Control-i> {}
+sbind Text <Control-f> {} ; # avoids selection deletion on find box open
 
 
 sbind $pad <Control-x><Control-f> {showopenwin currenttile}
@@ -100,11 +101,6 @@ sbind $pad <F7> {nextbuffer}
 sbind $pad <F6> {prevbuffer}
 sbind $pad <Control-F7> {nextbuffer}
 sbind $pad <Control-F6> {prevbuffer}
-
-sbind $pad <Control-plus> {set FontSize [expr round($FontSize*1.11)]; \
-                            setfontscipad $FontSize}
-sbind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
-                            setfontscipad $FontSize}
 
 sbind $pad <F4> {importmatlab}
 

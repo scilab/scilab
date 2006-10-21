@@ -8,9 +8,12 @@ proc findtextdialog {typ} {
     global searchforfilesonly
     global findreplaceboxalreadyopen
 
-    if {$findreplaceboxalreadyopen} {return}
+    if {$findreplaceboxalreadyopen} {
+        tk_messageBox -message [mc "Dialog box already open!"] -icon warning
+        return
+    }
     set findreplaceboxalreadyopen true
-    
+
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
     set find $pad.find
@@ -18,7 +21,10 @@ proc findtextdialog {typ} {
     toplevel $find
     wm title $find [mc "Find"]
     setwingeom $find
-    
+    # cancelfind must be called when closing the dialog with the upper right
+    # cross, otherwise the fakeselection tag is not deleted
+    wm protocol $find WM_DELETE_WINDOW {cancelfind $find}
+
     # save the possibly existing selection
     # fakeselection is a copy of the sel tag, required because:
     # 1. the sel tag is not visible when focus is out of $pad
@@ -40,8 +46,13 @@ proc findtextdialog {typ} {
     # entry fields
     frame $find.l
     frame $find.l.f1
+    if {$typ=="replace"} {
+        set bestwidth [mcmaxra "Find what:" "Replace with:"]
+    } else {
+        set bestwidth [mcmaxra "Find what:"]
+    }
     label $find.l.f1.label -text [mc "Find what:"] \
-        -width 15 -font $menuFont
+        -width $bestwidth -font $menuFont
     entry $find.l.f1.entry -textvariable SearchString \
         -width 30 -font $textFont -exportselection 1
     pack $find.l.f1.label $find.l.f1.entry -side left
@@ -49,7 +60,7 @@ proc findtextdialog {typ} {
     if {$typ=="replace"} {
         frame $find.l.f2
         label $find.l.f2.label2 -text [mc "Replace with:"] \
-            -width 15 -font $menuFont
+            -width $bestwidth -font $menuFont
         entry $find.l.f2.entry2 -textvariable ReplaceString \
             -width 30 -font $textFont -exportselection 1
         pack $find.l.f2.label2 $find.l.f2.entry2 -side left
@@ -61,23 +72,29 @@ proc findtextdialog {typ} {
 
     # buttons
     frame $find.f2
+    if {$typ=="replace"} {
+        set bestwidth [mcmaxra "Find &Next" "Cance&l" \
+                               "Re&place" "Replace &All"]
+    } else {
+        set bestwidth [mcmaxra "Find &Next" "Cance&l"]
+    }
     eval "button $find.f2.button1 [bl "Find &Next"] \
         -command \"multiplefilesfindreplace $find findit\" \
-        -height 1 -width 15 -font $menuFont"
+        -width $bestwidth -font \[list $menuFont\] "
     eval "button $find.f2.button2 [bl "Cance&l"] \
         -command \"cancelfind $find\" \
-        -height 1 -width 15 -font $menuFont"
+        -width $bestwidth -font \[list $menuFont\] "
     if {$typ == "replace"} {
         eval "button $find.f2.button3 [bl "Re&place"] \
             -command \"multiplefilesfindreplace $find replaceit\" \
-            -height 1 -width 15 -font $menuFont"
+            -width $bestwidth -font \[list $menuFont\] "
         eval "button $find.f2.button4 [bl "Replace &All"] \
             -command \"multiplefilesreplaceall $find\" \
-            -height 1 -width 15 -font $menuFont"
+            -width $bestwidth -font \[list $menuFont\] "
         pack $find.f2.button1 $find.f2.button3 $find.f2.button4 \
-            $find.f2.button2 -pady 4
+            $find.f2.button2 -padx 2 -pady 4
     } else {
-        pack $find.f2.button1 $find.f2.button2 -pady 4
+        pack $find.f2.button1 $find.f2.button2 -padx 2 -pady 4
     }
 
     # up/down radiobutton
@@ -86,11 +103,11 @@ proc findtextdialog {typ} {
     eval "radiobutton $find.l.f4.f3.up [bl "&Upwards"] \
         -variable SearchDir -value \"backwards\" \
         -command \"unset -nocomplain -- indoffirstmatch\" \
-        -font $menuFont "
+        -font \[list $menuFont\] "
     eval "radiobutton $find.l.f4.f3.down [bl "&Downwards"] \
         -variable SearchDir -value \"forwards\" \
         -command \"unset -nocomplain -- indoffirstmatch\" \
-        -font $menuFont "
+        -font \[list $menuFont\] "
     pack $find.l.f4.f3.up $find.l.f4.f3.down -anchor w
 
     # whole word, case, regexp, all files, in selection, and in directory checkboxes
@@ -98,13 +115,13 @@ proc findtextdialog {typ} {
     eval "checkbutton $find.l.f4.f5.cbox0 [bl "Match &whole word only"] \
         -variable wholeword  \
         -command \"resetfind $find \[gettextareacur\] \" \
-        -font $menuFont "
+        -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] \
         -variable caset -onvalue \"-exact\" -offvalue \"-nocase\" \
-        -command \"resetfind $find \[gettextareacur\]\" -font $menuFont "
+        -command \"resetfind $find \[gettextareacur\]\" -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] \
         -variable regexpcase  -onvalue \"regexp\" -offvalue \"standard\" \
-        -command \"resetfind $find \[gettextareacur\]\" -font $menuFont "
+        -command \"resetfind $find \[gettextareacur\]\" -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] \
         -variable multiplefiles \
         -command \"resetfind $find \[gettextareacur\] ; \
@@ -112,7 +129,7 @@ proc findtextdialog {typ} {
                    if {[string compare $typ find] == 0} { \
                        $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
                    }\" \
-         -font $menuFont "
+         -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
         -variable searchinsel \
         -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find \[gettextareacur\] ; \
@@ -120,12 +137,12 @@ proc findtextdialog {typ} {
                    if {[string compare $typ find] == 0} { \
                        $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
                    }\" \
-        -font $menuFont "
+        -font \[list $menuFont\] "
     if {$typ == "find"} {
         eval "checkbutton $find.l.f4.f5.cbox5 [bl "In a director&y"] \
             -variable searchindir \
             -command \"resetfind $find \[gettextareacur\] ; togglesearchindir\" \
-            -font $menuFont "
+            -font \[list $menuFont\] "
     }
     if {$typ == "find"} {
         pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
@@ -144,11 +161,13 @@ proc findtextdialog {typ} {
         eval "checkbutton $find.b.f6.cbox6 [bl "Directory r&ecurse search"] \
             -variable recursesearchindir \
             -command \"resetfind $find \[gettextareacur\]\" \
-            -font $menuFont "
+            -font \[list $menuFont\] "
         pack $find.b.f6.cbox6 -anchor w
         frame $find.b.f6.f1
+        set bestwidth [mcmaxra "In files/file types:" \
+                               "In directory:"]
         label $find.b.f6.f1.labelt -text [mc "In files/file types:"] \
-            -width 20 -font $menuFont
+            -width $bestwidth -font $menuFont
         entry $find.b.f6.f1.entryt -textvariable fileglobpat \
             -width 30 -font $textFont -exportselection 1
         menubutton $find.b.f6.f1.mbselectpat -text "..." -indicatoron 0 \
@@ -164,7 +183,7 @@ proc findtextdialog {typ} {
         }
         frame $find.b.f6.f2
         label $find.b.f6.f2.labeld -text [mc "In directory:"] \
-            -width 20 -font $menuFont
+            -width $bestwidth -font $menuFont
         entry $find.b.f6.f2.entryd -textvariable initdir \
             -width 30 -font $textFont -exportselection 1
         button $find.b.f6.f2.buttonselectdir -text "..." \
@@ -220,10 +239,23 @@ proc findtextdialog {typ} {
 
     # initial settings for searching in selection
     if {$tahasnosel} {
+        # there is no selection, find in selection must be disabled
         $find.l.f4.f5.cbox4 deselect
         $find.l.f4.f5.cbox4 configure -state disabled
     } else {
-        $find.l.f4.f5.cbox4 select
+        # there is a selection
+        # if the selection is more than one line,
+        #   preselect the find in selection box
+        # otherwise
+        #   use that selection as the string to search for
+        set thesel [[gettextareacur] get fakeselection.first fakeselection.last]
+        if {[regexp {\n} $thesel]} {
+            $find.l.f4.f5.cbox4 select
+        } else {
+            $find.l.f4.f5.cbox4 deselect
+            $find.l.f1.entry delete 0 end
+            $find.l.f1.entry insert 0 $thesel
+        }
     }
 
     # this must be done here and not before because the validatecommand is
@@ -403,7 +435,14 @@ proc multiplefilesfindreplace {w frit} {
         if {$searchindir} {
             # an empty search string with search in files/dir set means that
             # we want to search for files themselves, not for a string in files
-            set searchforfilesonly 1
+            # let's put a message box for confirmation since I myself forgot that feature...
+            set answ [tk_messageBox -icon question -type yesno -parent $pw \
+                    -title [mc "Search for file names"] \
+                    -message [mc "You have given an empty search string. Are you sure you want to search among file names?"] ]
+            switch -- $answ {
+                yes { set searchforfilesonly 1 }
+                no  { return }
+            }
         } else {
             searchstringemptymessagebox $pw
             return
@@ -578,6 +617,7 @@ proc findit {w pw textarea tosearchfor reg} {
     # if search wrapped, tell the user
     if {$wraparound == "true"} {
         showinfo [mc "Wrapped around"]
+        bell
     } else {
         delinfo
     }
@@ -592,12 +632,32 @@ proc findit {w pw textarea tosearchfor reg} {
         $ta tag remove replacedtext 0.0 end
     }
     $textarea tag add foundtext $mpos  "$mpos + $mlen char"
-    # <TODO>: these bindings are required to remove the foundtext tag after a find
-    #         next triggered by F3. Once set, they will live in the textarea forever,
-    #         and there will be one such binding added for each successful search!!
-    bind $textarea <KeyPress>    {+%W tag remove foundtext 1.0 end}
-    bind $textarea <ButtonPress> {+%W tag remove foundtext 1.0 end}
-    bind $textarea <Button-1>    {+%W tag remove foundtext 1.0 end}
+    
+    # the following three bindings are required to remove the foundtext tag
+    # after a find next triggered by F3. In order to erase them after use,
+    # the binding is redefined in the binded script itself to what this script
+    # was before binded instructions are added (+ statement) here
+    # the foundtext tag removal instruction is also prevented from cumulating
+    # (e.g. when hitting F3 repeatedly with no action in the textarea in
+    # between)
+    # last note, this must be done for KeyPress and ButtonPress of course, but
+    # also for Button-1 since:
+    #    a. this event is more specific than ButtonPress and will therefore be
+    #       triggered when the user clicks Button-1
+    #    b. the binded script for Button-1 contains a {break}, which is needed
+    #       for dnd but prevents here the wanted ButtonPress binding to trigger
+    set bindtext [bind $textarea <KeyPress>]
+    if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
+        bind $textarea <KeyPress> "+%W tag remove foundtext 1.0 end ; bind %W <KeyPress> [list $bindtext]"
+    }
+    set bindtext [bind $textarea <ButtonPress>]
+    if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
+        bind $textarea <ButtonPress> "+%W tag remove foundtext 1.0 end ; bind %W <ButtonPress> [list $bindtext]"
+    }
+    set bindtext [bind $textarea <Button-1>]
+    if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
+        bind $textarea <Button-1> "+%W tag remove foundtext 1.0 end ; bind %W <Button-1> [list $bindtext]"
+    }
 
     # prevent the dialog box from hiding the match string
     if {[winfo exists $w]} {
@@ -710,9 +770,10 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
         set replres "searchagain"
     }
 
-    # if search wrapped, tell the user
-    if {$wraparound == "true"} {
+    # if search wrapped, tell the user when replacing items one by one only
+    if {$wraparound == "true" && $replacesingle} {
         showinfo [mc "Wrapped around"]
+        bell
     } else {
         delinfo
     }
@@ -1232,8 +1293,6 @@ proc cancelfind {w} {
             # there was a selection at the time the find dialog was opened, restore it
             $textarea tag add sel fakeselection.first fakeselection.last 
             $textarea tag remove fakeselection 0.0 end
-            $textarea mark set insert sel.first
-            $textarea see insert
         }
     }
 

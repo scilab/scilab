@@ -52,7 +52,13 @@ proc load_words {} {
     set chset(scilab.scicos) {}
 # ask to scilab about keywords:
 # Warning: "seq" option only is mandatory so that colorization
-#          works with scipad somefile.sci
+#          works with scipad somefile.sci (i.e. the ScilabEval
+#          below must be queued before colorization starts in
+#          the file that was just loaded through TCL_EvalStr("openfile ...
+#          (see scipad.sci)
+# Note: "sync" "seq" would have been the right thing to do, but for
+#       some unclear reason words and chset are unknown in that case
+#       when the exec returns
     ScilabEval_lt "exec $ownpath/dynamickeywords.sce;" "seq"
 # old code to load a word file with additional keywords: maybe someday it will
 # turn useful...
@@ -194,6 +200,12 @@ proc colorize {w cpos iend} {
 
     # XML (#ES this is a problem as <> are also operators)
     if {$schema=="xml"} {
+        # the regexp pattern is a bit oversimplified
+        # it does not check properly nested <> constructs, it just
+        # looks for the first closing delimiter
+        # therefore <hello<<world> is recognized as a single XML tag
+        # do we really want it? - In general, nested <> are not
+        # properly dealt with here (<TODO>)
         colorizetag $w {<[^>]*>} xmltag $searchedstr $cpos
     }
 
@@ -643,6 +655,7 @@ proc docolorizeuserfun {} {
     global listoffile listoftextarea
     global words chset
     global notsnccRE notsncclookaheadRE
+    global maxcharinascilabname
 
     set mode scilab
     set tag userfun
@@ -735,11 +748,12 @@ proc docolorizeuserfun {} {
                 set stop [$ta index "$star + $malength c"]
                 if {[lsearch [$ta tag names $star] "rem2"] == -1} {
                     if {[lsearch [$ta tag names $star] "textquoted"] == -1} {
-                        if {$malength > 24} {
-                            # clip tagging length to 24 characters, since this is the
-                            # Scilab limitation - this is to remind the user of this limit
+                        if {$malength > $maxcharinascilabname} {
+                            # clip tagging length to $maxcharinascilabname characters,
+                            # since this is the Scilab limitation - this is to remind
+                            # the user of this limit
                             # Scipad is not limited in function names, but Scilab is
-                            set stop [$ta index "$stop - [expr $malength - 24] c"]
+                            set stop [$ta index "$stop - [expr $malength - $maxcharinascilabname] c"]
                         }
                         $ta tag add "userfun" $star $stop
                     }
@@ -930,10 +944,26 @@ proc refreshQuotedStrings {} {
 proc getstartofcolorization {w ind} {
 # return start bound required for proper recolorization
 # and take care of nearby continued lines
-    if {[iscontinuedline $w "$ind - 1 l"]} {
-        set uplimit [getstartofcontline $w "$ind - 1 l"]
-    } else {
-        set uplimit [$w index "$ind linestart"]
+    global listoffile
+    switch -- $listoffile("$w",language) {
+        scilab {
+            if {[iscontinuedline $w "$ind - 1 l"]} {
+                set uplimit [getstartofcontline $w "$ind - 1 l"]
+            } else {
+                set uplimit [$w index "$ind linestart"]
+            }
+        }
+        xml {
+            set prevdelimiterpos [$w search -backwards -- {<} $ind 1.0]
+            if {$prevdelimiterpos != ""} {
+                set uplimit [$w index $prevdelimiterpos]
+            } else {
+                set uplimit [$w index "$ind linestart"]
+            }
+        }
+        default {
+            set uplimit [$w index "$ind linestart"]
+        }
     }
     return $uplimit
 }
@@ -941,10 +971,26 @@ proc getstartofcolorization {w ind} {
 proc getendofcolorization {w ind} {
 # return end bound required for proper recolorization
 # and take care of nearby continued lines
-    if {[iscontinuedline $w "$ind + 1 l"]} {
-        set dnlimit [getendofcontline $w "$ind + 1 l"]
-    } else {
-        set dnlimit [$w index "$ind + 1 l lineend"]
+    global listoffile
+    switch -- $listoffile("$w",language) {
+        scilab {
+            if {[iscontinuedline $w "$ind + 1 l"]} {
+                set dnlimit [getendofcontline $w "$ind + 1 l"]
+            } else {
+                set dnlimit [$w index "$ind + 1 l lineend"]
+            }
+        }
+        xml {
+            set nextdelimiterpos [$w search -- {>} "$ind - 1 c" end]
+            if {$nextdelimiterpos != ""} {
+                set dnlimit [$w index "$nextdelimiterpos + 1 c"]
+            } else {
+                set dnlimit [$w index "$ind lineend"]
+            }
+        }
+        default {
+            set dnlimit [$w index "$ind + 1 l lineend"]
+        }
     }
     return $dnlimit
 }

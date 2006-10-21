@@ -2328,3 +2328,75 @@ Scilab operational team, 03/08/06
  * Changed directories to follow reorganization of the Scilab code
  * svn: eol-style property set to native
  * version --> 6.44 - First version following the reorganized code tree
+
+Francois VOGEL, 21/10/06
+ * Added a font chooser dialog in order to answer bug 2047
+ * Find/Replace:
+   . Added a message box in case $findreplaceboxalreadyopen == true (I
+     suspect a bug: sometimes findreplaceboxalreadyopen is not reset to
+     false when closing the find dialog)
+   . Prevented button2copypaste from triggering in the find in files
+     results window
+   . Find/Replace box uses the selection to preselect the search string if
+     this selection is less than one line
+   . The cursor does no longer jump to the selection start when closing
+     the dialog - better since now the last match is at the cursor position
+   . Fixed Control-f bug: selection was erased on Ctrl-f, while it was kept
+     using Edit/Search menu
+   . Fixed: Closure of Scipad while find in files was running caused a Tcl
+     error
+   . The bindings in findreplace.tcl used for the F3 case and for find in
+     files were cumulating and living in the textarea forever. This is no
+     longer the case
+   . Scipad rings a bell when find or replace wraps around (but not for
+     replace all)
+   . Fixed: there was a Tcl error when a file to search in could not be
+     opened for reading. Error management on opening was wrong. This
+     problem was present from the very first version of the find in files
+     function (i.e. since Scipad 5.44)
+   . Fixed duplicate binding Alt-c in Find box in french locale
+ * Debugger:
+   . Added a busy cursor set when the debugger commands are issued. This is
+     especially useful when automatically stepping through no code lines to
+     make the user aware that Scilab is busy
+   . The watch window can now be docked inside the Scipad window (this was
+     asked for in the discussion of request 261)
+   . Fixed: the watch window did loose focus when "Hide..." was clicked
+   . Fixed: breakpoint range for step into was wrong for functions included
+     in mixed .sce/sci files
+   . Fixed: closure of files during debug caused Scipad to spit a Tcl error
+     on next step command
+   . Fixed: Step over (F8) could step into libfuns (Shift-F8) when the call
+     to the libfun was in a nested function in a mixed .sce/.sci file
+     debugged as a .sci file with a wrapper function
+   . (Almost) fixed: Step over could step into libfuns when the libfun was
+     in a nested function whose calling function contained the same libfun -
+     this still occurs when the libfun is in the calling line of the calling
+     fun - let's live with it for the moment
+   . Added underlines, keyboard shortcuts and usability bindings for the
+     watch window buttons. Ditto for the configure dialog and add watch box
+   . Removed the hardcoded size of the watch window that was used when both
+     areas were hidden
+   . Fixed Tcl error "invalid sash index" when changing the locale or fonts
+     (or font size in older Scipad versions) while the watch window was open
+     with variables zone or call stack area hidden
+   . Fixed endless loop when configuring the debugger on a buffer containing
+     unbalanced function/endfunction keywords
+ * Made use of mcmax to homogenize the width of buttons in all the dialogs
+ * Fixed: Trying to print a new file (Ctrl-n followed by Ctrl-p) produced
+   an error in the Scilab shell
+ * Fixed: A Tcl error could pop up when launching scipad with no filename and
+   quickly opening a file through the file menu. This was because execution
+   of dynamickeywords was not yet over when colorization started, thus
+   resulting in Tcl errors such as can't read "words(scilab.scicos.c)". This
+   synchronisation problem could also produce files that were not colorized
+   in totality. Now $pad is withdrawn during Scipad's launch, and deiconified
+   only when the complete startup sequence is finished
+ * Fixed: Colorization of XML files did not work correctly because the end
+   bound for colorization was not properly derived - getendofcolorization
+   and getstartofcolorization have been updated to deal specifically with
+   the XML case
+ * Added a message box for the user in proc highlighttextarea so that the Tcl
+   error "invalid command name "none"" gets a chance to be fixed, since I
+   could never reproduce it
+ * version --> 6.45

@@ -8,6 +8,7 @@ sbind Text <Control-h> {backspacetext}
 sbind Text <Control-k> {}
 sbind Text <Control-t> {}
 sbind Text <Control-i> {}
+sbind Text <Control-f> {} ; # avoids selection deletion on find box open
 # remove the default sbind ctrl-d=delete char
 sbind Text <Control-d> ""
 sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
@@ -74,11 +75,6 @@ sbind $pad <F7> {nextbuffer}
 sbind $pad <F6> {prevbuffer}
 sbind $pad <Control-F7> {nextbuffer}
 sbind $pad <Control-F6> {prevbuffer}
-
-sbind $pad <Control-plus> {set FontSize [expr round($FontSize*1.11)]; \
-                            setfontscipad $FontSize}
-sbind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
-                            setfontscipad $FontSize}
 
 sbind $pad <F4> {importmatlab}
 

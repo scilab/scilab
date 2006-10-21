@@ -20,7 +20,8 @@ set chset()                 {}
 set words()                 {}  
 
 # main window settings
-eval destroy [winfo child $pad]
+eval destroy [winfo children $pad]
+wm withdraw $pad ; # $pad will be deiconified after Scipad's startup is completely over
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager
@@ -36,17 +37,6 @@ wm geometry $pad $WMGEOMETRY
 
 #create main menu
 menu $pad.filemenu -tearoff 0
-
-# start by setting default font sizes
-if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
-    set textFont -Adobe-courier-medium-r-Normal-*-$FontSize-*
-    set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*-75-75-*-*-*-*
-} else {
-    set textFont -Adobe-Courier-medium-R-Normal-*-$FontSize-*
-    #set menuFont -adobe-helvetica-bold-r-normal--12-*-75-75-*-*-*-*
-    set menuFont [$pad.filemenu cget -font]
-}
-
 $pad.filemenu configure -font $menuFont
 
 panedwindow $pad.pw0 -orient vertical -opaqueresize true
@@ -54,9 +44,11 @@ set pwmaxid 0
 
 set taille [expr [font measure $textFont " "] *3]
 
-# creates the default textarea 
+# creates the default textarea
+# -width 1 and -height 1 ensure that the scrollbars show up
+# whatever the size of the textarea
 text $textareacur -relief sunken -bd 0 \
-    -wrap $wordWrap -width 1 -height 1 \
+    -wrap $wordWrap -width 1 -height 1\
     -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
     -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
     -selectbackground $SELCOLOR -exportselection 1 \

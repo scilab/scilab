@@ -1,6 +1,6 @@
 proc createmenues {} {
     global pad tcl_platform bgcolors fgcolors sourcedir
-    global listoffile listoftextarea FontSize bindset
+    global listoffile listoftextarea bindset
     global FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu
     global Shift_Tab
@@ -14,7 +14,7 @@ proc createmenues {} {
 
     #file menu
     menu $pad.filemenu.files -tearoff 1
-    eval "$pad.filemenu  add cascade [me "&File"] -menu $pad.filemenu.files "
+    eval "$pad.filemenu add cascade [me "&File"] -menu $pad.filemenu.files "
     eval "$pad.filemenu.files add command [me "&New"] [ca {filesetasnew}]"
     eval "$pad.filemenu.files add command [me "&Open..."] \
                    [ca {showopenwin currenttile}]"
@@ -181,17 +181,8 @@ proc createmenues {} {
     menu $pad.filemenu.options -tearoff 1
     eval "$pad.filemenu add cascade [me "&Options"] \
                -menu $pad.filemenu.options "
-    menu $pad.filemenu.options.fontsize -tearoff 0
-    eval "$pad.filemenu.options add cascade [me "&Font size"]\
-      -menu $pad.filemenu.options.fontsize"
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
-              -value 10 -variable FontSize -command \"setfontscipad 10\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\
-              -value 12 -variable FontSize -command \"setfontscipad 12\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] \
-              -value 14 -variable FontSize -command \"setfontscipad 14\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] \
-              -value 18 -variable FontSize -command \"setfontscipad 18\" "
+    eval "$pad.filemenu.options add command [me "&Fonts..."] \
+              [ca choosefonts]"
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
                -menu $pad.filemenu.options.colors"
         menu $pad.filemenu.options.colors -tearoff 1
@@ -392,9 +383,9 @@ proc createmenues {} {
     # this array allows to avoid to refer to menu entries by their hardcoded id
     createarrayofmenuentriesid $pad.filemenu
 
-    # set the correct font for menues, includind tk_optionMenues, that do not
+    # set the correct font for menues, including tk_optionMenues, that do not
     # have a -font option
-    setfontscipad $FontSize
+    updatefont all
 }
 
 proc disablemenuesbinds {} {

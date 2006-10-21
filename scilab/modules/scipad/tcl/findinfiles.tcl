@@ -21,41 +21,44 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
     }
     set openerrorfiles {}
     set filenames [getallfilenames $initdir $globpat $recursesearchindir]
-    if {$openerrorfiles != {}} {
-        set nlopenerrorfiles ""
-        foreach fil $openerrorfiles {
-            set nlopenerrorfiles "$nlopenerrorfiles$fil\n"
-        }
-        tk_messageBox -message [concat \
-            [mc "Some directories or files could not be open and will be ignored during search.\n\
-                 You might miss read access to them.\n\n\
-                 The following ones will be ignored"] ":\n\n$nlopenerrorfiles"] \
-            -icon warning -title [mc "Ignored files"] -type ok
-    }
 
-    if {!$searchforfilesonly} {
-        # search for matches in each file
-        set allthematches {}
-        foreach filename $filenames {
-            updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
-            set filematches [findinonefile $filename $tosearchfor $cas $reg $whword]
-            foreach amatch $filematches {
-                lappend allthematches $amatch
+    if {!$cancelsearchflag} {
+        # Scipad has not been closed during filenames list creation
+        if {!$searchforfilesonly} {
+            # search for matches in each file
+            set allthematches {}
+            foreach filename $filenames {
+                updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
+                set filematches [findinonefile $filename $tosearchfor $cas $reg $whword]
+                foreach amatch $filematches {
+                    lappend allthematches $amatch
+                }
+                if {$cancelsearchflag} {break}
             }
-            if {$cancelsearchflag} {break}
+        } else {
+            # search for files themselves - display the matched files
+            set allthematches {}
+            foreach filename $filenames {
+                updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
+                lappend allthematches [constructfilematchresult $filename]
+                update
+                if {$cancelsearchflag} {break}
+            }
         }
-    } else {
-        # search for files themselves - display the matched files
-        set allthematches {}
-        foreach filename $filenames {
-            updatematchrestitle [concat [mc "Searching in file:"] "$filename"]
-            lappend allthematches [constructfilematchresult $filename]
-            update
-            if {$cancelsearchflag} {break}
+        updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"]]
+        if {$openerrorfiles != {}} {
+            set nlopenerrorfiles ""
+            foreach fil $openerrorfiles {
+                set nlopenerrorfiles "$nlopenerrorfiles$fil\n"
+            }
+            tk_messageBox -message [concat \
+                [mc "Some directories or files could not be open and were ignored during search.\n\
+                     You might miss read access to them.\n\n\
+                     The following ones were ignored"] ":\n\n$nlopenerrorfiles"] \
+                -icon warning -title [mc "Ignored files"] -type ok
         }
+        enablesearchresultsbuttons
     }
-    updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"]]
-    enablesearchresultsbuttons
     set searchinfilesalreadyrunning 0
 }
 
@@ -120,7 +123,7 @@ proc findinonefile {fname str cas reg whword} {
     # open file
     if {[catch {open $fname r} fid] != 0} {
         # error on opening the file
-        lappend openerrorfiles $fil
+        lappend openerrorfiles $fname
         return $filematchlist
     }
 
@@ -147,16 +150,18 @@ proc findinonefile {fname str cas reg whword} {
                 $matchres.f1.resarea configure -state disabled
             }
         }
+        $pad.fake delete 1.0 end
         # let the user see the progress, and keep the GUI responsive
         # (for cancel button, but also for all the Scipad functions)
         update
-        $pad.fake delete 1.0 end
         if {$cancelsearchflag} {break}
     }
 
     # do the cleaning
     close $fid
-    destroy $pad.fake
+    # catched because might already be destroyed when the user
+    # closes Scipad during a search in files
+    catch {destroy $pad.fake}
 
     return $filematchlist
 }
@@ -232,18 +237,22 @@ proc displaymatchresultswin {} {
 
         # command buttons
         frame $matchres.f2
+        set bestwidth [mcmaxra "&Previous" \
+                               "&Next" \
+                               "&Close" \
+                               "Cance&l"]
         eval "button $matchres.f2.buttonPrev [bl "&Previous"] \
             -command \"openprevmatch $matchres.f1.resarea\" \
-            -width 10 -height 1 -font $menuFont "
+            -width $bestwidth -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonNext [bl "&Next"] \
             -command \"opennextmatch $matchres.f1.resarea\" \
-            -width 10 -height 1 -font $menuFont "
+            -width $bestwidth -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonClose [bl "&Close"] \
             -command \"destroy $matchres\" \
-            -width 10 -height 1 -font $menuFont "
+            -width $bestwidth -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonCancel [bl "Cance&l"] \
             -command \"cancelsearchinfiles\" \
-            -width 10 -height 1 -font $menuFont "
+            -width $bestwidth -font \[list $menuFont\] "
         pack $matchres.f2.buttonPrev $matchres.f2.buttonNext \
              $matchres.f2.buttonClose $matchres.f2.buttonCancel -side left \
              -padx 6 -pady 2
@@ -266,6 +275,7 @@ proc displaymatchresultswin {} {
         bind $matchres.f1.resarea <Button-3> {break}
         bind $matchres.f1.resarea <Shift-Button-3> {break}
         bind $matchres.f1.resarea <Control-Button-3> {break}
+        bind $matchres.f1.resarea <ButtonRelease-2> {break}
     }
 }
 
@@ -283,17 +293,27 @@ proc enablesearchresultsbuttons {} {
 # re-enable buttons of the search results window
 # (used after search end or cancel)
     global matchres
-    $matchres.f2.buttonNext   configure -state normal
-    $matchres.f2.buttonPrev   configure -state normal
-    $matchres.f2.buttonClose  configure -state normal
-    $matchres.f2.buttonCancel configure -state disabled
+    if {[winfo exists $matchres]} {
+        $matchres.f2.buttonNext   configure -state normal
+        $matchres.f2.buttonPrev   configure -state normal
+        $matchres.f2.buttonClose  configure -state normal
+        $matchres.f2.buttonCancel configure -state disabled
+    } else {
+        # scipad has been closed during a search in files
+        # there is nothing to do
+    }
 }
 
 proc updatematchrestitle {tit} {
 # change the title of the match results window to $tit preceded by
 # the translation of "Scipad search results" in the current locale
     global matchres
-    wm title $matchres "[mc "Scipad search results"] - $tit"
+    if {[winfo exists $matchres]} {
+        wm title $matchres "[mc "Scipad search results"] - $tit"
+    } else {
+        # scipad has been closed during a search in files
+        # there is nothing to do
+    }
 }
 
 proc openpointedmatch {w x y} {
@@ -372,12 +392,32 @@ proc openamatch {w posinresarea} {
         $ta tag remove foundtext 1.0 end
         $ta tag add foundtext $matchstart "$matchstart + [lindex $thematch 2] char"
 
-        # <TODO>: these bindings are required to remove the foundtext tag after having
-        #         been highlighted. Once set, they will live in the textarea forever,
-        #         and there will be one such binding added for each successful search!!
-        bind $ta <KeyPress>    {+%W tag remove foundtext 1.0 end}
-        bind $ta <ButtonPress> {+%W tag remove foundtext 1.0 end}
-        bind $ta <Button-1>    {+%W tag remove foundtext 1.0 end}
+        # the following three bindings are required to remove the foundtext tag
+        # after a find next triggered by F3. In order to erase them after use,
+        # the binding is redefined in the binded script itself to what this script
+        # was before binded instructions are added (+ statement) here
+        # the foundtext tag removal instruction is also prevented from cumulating
+        # (e.g. when hitting F3 repeatedly with no action in the textarea in
+        # between)
+        # last note, this must be done for KeyPress and ButtonPress of course, but
+        # also for Button-1 since:
+        #    a. this event is more specific than ButtonPress and will therefore be
+        #       triggered when the user clicks Button-1
+        #    b. the binded script for Button-1 contains a {break}, which is needed
+        #       for dnd but prevents here the wanted ButtonPress binding to trigger
+        set bindtext [bind $ta <KeyPress>]
+        if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
+            bind $ta <KeyPress> "+%W tag remove foundtext 1.0 end ; bind %W <KeyPress> [list $bindtext]"
+        }
+        set bindtext [bind $ta <ButtonPress>]
+        if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
+            bind $ta <ButtonPress> "+%W tag remove foundtext 1.0 end ; bind %W <ButtonPress> [list $bindtext]"
+        }
+        set bindtext [bind $ta <Button-1>]
+        if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
+            bind $ta <Button-1> "+%W tag remove foundtext 1.0 end ; bind %W <Button-1> [list $bindtext]"
+        }
+
     } else {
         # file was deleted between the time when the match was found and the
         # time when it was clicked in the dialog

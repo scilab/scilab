@@ -11,6 +11,7 @@ bind ALL <Alt-H> {}
 bind Text <Control-k> {}
 bind Text <Control-t> {}
 bind Text <Control-i> {}
+bind Text <Control-f> {} ; # avoids selection deletion on find box open
 
 bind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
 bind Text <BackSpace> {backspacetext}
@@ -69,10 +70,12 @@ bind $pad <F6> {prevbuffer}
 bind $pad <Control-F7> {nextbuffer}
 bind $pad <Control-F6> {prevbuffer}
 
-bind $pad <Control-plus> {set FontSize [expr round($FontSize*1.11)]; \
-                            setfontscipad $FontSize}
-bind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
-                            setfontscipad $FontSize}
+bind $pad <Control-plus>  {set textfontsize [expr round($textfontsize*1.11)]; \
+                           set menufontsize [expr round($menufontsize*1.11)]; \
+                           updatefont all}
+bind $pad <Control-minus> {set textfontsize [expr round($textfontsize*0.9)]; \
+                           set menufontsize [expr round($menufontsize*0.9)]; \
+                           updatefont all}
 
 
 bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource $ind}

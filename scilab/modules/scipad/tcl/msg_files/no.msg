@@ -9,6 +9,8 @@
 ::msgcat::mcset no "Scilab working" "Scilab arbeider"
 ::msgcat::mcset no "All files" "Alle filer"
 ::msgcat::mcset no "Add/Change" "Legg til/Endre"
+::msgcat::mcset no "Add/Chan&ge" "Legg til/&Endre"
+::msgcat::mcset no "&Remove" "&Fjern"
 ::msgcat::mcset no "Untitled" "Navnløs"
 ::msgcat::mcset no "Close" "Lukk"
 ::msgcat::mcset no "&Close" "&Lukk"
@@ -46,16 +48,15 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset no "Variable:" "Variabel :"
 ::msgcat::mcset no "Value:" "Verdi :"
-::msgcat::mcset no "Get current value from Scilab"\
-                   "Hent aktuell verdi fra Scilab"
+::msgcat::mcset no "&Get current value from Scilab"\
+                   "Hent aktuell &verdi fra Scilab"
 
 
 # db_configureexec.tcl
 ::msgcat::mcset no "Configure execution" "Konfigurer kjøring"
 ::msgcat::mcset no "Function name:" "Funksjonsnavn :"
-::msgcat::mcset no "Obtain" "Hent"
+::msgcat::mcset no "&Obtain" "&Hent"
 ::msgcat::mcset no "Input arguments:" "Input argumenter :"
-::msgcat::mcset no "Remove" "Fjern"
 ::msgcat::mcset no "Function name or input arguments do not match definition\
                     of the function"\
                    "Funksjonsnavn eller input argument passer ikke med\
@@ -108,10 +109,8 @@
 ::msgcat::mcset no "Watch variables:" "Overvåk variabler :"
 ::msgcat::mcset no "Remove" "Fjern"
 ::msgcat::mcset no "Call stack:" "Call stack:"
-::msgcat::mcset no "Show watch variables" "Vis overvåkede variabler"
-::msgcat::mcset no "Hide watch variables" "Skjul overvåkede variabler"
-::msgcat::mcset no "Show call stack" "Vis call stack"
-::msgcat::mcset no "Hide call stack" "Skjul call stack"
+::msgcat::mcset no "Hide watch &variables" "Skjul overvåkede &variabler"
+::msgcat::mcset no "Hide call &stack" "Skjul call &stack"
 ::msgcat::mcset no "Undefined elements are not legal in variable"\
                    "Udefinerte elementer er ikke lovlig i variabel"
 ::msgcat::mcset no ".\nThis variable will not be updated in Scilab."\
@@ -221,10 +220,10 @@
 ::msgcat::mcset no "The directory you specified cannot be reached. The\
                     search won't bring any result."\
                    "Angitt katalog kan ikke nås. Søket vil ikke gi resultat"
-::msgcat::mcset no "Some directories or files could not be open and will be\
+::msgcat::mcset no "Some directories or files could not be open and were\
                     ignored during search.\n You might miss read access to\
-                    them.\n\n The following ones will be ignored"\
-                   "Noen kataloger eller filer kan ikke åpnes  og vil ikke\
+                    them.\n\n The following ones were ignored"\
+                   "Noen kataloger eller filer kan ikke åpnes og vil ikke\
                     tas med i søk.\n Kanskje du mangler lesetilgang til\
                     dem.\n\n Følgende vil ikke bli tatt med."
 ::msgcat::mcset no "Ignored files" "Utelatte filer"

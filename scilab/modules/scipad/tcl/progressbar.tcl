@@ -1,7 +1,7 @@
 # This file has been downloaded from Donal K. Fellows' Tcl archive at
 #   http://www.man.ac.uk/~zzcgudf/tcl/mwidx.html#progress
 #
-# A few words about it's licence can be found at 
+# A few words about it's license can be found at 
 #   http://www.cs.man.ac.uk/~fellowsd/tcl/
 #
 # It has been edited to remove the demo code, tune a bit the widget

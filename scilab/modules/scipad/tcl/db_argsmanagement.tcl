@@ -24,18 +24,23 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
         set argname ""
         set argvalue ""
     }
+
     frame $adda.f
+
     frame $adda.f.f1
+    set bestwidth [mcmaxra "Variable:" \
+                           "Value:"]
     set tl [mc "Variable:"]
-    label $adda.f.f1.label -text $tl -width 10 -font $menuFont
+    label $adda.f.f1.label -text $tl -width $bestwidth -font $menuFont
     entry $adda.f.f1.entry -textvariable argname -width 0 -font $textFont
     pack $adda.f.f1.label $adda.f.f1.entry -side left
     pack $adda.f.f1.entry -expand 1 -fill x
     $adda.f.f1.entry selection range 0 end
     pack $adda.f.f1 -expand 1 -fill x
+
     frame $adda.f.f2
     set tl [mc "Value:"]
-    label $adda.f.f2.label -text $tl -width 10 -font $menuFont
+    label $adda.f.f2.label -text $tl -width $bestwidth -font $menuFont
     entry $adda.f.f2.entry -textvariable argvalue -width 0 -font $textFont
     pack $adda.f.f2.label $adda.f.f2.entry -side left
     pack $adda.f.f2.entry -expand 1 -fill x
@@ -44,30 +49,39 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     if {[string first listboxinput $leftwin] == -1} {
         # This checkbutton is only displayed when the dialog is used with the watch window,
         # not with the configure box
-        eval "checkbutton $adda.f.cbox1 [bl "Get current value from Scilab"] -variable getvaluefromscilab \
-                                                                     -command togglegetvaluefromscilab \
-                                                                     -font $menuFont"
+        eval "checkbutton $adda.f.cbox1 [bl "&Get current value from Scilab"] \
+                -variable getvaluefromscilab \
+                -command togglegetvaluefromscilab \
+                -font \[list $menuFont\] "
         pack $adda.f.cbox1 -expand 0 -fill none -anchor w -padx 6
         $adda.f.cbox1 deselect
     }
+
     frame $adda.f.f9
+    set bestwidth [mcmaxra "OK" \
+                           "Cance&l"]
     button $adda.f.f9.buttonOK -text "OK" \
            -command "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"\
-           -width 10 -height 1 -font $menuFont
-    set bl [mc "Cancel"]
-    button $adda.f.f9.buttonCancel -text $bl \
-           -command "Canceladda_bp $adda $pos $leftwin"\
-           -width 10 -height 1 -font $menuFont
+           -width $bestwidth -font $menuFont
+    eval "button $adda.f.f9.buttonCancel [bl "Cance&l"] \
+           -command \"Canceladda_bp $adda $pos $leftwin\"\
+           -width $bestwidth -font \[list $menuFont\] "
     pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
     pack $adda.f.f9 -pady 4
     pack $adda.f -expand 1 -fill x
+
     bind $adda <Return> "OKadda_bp $pos $leftwin $rightwin ; destroy $adda"
     bind $adda <Escape> "Canceladda_bp $adda $pos $leftwin"
+
+    bind $adda <Alt-[fb $adda.f.cbox1]>           "$adda.f.cbox1 invoke"
+    bind $adda <Alt-[fb $adda.f.f9.buttonCancel]> "$adda.f.f9.buttonCancel invoke"
+
     if {$selecteditem != ""} {
         focus $adda.f.f2.entry
     } else {
         focus $adda.f.f1.entry
     }
+
     focus $focusbut
     # This update is required for the width and height to be taken into account in minsize
     # It also prevents a "grab failed" error to occur on Linux when double clicking on the
@@ -268,6 +282,7 @@ proc quickAddWatch_bp {watchvar} {
 # Variable value is always got from Scilab
     global watch argname argvalue lbvarname lbvarval
     global getvaluefromscilab
+    global dockwatch
     set watchalreadyopen "false"
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
@@ -277,7 +292,9 @@ proc quickAddWatch_bp {watchvar} {
     if {$watchalreadyopen == "false"} {
         showwatch_bp
     } else {
-        wm deiconify $watch
+        if {!$dockwatch} {
+            wm deiconify $watch
+        }
     }
     set argname $watchvar
     # set value to "" so that OKadda_bp will get it from the shell

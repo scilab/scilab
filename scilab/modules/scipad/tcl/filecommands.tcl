@@ -30,6 +30,8 @@
 #
 #     listoffile("$ta",fullname)
 #       Full path+name of the file on disk that is displayed in $ta
+#       Exception: new file not yet saved on disk. In this case it is
+#       the same as listoffile("$ta",displayedname)
 #
 #     listoffile("$ta",displayedname)
 #       Displayed name of the file on disk that is displayed in $ta
@@ -232,6 +234,9 @@ proc idleexitapp {} {
 proc exitapp { {quittype yesno} } {
 # exit Scipad
     global listoftextarea
+    # stop searching in files
+    cancelsearchinfiles
+    # stop debugger and clean Scilab state
     if {[getdbstate] == "DebugInProgress"} {
         ScilabEval_lt "delbpt();abort" "sync" "seq"
         cleantmpScilabEvalfile
@@ -282,12 +287,14 @@ proc opensourceof {} {
 
     set opensofbOK $opensof.f3.buttonOK
     frame $opensof.f3
+    set bestwidth [mcmaxra "OK" \
+                           "Cancel"]
     button $opensofbOK -text "OK" \
             -command "OKopensourceof $opensof" \
-            -width 10 -height 1 -font $menuFont
+            -width $bestwidth -font $menuFont
     button $opensof.f3.buttonCancel -text [mc "Cancel"] \
             -command "destroy $opensof" \
-            -width 10 -height 1 -font $menuFont
+            -width $bestwidth -font $menuFont
     pack $opensofbOK $opensof.f3.buttonCancel -side left -padx 10
     pack $opensof.f3 -pady 4 -after $opensof.f2
 
@@ -308,7 +315,7 @@ proc opensourceof {} {
 proc updatecompletions {partialfunnametoopen edittype} {
 # update the completions list in the listbox of the "open source of" dialog
 
-    global textFont bgcolors fgcolors
+    global bgcolors fgcolors
     foreach c1 "$bgcolors $fgcolors" {global $c1}
     global opensoflb opensofbOK
 
@@ -607,7 +614,7 @@ proc notopenedfile {file} {
     set listoffile("$pad.new$winopened",language) [extenstolang $file]
     setlistoffile_colorize "$pad.new$winopened" $listoffile("$pad.new$winopened",fullname)
     set listoffile("$pad.new$winopened",new) 0
-    if [ file exists $file ] {
+    if {[file exists $file]} {
         set listoffile("$pad.new$winopened",readonly) \
              [expr [file writable $file] == 0]
     } else {

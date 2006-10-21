@@ -39,6 +39,37 @@ proc mcra {mlabel} {
     return [lindex $clu 1]
 }
 
+proc mcmaxra {args} {
+# Given several strings each one containing or not an ampersand,
+# this returns the length of the longest translated string, taking
+# the ampersand case into account, i.e. :
+#     max length among the ampersanded strings is mcmax of these strings
+# minus 1 (because of the ampersand, that is supposed to be present also
+# in the translated string if it is present in the untranslated string)
+#     max length among the strings without ampersand is mcmax of these
+# strings (an untranslated string with no ampersand is supposed to translate
+# into a string without ampersand)
+# return value is the maximum of these maxima
+    set cmda   [list mcmax]
+    set cmdnoa [list mcmax]
+    # mcmax is applied separately on the elements that contain an ampersand
+    # and on elements that do not contain an ampersand
+    foreach arg $args {
+        if {[string first "&" $arg] == -1} {
+            lappend cmdnoa $arg
+        } else {
+            lappend cmda $arg
+        }
+    }
+    set maxlen_amp   [eval $cmda]
+    set maxlen_noamp [eval $cmdnoa]
+    if {$maxlen_amp > $maxlen_noamp} {
+        return [expr $maxlen_amp - 1]
+    } else {
+        return $maxlen_noamp
+    }
+}
+
 proc fb {w} {
 # Flexible binding ancillary
 # Given a widget containing a -text (or -label) and a -underline option,

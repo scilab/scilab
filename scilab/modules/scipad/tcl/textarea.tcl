@@ -72,7 +72,7 @@ proc scipadindent {textarea cm} {
 proc TextStyles { t } {
     global colorpref
     foreach c1 $colorpref {global $c1}
-    global actbptextFont textFont
+    global actbptextFont
 
     set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
     set FAKESELCOLOR $SELCOLOR
@@ -107,49 +107,6 @@ proc TextStyles { t } {
     $t tag raise sel activebreakpoint
 }
 
-proc setfontscipad {FontSize} {
-    global textFont menuFont actbptextFont textsmallerFont pad
-    global listoftextarea watch firsttimeinshowwatch
-    set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
-    set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
-    set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
-    set textsmallerFont -Adobe-courier-*-R-Normal-*-[expr $FontSize - 2]-*
-    # change the font of all of the entries in the menu tree and status bar
-    set allmenus1 "$pad.statusind $pad.statusind2 $pad.statusmes $pad.filemenu"
-    set allmenus ""
-    while {$allmenus != $allmenus1} {
-        set allmenus $allmenus1
-        foreach m "$allmenus" { append allmenus1 { } [winfo children $m] }
-        set allmenus1 [lsort -unique $allmenus1]
-    }
-    foreach m "$allmenus" {$m configure -font $menuFont}
-
-    foreach textarea $listoftextarea {
-        $textarea configure -font $textFont
-        $textarea tag configure activebreakpoint -font $actbptextFont
-        if {[isdisplayed $textarea]} {
-            set tapwfr [getpaneframename $textarea]
-            $tapwfr.panetitle configure -font $menuFont
-            $tapwfr.clbutton  configure -font $menuFont
-        }
-    }
-
-    # This sets the font used in all dialogs (Unix only - on Windows
-    # native platform dialogs are used by Tk)
-    set dialogFont -adobe-helvetica-medium-r-normal--$FontSize-*
-    option add *Dialog.msg.font    $dialogFont userDefault  ; # for all tk_messageBox and tk_dialog
-    option add *TkFDialog*Font     $dialogFont userDefault  ; # file open / save as dialogs
-    option add *TkColorDialog*Font $dialogFont userDefault  ; # color picker dialog
-    # If the watch window was open, refresh it
-    if {[info exists watch]} {
-        if {[winfo exists $watch]} {
-            set firsttimeinshowwatch "true"
-            showwatch_bp
-        }
-    }
-    showinfo [concat [mc "Font size"] $FontSize ]
-}
-
 proc setwingeom {wintoset} {
 # proc to set child window position
     global pad
@@ -170,5 +127,32 @@ proc highlighttextarea {textarea} {
             $pa configure -background gray
         }
     }
-    [getpaneframename $textarea] configure -background black
+    if {[isdisplayed $textarea]} {
+        [getpaneframename $textarea] configure -background black
+    } else {
+        # should never happen because highlighttextarea is supposed
+        # to be called only with a currently visible textarea argument
+        # however, at least one case is still not solved that will trigger
+        # the "invalid command name "none"" bug, but I couldn't reproduce
+        # yet: it has to do with clicking Button-1 in Scipad while a dnd is
+        # processed - Detailed error message is:
+        #
+        # invalid command name "none"
+        # invalid command name "none"
+        #     while executing
+        # "[getpaneframename $textarea] configure -background black"
+        #     (procedure "highlighttextarea" line 10)
+        #     invoked from within
+        # "highlighttextarea $textarea"
+        #     (procedure "focustextarea" line 19)
+        #     invoked from within
+        # "focustextarea .scipad.new4 "
+        #     invoked from within
+        # "if {$dndinitiated == "true"} {  set dndinitiated "false" ;  } else {  if {[info exists listoffile(".scipad.new4",fullname)]} {  focustextarea .scipad....}}"
+        #     (command bound to event)
+        #
+        tk_messageBox -message "Unexpected condition triggered in proc highlighttextarea. Clicking OK in this dialog will display the full error message. Please report to the Bugzilla and detail precisely what you were doing when this happened."
+        # trigger the error
+        [getpaneframename $textarea] configure -background black
+    }
 }

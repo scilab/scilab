@@ -69,7 +69,7 @@ if {0} {
     frame $tbox.f2
     button $tbox.f2.button -text [mc "Close"] \
             -command "destroy $tbox" \
-            -width 10 -height 1 -font $menuFont
+            -font $menuFont
     pack $tbox.f2.button -in $tbox.f2
     pack configure $tbox.f2 -pady 4 -after $tbox.f1 -expand 0 -fill both
     pack $tbox.f2 -in $tbox -side bottom -before $tbox.f1

@@ -8,6 +8,8 @@
 ::msgcat::mcset it "OK" "OK"
 ::msgcat::mcset it "All files" "Tutti i files"
 ::msgcat::mcset it "Add/Change" "Aggiungi/modifica"
+::msgcat::mcset it "Add/Chan&ge" "Aggiungi/&modifica"
+::msgcat::mcset it "&Remove" "&Rimuovi"
 ::msgcat::mcset it "Untitled" "SenzaTitolo"
 ::msgcat::mcset it "Close" "Chiudi"
 ::msgcat::mcset it "&Close" "&Chiudi"
@@ -46,8 +48,8 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset it "Variable:" "Variabile:"
 ::msgcat::mcset it "Value:" "Valore:"
-::msgcat::mcset it "Get current value from Scilab"\
-                   "Recupera il valore attuale in Scilab"
+::msgcat::mcset it "&Get current value from Scilab"\
+                   "Recupera il valore &attuale in Scilab"
 
 
 # db_configureexec.tcl
@@ -58,9 +60,8 @@
                    "Il debugger ha bisogno della colorazione"
 ::msgcat::mcset it "Configure execution" "Configura l'esecuzione"
 ::msgcat::mcset it "Function name:" "Nome della funzione:"
-::msgcat::mcset it "Obtain" "Ottieni"
+::msgcat::mcset it "&Obtain" "&Ottieni"
 ::msgcat::mcset it "Input arguments:" "Argumenti di ingresso:"
-::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "The selected function has not been found in the opened\
                     files, maybe it was deleted since last configuration of\
                     the debugger.\nUse button \""\
@@ -153,9 +154,9 @@
 ::msgcat::mcset it "Watch variables:" "Variabili osservate:"
 ::msgcat::mcset it "Remove" "Rimuovi"
 ::msgcat::mcset it "Call stack:" "stack di programma:"
-::msgcat::mcset it "Hide watch variables" "Nascondi le variabili"
-::msgcat::mcset it "Hide call stack" "Nascondi lo stack"
-::msgcat::mcset it "Always on top" "Sempre in primo piano"
+::msgcat::mcset it "&Always on top" "Sempre in &primo piano"
+::msgcat::mcset it "Hide watch &variables" "Nascondi le &variabili"
+::msgcat::mcset it "Hide call &stack" "Nascondi lo &stack"
 ::msgcat::mcset it "Breakpoints" "Punti d'arresto"
 ::msgcat::mcset it "Breakpointed functions" "Funzioni con arresti"
 ::msgcat::mcset it "Undefined elements are not legal in variable"\
@@ -278,13 +279,13 @@
                     search won't bring any result."\
                    "Scipad non può accedere alla directory specificata. La\
                     ricerca non darà risultato"
-::msgcat::mcset it "Some directories or files could not be open and will be\
+::msgcat::mcset it "Some directories or files could not be open and were\
                     ignored during search.\n You might miss read access to\
-                    them.\n\n The following ones will be ignored"\
+                    them.\n\n The following ones were ignored"\
                    "Certe directories o certi files non possono essere\
                     aperti (probabilmente sono protetti in lettura) e\
-                    saranno ignorati durante la ricerca. I seguenti saranno\
-                    ignorati:"
+                    sono stati ignorati durante la ricerca. I seguenti sono\
+                    stati ignorati:"
 ::msgcat::mcset it "Ignored files" "Files ignorati"
 ::msgcat::mcset it "Searching in file:" "Ricerca in:"
 ::msgcat::mcset it "End of file search:" "Fine della ricerca:"

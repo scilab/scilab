@@ -108,6 +108,7 @@ proc getendfunctionpos {ta precfun} {
 # definition)
 # the position returned is the index in $ta of the first n of the word
 # endfunction corresponding to the function definition starting at $precfun
+# if no endfunction corresponding to $precfun is found, then -1 is returned
     set lfunpos [list $precfun]
     set amatch [$ta search -exact -regexp "\\mfunction\\M" $precfun end]
     set curpos [$ta index "$amatch + 1c"]
@@ -136,6 +137,9 @@ proc getendfunctionpos {ta precfun} {
                 lappend lfunpos $amatch
             }
             set curpos [$ta index "$amatch + 1c"]
+        } else {
+            set curpos -1
+            break
         }
     }
     return $curpos
@@ -534,7 +538,21 @@ proc bufferhaslevelzerocode {w} {
                 set ind [$w index "$ind + 1 c"]
             }
             if {$out} {break}
-            set ind [$w index "[getendfunctionpos $w $precf] + 10 c"]
+            set endpos [getendfunctionpos $w $precf]
+            if {$endpos != -1} {
+                set ind [$w index "$endpos + 10 c"]
+            } else {
+                # function not terminated by an endfunction keyword
+                # then we have reached the end of the buffer
+                # and there is no need to break
+                # there is neither no need to return a special error
+                # code since this proc will return false (i.e. no zero
+                # level code in that buffer), configuration of the
+                # debugger will be allowed, and an error "endfunction
+                # is missing" will be triggered when running the debug
+                # this error is catched and displayed in a message box
+                set ind "end"
+            }
         }
 
         # is there main level code after the last function definition?
@@ -555,10 +573,16 @@ proc bufferhaslevelzerocode {w} {
     return $out
 }
 
-proc getlistofancillaries {ta fun tag} {
-# scan function $funname from textarea $ta for words tagged
-# as $tag and return these words in a list
-# duplicate names are removed from the list
+proc getlistofancillaries {ta fun tag {lifun -1}} {
+# scan function $fun from textarea $ta for words tagged as $tag
+# and return these words in a list
+#   - duplicate names are removed from the list
+#   - tagged text inside functions nested in $fun is ignored
+#   - if the line argument $lifun is given, then this proc
+#     only returns the ancillaries from this logical line in
+#     function $fun
+#   - if the line argument $libfun is not given, then all the
+#     ancillaries of $fun are returned
     set listofancill [list ]
     set allfunshere [lindex [getallfunsintextarea $ta] 1]
     foreach {funname funline precfun} $allfunshere {
@@ -568,10 +592,26 @@ proc getlistofancillaries {ta fun tag} {
         # function of interest is located, create list of
         # all calls to ancillaries tagged as $tag
         set endpos [getendfunctionpos $ta $precfun]
+        if {$endpos == -1} {
+            # can't happen in principle
+            tk_messageBox -message "getendfunctionpos returned $endpos in proc getlistofancillaries: please report"
+        }
         foreach {i j} [$ta tag ranges $tag] {
             if {[$ta compare $precfun <= $i]} {
                 if {[$ta compare $j <= $endpos]} {
-                    lappend listofancill [$ta get $i $j]
+                    # check that the tagged text actually belongs
+                    # to $fun and not to an ancillary of $fun
+                    foreach {fn lif fl pf cl} [whichfun $i $ta] {}
+                    if {$fn == $fun} {
+                        # the tagged text is in the right function
+                        # (not in a nested fun of the right one)
+                        # now check that the line where the tagged
+                        # text appears is the given line $lifun
+                        # or skip this test if $libfun was not given
+                        if {$lifun == -1 || $lifun == $lif} {
+                            lappend listofancill [$ta get $i $j]
+                        }
+                    }
                 }
             }
         }

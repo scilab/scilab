@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.44"
+set version "Version 6.45"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -35,12 +35,12 @@ set fgcolors {FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
 set colorpref "$bgcolors $fgcolors"
 
 # those are the preferences which are going to be saved
-set listofpref "$colorpref wordWrap FontSize \
-       WMGEOMETRY printCommand actbptextFont indentspaces \
+set listofpref "$colorpref wordWrap \
+       WMGEOMETRY printCommand indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
        filebackupdepth bindstyle doubleclickscheme colorizeenable"
-set listofpref_list { listofrecent }
+set listofpref_list { listofrecent textFont menuFont }
 
 # default options which can be overriden
 set wordWrap "none"
@@ -66,10 +66,8 @@ set BREAKPOINTCOLOR "pink"
 set FOUNDTEXTCOLOR "green2"
 set CONTLINECOLOR "lemonchiffon"
 set USERFUNCOLOR {#02a5f2}
-set FontSize 12
 set WMGEOMETRY 600x480
 set printCommand lpr
-set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
 set indentspaces 2
 set filenamesdisplaytype "pruned"  ;# "pruned" or "full" or "fullifambig"
 set maxrecentfiles 4
@@ -82,6 +80,8 @@ set filebackupdepth 0
 set bindstyle "mac-pc"
 set doubleclickscheme "Scilab"  ;# "Scilab" or "Windows" or "Linux"
 set colorizeenable "always"     ;# "always" or "ask" or "never"
+
+setdefaultfonts
 
 # other non-pref initial settings
 
@@ -109,6 +109,22 @@ array unset pwframe
 set preffilename $env(SCIHOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
 
+# recompute $textfontsize and $menufontsize from the preferences file fonts
+if {[lsearch $textFont "-size"] != -1} {
+    set textfontsize [lindex $textFont \
+            [expr [lsearch $textFont "-size"] + 1] ]
+    set textfontsize [expr round($textfontsize * [tk scaling])]
+} else {
+    set textfontsize 12
+}
+if {[lsearch $menuFont "-size"] != -1} {
+    set menufontsize [lindex $menuFont \
+            [expr [lsearch $menuFont "-size"] + 1] ]
+    set menufontsize [expr round($menufontsize * [tk scaling])]
+} else {
+    set menufontsize 12
+}
+
 # message files and localization to avoid ifs on $lang
 package require msgcat
 namespace import -force msgcat::*
@@ -133,16 +149,16 @@ set closeinitialbufferallowed true
 # textarea
 catch {unset physlogic linetogo curfileorfun funtogoto}
 
-# guard variable used to prevent more than one simultaneous launch of the
-# find/replace box, which can happen during startup when hammering
-# Scipad with ctrl-r ctrl-f or the opposite
-set findreplaceboxalreadyopen false
-
 # variable used to prevent more than one single instance of any of the tile
 # procs from running concurrently, e.g. maximize and splitwindow
 # for some unknown reason, disabling the bindings in proc disablemenuesbinds
 # does not *always* prevent concurrent running, so this was needed
 set tileprocalreadyrunning false
+
+# guard variable used to prevent more than one simultaneous launch of the
+# find/replace box, which can happen during startup when hammering
+# Scipad with ctrl-r ctrl-f or the opposite
+set findreplaceboxalreadyopen false
 
 # variable used to prevent launching simultaneously multiple searches in files
 # during search in file, the other functionalities of Scipad are however enabled
@@ -165,6 +181,9 @@ set nbfilescurrentlycolorized 0
 
 # identifier of the progressbar for background colorization - increments only
 set progressbarId 0
+
+# Scilab limit for the length of names (see help names)
+set maxcharinascilabname 24
 
 ##########################################################################
 # Regular expression patterns

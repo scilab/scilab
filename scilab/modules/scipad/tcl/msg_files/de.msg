@@ -9,6 +9,8 @@
 ::msgcat::mcset de "Scilab working" "Scilab arbeitet"
 ::msgcat::mcset de "All files" "Alle Dateien"
 ::msgcat::mcset de "Add/Change" "Hinzufügen/Ändern"
+::msgcat::mcset de "Add/Chan&ge" "&Hinzufügen/Ändern"
+::msgcat::mcset de "&Remove" "&Entfernen"
 ::msgcat::mcset de "Untitled" "OhneNamen"
 ::msgcat::mcset de "Close" "Schließen"
 ::msgcat::mcset de "&Close" "S&chließen"
@@ -47,15 +49,14 @@
 ::msgcat::mcset de "Variable:" "Variable :"
 ::msgcat::mcset de "Value:" "Wert :"
 ::msgcat::mcset de "Get current value from Scilab"\
-                   "Verwende aktuellen Wert aus Scilab"
+                   "Verwende &aktuellen Wert aus Scilab"
 
 
 # db_configureexec.tcl
 ::msgcat::mcset de "Configure execution" "Ausführung konfigurieren"
 ::msgcat::mcset de "Function name:" "Funktionsname :"
-::msgcat::mcset de "Obtain" "Erhält"
+::msgcat::mcset de "&Obtain" "Erhäl&t"
 ::msgcat::mcset de "Input arguments:" "Eingabeargumente :"
-::msgcat::mcset de "Remove" "Entfernen"
 ::msgcat::mcset de "Function name or input arguments do not match definition\
                     of the function"\
                    "Funktionsname und Eingabeargumente stimmen nicht mit der\
@@ -115,10 +116,8 @@
 ::msgcat::mcset de "Watch variables:" "Beobachtete Variablen :"
 ::msgcat::mcset de "Remove" "Entfernen"
 ::msgcat::mcset de "Call stack:" "Ausführungsstapel:"
-::msgcat::mcset de "Show watch variables" "Beobachtete Variablen zeigen"
-::msgcat::mcset de "Hide watch variables" "Beobachtete Variablen verstecken"
-::msgcat::mcset de "Show call stack" "Ausführungsstapel zeigen"
-::msgcat::mcset de "Hide call stack" "Ausführungsstapel verstecken"
+::msgcat::mcset de "Hide watch &variables" "Beobachtete &Variablen verstecken"
+::msgcat::mcset de "Hide call &stack" "Ausführungs&stapel verstecken"
 ::msgcat::mcset de "Undefined elements are not legal in variable"\
                    "Undefinierte Elemente sind als Variable nicht erlaubt"
 ::msgcat::mcset de ".\nThis variable will not be updated in Scilab."\
@@ -234,14 +233,14 @@
                     search won't bring any result."\
                     "Auf das angegebene Verzeichnis kann nicht zugegriffen werden. \
                     Die Suche wird ergebnislos sein."
-::msgcat::mcset de "Some directories or files could not be open and will be\
+::msgcat::mcset de "Some directories or files could not be open and were\
                     ignored during search.\n You might miss read access to\
-                    them.\n\n The following ones will be ignored"\
+                    them.\n\n The following ones were ignored"\
                     "Einige Verzeichnisse oder Dateien konnten nicht geöffnet \
-                    werden. Sie werden von Suchfunktion ignoriert werden.\n \
+                    werden. Sie sind von Suchfunktion ignoriert worden.\n \
                     Möglicherweise besitzen sie keine Leserechte für diese \
-                    Verzeichnisse/Dateien.\n\n Ignoriert werden folgende \
-                    Verzeichnisse/Dateien"
+                    Verzeichnisse/Dateien.\n\n Folgende \
+                    Verzeichnisse/Dateien sind ignoriert worden"
 ::msgcat::mcset de "Ignored files" "Ignorierte Dateien"
 ::msgcat::mcset de "Searching in file:" "Suche in Datei :"
 ::msgcat::mcset de "End of file search:" "Ende der Suche :"

@@ -54,6 +54,12 @@ if {[catch {ScilabEval ";" "sync" "seq"}] != 0} {
     # this is done in scipad.sci)
     set tmpdir $env(SCIHOME)
 
+    # deiconify now with no need to have Scilab running since
+    # ScilabEval "TCL_EvalStr(\"wm deiconify $pad\",\"scipad\")" "seq"
+    # at the end of scipad.tcl won't run - anyway, dynamickeywords is
+    # not executed
+    after idle {wm deiconify $pad}
+
     set standaloneScipad true
 
 } else {

@@ -50,17 +50,50 @@ Bugs:
 -step-by-step debugging may highlight the wrong line in Scipad when continued
  lines without dots are present before the breakpoint stop. Bug 1469 again!!!
 
+-Bug 1469 once more in the following case (mind the spaces before
+ "endfunction"):
+function test
+  a=1
+  endfunction
+ In this case the debugger in single step mode will highlight line 1 after
+ line 3 whereas this won't happen for:
+function test
+  a=1
+endfunction
+
 -anything can happen during debug if the same function name can be found more
  than once among the opened buffers, for instance the wrong buffer may become
  the active one to show the active breakpoint - same issue in configureexec:
  if a function is defined in more than one buffer, proc checkarglist may
  detect the wrong one and prevent correct configuration of the debugger
 
+-Step over (F8) steps actually into (Shift-F8) libfuns when the libfun is in
+ a nested function whose calling function contains the same libfun on the
+ calling line, e.g. hitting F8 when the active breakpoint line is on line 3,
+ i.e. a=evstr("1+1") will step into the evstr libfun whereas it should skip
+ this statement:
+function outerfun
+function a=nestedfun
+  a=evstr("1+1")
+endfunction
+b=evstr(string(nestedfun()))
+endfunction
+ There is no obvious way to avoid this. evstr must be breakpointed in case
+ hitting F8 makes Scilab go out of function nestedfun. Since there is no
+ way to know in advance whether the next step will fly out of the current
+ function or not, evstr must be breakpointed at this point of the debug.
+
+-Step over (F8) steps actually into (Shift-F8) when the next line calls
+ the same function as the one the debugger is currently in (recursive
+ call) - Similar issue than the previous one: the current function must
+ be breakpointed on every line since there is no way to know where the
+ next stop will be, and this makes a recursive call look like a step into
+
 -modselection bugs:
   . <TODO> Ctrl-d with a selection starting in the middle of a line -> indent
     the first line from column 0
   . <TODO> Ctrl-m without selection -> // at the insert point (not at the
-    beginning of the line
+    beginning of the line)
   . When a line contains leading tabs and you hit ctrl-d and tab key
     inserts spaces, each of these leading tabs are replaced by a *single*
     space. It should be $indentspaces spaces.
@@ -107,9 +140,6 @@ Old bugs/whishes which have been hacked but could have been done better:
     internal new functions that does not preserve colorization. I'm convinced
     that an internal Tk printing scheme would be better.
 
--The bindings in findreplace.tcl used for the F3 case and for find in files live
- in the textarea forever. Find a solution to get rid of these!
-
 -trying to debug functions with names > 24 characters does not work. This is
  a very general Scilab limitation (in the debugger context, setbpt looses
  characters for long names, that's why it doesn't work). Currently 
@@ -124,7 +154,11 @@ Wishes:
 -------
 
 Debugger wishes:
- 
+
+-Better help for the debugger. help debug should either have a dedicated
+ page for the debugger or the existing debug page should have a note pointing
+ at help scipad
+
 -Conditional breakpoints
 
 -Allow to watch a generic expression (bonus: the expression could be e.g.
@@ -132,7 +166,8 @@ Debugger wishes:
  Way to go: add a pane with expressions to be executed and result of their
  evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
 
--Add a field showing the type of the variables displayed in the watch window
+-Add a field showing the type (and size) of the variables displayed in the
+ watch window
 
 -Scipad defines and uses, mostly for the debugger, some variables in order to
  send values to Scipad. All these variables currently start with the prefix 
@@ -145,7 +180,8 @@ Debugger wishes:
 
 -Avoid to destroy and recreate the whole watch window when hiding/displaying
  one of its sub-areas. Would probably require -hide option for panedwindow,
- but this one is only available from Tk 8.5 (TIP #179)
+ but this one is only available from Tk 8.5 (TIP #179) - Use the global
+ variable Tk85
 
 -include profiling into the debugger
 
@@ -156,24 +192,11 @@ Debugger wishes:
 -watching some very large variable content looks like the variable is empty
  This is Tk bug 1449858.
 
--allow to dock the watch window inside the Scipad window, as if in a pane
-
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin
 
 
 Other wishes:
-
--default fonts modifiable within the program (menuFont and textFont for now,
- and probably actbptextFont and textsmallerFont)
- See TIP 213 for a possible implementation (new tk_chooseFont command
- possibly available in Tk 8.5)
- Other possible references (licence issues to be checked):
- http://wiki.tcl.tk/9173
- http://wiki.tcl.tk/3896
- This one is especially nice IMHO: http://billposer.org/Software/FontControl.tcl
- http://people.man.ac.uk/~zzcgudf/tcl/mwidx.html#fontdlg
- http://wiki.tcl.tk/1129
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -204,7 +227,7 @@ Other wishes:
  Note: a first step to this has been implemented in the debugger watch window.
 
 -Improve the aesthetics of Scipad (see sciGUI)
-   . Find dialog
+   . Find dialog (use labelframe)
 
 -Blink single quotes. More difficult than to blink double quotes because
  of the transpose case
@@ -261,7 +284,7 @@ Other wishes:
  textbuffer, scrollbars...) remain visible - take fontsize and locale into
  account
  warning: updating minsize on file open or dnd could lead to a very large
- window
+ window, therefore minsize should also be clamped to some clever maximum
 
 -Improvements for find/replace:
   . The find/replace entries in the dialog could be comboboxes retaining
@@ -277,6 +300,10 @@ Other wishes:
     search searches on a per line basis - or use regexp instead of .text
     search, big work...) - Automatically expand the entry widgets size
     according to the length of what is pasted inside them
+  . More than one results window for find in files (user can select a
+    target window that will contain the search results)
+  . More than one find in files thread at the same time
+  . Add a Pause button in the find in files results window
 
 -Add an option menu about the sorting of the buffers in the Windows menu.
  Possible options could be:

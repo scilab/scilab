@@ -9,12 +9,11 @@
 ::msgcat::mcset es "Scilab working" "Scilab trabajando"
 ::msgcat::mcset es "All files" "Todos los archivos"
 ::msgcat::mcset es "Add/Change" "Añadir/modificar"
+::msgcat::mcset es "Add/Chan&ge" "Añadir/&modificar"
+::msgcat::mcset es "&Remove" "&Remover"
 ::msgcat::mcset es "Untitled" "Sin Título"
 ::msgcat::mcset es "Close" "Cerrar"
 ::msgcat::mcset es "&Close" "&Cerrar"
-
-
-
 
 
 # buffernavigation.tcl
@@ -48,15 +47,14 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset es "Variable:" "Variable:"
 ::msgcat::mcset es "Value:" "Valor:"
-::msgcat::mcset es "Get current value from Scilab"\
-                   "Obtener el valor actual de Scilab"
+::msgcat::mcset es "&Get current value from Scilab"\
+                   "Obtener el &valor actual de Scilab"
 
 # db_configureexec.tcl
 ::msgcat::mcset es "Configure execution" "Configurar la Ejecución"
 ::msgcat::mcset es "Function name:" "Nombre de la función:"
-::msgcat::mcset es "Obtain" "Obtener"
+::msgcat::mcset es "&Obtain" "&Obtener"
 ::msgcat::mcset es "Input arguments:" "Argumentos de entrada:"
-::msgcat::mcset es "Remove" "Remover"
 ::msgcat::mcset es "Function name or input arguments do not match definition\
                     of the function"\
                    "El nombre de la función o los argumentos de entrada\
@@ -106,16 +104,13 @@
 ::msgcat::mcset es "Debug in progress" "Depuración en curso"
 
 
-
 # db_watch.tcl
 ::msgcat::mcset es "Watch" "Cuidado"
 ::msgcat::mcset es "Watch variables:" "Cuidado con las variables:"
 ::msgcat::mcset es "Remove" "Remover"
 ::msgcat::mcset es "Call stack:" "Llamar la pila del programa:"
-::msgcat::mcset es "Show watch variables" "Mostrar las variables"
-::msgcat::mcset es "Hide watch variables" "Esconder las variables"
-::msgcat::mcset es "Show call stack" "Mostrar la pila"
-::msgcat::mcset es "Hide call stack" "Esconder la pila"
+::msgcat::mcset es "Hide watch &variables" "Esconder las &variables"
+::msgcat::mcset es "Hide call &stack" "Esconder la &pila"
 ::msgcat::mcset es "Undefined elements are not legal in variable"\
                    "Elementos no definidos no son validos en variables"
 ::msgcat::mcset es ".\nThis variable will not be updated in Scilab."\
@@ -226,12 +221,12 @@
                     search won't bring any result."\
                    "El directorio que especificó está fuera de alcance. La\
                     búsqueda no arrojó ningún resultado"
-::msgcat::mcset es "Some directories or files could not be open and will be\
+::msgcat::mcset es "Some directories or files could not be open and were\
                     ignored during search.\n You might miss read access to\
-                    them.\n\n The following ones will be ignored"\
+                    them.\n\n The following ones were ignored"\
                    "Algunos directorios o archivos no pudieron ser abiertos\
-                    y serán ignorados durante la búsqueda.\n Quiza no pueda leerlos\
-                    Los siguientes seran ignorados:"
+                    y se ignoraron durante la búsqueda.\n Quiza no pueda leerlos\
+                    Los siguientes se ignoraron:"
 ::msgcat::mcset es "Ignored files" "Archivos ignorados"
 ::msgcat::mcset es "Searching in file:" "Buscar en el archivo:"
 ::msgcat::mcset es "End of file search:" "Fin de la búsqueda de archivos:"

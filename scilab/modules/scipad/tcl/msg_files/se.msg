@@ -9,7 +9,11 @@
 ::msgcat::mcset se "Scilab working" "Scilab arbetar"
 ::msgcat::mcset se "All files" "Alla filer"
 ::msgcat::mcset se "Add/Change" "Lägg till/Ändra"
+::msgcat::mcset se "Add/Chan&ge" "&Lägg till/Ändra"
+::msgcat::mcset se "&Remove" "&Tabort"
 ::msgcat::mcset se "Untitled" "Namnlös"
+::msgcat::mcset se "Close" "Stäng"
+::msgcat::mcset se "&Close" "&Stäng"
 
 
 # buffernavigation.tcl
@@ -29,15 +33,14 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset se "Variable:" "Variabel :"
 ::msgcat::mcset se "Value:" "Värde :"
-::msgcat::mcset se "Get current value from Scilab" "Hämta aktuellt värde från Scilab"
+::msgcat::mcset se "&Get current value from Scilab" "Hämta &aktuellt värde från Scilab"
 
 
 # db_configureexec.tcl
 ::msgcat::mcset se "Configure execution" "Konfigurera exekveringen"
 ::msgcat::mcset se "Function name:" "Funktionsnamn :"
-::msgcat::mcset se "Obtain" "Få"
+::msgcat::mcset se "&Obtain" "&Få"
 ::msgcat::mcset se "Input arguments:" "Indata argument :"
-::msgcat::mcset se "Remove" "Tabort"
 ::msgcat::mcset se "Function name or input arguments do not match definition of the function" \
                     "Funktionsnamnet eller indata argumenten matchar inte definitionen av funktionen"
     ::msgcat::mcset se "in the file!\n\nCheck function\
@@ -88,11 +91,8 @@
 ::msgcat::mcset se "Watch variables:" "Iakta variabler :"
 ::msgcat::mcset se "Remove" "Tabort"
 ::msgcat::mcset se "Call stack:" "Anropsstack:"
-::msgcat::mcset se "Close" "Stäng"
-::msgcat::mcset se "Show watch variables" "Visa bevakade variabler"
-::msgcat::mcset se "Hide watch variables" "Dölj bevakade variabler"
-::msgcat::mcset se "Show call stack" "Visa anropsstacken"
-::msgcat::mcset se "Hide call stack" "Dölj anropsstacken"
+::msgcat::mcset se "Hide watch &variables" "Dölj bevakade &variabler"
+::msgcat::mcset se "Hide call &stack" "Dölj &anropsstacken"
 ::msgcat::mcset se "Undefined elements are not legal in variable" "Odefinierade element är inte giltiga i variabel"
 ::msgcat::mcset se ".\nThis variable will not be updated in Scilab."\
                    ".\nDenna variabel kommer ej uppdateras i Scilab"

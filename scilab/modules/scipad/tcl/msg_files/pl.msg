@@ -9,6 +9,8 @@
 ::msgcat::mcset pl "Scilab working" "Scilab pracuje"
 ::msgcat::mcset pl "All files" "Wszystkie pliki"
 ::msgcat::mcset pl "Add/Change" "Dodaj/Zmie\u0144"
+::msgcat::mcset pl "Add/Chan&ge" "&Dodaj/Zmie\u0144"
+::msgcat::mcset pl "&Remove" "&Usu\u0144"
 ::msgcat::mcset pl "Untitled" "BezNazwy"
 ::msgcat::mcset pl "Close" "Zamknij"
 ::msgcat::mcset pl "&Close" "&Zamknij"
@@ -39,17 +41,16 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset pl "Variable:" "Zmienna :"
 ::msgcat::mcset pl "Value:" "Warto\u015B\u0107 :"
-::msgcat::mcset pl "Get current value from Scilab"\
-                   "Pobiera bierz\u0105c\u0105\
+::msgcat::mcset pl "&Get current value from Scilab"\
+                   "Pobiera &bierz\u0105c\u0105\
                    warto\u015B\u0107 z programu Scilab"
 
 
 # db_configureexec.tcl
 ::msgcat::mcset pl "Configure execution" "Konfiguracja wykonania"
 ::msgcat::mcset pl "Function name:" "Nazwa funkcji :"
-::msgcat::mcset pl "Obtain" "Otrzymano"
+::msgcat::mcset pl "&Obtain" "&Otrzymano"
 ::msgcat::mcset pl "Input arguments:" "Parametry wej\u015Bciowe :"
-::msgcat::mcset pl "Remove" "Usu\u0144"
 ::msgcat::mcset pl "Function name or input arguments do\
                    not match definition of the function"\
                    "Nazwa funkcji lub jej argumenty, nie\
@@ -110,10 +111,8 @@
 ::msgcat::mcset pl "Watch variables:" "Zmienne obserwowane :"
 ::msgcat::mcset pl "Remove" "Usu\u0144"
 ::msgcat::mcset pl "Call stack:" "Stos wywo\u0142a\u0144:"
-::msgcat::mcset pl "Show watch variables" "Wy\u015Bwietl zmienne obserwowane"
-::msgcat::mcset pl "Hide watch variables" "Ukryj zmienne obserwowane"
-::msgcat::mcset pl "Show call stack" "Wy\u015Bwietl stos wywo\u0142a\u0144"
-::msgcat::mcset pl "Hide call stack" "Ukryj stos wywo\u0142a\u0144"
+::msgcat::mcset pl "Hide watch &variables" "Ukryj zmienne &obserwowane"
+::msgcat::mcset pl "Hide call &stack" "Ukryj &stos wywo\u0142a\u0144"
 ::msgcat::mcset pl "Undefined elements are not legal in variable"\
                    "Niezdefiniowane elementy nie s\u0105\
                    prawid\u0142owe w zmiennej"

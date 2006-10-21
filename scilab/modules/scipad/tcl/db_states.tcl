@@ -260,44 +260,53 @@ proc updatedebugstateindicator_bp {} {
     }
 }
 
-proc managewatchontop_bp {} {
-# tell the windows manager to keep or not the watch window on top
-# of the other windows
-#   Windows: use wm attributes -topmost
-#   Linux:   use wm transient if Tk version is before 8.5
-#            use wm topmost if Tk version is 8.5 or above
-# TIP #231 implements wm topmost for X11 environments and is included in
-# Tk starting from Tcl/Tk8.5a4
-# wm transient seems to work equally well on Windows, but since
-# there is -topmost for win, let's use the latter
-    global watch watchalwaysontop tcl_platform pad
-    global Tk85
-    if {[info exists watch]} {
-        if {$watchalwaysontop} {
-            if {$tcl_platform(platform) == "windows"} {
-                wm attributes $watch -topmost 1
-            } else {
-                # Linux case
-                if {$Tk85} {
-                    wm attributes $watch -topmost 1
-                } else {
-                    # the following is minimal but could be enough
-                    # more is difficult, see http://wiki.tcl.tk/3014
-                    wm transient $watch $pad
-                }
-            }
-        } else {
-            if {$tcl_platform(platform) == "windows"} {
-                wm attributes $watch -topmost 0
-            } else {
-                if {$Tk85} {
-                    wm attributes $watch -topmost 0
-                } else {
-                    wm transient $watch
-                }
-            }
-        }
+proc setdebuggerbusycursor {} {
+# set the busy cursor for all the children of $pad
+    global debuggerbusycursor
+    global pad watch
+    if {!$debuggerbusycursor} {
+        setdebuggerwidgetbusycursor $pad
+        set debuggerbusycursor true
+    } else {
+        # debugger busy cursor already set - do nothing
     }
+}
+
+proc setdebuggerwidgetbusycursor {w} {
+    global cursorsinwidgets
+    set busycursor "watch"
+    # save current cursor in the global array and set busy cursor
+    set cursorsinwidgets($w) [$w cget -cursor]
+    $w configure -cursor $busycursor
+    # ditto for children of the given widget
+    foreach child [winfo children $w] {
+        setdebuggerwidgetbusycursor $child
+    }
+}
+
+proc unsetdebuggerbusycursor {} {
+# unset the busy cursor for all the children of $pad,
+# and restore the cursor they had before
+    global debuggerbusycursor
+    global pad watch
+    if {$debuggerbusycursor} {
+        unsetdebuggerwidgetbusycursor $pad
+        set debuggerbusycursor false
+    } else {
+        # debugger busy cursor already unset - do nothing
+    }
+}
+
+proc unsetdebuggerwidgetbusycursor {w} {
+    global cursorsinwidgets 
+    if {[info exists cursorsinwidgets($w)]} { 
+        $w configure -cursor $cursorsinwidgets($w) 
+    } else {
+        $w configure -cursor {} 
+    }
+    foreach child [winfo children $w] {
+        unsetdebuggerwidgetbusycursor $child
+    } 
 }
 
 proc checkendofdebug_bp {{stepmode "nostep"}} {
@@ -330,24 +339,24 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
         "nostep"   {
             # no need to define code for skipping no code lines since
             # stops always occur on existing breakpoints set by the user
-            set skipline ""
+            set skipline "TCL_EvalStr(\\\"\"unsetdebuggerbusycursor\\\"\",\\\"\"scipad\\\"\");"
                    }
         "into"     {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "over"     {
             # stepbystepover_bp 0 1, i.e. with rescanbuffers set to true,
             # because Scipad must rescan the buffer when leaving it on
             # step over - this is required to prevent Scipad to skip
             # nested libfuns contructs
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 1} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "out"      {
-            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
                    }
         "runtocur" {
             set skipline1 "TCL_EvalStr(\\\"\"if {!\\\[iscursorplace_bp\\\]} {runtocursor_bp 0 1}\\\"\",\\\"\"scipad\\\"\");"
-            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0}\\\"\",\\\"\"scipad\\\"\");"
+            set skipline2 "TCL_EvalStr(\\\"\"if {\\\[isnocodeline \\\[gettextareacur\\\] insert\\\]} {stepbystepover_bp 0 0} else {unsetdebuggerbusycursor}\\\"\",\\\"\"scipad\\\"\");"
             set skipline [concat $skipline1 $skipline2]
                    }
     }
@@ -358,12 +367,13 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
     set comm4    "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
     set comm5    "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
     set comm6    "TCL_EvalStr(\"checkexecutionerror_bp\",\"scipad\");"
-    set comm7  "else"
-    set comm8    "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm9    "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
-#    set comm10 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
-    set comm10 "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10]
+    set comm7    "TCL_EvalStr(\"unsetdebuggerbusycursor\",\"scipad\");"
+    set comm8  "else"
+    set comm9    "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm10    "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
+#    set comm11 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
+    set comm11 "end;"
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
 
     ScilabEval_lt "$fullcomm" "seq"
 }

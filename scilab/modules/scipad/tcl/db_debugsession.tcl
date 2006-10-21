@@ -1,5 +1,4 @@
 proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
-
     if {[getdbstate] == "ReadyForDebug"} {
         clearscilaberror
         execfile_bp $stepmode
@@ -34,9 +33,14 @@ proc execfile_bp {{stepmode "nostep"}} {
         }
     }
 
-    # exec the required file(s)
+    # exec the required file(s), which are the current one
+    # and the one containing the function to debug
     if {$funnameargs != ""} {
-        execfile "current"
+        setdebuggerbusycursor
+        if {[execfile "current"] == -1} {
+            # in case execing the file produced an error, restore the cursors
+            unsetdebuggerbusycursor
+        }
         # exec file containing the function to debug
         # <TODO> this fails if the same function name can be found in more
         #        than one single buffer
@@ -47,7 +51,9 @@ proc execfile_bp {{stepmode "nostep"}} {
             if {[info exists funsinbuffer($textarea)]} {
                 if {[lsearch $funsinbuffer($textarea) $funname] != -1 && \
                      $textarea != [gettextareacur]} {
-                    execfile $textarea
+                    if {[execfile $textarea] == -1} {
+                        unsetdebuggerbusycursor
+                    }
                 }
             }
         }
@@ -56,7 +62,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
-            ScilabEval_lt "$watchsetcomm"  "seq"
+            ScilabEval_lt "$watchsetcomm" "seq"
         }
         ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
         updateactivebreakpoint
@@ -84,9 +90,7 @@ proc execfile_bp {{stepmode "nostep"}} {
 # obtain any documentation nor help on this topic. Hence an elegant solution
 # for step execution is still to be achieved. Better than nothing, I
 # implemented a brute force approach that basically sets a breakpoint
-# everywhere. This works but is obviously sub-optimal. Moreover, this
-# implementation does not allow to step into non opened files that the debugger
-# could open, e.g. library files.
+# everywhere. This works but is obviously sub-optimal.
 
 proc stepbystepinto_bp {{checkbusyflag 1} {rescanbuffers 1}} {
 # perform "step into" debug
@@ -238,7 +242,7 @@ proc getlogicallinenumbersranges {stepscope} {
 
     global ScilabCodeMaxBreakpointedMacros ScilabCodeMaxBreakpoints
     global debugassce
-    global callstackfuns
+    global callstackfuns callstacklines
 
     set cmd ""
     set nbmacros 0 ; # used to test max number of breakpointed macros
@@ -255,6 +259,10 @@ proc getlogicallinenumbersranges {stepscope} {
             }
 
             set curpos [getendfunctionpos $ta $precfun]
+            if {$curpos == -1} {
+                # can't happen in principle
+                tk_messageBox -message "getendfunctionpos returned $curpos in proc getlogicallinenumbersranges: please report"
+            }
 
             # $curpos now contains the index in $ta of the first n of the word
             # endfunction corresponding to $funname
@@ -267,7 +275,14 @@ proc getlogicallinenumbersranges {stepscope} {
             # last four logical line numbers contain the code added to return
             # local variables to the calling level and should not be
             # breakpointed since they constitute hidden code
-            if {$debugassce} {
+            # however, this must not be done for user-defined functions in
+            # the case of mixed .sce/.sci files, it must only be done for
+            # the wrapper function which is the one that has the
+            # endfunction keyword on the last line of the buffer
+            # in details: end -1c (last newline) -1l linestart (prev. line)
+            # +1c (first n of "endfunction")
+            if {$debugassce && \
+                [$ta compare $curpos == [$ta index "end -1c -1l linestart + 1c"]]} {
                 incr lastlogicalline -4
             }
 
@@ -277,40 +292,69 @@ proc getlogicallinenumbersranges {stepscope} {
         }
         incr nbmacros
     }
-    # libfun ancillaries
+    # libfun ancillaries of the function where the debugger is currently in
+    # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
     if {$stepscope == "current&ancill"} {
         set currentfunction [lindex $callstackfuns 0]
         set taofcurrentfunction [lindex [funnametofunnametafunstart $currentfunction] 1]
-        set lfanclist [getlistofancillaries $taofcurrentfunction $currentfunction "libfun"]
-        foreach libfunanc $lfanclist {
-            # check if ancillary is already breakpointed - if it is, then its
-            # breakpointed lines range is greater than just the first line
-            # -> nothing to do
-            # note: escaped quotes mandatory to distinguish "modulo" and
-            # "pmodulo" !
-            if {[string first "\"$libfunanc\"" $cmd] == -1} {
-                append cmd "(\"$libfunanc\",1);"
-                incr nbbreakp
-                incr nbmacros
+        if {$taofcurrentfunction == ""} {
+            # the textarea containing the function where the debugger is
+            # currently in has been closed previously by the user
+            # this probably means that the user does not want to continue
+            # stepping in that function, therefore don't open it again!
+            # this is obtained simply by doing nothing here, no ancillary
+            # is breakpointed (ancillaries of a foo here include foo itself)
+            # note: closure of the main file (the one that contains the
+            # function to debug) is treated in proc removefuns_bp
+        } else {
+            set lfanclist [getlistofancillaries $taofcurrentfunction $currentfunction "libfun"]
+            foreach libfunanc $lfanclist {
+                # check if ancillary is already breakpointed - if it is, then its
+                # breakpointed lines range is greater than just the first line
+                # -> nothing to do
+                # note: escaped quotes mandatory to distinguish "modulo" from
+                # "pmodulo" !
+                if {[string first "\"$libfunanc\"" $cmd] == -1} {
+                    append cmd "(\"$libfunanc\",1);"
+                    incr nbbreakp
+                    incr nbmacros
+                }
             }
         }
     }
     # libfun ancillaries for nested constructs, e.g. pmodulo(modulo()),
-    # breakpoint all the ancillaries of the upper level function
+    # breakpoint all the ancillaries that show up on the calling line
+    # of the upper level function
     if {[llength $callstackfuns] > 1} {
         set callingfunction [lindex $callstackfuns 1]
+        set callingfuncline [lindex $callstacklines 1]
         set taofcallingfunction [lindex [funnametofunnametafunstart $callingfunction] 1]
-        set lfanclist [getlistofancillaries $taofcallingfunction $callingfunction "libfun"]
-        foreach libfunanc $lfanclist {
-            # check if ancillary is already breakpointed - if it is, then its
-            # breakpointed lines range is greater than just the first line
-            # -> nothing to do
-            # note: escaped quotes mandatory to distinguish "modulo" and
-            # "pmodulo" !
-            if {[string first "\"$libfunanc\"" $cmd] == -1} {
-                append cmd "(\"$libfunanc\",1);"
-                incr nbbreakp
-                incr nbmacros
+        if {$taofcallingfunction == ""} {
+            # the textarea containing the upper level function has been
+            # closed previously by the user
+            # Scipad should still breakpoint the ancillaries of that calling
+            # function, the problem is that it cannot know which ancillaries
+            # are contained in that function without opening and colorizing
+            # the corresponding file that was closed
+            # Scipad even cannot breakpoint just the calling function itself
+            # because the last line number of that function is not known,
+            # therefore the only solution is to do nothing!
+            # consequence: when stepping out of the current function, the
+            # calling function will be skipped and execution will stop again
+            # in the caller of the caller
+        } else {
+            set lfanclist [getlistofancillaries $taofcallingfunction $callingfunction "libfun" $callingfuncline]
+            foreach libfunanc $lfanclist {
+                # check if ancillary is already breakpointed - if it is, then its
+                # breakpointed lines range is greater than just the first line
+                # -> nothing to do
+                # note: escaped quotes mandatory to distinguish "modulo" from
+                # "pmodulo" !
+                if {[string first "\"$libfunanc\"" $cmd] == -1} {
+                    append cmd "(\"$libfunanc\",1);"
+                    incr nbbreakp
+                    incr nbmacros
+                }
             }
         }
     }
@@ -485,6 +529,7 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
 
     showinfo $waitmessage
     if {$funnameargs != ""} {
+        setdebuggerbusycursor
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {

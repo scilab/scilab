@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.40
+# in sync at least with v6.45
 
 
 # commons
@@ -8,6 +8,8 @@
 ::msgcat::mcset fr "OK" "OK"
 ::msgcat::mcset fr "All files" "Tous les fichiers"
 ::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
+::msgcat::mcset fr "Add/Chan&ge" "Ajouter/&Modifier"
+::msgcat::mcset fr "&Remove" "&Supprimer"
 ::msgcat::mcset fr "Untitled" "SansTitre"
 ::msgcat::mcset fr "Close" "Fermer"
 ::msgcat::mcset fr "&Close" "&Fermer"
@@ -41,7 +43,7 @@
 # db_argsmanagement.tcl
 ::msgcat::mcset fr "Variable:" "Variable :"
 ::msgcat::mcset fr "Value:" "Valeur :"
-::msgcat::mcset fr "Get current value from Scilab" "Obtenir la valeur actuelle dans Scilab"
+::msgcat::mcset fr "&Get current value from Scilab" "Obtenir la valeur &actuelle dans Scilab"
 
 
 # db_configureexec.tcl
@@ -51,9 +53,8 @@
                    "Le débuggueur a besoin de la colorisation"
 ::msgcat::mcset fr "Configure execution" "Configurer l'exécution"
 ::msgcat::mcset fr "Function name:" "Nom de la fonction :"
-::msgcat::mcset fr "Obtain" "Obtenir"
+::msgcat::mcset fr "&Obtain" "&Obtenir"
 ::msgcat::mcset fr "Input arguments:" "Arguments d'entrée :"
-::msgcat::mcset fr "Remove" "Supprimer"
 ::msgcat::mcset fr "The selected function has not been found in the opened files, maybe it was deleted since last configuration of the debugger.\nUse button \"" \
                    "La fonction sélectionnée n'a pas pu être trouvée dans les fichiers ouverts, peut-être a-t-elle été supprimée depuis la précédente configuration du débuggueur.\nUtiliser le bouton \""
     ::msgcat::mcset fr "\" to refresh the list of available functions." \
@@ -131,9 +132,10 @@
 ::msgcat::mcset fr "Watch variables:" "Variables espions :"
 ::msgcat::mcset fr "Remove" "Supprimer"
 ::msgcat::mcset fr "Call stack:" "Pile des appels :"
-::msgcat::mcset fr "Hide watch variables" "Cacher les variables"
-::msgcat::mcset fr "Hide call stack" "Cacher la pile d'appel"
-::msgcat::mcset fr "Always on top" "Toujours à l'avant-plan"
+::msgcat::mcset fr "&Always on top" "Toujours à l'&avant-plan"
+::msgcat::mcset fr "Hide watch &variables" "Cacher les &variables"
+::msgcat::mcset fr "Hide call &stack" "Cacher la &pile d'appel"
+::msgcat::mcset fr "&Dock" "&Intégrer"
 ::msgcat::mcset fr "Breakpoints" "Points d'arrêt"
 ::msgcat::mcset fr "Breakpointed functions" "Fonctions avec breakpoints"
 ::msgcat::mcset fr "Undefined elements are not legal in variable" "Les éléments indéfinis sont illégaux pour la variable"
@@ -192,6 +194,7 @@
 
 
 # findreplace.tcl
+::msgcat::mcset fr "Dialog box already open!" "Boîte de dialogue déjà ouverte!"
 ::msgcat::mcset fr "The string" "La chaîne"
     ::msgcat::mcset fr "could not be found in" "n'a pu être trouvée dans"
     ::msgcat::mcset fr "could not be found in any of the opened files !" "n'a pu être trouvée dans aucun des fichiers ouverts !"
@@ -213,9 +216,12 @@
 ::msgcat::mcset fr "In all &opened files" "Dans tous les fichiers &ouverts"
 ::msgcat::mcset fr "In &selection only" "Da&ns la sélection seulement"
 ::msgcat::mcset fr "In a director&y" "Dans un réper&toire"
-::msgcat::mcset fr "Directory r&ecurse search" "Recherche ré&cursive"
+::msgcat::mcset fr "Directory r&ecurse search" "Recherche réc&ursive"
 ::msgcat::mcset fr "In files/file types:" "Dans les fichiers/types :"
 ::msgcat::mcset fr "In directory:" "Dans le répertoire :"
+::msgcat::mcset fr "Search for file names" "Rechercher dans les noms des fichiers"
+::msgcat::mcset fr "You have given an empty search string. Are you sure you want to search among file names?" \
+                   "La chaîne à rechercher est vide. Etes-vous sûr de vouloir rechercher parmi les noms des fichiers ?"
 ::msgcat::mcset fr "Wrapped around" "Rebouclé"
 ::msgcat::mcset fr "Back at the first file searched!" "Revenu au premier fichier !"
 ::msgcat::mcset fr "No more matches" "Pas d'autre correspondance"
@@ -227,12 +233,12 @@
 ::msgcat::mcset fr "Directory access issue" "Erreur d'accès à un répertoire"
 ::msgcat::mcset fr "The directory you specified cannot be reached. The search won't bring any result." \
                    "Scipad ne peut pas accéder au répertoire spécifié. La recherche ne donnera aucun résultat."
-::msgcat::mcset fr "Some directories or files could not be open and will be ignored during search.\n\
+::msgcat::mcset fr "Some directories or files could not be open and were ignored during search.\n\
                     You might miss read access to them.\n\n\
-                    The following ones will be ignored" \
-                   "Certains répertoires ou fichiers n'ont pas pu être ouverts et seront ignorés durant la recherche.\n\
+                    The following ones were ignored" \
+                   "Certains répertoires ou fichiers n'ont pas pu être ouverts et ont été ignorés durant la recherche.\n\
                     Vous n'avez peut-être pas les droits de lecture sur eux.\n\n\
-                    Les éléments suivants seront ignorés"
+                    Les éléments suivants ont été ignorés"
 ::msgcat::mcset fr "Ignored files" "Fichiers ignorés"
 ::msgcat::mcset fr "Searching in file:" "Recherche dans :"
 ::msgcat::mcset fr "End of file search:" "Fin de la recherche:"
@@ -241,6 +247,25 @@
 ::msgcat::mcset fr "&Previous" "&Précédent"
 ::msgcat::mcset fr "&Next" "&Suivant"
 ::msgcat::mcset fr "Scipad search results" "Résultats de recherche Scipad"
+
+
+# fonts.tcl
+::msgcat::mcset fr "Choose font" "Choisir une police"
+::msgcat::mcset fr "Family" "Police"
+::msgcat::mcset fr "Style" "Style"
+::msgcat::mcset fr "&Bold" "&Gras"
+::msgcat::mcset fr "&Italic" "&Italique"
+::msgcat::mcset fr "&Underline" "&Souligné"
+::msgcat::mcset fr "Size" "Taille"
+::msgcat::mcset fr "&Defaults" "Par &défaut"
+::msgcat::mcset fr "Use as..." "Utiliser pour..."
+::msgcat::mcset fr "&Text font" "Police de &texte"
+::msgcat::mcset fr "&Menu font" "Police de &menu"
+::msgcat::mcset fr "Sample" "Exemple"
+::msgcat::mcset fr "Font size" "Police taille"
+::msgcat::mcset fr "Revert fonts" "Revenir aux polices par défaut"
+::msgcat::mcset fr "Are you sure you want to revert all fonts to defaults?" \
+                   "Voulez-vous vraiment revenir aux polices par défaut ?"
 
 
 #FormatStringsForDebugWatch.sci
@@ -368,11 +393,7 @@
     ::msgcat::mcset fr "&Colorize" "&Colorer"
 
     # menues.tcl - Options menu
-    ::msgcat::mcset fr "&Font size" "&Taille de police"
-        ::msgcat::mcset fr "&micro" "&micro"
-        ::msgcat::mcset fr "&small" "&petit"
-        ::msgcat::mcset fr "m&edium" "m&oyen"
-        ::msgcat::mcset fr "&large" "&grand"
+    ::msgcat::mcset fr "&Fonts..." "&Polices..."
     ::msgcat::mcset fr "&Colors" "&Couleurs"
     ::msgcat::mcset fr "Colori&ze" "C&olorer"
         ::msgcat::mcset fr "&Always" "&Toujours"
@@ -402,7 +423,7 @@
         ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
         ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
     ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
-    ::msgcat::mcset fr "&Backup files depth" "&Profondeur de sauvegarde"
+    ::msgcat::mcset fr "&Backup files depth" "Profond&eur de sauvegarde"
     ::msgcat::mcset fr "&Locale" "&Langue"
         # locale names (common)
         ::msgcat::mcset fr "de locale (de)" "Deutsch (de)"
@@ -508,10 +529,6 @@
 
 # scipad.tcl
 ::msgcat::mcset fr "NOT CONNECTED TO SCILAB" "PAS DE CONNEXION A SCILAB"
-
-
-# textarea.tcl
-::msgcat::mcset fr "Font size" "Police taille"
 
 
 # whichfun.tcl

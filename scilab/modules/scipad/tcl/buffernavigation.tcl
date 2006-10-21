@@ -94,7 +94,7 @@
 
 proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore ""}} {
 # this packs a textarea buffer in a new pane that will be added in an existing panedwindow
-    global pad FontSize menuFont
+    global pad textfontsize menuFont
     global Tk85
 
     # everything is packed in a frame whose name is provided by createpaneframename
@@ -127,7 +127,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     frame $tapwfr.bottom
     pack $tapwfr.bottom                       -side bottom -expand 0 -fill both
 
-    $targetpw add $tapwfr -minsize [expr $FontSize * 2]
+    $targetpw add $tapwfr -minsize [expr $textfontsize * 2]
     if {$Tk85} {
         $targetpw paneconfigure $tapwfr -stretch always
     }
@@ -271,7 +271,7 @@ proc splitwindow {neworient {tatopack ""}} {
 # splitting always starts from the current textarea, i.e
 # everything appears to happen as if the *current* textarea
 # is split
-    global pad pwmaxid FontSize listoftextarea tileprocalreadyrunning
+    global pad pwmaxid textfontsize listoftextarea tileprocalreadyrunning
 
     if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
@@ -338,7 +338,7 @@ proc splitwindow {neworient {tatopack ""}} {
         set newpw $pwname.pw$pwmaxid
         panedwindow $newpw -orient $neworient -opaqueresize true
         $pwname paneconfigure $newpw -after $aftopt -before $befopt \
-            -width $panewidth -height $paneheigth -minsize [expr $FontSize * 2]
+            -width $panewidth -height $paneheigth -minsize [expr $textfontsize * 2]
 
         # pack the previously existing textarea first, then the textarea whose
         # name was provided as argument, or a hidden buffer, or an empty file
@@ -617,7 +617,7 @@ proc mergepanedwindows2 {pwname} {
 
     # if there is no panedwindow in $pwname children list,
     # and if there is more than one pane,
-    # i.e. if all the children are frames and if they is more than one child,
+    # i.e. if all the children are frames and if there is more than one child,
     # then don't merge
     if {$pwinside == "false" && [llength [$pwname panes]] != 1} {
         set doit "false"
@@ -681,7 +681,7 @@ proc destroywidget {w} {
 
 proc repackwidget {w pwname {aftopt ""} {befopt ""}} {
 # recursive ancillary for proc mergepanedwindows
-    global pwmaxid FontSize
+    global pwmaxid textfontsize
 
     if {[llength $w] == 2 && [isaframe [lindex $w 0]]} {
         # $w is a frame node list, just pack it
@@ -697,7 +697,7 @@ proc repackwidget {w pwname {aftopt ""} {befopt ""}} {
         incr pwmaxid
         set newpw $pwname.pw$pwmaxid
         panedwindow $newpw -orient [lindex $w 1] -opaqueresize true
-        $pwname paneconfigure $newpw -after $lastexistingpane -minsize [expr $FontSize * 2]
+        $pwname paneconfigure $newpw -after $lastexistingpane -minsize [expr $textfontsize * 2]
 
         # repack anything that was previously in this paned window
         foreach sw [lindex $w 2] {
@@ -976,26 +976,37 @@ proc gotoline {} {
     setwingeom $gotln
 
     label $gotln.l1 -text [mc "Go to:"] -font $menuFont
-    pack $gotln.l1 -anchor w -pady 5
+    pack $gotln.l1 -anchor w -pady 5 -padx 3
 
     frame $gotln.f1
-    eval "radiobutton $gotln.f1.rbut1 [bl "&logical line"]  \
-        -variable physlogic -value \"logical\"  -font $menuFont \
-        -command \"updateOKbuttonstategoto $gotln\" "
-    eval "radiobutton $gotln.rbut2 [bl "&physical line"] \
-        -variable physlogic -value \"physical\" -font $menuFont \
-        -command \"updateOKbuttonstategoto $gotln\" "
-    entry $gotln.f1.en1 -textvariable linetogo -width 8 -font $textFont
-    pack $gotln.f1.rbut1 $gotln.f1.en1 -side left
-    pack $gotln.f1 $gotln.rbut2 -anchor w
+    frame $gotln.f1.f1l
+    set bestwidth [mcmaxra "&logical line" \
+                           "&physical line"]
+    eval "radiobutton $gotln.f1.f1l.rbut1 [bl "&logical line"]  \
+            -variable physlogic -value \"logical\" \
+            -command \"updateOKbuttonstategoto $gotln\" \
+            -width $bestwidth -anchor w -font \[list $menuFont\] "
+    eval "radiobutton $gotln.f1.f1l.rbut2 [bl "&physical line"] \
+            -variable physlogic -value \"physical\" \
+            -command \"updateOKbuttonstategoto $gotln\" \
+            -width $bestwidth -anchor w -font \[list $menuFont\] "
+    entry $gotln.f1.en1 -textvariable linetogo \
+            -justify center \
+            -width 8 -font $textFont
+    pack $gotln.f1.f1l.rbut1 $gotln.f1.f1l.rbut2 -anchor w
+    pack $gotln.f1.en1 -side right
+    pack $gotln.f1.f1l
+    pack $gotln.f1 -anchor w
 
     frame $gotln.f2
     eval "radiobutton $gotln.f2.rbut3 [bl "in &function"]  \
-        -variable curfileorfun -value \"function\"     -font $menuFont \
-        -command \"updateOKbuttonstategoto $gotln\" "
+            -variable curfileorfun -value \"function\" \
+            -command \"updateOKbuttonstategoto $gotln\" \
+            -anchor w -font \[list $menuFont\] "
     eval "radiobutton $gotln.rbut4 [bl "in &current file"] \
-        -variable curfileorfun -value \"current_file\" -font $menuFont \
-        -command \"updateOKbuttonstategoto $gotln\" "
+            -variable curfileorfun -value \"current_file\" \
+            -command \"updateOKbuttonstategoto $gotln\" \
+            -anchor w -font \[list $menuFont\] "
     menubutton $gotln.f2.mb -text [lindex $funtogoto 0] -indicatoron 1 \
         -font $textFont
 
@@ -1006,13 +1017,17 @@ proc gotoline {} {
             -variable funtogoto -value [list $funname $ta $funstartline] \
             -command "updatemenubutlabelgoto $gotln"
     }
-    pack $gotln.f2.rbut3 $gotln.f2.mb -side left
+    pack $gotln.f2.rbut3 $gotln.f2.mb -side left -anchor w
     pack $gotln.f2 $gotln.rbut4 -anchor w
 
-    button $gotln.ok -text [mc "OK"] -font $menuFont -width 8 \
-        -command "dogotoline ; destroy $gotln"
-    button $gotln.cancel -text [mc "Cancel"] -font $menuFont -width 8 \
-        -command "destroy $gotln"
+    set bestwidth [mcmaxra "OK" \
+                           "Cancel"]
+    button $gotln.ok -text [mc "OK"] \
+            -font $menuFont -width $bestwidth \
+            -command "dogotoline ; destroy $gotln"
+    button $gotln.cancel -text [mc "Cancel"] \
+            -font $menuFont -width $bestwidth \
+            -command "destroy $gotln"
     pack $gotln.ok $gotln.cancel -side left -padx 5 -pady 5 -fill none -expand yes
 
     focus $gotln.f1.en1
@@ -1023,21 +1038,21 @@ proc gotoline {} {
                           }}
     bind $gotln <Escape> {destroy [winfo toplevel %W]}
 
-    bind $gotln <Alt-[fb $gotln.f1.rbut1]> \
-        {[winfo toplevel %W].f1.rbut1 invoke}
-    bind $gotln <Alt-[fb $gotln.rbut2]> \
-        {[winfo toplevel %W].rbut2 invoke}
+    bind $gotln <Alt-[fb $gotln.f1.f1l.rbut1]> \
+        {[winfo toplevel %W].f1.f1l.rbut1 invoke}
+    bind $gotln <Alt-[fb $gotln.f1.f1l.rbut2]> \
+        {[winfo toplevel %W].f1.f1l.rbut2 invoke}
     bind $gotln <Alt-[fb $gotln.f2.rbut3]> \
         {[winfo toplevel %W].f2.rbut3 invoke}
     bind $gotln <Alt-[fb $gotln.rbut4]> \
         {[winfo toplevel %W].rbut4 invoke}
 
     # Default choices
-    if {$physlogic    == ""} {$gotln.f1.rbut1 invoke}
+    if {$physlogic    == ""} {$gotln.f1.f1l.rbut1 invoke}
     if {$curfileorfun == ""} {$gotln.f2.rbut3 invoke}
     if {$funtogotolist == {}} {
         # preselect physical line in buffer if there is no function definition
-        $gotln.rbut2 invoke
+        $gotln.f1.f1l.rbut2 invoke
         $gotln.rbut4 invoke
     } else {
         # preselect the first function found if no previous choice was made
