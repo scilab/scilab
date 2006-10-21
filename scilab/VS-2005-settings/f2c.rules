@@ -11,6 +11,7 @@
 			Outputs="&quot;$(InputDir)$(InputName).c&quot;"
 			FileExtensions="*.f"
 			ExecutionDescription="Converting $(InputName).f to $(InputName).c ..."
+			ShowOnlyRuleProperties="false"
 			>
 			<Properties>
 			</Properties>
