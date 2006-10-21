@@ -2323,3 +2323,8 @@ Francois VOGEL, 18/07/06
  * Stepping deals with nested libfuns constructs, e.g. pmodulo(modulo()), the
    outer calls are no longer skipped by the debugger
  * version --> 6.43
+
+Scilab operational team, 03/08/06
+ * Changed directories to follow reorganization of the Scilab code
+ * svn: eol-style property set to native
+ * version --> 6.44 - First version following the reorganized code tree
