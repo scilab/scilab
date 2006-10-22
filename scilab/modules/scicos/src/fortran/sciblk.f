@@ -23,12 +23,19 @@ C
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
       integer nipar,nu,ny
 
+c*-------------------------------------------------------------------      
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /scsptr/
+cDEC$ ENDIF
+c*-------------------------------------------------------------------
+
+      common /ierode/ iero
+      common /scsptr/ ptr
+
       integer ptr
       integer mlhs,mrhs
       logical allowptr
 C
-      common /ierode/ iero
-      common /scsptr/ ptr
 C
       iadr(l) = l + l - 1
 C

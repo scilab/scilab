@@ -9,11 +9,6 @@ block of type 2 */
 of type 0 */
 #define TB_SIZE 500
 
-/* common for ? */
-
-extern struct {
-  integer ptr;
-} C2F(scsptr);
 
 /* scicos common for debug */
 

@@ -584,6 +584,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\scicos-def.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\scicos.h"
 				>
 			</File>

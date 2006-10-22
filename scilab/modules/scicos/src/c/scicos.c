@@ -23,12 +23,7 @@
 #include "sci_mem_alloc.h"  /* malloc */
 
 
-#ifdef FORDLL 
-#define IMPORT  __declspec (dllimport)
-#else 
-#define IMPORT extern
-#endif
-
+#include "scicos-def.h"
 
 #define abs(x) ((x) >= 0 ? (x) : -(x))
 #ifndef _MSC_VER
@@ -91,19 +86,6 @@ double Get_Scicos_SQUR(void);
 /*void DISP(A,ra ,ca,name);*/
 /* Jacobian*/
 
-IMPORT struct {
-  int cosd;
-} C2F(cosdebug);
-
-
-IMPORT struct {
-  int counter;
-} C2F(cosdebugcounter);
-
-struct {
-  int solver;
-} C2F(cmsolver);
-
 extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
@@ -136,22 +118,6 @@ static integer *neq;
 
 static  double Atol, rtol, ttol, deltat,hmax;
 static integer hot;
-
-extern struct {
-  integer iero;
-} C2F(ierode);
-
-extern  struct {
-  integer kfun;
-} C2F(curblk);
-
-struct {
-  double scale;
-}  C2F(rtfactor);
-
-extern struct {
-  integer halt;
-}  C2F(coshlt);
 
 /* Table of constant values */
 

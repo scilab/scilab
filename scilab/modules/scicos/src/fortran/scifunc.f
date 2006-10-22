@@ -12,6 +12,12 @@ c     Copyright INRIA
       integer iadr
       logical allowptr
 C
+c*-------------------------------------------------------------------      
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /scsptr/
+cDEC$ ENDIF
+c*-------------------------------------------------------------------
+
       common /scsptr/ ptr   
 c
       iadr(l) = l + l - 1
