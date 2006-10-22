@@ -2400,3 +2400,13 @@ Francois VOGEL, 21/10/06
    error "invalid command name "none"" gets a chance to be fixed, since I
    could never reproduce it
  * version --> 6.45
+
+Francois VOGEL, 22/10/06
+ * Adjusted the directories in help file so that they match the new code tree
+ * Factorized directory names creation in the Tcl code
+ * Fixed bug introduced in version 6.44: forgotten directory change of scicos
+   files for "open source of..."
+ * Moved BUGS and CHANGELOG in SCI/modules/scipad
+ * Fixed: button2copypaste was active in proc textbox, thus leading to a
+   Tcl error on button-2 click
+ * version --> 6.46
