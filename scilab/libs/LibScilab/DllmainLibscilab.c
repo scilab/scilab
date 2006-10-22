@@ -44,7 +44,7 @@
 #pragma comment(lib,"../../libs/dcd_f.lib")
 #pragma comment(lib,"../../libs/core_f.lib")
 #pragma comment(lib,"../../libs/io_f.lib")
-#pragma comment(lib,"../../libs/metanet_f.lib")
+#pragma comment(lib,"../../bin/metanet_f.lib")
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/randlib_f.lib")
 #pragma comment(lib,"../../libs/scicos_f.lib")
