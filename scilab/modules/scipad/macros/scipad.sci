@@ -82,6 +82,6 @@ global TMPDIR
       end
     end
   else
-    error(" Scilab has not been built with tk: Scipad unavailable")
+    error(" Scilab has not been built with Tcl/Tk: Scipad unavailable")
   end
 endfunction

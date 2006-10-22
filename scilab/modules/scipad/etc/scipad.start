@@ -2,7 +2,7 @@
 // scipad module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-//Load  functions librarie
+//Load functions library
 load('SCI/modules/scipad/macros/lib');
 // ====================================================================
 //add help chapter
@@ -18,12 +18,6 @@ elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
 	add_help_chapter("Scipad",path);
 end
-// ====================================================================
-// Scipad font size micro=10,small=12,medium=14,large=18
-//Overridden by the preference file ES 15/11/04
-//global %scipad_fontsize;%scipad_fontsize=12
-//clear %scipad_fontsize //remove the local variable
-// ====================================================================
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
 // ====================================================================

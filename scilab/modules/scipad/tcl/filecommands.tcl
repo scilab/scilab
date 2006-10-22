@@ -402,7 +402,7 @@ proc doopenfunsource {keywtype nametoopen} {
 # $nametoopen is the keyword whose source is to be opened
 # $keywtype is its associated tag (must be libfun or scicos
 # or userfun to be relevant)
-    global env words
+    global words scicosdir blocksdir
     switch $keywtype {
         "libfun" {
             # the simplest thing to do here would have been to
@@ -416,11 +416,9 @@ proc doopenfunsource {keywtype nametoopen} {
             ScilabEval_lt $fullcomm "seq"
         }
         "scicos" {
-            set scicosdir [file join "$env(SCIPATH)" macros scicos \
-                           $nametoopen.sci]
-            set blocksdir [file join "$env(SCIPATH)" macros \
-                          scicos_blocks "*" $nametoopen.sci]
-            set filetoopen [glob $scicosdir $blocksdir]
+            set globpat_scicosdir [file join "$scicosdir" $nametoopen.sci]
+            set globpat_blocksdir [file join "$blocksdir" "*" $nametoopen.sci]
+            set filetoopen [glob $globpat_scicosdir $globpat_blocksdir]
             # for the same reason as above, simply issuing
             #   ScilabEval_lt "scipad(\"$filetoopen\")" "seq"
             # does not always work

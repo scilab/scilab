@@ -35,7 +35,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>Scipad is an embedded Scilab text editor written in TCL/TK. It can be
+    <P>Scipad is an embedded Scilab text editor written in Tcl/Tk. It can be
     started with the "Editor" button on top of the main Scilab window, or from
     Scilab command line with the instruction <VERB>scipad()</VERB> or
     <VERB>scipad f</VERB>.</P>
@@ -322,9 +322,9 @@
         (Polish), "se" (Swedish).</SP>
 
         <SP>Further languages can be added by creating the proper translation
-        file and putting it in SCI/tcl/scipadsources/msg_files/. If you plan
-        to do such a job, please check the file
-        <VERB>SCI/tcl/scipadsources/msg_files/AddingTranslations.txt</VERB>
+        file and putting it in <VERB>SCI/modules/scipad/tcl/msg_files/</VERB>.
+        If you plan to do such a job, please check the file
+        <VERB>SCI/modules/scipad/tcl/msg_files/AddingTranslations.txt</VERB>
         for detailed instructions, and consider to contribute it to the
         community.</SP>
 
@@ -349,21 +349,22 @@
         (http://sourceforge.net/projects/tkdnd). Presence of this package
         should be automatically detected by Scipad, enabling the corresponding
         features at that time. Windows and linux-i386 binary versions of
-        Scilab are currently shipped with Tkdnd. If not, here are some
+        Scilab are currently shipped with TkDnD. If not, here are some
         installation instructions:</P>
 
         <P>Windows platforms: Download the full package (currently
         tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the content of
-        lib\tkdnd and paste it into SCI\tcl\tk8.4\tkdnd. That's all!</P>
+        lib\tkdnd and paste it into <VERB>SCI\modules\tclsci\tcl\tk8.4\tkdnd</VERB>.
+        That's all!</P>
 
         <P>linux-i386 platforms: Download the rpm package (currently
         tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may have to force
-        --nodeps if it doesn't recognize an existing tcl installation). If you
-        have a source version of Scilab and an installation of tcl-tk, check
+        --nodeps if it doesn't recognize an existing Tcl installation). If you
+        have a source version of Scilab and an installation of Tcl/Tk, check
         where they are installed (e.g. /usr/share/) and move the newly created
         directory /usr/lib/tkdnd1.0/ to there. If you have a binary version of
-        Scilab, move tkdnd1.0/ to SCI/tcl/, where the supplied tcl-tk binaries
-        are.</P>
+        Scilab, move tkdnd1.0/ to SCI/modules/tclsci/tcl/, where the supplied
+        Tcl/Tk binaries are.</P>
 
         <P></P>
       </ITEM>
@@ -379,7 +380,7 @@
 
       <ITEM label="Bugs:">
         <SP>There are still a few... Details can be found in file
-        SCI/tcl/scipadsources/BUGS. Officially reported bugs are filed in the
+        <VERB>SCI/modules/scipad/BUGS</VERB>. Officially reported bugs are filed in the
         Bugzilla http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi
         and can be easily retrieved by filtering entries wrt the "Scipad
         Editor" element.</SP>

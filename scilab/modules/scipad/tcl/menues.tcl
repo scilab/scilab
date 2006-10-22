@@ -1,5 +1,6 @@
 proc createmenues {} {
-    global pad tcl_platform bgcolors fgcolors sourcedir
+    global pad tcl_platform bgcolors fgcolors
+    global sourcedir moduledir msgsdir binddir
     global listoffile listoftextarea bindset
     global FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu
@@ -293,7 +294,6 @@ proc createmenues {} {
     menu $pad.filemenu.options.locale -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Locale"] \
            -menu $pad.filemenu.options.locale "
-    set msgsdir [file join $sourcedir msg_files]
     set msgFiles [lsort [glob -nocomplain -tails -directory $msgsdir *.msg]]
     foreach m $msgFiles {
         set l [file rootname $m]
@@ -309,7 +309,6 @@ proc createmenues {} {
     menu $pad.filemenu.options.bindings -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
            -menu $pad.filemenu.options.bindings "
-    set binddir [file join $sourcedir bindings]
     set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
     foreach m $BindFiles {
         set l [file rootname $m]
@@ -370,10 +369,10 @@ proc createmenues {} {
 #             [me "&edit msg file"] \
 #             -command {openfile [file join $msgsdir \$lang.msg]}"
      eval "$pad.filemenu.help add command [me "&Bugs \& wishlist"] \
-             -command {textbox [file join $sourcedir BUGS] \
+             -command {textbox [file join $moduledir BUGS] \
               \"[mc "Scipad Known bugs"]\"}"
      eval "$pad.filemenu.help add command [me "Change&log"] \
-            -command {textbox [file join $sourcedir CHANGELOG] \
+            -command {textbox [file join $moduledir CHANGELOG] \
             \"[mc "Changes in the Scipad codebase"]\"}"
 
     # now make the menu bar visible

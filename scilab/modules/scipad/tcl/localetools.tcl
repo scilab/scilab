@@ -87,12 +87,12 @@ proc fb {w} {
 }
 
 proc relocalize {} {
-global lang sourcedir
+global lang msgsdir
 # carry on all the changes when the locale is changed on the fly via
 # the Options/Locale menu
     global pad listoftextarea
     ::msgcat::mclocale $lang
-    ::msgcat::mcload [file join $sourcedir msg_files]
+    ::msgcat::mcload $msgsdir
     createmenues
     setdbmenuentriesstates_bp
     updatepanestitles

@@ -42,14 +42,13 @@
 #
 #######################################################################
 
-set sourced [file join "$env(SCIPATH)" "modules" "scipad" "tcl"]
-source [file join $sourced db_states.tcl]
-source [file join $sourced db_bptsmanagement.tcl]
-source [file join $sourced db_actbptmanagement.tcl]
-source [file join $sourced db_debugsession.tcl]
-source [file join $sourced db_configureexec.tcl]
-source [file join $sourced db_watch.tcl]
-source [file join $sourced db_argsmanagement.tcl]
+source [file join $sourcedir db_states.tcl]
+source [file join $sourcedir db_bptsmanagement.tcl]
+source [file join $sourcedir db_actbptmanagement.tcl]
+source [file join $sourcedir db_debugsession.tcl]
+source [file join $sourcedir db_configureexec.tcl]
+source [file join $sourcedir db_watch.tcl]
+source [file join $sourcedir db_argsmanagement.tcl]
 
 #######################################################################
 ##################### End of breakpoint stuff #########################

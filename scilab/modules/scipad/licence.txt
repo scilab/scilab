@@ -1,3 +1,5 @@
-licence file
+Scipad's licence is Scilab's licence
+
+Credits: See the about box in Scipad
 
 INRIA 2006

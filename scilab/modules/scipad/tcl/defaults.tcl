@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.45"
+set version "Version 6.46"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -129,7 +129,7 @@ if {[lsearch $menuFont "-size"] != -1} {
 package require msgcat
 namespace import -force msgcat::*
 ::msgcat::mclocale "$lang"
-::msgcat::mcload [file join "$env(SCIPATH)" "modules" "scipad" "tcl" "msg_files"]
+::msgcat::mcload $msgsdir
 
 # drag and drop capability using TkDnD
 if { [catch {package require tkdnd}] == 0 } {

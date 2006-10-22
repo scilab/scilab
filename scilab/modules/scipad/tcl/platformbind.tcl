@@ -13,8 +13,7 @@ proc pbind {w events action} {
 
 #procedures for supporting several switchable sets of bindings 
 proc loadbindings {} {
-    global sourcedir bindentry pad
-    set binddir [file join $sourcedir bindings]
+    global binddir bindentry pad
     set BindFiles [lsort [glob -nocomplain -tails -directory $binddir *.tcl]]
     foreach m $BindFiles {
         set bindentry [file rootname $m]
@@ -22,7 +21,7 @@ proc loadbindings {} {
         # this is probably due to the /cygdrive/ syntax for paths
         if {$bindentry != ""} {
             set bindset($bindentry) {}
-            source [file join $sourcedir bindings $m]
+            source [file join $binddir $m]
         }
     }
 }

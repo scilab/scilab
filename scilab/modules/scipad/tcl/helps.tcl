@@ -83,4 +83,9 @@ if {0} {
     bind $tbox <Return> "destroy $tbox"
     bind $tbox <KP_Enter> "destroy $tbox"
     bind $tbox <Escape> "destroy $tbox"
+    # prevent unwanted Text class bindings from triggering
+    bind $tbox.text <Button-3> {break}
+    bind $tbox.text <Shift-Button-3> {break}
+    bind $tbox.text <Control-Button-3> {break}
+    bind $tbox.text <ButtonRelease-2> {break}
 }
