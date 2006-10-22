@@ -20,16 +20,15 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
 
   if updateC then
     if MSDOS then
-      modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
+      modelicac=pathconvert(SCI+'/modules/scicos/bin/modelicac.exe',%f,%t)
       if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
       modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
-//      modelicac=modelicac+strcat(' -hpath '+ 'c:\Mylibs\');
       instr=modelicac+' '+fil+' -o '+path+name+'.c -jac'
       
       mputl(instr,path+'genc.bat')
       instr=path+'genc.bat'
     else
-       modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
+       modelicac=pathconvert(SCI+'/modules/scicos/bin/modelicac',%f,%t)
        modelicac=modelicac+strcat(' -L '+mlibs)
 //       modelicac=modelicac+strcat(' -hpath '+ '/home/'+unix_g('whoami')+'/Mylibs/');
        instr=modelicac+' '+fil+' -o '+path+name+'.c -jac'
