@@ -1,4 +1,4 @@
-                Scilab for Windows (98/2000/XP)
+                Scilab for Windows (2000/XP/Vista)
                 *******************************
  
 ******************************************************************************
@@ -13,10 +13,10 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
  
-    1 - You have already installed Scilab by executing "scilab-4.0.exe".
-        By default Scilab is in "C:\Program Files\scilab-4.0" directory.
+    1 - You have already installed Scilab by executing "scilab-5.0.exe".
+        By default Scilab is in "C:\Program Files\scilab-5.0" directory.
  
-    2 - Run Scilab by executing "Scilab 4.0" from the startup menu.
+    2 - Run Scilab by executing "Scilab 5.0" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
  
@@ -25,11 +25,11 @@ I - TO RUN SCILAB (BINARY VERSION)
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 4.0
+    4 - If you want use Microsoft Visual C++ 2005 Express with Scilab 5.0
         download and install "Microsoft Plateform SDK R2"
         http://msdn.microsoft.com/vstudio/express/visualc/usingpsdk/
  
-    5 - If you want use LCC-Win32 (C compiler) with Scilab 4.0
+    5 - If you want use LCC-Win32 (C compiler) with Scilab 5.0
         See Readme_LCC.txt in lcc directory.
         You can download at http://www.cs.virginia.edu/~lcc-win32/
     
@@ -44,7 +44,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
-    "Scilab 4.0" item of the Program Group.
+    "Scilab 5.0" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
  
@@ -84,7 +84,7 @@ IV - DOCUMENTATION
 V - SOME IMPORTANT FILES AND DIRECTORIES
 ******************************************************************************
  
- scilab.start : startup file for Scilab instructions in this file
+ etc/scilab.start : startup file for Scilab instructions in this file
               are executed when Scilab is executed. Note that
               you can also have your own startup file "scilab.ini" 
               in your current directory.
@@ -95,36 +95,15 @@ V - SOME IMPORTANT FILES AND DIRECTORIES
  
  Scilab_f2c.sln : Visual Studio 2005 Scilab Solution without Intel Fortran.
   
- 
- demos/    : demos directory. Some of the demos can be executed by clicking
-             on the "demos" button.
- 
+  
  examples/ : examples of dynamic links and interface code.
- 
- macros/   : functions directory: this directory is divided into 
-             subdirectories corresponding to specific topics
-             (control, polynomials,...). Each subdirectory contains 
-             the source code of the macros (files *.sci). 
- 
- routines/ : directory of fortran or C routines.
- 
- man/	   : files for online help
- 
- util/     : useful routines and ASCII files to manage Scilab.
  
  bin/	   : executable code and scripts.
 
  		scilex  : executable code of Scilab (Console version).
 		wscilex  : executable code of Scilab (Windows version).
  
- intersci/ : Generator of interface program between Scilab and routines.
- 
- maple/    : Maple code to link Maple with Scilab.
- 
- pvm3/	  : PVM 3 for Scilab.
- 
- tcl/      : TCL/TK for Scilab.
- 
+  
  ******************************************************************************
 
 		       
