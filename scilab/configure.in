@@ -610,7 +610,7 @@ x86_64-*-linux-gnu)
 				FC_OPTIONS="-O $CC_PLAT_OPTIONS $FC_PICFLAGS"
 				FC_OPTIONS_O0="$CC_PLAT_OPTIONS $FC_PICFLAGS"
 			fi
-		elif test "$WITH_GFORTRAN" = yes;then
+		elif test "$WITH_GFORTRAN" = yes; then
 			FC=gfortran
 			if test "$enable_debug" = yes; then
 				FC_OPTIONS="-g -ff2c $CC_PLAT_OPTIONS $FC_PICFLAGS"
@@ -1456,6 +1456,7 @@ esac
 # in "routines/control": hqror2.f comqr3.f tql2.f imtql3.f dsvdc.f wsvdc.f 
 #                        pade.f
 # in "routines/sparse": intreadmps.f
+# in "routines/calelm": unsfdcopy.f icopy.f
 
 FC_OPTIONS1=$FC_OPTIONS
 if test "$WITH_G77" = yes; then
@@ -1483,14 +1484,15 @@ if test "$WITH_GFORTRAN" = yes; then
 fi
 
 # due overlapping arguments a few files must not be compiled
-# with optimizer on some computers (SGI : unsfdcopy.f icopy.f)
+# with optimizer on some computers (Sun sparc solaris with at least
+# Sun C 5.5 getsym.f)
 
 FC_OPTIONS2=$FC_OPTIONS
 
 case "$host" in
-# SGI MIPS 
-  mips-sgi-irix*)
-    if test "$enable_debug" = yes; then   
+# Sun solaris
+  *solaris*)
+    if test "$enable_debug" = yes; then
       FC_OPTIONS2=$FC_OPTIONS
     else
       FC_OPTIONS2=$FC_OPTIONS_O0
@@ -2378,7 +2380,7 @@ AC_SUBST(JAVASCITARGET)
 AC_SUBST(JAVASCITARGET_DISTCLEAN)
 AC_SUBST(JAVA_INCL)
 AC_SUBST(GCCFIX)
-AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile $MAN_FR $MAN_ENG)
+AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/os_specific/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/interf/Makefile routines/control/Makefile routines/system/Makefile routines/calelm/Makefile  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci  macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile $MAN_FR $MAN_ENG)
  
 
 

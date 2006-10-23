@@ -39,7 +39,7 @@ FFLAGS = $(FC_OPTIONS)
 include ../Make.lib
 
 getsym.o: getsym.f
-	$(FC) -O -ff2c -c getsym.f -o getsym.o
+	$(FC) @FC_OPTIONS2@ -c getsym.f -o getsym.o
 
 allops.o:  ../stack.h
 bexec.o:  ../stack.h
