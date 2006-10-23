@@ -62,6 +62,8 @@ proc execfile_bp {{stepmode "nostep"}} {
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
+            # no need for $visibilitycomm, i.e. [lindex $commnvars 2]
+            # because here the shell is still at the --> prompt
             ScilabEval_lt "$watchsetcomm" "seq"
         }
         ScilabEval_lt "$setbpcomm; $funnameargs;" "seq"
@@ -533,7 +535,8 @@ proc resume_bp {{checkbusyflag 1} {stepmode "nostep"}} {
         set commnvars [createsetinscishellcomm $watchvars]
         set watchsetcomm [lindex $commnvars 0]
         if {$watchsetcomm != ""} {
-            ScilabEval_lt "$watchsetcomm" "seq"
+            set visibilitycomm [lindex $commnvars 2]
+            ScilabEval_lt "$visibilitycomm;$watchsetcomm" "seq"
             set returnwithvars [lindex $commnvars 1]
             ScilabEval_lt "$returnwithvars" "seq"
         } else {

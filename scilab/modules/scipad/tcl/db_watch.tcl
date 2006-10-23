@@ -91,6 +91,7 @@ proc showwatch_bp {} {
             -command \"managewatchontop_bp\" \
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxalwaysontop configure -underline -1}
     set checkboxshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
     eval "checkbutton $checkboxshowwatchvariablesarea \
             -variable showwatchvariablesarea [bl "Hide watch &variables"] \
@@ -98,6 +99,7 @@ proc showwatch_bp {} {
             -onvalue \"false\" -offvalue \"true\" \
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxshowwatchvariablesarea configure -underline -1}
     set checkboxshowcallstackarea $watch.f.f1.f1r.showcallstackarea
     eval "checkbutton $checkboxshowcallstackarea [bl "Hide call &stack"] \
             -variable showcallstackarea \
@@ -105,6 +107,7 @@ proc showwatch_bp {} {
             -onvalue \"false\" -offvalue \"true\" \
             -width $bestwidth -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxshowcallstackarea configure -underline -1}
 
     pack $checkboxalwaysontop $checkboxshowwatchvariablesarea \
             $checkboxshowcallstackarea -pady 0 -anchor w
@@ -119,6 +122,7 @@ proc showwatch_bp {} {
             -onvalue \"true\" -offvalue \"false\" \
             -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
+    if {$dockwatch} {$checkboxdockwatch configure -underline -1}
     set debugstateindicator $watch.f.f1.f1fr.debugstateindicator
     canvas $debugstateindicator -relief ridge -width 15 -height 15 -borderwidth 1
     updatedebugstateindicator_bp
@@ -203,9 +207,11 @@ proc showwatch_bp {} {
     set buttonAddw $watch.f.vpw.f2.f2l.buttonAdd
     eval "button $buttonAddw [bl "Add/Chan&ge"] \
             -width $bestwidth -font \[list $menuFont\] "
+    if {$dockwatch} {$buttonAddw configure -underline -1}
     set buttonRemove $watch.f.vpw.f2.f2l.buttonRemove
     eval "button $buttonRemove [bl "&Remove"] \
             -width $bestwidth -font \[list $menuFont\] "
+    if {$dockwatch} {$buttonRemove configure -underline -1}
 
     pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
@@ -297,6 +303,7 @@ proc showwatch_bp {} {
     eval "button $buttonClose [bl "&Close"] \
             -command \"closewatch_bp $watch\" \
             -font \[list $menuFont\] "
+    if {$dockwatch} {$buttonClose configure -underline -1}
     pack $totbptsindic -expand no -fill x
     pack $bptfunsindic -expand no -fill x -pady 2
     pack $watch.f.f9.fl -side left
@@ -526,7 +533,7 @@ proc managedockwatch_bp {} {
     showwatch_bp
     managewatchontop_bp
 
-    # set again the alwyas on top setting if it was set before
+    # set again the always on top setting if it was set before
     if {$saved_state} {
         $checkboxalwaysontop select
         managewatchontop_bp

@@ -17,8 +17,11 @@ proc configurefoo_bp {} {
     catch {destroy $conf}
     toplevel $conf
     wm title $conf [mc "Configure execution"]
+    # the configure box will be deiconified later selectively,
+    # depending on the type of file (.sce, .sci, mixed)
+    wm withdraw $conf
 
-    # The configure box must be a transient of $watch if it exists
+    # the configure box must be a transient of $watch if it exists
     # otherwise it might be obscured by the watch window if always on top
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
@@ -135,9 +138,24 @@ proc configurefoo_bp {} {
 
     # if still no function is found here, the user must have a .sce file
     # that he refused to debug as such (otherwise there is at least one
-    # function, which is the wrapper
+    # function, which is the wrapper)
     # in this case, close the configure box and... that's all, folks!
-    if {$funnames == ""} {OKconf_bp $conf}
+    if {$funnames == ""} {
+        OKconf_bp $conf
+    } else {
+        # a function to debug exists, either a "real" function, or the
+        # wrapper created to debug .sce or mixed files
+        if {[winfo exists $conf]} {
+            # this is a "real" function - the configure box has
+            # not been closed, so show it to the user
+            wm deiconify $conf
+        } else {
+            # the function is the wrapper - this must not be shown to
+            # the user, and anyway the dialog has already been closed
+            # at the end of proc OKconf_bp called by proc Obtainall_bp
+            # nothing more tho do here
+        }
+    }
 }
 
 proc scrollyboth_bp {leftwin rightwin args} {

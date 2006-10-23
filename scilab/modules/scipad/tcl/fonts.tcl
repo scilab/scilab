@@ -273,6 +273,8 @@ proc updatefont {{fontsource "newfont"}} {
     # If the watch window was open, refresh it
     if {[info exists watch]} {
         if {[winfo exists $watch]} {
+            set saved_showwatchvariablesarea $showwatchvariablesarea
+            set saved_showcallstackarea $showcallstackarea
             set firsttimeinshowwatch "true"
             # the two following flags must be reset,
             # otherwise Tcl error "invalid sash index"
@@ -280,6 +282,13 @@ proc updatefont {{fontsource "newfont"}} {
             set showwatchvariablesarea "true"
             set showcallstackarea "true"
             showwatch_bp
+            # restore hide/show state for each area
+            if {!$saved_showwatchvariablesarea} {
+                $watch.f.f1.f1r.showwatchvariablesarea invoke
+            }
+            if {!$saved_showcallstackarea} {
+                $watch.f.f1.f1r.showcallstackarea invoke
+            }
         }
     }
 

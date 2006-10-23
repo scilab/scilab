@@ -2410,3 +2410,14 @@ Francois VOGEL, 22/10/06
  * Fixed: button2copypaste was active in proc textbox, thus leading to a
    Tcl error on button-2 click
  * version --> 6.46
+
+Francois VOGEL, 23/10/06
+ * Fixed a visibility problem in the debugger when watching elements of
+   array variables
+ * The configure box does no longer pop up when there is nothing to
+   configure, e.g. for a .sce file
+ * Removed underlines in the docked watch window since the shortcuts are
+   anyway inactive when docked
+ * Fixed: changing locale while the watch window is open does no longer
+   forget about the hide variables/hide stack status
+ * version --> 6.47
