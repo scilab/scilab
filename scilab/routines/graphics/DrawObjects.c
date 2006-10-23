@@ -5531,134 +5531,6 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
 }
 
 
-/* int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz) */
-/* { */
-/*   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
-/*   /\*   static int flag = 0; *\/ */
-/*   int xmmin = -1, ymmin = -1; */
-/*   int xmmax = -1, ymmax = -1; */
-/*   int x,y; */
-/*   int pixel_size = -1; */
-/*   int *nbgrads = NULL; */
-/*   double * grads = NULL; */
-/*   int * nbsubtics = NULL; */
-/*   int palier1 = 70, palier2 = 120; */
-/*   int driver = GetDriverId(); /\* return the first letter of the driver name (see XCall.c) *\/ */
-
-/*   if(driver == 1) /\* Pos driver : special case *\/ */
-/*     { */
-/*       palier1 = 540; */
-/*       palier2 = 756; */
-/*     } */
-  
-/*   if((xyz=='x') && (ppsubwin->logflags[0] != 'l')){ */
-/*     nbgrads = &ppsubwin->axes.nxgrads; */
-/*     nbsubtics = &ppsubwin->axes.nbsubtics[0]; */
-/*     grads   = ppsubwin->axes.xgrads; */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /\* fx is useless *\/ */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz); */
-/*   } */
-/*   else if ((xyz=='y') && (ppsubwin->logflags[1] != 'l')){ */
-/*     nbgrads = &ppsubwin->axes.nygrads; */
-/*     nbsubtics = &ppsubwin->axes.nbsubtics[1]; */
-/*     grads   = ppsubwin->axes.ygrads; */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /\* fy is useless *\/ */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz); */
-/*   } */
-/*   else if ((xyz=='z') && (ppsubwin->logflags[2] != 'l')){ */
-/*     nbgrads = &ppsubwin->axes.nzgrads; */
-/*     nbsubtics = &ppsubwin->axes.nbsubtics[2]; */
-/*     grads   = ppsubwin->axes.zgrads; */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /\* fz is useless *\/ */
-/*     ComputeGoodTrans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval); */
-/*   } */
-/*   else{ */
-/*     /\* nothing to try to adapt : if at least one log scale is enabled *\/ */
-/*     /\* nothing is done *\/ */
-    
-/*     return 0; */
-/*     /\*   sciprint("Error in AdaptGraduations call\n"); *\/ */
-/*     /\*     return -1; *\/ */
-/*   } */
-    
-/*   x = xmmax - xmmin; */
-/*   y = ymmax - ymmin; */
-  
-/*   pixel_size = (int) sqrt(x*x + y*y); */
-
-/* /\*   printf("Axe %c\n",xyz); *\/ */
-
-/* /\*   printf("Cscale.Wscx1 = %lf\t Cscale.Wscy1 = %lf\n",Cscale.Wscx1,Cscale.Wscy1); *\/ */
-/* /\*   printf("Cscale.frect[0] = %lf\t Cscale.frect[3] = %lf\n",Cscale.frect[0],Cscale.frect[3]); *\/ */
-/* /\*   printf("Cscale.Wxofset1 = %lf\t Cscale.Wyofset1 = %lf\n",Cscale.Wxofset1,Cscale.Wyofset1); *\/ */
-  
-
-/* /\*   printf("xmmin = %d et xmmax = %d\n",xmmin,xmmax); *\/ */
-/* /\*   printf("ymmin = %d et ymmax = %d\n",ymmin,ymmax); *\/ */
-
-
-/* /\*   printf(" pixel_size = %d\n\n", pixel_size); *\/ */
-  
-/*   if(pixel_size > palier2) /\* nothing to adapt : 10 graduations can be displayed *\/ */
-/*     return 0;          /\* and the corresponding computed subtics number can be used too *\/ */
-/*   else if(pixel_size <= palier1 ) /\* 3 graduations only are necessary *\/ */
-/*     { */
-/*       grads[0] = grads[0]; */
-/*       grads[1] = (grads[0] + grads[(*nbgrads)-1])/2; */
-/*       grads[2] = grads[(*nbgrads)-1]; */
-/*       *nbgrads = 3; */
-/*       if(ppsubwin->flagNax == FALSE) *nbsubtics = 3; */
-/*     } */
-/*   else if(pixel_size > palier1) */
-/*     { */
-/*       FindGrads(grads, nbgrads); */
-/*       if(ppsubwin->flagNax == FALSE) *nbsubtics = 2; */
-      
-/*     } */
-
-/*   /\* flag = 0; *\/ */
-
-
-/*   return 0; */
-/* } */
-
-
-/* int FindGrads(double *grads,int * n_grads) */
-/* { */
-/*   int nbgrads,i; */
-/*   double pas = 0.; */
-/*   double min = -1.; */
-/*   double grads_tmp[20]; */
-
-/*   nbgrads = *n_grads; */
-
-
-/*   for(i=0;i<20;i++) grads_tmp[i] = grads[i]; */
-
-/*   if((nbgrads % 2)!= 0 ) /\* nombre impair de grads *\/ */
-/*     { */
-/*       for(i=0;i<(int) (nbgrads+1)/2;i++) { */
-/* 	grads[i] = grads_tmp[2*i]; */
-/*       } */
-      
-/*       *n_grads = (int) (nbgrads+1)/2; /\* (7+1)/2 = 4, (9+1)/2 = 5 ...*\/ */
-/*     } */
-/*   else */
-/*     { */
-/*       min = grads[0]; */
-/*       pas = (grads[nbgrads-1] - grads[0]) / ((nbgrads-1) / 2); */
-      
-/*       for(i=0;i<(int)(nbgrads/2);i++) { */
-/* 	grads[i] = min + i*pas; */
-/*       } */
-      
-/*       *n_grads = (int) (nbgrads)/2; /\* 6/2=3, 12/2 = 6 ...*\/ */
-/*     } */
-    
-/*   return 0; */
-/* } */
-
-
 /* F.Leray 02.11.04 */
 /* BuildXYZvectForClipping_IfNanOrLogON : this function is used for polylines to determine if we have to cut the polyline data for 2 reasons: */
 /* - clipping is forced because we have a Nan inside the data columns */
@@ -5931,15 +5803,6 @@ int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double *
   double tmp_fy = *fy;
   double tmp_fz = *fz;
   
-  /*  if(ppsubwin->axes.reverse[0] == TRUE) */
-  /*     tmp_fx = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],tmp_fx); */
-  
-  /*   if(ppsubwin->axes.reverse[1] == TRUE) */
-  /*     tmp_fy = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],tmp_fy); */
-  
-  /*   if(ppsubwin->axes.reverse[2] == TRUE) */
-  /*     tmp_fz = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],tmp_fz); */
-  
   if(ppsubwin->logflags[0] == 'l')
     tmp_fx = exp10(tmp_fx);
   
@@ -6209,12 +6072,6 @@ sciClip (sciPointObj *pobj)
     tmpx = ppsubwin->FRect[0]; /* xmin */
     tmpy = ppsubwin->FRect[3]; /* ymax */
     
-/*     if(ppsubwin->axes.reverse[0] == TRUE) */
-/*       tmpx = tmpx + tmpw; */
-    
-/*     if(ppsubwin->axes.reverse[1] == TRUE) */
-/*       tmpy = tmpy  - tmph; */
-    
     clip[0] = tmpx;
     clip[1] = tmpy;
     clip[2] = tmpw;
@@ -6228,11 +6085,7 @@ sciClip (sciPointObj *pobj)
     { 
       double tmpw, tmph;
       double tmpx, tmpy;
-/*       int i; */
 
-/*       printf("** ** *** ***** *** \n"); */
-/*       for(i=0;i<4;i++) */
-/* 	printf("clip_region[%d] = %lf\n",i,clip_region[i]); */
 
       tmpw = clip_region[2];
       tmph = clip_region[3];
@@ -6240,24 +6093,12 @@ sciClip (sciPointObj *pobj)
       tmpx = clip_region[0];
       tmpy = clip_region[1];
       
-/*       printf("AVANT\n"); */
-/*       printf("tmpx = %lf\n",tmpx); */
-/*       printf("tmpy = %lf\n",tmpy); */
-/*       printf("tmpw = %lf\n",tmpw); */
-/*       printf("tmph = %lf\n",tmph); */
-
       if(ppsubwin->axes.reverse[0] == TRUE)
 	tmpx = tmpx + tmpw;
       
       if(ppsubwin->axes.reverse[1] == TRUE)
 	tmpy = tmpy - tmph;
       
-      
-/*       printf("APRES\n"); */
-/*       printf("tmpx = %lf\n",tmpx); */
-/*       printf("tmpy = %lf\n",tmpy); */
-/*       printf("tmpw = %lf\n",tmpw); */
-/*       printf("tmph = %lf\n-------------\n",tmph); */
       
       x = XDouble2Pixel( tmpx);
       y = YDouble2Pixel( tmpy);
@@ -6870,26 +6711,26 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       
       break;
     case  SCI_RECTANGLE: 
-      {
-	double rectx[4],recty[4],rectz[4];
-	p = 5;
-	
-	rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
-	rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
-	recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
-	recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
-	rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
-	
-	ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
+    {
+      double rectx[4],recty[4],rectz[4];
+      p = 5;
       
-	X[0]=X[1]=X[4]=rectx[0];
-	Y[0]=Y[3]=Y[4]=recty[0];
-	X[2]=X[3]=rectx[1];
-	Y[1]=Y[2]=recty[2];
-	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
-	x=X;y=Y;z=Z; 
-      }
-      break;
+      rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
+      rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
+      recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
+      recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
+      rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+	
+      ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
+      
+      X[0]=X[1]=X[4]=rectx[0];
+      Y[0]=Y[3]=Y[4]=recty[0];
+      X[2]=X[3]=rectx[1];
+      Y[1]=Y[2]=recty[2];
+      Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
+      x=X;y=Y;z=Z; 
+    }  
+    break;
     default:
       p = 0;
     }
@@ -7766,11 +7607,24 @@ sciDrawObj (sciPointObj * pobj)
 	  axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside : REMOVED F.Leray 21.01.05 */
 	  /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
 	  
+          /* merge object is drawn first  since it might conceal other objects */
+          /* which are not merged. */
+          if ( pSUBWIN_FEATURE(pobj)->facetmerge )
+          {
+            sciDrawObj( sciGetMerge( pobj ) ) ;
+          }
+
 	  psonstmp = sciGetLastSons (pobj);
-	  while (psonstmp != (sciSons *) NULL) {
-	    sciDrawObj (psonstmp->pointobj);
+	  while (psonstmp != (sciSons *) NULL)
+          {
+            if ( sciGetEntityType(psonstmp->pointobj) != SCI_MERGE )
+            {
+              sciDrawObj(psonstmp->pointobj) ;
+            }
 	    psonstmp = psonstmp->pprev;
 	  }
+
+          
 
 	  triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
 	 
@@ -7840,19 +7694,24 @@ sciDrawObj (sciPointObj * pobj)
       break;                      
       /******************/
 	  
-    case SCI_AGREG: 
+    case SCI_AGREG:
+    {
+      BOOL isMerging = pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge ;
       if (!sciGetVisibility(pobj)) break; /* RE-PUT F.Leray 21.01.05 */
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
-      /* scan the hierarchie and call sciDrawObj */
-      psonstmp = sciGetLastSons (pobj);
+            /* scan the hierarchie and call sciDrawObj */
+      psonstmp = sciGetLastSons(pobj) ;
       while (psonstmp != (sciSons *) NULL)
-	{
-	  sciDrawObj (psonstmp->pointobj);
-	  psonstmp = psonstmp->pprev;
-	}
+      {
+        /* draw only objects which are not already included in a merge objects */
+        if ( !isMerging || !sciIsMergeable(psonstmp->pointobj) )
+        {
+          sciDrawObj (psonstmp->pointobj);
+        }
+        psonstmp = psonstmp->pprev;
+      }
       break;
       /************ 30/04/2001 **************************************************/
-      
+    } 
     case SCI_LEGEND: 
       if (!sciGetVisibility(pobj)) break;
       else

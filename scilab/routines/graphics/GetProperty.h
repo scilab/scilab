@@ -157,4 +157,6 @@ extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
 extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
 extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
 
+extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */
