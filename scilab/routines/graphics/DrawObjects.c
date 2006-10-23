@@ -6718,7 +6718,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       else
       {
         /* facets */
-	p = pSURFACE_FEATURE (pobj)->dimzx; /* number of edges in the facets */
+        p = pSURFACE_FEATURE (pobj)->dimzx; /* number of edges in the facets */
 
         verticesX = MALLOC( p * sizeof(double) ) ;
         verticesY = MALLOC( p * sizeof(double) ) ;
@@ -6760,10 +6760,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       else
       {
         xtmp[0] = ppPolyLine->pvx[index];
-        xtmp[1] = ppPolyLine->pvx[(index+1)%n1];
+        xtmp[1] = ppPolyLine->pvx[index+1];
         
         ytmp[0] = ppPolyLine->pvy[index];
-        ytmp[1] = ppPolyLine->pvy[(index+1)%n1]; /* used by trans3d + drawing : case 0,1 and 4 */
+        ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
       }
       
       if( ppPolyLine->pvz != NULL )
@@ -7073,10 +7073,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
           else
           {
             xtmp[0] = ppPolyLine->pvx[index];
-            xtmp[1] = ppPolyLine->pvx[(index+1)%n1];
+            xtmp[1] = ppPolyLine->pvx[index+1];
             
             ytmp[0] = ppPolyLine->pvy[index];
-            ytmp[1] = ppPolyLine->pvy[(index+1)%n1]; /* used by trans3d + drawing : case 0,1 and 4 */
+            ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
           }
                    
           if(ppPolyLine->pvz != NULL){
