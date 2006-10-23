@@ -306,7 +306,14 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	  if (! cat_to_last) { /*add a new line */
 	    if (n==nmax) {
 	      nmax+=blk;
-	      if ( (strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) goto mem;
+		  if ( strs != NULL )
+		  {
+			if ( (strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) { goto mem; }
+		  }
+		  else
+		  {
+			if ( (strs = (char **) MALLOC( nmax * sizeof(char **))) == NULL) { goto mem ; }
+		  }
 	    }
 	    if ((strs[n]=MALLOC((k+1))) == NULL) goto mem;
 	    strncpy(strs[n],str1, k);
