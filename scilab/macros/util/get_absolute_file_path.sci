@@ -18,8 +18,14 @@ if ~MSDOS then
     path=getcwd()+sep+path
   end
 else 
-  if part(path,2)<>':' then 
-    path=getcwd()+sep+path
+  if (part(path,1) == '\') & (part(path,2) == '\') then
+  // UNC Path
+  else
+    if (part(path,2)<>':') then 
+      path=getcwd()+sep+path
+    end
   end
+
+
 end
 endfunction
