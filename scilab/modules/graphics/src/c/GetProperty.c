@@ -5201,3 +5201,27 @@ int sciGetHiddenColor( sciPointObj * pObj )
   return -10 ;
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+ * return if an object can be added to a merge object and then can be sorted for correct
+ * drawing.
+ * Normaly, each object shoul dbe mergeable. But it needs some development.
+ */
+BOOL sciIsMergeable( sciPointObj * pObj )
+{
+  switch (sciGetEntityType (pObj))
+  {
+  case SCI_SURFACE:
+    return TRUE ;
+  case SCI_POLYLINE:
+    return TRUE ;
+  case SCI_SEGS:
+    return TRUE ;
+  case SCI_RECTANGLE:
+    return TRUE ;
+  default:
+    return FALSE;
+    break;
+  }
+  return FALSE;
+}
+/*-------------------------------------------------------------------------------------------*/

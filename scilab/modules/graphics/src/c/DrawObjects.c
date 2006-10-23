@@ -6275,9 +6275,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
 	C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
-/* #ifdef _MSC_VER */
-/* 	if ( hdcflag == 1) ReleaseWinHdc (); */
-/* #endif	   */
 
 	if (sciGetEntityType (pobj)==SCI_SURFACE) {
 	  int fg1  = pSURFACE_FEATURE (pobj)->hiddencolor;
@@ -6323,7 +6320,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      break;
 	    case 1:
 	      zl = 0.0 ;
-              for ( k1= 0 ; k1 < p - 1 ; k1++) { zl+= z[k1] ; }
+              for ( k1= 0 ; k1 < p - 1 ; k1++) { zl += z[k1] ; }
               zl /= p - 1.0 ;
 	      /* for ( k1= 0 ; k1 < p ; k1++) zl+= Zoriginal[k1]; */ /* F.Leray 01.12.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
 	      fill[0] = inint( (whiteid-1)* ( zl - zmin ) / ( zmax- zmin ) ) + 1 ;
@@ -6516,14 +6513,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
 		      PD0, PD0, PD0, 5L, 10L);
 	    C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
-	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
-	    /*C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+	    C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
 	    C2F (dr) ("xlines", "xv", &deux, polyx, polyy, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	  }
-	  /* 	  else {/\*patch*\/ */
-	  /* 	    int close=1; */
-	  /* 	    C2F (dr) ("xarea", "v", &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
-	  /* 	  } */
 	}
       }
     }
@@ -6806,11 +6798,22 @@ sciDrawObj (sciPointObj * pobj)
 	  axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside : REMOVED F.Leray 21.01.05 */
 	  /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
 	  
-	  psonstmp = sciGetLastSons (pobj);
-	  while (psonstmp != (sciSons *) NULL) {
-	    sciDrawObj (psonstmp->pointobj);
-	    psonstmp = psonstmp->pprev;
-	  }
+          /* merge object is drawn first  since it might conceal other objects */
+          /* which are not merged. */
+          if ( pSUBWIN_FEATURE(pobj)->facetmerge )
+          {
+            sciDrawObj( sciGetMerge( pobj ) ) ;
+          }
+
+          psonstmp = sciGetLastSons (pobj);
+          while (psonstmp != (sciSons *) NULL)
+          {
+            if ( sciGetEntityType(psonstmp->pointobj) != SCI_MERGE )
+            {
+              sciDrawObj(psonstmp->pointobj) ;
+            }
+            psonstmp = psonstmp->pprev;
+          }
 
 	  triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
 	 
@@ -6864,9 +6867,7 @@ sciDrawObj (sciPointObj * pobj)
 	  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	 
-	  /* 	 if (sciGetVisibility(pobj)) */
-	  /* 	   { */
+	  
 	  rebuild_strflag(pobj,STRFLAG);
 	  axis_draw2 (STRFLAG);
 	  
@@ -6877,22 +6878,28 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 	  wininfo("");  
 	}
-      break;                      
+      break ;
       /******************/
-	  
-    case SCI_AGREG: 
+
+    case SCI_AGREG:
+    {
+
+      BOOL isMerging = pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge ;
       if (!sciGetVisibility(pobj)) break; /* RE-PUT F.Leray 21.01.05 */
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       /* scan the hierarchie and call sciDrawObj */
-      psonstmp = sciGetLastSons (pobj);
+      psonstmp = sciGetLastSons(pobj) ;
       while (psonstmp != (sciSons *) NULL)
-	{
-	  sciDrawObj (psonstmp->pointobj);
-	  psonstmp = psonstmp->pprev;
-	}
+      {
+        /* draw only objects which are not already included in a merge objects */
+        if ( !isMerging || !sciIsMergeable(psonstmp->pointobj) )
+        {
+          sciDrawObj (psonstmp->pointobj);
+        }
+        psonstmp = psonstmp->pprev;
+      }
       break;
       /************ 30/04/2001 **************************************************/
-      
+    }    
     case SCI_LEGEND: 
       if (!sciGetVisibility(pobj)) break;
       else

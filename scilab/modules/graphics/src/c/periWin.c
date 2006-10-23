@@ -2745,7 +2745,9 @@ void C2F(displaystring)(string, x, y, v1, flag, v6, v7, angle, dv2, dv3, dv4)
 	}
       else
 	{
+          SetBkMode(hdc, TRANSPARENT); 
 	  TextOut(hdc,(int) *x,(int) *y,string,strlen(string));
+          SetBkMode(hdc, OPAQUE); 
 	}
       if ( *flag == 1) 
 	{

@@ -194,4 +194,6 @@ extern int sciGetNbTypedObjects( sciPointObj * pObj, sciEntityType type ) ;
 
 extern int sciGetHiddenColor( sciPointObj * pObj ) ;
 
+extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */
