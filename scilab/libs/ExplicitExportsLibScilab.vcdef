@@ -1,6 +1,3 @@
-; --------------------------------------- 
-; ..\ExplicitExportsLibScilab.vcdef 
-; --------------------------------------- 
 	stack_
 	vstk_
 	recu_
@@ -10,8 +7,4 @@
 	adre_
 	intersci_
 	cha1_
-	dialog_str
-	SciMDialog
-	ScilabDialog
-	ScilabMessage
 	versionflag

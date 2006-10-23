@@ -403,6 +403,206 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6bandred.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6bmatch.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6busack.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6cent.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6chcm.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6clique.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6clique1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6compc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6compfc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6concom.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6deumesh.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dfs.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dfs2.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6diam.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dijkst.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dmtree.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6edge2st.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6findiso.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6flomax.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6floqua.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ford.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6fordfulk.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6frang.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6hamil.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6hullcvex.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6johns.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6kilter.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6knapsk.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6loadg.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6lp2tad.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6lp2tau.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6mesh2b.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6meshmesh.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ns2p.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6p2ns.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6pcchna.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6permuto.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6prevn2p.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6prevn2st.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6prfmatch.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6relax.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6saveg.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6sconcom.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ta2lpd.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ta2lpu.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6tconex.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6transc.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6umtree.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6umtree1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_m6visitor.c"
+				>
+			</File>
+			<File
 				RelativePath=".\seed.c"
 				>
 			</File>
@@ -615,203 +815,203 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6bandred.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6bandred.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6bmatch.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6bmatch.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6busack.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6busack.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6cent.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6cent.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6chcm.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6chcm.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6clique.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6clique.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6clique1.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6clique1.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6compc.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6compc.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6compfc.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6compfc.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6concom.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6concom.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6deumesh.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6deumesh.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6dfs.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dfs.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6dfs2.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dfs2.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6diam.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6diam.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6dijkst.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dijkst.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6dmtree.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6dmtree.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6edge2st.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6edge2st.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6findiso.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6findiso.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6flomax.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6flomax.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6floqua.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6floqua.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6ford.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ford.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6fordfulk.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6fordfulk.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6frang.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6frang.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6hamil.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6hamil.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6hullcvex.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6hullcvex.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6johns.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6johns.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6kilter.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6kilter.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6knapsk.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6knapsk.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6loadg.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6loadg.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6lp2tad.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6lp2tad.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6lp2tau.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6lp2tau.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6mesh2b.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6mesh2b.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6meshmesh.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6meshmesh.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6ns2p.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ns2p.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6p2ns.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6p2ns.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6pcchna.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6pcchna.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6permuto.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6permuto.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6prevn2p.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6prevn2p.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6prevn2st.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6prevn2st.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6prfmatch.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6prfmatch.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6relax.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6relax.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6saveg.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6saveg.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6sconcom.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6sconcom.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6ta2lpd.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ta2lpd.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6ta2lpu.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6ta2lpu.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6tconex.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6tconex.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6transc.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6transc.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6umtree.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6umtree.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6umtree1.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6umtree1.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_m6visitor.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_m6visitor.f"
 				>
 			</File>
 			<File
@@ -827,6 +1027,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\sci_gateway\metanet.fundef"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
