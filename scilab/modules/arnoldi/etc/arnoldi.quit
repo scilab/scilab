@@ -7,9 +7,9 @@
 global LANGUAGE
 
 if LANGUAGE == 'fr' then
-	//del_help_chapter("ARnoldi PACKage");
+	del_help_chapter("ARnoldi PACKage");
 elseif LANGUAGE == 'eng' then
-	//del_help_chapter("ARnoldi PACKage");
+	del_help_chapter("ARnoldi PACKage");
 end
 
 clear del_help_chapter LANGUAGE;
