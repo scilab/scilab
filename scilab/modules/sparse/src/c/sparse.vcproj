@@ -338,6 +338,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\spmalloc.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\spmatrix.h"
 				>
 			</File>

@@ -42,7 +42,8 @@ static char RCSid[] =
 #endif
 
 
-
+#include <stdio.h>
+#include "spmalloc.h"
 
 /*
  *  IMPORTS
@@ -137,17 +138,16 @@ static char RCSid[] =
  *      The largest expected external row or column number.
  */
 
-void
-spPrint( eMatrix, PrintReordered, Data, Header )
+void spPrint( eMatrix, PrintReordered, Data, Header )
 
 char *eMatrix;
 int  PrintReordered, Data, Header;
 {
-MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  J = 0;
 int I, Row, Col, Size, Top, StartCol = 1, StopCol, Columns, ElementCount = 0;
 double  Magnitude, SmallestDiag, SmallestElement;
 double  LargestElement = 0.0, LargestDiag = 0.0;
+MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 ElementPtr  pElement, pImagElements[PRINTER_WIDTH/10+1];
 int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
 
@@ -161,8 +161,8 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
 #else
     Top = Matrix->AllocatedSize;
 #endif
-    CALLOC( PrintOrdToIntRowMap, int, Top + 1 );
-    CALLOC( PrintOrdToIntColMap, int, Top + 1 );
+    SPCALLOC( PrintOrdToIntRowMap, int, Top + 1 );
+    SPCALLOC( PrintOrdToIntColMap, int, Top + 1 );
     if ( PrintOrdToIntRowMap == NULL OR PrintOrdToIntColMap == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return;
@@ -347,8 +347,8 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
     putchar('\n');
     (void)fflush(stdout);
 
-    FREE(PrintOrdToIntColMap);
-    FREE(PrintOrdToIntRowMap);
+    SPFREE(PrintOrdToIntColMap);
+    SPFREE(PrintOrdToIntRowMap);
     return;
 }
 
@@ -380,14 +380,14 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
  *      Name of file into which matrix is to be written.
  *  Label  <input>  (char *)
  *      String that is transferred to file and is used as a label.
- *  Reordered  <input> (BOOLEAN)
+ *  Reordered  <input> (SPBOOLEAN)
  *      Specifies whether matrix should be output in reordered form,
  *      or in original order.
- *  Data  <input> (BOOLEAN)
+ *  Data  <input> (SPBOOLEAN)
  *      Indicates that the element values should be output along with
  *      the indices for each element.  This parameter must be true if
  *      matrix is to be read by the sparse test program.
- *  Header  <input> (BOOLEAN)
+ *  Header  <input> (SPBOOLEAN)
  *      Indicates that header is desired.  This parameter must be true if
  *      matrix is to be read by the sparse test program.
  *

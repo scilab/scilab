@@ -70,7 +70,7 @@ static char RCSid[] =
 #include "spConfig.h"
 #include "spmatrix.h"
 #include "spDefs.h"
-
+#include "spmalloc.h"
 
 
 static void Translate();
@@ -284,7 +284,7 @@ ElementPtr spcFindElementInCol();
  *      Row being searched for.
  *  Col  (int)
  *      Column being searched.
- *  CreateIfMissing  <input>  (BOOLEAN)
+ *  CreateIfMissing  <input>  (SPBOOLEAN)
  *      Indicates what to do if element is not found, create one or return a
  *      NULL pointer.
  *
@@ -300,7 +300,7 @@ MatrixPtr Matrix;
 register ElementPtr *LastAddr;
 register int  Row;
 int  Col;
-BOOLEAN  CreateIfMissing;
+SPBOOLEAN  CreateIfMissing;
 {
 register  ElementPtr  pElement;
 ElementPtr  spcCreateElement();
@@ -697,7 +697,7 @@ struct  spTemplate  *Template;
  *      This contains the address of the pointer to the element just above the
  *      one being created. It is used to speed the search and it is updated with
  *      address of the created element.
- *  Fillin  <input>  (BOOLEAN)
+ *  Fillin  <input>  (SPBOOLEAN)
  *      Flag that indicates if created element is to be a fill-in.
  *
  *  >>> Local variables:
@@ -723,7 +723,7 @@ MatrixPtr Matrix;
 int  Row;
 register int  Col;
 register ElementPtr  *LastAddr;
-BOOLEAN Fillin;
+SPBOOLEAN Fillin;
 {
 register  ElementPtr  pElement, pLastElement;
 ElementPtr  pCreatedElement, spcGetElement(), spcGetFillin();
@@ -931,23 +931,23 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
     NewSize = (int) MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
     Matrix->AllocatedSize = NewSize;
 
-    if (( REALLOC(Matrix->IntToExtColMap, int, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->IntToExtColMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }
-    if (( REALLOC(Matrix->IntToExtRowMap, int, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->IntToExtRowMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }
-    if (( REALLOC(Matrix->Diag, ElementPtr, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->Diag, ElementPtr, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }
-    if (( REALLOC(Matrix->FirstInCol, ElementPtr, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->FirstInCol, ElementPtr, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }
-    if (( REALLOC(Matrix->FirstInRow, ElementPtr, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->FirstInRow, ElementPtr, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }
@@ -956,12 +956,12 @@ register int I, OldAllocatedSize = Matrix->AllocatedSize;
  * Destroy the Markowitz and Intermediate vectors, they will be recreated
  * in spOrderAndFactor().
  */
-    FREE( Matrix->MarkowitzRow );
-    FREE( Matrix->MarkowitzCol );
-    FREE( Matrix->MarkowitzProd );
-    FREE( Matrix->DoRealDirect );
-    FREE( Matrix->DoCmplxDirect );
-    FREE( Matrix->Intermediate );
+    SPFREE( Matrix->MarkowitzRow );
+    SPFREE( Matrix->MarkowitzCol );
+    SPFREE( Matrix->MarkowitzProd );
+    SPFREE( Matrix->DoRealDirect );
+    SPFREE( Matrix->DoCmplxDirect );
+    SPFREE( Matrix->Intermediate );
     Matrix->InternalVectorsAllocated = NO;
 
 /* Initialize the new portion of the vectors. */
@@ -1020,11 +1020,11 @@ register int I, OldAllocatedSize = Matrix->AllocatedExtSize;
     NewSize = (int) MAX( NewSize, EXPANSION_FACTOR * OldAllocatedSize );
     Matrix->AllocatedExtSize = NewSize;
 
-    if (( REALLOC(Matrix->ExtToIntRowMap, int, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->ExtToIntRowMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }
-    if (( REALLOC(Matrix->ExtToIntColMap, int, NewSize+1)) == NULL)
+    if (( SPREALLOC(Matrix->ExtToIntColMap, int, NewSize+1)) == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return 0;
     }

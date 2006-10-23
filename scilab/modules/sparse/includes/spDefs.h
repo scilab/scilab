@@ -37,9 +37,6 @@
  *  IMPORTS
  */
 
-#include <stdio.h>
-
-
 /*
  *  If running lint, change some of the compiler options to get a more
  *  complete inspection.
@@ -103,7 +100,8 @@
 /* Begin macros. */
 
 /* Boolean data type */
-#define  BOOLEAN        int
+
+#define  SPBOOLEAN        int
 #define  NO             0
 #define  YES            1
 #define  NOT            !
@@ -415,32 +413,6 @@
 #endif
 
 
-#if defined(THINK_C)
-#include <types.h>
-#else
-#include <sys/types.h> /* pour le malloc.h de dbmalloc */
-#endif
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
-
-#define MALLOC(x) malloc(((size_t) x))
-#define ALLOC(type,number)  ((type *)MALLOC((unsigned)(sizeof(type)*(number))))
-#define REALLOC(ptr,type,number)  \
-           ptr = (type *)realloc((char *)ptr,(unsigned)(sizeof(type)*(number)))
-
-#define FREE(ptr) { if ((ptr) != NULL) {free((void *)(ptr)); (ptr) = NULL;}}
-
-
-/* Calloc that properly handles allocating a cleared vector. */
-#define CALLOC(ptr,type,number)                         \
-{   int i; ptr = ALLOC(type, number);                   \
-    if (ptr != (type *)NULL)                            \
-        for(i=(number)-1;i>=0; i--) ptr[i] = (type) 0;  \
-}
-
 /*
  *  REAL NUMBER
  */
@@ -545,7 +517,7 @@ typedef  ElementPtr  *ArrayOfElementPtrs;
 
 
 /*
- *  ALLOCATION DATA STRUCTURE
+ *  SPALLOCATION DATA STRUCTURE
  *
  *  The sparse matrix routines keep track of all memory that is allocated by
  *  the operating system so the memory can later be freed.  This is done by
@@ -635,7 +607,7 @@ struct FillinListNodeStruct
  *      grow to when EXPANDABLE is set true and AllocatedSize is the largest
  *      the matrix can get without requiring that the matrix frame be
  *      reallocated.
- *  Complex  (BOOLEAN)
+ *  Complex  (SPBOOLEAN)
  *      The flag which indicates whether the matrix is complex (true) or
  *      real.
  *  CurrentSize  (int)
@@ -644,12 +616,12 @@ struct FillinListNodeStruct
  *      rows and columns that have elements in them.
  *  Diag  (ArrayOfElementPtrs)
  *      Array of pointers that points to the diagonal elements.
- *  DoCmplxDirect  (BOOLEAN *)
+ *  DoCmplxDirect  (SPBOOLEAN *)
  *      Array of flags, one for each column in matrix.  If a flag is true
  *      then corresponding column in a complex matrix should be eliminated
  *      in spFactor() using direct addressing (rather than indirect
  *      addressing).
- *  DoRealDirect  (BOOLEAN *)
+ *  DoRealDirect  (SPBOOLEAN *)
  *      Array of flags, one for each column in matrix.  If a flag is true
  *      then corresponding column in a real matrix should be eliminated
  *      in spFactor() using direct addressing (rather than indirect
@@ -667,7 +639,7 @@ struct FillinListNodeStruct
  *  ExtToIntRowMap  (int [])
  *      An array that is used to convert external row numbers to internal
  *      external row numbers.  Present only if TRANSLATE option is set true.
- *  Factored  (BOOLEAN)
+ *  Factored  (SPBOOLEAN)
  *      Indicates if matrix has been factored.  This flag is set true in
  *      spFactor() and spOrderAndFactor() and set false in spCreate()
  *      and spClear().
@@ -688,7 +660,7 @@ struct FillinListNodeStruct
  *      array used during forward and backward substitution.  It is
  *      commonly called y when the forward and backward substitution process is
  *      denoted  Ax = b => Ly = b and Ux = y.
- *  InternalVectorsAllocated  (BOOLEAN)
+ *  InternalVectorsAllocated  (SPBOOLEAN)
  *      A flag that indicates whether the markowitz vectors and the
  *      Intermediate vector have been created.
  *      These vectors are created in CreateInternalVectors().
@@ -712,16 +684,16 @@ struct FillinListNodeStruct
  *      The maximum number of off-diagonal element in the rows of L, the
  *      lower triangular matrix.  This quantity is used when computing an
  *      estimate of the roundoff error in the matrix.
- *  NeedsOrdering  (BOOLEAN)
+ *  NeedsOrdering  (SPBOOLEAN)
  *      This is a flag that signifies that the matrix needs to be ordered
  *      or reordered.  NeedsOrdering is set true in spCreate() and
  *      spGetElement() or spGetAdmittance() if new elements are added to the
  *      matrix after it has been previously factored.  It is set false in
  *      spOrderAndFactor().
- *  NumberOfInterchangesIsOdd  (BOOLEAN)
+ *  NumberOfInterchangesIsOdd  (SPBOOLEAN)
  *      Flag that indicates the sum of row and column interchange counts
  *      is an odd number.  Used when determining the sign of the determinant.
- *  Partitioned  (BOOLEAN)
+ *  Partitioned  (SPBOOLEAN)
  *      This flag indicates that the columns of the matrix have been 
  *      partitioned into two groups.  Those that will be addressed directly
  *      and those that will be addressed indirectly in spFactor().
@@ -731,7 +703,7 @@ struct FillinListNodeStruct
  *      Row pivot was chosen from.
  *  PivotSelectionMethod  (char)
  *      Character that indicates which pivot search method was successful.
- *  PreviousMatrixWasComplex  (BOOLEAN)
+ *  PreviousMatrixWasComplex  (SPBOOLEAN)
  *      This flag in needed to determine how to clear the matrix.  When
  *      dealing with real matrices, it is important that the imaginary terms
  *      in the matrix elements be zero.  Thus, if the previous matrix was
@@ -740,11 +712,11 @@ struct FillinListNodeStruct
  *  RelThreshold  (RealNumber)
  *      The magnitude an element must have relative to others in its row
  *      to be considered as a pivot candidate, except as a last resort.
- *  Reordered  (BOOLEAN)
+ *  Reordered  (SPBOOLEAN)
  *      This flag signifies that the matrix has been reordered.  It
  *      is cleared in spCreate(), set in spMNA_Preorder() and
  *      spOrderAndFactor() and is used in spPrint().
- *  RowsLinked  (BOOLEAN)
+ *  RowsLinked  (SPBOOLEAN)
  *      A flag that indicates whether the row pointers exist.  The AddByIndex
  *      routines do not generate the row pointers, which are needed by some
  *      of the other routines, such as spOrderAndFactor() and spScale().
@@ -806,39 +778,39 @@ struct  MatrixFrame
     RealNumber                   AbsThreshold;
     int                          AllocatedSize;
     int                          AllocatedExtSize;
-    BOOLEAN                      Complex;
+    SPBOOLEAN                      Complex;
     int                          CurrentSize;
     ArrayOfElementPtrs           Diag;
-    BOOLEAN                     *DoCmplxDirect;
-    BOOLEAN                     *DoRealDirect;
+    SPBOOLEAN                     *DoCmplxDirect;
+    SPBOOLEAN                     *DoRealDirect;
     int                          Elements;
     int                          Error;
     int                          ExtSize;
     int                         *ExtToIntColMap;
     int                         *ExtToIntRowMap;
-    BOOLEAN                      Factored;
+    SPBOOLEAN                      Factored;
     int                          Fillins;
     ArrayOfElementPtrs           FirstInCol;
     ArrayOfElementPtrs           FirstInRow;
     unsigned long                ID;
     RealVector                   Intermediate;
-    BOOLEAN                      InternalVectorsAllocated;
+    SPBOOLEAN                      InternalVectorsAllocated;
     int                         *IntToExtColMap;
     int                         *IntToExtRowMap;
     int                         *MarkowitzRow;
     int                         *MarkowitzCol;
     long                        *MarkowitzProd;
     int                          MaxRowCountInLowerTri;
-    BOOLEAN                      NeedsOrdering;
-    BOOLEAN                      NumberOfInterchangesIsOdd;
-    BOOLEAN                      Partitioned;
+    SPBOOLEAN                      NeedsOrdering;
+    SPBOOLEAN                      NumberOfInterchangesIsOdd;
+    SPBOOLEAN                      Partitioned;
     int                          PivotsOriginalCol;
     int                          PivotsOriginalRow;
     char                         PivotSelectionMethod;
-    BOOLEAN                      PreviousMatrixWasComplex;
+    SPBOOLEAN                      PreviousMatrixWasComplex;
     RealNumber                   RelThreshold;
-    BOOLEAN                      Reordered;
-    BOOLEAN                      RowsLinked;
+    SPBOOLEAN                      Reordered;
+    SPBOOLEAN                      RowsLinked;
     int                          SingularCol;
     int                          SingularRow;
     int                          Singletons;

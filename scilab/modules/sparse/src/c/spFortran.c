@@ -230,7 +230,7 @@ c
 
 
 /*
- *  MATRIX ALLOCATION
+ *  MATRIX SPALLOCATION
  *
  *  Allocates and initializes the data structures associated with a matrix.
  *
@@ -794,7 +794,7 @@ RealNumber  RHS[], *RelThreshold, *AbsThreshold;
 {
 /* Begin `sfOrderAndFactor'. */
     return spOrderAndFactor( (char *)*Matrix, RHS, *RelThreshold,
-                             *AbsThreshold, (BOOLEAN)*DiagPivoting );
+                             *AbsThreshold, (SPBOOLEAN)*DiagPivoting );
 }
 
 
@@ -1549,7 +1549,7 @@ int *Row, *Col;
  *   >>> Arguments:
  *   Matrix  <input>  (long *) [INTEGER]
  *       Pointer to matrix.
- *   External  <input>  (BOOLEAN) [LOGICAL]
+ *   External  <input>  (SPBOOLEAN) [LOGICAL]
  *       If External is set true, the external size , i.e., the value of the
  *       largest external row or column number encountered is returned.
  *       Otherwise the true size of the matrix is returned.  These two sizes
@@ -1562,7 +1562,7 @@ sfGetSize( Matrix, External )
 long  *Matrix, *External;
 {
 /* Begin `sfGetSize'. */
-    return spGetSize( (char *)*Matrix, (BOOLEAN)*External );
+    return spGetSize( (char *)*Matrix, (SPBOOLEAN)*External );
 }
 
 

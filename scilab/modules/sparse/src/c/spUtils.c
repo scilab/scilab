@@ -71,6 +71,7 @@ static char RCSid[] =
 #include "spConfig.h"
 #include "spmatrix.h"
 #include "spDefs.h"
+#include "spmalloc.h"
 
 
 static CountTwins();
@@ -159,19 +160,20 @@ static RealNumber ComplexCondition();
  *  pTwin2  (ElementPtr)
  *      Pointer to the twin found in the row belonging to the zero diagonal.
  *      belonging to the zero diagonal.
- *  AnotherPassNeeded  (BOOLEAN)
+ *  AnotherPassNeeded  (SPBOOLEAN)
  *      Flag indicating that at least one zero diagonal with symmetric twins
  *      remain.
  *  StartAt  (int)
  *      Column number of first zero diagonal with symmetric twins.
- *  Swapped  (BOOLEAN)
+ *  Swapped  (SPBOOLEAN)
  *      Flag indicating that columns were swapped on this pass.
  *  Twins  (int)
  *      Number of symmetric twins corresponding to current zero diagonal.
  */
+#undef SPBOOLEAN
+#define  SPBOOLEAN        int
 
-void
-spMNA_Preorder( eMatrix )
+void spMNA_Preorder( eMatrix )
 
 char *eMatrix;
 {
@@ -179,7 +181,7 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  J, Size;
 ElementPtr  pTwin1, pTwin2;
 int  Twins, StartAt = 1;
-BOOLEAN  Swapped, AnotherPassNeeded;
+SPBOOLEAN  Swapped, AnotherPassNeeded;
 
 /* Begin `spMNA_Preorder'. */
     ASSERT( IS_VALID(Matrix) AND NOT Matrix->Factored );
@@ -1408,7 +1410,7 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
 #if spCOMPLEX
     Tm = Matrix->Intermediate + Size;
 #else
-    Tm = ALLOC( RealNumber, Size+1 );
+    Tm = SPALLOC( RealNumber, Size+1 );
     if (Tm == NULL)
     {   *pError = spNO_MEMORY;
         return 0.0;
@@ -1545,7 +1547,7 @@ RealNumber Linpack, OLeary, InvNormOfInverse;
     for (ASz = 0.0, I = Size; I > 0; I--) ASz += ABS(T[I]);
 
 #if NOT spCOMPLEX
-    FREE( Tm );
+    SPFREE( Tm );
 #endif
 
     Linpack = ASy / ASz;
@@ -1597,7 +1599,7 @@ ComplexNumber Wp, Wm;
 
     Size = Matrix->Size;
     T = (ComplexVector)Matrix->Intermediate;
-    Tm = ALLOC( ComplexNumber, Size+1 );
+    Tm = SPALLOC( ComplexNumber, Size+1 );
     if (Tm == NULL)
     {   *pError = spNO_MEMORY;
         return 0.0;
@@ -1742,7 +1744,7 @@ ComplexNumber Wp, Wm;
 /* Compute 1-norm of T, which now contains z. */
     for (ASz = 0.0, I = Size; I > 0; I--) ASz += CMPLX_1_NORM(T[I]);
 
-    FREE( Tm );
+    SPFREE( Tm );
 
     Linpack = ASy / ASz;
     OLeary = E / MaxY;

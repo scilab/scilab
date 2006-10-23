@@ -68,7 +68,7 @@ static char RCSid[] =
 #include "spConfig.h"
 #include "spmatrix.h"
 #include "spDefs.h"
-
+#include "spmalloc.h"
 
 static FactorComplexMatrix();
 static CreateInternalVectors();
@@ -156,7 +156,7 @@ static ZeroPivot();
  *      pivot an element that has suffered heavy cancellation and as a
  *      result mainly consists of roundoff error.  Once a valid
  *      threshold is given, it becomes the new default.
- *  DiagPivoting  <input>  (BOOLEAN)
+ *  DiagPivoting  <input>  (SPBOOLEAN)
  *      A flag indicating that pivot selection should be confined to the
  *      diagonal if possible.  If DiagPivoting is nonzero and if
  *      DIAGONAL_PIVOTING is enabled pivots will be chosen only from
@@ -178,7 +178,7 @@ static ZeroPivot();
  *  >>> Local variables:
  *  pPivot  (ElementPtr)
  *      Pointer to the element being used as a pivot.
- *  ReorderingRequired  (BOOLEAN)
+ *  ReorderingRequired  (SPBOOLEAN)
  *      Flag that indicates whether reordering is required.
  *
  *  >>> Possible errors:
@@ -194,7 +194,7 @@ spOrderAndFactor( eMatrix, RHS, RelThreshold, AbsThreshold, DiagPivoting )
 
 char *eMatrix;
 RealNumber  RHS[], RelThreshold, AbsThreshold;
-BOOLEAN DiagPivoting;
+SPBOOLEAN DiagPivoting;
 {
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 ElementPtr  pPivot;
@@ -617,7 +617,7 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  ElementPtr  pElement, pColumn;
 register  int  Step, Size;
 register  int  *Nc, *No, *Nm;
-BOOLEAN *DoRealDirect, *DoCmplxDirect;
+SPBOOLEAN *DoRealDirect, *DoCmplxDirect;
 
 /* Begin `spPartition'. */
     ASSERT( IS_SPARSE( Matrix ) );
@@ -768,28 +768,28 @@ int  Size;
     Size= Matrix->Size;
 
     if (Matrix->MarkowitzRow == NULL)
-    {   if (( Matrix->MarkowitzRow = ALLOC(int, Size+1)) == NULL)
+    {   if (( Matrix->MarkowitzRow = SPALLOC(int, Size+1)) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
     if (Matrix->MarkowitzCol == NULL)
-    {   if (( Matrix->MarkowitzCol = ALLOC(int, Size+1)) == NULL)
+    {   if (( Matrix->MarkowitzCol = SPALLOC(int, Size+1)) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
     if (Matrix->MarkowitzProd == NULL)
-    {   if (( Matrix->MarkowitzProd = ALLOC(long, Size+2)) == NULL)
+    {   if (( Matrix->MarkowitzProd = SPALLOC(long, Size+2)) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
 
 /* Create DoDirect vectors for use in spFactor(). */
 #if REAL
     if (Matrix->DoRealDirect == NULL)
-    {   if (( Matrix->DoRealDirect = ALLOC(BOOLEAN, Size+1)) == NULL)
+    {   if (( Matrix->DoRealDirect = SPALLOC(SPBOOLEAN, Size+1)) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
 #endif
 #if spCOMPLEX
     if (Matrix->DoCmplxDirect == NULL)
-    {   if (( Matrix->DoCmplxDirect = ALLOC(BOOLEAN, Size+1)) == NULL)
+    {   if (( Matrix->DoCmplxDirect = SPALLOC(SPBOOLEAN, Size+1)) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
 #endif
@@ -797,12 +797,12 @@ int  Size;
 /* Create Intermediate vectors for use in MatrixSolve. */
 #if spCOMPLEX
     if (Matrix->Intermediate == NULL)
-    {   if ((Matrix->Intermediate = ALLOC(RealNumber,2*(Size+1))) == NULL)
+    {   if ((Matrix->Intermediate = SPALLOC(RealNumber,2*(Size+1))) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
 #else
     if (Matrix->Intermediate == NULL)
-    {   if ((Matrix->Intermediate = ALLOC(RealNumber, Size+1)) == NULL)
+    {   if ((Matrix->Intermediate = SPALLOC(RealNumber, Size+1)) == NULL)
             Matrix->Error = spNO_MEMORY;
     }
 #endif
