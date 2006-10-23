@@ -1095,7 +1095,7 @@ function ged_fec(h)
 //  end
 //  TCL_SetVar("curclipstate",h.clip_state);
 
-  TCL_EvalFile(SCI+'/tcl/ged/Fec.tcl')
+  TCL_EvalFile(SCI+'/modules/graphics/tcl/ged/Fec.tcl')
 endfunction
 
 
