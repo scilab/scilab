@@ -372,7 +372,7 @@ proc createmenues {} {
              -command {textbox [file join $moduledir BUGS] \
               \"[mc "Scipad Known bugs"]\"}"
      eval "$pad.filemenu.help add command [me "Change&log"] \
-            -command {textbox [file join $moduledir CHANGELOG] \
+            -command {textbox [file join $moduledir changelog.txt] \
             \"[mc "Changes in the Scipad codebase"]\"}"
 
     # now make the menu bar visible
