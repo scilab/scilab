@@ -7785,14 +7785,19 @@ sciDrawObj (sciPointObj * pobj)
       break; 
 
       /******************************** 22/05/2002 ***************************/    
-    case SCI_FEC:  
-      if (!sciGetVisibility(pobj)) break;
+    case SCI_FEC:
+	{
+	  int curLineStyle = 0 ;
+      int lineStyle    = 1 ;
+      int verbose      = 0 ;
+		
+	  if ( !sciGetVisibility(pobj) ) { break ; }
       
       n1=1;
-      if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
-      if ((ym = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
+	  if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL) { return -1 ; }
+	  if ((ym = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL) { return -1 ; }
 
-      if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE)
+      if( !pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d )
 	{
 	  for ( i =0 ; i < pFEC_FEATURE (pobj)->Nnode ; i++) {
 	    xm[i]= XScale(pFEC_FEATURE (pobj)->pvecx[i]); 
@@ -7826,11 +7831,18 @@ sciDrawObj (sciPointObj * pobj)
 
 #ifdef WIN32
       flag_DO=MaybeSetWinhdc();
-#endif   
+#endif
+	  /* need to put line style to plain otherwise bug 1872 occurs */
+      C2F(dr)("xget","line style",&verbose,&curLineStyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset", "line style", &lineStyle, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+
       newfec(xm,ym,pFEC_FEATURE (pobj)->pnoeud,pFEC_FEATURE (pobj)->pfun,
 	     &pFEC_FEATURE (pobj)->Nnode,&pFEC_FEATURE (pobj)->Ntr,
 	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax,
 	     pFEC_FEATURE (pobj)->colout, pFEC_FEATURE (pobj)->with_mesh);
+
+	  C2F(dr)("xset", "line style", &curLineStyle, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
@@ -7840,7 +7852,8 @@ sciDrawObj (sciPointObj * pobj)
       FREE(ym); ym = (integer *) NULL; /* et F.Leray 18.02.04*/
 
       break;      
-      /******************************** 22/05/2002 ***************************/    
+      /******************************** 22/05/2002 ***************************/
+	}
     case SCI_SEGS:
       if (!sciGetVisibility(pobj)) { break ; }
       
