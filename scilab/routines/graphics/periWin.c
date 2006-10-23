@@ -2842,7 +2842,9 @@ void C2F(displaystring)(string, x, y, v1, flag, v6, v7, angle, dv2, dv3, dv4)
 	}
       else
 	{
+	  SetBkMode(hdc, TRANSPARENT); 
 	  TextOut(hdc,(int) *x,(int) *y,string,strlen(string));
+	  SetBkMode(hdc, OPAQUE); 
 	}
       if ( *flag == 1) 
 	{
@@ -4148,7 +4150,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 			MessageBox((HWND)NULL,"Couldn't open graphic window",(LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
 			return;
 		}
-
+        
 		ShowWindow(ScilabXgc->CWindow, SW_SHOWNORMAL);
 		ShowWindow(ScilabXgc->hWndParent,  SW_SHOWNORMAL);
 		graphwin.resized = FALSE;
