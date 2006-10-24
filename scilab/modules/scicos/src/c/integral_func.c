@@ -28,14 +28,14 @@ void  integral_func(scicos_block *block,int flag)
   } else if (flag==9){
     for(i=0;i<block->nx;++i) {
       if (block->mode[i]==3){
-	block->g[i]=(block->x[i]-(block->rpar[0]))*(block->x[i]-(block->rpar[1]));
+	block->g[i]=(block->x[i]-(block->rpar[i]))*(block->x[i]-(block->rpar[block->nx+i]));
       } else {
 	block->g[i]=block->inptr[0][i];
       } 
       if (get_phase_simulation()==1) {
-	if (block->inptr[0][i]>=0&&block->x[i]>=block->rpar[0]){
+	if (block->inptr[0][i]>=0&&block->x[i]>=block->rpar[i]){
 	  block->mode[i]=1;
-	}else if (block->inptr[0][i]<=0&&block->x[i]<=block->rpar[1]){
+	}else if (block->inptr[0][i]<=0&&block->x[i]<=block->rpar[block->nx+i]){
 	  block->mode[i]=2;
 	}else {
 	  block->mode[i]=3;
