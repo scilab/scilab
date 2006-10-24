@@ -199,7 +199,10 @@ $pictdict begin
 	/t1 exch neg cy add def 
 	/t2 exch neg cx add def 
 	[1 0 0 hom t2 t1 ] concat 
-	glev WhiteLev le
+	
+	% don't fill if the color is out of colormap
+        % that's the disctinction between drawArc and FillArc
+	glev 1 WhiteLev add le
 	{ % filling 
 	newpath
 	cx cy moveto 

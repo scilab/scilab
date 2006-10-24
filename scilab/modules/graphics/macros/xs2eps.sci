@@ -44,10 +44,10 @@ function xs2eps(win_num,filename,colored,orientation)
   //add the Postscript file header and create <filename>.eps file
   if MSDOS then
     fname=pathconvert(filename,%f,%t,'w')
-    comm=pathconvert(SCI+'\bin\BEpsf',%f,%f,'w')
+    comm=pathconvert(SCI+'\tools\printer\BEpsf',%f,%f,'w')
     rep=unix_g(comm+' '+opt+' '+'""'+fname+'""')
   else
-    rep=unix_g(SCI+'/bin/BEpsf '+opt+' '+filename)
+    rep=unix_g(SCI+'/tools/printer/BEpsf '+opt+' '+filename)
   end
   if rep<>[] then 
     error('Problem generating file , perhaps directory is not writable')
