@@ -21,10 +21,8 @@ function ged(k,win)
   
   if k>3 then
     TCL_EvalStr("set isgedinterp [interp exists ged]")
-    if TCL_GetVar("isgedinterp")=='0' then    
-      TCL_EvalStr("interp create ged")
-      TCL_EvalStr("load {'+gettklib()+'} Tk ged")
-      TCL_EvalStr("ged eval {wm withdraw .}")
+    if ~TCL_ExistInterp( "ged" ) then    
+      TCL_CreateSlave( "ged" ) ;
     end
   end
 
