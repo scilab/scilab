@@ -1813,7 +1813,7 @@ void C2F(drawarcsPos)(char *str, integer *vects, integer *style, integer *n, int
       C2F(set_line_style_Pos)(&style[i],PI0,PI0,PI0);
 
       /** to say that we don't want to fill the arcs */
-      fvect = ScilabGCPos.IDLastPattern  +2;
+      fvect = ScilabGCPos.IDLastPattern + 3 ; /* out of colormap, so don't fill */
       C2F(fillarcsPos)(str,&vects[(6)*i],&fvect,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
   C2F(set_dash_and_color_Pos)( Dvalue,PI0,PI0,PI0);
@@ -1837,7 +1837,7 @@ void C2F(drawarcPos)(char *str, integer *x, integer *y, integer *width, integer 
   vects[0]= *x;vects[1]= *y;vects[2]= *width;
   vects[3]= *height;vects[4]= *angle1;vects[5]= *angle2;
   /** fvect set to tell that we only want to draw not to fill  */
-  fvect[0] = ScilabGCPos.IDLastPattern + 2  ;
+  fvect[0] = ScilabGCPos.IDLastPattern + 3  ; /* out of colormap, so don't fill */
   C2F(fillarcsPos)(str,vects,fvect,&i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 }
 
@@ -2056,49 +2056,6 @@ void FileInit(void)
   
   FPRINTF((file,"\n%% End init driver "));
   FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
-
-
-/*   /\** If the X window exists we check its colormap **\/ */
-/*   if (  CheckColormap(&m) == 1)  */
-/*     {  */
-/*       int i; */
-/*       float r,g,b; */
-/*       ScilabGCPos.Numcolors = m; */
-/*       ScilabGCPos.NumForeground = m; */
-/*       ScilabGCPos.NumBackground = m + 1; */
-/*       if (ScilabGCPos.CurColorStatus == 1)  */
-/* 	{ */
-/* 	  ScilabGCPos.IDLastPattern = ScilabGCPos.Numcolors - 1; */
-/* 	  FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern)); */
-/* 	} */
-/*       FPRINTF((file,"\n/ColorR [")); */
-/*       for ( i=0; i < m ; i++) */
-/* 	{ */
-/* 	  get_r(i,&r); */
-/* 	  FPRINTF((file,"%f ",r)); */
-/* 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n")); */
-/* 	} */
-/*       FPRINTF((file,"0.0 1.0] def")); */
-/*       FPRINTF((file,"\n/ColorG [")); */
-/*       for ( i=0; i < m ; i++)  */
-/* 	{ */
-/* 	  get_g(i,&g); */
-/* 	  FPRINTF((file,"%f ",g)); */
-/* 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n")); */
-/* 	} */
-/*       FPRINTF((file,"0.0 1.0] def")); */
-/*       FPRINTF((file,"\n/ColorB [")); */
-/*       for ( i=0; i < m; i++) */
-/* 	{ */
-/* 	  get_b(i,&b); */
-/* 	  FPRINTF((file,"%f ",b)); */
-/* 	  if ( (i % 10 ) == 0 ) FPRINTF((file,"\n")); */
-/* 	} */
-/*       FPRINTF((file,"0.0 1.0] def")); */
-/*     } */
-
-/*   C2F(setgccolormapPos)(&ScilabGCPos,32, default_colors, &ierr); */
-
 
 
   FPRINTF((file,"\n%%Latex:\\setlength{\\unitlength}{%4.2fpt}",
