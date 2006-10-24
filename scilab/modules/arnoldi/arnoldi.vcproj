@@ -69,6 +69,7 @@
 				ModuleDefinitionFile="arnoldi.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -157,6 +158,7 @@
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
+				ImportLibrary="../../bin/$(ProjectName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
