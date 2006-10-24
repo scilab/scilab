@@ -826,8 +826,8 @@ F77
 FFLAGS
 ac_ct_F77
 LIBTOOL
-F2C
 FLIBS
+F2C
 WITH_F95
 XMKMF
 X_CFLAGS
@@ -21185,242 +21185,6 @@ echo "$as_me: error: Unable to configure: Fortran f77 compiler not found" >&2;}
     fi
     MAKEFILE_TARGET=Makefile.aix
     ;;
-# Linux sparc
-  sparc-*-linux-gnu)
-    LIEEELIB=
-    { echo "$as_me:$LINENO: checking for main in -lieee" >&5
-echo $ECHO_N "checking for main in -lieee... $ECHO_C" >&6; }
-if test "${ac_cv_lib_ieee_main+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lieee  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_lib_ieee_main=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_ieee_main=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_ieee_main" >&5
-echo "${ECHO_T}$ac_cv_lib_ieee_main" >&6; }
-if test $ac_cv_lib_ieee_main = yes; then
-  LIEEELIB=-lieee
-fi
-
-    GCC=yes
-    CC=gcc
-    CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings'
-    CC_LDFLAGS=$LIEEELIB
-    # find Fortran compiler
-    # g77 already asked and found: good
-    if test "$WITH_G77" = yes; then
-      FC=g77
-    # option with-f2c
-    elif test "$with_f2c" = yes; then
-      # Extract the first word of "f2c", so it can be a program name with args.
-set dummy f2c; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_F2C+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$F2C"; then
-  ac_cv_prog_F2C="$F2C" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_F2C="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_F2C" && ac_cv_prog_F2C="no"
-fi
-fi
-F2C=$ac_cv_prog_F2C
-if test -n "$F2C"; then
-  { echo "$as_me:$LINENO: result: $F2C" >&5
-echo "${ECHO_T}$F2C" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-      if test "$F2C" = no; then
-        { { echo "$as_me:$LINENO: error: Unable to configure: f2c compiler not found" >&5
-echo "$as_me: error: Unable to configure: f2c compiler not found" >&2;}
-   { (exit 1); exit 1; }; }
-      fi
-      # script shell f77 have bugs, get ours
-      FC='${SCIDIR}/bin/f77-linux'
-    else
-      # first find g77
-      # Extract the first word of "g77", so it can be a program name with args.
-set dummy g77; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH_G77+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH_G77"; then
-  ac_cv_prog_WITH_G77="$WITH_G77" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH_G77="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH_G77" && ac_cv_prog_WITH_G77="no"
-fi
-fi
-WITH_G77=$ac_cv_prog_WITH_G77
-if test -n "$WITH_G77"; then
-  { echo "$as_me:$LINENO: result: $WITH_G77" >&5
-echo "${ECHO_T}$WITH_G77" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-      if test "$WITH_G77" = yes; then
-        FC=g77
-      else
-      # otherwise find f2c
-        # Extract the first word of "f2c", so it can be a program name with args.
-set dummy f2c; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_F2C+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$F2C"; then
-  ac_cv_prog_F2C="$F2C" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_F2C="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_F2C" && ac_cv_prog_F2C="no"
-fi
-fi
-F2C=$ac_cv_prog_F2C
-if test -n "$F2C"; then
-  { echo "$as_me:$LINENO: result: $F2C" >&5
-echo "${ECHO_T}$F2C" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-        if test "$F2C" = yes; then
-          # script shell f77 have bugs, get ours
-          FC='${SCIDIR}/bin/f77-linux'
-        else
-          { { echo "$as_me:$LINENO: error: Unable to configure: no Fortran compiler found" >&5
-echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
-   { (exit 1); exit 1; }; }
-        fi
-      fi
-    fi
-    FC_OPTIONS=-O
-    FC_OPTIONS_O0=
-    FC_LDFLAGS="$LIEEELIB -ldl -rdynamic"
-    LD=ld
-    LD_LDFLAGS=$LIEEELIB
-    if test "$enable_debug" = yes; then
-      CC_OPTIONS='-g -Dlinux -fwritable-strings'
-      FC_OPTIONS=-g
-    fi
-    MAKEFILE_TARGET=Makefile.linux
-   ;;
 # SUN OS (NO LONGER SUPPORTED)
   sparc-*-sunos*)
     # standard compilers
@@ -21571,7 +21335,7 @@ echo "$as_me: error: Unable to configure: Fortran f77 compiler not found" >&2;}
       FC="$F77"
     fi
     #FC="$F77"
-    FC_OPTIONS="-O -mieee-with-inexact"
+    FC_OPTIONS=-O
     FC_OPTIONS_O0=
     FC_LDFLAGS=
     LD=ld
@@ -22075,7 +21839,7 @@ fi
 echo "$as_me: error: Unable to configure: f2c compiler not found" >&2;}
    { (exit 1); exit 1; }; }
       fi
-       # script shell f77 have bugs, get ours
+      # script shell f77 have bugs, get ours
       FC='${SCIDIR}/bin/f77-linux'
     else
       # first find g77
@@ -22593,413 +22357,6 @@ echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
 		LD_LDFLAGS="$LIEEELIB -Wl,-relax "
 	fi
 	MAKEFILE_TARGET=Makefile.linux64
-	;;
-# Linux ELF: all standard distributions
-i*86-*-linux-gnu | *-pc-linux-gnu )
-	LIEEELIB=
-	{ echo "$as_me:$LINENO: checking for main in -lieee" >&5
-echo $ECHO_N "checking for main in -lieee... $ECHO_C" >&6; }
-if test "${ac_cv_lib_ieee_main+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lieee  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-
-int
-main ()
-{
-return main ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_cv_lib_ieee_main=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_ieee_main=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_ieee_main" >&5
-echo "${ECHO_T}$ac_cv_lib_ieee_main" >&6; }
-if test $ac_cv_lib_ieee_main = yes; then
-  LIEEELIB=-lieee
-fi
-
-	if test "$with_intelcompilers" = yes; then
-		GCC=no
-		CC=$ICC
-		FC=$IFC
-		CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp -pc64 -ffnalias -falias '
-		CC_PICFLAGS="-fPIC"
-		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
-		FC_OPTIONS="-O -cm -w90 -w95 -mp -pc64 -ffnalias -falias"
-		FC_OPTIONS_O0="-cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
-		if test "$enable_debug" = yes; then
-			CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO  -mp -pc64 -ffnalias -falias'
-			FC_OPTIONS="-g -cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
-		fi
-		CC_LDFLAGS=$LIEEELIB
-		FC_LDFLAGS="$LIEEELIB -ldl"
-		LD=xild
-		LD_LDFLAGS="$LIEEELIB"
-	else
-		GCC=yes
-		GCCFIX=fix.o
-		CC=gcc
-		if test "$enable_debug" = yes; then
-			CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO'
-		else
-			CC_OPTIONS='-O -DNDEBUG -Dlinux  -DNARROWPROTO'
-		fi
-		CC_LDFLAGS=$LIEEELIB
-		CC_PICFLAGS=-fPIC
-		# find Fortran compiler
-		# g77 already asked and found: good
-		if test "$WITH_G77" = yes; then
-			FC=g77
-			FC_PICFLAGS=-fPIC
-			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g"
-				FC_OPTIONS_O0=""
-			else
-				FC_OPTIONS="-O"
-				FC_OPTIONS_O0=""
-			fi
-		elif test "$WITH_GFORTRAN" = yes;then
-			FC=gfortran
-			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g -ff2c"
-				FC_OPTIONS_O0="-ff2c"
-			else
-				FC_OPTIONS="-O -ff2c"
-				FC_OPTIONS_O0="-ff2c"
-			fi
-			FC_PICFLAGS=-fPIC
-			cat >>confdefs.h <<\_ACEOF
-#define G95_FORTRAN 1
-_ACEOF
-
-		# option with-f2c
-		elif test "$with_f2c" = yes; then
-			# Extract the first word of "f2c", so it can be a program name with args.
-set dummy f2c; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_F2C+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$F2C"; then
-  ac_cv_prog_F2C="$F2C" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_F2C="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_F2C" && ac_cv_prog_F2C="no"
-fi
-fi
-F2C=$ac_cv_prog_F2C
-if test -n "$F2C"; then
-  { echo "$as_me:$LINENO: result: $F2C" >&5
-echo "${ECHO_T}$F2C" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-			if test "$F2C" = no; then
-				{ { echo "$as_me:$LINENO: error: Unable to configure: f2c compiler not found" >&5
-echo "$as_me: error: Unable to configure: f2c compiler not found" >&2;}
-   { (exit 1); exit 1; }; }
-			fi
-			# script shell f77 have bugs, get ours
-			FC='${SCIDIR}/bin/f77-linux'
-			if test "$enable_debug" = yes; then
-				FC_OPTIONS="-g"
-				FC_OPTIONS_O0=""
-			else
-				FC_OPTIONS="-O"
-				FC_OPTIONS_O0=""
-			fi
-		else
-			# first find g77
-			# Extract the first word of "g77", so it can be a program name with args.
-set dummy g77; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH_G77+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH_G77"; then
-  ac_cv_prog_WITH_G77="$WITH_G77" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH_G77="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH_G77" && ac_cv_prog_WITH_G77="no"
-fi
-fi
-WITH_G77=$ac_cv_prog_WITH_G77
-if test -n "$WITH_G77"; then
-  { echo "$as_me:$LINENO: result: $WITH_G77" >&5
-echo "${ECHO_T}$WITH_G77" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-			if test "$WITH_G77" = yes; then
-				FC=g77
-				FC_PICFLAGS=-fPIC
-				if test "$enable_debug" = yes; then
-					FC_OPTIONS="-g"
-					FC_OPTIONS_O0=""
-				else
-					FC_OPTIONS="-O"
-					FC_OPTIONS_O0=""
-				fi
-			else
-				# Extract the first word of "gfortran", so it can be a program name with args.
-set dummy gfortran; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH_GFORTRAN+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH_GFORTRAN"; then
-  ac_cv_prog_WITH_GFORTRAN="$WITH_GFORTRAN" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH_GFORTRAN="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH_GFORTRAN" && ac_cv_prog_WITH_GFORTRAN="no"
-fi
-fi
-WITH_GFORTRAN=$ac_cv_prog_WITH_GFORTRAN
-if test -n "$WITH_GFORTRAN"; then
-  { echo "$as_me:$LINENO: result: $WITH_GFORTRAN" >&5
-echo "${ECHO_T}$WITH_GFORTRAN" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-				if test "$WITH_GFORTRAN" = yes; then
-					FC=gfortran
-					FC_PICFLAGS=-fPIC
-					cat >>confdefs.h <<\_ACEOF
-#define G95_FORTRAN 1
-_ACEOF
-
-					if test "$enable_debug" = yes; then
-						FC_OPTIONS="-g -ff2c"
-						FC_OPTIONS_O0="-ff2c"
-					else
-						FC_OPTIONS="-O -ff2c"
-						FC_OPTIONS_O0="-ff2c"
-					fi
-				else
-					# Extract the first word of "f95", so it can be a program name with args.
-set dummy f95; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_WITH_F95+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$WITH_F95"; then
-  ac_cv_prog_WITH_F95="$WITH_F95" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_WITH_F95="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_WITH_F95" && ac_cv_prog_WITH_F95="no"
-fi
-fi
-WITH_F95=$ac_cv_prog_WITH_F95
-if test -n "$WITH_F95"; then
-  { echo "$as_me:$LINENO: result: $WITH_F95" >&5
-echo "${ECHO_T}$WITH_F95" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-					if test "$WITH_F95" = yes; then
-						FC=f95
-						FC_PICFLAGS=-fPIC
-						cat >>confdefs.h <<\_ACEOF
-#define F95_FORTRAN 1
-_ACEOF
-
-						if test "$enable_debug" = yes; then
-							FC_OPTIONS="-g"
-							FC_OPTIONS_O0=""
-						else
-							FC_OPTIONS="-O"
-							FC_OPTIONS_O0=""
-						fi
-					else
-						# otherwise find f2c
-						# Extract the first word of "f2c", so it can be a program name with args.
-set dummy f2c; ac_word=$2
-{ echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
-if test "${ac_cv_prog_F2C+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  if test -n "$F2C"; then
-  ac_cv_prog_F2C="$F2C" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_F2C="yes"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_F2C" && ac_cv_prog_F2C="no"
-fi
-fi
-F2C=$ac_cv_prog_F2C
-if test -n "$F2C"; then
-  { echo "$as_me:$LINENO: result: $F2C" >&5
-echo "${ECHO_T}$F2C" >&6; }
-else
-  { echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6; }
-fi
-
-
-						if test "$F2C" = yes; then
-							# script shell f77 have bugs, get ours
-							FC='${SCIDIR}/bin/f77-linux'
-							if test "$enable_debug" = yes; then
-								FC_OPTIONS="-g"
-								FC_OPTIONS_O0=""
-							else
-								FC_OPTIONS="-O"
-								FC_OPTIONS_O0=""
-							fi
-						else
-							{ { echo "$as_me:$LINENO: error: Unable to configure: no Fortran compiler found" >&5
-echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
-   { (exit 1); exit 1; }; }
-						fi
-					fi
-				fi
-			fi
-		fi
-		FC_LDFLAGS="$LIEEELIB -ldl -rdynamic"
-		LD=ld
-		LD_LDFLAGS=$LIEEELIB
-	fi
-	MAKEFILE_TARGET=Makefile.linux
 	;;
 # Linux gnu: ia64 distributions
   ia64-*-linux-gnu)
@@ -23660,6 +23017,415 @@ echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
     fi
     MAKEFILE_TARGET=Makefile.linux
    ;;
+
+# Linux ELF: all standard distributions (catch all other)
+i*86-*-linux-gnu | *-linux-gnu )
+				 echo "ici"
+	LIEEELIB=
+	{ echo "$as_me:$LINENO: checking for main in -lieee" >&5
+echo $ECHO_N "checking for main in -lieee... $ECHO_C" >&6; }
+if test "${ac_cv_lib_ieee_main+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lieee  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+
+int
+main ()
+{
+return main ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag" || test ! -s conftest.err'
+  { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+  ac_cv_lib_ieee_main=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_ieee_main=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_ieee_main" >&5
+echo "${ECHO_T}$ac_cv_lib_ieee_main" >&6; }
+if test $ac_cv_lib_ieee_main = yes; then
+  LIEEELIB=-lieee
+fi
+
+	if test "$with_intelcompilers" = yes; then
+		GCC=no
+		CC=$ICC
+		FC=$IFC
+		CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp -pc64 -ffnalias -falias '
+		CC_PICFLAGS="-fPIC"
+		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
+		FC_OPTIONS="-O -cm -w90 -w95 -mp -pc64 -ffnalias -falias"
+		FC_OPTIONS_O0="-cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
+		if test "$enable_debug" = yes; then
+			CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO  -mp -pc64 -ffnalias -falias'
+			FC_OPTIONS="-g -cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
+		fi
+		CC_LDFLAGS=$LIEEELIB
+		FC_LDFLAGS="$LIEEELIB -ldl"
+		LD=xild
+		LD_LDFLAGS="$LIEEELIB"
+	else
+		GCC=yes
+		GCCFIX=fix.o
+		CC=gcc
+		if test "$enable_debug" = yes; then
+			CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO'
+		else
+			CC_OPTIONS='-O -DNDEBUG -Dlinux  -DNARROWPROTO'
+		fi
+		CC_LDFLAGS=$LIEEELIB
+		CC_PICFLAGS=-fPIC
+		# find Fortran compiler
+		# g77 already asked and found: good
+		if test "$WITH_G77" = yes; then
+			FC=g77
+			FC_PICFLAGS=-fPIC
+			if test "$enable_debug" = yes; then
+				FC_OPTIONS="-g"
+				FC_OPTIONS_O0=""
+			else
+				FC_OPTIONS="-O"
+				FC_OPTIONS_O0=""
+			fi
+		elif test "$WITH_GFORTRAN" = yes;then
+			FC=gfortran
+			if test "$enable_debug" = yes; then
+				FC_OPTIONS="-g -ff2c"
+				FC_OPTIONS_O0="-ff2c"
+			else
+				FC_OPTIONS="-O -ff2c"
+				FC_OPTIONS_O0="-ff2c"
+			fi
+			FC_PICFLAGS=-fPIC
+			cat >>confdefs.h <<\_ACEOF
+#define G95_FORTRAN 1
+_ACEOF
+
+		# option with-f2c
+		elif test "$with_f2c" = yes; then
+			# Extract the first word of "f2c", so it can be a program name with args.
+set dummy f2c; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_F2C+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$F2C"; then
+  ac_cv_prog_F2C="$F2C" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_F2C="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_F2C" && ac_cv_prog_F2C="no"
+fi
+fi
+F2C=$ac_cv_prog_F2C
+if test -n "$F2C"; then
+  { echo "$as_me:$LINENO: result: $F2C" >&5
+echo "${ECHO_T}$F2C" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+			if test "$F2C" = no; then
+				{ { echo "$as_me:$LINENO: error: Unable to configure: f2c compiler not found" >&5
+echo "$as_me: error: Unable to configure: f2c compiler not found" >&2;}
+   { (exit 1); exit 1; }; }
+			fi
+			# script shell f77 have bugs, get ours
+			FC='${SCIDIR}/bin/f77-linux'
+			if test "$enable_debug" = yes; then
+				FC_OPTIONS="-g"
+				FC_OPTIONS_O0=""
+			else
+				FC_OPTIONS="-O"
+				FC_OPTIONS_O0=""
+			fi
+		else
+			# first find g77
+			# Extract the first word of "g77", so it can be a program name with args.
+set dummy g77; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH_G77+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH_G77"; then
+  ac_cv_prog_WITH_G77="$WITH_G77" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH_G77="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH_G77" && ac_cv_prog_WITH_G77="no"
+fi
+fi
+WITH_G77=$ac_cv_prog_WITH_G77
+if test -n "$WITH_G77"; then
+  { echo "$as_me:$LINENO: result: $WITH_G77" >&5
+echo "${ECHO_T}$WITH_G77" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+			if test "$WITH_G77" = yes; then
+				FC=g77
+				FC_PICFLAGS=-fPIC
+				if test "$enable_debug" = yes; then
+					FC_OPTIONS="-g"
+					FC_OPTIONS_O0=""
+				else
+					FC_OPTIONS="-O"
+					FC_OPTIONS_O0=""
+				fi
+			else
+				# Extract the first word of "gfortran", so it can be a program name with args.
+set dummy gfortran; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH_GFORTRAN+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH_GFORTRAN"; then
+  ac_cv_prog_WITH_GFORTRAN="$WITH_GFORTRAN" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH_GFORTRAN="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH_GFORTRAN" && ac_cv_prog_WITH_GFORTRAN="no"
+fi
+fi
+WITH_GFORTRAN=$ac_cv_prog_WITH_GFORTRAN
+if test -n "$WITH_GFORTRAN"; then
+  { echo "$as_me:$LINENO: result: $WITH_GFORTRAN" >&5
+echo "${ECHO_T}$WITH_GFORTRAN" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+				if test "$WITH_GFORTRAN" = yes; then
+					FC=gfortran
+					FC_PICFLAGS=-fPIC
+					cat >>confdefs.h <<\_ACEOF
+#define G95_FORTRAN 1
+_ACEOF
+
+					if test "$enable_debug" = yes; then
+						FC_OPTIONS="-g -ff2c"
+						FC_OPTIONS_O0="-ff2c"
+					else
+						FC_OPTIONS="-O -ff2c"
+						FC_OPTIONS_O0="-ff2c"
+					fi
+				else
+					# Extract the first word of "f95", so it can be a program name with args.
+set dummy f95; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_WITH_F95+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$WITH_F95"; then
+  ac_cv_prog_WITH_F95="$WITH_F95" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_WITH_F95="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_WITH_F95" && ac_cv_prog_WITH_F95="no"
+fi
+fi
+WITH_F95=$ac_cv_prog_WITH_F95
+if test -n "$WITH_F95"; then
+  { echo "$as_me:$LINENO: result: $WITH_F95" >&5
+echo "${ECHO_T}$WITH_F95" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+					if test "$WITH_F95" = yes; then
+						FC=f95
+						FC_PICFLAGS=-fPIC
+						cat >>confdefs.h <<\_ACEOF
+#define F95_FORTRAN 1
+_ACEOF
+
+						if test "$enable_debug" = yes; then
+							FC_OPTIONS="-g"
+							FC_OPTIONS_O0=""
+						else
+							FC_OPTIONS="-O"
+							FC_OPTIONS_O0=""
+						fi
+					else
+						# otherwise find f2c
+						# Extract the first word of "f2c", so it can be a program name with args.
+set dummy f2c; ac_word=$2
+{ echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6; }
+if test "${ac_cv_prog_F2C+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  if test -n "$F2C"; then
+  ac_cv_prog_F2C="$F2C" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_F2C="yes"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_F2C" && ac_cv_prog_F2C="no"
+fi
+fi
+F2C=$ac_cv_prog_F2C
+if test -n "$F2C"; then
+  { echo "$as_me:$LINENO: result: $F2C" >&5
+echo "${ECHO_T}$F2C" >&6; }
+else
+  { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+fi
+
+
+						if test "$F2C" = yes; then
+							# script shell f77 have bugs, get ours
+							FC='${SCIDIR}/bin/f77-linux'
+							if test "$enable_debug" = yes; then
+								FC_OPTIONS="-g"
+								FC_OPTIONS_O0=""
+							else
+								FC_OPTIONS="-O"
+								FC_OPTIONS_O0=""
+							fi
+						else
+							{ { echo "$as_me:$LINENO: error: Unable to configure: no Fortran compiler found" >&5
+echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
+   { (exit 1); exit 1; }; }
+						fi
+					fi
+				fi
+			fi
+		fi
+		FC_LDFLAGS="$LIEEELIB -ldl -rdynamic"
+		LD=ld
+		LD_LDFLAGS=$LIEEELIB
+	fi
+	MAKEFILE_TARGET=Makefile.linux
+	;;
 # SGI MIPS ULTRIX (NO LONGER SUPPORTED)
   mips-*-ultrix*)
     # standard compilers
@@ -30062,7 +29828,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 30065 "configure"
+#line 29831 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -30408,7 +30174,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 { echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 30411 "configure"
+#line 30177 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -32753,8 +32519,8 @@ F77!$F77$ac_delim
 FFLAGS!$FFLAGS$ac_delim
 ac_ct_F77!$ac_ct_F77$ac_delim
 LIBTOOL!$LIBTOOL$ac_delim
-F2C!$F2C$ac_delim
 FLIBS!$FLIBS$ac_delim
+F2C!$F2C$ac_delim
 WITH_F95!$WITH_F95$ac_delim
 XMKMF!$XMKMF$ac_delim
 X_CFLAGS!$X_CFLAGS$ac_delim
