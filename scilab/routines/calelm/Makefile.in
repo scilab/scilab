@@ -56,10 +56,10 @@ include ../Make.lib
 # according to compiler, do not optimize the following files
 
 icopy.o: icopy.f
-	$(FC) @FC_OPTIONS2@ -c icopy.f -o icopy.o
+	$(FC) @FC_OPTIONS1@ -c icopy.f -o icopy.o
 
 unsfdcopy.o: unsfdcopy.f
-	$(FC) @FC_OPTIONS2@ -c unsfdcopy.f -o unsfdcopy.o
+	$(FC) @FC_OPTIONS1@ -c unsfdcopy.f -o unsfdcopy.o
 
 watan.o: ../stack.h
 
