@@ -97,5 +97,12 @@ typedef struct
 
 IMPORT DBG_struct C2F(dbg);
 
+typedef struct 
+{
+  int mmode;
+} MTLBC_struct;
+
+IMPORT MTLBC_struct C2F(mtlbc);
+
 #endif /** STACK_DEF  **/
 

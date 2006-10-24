@@ -577,6 +577,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\writebuf.c"
+				>
+			</File>
+			<File
 				RelativePath=".\wsmsp.c"
 				>
 			</File>
@@ -1046,6 +1050,10 @@
 			</File>
 			<File
 				RelativePath=".\wperm.f"
+				>
+			</File>
+			<File
+				RelativePath=".\writebuf.f"
 				>
 			</File>
 			<File

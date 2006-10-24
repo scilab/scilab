@@ -25,7 +25,7 @@ c
       op=fin
 c     
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
+         call writebufspc(buf,fin)
          call basout(io,wte,' lspops op: '//buf(1:4))
       endif
 c     

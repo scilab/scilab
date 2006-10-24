@@ -61,13 +61,12 @@ c     . checking variable max (number 3)
          if(ierr.eq.0) then
             call clunit(-lunit,buf,mode)
          elseif(ierr.eq.1) then
-            write(buf,'(''Error while reading line '',a5)') line
+            call writebufspa(buf,line)
             call clunit(-lunit,buf,mode)
             call error(998)
             return
          elseif(ierr.eq.2) then
-            write(buf,'(''Unknown row type '',a2,'' at line '',a5)')
-     $           typrow,line
+            call writebufspb(buf,typrow,line)
             call clunit(-lunit,buf,mode)
             call error(999)
             return
