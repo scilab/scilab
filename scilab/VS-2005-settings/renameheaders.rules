@@ -7,10 +7,10 @@
 		<CustomBuildRule
 			Name="Copy header files"
 			DisplayName="Copy header files"
-			CommandLine="copy $(InputDir)$(InputFileName) $(InputDir)$(InputName).h 1>NUL"
+			CommandLine="copy &quot;$(InputDir)$(InputFileName)&quot; &quot;$(InputDir)$(InputName).h&quot; 1&gt;NUL"
 			Outputs="$(InputDir)$(InputName).h "
 			FileExtensions="*.vc"
-			ExecutionDescription="Copy $(InputDir)$(InputFileName) --> $(InputDir)$(InputName).h"
+			ExecutionDescription="Copy $(InputDir)$(InputFileName) --&gt; $(InputDir)$(InputName).h"
 			>
 			<Properties>
 			</Properties>
