@@ -22,6 +22,7 @@
 
 
 #include "GetProperty.h"
+#include "DrawObjects.h"
 
 static sciPointObj *psubwin;/* NG */
 
@@ -2613,17 +2614,79 @@ void YGradPosition(sciPointObj * psubwin, int xx, int rect2)
 
 void XGradPosition(sciPointObj * psubwin, int yy, int rect3)
 {
+  /* sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin); */
+  
+/*   if(ppsubwin->firsttime_x == TRUE) */
+/*     { */
+/*       ppsubwin->XGradMostOnTop = yy; */
+/*       ppsubwin->XGradMostOnBottom = yy + rect3; */
+/*       ppsubwin->firsttime_x = FALSE; */
+/*     } */
+/*   else */
+/*     { */
+/*       if(yy < ppsubwin->XGradMostOnBottom) ppsubwin->XGradMostOnBottom  = yy; */
+/*       if(yy + rect3 > ppsubwin->XGradMostOnTop) ppsubwin->XGradMostOnTop = yy + rect3; */
+/*     } */
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   
-  if(ppsubwin->firsttime_x == TRUE)
-    {
-      ppsubwin->XGradMostOnTop = yy;
-      ppsubwin->XGradMostOnBottom = yy + rect3;
-      ppsubwin->firsttime_x = FALSE;
-    }
+  if( ppsubwin->firsttime_x )
+  {
+    ppsubwin->XGradMostOnTop = yy - rect3 ;
+    ppsubwin->XGradMostOnBottom = yy ;
+    ppsubwin->firsttime_x = FALSE;
+  }
   else
+  {
+    
+    if(yy > ppsubwin->XGradMostOnBottom)
     {
-      if(yy < ppsubwin->XGradMostOnBottom) ppsubwin->XGradMostOnBottom  = yy;
-      if(yy + rect3 > ppsubwin->XGradMostOnTop) ppsubwin->XGradMostOnTop = yy + rect3;
+      ppsubwin->XGradMostOnBottom  = yy ;
     }
+    if( yy - rect3 < ppsubwin->XGradMostOnTop)
+    {
+      ppsubwin->XGradMostOnTop = yy - rect3 ;
+    }
+  }
 }
+
+/*-----------------------------------------------------------------------------------------*/
+/**
+ * Update the current scale factors from a modified SubWindow.
+ * This is sometimes required when the redraw is disable.
+ */
+void updateSubWinScale( sciPointObj * pSubWin )
+{
+  double xBox[8] ;
+  double yBox[8] ;
+  double zBox[8] ;
+  double dBox[6] ;
+  
+  
+  set_scale ("tttftt", pSUBWIN_FEATURE(pSubWin)->WRect,
+             pSUBWIN_FEATURE(pSubWin)->FRect,
+             NULL, pSUBWIN_FEATURE(pSubWin)->logflags, 
+             pSUBWIN_FEATURE(pSubWin)->ARect); 
+  
+  /* Scales are not be updated with an automatic drawing */
+  if ( pSUBWIN_FEATURE(pSubWin)->is3d )
+  {
+    computeAxisBounds3d( pSubWin, xBox, yBox, zBox, dBox ) ;
+  }
+  else
+  {
+    sci_update_frame_bounds_2d( pSubWin ) ;
+  }
+}
+/*-----------------------------------------------------------------------------------------*/
+/**
+ * update the scale factors only if the SubWindow won't be automatically redrawn.
+ * Should be called before dr("xstringl") for example.
+ */
+void updateScaleIfRequired( sciPointObj * pSubWin )
+{
+  if ( !sciGetIsAutoDrawable( pSubWin ) )
+  {
+    updateSubWinScale( pSubWin ) ;
+  }
+}
+/*-----------------------------------------------------------------------------------------*/
