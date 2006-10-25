@@ -30,7 +30,7 @@
 
   <DESCRIPTION>
     <P><VERB>setlanguage(language)</VERB> changes current language in scilab
-    (help, scipad, and menus).</P>
+    (help and menus).</P>
   </DESCRIPTION>
 
   <SEE_ALSO>
