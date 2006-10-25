@@ -357,6 +357,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\greatr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\hpdel.c"
+				>
+			</File>
+			<File
+				RelativePath=".\hpins.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\int2d.c"
 				>
 			</File>
@@ -710,6 +722,18 @@
 			</File>
 			<File
 				RelativePath=".\fnorm.f"
+				>
+			</File>
+			<File
+				RelativePath=".\greatr.f"
+				>
+			</File>
+			<File
+				RelativePath=".\hpdel.f"
+				>
+			</File>
+			<File
+				RelativePath=".\hpins.f"
 				>
 			</File>
 			<File
