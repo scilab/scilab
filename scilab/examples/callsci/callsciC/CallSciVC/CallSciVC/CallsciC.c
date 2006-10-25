@@ -12,8 +12,8 @@
 #include <string.h> 
 #include <conio.h> 
 
-#include "../../../../../routines/machine.h"
-#include "../../../../../routines/stack-c.h"
+#include "../../../../../modules/core/includes/machine.h"
+#include "../../../../../modules/core/includes/stack-c.h"
 #define TRUE 1
 #define FALSE 0
 /*-----------------------------------------------------------------------------------*/
