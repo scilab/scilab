@@ -195,8 +195,6 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,backgrou
      int *foreground, *background;
      BOOL isboxed,isline,isfilled;
 {
-  integer v;
-  double dv;
   integer x1,yy1,n=1,rect1[4];
   sciPointObj *psubwin, *pobj;
    
