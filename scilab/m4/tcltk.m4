@@ -67,11 +67,12 @@ TCL_VERSION_OK
 TCL_VERSION_OK=1,\
 TCL_VERSION_OK=0 )
 
-cat > conftest.$ac_ext <<EOF
+AC_RUN_IFELSE(
+    [AC_LANG_SOURCE([dnl
 #include "confdefs.h"
 #include <stdio.h>
 #include <$CHK_TCL_INC_NAME>
-int main(int argc,char **argv) {
+int main() {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
         fprintf(maj,"%d",TCL_MAJOR_VERSION);
@@ -80,17 +81,14 @@ int main(int argc,char **argv) {
         fclose(min);
         return 0;
 }
-EOF
-eval $ac_link
-if test -s conftest && (./conftest; exit) 2>/dev/null; then
+])],
+       [
   TCL_MAJOR_VERSION=`cat tclmajor`
   TCL_MINOR_VERSION=`cat tclminor`
   TCL_VERSION=$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION
-  rm -f tclmajor tclminor
-else
-  TCL_VERSION="can't happen"
-fi
-
+],
+[AC_MSG_FAILURE([The TCL detection of the version failed. 
+If you are using Intel Compiler, check if Intel Library (ex : libimf.so) are available (in the LD_LIBRARY_PATH for example)])])
 
 case $host_os in
   darwin* | rhapsody*) 
@@ -107,7 +105,7 @@ if test $TCL_VERSION_OK = 1; then
 else 
 	AC_MSG_RESULT([($TCL_VERSION) no])
 	if $TCL_VERSION = "can't happen"; then
-		AC_MSG_ERROR([can(t happen])
+		AC_MSG_ERROR([can't happen])
         else 
 	   AC_MSG_ERROR([you need at least version 8.4 of tcl])
 	fi
@@ -206,6 +204,7 @@ saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 AC_MSG_CHECKING([if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later])
+
 AC_GREP_CPP(TK_VERSION_OK,
 [
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -219,6 +218,7 @@ TK_VERSION_OK
 ],\
 TK_VERSION_OK=1,\
 TK_VERSION_OK=0 )
+
 
 cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
@@ -234,6 +234,7 @@ int main(int argc,char **argv) {
         return 0;
 }
 EOF
+
 eval $ac_link
 if test -s conftest && (./conftest; exit) 2>/dev/null; then
   TK_MAJOR_VERSION=`cat tkmajor`
@@ -400,11 +401,11 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   #perform tk tests if tcl test passed
   if test $TCL_LIB_OK = 0; then 
 	if test $TCL_INCLUDE_OK = 0; then 
-        	AC_MSG_ERROR([no header file tcl.h  found for 8.4*])
+        	AC_MSG_ERROR([no header file tcl.h found for 8.4*])
         else
-		AC_MSG_ERROR([header file tcl.h  has been found for 8.4*  but no corresponding tcl library])
+		AC_MSG_ERROR([header file tcl.h has been found for 8.4*  but no corresponding tcl library (ie libtcl8.4.so)])
         fi	
-  fi 
+  fi
 
   # Check for tk header file
   AC_MSG_CHECKING([for header file tk.h])
@@ -427,10 +428,10 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   done
 
   if test $TK_LIB_OK = 0; then 
-	if test $TCL_INCLUDE_OK = 0; then 
+	if test $TK_INCLUDE_OK = 0; then 
         	AC_MSG_ERROR([no header file tk.h found for 8.4*])	
         else
-		AC_MSG_ERROR([header file tk.h  has been found for 8.4*  but no corresponding tk library])
+		AC_MSG_ERROR([header file tk.h has been found for 8.4* but no corresponding tk library (libtk8.4.so)])
         fi
 
   else 
