@@ -71,11 +71,11 @@ am__objects_2 = rscar1.lo prja.lo vnorm.lo lsoda.lo lsodar.lo ainvg.lo \
 	lsode.lo svcom1.lo quarul.lo solsy.lo lsodi.lo ddassl.lo \
 	order.lo epsalg.lo cfode.lo rscma1.lo colnew.lo dcutet.lo \
 	xsetf.lo dgbsl.lo rkf45.lo rchek.lo dqag0.lo xerrwv.lo \
-	twodq.lo dqags.lo svcar1.lo daux.lo dgbfa.lo rscom1.lo \
-	rksimp.lo roots.lo rgk4.lo stoda.lo bnorm.lo rchek2.lo \
-	stode.lo vmnorm.lo prepj.lo lsdisc.lo fnorm.lo ddasrt.lo \
-	stodi.lo xsetun.lo intdy.lo ewset.lo roots2.lo prepji.lo \
-	svcma1.lo
+	twodq.lo dqags.lo greatr.lo hpdel.lo hpins.lo svcar1.lo \
+	daux.lo dgbfa.lo rscom1.lo rksimp.lo roots.lo rgk4.lo stoda.lo \
+	bnorm.lo rchek2.lo stode.lo vmnorm.lo prepj.lo lsdisc.lo \
+	fnorm.lo ddasrt.lo stodi.lo xsetun.lo intdy.lo ewset.lo \
+	roots2.lo prepji.lo svcma1.lo
 am__objects_3 = libdifferential_equations_la-sci_int2d.lo \
 	libdifferential_equations_la-sci_int3d.lo \
 	libdifferential_equations_la-sci_intg.lo \
@@ -350,6 +350,9 @@ src/fortran/dqag0.f \
 src/fortran/xerrwv.f \
 src/fortran/twodq.f \
 src/fortran/dqags.f \
+src/fortran/greatr.f \
+src/fortran/hpdel.f \
+src/fortran/hpins.f \
 src/fortran/svcar1.f \
 src/fortran/daux.f \
 src/fortran/dgbfa.f \
@@ -720,6 +723,15 @@ twodq.lo: src/fortran/twodq.f
 
 dqags.lo: src/fortran/dqags.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dqags.lo `test -f 'src/fortran/dqags.f' || echo '$(srcdir)/'`src/fortran/dqags.f
+
+greatr.lo: src/fortran/greatr.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o greatr.lo `test -f 'src/fortran/greatr.f' || echo '$(srcdir)/'`src/fortran/greatr.f
+
+hpdel.lo: src/fortran/hpdel.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hpdel.lo `test -f 'src/fortran/hpdel.f' || echo '$(srcdir)/'`src/fortran/hpdel.f
+
+hpins.lo: src/fortran/hpins.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hpins.lo `test -f 'src/fortran/hpins.f' || echo '$(srcdir)/'`src/fortran/hpins.f
 
 svcar1.lo: src/fortran/svcar1.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o svcar1.lo `test -f 'src/fortran/svcar1.f' || echo '$(srcdir)/'`src/fortran/svcar1.f

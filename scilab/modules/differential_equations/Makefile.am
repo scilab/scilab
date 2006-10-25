@@ -26,6 +26,9 @@ src/fortran/dqag0.f \
 src/fortran/xerrwv.f \
 src/fortran/twodq.f \
 src/fortran/dqags.f \
+src/fortran/greatr.f \
+src/fortran/hpdel.f \
+src/fortran/hpins.f \
 src/fortran/svcar1.f \
 src/fortran/daux.f \
 src/fortran/dgbfa.f \
