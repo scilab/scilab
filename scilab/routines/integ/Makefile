@@ -12,7 +12,7 @@ OBJSF = ainvg.o bnorm.o cfode.o  ewset.o fnorm.o intdy.o lsoda.o lsode.o \
 	xsetun.o dqag0.o dqags.o epsalg.o quarul.o order.o \
 	rgk4.o lsdisc.o lsodar.o rscar1.o svcar1.o rchek.o roots.o ddassl.o \
 	colnew.o ddasrt.o rkf45.o rksimp.o twodq.o dcutet.o daux.o ddaskr.o \
-	lsodar2.o rchek2.o roots2.o
+	lsodar2.o rchek2.o roots2.o greatr.o hpdel.o hpins.o
 
 include ../../Makefile.incl
 
