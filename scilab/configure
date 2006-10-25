@@ -23020,7 +23020,6 @@ echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
 
 # Linux ELF: all standard distributions (catch all other)
 i*86-*-linux-gnu | *-linux-gnu )
-				 echo "ici"
 	LIEEELIB=
 	{ echo "$as_me:$LINENO: checking for main in -lieee" >&5
 echo $ECHO_N "checking for main in -lieee... $ECHO_C" >&6; }
@@ -29824,11 +29823,13 @@ saved_cflags="$CFLAGS"
 saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS -I$CHK_TCL_INCLUDE_PATH"
 CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
+{ echo "$as_me:$LINENO: checking avant 1 ...." >&5
+echo $ECHO_N "checking avant 1 ....... $ECHO_C" >&6; }
 
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 29831 "configure"
+#line 29832 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -29854,11 +29855,23 @@ fi
 rm -f conftest*
 
 
-cat > conftest.$ac_ext <<EOF
+if test "$cross_compiling" = yes; then
+  { { echo "$as_me:$LINENO: error: cannot run test program while cross compiling
+See \`config.log' for more details." >&5
+echo "$as_me: error: cannot run test program while cross compiling
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
 #include "confdefs.h"
 #include <stdio.h>
 #include <$CHK_TCL_INC_NAME>
-int main(int argc,char **argv) {
+int main() {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
         fprintf(maj,"%d",TCL_MAJOR_VERSION);
@@ -29867,16 +29880,50 @@ int main(int argc,char **argv) {
         fclose(min);
         return 0;
 }
-EOF
-eval $ac_link
-if test -s conftest && (./conftest; exit) 2>/dev/null; then
+
+_ACEOF
+rm -f conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
+  { (case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_try") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+
   TCL_MAJOR_VERSION=`cat tclmajor`
   TCL_MINOR_VERSION=`cat tclminor`
   TCL_VERSION=$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION
-  rm -f tclmajor tclminor
+
 else
-  TCL_VERSION="can't happen"
+  echo "$as_me: program exited with status $ac_status" >&5
+echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+( exit $ac_status )
+{ { echo "$as_me:$LINENO: error: The TCL detection of the version failed.
+If you are using Intel Compiler, check if Intel Library (ex : libimf.so) are available (in the LD_LIBRARY_PATH for example)
+See \`config.log' for more details." >&5
+echo "$as_me: error: The TCL detection of the version failed.
+If you are using Intel Compiler, check if Intel Library (ex : libimf.so) are available (in the LD_LIBRARY_PATH for example)
+See \`config.log' for more details." >&2;}
+   { (exit 1); exit 1; }; }
 fi
+rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext conftest.$ac_objext conftest.$ac_ext
+fi
+
 
 
 case $host_os in
@@ -29896,8 +29943,8 @@ else
 	{ echo "$as_me:$LINENO: result: ($TCL_VERSION) no" >&5
 echo "${ECHO_T}($TCL_VERSION) no" >&6; }
 	if $TCL_VERSION = "can't happen"; then
-		{ { echo "$as_me:$LINENO: error: can(t happen" >&5
-echo "$as_me: error: can(t happen" >&2;}
+		{ { echo "$as_me:$LINENO: error: can't happen" >&5
+echo "$as_me: error: can't happen" >&2;}
    { (exit 1); exit 1; }; }
         else
 	   { { echo "$as_me:$LINENO: error: you need at least version 8.4 of tcl" >&5
@@ -30173,8 +30220,9 @@ CFLAGS="$CFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 { echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
+
 cat > conftest.$ac_ext <<EOF
-#line 30177 "configure"
+#line 30225 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -30200,6 +30248,7 @@ fi
 rm -f conftest*
 
 
+
 cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
 #include <stdio.h>
@@ -30214,6 +30263,7 @@ int main(int argc,char **argv) {
         return 0;
 }
 EOF
+
 eval $ac_link
 if test -s conftest && (./conftest; exit) 2>/dev/null; then
   TK_MAJOR_VERSION=`cat tkmajor`
