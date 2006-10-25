@@ -21,7 +21,7 @@ catch
 end
 if ok
   try
-    xmltohtml('SCI/man/eng/elementary')
+    xmltohtml('SCI/modules/elementaries_functions/help/eng')
   catch
     ok=%f
   end 
