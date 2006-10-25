@@ -31,6 +31,9 @@
 #pragma comment(lib,"../../bin/lapack.lib")
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
+#pragma comment(lib,"../../bin/sparse_f.lib")
+#pragma comment(lib,"../../bin/metanet_f.lib")
+
 #pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/data_structures_f.lib")
 #pragma comment(lib,"../../libs/boolean_f.lib")
@@ -44,13 +47,11 @@
 #pragma comment(lib,"../../libs/dcd_f.lib")
 #pragma comment(lib,"../../libs/core_f.lib")
 #pragma comment(lib,"../../libs/io_f.lib")
-#pragma comment(lib,"../../bin/metanet_f.lib")
 #pragma comment(lib,"../../libs/optim_f.lib")
 #pragma comment(lib,"../../libs/randlib_f.lib")
 #pragma comment(lib,"../../libs/scicos_f.lib")
 #pragma comment(lib,"../../libs/signal_f.lib")
 #pragma comment(lib,"../../libs/slicot_f.lib")
-#pragma comment(lib,"../../libs/sparse_f.lib")
 #pragma comment(lib,"../../libs/string_f.lib")
 #pragma comment(lib,"../../libs/symbolic_f.lib")
 #pragma comment(lib,"../../libs/polynomials_f.lib")
