@@ -2409,7 +2409,7 @@ void getStringBox( char   ** text         ,
   /* we must work with pixel values since the text is unaffected by scales */
   /* the lower-left pixel of the text is put is in (10,10) */
   /* to avoid <0 values for log axis */
-  updateSubWinScale( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
+  updateScaleIfRequired( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
   center[0]  = XDouble2Pixel( textPos[0] ) ;
   center[1]  = YDouble2Pixel( textPos[1] ) ;
   
