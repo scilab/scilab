@@ -2,7 +2,7 @@ dnl Because this macro is used by AC_PROG_GCC_TRADITIONAL, which must
 dnl come early, it is not included in AC_BEFORE checks.
 dnl AC_GREP_CPP(PATTERN, PROGRAM, [ACTION-IF-FOUND [,
 dnl              ACTION-IF-NOT-FOUND]])
-AC_DEFUN(AC_GREP_CPP,
+AC_DEFUN([AC_GREP_CPP],
 [AC_REQUIRE_CPP()dnl
 cat > conftest.$ac_ext <<EOF
 [#]line __oline__ "configure"
@@ -27,7 +27,7 @@ rm -f conftest*
 ])
 
 
-AC_DEFUN( AC_CHECK_TCL_VERSION, [
+AC_DEFUN([AC_CHECK_TCL_VERSION], [
 dnl INPUTS :
 dnl  $1 : Path where to find the include file (/include f. ex.)
 dnl  $2 : Major version number ( 8 f. ex)
@@ -51,6 +51,7 @@ saved_cflags="$CFLAGS"
 saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS -I$CHK_TCL_INCLUDE_PATH"
 CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
+AC_MSG_CHECKING([avant 1 ....])
 
 AC_MSG_CHECKING([if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later])
 AC_GREP_CPP(TCL_VERSION_OK,
@@ -67,11 +68,12 @@ TCL_VERSION_OK
 TCL_VERSION_OK=1,\
 TCL_VERSION_OK=0 )
 
-cat > conftest.$ac_ext <<EOF
+AC_RUN_IFELSE(
+    [AC_LANG_SOURCE([dnl
 #include "confdefs.h"
 #include <stdio.h>
 #include <$CHK_TCL_INC_NAME>
-int main(int argc,char **argv) {
+int main() {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
         fprintf(maj,"%d",TCL_MAJOR_VERSION);
@@ -80,17 +82,14 @@ int main(int argc,char **argv) {
         fclose(min);
         return 0;
 }
-EOF
-eval $ac_link
-if test -s conftest && (./conftest; exit) 2>/dev/null; then
+])],
+       [
   TCL_MAJOR_VERSION=`cat tclmajor`
   TCL_MINOR_VERSION=`cat tclminor`
   TCL_VERSION=$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION
-  rm -f tclmajor tclminor
-else
-  TCL_VERSION="can't happen"
-fi
-
+],
+[AC_MSG_FAILURE([The TCL detection of the version failed. 
+If you are using Intel Compiler, check if Intel Library (ex : libimf.so) are available (in the LD_LIBRARY_PATH for example)])])
 
 case $host_os in
   darwin* | rhapsody*) 
@@ -107,7 +106,7 @@ if test $TCL_VERSION_OK = 1; then
 else 
 	AC_MSG_RESULT([($TCL_VERSION) no])
 	if $TCL_VERSION = "can't happen"; then
-		AC_MSG_ERROR([can(t happen])
+		AC_MSG_ERROR([can't happen])
         else 
 	   AC_MSG_ERROR([you need at least version 8.4 of tcl])
 	fi
@@ -117,7 +116,7 @@ CPPFLAGS=$saved_cppflags
 ]) dnl End of AC_CHECK_TCL_VERSION
 
 
-AC_DEFUN( AC_CHECK_TCL_LIB, [
+AC_DEFUN([AC_CHECK_TCL_LIB], [
 dnl INPUTS :
 dnl  $1 : major tcl version number
 dnl  $2 : minor tcl version number
@@ -181,7 +180,7 @@ done
 
 
 
-AC_DEFUN( AC_CHECK_TK_VERSION, [
+AC_DEFUN([AC_CHECK_TK_VERSION], [
 dnl INPUTS :
 dnl  $1 : Path where to find the include file (/include f. ex.)
 dnl  $2 : Major version number ( 8 f. ex)
@@ -206,6 +205,7 @@ saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 AC_MSG_CHECKING([if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later])
+
 AC_GREP_CPP(TK_VERSION_OK,
 [
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -219,6 +219,7 @@ TK_VERSION_OK
 ],\
 TK_VERSION_OK=1,\
 TK_VERSION_OK=0 )
+
 
 cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
@@ -234,6 +235,7 @@ int main(int argc,char **argv) {
         return 0;
 }
 EOF
+
 eval $ac_link
 if test -s conftest && (./conftest; exit) 2>/dev/null; then
   TK_MAJOR_VERSION=`cat tkmajor`
@@ -270,7 +272,7 @@ CPPFLAGS=$saved_cppflags
 
 
 
-AC_DEFUN( AC_CHECK_TK_LIB, [
+AC_DEFUN([AC_CHECK_TK_LIB], [
 dnl INPUTS :
 dnl  $1 : major tcl version number
 dnl  $2 : minor tcl version number
@@ -354,7 +356,7 @@ done
 
 
 
-AC_DEFUN( AC_CHECK_TCLTK, [
+AC_DEFUN([AC_CHECK_TCLTK], [
 dnl this macro finds and test the tcl/tk files
 dnl **** it uses $X_LDFLAGS $X_LIBS  to find X libs  ****
 dnl
