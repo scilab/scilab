@@ -325,7 +325,11 @@ void sciXdraw()
 }
 
 
-void computeAxisBounds3d( sciPointObj * pobj, double xBox[8], double yBox[8], double zBox[8], double dBox[6] )
+void updateScale3d( sciPointObj * pobj    ,
+                    double        dBox[6] ,
+                    double        xBox[8] ,
+                    double        yBox[8] ,
+                    double        zBox[8]  )
 {
   double Alpha ;
   double Theta ;
@@ -502,14 +506,11 @@ void computeAxisBounds3d( sciPointObj * pobj, double xBox[8], double yBox[8], do
 }
 
 
-void ComputeXindAndInsideUD( double Theta     ,
-                             double Alpha     ,
-                             double dbox[6]   ,
-                             int    xind[8]   ,
-                             int    InsideU[4],
-                             int    InsideD[4],
-                             double xbox[8]   ,
-                             double ybox[8]    )
+void sciAxesVerticesIndices( integer InsideU[4],
+                             integer InsideD[4],
+                             double  xbox[8]   ,
+                             double  ybox[8]   ,
+                             integer xind[8]    )
 {
   double xmaxi ;
   int ind      ;
@@ -595,7 +596,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
     {
 
-      computeAxisBounds3d( pobj, xbox, ybox, zbox, dbox ) ;
+      updateScale3d( pobj, dbox, xbox, ybox, zbox ) ;
            
       /* F.Leray 23.02.04 Mise a 0 du tableau xind pour corriger bug*/
       /* dans le cas ind < 3 ET ybox[tmpind] < ybox[tmpind]*/
@@ -619,7 +620,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       }
       else
       {
-        ComputeXindAndInsideUD( Theta, Alpha, dbox, xind, InsideU, InsideD, xbox, ybox ) ;
+        sciAxesVerticesIndices( InsideU, InsideD, xbox, ybox, xind ) ;
       }
 
       /* F.Leray Rajout 02.04.04 :*/
@@ -5495,7 +5496,7 @@ int  ComputeCorrectXindAndInsideUD(double Theta,double Alpha, double *dbox, inte
   
   
   /* indices */
-  ComputeXindAndInsideUD( Theta, Alpha, dbox, xind, InsideU, InsideD, xbox, ybox ) ;
+   sciAxesVerticesIndices( InsideU, InsideD, xbox, ybox, xind ) ;
  
   return 0;
 }

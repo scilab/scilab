@@ -2670,7 +2670,7 @@ void updateSubWinScale( sciPointObj * pSubWin )
   /* Scales are not be updated with an automatic drawing */
   if ( pSUBWIN_FEATURE(pSubWin)->is3d )
   {
-    computeAxisBounds3d( pSubWin, xBox, yBox, zBox, dBox ) ;
+    updateScale3d( pSubWin, dBox, xBox, yBox, zBox ) ;
   }
   else
   {
