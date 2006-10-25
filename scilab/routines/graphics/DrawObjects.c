@@ -47,6 +47,7 @@ extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer p
 extern void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
 extern void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox);
 extern int GlobalFlag_Zoom3dOn;
+extern void updateScaleIfRequired( sciPointObj * pSubWin ) ;
 
 extern int index_vertex;
 int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z);
@@ -324,7 +325,255 @@ void sciXdraw()
 }
 
 
+void computeAxisBounds3d( sciPointObj * pobj, double xBox[8], double yBox[8], double zBox[8], double dBox[6] )
+{
+  double Alpha ;
+  double Theta ;
+  double cost  ;
+  double sint  ;
+  double cosa  ;
+  double sina  ;
+  double xmmin ;
+  double ymmax ;
+  double xmmax ;
+  double ymmin ;
+  double wmax  ;
+  double hmax  ;
+  int i        ;
+  int flag     ;
+  static integer aaint[4] = {2,10,2,10} ;
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE(pobj) ;
 
+  sci_update_frame_bounds_3d( pobj ) ;
+  
+  
+  dBox[0] =  ppSubWin->FRect[0]; /*xmin*/
+  dBox[1] =  ppSubWin->FRect[2]; /*ymin*/ /* FAUX */ /* c'est xmax */
+  dBox[2] =  ppSubWin->FRect[1]; /*xmax*/ /* FAUX */ /* c'est ymin */
+  dBox[3] =  ppSubWin->FRect[3]; /*ymax*/
+  dBox[4] =  ppSubWin->FRect[4]; /*zmin*/
+  dBox[5] =  ppSubWin->FRect[5]; /*zmax*/
+  
+  if( ppSubWin->cube_scaling )
+  {
+    dBox[0] =  0. ;
+    dBox[1] =  1. ;
+    dBox[2] =  0. ;
+    dBox[3] =  1. ;
+    dBox[4] =  0. ;
+    dBox[5] =  1. ;
+  }
+  
+  /** changement de coordonnees 3d */
+  flag = (long)(pSUBWIN_FEATURE (pobj)->axes.flag[1] + 1 ) / 2 ; /* F.Leray Adding HERE 19.04.04 */
+
+  Alpha = DEG2RAD( pSUBWIN_FEATURE (pobj)->alpha ) ;
+  Theta = DEG2RAD( pSUBWIN_FEATURE (pobj)->theta ) ;
+  
+  Cscale.alpha = pSUBWIN_FEATURE (pobj)->alpha ;
+  Cscale.theta = pSUBWIN_FEATURE (pobj)->theta ;
+  
+  cost = cos( Theta ) ;
+  cosa = cos( Alpha ) ;
+  sint = sin( Theta ) ;
+  sina = sin( Alpha ) ;
+  
+  Cscale.m[0][0]= -sint      ;  Cscale.m[0][1]= cost       ;   Cscale.m[0][2]= 0    ;
+  Cscale.m[1][0]= -cost*cosa ;  Cscale.m[1][1]= -sint*cosa ;   Cscale.m[1][2]= sina ;
+  Cscale.m[2][0]=  cost*sina ;  Cscale.m[2][1]= sint*sina  ;   Cscale.m[2][2]= cosa ;
+  
+  for ( i = 0 ; i < 6 ; i++ )
+  { 
+    if ( flag == 0 )
+    {
+      dBox[i] = Cscale.bbox1[i] ;
+    }
+    else
+    { 
+      Cscale.bbox1[i] = dBox[i] ;
+    }
+  }
+
+  xBox[0]=TRX(dBox[0],dBox[2],dBox[4]); /* transfo. 3D of [xmin,ymin,zmin] */
+  yBox[0]=TRY(dBox[0],dBox[2],dBox[4]); /* into [xbox[0],ybox[0],zbox[0] ] */
+  zBox[0]=TRZ(dBox[0],dBox[2],dBox[4]); /*                                 */ 
+
+  xBox[1]=TRX(dBox[0],dBox[3],dBox[4]); /* transfo. 3D of [xmin,ymax,zmin] */
+  yBox[1]=TRY(dBox[0],dBox[3],dBox[4]); /* into [xbox[1],ybox[1],zbox[1] ] */
+  zBox[1]=TRZ(dBox[0],dBox[3],dBox[4]); /*                                 */
+
+  xBox[2]=TRX(dBox[1],dBox[3],dBox[4]); /* transfo. 3D of [xmax,ymax,zmin] */
+  yBox[2]=TRY(dBox[1],dBox[3],dBox[4]); /* into [xbox[2],ybox[2],zbox[2] ] */
+  zBox[2]=TRZ(dBox[1],dBox[3],dBox[4]); /*                                 */
+
+  xBox[3]=TRX(dBox[1],dBox[2],dBox[4]); /* transfo. 3D of [xmax,ymin,zmin] */
+  yBox[3]=TRY(dBox[1],dBox[2],dBox[4]); /* into [xbox[3],ybox[3],zbox[3] ] */
+  zBox[3]=TRZ(dBox[1],dBox[2],dBox[4]); /*                                 */
+
+  xBox[4]=TRX(dBox[0],dBox[2],dBox[5]); /* transfo. 3D of [xmin,ymin,zmax] */
+  yBox[4]=TRY(dBox[0],dBox[2],dBox[5]); /* into [xbox[4],ybox[4],zbox[4] ] */
+  zBox[4]=TRZ(dBox[0],dBox[2],dBox[5]); /*                                 */
+
+  xBox[5]=TRX(dBox[0],dBox[3],dBox[5]); /* transfo. 3D of [xmin,ymax,zmax] */
+  yBox[5]=TRY(dBox[0],dBox[3],dBox[5]); /* into [xbox[5],ybox[5],zbox[5] ] */
+  zBox[5]=TRZ(dBox[0],dBox[3],dBox[5]); /*                                 */
+
+  xBox[6]=TRX(dBox[1],dBox[3],dBox[5]); /* transfo. 3D of [xmax,ymax,zmax] */
+  yBox[6]=TRY(dBox[1],dBox[3],dBox[5]); /* into [xbox[6],ybox[6],zbox[6] ] */
+  zBox[6]=TRZ(dBox[1],dBox[3],dBox[5]); /*                                 */
+
+  xBox[7]=TRX(dBox[1],dBox[2],dBox[5]); /* transfo. 3D of [xmax,ymin,zmax] */
+  yBox[7]=TRY(dBox[1],dBox[2],dBox[5]); /* into [xbox[7],ybox[7],zbox[7] ] */
+  zBox[7]=TRZ(dBox[1],dBox[2],dBox[5]); /*                                 */
+
+
+  /** Calcul des echelles en fonction de la taille du dessin **/
+  if ( flag == 1 || flag == 3 ) /* ALL the expanded cases : flag[1] = 1 or 2 or 5 or 6 */
+  {
+    xmmin =  Mini( xBox, 8L ) ;
+    xmmax =  Maxi( xBox, 8L ) ; /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
+    ymmax = -Mini( yBox, 8L ) ; /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
+    ymmin = -Maxi( yBox, 8L ) ;
+  }
+
+
+  if ( flag == 2 || flag == 3 ) /* ALL the isometric cases : flag[1] = 3 or 4 or 5 or 6 */
+  {
+    int wdim[2]     ;
+    int narg        ;
+    int verbose = 0 ;
+    double FRect[4] ;
+    double WRect[4] ;
+    double ARect[4] ;
+    char   logf[2]  ;
+    /* get current window size */
+    C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ;
+    getscale2d( WRect, FRect, logf, ARect ) ;
+    wmax = linint( (double)wdim[0] * WRect[2] ) ;
+    hmax = linint( (double)wdim[1] * WRect[3] ) ; 
+  }
+
+  if ( flag == 2 ) /* the "NON expanded isometric" cases : flag[1] = 3 or 4 */
+  {
+    /* radius and center of the sphere circumscribing the box */
+    double dx = dBox[1] - dBox[0]                   ;
+    double dy = dBox[3] - dBox[2]                   ;
+    double dz = dBox[5] - dBox[4]                   ;
+    double R  = sqrt( dx*dx + dy*dy + dz*dz ) / 2.0 ;
+    double xo = ( xBox[0] + xBox[6] ) / 2.0         ;
+    double yo = ( yBox[0] + yBox[6] ) / 2.0         ;
+
+    xmmin =  xo - R ;
+    xmmax =  xo + R ;
+    ymmax = -yo + R ;
+    ymmin = -yo - R ;
+  }
+
+  if ( flag == 2 || flag == 3 )
+  {
+    double hx = xmmax - xmmin ;
+    double hy = ymmax - ymmin ;
+    if ( hx / wmax < hy / hmax ) 
+    {
+      double hx1 = wmax * hy / hmax ;
+      xmmin = xmmin - (hx1-hx) / 2.0 ;
+      xmmax = xmmax + (hx1-hx) / 2.0;
+    }
+    else 
+    {
+      double hy1 = hmax * hx / wmax ;
+      ymmin = ymmin - (hy1-hy) / 2.0 ;
+      ymmax = ymmax + (hy1-hy) / 2.0 ;
+    }
+  }
+
+  if (flag != 0 ) /* != using current 3D scale */
+  {
+    double FRect[4] ;
+    /* FRect = [Xmin,Ymin,Xmax,Ymax] */
+    FRect[0] =  xmmin ;
+    FRect[1] = -ymmax ;
+    FRect[2] =  xmmax ;
+    FRect[3] = -ymmin ; /* 2) ... (why - (minus) ? )*/
+    set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
+    Cscale.metric3d = flag; 
+  }
+
+}
+
+
+void ComputeXindAndInsideUD( double Theta     ,
+                             double Alpha     ,
+                             double dbox[6]   ,
+                             int    xind[8]   ,
+                             int    InsideU[4],
+                             int    InsideD[4],
+                             double xbox[8]   ,
+                             double ybox[8]    )
+{
+  double xmaxi ;
+  int ind      ;
+  int ind2     ;
+  int ind3     ;
+  int tmpind   ;
+  /* indices */
+  /* determine the indices for the 3d represention */
+  xmaxi=((double) Maxi(xbox,8L));
+  ind= -1;
+  MaxiInd(xbox,8L,&ind,xmaxi);
+  if ( ind > 3)
+    xind[0]=ind;
+  tmpind=ind;  
+  MaxiInd(xbox,8L,&ind,xmaxi);
+  if ( ind > 3)
+    xind[0]=ind;
+  if (ybox[tmpind] > ybox[ind] )
+    xind[0]=tmpind;
+	   
+  if (ind < 0 || ind > 8) 
+  {
+    Scistring("xind out of bounds");
+    xind[0]=0;
+  }
+  Nextind(xind[0],&ind2,&ind3);
+  if (ybox[ind2] > ybox[ind3]) 
+  {
+    xind[1]=ind2;InsideU[0]=ind3;
+  }
+  else 
+  {
+    xind[1]=ind3;InsideU[0]=ind2;
+  }
+  Nextind(ind2,&ind2,&ind3); InsideU[1]=xind[0];
+  InsideU[2]=ind2; 
+  if (InsideU[0] > 3 )
+    InsideU[3]=InsideU[0]-4; 
+  else
+    InsideU[3]=InsideU[0]+4; 
+  xind[2]=ind2;
+  /* le pointeger en bas qui correspond */	  
+  if (ind2 > 3 )
+    xind[3]=ind2-4;
+  else
+    xind[3]=ind2+4;
+  Nextind(xind[3],&ind2,&ind3);
+  if (ybox[ind2] < ybox[ind3]) 
+  {
+    xind[4]=ind2;InsideD[0]=ind3;
+  }
+  else  
+  {
+    xind[4]=ind3;InsideD[0]=ind2;
+  }
+  Nextind(ind2,&ind2,&ind3);
+  InsideD[1]=xind[3];
+  InsideD[2]=ind2;
+  if (InsideD[0] > 3 )
+    InsideD[3]=InsideD[0]-4;
+  else
+    InsideD[3]=InsideD[0]+4;
+  xind[5]=ind2;
+}
 
 /**axis_3ddraw 10/2003
  * @author Djalel Abdemouche
@@ -332,302 +581,85 @@ void sciXdraw()
  */
 void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD) 
 {
-  double dbox[6];
-  char /* *legend="x@y@z",*/logf[2];
-  integer flag,ib,i,p,n,pat,hiddencolor, x[5]; /* F. Leray : redimmensionnment (+1) du tableau x[4];*/
-  static double Alpha, Teta,cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
-  double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
-  static integer aaint[]={2,10,2,10};
-  int verbose=0,wdim[2],narg;
-  double R,xo,yo,zo,dx,dy,dz,hx,hy,hx1,hy1,xmaxi;
-  integer wmax,hmax,ind2,ind3,ind,tmpind;
+  double dbox[6] ;
+  integer flag,i,p,n,pat,hiddencolor, x[5]; /* F. Leray : redimmensionnment (+1) du tableau x[4];*/
+  double Alpha, Theta ;
+  int verbose=0,narg;
   integer ixbox[8],iybox[8],xind[8],dash[6];
-  integer background,zero=0, color_old; /* Adding color_old 04.03.04*/
-/*   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj); */
+  integer background,zero=0, color_old; /* Adding color_old 04.03.04 */
   
-  BOOL cube_scaling; 
 
   /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
-  for(i=0;i<5;i++) x[i] = -1000;
+  for(i=0;i<5;i++) { x[i] = -1000 ; }
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
-    {  
-      sci_update_frame_bounds_3d(pobj);
-      /*update_graduation(pobj);*/
+    {
 
- 
-      dbox[0] =  pSUBWIN_FEATURE (pobj)->FRect[0]; /*xmin*/
-      dbox[1] =  pSUBWIN_FEATURE (pobj)->FRect[2]; /*ymin*/ /* FAUX */ /* c'est xmax */
-      dbox[2] =  pSUBWIN_FEATURE (pobj)->FRect[1]; /*xmax*/ /* FAUX */ /* c'est ymin */
-      dbox[3] =  pSUBWIN_FEATURE (pobj)->FRect[3]; /*ymax*/
-      dbox[4] =  pSUBWIN_FEATURE (pobj)->FRect[4]; /*zmin*/
-      dbox[5] =  pSUBWIN_FEATURE (pobj)->FRect[5]; /*zmax*/
-
-      cube_scaling =  pSUBWIN_FEATURE (pobj)->cube_scaling;
-
-      if(cube_scaling == TRUE)
-	{
-	  dbox[0] =  0.; 
-	  dbox[1] =  1.;
-	  dbox[2] =  0.;
-	  dbox[3] =  1.;
-	  dbox[4] =  0.;
-	  dbox[5] =  1.;
-	}
-
-
-      /** changement de coordonnees 3d */
-      flag = (long)(pSUBWIN_FEATURE (pobj)->axes.flag[1]+1)/2; /* F.Leray Adding HERE 19.04.04 */
-
-      Cscale.alpha = Alpha =pSUBWIN_FEATURE (pobj)->alpha;
-      Cscale.theta = Teta =pSUBWIN_FEATURE (pobj)->theta;
-      
-      cost=cos((Teta)*M_PI/180.0);cosa=cos((Alpha)*M_PI/180.0);
-      sint=sin((Teta)*M_PI/180.0);sina=sin((Alpha)*M_PI/180.0);
-      
-      Cscale.m[0][0]= -sint    ;    Cscale.m[0][1]= cost      ;    Cscale.m[0][2]= 0;
-      Cscale.m[1][0]= -cost*cosa;   Cscale.m[1][1]= -sint*cosa;    Cscale.m[1][2]= sina;
-      Cscale.m[2][0]=  cost*sina;   Cscale.m[2][1]= sint*sina;     Cscale.m[2][2]= cosa;
-      
-      for (ib=0;ib<6 ;ib++) 
-	{ 
-	  if (flag==0) 
-	    dbox[ib]=Cscale.bbox1[ib];
-	  else 
-	    Cscale.bbox1[ib]=dbox[ib];
-	}
-
-      xbox[0]=TRX(dbox[0],dbox[2],dbox[4]); /* transfo. 3D of [xmin,ymin,zmin] */
-      ybox[0]=TRY(dbox[0],dbox[2],dbox[4]); /* into [xbox[0],ybox[0],zbox[0] ] */
-      zbox[0]=TRZ(dbox[0],dbox[2],dbox[4]); /*                                 */ 
-
-      xbox[1]=TRX(dbox[0],dbox[3],dbox[4]); /* transfo. 3D of [xmin,ymax,zmin] */
-      ybox[1]=TRY(dbox[0],dbox[3],dbox[4]); /* into [xbox[1],ybox[1],zbox[1] ] */
-      zbox[1]=TRZ(dbox[0],dbox[3],dbox[4]); /*                                 */
-
-      xbox[2]=TRX(dbox[1],dbox[3],dbox[4]); /* transfo. 3D of [xmax,ymax,zmin] */
-      ybox[2]=TRY(dbox[1],dbox[3],dbox[4]); /* into [xbox[2],ybox[2],zbox[2] ] */
-      zbox[2]=TRZ(dbox[1],dbox[3],dbox[4]); /*                                 */
-
-      xbox[3]=TRX(dbox[1],dbox[2],dbox[4]); /* transfo. 3D of [xmax,ymin,zmin] */
-      ybox[3]=TRY(dbox[1],dbox[2],dbox[4]); /* into [xbox[3],ybox[3],zbox[3] ] */
-      zbox[3]=TRZ(dbox[1],dbox[2],dbox[4]); /*                                 */
-
-      xbox[4]=TRX(dbox[0],dbox[2],dbox[5]); /* transfo. 3D of [xmin,ymin,zmax] */
-      ybox[4]=TRY(dbox[0],dbox[2],dbox[5]); /* into [xbox[4],ybox[4],zbox[4] ] */
-      zbox[4]=TRZ(dbox[0],dbox[2],dbox[5]); /*                                 */
-
-      xbox[5]=TRX(dbox[0],dbox[3],dbox[5]); /* transfo. 3D of [xmin,ymax,zmax] */
-      ybox[5]=TRY(dbox[0],dbox[3],dbox[5]); /* into [xbox[5],ybox[5],zbox[5] ] */
-      zbox[5]=TRZ(dbox[0],dbox[3],dbox[5]); /*                                 */
-
-      xbox[6]=TRX(dbox[1],dbox[3],dbox[5]); /* transfo. 3D of [xmax,ymax,zmax] */
-      ybox[6]=TRY(dbox[1],dbox[3],dbox[5]); /* into [xbox[6],ybox[6],zbox[6] ] */
-      zbox[6]=TRZ(dbox[1],dbox[3],dbox[5]); /*                                 */
-
-      xbox[7]=TRX(dbox[1],dbox[2],dbox[5]); /* transfo. 3D of [xmax,ymin,zmax] */
-      ybox[7]=TRY(dbox[1],dbox[2],dbox[5]); /* into [xbox[7],ybox[7],zbox[7] ] */
-      zbox[7]=TRZ(dbox[1],dbox[2],dbox[5]); /*                                 */
-
-
-      /** Calcul des echelles en fonction de la taille du dessin **/
-      if ( flag == 1 || flag == 3 ) /* ALL the expanded cases : flag[1] = 1 or 2 or 5 or 6 */
-	{
-	  xmmin=  (double) Mini(xbox,8L);xmmax= (double) Maxi(xbox,8L); /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
-	  ymmax=  (double) - Mini(ybox,8L); /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
-	  ymmin=  (double) - Maxi(ybox,8L);
-	}
-      if ( flag == 2 || flag == 3 ) /* ALL the isometric cases : flag[1] = 3 or 4 or 5 or 6 */
-	{
-	  /* get current window size */
-	  C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  getscale2d(WRect,FRect,logf,ARect);
-	  wmax=linint((double)wdim[0] * WRect[2]);
-	  hmax=linint((double)wdim[1] * WRect[3]); 
-	}
-      if ( flag == 2 ) /* the "NON expanded isometric" cases : flag[1] = 3 or 4 */
-	{
-	  /* radius and center of the sphere circumscribing the box */
-	  dx=dbox[1]-dbox[0]; dy=dbox[3]-dbox[2]; dz=dbox[5]-dbox[4];
-	  R= (double) sqrt(dx*dx + dy*dy + dz*dz)/2;
-	  xo= (double) (xbox[0]+xbox[6])/2 ;
-	  yo= (double) (ybox[0]+ybox[6])/2 ;
-	  zo= (double) (zbox[0]+zbox[6])/2 ;
-	  xmmin=  (double) xo - R ;
-	  xmmax=  (double) xo + R ;
-	  ymmax=  (double) -yo + R ;
-	  ymmin=  (double) -yo - R ;
-	}
-      if (flag==2 || flag==3)
-	{
-	  hx=xmmax-xmmin;
-	  hy=ymmax-ymmin;
-	  if ( hx/(double)wmax  < hy/(double)hmax ) 
-	    {
-	      hx1=wmax*hy/hmax;
-	      xmmin=xmmin-(hx1-hx)/2.0;
-	      xmmax=xmmax+(hx1-hx)/2.0;
-	    }
-	  else 
-	    {
-	      hy1=hmax*hx/wmax;
-	      ymmin=ymmin-(hy1-hy)/2.0;
-	      ymmax=ymmax+(hy1-hy)/2.0;
-	    }
-	}
-      if (flag !=0 ) /* != using current 3D scale */
-	{
-          /* FRect = [Xmin,Ymin,Xmax,Ymax] */
-	  FRect[0]=xmmin;FRect[1]= -ymmax;FRect[2]=xmmax;FRect[3]= -ymmin; /* 2) ... (why - (minus) ? )*/
-	  set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
-	  Cscale.metric3d=flag; 
-	}
+      computeAxisBounds3d( pobj, xbox, ybox, zbox, dbox ) ;
            
       /* F.Leray 23.02.04 Mise a 0 du tableau xind pour corriger bug*/
       /* dans le cas ind < 3 ET ybox[tmpind] < ybox[tmpind]*/
-      for(i=0;i<8;i++) xind[i] = 0;
+      for( i = 0 ; i < 8 ; i++ ) { xind[i] = 0 ; }
 
 
       /* Until here we have computed + reset the 3d scale*/
       
-      /*       if (!sciGetVisibility(pobj)) return; /\* END HERE if nothing to display *\/ */
-      
       flag = pSUBWIN_FEATURE (pobj)->axes.flag[2]; /* box drawing */
-	  
+      
+      Alpha = pSUBWIN_FEATURE (pobj)->alpha ;
+      Theta = pSUBWIN_FEATURE (pobj)->theta ;
+
       /* modify the test with |teta| < eps */
-      if(Teta==0){
+      if( Theta == 0.0 )
+      {
 	/* to avoid bug at limit when theta == 0 */
 	/* I recompute temp value xyzbox with theta == 0.1 */
 	/* to have a correct xind, InsideU et InsideD */
-	ComputeCorrectXindAndInsideUD(Teta,Alpha,dbox,xind,InsideU,InsideD);}
+	ComputeCorrectXindAndInsideUD(Theta,Alpha,dbox,xind,InsideU,InsideD);
+      }
       else
-	{
-	  /* indices */
-          /* determine the indices for the 3d represention */
-	  xmaxi=((double) Maxi(xbox,8L));
-	  ind= -1;
-	  MaxiInd(xbox,8L,&ind,xmaxi);
-	  if ( ind > 3)
-	    xind[0]=ind;
-	  tmpind=ind;  
-	  MaxiInd(xbox,8L,&ind,xmaxi);
-	  if ( ind > 3)
-	    xind[0]=ind;
-	  if (ybox[tmpind] > ybox[ind] )
-	    xind[0]=tmpind;
-	   
-	  if (ind < 0 || ind > 8) 
-	    {
-	      Scistring("xind out of bounds");
-	      xind[0]=0;
-	    }
-	  Nextind(xind[0],&ind2,&ind3);
-	  if (ybox[ind2] > ybox[ind3]) 
-	    {
-	      xind[1]=ind2;InsideU[0]=ind3;
-	    }
-	  else 
-	    {
-	      xind[1]=ind3;InsideU[0]=ind2;
-	    }
-	  Nextind(ind2,&ind2,&ind3); InsideU[1]=xind[0];
-	  InsideU[2]=ind2; 
-	  if (InsideU[0] > 3 )
-	    InsideU[3]=InsideU[0]-4; 
-	  else
-	    InsideU[3]=InsideU[0]+4; 
-	  xind[2]=ind2;
-	  /* le pointeger en bas qui correspond */	  
-	  if (ind2 > 3 )
-	    xind[3]=ind2-4;
-	  else
-	    xind[3]=ind2+4;
-	  Nextind(xind[3],&ind2,&ind3);
-	  if (ybox[ind2] < ybox[ind3]) 
-	    {
-	      xind[4]=ind2;InsideD[0]=ind3;
-	    }
-	  else  
-	    {
-	      xind[4]=ind3;InsideD[0]=ind2;
-	    }
-	  Nextind(ind2,&ind2,&ind3);
-	  InsideD[1]=xind[3];
-	  InsideD[2]=ind2;
-	  if (InsideD[0] > 3 )
-	    InsideD[3]=InsideD[0]-4;
-	  else
-	    InsideD[3]=InsideD[0]+4;
-	  xind[5]=ind2;
-
-	}
-
-      /* BUG Event A ESSAYER SOUS WINDOWS !! */
-      /* sous X11, un event X11 declenche par sciprint -> puis scig_resize fait que l'on */
-      /* lance axis_3ddraw 2 fois de suite SANS QUE le premier est le temps de */
-      /* terminer completement !!*/
-      /* pour le voir decommenter la ligne ci-dessous et les lignes de printf : */
-      /* DEBUT DE axis_3ddraw */
-      /* DEBUT DE Axes3dStrings2 */
-	    
-      /* 	    for(i=0;i<50000;i++) sciprint("i= %d \n", i); */
-	    
-
-      /* 	    printf("INFO HERE \n"); */
-      /* 	    sciprint("alpha = %lf \t theta = %lf",Alpha,Teta); */
-      /* 	    sciprint("xind vaut:\n"); */
-      /* 	    for(i=0;i<8;i++) sciprint("xind[%d] = %d\n",i,xind[i]); */
-      /* 	    sciprint("InsideD & InsideU vallent:\n"); */
-      /* 	    for(i=0;i<4;i++) sciprint("InsideD[%d] = %d \t InsideU[%d]=%d \n",i,InsideD[i],i,InsideU[i]); */
-      /* 	    sciprint("fin \n\n"); */
-
-      /* F.Leray 26.10.04 Debug*/
-      /* Same thing as above but using printf to avoid sciprint */
-      /*   printf("INFO HERE \n"); */
-      /*       printf("alpha = %lf \t theta = %lf",Alpha,Teta); */
-      /*       printf("xind vaut:\n"); */
-      /*       for(i=0;i<8;i++) printf("xind[%d] = %d\n",i,xind[i]); */
-      /*       printf("InsideD & InsideU vallent:\n"); */
-      /*       for(i=0;i<4;i++) printf("InsideD[%d] = %d \t InsideU[%d]=%d \n",i,InsideD[i],i,InsideU[i]); */
-      /*       printf("fin \n\n"); */
-
-
+      {
+        ComputeXindAndInsideUD( Theta, Alpha, dbox, xind, InsideU, InsideD, xbox, ybox ) ;
+      }
 
       /* F.Leray Rajout 02.04.04 :*/
-      background=sciGetBackground(pobj);
-	  
+      background = sciGetBackground(pobj) ;
+      
       for (i=0; i < 6 ; i++)
-	{
-	  ixbox[i]=XScale(xbox[xind[i]]);
-	  iybox[i]=YScale(ybox[xind[i]]);
-	}
+      {
+        ixbox[i]=XScale(xbox[xind[i]]);
+        iybox[i]=YScale(ybox[xind[i]]);
+      }
       ixbox[6]=ixbox[0];iybox[6]=iybox[0]; p=7,n=1; 
-      /* C2F (dr) ("xset","foreground",&background,&background,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,5L,4096); F.Leray 04.03.04*/
+      
       C2F(dr)("xget","pattern",&verbose,&color_old,&zero,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
       C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
       C2F(dr)("xset","pattern",&color_old,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /***********/
       /***  hidden axis */
-/*       if(pSUBWIN_FEATURE (pobj)->axes.rect== 1) */
-      if(flag != 0 && flag != 1)
-	{ 
-	  x[2] = sciGetLineWidth (pobj);
-	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  /* DJ.A 2003 */
-	  hiddencolor=pSUBWIN_FEATURE (pobj)->hiddencolor;
-	  if (hiddencolor==-1) hiddencolor=0;
-	  if (zbox[InsideU[0]] > zbox[InsideD[0]])
-	    DrawAxis(xbox,ybox,InsideD,hiddencolor);
-	  else
-	    {
-	      DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
-	    }
-	  if (Ishidden(pobj))
-	    pSUBWIN_FEATURE (pobj)->hiddenstate=(InsideU[0] % 4);
-	  else
-	    pSUBWIN_FEATURE (pobj)->hiddenstate=(InsideD[0] % 4);
-	}
+      if( flag != 0 && flag != 1 )
+      { 
+        x[2] = sciGetLineWidth (pobj);
+        C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+        /* DJ.A 2003 */
+        hiddencolor = pSUBWIN_FEATURE(pobj)->hiddencolor ;
+        if (hiddencolor==-1) { hiddencolor = 0 ; }
+        if (zbox[InsideU[0]] > zbox[InsideD[0]])
+          DrawAxis(xbox,ybox,InsideD,hiddencolor);
+        else
+        {
+          DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
+        }
+        if (Ishidden(pobj))
+        {
+          pSUBWIN_FEATURE (pobj)->hiddenstate=(InsideU[0] % 4) ;
+        }
+        else
+        {
+          pSUBWIN_FEATURE (pobj)->hiddenstate=(InsideD[0] % 4) ;
+        }
+      }
       /**  l'enveloppe cvxe*/
       x[0] = sciGetForeground (pobj);	 /* F.Leray 05.03.04 Useless or not?? because we used set pattern instead of set foreground (because Windows uses BRUSH and PEN...)*/
       /* Wrong explanation: We use sciGetForeground in NG mode and used set foreground in old graphic mode*/
@@ -641,25 +673,14 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096); /* F.Leray 05.03.04 Useless too*/
       C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-/*       if(pSUBWIN_FEATURE (pobj)->axes.rect!= 1) */
-  /*     if((flag == 0) || (flag == 1) || (flag == 2)) */
-/* 	{ */
-/* 	  for (i=0; i < 4 ; i++) */
-/* 	    { */
-/* 	      ixbox[i]=XScale(xbox[xind[i+2]]); */
-/* 	      iybox[i]=YScale(ybox[xind[i+2]]); */
-/* 	    } */
-/* 	  p=4,n=1; */
-/* 	  if(flag >=3) {C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);} */
-/* 	}  */
+
       for (i=0; i < 6 ; i++)
 	{
 	  ixbox[i]=XScale(xbox[xind[i]]);
 	  iybox[i]=YScale(ybox[xind[i]]);
 	}
       ixbox[6]=ixbox[0];iybox[6]=iybox[0]; p=7,n=1;
-      /*       if(pSUBWIN_FEATURE (pobj)->axes.rect == 1) */
-      /*       if(pSUBWIN_FEATURE (pobj)->axes.flag[2] == 3 ||pSUBWIN_FEATURE (pobj)->axes.flag[2] == 4) */
+
       if (flag >=3){C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);}
       /** graduation ***/
       if (flag>=3) {Axes3dStrings2(ixbox,iybox,xind);}
@@ -5413,23 +5434,27 @@ BOOL GetIsAxes2D(sciPointObj *psubwin)
     return TRUE;
 }
 
-int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
+int  ComputeCorrectXindAndInsideUD(double Theta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
 {
   
-  static double cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
-  integer ind2,ind3,ind,tmpind;
-  double xmaxi;
+  double cost = 0.5 ;
+  double sint = 0.5 ;
+  double cosa = 0.5 ;
+  double sina = 0.5 ;
   double xbox[8], ybox[8], zbox[8];
 
-  if(Teta != 0){
+  if( Theta != 0.0 )
+  {
     sciprint("Error: Theta must be 0. to trigger this algo");
     return -1;
   }
   
-  Teta = 0.1; /* Little offset to compute correct values for xind,  InsideU and InsideD */
+  Theta = 0.1; /* Little offset to compute correct values for xind,  InsideU and InsideD */
 
-  cost=cos((Teta)*M_PI/180.0);cosa=cos((Alpha)*M_PI/180.0);
-  sint=sin((Teta)*M_PI/180.0);sina=sin((Alpha)*M_PI/180.0);
+  cost = cos( DEG2RAD(Theta) ) ;
+  cosa = cos( DEG2RAD(Alpha) ) ;
+  sint = sin( DEG2RAD(Theta) ) ;
+  sina = sin( DEG2RAD(Alpha) ) ;
   
   Cscale.m[0][0]= -sint    ;    Cscale.m[0][1]= cost      ;    Cscale.m[0][2]= 0;
   Cscale.m[1][0]= -cost*cosa;   Cscale.m[1][1]= -sint*cosa;    Cscale.m[1][2]= sina;
@@ -5470,63 +5495,8 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
   
   
   /* indices */
-  xmaxi=((double) Maxi(xbox,8L));
-  ind= -1;
-  MaxiInd(xbox,8L,&ind,xmaxi);
-  if ( ind > 3)
-    xind[0]=ind;
-  tmpind=ind;  
-  MaxiInd(xbox,8L,&ind,xmaxi);
-  if ( ind > 3)
-    xind[0]=ind;
-  if (ybox[tmpind] > ybox[ind] )
-    xind[0]=tmpind; 	 
-	   
-  if (ind < 0 || ind > 8) 
-    {
-      Scistring("xind out of bounds");
-      xind[0]=0;
-    }
-  Nextind(xind[0],&ind2,&ind3);
-  if (ybox[ind2] > ybox[ind3]) 
-    {
-      xind[1]=ind2;InsideU[0]=ind3;
-    }
-  else 
-    {
-      xind[1]=ind3;InsideU[0]=ind2;
-    }
-  Nextind(ind2,&ind2,&ind3); InsideU[1]=xind[0];
-  InsideU[2]=ind2; 
-  if (InsideU[0] > 3 )
-    InsideU[3]=InsideU[0]-4; 
-  else
-    InsideU[3]=InsideU[0]+4; 
-  xind[2]=ind2;
-  /* le pointeger en bas qui correspond */	  
-  if (ind2 > 3 )
-    xind[3]=ind2-4;
-  else
-    xind[3]=ind2+4;
-  Nextind(xind[3],&ind2,&ind3);
-  if (ybox[ind2] < ybox[ind3]) 
-    {
-      xind[4]=ind2;InsideD[0]=ind3;
-    }
-  else  
-    {
-      xind[4]=ind3;InsideD[0]=ind2;
-    }
-  Nextind(ind2,&ind2,&ind3);
-  InsideD[1]=xind[3];
-  InsideD[2]=ind2;
-  if (InsideD[0] > 3 )
-    InsideD[3]=InsideD[0]-4;
-  else
-    InsideD[3]=InsideD[0]+4;
-  xind[5]=ind2;
-
-
+  ComputeXindAndInsideUD( Theta, Alpha, dbox, xind, InsideU, InsideD, xbox, ybox ) ;
+ 
   return 0;
 }
 
@@ -7512,7 +7482,7 @@ sciDrawObj (sciPointObj * pobj)
     {
       int curWinNum = 0 ;
       
-      if(pFIGURE_FEATURE(pobj)->auto_redraw == FALSE) break;
+      if( !pFIGURE_FEATURE(pobj)->auto_redraw ) { break ; }
      
       x[1] = sciGetBackground (pobj);x[4] = 0;
       /** xclear will properly upgrade background if necessary **/
@@ -7542,7 +7512,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 
       /* STOP HERE if figure is invisible: */
-      if (sciGetVisibility(pobj) == FALSE) break;
+      if ( !sciGetVisibility(pobj) ) { break; }
 
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL) {
@@ -7556,7 +7526,7 @@ sciDrawObj (sciPointObj * pobj)
       break;
     }
     case SCI_SUBWIN: 
-      if (sciGetVisibility(pobj) == FALSE) break;
+      if ( !sciGetVisibility(pobj) ) { break ; }
 
       ppsubwin = pSUBWIN_FEATURE (pobj);
 
@@ -9405,40 +9375,10 @@ sciDrawObj (sciPointObj * pobj)
             font_[1] = sciGetFontDeciWidth (pobj)/100;
             
             C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    
+
             C2F(dr)("xstringl",ppText->ptextstring,
                     &x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,pTEXT_FEATURE (pobj)->textlen);
 	    
-/* 	    if(sciGetIsFilled(pobj)) */
-/* 	      { */
-/* 		x[0] = sciGetBackground(pobj); */
-            
-/* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
-/* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
-		
-/* 		C2F(dr)("xfrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3], */
-/* 			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 	      } */
-	    
-/* 	    if(sciGetIsLine(pobj)) */
-/* 	      { */
-/* 		x[0] = sciGetForeground(pobj); */
-		
-/* 		C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L); */
-/* 		C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L); */
-		
-/* 		C2F(dr)("xrect",str,&rect1[0],&rect1[1],&rect1[2],&rect1[3], */
-/* 			PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 	      } */
-	    	  
-          /* F.Leray 04.08.05 */
-          /* For the text object, the box is inked to the IsLine functions (get/set) */
-          /* and the box is painted inside AND on the contour at the same time */
-	    
-	    
-            
-/* 	    char str[2] = "xv"/\*,locstr*\/; */
-            
             
             xm[0] = x1;
             xm[1] = round(x1 + cosangle*rect1[2]);
@@ -12031,4 +11971,21 @@ int computeRealArrowSize( sciPointObj * pSegs, int nbSegs, int xCoord[], int yCo
 
 }
 /*------------------------------------------------------------------------------------------*/
+/**
+ * This is a wrapping of the function C2F(dr)("xstringl",... It should be prefered to xstringl
+ * because it is working even in drawlater mode.
+ * @param parentSubWin subwindow in which the text is drawn.
+ */
+void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
+{
+  sciPointObj * parentSubWin = sciGetSelectedSubWin ( sciGetCurrentFigure () ) ;
+
+  updateScaleIfRequired( parentSubWin ) ;
+  
+  /* now we can call xstringl */
+  C2F(dr)("xstringl",string,&posX,&posY,boundingRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+}
+/*------------------------------------------------------------------------------------------*/
+
 #undef round

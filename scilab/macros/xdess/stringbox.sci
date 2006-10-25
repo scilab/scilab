@@ -20,6 +20,10 @@ font     = xget('font') ;
 fontId   = font( 1 )    ;
 fontSize = font( 2 )    ;
 
+curFig     = gcf() ;
+curAxes    = gca() ;
+curFigAxes = gca() ; // selected axes of the parent figure
+
 ListArg = varargin ;
 
 select rhs,
@@ -32,6 +36,7 @@ case 1 then
     error("If only a single argument is specified, it must be a handle.");
     return ;
   end
+  
   
   // works with text handle and label handle (axes label and titles)
   if (textHandle.type == "Text" ) then
@@ -55,6 +60,16 @@ case 1 then
     error("Handle should be a Text or Label handle.") ;
     return ;
   end
+  
+  // set parent subwindow as current
+  parentSubWin = textHandle.parent ;
+  while parentSubWin.type ~= "Axes",
+    parentSubWin = parentSubWin.parent ;
+  end
+  
+  set( "current_figure", parentSubWin.parent ) ; // we must set the axes and figure
+  curFigAxes = gca() ; // may have changed
+  set( "current_axes"  , parentSubWin        ) ;
   
   
   
@@ -96,5 +111,9 @@ if type( text ) ~= 10 | type( posX ) ~= 1 | type( posY ) ~= 1 | type( angle ) ~=
 end
 
 corners = StringBox( text, posX, posY, angle, fontId, fontSize ) ;
+
+set( "current_axes"  , curFigAxes ) ;
+set( "current_figure", curFig     ) ;
+set( "current_axes"  , curAxes    ) ;
 
 endfunction

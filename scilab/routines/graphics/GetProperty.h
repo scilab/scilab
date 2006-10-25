@@ -148,15 +148,17 @@ extern int CheckForCompound (long *tabpointobj, int number); /* GET */
 extern sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */
 
 /* UNUSED ? */
-extern sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure);
-extern HMENU sciGethPopMenu (sciPointObj * pthis);
+extern sciPointObj *sciGetOriginalSubWin (sciPointObj * pfigure) ; /* GET */
+extern HMENU sciGethPopMenu (sciPointObj * pthis) ; /* GET */
 
-extern int *sciGetInterpVector(sciPointObj * pobj);
-extern int sciGetPosition (sciPointObj * pobj, double *x, double *y);
+extern int *sciGetInterpVector(sciPointObj * pobj) ; /* GET */
+extern int sciGetPosition (sciPointObj * pobj, double *x, double *y) ; /* GET */
 
-extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ;
-extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ;
+extern BOOL sciGetAutoRotation ( sciPointObj * pObj ) ; /* GET */
+extern BOOL sciGetAutoPosition ( sciPointObj * pObj ) ; /* GET */
 
 extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
+
+extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ; /* GET */
 
 #endif /* __SCI_GET_PROPERTY__ */

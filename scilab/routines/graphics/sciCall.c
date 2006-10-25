@@ -208,15 +208,13 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wh,hdl,fill,foreground,backgrou
   *hdl= sciGetHandle(pobj);
   sciSetFontOrientation (pobj, (int) (*angle *  10)); 
 
-/*   sciSetForeground (pobj, sciGetForeground (psubwin)); */
-/*   sciSetFontStyle(pobj, sciGetFontStyle (psubwin)); */
-/*   sciSetFontDeciWidth(pobj, sciGetFontDeciWidth (psubwin)); */
   sciDrawObjIfRequired(pobj);
           
 
   x1 = XDouble2Pixel(x);
   yy1 = YDouble2Pixel(y);
-  C2F(dr)("xstringl",fname,&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,fname_len);
+  callXstringL( fname, x1, yy1, rect1 ) ;
+  /* C2F(dr)("xstringl",fname,&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,fname_len); */
   C2F(echelle2d)(box,box+1,rect1,rect1+1,&n,&n,"i2f",3L);
   C2F(echelle2dl)(box+2,box+3,rect1+2,rect1+3,&n,&n,"i2f");
  

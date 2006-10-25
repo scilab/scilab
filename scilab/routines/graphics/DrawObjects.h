@@ -203,4 +203,10 @@ extern int computeRealArrowSize( sciPointObj * pSegs,
                                  int xCoord[]       ,
                                  int yCoord[]         ) ;
 
+extern void callXstringL( char * string, int posX, int posY, int boundingRect[4] ) ;
+
+extern void computeAxisBounds3d( sciPointObj * pobj, double xBox[8], double yBox[8], double zBox[8], double dBox[6] ) ;
+
+extern BOOL sci_update_frame_bounds_2d( sciPointObj * pobj ) ;
+
 #endif /* __SCI_DRAWINGS__ */
