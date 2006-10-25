@@ -1718,6 +1718,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\StringBox.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\StringMatrix.c"
 				>
 			</File>
@@ -1746,6 +1750,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\includes\Axes.h"
+				>
+			</File>
 			<File
 				RelativePath=".\includes\BasicAlgos.h"
 				>
@@ -2316,6 +2324,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\SetPropertyStatus.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\StringBox.h"
 				>
 			</File>
 			<File

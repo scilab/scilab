@@ -1890,14 +1890,7 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
 	  XGradPosition(psubwin,posi[1],rect[3]);
-/* 	  if ( logflag == 'l' ) */
-/* 	    { */
-/* 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]), */
-/* 		      (posi[1] += logrect[3],&posi[1]), */
-/* 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L); */
-/* 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* 	    } */
+
           if ( ppsubwin->axes.axes_visible[0] )
           {
             if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1967,24 +1960,10 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	      vy[0]= ym[0];vy[1]= ym[0] - barlength;
 	    }
 	  
-	  /* 	  if ( pos == 'd' )  */
-/* 	    { */
-/* 	      posi[1]=inint( ym[0] + 1.2*barlength + rect[3]); */
-/* 	      vy[0]= ym[0];vy[1]= ym[0] + barlength ; */
-/* 	    } */
-/* 	  else  */
-/* 	    {  */
-/* 	      posi[1]=inint( ym[0] - 1.2*barlength); */
-/* 	      vy[0]= ym[0];vy[1]= ym[0] - barlength; */
-/* 	    } */
 	  if ( ppsubwin->axes.axes_visible[0] )
           {
             if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-            
-            /* if ( logflag == 'l' ) */
-/*             { */
-/*               C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L) ; */
-/*             } */
+
             
             C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
           }
@@ -3335,3 +3314,35 @@ void findFormat( sciPointObj * pSubWin, char formatX[5], char formatY[5] )
 }
 
 /*--------------------------------------------------------------------------------*/
+void updateSubWinScale( sciPointObj * pSubWin )
+{
+  double xBox[8] ;
+  double yBox[8] ;
+  double zBox[8] ;
+  double dBox[6] ;
+
+
+  set_scale ("tttftt", pSUBWIN_FEATURE(pSubWin)->WRect,
+    pSUBWIN_FEATURE(pSubWin)->FRect,
+    NULL, pSUBWIN_FEATURE(pSubWin)->logflags, 
+    pSUBWIN_FEATURE(pSubWin)->ARect); 
+
+  /* Scales are not be updated with an automatic drawing */
+  if ( pSUBWIN_FEATURE(pSubWin)->is3d )
+  {
+    updateScale3d( pSubWin, xBox, yBox, zBox, dBox ) ;
+  }
+  else
+  {
+    sci_update_frame_bounds_2d( pSubWin ) ;
+  }
+}
+/*-----------------------------------------------------------------------------------------*/
+void updateScaleIfRequired( sciPointObj * pSubWin )
+{
+  if ( !sciGetIsAutoDrawable( pSubWin ) )
+  {
+    updateSubWinScale( pSubWin ) ;
+  }
+}
+/*-----------------------------------------------------------------------------------------*/

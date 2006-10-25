@@ -267,17 +267,13 @@ void updateScale3d( sciPointObj * pobj    ,
                     double        zbox[6]  )
 {
   int    flag     ;
-  int    ib       ;
-  double FRect[4] ;
-  double WRect[4] ; 
-  double ARect[4] ;
+  int    i        ;
   double xmmin    ;
   double xmmax    ;
   double ymmin    ;
   double ymmax    ;
   double wmax     ;
   double hmax     ;
-  char   logf[2]  ;
   integer aaint[] = {2,10,2,10} ;
   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
 
@@ -310,15 +306,15 @@ void updateScale3d( sciPointObj * pobj    ,
   /* update Cscale.m from the new viewing angles */
   sciUpdateScaleAngles( ppsubwin->theta, ppsubwin->alpha ) ;
       
-  for ( ib = 0 ; ib < 6 ; ib++ ) 
+  for ( i = 0 ; i < 6 ; i++ ) 
   { 
     if ( flag == 0 )
     { 
-      dbox[ib] = Cscale.bbox1[ib];
+      dbox[i] = Cscale.bbox1[i];
     }
     else
     { 
-      Cscale.bbox1[ib] = dbox[ib];
+      Cscale.bbox1[i] = dbox[i];
     }
   }
 
@@ -328,22 +324,28 @@ void updateScale3d( sciPointObj * pobj    ,
   /** Calcul des echelles en fonction de la taille du dessin **/
   if ( flag == 1 || flag == 3 ) /* ALL the expanded cases : flag[1] = 1 or 2 or 5 or 6 */
   {
-    xmmin=  (double) Mini(xbox,8L);
-    xmmax= (double) Maxi(xbox,8L); /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
-    ymmax=  (double) - Mini(ybox,8L); /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
-    ymmin=  (double) - Maxi(ybox,8L);
+    xmmin =  Mini(xbox,8L) ;
+    xmmax =  Maxi(xbox,8L) ; /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
+    ymmax = -Mini(ybox,8L) ; /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
+    ymmin = -Maxi(ybox,8L);
   }
+  
   if ( flag == 2 || flag == 3 ) /* ALL the isometric cases : flag[1] = 3 or 4 or 5 or 6 */
   {
     int verbose = 0 ;
     int narg        ;
     int wdim[2]     ;
+    double FRect[4] ;
+    double WRect[4] ;
+    double ARect[4] ;
+    char   logf[2]  ;
     /* get current window size */
     C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     getscale2d(WRect,FRect,logf,ARect);
     wmax=linint((double)wdim[0] * WRect[2]);
     hmax=linint((double)wdim[1] * WRect[3]); 
   }
+  
   if ( flag == 2 ) /* the "NON expanded isometric" cases : flag[1] = 3 or 4 */
   {
     double R  ;
@@ -355,20 +357,21 @@ void updateScale3d( sciPointObj * pobj    ,
     double dz ;
     
     /* radius and center of the sphere circumscribing the box */
-    dx = dbox[1]-dbox[0];
-    dy = dbox[3]-dbox[2];
-    dz = dbox[5]-dbox[4];
+    dx = dbox[1] - dbox[0] ;
+    dy = dbox[3] - dbox[2] ;
+    dz = dbox[5] - dbox[4] ;
     
-    R  = (double) sqrt(dx*dx + dy*dy + dz*dz)/2;
-    xo = (double) (xbox[0]+xbox[6])/2 ;
-    yo = (double) (ybox[0]+ybox[6])/2 ;
-    zo = (double) (zbox[0]+zbox[6])/2 ;
+    R  = sqrt( dx*dx + dy*dy + dz*dz)/2;
+    xo = ( xbox[0] + xbox[6] ) / 2.0 ;
+    yo = ( ybox[0] + ybox[6] ) / 2.0 ;
+    zo = ( zbox[0] + zbox[6] ) / 2.0 ;
     
-    xmmin=  (double)  xo - R ;
-    xmmax=  (double)  xo + R ;
-    ymmax=  (double) -yo + R ;
-    ymmin=  (double) -yo - R ;
+    xmmin=   xo - R ;
+    xmmax=   xo + R ;
+    ymmax=  -yo + R ;
+    ymmin=  -yo - R ;
   }
+
   if (flag==2 || flag==3)
   {
     double hx ;
@@ -378,27 +381,29 @@ void updateScale3d( sciPointObj * pobj    ,
     if ( hx/(double)wmax  < hy/(double)hmax ) 
     {
       double hx1 ;
-      hx1=wmax*hy/hmax;
-      xmmin=xmmin-(hx1-hx)/2.0;
-      xmmax=xmmax+(hx1-hx)/2.0;
+      hx1   = wmax * hy / hmax ;
+      xmmin = xmmin - ( hx1 - hx ) / 2.0 ;
+      xmmax = xmmax + ( hx1 - hx ) / 2.0 ;
     }
     else 
     {
       double hy1 ;
-      hy1=hmax*hx/wmax;
-      ymmin=ymmin-(hy1-hy)/2.0;
-      ymmax=ymmax+(hy1-hy)/2.0;
+      hy1 = hmax * hx / wmax ;
+      ymmin = ymmin - ( hy1 - hy ) / 2.0 ;
+      ymmax = ymmax + ( hy1 - hy ) / 2.0 ;
     }
   }
+
   if (flag != 0 ) /* != using current 3D scale */
   {
+    double FRect[4] ;
     /* FRect = [Xmin,Ymin,Xmax,Ymax] */
     FRect[0] =  xmmin ;
     FRect[1] = -ymmax ;
     FRect[2] =  xmmax ;
     FRect[3] = -ymmin ; /* 2) ... (why - (minus) ? )*/
     set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
-    Cscale.metric3d=flag; 
+    Cscale.metric3d = flag; 
   }
 }
 
@@ -418,7 +423,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   EAxesBoxType subWinBoxType = sciGetBoxType( pobj ) ;
 
   /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
-  for(i=0;i<5;i++) x[i] = -1000;
+  for(i=0;i<5;i++) { x[i] = -1000 ; }
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
     {  
@@ -439,46 +444,18 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
         sciAxesVerticesIndices( InsideU, InsideD, xbox, ybox, xind ) ;
       }
 
-      /* BUG Event A ESSAYER SOUS WINDOWS !! */
-      /* sous X11, un event X11 declenche par sciprint -> puis scig_resize fait que l'on */
-      /* lance axis_3ddraw 2 fois de suite SANS QUE le premier est le temps de */
-      /* terminer completement !!*/
-      /* pour le voir decommenter la ligne ci-dessous et les lignes de printf : */
-      /* DEBUT DE axis_3ddraw */
-      /* DEBUT DE Axes3dStrings2 */
-	    
-      /* 	    for(i=0;i<50000;i++) sciprint("i= %d \n", i); */
-	    
-
-      /* 	    printf("INFO HERE \n"); */
-      /* 	    sciprint("alpha = %lf \t theta = %lf",Alpha,Teta); */
-      /* 	    sciprint("xind vaut:\n"); */
-      /* 	    for(i=0;i<8;i++) sciprint("xind[%d] = %d\n",i,xind[i]); */
-      /* 	    sciprint("InsideD & InsideU vallent:\n"); */
-      /* 	    for(i=0;i<4;i++) sciprint("InsideD[%d] = %d \t InsideU[%d]=%d \n",i,InsideD[i],i,InsideU[i]); */
-      /* 	    sciprint("fin \n\n"); */
-
-      /* F.Leray 26.10.04 Debug*/
-      /* Same thing as above but using printf to avoid sciprint */
-      /*   printf("INFO HERE \n"); */
-      /*       printf("alpha = %lf \t theta = %lf",Alpha,Teta); */
-      /*       printf("xind vaut:\n"); */
-      /*       for(i=0;i<8;i++) printf("xind[%d] = %d\n",i,xind[i]); */
-      /*       printf("InsideD & InsideU vallent:\n"); */
-      /*       for(i=0;i<4;i++) printf("InsideD[%d] = %d \t InsideU[%d]=%d \n",i,InsideD[i],i,InsideU[i]); */
-      /*       printf("fin \n\n"); */
-
-
-
       /* F.Leray Rajout 02.04.04 :*/
-      background=sciGetBackground(pobj);
+      background = sciGetBackground(pobj) ;
 	  
-      for (i=0; i < 6 ; i++)
-	{
-	  ixbox[i]=XScale(xbox[xind[i]]);
-	  iybox[i]=YScale(ybox[xind[i]]);
-	}
-      ixbox[6]=ixbox[0];iybox[6]=iybox[0]; p=7,n=1; 
+      for ( i = 0 ; i < 6 ; i++ )
+      {
+        ixbox[i]=XScale(xbox[xind[i]]);
+        iybox[i]=YScale(ybox[xind[i]]);
+      }
+      ixbox[6] = ixbox[0] ;
+      iybox[6] = iybox[0] ;
+      p = 7 ;
+      n = 1 ; 
       
       C2F(dr)("xget","pattern",&verbose,&color_old,&zero,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
@@ -490,24 +467,30 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       flag = ppsubwin->axes.flag[2]; /* box drawing */
       
       if ( subWinBoxType != BT_OFF )
-	{ 
-	  x[2] = sciGetLineWidth (pobj);
-          x[3] = sciGetLineStyle (pobj);
-	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      { 
+        x[2] = sciGetLineWidth (pobj);
+        x[3] = sciGetLineStyle (pobj);
+        C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
           
-	  hiddencolor = sciSetGoodIndex( pobj, ppsubwin->axes.hiddenAxisColor ) ;
+        hiddencolor = sciSetGoodIndex( pobj, ppsubwin->axes.hiddenAxisColor ) ;
 	  
-	  if (zbox[InsideU[0]] > zbox[InsideD[0]])
-	    DrawAxis(xbox,ybox,InsideD,hiddencolor);
-	  else
-	    {
-	      DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
-	    }
-	  if (Ishidden(pobj))
-	    ppsubwin->hiddenstate=(InsideU[0] % 4);
-	  else
-	    ppsubwin->hiddenstate=(InsideD[0] % 4);
+	if (zbox[InsideU[0]] > zbox[InsideD[0]])
+        {
+	  DrawAxis(xbox,ybox,InsideD,hiddencolor);
+        }	 
+        else
+        {
+	  DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
 	}
+	if (Ishidden(pobj))
+        {
+	  ppsubwin->hiddenstate=(InsideU[0] % 4);
+        }
+	else
+        {
+	  ppsubwin->hiddenstate=(InsideD[0] % 4);
+	}
+      }
       /**  l'enveloppe cvxe*/
       x[0] = sciGetForeground (pobj);	 /* F.Leray 05.03.04 Useless or not?? because we used set pattern instead of set foreground (because Windows uses BRUSH and PEN...)*/
       /* Wrong explanation: We use sciGetForeground in NG mode and used set foreground in old graphic mode*/
@@ -6733,7 +6716,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 
       /* STOP HERE if figure is invisible: */
-      if (sciGetVisibility(pobj) == FALSE) break;
+      if ( !sciGetVisibility(pobj) ) { break; }
 
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL) {
@@ -6747,7 +6730,7 @@ sciDrawObj (sciPointObj * pobj)
       break;
     }
     case SCI_SUBWIN: 
-      if (sciGetVisibility(pobj) == FALSE) break;
+      if ( !sciGetVisibility(pobj) ) { break; }
 
       ppsubwin = pSUBWIN_FEATURE (pobj);
 
@@ -10835,10 +10818,10 @@ void sciUpdateScaleAngles( double theta, double alpha )
   double cosa = 0.5 ;
   double sina = 0.5 ;
 
-  cost=cos( theta * PI_OVER_180 ) ;
-  cosa=cos( alpha * PI_OVER_180 ) ;
-  sint=sin( theta * PI_OVER_180 ) ;
-  sina=sin( alpha * PI_OVER_180 ) ;
+  cost = cos( DEG2RAD(theta) ) ;
+  cosa = cos( DEG2RAD(alpha) ) ;
+  sint = sin( DEG2RAD(theta) ) ;
+  sina = sin( DEG2RAD(alpha) ) ;
   
   Cscale.m[0][0]= -sint        ;
   Cscale.m[0][1]=  cost        ;
@@ -11094,6 +11077,9 @@ void getTextBoundingBox( sciPointObj * pText        ,
   textPos[0] = ppText->x ;
   textPos[1] = ppText->y ;
   textPos[2] = ppText->z ;
+
+  updateScaleIfRequired( parentSW ) ;
+
   if ( sciGetIs3d( pText ) )
   {
     /* normal case */

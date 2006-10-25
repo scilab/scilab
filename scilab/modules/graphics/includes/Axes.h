@@ -99,5 +99,16 @@ void initSubWinBounds( sciPointObj * pSubWin ) ;
 BOOL checkRedrawing( void ) ;
 
 /*--------------------------------------------------------------------------------------*/
+/**
+* Update the current scale factors from a modified SubWindow.
+* This is sometimes required when the redraw is disable.
+*/
+void updateSubWinScale( sciPointObj * pSubWin ) ;
 
+/**
+* update the scale factors only if the SubWindow won't be automatically redrawn.
+* Should be called before dr("xstringl") for example.
+*/
+void updateScaleIfRequired( sciPointObj * pSubWin ) ;
+/*--------------------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

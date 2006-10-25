@@ -5225,3 +5225,11 @@ BOOL sciIsMergeable( sciPointObj * pObj )
   return FALSE;
 }
 /*-------------------------------------------------------------------------------------------*/
+/**
+* return if the drawlater mode is on for the parent figure.
+*/
+BOOL sciGetIsAutoDrawable( sciPointObj * pobj )
+{
+  return pFIGURE_FEATURE(sciGetParentFigure(pobj))->auto_redraw ;
+}
+/*-------------------------------------------------------------------------------------------*/

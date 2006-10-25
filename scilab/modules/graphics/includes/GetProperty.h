@@ -196,4 +196,6 @@ extern int sciGetHiddenColor( sciPointObj * pObj ) ;
 
 extern BOOL sciIsMergeable( sciPointObj * pObj ) ;
 
+extern BOOL sciGetIsAutoDrawable( sciPointObj * pobj ) ;
+
 #endif /* __SCI_GET_PROPERTY__ */

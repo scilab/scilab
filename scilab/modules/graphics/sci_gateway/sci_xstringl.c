@@ -12,6 +12,7 @@
 #include "BuildObjects.h"
 #include "Xcall1.h"
 #include "MALLOC.h"
+#include "DrawObjects.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xstringl( char *fname, unsigned long fname_len )
@@ -41,6 +42,12 @@ int sci_xstringl( char *fname, unsigned long fname_len )
   if (Rhs >= 5) { GetRhsVar(5,"i",&m5,&n5,&l5); CheckScalar(5,m5,n5); font_[1] = *istk(l5);}
 
   C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  if ( version_flag() == 0 )
+  {
+    updateSubWinScale( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
+  }
+
 
   wc = 0.;
   for (i = m3 -1 ; i >= 0; --i) 
