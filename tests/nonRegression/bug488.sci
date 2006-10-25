@@ -7,7 +7,7 @@ clear
 // rechercher l'existance du répertoire tcl sous Scilab
 
 correct=%F
-tcl_dir=getenv('SCI')+"/tcl"
+tcl_dir=getenv('SCI')+"/modules/tclsci/tcl"
 correct=isdir(tcl_dir)
 if correct & MSDOS then
    // si oui rechercher l'existance du fichier init.tcl sous un repertoire de tcl
