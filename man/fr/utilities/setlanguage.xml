@@ -29,7 +29,7 @@
 
   <DESCRIPTION>
     <P><VERB>setlanguage(language)</VERB> change la langue courante dans
-    scilab (aide, scipad, et les menus).</P>
+    scilab (aide et les menus).</P>
   </DESCRIPTION>
 
   <SEE_ALSO>
