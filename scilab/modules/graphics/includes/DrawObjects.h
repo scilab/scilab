@@ -98,9 +98,9 @@ extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
                                    double      * zmax    ) ;
 extern void updateScale3d( sciPointObj * pobj    ,
                            double        dbox[6] ,
-                           double        xbox[6] ,
-                           double        ybox[6] ,
-                           double        zbox[6]  ) ;
+                           double        xbox[8] ,
+                           double        ybox[8] ,
+                           double        zbox[8]  )
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 

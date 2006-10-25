@@ -262,9 +262,9 @@ void sciXdraw()
 /* update the scale and retrieve the bounding box of the axis */
 void updateScale3d( sciPointObj * pobj    ,
                     double        dbox[6] ,
-                    double        xbox[6] ,
-                    double        ybox[6] ,
-                    double        zbox[6]  )
+                    double        xbox[8] ,
+                    double        ybox[8] ,
+                    double        zbox[8]  )
 {
   int    flag     ;
   int    i        ;
@@ -4663,7 +4663,7 @@ BOOL GetIsAxes2D(sciPointObj *psubwin)
     return TRUE;
 }
 
-int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
+int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
 {
   double xbox[8], ybox[8], zbox[8];
 
