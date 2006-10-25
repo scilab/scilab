@@ -11971,21 +11971,5 @@ int computeRealArrowSize( sciPointObj * pSegs, int nbSegs, int xCoord[], int yCo
 
 }
 /*------------------------------------------------------------------------------------------*/
-/**
- * This is a wrapping of the function C2F(dr)("xstringl",... It should be prefered to xstringl
- * because it is working even in drawlater mode.
- * @param parentSubWin subwindow in which the text is drawn.
- */
-void callXstringL( char * string, int posX, int posY, int boundingRect[4] )
-{
-  sciPointObj * parentSubWin = sciGetSelectedSubWin ( sciGetCurrentFigure () ) ;
-
-  updateScaleIfRequired( parentSubWin ) ;
-  
-  /* now we can call xstringl */
-  C2F(dr)("xstringl",string,&posX,&posY,boundingRect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-}
-/*------------------------------------------------------------------------------------------*/
 
 #undef round
