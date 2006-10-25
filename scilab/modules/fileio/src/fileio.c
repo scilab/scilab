@@ -701,12 +701,45 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
   Nbvars = 0;
   CheckRhs(1,4); 
   CheckLhs(1,1);
-  GetRhsVar(1,"c",&m1,&n1,&l1);/* file name */
-  GetRhsVar(2,"d",&m2,&n2,&l2);/* data */
+
+  if (GetType(1) == sci_strings)
+  {
+	  GetRhsVar(1,"c",&m1,&n1,&l1);/* file name */
+  }
+  else
+  {
+	  Scierror(999,"first parameter must be a filename.\n");
+	  return 0;
+  }
+
+  if (GetType(2) == sci_matrix)
+  {
+	#define COMPLEXPART 1
+	int *header=NULL;
+	int Cmplx;
+
+	header = (int *) GetData(2);
+	Cmplx=header[3];
+
+	if (Cmplx != COMPLEXPART)
+	{
+	  GetRhsVar(2,"d",&m2,&n2,&l2); /* data */
+	}
+	else
+	{
+	  Scierror(999,"%s works only with reals.\n",fname);
+	  return 0;
+	}
+  }
+  else
+  {
+	Scierror(999,"%s works only with reals.\n",fname);
+	return 0;
+  }
 
   if ( Rhs >= 3) 
   {
-		GetRhsVar(3,"c",&m3,&n3,&l3);/* format */
+	GetRhsVar(3,"c",&m3,&n3,&l3);/* format */
     StringConvert(cstk(l3));  /* conversion */
     Format = cstk(l3);
   }
@@ -728,18 +761,18 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
   if ( Rhs >= 4 )
   {
-		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",Str2[i]);
+	for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",Str2[i]);
   }
 
   for (i = 0 ; i < m2 ; i++ ) 
   {
-      for ( j = 0 ; j < n2 ; j++) 
-			{
-				fprintf(f,Format,*stk(l2+i + m2*j));
-				fprintf(f," ");
-			}
+    for ( j = 0 ; j < n2 ; j++) 
+	{
+		fprintf(f,Format,*stk(l2+i + m2*j));
+		fprintf(f," ");
+	}
 
-      fprintf(f,"\n");
+    fprintf(f,"\n");
   }
   fclose(f);
   LhsVar(1)=0 ; /** no return value **/
