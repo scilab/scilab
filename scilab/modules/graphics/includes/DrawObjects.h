@@ -100,7 +100,7 @@ extern void updateScale3d( sciPointObj * pobj    ,
                            double        dbox[6] ,
                            double        xbox[8] ,
                            double        ybox[8] ,
-                           double        zbox[8]  )
+                           double        zbox[8]  );
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
 
@@ -109,7 +109,7 @@ extern int labels2D_draw(sciPointObj * psubwin); /* DRAWINGS */
 
 extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input); /* DRAWINGS */
 extern int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input);
-extern int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */
+extern int ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double * dbox, integer *xind, integer *InsideU, integer *InsideD); /* DRAWINGS */
 extern int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind); /* DRAWINGS */
 extern int AdaptGraduationsOnZ(int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double zminval, double zmaxval, double fx, double fy, double fz);
 extern int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Ticsdir, int *fontid, sciPointObj * psubwin, double xminval, double xmaxval, double fx, double fy, double fz);
