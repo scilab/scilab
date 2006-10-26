@@ -355,15 +355,13 @@ sciGetColormap (sciPointObj * pobj, double *rgbmat)
 {
   int i;
   int m = sciGetNumColors (pobj);	/* the number of the color*/
-  if (sizeof (rgbmat) != m * 3)
-    return -1;
-  
+    
   for (i = 0; i < m; i++)
-    {
-      rgbmat[i] = sciGetScilabXgc (pobj)->Red[i];
-      rgbmat[i + m] = sciGetScilabXgc (pobj)->Green[i];
-      rgbmat[i + 2 * m] = sciGetScilabXgc (pobj)->Blue[i];
-    }
+  {
+    rgbmat[i] = sciGetScilabXgc (pobj)->Red[i];
+    rgbmat[i + m] = sciGetScilabXgc (pobj)->Green[i];
+    rgbmat[i + 2 * m] = sciGetScilabXgc (pobj)->Blue[i];
+  }
   return 0;
 }
 

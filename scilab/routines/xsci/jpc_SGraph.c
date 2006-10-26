@@ -1150,6 +1150,9 @@ SavePs(w, number, client_data)
   integer win_num = (integer) number ;
   integer colored,orientation,flag=2,ok;
   prtdlg(&flag,printer,&colored,&orientation,file,&ok);
+
+  if ( colored == 2 ) { colored = 0 ; } /* black and white selected => false */
+
   if (ok==1) 
     {
       if (strncmp(printer,"Postscript",10)==0 ) 

@@ -236,6 +236,31 @@ void  scig_erase(integer win_num)
   scig_buzy = 0;
 }
 
+
+/**
+ * Convert a colormap to a black and white one of the same size.
+ * Each color is replaced by its grey scale.
+ * of the source colormap.
+ * @param bwColorMap destination of the function
+ * @param colorMap   source colormap. The two colormaps might be actually the same
+ *                   if a copy is not needed.
+ * @
+ */
+void convertColorMap2BW( double * bwColorMap, double * colorMap, int colorMapSize )
+{
+  int i ;
+  for ( i = 0 ; i < colorMapSize ; i++ )
+  {
+    /* use parameter 0.299 for red, 0.587 for green and 0.114 for blue */
+    double curColor = Max( Min(  0.299 * colorMap[i]
+                               + 0.587 * colorMap[i + colorMapSize]
+                               + 0.114 * colorMap[i + 2 * colorMapSize] , 1.0 ), 0.0 ) ;
+    bwColorMap[i                   ] = curColor ;
+    bwColorMap[i + colorMapSize    ] = curColor ;
+    bwColorMap[i + 2 * colorMapSize] = curColor ;
+  }
+}
+
 /********************************************************
  * send recorded graphics to file bufname in ``driver'' syntax ( Pos or Fig )
  * win_num : the number of the window,
@@ -257,11 +282,16 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);  
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
-  if (version_flag() == 0) {
-    sciPointObj *curFig=sciGetCurrentFigure ();
-    integer bg;
+  if (version_flag() == 0)
+  {
+    sciPointObj * curFig=sciGetCurrentFigure ();
+    integer bg ;
+    double * curColorMap = NULL ;
+    double * bwColorMap  = NULL ; /* allocated if black and white needed */
+    int colorMapSize = sciGetNumColors( curFig ) ;
     
-    if(curFig == (sciPointObj *) NULL){
+    if( curFig == (sciPointObj *) NULL )
+    {
       Scierror(999,"No current graphic window %d found for exporting to %s\r\n",win_num,driver);
       C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -277,20 +307,63 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     /* xinit from screen (for the colormap definition) */
     C2F(dr)("xinit2",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    if (ierr != 0) goto bad;
+    
+    if (ierr != 0)
+    {
+      C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      /* to force a reset in the graphic scales */
+      SwitchWindow(&cur);
+      scig_buzy = 0;
+      return ierr ;
+    }
+    
     set_version_flag(0);
     sciSetCurrentFigure(curFig);
+    
+    if ( colored == 0 )
+    {
+      /* change the colormap to a bw one */
+      curColorMap = MALLOC( 3 * colorMapSize * sizeof(double) ) ;
+      bwColorMap  = MALLOC( 3 * colorMapSize * sizeof(double) ) ;
+      sciGetColormap( curFig, curColorMap ) ;
+      convertColorMap2BW( bwColorMap, curColorMap, colorMapSize ) ;
+      sciSetColormap( curFig, bwColorMap, colorMapSize, 3 ) ;
+      FREE( bwColorMap ) ;
+      bwColorMap = NULL ;
+    }
+    
     C2F(dr)("xset","background",&bg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
     xinitxend_flag = 0; /* we force to draw */
     sciDrawObj(curFig);
+    
+    
+    C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    xinitxend_flag = save_xinitxend_flag; /* put back the xinit_xend value */
+    C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+    if ( colored == 0 )
+    {
+      sciSetColormap( curFig, curColorMap, colorMapSize, 3 ) ;
+      FREE( curColorMap ) ;
+      curColorMap = NULL ;
+    }
   }
   else {
     struct BCG * XGC = (struct BCG *) NULL;
     C2F(dr)("xsetdr",driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     /* xinit from screen (for the colormap definition) */
     C2F(dr)("xinit2",bufname,&win_num,&ierr,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    if (ierr != 0)  goto bad;
-     if (colored==1) 
+    if ( ierr != 0 )
+    {
+      C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      /* to force a reset in the graphic scales */
+      SwitchWindow(&cur);
+      scig_buzy = 0;
+      return ierr ;
+    }
+    if (colored==1) 
       C2F(dr)("xset","use color",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     else
       C2F(dr)("xset","use color",&zero,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -312,11 +385,10 @@ int scig_tops(integer win_num, integer colored, char *bufname, char *driver)
     /** back to default values **/
     UseColorFlag(0);
     setcolordef(screenc);
+    C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
-  C2F(dr)("xend","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if(version_flag() == 0) xinitxend_flag = save_xinitxend_flag; /* put back the xinit_xend value */
-bad:
-  C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /* to force a reset in the graphic scales */
   SwitchWindow(&cur);
@@ -331,7 +403,7 @@ int C2F(xg2psofig)(char *fname, integer *len, integer *iwin, integer *color, cha
     getcolordef(&sc);
   else 
     sc= *color;
-  scig_tops(*iwin,sc,fname,driver);
+  /*scig_tops(*iwin,sc,fname,driver);*/
   return scig_tops(*iwin,sc,fname,driver);
 }
 

@@ -916,15 +916,15 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
   /* -------------------------------------------------------- */
 }
 
-void C2F(getcolormapsizePos)(integer *v1, integer *v2, integer *v3, double *val)
+void C2F(getcolormapsizePos)(integer *verbose, integer *num, integer *v3, double *val)
 {
-  if ( ScilabGCPos_is_initialized == FALSE ) {
+  if ( !ScilabGCPos_is_initialized ) {
     sciprint("xinit must be called before any action \r\n");
-    *v3=1;
+    *v3 = 1 ;
     return;
   }
 
-  *v2 = ScilabGCPos.Numcolors;
+  *num = ScilabGCPos.Numcolors;
 }
 
 void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val)
@@ -947,13 +947,7 @@ void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val)
     val[i+2*m] = (double)ScilabGCPos.Blue[i];
   }
 
-/*   if (*v2 != 3 ||  *v1 < 0) { */
-/*     Scistring("Colormap must be a m x 3 array \n"); */
-/*     *v3 = 1; */
-/*     return; */
-/*   } */
-/*   m = *v1; */
-/*   C2F(setgccolormapPos)(&ScilabGCPos,m, a, v3); */
+
 }
 
 void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
