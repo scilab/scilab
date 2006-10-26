@@ -7,7 +7,7 @@ needcompile1=max(2,needcompile)
 funcprot(0) 
 getvalue=setvalue;
 
-deff('message(txt)','x_message(''In block ''+o.gui+'': ''+txt);%scicos_prob=resume(%t)')
+deff('message(txt)','x_message([''In block ''+o.gui+'': '';txt]);%scicos_prob=resume(%t)')
 
 %scicos_prob=%f
 deff('[ok,tt]=FORTR(funam,tt,i,o)','ok=%t')
