@@ -1,7 +1,7 @@
-function [ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=tk_getvalue(%desc,%labels,%typ,%ini)
+function [%ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=tk_getvalue(%desc,%labels,%typ,%ini)
 //  getvalues - %window dialog for data acquisition 
 //%Synta%
-//  [ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
+//  [%ok,%1,..,%11]=getvalue(desc,labels,typ,ini)
 //%Parameters
 //  desc    : column vector of strings, dialog general comment 
 //  labels  : n column vector of strings, labels(i) is the label of 
@@ -24,8 +24,8 @@ function [ok,%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11,%12,%13,%14,%15,%16,%17,%18]=tk_
 //                    - an evaluatable character string 
 //  ini     : n column vector of strings, ini(i) gives the suggested
 //            response for the ith required value
-//  ok      : boolean ,%t if ok button pressed, %f if cancel button pressed
-//  xi      : contains the ith required value if ok==%t
+//  %ok      : boolean ,%t if %ok button pressed, %f if cancel button pressed
+//  xi      : contains the ith required value if %ok==%t
 //%Description
 // getvalues macro encapsulate x_mdialog function with error checking,
 // evaluation of numerical response, ...
@@ -58,17 +58,17 @@ if exists('%scicos_context') then
   for %mi=%mm(3:$)
     if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
       disp(lasterror())    
-      ok=%f
+      %ok=%f
       return
     end
   end
 end 
 
 if %rhs==3 then  %ini=emptystr(%nn,1),end
-ok=%t
+%ok=%t
 while %t do
   %str1=mdialog(%desc,%labels,%ini)
-  if %str1==[] then ok=%f,%str=[];break,end
+  if %str1==[] then %ok=%f,%str=[];break,end
   %str=%str1;
   for %kk=1:%nn
     %cod=ascii(%str(%kk))
@@ -188,7 +188,7 @@ while %t do
 	'has incorrect type :'+ %typ(-2*%nok-1)])
     else
       x_message(['answer given for  '+%labels(-%nok);
-	'is incorrect see error message in scilab window'])
+	'is incorrect:'+lasterror()])
     end
     %ini=%str
   else

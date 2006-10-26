@@ -188,7 +188,7 @@ while %t do
 	'has incorrect type :'+ %typ(-2*%nok-1)])
     else
       x_message(['answer given for  '+%labels(-%nok);
-	'is incorrect see error message in scilab window'])
+	'is incorrect:'+lasterror()])
     end
     %ini=%str
   else
