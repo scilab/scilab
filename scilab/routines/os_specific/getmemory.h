@@ -21,7 +21,7 @@
         #endif
       #endif
    #endif
-   #if defined(__alpha)	
+   #if defined(__alpha)	&& !defined(linux)
      #include <sys/sysinfo.h> 
      #include <machine/hal_sysinfo.h>
    #endif
