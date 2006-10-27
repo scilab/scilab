@@ -159,11 +159,6 @@ int get_data_property( sciPointObj * pobj )
     int status = -1 ;
     /* Warning the following function allocate data */
     double * data = sciGetPoint( pobj, &nbRow, &nbCol ) ;
-    if ( data  == NULL )
-    {
-      sciprint( "No data found for this handle.\n" ) ;
-      return -1;
-    }
 
     status = sciReturnMatrix( data, nbRow, nbCol ) ;
 

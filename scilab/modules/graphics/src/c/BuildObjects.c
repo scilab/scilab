@@ -1144,8 +1144,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciPolyline *ppoly = (sciPolyline *) NULL;
-  /* Adding F.Leray */
-  /* sciPointObj *psubwin = ( sciPointObj *) NULL;*/
   int i = 0;
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
@@ -1164,7 +1162,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /*sciSetParent (pobj, pparentsubwin);*/
       if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
 	{
 	  sciDelHandle (pobj);
@@ -1188,20 +1185,18 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       pPOLYLINE_FEATURE (pobj)->clip_region_set = 0;
-      /*pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
       sciInitIsClipping( pobj, sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)) ) ;
       sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
       
       
       pPOLYLINE_FEATURE (pobj)->arsize_factor = 1;
 
-      /*       pPOLYLINE_FEATURE (pobj)->clip_region = (double *) NULL; */
-
       pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
       ppoly = pPOLYLINE_FEATURE (pobj);
       
-      /* pour le moment je garde les vecteurs separes, et non en POINT2D */
-      if ((ppoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
+      if ( n1 != 0 )
+      {
+        if ((ppoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
 	{
           sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -1209,7 +1204,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ((ppoly->pvy = MALLOC (n1 * sizeof (double))) == NULL)
+      
+        if ((ppoly->pvy = MALLOC (n1 * sizeof (double))) == NULL)
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvx);
           sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -1218,42 +1214,54 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
  	}
-      if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL)) {
-	for (i = 0; i < n1; i++)
+      
+        if ((pvecx != (double *)NULL)&&(pvecy != (double *)NULL))
+        {
+          for (i = 0; i < n1; i++)
 	  {
-            ppoly->pvx[i]       = pvecx[i];
-	    ppoly->pvy[i]       = pvecy[i];
-	  
+            ppoly->pvx[i] = pvecx[i] ;
+	    ppoly->pvy[i] = pvecy[i] ; 
 	  }
-      }
-      else {
-	for (i = 0; i < n1; i++)
+        }
+        else
+        {
+          for (i = 0; i < n1; i++)
 	  {
-	    ppoly->pvx[i]       = 0.0;
-	    ppoly->pvy[i]       = 0.0;
+	    ppoly->pvx[i] = 0.0;
+	    ppoly->pvy[i] = 0.0;
 	  }
-      }
+        }
 
-      /**DJ.Abdemouche 2003**/
-      if (pvecz == (double *) NULL)
+
+        /**DJ.Abdemouche 2003**/
+        if (pvecz == (double *) NULL)
 	{
 	  pPOLYLINE_FEATURE (pobj)->pvz=NULL;
 	}
-      else
+        else
 	{
 	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
-	    {
-	      FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-	      FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(pPOLYLINE_FEATURE(pobj));
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    } 
+	  {
+	    FREE(pPOLYLINE_FEATURE (pobj)->pvx);
+	    FREE(pPOLYLINE_FEATURE (pobj)->pvy);
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pPOLYLINE_FEATURE(pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  } 
 	  for (i = 0; i < n1; i++)
+          {
 	    ppoly->pvz[i] = pvecz[i];
+          }
 	}
+      }
+      else
+      {
+        ppoly->pvx = NULL ;
+        ppoly->pvy = NULL ;
+        ppoly->pvz = NULL ;
+      }
 
       ppoly->n1 = n1;	  /* memorisation du nombre de points */
       ppoly->n2 = n2;	  /* memorisation du nombre des courbes */

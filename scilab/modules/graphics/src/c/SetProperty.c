@@ -3772,63 +3772,68 @@ int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
   int i,n1,k,k1,k2;
-  double *pvx = NULL,
-    *pvy = NULL,
-    *pvz = NULL,
-    *pvfx = NULL,
-    *pvfy = NULL,
-    *pvfz = NULL;
-  int *pstyle = NULL;
+  double * pvx  = NULL ;
+  double * pvy  = NULL ;
+  double * pvz  = NULL ;
+  double * pvfx = NULL ;
+  double * pvfy = NULL ;
+  double * pvfz = NULL ;
+  int * pstyle = NULL;
 
   switch (sciGetEntityType (pthis))
     {
     case SCI_POLYLINE:
       n1=pPOLYLINE_FEATURE (pthis)->n1;
-      if ((*numcol != 3)&&(*numcol != 2))
+      if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
 	{
 	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
 	  return -1;
 	}
       if (*numrow != n1) /* SS 30/1/02 */
-	{
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
+      {
+
+        FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
+        FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
+        FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
+
+        n1=*numrow;
+
+        if ( *numcol > 0 )
+        {
+          if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL)
+          {
+            FREE(pvx); pvx = (double *) NULL;
 	    return -1;
 	  } 
 	  if (*numcol == 3)
-	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
+          {
+            if ((pvz = MALLOC (n1 * sizeof (double))) == NULL)
+            {
+              FREE(pvx); pvx = (double *) NULL;
 	      FREE(pvy); pvy = (double *) NULL;
               return -1;
-	    }
+            }
+          }
 	  
-	  /* 	  for (i = 0; i < *numrow; i++) /\* Init. to 0. if no z is specified *\/ */
-	  /* 	    pvz[i] = 0.; */
-	  
-
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
-          FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
-	  
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)];
-              if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	    }
-
+	  for ( i = 0 ; i < *numrow ; i++ )
+	  {
+	    pvx[i] = tab[i];
+	    pvy[i] = tab[i+ (*numrow)];
+            if (*numcol == 3)
+            {
+	      pvz[i] = tab[i+ 2*(*numrow)];
+            }
+          }
 	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
 	  pPOLYLINE_FEATURE (pthis)->pvy=pvy; 
-          pPOLYLINE_FEATURE (pthis)->n1=n1;
-	  pPOLYLINE_FEATURE (pthis)->dim_icv=n1;
-	  
+          pPOLYLINE_FEATURE (pthis)->pvz=pvz;
+        }
 
-	  /* if (*numcol == 3) */
-	  pPOLYLINE_FEATURE (pthis)->pvz=pvz;
-	}
+        pPOLYLINE_FEATURE (pthis)->n1      = n1 ;
+        pPOLYLINE_FEATURE (pthis)->dim_icv = n1 ;
+
+      }
       else
 	{
 	  for (i=0;i < *numrow;i++)
@@ -3850,11 +3855,6 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	      FREE(pPOLYLINE_FEATURE (pthis)->pvz);
 	      pPOLYLINE_FEATURE (pthis)->pvz=NULL;
 	    }
-	  
-	  
-	  
-	  /*	  if (*numcol == 3)
-	    	  pPOLYLINE_FEATURE (pthis)->pvz = pvz; */ /* ..and here we put pvz...*/
 	}
       
 

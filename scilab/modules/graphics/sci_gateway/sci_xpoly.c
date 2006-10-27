@@ -32,7 +32,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
   GetRhsVar(2,"d",&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
   mn2 = m2 * n2;
-  if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
+
   if (Rhs >= 3) {
     GetRhsVar(3,"c",&m3,&n3,&l3);
     if ( strcmp(cstk(l3),"lines") == 0) {
