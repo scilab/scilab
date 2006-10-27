@@ -1657,12 +1657,13 @@ int scixpolys(char *fname,unsigned long fname_len)
     } 
   if (version_flag() == 0)
   {
+	sciPointObj * psubwin ;
     if ( n1 == 0 )
     {
       /* dimension 0, 0 polyline to draw */
       return 0 ;
     }
-    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) 
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
 
