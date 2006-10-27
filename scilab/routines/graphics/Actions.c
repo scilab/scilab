@@ -244,7 +244,6 @@ void  scig_erase(integer win_num)
  * @param bwColorMap destination of the function
  * @param colorMap   source colormap. The two colormaps might be actually the same
  *                   if a copy is not needed.
- * @
  */
 void convertColorMap2BW( double * bwColorMap, double * colorMap, int colorMapSize )
 {
