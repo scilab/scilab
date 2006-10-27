@@ -101,6 +101,7 @@ int sciplot3d_G(char *fname,
 		unsigned long fname_len);
 int scichamp_G(char *fname,int (*func) (),unsigned long fname_len);
 int scisetposfig(char *fname,unsigned long fname_len);
+void updateScaleIfRequired( sciPointObj * pSubWin ) ;
 /*-----------------------------------------------------------------------------------*/
 static int get_style(char *fname,int pos, int n1,rhs_opts opts[]);
 static int get_rect(char *fname,int pos,rhs_opts opts[]);
@@ -2280,7 +2281,7 @@ int scixstringl(char *fname,unsigned long fname_len)
 
   if ( version_flag() == 0 )
   {
-    updateSubWinScale( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
+    updateScaleIfRequired( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
   }
 
   wc = 0.;
@@ -4955,9 +4956,13 @@ int scizoomrect(char *fname,unsigned long fname_len)
   int x_pixel=0,y_pixel=0;
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
-  if (Rhs <= 0) 
+  SciWin();
+  if (Rhs <= 0)
+  {
     zoom();
-  else {
+  }
+  else
+  {
     GetRhsVar(1,"d",&m,&n,&l); 
     CheckLength(1,4,m*n);
     zoom_box(stk(l),&x_pixel,&y_pixel);
@@ -4972,13 +4977,19 @@ int sciunzoom(char *fname,unsigned long fname_len)
 {
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
-
+  SciWin();
   if ( Rhs == 0 )
+  {
     unzoom();
-  else {
+  }
+  else
+  {
     int m,n,l,i;
     GetRhsVar(1,"h",&m,&n,&l); 
-    for (i=0;i<m*n;i++) unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle((long) *hstk(l+i))); /** Correction Bug 1476 + Warning Windows **/
+    for (i=0;i<m*n;i++)
+    {
+      unzoom_one_axes((sciPointObj*)sciGetPointerFromHandle((long) *hstk(l+i))); /** Correction Bug 1476 + Warning Windows **/
+    }
   }
   LhsVar(1)=0; 
   return 0;
