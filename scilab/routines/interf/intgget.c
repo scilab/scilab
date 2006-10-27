@@ -1096,16 +1096,21 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strcmp(marker,"data") == 0)
     {
-      if ((tab = sciGetPoint ((sciPointObj *)pobj, &numrow, &numcol)) == NULL)
-	{strcpy(error_message,"No point");return -1;}
+      tab = sciGetPoint ( pobj, &numrow, &numcol ) ;
 
       /*  if(sciGetEntityType (pobj) != SCI_SURFACE){ */
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       k=0;
       for (j=0;j < numcol*numrow;j++)
+      {
 	stk(outindex)[j] = tab[j];
+      }
 
-      FREE(tab); tab = NULL;
+      if ( tab != NULL )
+      {
+        FREE(tab)  ;
+        tab = NULL ;
+      }
 
     }
 

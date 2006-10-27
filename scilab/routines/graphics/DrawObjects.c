@@ -5527,6 +5527,17 @@ int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * 
   double * y_shift = pppolyline->y_shift;
   double * z_shift = pppolyline->z_shift;
   
+
+  if ( pppolyline->n1 == 0 )
+  {
+    *nb_curves   = 0    ;
+    *xvect       = NULL ;
+    *yvect       = NULL ;
+    *zvect       = NULL ;
+    *curves_size = 0    ;
+    return 0 ;
+  }
+
   if ((pvx_plus_x_shift = MALLOC ((pppolyline->n1)*sizeof (double))) == NULL) return -1;
   if(x_shift != (double *) NULL){ /* if shift is not NULL, its size is n1 */
     for(i=0;i<pppolyline->n1;i++)
@@ -6187,14 +6198,23 @@ int Merge3dDimension(sciPointObj *pparent)
       break;
 
     case  SCI_POLYLINE:
-      if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
-	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
+      if ( pPOLYLINE_FEATURE(psonstmp->pointobj)->n1 == 0 )
+      {
+        N = 0 ;
+      }
+      else if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5)
+      {/*polyline*/
+        N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1 ;
 	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
 	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
+        {
 	  N=N+1;
+        }
       }
       else /* patch */
-	N = 1; 
+      {
+	N = 1 ;
+      }
       break;
     case  SCI_SEGS: 
       N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;

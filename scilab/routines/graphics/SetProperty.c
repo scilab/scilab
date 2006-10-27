@@ -3233,434 +3233,436 @@ int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
   int i,n1,k,k1,k2;
-  double *pvx = NULL,
-    *pvy = NULL,
-    *pvz = NULL,
-    *pvfx = NULL,
-    *pvfy = NULL,
-    *pvfz = NULL;
-  int *pstyle = NULL;
+  double *pvx  = NULL ;
+  double *pvy  = NULL ;
+  double *pvz  = NULL ;
+  double *pvfx = NULL ;
+  double *pvfy = NULL ;
+  double *pvfz = NULL ;
+  int *pstyle  = NULL ;
 
   switch (sciGetEntityType (pthis))
+  {
+  case SCI_POLYLINE:
+    n1=pPOLYLINE_FEATURE (pthis)->n1;
+    if ( (*numcol != 3) && (*numcol != 2) &&(*numcol != 0) )
     {
-    case SCI_POLYLINE:
-      n1=pPOLYLINE_FEATURE (pthis)->n1;
-      if ((*numcol != 3)&&(*numcol != 2))
-	{
-	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
-	  return -1;
-	}
-      if (*numrow != n1) /* SS 30/1/02 */
-	{
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  } 
-	  
-	  if (*numcol == 3)
-	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-              return -1;
-	    }
-	  
-	  /* 	  for (i = 0; i < *numrow; i++) /\* Init. to 0. if no z is specified *\/ */
-	  /* 	    pvz[i] = 0.; */
-	  
+      sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
+      return -1;
+    }
+    if (*numrow != n1) /* SS 30/1/02 */
+    {
 
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
-	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
-          FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
-	  
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)];
-              if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	    }
+      FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
+      FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
+      FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
 
-	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
-	  pPOLYLINE_FEATURE (pthis)->pvy=pvy; 
-          pPOLYLINE_FEATURE (pthis)->n1=n1;
-	  pPOLYLINE_FEATURE (pthis)->dim_icv=n1;
-	  
+      
+      n1 = *numcol ;
+      
+      if ( *numcol > 0 )
+      {
+        if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) { return -1 ; }
+        if ((pvy = MALLOC (n1 * sizeof (double))) == NULL)
+        {
+          FREE(pvx); pvx = (double *) NULL;
+          pPOLYLINE_FEATURE (pthis)->n1 = n1 ;
+          return -1;
+        } 
+        
+        if (*numcol == 3)
+        {
+          if ((pvz = MALLOC (n1 * sizeof (double))) == NULL)
+          {
+            FREE(pvx); pvx = (double *) NULL;
+            FREE(pvy); pvy = (double *) NULL;
+            return -1;
+          }
+        }
+        
+        n1 = *numrow ;
+        
+        for (i=0;i < *numrow;i++)
+        {
+          pvx[i] = tab[i];
+          pvy[i] = tab[i+ (*numrow)];
+          if (*numcol == 3)
+            pvz[i] = tab[i+ 2*(*numrow)];
+        }
+        
+        pPOLYLINE_FEATURE (pthis)->pvx=pvx;
+        pPOLYLINE_FEATURE (pthis)->pvy=pvy;
+        pPOLYLINE_FEATURE (pthis)->pvz=pvz;
+      }
 
-	  /* if (*numcol == 3) */
-	  pPOLYLINE_FEATURE (pthis)->pvz=pvz;
-	}
-      else
-	{
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
-	      pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	    }
-	  if (*numcol == 3)
-	    {
-	      if(pPOLYLINE_FEATURE (pthis)->pvz==NULL)
-		if ((pPOLYLINE_FEATURE (pthis)->pvz = MALLOC ((*numrow) * sizeof (double))) == NULL)
-		  return -1;
+      pPOLYLINE_FEATURE (pthis)->n1      = n1 ;
+      pPOLYLINE_FEATURE (pthis)->dim_icv = n1 ;
+    }
+    else
+    {
+      for ( i = 0 ; i < *numrow ; i++ )
+      {
+        pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
+        pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
+      }
+      if (*numcol == 3)
+      {
+        if(pPOLYLINE_FEATURE (pthis)->pvz==NULL)
+          if ((pPOLYLINE_FEATURE (pthis)->pvz = MALLOC ((*numrow) * sizeof (double))) == NULL)
+            return -1;
 	      
-	      for (i=0;i < *numrow;i++)
-		pPOLYLINE_FEATURE (pthis)->pvz[i] = tab[i+ 2*(*numrow)];
-	    }
-	  else
-	    {
-	      FREE(pPOLYLINE_FEATURE (pthis)->pvz);
-	      pPOLYLINE_FEATURE (pthis)->pvz=NULL;
-	    }
-	  
-	  
-	  
-	  /*	  if (*numcol == 3)
-	    	  pPOLYLINE_FEATURE (pthis)->pvz = pvz; */ /* ..and here we put pvz...*/
-	}
+        for (i=0;i < *numrow;i++)
+          pPOLYLINE_FEATURE (pthis)->pvz[i] = tab[i+ 2*(*numrow)];
+      }
+      else
+      {
+        FREE(pPOLYLINE_FEATURE (pthis)->pvz);
+        pPOLYLINE_FEATURE (pthis)->pvz=NULL;
+      }
+    }
       
 
    
-      return 0;
-      break;
-    case SCI_RECTANGLE:
+    return 0;
+    break;
+  case SCI_RECTANGLE:
+  {
+    int widthIndex = 2 ;
+    int size = *numrow * *numcol ;
+    if ( size != 5 && size != 4 )
     {
-      int widthIndex = 2 ;
-      int size = *numrow * *numcol ;
-      if ( size != 5 && size != 4 )
-      {
-        sciprint("The number of element must be 4 (5 if z coordinate )\n");
+      sciprint("The number of element must be 4 (5 if z coordinate )\n");
+      return -1;
+    }
+      
+    pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
+    pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
+      
+    if ( size == 5 )
+    {
+      pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
+      widthIndex = 3 ;
+    }
+      
+    /* check that the height and width are positive */
+    if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
+    {
+      Scierror(999,"Width and height must be positive.\n") ;
+      return -1 ;
+    }
+    pRECTANGLE_FEATURE (pthis)->width  = tab[widthIndex    ] ;
+    pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
+      
+    return 0;
+  }
+  case SCI_ARC:
+    if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
+    {
+      sciprint("The number of elements must be 6 (7 if z coordinate )\n");
+      return -1;
+    }
+      
+    pARC_FEATURE (pthis)->x          = tab[0];
+    pARC_FEATURE (pthis)->y          = tab[1];  
+    if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+    {
+      pARC_FEATURE (pthis)->z          = tab[2];
+      pARC_FEATURE (pthis)->width      = tab[3];
+      pARC_FEATURE (pthis)->height     = tab[4];
+      pARC_FEATURE (pthis)->alphabegin = tab[5];
+      pARC_FEATURE (pthis)->alphaend   = tab[6];
+    }
+    else
+    {
+      pARC_FEATURE (pthis)->width      = tab[2];
+      pARC_FEATURE (pthis)->height     = tab[3];
+      pARC_FEATURE (pthis)->alphabegin = tab[4];
+      pARC_FEATURE (pthis)->alphaend   = tab[5]; 
+    }
+    return 0;
+    break;
+  case SCI_TEXT:
+    if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
+    {
+      sciprint("The number of elements must be 2 (3 if z coordinate)\n");
+      return -1;
+    }
+    pTEXT_FEATURE (pthis)->x = tab[0];
+    pTEXT_FEATURE (pthis)->y = tab[1];
+    if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+      pTEXT_FEATURE (pthis)->z = tab[2];
+    return 0;
+    break;
+  case SCI_SEGS:
+    if (pSEGS_FEATURE (pthis)->ptype <= 0) {
+      if ((*numcol != 3)&&(*numcol != 2)) {
+        sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
         return -1;
       }
-      
-      pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
-      pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
-      
-      if ( size == 5 )
-      {
-        pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
-        widthIndex = 3 ;
+      n1=pSEGS_FEATURE (pthis)->Nbr1;
+      if (*numrow != n1) {
+        n1=*numrow;
+        if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+        if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+          FREE(pvx); pvx = (double *) NULL;
+          return -1;
+        }
+        if (*numcol == 3)
+          if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
+            FREE(pvx); pvx = (double *) NULL;
+            FREE(pvy); pvy = (double *) NULL;
+            return -1;
+          }
+        if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+          FREE(pvx); pvx = (double *) NULL;
+          FREE(pvy); pvy = (double *) NULL;
+          FREE(pvz); pvz = (double *) NULL;
+          return -1;
+        }
+        FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
+        FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
+        if (*numcol == 3)
+          FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
+        /* Attention ici on detruit pstyle !! F.Leray 20.02.04*/
+        FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
+        for (i=0;i < *numrow;i++)
+        {
+          pvx[i] = tab[i];
+          pvy[i] = tab[i+ (*numrow)];
+          if (*numcol == 3)
+            pvz[i] = tab[i+ 2*(*numrow)];
+          pstyle[i] = 0;
+        }
+        pSEGS_FEATURE (pthis)->vx=pvx;
+        pSEGS_FEATURE (pthis)->vy=pvy;
+        if (*numcol == 3)
+          pSEGS_FEATURE (pthis)->vz=pvz;
+        pSEGS_FEATURE (pthis)->Nbr1=n1;
+        pSEGS_FEATURE (pthis)->pstyle=pstyle;
       }
-      
-      /* check that the height and width are positive */
-      if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
-      {
-        Scierror(999,"Width and height must be positive.\n") ;
-        return -1 ;
+      else {
+        if ((*numcol == 3) && (pSEGS_FEATURE (pthis)->vz == NULL)) 
+          if ((pSEGS_FEATURE (pthis)->vz = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+
+        for (i=0;i < *numrow;i++) {
+          pSEGS_FEATURE (pthis)->vx[i] = tab[i];
+          pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
+          if (*numcol == 3)
+            pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
+        }
       }
-      pRECTANGLE_FEATURE (pthis)->width  = tab[widthIndex    ] ;
-      pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
-      
-      return 0;
     }
-    case SCI_ARC:
-      if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
-	{
-	  sciprint("The number of elements must be 6 (7 if z coordinate )\n");
-	  return -1;
-	}
-      
-      pARC_FEATURE (pthis)->x          = tab[0];
-      pARC_FEATURE (pthis)->y          = tab[1];  
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	{
-	  pARC_FEATURE (pthis)->z          = tab[2];
-	  pARC_FEATURE (pthis)->width      = tab[3];
-	  pARC_FEATURE (pthis)->height     = tab[4];
-	  pARC_FEATURE (pthis)->alphabegin = tab[5];
-	  pARC_FEATURE (pthis)->alphaend   = tab[6];
-	}
-      else
-	{
-	  pARC_FEATURE (pthis)->width      = tab[2];
-	  pARC_FEATURE (pthis)->height     = tab[3];
-	  pARC_FEATURE (pthis)->alphabegin = tab[4];
-	  pARC_FEATURE (pthis)->alphaend   = tab[5]; 
-	}
-      return 0;
-      break;
-    case SCI_TEXT:
-      if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
-	{
-	  sciprint("The number of elements must be 2 (3 if z coordinate)\n");
-	  return -1;
-	}
-      pTEXT_FEATURE (pthis)->x = tab[0];
-      pTEXT_FEATURE (pthis)->y = tab[1];
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	pTEXT_FEATURE (pthis)->z = tab[2];
-      return 0;
-      break;
-    case SCI_SEGS:
-      if (pSEGS_FEATURE (pthis)->ptype <= 0) {
-	if ((*numcol != 3)&&(*numcol != 2)) {
-	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
-	  return -1;
-	}
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) {
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  }
-	  if (*numcol == 3)
-	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      return -1;
-	    }
-	  if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    FREE(pvy); pvy = (double *) NULL;
-	    FREE(pvz); pvz = (double *) NULL;
-	    return -1;
-	  }
-	  FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	  FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
-	  if (*numcol == 3)
-	    FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-	  /* Attention ici on detruit pstyle !! F.Leray 20.02.04*/
-	  FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)];
-	      if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	      pstyle[i] = 0;
-	    }
-	  pSEGS_FEATURE (pthis)->vx=pvx;
-	  pSEGS_FEATURE (pthis)->vy=pvy;
-	  if (*numcol == 3)
-	    pSEGS_FEATURE (pthis)->vz=pvz;
-	  pSEGS_FEATURE (pthis)->Nbr1=n1;
-	  pSEGS_FEATURE (pthis)->pstyle=pstyle;
-	}
-	else {
-	  if ((*numcol == 3) && (pSEGS_FEATURE (pthis)->vz == NULL)) 
-	    if ((pSEGS_FEATURE (pthis)->vz = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-
-	  for (i=0;i < *numrow;i++) {
-	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    if (*numcol == 3)
-	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
-	  }
-	}
-      }
-      else { /* Strange test object == Champ: e=gce(); e.data = e.data 
-	        make this error happened! Remove it to perform such legal operation */
-	/* F.Leray 27.07.04 */
-	/* 	if ((*numcol != 3 +3*(*numrow * *numrow))&&(*numcol != 2 +2*(*numrow * *numrow))) */
-	/* 	  { */
-	/* 	    sciprint("The number of columns must be %d (%d if three-dimensional axes)\n", */
-	/* 		     2+2*(*numrow * *numrow),3+3*(*numrow * *numrow)); */
-	/* 	    return -1; */
-	/* 	  } */
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) /* SS 30/1/02 */
-	  {
-	    n1=*numrow;
-	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      return -1;
-	    }
-	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
-	      return -1;
-	    }
-	    if ((pvfx = MALLOC ((n1*n1) * sizeof (double))) == NULL) return -1;
-	    if ((pvfy = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
-	      FREE(pvfx); pvfx = (double *) NULL;
-	      return -1;
-	    }
-	    if (*numcol == 3 +3*(*numrow * *numrow))
-	      {
-		if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		  FREE(pvx); pvx = (double *) NULL;
-		  FREE(pvy); pvy = (double *) NULL;
-		  return -1;
-		}
-		if ((pvfz = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-		  FREE(pvx); pvx = (double *) NULL;
-		  FREE(pvy); pvy = (double *) NULL;
-		  FREE(pvz); pvz = (double *) NULL;
-		  FREE(pvfx); pvfx = (double *) NULL;
-		  FREE(pvfy); pvfy = (double *) NULL;
-		  return -1;
-		}
-		FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-		FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
-	      }
-	    FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vy = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
-	    for (i=0;i < n1;i++)
-	      {
-		pvx[i] = tab[i];
-		pvy[i] = tab[i+ (*numrow)];
-		if (*numcol == 3 +3*(*numrow * *numrow))
-		  pvz[i] = tab[i+ 2*(*numrow)];
-
-	      }
-	    k=3*n1;
-	    for (i=0;i < n1*n1;i++)
-	      {
-		pvfx[i] = tab[k+i];
-		pvfy[i] = tab[k+n1*n1+i];
-		if (*numcol == 3 +3*(*numrow * *numrow))
-		  pvfz[i] = tab[2*k+n1*n1+i];
-
-	      }
-	    pSEGS_FEATURE (pthis)->vx=pvx;
-	    pSEGS_FEATURE (pthis)->vy=pvy;
-	    pSEGS_FEATURE (pthis)->vx=pvfx;
-	    pSEGS_FEATURE (pthis)->vy=pvfy; 
-	    pSEGS_FEATURE (pthis)->Nbr1=n1;
-	    if (*numcol == 3 +3*(*numrow * *numrow))
-	      {
-		pSEGS_FEATURE (pthis)->vz=pvz;
-		pSEGS_FEATURE (pthis)->vy=pvfz;
-	      }
-
-	  }
-	else {
-	  for (i=0;i < *numrow;i++)   {
-	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    if (pSEGS_FEATURE (pthis)->vz != (double *)NULL)
-	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
-	  }
-	  k=2* (*numrow);
-	  k1=k+ (*numrow * *numrow);
-	  k2=2*k+ (*numrow * *numrow);
-	  for (i=0;i < *numrow * *numrow ;i++)   {
-	    pSEGS_FEATURE (pthis)->vfx[i] = tab[k+i];
-	    pSEGS_FEATURE (pthis)->vfy[i] = tab[k1+i];
-	    if (pSEGS_FEATURE (pthis)->vfz != (double *)NULL)
-	      pSEGS_FEATURE (pthis)->vfz[i] = tab[k2+i];
-	  }
-	}
-      }
-      return 0;
-      break;
-
-
-    case SCI_SURFACE:/* DJ.A 2003 */
-      sciprint ("Un handled data field\n");
-      return -1;
-      break;
-    case SCI_GRAYPLOT:
-      if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
-	double *pvecx,*pvecy,*pvecz;
-	int nx,ny;
-	nx=*numrow-1;
-	ny=*numcol-1;
-	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
-	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
-	    return -1;}
-	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
-	    FREE(pvecx);
-	    sciprint ("Not enough memory\n");
-	    return -1;}
-	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    FREE(pvecx);FREE(pvecy);
-	    sciprint ("Not enough memory\n");
-	    return -1;}
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
-	}
-	for (i=0;i < nx;i++) 
-	  pGRAYPLOT_FEATURE (pthis)->pvecx[i] = tab[i+1];
-
-	for (i=0;i < ny;i++) 
-	  pGRAYPLOT_FEATURE (pthis)->pvecy[i] = tab[*numrow*(i+1)];
-	for (i=0;i < ny;i++) 
-	  for (k=0;k < nx;k++) 
-	    pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k]=tab[*numrow*(i+1)+k+1];
-	pGRAYPLOT_FEATURE (pthis)->ny=ny;
-	pGRAYPLOT_FEATURE (pthis)->nx=nx;
-      }
-      else  {/* Matplot */
-	double *pvecz;
-	int nx,ny;
-	nx=*numrow;
-	ny=*numcol;
-	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
-	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
-	    return -1;}
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
-	}
-	for (i=0;i < nx*ny;i++) 
-	  pGRAYPLOT_FEATURE (pthis)->pvecz[i]=tab[i];
-	pGRAYPLOT_FEATURE (pthis)->ny=ny+1;
-	pGRAYPLOT_FEATURE (pthis)->nx=nx+1;
-      }
-      break;
-    case SCI_FEC: 
+    else { /* Strange test object == Champ: e=gce(); e.data = e.data 
+              make this error happened! Remove it to perform such legal operation */
+      /* F.Leray 27.07.04 */
+      /* 	if ((*numcol != 3 +3*(*numrow * *numrow))&&(*numcol != 2 +2*(*numrow * *numrow))) */
+      /* 	  { */
+      /* 	    sciprint("The number of columns must be %d (%d if three-dimensional axes)\n", */
+      /* 		     2+2*(*numrow * *numrow),3+3*(*numrow * *numrow)); */
+      /* 	    return -1; */
+      /* 	  } */
+      n1=pSEGS_FEATURE (pthis)->Nbr1;
+      if (*numrow != n1) /* SS 30/1/02 */
       {
-	double *pvecx,*pvecy,*pfun;
-	int Nnode;
-	if (*numcol != 3) {
-	  sciprint ("The data must have 3 columns\n");
-	  return -1;}
-      
-	Nnode = *numrow;
-	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
-	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
-	    return -1;}
-	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
-	    FREE(pvecx);
-	    return -1;}
-	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint ("Not enough memory\n");
-	    FREE(pvecx);FREE(pvecy);
-	    return -1;}
-	  FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
-	  FREE( pFEC_FEATURE (pthis)->pvecy); pFEC_FEATURE (pthis)->pvecy=pvecy;
-	  FREE( pFEC_FEATURE (pthis)->pfun); pFEC_FEATURE (pthis)->pfun=pfun;
-	}
-	for (i=0;i < Nnode;i++) {
-	  pFEC_FEATURE (pthis)->pvecx[i]=tab[i];
-	  pFEC_FEATURE (pthis)->pvecy[i]=tab[Nnode+i];
-	  pFEC_FEATURE (pthis)->pfun[i]=tab[2*Nnode+i];
-	}
+        n1=*numrow;
+        if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+        if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+          FREE(pvx); pvx = (double *) NULL;
+          return -1;
+        }
+        if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+          FREE(pvx); pvx = (double *) NULL;
+          FREE(pvy); pvy = (double *) NULL;
+          FREE(pvz); pvz = (double *) NULL;
+          return -1;
+        }
+        if ((pvfx = MALLOC ((n1*n1) * sizeof (double))) == NULL) return -1;
+        if ((pvfy = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
+          FREE(pvx); pvx = (double *) NULL;
+          FREE(pvy); pvy = (double *) NULL;
+          FREE(pvz); pvz = (double *) NULL;
+          FREE(pvfx); pvfx = (double *) NULL;
+          return -1;
+        }
+        if (*numcol == 3 +3*(*numrow * *numrow))
+        {
+          if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
+            FREE(pvx); pvx = (double *) NULL;
+            FREE(pvy); pvy = (double *) NULL;
+            return -1;
+          }
+          if ((pvfz = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
+            FREE(pvx); pvx = (double *) NULL;
+            FREE(pvy); pvy = (double *) NULL;
+            FREE(pvz); pvz = (double *) NULL;
+            FREE(pvfx); pvfx = (double *) NULL;
+            FREE(pvfy); pvfy = (double *) NULL;
+            return -1;
+          }
+          FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
+          FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
+        }
+        FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
+        FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vy = NULL;
+        FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
+        FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
+        for (i=0;i < n1;i++)
+        {
+          pvx[i] = tab[i];
+          pvy[i] = tab[i+ (*numrow)];
+          if (*numcol == 3 +3*(*numrow * *numrow))
+            pvz[i] = tab[i+ 2*(*numrow)];
+
+        }
+        k=3*n1;
+        for (i=0;i < n1*n1;i++)
+        {
+          pvfx[i] = tab[k+i];
+          pvfy[i] = tab[k+n1*n1+i];
+          if (*numcol == 3 +3*(*numrow * *numrow))
+            pvfz[i] = tab[2*k+n1*n1+i];
+
+        }
+        pSEGS_FEATURE (pthis)->vx=pvx;
+        pSEGS_FEATURE (pthis)->vy=pvy;
+        pSEGS_FEATURE (pthis)->vx=pvfx;
+        pSEGS_FEATURE (pthis)->vy=pvfy; 
+        pSEGS_FEATURE (pthis)->Nbr1=n1;
+        if (*numcol == 3 +3*(*numrow * *numrow))
+        {
+          pSEGS_FEATURE (pthis)->vz=pvz;
+          pSEGS_FEATURE (pthis)->vy=pvfz;
+        }
+
       }
-      break;
-    case SCI_SBV:
-    case SCI_SBH:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_TITLE:
-    case SCI_LEGEND:
-    case SCI_LIGHT:    
-    case SCI_AXES:
-    case SCI_PANNER:
-    case SCI_MENU:
-    case SCI_MENUCONTEXT:
-    case SCI_STATUSB:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
-      sciprint ("This object has no possibility to set points !\n");
-      return -1;
-      break;
+      else {
+        for (i=0;i < *numrow;i++)   {
+          pSEGS_FEATURE (pthis)->vx[i] = tab[i];
+          pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
+          if (pSEGS_FEATURE (pthis)->vz != (double *)NULL)
+            pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
+        }
+        k=2* (*numrow);
+        k1=k+ (*numrow * *numrow);
+        k2=2*k+ (*numrow * *numrow);
+        for (i=0;i < *numrow * *numrow ;i++)   {
+          pSEGS_FEATURE (pthis)->vfx[i] = tab[k+i];
+          pSEGS_FEATURE (pthis)->vfy[i] = tab[k1+i];
+          if (pSEGS_FEATURE (pthis)->vfz != (double *)NULL)
+            pSEGS_FEATURE (pthis)->vfz[i] = tab[k2+i];
+        }
+      }
     }
+    return 0;
+    break;
+
+
+  case SCI_SURFACE:/* DJ.A 2003 */
+    sciprint ("Un handled data field\n");
+    return -1;
+    break;
+  case SCI_GRAYPLOT:
+    if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
+      double *pvecx,*pvecy,*pvecz;
+      int nx,ny;
+      nx=*numrow-1;
+      ny=*numcol-1;
+      if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
+        if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
+          sciprint ("Not enough memory\n");
+          return -1;}
+        if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
+          FREE(pvecx);
+          sciprint ("Not enough memory\n");
+          return -1;}
+        if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
+          FREE(pvecx);FREE(pvecy);
+          sciprint ("Not enough memory\n");
+          return -1;}
+        FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
+        FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
+        FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
+      }
+      for (i=0;i < nx;i++) 
+        pGRAYPLOT_FEATURE (pthis)->pvecx[i] = tab[i+1];
+
+      for (i=0;i < ny;i++) 
+        pGRAYPLOT_FEATURE (pthis)->pvecy[i] = tab[*numrow*(i+1)];
+      for (i=0;i < ny;i++) 
+        for (k=0;k < nx;k++) 
+          pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k]=tab[*numrow*(i+1)+k+1];
+      pGRAYPLOT_FEATURE (pthis)->ny=ny;
+      pGRAYPLOT_FEATURE (pthis)->nx=nx;
+    }
+    else  {/* Matplot */
+      double *pvecz;
+      int nx,ny;
+      nx=*numrow;
+      ny=*numcol;
+      if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
+        if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
+          sciprint ("Not enough memory\n");
+          return -1;}
+        FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
+      }
+      for (i=0;i < nx*ny;i++) 
+        pGRAYPLOT_FEATURE (pthis)->pvecz[i]=tab[i];
+      pGRAYPLOT_FEATURE (pthis)->ny=ny+1;
+      pGRAYPLOT_FEATURE (pthis)->nx=nx+1;
+    }
+    break;
+  case SCI_FEC: 
+  {
+    double *pvecx,*pvecy,*pfun;
+    int Nnode;
+    if (*numcol != 3) {
+      sciprint ("The data must have 3 columns\n");
+      return -1;}
+      
+    Nnode = *numrow;
+    if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
+      if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
+        sciprint ("Not enough memory\n");
+        return -1;}
+      if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
+        sciprint ("Not enough memory\n");
+        FREE(pvecx);
+        return -1;}
+      if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
+        sciprint ("Not enough memory\n");
+        FREE(pvecx);FREE(pvecy);
+        return -1;}
+      FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
+      FREE( pFEC_FEATURE (pthis)->pvecy); pFEC_FEATURE (pthis)->pvecy=pvecy;
+      FREE( pFEC_FEATURE (pthis)->pfun); pFEC_FEATURE (pthis)->pfun=pfun;
+    }
+    for (i=0;i < Nnode;i++) {
+      pFEC_FEATURE (pthis)->pvecx[i]=tab[i];
+      pFEC_FEATURE (pthis)->pvecy[i]=tab[Nnode+i];
+      pFEC_FEATURE (pthis)->pfun[i]=tab[2*Nnode+i];
+    }
+  }
+  break;
+  case SCI_SBV:
+  case SCI_SBH:
+  case SCI_FIGURE:
+  case SCI_SUBWIN:
+  case SCI_TITLE:
+  case SCI_LEGEND:
+  case SCI_LIGHT:    
+  case SCI_AXES:
+  case SCI_PANNER:
+  case SCI_MENU:
+  case SCI_MENUCONTEXT:
+  case SCI_STATUSB:
+  case SCI_AGREG:
+  case SCI_LABEL: /* F.Leray 28.05.04 */
+  case SCI_UIMENU:
+  default:
+    sciprint ("This object has no possibility to set points !\n");
+    return -1;
+    break;
+  }
   return -1;
 }
 

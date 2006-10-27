@@ -1571,7 +1571,7 @@ int scixpoly(char *fname,unsigned long fname_len)
   GetRhsVar(2,"d",&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
   mn2 = m2 * n2;
-  if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
+  
   if (Rhs >= 3) {
     GetRhsVar(3,"c",&m3,&n3,&l3);
     if ( strcmp(cstk(l3),"lines") == 0) {
@@ -1655,7 +1655,13 @@ int scixpolys(char *fname,unsigned long fname_len)
       CreateVar(3,"i",&un,&n1,&l3);
       for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
     } 
-  if (version_flag() == 0) {
+  if (version_flag() == 0)
+  {
+    if ( n1 == 0 )
+    {
+      /* dimension 0, 0 polyline to draw */
+      return 0 ;
+    }
     sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i = 0; i < n1; ++i) 
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);

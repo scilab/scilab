@@ -3848,16 +3848,21 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       break;
     case SCI_POLYLINE:
       *numrow = pPOLYLINE_FEATURE (pthis)->n1;
-      /*   *numcol=((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) */
-      /* 	       && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))? 3:2; */
       *numcol=(pPOLYLINE_FEATURE (pthis)->pvz != NULL)? 3:2;
-    /*   sciprint("numcol vaut: %d et ...->pvz = %d",*numcol,pPOLYLINE_FEATURE (pthis)->pvz);  */
+
+      if ( (*numrow)*(*numcol) == 0 )
+      {
+        return NULL ;
+      }
 
       if(*numcol==2 && pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	{
 	  *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
-	  if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL) 
-	    return (double*)NULL;
+	  if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+          {
+	    return NULL ;
+            sciprint("Cannot return point, memory full.\n") ;
+          }
 	  for (i=0;i < *numrow;i++)
 	    {
 	      tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
@@ -3865,9 +3870,13 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	      tab[(2*(*numrow))+i]= 0.;
 	    }
 	}
-      else{
+      else
+      {
 	if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-	  return (double*)NULL;
+        {
+          sciprint("Cannot return point, memory full.\n");
+	  return NULL;
+        }
 	for (i=0;i < *numrow;i++)
 	  {
 	    tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
