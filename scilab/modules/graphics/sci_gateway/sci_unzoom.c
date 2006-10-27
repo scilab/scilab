@@ -9,13 +9,14 @@
 #include "stack-c.h"
 #include "PloEch.h"
 #include "GetProperty.h"
+#include "BuildObjects.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_unzoom(char *fname,unsigned long fname_len)
 {
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
-
+  SciWin() ;
   if ( Rhs == 0 )
   {
     unzoom();

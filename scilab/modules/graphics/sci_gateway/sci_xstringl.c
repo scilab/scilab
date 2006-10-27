@@ -13,6 +13,8 @@
 #include "Xcall1.h"
 #include "MALLOC.h"
 #include "DrawObjects.h"
+#include "Axes.h"
+#include "GetProperty.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xstringl( char *fname, unsigned long fname_len )
@@ -45,7 +47,7 @@ int sci_xstringl( char *fname, unsigned long fname_len )
 
   if ( version_flag() == 0 )
   {
-    updateSubWinScale( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
+    updateScaleIfRequired( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
   }
 
 
