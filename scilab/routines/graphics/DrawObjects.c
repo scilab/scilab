@@ -6205,15 +6205,15 @@ int Merge3dDimension(sciPointObj *pparent)
       else if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5)
       {/*polyline*/
         N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1 ;
-	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
+	    if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
+	         (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
         {
-	  N=N+1;
+	      N=N+1;
         }
       }
       else /* patch */
       {
-	N = 1 ;
+        N = 1 ;
       }
       break;
     case  SCI_SEGS: 
@@ -6286,14 +6286,23 @@ void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_en
 	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
       break;
     case  SCI_POLYLINE:
-      if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
-	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
-	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
-	  N=N+1;
+      if ( pPOLYLINE_FEATURE(psonstmp->pointobj)->n1 == 0 )
+      {
+        N = 0 ;
+      }
+      else if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5)
+      {/*polyline*/
+        N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1 ;
+	    if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
+	         (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
+        {
+	      N=N+1;
+        }
       }
       else /* patch */
-	N = 1; 
+      {
+        N = 1 ;
+      }
       break;
     case  SCI_SEGS: 
       N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;
