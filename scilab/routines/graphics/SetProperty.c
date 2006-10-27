@@ -3258,7 +3258,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
 
       
-      n1 = *numcol ;
+      n1 = *numrow ;
       
       if ( *numcol > 0 )
       {
