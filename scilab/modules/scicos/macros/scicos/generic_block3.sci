@@ -31,7 +31,7 @@ case 'set' then
         'Real parameters vector';
         'Integer parameters vector';
         'number of modes';
-        'number of zero_corssings';
+        'number of zero_crossings';
         'initial firing vector (<0 for no firing)';
         'direct feedthrough (y or n)';
         'time dependence (y or n)'],..
