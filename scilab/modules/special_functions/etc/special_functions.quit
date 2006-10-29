@@ -9,7 +9,7 @@ global LANGUAGE
 if LANGUAGE == 'fr' then
 	del_help_chapter("Fonctions speciales");
 elseif LANGUAGE == 'eng' then
-	del_help_chapter("Special Fucntions");
+	del_help_chapter("Special Functions");
 end
 
 clear del_help_chapter LANGUAGE;

@@ -16,7 +16,7 @@ if LANGUAGE == 'fr' then
 	add_help_chapter("Fonctions speciales",path);
 elseif LANGUAGE == 'eng' then
 	path = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("Special Fucntions",path);
+	add_help_chapter("Special Functions",path);
 end
 
 clear path get_absolute_file_path add_help_chapter LANGUAGE;
