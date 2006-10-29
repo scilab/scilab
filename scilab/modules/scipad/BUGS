@@ -337,3 +337,6 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  tabs, and reindents according to keywords (if, function, while, for...)
 
 -Request 262: tabbed buffers (see discussion in this request)
+
+-The textarea itself is never destroyed, even when closing a file. What
+ was the reason for this again (if any)?

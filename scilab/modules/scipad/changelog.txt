@@ -2421,3 +2421,15 @@ Francois VOGEL, 23/10/06
  * Fixed: changing locale while the watch window is open does no longer
    forget about the hide variables/hide stack status
  * version --> 6.47
+
+Francois VOGEL, 29/10/06
+ * Colorization of user functions does not need to be done for each
+   replacement of a replace all, ditto for keyposn - speed improvement
+ * Fixed: Tile all command did forget to colorize user functions
+ * Fixed: Menu bar kept always the busy cursor during debug
+ * Fixed: Situation: when the function to debug has one or more "nocode"
+   lines after the function declaration and before real code lines, and
+   after having debugged a file as a .sce. In that case, re-starting the
+   debug with Shift-F8  did not stop in the function to debug
+ * proc killwin renamed killscipad
+ * version --> 6.48

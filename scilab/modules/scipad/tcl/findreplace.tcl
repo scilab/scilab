@@ -678,7 +678,9 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
 # performed now (see end of proc multiplefilesfindreplace)
 # or noextend, which is returned when there was no match in selection and the
 # user didn't want to extend the search to the entire buffer
-# $replacesingle toggles the popup messageboxes and infos in the status bar
+# $replacesingle toggles the popup messageboxes and infos in the status bar,
+# as well as the background colorization of user functions and keyposn (do
+# not need to be done for each single replace of a replace all)
 
     global SearchString ReplaceString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
@@ -799,7 +801,9 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     set uplimit [getstartofcolorization $textarea $mpos]
     set dnlimit [getendofcolorization $textarea $mpos]
     colorize $textarea $uplimit $dnlimit
-    backgroundcolorizeuserfun
+    if {$replacesingle} {
+        backgroundcolorizeuserfun
+    }
     $textarea mark set insert $mpos
     foreach ta $listoftextarea {
         # this must be done for each ta, not only for $textarea
@@ -829,8 +833,10 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     MoveDialogIfTaggedTextHidden $w $textarea replacedtext
 
     # update status bar data
-    keyposn $textarea
-    
+    if {$replacesingle} {
+        keyposn $textarea
+    }
+
     # update breakpoint tags
     reshape_bp
 
@@ -867,8 +873,8 @@ proc multiplefilesreplaceall {w} {
         return
     }
 
-    # if we did not return before this point, we are searching in all the
-    # opened buffers for a non-empty string
+    # if we did not return before this point, we are replacing a non-empty
+    # string in all the opened buffers
 
     set totreplaced 0
     foreach ta $listoftextarea {
@@ -880,6 +886,14 @@ proc multiplefilesreplaceall {w} {
         notfoundinallmessagebox $SearchString $pw "Replace"
     }
 
+    # userfun colorization must be done here because replacement
+    # might have changed a user function - do it only once, and not
+    # after each single replacement of a replace all, even not
+    # after each buffer in which replace all occurs
+    backgroundcolorizeuserfun
+
+    # update status bar data - do it once only, same as above
+    keyposn [gettextareacur]
 }
 
 proc replaceall {w pw textarea tosearchfor reg} {
@@ -932,6 +946,13 @@ proc replaceall {w pw textarea tosearchfor reg} {
         if {$nbofreplaced == 0 && $prevfindres != "noextend"} {
             notfoundmessagebox $SearchString $textarea $pw "Replace"
         }
+        # userfun colorization must be done here because replacement
+        # might have changed a user function - do it only once, and not
+        # after each single replacement of a replace all, even not
+        # after each buffer in which replace all occurs
+        backgroundcolorizeuserfun
+        # update status bar data - do it once only, same as above
+        keyposn $textarea
     }
 
     # erase listofmatch so that the next call to a find/replace command

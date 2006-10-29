@@ -431,6 +431,7 @@ proc tileallbuffers {tileorient} {
     highlighttextarea $tacur
     updatepanestitles
 
+    backgroundcolorizeuserfun
     restoremenuesbinds
 }
 

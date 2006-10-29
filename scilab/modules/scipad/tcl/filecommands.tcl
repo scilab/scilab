@@ -198,17 +198,17 @@ proc byebye {textarea} {
         }
     
     } else {
-        killwin $pad
+        killscipad
     }
 }
 
-proc killwin {widget} {
+proc killscipad {} {
 # kill main window and save preferences on exit
     global pad WMGEOMETRY
     #save the geometry for the next time
     set WMGEOMETRY [eval {wm geometry $pad}] 
     savepreferences
-    destroy $widget
+    destroy $pad
     # The following line is needed in case Scipad is launched directly
     # in wish (debug purposes)
     # The two instructions *must* be in this order, and in a single catch
@@ -228,7 +228,7 @@ proc idleexitapp {} {
 # using [x] or File/Exit when Scipad is opening files at the same time
 # (dnd of a directory with many files)
     global pad
-    if {[catch {after idle {exitapp yesnocancel}}]} {after idle {killwin $pad}}
+    if {[catch {after idle {exitapp yesnocancel}}]} {after idle {killscipad}}
 }
 
 proc exitapp { {quittype yesno} } {

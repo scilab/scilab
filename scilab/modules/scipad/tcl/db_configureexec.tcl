@@ -622,7 +622,7 @@ proc scedebugcleanup_bp {} {
 # this proc actually deletes any text tagged as db_wrapper from
 # all the textareas
     global listoftextarea debugassce
-    global funnames funnameargs
+    global funnames funnameargs logicallinenumbersranges
 
     # if the debug in progress was not a .sce debug, do nothing
     if {!$debugassce} {return}
@@ -655,6 +655,7 @@ proc scedebugcleanup_bp {} {
     set funnameargs ""
     set funnames ""
     set debugassce false
+    unset logicallinenumbersranges
 
     setdbstate "NoDebug"
 

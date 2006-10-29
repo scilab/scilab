@@ -262,8 +262,7 @@ proc updatedebugstateindicator_bp {} {
 
 proc setdebuggerbusycursor {} {
 # set the busy cursor for all the children of $pad
-    global debuggerbusycursor
-    global pad watch
+    global pad debuggerbusycursor
     if {!$debuggerbusycursor} {
         setdebuggerwidgetbusycursor $pad
         set debuggerbusycursor true
@@ -278,8 +277,10 @@ proc setdebuggerwidgetbusycursor {w} {
     # save current cursor in the global array and set busy cursor
     set cursorsinwidgets($w) [$w cget -cursor]
     $w configure -cursor $busycursor
-    # ditto for children of the given widget
-    foreach child [winfo children $w] {
+    # ditto for children of the given widget,
+    # but not for the menubars (clones), see:
+    # http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/87adc111127063bc/05efee764b23540d
+    foreach child [filteroutmenubar [winfo children $w]] {
         setdebuggerwidgetbusycursor $child
     }
 }
@@ -287,8 +288,7 @@ proc setdebuggerwidgetbusycursor {w} {
 proc unsetdebuggerbusycursor {} {
 # unset the busy cursor for all the children of $pad,
 # and restore the cursor they had before
-    global debuggerbusycursor
-    global pad watch
+    global pad debuggerbusycursor
     if {$debuggerbusycursor} {
         unsetdebuggerwidgetbusycursor $pad
         set debuggerbusycursor false
@@ -304,7 +304,7 @@ proc unsetdebuggerwidgetbusycursor {w} {
     } else {
         $w configure -cursor {} 
     }
-    foreach child [winfo children $w] {
+    foreach child [filteroutmenubar [winfo children $w]] {
         unsetdebuggerwidgetbusycursor $child
     } 
 }

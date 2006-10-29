@@ -557,7 +557,7 @@ proc showinfo_menu_wind {w} {
 }
 
 proc ca {menucommand} {
-#look up the bindings array to see if there is a binding defined
+# look up the bindings array to see if there is a binding defined
 # for the given command, and in case generate a -command -accelerator pair
     set event [findbinding $menucommand]
     if {$event == ""} {
@@ -576,4 +576,24 @@ proc ca {menucommand} {
         regsub {\A<} $kevent {} kevent
         return "-command {$menucommand} -accelerator \"$kevent\""
     }
+}
+
+proc filteroutmenubar {listofwidgets} {
+# take a list of widget names and return this list without the names
+# denoting menues of type menubar
+# Reference:
+# http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/87adc111127063bc/05efee764b23540d
+    set nomenubar [list ]
+    foreach item $listofwidgets {
+        if {[winfo class $item] != "Menu"} {
+            lappend nomenubar $item
+        } else {
+            if {[$item cget -type] != "menubar"} {
+                lappend nomenubar $item
+            } else {
+                # drop it
+            }
+        }
+    }
+    return $nomenubar
 }
