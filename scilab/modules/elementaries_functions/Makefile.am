@@ -346,7 +346,7 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/unsfdcopy.f \
 	src/fortran/icopy.f
 
-libdummy_elementaries_functions_la_FFLAGS = -O0
+libdummy_elementaries_functions_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
 
 libelementaries_functions_la_includedir=$(includedir)/elementaries_functions
 
@@ -370,3 +370,23 @@ libelementaries_functions_la_LIBADD = \
 #	$(top_builddir)/modules/polynomials/libpolynomials.la
 
 libelementaries_functions_la_PKGCONFIG = elementaries_functions.pc
+
+
+
+libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
+
+
+libdummy_elementaries_functions_la-comqr3.lo: src/fortran/comqr3.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-comqr3.lo `test -f 'src/fortran/comqr3.f' || echo '$(srcdir)/'`src/fortran/comqr3.f
+
+
+libdummy_elementaries_functions_la-pade.lo: src/fortran/pade.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-pade.lo `test -f 'src/fortran/pade.f' || echo '$(srcdir)/'`src/fortran/pade.f
+
+libdummy_elementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-unsfdcopy.lo `test -f 'src/fortran/unsfdcopy.f' || echo '$(srcdir)/'`src/fortran/unsfdcopy.f
+
+
+libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f

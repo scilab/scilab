@@ -71,7 +71,8 @@ sci_gateway/fortran/intfile.f
 # Disable optimisation of the file intmgetl.f
 noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
-libdummy_io_la_FFLAGS = -O0
+libdummy_io_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
+
 #"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
 
 
@@ -92,3 +93,6 @@ libio_la_LIBADD = libdummy-io.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libio_la_PKGCONFIG = io.pc
+
+libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f

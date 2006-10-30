@@ -66,7 +66,8 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
 libdummy_lapack_la_LIBADD =
-am_libdummy_lapack_la_OBJECTS = libdummy_lapack_la-dlamch.lo
+am_libdummy_lapack_la_OBJECTS = libdummy_lapack_la-dlamch.lo \
+	libdummy_lapack_la-slamch.lo
 libdummy_lapack_la_OBJECTS = $(am_libdummy_lapack_la_OBJECTS)
 liblapack_la_DEPENDENCIES = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la
@@ -86,36 +87,35 @@ am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
 	dsysv.lo zlaqps.lo dtzrqf.lo dsytrf.lo xerbla.lo dtrsyl.lo \
 	dgelss.lo dtgsen.lo zgecon.lo dormbr.lo zlatrz.lo zungqr.lo \
 	dlabrd.lo dlasq4.lo dggev.lo dpptrf.lo zgelq2.lo dgeqpf.lo \
-	dormr3.lo slamch.lo dlanhs.lo dgerfs.lo dlarz.lo zgebrd.lo \
-	zgebd2.lo dgebak.lo dormrz.lo dbdsqr.lo dspev.lo dlaqp2.lo \
-	zung2r.lo dlange.lo zgeqrf.lo dormql.lo zgesvd.lo dladiv.lo \
-	dlas2.lo dgeequ.lo dsytf2.lo dlahqr.lo zlatrs.lo zheev.lo \
-	ztgex2.lo zlaic1.lo ztrsen.lo zlacgv.lo dgees.lo dlassq.lo \
-	zlascl.lo dtrexc.lo dlasq5.lo dormhr.lo zgesc2.lo dlatdf.lo \
-	dsycon.lo dlarfg.lo dorm2l.lo dsptrf.lo zungbr.lo dgesv.lo \
-	dgetrf.lo zhseqr.lo dtgsy2.lo dlaev2.lo dgebal.lo zlarfb.lo \
-	zlahrd.lo dlantr.lo zgghrd.lo dlatzm.lo ztgsyl.lo ztrtri.lo \
-	zlatrd.lo zlacpy.lo zgetri.lo dlasr.lo zgeqp3.lo zungql.lo \
-	dlanst.lo zlarzt.lo dorglq.lo dorgl2.lo dlasq6.lo dlasy2.lo \
-	dopgtr.lo dgeqlf.lo dgetf2.lo dtgevc.lo zunghr.lo dlarzb.lo \
-	dlarfx.lo zung2l.lo zggev.lo dzsum1.lo dlaqps.lo dtrcon.lo \
-	dlasrt.lo dsyev.lo dorgqr.lo dgecon.lo dlatrz.lo zlarz.lo \
-	ztgexc.lo zggbak.lo ztzrzf.lo dpotrs.lo dsytri.lo dgelq2.lo \
-	zpotrf.lo dgebrd.lo dgebd2.lo zgetc2.lo dorgrq.lo dorg2r.lo \
-	dorgr2.lo zhgeqz.lo dgeqrf.lo dlaln2.lo dgesvd.lo ztrevc.lo \
-	zgelsy.lo zgees.lo zlaswp.lo dspgv.lo dlanv2.lo zunmlq.lo \
-	dlae2.lo zunml2.lo dlatrs.lo dtgex2.lo dlaic1.lo dgels.lo \
-	dtrsen.lo zdrscl.lo zlarft.lo dlascl.lo zlartg.lo zggbal.lo \
-	dgesc2.lo dgerqf.lo zgeqr2.lo zgetrs.lo ilaenv.lo dorgbr.lo \
-	zpotf2.lo dhseqr.lo dlarf.lo dgegs.lo dgeev.lo dlarfb.lo \
-	zlasr.lo dlapy2.lo zunmqr.lo ztrti2.lo dlahrd.lo dgghrd.lo \
-	zlaset.lo dtgsyl.lo dtrtri.lo dlatrd.lo dlacpy.lo dgetri.lo \
-	zgehrd.lo zgehd2.lo dgeqp3.lo dorgql.lo zungtr.lo zunm2r.lo \
-	dlarzt.lo dlapmt.lo ieeeck.lo dlasq1.lo dorghr.lo zlacon.lo \
-	dgelsx.lo dsterf.lo zsteqr.lo zgelqf.lo dsytrs.lo dgges.lo \
-	dorg2l.lo dlapy3.lo lsame.lo ztrsyl.lo izmax1.lo ztgsen.lo \
-	zunmbr.lo zlabrd.lo dtgexc.lo dgeql2.lo dlagv2.lo dggbak.lo \
-	dtzrzf.lo
+	dormr3.lo dlanhs.lo dgerfs.lo dlarz.lo zgebrd.lo zgebd2.lo \
+	dgebak.lo dormrz.lo dbdsqr.lo dspev.lo dlaqp2.lo zung2r.lo \
+	dlange.lo zgeqrf.lo dormql.lo zgesvd.lo dladiv.lo dlas2.lo \
+	dgeequ.lo dsytf2.lo dlahqr.lo zlatrs.lo zheev.lo ztgex2.lo \
+	zlaic1.lo ztrsen.lo zlacgv.lo dgees.lo dlassq.lo zlascl.lo \
+	dtrexc.lo dlasq5.lo dormhr.lo zgesc2.lo dlatdf.lo dsycon.lo \
+	dlarfg.lo dorm2l.lo dsptrf.lo zungbr.lo dgesv.lo dgetrf.lo \
+	zhseqr.lo dtgsy2.lo dlaev2.lo dgebal.lo zlarfb.lo zlahrd.lo \
+	dlantr.lo zgghrd.lo dlatzm.lo ztgsyl.lo ztrtri.lo zlatrd.lo \
+	zlacpy.lo zgetri.lo dlasr.lo zgeqp3.lo zungql.lo dlanst.lo \
+	zlarzt.lo dorglq.lo dorgl2.lo dlasq6.lo dlasy2.lo dopgtr.lo \
+	dgeqlf.lo dgetf2.lo dtgevc.lo zunghr.lo dlarzb.lo dlarfx.lo \
+	zung2l.lo zggev.lo dzsum1.lo dlaqps.lo dtrcon.lo dlasrt.lo \
+	dsyev.lo dorgqr.lo dgecon.lo dlatrz.lo zlarz.lo ztgexc.lo \
+	zggbak.lo ztzrzf.lo dpotrs.lo dsytri.lo dgelq2.lo zpotrf.lo \
+	dgebrd.lo dgebd2.lo zgetc2.lo dorgrq.lo dorg2r.lo dorgr2.lo \
+	zhgeqz.lo dgeqrf.lo dlaln2.lo dgesvd.lo ztrevc.lo zgelsy.lo \
+	zgees.lo zlaswp.lo dspgv.lo dlanv2.lo zunmlq.lo dlae2.lo \
+	zunml2.lo dlatrs.lo dtgex2.lo dlaic1.lo dgels.lo dtrsen.lo \
+	zdrscl.lo zlarft.lo dlascl.lo zlartg.lo zggbal.lo dgesc2.lo \
+	dgerqf.lo zgeqr2.lo zgetrs.lo ilaenv.lo dorgbr.lo zpotf2.lo \
+	dhseqr.lo dlarf.lo dgegs.lo dgeev.lo dlarfb.lo zlasr.lo \
+	dlapy2.lo zunmqr.lo ztrti2.lo dlahrd.lo dgghrd.lo zlaset.lo \
+	dtgsyl.lo dtrtri.lo dlatrd.lo dlacpy.lo dgetri.lo zgehrd.lo \
+	zgehd2.lo dgeqp3.lo dorgql.lo zungtr.lo zunm2r.lo dlarzt.lo \
+	dlapmt.lo ieeeck.lo dlasq1.lo dorghr.lo zlacon.lo dgelsx.lo \
+	dsterf.lo zsteqr.lo zgelqf.lo dsytrs.lo dgges.lo dorg2l.lo \
+	dlapy3.lo lsame.lo ztrsyl.lo izmax1.lo ztgsen.lo zunmbr.lo \
+	zlabrd.lo dtgexc.lo dgeql2.lo dlagv2.lo dggbak.lo dtzrzf.lo
 am_liblapack_la_OBJECTS = $(am__objects_1)
 liblapack_la_OBJECTS = $(am_liblapack_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
@@ -330,6 +330,8 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tcldir = @tcldir@
+lib_LTLIBRARIES = liblapack.la 
+noinst_LTLIBRARIES = libdummy-lapack.la
 LAPACK_FORTRAN_SOURCES = dlasv2.f \
 zgeqpf.f \
 zrot.f \
@@ -426,7 +428,6 @@ dpptrf.f \
 zgelq2.f \
 dgeqpf.f \
 dormr3.f \
-slamch.f \
 dlanhs.f \
 dgerfs.f \
 dlarz.f \
@@ -601,12 +602,9 @@ dlagv2.f \
 dggbak.f \
 dtzrzf.f
 
-lib_LTLIBRARIES = liblapack.la 
 liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
-noinst_LTLIBRARIES = libdummy-lapack.la
-libdummy_lapack_la_SOURCES = dlamch.f
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
-#"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
+libdummy_lapack_la_SOURCES = dlamch.f slamch.f
 liblapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la 
 
@@ -699,9 +697,6 @@ distclean-compile:
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-libdummy_lapack_la-dlamch.lo: dlamch.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) $(FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -881,6 +876,12 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-info-am uninstall-libLTLIBRARIES
 
+
+libdummy_lapack_la-dlamch.lo: dlamch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f
+
+libdummy_lapack_la-slamch.lo: slamch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-slamch.lo `test -f 'slamch.f' || echo '$(srcdir)/'`slamch.f
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

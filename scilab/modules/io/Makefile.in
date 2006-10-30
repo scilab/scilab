@@ -395,7 +395,8 @@ sci_gateway/fortran/intfile.f
 # Disable optimisation of the file intmgetl.f
 noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
-libdummy_io_la_FFLAGS = -O0
+libdummy_io_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
+
 #"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
 libio_la_includedir = $(includedir)/io
 libio_la_include_HEADERS = includes/gw_io.h \
@@ -817,9 +818,6 @@ libio_la-sci_newest.lo: sci_gateway/c/sci_newest.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) $(FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
-
 v2unit.lo: src/fortran/v2unit.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o v2unit.lo `test -f 'src/fortran/v2unit.f' || echo '$(srcdir)/'`src/fortran/v2unit.f
 
@@ -1092,6 +1090,9 @@ uninstall-am: uninstall-info-am uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-info-am \
 	uninstall-libLTLIBRARIES uninstall-libio_la_includeHEADERS
 
+
+libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -3,6 +3,11 @@
 ### INRIA - Scilab 2006 
 ##########
 
+lib_LTLIBRARIES = liblapack.la 
+
+noinst_LTLIBRARIES = libdummy-lapack.la
+
+
 LAPACK_FORTRAN_SOURCES = dlasv2.f \
 zgeqpf.f \
 zrot.f \
@@ -99,7 +104,6 @@ dpptrf.f \
 zgelq2.f \
 dgeqpf.f \
 dormr3.f \
-slamch.f \
 dlanhs.f \
 dgerfs.f \
 dlarz.f \
@@ -274,16 +278,26 @@ dlagv2.f \
 dggbak.f \
 dtzrzf.f
 
-lib_LTLIBRARIES = liblapack.la 
+
 
 liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 
-noinst_LTLIBRARIES = libdummy-lapack.la
-libdummy_lapack_la_SOURCES = dlamch.f
+
+libdummy_lapack_la_FFLAGS = \
+	$(NOOPT_FFLAGS)
+
+libdummy_lapack_la_SOURCES = dlamch.f slamch.f
+
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
-#"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
+
 
 liblapack_la_LIBADD = libdummy-lapack.la \
 	$(top_builddir)/libs/blas/libblas.la 
 
 liblapack_la_PKGCONFIG = lapack.pc
+
+libdummy_lapack_la-dlamch.lo: dlamch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f
+
+libdummy_lapack_la-slamch.lo: slamch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-slamch.lo `test -f 'slamch.f' || echo '$(srcdir)/'`slamch.f
