@@ -390,7 +390,7 @@ proc checkexecutionerror_bp {} {
                                  set errnum  \"+string(db_n)+\"; \
                                  set errline \"+string(db_l)+\"; \
                                  set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                 set errmsg  \"\"\"+stripblanks(db_str)+\"\"\"; \
+                                 set errmsg  \"\"\"+stripblanks(strsubst(db_str,\"\"\"\",\"\\\"\"\"))+\"\"\"; \
                                  if {\$errnum != 0} { \
                                      bell; \
                                      set errtext \[mc \"\"Error \"\"\]; \

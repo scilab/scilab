@@ -354,7 +354,7 @@ proc scilaberror {funnameargs} {
                                  set errnum  \"+string(db_n)+\"; \
                                  set errline \"+string(db_l)+\"; \
                                  set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
-                                 set errmsg  \"\"\"+db_str+\"\"\" \" , \"scipad\" )" \
+                                 set errmsg  \"\"\"+strsubst(db_str,\"\"\"\",\"\\\"\"\")+\"\"\" \" , \"scipad\" )" \
                   "sync" "seq"
     tk_messageBox -title [mc "Scilab execution error"] \
       -message [concat [mc "The shell reported an error while trying to execute "]\
