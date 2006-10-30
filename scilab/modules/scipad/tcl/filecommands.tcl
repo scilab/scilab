@@ -238,7 +238,7 @@ proc exitapp { {quittype yesno} } {
     cancelsearchinfiles
     # stop debugger and clean Scilab state
     if {[getdbstate] == "DebugInProgress"} {
-        ScilabEval_lt "delbpt();abort" "sync" "seq"
+        ScilabEval_lt "\"delbpt();abort\"" "sync" "seq"
         cleantmpScilabEvalfile
     }
     foreach textarea $listoftextarea {

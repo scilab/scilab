@@ -41,7 +41,7 @@
 
 
 proc load_words {} {
-    global words chset sourcedir
+    global words chset intmacdir
 # empty initialization of the keyword arrays, for the 
 #  detached invocation of scipad (and for early-bird colorization requests)    
     set chset(scilab.command) {}
@@ -58,12 +58,12 @@ proc load_words {} {
 # Note: "sync" "seq" would have been the right thing to do, but for
 #       some unclear reason words and chset are unknown in that case
 #       when the exec returns
-    ScilabEval_lt "exec \"$sourcedir/dynamickeywords.sce\";" "seq"
+    ScilabEval_lt "exec \"$intmacdir/dynamickeywords.sce\";" "seq"
 # old code to load a word file with additional keywords: maybe someday it will
 # turn useful...
 #     set type {}
 #     set col {} 
-#     set f [open $sourcedir/words r]
+#     set f [open $intmacdir/words r]
 #     while {[gets $f line] > 0} { 
 #         if {[lindex $line 0] == {#MODE}} {
 #             set type [lindex $line 1]

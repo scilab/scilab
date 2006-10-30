@@ -17,6 +17,7 @@ if { [info exists pad] } {
     set msgsdir   [file join "$sourcedir" "msg_files"]
     set iconsdir  [file join "$sourcedir" "icons"]
     set binddir   [file join "$sourcedir" "bindings"]
+    set intmacdir [file join "$moduledir" "macros" "scipad_internals"]
     set scicosdir [file join "$env(SCIPATH)" "modules" "scicos" "macros" "scicos"]
     set blocksdir [file join "$env(SCIPATH)" "modules" "scicos" "macros" "scicos_blocks"]
 

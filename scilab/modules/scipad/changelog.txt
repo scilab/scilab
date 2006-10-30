@@ -2459,3 +2459,9 @@ Francois VOGEL, 30/10/06
  * Clarified obfuscated syntax in TCL_EvalStr, to ease maintenance:
    TCL_EvalStr("scipad eval {...}") becomes TCL_EvalStr("...","scipad")
  * version --> 6.51
+
+Francois VOGEL, 30/10/06
+ * Moved dynamickeywords.sce in scipad/macros/scipad_internals
+ * Fixed: quitting Scilab during the debug in Scipad produced a strange
+   error that was due to missing quotes in a ScilabEval
+ * version --> 6.52
