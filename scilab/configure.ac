@@ -5,57 +5,8 @@
 dnl Process this file with autoconf to produce a configure script.
 
 ## Copyright INRIA
-## TODO :
-## Installer tous les fichiers dans les bons paths
-## Faire en sorte qu'il copie bien les libs au bon endroit
-## * verifier les problemes de xlibs sur d'autres plateformes et voir si c'est pas liés à xorg
-## * dans la compilation finale, il faut rajouter le flag -xsci, -L./libs/ pour la lib graphique ainsi que  -L/usr/X11R6/lib/ -lXaw
-## 
-## * enlever toutes les references a SONAME qui ne sert a rien grace a libtool
-## * ne pas oublier le systeme de DESTDIR 
-## * voir si on gere les options conflictuelles (with-gnu et with-intelcompilers)
-## dans routines/control/Makefile.in on doit compiler certains fichiers sans les optimisations !!! 
-## idem pour : routines/interf/intmgetl.f
-## idem pour : routines/calelm/icopy.f et unsfdcopy.f
-## Rajouter le fortran dans le texte final
-## Comportement par defaut quand il n'y a pas de parametre au ./configure ???
-## Regarder ou est utilisé FLIBS dans les autres fichiers de conf
-## Regarder si LD=ld est utile (sans doute pas vu qu'il devient caduc par l'utilisation de libtool)
-## Penser a rajouter les flags $with_prof et  $with_gprof (cf imagemagick l2600 environ)
-## Verifier le probleme quand on compile avec le compiler intel fortran (merde au niveau du linkage)
-## Rajouter une verification que pvm3.h existe ou pas avant la compilation (pvm_grp.c(20): catastrophic error: could not open source file "pvm3.h")
-## Ne pas oublier de regarder du cote de AC_LIBTOOL_DLOPEN
-## Voir ce que fait helpbrower et voir comment je dois le remettre en place dans libtool
-## Nettoyer (enlever a priori) les fichiers ?getarg-hpux.{f,c} (ok pour le .f a priori mais verifier pour le .c vu qu'il n'est different quand dans la derniere version de hpux)
-## Probleme de compilation dans poly (duplicate machin)
-## libtool sur pvm 
-## que faire pour scicos ??
-## Regarder pourquoi system & system2 merdent 
-## Faire X11/Xmu et Xaw3D (ou voir pour les delete)
-## voir si c'est possible de faire xsci/Makefile.am avec les bons repertoires pour X11 
-## probleme de compilation sur xdr
-## dlopen voir /home/sylvestre/dev/misc/app/compiz/src/plugin.c
-## a t on besoin de xxx_la_DEPENDENCIES dans libtoo
-## idem pour xxx_HEADERS
-## Dans le repertoire routines/xxxx/ voir pourquoi ca merde quand on fait "make check"
-## Enlever fichier config/configuration
-## Ne pas oublier de preciser quelque par que j'ai recupere la version CVS du fichier tcl.m4
-## Des infos ont sauté du fichier machine.h
-## voir si ca serait utile d'avoir le mmx (cf configure.in de gimp ligne 565)
-
-## xerbla existe dans lapack et arpack. Ce que l'on veut est que l'on puisse dans scilab définir notre propre xerbla.o qui existe (pour l'instant il est modifié dans la lib itself) il est dispo dans system
-## Regarder si on peut factoriser les makefile pour en avoir des plus simples pour les developpeurs
-## Dans system, j'ai enleve dans le makefile.am des fichiers qui ne servaient qu'a loader les autres. Cependant pas sur que ca marche ainsi !
-## regarder encore de quoi depend interf
-## Passer le contenu de default en lib et juste garder le main
-
-
-## déplacement du fichier caleml/dcabs1.f vers blas/dcabs1.f idem pour lsame.f 	xerbla.f 
-
-## Enlever Makefile.OBJ & Makefile.incl
 
 #shared library versioning
-
 #GENERIC_LIBRARY_VERSION=1:2:0
 #                       | | |
 #                +------+ | +---+
@@ -68,9 +19,6 @@ dnl Process this file with autoconf to produce a configure script.
 #                |        +- increment if source code has changed
 #                |           set to zero if current is incremented
 #                +- increment if interfaces have been added, removed or changed
-
-
-## TOUT IMPORTER DANS LE SVN
 
 AC_REVISION($Revision: 1.132.2.6 $)dnl
 AC_INIT([scilab],[0],[http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug_II/index.cgi])
@@ -89,7 +37,7 @@ AC_SYS_LARGEFILE
 #AC_PACKAGE_VERSION([4.0])
 
 
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall foreign]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 AC_CANONICAL_HOST
 
@@ -170,7 +118,7 @@ if test -z "$F77"; then
 else
 	case "$F77" in
 	 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
-	 AC_DEFINE([G95_FORTRAN],[],[uses g95 fortran])
+	 AC_DEFINE([G95_FORTRAN],[],[uses G95 fortran])
 	 ;;
 	esac
 fi
