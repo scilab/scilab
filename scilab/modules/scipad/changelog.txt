@@ -2433,3 +2433,10 @@ Francois VOGEL, 29/10/06
    debug with Shift-F8  did not stop in the function to debug
  * proc killwin renamed killscipad
  * version --> 6.48
+ 
+ES, 30/10/06
+ * small bugfix, tcl "Error:0" was popping up when attempting to run erroneous
+   scilab code, causing error messages containing quoted strings: for instance
+   TCL_EvalStr xx.
+ * version --> 6.49
+ 
