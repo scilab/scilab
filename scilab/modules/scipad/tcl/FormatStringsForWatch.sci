@@ -1,4 +1,4 @@
-function [svar] = FormatStringsForDebugWatch(varargin)
+function [svar] = FormatStringsForWatch(varargin)
 // Converts input variable into a single string (not a matrix of strings),
 // taking into account its type.
 // This is used for the watch window of the debugger in Scipad.
@@ -53,7 +53,7 @@ function [svar] = FormatStringsForDebugWatch(varargin)
 
       case 2 then  // polynomial matrix
         if prod(size(var)) > 1 then
-          svar = MatFormatStringsForDebugWatch(var);
+          svar = MatFormatStringsForWatch(var);
         else
           co = strcat(string(coeff(var))," ");
           unknown = stripblanks(varn(var));  // stripblanks is no more required since cvs 26 May 05
@@ -75,14 +75,14 @@ function [svar] = FormatStringsForDebugWatch(varargin)
 
       case 5 then  // sparse matrix, or boolean sparse matrix (type 6 changed into 5 above)
         [ij,v,mn]=spget(var);
-        ind = FormatStringsForDebugWatch(ij);
-        vec = FormatStringsForDebugWatch(v);
-        dim = FormatStringsForDebugWatch(mn);
+        ind = FormatStringsForWatch(ij);
+        vec = FormatStringsForWatch(v);
+        dim = FormatStringsForWatch(mn);
         svar = "sparse(" + ind + "," + vec + "," + dim + ")";
 
       case 8 then  // 1, 2 or 4-bytes integer matrix (this works for 1 to 10-bytes int or uint)
         if prod(size(var)) > 1 then
-          svar = MatFormatStringsForDebugWatch(var);
+          svar = MatFormatStringsForWatch(var);
           it = inttype(var);
           if it > 10 then it = it - 10; pre = "u"; else pre = emptystr(); end
           nbits = it*8;
@@ -93,7 +93,7 @@ function [svar] = FormatStringsForDebugWatch(varargin)
 
       case 10 then  // character string matrix
         if prod(size(var)) > 1 then
-          svar = MatFormatStringsForDebugWatch(var);
+          svar = MatFormatStringsForWatch(var);
         else
           svar = strsubst(string(var),"\","\\");
           svar = strsubst(svar,"""","\""\""");
@@ -112,7 +112,7 @@ function [svar] = FormatStringsForDebugWatch(varargin)
           defs = definedfields(var);
           for i = 1:length(var)
             if find(defs==i) <> [] then
-              svar = svar + FormatStringsForDebugWatch(getfield(i,var)) + ",";
+              svar = svar + FormatStringsForWatch(getfield(i,var)) + ",";
             else
               svar = svar + unklabel + ",";
             end
@@ -128,16 +128,16 @@ function [svar] = FormatStringsForDebugWatch(varargin)
 endfunction
 
 
-function [svar] = MatFormatStringsForDebugWatch(var)
-// Ancillary for FormatStringsForDebugWatch
-// Calls FormatStringsForDebugWatch for each element of matrix var,
+function [svar] = MatFormatStringsForWatch(var)
+// Ancillary for FormatStringsForWatch
+// Calls FormatStringsForWatch for each element of matrix var,
 // and properly formats the resulting string as if the user would have
 // typed it into the Scilab shell (apart from added \ chars)
   svar = emptystr();
   for i = 1:size(var,'r')
     oneline = emptystr();
     for j = 1:size(var,'c')
-      oneline = oneline + FormatStringsForDebugWatch(var(i,j)) + " ";
+      oneline = oneline + FormatStringsForWatch(var(i,j)) + " ";
     end
     svar = svar + part(oneline,1:length(oneline)-1) + ";";
   end

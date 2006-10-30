@@ -1,4 +1,4 @@
-function txt = FormatWhereForDebugWatch(startitem)
+function txt = FormatWhereForWatch(startitem)
 // Converts input information (provided by where()) into a single string that
 // mimics the output of whereami()
 // This is used for the watch window of the debugger in Scipad.
@@ -32,7 +32,7 @@ TCL_SetVar("callstacklines",linnstring,"scipad")
 
 // Properly format the call stack and line numbers in a single string
 // that will be displayed in the call stack area of the watch window
-for k = 2:nn-1    // The first item is omitted since it is always "FormatWhereForDebugWatch"
+for k = 2:nn-1    // The first item is omitted since it is always "FormatWhereForWatch"
                   // The last item is omitted since it is the execstr from the ScilabEval "foo_to_debug()"
     if mac(k)=='exec' then
         txt = txt + part(mac(k-1),1:lm) + " " + str1 + " " + string(linn(k)) + " " + str2 + "\n"

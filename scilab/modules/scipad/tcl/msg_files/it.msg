@@ -325,7 +325,7 @@
                    "Sicuri di voler ripristinare i caratteri predefiniti?"
 
 
-#FormatStringsForDebugWatch.sci
+#FormatStringsForWatch.sci
 ::msgcat::mcset it " what you try to watch is not supported by the debugger"\
                    "Il debugger non supporta quello che si sta cercando di\
                     osservare"
@@ -335,7 +335,7 @@
                    "questo tipo non viene supportato dal debugger"
 
 
-#FormatWhereForDebugWatch.sci
+#FormatWhereForWatch.sci
 ::msgcat::mcset it "Breakpoint" "Arresto"
 ::msgcat::mcset it "called at line" "alla linea"
 ::msgcat::mcset it "of exec file" "in un file exec"

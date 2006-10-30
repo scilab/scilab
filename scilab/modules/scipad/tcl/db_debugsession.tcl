@@ -295,7 +295,7 @@ proc getlogicallinenumbersranges {stepscope} {
         incr nbmacros
     }
     # libfun ancillaries of the function where the debugger is currently in
-    # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
+    # note: variable callstackfuns is set by Scilab script FormatWhereForWatch
     if {$stepscope == "current&ancill"} {
         set currentfunction [lindex $callstackfuns 0]
         set taofcurrentfunction [lindex [funnametofunnametafunstart $currentfunction] 1]
@@ -427,7 +427,7 @@ proc isinstepscope {funname stepscope} {
         }
 
     } elseif {$stepscope == "currentcontext"} {
-        # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
+        # note: variable callstackfuns is set by Scilab script FormatWhereForWatch
         if {[lsearch -exact $callstackfuns $funname] != -1} {
             return true
         } else {
@@ -435,7 +435,7 @@ proc isinstepscope {funname stepscope} {
         }
 
     } elseif {$stepscope == "callingcontext"} {
-        # note: variable callstackfuns is set by Scilab script FormatWhereForDebugWatch
+        # note: variable callstackfuns is set by Scilab script FormatWhereForWatch
         if {[llength $callstackfuns] > 1} {
             set callcont [lreplace $callstackfuns 0 0]
             if {[lsearch -exact $callcont $funname] != -1} {

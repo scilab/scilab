@@ -598,7 +598,7 @@ proc getfromshell { {startitem 3} } {
     foreach var $watchvars {
         getonefromshell $var
     }
-    set fullcomm "TCL_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch($startitem)+\"\"\"}\");"
+    set fullcomm "TCL_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForWatch($startitem)+\"\"\"}\");"
     ScilabEval_lt $fullcomm "seq"
     set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
     ScilabEval_lt $fullcomm "seq"
@@ -613,7 +613,7 @@ proc getonefromshell {wvar {opt "seq"}} {
     set escwvar [escapespecialchars $wvar]
     set fullcomm ""
     set comm1 "if ext_exists(\"$wvar\"),"
-    set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($escwvar) \"\"\"+FormatStringsForDebugWatch($wvar)+\"\"\"}\");"
+    set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($escwvar) \"\"\"+FormatStringsForWatch($wvar)+\"\"\"}\");"
     set comm3 "else"
     set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($escwvar) \"\"$unklabel\"\"}\");"
     set comm5 "end;"

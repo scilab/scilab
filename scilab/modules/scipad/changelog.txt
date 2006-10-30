@@ -2439,4 +2439,12 @@ ES, 30/10/06
    scilab code, causing error messages containing quoted strings: for instance
    TCL_EvalStr xx.
  * version --> 6.49
- 
+
+Francois VOGEL, 30/10/06
+ * Compilation of Scipad's internal macros - Step 1
+   . Shorten names so that they are at most 24 characters long:
+     FormatStringsForDebugWatch -> FormatStringsForWatch,
+     FormatWhereForDebugWatch -> FormatWhereForWatch
+   . Moved ext_exists.sci and LocalizeForScipad.sci in a new directory
+     scipad/macros/scipad_internals
+ * version --> 6.50

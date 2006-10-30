@@ -1,6 +1,6 @@
 set funnameargs ""
 set funnames ""
-set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly in FormatStringsForDebugWatch.sci
+set unklabel "<?>" ;# Warning: if this is changed it must be changed accordingly in FormatStringsForWatch.sci
 set curdropind 0
 set dragndroplb ""
 set watchvars ""
@@ -25,9 +25,9 @@ set debuggerbusycursor false
 # because they are debugger ancillaries
 set debugger_fun_ancillaries [list \
     "LocalizeForScipad" \
-    "FormatStringsForDebugWatch" \
-    "MatFormatStringsForDebugWatch" \
-    "FormatWhereForDebugWatch" \
+    "FormatStringsForWatch" \
+    "MatFormatStringsForWatch" \
+    "FormatWhereForWatch" \
     "ext_exists" \
     ]
 

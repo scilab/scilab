@@ -53,7 +53,7 @@ proc setdbstate {state} {
         removeallactive_bp
     }
     # when entering the debug mode, the Scilab shell must be at main level
-    # this is safer wrt ScilabEval, and is required for FormatWhereForDebugWatch
+    # this is safer wrt ScilabEval, and is required for FormatWhereForWatch
     if {$state == "DebugInProgress"} {
         ScilabEval_lt "abort" "seq"
     }
@@ -228,10 +228,10 @@ proc getdebuggersciancillaries_bp {} {
     ScilabEval_lt "db_funcprotscheme=funcprot();funcprot(0)" "seq"
     # Currently localization in .sci files is only used by the debugger, therefore
     # getf LocalizeForScipad.sci is safely done here
-    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/LocalizeForScipad.sci\"" "seq"
-    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/FormatStringsForDebugWatch.sci\"" "seq"
-    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/FormatWhereForDebugWatch.sci\"" "seq"
-    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/ext_exists.sci\"" "seq"
+#    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/LocalizeForScipad.sci\"" "seq"
+    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/FormatStringsForWatch.sci\"" "seq"
+    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/FormatWhereForWatch.sci\"" "seq"
+#    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/ext_exists.sci\"" "seq"
     ScilabEval_lt "funcprot(db_funcprotscheme)" "seq"
 }
 

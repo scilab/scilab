@@ -268,7 +268,7 @@
                    "Voulez-vous vraiment revenir aux polices par défaut ?"
 
 
-#FormatStringsForDebugWatch.sci
+#FormatStringsForWatch.sci
 ::msgcat::mcset fr " what you try to watch is not supported by the debugger" \
                    " ce que vous essayez d'espionner n'est pas supporté par le débuggueur"
 ::msgcat::mcset fr " what you try to watch is of type " \
@@ -277,7 +277,7 @@
                        " - ce type n'est pas supporté par le débuggueur"
 
 
-#FormatWhereForDebugWatch.sci
+#FormatWhereForWatch.sci
 ::msgcat::mcset fr "Breakpoint" "Point d'arrêt"
 ::msgcat::mcset fr "called at line" "appelé à la ligne "
 ::msgcat::mcset fr "of exec file" "dans un fichier exec"
