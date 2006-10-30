@@ -2138,8 +2138,6 @@ case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 ac_default_prefix=/usr
 
 #################################
-## all the --with-* argument help
-#################################
 
 # Check whether --enable-debug was given.
 if test "${enable_debug+set}" = set; then
@@ -2283,7 +2281,6 @@ fi
 ###############################
 
 SCIVERSION=`cat Version.incl | sed -e "s/SCIVERSION=//" `
-
 
 ########################
 ## removing and cleaning
@@ -4430,7 +4427,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 4433 "configure"' > conftest.$ac_ext
+  echo '#line 4430 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -7299,11 +7296,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7302: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7299: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7306: \$? = $ac_status" >&5
+   echo "$as_me:7303: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7561,11 +7558,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7564: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7561: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7568: \$? = $ac_status" >&5
+   echo "$as_me:7565: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7623,11 +7620,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7626: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7623: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7630: \$? = $ac_status" >&5
+   echo "$as_me:7627: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -9978,7 +9975,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 9981 "configure"
+#line 9978 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10076,7 +10073,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 10079 "configure"
+#line 10076 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -12363,11 +12360,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12366: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12363: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:12370: \$? = $ac_status" >&5
+   echo "$as_me:12367: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -12425,11 +12422,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:12428: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:12425: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:12432: \$? = $ac_status" >&5
+   echo "$as_me:12429: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -13881,7 +13878,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 13884 "configure"
+#line 13881 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -13979,7 +13976,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 13982 "configure"
+#line 13979 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -14864,11 +14861,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14867: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14864: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:14871: \$? = $ac_status" >&5
+   echo "$as_me:14868: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -14926,11 +14923,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14929: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14926: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14933: \$? = $ac_status" >&5
+   echo "$as_me:14930: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -17087,11 +17084,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:17090: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17087: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:17094: \$? = $ac_status" >&5
+   echo "$as_me:17091: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -17349,11 +17346,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:17352: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17349: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:17356: \$? = $ac_status" >&5
+   echo "$as_me:17353: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -17411,11 +17408,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:17414: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:17411: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:17418: \$? = $ac_status" >&5
+   echo "$as_me:17415: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -19766,7 +19763,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 19769 "configure"
+#line 19766 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -19864,7 +19861,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 19867 "configure"
+#line 19864 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -20915,11 +20912,9 @@ LIBTOOL='$(SHELL) $(top_builddir)/libtool'
 
 
 echo "end of configuration of libtool"
-
 #########################
 # setting parameters according to system types
 #########################
-
 # suffix of dynamic libraries
 SONAME=so
 
@@ -22025,7 +22020,9 @@ if test $ac_cv_lib_ieee_main = yes; then
   LIEEELIB=-lieee
 fi
 
+
 	MALLOC=malloc.o
+
 	if test "$with_intelcompilers" = yes; then
 		GCC=no
 		CC=$ICC
@@ -22859,13 +22856,22 @@ fi
 
     GCC=yes
     CC=gcc
-    CC_OPTIONS='-O -DNDEBUG -D_GNU_SOURCE -Dlinux -fwritable-strings'
+    CC_OPTIONS='-O -DNDEBUG -D_GNU_SOURCE -Dlinux'
     CC_LDFLAGS=$LIEEELIB
     CC_PICFLAGS=-fPIC
     # find Fortran compiler
     # g77 already asked and found: good
     if test "$WITH_G77" = yes; then
       FC=g77
+    elif test "$WITH_GFORTRAN" = yes;then
+      FC=gfortran
+      FC_OPTIONS="-O -ff2c"
+      FC_OPTIONS_O0="-ff2c"
+      FC_PICFLAGS=-fPIC
+      cat >>confdefs.h <<\_ACEOF
+#define G95_FORTRAN 1
+_ACEOF
+
     # option with-f2c
     elif test "$with_f2c" = yes; then
       # Extract the first word of "f2c", so it can be a program name with args.
@@ -23012,7 +23018,7 @@ echo "$as_me: error: Unable to configure: no Fortran compiler found" >&2;}
     LD=ld
     LD_LDFLAGS=$LIEEELIB
     if test "$enable_debug" = yes; then
-      CC_OPTIONS='-g -Dlinux -D_GNU_SOURCE -fwritable-strings'
+      CC_OPTIONS='-g -Dlinux -D_GNU_SOURCE'
       FC_OPTIONS=-g
     fi
     MAKEFILE_TARGET=Makefile.linux
@@ -23095,6 +23101,7 @@ echo "${ECHO_T}$ac_cv_lib_ieee_main" >&6; }
 if test $ac_cv_lib_ieee_main = yes; then
   LIEEELIB=-lieee
 fi
+
 
 	if test "$with_intelcompilers" = yes; then
 		GCC=no
@@ -29823,13 +29830,11 @@ saved_cflags="$CFLAGS"
 saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS -I$CHK_TCL_INCLUDE_PATH"
 CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
-{ echo "$as_me:$LINENO: checking avant 1 ...." >&5
-echo $ECHO_N "checking avant 1 ....... $ECHO_C" >&6; }
 
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 29832 "configure"
+#line 29837 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -30188,12 +30193,12 @@ done
   #perform tk tests if tcl test passed
   if test $TCL_LIB_OK = 0; then
 	if test $TCL_INCLUDE_OK = 0; then
-        	{ { echo "$as_me:$LINENO: error: no header file tcl.h  found for 8.4*" >&5
-echo "$as_me: error: no header file tcl.h  found for 8.4*" >&2;}
+        	{ { echo "$as_me:$LINENO: error: no header file tcl.h found for 8.4*" >&5
+echo "$as_me: error: no header file tcl.h found for 8.4*" >&2;}
    { (exit 1); exit 1; }; }
         else
-		{ { echo "$as_me:$LINENO: error: header file tcl.h  has been found for 8.4*  but no corresponding tcl library" >&5
-echo "$as_me: error: header file tcl.h  has been found for 8.4*  but no corresponding tcl library" >&2;}
+		{ { echo "$as_me:$LINENO: error: header file tcl.h has been found for 8.4*  but no corresponding tcl library (ie libtcl8.4.so)" >&5
+echo "$as_me: error: header file tcl.h has been found for 8.4*  but no corresponding tcl library (ie libtcl8.4.so)" >&2;}
    { (exit 1); exit 1; }; }
         fi
   fi
@@ -30222,7 +30227,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 30225 "configure"
+#line 30230 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -30552,13 +30557,13 @@ done
   done
 
   if test $TK_LIB_OK = 0; then
-	if test $TCL_INCLUDE_OK = 0; then
+	if test $TK_INCLUDE_OK = 0; then
         	{ { echo "$as_me:$LINENO: error: no header file tk.h found for 8.4*" >&5
 echo "$as_me: error: no header file tk.h found for 8.4*" >&2;}
    { (exit 1); exit 1; }; }
         else
-		{ { echo "$as_me:$LINENO: error: header file tk.h  has been found for 8.4*  but no corresponding tk library" >&5
-echo "$as_me: error: header file tk.h  has been found for 8.4*  but no corresponding tk library" >&2;}
+		{ { echo "$as_me:$LINENO: error: header file tk.h has been found for 8.4* but no corresponding tk library (libtk8.4.so)" >&5
+echo "$as_me: error: header file tk.h has been found for 8.4* but no corresponding tk library (libtk8.4.so)" >&2;}
    { (exit 1); exit 1; }; }
         fi
 

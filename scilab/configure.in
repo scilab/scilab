@@ -15,8 +15,6 @@ AC_CANONICAL_HOST
 ac_default_prefix=/usr
 
 #################################
-## all the --with-* argument help
-#################################
 
 AC_ARG_ENABLE(debug,
    [  --enable-debug          compile with "-g" option and do not optimize ])
@@ -101,7 +99,6 @@ fi
 ###############################
 
 SCIVERSION=`cat Version.incl | sed -e "s/SCIVERSION=//" `
-
 
 ########################
 ## removing and cleaning
@@ -228,11 +225,9 @@ echo "configuration of libtool"
 AM_PROG_LIBTOOL
 
 echo "end of configuration of libtool"
-
 #########################
 # setting parameters according to system types
 #########################
-
 # suffix of dynamic libraries
 SONAME=so
 
@@ -517,7 +512,9 @@ x86_64-*-linux-gnu)
 	LIEEELIB=
 	AC_CHECK_LIB(ieee,main,
 	[LIEEELIB=-lieee])
+
 	MALLOC=malloc.o
+
 	if test "$with_intelcompilers" = yes; then
 		GCC=no
 		CC=$ICC
@@ -777,13 +774,19 @@ x86_64-*-linux-gnu)
       [LIEEELIB=-lieee])
     GCC=yes
     CC=gcc
-    CC_OPTIONS='-O -DNDEBUG -D_GNU_SOURCE -Dlinux -fwritable-strings'
+    CC_OPTIONS='-O -DNDEBUG -D_GNU_SOURCE -Dlinux'
     CC_LDFLAGS=$LIEEELIB
     CC_PICFLAGS=-fPIC
     # find Fortran compiler
     # g77 already asked and found: good
     if test "$WITH_G77" = yes; then
       FC=g77
+    elif test "$WITH_GFORTRAN" = yes;then
+      FC=gfortran
+      FC_OPTIONS="-O -ff2c"
+      FC_OPTIONS_O0="-ff2c"
+      FC_PICFLAGS=-fPIC
+      AC_DEFINE(G95_FORTRAN)
     # option with-f2c
     elif test "$with_f2c" = yes; then
       AC_CHECK_PROG(F2C,f2c,yes,no)
@@ -815,7 +818,7 @@ x86_64-*-linux-gnu)
     LD=ld
     LD_LDFLAGS=$LIEEELIB
     if test "$enable_debug" = yes; then 
-      CC_OPTIONS='-g -Dlinux -D_GNU_SOURCE -fwritable-strings'
+      CC_OPTIONS='-g -Dlinux -D_GNU_SOURCE'
       FC_OPTIONS=-g
     fi
     MAKEFILE_TARGET=Makefile.linux
@@ -825,6 +828,7 @@ x86_64-*-linux-gnu)
 i*86-*-linux-gnu | *-linux-gnu )
 	LIEEELIB=
 	AC_CHECK_LIB(ieee,main,[LIEEELIB=-lieee])
+
 	if test "$with_intelcompilers" = yes; then
 		GCC=no
 		CC=$ICC
