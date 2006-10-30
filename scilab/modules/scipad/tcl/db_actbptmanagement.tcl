@@ -5,9 +5,9 @@ proc updateactivebreakpoint { {itemno 3} } {
     # to avoid TCL_EvalStr to try to evaluate string(db_m($itemno))
     # this is useful for instance when the function name where the
     # breakpoint stop occurs starts with a dollar sign $
-    set comm3 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag \"+string(db_l($itemno))+\" {\"+string(db_m($itemno))+\"} }\");"
+    set comm3 "TCL_EvalStr(\"updateactivebreakpointtag \"+string(db_l($itemno))+\" {\"+string(db_m($itemno))+\"} \",\"scipad\");"
     set comm4 "else"
-    set comm5 "TCL_EvalStr(\"scipad eval {updateactivebreakpointtag 0 \"\"\"\"}\");"
+    set comm5 "TCL_EvalStr(\"updateactivebreakpointtag 0 \"\"\"\" \",\"scipad\");"
     set comm6 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
     ScilabEval_lt "$fullcomm" "seq"

@@ -42,13 +42,6 @@
 
 proc setdbstate {state} {
     global debugstate
-    if {$state == "ReadyForDebug"} {
-        if {[info exists debugstate]} {
-            if {$debugstate == "NoDebug"} {
-                getdebuggersciancillaries_bp
-            }
-        }
-    }
     if {$state == "NoDebug" || $state == "ReadyForDebug"} {
         removeallactive_bp
     }
@@ -221,18 +214,6 @@ if {$dev_debug=="true"} {
         }
     }
 
-}
-
-proc getdebuggersciancillaries_bp {} {
-    global env
-    ScilabEval_lt "db_funcprotscheme=funcprot();funcprot(0)" "seq"
-    # Currently localization in .sci files is only used by the debugger, therefore
-    # getf LocalizeForScipad.sci is safely done here
-#    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/LocalizeForScipad.sci\"" "seq"
-    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/FormatStringsForWatch.sci\"" "seq"
-    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/FormatWhereForWatch.sci\"" "seq"
-#    ScilabEval_lt "getf \"$env(SCIPATH)/modules/scipad/tcl/ext_exists.sci\"" "seq"
-    ScilabEval_lt "funcprot(db_funcprotscheme)" "seq"
 }
 
 proc setdbstatevisualhints_bp {} {

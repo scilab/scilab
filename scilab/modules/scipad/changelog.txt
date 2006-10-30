@@ -2448,3 +2448,14 @@ Francois VOGEL, 30/10/06
    . Moved ext_exists.sci and LocalizeForScipad.sci in a new directory
      scipad/macros/scipad_internals
  * version --> 6.50
+
+Francois VOGEL, 30/10/06
+ * Compilation of Scipad's internal macros - Step 2
+   . Moved FormatStringsForWatch.sci and FormatWhereForWatch.sci in
+     scipad/macros/scipad_internals
+   . Removed proc getdebuggersciancillaries_bp (now useless)
+ * TCL_EvalStr("set answ [...]");TCL_GetVar("answ") replaced by the use of
+   the evaluation result of TCL_EvalStr (I implemented request 319)
+ * Clarified obfuscated syntax in TCL_EvalStr, to ease maintenance:
+   TCL_EvalStr("scipad eval {...}") becomes TCL_EvalStr("...","scipad")
+ * version --> 6.51

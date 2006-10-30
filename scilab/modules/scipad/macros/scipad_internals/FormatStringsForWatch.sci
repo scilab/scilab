@@ -4,7 +4,7 @@ function [svar] = FormatStringsForWatch(varargin)
 // This is used for the watch window of the debugger in Scipad.
 // The output string is identical to what the user would have typed in the
 // Scilab shell, apart from some extra characters needed to pass the string
-// to TCL/TK.
+// to Tcl/Tk.
 // Author: François Vogel, 2004-2006
 
   if argn(2) == 0 then error(39); else var = varargin(1); end

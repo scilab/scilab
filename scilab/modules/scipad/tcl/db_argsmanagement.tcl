@@ -173,7 +173,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         # lines can be removed and the comment sign can be removed
         # from line   getonefromshell $argname "sync"   above
         getonefromshell $argname
-        set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
+        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
         ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }
@@ -206,7 +206,7 @@ proc OKadda_bp {pos leftwin rightwin {forceget "false"}} {
         # lines can be removed and the comment sign can be removed
         # from line   getonefromshell $argname "sync"   above
         getonefromshell $argname
-        set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
+        set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
         ScilabEval_lt $fullcomm "seq"
                     set argvalue $watchvarsvals($argname)
                 }

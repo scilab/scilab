@@ -12,13 +12,13 @@ function dynamickeywords()
 
   function setscipadwords(wset,wtype)
     lp=lineform(wset);
-    TCL_EvalStr("scipad eval {set chset(scilab."+wtype+") {}}")
+    TCL_EvalStr("set chset(scilab."+wtype+") {}","scipad")
     for i=1:size(lp,1)
       initial=part(lp(i),1);
-      TCL_EvalStr("scipad eval {append chset(scilab."+wtype+") """+..
-               initial+"""}")
-      TCL_EvalStr("scipad eval {set words(scilab."+wtype+"."+initial+") """+..
-               lp(i)+"""}")
+      TCL_EvalStr("append chset(scilab."+wtype+") """+..
+               initial+"""","scipad")
+      TCL_EvalStr("set words(scilab."+wtype+"."+initial+") """+..
+               lp(i)+"""","scipad")
     end
   endfunction
 
@@ -66,7 +66,7 @@ function dynamickeywords()
     setscipadwords([scicosfun;scicosblocks],"scicos")
   end
   
-  //TCL_EvalStr("scipad eval {tk_messageBox -message $words(scilab.predef.%)}")
+  //TCL_EvalStr("tk_messageBox -message $words(scilab.predef.%)","scipad")
   
 endfunction
 

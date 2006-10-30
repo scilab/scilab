@@ -8,8 +8,7 @@ function answ=edit_error(clearerror)
       p=get_function_path(func)
       if p<>[] then
         scipad(p)
-        TCL_EvalStr("scipad eval {blinkline "+..
-           string(line) +" "+func+"}")
+        TCL_EvalStr("blinkline "+string(line)+" "+func,"scipad")
         answ="opening file "+p+" on line "+string(line)+" of function "+func
       else
         answ="the source file of the function "+func+...

@@ -5,6 +5,7 @@ function locstr = LocalizeForScipad(strtag)
 // .sce ancillaries, therefore no argument checks nor checks that
 // Tcl is installed nor checks that Scipad interpreter exists, etc.
 // Author: François Vogel, 2006
-    TCL_EvalStr("set locstring_scipad [mc """+strtag+"""]","scipad")
-    locstr = TCL_GetVar("locstring_scipad","scipad")
+// Note: this makes use of request 319 implementation (TCL_EvalStr
+//       returns the result of the evaluation)
+    locstr = TCL_EvalStr("mc """+strtag+"""","scipad")
 endfunction

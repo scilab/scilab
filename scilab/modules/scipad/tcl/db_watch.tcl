@@ -391,7 +391,6 @@ proc showwatch_bp {} {
     focus $watch
     update
     if { $firsttimeinshowwatch == "true" } { 
-        getdebuggersciancillaries_bp
         if {$showwatchvariablesarea == "true"} {
             focus $buttonAddw
         }
@@ -598,9 +597,9 @@ proc getfromshell { {startitem 3} } {
     foreach var $watchvars {
         getonefromshell $var
     }
-    set fullcomm "TCL_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForWatch($startitem)+\"\"\"}\");"
+    set fullcomm "TCL_EvalStr(\"set callstackcontent \"\"\"+FormatWhereForWatch($startitem)+\"\"\"\",\"scipad\");"
     ScilabEval_lt $fullcomm "seq"
-    set fullcomm "TCL_EvalStr(\"scipad eval {updatewatch_bp}\");"
+    set fullcomm "TCL_EvalStr(\"updatewatch_bp\",\"scipad\");"
     ScilabEval_lt $fullcomm "seq"
 }
 
@@ -613,9 +612,9 @@ proc getonefromshell {wvar {opt "seq"}} {
     set escwvar [escapespecialchars $wvar]
     set fullcomm ""
     set comm1 "if ext_exists(\"$wvar\"),"
-    set comm2 "TCL_EvalStr(\"scipad eval {set watchvarsvals($escwvar) \"\"\"+FormatStringsForWatch($wvar)+\"\"\"}\");"
+    set comm2 "TCL_EvalStr(\"set watchvarsvals($escwvar) \"\"\"+FormatStringsForWatch($wvar)+\"\"\"\",\"scipad\");"
     set comm3 "else"
-    set comm4 "TCL_EvalStr(\"scipad eval {set watchvarsvals($escwvar) \"\"$unklabel\"\"}\");"
+    set comm4 "TCL_EvalStr(\"set watchvarsvals($escwvar) \"\"$unklabel\"\"\",\"scipad\");"
     set comm5 "end;"
     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
     ScilabEval_lt $fullcomm $opt

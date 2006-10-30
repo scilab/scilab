@@ -159,9 +159,9 @@ proc importmatlab {} {
                       \"\"$sourcedir\"\",%f,%f,1,%t)\",\"errcatch\",\"m\")"
         set impcomm \
             "if $convcomm==0 then \
-               TCL_EvalStr(\"scipad eval {delinfo; openfile \"\"$destfile\"\"} \"); \
+               TCL_EvalStr(\"delinfo; openfile \"\"$destfile\"\"\",\"scipad\"); \
              else; \
-               TCL_EvalStr(\"scipad eval {failmatlabimp} \");\
+               TCL_EvalStr(\"failmatlabimp\",\"scipad\");\
              end"
         showinfo [mc "Scilab is converting, please hold on..." ]
         ScilabEval_lt $impcomm "sync" "seq"
