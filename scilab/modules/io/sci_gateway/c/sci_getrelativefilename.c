@@ -82,11 +82,18 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	cdLen = strlen(currentDirectory);
 	afLen = strlen(absoluteFilename);
 	
-	// make sure the names are not too long or too short
-	if(cdLen > MAX_FILENAME_LEN || cdLen < ABSOLUTE_NAME_START+1 ||
-		afLen > MAX_FILENAME_LEN || afLen < ABSOLUTE_NAME_START+1)
+	// make sure the names are not too long
+	if(cdLen > MAX_FILENAME_LEN || afLen > MAX_FILENAME_LEN)
 	{
 		return NULL;
+	}
+	
+	// make sure the names are not too short
+	if( cdLen < ABSOLUTE_NAME_START+1 || afLen < ABSOLUTE_NAME_START+1)
+	{
+		// fix bug 2181
+		strcpy(relativeFilename, absoluteFilename);
+		return relativeFilename;
 	}
 	
 	// Handle DOS names that are on different drives:
