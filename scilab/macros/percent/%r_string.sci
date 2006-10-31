@@ -1,8 +1,8 @@
 function txt=%r_string(r)
 N=string(r.num)
 D=string(r.den)
-ln=length(N)
-ld=length(D)
+ln=max(matrix(length(N),2,-1),'r')
+ld=max(matrix(length(D),2,-1),'r')
 l=max(ln,ld)
 [m,n]=size(r.num);
 S=emptystr(m,n)
