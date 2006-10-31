@@ -97,7 +97,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	}
 	
 	// Handle DOS names that are on different drives:
-	if(currentDirectory[0] != absoluteFilename[0])
+	if(tolower(currentDirectory[0]) != tolower(absoluteFilename[0]))
 	{
 		// not on the same drive, so only absolute filename will do
 		strcpy(relativeFilename, absoluteFilename);
@@ -107,10 +107,18 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	// they are on the same drive, find out how much of the current directory
 	// is in the absolute filename
 	i = ABSOLUTE_NAME_START;
-	while(i < afLen && i < cdLen && currentDirectory[i] == absoluteFilename[i])
-	{
-		i++;
-	}
+	
+	#if defined(_MSC_VER)
+		while(i < afLen && i < cdLen && tolower(currentDirectory[i])==tolower(absoluteFilename[i]) )
+		{
+			i++;
+		}
+	#else
+		while(i < afLen && i < cdLen && currentDirectory[i] == absoluteFilename[i])
+		{
+			i++;
+		}
+	#endif
 	
 	if(i == cdLen && (absoluteFilename[i] == SLASH || absoluteFilename[i-1] == SLASH))
 	{
