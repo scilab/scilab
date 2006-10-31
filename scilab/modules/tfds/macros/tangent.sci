@@ -17,22 +17,27 @@ function [f,g,newm]=tangent(nl_sys,xe,ue)
 //
 //!
 // Copyright INRIA
-[lhs,rhs]=argn(0)
-if rhs==3,deff('[y,xdot]=fff(x,u)',['xdot='+nl_sys+'(0,x,u),y=x']);
-  else ue=0;deff('[y,xdot]=fff(x,u)',['xdot='+nl_sys+'(0,x),y=x']);
-end
-newm=0;
-[yy,xx]=fff(xe,ue);
-if norm(xx) >= 1.e-4,
-  error(' xe is not an equilibrium point!');
-  return
-end
-[f,g,h,void]=lin(fff,xe,ue);
-fstr=string(f);gstr=string(g);
-xestr=string(xe);uestr=string(ue);
-deff('[xdot]=newm(t,x,u)',['[lhs,rhs]=argn(0);if rhs <=2,u=0;end;',...
-   'xdot(1)='+fstr(1,1)+'*(x(1)-('+xestr(1)+'))+('+fstr(1,2)+...
-   ')*(x(2)-('+xestr(2)+'))+('+gstr(1)+')*(u-('+uestr+'))',...
-   'xdot(2)='+fstr(2,1)+'*(x(1)-('+xestr(1)+'))+('+fstr(2,2)+...
-   ')*(x(2)-('+xestr(2)+'))+('+gstr(2)+')*(u-('+uestr+'))']);
+  [lhs,rhs]=argn(0)
+  if type(nl_sys)==10 then //the name of the function
+    execstr('nl_sys='+nl_sys)
+  end
+  if rhs==3 then
+    deff('[y,xdot]=fff(x,u)',['xdot=nl_sys(0,x,u),y=x']);
+  else 
+    ue=0;deff('[y,xdot]=fff(x,u)',['xdot=nl_sys(0,x),y=x']);
+  end
+  newm=0;
+  [yy,xx]=fff(xe,ue);
+  if norm(xx) >= 1.e-4,
+    error(' xe is not an equilibrium point!');
+    return
+  end
+  [f,g,h,void]=lin(fff,xe,ue);
+  fstr=string(f);gstr=string(g);
+  xestr=string(xe);uestr=string(ue);
+  deff('[xdot]=newm(t,x,u)',['[lhs,rhs]=argn(0);if rhs <=2,u=0;end;',...
+		    'xdot(1)='+fstr(1,1)+'*(x(1)-('+xestr(1)+'))+('+fstr(1,2)+...
+		    ')*(x(2)-('+xestr(2)+'))+('+gstr(1)+')*(u-('+uestr+'))',...
+		    'xdot(2)='+fstr(2,1)+'*(x(1)-('+xestr(1)+'))+('+fstr(2,2)+...
+		    ')*(x(2)-('+xestr(2)+'))+('+gstr(2)+')*(u-('+uestr+'))']);
 endfunction
