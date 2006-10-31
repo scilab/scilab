@@ -407,7 +407,7 @@ if test "$CC" = "gcc"; then
    if test "$enable_debug" != yes; then 
 	  CFLAGS="$CFLAGS  -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
    else
-	  CFLAGS="$CFLAGS -Werror -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
+	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
    fi
    case "$host" in
    # Linux sparc | Linux, old binary format a.out (NO LONGER SUPPORTED)
