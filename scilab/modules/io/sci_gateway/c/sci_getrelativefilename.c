@@ -51,6 +51,18 @@ int C2F(sci_getrelativefilename) _PARAMS((char *fname))
 			return 0;
 		}
 		
+		// make sure the names are not too long
+		
+		if( strlen(param1) > MAX_FILENAME_LEN )
+		{
+			Scierror(999,"The first parameter is too long : must be less than %d caracters",MAX_FILENAME_LEN);
+		}
+		
+		if( strlen(param2) > MAX_FILENAME_LEN )
+		{
+			Scierror(999,"The second parameter is too long : must be less than %d caracters",MAX_FILENAME_LEN);
+		}
+		
 		result = getrelativefilename(param1,param2);
 		
 		CreateVarFromPtr(3,"c",(m1=(int)strlen(result), &m1),&n1,&result);
@@ -81,12 +93,6 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	
 	cdLen = strlen(currentDirectory);
 	afLen = strlen(absoluteFilename);
-	
-	// make sure the names are not too long
-	if(cdLen > MAX_FILENAME_LEN || afLen > MAX_FILENAME_LEN)
-	{
-		return NULL;
-	}
 	
 	// make sure the names are not too short
 	if( cdLen < ABSOLUTE_NAME_START+1 || afLen < ABSOLUTE_NAME_START+1)
