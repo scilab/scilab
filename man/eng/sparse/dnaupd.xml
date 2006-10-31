@@ -365,142 +365,147 @@ few eigenpairs of a real linear operator </SHORT_DESCRIPTION>
   </PARAM_INDENT>
   </PARAM>
  
-  <DESCRIPTION>
-    <P>
- Reverse communication interface for the Implicitly Restarted Arnoldi
- iteration. This subroutine computes approximations to a few eigenpairs 
- of a linear operator "OP" with respect to a semi-inner product defined by 
- a symmetric positive semi-definite real matrix B. B may be the identity 
- matrix. NOTE: If the linear operator "OP" is real and symmetric 
- with respect to the real positive semi-definite symmetric matrix B, 
- i.e. B*OP = (OP`)*B, then subroutine dsaupd should be used instead.   
-    </P><P>
-  The computed approximate eigenvalues are called Ritz values and
-  the corresponding approximate eigenvectors are called Ritz vectors.
-</P><P>
-  dnaupd is usually called iteratively to solve one of the 
-  following problems:
-</P>
-
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM>
-	Mode 1:  A*x = lambda*x. <VERB>OP = A , B = I</VERB>.
-	</DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	Mode 2:  A*x = lambda*M*x, M symmetric positive definite
-	<VERB>OP = inv[M]*A,  B = M</VERB>.
-	(If M can be factored see remark 3 below)
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	Mode 3:  A*x = lambda*M*x, M symmetric positive semi-definite.
-           <VERB>OP = Real_Part{ inv[A - sigma*M]*M },   B = M</VERB>. 
-           shift-and-invert mode (in real arithmetic)
-	<P></P>
-           If <VERB>OP*x = amu*x</VERB>, then 
-	<P></P>
-           <VERB>amu = 1/2 * [ 1/(lambda-sigma) + 1/(lambda-conjg(sigma))
-	  ]</VERB>.
-	<P></P>
-           Note: If sigma is real, i.e. imaginary part of sigma is zero;
-                 <VERB>Real_Part{ inv[A - sigma*M]*M } == inv[A - sigma*M]*M 	</VERB>
-                 <VERB>amu == 1/(lambda-sigma)</VERB>. 
-     </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM>
-	Mode 4:  A*x = lambda*M*x, M symmetric semi-definite
-           <VERB>OP = Imaginary_Part{ inv[A - sigma*M]*M }  ,  B = M</VERB>. 
-           shift-and-invert mode (in real arithmetic)
-	<P></P>
-           If <VERB>OP*x = amu*x</VERB>, then 
-           <VERB>amu = 1/2i * [ 1/(lambda-sigma) - 1/(lambda-conjg(sigma)) ]</VERB>.
-     </DESCRIPTION_ITEM>
-  
-    </DESCRIPTION_INDENT>
-    <SP>
-      Both mode 3 and 4 give the same enhancement to eigenvalues close to
-      the (complex) shift sigma.  However, as lambda goes to infinity,
-      the operator OP in mode 4 dampens the eigenvalues more strongly than
-      does OP defined in mode 3.
-    </SP>
-    <P>
-      NOTE: The action of w &lt;- inv[A - sigma*M]*v or w &lt;- inv[M]*v
-      should be accomplished either by a direct method
-      using a sparse matrix factorization and solving
-  
-      <VERB>[A - sigma*M]*w = v</VERB>  or <VERB>M*w = v</VERB>,
-   
-      or through an iterative method for solving these
-      systems.  If an iterative method is used, the
-      convergence test must be more stringent than
-      the accuracy requirements for the eigenvalue
-      approximations.
-    </P>
-
-  <SECTION label="Remarks">
-    <P>
-  1. The computed Ritz values are approximate eigenvalues of OP. The
-     selection of WHICH should be made with this in mind when
-     Mode = 3 and 4.  After convergence, approximate eigenvalues of the
-     original problem may be obtained with the ARPACK subroutine dneupd.
- 
-    </P> <P>
-  2. If a basis for the invariant subspace corresponding to the converged Ritz 
-     values is needed, the user must call dneupd immediately following 
-     completion of dnaupd. This is new starting with release 2 of ARPACK. 
-    </P> <P>
-  3. If M can be factored into a Cholesky factorization M = LL`
-     then Mode = 2 should not be selected.  Instead one should use
-     Mode = 1 with  OP = inv(L)*A*inv(L`).  Appropriate triangular 
-     linear systems should be solved with L and L` rather
-     than computing inverses.  After convergence, an approximate
-     eigenvector z of the original problem is recovered by solving
-     L`z = x  where x is a Ritz vector of OP. 
-    </P> <P>
-   4. At present there is no a-priori analysis to guide the selection
-     of NCV relative to NEV.  The only formal requrement is that NCV &gt; NEV + 2.
-     However, it is recommended that NCV &gt;= 2*NEV+1.  If many problems of
-     the same type are to be solved, one should experiment with increasing
-     NCV while keeping NEV fixed for a given test problem.  This will 
-     usually decrease the required number of OP*x operations but it
-     also increases the work and storage required to maintain the orthogonal
-     basis vectors.  The optimal "cross-over" with respect to CPU time
-     is problem dependent and must be determined empirically. 
-     See Chapter 8 of Reference 2 for further information. 
-    </P> <P>
-  5. When IPARAM(1) = 0, and IDO = 3, the user needs to provide the 
-     NP = IPARAM(8) real and imaginary parts of the shifts in locations 
-</P> 
-   <VERBATIM>
+	<DESCRIPTION>
+		<P>
+			Reverse communication interface for the Implicitly Restarted Arnoldi
+			iteration. This subroutine computes approximations to a few eigenpairs 
+			of a linear operator "OP" with respect to a semi-inner product defined by 
+			a symmetric positive semi-definite real matrix B. B may be the identity 
+			matrix. NOTE: If the linear operator "OP" is real and symmetric 
+			with respect to the real positive semi-definite symmetric matrix B, 
+			i.e. B*OP = (OP`)*B, then subroutine dsaupd should be used instead.   
+		</P>
+		<P>
+			The computed approximate eigenvalues are called Ritz values and
+			the corresponding approximate eigenvectors are called Ritz vectors.
+		</P>
+		<P>
+			dnaupd is usually called iteratively to solve one of the 
+			following problems:
+		</P>
+		
+		<DESCRIPTION_INDENT>
+			
+			<DESCRIPTION_ITEM>
+				<P>
+					Mode 1:  A*x = lambda*x. <VERB>OP = A , B = I</VERB>.
+				</P>
+			</DESCRIPTION_ITEM>
+			
+			<DESCRIPTION_ITEM>
+				<P>
+					Mode 2:  A*x = lambda*M*x, M symmetric positive definite
+					<VERB>OP = inv[M]*A,  B = M</VERB>.
+					(If M can be factored see remark 3 below)
+				</P>
+			</DESCRIPTION_ITEM>
+			
+			<DESCRIPTION_ITEM>
+				<P>
+					Mode 3:  A*x = lambda*M*x, M symmetric positive semi-definite.
+					<VERB>OP = Real_Part{ inv[A - sigma*M]*M },   B = M</VERB>. 
+					shift-and-invert mode (in real arithmetic)
+					
+					If <VERB>OP*x = amu*x</VERB>, then 
+					<VERB>amu = 1/2 * [ 1/(lambda-sigma) + 1/(lambda-conjg(sigma))]</VERB>.
+					
+					Note: If sigma is real, i.e. imaginary part of sigma is zero;
+					<VERB>Real_Part{ inv[A - sigma*M]*M } == inv[A - sigma*M]*M</VERB>
+					<VERB>amu == 1/(lambda-sigma)</VERB>. 
+				</P>
+			</DESCRIPTION_ITEM>
+			
+			<DESCRIPTION_ITEM>
+				<P>
+					Mode 4:  A*x = lambda*M*x, M symmetric semi-definite
+					<VERB>OP = Imaginary_Part{ inv[A - sigma*M]*M }  ,  B = M</VERB>. 
+					shift-and-invert mode (in real arithmetic)
+					
+					If <VERB>OP*x = amu*x</VERB>, then 
+					<VERB>amu = 1/2i * [ 1/(lambda-sigma) - 1/(lambda-conjg(sigma)) ]</VERB>.
+				</P>
+			</DESCRIPTION_ITEM>
+			
+		</DESCRIPTION_INDENT>
+		
+		<SP>
+			Both mode 3 and 4 give the same enhancement to eigenvalues close to
+			the (complex) shift sigma.  However, as lambda goes to infinity,
+			the operator OP in mode 4 dampens the eigenvalues more strongly than
+			does OP defined in mode 3.
+		</SP>
+		
+		<P>
+			NOTE: The action of w &lt;- inv[A - sigma*M]*v or w &lt;- inv[M]*v
+			should be accomplished either by a direct method
+			using a sparse matrix factorization and solving
+			
+			<VERB>[A - sigma*M]*w = v</VERB>  or <VERB>M*w = v</VERB>,
+			
+			or through an iterative method for solving these
+			systems.  If an iterative method is used, the
+			convergence test must be more stringent than
+			the accuracy requirements for the eigenvalue
+			approximations.
+		</P>
+		
+	</DESCRIPTION>
+	
+	<SECTION label="Remarks">
+		<P>
+			1. The computed Ritz values are approximate eigenvalues of OP. The
+				selection of WHICH should be made with this in mind when
+				Mode = 3 and 4.  After convergence, approximate eigenvalues of the
+				original problem may be obtained with the ARPACK subroutine dneupd.
+			
+			2. If a basis for the invariant subspace corresponding to the converged Ritz 
+				values is needed, the user must call dneupd immediately following 
+				completion of dnaupd. This is new starting with release 2 of ARPACK. 
+				
+			3. If M can be factored into a Cholesky factorization M = LL`
+				then Mode = 2 should not be selected.  Instead one should use
+				Mode = 1 with  OP = inv(L)*A*inv(L`).  Appropriate triangular 
+				linear systems should be solved with L and L` rather
+				than computing inverses.  After convergence, an approximate
+				eigenvector z of the original problem is recovered by solving
+				L`z = x  where x is a Ritz vector of OP. 
+				
+			4. At present there is no a-priori analysis to guide the selection
+				of NCV relative to NEV.  The only formal requrement is that NCV &gt; NEV + 2.
+				However, it is recommended that NCV &gt;= 2*NEV+1.  If many problems of
+				the same type are to be solved, one should experiment with increasing
+				NCV while keeping NEV fixed for a given test problem.  This will 
+				usually decrease the required number of OP*x operations but it
+				also increases the work and storage required to maintain the orthogonal
+				basis vectors.  The optimal "cross-over" with respect to CPU time
+				is problem dependent and must be determined empirically. 
+				See Chapter 8 of Reference 2 for further information. 
+				
+			5. When IPARAM(1) = 0, and IDO = 3, the user needs to provide the 
+				NP = IPARAM(8) real and imaginary parts of the shifts in locations 
+		</P>
+		
+		<VERBATIM>
 <![CDATA[
+   real part                  imaginary part
+   -----------------------    -----------------------
+1  WORKL(IPNTR(14))           WORKL(IPNTR(14)+NP)
+2  WORKL(IPNTR(14)+1)         WORKL(IPNTR(14)+NP+1)
 
-
-
-         real part                  imaginary part
-         -----------------------    --------------
-     1   WORKL(IPNTR(14))           WORKL(IPNTR(14)+NP)
-     2   WORKL(IPNTR(14)+1)         WORKL(IPNTR(14)+NP+1)
-                        .                          .
-                        .                          .
-                        .                          .
-     NP  WORKL(IPNTR(14)+NP-1)      WORKL(IPNTR(14)+2*NP-1).
-   ]]>
-    </VERBATIM>
-<P>
-     Only complex conjugate pairs of shifts may be applied and the pairs 
-     must be placed in consecutive locations. The real part of the 
-     eigenvalues of the current upper Hessenberg matrix are located in 
-     WORKL(IPNTR(6)) through WORKL(IPNTR(6)+NCV-1) and the imaginary part 
-     in WORKL(IPNTR(7)) through WORKL(IPNTR(7)+NCV-1). They are ordered
-     according to the order defined by WHICH. The complex conjugate
-     pairs are kept together and the associated Ritz estimates are located in
-     WORKL(IPNTR(8)), WORKL(IPNTR(8)+1), ... , WORKL(IPNTR(8)+NCV-1). 
-    </P> 
-  </SECTION>
-
-  </DESCRIPTION>
-
-  <EXAMPLE><![CDATA[
-   
-  ]]></EXAMPLE>
+NP  WORKL(IPNTR(14)+NP-1)     WORKL(IPNTR(14)+2*NP-1).
+]]>
+		</VERBATIM>
+		<P>
+			Only complex conjugate pairs of shifts may be applied and the pairs 
+			must be placed in consecutive locations. The real part of the 
+			eigenvalues of the current upper Hessenberg matrix are located in 
+			WORKL(IPNTR(6)) through WORKL(IPNTR(6)+NCV-1) and the imaginary part 
+			in WORKL(IPNTR(7)) through WORKL(IPNTR(7)+NCV-1). They are ordered
+			according to the order defined by WHICH. The complex conjugate
+			pairs are kept together and the associated Ritz estimates are located in
+			WORKL(IPNTR(8)), WORKL(IPNTR(8)+1), ... , WORKL(IPNTR(8)+NCV-1). 
+		</P> 
+	</SECTION>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>dsaupd</LINK> </SEE_ALSO_ITEM>
