@@ -27,8 +27,9 @@ sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
 all-local:
-#	.libs/scilex -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;
-#	.libs/scilex -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;
+	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce
+	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;
+	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;
 
 
 check-local:
