@@ -14,7 +14,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>ff</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a string which gives the name of the Scilab macro which  codes  the system</SP>
+         <SP>: a string which gives the name of the Scilab function which  codes
+	    the system, or the fuunction itself.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
