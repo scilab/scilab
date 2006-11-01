@@ -65,6 +65,41 @@ typedef struct {
 
 IMPORT SCSPTR_struct C2F(scsptr);
 
+typedef struct {
+	double rownr3[2], t0, tlast, toutc;
+	integer lg0, lg1, lgx, iownr3[2], irfnd, itaskc, ngc, nge;
+} LSR001_struct;
 
+IMPORT LSR001_struct C2F(lsr001);
+
+typedef struct {
+	double tret, rowns[209], ccmax, el0, h__, hmin, hmxi, hu, rc, tn,uround;
+	integer illin, init, lyh, lewt, lacor, lsavf, lwm, liwm, mxstep, mxhnil, 
+		nhnil, ntrep, nslast, nyh, iowns[6], icf, ierpj, iersl, jcur, 
+		jstart, kflag, l, meth, miter, maxord, maxcor, msbp, mxncf, n, nq,
+		nst, nfe, nje, nqu;
+} LS0001_struct;
+
+IMPORT LS0001_struct C2F(ls0001);
+
+
+typedef struct {
+	double tsw, rowns2[20], pdnorm;
+	integer insufr, insufi, ixpr, iowns2[2], jtyp, mused, mxordn, mxords;
+} LSA001_struct;
+
+IMPORT LSA001_struct C2F(lsa001);
+
+typedef struct {
+	integer idb;
+} DBCOS_struct;
+
+IMPORT DBCOS_struct C2F(dbcos);
+
+typedef struct {
+	double atol, rtol, ttol, deltat;
+} COSTOL_struct;
+
+IMPORT COSTOL_struct C2F(costol);
 
 #endif /*SCICOS_DEF*/

@@ -10,12 +10,6 @@ of type 0 */
 #define TB_SIZE 500
 
 
-/* scicos common for debug */
-
-extern struct {
-    integer idb;
-} C2F(dbcos);
-
 typedef void (*voidf)();
 
 /* Blocks prototypes */

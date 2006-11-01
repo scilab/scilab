@@ -40,9 +40,9 @@ C
       iadr(l) = l + l - 1
 C
       if (ddt .eq. 4) then
-        write (buf(1:12),"(3i4)") top, ptr
-        call basout(io,wte," sciblk  top:"//buf(1:4)//" ptr :"//
-     &       buf(5:8)      )
+c        write (buf(1:12),"(3i4)") top, ptr
+c        call basout(io,wte," sciblk  top:"//buf(1:4)//" ptr :"//
+c     &       buf(5:8)      )
       endif
 C
       mlhs = 5

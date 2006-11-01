@@ -9,3 +9,15 @@
 	cha1_
 	versionflag
   mtlbc_
+; scicos
+	dbcos_
+	curblk_
+	costol_
+	coshlt_
+	ierode_
+	cosdebugcounter_
+	cosdebug_  
+	scsptr_
+	lsr001_
+  lsa001_
+  ls0001_

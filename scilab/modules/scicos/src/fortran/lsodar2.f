@@ -1132,6 +1132,10 @@ c in subroutines lsodar, rchek, and roots.  groups of variables are
 c replaced by dummy arrays in the common declarations in routines
 c where those variables are not used.
 c-----------------------------------------------------------------------
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/, /lsa001/, /lsr001/
+cDEC$ ENDIF
+c-----------------------------------------------------------------------
       integer         iero
       common /ierode/ iero
       common /ls0001/ tret, rowns(209),
