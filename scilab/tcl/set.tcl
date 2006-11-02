@@ -111,8 +111,8 @@ proc SetField { handle field value } {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
 		    fontweight fontunits foregroundcolor horizontalalignment listboxtop max min \
-		    parent position string units value figure_name verticalalignment };
-	    
+		    parent position string sliderstep units value figure_name verticalalignment };
+
 	    # is it an implemented?
 	    set idx  [lsearch $KnownFunc $field];
 	    
@@ -780,12 +780,18 @@ proc Setsliderstep { name value } {
     set path [set "$name\(path)"];
 
     set  step [split $value "|"];
-    set smallstep  [set $step(1)];
-    set bigstep [set $step(2)];
+    set smallstep  [lindex $step 0];
+    set bigstep [lindex $step 1];
 
-    
-
-
+#enrico
+    if {$bigstep==""} {set bigstep "0"}
+    switch -exact -- $style {
+       slider {
+          $path configure -resolution $smallstep -bigincrement $bigstep
+       }
+	default {
+	}
+    }
 }
 ######################################################################################
 proc Setstring { name  str} {
