@@ -35,9 +35,9 @@ CC_LDFLAGS =
 # default usage is to use f2c 
 #----------------------------------------------
 USE_F2C=YES
-# if USE_F2C is set to NO we will use the following Fortran compiler (i.e Visual Fortran)
+# if USE_F2C is set to NO we will use the following Fortran compiler (i.e Intel Fortran 9.1)
 !IF "$(USE_F2C)" == "NO"
-FC=df 
+FC=ifort 
 FC_OPTIONS=/debug /nologo /assume:underscore /compile_only /iface:(cref,nomixed_str_len_arg) /names:lowercase 
 LINKER_FLAGS=$(LINKER_FLAGS) /force:multiple
 !ENDIF
