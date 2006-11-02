@@ -18,7 +18,7 @@ function [scs_m,fct]=do_addnew(scs_m)
   end
   if to_get then // try to get it
     path=name+'.sci'
-    path=getfile("*.sci",path,title="File containing function: "+name)
+    path=getfile("*.sci",path,Title="File containing function: "+name)
 
     if length(path)<=0 then return,end
     [u,err]=file('open',path,'old','formatted')

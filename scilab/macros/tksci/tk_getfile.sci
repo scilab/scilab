@@ -1,4 +1,4 @@
-function p=tk_getfile(file_mask,path,title,multip)
+function p=tk_getfile(file_mask,path,Title,multip)
   if ~with_tk() then error('Tcl/Tk interface not defined'),end
   arg=''
   if exists('file_mask','local')==1 then 
@@ -29,8 +29,11 @@ function p=tk_getfile(file_mask,path,title,multip)
       end
     end
   end
-  if exists('title','local')==1 then
-    arg=arg+' -title ""'+title+'""',
+  if exists('title','local')==1 then 
+    Title=title; 
+  end
+  if exists('Title','local')==1 then
+    arg=arg+' -title ""'+Title+'""',
   end
   if ~exists('multip','local')==1 then
     multip="0"
