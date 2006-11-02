@@ -2465,3 +2465,13 @@ Francois VOGEL, 30/10/06
  * Fixed: quitting Scilab during the debug in Scipad produced a strange
    error that was due to missing quotes in a ScilabEval
  * version --> 6.52
+
+Francois VOGEL, 02/11/06
+ * When Options/Backup files depth was set to 1, it saved 2 backups instead
+   of one
+ * Moved msgdiff.sci in scipad/macros/scipad_internals
+ * Updated AddingTranslations.txt:
+     . new directory tree
+     . removal of length checks in dialogs (mcmax is now used since 6.45)
+     . msgdiff.sci is now a compiled macro
+ * version --> 6.53

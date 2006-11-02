@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////
 // utility script for Scipad translators:
-//  Compares two SCI/tcl/scipadsources/msg_files/*.msg files,
+//  Compares two SCI/modules/scipad/tcl/msg_files/*.msg files,
 //   generally, a master one like fr.msg or it.msg, updated by
 //   the mantainers of Scipad, and a derived msg file, mantained by
 //   one of the contributing translators;

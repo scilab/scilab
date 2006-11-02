@@ -4,7 +4,7 @@ INSTRUCTIONS FOR TRANSLATING SCIPAD AND CONTRIBUTING SCIPAD LOCALES
 
 In order to port Scipad to a new language, you need to create a 
 "message file" containing the translation of the text strings used by Scipad,
-and to put it in the directory SCI/tcl/scipadsources/msg_files/. Here are
+and to put it in the directory SCI/modules/scipad/tcl/msg_files/. Here are
 detailed instructions about how. We estimate that the creation of such a 
 file starting from an existing template shouldn't take more than 2-3 hours
 of editing.
@@ -60,12 +60,12 @@ EDITING THE MESSAGE FILE
 ------------------------
 
 First of all, choose one of the existing files 
-SCI/tcl/scipadsources/msg_files/*.msg as a template. The files fr.msg and
+SCI/modules/scipad/tcl/msg_files/*.msg as a template. The files fr.msg and
 it.msg are the best candidates, as they are most frequently updated.
 Such files are found in the trunk SVN version of scilab and in recent unstable 
 versions; we recommend to start from the very latest files available on the scilab
 SVN (see
-http://jarron.inria.fr/viewvc/bin/cgi/viewvc.cgi/trunk/scilab/tcl/scipadsources/msg_files/
+http://jarron.inria.fr/viewvc/bin/cgi/viewvc.cgi/trunk/scilab/modules/scipad/tcl/msg_files/
 and http://scilabsoft.inria.fr/download/index_download.php?page=SVN.html
 If you have difficulties in getting them, let us know, we can forward 
 by email.
@@ -156,12 +156,12 @@ will do, without any need to restart Scipad. Unless you have introduced Tcl
 syntax errors with your editing, Scipad should display menues and dialogs 
 in this new locale.
 
-Should you have dropped a tcl syntax error (the most common are to
+Should you have dropped a Tcl syntax error (the most common are to
 forget a " or a \), Scipad should warn you with an error message 
 detailed enough to find the offending line. If you have wish 
 installed, it might be more explicative to run scipad.tcl in wish, e.g.
 
-  unix("wish "+SCI+"/tcl/scipadsources/scipad.tcl")
+  unix("wish "+SCI+"/modules/scipad/tcl/scipad.tcl")
 
 from within scilab. It would be of course more convenient to us if 
 you're able to solve these errors yourself, but we can provide some 
@@ -171,17 +171,14 @@ Should you have omitted the translation of one string (or changed
 inadvertently the original, or deleted a line by mistake, etc.),
 you'll see its english fallback by default.
 
-Please check also that whenever space is limited (for instance in 
-dialogs), your translation is reasonably short and fits within the
-given space constraints.
 
 THE msgdiff TOOL
 ----------------
 
-The directory SCI/tcl/scipadsources/msg_files/ contains also a Scilab script
-which can be used to check the cross-consistency of the existing message 
-files. The script is called msgdiff.sci and has to be loaded in Scilab by 
-getf(). Once this is done, files can be checked calling from Scilab
+The directory SCI/modules/scipad/macros/scipad_internals/ contains also a
+Scilab script which can be used to check the cross-consistency of the 
+existing message files. The script is called msgdiff.sci and is automatically
+loaded in Scilab at startup. Files can be checked calling from Scilab
 
   msgdiff <firstfile.msg> <secondfile.msg>
 
@@ -200,6 +197,7 @@ the entries are nicely reformatted (this implies losing any original
 indentation, for the moment). 
 Some really minimal syntax check is done in both cases. Further comments are
 written in the header of msgdiff.sci.
+
 
 UPDATES
 --------

@@ -313,14 +313,6 @@ Other wishes:
 
 -Add underlined numbers in the Windows menu, as for the File menu.
 
--Make use of ::msgcat::mcmax ?src-string src-string ...?
- Given several source strings, ::msgcat::mcmax returns the length of the 
- longest translated string. This is useful when designing localized GUIs, 
- which may require that all buttons, for example, be a fixed width (which 
- will be the width of the widest button).
- -- Currently some button labels are truncated in certain locales
- -- Once done, update AddingTranslations.txt starting at line 176
-
 -Perhaps rethink how to sort out the duplication of "Open", "Open in
  new", "Open Source of.." and "Open function source". Four entries
  scattered in the same menu starts to be much...

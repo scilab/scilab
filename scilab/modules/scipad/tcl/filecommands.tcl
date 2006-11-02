@@ -887,8 +887,10 @@ proc backupfile { fname { levels 10 } } {
                     incr i -1
                 }
             }
-            if { [ file exists ${fname}.bak ] } {
-                file rename -force ${fname}.bak ${fname}.ba2
+            if {$levels >= 2} {
+                if { [ file exists ${fname}.bak ] } {
+                    file rename -force ${fname}.bak ${fname}.ba2
+                }
             }
             file rename -force $fname ${fname}.bak
         }
