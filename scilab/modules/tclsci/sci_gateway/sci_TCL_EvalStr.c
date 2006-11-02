@@ -76,7 +76,7 @@ int C2F(sci_TCL_EvalStr) _PARAMS((char *fname,unsigned long l))
             } else {
                 /* return result of the successful evaluation of the script */
                 /* return a matrix of string results */
-                RetStr = Tcl_GetStringResult(TCLinterpreter);
+                RetStr = (char*)Tcl_GetStringResult(TCLinterpreter);
                 AsciiFromUTF8=UTF8toANSI(TCLinterpreter,RetStr);
                 ReturnArrayString[k++]=AsciiFromUTF8;
             }
