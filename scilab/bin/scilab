@@ -49,6 +49,18 @@ else
 	echo "I think I found Scilab here : $SCI"
 fi
 
+if test -x $SCI/bin/scilab-bin; then
+	SCILABBIN=$SCI/bin/scilab-bin
+else
+	if test -x $SCI/scilab-bin; then
+		SCILABBIN=$SCI/scilab-bin
+	else
+		echo "Cannot not found scilab-bin ... Don't worry. This script is still an alpha version"
+		exit 1
+	fi
+fi
+
+
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
 fi
@@ -83,8 +95,8 @@ do_scilex()
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
 
-    tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
-    $SCI/bin/scilab-bin $* 
+#    tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
+    $SCILABBIN $* 
 }
 
 do_scilex_now()
@@ -95,7 +107,7 @@ do_scilex_now()
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
 
-    $SCI/bin/scilex $* 
+    $SCILABBIN $* 
 }
 
 do_help()
@@ -135,7 +147,7 @@ do_compile()
 	name=`basename $1 .sci`
 	echo generating $name.bin
 	echo "predef();getf('$name.sci');save('$name.bin');quit"\
-	      | $SCI/bin/scilex -ns -nw | sed 1,8d 1>report 2>&1
+	      | $SCILABBIN -ns -nw | sed 1,8d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
 	then cat report;echo " " 
 	   echo see `pwd`/report for more informations
@@ -151,7 +163,7 @@ do_lib()
 	umask 002
 	rm -f report
 	echo "$1=lib('$2/');save('$2/lib',$1);quit"\
-	      | $SCI/bin/scilex -ns -nw |sed 1,/--\>/d 1>report 2>&1
+	      | $SCILABBIN -ns -nw |sed 1,/--\>/d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
 	then cat report;echo " " 
 		echo see `pwd`/report for more informations
@@ -395,7 +407,7 @@ if test "$rest" = "yes"; then
     sci_args="$sci_args -mem  $mem"
   fi
   if test -n "$debug"; then
-     gdb  $SCI/bin/scilex $sci_args
+     gdb $SCILABBIN $sci_args
   else
     if test -n "$now"; then
         sci_exe="do_scilex_now"
