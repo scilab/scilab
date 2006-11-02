@@ -14,19 +14,14 @@
 
 #include "logger.h"
 
-#ifdef WIN32
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
-
-
 #ifndef WIN32
 static int _LOGGER_mode = _LOGGER_SYSLOG;
 static int _LOGGER_syslog_mode = LOG_MAIL|LOG_INFO;
+#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #else
 static int _LOGGER_mode = _LOGGER_STDERR;
 static int _LOGGER_syslog_mode = 0;
+#include "../os_specific/win_mem_alloc.h" /* MALLOC */
 #endif
 static FILE *_LOGGER_outf;
 
@@ -40,6 +35,9 @@ struct LOGGER_globals {
 
 static struct LOGGER_globals LOGGER_glb={ 0, 0 };
 
+#if _MSC_VER
+	#define vsnprintf _vsnprintf
+#endif
 
 /*------------------------------------------------------------------------
 Procedure:     LOGGER_get_file ID:1
@@ -114,7 +112,7 @@ int LOGGER_set_logfile( char *lfname )
 	_LOGGER_outf = fopen(lfname,"a");
 	if (!_LOGGER_outf)
 	{
-#ifndef WIN32
+#ifndef _WIN32
 		syslog(1,"LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)",lfname,strerror(errno));
 #else
 		fprintf(stderr, "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n", lfname, strerror(errno));
@@ -307,12 +305,7 @@ int LOGGER_log( char *format, ...)
 #ifdef NO_SNPRINTF
 	vsprintf(tmpoutput, format, ptr);
 #else
-	#if WIN32
-	  vsprintf(tmpoutput, format, ptr);
-	#else
-	  vsnprintf(tmpoutput,10240,format,ptr);
-    #endif
-	
+	vsnprintf(tmpoutput,10240,format,ptr);
 #endif
 
 	LOGGER_clean_output( tmpoutput, &output );
@@ -332,7 +325,7 @@ int LOGGER_log( char *format, ...)
 			fprintf(stderr,"%s%s",output, lineend );
 			break;
 		case _LOGGER_SYSLOG:
-			#ifndef WIN32
+			#ifndef _MSC_VER
 			syslog(_LOGGER_syslog_mode,output);
 			#endif
 			break;
