@@ -1,16 +1,16 @@
-function c=getcolor(title,cini)
+function c=getcolor(Title,cini)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs==0 then
-  title="";
+  Title="";
   cini=1;
 elseif rhs==1 then 
-  if type(title)<>10 then
+  if type(Title)<>10 then
     error("getcolor: argument must be a string") 
   end
   cini=1;
 elseif rhs==2 then
-  if (type(title)<>10 | type(cini)<>1 | size(cini,"*")<>1) then
+  if (type(Title)<>10 | type(cini)<>1 | size(cini,"*")<>1) then
     error("getcolor: arguments must be a string and an integer")
   end
 else
@@ -80,7 +80,7 @@ for k=1:N
   y=y-dy;
 end
 
-if title<>"" then
+if Title<>"" then
   xsetech([-1/8 0 1+1/6 1+1/6-1/8],[0 0 wdim(1),wdim(2)]);
 else
   xsetech([-1/8 -1/8 1+1/6 1+1/6],[0 0 wdim(1),wdim(2)]);
@@ -96,9 +96,9 @@ else
   xpoly([-ddx,1-1/n,1-1/n,1,1,-ddx],[0,0,r/m,r/m,1+ddy,1+ddy],"lines",1);
 end
 
-// title
-if title<>"" then
-  xtitle(title);
+// Title
+if Title<>"" then
+  xtitle(Title);
   t=gce(); t.font_size=4; t.font_style=6;
 end
 
