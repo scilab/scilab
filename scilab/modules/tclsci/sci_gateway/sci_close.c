@@ -80,6 +80,10 @@ int C2F(sci_close) _PARAMS((char *fname,unsigned long l))
 
 		sprintf(VarName,"STRING_%d",Handle);
 		Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
+
+		sprintf(VarName,"Win(%d)",Handle);
+		Tcl_UnsetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY);
+
 	}
 
 	LhsVar(1) = 0;
