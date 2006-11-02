@@ -28,6 +28,7 @@
 #define TCL_ERROR24 "%s: Invalid argument type.\r\n"
 #define TCL_ERROR25 "%s: %s interpreter already exist.\r\n"
 #define TCL_ERROR26 "file %s not found.\r\n"
+#define TCL_ERROR27 "uicontrol %d doesn't exist.\r\n"
 
 
 #define TCL_ERROR28 "TCL_EvalScilabCmd: No more memory\r\n"
