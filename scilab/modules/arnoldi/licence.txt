@@ -1,3 +1,3 @@
-licence file
+ARPACK is an open-source software package released with a BSD-like license (see http://www.caam.rice.edu/software/ARPACK/RiceBSD.doc)
 
 INRIA 2006
