@@ -19,9 +19,8 @@ else
 	found=0
 	progname="$0"
 	curdir=`dirname "$progname"`
-	echo "curdir $curdir"
+
 	progbase=`basename "$progname"`
-	echo "progbase $progbase"
 	run_sci="$curdir/scilab"
 	if test -x "$run_sci"; then
 		dist_bin="$curdir"
@@ -47,7 +46,7 @@ else
 		done
 		cd "$here"
 	fi
-	echo "here : $here"
+	echo "I think I found Scilab here : $SCI"
 fi
 
 if test "$DISPLAY" = ""; then
