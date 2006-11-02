@@ -1,69 +1,99 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>tk_savefile</TITLE>
+
   <TYPE>Scilab Function</TYPE>
+
   <DATE>Jan 1996</DATE>
-  <SHORT_DESCRIPTION name="tk_savefile"> dialog to get a file path for writing</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="tk_savefile">dialog to get a file path for
+  writing</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile([title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,[title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,[title='string'])  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,'string')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile([Title='string'])</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,[Title='string'])</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,[Title='string'])</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>path=tk_savefile(file_mask,dir,'string')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>file_mask</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: a character string which gives the file mask to use for file selection. <VERB>file_mask</VERB> is written with Unix convention. the default value is '*'.</SP>
+          <SP>: a character string which gives the file mask to use for file
+          selection. <VERB>file_mask</VERB> is written with Unix convention.
+          the default value is '*'.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>dir</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: a character string which gives the initial directory used for file search. by default tk_savefile uses the previously selected directory.</SP>
+          <SP>: a character string which gives the initial directory used for
+          file search. by default tk_savefile uses the previously selected
+          directory.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>path</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: is the user selected file path if user answers &quot;Ok&quot; or the &quot; &quot; string if user answers &quot;Cancel&quot;</SP>
+          <SP>: is the user selected file path if user answers "Ok" or the " "
+          string if user answers "Cancel"</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
-        <PARAM_NAME>title='string'  </PARAM_NAME>
+        <PARAM_NAME>Title='string'</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>:Optional arguments which gives the title for the tk_savefile window.</SP>
+          <SP>:Optional arguments which gives the title for the tk_savefile
+          window. <VERB>Warning</VERB>: use the variable name
+          <VERB>Title</VERB> intead of <VERB>title</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P>
-    Creates a dialog window for output file selection</P>
+    <P>Creates a dialog window for output file selection</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
 tk_savefile()
 tk_savefile('*.sci','SCI/macros/xdess')
-tk_savefile(title='Choose a file name ')
- ]]>
-  </EXAMPLE>
+tk_savefile(Title='Choose a file name ')
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>xgetfile</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>tk_getdir</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>tk_getfile</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>file</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>fileinfo</LINK>
     </SEE_ALSO_ITEM>

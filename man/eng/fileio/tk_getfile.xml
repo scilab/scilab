@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
@@ -13,15 +13,15 @@
   paths</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>path=tk_getfile([title="string"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getfile([Title="string"])</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>path=tk_getfile([multip="1"])</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask[,title="string"][,multip="1"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask[,Title="string"][,multip="1"])</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask,dir[,title="string"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask,dir[,Title="string"])</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask,dir[,title="string"][,multip="1"])</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask,dir[,Title="string"][,multip="1"])</CALLING_SEQUENCE_ITEM>
 
     <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask,dir,"string"[,"multip"])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -58,11 +58,12 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>title="string"</PARAM_NAME>
+        <PARAM_NAME>Title="string"</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: Optional argument which gives the title for the tk_getfile
-          window.</SP>
+          window. <VERB>Warning</VERB>: use the variable name
+          <VERB>Title</VERB> instead of <VERB>title.</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -86,8 +87,8 @@
   <EXAMPLE><![CDATA[
 tk_getfile()
 tk_getfile("*.sci","SCI/macros/xdess")
-tk_getfile(title="Choose a file name")
-tk_getfile(title="Choose many file names at once",multip="1")
+tk_getfile(Title="Choose a file name")
+tk_getfile(Title="Choose many file names at once",multip="1")
 tk_getfile(multip="1")
 ]]></EXAMPLE>
 
