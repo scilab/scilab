@@ -1,4 +1,4 @@
-function [rep]=x_choices(title,choices_l)
+function [rep]=x_choices(Title,choices_l)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 	if rhs<=0 then s_mat=['l1=list(''choice 1'',1,[''toggle c1'',''toggle c2'',''toggle c3'']);';
@@ -8,7 +8,7 @@ function [rep]=x_choices(title,choices_l)
          write(%io(2),s_mat);execstr(s_mat);
          return;end;
 
-if typeof(title)<>'string' then 
+if typeof(Title)<>'string' then 
 	write(%io(2),'x_choices first argument is not character string')
 	return
 end
@@ -51,5 +51,5 @@ for i=1:n, l_ch=choices_l(i);
  if n<>i then items=[items,"[--sep--]"];end
 end 
 items=items(2:prod(size(items)))
-rep=xchoicesi(defv,title,items)
+rep=xchoicesi(defv,Title,items)
 endfunction
