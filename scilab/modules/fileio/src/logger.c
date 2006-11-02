@@ -14,8 +14,7 @@
 
 #include "logger.h"
 
-
-#include "MALLOC.h" /* MALLOC */
+#include "MALLOC.h"
 
 #ifndef _MSC_VER
 static int _LOGGER_mode = _LOGGER_SYSLOG;
@@ -24,6 +23,7 @@ static int _LOGGER_syslog_mode = LOG_MAIL|LOG_INFO;
 static int _LOGGER_mode = _LOGGER_STDERR;
 static int _LOGGER_syslog_mode = 0;
 #endif
+
 static FILE *_LOGGER_outf;
 
 struct LOGGER_globals {
@@ -39,6 +39,7 @@ static struct LOGGER_globals LOGGER_glb={ 0, 0 };
 #if _MSC_VER
 	#define vsnprintf _vsnprintf
 #endif
+
 /*------------------------------------------------------------------------
 Procedure:     LOGGER_get_file ID:1
 Purpose:       Returns the pointer to the file being used to output logs to
@@ -305,7 +306,7 @@ int LOGGER_log( char *format, ...)
 #ifdef NO_SNPRINTF
 	vsprintf(tmpoutput, format, ptr);
 #else
-	  vsnprintf(tmpoutput,10240,format,ptr);
+	vsnprintf(tmpoutput,10240,format,ptr);
 #endif
 
 	LOGGER_clean_output( tmpoutput, &output );

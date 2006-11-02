@@ -1,6 +1,3 @@
-#if _MSC_VER
-#include <stdarg.h>
-#endif
 
 #include <stdio.h>
 #include <string.h>
@@ -13,10 +10,11 @@
 #include "logger.h"
 #include "pldstr.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "MALLOC.h"
 
 #if _MSC_VER
-#define strdup _strdup
+	#define vsnprintf _vsnprintf
+	#define strdup _strdup
 #endif
 
 /*-----------------------------------------------------------------\
@@ -130,7 +128,7 @@ char *PLD_strncat( char *dst, const char *src, size_t len )
 {
 	char *dp = dst;
 	const char *sp = src;
-	int cc;
+	size_t cc;
 
 	if (len == 0) return dst;
 
@@ -138,15 +136,15 @@ char *PLD_strncat( char *dst, const char *src, size_t len )
 
 	/* Locate the end of the current string.*/
 	cc = 0;
-	while ((*dp)&&(cc < (int)len)) { dp++; cc++; }
+	while ((*dp)&&(cc < len)) { dp++; cc++; }
 
 	/* If we have no more buffer space, then return the destination*/
 
-	if (cc >= (int)len) return dst;
+	if (cc >= len) return dst;
 
 	/* While we have more source, and there's more char space left in the buffer*/
 
-	while ((*sp)&&(cc < (int)len))
+	while ((*sp)&&(cc < len))
 	{
 		cc++;
 		*dp = *sp;
@@ -179,7 +177,7 @@ char *PLD_strncate( char *dst, const char *src, size_t len, char *endpoint )
 {
 	char *dp = dst;
 	const char *sp = src;
-	int cc = 0;
+	size_t cc = 0;
 
 	if (len == 0) return dst;
 
@@ -192,7 +190,7 @@ char *PLD_strncate( char *dst, const char *src, size_t len, char *endpoint )
 	{
 	  /* Locate the end of the current string.*/
 		cc = 0;
-		while ((*dp != '\0')&&(cc < (int)len)) { dp++; cc++; }
+		while ((*dp != '\0')&&(cc < len)) { dp++; cc++; }
 	}
 	else {
 		cc = endpoint -dst +1;
@@ -201,11 +199,11 @@ char *PLD_strncate( char *dst, const char *src, size_t len, char *endpoint )
 
 	/* If we have no more buffer space, then return the destination*/
 
-	if (cc >= (int)len) return dst;
+	if (cc >= len) return dst;
 
 	/* While we have more source, and there's more char space left in the buffer*/
 
-	while ((*sp)&&(cc < (int)len))
+	while ((*sp)&&(cc < len))
 	{
 		cc++;
 		*dp = *sp;
@@ -372,9 +370,9 @@ int PLD_strlower( unsigned char *convertme )
   /*	09-11-2002 - changed from 'char *' to 'unsigned char *' to deal with*/
   /*		non-ASCII characters ( ie, french ).  Pointed out by Emmanuel Collignon*/
 
-	unsigned char *c = convertme;
+	char *c = convertme;
 
-	while ( *c != '\0') {*c = tolower(*c); c++;}
+	while ( *c != '\0') {*c = tolower((int)*c); c++;}
 
 	return 0;
 }
@@ -391,7 +389,7 @@ int PLD_strlower( unsigned char *convertme )
   ------------------
   Exit Codes	: Returns a pointer to the new buffer space.  The original 
   buffer will still remain intact - ensure that the calling
-  program free()'s the original buffer if it's no longer
+  program FREE()'s the original buffer if it's no longer
   needed
   Side Effects	: 
   --------------------------------------------------------------------
@@ -738,12 +736,8 @@ char *PLD_dprintf(const char *format, ...)
 	{
 	  /* Attempt to print out string out into the allocated space*/
 		va_start(ap, format);
-		#if _MSC_VER
-		n = _vsnprintf (p, size, format, ap); 
-		#else
-		n = vsnprintf (p, size, format, ap); 
-		#endif
 
+		n = vsnprintf (p, size, format, ap);
 		va_end(ap);
 
 		/* If things went well, then return the new string*/
