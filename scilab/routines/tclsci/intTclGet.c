@@ -15,9 +15,17 @@ int C2F(intTclGet) _PARAMS((char *fname))
 	{
 		static int l1,n1,m1;
 		int Handle=0;
+		char VarName[64];
 
 		GetRhsVar(Rhs-1,"i",&m1,&n1,&l1);
 		Handle=*istk(l1);
+
+		sprintf(VarName,"Win(%d)",Handle);
+		if ( ! Tcl_GetVar(TCLinterp, VarName, TCL_GLOBAL_ONLY) )
+		{
+			Scierror(999,TCL_ERROR27,Handle);
+			return 0;
+		}
 
 		TCL_UiGet(Handle,Rhs);
 		flushTKEvents ();
