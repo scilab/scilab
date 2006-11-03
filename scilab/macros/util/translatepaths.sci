@@ -160,8 +160,10 @@ for i=1:size(funpath,1)
     // RESUMELOG
     tmp_resume_m2sci_file=pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log"
     resumem2scipath=res_path+"resume_m2sci_"+fnam+".log" 
-    resumelogtxt=[resumelogtxt;" ";" ";mgetl(resumem2scipath)]
-    mdelete(resumem2scipath)
+    if fileinfo(resumem2scipath)<>[] then
+      resumelogtxt=[resumelogtxt;" ";" ";mgetl(resumem2scipath)]
+      mdelete(resumem2scipath)
+    end
     
     [fd,ierr]=file('open',tmp_resume_m2sci_file,'old');
     if ierr==0 & strindex(mpath,TMPDIR)==[] then
@@ -183,9 +185,11 @@ mdelete(pathconvert(TMPDIR)+"unitfile.dat")
 if res_path=="./" then
   current_path=pathconvert(unix_g('pwd'))
   index_slash=strindex(current_path,'/')
+  if size(index_slash,'*')==1 then index_slash=[0 index_slash],end
   namelib=part(current_path,index_slash($-1)+1:index_slash($)-1)
 else
   index_slash=strindex(res_path,'/')
+  if size(index_slash,'*')==1 then index_slash=[0 index_slash],end
   namelib=part(res_path,index_slash($-1)+1:index_slash($)-1)
 end
 
