@@ -763,7 +763,7 @@ char *PLD_dprintf(const char *format, ...)
 		{
 			char *tmp_p;
 
-			tmp_p = realloc(p, size);
+			tmp_p = REALLOC(p, size);
 			if (tmp_p == NULL){ if (p != NULL) FREE(p); return NULL; }
 			else p = tmp_p;
 		}
