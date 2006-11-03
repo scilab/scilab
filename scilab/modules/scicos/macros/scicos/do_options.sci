@@ -68,8 +68,8 @@ elseif flag=='ID' then
   rep=x_choices('ID font definitions',list(lfid_l,lfiz_l,lfid_b,lfiz_b))
   if rep<>[] then
     ok=%t
-    options('ID')(1)=rep(1:2)-1
-    options('ID')(2)=rep(3:4)-1
+    options('ID')(1)=rep(3:4)-1
+    options('ID')(2)=rep(1:2)-1
   end
 elseif flag=='Cmap' then
   cmap=options('Cmap')
