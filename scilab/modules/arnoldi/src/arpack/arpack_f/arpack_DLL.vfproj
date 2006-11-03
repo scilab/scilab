@@ -93,5 +93,5 @@ cd .. &gt;nul" Description="Build Arpack.def file"/></Configuration></Configurat
 		<File RelativePath="..\zvout.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
-		<File RelativePath="..\..\..\..\..\bin\Atlas.lib"/></Files>
+		<File RelativePath="..\..\..\..\..\bin\blasplus.lib"/></Files>
 	<Globals/></VisualStudioProject>

@@ -152,6 +152,6 @@ copy sparse_f_header.def+sparse_f.vcdef sparse_f.def &gt;nul" Description="Build
 		<File RelativePath="wspxsp.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
-		<File RelativePath="..\..\..\..\bin\Atlas.lib"/>
+		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\..\..\bin\lapack.lib"/></Files>
 	<Globals/></VisualStudioProject>

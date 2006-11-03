@@ -26,7 +26,7 @@
 #pragma comment(lib,"../../libs/pvm_f.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../bin/atlas.lib")
+#pragma comment(lib,"../../bin/blasplus.lib")
 #pragma comment(lib,"../../bin/arpack.lib")
 #pragma comment(lib,"../../bin/lapack.lib")
 /*-----------------------------------------------------------------------------------*/ 

@@ -126,7 +126,7 @@ copy scicos_f_header.def+scicos_f.vcdef scicos_f.def &gt;nul" Description="Build
 		<File RelativePath="zcross.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
-		<File RelativePath="..\..\..\..\bin\Atlas.lib"/>
+		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\..\..\bin\lapack.lib"/>
 		<File RelativePath="..\..\sci_gateway\scicos.fundef"/></Files>
 	<Globals/></VisualStudioProject>
