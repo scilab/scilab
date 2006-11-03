@@ -7,14 +7,14 @@
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="range"> range (span) of <VERB>A^k</VERB></SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[X,dim]=range(A,k)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[U,dim]=range(A,k)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real square matrix</SP>
+          <SP>: real or complex matrix, assumed square if k>1 </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -24,9 +24,9 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: orthonormal real matrix</SP>
+          <SP>: orthonormal matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -39,22 +39,21 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Computation of Range <VERB>A^k</VERB> ; the first dim rows of <VERB>X</VERB> span the
-    range of <VERB>A^k</VERB>. The last rows of <VERB>X</VERB> span the
-      orthogonal complement of the range. <VERB>X*X'</VERB> is the Identity matrix</P>
+    Computation of Range <VERB>A^k</VERB> : the first dim columns of <VERB>U'</VERB> span the range of <VERB>A^k</VERB>. <VERB>U</VERB> performs a row compression of <VERB>A^k</VERB> without calculating <VERB>A^k</VERB>.Vector <VERB>y</VERB> belongs to range <VERB>A^k</VERB> iff the last components of <VERB>U*y</VERB>  are zeros (i.e. numerically small).
+     <VERB>U*U'</VERB> is the Identity matrix</P>
   </DESCRIPTION>
   <EXAMPLE>
     <![CDATA[
     A=rand(4,2)*rand(2,4);   // 4 column vectors, 2 independent.
-    [X,dim]=range(A,1);dim   // compute the range
+    [U,dim]=range(A,1);dim   // compute the range
 
     y1=A*rand(4,1);          //a vector which is in the range of A
     y2=rand(4,1);            //a vector which is not  in the range of A
-    norm(X(dim+1:$,:)*y1)    //the last entries are zeros, y1 is in the range of A
-    norm(X(dim+1:$,:)*y2)    //the last entries are not zeros
+    norm(U(dim+1:$,:)*y1)    //the last entries are zeros, y1 is in the range of A
+    norm(U(dim+1:$,:)*y2)    //the last entries are not zeros
 
-    I=X(1:dim,:)'            //I is a basis of the range
-    coeffs=X(1:dim,:)*y1     // components of y1 relative to the I basis
+    I=U(1:dim,:)'            //I is a basis of the range
+    coeffs=U(1:dim,:)*y1     // components of y1 relative to the I basis
 
     norm(I*coeffs-y1)        //check
 
@@ -66,6 +65,9 @@
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>rowcomp</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>orth</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>F. D. INRIA ;   </AUTHOR>
