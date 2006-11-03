@@ -134,6 +134,9 @@ elif test "$with_intelcompilers" = yes; then
 	if test "$IFC" = no; then
 		AC_MSG_ERROR([Unable to configure: ifc nor efc compiler  found])
 	fi
+	AC_MSG_WARN([Scilab incremental link may be buggy with Intel Compiler(s). 
+See bug 1925])
+	sleep 5
 elif test "$with_gcc" = yes; then
 	# GNU gcc required
 	AC_CHECK_PROG(WITH_GCC,gcc,yes,no)
@@ -222,7 +225,7 @@ NMOPT=
 
 echo "configuration of libtool"
 
-AM_PROG_LIBTOOL
+AC_PROG_LIBTOOL
 
 echo "end of configuration of libtool"
 #########################
