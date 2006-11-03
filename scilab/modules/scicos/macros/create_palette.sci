@@ -99,7 +99,8 @@ function routines=create_palette(Path)
       elseif txt=='Electrical' then
 	lisf=['Capacitor.sci';'Ground.sci';'VVsourceAC.sci';'ConstantVoltage.sci';
 	      'Inductor.sci';'PotentialSensor.sci';'VariableResistor.sci';'CurrentSensor.sci';
-	      'Resistor.sci';'VoltageSensor.sci';'Diode.sci';'VsourceAC.sci']
+	      'Resistor.sci';'VoltageSensor.sci';'Diode.sci';'VsourceAC.sci';
+              'NPN.sci']
 	
       elseif txt=='ThermoHydraulics' then
 	lisf=['Bache.sci';'VanneReglante.sci';'PerteDP.sci';'PuitsP.sci';'SourceP.sci';]
