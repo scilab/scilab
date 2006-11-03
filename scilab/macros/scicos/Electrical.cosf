@@ -291,3 +291,62 @@ scs_m.objs(12)=mlist(["Block","graphics","model","gui","doc"],..
                tlist(["modelica","model","inputs","outputs","parameters"],..
                "VsourceAC","p","n",list(["VA";"f"],list(220,50)),list([],list()))),..
                "VsourceAC",list())
+scs_m.objs(13)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[0,140],[40,60],%t,..
+               ["50";
+               "0.1";
+               "1.000E-16";
+               "0.02";
+               "1.200E-10";
+               "5.000E-09";
+               "1.000E-12";
+               "4.000E-13";
+               "5.000E-13";
+               "0.8";
+               "0.4";
+               "0.8";
+               "0.333";
+               "1.000E-15";
+               "1.000E-15";
+               "0.02585";
+               "40"],0,[0;0],[],[],..
+               list(..
+               ["if orient then";
+               "  xx=orig(1)+[0,8,8,10,10,21,20,24,32,24,22,21,10,20,32,20,10,10,8,8]*(sz(1)/32);";
+               "  yy=orig(2)+5+[30,30,15,15,30,17,15,15,15,15,20,17,30,43,43,43,30,43,43,30]*(sz(2)/70);";
+               "else";
+               "  xx=orig(1)+[32,24,24,22,22,11,12,8,0,8,10,11,22,12,0,12,22,22,24,24]*(sz(1)/32);";
+               "  yy=orig(2)+5+[30,30,15,15,30,17,15,15,15,15,20,17,30,43,43,43,30,43,43,30]*(sz(2)/70);";
+               "end";
+               "xpoly(xx,yy);";
+               "xfpoly(xx,yy)"],8),"","I",["I";"I"]),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"NPN",1,[1;1],[],[],[],[],[],[],"c",[],[%t,%f],"",0,..
+               0,..
+               tlist(["modelica","model","inputs","outputs","parameters"],"NPN",..
+               "B",["C";"E"],..
+               list(..
+               ["Bf";
+               "Br";
+               "Is";
+               "Vak";
+               "Tauf";
+               "Taur";
+               "Ccs";
+               "Cje";
+               "Cjc";
+               "Phie";
+               "Me";
+               "Phic";
+               "Mc";
+               "Gbc";
+               "Gbe";
+               "Vt";
+               "EMinMax"],..
+               [50;0.1;0;0.02;1.200E-10;5.000E-09;1.000E-12;4.000E-13;5.000E-13;
+               0.8;0.4;0.8;0.333;1.000E-15;1.000E-15;0.02585;40]),..
+               list([],list()))),"NPN",list())
