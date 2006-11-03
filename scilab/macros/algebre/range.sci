@@ -1,26 +1,23 @@
-function [X,dim]=range(A,k)
-// Computation of Range A^k ; the first dim rows of X span the
+function [U,dim]=range(A,k)
+// Computation of Range A^k ; the first dim columns of U' span the
 // range of A^k.
 //F.D.
 //!
 // Copyright INRIA
   if argn(2)==1 then k=1,end
-  k=double(k)
-  if int(k)<>k|k<0 then 
-    error('range: second argument should be a non negative  integer')
+  if k==0
+    [n,n]=size(A);  
+    dim=n;U=eye(n,n);return;
   end
-  if size(A,1)<>size(A,2)|~isreal(A) then
-     error('range: first argument should be a real square matrix')
+  [U,dim]=rowcomp(A);
+  if k==1
+    return;
   end
-  
-  if k==0 then
-    dim=size(A,1);X=eye(A);
-  else
-    [U,dim]=rowcomp(A);X=U;
-    for l=2:k
-      A=A*U';
-      [U,dim]=rowcomp(A(:,1:dim));
-      X=U*X;
-    end;
+  if size(A,1)<>size(A,2) then
+     error('range: first argument should be a square matrix')
   end
+  for l=2:k
+    B=A*U';
+    [U,dim]=rowcomp(B(:,1:dim));
+  end;
 endfunction
