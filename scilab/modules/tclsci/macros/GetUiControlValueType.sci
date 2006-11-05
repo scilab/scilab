@@ -17,6 +17,7 @@ function TypeReturn=GetUiControlValueType(PropertyName)
 												'min' ..
 												'parent' ..
 												'position' ..
+												'relief' ..
 												'sliderstep' ..
 												'string' ..
 												'style' ..
@@ -38,6 +39,7 @@ function TypeReturn=GetUiControlValueType(PropertyName)
 												      type_real ..
 												      type_real ..
 												      type_real ..
+												      type_string ..
 												      type_real ..
 												      type_string ..
 												      type_string ..

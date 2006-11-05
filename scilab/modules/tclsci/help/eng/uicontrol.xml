@@ -170,6 +170,12 @@
         property.</SP>
       </ITEM>
 
+      <ITEM label="Relief">
+        <SP>string, appearance of the border of the control.
+         Can take the value "flat", "groove", "raised", "ridge", "solid", 
+         or "sunken"</SP>
+      </ITEM>
+
       <ITEM label="SliderStep">
         <SP>[1,2] real vector or string, [small big]. The small step represents
         the movement achieved when clicking on the slider trough

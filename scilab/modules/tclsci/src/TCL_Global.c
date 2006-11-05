@@ -7,7 +7,7 @@
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
-#define NBRPROPERTIES 25
+#define NBRPROPERTIES 26
 static char *UiPropertiesName[NBRPROPERTIES]={
 												"backgroundcolor",
 												"callback",
@@ -21,6 +21,7 @@ static char *UiPropertiesName[NBRPROPERTIES]={
 												"min",
 												"parent",
 												"position",
+                "relief",
 												"sliderstep",
 												"string",
 												"style",
@@ -161,6 +162,7 @@ int MustReturnAString(char *FieldPropertie)
 		 (strcmp(Propertie,"fontunits") == 0) ||
 		 (strcmp(Propertie,"fontweight") == 0) ||
 		 (strcmp(Propertie,"fontname") == 0) ||
+                 (strcmp(Propertie,"relief") == 0) ||
 		 (strcmp(Propertie,"string") == 0) ||
 		 (strcmp(Propertie,"label") == 0) ||
 		 (strcmp(Propertie,"figure_name") == 0) ||

@@ -87,7 +87,7 @@ proc SetField { handle field value } {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
 		    fontweight fontunits foregroundcolor horizontalalignment listboxtop max min \
-		    parent position string units value figure_name verticalalignment };
+		    parent position relief string units value figure_name verticalalignment };
 	    
 	    # is it an implemented?
 	    set idx  [lsearch $KnownFunc $field];
@@ -111,7 +111,7 @@ proc SetField { handle field value } {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
 		    fontweight fontunits foregroundcolor horizontalalignment listboxtop max min \
-		    parent position string sliderstep units value figure_name verticalalignment };
+		    parent position relief string sliderstep units value verticalalignment };
 
 	    # is it an implemented?
 	    set idx  [lsearch $KnownFunc $field];
@@ -119,8 +119,8 @@ proc SetField { handle field value } {
 	    if { $idx != -1} {
 		# YES there is a specific behaviour
 		# call the specific setfield
-		"Set$field" $name $value;    # param = (name, str) dans Setstring 
-		
+		"Set$field" $name $value;    # param = (name, str) dans Setstring 		
+
 		set path [set "$name\(path)"];
 		bind $path <Configure> {ChgConfigure %W %w %h};
 	    } else {
@@ -522,8 +522,6 @@ global "$name";
 }
 
 
-
-
 ######################################################################################
 proc Setmax { name  value} {
 # Max field of a control
@@ -772,6 +770,30 @@ proc Setposition { name value } {
 }
 
 ######################################################################################
+proc Setrelief { name  value} {
+# Max field of a control
+
+
+  global "$name";
+  set path [set "$name\(path)"];
+
+  
+  set "$name\(relief)" $value;
+  set style [set "$name\(style)"];
+
+
+  switch -exact -- $style {
+    "toto" { }
+    default {
+	$path configure -relief $value
+    }
+  }
+  
+
+}
+
+
+######################################################################################
 proc Setsliderstep { name value } {
     # set slider steps (big and small)
 
@@ -803,27 +825,27 @@ proc Setstring { name  str} {
     set style [set "$name\(style)"];
     set path [set "$name\(path)"];
     
-    set "$name\(string)" $str;
-    set item [split $str "|"];
-    set nbitem [llength $item];
+    set "$name\(string)" "$str";
+    set item [split "$str" "|"];
+    set nbitem [llength "$item"];
     switch -exact -- $style {
 	listbox {    
 	    $path.list delete 0 end;
 	    for { set i 0 } { $i < $nbitem } { incr i } {
-		$path.list insert end [lindex $item $i]; 
+		$path.list insert end [lindex "$item" $i]; 
 	    }
 	}
 	popupmenu {
 	    $path.menu delete 0 end;
 	    for { set i 0 } { $i < $nbitem } { incr i } {
-		$path.menu add command  -label  [lindex $item $i] -command "popupsel $name $i"; 
+		$path.menu add command  -label  [lindex "$item" $i] -command "popupsel $name $i"; 
 	    }
-	    $path configure -text [lindex $item 0]
+	    $path configure -text [lindex "$item" 0]
 	}
-	text { $path configure -text $str; }
-	radiobutton { $path configure -text $str; }
-	checkbox { $path configure -text $str; }
-	pushbutton { $path configure -text $str;}
+	text { $path configure -text "$str"; }
+	radiobutton { $path configure -text "$str"; }
+	checkbox { $path configure -text "$str"; }
+	pushbutton { $path configure -text "$str";}
 	default {
 	    
 	}
