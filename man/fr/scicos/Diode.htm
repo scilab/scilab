@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Diode</TITLE>
+<META NAME="description" CONTENT="Diode">
+<META NAME="keywords" CONTENT="Diode">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Diode.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./Diode.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/Diode.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="Diode"></A>
+<BR>
+Diode électrique
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=Diode.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="92" ALIGN="BOTTOM" BORDER="0"
+ SRC="Diode_img1.gif"
+ ALT="\epsfig{file=Diode.eps,width=90.00pt}">
+
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html3"
+  HREF="Diode.htm#SECTION00010000000000000000">Diode électrique</A>
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="Diode.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html5"
+  HREF="Diode.htm#SECTION00022000000000000000">Boîte de dialogue</A>
+<LI><A NAME="tex2html6"
+  HREF="Diode.htm#SECTION00023000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html7"
+  HREF="Diode.htm#SECTION00024000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html8"
+  HREF="Diode.htm#SECTION00025000000000000000">Modèle Modelica</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+
+<P>
+Ce composant consiste en une diode simple mise en parallèle avec une résistance
+ohmique <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="Diode_img2.gif"
+ ALT="$ R$"></SPAN>
+. Le courant qui passe dans la diode est défini en
+fonction de la tension aux bornes de le diode, <I>c.-à-d.</I>,
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+I = I_{ds} (\exp^{v/V_t} - 1) + \frac {v} {R}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="190" HEIGHT="47" ALIGN="MIDDLE" BORDER="0"
+ SRC="Diode_img3.gif"
+ ALT="$\displaystyle I = I_{ds} (\exp^{v/V_t} - 1) + \frac {v} {R} $">
+</DIV><P>
+</P>
+
+<P>
+où <SPAN CLASS="MATH"><IMG
+ WIDTH="26" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="Diode_img4.gif"
+ ALT="$ I_{ds}$"></SPAN>
+ et <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="Diode_img5.gif"
+ ALT="$ V_t$"></SPAN>
+ sont le courant de saturation et la tension
+équivalente de la température, respectivement. Si la valeur de <SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="Diode_img6.gif"
+ ALT="$ v/V_t$"></SPAN>
+
+atteint une certaine limite (<SPAN CLASS="MATH"><IMG
+ WIDTH="69" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="Diode_img7.gif"
+ ALT="$ Maxexp$"></SPAN>
+), la courbe caractéristique de
+la diode devient linéaire pour éviter un dépassement numérique.
+
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Boîte de dialogue</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Set Diode block parameter</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Saturation cuurent (A)</TD>
+<TD ALIGN="CENTER">0.000001</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Voltage equivalent to temperature (Volt)</TD>
+<TD ALIGN="CENTER">0.04</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Max exponent for linear continuation</TD>
+<TD ALIGN="CENTER">15</TD>
+</TR>
+<TR><TD ALIGN="CENTER">R (ohm)</TD>
+<TD ALIGN="CENTER">1.000E+08</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Saturation cuurent (A) </b> : Type 'vec' de taille 1. Courant de saturation
+</LI>
+<LI><b>Voltage equivalent to temperature (Volt) </b> : Type 'vec' de taille 1. Tension équivalente de la température
+</LI>
+<LI><b>Max exponent for linear continuation </b> : Type 'vec' de taille 1. Exposant maximum
+</LI>
+<LI><b>R (ohm) </b> : Type 'vec' de taille 1. La resistance parallele
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>nombre/taille des entrées régulières:</b> 1 / 1
+</LI>
+<LI><b>nombre/taille des sorties sorties régulières:</b> 1 / 1
+</LI>
+<LI><b>nombre/taille des entrées évènementielles:</b> 0 / 
+</LI>
+<LI><b>nombre/taille des sorties évènementielles:</b> 0 / 
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>nom de la fonction modelica:</b> <EM>Diode</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Fonction d'interface</A>
+</font></H3>
+<TT>Diode.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Modèle Modelica</A>
+</font></H3>
+ <SMALL CLASS="TINY">  </SMALL>
+<BR>
+<PRE  CLASS="verbatim">class Diode "Simple diode" 
+   Pin p, n;
+    parameter Real Ids=1.e-6 "Saturation current";
+    parameter Real Vt=0.04   "Voltage equivalent of temperature (kT/qn)";
+    parameter Real Maxexp=15 "Max. exponent for linear continuation";
+    parameter Real R=1.e8 "Parallel ohmic resistance";
+    Real v;
+  equation 
+   v = p.v - n.v;
+
+   p.i = if noEvent(v/Vt &gt; Maxexp) then 
+	Ids*(Modelica.Math.exp(Maxexp)*(1 + v/Vt - Maxexp) - 1) + v/R 
+  else 
+	Ids*(Modelica.Math.exp(v/Vt) - 1) + v/R;
+
+   p.i = -n.i;
+
+  end Diode;
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

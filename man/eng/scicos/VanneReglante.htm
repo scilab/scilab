@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>VanneReglante</TITLE>
+<META NAME="description" CONTENT="VanneReglante">
+<META NAME="keywords" CONTENT="VanneReglante">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="VanneReglante.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/VanneReglante.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./VanneReglante.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="VanneReglante"></A>
+<BR>
+Thermohydraulic control valve
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=VanneReglante.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="184" ALIGN="BOTTOM" BORDER="0"
+ SRC="VanneReglante_img1.gif"
+ ALT="\epsfig{file=VanneReglante.eps,width=90.00pt}">
+
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html3"
+  HREF="VanneReglante.htm#SECTION00010000000000000000">Thermohydraulic control valve</A>
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="VanneReglante.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html5"
+  HREF="VanneReglante.htm#SECTION00022000000000000000">Dialog box</A>
+<LI><A NAME="tex2html6"
+  HREF="VanneReglante.htm#SECTION00023000000000000000">Default properties</A>
+<LI><A NAME="tex2html7"
+  HREF="VanneReglante.htm#SECTION00024000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html8"
+  HREF="VanneReglante.htm#SECTION00025000000000000000">Modelica model</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+The <B>VanneReglante</B> block represents a variable orifice control
+valve. The flow rate through the valve is proportional to the valve
+opening, <I>i.e.</I>,
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\Delta P \times h\times\left| h \right| = k\times Q\times \left|Q\right|
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="217" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="VanneReglante_img2.gif"
+ ALT="$\displaystyle \Delta P \times h\times\left\vert h \right\vert = k\times Q\times \left\vert Q\right\vert
+$">
+</DIV><P>
+</P>
+
+<P>
+where <SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="VanneReglante_img3.gif"
+ ALT="$ h$"></SPAN>
+ is the valve opening, <SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="VanneReglante_img4.gif"
+ ALT="$ \Delta P$"></SPAN>
+ is the pressure difference,
+and <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="VanneReglante_img5.gif"
+ ALT="$ Q$"></SPAN>
+ is the flow rate. This model is only used for the laminar flow
+regimes. <SPAN CLASS="MATH"><IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="VanneReglante_img6.gif"
+ ALT="$ k$"></SPAN>
+ is a constant depending on the valve geometry and
+mass density of fluid.
+
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Dialog box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Paramètres de la vanne reglante</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Cvmax</TD>
+<TD ALIGN="CENTER">8005.42</TD>
+</TR>
+<TR><TD ALIGN="CENTER">p_rho</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Cvmax </b> : Type 'vec' of size -1. Cvmax (maximum opening of the valve)
+</LI>
+<LI><b>p_rho </b> : Type 'vec' of size -1. Fluid density
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>number/sizes of inputs:</b> 2 / 1  1
+</LI>
+<LI><b>number/sizes of outputs:</b> 1 / 1
+</LI>
+<LI><b>number/sizes of activation inputs:</b> 0 / 
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0 / 
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>name of modelica function:</b> <EM>VanneReglante</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>VanneReglante.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Modelica model</A>
+</font></H3>
+ <SMALL CLASS="TINY">  </SMALL>
+<BR>
+<PRE  CLASS="verbatim">class VanneReglante 
+  parameter Real Cvmax "CV max";
+  parameter Real p_rho "Si &gt; 0, masse volumique imposée du fluide";
+//  parameter Integer mode=0 "Région IF97. 1:liquide - 2:vapeur - 4:saturation - 0:calcul automatique";
+
+  parameter Real eps=1.e-0 "Limite inf. de la fonction carrée";
+  Real Cv "Cv";
+  Real Q(start=500) "Débit massique";
+  Real deltaP "Perte de charge singulière";
+  Real rho(start=998) "Masse volumique";
+  Real Tm(start=290) "Température moyenne";
+  Real Pm(start=1.e5) "Pression moyenne";
+  Real Hm(start=100000) "Enthalpie spécifique moyenne";
+  Real region(start=1) "Numéro de région IF97";
+  Real ThermoCar;
+
+  Real Ouv ;
+
+public 
+//  EntreeReelle Ouv ;
+  PortPHQ1 C1 ;
+  PortPHQ2 C2 ;
+
+equation 
+  
+  C1.H = C2.H;
+  C1.Q = C2.Q;
+  
+  Q = C1.Q;
+  deltaP = C1.P - C2.P;
+  
+  /* Inversions de débit */
+  0 = if (Q &gt; 0.0) then C1.H - C1.Hm else C2.H - C2.Hm;
+  
+  /* Calcul de la perte de charge */
+
+  ThermoCar = if (abs(Q) &gt; eps) then Q*abs(Q) else Q*eps;
+  deltaP*Cv*abs(Cv) = 1.733e12*ThermoCar/rho^2;
+  
+  /* Calcul du Cv en fonction de l'ouverture */
+  Cv = Ouv*Cvmax;
+  
+  /* Calcul des propriétés thermodynamiques */
+  Pm = (C1.P + C2.P)/2;
+  Hm = (C1.H + C2.H)/2;
+  
+  Tm = Hm/4187 + 273.15;
+  region = 1;
+  
+  rho = 998;
+
+end VanneReglante;
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

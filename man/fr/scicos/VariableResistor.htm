@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>VariableResistor</TITLE>
+<META NAME="description" CONTENT="VariableResistor">
+<META NAME="keywords" CONTENT="VariableResistor">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="VariableResistor.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Bloc Scicos
+<BR><A NAME="tex2html1"
+  HREF="./VariableResistor.htm">fr</A> - <A NAME="tex2html2"
+  HREF="../../eng/scicos/VariableResistor.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="VariableResistor"></A>
+<BR>
+Résistance électrique variable
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=VariableResistor.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="143" HEIGHT="91" ALIGN="BOTTOM" BORDER="0"
+ SRC="VariableResistor_img1.gif"
+ ALT="\epsfig{file=VariableResistor.eps,width=90.00pt}">
+
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contenu</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html3"
+  HREF="VariableResistor.htm#SECTION00010000000000000000">Résistance électrique variable</A>
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="VariableResistor.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html5"
+  HREF="VariableResistor.htm#SECTION00022000000000000000">Propriétés par défaut</A>
+<LI><A NAME="tex2html6"
+  HREF="VariableResistor.htm#SECTION00023000000000000000">Fonction d'interface</A>
+<LI><A NAME="tex2html7"
+  HREF="VariableResistor.htm#SECTION00024000000000000000">Modèle Modelica</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+Ce composant représente une résistance ohmique variable. La résistance
+est commandée par le port d'entrée explicite.  <P><!-- MATH
+ \begin{displaymath}
+R_x = \frac {V}{I}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="67" HEIGHT="56" ALIGN="MIDDLE" BORDER="0"
+ SRC="VariableResistor_img2.gif"
+ ALT="$\displaystyle R_x = \frac {V}{I}
+$">
+</DIV><P>
+</P>
+
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Propriétés par défaut</A>
+</font></H3>
+
+<UL>
+<LI><b>toujours actif:</b> non
+</LI>
+<LI><b>direct-feedthrough:</b> oui
+</LI>
+<LI><b>détection de passage à zéro:</b> non
+</LI>
+<LI><b>mode:</b> non
+</LI>
+<LI><b>nombre/taille des entrées régulières:</b> 2 / 1  1
+</LI>
+<LI><b>nombre/taille des sorties sorties régulières:</b> 1 / 1
+</LI>
+<LI><b>nombre/taille des entrées évènementielles:</b> 0 / 
+</LI>
+<LI><b>nombre/taille des sorties évènementielles:</b> 0 / 
+</LI>
+<LI><b>possède un état continu:</b> non
+</LI>
+<LI><b>possède un état discret:</b> non
+</LI>
+<LI><b>nom de la fonction modelica:</b> <EM>VariableResistor</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Fonction d'interface</A>
+</font></H3>
+<TT>VariableResistor.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Modèle Modelica</A>
+</font></H3>
+ <SMALL CLASS="TINY">  </SMALL>
+<BR>
+<PRE  CLASS="verbatim">class VariableResistor
+	Pin p, n;
+	Real R "Resistance";
+equation
+	R*p.i = p.v - n.v;
+	p.i = -n.i;
+end VariableResistor;
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>

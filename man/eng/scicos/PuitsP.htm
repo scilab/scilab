@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>PuitsP</TITLE>
+<META NAME="description" CONTENT="PuitsP">
+<META NAME="keywords" CONTENT="PuitsP">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="PuitsP.css">
+
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<DIV ALIGN="CENTER">
+Scicos Block
+<BR><A NAME="tex2html1"
+  HREF="../../fr/scicos/PuitsP.htm">fr</A> - <A NAME="tex2html2"
+  HREF="./PuitsP.htm">eng</A>
+
+</DIV>
+<H2><A NAME="SECTION00010000000000000000"></A><A NAME="PuitsP"></A>
+<BR>
+Thermohydraulic drain (well)
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\epsfig{file=PuitsP.eps,width=90.00pt}$
+ -->
+<IMG
+ WIDTH="144" HEIGHT="95" ALIGN="BOTTOM" BORDER="0"
+ SRC="PuitsP_img1.gif"
+ ALT="\epsfig{file=PuitsP.eps,width=90.00pt}">
+
+</DIV>
+<BR>
+
+<H3><font color="blue"><A NAME="SECTION00020000000000000000">
+Contents</A>
+</font></H3>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html3"
+  HREF="PuitsP.htm#SECTION00010000000000000000">Thermohydraulic drain (well)</A>
+<UL>
+<LI><A NAME="tex2html4"
+  HREF="PuitsP.htm#SECTION00021000000000000000">Description</A>
+<LI><A NAME="tex2html5"
+  HREF="PuitsP.htm#SECTION00022000000000000000">Dialog box</A>
+<LI><A NAME="tex2html6"
+  HREF="PuitsP.htm#SECTION00023000000000000000">Default properties</A>
+<LI><A NAME="tex2html7"
+  HREF="PuitsP.htm#SECTION00024000000000000000">Interfacing function</A>
+<LI><A NAME="tex2html8"
+  HREF="PuitsP.htm#SECTION00025000000000000000">Modelica model</A>
+</UL></UL>
+<!--End of Table of Contents-->
+<H3><font color="blue"><A NAME="SECTION00021000000000000000">
+Description</A>
+</font></H3>
+
+<P>
+This thermohydraulic component represents a thermo-hydraulic constant pressure drain (well). This block is specified with its pressure and temperature.  Conventionally, the flow direction is positive when fluid flows into the block.  
+<BR>
+<H3><font color="blue"><A NAME="SECTION00022000000000000000">
+Dialog box</A>
+</font></H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">Paramètres du puit</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Pression de la source : P0 (Pa)</TD>
+<TD ALIGN="CENTER">100000</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Temperature de la source : T0 (K)</TD>
+<TD ALIGN="CENTER">290</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Enthalpie spécifique de la source : H0 (J/kg)</TD>
+<TD ALIGN="CENTER">100000</TD>
+</TR>
+<TR><TD ALIGN="CENTER">1:température fixée - 2:enthalpie fixée : option_temperature</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<UL>
+<LI><b>Pression de la source : P0 (Pa) </b> : Type 'vec' of size -1. Pressure of the thermohydraulic source
+</LI>
+<LI><b>Temperature de la source : T0 (K) </b> : Type 'vec' of size -1. Temperature of the thermohydraulic source
+</LI>
+<LI><b>Enthalpie spécifique de la source : H0 (J/kg) </b> : Type 'vec' of size -1. Specific Enthaly of the thermohydraulic source
+</LI>
+<LI><b>1:température fixée - 2:enthalpie fixée : option_temperature </b> : Type 'vec' of size -1. Temperature option. 1: fixed temperature - 2: fixed enthalpy
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00023000000000000000">
+Default properties</A>
+</font></H3>
+
+<UL>
+<LI><b>always active:</b> no
+</LI>
+<LI><b>direct-feedthrough:</b> yes
+</LI>
+<LI><b>zero-crossing:</b> no
+</LI>
+<LI><b>mode:</b> no
+</LI>
+<LI><b>number/sizes of inputs:</b> 1 / 1
+</LI>
+<LI><b>number/sizes of outputs:</b> 0 / 
+</LI>
+<LI><b>number/sizes of activation inputs:</b> 0 / 
+</LI>
+<LI><b>number/sizes of activation outputs:</b> 0 / 
+</LI>
+<LI><b>continuous-time state:</b> no
+</LI>
+<LI><b>discrete-time state:</b> no
+</LI>
+<LI><b>name of modelica function:</b> <EM>Puits</EM>
+</LI>
+</UL>
+
+<H3><font color="blue"><A NAME="SECTION00024000000000000000">
+Interfacing function</A>
+</font></H3>
+<TT>PuitsP.sci</TT>
+
+<H3><font color="blue"><A NAME="SECTION00025000000000000000">
+Modelica model</A>
+</font></H3>
+ <SMALL CLASS="TINY">  </SMALL>
+<BR>
+<PRE  CLASS="verbatim">class Puits
+  parameter Real P0=100000 "Pression du puits";
+  parameter Real T0=290"Température du puits";
+  parameter Real H0=100000 "Enthalpie spécifique du puits";
+  parameter Real option_temperature=1 "1:température fixée - 2:enthalpie fixée";
+
+  Real Pm "Pression moyenne";
+  Real Q "Débit";
+  Real Tm "Température moyenne";
+  Real Hm "Enthalpie spécifique moyenne";
+
+public 
+  PortPHQ1 C ;
+equation 
+  
+  C.P = Pm;
+  C.Q = Q;
+  C.Hm = Hm;
+
+  Pm = P0;
+  Hm= H0;
+
+  
+  Tm = if (option_temperature &lt;= 1) then T0 else Hm/4187 + 273.15;
+
+end Puits;
+</PRE>
+
+<BR>
+
+
+
+
+</BODY>
+</HTML>
