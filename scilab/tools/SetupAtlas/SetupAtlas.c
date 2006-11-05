@@ -1,6 +1,6 @@
 /*************************************************************************************************/
 /* Allan CORNET */
-/* INRIA 2004   */
+/* INRIA 2006   */
 /*************************************************************************************************/
 
 #include <windows.h>
@@ -11,7 +11,7 @@
 #define LogName "SetupAtlas.log"
 #define LineMaxSize 512
 #define MaxCPU 64
-#define DefaultDllName "ATLAS_P1.DLL"
+#define DefaultDllName "ATLAS_PIII.DLL"
 
 char ArrayLinesCPU[MaxCPU][LineMaxSize]; /* 64 cpus max in atlas.spec*/
 int NbrLinesCPU=0;
@@ -277,17 +277,14 @@ char *GetDLLFilenameAtlas(void)
 				{
 					if ( (!FindCPU) && (strcmp(LocalVendor,Vendor)==0) )
 					{
-						if ( (LocalFamily == F) && (LocalModel == M) )
+						if ( LocalFamily == F )
 						{
-							FindCPU=TRUE;
-							wsprintf(FilenameAtlasDLL,"%s",Filename);
-							AppendMessageToLog(ArrayLinesCPU[i]);
-						}
-						else if ( LocalModel == -1 )
-						{
-							FindCPU=TRUE;
-							wsprintf(FilenameAtlasDLL,"%s",Filename);
-							AppendMessageToLog(ArrayLinesCPU[i]);
+							if ( (LocalModel == M) || (M == -1) || (LocalModel == -1) )
+							{
+								FindCPU=TRUE;
+								wsprintf(FilenameAtlasDLL,"%s",Filename);
+								AppendMessageToLog(ArrayLinesCPU[i]);
+							}
 						}
 					}
 				}
