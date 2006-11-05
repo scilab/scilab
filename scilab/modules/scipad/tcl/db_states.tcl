@@ -259,9 +259,10 @@ proc setdebuggerwidgetbusycursor {w} {
     set cursorsinwidgets($w) [$w cget -cursor]
     $w configure -cursor $busycursor
     # ditto for children of the given widget,
-    # but not for the menubars (clones), see:
+    # but not for the menubars nor tearoffs (clones), which properties
+    # are inherited from their master copy. See also:
     # http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/87adc111127063bc/05efee764b23540d
-    foreach child [filteroutmenubar [winfo children $w]] {
+    foreach child [filteroutmenuclones [winfo children $w]] {
         setdebuggerwidgetbusycursor $child
     }
 }
@@ -285,7 +286,7 @@ proc unsetdebuggerwidgetbusycursor {w} {
     } else {
         $w configure -cursor {} 
     }
-    foreach child [filteroutmenubar [winfo children $w]] {
+    foreach child [filteroutmenuclones [winfo children $w]] {
         unsetdebuggerwidgetbusycursor $child
     } 
 }
@@ -296,8 +297,10 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
 # debug state accordingly
 # if it is not, set in Scilab the breakpoints set by the user (useful for
 # step by step mode, where all breakpoints were removed just before the call
-# to checkendofdebug_bp
+# to checkendofdebug_bp), check that step over did not enter an ancillary
+# (fix it if it happened), and skip no code lines
     global setbptonreallybreakpointedlinescmd
+    global prevdbpauselevel initprevdbpauselevel
 
     set removecomm [duplicatechars [removescilab_bp "no_output"] "\""]
     regsub -all {\"\"} $removecomm "\\\"\"" removecomm
@@ -342,20 +345,105 @@ proc checkendofdebug_bp {{stepmode "nostep"}} {
                    }
     }
 
+    # command to check that step over (F8) didn't actually step into (Shift-F8)
+    # without the precautions below, this might happen in two situations:
+    # 1. Step over (F8) steps actually into (Shift-F8) libfuns when the libfun
+    #    is in a nested function whose calling function contains the same
+    #    libfun on the calling line, e.g. hitting F8 when the active breakpoint
+    #    line is on line 3, i.e. a=evstr("1+1") will step into the evstr libfun
+    #    whereas it should skip this statement:
+    #       function outerfun
+    #         function a=nestedfun
+    #           a=evstr("1+1")
+    #         endfunction
+    #         b=evstr(string(nestedfun()))
+    #       endfunction
+    #    evstr must be breakpointed in case hitting F8 makes Scilab go out of
+    #    function nestedfun. Since there is no way to know in advance whether
+    #    the next step will fly out of the current function or not, evstr must
+    #    be breakpointed at this point of the debug
+    #    --> The solution used is to check whether a deeper level has just
+    #        been reached, and if the current stop is not due to a real
+    #        breakpoint set by the user, then perform a stepbystepout_bp and
+    #        close the ancillary file that was possibly opened by the
+    #        debugger, if that did happen (if not, then the ancillary was
+    #        already opened and it is not automatically closed by this proc)
+    #    Note: in the example above, going out of nestedfun with F8 on the
+    #    endfunction still enters the evstr ancillary, but this is desirable:
+    #    the debugger goes out of nestedfun and enters the libfun ancillary
+    #    from the line that called nestedfun, i.e. the same depth level is
+    #    kept, which is the exact purpose of step over
+    set stoppedonarealbpt "TCL_EvalStr(\"lsearch \[getreallybreakpointedlines \" + db_m(3) + \"\] \" + string(db_l(3)-1) + \"\",\"scipad\") <> string(-1)"
+    switch -- $stepmode {
+        "nostep"   { set steppedininsteadofover "%f" }
+        "into"     { set steppedininsteadofover "%f" }
+        "over"     { set steppedininsteadofover "(size(db_l,1) > $prevdbpauselevel) & ~($stoppedonarealbpt)" }
+        "out"      { set steppedininsteadofover "%f" }
+        "runtocur" { set steppedininsteadofover "%f" }
+    }
+    # 2. Step over (F8) steps actually into (Shift-F8) when the next line
+    #    calls the same function as the one the debugger is currently in
+    #    (recursive call) - Similar to case 1: the current function must
+    #    be breakpointed on every line since there is no way to know where
+    #    the next stop will be, and this makes a recursive call look like
+    #    a step into. Moreover, step out (Ctrl-F8) in recursive functions
+    #    does not work: it steps into instead
+    #    --> The solution used is to check whether the pause level has just
+    #        decreased or not; if not, and if the current stop is not due to a
+    #        real breakpoint set by the user, then perform a stepbystepout_bp
+    #        again
+    # Note: for case "out", the <= is required while just < would be more
+    # obvious. This is to allow for nested libfun calls to work, e.g.:
+    #   n=[1,2,10,15];m=[2,2,3,5];
+    #   a=pmodulo(modulo(pmodulo(modulo(n,m),m),m),m)
+    switch -- $stepmode {
+        "nostep"   { set didntwentout "%f" }
+        "into"     { set didntwentout "%f" }
+        "over"     { set didntwentout "%f" }
+        "out"      { set didntwentout "(~(size(db_l,1) <= $prevdbpauselevel)) & ~($stoppedonarealbpt)" }
+        "runtocur" { set didntwentout "%f" }
+    }
+
+    # now create the full command to be ScilabEval-ed at the end
+    # of each debug command
+    # note: all this is highly polished and should only be changed after
+    # having thinked twice (hmm, no, three times). For instance, $commc3,
+    # $commc6 and $commc9 contain identical code but must not be factorized
+    # because this would change execution order of this complicated
+    # code structure (TCL_EvalStr(ScilabEval(TCL_EvalStr...) seq) associated
+    # to stepbystepout_bp or skiplines, which launch further ScilabEvals
+    # with seq options)
     set comm1  "\[db_l,db_m\]=where();"
     set comm2  "if size(db_l,1)==1 then"
-    set comm3    "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm4    "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
-    set comm5    "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
-    set comm6    "TCL_EvalStr(\"checkexecutionerror_bp\",\"scipad\");"
-    set comm7    "TCL_EvalStr(\"unsetdebuggerbusycursor\",\"scipad\");"
-    set comm8  "else"
-    set comm9    "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
-    set comm10    "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
-#    set comm11 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
+    set comm3      "TCL_EvalStr(\"ScilabEval_lt \"\"$removecomm\"\"  \"\"seq\"\" \",\"scipad\");"
+    set comm4      "TCL_EvalStr(\"setdbstate \"\"ReadyForDebug\"\" \",\"scipad\");"
+    set comm5      "TCL_EvalStr(\"scedebugcleanup_bp\",\"scipad\");"
+    set comm6      "TCL_EvalStr(\"checkexecutionerror_bp\",\"scipad\");"
+    set comm7      "TCL_EvalStr(\"unsetdebuggerbusycursor\",\"scipad\");"
+    set comm8      "TCL_SetVar(\"prevdbpauselevel\",$initprevdbpauselevel,\"scipad\");"
+    set comm9  "else"
+    set comm10     "TCL_EvalStr(\"ScilabEval_lt \"\"$cmd\"\"  \"\"seq\"\" \",\"scipad\");"
+    set commc1     "if $steppedininsteadofover then"
+    set commc2         "TCL_EvalStr(\"ScilabEval_lt TCL_EvalStr(\"\"closecurifjustopenedbyuabpt\"\",\"\"scipad\"\") seq\",\"scipad\");"
+    set commc3         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasjustopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set commc4         "TCL_EvalStr(\"stepbystepout_bp 0 0\",\"scipad\");"
+    set commc5     "elseif $didntwentout then"
+    set commc6         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasjustopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set commc7         "TCL_EvalStr(\"stepbystepout_bp 0 0\",\"scipad\");"
+    set commc8     "else"
+    set commc9         "TCL_EvalStr(\"ScilabEval_lt {TCL_EvalStr(\"\"set afilewasjustopenedbyuabpt false\"\",\"\"scipad\"\")} seq\",\"scipad\");"
+    set commc10        "TCL_EvalStr(\"ScilabEval_lt \"\"$skipline\"\"  \"\"seq\"\" \",\"scipad\");"
+    set commc11        "TCL_SetVar(\"prevdbpauselevel\",size(db_l,1),\"scipad\");"
+    set commc12    "end;"
     set comm11 "end;"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 $comm8 $comm9 $comm10 $comm11]
+#    set comm11 "end;TCL_EvalStr(\"hidewrappercode\",\"scipad\");"
 
+    set commc [concat $commc1 $commc2 $commc3 $commc4 $commc5 $commc6 \
+                      $commc7 $commc8 $commc9 $commc10 $commc11 $commc12]
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7 \
+                         $comm8 $comm9 $commc $comm10 $comm11]
+
+    # do it!
     ScilabEval_lt "$fullcomm" "seq"
 }
 

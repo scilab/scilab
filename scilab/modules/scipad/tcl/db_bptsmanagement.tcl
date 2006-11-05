@@ -194,3 +194,31 @@ proc countallbreakpointedmacros {} {
     }
     return $N
 }
+
+proc getreallybreakpointedlines {fnam} {
+# parse $setbptonreallybreakpointedlinescmd to extract the list of all the
+# breakpointed lines of function named $fnam
+# all the occurrences of $fnam in $setbptonreallybreakpointedlinescmd are
+# taken into account, not just the first one
+# the output list of breakpointed lines is ordered in increasing order
+# an empty list is returned if $fnam does not have any breakpoint
+    global setbptonreallybreakpointedlinescmd
+    set bptlineslist [list ]
+    set str [string map {"setbpt(" ""} $setbptonreallybreakpointedlinescmd]
+    set str [string map {");" " "} $str]
+    set list1 [split [string trim $str] " "]
+    # at this point $list1 is something like {"foo1",n1} {"foo2",n2} ...
+    foreach item $list1 {
+        # get breakpointed function name
+        set fun [lindex [split $item "\""] 1]
+        if {$fun != $fnam} {
+            continue
+        }
+        # in $setbptonreallybreakpointedlinescmd, we can only have one
+        # breakpointed line per statement, i.e. only "foo1",n1 and never
+        # a range of lines such as "foo1",n1:n2
+        set lin [lindex [split $item ","] 1]
+        lappend bptlineslist $lin
+    }
+    return [lsort -integer $bptlineslist]
+}

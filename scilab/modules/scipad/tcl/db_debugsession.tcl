@@ -116,7 +116,7 @@ proc stepbystep_bp {checkbusyflag stepmode rescanbuffers} {
 # breakpoints that were really set by the user
     global funnameargs
     global logicallinenumbersranges previousstepscope
-    global CurBreakpointedMacros CurBreakpointedLines ; # only used while skipping lines
+    global CurBreakpointedMacros CurBreakpointedLines ; # globality mandatory, and only used while skipping lines
 
     if {[getdbstate] == "ReadyForDebug"} {
         # always a busy check - this code part cannot be entered
@@ -222,7 +222,7 @@ proc getlogicallinenumbersranges {stepscope} {
 #   - currentcontext   : functions listed in the call stack at the
 #                        current stop point
 #   - callingcontext   : functions listed in the call stack at the
-#                        current stop point, but the first one
+#                        current stop point, except the first one
 #   - current&ancill   : userfuns and libfuns called by the function
 #                        where debugger has currently stopped in,
 #                        plus functions from "currentcontext" above

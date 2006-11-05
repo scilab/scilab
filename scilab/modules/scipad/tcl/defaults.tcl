@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.53"
+set version "Version 6.54"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -7,6 +7,7 @@ set version "Version 6.53"
 # ex of 8.5 use: -strictlimits option in find/replace
 #                -stretch always option for panedwindows
 #                proc timestamp uses clock milliseconds
+#                <TODO> use peer text widgets for split
 if { [package vcompare $tcl_version 8.5] >= 0 } {
     set Tcl85 1
 } else {

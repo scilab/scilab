@@ -67,28 +67,6 @@ endfunction
  if a function is defined in more than one buffer, proc checkarglist may
  detect the wrong one and prevent correct configuration of the debugger
 
--Step over (F8) steps actually into (Shift-F8) libfuns when the libfun is in
- a nested function whose calling function contains the same libfun on the
- calling line, e.g. hitting F8 when the active breakpoint line is on line 3,
- i.e. a=evstr("1+1") will step into the evstr libfun whereas it should skip
- this statement:
-function outerfun
-function a=nestedfun
-  a=evstr("1+1")
-endfunction
-b=evstr(string(nestedfun()))
-endfunction
- There is no obvious way to avoid this. evstr must be breakpointed in case
- hitting F8 makes Scilab go out of function nestedfun. Since there is no
- way to know in advance whether the next step will fly out of the current
- function or not, evstr must be breakpointed at this point of the debug.
-
--Step over (F8) steps actually into (Shift-F8) when the next line calls
- the same function as the one the debugger is currently in (recursive
- call) - Similar issue than the previous one: the current function must
- be breakpointed on every line since there is no way to know where the
- next stop will be, and this makes a recursive call look like a step into
-
 -modselection bugs:
   . <TODO> Ctrl-d with a selection starting in the middle of a line -> indent
     the first line from column 0

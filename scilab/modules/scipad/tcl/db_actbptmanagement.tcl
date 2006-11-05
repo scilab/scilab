@@ -20,8 +20,10 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
 #        than one single buffer - see funnametofunnametafunstart
 
     # uabpt_opened is used to prevent more than one recursive call
-    global uabpt_opened_a_file backgroundtasksallowed
-    
+    global backgroundtasksallowed
+    global uabpt_opened_a_file       ; # used only in this proc, to differentiate between the possible two successive executions
+    global afilewasjustopenedbyuabpt ; # used indirectly in proc checkendofdebug_bp
+
     removeallactive_bp
 
     if {$activemacro == ""} {return}
@@ -38,6 +40,7 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
             # and try again to update the activebreakpoint tag
             # note: this must be done the way below because it makes use
             # of the queueing ScilabEval "seq" instructions
+            set afilewasjustopenedbyuabpt true
             set uabpt_opened_a_file true
             set backgroundtasksallowed false
             doopenfunsource "libfun" $activemacro
@@ -60,6 +63,15 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
         dogotoline "logical" $activeline "function" $funtogoto
         set actpos [[lindex $funtogoto 1] index insert]
         [lindex $funtogoto 1] tag add activebreakpoint "$actpos linestart" "$actpos lineend"
+    }
+}
+
+proc closecurifjustopenedbyuabpt {} {
+# as it says, this proc closes the current buffer if proc updateactivebreakpointtag
+# did just open a libfun - this is used in proc checkendofdebug_bp
+    global afilewasjustopenedbyuabpt
+    if {$afilewasjustopenedbyuabpt} {
+        closecur
     }
 }
 

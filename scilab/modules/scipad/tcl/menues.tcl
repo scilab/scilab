@@ -578,9 +578,9 @@ proc ca {menucommand} {
     }
 }
 
-proc filteroutmenubar {listofwidgets} {
+proc filteroutmenuclones {listofwidgets} {
 # take a list of widget names and return this list without the names
-# denoting menues of type menubar
+# denoting menues of type menubar or tearoff, which are menu clones
 # Reference:
 # http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/87adc111127063bc/05efee764b23540d
     set nomenubar [list ]
@@ -588,7 +588,7 @@ proc filteroutmenubar {listofwidgets} {
         if {[winfo class $item] != "Menu"} {
             lappend nomenubar $item
         } else {
-            if {[$item cget -type] != "menubar"} {
+            if {[$item cget -type] != "menubar" && [$item cget -type] != "tearoff"} {
                 lappend nomenubar $item
             } else {
                 # drop it

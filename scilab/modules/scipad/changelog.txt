@@ -2475,3 +2475,11 @@ Francois VOGEL, 02/11/06
      . removal of length checks in dialogs (mcmax is now used since 6.45)
      . msgdiff.sci is now a compiled macro
  * version --> 6.53
+
+Francois VOGEL, 05/11/06
+ * Fixed two nasty cases where step over did actually step into
+ * Fixed: Step out (Ctrl-F8) did not step out of the current function
+   when this function was called by itself (recursive case)
+ * Fixed: the busy cursor was still active in tearoff menues (same
+   fix as for menubars in Scipad 6.48)
+ * version --> 6.54
