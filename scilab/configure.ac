@@ -140,10 +140,10 @@ if test "$with_intelcompilers" = yes; then
 	fi
 fi
 
-#if test -z "$CC"; then
-## No C compiler specified... We rely on Autoconf to find the best
+if test -z "$CC"; then
+# No C compiler specified... We rely on Autoconf to find the best
    AC_PROG_CC
-#fi
+fi
 
 if test -z "$CC"; then
   AC_MSG_ERROR([No C Compiler. Cannot compile Scilab without a C compiler])
@@ -159,7 +159,8 @@ if test "$enable_debug" = yes; then
    echo "F : $FFLAGS"
 fi
 
-
+### C++###
+AC_PROG_CXX
 
 #
 # Evaluate shell variable equivalents to Makefile directory variables
@@ -601,6 +602,7 @@ if test "$with_java" != no; then
 	 AC_JAVA_WITH_JDK
 	 AC_JAVA_DETECT_JVM
    if test "$ac_java_jvm_name" = "jdk"; then
+		JAVA_HOME=$ac_java_jvm_dir
 	    JAVA_VERSION=$ac_java_jvm_version
 #     AC_JAVA_TOOLS
 		AC_JAVA_JNI_INCLUDE
@@ -620,6 +622,7 @@ fi
 
 AC_SUBST(JAVA_JNI_INCLUDE)
 AC_SUBST(JAVA_JNI_LIBS)
+AC_SUBST(JAVA_HOME)
 
 AM_CONDITIONAL(JAVA, test "$JAVA_OK" = "1")
 
@@ -1247,14 +1250,15 @@ echo "  EXEC-PREFIX      = $EXEC_PREFIX_DIR"
 echo "  VERSION          = $PACKAGE_VERSION"
 echo "  CC               = $CC"
 echo "  CFLAGS           = $CFLAGS"
+#echo "  CPP              = $CPP"
 #echo "  CPPFLAGS         = $CPPFLAGS"
 echo "  PCFLAGS          = $PCFLAGS"
 echo "  DEFS             = $DEFS"
 echo "  LD               = $LD"
 echo "  LDFLAGS          = $LDFLAGS"
 echo "  LIBS             = $LIBS"
-#echo "  CXX              = $CXX"
-#echo "  CXXFLAGS         = $CXXFLAGS"
+echo "  CXX              = $CXX"
+echo "  CXXFLAGS         = $CXXFLAGS"
 echo "  F77              = $F77"
 echo "  FFLAGS           = $FFLAGS"
 echo "  F77_LDFLAGS      = $F77_LDFLAGS"
@@ -1265,6 +1269,7 @@ echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"
 if test ! -z "$JAVAC"; then
+echo "  JAVA_HOME        = $JAVA_HOME"
 echo "  JAVAC            = $JAVAC"
 echo "  JAVA_VERSION     = $JAVA_VERSION"
 echo "  JAVAC_FLAGS      = $JAVAC_FLAGS"

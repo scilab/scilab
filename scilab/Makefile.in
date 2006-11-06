@@ -134,6 +134,10 @@ CC_OPTIONS = @CC_OPTIONS@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+CXXDEPMODE = @CXXDEPMODE@
+CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -179,6 +183,7 @@ IS_SPARC_FALSE = @IS_SPARC_FALSE@
 IS_SPARC_TRUE = @IS_SPARC_TRUE@
 JAVAC = @JAVAC@
 JAVA_FALSE = @JAVA_FALSE@
+JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
 JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JAVA_TRUE = @JAVA_TRUE@
@@ -269,10 +274,13 @@ X_LIB_PATH = @X_LIB_PATH@
 X_PRE_LIBS = @X_PRE_LIBS@
 ZZLEDT = @ZZLEDT@
 ac_ct_CC = @ac_ct_CC@
+ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 ac_ct_F77 = @ac_ct_F77@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
+am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
+am__fastdepCXX_TRUE = @am__fastdepCXX_TRUE@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
@@ -870,9 +878,17 @@ uninstall-info: uninstall-info-recursive
 
 
 all-local:
-	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce
-	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;
-	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;
+	-@( SCI=$(top_builddir) ; export SCI; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
+	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
+
+	-@( SCI=$(top_builddir) ; export SCI; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
+	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;)
+
+	-@( SCI=$(top_builddir) ; export SCI; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
+	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;)
 
 check-local:
 #	@..\..\..\bin\scilex -nb -l fr -e check_help();exit;

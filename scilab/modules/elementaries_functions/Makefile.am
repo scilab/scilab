@@ -371,8 +371,6 @@ libelementaries_functions_la_LIBADD = \
 
 libelementaries_functions_la_PKGCONFIG = elementaries_functions.pc
 
-
-
 libdummy_elementaries_functions_la-hqror2.lo: src/fortran/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-hqror2.lo `test -f 'src/fortran/hqror2.f' || echo '$(srcdir)/'`src/fortran/hqror2.f
 

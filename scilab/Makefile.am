@@ -26,10 +26,18 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
-all-local:
-	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce
-	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;
-	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;
+all-local: ### Need some clean up
+	-@( SCI=$(top_builddir) ; export SCI; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
+	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
+
+	-@( SCI=$(top_builddir) ; export SCI; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
+	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;)
+
+	-@( SCI=$(top_builddir) ; export SCI; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
+	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;)
 
 
 check-local:
