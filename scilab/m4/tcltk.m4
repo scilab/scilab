@@ -88,7 +88,7 @@ int main() {
   TCL_VERSION=$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION
 ],
 [AC_MSG_FAILURE([The TCL detection of the version failed. 
-If you are using Intel Compiler, check if Intel Library (ex : libimf.so) are available (in the LD_LIBRARY_PATH for example)])])
+If you are using Intel Compiler, check if Intel Library (ex : libimf.so) is available (in the LD_LIBRARY_PATH for example)])])
 
 case $host_os in
   darwin* | rhapsody*) 
