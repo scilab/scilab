@@ -141,5 +141,10 @@
 #include "../../time/sci_gateway/time.fundef"
 
 #define  IN_intsound 49
-#include "../../sound/sci_gateway/sound.fundef"  
+#include "../../sound/sci_gateway/sound.fundef"
+
+#ifdef _MSC_VER
+#define  IN_intfftw 50
+#include "../../fftw/sci_gateway/fftw.fundef" 
+#endif
 

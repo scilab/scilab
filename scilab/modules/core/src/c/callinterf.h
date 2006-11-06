@@ -82,6 +82,9 @@ extern void    /* 44  */ C2F(gw_linear_algebra2)();
 extern void    /* 47  */ C2F(gw_wintools)();
 extern void    /* 48  */ C2F(gw_time)();
 extern void    /* 49  */ C2F(gw_sound)();
+#if _MSC_VER
+extern void    /* 50  */ C2F(gw_fftw)();
+#endif
 
 static OpTab Interfaces[] ={
     /* 01  */ {C2F(gw_user)}, /* free position may be used */
@@ -133,6 +136,10 @@ static OpTab Interfaces[] ={
 	/* 47  */ {C2F(gw_wintools)},
 	/* 48  */ {C2F(gw_time)},
 	/* 49  */ {C2F(gw_sound)}
+#if _MSC_VER
+	,
+	/* 50  */ {C2F(gw_fftw)}
+#endif
 };
 
 #endif /*__CALLINTERF__*/

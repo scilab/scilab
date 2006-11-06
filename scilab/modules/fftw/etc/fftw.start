@@ -1,0 +1,36 @@
+// ====================================================================
+// fftw module initialisation file 
+// Copyright INRIA 2006
+// ====================================================================
+if ( loadfftwlibrary() ) then
+
+//Load  functions librarie
+//load('SCI/modules/fftw/macros/lib');
+// ====================================================================
+//add help chapter
+global LANGUAGE
+
+// replace scilab fft function by fftw
+clearfun fft;
+fft=fftw;
+
+path = get_absolute_file_path('fftw.start');
+path = getshortpathname(path);
+//pathdemos = pathconvert(part(path,1:(length(path)-5))+'/demos/fftw.dem',%f,%f);
+
+if LANGUAGE == 'fr' then
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
+	add_help_chapter("FFTW",pathhelp);
+//	add_demo('FFTW',pathdemos);
+elseif LANGUAGE == 'eng' then
+	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
+	add_help_chapter("Sound file handling",pathhelp);
+//	add_demo('FFTW',pathdemos);
+end
+
+clear pathhelp pathdemos get_absolute_file_path add_help_chapter LANGUAGE;
+
+end // if ( loadfftwlibrary() ) then
+
+
+// ====================================================================

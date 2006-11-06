@@ -50,4 +50,5 @@ randlib
 scicos
 scilab2fortran
 development_tools
+;fftw
 ;end

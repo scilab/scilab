@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>fftw_flags</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 2006</DATE>
+  <SHORT_DESCRIPTION name="fftw_flags"> set computation method of fast fourier transform of the fftw function</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[a,[S]]=fftw_flags([x1;x2;...])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>[x1;x2;...]</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Matrix of string or integers. Entry to switch the method of fft computation for fftw.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: Integer. Give the current value of the flag of the fftw function.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: String matrix. Give the string value of the fftw flag.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+    This function enables the change of the <VERB>unsigned flags</VERB> parameter of the
+    <VERB>fftw_plan_guru_split_dft</VERB> function that is used in <A href='fftw.htm'><VERB>fftw</VERB></A> function. Default value is FFTW_ESTIMATE</P>
+    <P>
+    Accepted entries are :
+    <ITEMIZE>
+      <ITEM>FFTW_MEASURE or 0</ITEM>
+      <ITEM>FFTW_DESTROY_INPUT or 1</ITEM>
+      <ITEM>FFTW_UNALIGNED or 2</ITEM>
+      <ITEM>FFTW_CONSERVE_MEMORY or 4</ITEM>
+      <ITEM>FFTW_EXHAUSTIVE or 8</ITEM>
+      <ITEM>FFTW_PRESERVE_INPUT or 16</ITEM>
+      <ITEM>FFTW_PATIENT or 32</ITEM>
+      <ITEM>FFTW_ESTIMATE or 64</ITEM>
+      <ITEM>FFTW_ESTIMATE_PATIENT or 128</ITEM>
+      <ITEM>FFTW_BELIEVE_PCOST or 256</ITEM>
+      <ITEM>FFTW_NO_DFT_R2HC or 512</ITEM>
+      <ITEM>FFTW_NO_NONTHREADED or 1024</ITEM>
+      <ITEM>FFTW_NO_BUFFERING or 2048</ITEM>
+      <ITEM>FFTW_NO_INDIRECT_OP or 4096</ITEM>
+      <ITEM>FFTW_ALLOW_LARGE_GENERIC or 8192</ITEM>
+      <ITEM>FFTW_NO_RANK_SPLITS or 16384</ITEM>
+      <ITEM>FFTW_NO_VRANK_SPLITS or 32768</ITEM>
+      <ITEM>FFTW_NO_VRECURSE or 65536</ITEM>
+      <ITEM>FFTW_NO_SIMD or 131072</ITEM>
+      <ITEM>FFTW_NO_SLOW or 262144</ITEM>
+      <ITEM>FFTW_NO_FIXED_RADIX_LARGE_N or 524288</ITEM>
+      <ITEM>FFTW_ALLOW_PRUNING or 1048576</ITEM>
+    </ITEMIZE>
+    </P>
+    <P>
+     Rmk : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must call two times fftw.
+     (first call for initialisation, second and others calls for computation)
+   </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+ //return the integer value of the flag
+ fftw_flags()
+
+ //change flags
+ fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
+
+ //change flags and display current value of fftw flags (both integer and strings)
+ [a,S]=fftw_flags("FFTW_PATIENT")
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <A href='fftw.htm'><VERB>fftw</VERB></A>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <A href='fftw_norm.htm'><VERB>fftw_norm</VERB></A>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <A href='fftw_inplace.htm'><VERB>fftw_inplace</VERB></A>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <A href='pushfftw_plan.htm'><VERB>pushfftw_plan</VERB></A>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <A href='freefftw_plan.htm'><VERB>freefftw_plan</VERB></A>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+</MAN>

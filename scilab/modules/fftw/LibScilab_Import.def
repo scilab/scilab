@@ -1,0 +1,26 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+;core
+ sciprint
+ putlhsvar_
+ stack_
+ com_
+ getrhsvar_
+ checklhs_
+ checkrhs_
+ Scierror
+ GetExceptionString
+ createcvar_
+ vartype_
+ check_dims
+ GetData
+ intersci_
+ getrhscvar_
+ createvarfromptr_
+ createvar_
+;
+;elementaries_functions_f
+ dset_
