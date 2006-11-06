@@ -141,7 +141,7 @@ deff('s=gr2(t,y,yd)','s=y(1)')
 [yy,nn,hotd]=dasrt([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dasrt([y01,y0d1],t01,t,atol,rtol,'res2','jac2',ng,'gr2',info,hotd);
-if abs(nn(1)-162.57763)>0.001 then pause,end
+if abs(nn(1)-162.57763)>0.004 then pause,end
 
 //Test of Dynamic link (Require f77!)
 //         1 making the routines
