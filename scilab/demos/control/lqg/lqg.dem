@@ -92,8 +92,8 @@ while %t do
 			if Plant(4)=='c' then
 			mode(1)
 			defv=['0.1','20'];
-			title='Enter Sampling period and Tmax';
-			rep=x_mdialog(title,['Sampling period?';'Tmax?'],defv)
+			Title='Enter Sampling period and Tmax';
+			rep=x_mdialog(Title,['Sampling period?';'Tmax?'],defv)
 			if rep==[] then break,end
 			dttmax=evstr(rep)
 			dt=evstr(dttmax(1));tmax=evstr(dttmax(2));
@@ -111,8 +111,8 @@ while %t do
 		elseif Plant(4)=='d' then
 			mode(1)
 			defv=['30'];
-			title='Tmax?';
-			rep=x_mdialog(title,['Tmax='],defv)
+			Title='Tmax?';
+			rep=x_mdialog(Title,['Tmax='],defv)
 			if rep==[] then break,end
 			Tmax=evstr(rep);
 			mode(-1)
@@ -138,4 +138,4 @@ while %t do
 end
 
 clear s z n str rep Plant P22 ny nu nx Qx Qu bigQ Rx Ry bigR  Plqg r 
-clear Klqg Slqg Rlqg Tlqg resp title dttmax dt t n1 defv Tmax n2 u 
+clear Klqg Slqg Rlqg Tlqg resp Title dttmax dt t n1 defv Tmax n2 u 

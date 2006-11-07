@@ -50,12 +50,12 @@ if dom=='d' then defv=['-10','1','0.1'];end
 while %t
   mode(1)
   if dom=='c' then
-    title='Enter your PID controller K(s)=Kp*(1+T0/s+T1*s)';
+    Title='Enter your PID controller K(s)=Kp*(1+T0/s+T1*s)';
   end
   if dom=='d' then
-    title='Enter your PID controller K(z)=Kp*(1+T0/z+T1*z)';
+    Title='Enter your PID controller K(z)=Kp*(1+T0/z+T1*z)';
   end
-  defv=x_mdialog(title,['Kp=';'T0=';'T1='],defv);
+  defv=x_mdialog(Title,['Kp=';'T0=';'T1='],defv);
   if defv==[] then warning('Demo stops!');return;end
   Kp=evstr(defv(1));T0=evstr(defv(2));T1=evstr(defv(3));
   if dom=='c' then
@@ -102,8 +102,8 @@ while %t do
     if Plant(4)=='c' then
       mode(1)
       defv=['0.1','50'];
-      title='Enter Sampling period and Tmax';
-      rep=x_mdialog(title,['Sampling period?';'Tmax?'],defv);
+      Title='Enter Sampling period and Tmax';
+      rep=x_mdialog(Title,['Sampling period?';'Tmax?'],defv);
       if rep==[] then break,end
       dttmax=evstr(rep);
       dt=evstr(dttmax(1));tmax=evstr(dttmax(2));
@@ -124,8 +124,8 @@ while %t do
     elseif Plant(4)=='d' then
       mode(1)
       defv=['100'];
-      title='Tmax?'
-      rep=x_mdialog(title,['Tmax='],defv);
+      Title='Tmax?'
+      rep=x_mdialog(Title,['Tmax='],defv);
       if rep==[] then break,end
       Tmax=evstr(rep);
       mode(-1)

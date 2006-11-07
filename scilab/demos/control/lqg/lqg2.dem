@@ -27,5 +27,5 @@ xbasc();t=0:0.01:30;u=sin(t);
 plot2d([t',t'],[u',(flts(u,dscr(Tlqg,0.1))')])
 
 clear s  n  Plant P22 ny nu nx Qx Qu bigQ Rx Ry bigR bigQ  Plqg r 
-clear Klqg Slqg Rlqg Tlqg resp title dttmax dt t n1 defv Tmax n2 u frq
+clear Klqg Slqg Rlqg Tlqg resp Title dttmax dt t n1 defv Tmax n2 u frq
 clear y w1 w2 Ptmp Pinf ro Sinf Rinf Tinf
