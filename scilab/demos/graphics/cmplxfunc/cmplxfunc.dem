@@ -24,7 +24,7 @@ items = [
 	"atanh";
 	"custom"];
 
-title = [
+Title = [
 	"visualisation of  complex";
 	"elementary  functions  on";
 	"a centered disk or square";
@@ -66,7 +66,7 @@ rep = rep_init;
 
 while %t
 	
-	[num]=tk_choose(items,title);
+	[num]=tk_choose(items,Title);
 	
 	if num == 0 then
 		current_figure_hdl = gcf();
