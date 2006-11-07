@@ -16,7 +16,7 @@
 // scilab interface to getrelativefilename
 /* ================================================================================== */
 
-int C2F(sci_getrelativefilename) _PARAMS((char *fname))
+int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l))
 {
 	static int l1,n1,m1,l2,n2,m2;
 	
@@ -89,7 +89,7 @@ char* getrelativefilename(char *currentDirectory, char *absoluteFilename)
 	int cdLen = 0, afLen = 0;
 	int i = 0;
 	int levels = 0;
-	static char relativeFilename[MAX_FILENAME_LEN+1];
+	char *relativeFilename= (char*)MALLOC(MAX_FILENAME_LEN*sizeof(char));
 	
 	cdLen = strlen(currentDirectory);
 	afLen = strlen(absoluteFilename);
