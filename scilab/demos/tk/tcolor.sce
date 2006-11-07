@@ -1,4 +1,5 @@
-RGB1=[0 0 0]
+RGB=[];
+RGB1=[0 0 0];
 TCL_SetVar('rgb',tkpath+'rgb.txt');
 TCL_EvalFile(tkpath+'tcolor')
 while %t //wait for toplevel to disapear
