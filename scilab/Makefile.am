@@ -27,10 +27,13 @@ sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
 all-local: ### Need some clean up
+
+macros:
 	-@( SCI=$(top_builddir) ; export SCI; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
 	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
+scihelp:
 	-@( SCI=$(top_builddir) ; export SCI; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
 	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;)
