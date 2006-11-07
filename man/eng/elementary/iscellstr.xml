@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>iscellstr</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>2006</DATE>
+
+  <SHORT_DESCRIPTION name="iscellstr">Checks if all the cell components are
+  strings</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>y=iscellstr(c)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>c</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a cell.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: a double (0 or 1).</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Given a cell <VERB>c</VERB>,the function <VERB>iscellstr</VERB> returns
+    1 if all the cell components are strings else returns 0.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[// example 1:
+c=makecell([1,3],'foo1','foo2','foo3');
+y=iscellstr(c)
+
+// example 2:
+c=makecell([1,3],'foo1',5,'foo3');
+y=iscellstr(c)
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cell</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>makecell</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Farid Belahcene</AUTHOR>
+</MAN>
