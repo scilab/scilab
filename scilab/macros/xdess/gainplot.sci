@@ -122,13 +122,27 @@ else
 end;
 
 rect=[mini(frq),mini(d),maxi(frq),maxi(d)]
-plot2d1("oln",mini(frq),mini(d),0,'051',' ',rect);
+isNewStyle = ( get("figure_style") == "new") ;
+
+if ~isNewStyle then
+  plot2d1("oln",mini(frq),mini(d),0,'051',' ',rect);
+end
+
+
 xgrid(4)
 if ilf==0 then
-     	plot2d1("oln",frq',d',[1,3:mn+1],strf,strcat(comments,'@'),rect);
+  plot2d1("oln",frq',d',[1,3:mn+1],strf,strcat(comments,'@'),rect);
 else
-     	plot2d1("gln",frq',d',[1,3:mn+1],strf,strcat(comments,'@'),rect);
+  plot2d1("gln",frq',d',[1,3:mn+1],strf,strcat(comments,'@'),rect);
 end
+
+if isNewStyle then
+  axes = gca() ;
+  rect=[mini(frq),mini(d);maxi(frq),maxi(d)]
+  axes.data_bounds = rect ;
+  a.log_flags = "lnn" ;
+end
+
 if ~noxtitle then
 xtitle(' ','Hz','db');
 end
