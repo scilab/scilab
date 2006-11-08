@@ -1087,9 +1087,7 @@ Delete(w, number, client_data)
 
 /* for Fortran call */
 
-int C2F(deletewin)(number) 
-     integer *number;
-{
+int C2F(deletewin)(integer *number) {
   Delete((Widget) 0,(XtPointer) *number,(XtPointer) 0);
   return(0);
 }
