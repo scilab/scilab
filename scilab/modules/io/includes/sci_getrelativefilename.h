@@ -41,7 +41,7 @@
 // SLASH
 // set this to '\\' for DOS or '/' for UNIX
 
-int C2F(sci_getrelativefilename) _PARAMS((char *fname));
+int C2F(sci_getrelativefilename) _PARAMS((char *fname, unsigned long l));
 char* getrelativefilename(char *currentDirectory, char *absoluteFilename);
 
 #endif /* __INTGETRELATIVEFILENAME__ */
