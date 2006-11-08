@@ -98,7 +98,7 @@ void C2F(idfromnameX11) (char *name1, integer *num);
 void C2F(getdashX11)(integer *verbose, integer *value, integer *narg, double *dummy);
 
 BOOL IsTKGraphicalMode(void){
-	return TRUE;
+	return FALSE;
 }
 
 /** Global variables to deal with X11 **/
@@ -411,7 +411,7 @@ void Setpopupname(char *string)
 
 /* appelle ds Xcall.c */
 
-void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
+void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4, integer lx0)
 {
   Setpopupname(x0);
 }
@@ -3293,6 +3293,7 @@ static struct BCG *AddNewWindow(WindowList **listptr)
 	  (*listptr)->winxgc.Cdrawable =  (Drawable) NULL;
 	  (*listptr)->winxgc.CinfoW =  (Widget) NULL ;
 	  (*listptr)->winxgc.Viewport =  (Widget) NULL ;
+	  (*listptr)->winxgc.popup =  (Widget)0;
 	  (*listptr)->winxgc.CurWindow = 0;
 	  (*listptr)->winxgc.Red = (float *) 0;
 	  (*listptr)->winxgc.Green = (float *) 0;
@@ -3607,6 +3608,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
     {
       ScilabXgc= NewXgc;
     }
+
 #ifdef WITH_TK
   if (IsTKGraphicalMode()) {
     Tk_Window  win;
