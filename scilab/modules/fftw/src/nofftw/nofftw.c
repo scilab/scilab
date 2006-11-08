@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/ 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_tclsci)()
+int C2F(gw_fftw)()
 {
 	Scierror(999,"FFTW interface not installed.\r\n");
 	return 0;
