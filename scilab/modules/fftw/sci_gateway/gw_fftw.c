@@ -26,22 +26,22 @@ extern int sci_fftwlibraryisloaded __PARAMS((char *fname,unsigned long fname_len
 extern void sciprint ();
 /*-----------------------------------------------------------------------------------*/ 
 static intFFTWTable Tab[]={
+{ sci_loadfftwlibrary,"loadfftwlibrary"},
+{ sci_disposefftwlibrary,"disposefftwlibrary"},
+{ sci_fftwlibraryisloaded,"fftwlibraryisloaded"},
 { sci_fftw,"fftw"},
 { sci_fftw_flags,"fftw_flags"},
 { sci_fftw_inplace,"fftw_inplace"},
 { sci_fftw_norm,"fftw_norm"},
 { sci_pushfftw_plan,"pushfftw_plan"},
-{ sci_freefftw_plan,"freefftw_plan"},
-{ sci_loadfftwlibrary,"loadfftwlibrary"},
-{ sci_disposefftwlibrary,"disposefftwlibrary"},
-{ sci_fftwlibraryisloaded,"fftwlibraryisloaded"}
+{ sci_freefftw_plan,"freefftw_plan"}
 };
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_fftw)()
 {  
 	Rhs = Max(0, Rhs);
 
-	if ( (Fin != 7) && (Fin != 8)  && (Fin != 9)) /* loadfftwlibrary, disposefftwlibrary, fftwlibraryisloaded */
+	if (Fin > 3) /* loadfftwlibrary, disposefftwlibrary, fftwlibraryisloaded not test if dll is loaded*/
 	{
 		if (!IsLoadedFFTW())
 		{
