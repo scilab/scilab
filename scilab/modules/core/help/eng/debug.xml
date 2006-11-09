@@ -2,27 +2,53 @@
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>debug</TITLE>
+
   <TYPE>Scilab Function</TYPE>
+
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="debug"> debugging level</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="debug">debugging level</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>debug(level-int)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>level-int=debug()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>debug(level-int)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>level-int=debug()</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>level-int</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
-          <SP>: integer (0 to 4)</SP>
+          <SP>: integer (-1 to 4)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-    <P>
-    For the values 0,1,2,3,4 of <VERB>level-int</VERB> , <VERB>debug</VERB> defines
-    various levels of debugging. (For Scilab experts only).</P>
+    <P>For the values 0,1,2,3,4 of <VERB>level-int</VERB> , <VERB>debug</VERB>
+    defines various levels of debugging. This is targeted to the parser, not
+    to Scilab scripts, and is for Scilab experts only.</P>
+
+    <P>For the value -1 of <VERB>level-int</VERB> , <VERB>debug</VERB> defines a
+    special level of debugging dedicated to the ScilabEval Tcl
+    instruction.</P>
+
+    <P>See also the <VERB>Scipad</VERB> debugger, which is targeted to
+    debugging Scilab scripts.</P>
   </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>ScilabEval</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>scipad</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
 </MAN>
