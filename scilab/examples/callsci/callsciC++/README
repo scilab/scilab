@@ -18,7 +18,7 @@ Then type
 	nmake /f Makefile.mak all /a
 	
 	You have to set SCI to the Scilab directory 
-	set SCI=c:\program files\scilab-4.0
+	set SCI=c:\program files\scilab-4.1-rc1
 	then run prog.exe in a console 
 	to make the program run 
 	..\..\..\bin\prog.exe
