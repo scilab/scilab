@@ -44,6 +44,7 @@ extern void  reset_scig_command_handler __PARAMS((void));
 extern void write_scilab  __PARAMS((char *s));
 extern int get_is_reading  __PARAMS((void));
 extern void sciprint __PARAMS((char *fmt,...));
+extern void sciprint_full __PARAMS((char *fmt,...));
 #ifdef _MSC_VER
 extern BOOL IsToThePrompt(void);
 #endif /*_MSC_VER*/
@@ -174,8 +175,8 @@ int GetCommand ( char *str)
       FREE (p->command);
       FREE (p);
       if (C2F(iop).ddt==-1) {
-        if (flag==0) { sciprint("   Unqueuing %s - No option\r\n",str); }
-        else         { sciprint("   Unqueuing %s - seq\r\n",str); }
+        if (flag==0) { sciprint_full("   Unqueuing %s - No option\r\n",str); }
+        else         { sciprint_full("   Unqueuing %s - seq\r\n",str); }
       }
     }
   return flag;

@@ -18,7 +18,7 @@ extern int StoreCommand ( char *command);
 extern int C2F(tksynchro)();
 extern integer C2F (ismenu)(void); 
 extern void sciprint __PARAMS((char *fmt,...));
-
+extern void sciprint_full __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
@@ -36,12 +36,15 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	char *AsciiFromUTF8=NULL;
 
 	AsciiFromUTF8=MALLOC(sizeof(char)*(strlen(argv[1])+AddCharacters));
-	/* UTF to ANSI */
+
+    /* UTF to ANSI */
 	Tcl_UtfToExternal(theinterp, NULL, argv[1], (int)strlen(argv[1]), 0, NULL, AsciiFromUTF8, (int)(strlen(argv[1])+AddCharacters), NULL, NULL,NULL);
-	
-    sciprint(TCL_MSG7,AsciiFromUTF8);
+
+    sciprint_full(TCL_MSG7,AsciiFromUTF8);
+
     while (argv[++argc]) sciprint(" %s",argv[argc]);
     sciprint("\n");
+
 	if (AsciiFromUTF8){FREE(AsciiFromUTF8);AsciiFromUTF8=NULL;}
   }
 
@@ -58,7 +61,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC (bsiz * sizeof (char));
       if (command == (char *) 0)
       {
-        sciprint (TCL_ERROR28);
+        sciprint(TCL_ERROR28);
         return TCL_ERROR;
       }
       memset(command,'\0',bsiz);
@@ -70,7 +73,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       command = (char *) MALLOC ((strlen (AsciiFromUTF8) + 1) * sizeof (char));
       if (command == (char *) 0)
       {
-        sciprint (TCL_ERROR28);
+        sciprint(TCL_ERROR28);
         return TCL_ERROR;
       }
       strcpy(command,AsciiFromUTF8);
@@ -83,9 +86,9 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
       seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
       ns=(int)strlen(command); 
-      if (C2F(iop).ddt==-1) sciprint(TCL_MSG8,command);
+      if (C2F(iop).ddt==-1) sciprint_full(TCL_MSG8,command);
       C2F(syncexec)(command,&ns,&ierr,&seq);
-      if (C2F(iop).ddt==-1) sciprint(TCL_MSG9,command);
+      if (C2F(iop).ddt==-1) sciprint_full(TCL_MSG9,command);
       C2F(tksynchro)(&C2F(recu).paus);
       if (ierr != 0) return TCL_ERROR;
     }
@@ -112,18 +115,18 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
         {
 	      if (seqf[nc]==0)
 		  {
-			  sciprint(TCL_MSG11,comm[nc]);
+			  sciprint_full(TCL_MSG11,comm[nc]);
 		  }
 	      else
 		  {
-			  sciprint(TCL_MSG12,comm[nc]);
+			  sciprint_full(TCL_MSG12,comm[nc]);
 		  }
         }
         ns=(int)strlen(comm[nc]);
         C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]));
         if (C2F(iop).ddt==-1)
         {
-          sciprint(TCL_MSG13,comm[nc]);
+          sciprint_full(TCL_MSG13,comm[nc]);
         }
         FREE(comm[nc]);
         C2F(tksynchro)(&C2F(recu).paus);

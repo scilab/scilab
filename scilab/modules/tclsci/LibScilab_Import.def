@@ -18,6 +18,7 @@ EXPORTS
  syncexec_
  GetScreenProperty
  sciprint
+ sciprint_full
  putlhsvar_
  createvar_
  stack_

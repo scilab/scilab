@@ -16,5 +16,4 @@
 #define TCL_MSG12 " Flushed execution starts for %s - seq\r\n"
 #define TCL_MSG13 " Flushed execution ends for %s\r\n"
 #define TCL_MSG14 " Flushing ends\r\n"
-#define TCL_MSG15 "Not yet implemented\n"
 #endif /* TCL_MESSAGESH */
