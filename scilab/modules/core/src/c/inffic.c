@@ -9,7 +9,7 @@
 static char *dataStrings[] = {
   "$MANCHAPTERS",
   "exec('SCI/etc/scilab.start',-1);",         /* start_up instructions file   */
-  "exec('SCI/demos/alldems.dem');",	 /* demos instructions file      */
+  "scilab_demos();",	 /* demos instructions file      */
 #ifdef _MSC_VER
   "home/history.scilab",		 /* history file                */
 #else 
