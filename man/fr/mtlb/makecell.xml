@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -41,7 +41,7 @@
   <DESCRIPTION>
     <P>La fonction <VERB>makecell</VERB> retourne une cell de taille
     <VERB>dim1</VERB> x <VERB>dim2</VERB>. Ces composantes sont
-    <VERB>cpnt1</VERB>, <VERB>cpnt2</VERB>, ... (ils sont rangÃ©s par
+    <VERB>cpnt1</VERB>, <VERB>cpnt2</VERB>, ... (ils sont rangés par
     ligne).</P>
   </DESCRIPTION>
 

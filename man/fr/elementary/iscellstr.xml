@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -37,7 +37,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>Etant donnÃ© une cell <VERB>c</VERB>, la fonction <VERB>iscellstr</VERB>
+    <P>Etant donné une cell <VERB>c</VERB>, la fonction <VERB>iscellstr</VERB>
     retourne <VERB>1</VERB> si toutes les composantes de la cell sont des
     strings sinon elle retourne <VERB>0</VERB>.</P>
   </DESCRIPTION>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -37,7 +37,7 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>Etant donnÃ© un vecteur <VERB>x</VERB> de longueur <VERB>n</VERB>, la
+    <P>Etant donné un vecteur <VERB>x</VERB> de longueur <VERB>n</VERB>, la
     fonction <VERB>perms</VERB> retourne toutes les permutations des
     <VERB>n</VERB> composantes de <VERB>x</VERB> , soit <VERB>n!</VERB>
     permutations. La matrice <VERB>y</VERB> est de taille <VERB>n! x
