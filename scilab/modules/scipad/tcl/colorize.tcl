@@ -124,7 +124,7 @@ proc colorize {w cpos iend} {
 # Colorize in textarea $w from start position cpos to end position iend
 # Warning: if cpos denotes a position located *after* iend, nothing is done
     global words chset listoffile
-    global snRE
+    global snRE floatingpointnumberREpat
 
     set schema $listoffile("$w",language)
     set colori $listoffile("$w",colorize)
@@ -170,8 +170,7 @@ proc colorize {w cpos iend} {
     }
 
     # numbers can contain +-. therefore follows operator colorization
-    set numregexp {(?:(?:\.\d+)|(?:\m\d+(?:\.\d*)?))(?:[deDE][+\-]?\d{1,3})?\M}
-    colorizetag $w $numregexp number $searchedstr $cpos
+    colorizetag $w $floatingpointnumberREpat number $searchedstr $cpos
 
     # Scilab keywords - they are Scilab "names" (see help names)
     if {$schema=="scilab"} {

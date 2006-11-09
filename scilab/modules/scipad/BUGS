@@ -67,6 +67,9 @@ endfunction
  if a function is defined in more than one buffer, proc checkarglist may
  detect the wrong one and prevent correct configuration of the debugger
 
+-watching some very large variable content looks like the variable is empty
+ This is Tk bug 1449858.
+
 -modselection bugs:
   . <TODO> Ctrl-d with a selection starting in the middle of a line -> indent
     the first line from column 0
@@ -133,16 +136,14 @@ Wishes:
 
 Debugger wishes:
 
--Better help for the debugger. help debug should either have a dedicated
- page for the debugger or the existing debug page should have a note pointing
- at help scipad
-
 -Conditional breakpoints
 
 -Allow to watch a generic expression (bonus: the expression could be e.g.
  a graphical command, so that an array is *plotted* at each breakpoint)
  Way to go: add a pane with expressions to be executed and result of their
  evaluation displayed in the watch window area (e.g. size(a_matrix,"*"))
+ Hmm, maybe a separate toplevel would be better - the watch is already a
+ pretty large window...
 
 -Add a field showing the type (and size) of the variables displayed in the
  watch window
@@ -163,15 +164,21 @@ Debugger wishes:
 
 -include profiling into the debugger
 
--breakpoint and activebreakpoint tags are not visible when selected. No
- solution found so far. Only one tag with -background option has highest
- priority, and there is no -selectbackground option for tags
-
--watching some very large variable content looks like the variable is empty
- This is Tk bug 1449858.
+-breakpoint, activebreakpoint and continued lines tags are not visible
+ when selected. No solution found so far. Only one tag with -background
+ option has highest priority, and there is no -selectbackground option
+ for tags
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin
+
+-add a control in the watch window to gear in an automatic mode: all the
+ local variables are added and displayed when entering a function, and
+ removed when the debugger leaves a function (must specify policy more
+ precisely). Possible implementation would use macrovar
+ 
+-highlight in color the watched variables that changed value during previous
+ debugger command
 
 
 Other wishes:
@@ -273,7 +280,6 @@ Other wishes:
         included in Tk and will be part of Tk 8.5.
   . Search among tagged text only, e.g. among comments (must be consistent
     with the language scheme)
-  . Popup menu providing a list of ready cooked regexps
   . Multiline find/replace and find in files (must wait Tk8.5 since .text
     search searches on a per line basis - or use regexp instead of .text
     search, big work...) - Automatically expand the entry widgets size

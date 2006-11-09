@@ -2483,3 +2483,12 @@ Francois VOGEL, 05/11/06
  * Fixed: the busy cursor was still active in tearoff menues (same
    fix as for menubars in Scipad 6.48)
  * version --> 6.54
+
+Francois VOGEL, 09/11/06
+ * proc srevert (used in undo/redo) prepares use of string reverse (TIP #172)
+   for when Tcl 8.5 will be available
+ * Outside of scipad: better help for the debugger. help debug now points
+   at help scipad
+ * Added a popup menu providing a list of ready cooked regexps for the
+   find/replace dialog
+ * version --> 6.55

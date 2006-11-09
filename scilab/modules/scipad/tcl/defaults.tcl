@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.54"
+set version "Version 6.55"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -216,7 +216,8 @@ append snRE {(?:} $sncc1RE $sncc2RE * {)}
 # Any number of blanks (spaces or tabs), possibly none
 set sblRE {[[:blank:]]*}
 
-# Scilab comment
+# Scilab comment, reporting version and non-reporting version
+set scommRE_rep {(//[^\n]*)}
 set scommRE {(?://[^\n]*)}
 
 # Scilab continuation mark
@@ -257,10 +258,18 @@ set funlineREpat1 $sfdlRE
 set funlineREpat2 $sfdrRE
 set scilabnameREpat $snRE_rep
 
+# Floating point number, reporting version and non-reporting version
+set floatingpointnumberREpat_rep {((\.\d+)|(\m\d+(\.\d*)?))([deDE][+\-]?\d{1,3})?\M}
+set floatingpointnumberREpat {(?:(?:\.\d+)|(?:\m\d+(?:\.\d*)?))(?:[deDE][+\-]?\d{1,3})?\M}
+
+# Rational number, reporting version
+set rationalnumberREpat_rep      {((\.\d+)|(\m\d+(\.\d*)?))\M}
+
 ###
 
 # regular expression matching a continued line identified as such because
 # it has trailing dots possibly followed by a comment
+set dotcontlineRE_rep {(^([^/]/?)*\.{2,} *(//.*)?$)}
 set dotcontlineRE {(?:^(?:[^/]/?)*\.{2,} *(?://.*)?$)}
 
 # maximum level of nesting for brackets and braces

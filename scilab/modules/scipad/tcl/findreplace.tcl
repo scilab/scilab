@@ -55,7 +55,16 @@ proc findtextdialog {typ} {
         -width $bestwidth -font $menuFont
     entry $find.l.f1.entry -textvariable SearchString \
         -width 30 -font $textFont -exportselection 1
-    pack $find.l.f1.label $find.l.f1.entry -side left
+    menubutton $find.l.f1.mb -indicatoron 0 -text ">" \
+        -font $menuFont
+    menu $find.l.f1.mb.om1 -tearoff 0 -font $menuFont
+    $find.l.f1.mb configure -menu $find.l.f1.mb.om1
+    foreach {pattern label} [regexpsforfind] {
+        $find.l.f1.mb.om1 add command -font $menuFont \
+            -label "$label      $pattern" \
+            -command [list insertregexpforfind $pattern]
+    }
+    pack $find.l.f1.label $find.l.f1.entry $find.l.f1.mb -side left
     pack configure $find.l.f1.entry -expand 1 -fill x
     if {$typ=="replace"} {
         frame $find.l.f2
@@ -121,7 +130,8 @@ proc findtextdialog {typ} {
         -command \"resetfind $find \[gettextareacur\]\" -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] \
         -variable regexpcase  -onvalue \"regexp\" -offvalue \"standard\" \
-        -command \"resetfind $find \[gettextareacur\]\" -font \[list $menuFont\] "
+        -command \"resetfind $find \[gettextareacur\] ; toggleregexpstate \" \
+        -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] \
         -variable multiplefiles \
         -command \"resetfind $find \[gettextareacur\] ; \
@@ -298,6 +308,10 @@ proc findtextdialog {typ} {
     }
     set searchforfilesonly 0
 
+    # initial settings for regexp generator state
+    toggleregexpstate
+    toggleregexpstate
+
     # preselect the entry field -
     $find.l.f1.entry selection range 0 end
 
@@ -332,8 +346,17 @@ proc tryrestoreseltag {textarea} {
     }
 }
 
+proc toggleregexpstate {} {
+    global find regexpcase
+    if {$regexpcase == "regexp"} {
+        $find.l.f1.mb configure -state normal
+    } else {
+        $find.l.f1.mb configure -state disabled
+    }
+}
+
 proc togglesearchindir {} {
-    global find searchindir
+    global searchindir
     if {$searchindir} {
         searchindirenabled
     } else {
@@ -1530,4 +1553,47 @@ proc totalGeometry {{w .}} {
     incr height $menubarThickness
 
     return [list $width $height $decorationLeft $decorationTop]
+}
+
+proc regexpsforfind {} {
+# return the following flat list:
+#   {regexppattern1 name1 regexppattern2 name2 ... }
+# with localized names
+# this list is used in the find/replace box to insert ready cooked regexps
+# in the find entry place
+# note that is is useless to add regexps that would match across text lines
+# because the text widget search -regexp engine does only support matching
+# on single lines of text
+    global scommRE_rep scilabnameREpat dotcontlineRE_rep
+    global floatingpointnumberREpat_rep rationalnumberREpat_rep
+    return [list \
+        {.} [mc "Any single character"] \
+        {*} [mc "Zero or more"] \
+        {+} [mc "One or more"] \
+        {?} [mc "Zero or one"] \
+        {[]} [mc "Any one character in the set"] \
+        {[^]} [mc "Any one character not in the set"] \
+        {|} [mc "Or"] \
+        {^} [mc "Beginning of line"] \
+        {$} [mc "End of line"] \
+        {\m} [mc "Beginning of word"] \
+        {\M} [mc "End of word"] \
+        {[[:alpha:]]} [mc "A letter"] \
+        {[[:digit:]]} [mc "A decimal digit"] \
+        {[[:alnum:]]} [mc "An alphanumeric (letter or digit)"] \
+        {[[:blank:]]} [mc "A space or tab character"] \
+        $rationalnumberREpat_rep [mc "A rational number"] \
+        $floatingpointnumberREpat_rep [mc "A floating point number"] \
+        $scommRE_rep [mc "A Scilab comment"] \
+        $scilabnameREpat [mc "A Scilab name"] \
+        $dotcontlineRE_rep [mc "A Scilab continued line (with dots)"] \
+    ]
+}
+
+proc insertregexpforfind {pat} {
+# insert input argument $pat (a regexp pattern) in the "Search for"
+# entry place of the find/replace dialog
+    global find
+    $find.l.f1.entry selection clear
+    $find.l.f1.entry insert insert $pat
 }

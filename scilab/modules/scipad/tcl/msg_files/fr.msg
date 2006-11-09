@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.45
+# in sync at least with v6.55
 
 
 # commons
@@ -227,6 +227,26 @@
 ::msgcat::mcset fr "No more matches" "Pas d'autre correspondance"
 ::msgcat::mcset fr "The string to regexp search for cannot be compiled by Tcl.\nCheck again, maybe certain characters should be escaped." \
                    "L'expression régulière entrée est invalide (impossible à compiler).\nVérifiez, il se peut que le caractère d'échappement \\ doive précéder certains caractères."
+::msgcat::mcset fr "Any single character" "Un caractère quelconque"
+::msgcat::mcset fr "Zero or more" "Zéro ou plus"
+::msgcat::mcset fr "One or more" "Un ou plus"
+::msgcat::mcset fr "Zero or one" "Zéro ou un"
+::msgcat::mcset fr "Any one character in the set" "Un caractère quelconque de l'ensemble"
+::msgcat::mcset fr "Any one character not in the set" "Un caractère quelconque hors de l'ensemble"
+::msgcat::mcset fr "Or" "Ou"
+::msgcat::mcset fr "Beginning of line" "Début de ligne"
+::msgcat::mcset fr "End of line" "Fin de ligne"
+::msgcat::mcset fr "Beginning of word" "Début de mot"
+::msgcat::mcset fr "End of word" "Fin de mot"
+::msgcat::mcset fr "A letter" "Une lettre"
+::msgcat::mcset fr "A decimal digit" "Un chiffre décimal"
+::msgcat::mcset fr "An alphanumeric (letter or digit)" "Un caractère alphanumérique (lettre ou chiffre)"
+::msgcat::mcset fr "A space or tab character" "Un espace ou une tabulation"
+::msgcat::mcset fr "A rational number" "Un nombre rationel"
+::msgcat::mcset fr "A floating point number" "Un nombre en virgule flottante"
+::msgcat::mcset fr "A Scilab comment" "Un commentaire Scilab"
+::msgcat::mcset fr "A Scilab name" "Un nom Scilab"
+::msgcat::mcset fr "A Scilab continued line (with dots)" "Une ligne continuée Scilab (avec points de suite)"
 
 
 # findinfiles.tcl
