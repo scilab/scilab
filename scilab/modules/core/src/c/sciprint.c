@@ -1,10 +1,7 @@
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
-/*-----------------------------------------------------------------------------------*/ 
-/*-----------------------------------------------------------------------------------*/
-/* AT HOME 2006 */
-/* Francois VOGEL */
+/* Francois VOGEL  sciprint_full function */
 /*-----------------------------------------------------------------------------------*/ 
 #if defined (__STDC__) || defined(_MSC_VER)
   #include <stdarg.h>
@@ -198,36 +195,36 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 {
 	integer lstr;
 	va_list ap;
-    char *s_buf=NULL;
-    char *split_s_buf=NULL;
-    int count=0;
-    int p_s=0;
-    static integer colwidth;
+  char *s_buf=NULL;
+  char *split_s_buf=NULL;
+  int count=0;
+  int p_s=0;
+  static integer colwidth;
 
 	s_buf=MALLOC(sizeof(char)*(MAXCHARSSCIPRINT_FULL+1));
-    if (s_buf == (char *) 0)
-    {
-      sciprint("sciprint_full: No more memory\r\n");
-      return;
-    }
+  if (s_buf == (char *) 0)
+  {
+     sciprint("sciprint_full: No more memory\r\n");
+     return;
+  }
 
-    /* number of columns as set by command lines() */
-    colwidth = C2F(iop).lct[4];  /* lct[4] in C is lct(5) from fortran */
-    /* clamp to a minimum: value is arbitrary */
-    if (colwidth < 20) {colwidth=20;}
-    /* clamp to a maximum: value is selected so that each line fits in a single console line */
-    /* this is needed because computation of the lines() value in ON_WND_TEXT_WM_SIZE is not */
-    /* consistent with the limit before a carriage return occurs in TextPutStr - this latter */
-    /* limit uses lptw->ScreenSize, which is set to x=120,y=80 at init and apparently never  */
-    /* changed on window resizing                                                            */
-    if (colwidth > 109) {colwidth=109;}
+  /* number of columns as set by command lines() */
+  colwidth = C2F(iop).lct[4];  /* lct[4] in C is lct(5) from fortran */
+  /* clamp to a minimum: value is arbitrary */
+  if (colwidth < 20) {colwidth=20;}
+  /* clamp to a maximum: value is selected so that each line fits in a single console line */
+  /* this is needed because computation of the lines() value in ON_WND_TEXT_WM_SIZE is not */
+  /* consistent with the limit before a carriage return occurs in TextPutStr - this latter */
+  /* limit uses lptw->ScreenSize, which is set to x=120,y=80 at init and apparently never  */
+  /* changed on window resizing                                                            */
+  if (colwidth > 109) {colwidth=109;}
 
-    split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
-    if (split_s_buf == (char *) 0)
-    {
-      sciprint("sciprint_full: No more memory\r\n");
-      return;
-    }
+  split_s_buf=MALLOC(sizeof(char)*(colwidth+1));
+  if (split_s_buf == (char *) 0)
+  {
+     sciprint("sciprint_full: No more memory\r\n");
+     return;
+  }
 
 #if defined(__STDC__) || defined(_MSC_VER)
 	va_start(ap,fmt);
@@ -247,32 +244,36 @@ extern void diary_nnl __PARAMS((char *str,int *n));
 	(void )vsprintf(s_buf, fmt, ap );
 #endif
 
-    va_end(ap);
+  va_end(ap);
 
-    lstr=strlen(s_buf);
+  lstr=strlen(s_buf);
 
-    if (lstr<colwidth) {
-        sciprint(s_buf);
-    } else {
+  if (lstr<colwidth)
+  {
+     sciprint(s_buf);
+  } 
+  else 
+  {
+     strncpy(split_s_buf,s_buf+p_s,colwidth-1);
+     split_s_buf[colwidth]='\0';
+     p_s=p_s+colwidth-1;
+     sciprint(split_s_buf);
+     sciprint("\n");
+     while (p_s+colwidth-1<(int)lstr) 
+     {
         strncpy(split_s_buf,s_buf+p_s,colwidth-1);
         split_s_buf[colwidth]='\0';
         p_s=p_s+colwidth-1;
-        sciprint(split_s_buf);
+        sciprint("  (cont'd) %s",split_s_buf);
         sciprint("\n");
-        while (p_s+colwidth-1<(int)lstr) {
-            strncpy(split_s_buf,s_buf+p_s,colwidth-1);
-            split_s_buf[colwidth]='\0';
-            p_s=p_s+colwidth-1;
-            sciprint("  (cont'd) %s",split_s_buf);
-            sciprint("\n");
-        }
-        strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
-        split_s_buf[lstr-p_s]='\0';
-        sciprint("     (end) %s",split_s_buf);
-    }
+     }
+     strncpy(split_s_buf,s_buf+p_s,lstr-p_s);
+     split_s_buf[lstr-p_s]='\0';
+     sciprint("     (end) %s",split_s_buf);
+  }
 
-    if (s_buf){FREE(s_buf);s_buf=NULL;}
-    if (split_s_buf){FREE(split_s_buf);split_s_buf=NULL;}
+  if (s_buf){FREE(s_buf);s_buf=NULL;}
+  if (split_s_buf){FREE(split_s_buf);split_s_buf=NULL;}
 
 }
 /*-----------------------------------------------------------------------------------*/ 
