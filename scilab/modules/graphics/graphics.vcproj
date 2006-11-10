@@ -1807,6 +1807,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\handleDrawing\drawTextHandle.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\Events.h"
 				>
 			</File>

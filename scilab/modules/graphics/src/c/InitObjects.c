@@ -210,7 +210,7 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->ismark    = FALSE;
       (sciGetGraphicContext(pobj))->isline    = TRUE;
       (sciGetGraphicContext(pobj))->markstyle = 0;
-      (sciGetGraphicContext(pobj))->marksize = 1.0; /* New F.Leray 21.01.05 */
+      (sciGetGraphicContext(pobj))->marksize = 0 ; /* New F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
