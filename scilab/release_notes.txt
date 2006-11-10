@@ -1,5 +1,5 @@
 Scilab 4.1 R.C 1 Release_Notes
-************************
+******************************
 
 - Next to the on line help of the software, we advise you, to make
 the first move with Scilab, to consult the Scilab step-to-step web site
@@ -9,7 +9,7 @@ the first move with Scilab, to consult the Scilab step-to-step web site
 - Please note that:
     - Scilab 4.x versions family will be the last versions working
 with the old graphics mode.
-    - Scilab v 4.1 R.C 1 was the last release working with Microsoft
+    - Scilab v 4.0 was the last release working with Microsoft
 Windows 98 and Microsoft Visual 6.0 (compilation, not incremental link)
 supported by Scilab operational team.
     - genlib() will not accept anymore that there is not an "endfunction"
