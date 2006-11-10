@@ -128,16 +128,27 @@ if comments==' ' then
    hx=0.43
 end;
 
+isNewStyle = ( get("figure_style") == "new") ;
+
 [wrect,frect]=xgetech();
 //magnitude
 xsetech(wrect=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]);
-rect=[mini(frq),mini(d),maxi(frq),maxi(d)]
+rect=[mini(frq),mini(d);maxi(frq),maxi(d)]
 // just to fix the scales for xgrid
-plot2d1("oln",mini(frq),mini(d),0,"051"," ",rect);
+if ~isNewStyle then
+  plot2d1("oln",mini(frq),mini(d),0,"051"," ",rect);
+end
+
 // xgrid first 
 xgrid(4);
 // now the curves 
-plot2d1("oln",frq',d',[1:mn],"000"," ",rect);
+plot2d1("oln",frq',d') ;
+if isNewStyle then
+  axes = gca() ;
+  axes.data_bounds = rect ;
+  a.log_flags = "lnn" ;
+end
+
 if type(dom)==1 then
   [xx1,xx2]=xgetech();
   val= xx2([2;4])';
@@ -152,12 +163,21 @@ if ( get("figure_style") == "new" ) then
   sciCurAxes = get("current_axes") ;
 end
 
-rect=[mini(frq),mini(phi),maxi(frq),maxi(phi)]
+rect=[mini(frq),mini(phi);maxi(frq),maxi(phi)]
 // just to fix the scales for xgrid
-plot2d1("oln",mini(frq),mini(phi),0,"051"," ",rect);
+if ~isNewStyle then
+  plot2d1("oln",mini(frq),mini(phi),0,"051"," ",rect);
+end
+
 xgrid(4);
 //  now the curves
-plot2d1("oln",frq',phi',[1:mn],"000");
+plot2d1( "oln",frq',phi' ) ;
+if isNewStyle then
+  axes = gca() ;
+  axes.data_bounds = rect ;
+  a.log_flags = "lnn" ;
+end
+
 
 if type(dom)==1 then
   [xx1,xx2]=xgetech();
