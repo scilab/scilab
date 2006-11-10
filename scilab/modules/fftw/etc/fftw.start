@@ -20,11 +20,11 @@ path = getshortpathname(path);
 
 if LANGUAGE == 'fr' then
 	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/fr',%f,%f);
-	add_help_chapter("FFTW",pathhelp);
+//	add_help_chapter("FFTW",pathhelp);
 //	add_demo('FFTW',pathdemos);
 elseif LANGUAGE == 'eng' then
 	pathhelp = pathconvert(part(path,1:(length(path)-5))+'/help/eng',%f,%f);
-	add_help_chapter("Sound file handling",pathhelp);
+//	add_help_chapter("Sound file handling",pathhelp);
 //	add_demo('FFTW',pathdemos);
 end
 
