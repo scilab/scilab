@@ -1,3 +1,12 @@
-licence file
+Most of the source code is INRIA.
 
-INRIA 2006
+
+Some of them are copyrighted by WGS (Working Group on Software) - Slicot project :
+Files : modules/cacsd/src/slicot/*
+
+Path : modules/cacsd/fortran
+Files : ereduc.f fstair.f inva.f polmc.f ssxmc.f ZB03OD.f
+
+Path : modules/cacsd/
+Files : sci_f_sident.f sci_f_sorder.f sci_f_findbd.f
+
