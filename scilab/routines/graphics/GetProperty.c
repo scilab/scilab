@@ -4959,6 +4959,8 @@ BOOL sciIsMergeable( sciPointObj * pObj )
       return TRUE ;
     case SCI_RECTANGLE:
       return TRUE ;
+    case SCI_MERGE:
+      return TRUE ;
     default:
       return FALSE;
       break;
