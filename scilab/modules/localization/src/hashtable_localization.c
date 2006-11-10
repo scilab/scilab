@@ -47,22 +47,28 @@ void DestroyHashtable_string(struct hashtable *hash_table)
 }
 /*-----------------------------------------------------------------------------------*/ 
 char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
+/* return a copy of the string in hashtable */
 {
 	int i=0;
+	char *FindString=NULL;
 	struct key_string *k;
 	struct key_string *kElem=NULL;
-	
 
 	k=(struct key_string*)MALLOC(sizeof(struct key_string));
 	k->Key_String=MALLOC((strlen(key)+1)*sizeof(char));
 	strcpy(k->Key_String,key);
+
 	kElem=hashtable_search(hash_table,k);
+
 	FREE(k);
+
 	if (kElem) 
 	{
-		return kElem->Key_String;
+		FindString=(char*)MALLOC(sizeof(char)*(strlen(kElem->Key_String)+1));
+		if (FindString) strcpy(FindString,kElem->Key_String);
 	}
-	return NULL;
+
+	return FindString;
 }
 /*-----------------------------------------------------------------------------------*/ 
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v)

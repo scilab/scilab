@@ -224,8 +224,8 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 	strcpy(newpiece,"\\r\\n");
 	StringWithoutSomeChars=Replace( Tag,oldpiece,newpiece);
 
-	StringError=SearchHashtable_string(Table_Scilab_Errors,StringWithoutSomeChars);//show the string we need
-	FREE(StringWithoutSomeChars);
+	StringError=SearchHashtable_string(Table_Scilab_Errors,StringWithoutSomeChars);
+	if (StringWithoutSomeChars) FREE(StringWithoutSomeChars);
 	
 	if (StringError)
 	{
@@ -233,53 +233,31 @@ IMPORT_EXPORT_LOCALIZATION_DLL char *QueryStringError(char *Tag)
 		strcpy(oldpiece,"\\r\\n");
 		strcpy(newpiece,"\r\n");
 		StringWithoutSomeChars=Replace(StringError,oldpiece,newpiece);
-		FREE(StringError);
-		StringError=StringWithoutSomeChars;
+		if (StringError) FREE(StringError);
+		StringError = StringWithoutSomeChars;
 	}
 
 	return StringError;
 }
 /*-----------------------------------------------------------------------------------*/ 
 static char *Replace(char *S1, char *S2, char *S3) 
-{ 
-   int str_index, newstr_index, oldpiece_index, end,new_len, old_len, cpy_len; 
-   char *c=NULL; 
-   char *newstring=NULL;
+{
+	char *buffer=NULL;
+	char *p=NULL;
 
-   newstring = (char*)MALLOC((strlen(S1)*2)*sizeof(char));
+	buffer = (char*)MALLOC((strlen(S1)*2)*sizeof(char));
 
-   if (newstring)
-   {
-	   if ((c = (char *) strstr(S1, S2)) == NULL) return S1; 
+	if(!(p = strstr(S1, S2))) 
+	{
+		sprintf(buffer,"%s",S1);
+		return buffer;
+	}
 
-	   new_len        = strlen(S3);
-	   old_len        = strlen(S2);
-	   end            = strlen(S1) - old_len;
-	   oldpiece_index = c - S1;
+	strncpy(buffer, S1, p-S1);
+	buffer[p-S1] = '\0';
 
-	   newstr_index = 0; 
-	   str_index = 0; 
+	sprintf(buffer+(p-S1), "%s%s", S3, p+strlen(S2));
 
-	   while(str_index <= end && c != NULL) 
-	   { 
-		   /* Copy characters from the left of matched pattern occurrence */
-		   cpy_len = oldpiece_index-str_index;
-		   strncpy(newstring+newstr_index, S1+str_index, cpy_len);
-		   newstr_index += cpy_len;
-		   str_index    += cpy_len;
-
-		   /* Copy replacement characters instead of matched pattern */
-		   strcpy(newstring+newstr_index, S3);
-		   newstr_index += new_len;
-		   str_index    += old_len;
-
-		   /* Check for another pattern match */
-		   if((c = (char *) strstr(S1+str_index, S2)) != NULL) oldpiece_index = c - S1;
-	   }
-
-   }
-   else return S1; 
-   
-   return newstring; 
+	return buffer;
 }
 /*-----------------------------------------------------------------------------------*/ 
