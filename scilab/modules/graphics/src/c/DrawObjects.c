@@ -5779,6 +5779,12 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
         
         ytmp[0] = ppPolyLine->pvy[index];
         ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
+
+        if( ppPolyLine->pvz != NULL )
+        {
+          ztmp[0] = ppPolyLine->pvz[index];
+          ztmp[1] = ztmp[0];
+        }
       }
       else
       {
@@ -5787,12 +5793,11 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
         
         ytmp[0] = ppPolyLine->pvy[index];
         ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
-      }
-      
-      if( ppPolyLine->pvz != NULL )
-      {
-	  ztmp[0] = ppPolyLine->pvz[index];
-	  ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+        if( ppPolyLine->pvz != NULL )
+        {
+          ztmp[0] = ppPolyLine->pvz[index];
+          ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+        }
       }
       
       if( ppPolyLine->pvz != NULL )
@@ -6081,6 +6086,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       case  SCI_POLYLINE:
         {
           sciPolyline * ppPolyLine = pPOLYLINE_FEATURE( pobj ) ;
+          n1 = ppPolyLine->n1 ;
           p=0;
           if ( sciGetIsMark( pobj ) ) { p=1 ; } /* F.Leray 20.01.05 A REVOIR ICI*/
           if ( sciGetIsLine( pobj ) ) { p=2 ; }
@@ -6093,6 +6099,11 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
             
             ytmp[0] = ppPolyLine->pvy[index];
             ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
+            if(ppPolyLine->pvz != NULL)
+            {
+              ztmp[0] = ppPolyLine->pvz[index];
+              ztmp[1] = ztmp[0] ;
+            }
           }
           else
           {
@@ -6101,11 +6112,12 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
             
             ytmp[0] = ppPolyLine->pvy[index];
             ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
-          }
-                   
-          if(ppPolyLine->pvz != NULL){
-            ztmp[0] = ppPolyLine->pvz[index];
-            ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+            
+            if(ppPolyLine->pvz != NULL)
+            {
+              ztmp[0] = ppPolyLine->pvz[index];
+              ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+            }
           }
           
           if(ppPolyLine->pvz != NULL)
@@ -6813,7 +6825,7 @@ sciDrawObj (sciPointObj * pobj)
           psonstmp = sciGetLastSons (pobj);
           while (psonstmp != (sciSons *) NULL)
           {
-            if ( sciGetEntityType(psonstmp->pointobj) != SCI_MERGE )
+            if ( !(pSUBWIN_FEATURE(pobj)->facetmerge && sciIsMergeable(psonstmp->pointobj))  )
             {
               sciDrawObj(psonstmp->pointobj) ;
             }
@@ -6853,12 +6865,16 @@ sciDrawObj (sciPointObj * pobj)
 	  /* 	 if (sciGetVisibility(pobj)) */
 	  DrawAxesBackground();
 	   
-	  /** walk subtree **/
-	  psonstmp = sciGetLastSons (pobj);
-	  while (psonstmp != (sciSons *) NULL) {
-	    sciDrawObj (psonstmp->pointobj);
-	    psonstmp = psonstmp->pprev;
-	  }
+          /* there is a bug here */
+          /* We should make a check for merge objects here */
+          /* But merge object has been only created only for 3d */
+          /* so sometimes it works, sometime not */
+          psonstmp = sciGetLastSons (pobj);
+          while (psonstmp != (sciSons *) NULL)
+          {
+            sciDrawObj(psonstmp->pointobj) ; 
+            psonstmp = psonstmp->pprev;
+          }	  
 
 	  x[0] = sciGetForeground (pobj);
 	  x[2] = sciGetLineWidth (pobj);
