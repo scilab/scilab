@@ -4,7 +4,6 @@
 /* DoublyLinkedList.h                                                    */
 /*                                                                       */
 /* Authors : Daniel Lacroix (Public Domain)                              */
-/* Authorization of modifying and including the file in the Scilab       */
 /* Software by Daniel Lacroix 15/09/2006.                                */
 /* Modification : Jean-Baptiste Silvy for compatibility with Scilab      */
 /*                                                                       */
