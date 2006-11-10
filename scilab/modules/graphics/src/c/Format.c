@@ -750,9 +750,7 @@ int C2F(theticks)(xminv, xmaxv, grads, ngrads)
  *   grads is a vector with at most 20 components such that     *
  *   grads(1:ngrads) = linspace(xl, xu, ngrads)                 *
  *   xl <= xminv, xu >= xmaxv;                                  *
- *   If xminv<0 and xmaxv>0 one of the ticks is at zero.        *
- *   Auteur/Copyright FD. J'ai fais ce programme parce que      *
- *   j'en avais marre de pas voir le zero sur les graduations   */
+ *   If xminv<0 and xmaxv>0 one of the ticks is at zero.        */
 
 {
   double d1, d2;  int i1;
