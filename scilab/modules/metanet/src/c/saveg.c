@@ -40,10 +40,9 @@ extern char* dirname();
 extern int CheckGraphName();
 extern char *StripGraph();
 
-typedef int (*PF)();
+typedef int (*PF)(const void *,const void *);
 
-static int CompString(s1, s2)
-char **s1, **s2;
+static int CompString(char **s1, char **s2)
 {
   return strcmp((char*)*s1,(char*)*s2);
 }
