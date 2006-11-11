@@ -121,7 +121,7 @@ int C2F(gw_metanet)()
 	#ifndef _DEBUG
 		_try
 		{
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{	
@@ -130,10 +130,10 @@ int C2F(gw_metanet)()
 			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
 		}
 	#else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 	#endif
 #else
-		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 #endif
 	return 0;
 }

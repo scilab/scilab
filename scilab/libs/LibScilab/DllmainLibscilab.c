@@ -32,7 +32,6 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
 #pragma comment(lib,"../../bin/sparse_f.lib")
-#pragma comment(lib,"../../bin/metanet_f.lib")
 #pragma comment(lib,"../../bin/scicos_f.lib")
 
 #pragma comment(lib,"../../libs/interpolation_f.lib")

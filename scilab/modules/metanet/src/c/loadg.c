@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #if !(defined _MSC_VER)
 #ifdef __FreeBSD__
 #include <sys/types.h>
@@ -23,16 +24,12 @@
 #endif
 
 #include "mysearch.h"
-
 #include "defs.h"
-
 #include "machine.h"
-
 #include "MALLOC.h"
 
 #define MAXNAM 80
 
-extern double atof();
 extern char* my_basename();
 extern int CheckGraphName();
 extern void cerro();
@@ -110,7 +107,7 @@ int *ndim,*ma;
 #endif
   pname = StripGraph(my_basename(path));
 
-  *lname = strlen(pname);
+  *lname = (int)strlen(pname);
 
   if ((*name = (char *)MALLOC((unsigned)sizeof(char)*(*lname + 1)))
       == NULL) {

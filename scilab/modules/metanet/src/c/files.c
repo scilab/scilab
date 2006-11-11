@@ -98,7 +98,7 @@ char *path;
       /* Remove any trailing slashes from result. */
       while (slash > path && *slash == '/')
 	--slash;
-      length = slash - path + 1;
+      length = (int) (slash - path + 1);
     }
   newpath = (char *)MALLOC ((unsigned)length + 1);
   if (newpath == 0)

@@ -12,6 +12,8 @@
 #include <malloc.h>
 #endif
 
+#include <math.h>
+
 #ifdef _MSC_VER
 #include <stdlib.h> /*qsort*/
 #include <direct.h> /*_getcwd _chdir*/
@@ -27,16 +29,11 @@
 #include <unistd.h>
 #endif
 
-
-
-
 #include "machine.h"
-
 #include "MALLOC.h"
 
 #define MAXNAM 80
 
-extern double atof();
 extern char* my_basename();
 extern void cerro();
 extern char* dirname();

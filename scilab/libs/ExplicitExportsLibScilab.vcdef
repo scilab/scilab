@@ -1,3 +1,4 @@
+;core
 	stack_
 	vstk_
 	recu_
@@ -5,10 +6,10 @@
 	errgst_
 	com_
 	adre_
-	intersci_
 	cha1_
-	versionflag
   mtlbc_
+;intersci  
+ 	intersci_ 
 ; scicos
 	dbcos_
 	curblk_

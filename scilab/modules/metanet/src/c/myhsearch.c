@@ -101,7 +101,7 @@ ENTRY* myhsearch(ENTRY item,SCIACTION action)
     register unsigned hval;
     register unsigned hval2;
     register unsigned count;
-    register unsigned len = strlen(item.key);
+    register unsigned len = (unsigned)strlen(item.key);
     register unsigned idx;
 
     /*
