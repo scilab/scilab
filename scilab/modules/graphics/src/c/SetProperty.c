@@ -4900,6 +4900,14 @@ void setVersionFlag( int newFlag )
   versionflag = newFlag ;
 }
 /*--------------------------------------------------------------------------------------------*/
+/**
+* Get the version flag.
+*/
+int getVersionFlag(void)
+{
+	return versionflag;
+}
+/*--------------------------------------------------------------------------------------------*/
 int sciInitHiddenColor( sciPointObj * pObj, int newColor )
 {
   switch( sciGetEntityType( pObj ) )
