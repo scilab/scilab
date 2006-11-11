@@ -94,7 +94,7 @@ double *inptr[],*outptr[],*t;
       if (k>=kmax&&kmax==n) {
 	/*     read a new buffer */
 	m=ipar[6]*ipar[7];
-	F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
+	F2C(cvstr)(&three,&(ipar[2]),type,&job,(unsigned long)strlen(type));
 	for (i=2;i>=0;i--)
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
 	ierr=0;
@@ -120,7 +120,7 @@ double *inptr[],*outptr[],*t;
     }
   }
   else if (*flag==4) {
-    F2C(cvstr)(&(ipar[1]),&(ipar[10]),str,&job,strlen(str));
+    F2C(cvstr)(&(ipar[1]),&(ipar[10]),str,&job,(unsigned long)strlen(str));
     str[ipar[1]] = '\0';
     fd = fopen(str,"rb");
     if (!fd ) {
@@ -131,7 +131,7 @@ double *inptr[],*outptr[],*t;
     z[3]=(long)fd;
     /* skip first records */
     if (ipar[9]>1) {
-      F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
+      F2C(cvstr)(&three,&(ipar[2]),type,&job,(unsigned long)strlen(type));
       for (i=2;i>=0;i--)
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
       offset=(ipar[9]-1)*ipar[7]*sizeof(char);
@@ -147,7 +147,7 @@ double *inptr[],*outptr[],*t;
     }
     /* read first buffer */
     m=ipar[6]*ipar[7];
-    F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
+    F2C(cvstr)(&three,&(ipar[2]),type,&job,(unsigned long)strlen(type));
     for (i=2;i>=0;i--)
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
     mget2(fd,ipar[8],buffer,m,type,&ierr);

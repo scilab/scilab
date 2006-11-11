@@ -265,7 +265,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 /** Used for calling a scilab function by its name  **/
 
 #define SciString(ibegin,name,mlhs,mrhs) \
-    if( ! C2F(scistring)(ibegin,name,mlhs,mrhs,strlen(name))) return 0;
+    if( ! C2F(scistring)(ibegin,name,mlhs,mrhs,(unsigned long)strlen(name))) return 0;
 
 /** Used for calling a scilab function given as argument **/
 

@@ -47,18 +47,9 @@ int C2F(withgtk)(int *rep)
 /*************************************************************************************************/
 int C2F(withscicos)(int *rep)
 { 
-	#ifdef _MSC_VER
-		*rep = ExistScicos(); 
-	#else
-		#ifdef WITHOUT_SCICOS
-			*rep =0; 
-		#else 
-			*rep =1; 
-		#endif 
-	#endif
+	*rep = ExistScicos(); 
 	return 0;
 }
-
 /*************************************************************************************************/
 int C2F(withmodelicac)(int *rep)
 {
@@ -212,21 +203,6 @@ BOOL ExistJavaSciWin(void)
 	wsprintf(fullpathJavaSci,"%s%s",SCIPATH,JavaSCIName);
 	bOK=FileExist(fullpathJavaSci);
 	if (fullpathJavaSci) FREE(fullpathJavaSci);
-	return bOK;
-}
-/*************************************************************************************************/
-BOOL ExistScicos(void)
-{
-	#define ScicosMacrosDirectory "/modules/scicos/macros/scicos"
-
-	BOOL bOK=FALSE;
-	char *SCIPATH = (char*)getSCIpath();
-	char *fullpathScicos=NULL;
-	
-	fullpathScicos=(char*)MALLOC((strlen(SCIPATH)+strlen(ScicosMacrosDirectory)+1)*sizeof(char));
-	wsprintf(fullpathScicos,"%s%s",SCIPATH,ScicosMacrosDirectory);
-	bOK=FileExist(fullpathScicos);
-	if (fullpathScicos) FREE(fullpathScicos);
 	return bOK;
 }
 #endif

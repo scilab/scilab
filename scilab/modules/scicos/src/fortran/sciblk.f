@@ -29,7 +29,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /scsptr/
 cDEC$ ENDIF
 c*-------------------------------------------------------------------
 
-      common /ierode/ iero
+      common /ierscode/ iero
       common /scsptr/ ptr
 
       integer ptr

@@ -31,8 +31,8 @@
 			/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				Description="Build dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scicos.lib&quot; 1&gt;NUL 2&gt;NUL"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -80,7 +80,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib scicos.lib"
 				OutputFile="$(SolutionDir)bin\scicos_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="scicos_f.def"
@@ -130,8 +130,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Build Libscilab.lib (dependencies)"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL"
+				Description="Build dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Scicos_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Scicos.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -173,7 +173,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib"
+				AdditionalDependencies="Libscilab.lib scicos.lib"
 				OutputFile="$(SolutionDir)bin\scicos_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="scicos_f.def"

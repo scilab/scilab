@@ -1137,7 +1137,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/, /lsa001/, /lsr001/
 cDEC$ ENDIF
 c-----------------------------------------------------------------------
       integer         iero
-      common /ierode/ iero
+      common /ierscode/ iero
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      2   illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,

@@ -341,10 +341,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Ex-fbutn.c"
-				>
-			</File>
-			<File
 				RelativePath=".\Ex-fort.c"
 				>
 			</File>
@@ -1022,10 +1018,6 @@
 			</File>
 			<File
 				RelativePath=".\error.f"
-				>
-			</File>
-			<File
-				RelativePath=".\Ex-fbutn.f"
 				>
 			</File>
 			<File

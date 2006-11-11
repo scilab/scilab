@@ -1,4 +1,4 @@
-	LIBRARY    Libscilab.dll
+LIBRARY    Libscilab.dll
 
 
 EXPORTS
@@ -27,7 +27,6 @@ errgst_
 dtosci_
 itosci_
 recu_
-scsptr_
 parse_
 scistring_
 ;
@@ -45,7 +44,6 @@ isort_
 urand_
 int2db_
 entier_
-getscilabel_
 iset_
 ;
 ;differential_equations
@@ -60,6 +58,9 @@ rchek2_
 vmnorm_
 ewset_
 xerrwv_
+lsr001_
+lsa001_
+ls0001_
 ;
 ; polynomials_f
 wprxc_
@@ -67,25 +68,9 @@ wprxc_
 ;wsci
 sxevents_
 ;
-;scicos
-getlabel_
-getouttb_
-scicosclip_
-dbcos_
-curblk_
-costol_
-coshlt_
-ierode_
-lsr001_
-lsa001_
-ls0001_
-cosdebugcounter_
-cosdebug_  
-;
 ;graphics
 setscale2d_
 sciwin_
-oldgraphics_
 plot2d_
 dr_
 dr1_

@@ -8,17 +8,11 @@
 	adre_
 	cha1_
   mtlbc_
+;  
 ;intersci  
  	intersci_ 
-; scicos
-	dbcos_
-	curblk_
-	costol_
-	coshlt_
-	ierode_
-	cosdebugcounter_
-	cosdebug_  
-	scsptr_
+;
+;differential_equations_f	
 	lsr001_
   lsa001_
   ls0001_

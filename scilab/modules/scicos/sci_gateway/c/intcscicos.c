@@ -480,7 +480,7 @@ int intcpass2(fname,fname_len)
 	      n1111=le11[5]-1;
 	      if ((bllst111[k]=(char*) MALLOC(sizeof(char)*(n1111+1))) ==NULL )  return 0;
 	      ((char*) bllst111[k])[n1111]='\0';
-	      C2F(cvstr)(&n1111,le111,bllst111[k],&one,strlen(bllst111[k]));
+	      C2F(cvstr)(&n1111,le111,bllst111[k],&one,(unsigned long)strlen(bllst111[k]));
 	      
 	      le12=(int*) listentry(le1,2); /*sim(2)*/
 	      le121=((double *) (le12+4));
@@ -494,7 +494,7 @@ int intcpass2(fname,fname_len)
 	  n1111=le1[5]-1;
 	  if ((bllst111[k]=(char*) MALLOC(sizeof(char)*(n1111+1))) ==NULL )  return 0;
 	  ((char*) bllst111[k])[n1111]='\0';
-	  C2F(cvstr)(&n1111,le111,bllst111[k],&one,strlen(bllst111[k]));
+	  C2F(cvstr)(&n1111,le111,bllst111[k],&one,(unsigned long)strlen(bllst111[k]));
 
 	}
       /* 2ieme element de la list in */
@@ -711,7 +711,7 @@ int intcpass2(fname,fname_len)
       le1010=((int *) (le10+6));      
       if ((bllst10[k]=(char*) MALLOC(sizeof(char)*2)) ==NULL )  return 0;
       ((char*) bllst10[k])[1]='\0';
-      C2F(cvstr)(&one,le1010,bllst10[k],&one,strlen(bllst10[k]));
+      C2F(cvstr)(&one,le1010,bllst10[k],&one,(unsigned long)strlen(bllst10[k]));
       /* 11ieme element de la list firing*/
       if ((field_name=(char*) MALLOC(sizeof(char)*7)) ==NULL )  return 0;
       ((char*) field_name)[6]='\0';
@@ -752,7 +752,7 @@ int intcpass2(fname,fname_len)
       n1313=le13[5]-1;
       if ((bllst13[k]=(char*) MALLOC(sizeof(char)*(n1313+1))) ==NULL )  return 0;
       ((char*) bllst13[k])[n1313]='\0'; 
-      C2F(cvstr)(&n1313,le1313,bllst13[k],&one,strlen(bllst13[k]));
+      C2F(cvstr)(&n1313,le1313,bllst13[k],&one,(unsigned long)strlen(bllst13[k]));
      /* 14ieme element de la list nzcross*/
       if ((field_name=(char*) MALLOC(sizeof(char)*8)) ==NULL )  return 0;
       ((char*) field_name)[7]='\0';
@@ -1085,7 +1085,7 @@ int intcpass2(fname,fname_len)
   CreateVar(8,"l", &n10, &one, &l33);
   for (i=0; i < n10; i++)
     {
-      n38=strlen(y8[i]);
+      n38=(int)strlen(y8[i]);
       y37=*(y8+i);
       CreateListVarFromPtr(8,i+1,"c", &n38, &one, &y37); 
     }

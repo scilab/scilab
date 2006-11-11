@@ -131,7 +131,6 @@ src/fortran/dtosci.f \
 src/fortran/bexec.f \
 src/fortran/varfunptr.f \
 src/fortran/getfun.f \
-src/fortran/Ex-fbutn.f \
 src/fortran/savlod.f \
 src/fortran/error.f \
 src/fortran/cvdm.f \

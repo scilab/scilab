@@ -25,6 +25,13 @@
 
 #include "scicos-def.h"
 
+typedef struct {
+	integer iero;
+} IERSCODE_struct;
+
+IERSCODE_struct C2F(ierscode);
+
+
 #define abs(x) ((x) >= 0 ? (x) : -(x))
 #ifndef _MSC_VER
 #define max(a,b) ((a) >= (b) ? (a) : (b))
@@ -2975,7 +2982,7 @@ integer C2F(funnum)(fname)
     if ( strcmp(fname,tabsim[i].name) == 0 ) return(i+1);
     i++;
   }
-  ln=strlen(fname);
+  ln=(int)strlen(fname);
   C2F(iislink)(fname,&loc);C2F(iislink)(fname,&loc);
   if (loc >= 0) return(ntabsim+(int)loc+1);
   return(0);
@@ -2998,10 +3005,10 @@ int C2F(simblk)(neq1, t, xc, xcdot)
      */
 {
   C2F(dset)(neq, &c_b14,xcdot , &c__1);
-  C2F(ierode).iero = 0;
+  C2F(ierscode).iero = 0;
   *ierr= 0;
   odoit(xcdot, xc,xcdot,t);
-  C2F(ierode).iero = *ierr;
+  C2F(ierscode).iero = *ierr;
   return 0;
 }
 
@@ -3024,10 +3031,10 @@ int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
   C2F(dcopy)(neq, xcdot, &c__1, residual, &c__1);
   *ires=0;
   *ierr= 0;
-  C2F(ierode).iero = 0;
+  C2F(ierscode).iero = 0;
   odoit(residual, xc, xcdot,t);
-  C2F(ierode).iero = *ierr;
-  if(C2F(ierode).iero != 0) *ires=-1;
+  C2F(ierscode).iero = *ierr;
+  if(C2F(ierscode).iero != 0) *ires=-1;
   return 0;
 }
 
@@ -3039,9 +3046,9 @@ int C2F(grblkdaskr)(neq1, t, xc, xtd,ng1, g,rpar1,ipar1)
      double *g,*rpar1;
 {
   *ierr= 0;
-  C2F(ierode).iero = 0;
+  C2F(ierscode).iero = 0;
   zdoit(g, xtd, xc,t);
-  C2F(ierode).iero = *ierr;
+  C2F(ierscode).iero = *ierr;
   return 0;
 }
 
@@ -3067,10 +3074,10 @@ int C2F(grblk)(neq1, t, xc, ng1, g)
      /* Local variables */
 
 {
- C2F(ierode).iero = 0;
+ C2F(ierscode).iero = 0;
  *ierr= 0;
  zdoit(g,xc, xc,t);
- C2F(ierode).iero = *ierr;
+ C2F(ierscode).iero = *ierr;
  return 0;
 }
 
@@ -3525,7 +3532,7 @@ int C2F(Jacobian)(t,xc, xcdot,residual,cj,rpar1,ipar1)
     }
 
   /*  chr='R'; DISP(residual,n,n,&chr);*/
-  C2F(ierode).iero = *ierr;
+  C2F(ierscode).iero = *ierr;
  return 0;
 
 }

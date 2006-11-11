@@ -75,6 +75,8 @@ src/c/switch2.c \
 src/c/cmscope.c \
 src/c/asinh_blk.c \
 src/c/cpass2.c \
+src/c/ExistScicos.c \
+src/c/haltscicos.c \
 src/c/bouncexy.c
 
 SCICOS_C_SOURCES_EXT = \

@@ -78,7 +78,7 @@ int badconnection(int* path_out,int prt_out, int nout,int* path_in,int prt_in,in
 int Message(char* code) 
 {
   int mlhs=0,mrhs=1,ibegin=1;
-  int l1, m1=strlen(code), n1=1;
+  int l1, m1=(int)strlen(code), n1=1;
   static char name[] = "x_message" ;
   CreateVar(1, "c", &m1, &n1, &l1);
   strcpy(cstk(l1),code);

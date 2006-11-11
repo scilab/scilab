@@ -7,7 +7,6 @@
 #include <Windows.h>
 #include "win_mem_alloc.h"
 extern char *GetExceptionString(DWORD ExceptionCode);
-extern BOOL ExistScicos(void);
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* interface for the previous function Table */ 
@@ -45,45 +44,29 @@ static intcscicosTable Tab[]={
   {intcurblkc,"curblockc"},
   {intbuildouttb,"buildouttb"},
 };
-static int SCICOS_ON=1;
-static int NotFirstTimeinScicosGateway=0;
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(gw_cscicos)()
 {  
 	Rhs = Max(0, Rhs);
-	if (!NotFirstTimeinScicosGateway)
-	{
-		#if _MSC_VER
-		SCICOS_ON=ExistScicos();
-		#endif
-		NotFirstTimeinScicosGateway++;
-	}
-	if (SCICOS_ON)
-	{
-		#if _MSC_VER
-			#ifndef _DEBUG
-				_try
-				{
-					(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-				}
-				_except (EXCEPTION_EXECUTE_HANDLER)
-				{
-					char *ExceptionString=GetExceptionString(GetExceptionCode());
-					sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-					if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
-				}
-			#else
-				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-			#endif
+	#if _MSC_VER
+		#ifndef _DEBUG
+			_try
+			{
+				(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+			}
+			_except (EXCEPTION_EXECUTE_HANDLER)
+			{
+				char *ExceptionString=GetExceptionString(GetExceptionCode());
+				sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
+				if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+			}
 		#else
-			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 		#endif
-		C2F(putlhsvar)();
-	}
-	else
-	{
-		Scierror(999,"Scicos isn't installed\n");
-	}
+	#else
+		(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+	#endif
+	C2F(putlhsvar)();
 	
 	return 0;
 }
