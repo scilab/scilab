@@ -326,20 +326,20 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-CheckTicksProperty.lo \
 	libgraphics_la-set_x_ticks_property.lo \
 	libgraphics_la-DefaultCommandArg.lo libgraphics_la-periPos.lo \
-	libgraphics_la-graphicSession.lo libgraphics_la-Xcall1.lo \
-	libgraphics_la-Axes.lo libgraphics_la-Plo2d2.lo \
-	libgraphics_la-sciMatrix.lo libgraphics_la-Xcall.lo \
-	libgraphics_la-Plo2d4.lo libgraphics_la-DrawObjects.lo \
-	libgraphics_la-Vect2Matrix.lo libgraphics_la-xs2file.lo \
-	libgraphics_la-Plo3d.lo libgraphics_la-dr1Call.lo \
-	libgraphics_la-GetProperty.lo libgraphics_la-periFig.lo \
-	libgraphics_la-Contour.lo libgraphics_la-nues1.lo \
-	libgraphics_la-SetProperty.lo libgraphics_la-BasicAlgos.lo \
-	libgraphics_la-BuildObjects.lo libgraphics_la-sciCall.lo \
-	libgraphics_la-CloneObjects.lo libgraphics_la-InitObjects.lo \
-	libgraphics_la-Plo2d.lo libgraphics_la-pixel_mode.lo \
-	libgraphics_la-Format.lo libgraphics_la-Champ.lo \
-	libgraphics_la-periX11.lo libgraphics_la-Alloc.lo \
+	libgraphics_la-periX11.lo libgraphics_la-graphicSession.lo \
+	libgraphics_la-Xcall1.lo libgraphics_la-Axes.lo \
+	libgraphics_la-Plo2d2.lo libgraphics_la-sciMatrix.lo \
+	libgraphics_la-Xcall.lo libgraphics_la-Plo2d4.lo \
+	libgraphics_la-DrawObjects.lo libgraphics_la-Vect2Matrix.lo \
+	libgraphics_la-xs2file.lo libgraphics_la-Plo3d.lo \
+	libgraphics_la-dr1Call.lo libgraphics_la-GetProperty.lo \
+	libgraphics_la-periFig.lo libgraphics_la-Contour.lo \
+	libgraphics_la-nues1.lo libgraphics_la-SetProperty.lo \
+	libgraphics_la-BasicAlgos.lo libgraphics_la-BuildObjects.lo \
+	libgraphics_la-sciCall.lo libgraphics_la-CloneObjects.lo \
+	libgraphics_la-InitObjects.lo libgraphics_la-Plo2d.lo \
+	libgraphics_la-pixel_mode.lo libgraphics_la-Format.lo \
+	libgraphics_la-Champ.lo libgraphics_la-Alloc.lo \
 	libgraphics_la-StringMatrix.lo libgraphics_la-FeC.lo \
 	libgraphics_la-gsort.lo libgraphics_la-Plo2dn.lo \
 	libgraphics_la-Plo3dn.lo libgraphics_la-Actions.lo \
@@ -353,7 +353,7 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-gdfonts.lo libgraphics_la-gdfontt.lo \
 	libgraphics_la-gdfontg.lo libgraphics_la-gdfontl.lo \
 	libgraphics_la-bdftogd.lo libgraphics_la-xfonts.lo \
-	libgraphics_la-gd.lo
+	libgraphics_la-gd.lo libgraphics_la-StringBox.lo
 am__objects_2 = libgraphics_la-sci_swap_handles.lo \
 	libgraphics_la-sci_readgif.lo libgraphics_la-sci_grayplot.lo \
 	libgraphics_la-sci_matplot1.lo libgraphics_la-sci_xfpolys.lo \
@@ -887,6 +887,7 @@ src/c/getHandleProperty/CheckTicksProperty.c \
 src/c/getHandleProperty/set_x_ticks_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
+src/c/periX11.c \
 src/c/graphicSession.c \
 src/c/Xcall1.c \
 src/c/Axes.c \
@@ -913,7 +914,6 @@ src/c/Plo2d.c \
 src/c/pixel_mode.c \
 src/c/Format.c \
 src/c/Champ.c \
-src/c/periX11.c \
 src/c/Alloc.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
@@ -941,7 +941,8 @@ src/gd/gdfonts/gdfontg.c \
 src/gd/gdfonts/gdfontl.c \
 src/gd/bdftogd.c \
 src/gd/xfonts.c \
-src/gd/gd.c 
+src/gd/gd.c \
+src/c/StringBox.c
 
 
 # A voir si c'st utilisé
@@ -1163,6 +1164,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-SetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-SetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-SetPropertyStatus.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-StringBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-StringMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-Vect2Matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-WindowList.Plo@am__quote@
@@ -3338,6 +3340,13 @@ libgraphics_la-periPos.lo: src/c/periPos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-periPos.lo `test -f 'src/c/periPos.c' || echo '$(srcdir)/'`src/c/periPos.c
 
+libgraphics_la-periX11.lo: src/c/periX11.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-periX11.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-periX11.Tpo" -c -o libgraphics_la-periX11.lo `test -f 'src/c/periX11.c' || echo '$(srcdir)/'`src/c/periX11.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-periX11.Tpo" "$(DEPDIR)/libgraphics_la-periX11.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-periX11.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/periX11.c' object='libgraphics_la-periX11.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-periX11.lo `test -f 'src/c/periX11.c' || echo '$(srcdir)/'`src/c/periX11.c
+
 libgraphics_la-graphicSession.lo: src/c/graphicSession.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-graphicSession.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-graphicSession.Tpo" -c -o libgraphics_la-graphicSession.lo `test -f 'src/c/graphicSession.c' || echo '$(srcdir)/'`src/c/graphicSession.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-graphicSession.Tpo" "$(DEPDIR)/libgraphics_la-graphicSession.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-graphicSession.Tpo"; exit 1; fi
@@ -3519,13 +3528,6 @@ libgraphics_la-Champ.lo: src/c/Champ.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Champ.c' object='libgraphics_la-Champ.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-Champ.lo `test -f 'src/c/Champ.c' || echo '$(srcdir)/'`src/c/Champ.c
-
-libgraphics_la-periX11.lo: src/c/periX11.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-periX11.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-periX11.Tpo" -c -o libgraphics_la-periX11.lo `test -f 'src/c/periX11.c' || echo '$(srcdir)/'`src/c/periX11.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-periX11.Tpo" "$(DEPDIR)/libgraphics_la-periX11.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-periX11.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/periX11.c' object='libgraphics_la-periX11.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-periX11.lo `test -f 'src/c/periX11.c' || echo '$(srcdir)/'`src/c/periX11.c
 
 libgraphics_la-Alloc.lo: src/c/Alloc.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-Alloc.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-Alloc.Tpo" -c -o libgraphics_la-Alloc.lo `test -f 'src/c/Alloc.c' || echo '$(srcdir)/'`src/c/Alloc.c; \
@@ -3722,6 +3724,13 @@ libgraphics_la-gd.lo: src/gd/gd.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/gd/gd.c' object='libgraphics_la-gd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-gd.lo `test -f 'src/gd/gd.c' || echo '$(srcdir)/'`src/gd/gd.c
+
+libgraphics_la-StringBox.lo: src/c/StringBox.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-StringBox.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-StringBox.Tpo" -c -o libgraphics_la-StringBox.lo `test -f 'src/c/StringBox.c' || echo '$(srcdir)/'`src/c/StringBox.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-StringBox.Tpo" "$(DEPDIR)/libgraphics_la-StringBox.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-StringBox.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/StringBox.c' object='libgraphics_la-StringBox.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-StringBox.lo `test -f 'src/c/StringBox.c' || echo '$(srcdir)/'`src/c/StringBox.c
 
 libgraphics_la-sci_swap_handles.lo: sci_gateway/sci_swap_handles.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-sci_swap_handles.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-sci_swap_handles.Tpo" -c -o libgraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/sci_swap_handles.c; \

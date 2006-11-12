@@ -259,6 +259,7 @@ src/c/getHandleProperty/CheckTicksProperty.c \
 src/c/getHandleProperty/set_x_ticks_property.c \
 src/c/DefaultCommandArg.c \
 src/c/periPos.c \
+src/c/periX11.c \
 src/c/graphicSession.c \
 src/c/Xcall1.c \
 src/c/Axes.c \
@@ -285,7 +286,6 @@ src/c/Plo2d.c \
 src/c/pixel_mode.c \
 src/c/Format.c \
 src/c/Champ.c \
-src/c/periX11.c \
 src/c/Alloc.c \
 src/c/StringMatrix.c \
 src/c/FeC.c \
@@ -313,7 +313,8 @@ src/gd/gdfonts/gdfontg.c \
 src/gd/gdfonts/gdfontl.c \
 src/gd/bdftogd.c \
 src/gd/xfonts.c \
-src/gd/gd.c 
+src/gd/gd.c \
+src/c/StringBox.c
 
 # A voir si c'st utilisé
 #src/xdr/xdr_reference.c \
