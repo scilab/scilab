@@ -4,6 +4,8 @@
 EXPORTS
 ;core
 com_
+sciprint
+GetExceptionString
 ;
 ;intersci
 cerro
