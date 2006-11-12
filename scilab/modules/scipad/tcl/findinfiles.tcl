@@ -135,7 +135,7 @@ proc findinonefile {fname str cas reg whword} {
     # loop on file lines and search for matches on each single line
     while {[gets $fid line] >= 0} {
         $pad.fake insert 1.0 $line
-        set listoflinematch [searchforallmatches $pad.fake $str $cas $reg 0 $whword]
+        set listoflinematch [searchforallmatches $pad.fake $str $cas $reg 0 $whword [list ]]
         incr linenumber
         if {$listoflinematch != {}} {
             # at least one match has been found in the searched line of the file

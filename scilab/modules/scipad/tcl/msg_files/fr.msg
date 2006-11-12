@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.55
+# in sync at least with v6.56
 
 
 # commons
@@ -208,14 +208,19 @@
 ::msgcat::mcset fr "Replace with:" "Remplacer par :"
 ::msgcat::mcset fr "Find &Next" "Rechercher &suivant"
 ::msgcat::mcset fr "Replace &All" "Remplacer &tout"
+::msgcat::mcset fr "Direction" "Sens"
 ::msgcat::mcset fr "&Upwards" "Vers le &haut"
 ::msgcat::mcset fr "&Downwards" "Vers le &bas" 
+::msgcat::mcset fr "Text types" "Types de texte"
+::msgcat::mcset fr "Find options" "Options de recherche"
 ::msgcat::mcset fr "Match &whole word only" "Mot &entier seulement"
 ::msgcat::mcset fr "Match &case" "Respecter la &casse"
 ::msgcat::mcset fr "&Regular expression" "E&xpression régulière"
 ::msgcat::mcset fr "In all &opened files" "Dans tous les fichiers &ouverts"
 ::msgcat::mcset fr "In &selection only" "Da&ns la sélection seulement"
+::msgcat::mcset fr "In typed te&xt" "Dans des t&ypes de texte"
 ::msgcat::mcset fr "In a director&y" "Dans un réper&toire"
+::msgcat::mcset fr "Find in files search options" "Options de recherche dans un répertoire"
 ::msgcat::mcset fr "Directory r&ecurse search" "Recherche réc&ursive"
 ::msgcat::mcset fr "In files/file types:" "Dans les fichiers/types :"
 ::msgcat::mcset fr "In directory:" "Dans le répertoire :"

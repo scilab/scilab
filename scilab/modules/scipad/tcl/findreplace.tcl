@@ -6,6 +6,7 @@ proc findtextdialog {typ} {
     global listoftextarea
     global searchindir initdir fileglobpat searchinfilesalreadyrunning
     global searchforfilesonly
+    global listoftagsforfind searchintagged
     global findreplaceboxalreadyopen
 
     if {$findreplaceboxalreadyopen} {
@@ -23,7 +24,7 @@ proc findtextdialog {typ} {
     setwingeom $find
     # cancelfind must be called when closing the dialog with the upper right
     # cross, otherwise the fakeselection tag is not deleted
-    wm protocol $find WM_DELETE_WINDOW {cancelfind $find}
+    wm protocol $find WM_DELETE_WINDOW {cancelfind}
 
     # save the possibly existing selection
     # fakeselection is a copy of the sel tag, required because:
@@ -44,39 +45,39 @@ proc findtextdialog {typ} {
     }
 
     # entry fields
-    frame $find.l
-    frame $find.l.f1
+    frame $find.u
+    frame $find.u.f1
     if {$typ=="replace"} {
         set bestwidth [mcmaxra "Find what:" "Replace with:"]
     } else {
         set bestwidth [mcmaxra "Find what:"]
     }
-    label $find.l.f1.label -text [mc "Find what:"] \
+    label $find.u.f1.label -text [mc "Find what:"] \
         -width $bestwidth -font $menuFont
-    entry $find.l.f1.entry -textvariable SearchString \
+    entry $find.u.f1.entry -textvariable SearchString \
         -width 30 -font $textFont -exportselection 1
-    menubutton $find.l.f1.mb -indicatoron 0 -text ">" \
+    menubutton $find.u.f1.mb -indicatoron 0 -text ">" \
         -font $menuFont
-    menu $find.l.f1.mb.om1 -tearoff 0 -font $menuFont
-    $find.l.f1.mb configure -menu $find.l.f1.mb.om1
+    menu $find.u.f1.mb.om1 -tearoff 0 -font $menuFont
+    $find.u.f1.mb configure -menu $find.u.f1.mb.om1
     foreach {pattern label} [regexpsforfind] {
-        $find.l.f1.mb.om1 add command -font $menuFont \
+        $find.u.f1.mb.om1 add command -font $menuFont \
             -label "$label      $pattern" \
             -command [list insertregexpforfind $pattern]
     }
-    pack $find.l.f1.label $find.l.f1.entry $find.l.f1.mb -side left
-    pack configure $find.l.f1.entry -expand 1 -fill x
+    pack $find.u.f1.label $find.u.f1.entry $find.u.f1.mb -side left
+    pack configure $find.u.f1.entry -expand 1 -fill x
     if {$typ=="replace"} {
-        frame $find.l.f2
-        label $find.l.f2.label2 -text [mc "Replace with:"] \
+        frame $find.u.f2
+        label $find.u.f2.label2 -text [mc "Replace with:"] \
             -width $bestwidth -font $menuFont
-        entry $find.l.f2.entry2 -textvariable ReplaceString \
+        entry $find.u.f2.entry2 -textvariable ReplaceString \
             -width 30 -font $textFont -exportselection 1
-        pack $find.l.f2.label2 $find.l.f2.entry2 -side left
-        pack configure $find.l.f2.entry2 -expand 1 -fill x
-        pack $find.l.f1 $find.l.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
+        pack $find.u.f2.label2 $find.u.f2.entry2 -side left
+        pack configure $find.u.f2.entry2 -expand 1 -fill x
+        pack $find.u.f1 $find.u.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
     } else {
-        pack $find.l.f1 -pady 4 -padx 8 -expand 1 -fill x
+        pack $find.u.f1 -pady 4 -padx 8 -expand 1 -fill x
     }
 
     # buttons
@@ -91,7 +92,7 @@ proc findtextdialog {typ} {
         -command \"multiplefilesfindreplace $find findit\" \
         -width $bestwidth -font \[list $menuFont\] "
     eval "button $find.f2.button2 [bl "Cance&l"] \
-        -command \"cancelfind $find\" \
+        -command \"cancelfind\" \
         -width $bestwidth -font \[list $menuFont\] "
     if {$typ == "replace"} {
         eval "button $find.f2.button3 [bl "Re&place"] \
@@ -106,112 +107,173 @@ proc findtextdialog {typ} {
         pack $find.f2.button1 $find.f2.button2 -padx 2 -pady 4
     }
 
-    # up/down radiobutton
+    pack $find.u -expand 1 -fill x
+
+    frame $find.l
+
     frame $find.l.f4
-    frame $find.l.f4.f3 -borderwidth 2 -relief groove
-    eval "radiobutton $find.l.f4.f3.up [bl "&Upwards"] \
+
+    frame $find.l.f4.f1
+
+    # up/down radiobutton
+    labelframe $find.l.f4.f1.f1 -borderwidth 2 -relief groove \
+        -text [mc "Direction"] -font $menuFont
+    eval "radiobutton $find.l.f4.f1.f1.up [bl "&Upwards"] \
         -variable SearchDir -value \"backwards\" \
         -command \"unset -nocomplain -- indoffirstmatch\" \
         -font \[list $menuFont\] "
-    eval "radiobutton $find.l.f4.f3.down [bl "&Downwards"] \
+    eval "radiobutton $find.l.f4.f1.f1.down [bl "&Downwards"] \
         -variable SearchDir -value \"forwards\" \
         -command \"unset -nocomplain -- indoffirstmatch\" \
         -font \[list $menuFont\] "
-    pack $find.l.f4.f3.up $find.l.f4.f3.down -anchor w
+    pack $find.l.f4.f1.f1.up $find.l.f4.f1.f1.down -anchor w
+
+    # tagged text options
+    labelframe $find.l.f4.f1.f2 -borderwidth 2 -relief groove \
+        -text [mc "Text types"] -font $menuFont
+    frame $find.l.f4.f1.f2.f1
+    set searchtagslb $find.l.f4.f1.f2.f1.lb
+    scrollbar $find.l.f4.f1.f2.sbx -command "$searchtagslb xview" \
+        -orient horizontal
+    scrollbar $find.l.f4.f1.f2.f1.sby -command "$searchtagslb yview"
+    listbox $searchtagslb -height 4 -width 15 -font $menuFont -takefocus 1 \
+        -xscrollcommand "$find.l.f4.f1.f2.sbx set" \
+        -yscrollcommand "$find.l.f4.f1.f2.f1.sby set" \
+        -selectmode extended -exportselection 0 -activestyle none -listvariable helloworld
+    pack $searchtagslb $find.l.f4.f1.f2.f1.sby -side left -padx 1
+    pack $find.l.f4.f1.f2.f1 $find.l.f4.f1.f2.sbx -side top -pady 1
+    pack configure $searchtagslb -expand 1 -fill both 
+    pack configure $find.l.f4.f1.f2.sbx    -fill x
+    pack configure $find.l.f4.f1.f2.f1.sby -fill y
+    # populate the listbox with the available tags
+    $searchtagslb delete 0 end
+    foreach tagname [tagnamesforfind] {
+        $searchtagslb insert end $tagname
+    }
+    # remember what was selected previously in the tags listbox
+    if {[llength $listoftagsforfind] > 0} {
+        set i 0
+        foreach tag [tagsforfind "all"] {
+            if {[lsearch $listoftagsforfind $tag] != -1} {
+                $searchtagslb selection set $i
+            }
+            incr i
+        }
+    }
+    # update the global value of what is selected in the tags listbox
+    # every time it has perhaps changed: update every time the mouse
+    # clicked in the listbox, or every time the listbox looses focus
+    # (in case the keyboard is used to change the listbox content)
+    bind $searchtagslb <ButtonRelease-1> \
+        {set listoftagsforfind [tagsforfind "onlyselected"] ; \
+         resetfind $find \
+        }
+    bind $searchtagslb <FocusOut> \
+        {set listoftagsforfind [tagsforfind "onlyselected"] ; \
+         resetfind $find \
+        }
+    pack $find.l.f4.f1.f1 $find.l.f4.f1.f2 -side top -anchor nw
+    pack configure $find.l.f4.f1.f1 -anchor nw -expand 1 -fill x
 
     # whole word, case, regexp, all files, in selection, and in directory checkboxes
-    frame $find.l.f4.f5
+    labelframe $find.l.f4.f5 -borderwidth 2 -relief groove \
+        -text [mc "Find options"] -font $menuFont
     eval "checkbutton $find.l.f4.f5.cbox0 [bl "Match &whole word only"] \
         -variable wholeword  \
-        -command \"resetfind $find \[gettextareacur\] \" \
+        -command \"resetfind $find\" \
         -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] \
         -variable caset -onvalue \"-exact\" -offvalue \"-nocase\" \
-        -command \"resetfind $find \[gettextareacur\]\" -font \[list $menuFont\] "
+        -command \"resetfind $find\" -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] \
         -variable regexpcase  -onvalue \"regexp\" -offvalue \"standard\" \
-        -command \"resetfind $find \[gettextareacur\] ; toggleregexpstate \" \
+        -command \"resetfind $find ; setregexpstatesettings \" \
         -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] \
         -variable multiplefiles \
-        -command \"resetfind $find \[gettextareacur\] ; \
+        -command \"resetfind $find ; \
                    $find.l.f4.f5.cbox4 deselect ; \
                    if {[string compare $typ find] == 0} { \
                        $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
-                   }\" \
+                   } ; \
+                   setsearchintagsettings\" \
          -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
         -variable searchinsel \
-        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find \[gettextareacur\] ; \
+        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find ; \
                    $find.l.f4.f5.cbox3 deselect ; \
                    if {[string compare $typ find] == 0} { \
                        $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
                    }\" \
         -font \[list $menuFont\] "
+    eval "checkbutton $find.l.f4.f5.cbox7 [bl "In typed te&xt"] \
+        -variable searchintagged \
+        -command \"resetfind $find ; setsearchintagsettings\" -font \[list $menuFont\] "
     if {$typ == "find"} {
         eval "checkbutton $find.l.f4.f5.cbox5 [bl "In a director&y"] \
             -variable searchindir \
-            -command \"resetfind $find \[gettextareacur\] ; togglesearchindir\" \
+            -command \"resetfind $find ; togglesearchindir\" \
             -font \[list $menuFont\] "
     }
     if {$typ == "find"} {
         pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
-            $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 $find.l.f4.f5.cbox5 \
-            -anchor sw
+            $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 $find.l.f4.f5.cbox7 \
+            $find.l.f4.f5.cbox5 \
+            -anchor w -expand 1 -fill y
     } else {
         pack $find.l.f4.f5.cbox0 $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 \
             $find.l.f4.f5.cbox3 $find.l.f4.f5.cbox4 \
-            -anchor sw
+            $find.l.f4.f5.cbox7 \
+            -anchor w -expand 1 -fill y
     }
 
     if {$typ == "find"} {
         # settings for search in files
-        frame $find.b
-        frame $find.b.f6 -borderwidth 2 -relief groove
-        eval "checkbutton $find.b.f6.cbox6 [bl "Directory r&ecurse search"] \
+        labelframe $find.b  -borderwidth 2 -relief groove \
+            -text [mc "Find in files search options"] -font $menuFont
+        eval "checkbutton $find.b.cbox6 [bl "Directory r&ecurse search"] \
             -variable recursesearchindir \
-            -command \"resetfind $find \[gettextareacur\]\" \
+            -command \"resetfind $find\" \
             -font \[list $menuFont\] "
-        pack $find.b.f6.cbox6 -anchor w
-        frame $find.b.f6.f1
+        pack $find.b.cbox6 -anchor w
+        frame $find.b.f1
         set bestwidth [mcmaxra "In files/file types:" \
                                "In directory:"]
-        label $find.b.f6.f1.labelt -text [mc "In files/file types:"] \
+        label $find.b.f1.labelt -text [mc "In files/file types:"] \
             -width $bestwidth -font $menuFont
-        entry $find.b.f6.f1.entryt -textvariable fileglobpat \
+        entry $find.b.f1.entryt -textvariable fileglobpat \
             -width 30 -font $textFont -exportselection 1
-        menubutton $find.b.f6.f1.mbselectpat -text "..." -indicatoron 0 \
-            -relief raised -font $textFont
-        menu $find.b.f6.f1.mbselectpat.pat -tearoff 0 -font $menuFont
-        $find.b.f6.f1.mbselectpat configure -menu $find.b.f6.f1.mbselectpat.pat
+        menubutton $find.b.f1.mbselectpat -text ">" -indicatoron 0 \
+            -relief raised -font $menuFont
+        menu $find.b.f1.mbselectpat.pat -tearoff 0 -font $menuFont
+        $find.b.f1.mbselectpat configure -menu $find.b.f1.mbselectpat.pat
         set predefsearchinfilespatterns [knowntypes]
         foreach item $predefsearchinfilespatterns {
             foreach {patname patlist} $item {
-                $find.b.f6.f1.mbselectpat.pat add command -label $patname \
+                $find.b.f1.mbselectpat.pat add command -label $patname \
                 -font $menuFont -command "getsearchpattern [list $patlist]"
             }
         }
-        frame $find.b.f6.f2
-        label $find.b.f6.f2.labeld -text [mc "In directory:"] \
+        frame $find.b.f2
+        label $find.b.f2.labeld -text [mc "In directory:"] \
             -width $bestwidth -font $menuFont
-        entry $find.b.f6.f2.entryd -textvariable initdir \
+        entry $find.b.f2.entryd -textvariable initdir \
             -width 30 -font $textFont -exportselection 1
-        button $find.b.f6.f2.buttonselectdir -text "..." \
+        button $find.b.f2.buttonselectdir -text "..." \
             -command \"getinitialdirforsearch\" \
             -font $menuFont
 
-        pack $find.b.f6.f1.labelt $find.b.f6.f1.entryt $find.b.f6.f1.mbselectpat \
+        pack $find.b.f1.labelt $find.b.f1.entryt $find.b.f1.mbselectpat \
             -side left -padx 2
-        pack $find.b.f6.f1 -anchor w
-        pack $find.b.f6.f2.labeld $find.b.f6.f2.entryd $find.b.f6.f2.buttonselectdir \
+        pack $find.b.f1 -anchor w -expand 1 -fill x
+        pack $find.b.f2.labeld $find.b.f2.entryd $find.b.f2.buttonselectdir \
             -side left -padx 2
-        pack $find.b.f6.f2 -anchor w
-        pack configure $find.b.f6.f1.entryt -expand 1 -fill x -padx 5 -pady 5
-        pack configure $find.b.f6.f2.entryd -expand 1 -fill x -padx 5 -pady 5
-        pack $find.b.f6
+        pack $find.b.f2 -anchor w -expand 1 -fill x
+        pack configure $find.b.f1.entryt -expand 1 -fill x -padx 5 -pady 5
+        pack configure $find.b.f2.entryd -expand 1 -fill x -padx 5 -pady 5
     }
 
-    pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 5
+    pack $find.l.f4.f5 $find.l.f4.f1 -side left -padx 5 -anchor n -expand 1 -fill y
     pack $find.l.f4 -pady 5 -anchor w
     pack $find.l $find.f2 -side left -padx 1
 
@@ -227,25 +289,26 @@ proc findtextdialog {typ} {
     bind $find <Alt-[fb $find.l.f4.f5.cbox2]> { $find.l.f4.f5.cbox2 invoke }
     bind $find <Alt-[fb $find.l.f4.f5.cbox3]> { $find.l.f4.f5.cbox3 invoke }
     bind $find <Alt-[fb $find.l.f4.f5.cbox4]> { $find.l.f4.f5.cbox4 invoke }
+    bind $find <Alt-[fb $find.l.f4.f5.cbox7]> { $find.l.f4.f5.cbox7 invoke }
     if {$typ=="find"} {
         bind $find <Alt-[fb $find.l.f4.f5.cbox5]> { $find.l.f4.f5.cbox5 invoke }
-        bind $find <Alt-[fb $find.b.f6.cbox6]> { $find.b.f6.cbox6 invoke }
+        bind $find <Alt-[fb $find.b.cbox6]> { $find.b.cbox6 invoke }
     }
-    bind $find <Alt-[fb $find.l.f4.f3.up]>    { $find.l.f4.f3.up    invoke }
-    bind $find <Alt-[fb $find.l.f4.f3.down]>  { $find.l.f4.f3.down  invoke }
-    bind $find <Escape> "cancelfind $find"
+    bind $find <Alt-[fb $find.l.f4.f1.f1.up]>   { $find.l.f4.f1.f1.up    invoke }
+    bind $find <Alt-[fb $find.l.f4.f1.f1.down]> { $find.l.f4.f1.f1.down  invoke }
+    bind $find <Escape> "cancelfind"
     # after 0 in the following Alt binding is mandatory for Linux only
     # This is Tk bug 1236306 (fixed since Tk8.4.13RC1 or Tk 8.5a4RC3)
-    bind $find <Alt-[fb $find.f2.button2]> "after 0 cancelfind $find"
-    bind $find <Visibility> {raise $find $pad ; focus $find.l.f1.entry}
-    bind $pad  <Expose>     {catch {raise $find ; focus $find.l.f1.entry}}
+    bind $find <Alt-[fb $find.f2.button2]> "after 0 cancelfind"
+    bind $find <Visibility> {raise $find $pad ; focus $find.u.f1.entry}
+    bind $pad  <Expose>     {catch {raise $find ; focus $find.u.f1.entry}}
 
-    focus $find.l.f1.entry
+    focus $find.u.f1.entry
     update
     grab $find
 
     # initial settings for direction
-    $find.l.f4.f3.down invoke
+    $find.l.f4.f1.f1.down invoke
 
     # initial settings for searching in selection
     if {$tahasnosel} {
@@ -263,16 +326,16 @@ proc findtextdialog {typ} {
             $find.l.f4.f5.cbox4 select
         } else {
             $find.l.f4.f5.cbox4 deselect
-            $find.l.f1.entry delete 0 end
-            $find.l.f1.entry insert 0 $thesel
+            $find.u.f1.entry delete 0 end
+            $find.u.f1.entry insert 0 $thesel
         }
     }
 
     # this must be done here and not before because the validatecommand is
     # called and resetfind uses the searchinsel value set by the test on
     # $tahasnosel above
-    $find.l.f1.entry configure -validate key \
-        -validatecommand {resetfind $find [gettextareacur] ; return 1}
+    $find.u.f1.entry configure -validate key \
+        -validatecommand {resetfind $find ; return 1}
 
     # initial settings for searching in multiple files
     if {!$tahasnosel} {
@@ -285,7 +348,7 @@ proc findtextdialog {typ} {
     # initial settings for search in files from a directory
     if {$typ == "find"} {
         if {$fileglobpat == ""} {
-            $find.b.f6.f1.mbselectpat.pat invoke 0
+            $find.b.f1.mbselectpat.pat invoke 0
         }
         if {$initdir == ""} {
             set initdir [file normalize "."]
@@ -309,29 +372,31 @@ proc findtextdialog {typ} {
     set searchforfilesonly 0
 
     # initial settings for regexp generator state
-    toggleregexpstate
-    toggleregexpstate
+    setregexpstatesettings
+
+    # initial settings for search in typed (tagged) text
+    setsearchintagsettings
 
     # preselect the entry field -
-    $find.l.f1.entry selection range 0 end
+    $find.u.f1.entry selection range 0 end
 
     # arrange for the entry boxes selection to be erased when pasting
-    bind $find.l.f1.entry <Control-v> { \
+    bind $find.u.f1.entry <Control-v> { \
         if {[%W selection present]} { \
             %W delete sel.first sel.last \
         } ; \
         # no need to event generate %W <<Paste>> since Tk does it for us (class binding)! \
     }
     if {$typ == "replace"} {
-        bind $find.l.f2.entry2 <Control-v> [bind $find.l.f1.entry <Control-v>]
+        bind $find.u.f2.entry2 <Control-v> [bind $find.u.f1.entry <Control-v>]
     }
     if {$typ == "find"} {
-        bind $find.b.f6.f1.entryt <Control-v> [bind $find.l.f1.entry <Control-v>]
-        bind $find.b.f6.f2.entryd <Control-v> [bind $find.l.f1.entry <Control-v>]
+        bind $find.b.f1.entryt <Control-v> [bind $find.u.f1.entry <Control-v>]
+        bind $find.b.f2.entryd <Control-v> [bind $find.u.f1.entry <Control-v>]
     }
 
     # initialize all the remaining startup settings
-    resetfind $find [gettextareacur]
+    resetfind $find
 }
 
 proc tryrestoreseltag {textarea} {
@@ -346,12 +411,48 @@ proc tryrestoreseltag {textarea} {
     }
 }
 
-proc toggleregexpstate {} {
+proc setregexpstatesettings {} {
     global find regexpcase
     if {$regexpcase == "regexp"} {
-        $find.l.f1.mb configure -state normal
+        $find.u.f1.mb configure -state normal
     } else {
-        $find.l.f1.mb configure -state disabled
+        $find.u.f1.mb configure -state disabled
+    }
+}
+
+proc setsearchintagsettings {} {
+    global find searchintagged listoftagsforfind
+    global multiplefiles listoffile listoftextarea
+
+    set candoit false
+    if {$multiplefiles} {
+        # to allow for searching in tagged text, one must have at least one file
+        # with scilab language scheme, and with colorization switched on
+        foreach ta $listoftextarea {
+            if {$listoffile("$ta",language) == "scilab" && \
+                $listoffile("$ta",colorize) } {
+                set candoit true
+                break
+            }
+        }
+    } else {
+        # the current file must be of scilab scheme with colorization switched on
+        if {$listoffile("[gettextareacur]",language) == "scilab" && \
+            $listoffile("[gettextareacur]",colorize) } {
+            set candoit true
+        }
+    }
+
+    if {$searchintagged && $candoit} {
+        $find.l.f4.f1.f2.f1.lb configure -state normal
+    } else {
+        $find.l.f4.f1.f2.f1.lb selection clear 0 end
+        set listoftagsforfind [list ]
+        $find.l.f4.f1.f2.f1.lb configure -state disabled
+    }
+    if {!$candoit} {
+        $find.l.f4.f5.cbox7 deselect
+        $find.l.f4.f5.cbox7 configure -state disabled
     }
 }
 
@@ -368,28 +469,35 @@ proc searchindirenabled {} {
     global find
     $find.l.f4.f5.cbox3 deselect
     $find.l.f4.f5.cbox4 deselect
-    $find.b.f6.cbox6 configure -state normal
-    $find.b.f6.f1.labelt configure -state normal
-    $find.b.f6.f1.entryt configure -state normal
-    $find.b.f6.f1.mbselectpat configure -state normal
-    $find.b.f6.f2.labeld configure -state normal
-    $find.b.f6.f2.entryd configure -state normal
-    $find.b.f6.f2.buttonselectdir configure -state normal
-    $find.l.f4.f3.up configure -state disabled
-    $find.l.f4.f3.down invoke
-    pack $find.b -before $find.l -side bottom -padx 25 -pady 4 -anchor w
+    $find.b.cbox6 configure -state normal
+    $find.b.f1.labelt configure -state normal
+    $find.b.f1.entryt configure -state normal
+    $find.b.f1.mbselectpat configure -state normal
+    $find.b.f2.labeld configure -state normal
+    $find.b.f2.entryd configure -state normal
+    $find.b.f2.buttonselectdir configure -state normal
+    $find.l.f4.f1.f1.up configure -state disabled
+    $find.l.f4.f1.f1.down invoke
+    $find.l.f4.f5.cbox7 deselect
+    $find.l.f4.f5.cbox7 configure -state disabled
+    $find.l.f4.f1.f2.f1.lb selection clear 0 end
+    $find.l.f4.f1.f2.f1.lb configure -state disabled
+    pack $find.b -before $find.l -side bottom -padx 5 -pady 4 -anchor w \
+        -expand 1 -fill x
 }
 
 proc searchindirdisabled {} {
     global find 
-    $find.b.f6.cbox6 configure -state disabled
-    $find.b.f6.f1.labelt configure -state disabled
-    $find.b.f6.f1.entryt configure -state disabled
-    $find.b.f6.f1.mbselectpat configure -state disabled
-    $find.b.f6.f2.labeld configure -state disabled
-    $find.b.f6.f2.entryd configure -state disabled
-    $find.b.f6.f2.buttonselectdir configure -state disabled
-    $find.l.f4.f3.up configure -state normal
+    $find.b.cbox6 configure -state disabled
+    $find.b.f1.labelt configure -state disabled
+    $find.b.f1.entryt configure -state disabled
+    $find.b.f1.mbselectpat configure -state disabled
+    $find.b.f2.labeld configure -state disabled
+    $find.b.f2.entryd configure -state disabled
+    $find.b.f2.buttonselectdir configure -state disabled
+    $find.l.f4.f5.cbox7 configure -state normal
+    $find.l.f4.f1.f1.up configure -state normal
+    $find.l.f4.f1.f2.f1.lb configure -state normal
     pack forget $find.b
 }
 
@@ -482,7 +590,7 @@ proc multiplefilesfindreplace {w frit} {
 
     if {$searchindir && !$searchinfilesalreadyrunning} {
         # search in files from a directory
-        cancelfind $find
+        cancelfind
         findinfiles $tosearchfor $caset $regexpcase $wholeword $initdir $fileglobpat $recursesearchindir $searchforfilesonly
         return
     }
@@ -561,6 +669,7 @@ proc findit {w pw textarea tosearchfor reg} {
     global SearchString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
     global buffermodifiedsincelastsearch
+    global listoftagsforfind
 
     set buffermodifiedsincelastsearch false
 
@@ -568,7 +677,8 @@ proc findit {w pw textarea tosearchfor reg} {
     # and do it only once (per buffer) in a search session
     if {![info exists listofmatch]} {
         set listofmatch [searchforallmatches $textarea $tosearchfor \
-                             $caset $reg $searchinsel $wholeword]
+                             $caset $reg $searchinsel $wholeword \
+                             $listoftagsforfind]
     }
 
     # analyze the search results:
@@ -599,7 +709,7 @@ proc findit {w pw textarea tosearchfor reg} {
                 $textarea tag remove sel 0.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
-                resetfind $w $textarea
+                resetfind $w
                 set findres [findit $w $pw $textarea $tosearchfor $reg]
             } else {
                 # don't extend search, nothing to do
@@ -708,6 +818,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     global SearchString ReplaceString caset multiplefiles SearchDir searchinsel wholeword
     global listoffile listofmatch listoftextarea
     global buffermodifiedsincelastsearch
+    global listoftagsforfind
 
     set buffermodifiedsincelastsearch false
 
@@ -717,7 +828,8 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     # and do it only once (per buffer) in a search session
     if {![info exists listofmatch]} {
         set listofmatch [searchforallmatches $textarea $tosearchfor \
-                             $caset $reg $searchinsel $wholeword]
+                             $caset $reg $searchinsel $wholeword \
+                             $listoftagsforfind]
     }
 
     # analyze the search results
@@ -750,7 +862,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
                 $textarea tag remove sel 0.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
-                resetfind $w $textarea
+                resetfind $w
                 set replres [replaceit $w $pw $textarea $tosearchfor $reg 1]
             } else {
                 # don't extend search, nothing to do
@@ -926,6 +1038,7 @@ proc replaceall {w pw textarea tosearchfor reg} {
     global listofmatch indoffirstmatch indofcurrentmatch
     global listoffile multiplefiles
     global buffermodifiedsincelastsearch
+    global listoftagsforfind
     global pad caset searchinsel wholeword ;# these are for the progress bar
 
     set buffermodifiedsincelastsearch false
@@ -945,7 +1058,8 @@ proc replaceall {w pw textarea tosearchfor reg} {
     set replprogressbar [Progress $pad.rpb]
     pack $replprogressbar -fill both -expand 0 -before $pad.pw0 -side bottom
     set listofmatch [searchforallmatches $textarea $tosearchfor \
-                         $caset $reg $searchinsel $wholeword]
+                         $caset $reg $searchinsel $wholeword \
+                         $listoftagsforfind]
     set nbofmatches [llength $listofmatch]
     if {$nbofmatches == 0} {
         # avoid division by zero error in the progress bar computations
@@ -989,7 +1103,7 @@ proc replaceall {w pw textarea tosearchfor reg} {
     return $nbofreplaced
 }
 
-proc searchforallmatches {textarea str cas reg ssel whword} {
+proc searchforallmatches {textarea str cas reg ssel whword listoftags} {
 # search for the matches in the provided $textarea for the string $str
 # taking into account the case argument $cas, the regexp argument $reg
 # and the "whole word" flag
@@ -1003,7 +1117,7 @@ proc searchforallmatches {textarea str cas reg ssel whword} {
 
     foreach {start stop} [getsearchlimits $textarea $ssel] {}
 
-    set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword]
+    set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword $listoftags]
     while {[lindex $match 0] != ""} {
         lappend matchlist $match
         set mleng [lindex $match 1]
@@ -1022,7 +1136,7 @@ proc searchforallmatches {textarea str cas reg ssel whword} {
         if {[$textarea compare $start == $stop]} {
             break
         }
-        set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword]
+        set match [doonesearch $textarea $start $stop $str "forwards" $cas $reg $whword $listoftags]
     }
     return $matchlist
 }
@@ -1044,7 +1158,7 @@ proc getsearchlimits {textarea ssel} {
     return [list $sta $sto]
 }
 
-proc doonesearch {textarea sta sto str dir cas reg whword} {
+proc doonesearch {textarea sta sto str dir cas reg whword listoftags} {
 # perform one search operation in $textarea between start position $sta
 # and stop position $sto, taking into account the case argument $cas,
 # the regexp argument $reg, the direction $dir and the "whole word" flag
@@ -1074,23 +1188,17 @@ proc doonesearch {textarea sta sto str dir cas reg whword} {
         lappend optlist -strictlimits
     }
 
-    if {!$whword} {
-        # normal search mode (no whole word)
-        # quotes around $str are mandatory to find strings that include spaces
-        set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
+    # quotes around $str are mandatory to find strings that include spaces
+    set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
 
-    } else {
-        # whole word search mode
-        set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
-        if {$MatchPos != ""} {
-            # check if the match found is actually a whole word
-            while {![iswholeword $textarea $MatchPos $MatchLength]} {
-                set sta [$textarea index "$MatchPos + $MatchLength c"]
-                set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
-                if {$MatchPos == ""} {
-                    # no match candidates left
-                    break
-                }
+    if {$MatchPos != ""} {
+        # check if the match found satisfies the required constraints
+        while {![arefindconstraintssatisfied $whword $listoftags $textarea $MatchPos $MatchLength]} {
+            set sta [$textarea index "$MatchPos + $MatchLength c"]
+            set MatchPos [ eval "$textarea search $optlist -- \"$str\" $sta $sto" ]
+            if {$MatchPos == ""} {
+                # no match candidates left
+                break
             }
         }
     }
@@ -1102,6 +1210,50 @@ proc doonesearch {textarea sta sto str dir cas reg whword} {
     return [list $MatchPos $MatchLength 0]
 }
 
+proc arefindconstraintssatisfied {whword listoftags textarea MatchPos MatchLength} {
+# check if some or all find constraints below are satisfied or not
+# 1 - whole word
+#     if $whword is true, then the whole word constraint is checked
+# 2 - tagged text
+#     if listoftags is non empty, then the tagged text constraint is checked
+# return true or false
+
+    set OK false
+
+    if {!$whword} {
+        # normal search mode (no whole word)
+
+        if {[llength $listoftags] == 0} {
+            # neither whole word, nor tagged text
+            set OK true
+        } else {
+            # not whole word, but tagged text
+            if {[istagged $textarea $MatchPos $MatchLength $listoftags]} {
+                set OK true
+            }
+        }
+    
+    } else {
+        # whole word search mode
+
+        if {[llength $listoftags] == 0} {
+            # whole word, but not tagged text
+            if {[iswholeword $textarea $MatchPos $MatchLength]} {
+                set OK true
+            }
+        } else {
+            # whole word and tagged text
+            if {[iswholeword $textarea $MatchPos $MatchLength] && \
+                [istagged $textarea $MatchPos $MatchLength $listoftags]} {
+                set OK true
+            }
+        }
+    
+    }
+
+    return $OK
+}
+ 
 proc getcurrentmatch {textarea} {
 # get current match position and length in an already existing (non empty) list
 # of matches
@@ -1309,8 +1461,10 @@ proc setcurmatchasreplaced {textarea lenR} {
     }
 }
 
-proc resetfind {w textarea} {
+proc resetfind {w} {
 # reset the find/replace settings to their initial default values
+# so that the next find or replace will scan the buffer(s) again
+# and create a new list of matches
     global listofmatch indoffirstmatch indofcurrentmatch
     global indoffirstbuf indofcurrentbuf
 
@@ -1324,9 +1478,10 @@ proc resetfind {w textarea} {
     unset -nocomplain -- indofcurrentbuf
 }
 
-proc cancelfind {w} {
+proc cancelfind {} {
 # end of a find/replace session
-    global pad listoftextarea
+    global pad listoftextarea find
+    global listoftagsforfind
     global findreplaceboxalreadyopen
 
     foreach textarea $listoftextarea {
@@ -1340,8 +1495,10 @@ proc cancelfind {w} {
         }
     }
 
+    set listoftagsforfind [tagsforfind "onlyselected"]
+
     bind $pad <Expose> {}
-    destroy $w
+    destroy $find
     set findreplaceboxalreadyopen false
 }
 
@@ -1416,6 +1573,45 @@ proc iswholeword {textarea mpos mlen} {
     } else {
         return 0
     }
+}
+
+proc istagged {textarea MatchPos MatchLength listoftags} {
+# check if the match found is correctly and entirely tagged as expected, i.e.
+# that each character of the match is tagged by at least one element of
+# $listoftags
+# return true or false
+# if $listoftags is an empty list, always return true
+
+    # make the check quicker when not searching for tagged text
+    if {[llength $listoftags] == 0} {
+        return true
+    }
+
+    set OK true
+    set i 0
+    while {$i<$MatchLength} {
+        set pos [$textarea index "$MatchPos + $i c"]
+        set tagsatpos [$textarea tag names $pos]
+        # look at the intersection of the two lists of tags
+        set emptyintersect true
+        foreach tag $tagsatpos {
+            if {[lsearch -exact $listoftags $tag] != -1} {
+                set emptyintersect false
+                # as soon as the intersection is not void, it's enough to
+                # know that the current character of the match is OK and
+                # there is no need to compute the entire intersection set
+                break
+            }
+        }
+        if {$emptyintersect} {
+            set OK false
+            # no need to check the remaining characters of the match
+            break
+        }
+        incr i
+    }
+
+    return $OK
 }
 
 proc isregexpstringvalid {tosearchfor pw} {
@@ -1594,6 +1790,64 @@ proc insertregexpforfind {pat} {
 # insert input argument $pat (a regexp pattern) in the "Search for"
 # entry place of the find/replace dialog
     global find
-    $find.l.f1.entry selection clear
-    $find.l.f1.entry insert insert $pat
+    $find.u.f1.entry selection clear
+    $find.u.f1.entry insert insert $pat
+    # on windows at least, when clicking on the menubutton and maintaining
+    # mouse button down while selecting the menu option, then the button
+    # does not return to the flat state automatically (the buttonrelease
+    # event must be directed to the wrong widget, which is the menu
+    # attached to the menubutton) - therefore generate the adequate event
+    # by hand
+    event generate $find.u.f1.mb <ButtonRelease-1>
+}
+
+proc tagsandtagnamesforfind {} {
+# return the following flat list:
+#   {internaltagname1 tagnametodisplay1 internaltagname2 tagnametodisplay2 ... }
+# with localized tagnametodisplay
+# this list is used in the find/replace box to search in tagged text only
+# only tags useful for a text search are returned here, not all tags of the
+# textarea
+    return [list \
+        textquoted  [mc "QTXTCOLOR"] \
+        rem2        [mc "REMCOLOR"] \
+        xmltag      [mc "XMLCOLOR"] \
+        number      [mc "NUMCOLOR"] \
+        intfun      [mc "INTFCOLOR"] \
+        command     [mc "COMMCOLOR"] \
+        predef      [mc "PDEFCOLOR"] \
+        libfun      [mc "LFUNCOLOR"] \
+        userfun     [mc "USERFUNCOLOR"] \
+        scicos      [mc "SCICCOLOR"] \
+    ]
+}
+
+proc tagnamesforfind {} {
+# return the ordered list of all tag names from proc tagsandtagnamesforfind
+    set tagnames [list ]
+    foreach {tag tagname} [tagsandtagnamesforfind] {
+        lappend tagnames $tagname
+    }
+    return $tagnames
+}
+
+proc tagsforfind {onlyselected} {
+# return the ordered list of tags from proc tagsandtagnamesforfind
+# if $onlyselected == "onlyselected", then only tags selected in
+#    the find dialog listbox are returned
+# otherwise all tags are returned
+    global find
+    set tags [list ]
+    set i 0
+    foreach {tag tagname} [tagsandtagnamesforfind] {
+        if {$onlyselected == "onlyselected"} {
+            if {[$find.l.f4.f1.f2.f1.lb selection includes $i]} {
+                lappend tags $tag
+            }
+        } else {
+            lappend tags $tag
+        }
+        incr i
+    }
+    return $tags
 }

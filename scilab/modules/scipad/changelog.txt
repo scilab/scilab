@@ -2492,3 +2492,8 @@ Francois VOGEL, 09/11/06
  * Added a popup menu providing a list of ready cooked regexps for the
    find/replace dialog
  * version --> 6.55
+
+Francois VOGEL, 12/11/06
+ * Improved aesthetics of the find/replace dialog (labelframes and more)
+ * Added find/replace among tagged text only, e.g. among comments
+ * version --> 6.56

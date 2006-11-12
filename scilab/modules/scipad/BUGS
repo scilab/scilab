@@ -33,7 +33,7 @@ Bugs:
  yet released, and therefore a fortiori not used by Scilab.
 
 -When a function definition line ends with a comment, the line numbering is
- wrong 1 unit, resulting is various strange behaviors: execution not stopping
+ wrong 1 unit, resulting in various strange behaviors: execution not stopping
  at breakpoints or not up-to-date value of variables in the watch window
  This is Scilab bug 1469 (outside of Scipad) that deals with the general
  issue of mismatch between line numbering as reported by fun2string and that
@@ -176,7 +176,7 @@ Debugger wishes:
  local variables are added and displayed when entering a function, and
  removed when the debugger leaves a function (must specify policy more
  precisely). Possible implementation would use macrovar
- 
+
 -highlight in color the watched variables that changed value during previous
  debugger command
 
@@ -210,9 +210,6 @@ Other wishes:
  
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
-
--Improve the aesthetics of Scipad (see sciGUI)
-   . Find dialog (use labelframe)
 
 -Blink single quotes. More difficult than to blink double quotes because
  of the transpose case
@@ -278,8 +275,6 @@ Other wishes:
         and both provide comboboxes. We could link Scipad to them, but
         apparently the Tile package, which also provides combos, is now
         included in Tk and will be part of Tk 8.5.
-  . Search among tagged text only, e.g. among comments (must be consistent
-    with the language scheme)
   . Multiline find/replace and find in files (must wait Tk8.5 since .text
     search searches on a per line basis - or use regexp instead of .text
     search, big work...) - Automatically expand the entry widgets size

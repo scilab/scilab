@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.55"
+set version "Version 6.56"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -169,12 +169,15 @@ set searchinfilesalreadyrunning 0
 # with F3
 set buffermodifiedsincelastsearch false
 
-# default Find/Replace direction
+# default find/replace direction
 set SearchDir "forwards"
 
-# Find/Replace color tags
+# find/replace color tags
 set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
 set FAKESELCOLOR $SELCOLOR
+
+# no item is selected by default in the tags list of the find/replace dialog
+set listoftagsforfind [list ]
 
 # some commands cannot be executed while colorization is in progress, and
 # this variable is used to prevent them from being executed in such a case
