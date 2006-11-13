@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.40
+# in sync at least with v6.56
 
 
 # commons
@@ -234,10 +234,9 @@
 
 
 # findreplace.tcl
-::msgcat::mcset it "Dialog box already open!"\
-                   "Finestra di dialogo già aperta!"
+::msgcat::mcset it "Dialog box already open!" "Finestra di dialogo già aperta!"
 ::msgcat::mcset it "The string" "La stringa \["
-::msgcat::mcset it "could not be found in" "\] non è stata trovata"
+::msgcat::mcset it "could not be found in" "\] non è stata trovata in"
 ::msgcat::mcset it "could not be found in any of the opened files !"\
                    "\] non è stata trovata in nessuno dei files aperti!"
 ::msgcat::mcset it "replacements done" "sostituzioni effettuate"
@@ -254,22 +253,28 @@
 ::msgcat::mcset it "Replace with:" "Cambia in:"
 ::msgcat::mcset it "Find &Next" "Trova il segue&nte"
 ::msgcat::mcset it "Replace &All" "Rimpiazza &tutti"
+::msgcat::mcset it "Direction" "Direzione"
 ::msgcat::mcset it "&Upwards" "Verso l'&alto"
 ::msgcat::mcset it "&Downwards" "Verso il &basso"
+::msgcat::mcset it "Text types" "Tipo di testo"
+::msgcat::mcset it "Find options" "Opzioni di ricerca"
 ::msgcat::mcset it "Match &whole word only" "Solo parola &intera"
 ::msgcat::mcset it "Match &case" "Rispetta &maiuscole"
 ::msgcat::mcset it "&Regular expression" "Espressione &regolare (regexp)"
 ::msgcat::mcset it "In all &opened files" "In tutti i &files aperti"
 ::msgcat::mcset it "In &selection only" "Solo nella sele&zione"
+::msgcat::mcset it "In typed te&xt" "Nel testo di ti&po"
 ::msgcat::mcset it "In a director&y" "In una &directory:"
+::msgcat::mcset it "Find in files search options"\
+                   "Opzioni di ricerca nelle directories"
 ::msgcat::mcset it "Directory r&ecurse search" "Ricerca ri&corsiva"
 ::msgcat::mcset it "In files/file types:" "Nei files/tipi di files"
 ::msgcat::mcset it "In directory:" "Nella directory:"
-::msgcat::mcset it "Search for file names"\
-                   "Cercare tra i nomi dei files"
+::msgcat::mcset it "Search for file names" "Cercare tra i nomi dei files"
 ::msgcat::mcset it "You have given an empty search string. Are you sure you\
                     want to search among file names?"\
-                   "La stringa da cercare è vuota -- sicuri di volere cercare tra nomi di files?"
+                   "La stringa da cercare è vuota -- sicuri di volere\
+                    cercare tra nomi di files?"
 ::msgcat::mcset it "Wrapped around" "Continuato oltre la fine"
 ::msgcat::mcset it "Back at the first file searched!"\
                    "Di nuovo al primo file esaminato!"
@@ -280,6 +285,32 @@
                    "La stringa da cercare come espressione regolare non ha\
                     potuto essere compilata. Controllare. Per esempio,\
                     alcuni caratteri speciali vanno preceduti da \\."
+::msgcat::mcset it "Any single character" "Un carattere qualsiasi"
+::msgcat::mcset it "Zero or more" "Zero o più"
+::msgcat::mcset it "One or more" "Uno o più"
+::msgcat::mcset it "Zero or one" "Zero o uno"
+::msgcat::mcset it "Any one character in the set"\
+                   "Qualsiasi carattere dell'insieme"
+::msgcat::mcset it "Any one character not in the set"\
+                   "Qualsiasi carattere non nell'insieme"
+::msgcat::mcset it "Or" "Oppure"
+::msgcat::mcset it "Beginning of line" "Inizio riga"
+::msgcat::mcset it "End of line" "Fine riga"
+::msgcat::mcset it "Beginning of word" "Principio di parola"
+::msgcat::mcset it "End of word" "Fine di parola"
+::msgcat::mcset it "A letter" "Lettera"
+::msgcat::mcset it "A decimal digit" "Cifra decimale"
+::msgcat::mcset it "An alphanumeric (letter or digit)"\
+                   "Carattere alfanumerico (lettera o cifra)"
+::msgcat::mcset it "A space or tab character"\
+                   "Spazio o tabulatore"
+::msgcat::mcset it "A rational number" "Numero razionale"
+::msgcat::mcset it "A floating point number"\
+                   "Numero a virgola mobile"
+::msgcat::mcset it "A Scilab comment" "Commento Scilab"
+::msgcat::mcset it "A Scilab name" "Variabile o parola chiave Scilab"
+::msgcat::mcset it "A Scilab continued line (with dots)"\
+                   "Linea Scilab continuata con .."
 
 
 # findinfiles.tcl
