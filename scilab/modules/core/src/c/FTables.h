@@ -224,10 +224,10 @@ FTAB FTab_fsurfd[] ={
 {"gr2", (voidf)  C2F(gr2)},
 {(char *) 0, (voidf) 0}};
 /**************** fbutn ***************/
-extern void C2F(haltscicos)(ARGS_fbutn);
+extern void haltscicos(ARGS_fbutn);
  
 FTAB FTab_fbutn[] ={
-{"haltscicos", (voidf)  C2F(haltscicos)},
+{"haltscicos", (voidf)  haltscicos},
 {(char *) 0, (voidf) 0}};
 /**************** interf ***************/
 extern void C2F(foubare)(ARGS_interf);

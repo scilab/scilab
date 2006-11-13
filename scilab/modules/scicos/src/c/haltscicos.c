@@ -5,7 +5,7 @@
 #include "machine.h"
 #include "scicos-def.h"
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(haltscicos)(char *name, integer *win, integer *entry,long int name_len)
+int haltscicos(char *name, integer *win, integer *entry,long int name_len)
 {
    C2F(coshlt).halt = 1;
     return 0;
