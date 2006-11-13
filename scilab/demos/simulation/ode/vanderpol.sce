@@ -32,9 +32,7 @@ fchamp(f,1,xr,yr)
 a=gca();
 a.x_label.text="y1",a.x_label.font_size=3;
 a.y_label.text="y2",a.y_label.font_size=3;
-xstring(-2,8.15,['Click left to start a new trajectory, move the mouse'
-		' and click again to fix the desired trajectory'
-		'Click right to exit'])
+a.title.text='Click left to start a new trajectory, move the mouse@and click again to fix the desired trajectory@Click right to exit';
 
 fig=gcf();fig.pixmap='on';
 show_pixmap();
