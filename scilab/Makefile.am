@@ -33,14 +33,14 @@ macros:
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
 	./scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-scihelp:
+man:
 	-@( cd $(top_builddir) ; SCI=`pwd` export SCI; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
-	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml()";exit;)
+	./scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;")
 
 	-@( cd $(top_builddir) ; SCI=`pwd` export SCI; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/"; 	export LD_LIBRARY_PATH; \
-	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml()";exit;)
+	./scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;")
 
 
 check-local:
