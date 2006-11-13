@@ -284,7 +284,13 @@ C     quit dans une pause
          bot = lin(k+5)
          pt = pt - 1
          rio = pstk(pt)
-         if (rstk(pt) .eq. 701) pt = pt - 1
+         if (rstk(pt) .eq. 701.or.rstk(pt).eq.604) then
+            errct=ids(2,pt+1)
+            err2=ids(3,pt+1)
+            err1=ids(4,pt+1)
+            errpt=ids(5,pt+1)
+            pt = pt - 1
+         endif
          goto 46
       else
 C     quit (sortie)
