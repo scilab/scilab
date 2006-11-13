@@ -145,6 +145,17 @@ int set_data_bounds_property( sciPointObj * pobj, int stackPointer, int valueTyp
       return SET_PROPERTY_ERROR ;
     }
 
+    /* check if there is not an inf within the values */
+    /* since this has not any meaning */
+    if (    !finite(xMin) || !finite(xMax)
+         || !finite(yMin) || !finite(yMax)
+         || !finite(zMin) || !finite(zMax) )
+    {
+      sciprint("Error : data_bounds values must be finite.");
+      return SET_PROPERTY_ERROR ;
+    }
+
+
     /* check if the bounds are corrects */
     /* allows equality with bounds since it is working */
     if ( xMin > xMax || yMin > yMax || zMin > zMax )
