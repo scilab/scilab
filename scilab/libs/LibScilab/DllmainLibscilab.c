@@ -33,12 +33,12 @@
 #ifndef USE_F2C
 #pragma comment(lib,"../../bin/sparse_f.lib")
 #pragma comment(lib,"../../bin/symbolic_f.lib")
+#pragma comment(lib,"../../bin/integer_f.lib")
 
 #pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/data_structures_f.lib")
 #pragma comment(lib,"../../libs/boolean_f.lib")
 #pragma comment(lib,"../../libs/double_f.lib")
-#pragma comment(lib,"../../libs/integer_f.lib")
 #pragma comment(lib,"../../libs/differential_equations_f.lib")
 #pragma comment(lib,"../../libs/special_functions_f.lib")
 #pragma comment(lib,"../../libs/linear_algebra_f.lib")
