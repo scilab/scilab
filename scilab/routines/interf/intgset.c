@@ -2257,6 +2257,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         return -1 ;
       }
 
+      /* check if there is not an inf within the values */
+      /* since this has not any meaning */
+      if (    !finite(xMin) || !finite(xMax)
+           || !finite(yMin) || !finite(yMax)
+           || !finite(zMin) || !finite(zMax) )
+      {
+        strcpy(error_message,"Error : data_bounds values must be finite.");
+        return -1 ;
+      }
+
       /* check if the bounds are corrects */
       /* allows equality with bounds since it is working */
       if ( xMin > xMax || yMin > yMax || zMin > zMax )
@@ -2294,57 +2304,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
         ppSubWin->SRect[5] = zMax ;
       }
 
-      /**DJ.Abdemouche 2003**/
-      /*if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6))
-	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;} */
-      
-      
-
-      /* if(ppSubWin->logflags[0] == 'n'){ /\* General case for x : logflag='n' *\/ */
-/* 	ppSubWin->SRect[0]=stk(*value)[0]; */
-/* 	ppSubWin->SRect[1]=stk(*value)[1]; */
-/*       } */
-/*       else{/\* log. case *\/ */
-/* 	/\*xmin*\/ */
-/* 	if(stk(*value)[0] <= 0. || stk(*value)[1] <= 0.) */
-/* 	  {sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;} */
-/* 	else{ */
-/* 	  ppSubWin->SRect[0]=stk(*value)[0]; */
-/* 	  ppSubWin->SRect[1]=stk(*value)[1]; */
-/* 	} */
-/*       } */
-
-/*       if( ppSubWin->logflags[1] == 'n'){  /\* General case for y : logflag='n' *\/ */
-/* 	ppSubWin->SRect[2]=stk(*value)[2]; */
-/* 	ppSubWin->SRect[3]=stk(*value)[3]; */
-/*       } */
-/*       else{/\* log. case *\/ */
-/* 	/\*ymin*\/ */
-/* 	if(stk(*value)[2] <= 0. || stk(*value)[3] <= 0.) */
-/* 	  {sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;} */
-/* 	else{ */
-/* 	  ppSubWin->SRect[2]=stk(*value)[2]; */
-/* 	  ppSubWin->SRect[3]=stk(*value)[3]; */
-/* 	} */
-/*       } */
-
-/*       if (*numrow * *numcol == 6) */
-/* 	{ */
-/* 	  if(ppSubWin->logflags[2] == 'n'){  /\* General case for z : logflag='n' *\/ */
-/* 	    ppSubWin->SRect[4]=stk(*value)[4]; */
-/* 	    ppSubWin->SRect[5]=stk(*value)[5]; */
-/* 	  } */
-/* 	  else{/\* log. case *\/ */
-/* 	    /\*zmin*\/ */
-/* 	    if(stk(*value)[4] <= 0. || stk(*value)[5] <= 0.) */
-/* 	      {sciprint("Error: bounds on z axis must be strictly positive to use logarithmic mode\n");return -1;} */
-/* 	    else{ */
-/* 	      ppSubWin->SRect[4]=stk(*value)[4]; */
-/* 	      ppSubWin->SRect[5]=stk(*value)[5]; */
-/* 	    } */
-/* 	  } */
-/* 	} */
-      /* to inform plotxx function to take this boundary into account */
       ppSubWin->FirstPlot = FALSE;
 
 
