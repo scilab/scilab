@@ -314,7 +314,8 @@ src/gd/gdfonts/gdfontl.c \
 src/gd/bdftogd.c \
 src/gd/xfonts.c \
 src/gd/gd.c \
-src/c/StringBox.c
+src/c/StringBox.c \
+src/c/handleDrawing/drawTextEntity.c
 
 # A voir si c'st utilisé
 #src/xdr/xdr_reference.c \
