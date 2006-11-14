@@ -12,6 +12,7 @@
 #include "machine.h"
 #include "StringMatrix.h"
 #include "Vect2Matrix.h"
+#include "ObjectStructure.h"
 
 /*-------------------------------------------------------------------------------------------*/
 /**
@@ -119,6 +120,27 @@ void getStringsPositions( StringMatrix  * strMat        ,
                           double          angle         ,
                           Vect2iMatrix  * stringPosition,
                           int             boundingBox[4][2] ) ;
+/*-------------------------------------------------------------------------------------------*/
+/**
+ * Compute the bounding box of a text object.
+ * @param pText   Pointer on the object to surround.
+ * @param cornPix Bounding box in pixel coordinates. If NULL, not computed.
+ * @param corners Bounding box in user coordinates. If NULL, not computed.
+ */
+void getTextBoundingBox( sciPointObj * pText        ,
+                         int           cornPix[4][2],
+                         double        corners[4][2] ) ;
+
+/**
+ * Compute the axis aligned bounding box of a text object.
+ * @param pText   Pointer on the object to surround.
+ * @param rectPix Bounding box (x,y,w,h) in pixel coordinates. If NULL, not computed.
+ *                (x,y) is the coordinates of the bottom left vertice.
+ * @param conrPix The four corners of the real bounding box. If NULL, not computed.
+ */
+void getTextAabb( sciPointObj * pText        ,
+                  int           rectPix[4]   ,
+                  int           cornPix[4][2] ) ;
 /*-------------------------------------------------------------------------------------------*/
 /**
  * Rotate four points around the first one.

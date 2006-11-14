@@ -1986,3 +1986,116 @@ void scizoom( double bbox[4], sciPointObj * pobj )
   pSUBWIN_FEATURE (psousfen)->ZRect[5] = pSUBWIN_FEATURE (psousfen)->SRect[5];
 
 }
+/*-----------------------------------------------------------------------------------*/
+void getPixelCoordinates( sciPointObj * pSubWin, double coord3d[3], int pixCoord[2] )
+{
+
+  if ( pSUBWIN_FEATURE (pSubWin)->is3d )
+  {
+    int n = 1 ;
+
+    double xvect = coord3d[0] ;
+    double yvect = coord3d[1] ;
+    double zvect = coord3d[2] ;
+
+    ReverseDataFor3D(pSubWin,&xvect,&yvect,&zvect,n);
+    trans3d(pSubWin,n,&(pixCoord[0]),&(pixCoord[1]),&xvect,&yvect,&zvect ) ;
+  }
+  else 
+  {
+    pixCoord[0] = XDouble2Pixel( coord3d[0] ) ;
+    pixCoord[1] = YDouble2Pixel( coord3d[1] ) ;
+  }
+}
+/*-----------------------------------------------------------------------------------*/
+int PixelHeight2d( sciPointObj * parentSubWin, double posY, double height )
+{
+  if ( pSUBWIN_FEATURE( parentSubWin )->logflags[1] == 'l' )
+  {
+    return HLogScale( posY, height ) ;
+  }
+
+  return HScale( height ) ;
+
+}
+/*-----------------------------------------------------------------------------------*/
+int PixelWidth2d( sciPointObj * parentSubWin, double posX, double width )
+{
+  if ( pSUBWIN_FEATURE( parentSubWin )->logflags[0] == 'l' )
+  {
+    return WLogScale( posX, width ) ;
+  }
+
+  return WScale( width ) ;
+
+}
+/*-----------------------------------------------------------------------------------*/
+void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
+                           double        ulPoint[3]   ,
+                           double        userSize[2]  ,
+                           int           edgesX[4]    ,
+                           int           edgesY[4]     )
+{
+  sciSubWindow * ppSubWin = pSUBWIN_FEATURE( parentSubWin  ) ;
+
+  if ( ppSubWin->is3d )
+  {
+    double rectx[4],recty[4],rectz[4];
+    int n = 4 ;
+    rectx[0] = rectx[3] = ulPoint[0] ;
+    rectx[1] = rectx[2] = ulPoint[0] + userSize[0] ;   
+    recty[0] = recty[1] = ulPoint[1] ;
+    recty[2] = recty[3] = ulPoint[1] - userSize[1];
+    rectz[0] = rectz[1] = rectz[2]= rectz[3] = ulPoint[2] ;
+
+    ReverseDataFor3D( parentSubWin, rectx, recty, rectz, n);
+
+    trans3d( parentSubWin,n,edgesX,edgesY,rectx,recty,rectz) ;
+  }
+  else
+  {
+    /* 2D mode */
+    /* position of the upper left point of the rectangle with reverse axes. */
+    double realPoint[2] ;
+    int ulPointPix[2] ;
+    int sizePix[2] ;
+
+    if ( ppSubWin->axes.reverse[0] )
+    {
+      realPoint[0] = ulPoint[0] + userSize[0] ;
+    }
+    else
+    {
+      realPoint[0] = ulPoint[0] ;
+    }
+
+    if ( ppSubWin->axes.reverse[1] )
+    {
+      realPoint[1] = ulPoint[1] - userSize[1] ;
+    }
+    else
+    {
+      realPoint[1] = ulPoint[1] ;
+    }
+
+    ulPointPix[0] = XDouble2Pixel( realPoint[0] ) ; 
+    ulPointPix[1] = YDouble2Pixel( realPoint[1] ) ;
+
+    /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
+    sizePix[0] = WDouble2Pixel( ulPoint[0], userSize[0] ) ;
+    /* for y we take the length from the bottom left corner */
+    sizePix[1] = HDouble2Pixel( ulPoint[1] - userSize[1], userSize[1] ) ;
+
+    edgesX[0] = ulPointPix[0] ;
+    edgesX[1] = ulPointPix[0] + sizePix[0]  ;
+    edgesX[2] = ulPointPix[0] + sizePix[0]  ;
+    edgesX[3] = ulPointPix[0] ;
+
+    edgesY[0] = ulPointPix[1] ;
+    edgesY[1] = ulPointPix[1] ;
+    edgesY[2] = ulPointPix[1] + sizePix[1]  ;
+    edgesY[3] = ulPointPix[1] + sizePix[1]  ;
+
+  }
+}
+/*-----------------------------------------------------------------------------------*/

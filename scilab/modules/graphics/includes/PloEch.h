@@ -137,6 +137,52 @@ extern double YDPi2R( double y ) ;
 #define GEOX(x1,y1,z1)  XScale(TRX(x1,y1,z1))
 #define GEOY(x1,y1,z1)  YScale(TRY(x1,y1,z1))
 
+/**
+* convert the coordinates of a 2d or 3d point to its pixel coordinates.
+* @param pSubWin SubWindow in which the point is, might be either in 2d or 3d.
+* @param coord3d Coordinates of the point in the axes. If the subwin is in 2d,
+*        only the first two coordinates are used.
+*/
+void getPixelCoordinates( sciPointObj * pSubWin, double coord3d[3], int pixCoord[2] ) ;
+
+/**
+* Convert a length from user coord. to pixels in 2D. This function is similar to
+*         WDouble2Pixel, but also use the logmode in 3D.
+* @param parentSubWin Axes in which the length is computed.
+* @param posX         X coordinate of where the distance is transformed
+*                     (only used in log mode).
+* @param height       converted width in user coord.
+* @return the corresponding length in pixels.
+*/
+int PixelWidth2d( sciPointObj * parentSubWin, double posX, double width ) ;
+
+/**
+ * Convert a length from user coord. to pixels in 2D. This function is similar to
+ *         HDouble2Pixel, but also use the logmode in 3D.
+ * @param parentSubWin Axes in which the length is computed.
+ * @param posY         Y coordinate of where the distance is transformed
+ *                     (only used in log mode).
+ * @param height       converted height in user coord.
+ * @return the corresponding length in pixels.
+ */
+int PixelHeight2d( sciPointObj * parentSubWin, double posY, double height ) ;
+
+/**
+ * Give the position of the 4 corners of a rectangle in pixels given the position of its
+ * upper left point in user coordiantes and its size. It works in every axes mode
+ * (2D/3D, log, reverse).
+ * @param parentSubWin Subwindow in which the rectangle is drawn.
+ * @param ulPoint      Coordinates of the upper left point of the rectangle in user coord.
+ * @param userSize     Width and height of the rectangle in user coord.
+ * @param edgesX       X coordinates of the resulting positions.
+ * @param edgesY       Y coordinates of the resulting positions.
+ */
+void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
+                            double        ulPoint[3]   ,
+                            double        userSize[2]  ,
+                            int           edgesX[4]    ,
+                            int           edgesY[4]     ) ;
+
 #endif  /* _SCI_ECH */
 
 

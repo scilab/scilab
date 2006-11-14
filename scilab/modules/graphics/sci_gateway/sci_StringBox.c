@@ -11,6 +11,7 @@
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "DrawObjects.h"
+#include "StringBox.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_StringBox( char * fname, unsigned long fname_len )

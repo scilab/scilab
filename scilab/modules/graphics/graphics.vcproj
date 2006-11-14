@@ -233,6 +233,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\handleDrawing\drawTextEntity.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Events.c"
 				>
 			</File>
@@ -1807,7 +1811,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\handleDrawing\drawTextHandle.h"
+				RelativePath=".\src\c\handleDrawing\drawTextEntity.h"
 				>
 			</File>
 			<File

@@ -214,15 +214,15 @@ void getStringsRectSized( StringMatrix  * strMat           ,
 }
 /*----------------------------------------------------------------------------------------*/
 void getStringsPositions( StringMatrix  * strMat        ,
-                         int           * fontId        ,
-                         int           * fontSize      ,
-                         int             textPos[2]    ,
-                         BOOL            autoSize      ,
-                         int             textSize[2]   ,
-                         BOOL            centerPos     ,
-                         double          angle         ,
-                         Vect2iMatrix  * stringPosition,
-                         int             boundingBox[4][2] )
+                          int           * fontId        ,
+                          int           * fontSize      ,
+                          int             textPos[2]    ,
+                          BOOL            autoSize      ,
+                          int             textSize[2]   ,
+                          BOOL            centerPos     ,
+                          double          angle         ,
+                          Vect2iMatrix  * stringPosition,
+                          int             boundingBox[4][2] )
 {
   integer curFont[2]  ;
   integer verbose = 0 ;
@@ -272,6 +272,147 @@ void getStringsPositions( StringMatrix  * strMat        ,
 
 }
 /*----------------------------------------------------------------------------------------*/
+void getTextBoundingBox( sciPointObj * pText        ,
+                        int           cornPix[4][2],
+                        double        corners[4][2] )
+{
+  int           fontId   = sciGetFontStyle( pText ) ;
+  int           fontSize = sciGetFontDeciWidth( pText ) / 100 ;
+  double        angle    = DEG2RAD( sciGetFontOrientation (pText) / 10 ) ; 
+  int           position[2] ;
+  double        textPos[3]  ;
+  double        userSize[2] ;
+  int           textSize[2] ;
+  sciText     * ppText   = pTEXT_FEATURE( pText ) ;
+  sciPointObj * parentSW = sciGetParentSubwin( pText ) ;
+
+  /* transform the position in pixels */
+  /* we don't take the axes reverse into account. This has obviously no meaning for text.*/
+  textPos[0] = ppText->x ;
+  textPos[1] = ppText->y ;
+  textPos[2] = ppText->z ;
+
+  updateScaleIfRequired( parentSW ) ;
+
+  if ( sciGetIs3d( pText ) )
+  {
+    /* normal case */
+    getPixelCoordinates( parentSW, textPos, position ) ;
+  }
+  else
+  {
+    /* special for label, use of the 2d scale */
+    position[0] = XDouble2Pixel( textPos[0] ) ;
+    position[1] = YDouble2Pixel( textPos[1] ) ;
+  }
+
+  sciGetUserSize( pText, &(userSize[0]), &(userSize[1]) ) ;
+
+  /* We take the size in 2d. */
+  textSize[0] = PixelWidth2d(  parentSW, ppText->x, userSize[0] ) ;
+  textSize[1] = PixelHeight2d( parentSW, ppText->y, userSize[1] ) ;
+
+  if ( cornPix == NULL )
+  {
+    int corn[4][2] ;
+    /* NULL because we don't need the position of each string */
+    getStringsPositions( sciGetText( pText )     ,
+      &fontId                 ,
+      &fontSize               ,
+      position                ,
+      sciGetAutoSize( pText ) ,
+      textSize                ,
+      sciGetCenterPos( pText ),
+      angle                   ,
+      NULL                    ,
+      corn                     ) ;
+    if ( corners != NULL )
+    {
+      /* take everything back to user coordinates */
+      /* to retrieve exactly the first corner as in stringl we take the input */
+      corners[0][0] = XDPixel2Double( corn[0][0] ) ;
+      corners[0][1] = YDPixel2Double( corn[0][1] ) ;
+
+      corners[1][0] = XDPixel2Double( corn[1][0] ) ;
+      corners[1][1] = YDPixel2Double( corn[1][1] ) ;
+
+      corners[2][0] = XDPixel2Double( corn[2][0] ) ;
+      corners[2][1] = YDPixel2Double( corn[2][1] ) ;
+
+      corners[3][0] = XDPixel2Double( corn[3][0] ) ;
+      corners[3][1] = YDPixel2Double( corn[3][1] ) ;
+    }
+  }
+  else
+  {
+    /* NULL because we don't need the position of each string */
+    getStringsPositions( sciGetText( pText )     ,
+      &fontId                 ,
+      &fontSize               ,
+      position                ,
+      sciGetAutoSize( pText ) ,
+      textSize                ,
+      sciGetCenterPos( pText ),
+      angle                   ,
+      NULL                    ,
+      cornPix                  ) ;
+
+    if ( corners != NULL )
+    {
+      /* take everything back to user coordinates */
+      /* to retrieve exactly the first corner as in stringl we take the input */
+      corners[0][0] = XDPixel2Double( cornPix[0][0] ) ;
+      corners[0][1] = YDPixel2Double( cornPix[0][1] ) ;
+
+      corners[1][0] = XDPixel2Double( cornPix[1][0] ) ;
+      corners[1][1] = YDPixel2Double( cornPix[1][1] ) ;
+
+      corners[2][0] = XDPixel2Double( cornPix[2][0] ) ;
+      corners[2][1] = YDPixel2Double( cornPix[2][1] ) ;
+
+      corners[3][0] = XDPixel2Double( cornPix[3][0] ) ;
+      corners[3][1] = YDPixel2Double( cornPix[3][1] ) ;
+    }
+  }
+
+}
+/*----------------------------------------------------------------------------------------*/
+void getTextAabb( sciPointObj * pText        ,
+                 int           rectPix[4]   ,
+                 int           cornPix[4][2] )
+{
+  if ( cornPix == NULL )
+  {
+    int cornPix[4][2] ;
+
+    getTextBoundingBox( pText, cornPix, NULL ) ;
+
+    if ( rectPix != NULL )
+    {
+      rectPix[0] = Min( cornPix[0][0], Min( cornPix[1][0], Min( cornPix[2][0], cornPix[3][0] ) ) ) ;
+      /* in pixel the bottom left point has the maximal y value */
+      rectPix[1] = Max( cornPix[0][1], Max( cornPix[1][1], Max( cornPix[2][1], cornPix[3][1] ) ) ) ;
+      rectPix[2] = Max( abs( cornPix[2][0] - cornPix[0][0] ), abs( cornPix[3][0] - cornPix[1][0] ) ) ;
+      rectPix[3] = Max( abs( cornPix[2][1] - cornPix[0][1] ), abs( cornPix[3][1] - cornPix[1][1] ) ) ;
+    }
+  }
+  else
+  {
+    getTextBoundingBox( pText, cornPix, NULL ) ;
+
+    if ( rectPix != NULL )
+    {
+      rectPix[0] = Min( cornPix[0][0], Min( cornPix[1][0], Min( cornPix[2][0], cornPix[3][0] ) ) ) ;
+      /* in pixel the bottom left point has the maximal y value */
+      rectPix[1] = Max( cornPix[0][1], Max( cornPix[1][1], Max( cornPix[2][1], cornPix[3][1] ) ) ) ;
+      rectPix[2] = Max( abs( cornPix[2][0] - cornPix[0][0] ), abs( cornPix[3][0] - cornPix[1][0] ) ) ;
+      rectPix[3] = Max( abs( cornPix[2][1] - cornPix[0][1] ), abs( cornPix[3][1] - cornPix[1][1] ) ) ;
+    }
+  }
+
+}
+/*----------------------------------------------------------------------------------------*/
+
 void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle )
 {
   if ( Abs( angle ) > EPSILON )

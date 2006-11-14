@@ -199,44 +199,12 @@ extern void sciAxesVerticesIndices( integer insideU[4],
                                     integer xind[8]    ) ;
 
 extern void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest ) ;
-extern void stringBoundingRect( char ** textMatrix, int textSize[2], int textPos[2], int rect[4] ) ;
-extern void getStringBox( char   ** text         ,
-                          double    textPos[2]   ,
-                          int       textSize[2]  ,
-                          BOOL      autoSize     ,
-                          double    userSize[2]  ,
-                          double    angle        ,
-                          int       fontId       , 
-                          int       fontSize     , 
-                          double    corners[4][2] ) ;
-
-extern void getStringsPositions( StringMatrix  * strMat        ,
-                                 int           * fontId        ,
-                                 int           * fontSize      ,
-                                 int             textPos[2]    ,
-                                 BOOL            autoSize      ,
-                                 int             textSize[2]   ,
-                                 BOOL            centerPos     ,
-                                 double          angle         ,
-                                 Vect2iMatrix  * stringPosition,
-                                 int             boundingBox[4][2] ) ;
-
-extern void drawText( sciPointObj * pObj ) ;
 
 extern void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
                                    double        ulPoint[3]   ,
                                    double        userSize[2]  ,
                                    int           edgesX[4]    ,
                                    int           edgesY[4]     ) ;
-extern void getTextBoundingBox( sciPointObj * pText        ,
-                                int           cornPix[4][2],
-                                double        corners[4][2] ) ;
-
-extern void rotateBoundingBox( int boundingBox[4][2], int center[2], double angle ) ;
-
-extern void getTextAabb( sciPointObj * pText     ,
-                         int           rectPix[4],
-                         int           cornPix[4][2] ) ;
 
 void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2], int offsets[2] ) ;
 

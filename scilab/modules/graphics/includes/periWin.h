@@ -56,6 +56,15 @@
 
  void wininfo(char *fmt,...) ;
 
+/*-------------------------------------------------------------------------------*/
+int   MaybeSetWinhdc( void ) ;
+void  ReleaseWinHdc( void ) ;
+
+#ifdef _MSC_VER
+static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/
+#endif
+/*-------------------------------------------------------------------------------*/
+
 #endif /* __PERIWIN_H__ */
 
 
