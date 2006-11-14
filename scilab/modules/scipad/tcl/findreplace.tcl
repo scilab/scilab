@@ -598,6 +598,10 @@ proc multiplefilesfindreplace {w frit} {
     if {!$multiplefiles} {
         # search in current buffer only
         $frit $w $pw [gettextareacur] $tosearchfor $regexpcase
+        # display next match after a replace
+        if {$frit == "replaceit"} {
+            findit $w $pw [gettextareacur] $tosearchfor $regexpcase
+        }
         return
     }
 
@@ -652,7 +656,13 @@ proc multiplefilesfindreplace {w frit} {
                             $tosearchfor $regexpcase]
 
     if {$prevfindres == "mustswitchnow"} {
-        multiplefilesfindreplace $w $frit
+        multiplefilesfindreplace $w findit
+    } else {
+        # display next match after a replace
+        if {$frit == "replaceit"} {
+            findit $w $pw [lindex $listoftextarea $indofcurrentbuf] \
+                    $tosearchfor $regexpcase
+        }
     }
 
 }
@@ -826,10 +836,12 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     # therefore perform a search first get the match positions and
     # the length of the matches
     # and do it only once (per buffer) in a search session
+    set newlistofmatches false
     if {![info exists listofmatch]} {
         set listofmatch [searchforallmatches $textarea $tosearchfor \
                              $caset $reg $searchinsel $wholeword \
                              $listoftagsforfind]
+        set newlistofmatches true
     }
 
     # analyze the search results
@@ -878,7 +890,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
 
     # select the match to replace from the list of matches
     set foundtextrange [$textarea tag ranges foundtext]
-    if {$foundtextrange == {} || !$replacesingle} {
+    if {$foundtextrange == {} || !$replacesingle || $newlistofmatches} {
         # there is no already found matching text (Find Next was not hit)
         # therefore get next match
         foreach {mpos mlen wraparound looped alreadyreplaced} \
@@ -1299,7 +1311,6 @@ proc getnextmatch {textarea dir ssel} {
         if {$mpos == $firstpos} {
             break
         }
-
     }
 
     return [list $mpos $mlen $wraparound $looped $alreadyreplaced]

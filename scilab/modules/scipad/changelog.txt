@@ -2497,3 +2497,11 @@ Francois VOGEL, 12/11/06
  * Improved aesthetics of the find/replace dialog (labelframes and more)
  * Added find/replace among tagged text only, e.g. among comments
  * version --> 6.56
+
+Francois VOGEL, 14/11/06
+ * Fixed: During a replace session, the sequence Find Next, Replace, Find
+   Next, followed by a change in an option, e.g. Match whole word,
+   followed by Replace triggered a Tcl error
+ * More ergonomic: After a replacement is done, the next match is
+   highlighted
+ * version --> 6.57
