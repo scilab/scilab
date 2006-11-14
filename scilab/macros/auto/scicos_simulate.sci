@@ -90,7 +90,7 @@ end
   //     
   tolerances=scs_m.props.tol
   solver=tolerances(6)
-  
+  %scicos_solver=solver
   [%scicos_context,ierr]=script2var(scs_m.props.context, ...
 				    %scicos_context);
   if ierr==0 then 
