@@ -353,7 +353,8 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-gdfonts.lo libgraphics_la-gdfontt.lo \
 	libgraphics_la-gdfontg.lo libgraphics_la-gdfontl.lo \
 	libgraphics_la-bdftogd.lo libgraphics_la-xfonts.lo \
-	libgraphics_la-gd.lo libgraphics_la-StringBox.lo
+	libgraphics_la-gd.lo libgraphics_la-StringBox.lo \
+	libgraphics_la-drawTextEntity.lo
 am__objects_2 = libgraphics_la-sci_swap_handles.lo \
 	libgraphics_la-sci_readgif.lo libgraphics_la-sci_grayplot.lo \
 	libgraphics_la-sci_matplot1.lo libgraphics_la-sci_xfpolys.lo \
@@ -942,7 +943,8 @@ src/gd/gdfonts/gdfontl.c \
 src/gd/bdftogd.c \
 src/gd/xfonts.c \
 src/gd/gd.c \
-src/c/StringBox.c
+src/c/StringBox.c \
+src/c/handleDrawing/drawTextEntity.c
 
 
 # A voir si c'st utilisé
@@ -1173,6 +1175,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-bdftogd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-clipping.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-dr1Call.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawTextEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gdfontg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gdfontl.Plo@am__quote@
@@ -3731,6 +3734,13 @@ libgraphics_la-StringBox.lo: src/c/StringBox.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/StringBox.c' object='libgraphics_la-StringBox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-StringBox.lo `test -f 'src/c/StringBox.c' || echo '$(srcdir)/'`src/c/StringBox.c
+
+libgraphics_la-drawTextEntity.lo: src/c/handleDrawing/drawTextEntity.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawTextEntity.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-drawTextEntity.Tpo" -c -o libgraphics_la-drawTextEntity.lo `test -f 'src/c/handleDrawing/drawTextEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawTextEntity.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgraphics_la-drawTextEntity.Tpo" "$(DEPDIR)/libgraphics_la-drawTextEntity.Plo"; else rm -f "$(DEPDIR)/libgraphics_la-drawTextEntity.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawTextEntity.c' object='libgraphics_la-drawTextEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawTextEntity.lo `test -f 'src/c/handleDrawing/drawTextEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawTextEntity.c
 
 libgraphics_la-sci_swap_handles.lo: sci_gateway/sci_swap_handles.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-sci_swap_handles.lo -MD -MP -MF "$(DEPDIR)/libgraphics_la-sci_swap_handles.Tpo" -c -o libgraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/sci_swap_handles.c; \
