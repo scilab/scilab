@@ -33,15 +33,21 @@ void dsslti4(scicos_block *block,int flag)
     /* y=c*x+d*u */
     lc=lb+nz*insz[0];
     ld=lc+nz*outsz[0];
-    C2F(dmmul)(&rpar[lc],outsz,z,&nz,y,outsz,outsz,&nz,&un);
-    C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    if (nz==0) {
+      C2F(dmmul)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    }else{
+      C2F(dmmul)(&rpar[lc],outsz,z,&nz,y,outsz,outsz,&nz,&un);
+      C2F(dmmul1)(&rpar[ld],outsz,u,insz,y,outsz,outsz,insz,&un);
+    }
   }
   else if (flag ==2){
     /* x+=a*x+b*u */
-    w =*block->work;
-    memcpy(w,z,nz*sizeof(double));
-    C2F(dmmul)(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
-    C2F(dmmul1)(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
+    if (nz!=0){
+      w =*block->work;
+      memcpy(w,z,nz*sizeof(double));
+      C2F(dmmul)(&rpar[0],&nz,w,&nz,z,&nz,&nz,&nz,&un);
+      C2F(dmmul1)(&rpar[lb],&nz,u,insz,z,&nz,&nz,insz,&un);
+    }
   }
   else if (flag ==4){/* the workspace for temp storage
 		      */
