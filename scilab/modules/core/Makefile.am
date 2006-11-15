@@ -179,7 +179,8 @@ src/fortran/expsum.f \
 src/fortran/eqid.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
-src/fortran/itosci.f
+src/fortran/itosci.f \
+src/fortran/return_a_nan.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_savehistory.c \
 sci_gateway/c/sci_stacksize.c \

@@ -577,6 +577,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\return_a_nan.c"
+				>
+			</File>
+			<File
 				RelativePath=".\savlod.c"
 				>
 			</File>
@@ -1254,6 +1258,10 @@
 			</File>
 			<File
 				RelativePath=".\ref2val.f"
+				>
+			</File>
+			<File
+				RelativePath=".\return_a_nan.f"
 				>
 			</File>
 			<File

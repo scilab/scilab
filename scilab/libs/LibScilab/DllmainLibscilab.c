@@ -36,6 +36,8 @@
 #pragma comment(lib,"../../bin/integer_f.lib")
 #pragma comment(lib,"../../bin/slicot_f.lib")
 
+#pragma comment(lib,"../../libs/slatec_f.lib")
+#pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/interpolation_f.lib")
 #pragma comment(lib,"../../libs/data_structures_f.lib")
 #pragma comment(lib,"../../libs/boolean_f.lib")

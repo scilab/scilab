@@ -257,22 +257,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\d9b0mp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\d9b1mp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\d9knus.c"
-				>
-			</File>
-			<File
-				RelativePath=".\d9lgmc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dad.c"
 				>
 			</File>
@@ -281,43 +265,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dasyik.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dasyjy.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbdiff.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesi.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesi0.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesi1.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dbesig.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesj.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesj0.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesj1.c"
 				>
 			</File>
 			<File
@@ -325,35 +273,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dbesk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesk0.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesk1.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dbeskg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesks.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesy.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesy0.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesy1.c"
 				>
 			</File>
 			<File
@@ -361,51 +281,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dbkias.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbkisr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsi0e.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsi1e.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsk0e.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsk1e.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbskes.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbskin.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsknu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsynu.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dclmat.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dcsevl.c"
 				>
 			</File>
 			<File
@@ -429,27 +305,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dexint.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dexpm1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamlm.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamln.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamma.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamrn.c"
 				>
 			</File>
 			<File
@@ -461,10 +317,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dhkseq.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dipow.c"
 				>
 			</File>
@@ -473,19 +325,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\djairy.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dlblks.c"
 				>
 			</File>
 			<File
 				RelativePath=".\dlgama.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dlngam.c"
 				>
 			</File>
 			<File
@@ -506,10 +350,6 @@
 			</File>
 			<File
 				RelativePath=".\dmsum.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dpsixn.c"
 				>
 			</File>
 			<File
@@ -561,14 +401,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dxlegf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dyairy.c"
-				>
-			</File>
-			<File
 				RelativePath=".\entier.c"
 				>
 			</File>
@@ -577,15 +409,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fdump.c"
-				>
-			</File>
-			<File
 				RelativePath=".\franck.c"
-				>
-			</File>
-			<File
-				RelativePath=".\gamma.c"
 				>
 			</File>
 			<File
@@ -633,10 +457,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\initds.c"
-				>
-			</File>
-			<File
 				RelativePath=".\int2db.c"
 				>
 			</File>
@@ -666,10 +486,6 @@
 			</File>
 			<File
 				RelativePath=".\iwamax.c"
-				>
-			</File>
-			<File
-				RelativePath=".\j4save.c"
 				>
 			</File>
 			<File
@@ -1129,55 +945,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\xercnt.c"
-				>
-			</File>
-			<File
-				RelativePath=".\xermsg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\xerprn.c"
-				>
-			</File>
-			<File
-				RelativePath=".\xersve.c"
-				>
-			</File>
-			<File
-				RelativePath=".\xgetua.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zabs.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zacai.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zacon.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zairy.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zasyi.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbesh.c"
-				>
-			</File>
-			<File
 				RelativePath=".\zbeshg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbesi.c"
 				>
 			</File>
 			<File
@@ -1185,15 +953,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\zbesj.c"
-				>
-			</File>
-			<File
 				RelativePath=".\zbesjg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbesk.c"
 				>
 			</File>
 			<File
@@ -1201,107 +961,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\zbesy.c"
-				>
-			</File>
-			<File
 				RelativePath=".\zbesyg.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbinu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbknu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbuni.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zbunk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zdiv.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zexp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zkscl.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zlog.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zmlri.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zmlt.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zrati.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zs1s2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zseri.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zshch.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zsqrt.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zuchk.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zunhj.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zuni1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zuni2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zunik.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zunk1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zunk2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zuoik.c"
-				>
-			</File>
-			<File
-				RelativePath=".\zwrsk.c"
 				>
 			</File>
 		</Filter>
@@ -1385,22 +1045,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\d9b0mp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\d9b1mp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\d9knus.f"
-				>
-			</File>
-			<File
-				RelativePath=".\d9lgmc.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dad.f"
 				>
 			</File>
@@ -1409,43 +1053,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dasyik.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dasyjy.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbdiff.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesi.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesi0.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesi1.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dbesig.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesj.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesj0.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesj1.f"
 				>
 			</File>
 			<File
@@ -1453,35 +1061,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dbesk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesk0.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesk1.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dbeskg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesks.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesy.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesy0.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbesy1.f"
 				>
 			</File>
 			<File
@@ -1489,51 +1069,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dbkias.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbkisr.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsi0e.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsi1e.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsk0e.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsk1e.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbskes.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbskin.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsknu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dbsynu.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dclmat.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dcsevl.f"
 				>
 			</File>
 			<File
@@ -1557,27 +1093,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dexint.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dexpm1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamlm.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamln.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamma.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dgamrn.f"
 				>
 			</File>
 			<File
@@ -1589,10 +1105,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dhkseq.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dipow.f"
 				>
 			</File>
@@ -1601,19 +1113,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\djairy.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dlblks.f"
 				>
 			</File>
 			<File
 				RelativePath=".\dlgama.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dlngam.f"
 				>
 			</File>
 			<File
@@ -1634,10 +1138,6 @@
 			</File>
 			<File
 				RelativePath=".\dmsum.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dpsixn.f"
 				>
 			</File>
 			<File
@@ -1689,14 +1189,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dxlegf.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dyairy.f"
-				>
-			</File>
-			<File
 				RelativePath=".\entier.f"
 				>
 			</File>
@@ -1705,15 +1197,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fdump.f"
-				>
-			</File>
-			<File
 				RelativePath=".\franck.f"
-				>
-			</File>
-			<File
-				RelativePath=".\gamma.f"
 				>
 			</File>
 			<File
@@ -1761,10 +1245,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\initds.f"
-				>
-			</File>
-			<File
 				RelativePath=".\int2db.f"
 				>
 			</File>
@@ -1794,10 +1274,6 @@
 			</File>
 			<File
 				RelativePath=".\iwamax.f"
-				>
-			</File>
-			<File
-				RelativePath=".\j4save.f"
 				>
 			</File>
 			<File
@@ -2257,55 +1733,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\xercnt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\xermsg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\xerprn.f"
-				>
-			</File>
-			<File
-				RelativePath=".\xersve.f"
-				>
-			</File>
-			<File
-				RelativePath=".\xgetua.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zabs.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zacai.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zacon.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zairy.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zasyi.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbesh.f"
-				>
-			</File>
-			<File
 				RelativePath=".\zbeshg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbesi.f"
 				>
 			</File>
 			<File
@@ -2313,15 +1741,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\zbesj.f"
-				>
-			</File>
-			<File
 				RelativePath=".\zbesjg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbesk.f"
 				>
 			</File>
 			<File
@@ -2329,107 +1749,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\zbesy.f"
-				>
-			</File>
-			<File
 				RelativePath=".\zbesyg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbinu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbknu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbuni.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zbunk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zdiv.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zexp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zkscl.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zlog.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zmlri.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zmlt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zrati.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zs1s2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zseri.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zshch.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zsqrt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zuchk.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zunhj.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zuni1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zuni2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zunik.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zunk1.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zunk2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zuoik.f"
-				>
-			</File>
-			<File
-				RelativePath=".\zwrsk.f"
 				>
 			</File>
 		</Filter>

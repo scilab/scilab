@@ -30,18 +30,14 @@
 @del /Q io_f.vcdef
 @del /Q linear_algebra.vcdef
 @del /Q linear_algebra_f.vcdef
-@del /Q metanet.vcdef
 @del /Q optim.vcdef
 @del /Q optim_f.vcdef
 @del /Q polynomials.vcdef
 @del /Q polynomials_f.vcdef
 @del /Q randlib.vcdef
 @del /Q randlib_f.vcdef
-@del /Q scicos.vcdef
-@del /Q scicos_f.vcdef
 @del /Q signal.vcdef
 @del /Q signal_f.vcdef
-@del /Q slicot_f.vcdef
 @del /Q sparse.vcdef
 @del /Q special_functions.vcdef
 @del /Q special_functions_f.vcdef
@@ -53,3 +49,4 @@
 @del /Q Wintools.vcdef
 @del /Q wsci.vcdef
 @del /Q xdr.vcdef
+@del /Q slatec_f.vcdef
