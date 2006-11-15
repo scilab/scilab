@@ -56,12 +56,13 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 BOOL ON_WND_GRAPH_WM_CLOSE(HWND hwnd)
 {
 	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+	int curWindowNum = ScilabGC->CurWindow ;
 
 	PostQuitMessage (0);
-	C2F (deletewin) (&(ScilabGC->CurWindow));
+	C2F (deletewin) (&(curWindowNum));
 	SetWindowLong (hwnd, 0, (LONG) 0L);
 
-	PushClickQueue (ScilabGC->CurWindow,0,0,-100, 0, -1);
+	PushClickQueue (curWindowNum,0,0,-100, 0, -1);
 	set_wait_click(0);
 
 	/* Ajout pour probleme fermeture fenetre scicos
