@@ -778,6 +778,7 @@ static int MaybeCopyVectLI(char *name, integer **nx, integer *x, int l)
  *---------------------------------------------------------------------------*/
 
 struct listplot *ListPFirst = NULL ;
+static struct listplot *List_last = NULL ;
 
 /*-------------------------------------------------------------------------
  * StoreXgc is to be called after CleanPlots 
@@ -1044,6 +1045,7 @@ void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, inte
 	    (list->ptrplot)->previous=list->previous;
 	  list1=list;
 	  list =list->ptrplot;
+	  if ( List_last  == list1 ) List_last = list1->previous;
 	  FREE((char *) list1);
 	}
       else 
@@ -2697,6 +2699,7 @@ int Store(char *type, char *plot)
 	    ListPFirst->window=curwin();
 	    ListPFirst->ptrplot=NULL;
 	    ListPFirst->previous=NULL;
+	    List_last = ListPFirst;
 	  }
 	else
 	  {
@@ -2707,11 +2710,11 @@ int Store(char *type, char *plot)
   else 
     {
       struct listplot *list;
-      list=ListPFirst;
-      while (list->ptrplot != NULL) 
-	list=list->ptrplot;
-      list->ptrplot=(struct listplot *)
-	MALLOC(sizeof(struct listplot));
+      /* list=ListPFirst;
+	 while (list->ptrplot != NULL) list=list->ptrplot;*/
+      list = List_last;
+
+      list->ptrplot=(struct listplot *) MALLOC(sizeof(struct listplot));
       if (list->ptrplot != NULL)
 	{
 	  if (CopyVectC(&(list->ptrplot->type),type,((int)strlen(type))+1)==0)
@@ -2722,6 +2725,7 @@ int Store(char *type, char *plot)
 	  list->ptrplot->previous=list;
 	  list->ptrplot->window=curwin();
 	  list->ptrplot->ptrplot=NULL;
+	  List_last = list->ptrplot;
 	}
       else 
 	{
