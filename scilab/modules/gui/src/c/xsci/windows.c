@@ -59,6 +59,9 @@ static void CreateFileWindow  __PARAMS((Widget parent));
 **/
 static void CreateMessageWindow  __PARAMS((Widget parent));  
 
+XtermWidget CreateTermWindow(Widget parent);
+XtermWidget CreateSubWindows(Widget parent);
+
 static Widget 	fileLabel,		/* filename of displayed text */
 		lineLabel;		/* line number of caret position */
 
@@ -144,8 +147,7 @@ void DefaultMessageWindow()
 
 extern WidgetClass xtermWidgetClass;
 
-XtermWidget CreateSubWindows(parent)
-Widget parent;
+XtermWidget CreateSubWindows(Widget parent)
 {
   Arg 	args[1];
   Cardinal n=0;
@@ -222,8 +224,7 @@ void ReAcceptMessage()
   XtAddEventHandler(WidgetUseMessage,ClientMessage, True, (XtEventHandler) UseMessage,(XtPointer) 0);  
 }
 
-XtermWidget CreateTermWindow(parent)
-Widget parent;
+XtermWidget CreateTermWindow(Widget parent)
 {
   XtermWidget term1;
   Arg 	args[MAXARGS];
