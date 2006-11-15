@@ -5,7 +5,6 @@ show_startupinfo
 LCC
 %toolboxes_dir
 %toolboxes
-%scipad_fontsize
 %sciGUIPath
 scicos_pal
 %scicos_menu
