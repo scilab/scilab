@@ -6,34 +6,119 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../../includes;../../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def slatec_f.def &gt;nul
 copy slatec_f.def ..\..\..\..\..\..\libs\slatec_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AdditionalIncludeDirectories="../../../includes;../../../../core/includes;" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../../libs/slatec_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../../../libs/slatec_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../includes;../../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ImproveFloatingPointConsistency="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def slatec_f.def &gt;nul
 copy slatec_f.def ..\..\..\..\..\..\libs\slatec_f.vcdef &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" SwitchesHaveChanged="true" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../includes;../../../../core/includes;" PreprocessorDefinitions="WIN32" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ImproveFloatingPointConsistency="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="static /threads" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../../libs/slatec_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../../../libs/slatec_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
-		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl"/>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="d9b0mp.f"/>
+		<File RelativePath="d9b1mp.f"/>
+		<File RelativePath="d9knus.f"/>
+		<File RelativePath="d9lgmc.f"/>
+		<File RelativePath="dasyik.f"/>
+		<File RelativePath="dasyjy.f"/>
+		<File RelativePath="dbdiff.f"/>
+		<File RelativePath="dbesi.f"/>
+		<File RelativePath="dbesi0.f"/>
+		<File RelativePath="dbesi1.f"/>
+		<File RelativePath="dbesj.f"/>
+		<File RelativePath="dbesj0.f"/>
+		<File RelativePath="dbesj1.f"/>
+		<File RelativePath="dbesk.f"/>
+		<File RelativePath="dbesk0.f"/>
+		<File RelativePath="dbesk1.f"/>
+		<File RelativePath="dbesks.f"/>
+		<File RelativePath="dbesy.f"/>
+		<File RelativePath="dbesy0.f"/>
+		<File RelativePath="dbesy1.f"/>
+		<File RelativePath="dbkias.f"/>
+		<File RelativePath="dbkisr.f"/>
+		<File RelativePath="dbsi0e.f"/>
+		<File RelativePath="dbsi1e.f"/>
+		<File RelativePath="dbsk0e.f"/>
+		<File RelativePath="dbsk1e.f"/>
+		<File RelativePath="dbskes.f"/>
+		<File RelativePath="dbskin.f"/>
+		<File RelativePath="dbsknu.f"/>
+		<File RelativePath="dbsynu.f"/>
+		<File RelativePath="dcsevl.f"/>
+		<File RelativePath="dexint.f"/>
+		<File RelativePath="dgamlm.f"/>
+		<File RelativePath="dgamln.f"/>
+		<File RelativePath="dgamma.f"/>
+		<File RelativePath="dgamrn.f"/>
+		<File RelativePath="dhkseq.f"/>
+		<File RelativePath="djairy.f"/>
+		<File RelativePath="dlngam.f"/>
+		<File RelativePath="dpsixn.f"/>
+		<File RelativePath="dxlegf.f"/>
+		<File RelativePath="dyairy.f"/>
+		<File RelativePath="fdump.f"/>
+		<File RelativePath="gamma.f"/>
+		<File RelativePath="initds.f"/>
+		<File RelativePath="j4save.f"/>
+		<File RelativePath="xercnt.f"/>
+		<File RelativePath="xermsg.f"/>
+		<File RelativePath="xerprn.f"/>
+		<File RelativePath="xersve.f"/>
+		<File RelativePath="xgetua.f"/>
+		<File RelativePath="zabs.f"/>
+		<File RelativePath="zacai.f"/>
+		<File RelativePath="zacon.f"/>
+		<File RelativePath="zairy.f"/>
+		<File RelativePath="zasyi.f"/>
+		<File RelativePath="zbesh.f"/>
+		<File RelativePath="zbesi.f"/>
+		<File RelativePath="zbesj.f"/>
+		<File RelativePath="zbesk.f"/>
+		<File RelativePath="zbesy.f"/>
+		<File RelativePath="zbinu.f"/>
+		<File RelativePath="zbknu.f"/>
+		<File RelativePath="zbuni.f"/>
+		<File RelativePath="zbunk.f"/>
+		<File RelativePath="zdiv.f"/>
+		<File RelativePath="zexp.f"/>
+		<File RelativePath="zkscl.f"/>
+		<File RelativePath="zlog.f"/>
+		<File RelativePath="zmlri.f"/>
+		<File RelativePath="zmlt.f"/>
+		<File RelativePath="zrati.f"/>
+		<File RelativePath="zs1s2.f"/>
+		<File RelativePath="zseri.f"/>
+		<File RelativePath="zshch.f"/>
+		<File RelativePath="zsqrt.f"/>
+		<File RelativePath="zuchk.f"/>
+		<File RelativePath="zunhj.f"/>
+		<File RelativePath="zuni1.f"/>
+		<File RelativePath="zuni2.f"/>
+		<File RelativePath="zunik.f"/>
+		<File RelativePath="zunk1.f"/>
+		<File RelativePath="zunk2.f"/>
+		<File RelativePath="zuoik.f"/>
+		<File RelativePath="zwrsk.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
 	<Globals/></VisualStudioProject>
