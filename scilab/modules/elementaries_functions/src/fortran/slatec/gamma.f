@@ -191,7 +191,7 @@ C----------------------------------------------------------------------
          ELSE
 *          RES = XINF
 * modif Bruno: return Nan (Y is a negative integer)
-            RES = return_a_nan() ! this one is defined in somespline.f
+            RES = returnanan() ! this one is defined in somespline.f
             GO TO 900
          END IF
       END IF

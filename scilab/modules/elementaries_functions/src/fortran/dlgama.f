@@ -281,7 +281,7 @@ C----------------------------------------------------------------------
 *           modif from Bruno (see comment at the beginning)
 *            RES = XINF
             if (X .le. 0.d0) then
-               RES = return_a_nan()
+               RES = returnanan()
             else  ! this means that X > XBIG and so that log(gamma) overflows 
                RES = 2*XINF  ! bad trick to get Inf
             endif

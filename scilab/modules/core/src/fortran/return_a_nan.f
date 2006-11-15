@@ -1,4 +1,4 @@
-      double precision function return_a_nan()
+      double precision function returnanan()
       
       implicit none
       
@@ -15,7 +15,7 @@
          a = (a - b) / (a - b)
       endif
 
-      return_a_nan = a
+      returnanan = a
 
       end
 

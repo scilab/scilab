@@ -281,8 +281,8 @@
       integer  isearch, isanan
       external isearch, isanan
       double precision tt
-      double precision return_a_nan
-      external         return_a_nan 
+      double precision returnanan
+      external         returnanan 
       logical new_call     
       common /INFO_HERMITE/new_call
 
@@ -299,7 +299,7 @@
          else   ! t(j) is outside [x(1), x(n)] evaluation depend upon outmode 
 
             if (outmode .eq. BY_NAN  .or.  isanan(tt) .eq. 1) then 
-               st(j) = return_a_nan()
+               st(j) = returnanan()
                dst(j) = st(j)
                d2st(j) = st(j)
                d3st(j) = st(j)
@@ -870,8 +870,8 @@
       integer i, j, k
       include 'constinterp.h'
       integer  isanan
-      double precision return_a_nan, EvalBicubic
-      external isanan, return_a_nan, EvalBicubic
+      double precision returnanan, EvalBicubic
+      external isanan, returnanan, EvalBicubic
 
       i = 0
       j = 0
@@ -886,7 +886,7 @@
 
          elseif (outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
      $                                .or.  isanan(yy) .eq. 1) then
-            z_eval(k) = return_a_nan()
+            z_eval(k) = returnanan()
 
          elseif (outmode .eq. BY_ZERO) then
             z_eval(k) = 0.d0
@@ -934,8 +934,8 @@
       integer k, i, j
       include 'constinterp.h'
       integer  isanan
-      double precision return_a_nan, EvalBicubic
-      external isanan, return_a_nan, EvalBicubic
+      double precision returnanan, EvalBicubic
+      external isanan, returnanan, EvalBicubic
       logical change_dzdx, change_dzdy
 
       i = 0
@@ -953,7 +953,7 @@
 
          elseif ( outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
      $                                 .or.  isanan(yy) .eq. 1) then
-            z_eval(k) = return_a_nan()
+            z_eval(k) = returnanan()
             dzdx_eval(k) = z_eval(k)
             dzdy_eval(k) = z_eval(k)
 
@@ -1027,8 +1027,8 @@
       integer k, i, j
       include 'constinterp.h'
       integer  isanan
-      double precision return_a_nan, EvalBicubic
-      external isanan, return_a_nan, EvalBicubic
+      double precision returnanan, EvalBicubic
+      external isanan, returnanan, EvalBicubic
       logical change_dzdx, change_dzdy
 
       i = 0
@@ -1047,7 +1047,7 @@
 
          elseif ( outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
      $                                 .or.  isanan(yy) .eq. 1) then
-            z_eval(k) = return_a_nan()
+            z_eval(k) = returnanan()
             dzdx_eval(k) = z_eval(k)
             dzdy_eval(k) = z_eval(k)
             d2zdx2_eval(k) = z_eval(k)
@@ -1130,8 +1130,8 @@
       double precision x, y, z
       include 'constinterp.h'
       integer  isanan
-      double precision return_a_nan, db3val
-      external isanan, return_a_nan, db3val
+      double precision returnanan, db3val
+      external isanan, returnanan, db3val
 
       do k = 1, np
          x = xp(k)
@@ -1160,7 +1160,7 @@
          elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1 
      $                                .or.  isanan(y) .eq. 1
      $                                .or.  isanan(z) .eq. 1) then
-            fp(k) = return_a_nan()
+            fp(k) = returnanan()
 
          elseif (outmode .eq. BY_ZERO) then
             fp(k) = 0.d0
@@ -1203,8 +1203,8 @@
       double precision x, y, z
       include 'constinterp.h'
       integer  isanan
-      double precision return_a_nan, db3val
-      external isanan, return_a_nan, db3val
+      double precision returnanan, db3val
+      external isanan, returnanan, db3val
 
       do k = 1, np
          x = xp(k)
@@ -1239,7 +1239,7 @@
          elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1 
      $                                .or.  isanan(y) .eq. 1
      $                                .or.  isanan(z) .eq. 1) then
-            fp(k) = return_a_nan()
+            fp(k) = returnanan()
             dfpdx(k) = fp(k)
             dfpdy(k) = fp(k)
             dfpdz(k) = fp(k)
