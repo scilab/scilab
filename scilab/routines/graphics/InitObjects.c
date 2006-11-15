@@ -139,8 +139,11 @@ int C2F(graphicsmodels) ()
     }
 
   pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
-  
+#ifdef WITH_GTK
+  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "ScilabGtk Graphic (%d)", sizeof ("ScilabGtk Graphic (%d)") + 4);
+#else 
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic (%d)", sizeof ("Scilab Graphic (%d)") + 4);
+#endif 
   pFIGURE_FEATURE (pfiguremdl)->namelen = Min (60, 19); 
   pFIGURE_FEATURE (pfiguremdl)->number=0;
   pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
@@ -711,7 +714,7 @@ sciInitGraphicContext (sciPointObj * pobj)
  	  (sciGetGraphicContext(pobj))->ismark    = FALSE;
  	  (sciGetGraphicContext(pobj))->isline    = TRUE;
 	  (sciGetGraphicContext(pobj))->markstyle = 0;
-	  (sciGetGraphicContext(pobj))->marksize = 0 ; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->marksize = 0; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */

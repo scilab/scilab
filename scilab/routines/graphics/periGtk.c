@@ -122,6 +122,12 @@ static xget_f xget_font,xget_mark,xget_dash_or_color;
 static xget_f xget_scilabxgc,xget_scilabFigure,xget_scilabVersion;/* NG */
 static xget_f xget_colormap_size;
 
+
+static void gdk_draw_text_rot(GdkDrawable *drawable, GdkFont *font,
+			      GdkGC *gc, int x, int y,
+			      int maxx, int maxy, const gchar *text,
+			      gint text_length,  double angle);
+
 /* utility for points allocations */
 
 static GdkPoint *gtk_get_xpoints(void);
@@ -387,18 +393,19 @@ static gboolean locator_button_press(GtkWidget *widget,
  * In that case we return a click i.e a click will 
  * generate at scilab level two events a press and a click !
  * the release is not returned. 
- * a double click will generate : press/click/press/double_click/click
- *
+ * NOTE: the click event is not activated in this release since 
  */
+
 
 static gboolean locator_button_release(GtkWidget *widget,
 				       GdkEventButton *event,
 				       BCG *gc)
 {
-  int display_double_click_distance;
+  const int click_event =0; /* do not use the click event */
   static GdkDisplay *display=NULL;
-  if ( display == NULL) display=gdk_display_get_default();
+  int display_double_click_distance;
 
+  if ( display == NULL) display=gdk_display_get_default();
 /* to compile with gdk<2.4 */
 #if GTK_MAJOR_VERSION==2 &&  GTK_MINOR_VERSION>=4
   display_double_click_distance = display->double_click_distance;
@@ -406,11 +413,12 @@ static gboolean locator_button_release(GtkWidget *widget,
   display_double_click_distance=5;
 #endif
 
-  if ((event->time < (last_press.time + 2*display->double_click_time)) &&
-      (event->window == last_press.window) &&
-      (event->button == last_press.button) &&
-      (ABS (event->x - last_press.x) <= display_double_click_distance) &&
-      (ABS (event->y - last_press.y) <= display_double_click_distance))
+  if ( click_event &&
+       (event->time < (last_press.time + 2*display->double_click_time)) &&
+       (event->window == last_press.window) &&
+       (event->button == last_press.button) &&
+       (ABS (event->x - last_press.x) <= display_double_click_distance) &&
+       (ABS (event->y - last_press.y) <= display_double_click_distance))
     {
       /* fprintf(stderr,"This is a click\n"); */
       /* return a click */
@@ -470,33 +478,25 @@ static gboolean locator_button_motion(GtkWidget *widget,
 }
 
 
-static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
+static gint key_press_release_event (GtkWidget *widget, GdkEventKey *event, BCG *gc,int flag)
 {
   /* modified 30/10/02 to get cursor location and register  key_press_event in queue' SS */
-  gint x,y; 
+  gint x,y,keyval; 
   GdkModifierType state;
-
-  if ( info.sci_click_activated == 0 || info.getkey == 0 ) 
+  
+  if ( ((event->keyval >= 0x20) && (event->keyval <= 0xFF)) || event->keyval >= 0xFF00 )
     {
+      /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
       gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
-      PushClickQueue( gc->CurWindow,x, y,event->keyval ,0,0);      
-    }
-  else 
-    {
-      /* fprintf(stderr,"key = %d\n",event->keyval); */
-      if ( (event->keyval >= 0x20) && (event->keyval <= 0xFF))
+      info.x=x ; info.y=y;
+      info.ok =1 ;  info.win=  gc->CurWindow; 
+      /* This is not good we should return modifiers  as extra data */
+      /* 1000 + key : Ctrl-key 
+       * 2000 + key : Ctrl-Alt-key 
+       * 3000 + key : Alt-key 
+       */
+      if ( event->keyval < 0xFF00 ) 
 	{
-	  /* since Alt-keys and Ctrl-keys are stored in menus I want to ignore them here */
-	  gdk_window_get_pointer (gc->drawing->window, &x, &y, &state);
-	  info.x=x ; info.y=y;
-	  info.ok =1 ;  info.win=  gc->CurWindow; 
-	  /* This is not good we should return modifiers 
-	   * as extra data 
-	   */
-	  /* 1000 + key : Ctrl-key 
-	   * 2000 + key : Ctrl-Alt-key 
-	   * 3000 + key : Alt-key 
-	   */
 	  if ( event->state & GDK_CONTROL_MASK ) 
 	    {
 	      info.button = ( event->state & GDK_MOD1_MASK ) ? 2000: 1000;
@@ -505,12 +505,46 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
 	    {
 	      info.button = ( event->state & GDK_MOD1_MASK ) ? 3000: 0;
 	    }
-	  info.button += event->keyval ;
+	}
+      else
+	{
+	  /* do not modify code above 0xFF00 */
+	  info.button=0;
+	}
+      info.button += event->keyval ;
+      if (flag == TRUE )
+	{
+	  /* this conflicts with the fact that some negative values 
+	   * are used ex -100 when a window is killed 
+	   */
+	  info.button = -info.button ;
+	}
+      if ( info.sci_click_activated == 0 || info.getkey == 0 ) 
+	{
+	  PushClickQueue( gc->CurWindow,info.x,info.y,info.button ,0,0);      
+	}
+      else 
+	{
 	  gtk_main_quit();
 	}
     }
   return FALSE; /* want also the menu to receive the key pressed */
 }
+
+
+static gint key_release_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
+{
+  /* we do not use the key release, it conflicts with -100 
+   */
+  /* return key_press_release_event(widget,event,gc,TRUE); */
+}
+
+static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
+{
+  return key_press_release_event(widget,event,gc,FALSE);
+}
+
+
 
 
 static gboolean sci_destroy_window (GtkWidget *widget, GdkEventKey *event,  BCG *gc)
@@ -698,7 +732,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1,
  * if dyn_men = 1 ; check also dynamic menus (returns the menu code in str )
  * return value : 0,1,2 if button pressed 
  *                -5,-4,-3: if button release
- *                -100 : error 
+ *                -1000 : window closed 
  *                -2   : menu activated 
  *------------------------------------------------------------------------------*/
 
@@ -2024,11 +2058,11 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
 
 void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 { 
+  gint lbearing, rbearing, iascent, idescent, iwidth;
+  gdk_string_extents(ScilabXgc->font,"X", &lbearing, &rbearing,
+		     &iwidth, &iascent, &idescent);
   if ( Abs(*angle) <= 0.1) 
     {
-      gint lbearing, rbearing, iascent, idescent, iwidth;
-      gdk_string_extents(ScilabXgc->font,"X", &lbearing, &rbearing,
-			 &iwidth, &iascent, &idescent);
       gdk_draw_text(ScilabXgc->Cdrawable,ScilabXgc->font,ScilabXgc->wgc, 
 		    *x, *y - idescent , string, strlen(string));
       if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
@@ -2045,7 +2079,14 @@ void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integ
     }
   else 
     {
-      C2F(DispStringAngle)(x,y,string,angle);
+      gdk_draw_text_rot(ScilabXgc->Cdrawable,ScilabXgc->font,ScilabXgc->wgc,
+			*x,*y- idescent ,0,0,string,strlen(string),
+			-*angle * M_PI/180.0);
+      if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
+	gdk_draw_text_rot(ScilabXgc->pixmap,ScilabXgc->font,ScilabXgc->wgc,
+			  *x,*y- idescent ,0,0,string,strlen(string),
+			  -*angle * M_PI/180.0);
+      /* C2F(DispStringAngle)(x,y,string,angle); */
     }
 }
 
@@ -2873,11 +2914,17 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4,
 { 
   struct BCG *NewXgc ;
 #ifdef WITH_TK
-  integer ne=7, menutyp=2, ierr;
-  char *EditMenus[]={"_Select figure as current","_Redraw figure",\
-                     "_Erase figure",/*"_Copy object","_Paste object",\
-                     "_Move object","_Delete object",*/"_Figure properties",\
-                     "_Current axes properties","Start _entity picker",\
+  integer ne=11, menutyp=2, ierr;
+  char *EditMenus[]={"_Select figure as current",
+		     "_Redraw figure",
+                     "_Erase figure",
+		     "_Copy object",
+		     "_Paste object",
+                     "_Move object",
+		     "_Delete object",
+		     "_Figure properties",
+                     "_Current axes properties",
+		     "Start _entity picker",
                      "Stop e_ntity picker"};
   /*integer ni=6;
   char *InsertMenus[]={"--- _Line","^v^  _Polyline","---> _Arrow",\
@@ -4103,6 +4150,9 @@ static int GTK_Open(struct BCG *dd, char *dsp, double w, double h)
   gtk_signal_connect (GTK_OBJECT (dd->window), "key_press_event",
       (GtkSignalFunc) key_press_event, (gpointer) dd);
 
+  gtk_signal_connect (GTK_OBJECT (dd->window), "key_release_event",
+      (GtkSignalFunc) key_release_event, (gpointer) dd);
+
   /* show everything */
   gtk_widget_realize(dd->window);
   gtk_widget_show_all(dd->window);
@@ -4162,5 +4212,137 @@ static void xget_scilabxgc(integer *verbose, integer *x,integer *narg, double *d
   
 }
 /* NG end */
+
+
+
+/*  gdk_draw_text_rot: is comming from R 
+ *  ------------------------------------------------------------------
+ *  R : A Computer Langage for Statistical Data Analysis
+ *  Copyright (C) 1998-1999   Lyndon Drake
+ *                            and the R Development Core Team
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+static void gdk_draw_text_rot(GdkDrawable *drawable,
+			      GdkFont *font,
+			      GdkGC *gc,
+			      int x, int y,
+			      int maxx, int maxy,
+			      const gchar *text,
+			      gint text_length,
+			      double angle)
+{
+  GdkColor black, white;
+  GdkPixmap *pixmap;
+  GdkGC *rotgc;
+  GdkImage *image;
+
+  int lbearing, rbearing, width, ascent, descent, height;
+  int dx, dy;
+  int i, j, mini, minj, maxi, maxj;
+
+  double sintheta, costheta;
+
+  /* sanity check */
+  if((text == NULL) || (*text == '\0'))
+    return;
+
+  /* shortcut horizontal text */
+  if(angle == 0.0) {
+    gdk_draw_text(drawable, font, gc, x, y, text, text_length);
+  }
+  else {
+    /* text metrics */
+    gdk_text_extents(font, text, text_length,
+		     &lbearing, &rbearing,
+		     &width, &ascent, &descent);
+	
+    height = ascent + descent;
+	
+    /* draw text into pixmap */
+    pixmap = gdk_pixmap_new(drawable, width, height, 1);
+    rotgc = gdk_gc_new(pixmap);
+    gdk_gc_set_font(rotgc, font);
+
+    white.pixel = gdk_rgb_xpixel_from_rgb(0xffffffff);
+    black.pixel = gdk_rgb_xpixel_from_rgb(0);
+
+    gdk_gc_set_foreground(rotgc, &white);
+    gdk_draw_rectangle (pixmap, rotgc, 1, 0, 0, width, height);
+
+    gdk_gc_set_foreground(rotgc, &black);
+    gdk_draw_text(pixmap, font, rotgc, 0, ascent, text, text_length);
+    image = gdk_image_get(pixmap, 0, 0, width, height); 
+
+    /* precalc cos/sin of angle */
+    /* the floor(x * 1000.0 + 0.5) / 1000.0 is a hack to round things off */
+    costheta = floor(cos(angle) * 1000.0 + 0.5) / 1000.0;
+    sintheta = floor(sin(angle) * 1000.0 + 0.5) / 1000.0;
+
+    /* calculate bounding box for i and j iteration */
+    mini = maxi = floor((double)(0 - ascent) * sintheta) + x;
+    minj = maxj = floor((double)(0 - ascent) * costheta) + y;
+
+    i = floor((double)width * costheta + (double)(height - ascent) * sintheta) + x;
+    j = floor(- (double)width * sintheta + (double)(height - ascent) * costheta) + y;
+    if(i < mini) mini = i;
+    if(i > maxi) maxi = i;
+    if(j < minj) minj = j;
+    if(j > maxj) maxj = j;
+
+    i = floor((double)(height - ascent) * sintheta) + x;
+    j = floor((double)(height - ascent) * costheta) + y;
+    if(i < mini) mini = i;
+    if(i > maxi) maxi = i;
+    if(j < minj) minj = j;
+    if(j > maxj) maxj = j;
+
+    i = floor((double)width * costheta + (double)(0 - ascent) * sintheta) + x;
+    j = floor(- (double)width * sintheta + (double)(0 - ascent) * costheta) + y;
+    if(i < mini) mini = i;
+    if(i > maxi) maxi = i;
+    if(j < minj) minj = j;
+    if(j > maxj) maxj = j;
+
+    maxi++; maxj++;
+
+    if(mini < 0) mini = 0;
+    /* jpc : if(maxi > maxx) maxi = maxx; */
+    if(minj < 0) minj = 0;
+    /* if(maxj > maxy) maxj = maxy; */
+
+    /* copy pixels */
+    for(j = minj; j < maxj; j++) {
+      for(i = mini; i < maxi; i++) {
+	dx = floor((double)(i - x) * costheta - (double)(j - y) * sintheta);
+	dy = floor((double)(i - x) * sintheta + (double)(j - y) * costheta) + ascent;
+		
+	if((dx >= 0) && (dx < width) && (dy >= 0) && (dy < height) &&
+	   (gdk_image_get_pixel(image, dx, dy) == black.pixel)) {
+	  gdk_draw_point(drawable, gc, i, j);
+	}
+      }
+    }
+
+    /* clean up */
+    gdk_pixmap_unref(pixmap);
+    gdk_gc_unref(rotgc);
+  }
+}
+
+
 
 
