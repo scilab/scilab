@@ -2505,3 +2505,8 @@ Francois VOGEL, 14/11/06
  * More ergonomic: After a replacement is done, the next match is
    highlighted
  * version --> 6.57
+
+Francois VOGEL, 15/11/06
+ * Fixed bug 2217 (Scipad window large size on relaunch when Scipad was
+   quit while zoomed, i.e. maximized)
+ * version --> 6.58

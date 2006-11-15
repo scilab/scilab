@@ -168,6 +168,17 @@ Debugger wishes:
  when selected. No solution found so far. Only one tag with -background
  option has highest priority, and there is no -selectbackground option
  for tags
+ This problem has been submitted in comp.lang.tcl, see:
+ http://groups.google.com/group/comp.lang.tcl/browse_frm/thread/d60973524b786c0e/14a82aef3b1dd24f
+ It has been suggested to create a tag that has the desired background
+ attributes, add an execution trace on the widget command, and whenever
+ the selection changes (e.g.: when the execution trace fires on a
+ "tag add sel"), add this tag to the selected range.
+ Personnally, I think this is a very complicated way of making this
+ work, especially considering that three tags with background should
+ be dealt with and combined (what about a continued line also tagged
+ as a breakpointed line, in which some characters are selected?)
+ Not worth the effort and complication I think.
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
  in the margin

@@ -204,11 +204,22 @@ proc byebye {textarea} {
 
 proc killscipad {} {
 # kill main window and save preferences on exit
-    global pad WMGEOMETRY
+    global pad WMGEOMETRY WMSTATE
+    
     #save the geometry for the next time
-    set WMGEOMETRY [eval {wm geometry $pad}] 
+    set WMSTATE [wm state $pad]
+    if {$WMSTATE == "zoomed"} {
+        # restore normal (i.e. non-maximized) state before saving
+        # the output of wm geometry, otherwise dimensions are large
+        # when relaunching Scipad
+        wm state $pad "normal"
+    }
+    set WMGEOMETRY [wm geometry $pad]
+
     savepreferences
+
     destroy $pad
+
     # The following line is needed in case Scipad is launched directly
     # in wish (debug purposes)
     # The two instructions *must* be in this order, and in a single catch
