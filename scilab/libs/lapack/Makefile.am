@@ -282,10 +282,6 @@ dtzrzf.f
 
 liblapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
 
-
-libdummy_lapack_la_FFLAGS = \
-	$(NOOPT_FFLAGS)
-
 libdummy_lapack_la_SOURCES = dlamch.f slamch.f
 
 libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
