@@ -3,12 +3,28 @@
 # like do_scilex()... . In this case use a system V sh (sh5)
 
 # Copyright INRIA
+# Sylvestre Ledru 2006
 
 #############################################################################
 #                                                                           #
 #                       DO NOT MODIFY BELOW THIS LINE                       #
 #                                                                           #
 #############################################################################
+
+
+####
+#
+# First, this script will look for scilab-bin in :
+# * If specified, in the $SCI variable
+# * Into the scilab/bin/ directory
+# * Into the scilab/ directory (if the user is using a source version and 
+# scilab has been compiled in this directory)
+# * if this file is a simlink to the real one. We browse symlink(s) until we
+# find the real "scilab" script file and consider that it is the right 
+# directory
+# * That is all. Don't hesitate to contact us if you see one missing.
+#
+###
 
 if test -n "$SCI"; then
 	echo "SCI found ... Use $SCI as Path"
@@ -21,32 +37,38 @@ else
 	curdir=`dirname "$progname"`
 
 	progbase=`basename "$progname"`
-	run_sci="$curdir/scilab"
-	if test -x "$run_sci"; then
-		dist_bin="$curdir"
+	run_sci="$curdir/scilab-bin"
+	if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
+		SCI="$curdir"
 		found=1
 	else
-		here=`/bin/pwd`
-		while [ -h "$progname" ]; do
-			bn=`basename "$progname"`
-			cd `dirname "$progname"`
-			progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
-			if [ ! -x "$progname" ]; then
-				break
-			fi
-			curdir=`dirname "$progname"`
-			run_moz="$curdir/bin/scilab-bin"
-			if [ -x "$run_moz" ]; then
-				cd "$curdir"
-				dist_bin=`pwd`
-				run_moz="$dist_bin/scilab-bin"
-				found=1
-				break
-			fi
-		done
-		cd "$here"
+		run_sci="$curdir/../scilab-bin"
+		if test -x "$run_sci"; then # scilab-bin is in the / directory
+			cd "$curdir/../"
+			SCI=`pwd`
+			found=1
+		else
+			here=`/bin/pwd`
+			while [ -h "$progname" ]; do
+				bn=`basename "$progname"`
+				cd `dirname "$progname"`
+				progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
+				if [ ! -x "$progname" ]; then
+					break
+				fi
+				curdir=`dirname "$progname"`
+				run_sci="$curdir/bin/scilab-bin"
+				if [ -x "$run_sci" ]; then
+					cd "$curdir"
+					SCI=`pwd`
+					found=1
+					break
+				fi
+			done
+			cd "$here"
+		fi
+		echo "I think I found Scilab here : $SCI"
 	fi
-	echo "I think I found Scilab here : $SCI"
 fi
 
 if test -x $SCI/bin/scilab-bin; then
@@ -59,7 +81,7 @@ else
 		exit 1
 	fi
 fi
-
+export SCI
 
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
