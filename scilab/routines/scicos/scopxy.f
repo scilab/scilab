@@ -37,6 +37,8 @@ c
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
 
+      dv = 0.0
+      v  = 0
 c     
       if(flag.eq.2) then
          wid=ipar(1)
