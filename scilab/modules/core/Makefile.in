@@ -144,33 +144,34 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/fortran/compcl.f src/fortran/termf.f src/fortran/strdsp.f \
 	src/fortran/expsum.f src/fortran/eqid.f src/fortran/copyvar.f \
 	src/fortran/putid.f src/fortran/itosci.f \
-	src/fortran/fgetarg-hpux.f src/fortran/fgetarg.f \
-	sci_gateway/c/sci_savehistory.c sci_gateway/c/sci_stacksize.c \
-	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
-	sci_gateway/c/intgetmd5.c sci_gateway/c/sci_banner.c \
-	sci_gateway/c/sci_where.c sci_gateway/c/sci_lines.c \
-	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_getos.c \
-	sci_gateway/c/sci_ulink.c sci_gateway/c/sci_format.c \
-	sci_gateway/c/sci_pwd.c sci_gateway/c/sci_fromjava.c \
-	sci_gateway/c/sci_link.c sci_gateway/c/sci_getmemory.c \
-	sci_gateway/c/sci_fromc.c sci_gateway/c/sci_havewindow.c \
-	sci_gateway/c/sci_delbpt.c sci_gateway/c/sci_loadhistory.c \
-	sci_gateway/c/intgetmemory.c sci_gateway/c/sci_macr2lst.c \
-	sci_gateway/c/sci_isdef.c sci_gateway/c/sci_addinter.c \
-	sci_gateway/c/sci_isglobal.c sci_gateway/c/sci_who.c \
-	sci_gateway/c/sci_c_link.c sci_gateway/c/sci_errclear.c \
-	sci_gateway/c/sci_global.c sci_gateway/c/sci_funcprot.c \
-	sci_gateway/c/sci_gethistory.c sci_gateway/c/sci_newfun.c \
-	sci_gateway/c/sci_warning.c sci_gateway/c/sci_dispbpt.c \
-	sci_gateway/c/sci_whereis.c sci_gateway/c/sci_intppty.c \
-	sci_gateway/c/sci_ieee.c sci_gateway/c/sci_gstacksize.c \
-	sci_gateway/c/sci_lasterror.c sci_gateway/c/sci_funptr.c \
-	sci_gateway/c/sci_return.c sci_gateway/c/sci_exists.c \
-	sci_gateway/c/sci_getmd5.c sci_gateway/c/sci_clear.c \
-	sci_gateway/c/sci_chdir.c sci_gateway/c/sci_comp.c \
-	sci_gateway/c/sci_clearfun.c sci_gateway/c/sci_setbpt.c \
-	sci_gateway/c/sci_getmodules.c sci_gateway/c/sci_what.c \
-	sci_gateway/c/sci_predef.c sci_gateway/c/sci_resethistory.c \
+	src/fortran/return_a_nan.f src/fortran/fgetarg-hpux.f \
+	src/fortran/fgetarg.f sci_gateway/c/sci_savehistory.c \
+	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
+	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/intgetmd5.c \
+	sci_gateway/c/sci_banner.c sci_gateway/c/sci_where.c \
+	sci_gateway/c/sci_lines.c sci_gateway/c/sci_errcatch.c \
+	sci_gateway/c/sci_getos.c sci_gateway/c/sci_ulink.c \
+	sci_gateway/c/sci_format.c sci_gateway/c/sci_pwd.c \
+	sci_gateway/c/sci_fromjava.c sci_gateway/c/sci_link.c \
+	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_fromc.c \
+	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
+	sci_gateway/c/sci_loadhistory.c sci_gateway/c/intgetmemory.c \
+	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_isdef.c \
+	sci_gateway/c/sci_addinter.c sci_gateway/c/sci_isglobal.c \
+	sci_gateway/c/sci_who.c sci_gateway/c/sci_c_link.c \
+	sci_gateway/c/sci_errclear.c sci_gateway/c/sci_global.c \
+	sci_gateway/c/sci_funcprot.c sci_gateway/c/sci_gethistory.c \
+	sci_gateway/c/sci_newfun.c sci_gateway/c/sci_warning.c \
+	sci_gateway/c/sci_dispbpt.c sci_gateway/c/sci_whereis.c \
+	sci_gateway/c/sci_intppty.c sci_gateway/c/sci_ieee.c \
+	sci_gateway/c/sci_gstacksize.c sci_gateway/c/sci_lasterror.c \
+	sci_gateway/c/sci_funptr.c sci_gateway/c/sci_return.c \
+	sci_gateway/c/sci_exists.c sci_gateway/c/sci_getmd5.c \
+	sci_gateway/c/sci_clear.c sci_gateway/c/sci_chdir.c \
+	sci_gateway/c/sci_comp.c sci_gateway/c/sci_clearfun.c \
+	sci_gateway/c/sci_setbpt.c sci_gateway/c/sci_getmodules.c \
+	sci_gateway/c/sci_what.c sci_gateway/c/sci_predef.c \
+	sci_gateway/c/sci_resethistory.c \
 	sci_gateway/c/sci_clearglobal.c sci_gateway/c/sci_arg.c \
 	sci_gateway/c/sci_call.c sci_gateway/c/sci_getcwd.c \
 	sci_gateway/c/sci_type.c sci_gateway/c/sci_typename.c \
@@ -268,7 +269,8 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
 	compcl.lo termf.lo strdsp.lo expsum.lo eqid.lo copyvar.lo \
-	putid.lo itosci.lo $(am__objects_4) $(am__objects_5)
+	putid.lo itosci.lo return_a_nan.lo $(am__objects_4) \
+	$(am__objects_5)
 am__objects_7 = libcore_la-sci_savehistory.lo \
 	libcore_la-sci_stacksize.lo libcore_la-sci_resume.lo \
 	libcore_la-sci_mtlb_mode.lo libcore_la-intgetmd5.lo \
@@ -612,8 +614,8 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/seteol.f src/fortran/basin.f src/fortran/clause.f \
 	src/fortran/compcl.f src/fortran/termf.f src/fortran/strdsp.f \
 	src/fortran/expsum.f src/fortran/eqid.f src/fortran/copyvar.f \
-	src/fortran/putid.f src/fortran/itosci.f $(am__append_1) \
-	$(am__append_3)
+	src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/return_a_nan.f $(am__append_1) $(am__append_3)
 GATEWAY_C_SOURCES = sci_gateway/c/sci_savehistory.c \
 sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
@@ -2209,6 +2211,9 @@ putid.lo: src/fortran/putid.f
 
 itosci.lo: src/fortran/itosci.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o itosci.lo `test -f 'src/fortran/itosci.f' || echo '$(srcdir)/'`src/fortran/itosci.f
+
+return_a_nan.lo: src/fortran/return_a_nan.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o return_a_nan.lo `test -f 'src/fortran/return_a_nan.f' || echo '$(srcdir)/'`src/fortran/return_a_nan.f
 
 fgetarg-hpux.lo: src/fortran/fgetarg-hpux.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fgetarg-hpux.lo `test -f 'src/fortran/fgetarg-hpux.f' || echo '$(srcdir)/'`src/fortran/fgetarg-hpux.f
