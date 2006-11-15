@@ -119,10 +119,13 @@ static int  no_window = 0;
 static int nointeractive = 0;
 /*----------------------------------------------------------------------------------*/
 int IsNoInteractiveWindow(void);
+void sci_sig_tstp(int n);
+int IsConsoleMode(void);
+void InitXsession(void);
 /*----------------------------------------------------------------------------------*/
 void C2F(mainscic)()
 {
-  int ierr, argc,i;
+  int argc,i;
   int  no_startup_flag=0;
   int  memory = MIN_STACKSIZE;
 	

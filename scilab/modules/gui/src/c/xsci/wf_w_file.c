@@ -34,9 +34,12 @@ char     cur_filename[FSIZE];
 #include "All-extern.h"
 #include "men_scilab.h"
 
+#include "setgetSCIpath.h"
+
 extern Boolean	file_msg_is_popped;
 extern Widget	file_msg_popup;
 Boolean	warnexist=True;
+
 
 static void file_panel_dismiss  __PARAMS((void));  
 static void file_panel_cancel  __PARAMS((Widget w, XButtonEvent *ev));  

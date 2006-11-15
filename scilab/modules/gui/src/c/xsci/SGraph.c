@@ -1051,14 +1051,10 @@ Select(w, number, client_data)
 extern int  get_xclick_client_message_flag(void);
  
 static void
-Delete(w, number, client_data)
-     Widget w;
-     XtPointer number;
-     XtPointer client_data;
+Delete(Widget w, XtPointer number, XtPointer client_data)
 {
-  integer win_num = (integer) number ;
   int v_flag = 1;
-
+  integer win_num = (integer) number ;
   if (  get_delete_win_mode() == 1 )
     {
       wininfo("Cannot destroy window while acquiring zoom rectangle ");
@@ -1102,10 +1098,7 @@ static  char printer[128];
 static  char file[256];
 
 static void
-Print(w, number, client_data)
-     Widget w;
-     XtPointer number;
-     XtPointer client_data;
+Print(Widget w,XtPointer number, XtPointer client_data)
 {
   char *p1;
   integer win_num = (integer) number ;

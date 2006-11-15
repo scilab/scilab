@@ -188,8 +188,7 @@ void HandleStringEvent(w, event, params, nparams)
   }
 }
 
-static void DoSpecialEnterNotify(ev)
-  register XEnterWindowEvent *ev;
+static void DoSpecialEnterNotify(register XEnterWindowEvent *ev)
 {
   register TScreen *screen = &term->screen;
 
@@ -212,8 +211,7 @@ void HandleEnterWindow(w, eventdata, event)
 }
 
 
-static void DoSpecialLeaveNotify(ev)
-  register XEnterWindowEvent *ev;
+static void DoSpecialLeaveNotify(register XEnterWindowEvent *ev)
 {
   register TScreen *screen = &term->screen;
 
@@ -523,7 +521,7 @@ static char UE[]="unknown error";
 char *SysErrorMsg(n)
   int n;
 {
-  return ((n >= 0 && n < sys_nerr) ? sys_errlist[n] : UE );
+  return (char *)((n >= 0 && n < sys_nerr) ? sys_errlist[n] : UE );
 }
 
 
