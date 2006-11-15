@@ -372,7 +372,7 @@ function res=Object2tf(res)
 //Copyright INRIA 
 //Author Serge Steer  
   v=res.Variable
-  dims=res.num.dims
+  dims=double(res.num.dims) //res.num.dims may be an integer array
   props=res.lti
   num=[];den=[];
   for k=1:prod(dims)
