@@ -60,8 +60,8 @@ extern char *getenv();
 char *malloc();
 #endif	 /* macII */
 
-static void DoSpecialEnterNotify();
-static void DoSpecialLeaveNotify();
+static void DoSpecialEnterNotify(register XEnterWindowEvent *ev);
+static void DoSpecialLeaveNotify(register XEnterWindowEvent *ev);
 
 void x_events()
 {
