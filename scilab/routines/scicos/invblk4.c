@@ -23,8 +23,7 @@ void invblk4(scicos_block *block,int flag)
       if (ww != 0.0)
 	block->outptr[0][i]=1.0/ww;
       else{
-	flag=-2;
-	/*printf("\n\r Error, singularity has been detected");*/	
+	set_block_error(-2);
 	return;
       }
     }
