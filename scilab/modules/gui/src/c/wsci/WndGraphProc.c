@@ -57,11 +57,13 @@ BOOL ON_WND_GRAPH_WM_CLOSE(HWND hwnd)
 {
 	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
 
-	PostQuitMessage (0);
-	C2F (deletewin) (&(ScilabGC->CurWindow));
-	SetWindowLong (hwnd, 0, (LONG) 0L);
+        int curWindowNum = ScilabGC->CurWindow ; /* save it before it the GC will be destroyed */
 
-	PushClickQueue (ScilabGC->CurWindow,0,0,-100, 0, -1);
+        PostQuitMessage (0);
+        C2F (deletewin) (&(curWindowNum));
+        SetWindowLong (hwnd, 0, (LONG) 0L);
+
+        PushClickQueue (curWindowNum,0,0,-100, 0, -1);
 	set_wait_click(0);
 
 	/* Ajout pour probleme fermeture fenetre scicos
