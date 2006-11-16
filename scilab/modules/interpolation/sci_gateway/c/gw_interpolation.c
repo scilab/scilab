@@ -7,17 +7,17 @@
 extern char *GetExceptionString(DWORD ExceptionCode);
 #endif
 /*-----------------------------------------------------------------------------------*/
-intsplin(char *fname,unsigned long fname_len); 
-intlsq_splin(char *fname,unsigned long fname_len);
-intinterp1(char *fname,unsigned long fname_len); 
-intlinear_interpn(char *fname,unsigned long fname_len);
-intsplin2d(char *fname,unsigned long fname_len); 
-intinterp2d(char *fname,unsigned long fname_len); 
-intcshep2d(char *fname,unsigned long fname_len); 
-inteval_cshep2d(char *fname,unsigned long fname_len);
-intsplin3d(char *fname,unsigned long fname_len); 
-intinterp3d(char *fname,unsigned long fname_len); 
-intbsplin3val(char *fname,unsigned long fname_len) ;
+extern int intsplin(char *fname,unsigned long fname_len); 
+extern int intlsq_splin(char *fname,unsigned long fname_len);
+extern int intinterp1(char *fname,unsigned long fname_len); 
+extern int intlinear_interpn(char *fname,unsigned long fname_len);
+extern int intsplin2d(char *fname,unsigned long fname_len); 
+extern int intinterp2d(char *fname,unsigned long fname_len); 
+extern int intcshep2d(char *fname,unsigned long fname_len); 
+extern int inteval_cshep2d(char *fname,unsigned long fname_len);
+extern int intsplin3d(char *fname,unsigned long fname_len); 
+extern int intinterp3d(char *fname,unsigned long fname_len); 
+extern int intbsplin3val(char *fname,unsigned long fname_len) ;
 /*-----------------------------------------------------------------------------------*/
 static TabF Tab[]={ 
   {intsplin,           "splin"},
