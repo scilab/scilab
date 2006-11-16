@@ -2510,3 +2510,9 @@ Francois VOGEL, 15/11/06
  * Fixed bug 2217 (Scipad window large size on relaunch when Scipad was
    quit while zoomed, i.e. maximized)
  * version --> 6.58
+
+Francois VOGEL, 16/11/06
+ * Fixed bug 2226 (concurrent launch of several Scipads by clicking
+   quickly on the Scilab "Editor" menu, or Scipad icon)
+ * De-tab-ified scipad.sci, and removed unnecessary global TMPDIR
+ * version --> 6.59
