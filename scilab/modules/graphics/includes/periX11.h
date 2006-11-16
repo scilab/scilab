@@ -40,7 +40,7 @@
  extern void C2F(loadfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void C2F(queryfamily)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void C2F(xinfo)(char *message, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
- extern void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4); 
+ extern void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4, integer lx0); 
 
 /*---------------------END------------------------------*/
 #endif /* __PERIX11_H__ */
