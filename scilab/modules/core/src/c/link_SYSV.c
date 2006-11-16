@@ -67,6 +67,9 @@
 
 #include <string.h>
 
+#ifdef round
+	#undef round
+#endif 
 #define round(x,s) (((x) + ((s)-1)) & ~((s)-1))
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
