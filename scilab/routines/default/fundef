@@ -439,16 +439,10 @@
 {"mtlb_sparse",		IN_spelm,	24,	3},
 {"%msp_spget",		IN_spelm,	25,	3},
 {"%msp_full",		IN_spelm,	26,	3},
-#define  IN_intcos  28  
-{"scicosim",		IN_intcos,	1,	3},	
-{"sctree",		IN_intcos,	2,	2},	
-{"sci_tree2",		IN_intcos,	3,	2},	
-{"sci_tree3",		IN_intcos,	4,	2},	
-{"sci_tree4",		IN_intcos,	5,	2},
-{"realtimeinit",	IN_intcos,	6,	2},
-{"realtime",		IN_intcos,	7,	2},
-{"scicos_debug",	IN_intcos,	8,	2},
-{"scicos_debug_count",	IN_intcos,	9,	2},
+
+/* IN_intcos 28 in ../scicos/scicos.fundef */
+#include "../scicos/scicos.fundef"
+
 #define  IN_matodc  29  
 {"odedc",		IN_matodc,	1,	3},	
 #define  IN_intdef  30  
@@ -483,13 +477,6 @@
 {"NumTokens",		IN_soundi,	21,	3},
 {"PlaySound",		IN_soundi,	22,	3},
 {"beep",		IN_soundi,	23,	3},
-#define  IN_coselm  35  
-{"curblock",		IN_coselm,	5,	3},	
-{"getblocklabel",	IN_coselm,	6,	3},	
-{"getscicosvars",	IN_coselm,	3,	2},	
-{"setscicosvars",	IN_coselm,	4,	2},	
-{"var2vec",		IN_coselm,	1,	2},	
-{"vec2var",		IN_coselm,	2,	2},
 #define  IN_specfun  36  
 {"oldbesseli",		IN_specfun,	1,	3},	
 {"oldbesselj",		IN_specfun,	2,	3},	
@@ -625,18 +612,9 @@
 {"dseupd",		IN_intarpack,	4,	3},
 {"dneupd",		IN_intarpack,	5,	3},
 {"zneupd",		IN_intarpack,	6,	3},
-#define  IN_intcscicos 47
-{"scicos_time",      	IN_intcscicos,  1,      2},
-{"duplicate",         	IN_intcscicos,  2,      2},
-{"diffobjs",          	IN_intcscicos,  3,      2},
-{"pointer_xproperty",   IN_intcscicos,  4,      2},
-{"phase_simulation",    IN_intcscicos,  5,      2},
-{"set_xproperty",       IN_intcscicos,  6,      2},
-{"scicos_cpass2",       IN_intcscicos,  7,      2},
-{"set_blockerror",      IN_intcscicos,  8,      2},
-{"ctree2" ,             IN_intcscicos,  9,      2},
-{"ctree3" ,             IN_intcscicos,  10,     2},
-{"ctree4" ,             IN_intcscicos,  11,     2},
+
+/* IN_intcscicos 47 in ../scicos/scicos.fundef */
+
 #define  IN_intwintools 48
 {"winopen",	        IN_intwintools,	1,	2},
 {"winqueryreg",	        IN_intwintools,	2,	2},
