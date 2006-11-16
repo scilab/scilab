@@ -26,12 +26,17 @@
 #else
 #include <malloc.h>
 #endif
+/*-----------------------------------------------------------------------------------*/
+static void get_clipboard(Widget w, XtPointer client_data, Atom *selection, Atom *type, XtPointer buf, unsigned long *length, int *format);
+int panel_set_value(Widget widg, char *val);
+char * panel_get_value(Widget widg);
+void clear_text_key(Widget w);
+void paste_panel_key(Widget w, XKeyEvent *event);
+/*-----------------------------------------------------------------------------------*/
 
 DeclareArgs(1);
 
-int panel_set_value(widg, val)
-     Widget	    widg;
-     char	   *val;
+int panel_set_value(Widget widg, char *val)
 {
     FirstArg(XtNstring, val);
     /* I don't know why this doesn't work? */
@@ -42,8 +47,7 @@ int panel_set_value(widg, val)
 }
 
 char           *
-panel_get_value(widg)
-    Widget          widg;
+panel_get_value(Widget widg)
 {
     char           *val;
 
@@ -53,34 +57,23 @@ panel_get_value(widg)
 
 }
 
-void clear_text_key(w)
-Widget w;
+void clear_text_key(Widget w)
 {
 	panel_set_value(w, "");
 }
 
-static void get_clipboard();
 
-void paste_panel_key(w, event)
-Widget w;
-XKeyEvent *event;
+
+void paste_panel_key(Widget w, XKeyEvent *event)
 {
 	Time event_time;
-
-        event_time = event->time;
-        XtGetSelectionValue(w, XA_PRIMARY, XA_STRING, get_clipboard, w, event_time);
+	
+	event_time = event->time;
+	XtGetSelectionValue(w, XA_PRIMARY, XA_STRING, get_clipboard, w, event_time);
 }
 
 
-static void get_clipboard(w, client_data, selection, type, buf, length, format)
-Widget w;
-XtPointer client_data;
-Atom *selection;
-Atom *type;
-XtPointer buf;
-unsigned long *length;
-int *format;
-{
+static void get_clipboard(Widget w, XtPointer client_data, Atom *selection, Atom *type, XtPointer buf, unsigned long *length, int *format) {
         char *c, *p;
         int i;
         char s[256];
