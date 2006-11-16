@@ -139,11 +139,7 @@ int C2F(graphicsmodels) ()
     }
 
   pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
-#ifdef WITH_GTK
-  strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "ScilabGtk Graphic (%d)", sizeof ("ScilabGtk Graphic (%d)") + 4);
-#else 
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic (%d)", sizeof ("Scilab Graphic (%d)") + 4);
-#endif 
   pFIGURE_FEATURE (pfiguremdl)->namelen = Min (60, 19); 
   pFIGURE_FEATURE (pfiguremdl)->number=0;
   pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
