@@ -41,8 +41,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@PVM_TRUE@am__append_1 = pvm
-@PVM_TRUE@am__append_2 = $(top_builddir)/modules/pvm/libscipvm.la
+@JAVA_TRUE@am__append_1 = jvm 
+@PVM_TRUE@am__append_2 = pvm
+@PVM_TRUE@am__append_3 = $(top_builddir)/modules/pvm/libscipvm.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -132,7 +133,7 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io gui jvm graphics scicos wintools pvm \
+	symbolic tclsci sparse io gui graphics scicos wintools jvm pvm \
 	.
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -350,8 +351,8 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io gui jvm graphics scicos wintools \
-	$(am__append_1) .
+	symbolic tclsci sparse io gui graphics scicos wintools \
+	$(am__append_1) $(am__append_2) .
 
 # 
 lib_LTLIBRARIES = libscilab.la
@@ -390,7 +391,7 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/statistics/libstatistics.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
-	$(am__append_2) $(top_builddir)/libs/blas/libblas.la \
+	$(am__append_3) $(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la

@@ -3,7 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
-GUI_C_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c \
+GUI_C_SOURCES = \
 src/c/xsci/wf_w_util.c \
 src/c/xsci/utils.c \
 src/c/xsci/x_cursor.c \
@@ -80,6 +80,8 @@ sci_gateway/fortran/sci_xgetfile.f \
 sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_x_message.f
 
+GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
+
 libgui_la_includedir=$(includedir)/gui
 
 libgui_la_include_HEADERS = includes/men_choice.h \
@@ -103,6 +105,9 @@ libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 lib_LTLIBRARIES = libgui.la
 
 libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+if JAVA
+libgui_la_SOURCES += $(GUI_JAVA_SOURCES)
+endif
 
 libgui_la_LIBADD = \
 	$(top_builddir)/modules/tclsci/libtclsci.la \

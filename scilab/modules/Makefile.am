@@ -35,10 +35,13 @@ tclsci \
 sparse \
 io \
 gui \
-jvm \
 graphics \
 scicos \
 wintools
+
+if JAVA
+SUBDIRS += jvm 
+endif
 
 if PVM
 SUBDIRS += pvm
