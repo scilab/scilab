@@ -39,9 +39,14 @@
 
 extern int IsConsoleMode(void);
 extern void DisplayInit(char *string,Display **dpy,Widget * toplevel);
-
-static void horizontal_copy_area();
-static void vertical_copy_area();
+/*-----------------------------------------------------------------------------------*/
+static void horizontal_copy_area(TScreen *screen, int firstchar, int nchars, int amount);
+static void vertical_copy_area(TScreen *screen, int firstline, int nlines, int amount);
+void XHomeFunction(void);
+int XClearScreenConsole(char *fname);
+int GetScreenProperty(char *prop, char *value);
+int GetScreenDPI(int *ixres, int *iyres);
+/*-----------------------------------------------------------------------------------*/
 
 /*
  * These routines are used for the jump scroll feature
@@ -761,12 +766,7 @@ register TScreen *screen;
  * used by vertical_copy_area and and horizontal_copy_area
  */
 static void
-copy_area(screen, src_x, src_y, width, height, dest_x, dest_y)
-    TScreen *screen;
-    int src_x, src_y;
-    unsigned int width, height;
-    int dest_x, dest_y;
-{
+copy_area( TScreen *screen, int src_x, int src_y, unsigned int width, int height, int dest_x, int dest_y) {
     /* wait for previous CopyArea to complete unless
        multiscroll is enabled and active */
     if (screen->incopy  &&  screen->scrolls == 0)
@@ -789,13 +789,11 @@ copy_area(screen, src_x, src_y, width, height, dest_x, dest_y)
 
 /*
  * use when inserting or deleting characters on the current line
+ * @param firstchar char pos on screen to start copying at 
+ * @param amout number of characters to move right 
  */
 static void
-horizontal_copy_area(screen, firstchar, nchars, amount)
-    TScreen *screen;
-    int firstchar;		/* char pos on screen to start copying at */
-    int nchars;
-    int amount;			/* number of characters to move right */
+horizontal_copy_area(TScreen *screen, int firstchar, int nchars, int amount)
 {
     int src_x = CursorX(screen, firstchar);
     int src_y = CursorY(screen, screen->cur_row);
@@ -807,13 +805,11 @@ horizontal_copy_area(screen, firstchar, nchars, amount)
 
 /*
  * use when inserting or deleting lines from the screen
+ * @param firstline line on screen to start copying at
+ * @param amount number of lines to move up (neg=down)
  */
 static void
-vertical_copy_area(screen, firstline, nlines, amount)
-    TScreen *screen;
-    int firstline;		/* line on screen to start copying at */
-    int nlines;
-    int amount;			/* number of lines to move up (neg=down) */
+vertical_copy_area(TScreen *screen, int firstline, int nlines, int amount)
 {
     if(nlines > 0) {
 	int src_x = screen->border + screen->scrollbar;
