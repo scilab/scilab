@@ -1,0 +1,12 @@
+#define  IN_intcscicos 47
+{"scicos_time",       	IN_intcscicos,  1,      2},
+{"duplicate",         	IN_intcscicos,  2,      2},
+{"diffobjs",          	IN_intcscicos,  3,      2},
+{"pointer_xproperty",   IN_intcscicos,  4,      2},
+{"phase_simulation",    IN_intcscicos,  5,      2},
+{"set_xproperty",       IN_intcscicos,  6,      2},
+{"scicos_cpass2",       IN_intcscicos,  7,      2},
+{"set_blockerror",      IN_intcscicos,  8,      2},
+{"ctree2" ,             IN_intcscicos,  9,      2},
+{"ctree3" ,             IN_intcscicos,  10,     2},
+{"ctree4" ,             IN_intcscicos,  11,     2},

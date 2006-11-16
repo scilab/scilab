@@ -440,7 +440,7 @@
 {"%msp_spget",		IN_spelm,	25,	3},
 {"%msp_full",		IN_spelm,	26,	3},
 
-/* IN_intcos 28 in ../scicos/scicos.fundef */
+/* #define  IN_intcos  28  */
 #include "../scicos/scicos.fundef"
 
 #define  IN_matodc  29  
@@ -477,6 +477,11 @@
 {"NumTokens",		IN_soundi,	21,	3},
 {"PlaySound",		IN_soundi,	22,	3},
 {"beep",		IN_soundi,	23,	3},
+
+
+/* #define  IN_coselm  35  */
+#include "../scicos/scicos2.fundef"
+
 #define  IN_specfun  36  
 {"oldbesseli",		IN_specfun,	1,	3},	
 {"oldbesselj",		IN_specfun,	2,	3},	
@@ -613,7 +618,8 @@
 {"dneupd",		IN_intarpack,	5,	3},
 {"zneupd",		IN_intarpack,	6,	3},
 
-/* IN_intcscicos 47 in ../scicos/scicos.fundef */
+/* #define  IN_intcscicos 47 */
+#include "../scicos/scicos3.fundef"
 
 #define  IN_intwintools 48
 {"winopen",	        IN_intwintools,	1,	2},
