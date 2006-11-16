@@ -7,6 +7,7 @@
 #include "machine.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
+#include "string.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define basenamemodulesfile "modules/modules" 
 /*-----------------------------------------------------------------------------------*/ 
