@@ -50,6 +50,7 @@ extern void initTCLTK(void);
 extern void start_sci_gtk();
 extern void InitWindowGraphDll(void);
 extern void TextMessage1 (int ctrlflag);
+extern void SetWITH_GUI(BOOL ON);
 #else
 extern int C2F(sxevents)();
 #endif
