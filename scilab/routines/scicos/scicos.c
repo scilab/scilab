@@ -2321,8 +2321,7 @@ callf(t,xtd,xt,residual,g,flag)
   double* args[SZ_SIZE];
   integer sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
-  int ii,kf,in,out,ki,ko,no,k,j;
-  int ni = 0 ;
+  int ii,kf,in,out,ki,ko,ni,no,k,j;
   int lprt,szi,flagi;
   int solver=C2F(cmsolver).solver;
   int cosd=C2F(cosdebug).cosd;
@@ -2489,7 +2488,7 @@ callf(t,xtd,xt,residual,g,flag)
   case 0 :			
     /* concatenated entries and concatened outputs */
     /* catenate inputs if necessary */
-
+    ni=0;
     if (Blocks[kf-1].nin>1) {
       ki=0;
       for (in=0;in<Blocks[kf-1].nin;in++) {
