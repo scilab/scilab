@@ -15,4 +15,3 @@ int C2F(sci_isequal) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-     
