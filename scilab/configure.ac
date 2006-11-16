@@ -67,7 +67,10 @@ AC_ARG_WITH(tk,
     [  --without-tk            do not compile with TCL/TK ])
 
 AC_ARG_WITH(ocaml,
-    [  --without-ocaml         do not compile with ocaml ])
+    [  --without-ocaml         do not compile ocaml modules ])
+
+AC_ARG_WITH(java,
+    [  --without-java          do not compile java modules ])
 
 
 ##############################
@@ -618,11 +621,11 @@ if test "$with_java" != no; then
 			AC_MSG_WARN([We do not support $ac_java_jvm_name yet])
 		fi
 	fi
-fi
+	AC_SUBST(JAVA_JNI_INCLUDE)
+	AC_SUBST(JAVA_JNI_LIBS)
+	AC_SUBST(JAVA_HOME)
 
-AC_SUBST(JAVA_JNI_INCLUDE)
-AC_SUBST(JAVA_JNI_LIBS)
-AC_SUBST(JAVA_HOME)
+fi
 
 AM_CONDITIONAL(JAVA, test "$JAVA_OK" = "1")
 
@@ -1244,6 +1247,21 @@ else
 fi
 
 echo ""
+echo "Java Configuration:"
+if test ! -z "$JAVAC"; then
+echo "  JAVA_HOME        = $JAVA_HOME"
+echo "  JAVAC            = $JAVAC"
+echo "  JAVA_VERSION     = $JAVA_VERSION"
+echo "  JAVAC_FLAGS      = $JAVAC_FLAGS"
+echo "  JAVA_JNI_INCLUDE = $JAVA_JNI_INCLUDE"
+echo "  JAVA_JNI_LIBS    = $JAVA_JNI_LIBS"
+echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
+else
+echo "  JAVA disabled"
+fi
+
+
+echo ""
 echo "Options used to compile and link:"
 echo "  PREFIX           = $PREFIX_DIR"
 echo "  EXEC-PREFIX      = $EXEC_PREFIX_DIR"
@@ -1268,13 +1286,4 @@ echo "  TERMCAP_LIB      = $TERMCAP_LIB"
 echo "  TK_INC_PATH      = $TK_INC_PATH"
 echo "  TCL_INC_PATH     = $TCL_INC_PATH"
 echo "  TCLTK_LIBS       = $TCLTK_LIBS"
-if test ! -z "$JAVAC"; then
-echo "  JAVA_HOME        = $JAVA_HOME"
-echo "  JAVAC            = $JAVAC"
-echo "  JAVA_VERSION     = $JAVA_VERSION"
-echo "  JAVAC_FLAGS      = $JAVAC_FLAGS"
-echo "  JAVA_JNI_INCLUDE = $JAVA_JNI_INCLUDE"
-echo "  JAVA_JNI_LIBS    = $JAVA_JNI_LIBS"
-echo "  JAVA_JNI_LIBS_PRELOAD = $JAVA_JNI_LIBS_PRELOAD"
-fi
 echo ""
