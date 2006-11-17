@@ -40,5 +40,5 @@
     <P>list_keywords(5) :scicos functions</P>
   </DESCRIPTION>
 
-  <AUTHOR>A.C</AUTHOR>
+  <AUTHOR>A.C, adapted from Enrico Segre's code in Scipad</AUTHOR>
 </MAN>
