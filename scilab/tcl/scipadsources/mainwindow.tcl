@@ -20,18 +20,18 @@ set words()                 {}
 
 # main window settings
 eval destroy [winfo child $pad]
+wm withdraw $pad ; # $pad will be deiconified after Scipad's startup is completely over
 wm iconname $pad $winTitle
 
 # catch the kill of the windowmanager
 wm protocol $pad WM_DELETE_WINDOW {idleexitapp}
-## geometry in what units? The width is more than 65 columns, though it's 
-## resized proportionally
-#wm geometry $pad 65x24 
 wm minsize $pad 1 1 
-# strange: this on corrects reopen size when in setgrid 1 mode
-#  and also, makes the initial buffer too reactive to dnd. 
-#tk_messageBox -message $WMGEOMETRY;
+# this makes also the initial buffer too reactive to dnd. 
 wm geometry $pad $WMGEOMETRY
+# only restore zoomed (maximized) state of the Scipad window
+if {$WMSTATE == "zoomed"} {
+    wm state $pad $WMSTATE
+}
 
 #create main menu
 menu $pad.filemenu -tearoff 0

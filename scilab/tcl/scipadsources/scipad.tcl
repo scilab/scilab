@@ -66,4 +66,12 @@ if { [info exists pad] } {
     # finally source debug settings that must be executed after the procs definition
     source [file join $sourcedir scipaddebug2.tcl]
 
+    # deiconify "seq"entially so that this will be done after completion
+    # of dynamickeywords
+    # this way the user has no control on Scipad before the initialization
+    # sequence is completely finished, including full execution of
+    # dynamickeywords. This is needed to avoid starting to colorize a file
+    # (when opened through the file menu) before the words and chset arrays
+    # have been populated
+    ScilabEval_lt "TCL_EvalStr(\"wm deiconify $pad\",\"scipad\")" "seq"
 }

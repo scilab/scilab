@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.0.fix1"
+set version "Version 6.0.fix2"
 
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
@@ -36,7 +36,7 @@ set colorpref "$bgcolors $fgcolors"
 
 # those are the preferences which are going to be saved
 set listofpref "$colorpref wordWrap FontSize \
-       WMGEOMETRY printCommand actbptextFont indentspaces \
+       WMGEOMETRY WMSTATE printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
        filebackupdepth"
@@ -67,6 +67,7 @@ set FOUNDTEXTCOLOR "green2"
 set CONTLINECOLOR "lemonchiffon"
 set FontSize 12
 set WMGEOMETRY 600x480
+set WMSTATE normal
 set printCommand lpr
 set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
 set indentspaces 2

@@ -1945,3 +1945,10 @@ ES 23/2/06
  * ScilabEval_lt -> ScilabEval at line 34 of scilabexec.tcl. Workaround
    for bugs 1848 and 1853.
  * version 6.0.fix1, tag BUILD_4. This is the first time we branch scipad.
+
+Francois VOGEL, 17/11/06
+ * Fixed bug 2186 (colorization not completed)
+ * Fixed bug 2217 (Scipad window large size on relaunch when Scipad was
+   quit while zoomed, i.e. maximized)
+ * version 6.0.fix2, tag BUILD_4.
+
