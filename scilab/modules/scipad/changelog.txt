@@ -2391,7 +2391,8 @@ Francois VOGEL, 21/10/06
    resulting in Tcl errors such as can't read "words(scilab.scicos.c)". This
    synchronisation problem could also produce files that were not colorized
    in totality. Now $pad is withdrawn during Scipad's launch, and deiconified
-   only when the complete startup sequence is finished
+   only when the complete startup sequence is finished - This fix is also
+   included in Scipad 6.0.fix2 (BUILD4 branch)
  * Fixed: Colorization of XML files did not work correctly because the end
    bound for colorization was not properly derived - getendofcolorization
    and getstartofcolorization have been updated to deal specifically with
@@ -2508,7 +2509,8 @@ Francois VOGEL, 14/11/06
 
 Francois VOGEL, 15/11/06
  * Fixed bug 2217 (Scipad window large size on relaunch when Scipad was
-   quit while zoomed, i.e. maximized)
+   quit while zoomed, i.e. maximized) - This fix is also included in
+   Scipad 6.0.fix2 (BUILD4 branch)
  * version --> 6.58
 
 Francois VOGEL, 16/11/06
@@ -2516,3 +2518,11 @@ Francois VOGEL, 16/11/06
    quickly on the Scilab "Editor" menu, or Scipad icon)
  * De-tab-ified scipad.sci, and removed unnecessary global TMPDIR
  * version --> 6.59
+
+Francois VOGEL, 17/11/06
+ * Fixed debugger bug arising from the recent fix in the error handling
+   in Scilab (SVN trunk commit # 13662) - previously the errcatch mode
+   was lost every time Scilab entered a pause mode, now this is fixed and
+   the error must be cleared in function ext_exists
+ * Find/Replace rings a bell when there is no more matches
+ * version --> 6.60

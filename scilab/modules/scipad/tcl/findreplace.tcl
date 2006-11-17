@@ -739,6 +739,7 @@ proc findit {w pw textarea tosearchfor reg} {
 
     if {$alreadyreplaced} {
         showinfo [mc "No more matches"]
+        bell
         return "mustswitchnow"
     }
 
@@ -908,6 +909,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
         # tell the user there is no more matches in this buffer
         if {$replacesingle} {
             showinfo [mc "No more matches"]
+            bell
         }
         # return here to avoid processing of the repeated match
        return "mustswitchnow"

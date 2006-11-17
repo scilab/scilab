@@ -86,6 +86,19 @@ endfunction
     still use tabs to indent. Ctrl-d/D should transform existing tabs into
     spaces or viceversa depending on the option,
 
+-after configuration, when the first debug command is issued, Scipad execs
+ the current buffer and the buffer containing the configured function.
+ It should actually exec only the configured function plus all its ancillaries
+ if those ancillaries have ever been open in Scipad (let's simplify and limit
+ ourself to those that are currently open in Scipad). The current scheme is
+ a problem especially for mixed .sce/.sci files, when the user answers "No"
+ to the question "Debug as single .sce" and configures a function from a
+ mixed buffer. In such a case, the entire buffer is exec'ed, and this might
+ have consequences. The proposed solution is to scan the function being
+ debugged for ancillary functions, check recursively if any of them is in
+ a Scipad buffer, and dump all their definitions only to a temporary file
+ and execute that file only.
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

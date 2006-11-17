@@ -32,6 +32,12 @@ function ext_ex = ext_exists(varargin)
             // error  21: invalid index (for a matrix or a list)
             // error 117: undefined list element
             ext_ex = %f;
+            // the error that occurred in the execstr above has been recorded
+            // and must be cleared, otherwise the debugger reports it in the
+            // watchwindow (proc checkexecutionerror_bp)
+            // this was not needed before revision 13662 of the svn trunk,
+            // because the errcatch mode was (erroneously) lost during pause
+            lasterror(%t);
           end
         end
       end
