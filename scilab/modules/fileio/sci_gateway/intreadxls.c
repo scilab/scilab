@@ -25,8 +25,8 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
 int C2F(intreadxls)(char *fname, long lfn)
 {
   int m1,n1,l1,zero=0,ierr;
-  double *data;
-  int *ind;
+  double *data=NULL;
+  int *ind=NULL;
   int M,N,MN;
   int pos,fd;
 
@@ -85,7 +85,7 @@ int C2F(intreadxls)(char *fname, long lfn)
 static char *xls_basename (name)
 char *name;
 {
-  char *base;
+  char *base=NULL;
 #ifdef _MSC_VER
   base = strrchr (name, '\\');
 #else
@@ -101,9 +101,9 @@ int C2F(intopenxls)(char *fname, long lfn)
   int i,k,m1,n1,l1,l2,one=1,fd,f_swap=0;
   int ierr,ns,result;
   double res;
-  char **sst;
-  char **Sheetnames;
-  int *Abspos;
+  char **sst=NULL;
+  char **Sheetnames=NULL;
+  int *Abspos=NULL;
   int nsheets;
   char IN[256],TMP[256];
   char sep[2];
@@ -186,22 +186,55 @@ int C2F(intopenxls)(char *fname, long lfn)
       return 0;
     }
 
-  if (ns != 0) {
+  if (ns != 0) 
+  {
     /* Create a typed list to return the properties */
     CreateVarFromPtr(Rhs+2,"S", &one, &ns, sst);
-    for (k=0;k<ns;k++) FREE(sst[k]);
-    FREE(sst);}
+    for (k=0;k<ns;k++) 
+	{
+		if ( (sst) && (sst[k]))
+		{
+			FREE(sst[k]);
+			sst[k]=NULL;
+		}
+	}
+	if (sst)
+	{
+		FREE(sst);
+		sst=NULL;
+	}
+  }
   else
     CreateVar(Rhs+2,"d",&ns,&ns,&l2);
 
-  if (nsheets != 0) {
+  if (nsheets != 0) 
+  {
     /* Create a typed list to return the properties */
     CreateVarFromPtr(Rhs+3,"S", &one, &nsheets, Sheetnames);
-    for (k=0;k<nsheets;k++) FREE(Sheetnames[k]);
-    FREE(Sheetnames);
+	
+	if (Sheetnames)
+	{
+		for (k=0;k<nsheets;k++) 
+		{
+			if (Sheetnames[k])
+			{
+				FREE(Sheetnames[k]);
+				Sheetnames[k]=NULL;
+			}
+		}
+		FREE(Sheetnames);
+		Sheetnames=NULL;
+	}
+
+    
+    
     CreateVar(Rhs+4,"d", &one, &nsheets, &l2);
     for (i=0;i<nsheets;i++) *stk(l2+i)=Abspos[i];
-    FREE(Abspos);
+	if (Abspos)
+	{
+		FREE(Abspos);
+		Abspos=NULL;
+	}
   }
   else {
     CreateVar(Rhs+3,"d",&nsheets,&nsheets,&l2);
