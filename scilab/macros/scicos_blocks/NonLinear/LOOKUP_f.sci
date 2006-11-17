@@ -17,12 +17,17 @@ case 'set' then
   n=size(rpar,'*')/2
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   while %t do
-    old_win=xget('window')
-    win=maxi(winsid())+1
-    xset('window',win);xsetech([0 0 1 1])
-    [xx,yy,ok]=edit_curv(xx,yy,'axy')
-    xdel(win)
-    xset('window',old_win)
+    [ln,fun]=where();  
+    if (fun(3) == "clickin") then // cas standard  
+      old_win=xget('window')
+      win=maxi(winsid())+1
+      xset('window',win);xsetech([0 0 1 1])
+      [xx,yy,ok]=edit_curv(xx,yy,'axy')
+      xdel(win)
+      xset('window',old_win)
+    else
+      ok=%t
+    end  // no need anymore to overload edit_curv in do_eval
     if ~ok then break,end
     n=size(xx,'*')
     if or(xx(2:n)-xx(1:n-1)<=0) then
