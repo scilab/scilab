@@ -11,7 +11,7 @@
 /*-----------------------------------------------------------------------------------------*/
 int buildTListForTicks( const double * locations, const char * labels[], int nbTics )
 {
-  char * variable_tlist[] = {"ticks","locations","labels"};
+  const char * variable_tlist[] = {"ticks","locations","labels"};
 
   returnedList * tList = createReturnedList( 2, variable_tlist ) ;
 
