@@ -49,7 +49,7 @@ double *inptr[],*outptr[],*t;
     if (k<n) 
       z[1] = z[1]+1.0;
     else {/* buffer is full write it to the file */
-      F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
+      F2C(cvstr)(&three,&(ipar[2]),type,&job,(unsigned long)strlen(type));
       for (i=2;i>=0;i--)
 	if (type[i]!=' ') { type[i+1]='\0';break;}
       mput2(fd,ipar[6],buffer,ipar[5]*insz[0],type,&ierr);
@@ -61,7 +61,7 @@ double *inptr[],*outptr[],*t;
     }
   }
   else if (*flag==4) {
-    F2C(cvstr)(&(ipar[1]),&(ipar[7]),str,&job,strlen(str));
+    F2C(cvstr)(&(ipar[1]),&(ipar[7]),str,&job,(unsigned long)strlen(str));
     str[ipar[1]] = '\0';
     fd = fopen(str,"wb");
     if (!fd ) {
@@ -76,7 +76,7 @@ double *inptr[],*outptr[],*t;
     if(z[2]==0) return;
     k    =(int) z[1];
     if (k>=1) {/* flush rest of buffer */
-      F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
+      F2C(cvstr)(&three,&(ipar[2]),type,&job,(unsigned long)strlen(type));
       for (i=2;i>=0;i--)
 	if (type[i]!=' ') { type[i+1]='\0';break;}
       mput2(fd,ipar[6],buffer,(k-1)*insz[0],type,&ierr);
