@@ -1,6 +1,4 @@
-#if _MSC_VER
 #include <stdio.h> /* printf */
-#endif
 /* Table of constant values */
 
 static double c_b4 = 1.;
