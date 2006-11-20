@@ -6,6 +6,7 @@
 #include "stack-c.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scimess1) _PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_x_message_modeless) _PARAMS((char *fname,unsigned long fname_len))
 {
