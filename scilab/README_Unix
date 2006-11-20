@@ -283,8 +283,8 @@
  
  scilab.star      : startup file for Scilab instructions in this file
                     are executed when Scilab is executed. Note that
-                    you can also have your own startup file ".scilab"
-                    or "scilab.ini" in your current directory.
+                    you can also have your own startup file "SCIHOME/.scilab"
+                    or "SCIHOME/scilab.ini" in your current directory.
  
  configure.in     : file used by "autoconf" to generate "configure".
  

@@ -83,7 +83,7 @@ echo     "                        the -link option should be used without any ot
 echo     "      -mem N          : set the initial stacksize, for use with -ns option."
 echo     "      -nb             : do not display the Scilab banner at starting time."
 echo     "      -ns             : do not execute scilab.star startup file."
-echo     "      -nouserstartup  : do not execute the user startup files .scilab or scilab.ini."
+echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
 echo     "      -nw             : start Scilab without specialized Scilab Window."
 echo     "      -nwni           : start Scilab without user interaction (batch mode)."
 echo     "      --texmacs       : reserved for TeXMacs."

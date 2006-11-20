@@ -139,7 +139,7 @@
 #define MSG_SCIMSG127 "-mem N : set the initial stacksize.\n"
 #define MSG_SCIMSG128 "-ns : if this option is present the startup file scilab.star is not executed.\n"
 #define MSG_SCIMSG129 "-nb : if this option is present then scilab welcome banner is not displayed.\n"
-#define MSG_SCIMSG130 "-nouserstartup : don't execute user startup files .scilab or scilab.ini.\n"
+#define MSG_SCIMSG130 "-nouserstartup : don't execute user startup files SCIHOME/.scilab or SCIHOME/scilab.ini.\n"
 #define MSG_SCIMSG131 "-nw : start Scilab without specialized Scilab Window.\n"
 #define MSG_SCIMSG132 "-nwni : start Scilab without user interaction (batch mode).\n"
 #define MSG_SCIMSG133 "-nogui : start Scilab without GUI,tcl/tk and user interaction (batch mode).\n"
