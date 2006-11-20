@@ -21,7 +21,7 @@ static struct hashtable *Table_Scilab_Errors=NULL;
 
 static char *Replace(char *s1, char *s2, char *s3);
 /*-----------------------------------------------------------------------------------*/ 
-char* ConvertEncoding(char *encodingFrom, char *encodingTo, const char* inputStr)
+char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr)
 {
 
   char * outputStr;
@@ -64,7 +64,7 @@ void ProcessNode(xmlTextReaderPtr reader, struct hashtable *table, char *encodin
 		}
 		else
 		{
-			node_value=ConvertEncoding("UTF-8",encoding,(const char *)xmlTextReaderConstValue(reader));
+			node_value=ConvertEncoding("UTF-8",encoding,(char *)xmlTextReaderConstValue(reader));
 		}
 		
 		if((count%2)!=0)//odd, tag
