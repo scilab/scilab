@@ -32,8 +32,6 @@ static int event_select=5;/* record only press and release events, ignoring move
  * when acquiring for example a zoom rectangle */
 static int sci_graphic_protect = 0;
 
-/* Disable Events when in PushClickQueue */
-static int EventOff=FALSE;
 /*-----------------------------------------------------------------------------------*/
 
 int scig_click_handler_none (int win,int x,int y,int ibut,
