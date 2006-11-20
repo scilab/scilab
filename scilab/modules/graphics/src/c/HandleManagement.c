@@ -1330,7 +1330,7 @@ int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long ne
   while( !List_is_empty( modifiedFiguresList ) )
   {
     sciPointObj * modifiedFig  = NULL ;
-    modifiedFiguresList = List_pop( modifiedFiguresList, &modifiedFig ) ;
+    modifiedFiguresList = List_pop( modifiedFiguresList, (void *)&modifiedFig ) ;
     sciDrawObj( modifiedFig ) ;
   }
   
