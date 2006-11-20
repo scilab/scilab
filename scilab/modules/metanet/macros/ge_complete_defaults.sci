@@ -15,6 +15,9 @@ function GraphList=ge_complete_defaults(GraphList)
   if GraphList.default_edge_width==[] then
     GraphList.default_edge_width=1
   end
+   if GraphList.default_edge_hi_width==[] then
+    GraphList.default_edge_hi_width=3
+  end
   
   nn=size(GraphList.node_x,'*')
   na=size(GraphList.tail,'*')
