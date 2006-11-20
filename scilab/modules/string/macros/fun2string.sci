@@ -15,7 +15,6 @@ function txt=fun2string(fun,nam)
     lst=fun
   end
   lst=mmodlst(lst)
-
   lcount=1;level=[0,0];
   quote=''''
   dquote='""'
@@ -66,6 +65,8 @@ function txt=cla2sci(clause)
 // Copyright INRIA
 // Author Serge Steer  
   typ=clause(1)
+  txt=''
+
   //write(6,'cla2sci '+typ(1))
   level;level(1)=level(1)+1
   select typ(1)
