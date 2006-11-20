@@ -6,6 +6,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "get_data_property.h"
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
