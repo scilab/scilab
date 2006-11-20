@@ -24,6 +24,7 @@ function txt=fun2string(fun,nam)
   // add input variable in the defined variables
   inputs=lst(3);outputs=lst(2)
   sciexp=0
+//  cmt=lst(4)(1)=='31'
   crp=ins2sci(lst,4)
   //add the function header
   select size(outputs,'*')
@@ -37,7 +38,13 @@ function txt=fun2string(fun,nam)
   end
 
   hdr='function '+outputs+'='+nam+inputs;
-  txt=[hdr;'  '+crp(2:$-2);'endfunction']
+  crp1=crp(1)
+  if crp1<>'' then crp1=','+crp1,end
+  if crp(2)=='' then
+    txt=[hdr+crp1;'  '+crp(3:$-2);'endfunction']
+  else
+    txt=[hdr+crp1;'  '+crp(2:$-2);'endfunction']
+  end
 endfunction
 
 function txt=ins2sci(lst,ilst)
@@ -66,6 +73,7 @@ function txt=cla2sci(clause)
 // Copyright INRIA
 // Author Serge Steer  
   typ=clause(1)
+  txt=''
   //write(6,'cla2sci '+typ(1))
   level;level(1)=level(1)+1
   select typ(1)
