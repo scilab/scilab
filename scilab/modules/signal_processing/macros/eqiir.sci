@@ -62,7 +62,7 @@ for col=coeffs,
     cells=[cells,syslin([],n1,d1)];
 end
 //crapaud...
-if iapro==1 then
+if iapro==1| iapro==2  then
 zzeros=[];
 [k,j]=size(cells);
 w=cells(2);
