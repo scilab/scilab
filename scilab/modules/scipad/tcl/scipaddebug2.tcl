@@ -37,6 +37,7 @@ if {$debuglog} {
     getallfunsintextarea \
     trimcontandcomments extractfunnamefromfunline \
     bindenable binddisable findbinding \
+    setwindowsmenuentrylabel addwindowsmenuentry sortwindowsmenuentries \
     ]
 #    set excludedScipadprocs [list ]
 

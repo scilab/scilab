@@ -281,6 +281,18 @@ proc createmenues {} {
                  [me "&Unambiguous pruned path"]\
                  -command {RefreshWindowsMenuLabels}\
                  -value pruned -variable filenamesdisplaytype"
+    menu $pad.filemenu.options.windmenusort -tearoff 0
+    eval "$pad.filemenu.options add cascade [me "Windows menu &sorting"] \
+           -menu $pad.filemenu.options.windmenusort "
+        eval "$pad.filemenu.options.windmenusort add radiobutton \
+            [me "&File opening order"] -command {sortwindowsmenuentries}\
+             -value openorder -variable windowsmenusorting"
+        eval "$pad.filemenu.options.windmenusort add radiobutton \
+            [me "&Alphabetically"] -command {sortwindowsmenuentries}\
+             -value alphabeticorder -variable windowsmenusorting"
+        eval "$pad.filemenu.options.windmenusort add radiobutton \
+                 [me "&Most recently used"] -command {sortwindowsmenuentries}\
+                 -value MRUorder -variable windowsmenusorting"
     eval "$pad.filemenu.options add cascade  [me "&Recent files"]\
                -menu [tk_optionMenu $pad.filemenu.options.recent \
                     maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10]"
@@ -322,7 +334,7 @@ proc createmenues {} {
         }
     }
 
-    # window menu
+    # windows menu
     menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"]
     eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
 # the bindings for the next 3 items need to invoke the item itself instead
@@ -343,10 +355,7 @@ proc createmenues {} {
     set FirstBufferNameInWindowsMenu [expr [$pad.filemenu.wind index last] + 1]
     foreach ta $listoftextarea {
         set winopened [scan $ta $pad.new%d]
-        $pad.filemenu.wind add radiobutton \
-            -label $listoffile("$ta",displayedname)\
-            -value $winopened -variable textareaid \
-            -command "montretext $ta"
+        addwindowsmenuentry $winopened $listoffile("$ta",displayedname)
     }
     bind $pad.filemenu.wind <<MenuSelect>> {+showinfo_menu_wind %W}
 
@@ -402,8 +411,8 @@ proc disablemenuesbinds {} {
     $pad.filemenu.files entryconfigure $iClose -state disabled
     binddisable $pad {closecur yesnocancel}
     # Windows menu entries
-    set lasttoset 3
-    for {set i 1} {$i<$lasttoset} {incr i} {
+    set lasttoset [expr $FirstBufferNameInWindowsMenu - 2]
+    for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state disabled
         bind $pad <Control-Key-$i> ""
     }
@@ -424,8 +433,8 @@ proc restoremenuesbinds {} {
     $pad.filemenu.files entryconfigure $iClose -state normal
     bindenable $pad {closecur yesnocancel}
     # Windows menu entries
-    set lasttoset 3
-    for {set i 1} {$i<$lasttoset} {incr i} {
+    set lasttoset [expr $FirstBufferNameInWindowsMenu - 2]
+    for {set i 1} {$i<=$lasttoset} {incr i} {
         $pad.filemenu.wind entryconfigure $i -state normal
         bind $pad <Control-Key-$i> "$pad.filemenu.wind invoke $i"
     }
@@ -473,13 +482,17 @@ proc getlasthiddentextareaid {} {
 }
 
 proc extractindexfromlabel {dm labsearched} {
-# extractindexfromlabel is here to cure bugs with special filenames
+# extractindexfromlabel is here to cure bugs with special filenames, and
+# to deal with labels with an underlined number prepended
 # This proc should be used as a replacement for [$menuwidget index $label]
 # It returns the index of entry $label in $menuwidget, even if $label is a
-# number or an index reserved name (see the tcl/tk help for menu indexes)
+# number or an index reserved name (see the Tcl/Tk help for menu indexes)
+# The leading underlined number is not considered to be part of the label
+# and is ignored
 # If $label is not found in $menuwidget, it returns -1
     global pad FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu nbrecentfiles
+
     if {$dm == "$pad.filemenu.wind"} {
         set startpoint $FirstBufferNameInWindowsMenu
         set stoppoint  [$dm index last]
@@ -489,15 +502,111 @@ proc extractindexfromlabel {dm labsearched} {
     } else {
         tk_messageBox -message "Unexpected menu widget in proc extractindexfromlabel ($dm): please report"
     }
+
     for {set i $startpoint} {$i<=$stoppoint} {incr i} {
         if {[$dm type $i] != "separator" && [$dm type $i] != "tearoff"} {
             set lab [$dm entrycget $i -label]
+            # the first 9 labels have an underlined number prepended
+            # that must be removed before comparison to the searched label
+            if {$i < [expr $startpoint + 9]} {
+                regexp {^[0-9] (.*)} $lab -> lab
+            }
             if {$lab == $labsearched} {
                 return $i
             }
         }
     }
     return -1
+}
+
+proc setwindowsmenuentrylabel {entry lab {sortmenu "sortmenu"}} {
+# set the label of entry $entry of the windows menu
+# $entry is relative to the start of the menu, i.e. to entry #0,
+# and not to $FirstBufferNameInWindowsMenu
+# $lab is the label without any leading underlined number
+# the optional argument sortmenu is a flag allowing to sort the
+# Windows menu, it should always be "sortmenu" (or not given)
+# the only exception being precisely when sorting the menu, i.e.
+# when called from proc sortwindowsmenuentries (this would otherwise
+# create an infinite recursion)
+# this proc takes care of updating the entry label with or without
+# an underlined number prepended, depending on the position of the
+# entry in the menu (only the first 9 entries have such an
+# underlined number)
+    global pad FirstBufferNameInWindowsMenu
+    set underlinednumber [expr $entry - $FirstBufferNameInWindowsMenu + 1]
+    if {$underlinednumber<10} {
+        set underlinedlabel [concat $underlinednumber $lab]
+        $pad.filemenu.wind entryconfigure $entry \
+           -label $underlinedlabel -underline 0
+    } else {
+        $pad.filemenu.wind entryconfigure $entry \
+           -label $lab
+    }
+    if {$sortmenu == "sortmenu"} {
+        sortwindowsmenuentries
+    }
+}
+
+proc addwindowsmenuentry {val lab} {
+# add an entry at the end of the windows menu, and prepend an underlined
+# number if possible
+# inputs: $val : -value of the variable attached to the radiobutton
+#         $lab : -label of the menu entry, without any leading number
+    global pad
+    $pad.filemenu.wind add radiobutton \
+        -value $val -variable textareaid \
+        -command "montretext $pad.new$val"
+    setwindowsmenuentrylabel [$pad.filemenu.wind index end] $lab
+}
+
+proc sortwindowsmenuentries {} {
+    global windowsmenusorting
+    global pad listoftextarea listoffile
+    global FirstBufferNameInWindowsMenu
+
+    set li [list ]
+    foreach ta $listoftextarea {
+        if {$listoffile("$ta",thetime) == "0"} {
+            # a new unsaved file has thetime = 0
+            # change it to a large value (around year 2034)
+            # this saves from computing the max
+            # note: 2000000000 works in lsort, but not 3000000000
+            # there must be some internal limit wrt numbers coding
+            # (probably 31 bits + sign ; 2^31 = 2147483648)
+            set thetime "2000000000"
+        } else {
+            set thetime $listoffile("$ta",thetime)
+        }
+        lappend li [list $ta $listoffile("$ta",displayedname) $thetime]
+    }
+
+    switch -- $windowsmenusorting {
+        openorder {
+            # nothing to do, opening order is the list in $listoftextarea
+        }
+        alphabeticorder {
+            set li [lsort -dictionary -index 1 $li]
+        }
+        MRUorder {
+            set li [lsort -decreasing -integer -index 2 $li]
+        }
+        default {
+            # can't happen in principle
+            tk_messageBox -message "Unexpected sort scheme in proc sortwindowsmenuentries ($windowsmenusorting): please report"
+        }
+    }
+
+    set i $FirstBufferNameInWindowsMenu
+    foreach item $li {
+        foreach {ta lab mtim} $item {}
+        set winopened [scan $ta $pad.new%d]
+        $pad.filemenu.wind entryconfigure $i \
+            -value $winopened \
+            -command "montretext $pad.new$winopened"
+        setwindowsmenuentrylabel $i $lab "dontsort"
+        incr i
+    }
 }
 
 proc createarrayofmenuentriesid {root} {
@@ -545,6 +654,12 @@ proc showinfo_menu_wind {w} {
 # as a showinfo
     global pad FirstBufferNameInWindowsMenu listoffile listoftextarea
     set mouseentry [$w index active]
+    if {$mouseentry=="none"} {
+        # can happen when hovering over a separator
+        # we must return otherwise the last menu entry is used for
+        # the showinfo
+        return
+    }
     if {$FirstBufferNameInWindowsMenu<=$mouseentry} {
         foreach ta $listoftextarea {
             set ind [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.56
+# in sync at least with v6.61
 
 
 # commons
@@ -447,6 +447,10 @@
         ::msgcat::mcset fr "&Full path" "&Complets"
         ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
         ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
+    ::msgcat::mcset fr  "Windows menu &sorting" "&Tri dans le menu Fenêtres"
+        ::msgcat::mcset fr "&File opening order" "Ordre d'ouverture des &fichiers"
+        ::msgcat::mcset fr "&Alphabetically" "&Alphabétique"
+        ::msgcat::mcset fr "&Most recently used" "Plus &récemment utilisé"
     ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
     ::msgcat::mcset fr "&Backup files depth" "Profond&eur de sauvegarde"
     ::msgcat::mcset fr "&Locale" "&Langue"

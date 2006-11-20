@@ -308,14 +308,6 @@ Other wishes:
   . More than one find in files thread at the same time
   . Add a Pause button in the find in files results window
 
--Add an option menu about the sorting of the buffers in the Windows menu.
- Possible options could be:
-   . "Sort by opening order" (which is the current way it is) - keep it?
-   . "Sort alphabetically"
-   . "Sort by MRU" (Most Recently Used)
-
--Add underlined numbers in the Windows menu, as for the File menu.
-
 -Perhaps rethink how to sort out the duplication of "Open", "Open in
  new", "Open Source of.." and "Open function source". Four entries
  scattered in the same menu starts to be much...

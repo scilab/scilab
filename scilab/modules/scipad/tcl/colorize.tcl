@@ -794,8 +794,8 @@ proc changelanguage {newlanguage} {
                     [string replace $listoffile("$textarea",displayedname) "end-2" end $ext]
             set listoffile("$textarea",fullname) \
                     [string replace $listoffile("$textarea",displayedname) "end-2" end $ext]
-            $pad.filemenu.wind entryconfigure $ilab \
-               -label $listoffile("$textarea",displayedname)
+            # update the windows menu label
+            setwindowsmenuentrylabel $ilab $listoffile("$textarea",displayedname)
             RefreshWindowsMenuLabels
         }
     }

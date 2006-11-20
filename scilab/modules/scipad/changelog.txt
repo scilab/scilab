@@ -2526,3 +2526,17 @@ Francois VOGEL, 17/11/06
    the error must be cleared in function ext_exists
  * Find/Replace rings a bell when there is no more matches
  * version --> 6.60
+
+Francois VOGEL, 20/11/06
+ * Added underlined numbers in the Windows menu, so that the buffers can
+   be accessed by Ctrl-[1-9] as shortcut - this was request 342
+ * Fixed: disable/restoremenuesbinds did only deal with the three first
+   entries of the Windows menu
+ * Fixed: when the mouse was hovering over a separator entry in the
+   Windows menu, the showinfo did erroneously display the last entry of
+   the menu
+ * Added an option menu about the sorting of the buffers in the Windows
+   menu. Possible options are to sort by opening order (which is the way
+   it was previously), or to sort alphabetically, or by MRU (Most Recently
+   Used) file, based on the last saving time
+ * version --> 6.61

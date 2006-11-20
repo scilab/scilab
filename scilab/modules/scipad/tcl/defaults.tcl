@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.60"
+set version "Version 6.61"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -40,7 +40,8 @@ set listofpref "$colorpref wordWrap \
        WMGEOMETRY WMSTATE printCommand indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
-       filebackupdepth bindstyle doubleclickscheme colorizeenable"
+       filebackupdepth bindstyle doubleclickscheme colorizeenable \
+       windowsmenusorting"
 set listofpref_list { listofrecent textFont menuFont }
 
 # default options which can be overriden
@@ -82,6 +83,7 @@ set filebackupdepth 0
 set bindstyle "mac-pc"
 set doubleclickscheme "Scilab"  ;# "Scilab" or "Windows" or "Linux"
 set colorizeenable "always"     ;# "always" or "ask" or "never"
+set windowsmenusorting "openorder" ; # "openorder", or "alphabeticorder", or "MRUorder"
 
 setdefaultfonts
 

@@ -375,6 +375,10 @@ proc createnewtextarea {} {
 # <TODO>: get rid of this!
     global winopened listoffile
     global listoftextarea pad textareaid
+
+    # ensure that the cursor is changed to the default cursor
+    event generate [gettextareacur] <Leave>
+
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
@@ -387,9 +391,9 @@ proc createnewtextarea {} {
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
     lappend listoftextarea $pad.new$winopened
-    $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
-        -value $winopened -variable textareaid \
-        -command "montretext $pad.new$winopened"
+
+    addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
+
     newfilebind
     showinfo [mc "New Script"]
     selection clear
@@ -891,18 +895,17 @@ proc switchbuffersinpane {w} {
 }
 
 proc nextbuffer {} {
-    global pad listoftextarea textareaid
+    global pad listoftextarea listoffile
     global FirstBufferNameInWindowsMenu
-    set textarea [gettextareacur]
-    set curbuf [expr [lsearch $listoftextarea $textarea] + $FirstBufferNameInWindowsMenu]
+    set ta [gettextareacur]
+    set curbuf [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
     incr curbuf
     set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu]
     if {$curbuf >= $nbuf} {
         set curbuf $FirstBufferNameInWindowsMenu
     }
-    set textareaid [$pad.filemenu.wind entrycget $curbuf -value]
-    montretext [lindex $listoftextarea [expr $curbuf - $FirstBufferNameInWindowsMenu]]
-    #keypress must replace the selection if buffers are switched
+    $pad.filemenu.wind invoke $curbuf
+    # keypress must replace the selection if buffers are switched
     set existsSel [[gettextareacur] tag nextrange sel 1.0]
     if {$existsSel != {}} {
         [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
@@ -910,18 +913,17 @@ proc nextbuffer {} {
 }
 
 proc prevbuffer {} {
-   global pad listoftextarea textareaid
+   global pad listoftextarea listoffile
     global FirstBufferNameInWindowsMenu
-    set textarea [gettextareacur]
-    set curbuf [expr [lsearch $listoftextarea $textarea] + $FirstBufferNameInWindowsMenu]
+    set ta [gettextareacur]
+    set curbuf [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
     incr curbuf -1
     set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu - 1]
     if {$curbuf < $FirstBufferNameInWindowsMenu} {
         set curbuf $nbuf
     }
-    set textareaid [$pad.filemenu.wind entrycget $curbuf -value]
-    montretext [lindex $listoftextarea [expr $curbuf - $FirstBufferNameInWindowsMenu]]
-    #keypress must replace the selection if buffers are switched
+    $pad.filemenu.wind invoke $curbuf
+    # keypress must replace the selection if buffers are switched
     set existsSel [[gettextareacur] tag nextrange sel 1.0]
     if {$existsSel != {}} {
         [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]

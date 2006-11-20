@@ -38,6 +38,9 @@
 #       This may be:
 #         - the shortest unambiguous reference to that file
 #         - the full pathname of that file
+#       The displayed name does not contain the underlined number shown
+#       in the Windows menu - This number is only found in the -label of
+#       this menu
 #
 #     listoffile("$ta",new)
 #       0: file was opened from disk
@@ -75,10 +78,13 @@
 #   properties:
 #     -value is $winopened
 #     -label is $listoffile("$ta",displayedname), $ta being $pad.new$winopened
+#     This label is prepended by an underlined number (for the first 9 entries
+#     only)
 #     All the labels of the menu are different at any time, except
 #     during ambiguities removal (In the Options menu, item Filenames does
 #     not propose any option that would lead to ambiguous file names)
 #     It is very important to maintain this property throughout the code
+#     because extractindexfromlabel relies on this and is used everywhere
 #
 #
 #####################################################################
@@ -105,9 +111,9 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
     lappend listoftextarea $pad.new$winopened
-    $pad.filemenu.wind add radiobutton -label $listoffile("$pad.new$winopened",displayedname) \
-        -value $winopened -variable textareaid \
-        -command "montretext $pad.new$winopened"
+
+    addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
+
     newfilebind
     showinfo [mc "New Script"]
     montretext $pad.new$winopened
@@ -196,7 +202,7 @@ proc byebye {textarea} {
             set visibletapwfr [lindex [array get pwframe] 1]
             pack forget $visibletapwfr.topbar
         }
-    
+
     } else {
         killscipad
     }
@@ -205,7 +211,7 @@ proc byebye {textarea} {
 proc killscipad {} {
 # kill main window and save preferences on exit
     global pad WMGEOMETRY WMSTATE
-    
+
     #save the geometry for the next time
     set WMSTATE [wm state $pad]
     if {$WMSTATE == "zoomed"} {
@@ -631,10 +637,8 @@ proc notopenedfile {file} {
     }
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
-    $pad.filemenu.wind add radiobutton \
-          -label $listoffile("$pad.new$winopened",displayedname) \
-          -value $winopened -variable textareaid \
-          -command "montretext $pad.new$winopened"
+
+    addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
 }
 
 proc shownewbuffer {file tiledisplay} {
@@ -802,8 +806,7 @@ proc filesaveas {textarea} {
         set listoffile("$textarea",displayedname) \
             [file tail $listoffile("$textarea",fullname)]
         set listoffile("$textarea",new) 0
-        $pad.filemenu.wind entryconfigure $ilab \
-           -label $listoffile("$textarea",displayedname)
+        setwindowsmenuentrylabel $ilab $listoffile("$textarea",displayedname)
         RefreshWindowsMenuLabels
         AddRecentFile $listoffile("$textarea",fullname)
     }
@@ -1167,10 +1170,7 @@ proc RefreshWindowsMenuLabels {} {
             lappend ind $i $pn
         }
         foreach {i pn} $ind {
-            $pad.filemenu.wind entryconfigure $i -label $pn
-    #numbers in front of the labels (needs further work)
-    #        $pad.filemenu.wind entryconfigure $i -label "$i $pn"
-    #        if {$i<10} {$pad.filemenu.wind entryconfigure $i -underline 0}
+            setwindowsmenuentrylabel $i $pn
         }
         # Detect duplicates and remove ambiguities
         foreach ta $listoftextarea {
@@ -1188,7 +1188,7 @@ proc RefreshWindowsMenuLabels {} {
             lappend ind $i $pn
         }        
         foreach {i pn} $ind {
-            $pad.filemenu.wind entryconfigure $i -label $pn
+            setwindowsmenuentrylabel $i $pn
         }
     }
     updatepanestitles
@@ -1219,18 +1219,18 @@ proc RemoveAmbiguity {talist} {
             set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
             set en $listoffile("$ta",fullname)
             set listoffile("$ta",displayedname) $en
-            $pad.filemenu.wind entryconfigure $i -label $en
+            setwindowsmenuentrylabel $i $en
         }
     } else {
         # assert: $filenamesdisplaytype must be "pruned"
         # unambiguous pruned file names are displayed
         foreach ta $talist {
             set mli("$ta") [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
-            $pad.filemenu.wind entryconfigure $mli("$ta") -label $ta
+            setwindowsmenuentrylabel $mli("$ta") $ta
         }
         CreateUnambiguousPrunedNames $talist
         foreach ta $talist {
-            $pad.filemenu.wind entryconfigure $mli("$ta") -label $listoffile("$ta",displayedname)
+            setwindowsmenuentrylabel $mli("$ta") $listoffile("$ta",displayedname)
         }
     }
 }
