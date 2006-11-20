@@ -13,6 +13,10 @@
 #include "wf_fig.h"
 #include "wf_figx.h"
 #include "wf_resources.h"
+void init_wf_cursor(void);
+void reset_wf_cursor(void);
+void set_temp_wf_cursor(Cursor);
+void set_wf_cursor(Cursor);
 
 Cursor		cur_wf_cursor,arrow_wf_cursor, wait_wf_cursor;
 
@@ -29,14 +33,12 @@ void reset_wf_cursor()
     XDefineCursor(tool_d, tool_win, cur_wf_cursor);
 }
 
-void set_temp_wf_cursor(cursor)
-    Cursor	    cursor;
+void set_temp_wf_cursor(Cursor cursor)
 {
     XDefineCursor(tool_d, tool_win, cursor);
 }
 
-void set_wf_cursor(cursor)
-    Cursor	    cursor;
+void set_wf_cursor(Cursor cursor)
 {
     cur_wf_cursor = cursor;
     XDefineCursor(tool_d, tool_win, cursor);

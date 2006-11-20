@@ -104,8 +104,8 @@ extern void settexmacs();
 extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
 extern void SetWITH_GUI();
 /*-----------------------------------------------------------------------------------*/
-static void Syntax  __PARAMS((char *badOption));  
-static void Syntax  (char *badOption);  
+//static void Syntax __PARAMS((char *badOption));  
+//static void Syntax (char *badOption);  
 /*-----------------------------------------------------------------------------------*/
 /**
  * mainsci.f directly call this function 
@@ -122,6 +122,8 @@ int IsNoInteractiveWindow(void);
 void sci_sig_tstp(int n);
 int IsConsoleMode(void);
 void InitXsession(void);
+void C2F(mainscic)();
+
 /*----------------------------------------------------------------------------------*/
 void C2F(mainscic)()
 {
@@ -583,8 +585,7 @@ int kill_process_group(pid, sig)
  * Syntax 
  */
 /*----------------------------------------------------------------------------------*/
-static void Syntax (badOption)
-    char *badOption;
+static void Syntax(char *badOption)
 {
   struct _options *opt;
   int col;

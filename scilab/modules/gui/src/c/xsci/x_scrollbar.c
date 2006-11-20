@@ -49,17 +49,14 @@
 
 /* Event handlers */
 
-static void ScrollTextTo();
-static void ScrollTextUpDownBy();
-
+static void ScrollTextTo(Widget scrollbarWidget, caddr_t closure, float *topPercent);
+static void ScrollTextUpDownBy(Widget scrollbarWidget, Opaque closure,int pixels);
 
 /* resize the text window for a terminal screen, modifying the
  * appropriate WM_SIZE_HINTS and taking advantage of bit gravity.
  */
 
-static void ResizeScreen(xw, min_width, min_height )
-	register XtermWidget xw;
-	int min_width, min_height;
+static void ResizeScreen(register XtermWidget xw, int min_width, int min_height)
 {
 	register TScreen *screen = &xw->screen;
 #ifndef nothack
@@ -165,17 +162,14 @@ static void ResizeScreen(xw, min_width, min_height )
 #endif
 }
 
-void DoResizeScreen (xw)
-    register XtermWidget xw;
+void DoResizeScreen (register XtermWidget xw)
 {
     int border = 2 * xw->screen.border;
     ResizeScreen (xw, border + xw->screen.scrollbar, border);
 }
 
 
-static Widget CreateScrollBar(xw, x, y, height)
-	XtermWidget xw;
-	int x, y, height;
+static Widget CreateScrollBar(XtermWidget xw, int x, int y, int height)
 {
 	Widget scrollWidget;
 
@@ -200,16 +194,13 @@ static Widget CreateScrollBar(xw, x, y, height)
 	return (scrollWidget);
 }
 
-static void RealizeScrollBar (sbw, screen)
-    Widget sbw;
-    TScreen *screen;
+static void RealizeScrollBar (Widget sbw,TScreen *screen)
 {
     XtRealizeWidget (sbw);
 }
 
 
-void ScrollBarReverseVideo(scrollWidget)
-	register Widget scrollWidget;
+void ScrollBarReverseVideo(register Widget scrollWidget)
 {
 	Arg args[4];
 	Cardinal nargs = XtNumber(args);
@@ -234,8 +225,7 @@ void ScrollBarReverseVideo(scrollWidget)
 
 
 
-void ScrollBarDrawThumb(scrollWidget)
-	register Widget scrollWidget;
+void ScrollBarDrawThumb(register Widget scrollWidget)
 {
 	register TScreen *screen = &term->screen;
 	register int thumbTop, thumbHeight, totalHeight;
@@ -250,10 +240,7 @@ void ScrollBarDrawThumb(scrollWidget)
 	
 }
 
-void ResizeScrollBar(scrollWidget, x, y, height)
-	register Widget scrollWidget;
-	int x, y;
-	unsigned height;
+void ResizeScrollBar(register Widget scrollWidget, int x, int y, unsigned height)
 {
 	XtConfigureWidget(scrollWidget, x, y, scrollWidget->core.width,
 	    height, scrollWidget->core.border_width);
@@ -389,10 +376,7 @@ void ScrollBarOff(screen)
 }
 
 /*ARGSUSED*/
-static void ScrollTextTo(scrollbarWidget, closure, topPercent)
-	Widget scrollbarWidget;
-	caddr_t closure;
-	float *topPercent;
+static void ScrollTextTo(Widget scrollbarWidget, caddr_t closure, float *topPercent)
 {
 	register TScreen *screen = &term->screen;
 	int thumbTop;	/* relative to first saved line */
@@ -410,10 +394,7 @@ static void ScrollTextTo(scrollbarWidget, closure, topPercent)
 }
 
 /*ARGSUSED*/
-static void ScrollTextUpDownBy(scrollbarWidget, closure, pixels)
-	Widget scrollbarWidget;
-	Opaque closure;
-	int pixels;
+static void ScrollTextUpDownBy(Widget scrollbarWidget, Opaque closure,int pixels)
 {
 	register TScreen *screen = &term->screen;
 	register int rowOnScreen, newTopLine;

@@ -34,6 +34,10 @@
 #include "sci_mem_alloc.h"
 #include "GetProperty.h"
 #include "DestroyObjects.h"
+#include "SGraph.h"
+#include "Graphics.h"
+#include "xs2file.h" /* for scig_toPs */
+#include "Xcall1.h" /* dr_ */
 
 extern int StoreCommand  __PARAMS((char *command));
 
@@ -100,6 +104,7 @@ static int GetChilds __PARAMS((int win_num, int *nc,WidgetList *wL,Widget *outer
 			      int *name_pos) );
 static void ignore_events( Widget widget, XEvent *event2,long mask );
 
+
 static char popupname[sizeof("ScilabGraphic")+32];
 static Arg args[10] ;
 static int iargs=0;
@@ -134,8 +139,7 @@ static void SetHints(topW)
 
 /** to check that an event is of type wmDeleteWindow **/
 
-int IswmDeleteWindow(event) 
-     XEvent *event;
+int IswmDeleteWindow(XEvent *event) 
 {
   return event->type == ClientMessage &&
     event->xclient.data.l[0] == (int)wmDeleteWindow ;
@@ -144,8 +148,7 @@ int IswmDeleteWindow(event)
 /** to check that an event is of type Close_SG_Window_Activated **/
 /** if true the window number is returnde **/
 
-int IsCloseSGWindow(event) 
-     XEvent *event;
+int IsCloseSGWindow(XEvent *event)
 {
   if ( event->type == ClientMessage &&
        ((XClientMessageEvent *)event)->message_type == Close_SG_Window_Activated )
@@ -171,11 +174,7 @@ reset_click_counter (XtPointer ptr)
 
 
 void
-btn_pressed(widget, event, params, num_params)
-    Widget	widget;
-    XEvent*	event;
-    String*	params;
-    Cardinal*	num_params;
+btn_pressed(Widget widget, XEvent*	event, String*	params, Cardinal*	num_params)
 {
   
   /* The following instruction has been commented out not to lose btn_pressed 
@@ -255,11 +254,7 @@ btn_pressed(widget, event, params, num_params)
 }
 
 void
-btn_released(widget, event, params, num_params)
-    Widget	widget;
-    XEvent*	event;
-    String*	params;
-    Cardinal*	num_params;
+btn_released(Widget	widget, XEvent*	event,String*	params, Cardinal*	num_params)
 {
   if (wait_dclick) {
     lose_up = TRUE;
@@ -273,11 +268,7 @@ btn_released(widget, event, params, num_params)
 }
 
 void
-ctrl_key(widget, event, params, num_params)
-    Widget	widget;
-    XEvent*	event;
-    String*	params;
-    Cardinal*	num_params;
+ctrl_key(Widget	widget, XEvent*	event, String*	params, Cardinal*	num_params)
 {
   char buf[10];
   int ten=10;
@@ -291,11 +282,7 @@ ctrl_key(widget, event, params, num_params)
 }
 
 void
-key_pressed(widget, event, params, num_params)
-    Widget	widget;
-    XEvent*	event;
-    String*	params;
-    Cardinal*	num_params;
+key_pressed(Widget	widget, XEvent*	event, String*	params, Cardinal*	num_params)
 {
   char buf[10];
   int ten=10;
@@ -310,11 +297,7 @@ key_pressed(widget, event, params, num_params)
   }
 }
 void
-key_released(widget, event, params, num_params)
-    Widget	widget;
-    XEvent*	event;
-    String*	params;
-    Cardinal*	num_params;
+key_released(Widget	widget,XEvent*	event, String*	params, Cardinal*	num_params)
 {
   char buf[10];
   int ten=10;
@@ -329,11 +312,7 @@ key_released(widget, event, params, num_params)
   }
 }
 void
-mouse_moved(widget, event, params, num_params)
-    Widget	widget;
-    XEvent*	event;
-    String*	params;
-    Cardinal*	num_params;
+mouse_moved(Widget	widget, XEvent*	event, String*	params, Cardinal*	num_params)
 {
   /*ignore_events(widget,&event2, ExposureMask) ;*/
   if (wait_dclick) { /*move during a double click detection*/
@@ -386,7 +365,7 @@ None<KeyUp>:KeyReleased(0)\n\
 static int AddNewWin( int popupc,   struct BCG *ScilabXgc)
 {
   Widget bbox,color;
-  Widget outer,zoom,rot3d,unzoom,sel,menuform;
+  Widget outer,zoom_,rot3d,unzoom_,sel,menuform;
   Widget filebutton,filemenu,clear,prnt,save,load,delete,saveps;
 
   iargs=0;
@@ -434,11 +413,11 @@ static int AddNewWin( int popupc,   struct BCG *ScilabXgc)
   XtAddCallback(delete, XtNcallback,(XtCallbackProc)  Delete,(XtPointer)popupc);
   
   /* Other buttons */
-  zoom = XtCreateManagedWidget("Zoom", commandWidgetClass,menuform,args, iargs);
-  XtAddCallback(zoom, XtNcallback,(XtCallbackProc)  Zoom,
+  zoom_ = XtCreateManagedWidget("Zoom", commandWidgetClass,menuform,args, iargs);
+  XtAddCallback(zoom_, XtNcallback,(XtCallbackProc)  Zoom,
 		(XtPointer) popupc);
-  unzoom = XtCreateManagedWidget("UnZoom", commandWidgetClass,menuform,args, iargs);
-  XtAddCallback(unzoom, XtNcallback,(XtCallbackProc)  UnZoom,
+  unzoom_ = XtCreateManagedWidget("UnZoom", commandWidgetClass,menuform,args, iargs);
+  XtAddCallback(unzoom_, XtNcallback,(XtCallbackProc)  UnZoom,
 		(XtPointer) popupc);
   rot3d = XtCreateManagedWidget("Rot3D", commandWidgetClass,menuform,args, iargs);
   XtAddCallback(rot3d, XtNcallback,(XtCallbackProc) Rot3D,
@@ -521,9 +500,7 @@ void PannerCallback(w, scigc_ptr , report_ptr)
  *	Returns: none.
  */
 
-void SciViewportMove(ScilabXgc,x,y) 
-     struct BCG *ScilabXgc;
-     int x,y;
+void SciViewportMove(struct BCG *ScilabXgc, int x, int y)
      
 {
   Widget viewport,panner;
@@ -546,10 +523,7 @@ void SciViewportMove(ScilabXgc,x,y)
  *                 x,y : the returned position 
  */
 
-void SciViewportGet(ScilabXgc,x,y) 
-     struct BCG *ScilabXgc;
-     int *x,*y;
-     
+void SciViewportGet(struct BCG *ScilabXgc, int *x, int *y)
 {
   Widget panner;
   Cardinal n=0;
@@ -574,9 +548,7 @@ void SciViewportGet(ScilabXgc,x,y)
  *                 w,h : returned size ;
  */
 
-void SciViewportClipGetSize(ScilabXgc,w,h) 
-     struct BCG *ScilabXgc;
-     int *w,*h;
+void SciViewportClipGetSize(struct BCG *ScilabXgc,int *w,int *h)
 {
   if ( ScilabXgc != NULL) 
     {
@@ -710,10 +682,7 @@ void ViewportCallback(Widget w,XtPointer scigc_ptr, XtPointer report_ptr)
     }
 }
 
-void SetBar(w, top, length, total)
-     Widget w;
-     Position top;
-     Dimension length, total;
+void SetBar(Widget w, Position top, Dimension length, Dimension total)
 {
   XawScrollbarSetThumb(w, (float) top / (float) total, 
 		       (float) length / (float) total );
@@ -721,8 +690,7 @@ void SetBar(w, top, length, total)
 
 /* reposition viewport bars */
 
-void RedrawThumbs(w)
-     ViewportWidget w;
+void RedrawThumbs(ViewportWidget w)
 {
   register Widget child = w->viewport.child;
   register Widget clip = w->viewport.clip;
@@ -766,9 +734,7 @@ static void MoveChild(viewp, x, y)
 #define WINMINW 100 
 #define WINMINH 100 
 
-void GViewportResize(ScilabXgc,width,height) 
-     struct BCG *ScilabXgc;
-     int *width,*height;
+void GViewportResize(struct BCG *ScilabXgc, int *width,int *height)
 {
   int Width = Max(*width,  WINMINW);
   int Height= Max(*height, WINMINH);
@@ -862,9 +828,7 @@ void GViewportResize(ScilabXgc,width,height)
 }
 
 /** used when we resize the popup at scilab level **/
-void GPopupResize(ScilabXgc,width,height) 
-     struct BCG *ScilabXgc;
-     int *width,*height;
+void GPopupResize(struct BCG *ScilabXgc, int *width,int *height)
 {
   Dimension clwidth = Max(*width,  WINMINW);
   Dimension clheight= Max(*height, WINMINH);
@@ -1123,8 +1087,7 @@ Print(Widget w,XtPointer number, XtPointer client_data)
 
 /* for use inside menus */
 
-void scig_print(number) 
-     integer number;
+void scig_print(integer number) 
 {
   Print(NULL,(XtPointer) number,NULL);
 }
@@ -1175,8 +1138,7 @@ SavePs(w, number, client_data)
 
 /* for use inside menus */
 
-void scig_export(number) 
-     integer number;
+void scig_export(integer number) 
 {
   SavePs(NULL,(XtPointer) number,NULL);
 }
@@ -1349,12 +1311,7 @@ static String sg_trans =
 "<Message>WM_PROTOCOLS: SGDeleteWindow()\n\
      <ClientMessage>WM_PROTOCOLS: SGDeleteWindow()\n";
 
-void CreatePopupWindow(WinNum, button, ScilabXgc, fg, bg)
-     integer WinNum;
-     Widget button;
-     struct BCG *ScilabXgc;
-     Pixel *fg;
-     Pixel *bg;
+void CreatePopupWindow(integer WinNum, Widget button, struct BCG *ScilabXgc, Pixel *fg, Pixel *bg)
 {
   Widget toplevel;
   Display *dpy;

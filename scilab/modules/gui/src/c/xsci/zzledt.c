@@ -67,6 +67,7 @@ static char Sci_Prompt[10];
 #include <ctype.h>
 #include "machine.h"
 #include "core_math.h"
+#include "Scierror.h"
 
 #ifndef HAVE_TERMCAP
 #undef TERMCAP
@@ -154,14 +155,23 @@ static void backspace(int n);
 static void erase_nchar(int n);
 static int  gchar_no_echo(int interrupt);
 static int  CopyCurrentHist(char *wk_buf,int *cursor,int *cursor_max);
-static void strip_blank();
+static void strip_blank(char *source);
 static int  translate(int ichar);
 static void PutChar(int c);
 static int  GetCharOrEvent(int interrupt);
 
 /* function for console mode */
-static void enable_keypad_mode(), disable_keypad_mode();
-static void init_io(), set_cbreak(), set_crmod();
+static void enable_keypad_mode();
+static void disable_keypad_mode();
+static void init_io();
+static void set_crmod();
+static void set_cbreak();
+
+int using_readline();
+int XSaveNative _PARAMS((char *fname, unsigned long fname_len));
+int HomeFunction _PARAMS((char *fname, unsigned long fname_len));
+int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
+int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len));
 
 /* --- extern functions ---  */
 extern void set_echo_mode(int mode);
@@ -220,6 +230,8 @@ static char *CL=NULL;            /* clear screen */
 
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
+
+extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,	int *menusflag,int * modex,long int dummy1);
 
 int NumberOfCommands=0;
 
@@ -991,7 +1003,6 @@ static void disable_keypad_mode()
 /************************************************************************
  *wee need references to thoses function if using KEYPAD but not Having TERMCAP
  ***********************************************************************/
-static void enable_keypad_mode(){}
 
 static void disable_keypad_mode(){}
 #endif
