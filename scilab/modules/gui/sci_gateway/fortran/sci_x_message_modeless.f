@@ -11,7 +11,6 @@ cc      implicit undefined (a-z)
       integer topk,iadr,sadr
       integer m2,n2,il2,ild2,m1,n1,il1,ild1
       logical getwsmat,checkrhs,cresmat2
-      logical cremat
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
       if (.not.checkrhs(fname,1,1)) return

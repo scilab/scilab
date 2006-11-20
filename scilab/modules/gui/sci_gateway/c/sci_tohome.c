@@ -21,7 +21,8 @@
 #endif
 
 #include "stack-c.h"
-
+/*-----------------------------------------------------------------------------------*/
+extern int IsConsoleMode(void);
 
 /*-----------------------------------------------------------------------------------*/
 int sci_tohome( char * fname, unsigned long fname_len )
@@ -66,7 +67,7 @@ int sci_tohome( char * fname, unsigned long fname_len )
     {
       system("clear");
     }
-  return;
+  return 0;
 #endif
 }
 /*-----------------------------------------------------------------------------------*/
