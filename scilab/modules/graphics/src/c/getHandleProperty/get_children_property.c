@@ -24,7 +24,7 @@ int get_children_property( sciPointObj * pobj )
   }
   else
   {
-    int index  =  0 ;
+    int index_  =  0 ;
     int status = -1 ;
     long * children = NULL ;
     
@@ -38,8 +38,8 @@ int get_children_property( sciPointObj * pobj )
     curSon = sciGetFirstAccessibleSon( pobj ) ;
     while ( curSon != NULL && curSon->pointobj != NULL )
     {
-      children[index] = sciGetHandle( curSon->pointobj ) ;
-      index++ ;
+      children[index_] = sciGetHandle( curSon->pointobj ) ;
+      index_++ ;
       curSon = sciGetNextAccessibleSon( curSon ) ;
     }
     status = sciReturnColHandleVector( children, nbChildren ) ;
