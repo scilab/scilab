@@ -11,6 +11,6 @@ function pwindow_set_size()
   if ~MSDOS then
     %hdd=%hdd+50
   end
-  
-  xset('wpdim',min(1200,%wdd),min(1000,%hdd))
+  xset('wpdim',max(400,min(1200,%wdd)),max(300,min(1000,%hdd)))
+  //xset('wpdim',min(1200,%wdd),min(1000,%hdd))
 endfunction
