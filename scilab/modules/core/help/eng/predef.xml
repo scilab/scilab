@@ -26,10 +26,20 @@
     <P><VERB>predef(n)</VERB> sets the <VERB>max(n,7)</VERB> last defined variables as protected, it also return
     the old and new value of protected variables number.</P>
   </DESCRIPTION>
-  <SECTION label="Remark">
-    <P>
-    A number of protected variables are set in the start-up file <VERB>SCIDIR/scilab.start</VERB>.  User may in particular set its own predefined variables in user's startup file <VERB>home/.scilab</VERB></P>
-  </SECTION>
+  
+	<SECTION label="Remark">
+		<P>
+			A number of protected variables are set in the start-up file <VERB>SCI/scilab.star</VERB>.
+			User may in particular set its own predefined variables in user's startup files 
+			<VERB>SCIHOME/.scilab</VERB> and <VERB>SCIHOME/scilab.ini</VERB>
+		</P>
+		<P>
+			SCIHOME definition : 
+			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</P>
+	</SECTION>
+	
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>clear</LINK>

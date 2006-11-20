@@ -41,14 +41,21 @@
     <P>
     </P>
   </DESCRIPTION>
-  <SECTION label='REMARQUE'>
-    <P>
-      Le nombre de variables protégées est défini dans le fichier de démarrage
-      <VERB>SCIDIR/scilab.start</VERB>.  L&apos;utilisateur a la possibilité de
-      définir ses propres variables protégées dans le fichier de démarrage
-      <VERB>home/.scilab</VERB> 
-    </P>
-  </SECTION>
+  
+	<SECTION label='Remarques'>
+		<P>
+			Le nombre de variables protégées est défini dans le fichier de démarrage
+			<VERB>SCI/scilab.star</VERB>. L&apos;utilisateur a la possibilité de
+			définir ses propres variables protégées dans les fichiers de démarrage
+			<VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
+		</P>
+		<P>
+			Définition de SCIHOME : 
+			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</P>
+	</SECTION>
+	
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>clear</LINK> </SEE_ALSO_ITEM> 
     <SEE_ALSO_ITEM> <LINK>save</LINK> </SEE_ALSO_ITEM>
