@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>eng</LANGUAGE>
-  <TITLE>startup</TITLE>
-  <TYPE>Scilab Function</TYPE>
-  <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
-  <DESCRIPTION>
-    <P>
-    The startup files <VERB>.scilab</VERB> (in your home directory) and 
-    <VERB>.scilab</VERB> in your working directory are 
-    automatically executed (if present) when Scilab is invoked, in 
-    addition with the file <VERB>scilab.star</VERB> in the Scilab directory.</P>
-  </DESCRIPTION>
-  <SECTION label="Remark">
-    <P>
-    Last line of startup file must be terminated by a newline to be taken into account.</P>
-  </SECTION>
+	<LANGUAGE>eng</LANGUAGE>
+	<TITLE>startup</TITLE>
+	<TYPE>Scilab Function</TYPE>
+	<DATE>November 2006</DATE>
+	<SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
+	
+	<DESCRIPTION>
+		<P>
+			The startup file <VERB>SCIHOME/.scilab</VERB> and <VERB>SCIHOME/scilab.ini</VERB> in 
+			are automatically executed (if present) when Scilab is invoked, in addition with the 
+			file <VERB>scilab.star</VERB> in the Scilab directory (SCI).
+		</P>
+	</DESCRIPTION>
+	<SECTION label="Remarks">
+		<P>
+			Last line of startup file must be terminated by a newline to be taken into account.
+		</P>
+		<P>
+			SCIHOME definition : 
+			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</P>
+	</SECTION>
+	
+	<SEE_ALSO>
+		<SEE_ALSO_ITEM>
+			<LINK>scilab</LINK>
+		</SEE_ALSO_ITEM>
+	</SEE_ALSO>
+	
+	
 </MAN>

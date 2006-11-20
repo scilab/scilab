@@ -80,15 +80,20 @@
 	  is not displayed.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="-ns">
-	<SP>:if this option is  present the startup file
-	  <VERB>SCI/scilab.star</VERB> and the user startup files
-	  <VERB>.scilab</VERB>, <VERB>scilab.ini</VERB> are not executed.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-nouserstartup">
-	<SP>:if this option is  present the user startup files
-	  <VERB>.scilab</VERB>, <VERB>scilab.ini</VERB> are not executed. </SP>
-      </DESCRIPTION_ITEM>
+		<DESCRIPTION_ITEM label="-ns">
+			<SP>
+				:if this option is  present the startup file
+				<VERB>SCI/scilab.star</VERB> and the user startup files
+				<VERB>SCIHOME/.scilab</VERB>, <VERB>SCIHOME/scilab.ini</VERB> are not executed.
+			</SP>
+		</DESCRIPTION_ITEM>
+		
+		<DESCRIPTION_ITEM label="-nouserstartup">
+			<SP>
+				:if this option is  present the user startup files
+				<VERB>SCIHOME/.scilab</VERB>, <VERB>SCIHOME/scilab.ini</VERB> are not executed.
+			</SP>
+		</DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="-nw">
 	<SP>:if this option is present then  scilab is not run in an specific window.</SP>
@@ -104,4 +109,13 @@
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
+   
+	<SECTION label='Remarque'>
+		<P>
+			Définition de SCIHOME : 
+			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+		</P>
+	</SECTION>
+	
 </MAN>

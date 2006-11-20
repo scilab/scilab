@@ -21,7 +21,7 @@ répertoire_du_chapitre    titre_du_chapitre
     La valeur par défaut de <VERB>%helps</VERB> est initialisée dans le fichier <VERB>SCI+&quot;scilab.star&quot;</VERB>.
   </P>
   <P>
-    Pour ajouter de nouveaux chapitres d&apos;aide il suffit d&apos;ajouter des lignes à la variable <VERB>%helps</VERB>, par exemple dans le fichier utilisateur de démarrage <VERB>.scilab</VERB>.
+    Pour ajouter de nouveaux chapitres d&apos;aide il suffit d&apos;ajouter des lignes à la variable <VERB>%helps</VERB>, par exemple dans le fichier utilisateur de démarrage <VERB>SCIHOME/.scilab</VERB>.
   </P>
   <P>
     Par exemple, 
@@ -52,7 +52,7 @@ répertoire_du_chapitre    titre_du_chapitre
   <P>
   </P>
   <P>
-    Sur les plates-formes Linux, Scilab dispose d&apos;un Makefile pour transformer les fichiers <VERB>.xml</VERB> en <VERB>.html</VERB> (voir SCIDIR/examples/man-examples).
+    Sur les plates-formes Linux, Scilab dispose d&apos;un Makefile pour transformer les fichiers <VERB>.xml</VERB> en <VERB>.html</VERB> (voir SCI/examples/man-examples).
   </P>
   <P>
   </P>

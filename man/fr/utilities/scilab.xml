@@ -75,16 +75,22 @@
 	n'est pas affichée.</SP> 
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM  label='-ns'> 
-	<SP>: si cette option est présente le script de démarrage
-	  <VERB>SCI/scilab.star</VERB> n&apos;est pas exécuté.</SP>  
-      </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label="-nouserstartup">
-	<SP>: Si cette option est fournie, les fichiers startup de
-	  l'utilisateur  <VERB>.scilab</VERB>, <VERB>scilab.ini</VERB> ne sont
-	  pas éxécutés. </SP> 
-      </DESCRIPTION_ITEM>
+		<DESCRIPTION_ITEM  label='-ns'> 
+		<SP>
+			: si cette option est présente le script de démarrage "principal"
+			<VERB>SCI/scilab.star</VERB> ainsi que les fichiers de démarrage
+			"utilisateur" <VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
+			ne sont pas pas exécutés.
+		</SP>  
+		</DESCRIPTION_ITEM>
+		
+		<DESCRIPTION_ITEM label="-nouserstartup">
+		<SP>
+			: Si cette option est fournie, les fichiers de démarrage "utilisateur"  
+			<VERB>SCIHOME/.scilab</VERB>, <VERB>SCIHOME/scilab.ini</VERB> ne sont
+			pas éxécutés.
+		</SP> 
+		</DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM  label='-nw'> 
 	<SP>: si cette option est présente Scilab n'est pas exécuté dans
