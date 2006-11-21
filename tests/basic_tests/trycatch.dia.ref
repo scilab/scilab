@@ -540,14 +540,11 @@ deff('test()',['try a=2; try a=xxxx; catch a=a+1,end; catch;b=2;end'])
 fun2string(test)
  ans  =
  
-!function []=ans                                                       !
-!                                                                      !
-!                                                                      !
-!                                                                      !
-!  try  a = 2;a = 2;try  a = xxxx;catch  a = a + 1,end,catch  b = 2;end!
-!     ,                                                                !
-!                                                                      !
-!endfunction                                                           !
+!function []=ans                                                    !
+!                                                                   !
+!  try  a = 2;try  a = xxxx;catch  a = a + 1,end,catch  b = 2;end,  !
+!                                                                   !
+!endfunction                                                        !
  
  
 deff('r=test()',[
