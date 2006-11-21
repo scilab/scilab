@@ -131,8 +131,7 @@ int C2F(sciwin)( void )
  */
 /************ 18/01/2002 ***********/
 sciPointObj *
-ConstructFigure (XGC)
-     struct BCG *XGC;
+ConstructFigure (struct BCG *XGC) 
 {
  
   sciPointObj *pobj = (sciPointObj *) NULL;
