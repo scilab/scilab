@@ -23,11 +23,7 @@
 
 #include "MALLOC.h" /* MALLOC */
 
-
-
 #include "GetProperty.h"
-
-static sciPointObj * psubwin;/* NG */
 
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
@@ -61,9 +57,9 @@ extern int version_flag();
  * Draw Axis or only rectangle
  *----------------------------------------------------------------*/
 
-void axis_draw(strflag)
-     char strflag[];
+void axis_draw(char strflag[])
 { 
+	static sciPointObj * psubwin;
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; 
  /*  int isoflag = -1; */
@@ -131,9 +127,9 @@ void axis_draw(strflag)
 /* F.Leray 16.12.04 */
 /* Same thing as axis_draw without the background area set */
 /* Only used in NG mode */
-void axis_draw2(strflag)
-     char strflag[];
+void axis_draw2(char strflag[])
 { 
+	static sciPointObj * psubwin;
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i,color; 
   /*  int isoflag = -1; */
@@ -172,6 +168,7 @@ void axis_draw2(strflag)
 /* ans does not draw any graduations or ticks, lines... */
 void DrawAxesBackground()
 { 
+	static sciPointObj * psubwin;
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; 
  /*  int isoflag = -1; */
@@ -209,19 +206,19 @@ void DrawAxesBackground()
  *  each big interval will be divided in 3 small intervals.
  *----------------------------------------------------------------*/
 
-static void aplotv2(strflag) 
-     char *strflag;
+static void aplotv2(char *strflag)
 {
   char dir = 'l';
   int nx,ny;
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
   int fontstyle= 0; 
   int seg =0;
-  double x[4],y[4],x1,y1;
+  double x[4],y[4],x1,y1_;
   char xstr,ystr;  
   char dirx = 'd';
   int i;
   sciSubWindow * ppSubWin = NULL ;
+  static sciPointObj * psubwin;
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
   y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
@@ -258,19 +255,19 @@ static void aplotv2(strflag)
   switch ( c ) 
     { 
     case '3' : /* right axis */ 
-      x1 = x[1]; y1 = y[0]; dir = 'r'; 
+      x1 = x[1]; y1_ = y[0]; dir = 'r'; 
       break;
     case '4' : /* centred axis */
       seg=1;
-      x1 = (x[0]+x[1])/2.0;y1=(y[0]+y[1])/2.0; 
+      x1 = (x[0]+x[1])/2.0;y1_=(y[0]+y[1])/2.0; 
       break ;
     case '5': /* centred at (0,0) */
       seg=1;
-      x1 = y1 = 0.0; 
+      x1 = y1_ = 0.0; 
       break;
     case '1' : /* left axis */
     default : 
-      x1 = x[0]; y1 = y[0];   
+      x1 = x[0]; y1_ = y[0];   
       break;
     } 
    
@@ -280,17 +277,17 @@ static void aplotv2(strflag)
       switch (xstr) 
 	{
 	case 'u':  
-	  y1 = y[1];
+	  y1_ = y[1];
 	  dirx='u';   
 	  break;
 	case 'c':  
-	  y1=(y[0]>0.0) ? y[0]: 0.0;
-	  y1=(y[1]<0.0) ? y[0]: y1; 
+	  y1_=(y[0]>0.0) ? y[0]: 0.0;
+	  y1_=(y[1]<0.0) ? y[0]: y1_; 
 	  seg =1; 
 	  dirx ='d';                           
 	  break;
 	default :  
-	  y1= y[0];;
+	  y1_= y[0];;
 	  dirx ='d'; 
 	  break;
 	}
@@ -353,7 +350,7 @@ static void aplotv2(strflag)
  
   /** x-axis **/
   ny=1,nx=3;
-  Sci_Axis(dirx,'r',x,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
+  Sci_Axis(dirx,'r',x,&nx,&y1_,&ny,NULL,Cscale.Waaint1[0],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
   /** y-axis **/
   ny=3,nx=1;
   Sci_Axis(dir,'r',&x1,&nx,y,&ny,NULL,Cscale.Waaint1[2],NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[1],seg,0);
@@ -367,33 +364,34 @@ static void aplotv1(strflag)
   int nx,ny,seg=0,i;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
   int fontstyle= 0;
-  double  x1,y1;
+  double  x1,y1_;
   char xstr,ystr; 
   char dirx = 'd';
   double CSxtics[4], CSytics[4];
   sciSubWindow * ppSubWin = NULL ;
+  static sciPointObj * psubwin;
   seg=0; 
   
   switch ( c ) 
     { 
     case '3' : /* right axis */
       x1= Cscale.xtics[1]*exp10(Cscale.xtics[2]);
-      y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
+      y1_= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
       dir = 'r';
       break;
     case '4' : /* centred axis */
       seg=1;
       x1= (Cscale.xtics[0]+Cscale.xtics[1])*exp10(Cscale.xtics[2])/2.0;
-      y1= (Cscale.ytics[0]+Cscale.xtics[1])*exp10(Cscale.ytics[2])/2.0;
+      y1_= (Cscale.ytics[0]+Cscale.xtics[1])*exp10(Cscale.ytics[2])/2.0;
       break ;
     case '5': /* centred at (0,0) */
       seg=1;
-      x1 = y1 = 0.0; 
+      x1 = y1_ = 0.0; 
       break;
     case '1' : /* left axis */
     default :  
       x1= Cscale.xtics[0]*exp10(Cscale.xtics[2]);
-      y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
+      y1_= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
       break;
     }
        
@@ -403,17 +401,17 @@ static void aplotv1(strflag)
       switch (xstr) 
 	{
 	case 'u':  
-	  y1=Cscale.ytics[1]*exp10(Cscale.ytics[2]);
+	  y1_=Cscale.ytics[1]*exp10(Cscale.ytics[2]);
 	  dirx='u';   
 	  break;
 	case 'c':  
-	  y1=(Cscale.ytics[0]*exp10(Cscale.ytics[2])>0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): 0.0;
-	  y1=(Cscale.ytics[1]*exp10(Cscale.ytics[2])<0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): y1; 
+	  y1_=(Cscale.ytics[0]*exp10(Cscale.ytics[2])>0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): 0.0;
+	  y1_=(Cscale.ytics[1]*exp10(Cscale.ytics[2])<0.0)?Cscale.ytics[0]*exp10(Cscale.ytics[2]): y1_; 
 	  seg =1; 
 	  dirx ='d';                           
 	  break;
 	default :  
-	  y1= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
+	  y1_= Cscale.ytics[0]*exp10(Cscale.ytics[2]);
 	  dirx ='d'; 
 	  break;
 	}
@@ -474,7 +472,7 @@ static void aplotv1(strflag)
 
   /** x-axis **/
   ny=1,nx=4;
-  Sci_Axis(dirx,'i',CSxtics,&nx,&y1,&ny,NULL,Cscale.Waaint1[0],
+  Sci_Axis(dirx,'i',CSxtics,&nx,&y1_,&ny,NULL,Cscale.Waaint1[0],
 	   NULL,fontsize,textcolor,fontstyle,ticscolor,Cscale.logflag[0],seg,0);
   
   /** y-axis **/
@@ -831,7 +829,6 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	  /* subtics */
 	  if ( i < Nx-1 ) 
 	    {
-	      int j;
 	      double dx ; 
 	      vxx1= x_convert(xy_type,x,i+1);
 	      dx = (vxx1-vxx)/subtics;
@@ -851,7 +848,6 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	      && axisbuild_flag == 0){  
 	    if ( i == 0 ) 
 	      {
-		int j;
 		double dx ; 
 		vxx1= x_convert(xy_type,x,i+1);
 		dx = (vxx1-vxx)/subtics;
@@ -867,7 +863,6 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	      } 
 	    if ( i == Nx-1 ) 
 	      {
-		int j;
 		double dx ; 
 		vxx1= x_convert(xy_type,x,i+1);
 		dx = (vxx1-vxx)/subtics;
@@ -1056,7 +1051,6 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	  /* subtics */
 	  if ( i < Ny-1 ) 
 	    {
-	      int j;
 	      double dy ; 
 	      vxx1= y_convert(xy_type,y,i+1);
 	      dy = (vxx1-vxx)/subtics;
@@ -1077,7 +1071,6 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	      && axisbuild_flag == 0){
 	    if ( i == 0 )  
 	      {
-		int j;
 		double dy ; 
 		vxx1= y_convert(xy_type,y,i+1);
 		dy = (vxx1-vxx)/subtics;
@@ -1093,7 +1086,6 @@ void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
 	      }
 	    if ( i == Ny-1 )
 	      {
-		int j;
 		double dy ; 
 		vxx1= y_convert(xy_type,y,i+1);
 		dy = (vxx1-vxx)/subtics;
@@ -1275,16 +1267,14 @@ void Convex3d_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD
 
 
 
-static void axesplot(strflag, psubwin)
-     char * strflag;
-     sciPointObj * psubwin;
+static void axesplot(char * strflag, sciPointObj * psubwin)
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   int seg=0;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
   int fontstyle= 0;
-  double  x1,y1;
+  double  x1,y1_;
   char xstr,ystr; 
   char dirx = 'd';
  /*  double CSxtics[4], CSytics[4]; */
@@ -1299,22 +1289,22 @@ static void axesplot(strflag, psubwin)
 	{
 	case '3' : /* right axis */
 	  x1= ppsubwin->axes.xlim[1];
-	  y1= ppsubwin->axes.ylim[0];
+	  y1_= ppsubwin->axes.ylim[0];
 	  dir = 'r';
 	  break;
 	case '4' : /* centred axis */
 	  seg=1;
 	  x1= (ppsubwin->axes.xlim[0]+ppsubwin->axes.xlim[1])/2.0;
-	  y1= (ppsubwin->axes.ylim[0]+ppsubwin->axes.ylim[1])/2.0;
+	  y1_= (ppsubwin->axes.ylim[0]+ppsubwin->axes.ylim[1])/2.0;
 	  break ;
 	case '5': /* centred at (0,0) */
 	  seg=1;
-	  x1 = y1 = 0.0;
+	  x1 = y1_ = 0.0;
 	  break;
 	case '1' : /* left axis */
 	default :
 	  x1=  ppsubwin->axes.xlim[0];
-	  y1=  ppsubwin->axes.ylim[1];
+	  y1_=  ppsubwin->axes.ylim[1];
 	  break;
 	}
     }
@@ -1327,22 +1317,22 @@ static void axesplot(strflag, psubwin)
 	{
 	case '3' : /* right axis */
 	  x1= ppsubwin->axes.xgrads[lastxindex];
-	  y1= ppsubwin->axes.ygrads[0];
+	  y1_= ppsubwin->axes.ygrads[0];
 	  dir = 'r';
 	  break;
 	case '4' : /* centred axis */
 	  seg=1;
 	  x1= (ppsubwin->axes.xgrads[0]+ppsubwin->axes.xgrads[lastxindex])/2.0;
-	  y1= (ppsubwin->axes.ygrads[0]+ppsubwin->axes.ygrads[lastyindex])/2.0;
+	  y1_= (ppsubwin->axes.ygrads[0]+ppsubwin->axes.ygrads[lastyindex])/2.0;
 	  break ;
 	case '5': /* centred at (0,0) */
 	  seg=1;
-	  x1 = y1 = 0.0;
+	  x1 = y1_ = 0.0;
 	  break;
 	case '1' : /* left axis */
 	default :
 	  x1= ppsubwin->axes.xgrads[0];
-	  y1= ppsubwin->axes.ygrads[0];
+	  y1_= ppsubwin->axes.ygrads[0];
 	break;
 	}
     }
@@ -1359,17 +1349,17 @@ static void axesplot(strflag, psubwin)
 	      switch (xstr)
 		{
 		case 'u':
-		  y1= ppsubwin->axes.ylim[1];
+		  y1_= ppsubwin->axes.ylim[1];
 		  dirx='u';
 		  break;
 		case 'c':
-		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
-		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
+		  y1_= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
+		  y1_= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1_;
 		  seg =1;
 		  dirx ='d';
 		  break;
 		default :
-		  y1= ppsubwin->axes.ylim[0];
+		  y1_= ppsubwin->axes.ylim[0];
 		  dirx ='d';
 		  break;
 		}
@@ -1379,17 +1369,17 @@ static void axesplot(strflag, psubwin)
 	      switch (xstr)
 		{
 		case 'u':
-		  y1= ppsubwin->axes.ylim[0];
+		  y1_= ppsubwin->axes.ylim[0];
 		  dirx='u';
 		  break;
 		case 'c':
-		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
-		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
+		  y1_= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
+		  y1_= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1_;
 		  seg =1;
 		  dirx ='d';
 		  break;
 		default :
-		  y1= ppsubwin->axes.ylim[1];
+		  y1_= ppsubwin->axes.ylim[1];
 		  dirx ='d';
 		  break;
 		}
@@ -1451,17 +1441,17 @@ static void axesplot(strflag, psubwin)
 	      switch (xstr)
 		{
 		case 'u':
-		  y1=ppsubwin->axes.ygrads[lastyindex];
+		  y1_=ppsubwin->axes.ygrads[lastyindex];
 		  dirx='u';
 		  break;
 		case 'c':
-		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
-		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
+		  y1_=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
+		  y1_=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1_;
 		  seg =1;
 		  dirx ='d';
 	      break;
 		default :
-		  y1= ppsubwin->axes.ygrads[0];
+		  y1_= ppsubwin->axes.ygrads[0];
 		  dirx ='d';
 		  break;
 		}
@@ -1471,17 +1461,17 @@ static void axesplot(strflag, psubwin)
 	      switch (xstr)
 		{
 		case 'u':
-		  y1=ppsubwin->axes.ygrads[0];
+		  y1_=ppsubwin->axes.ygrads[0];
 		  dirx='u';
 		  break;
 		case 'c':
-		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
-		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
+		  y1_=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
+		  y1_=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1_;
 		  seg =1;
 		  dirx ='d';
 		  break;
 		default :
-		  y1= ppsubwin->axes.ygrads[lastyindex];
+		  y1_= ppsubwin->axes.ygrads[lastyindex];
 		  dirx ='d';
 		  break;
 		}
@@ -1537,7 +1527,7 @@ static void axesplot(strflag, psubwin)
   fontstyle=sciGetFontStyle(psubwin);
  
   /** x-axis **/
-  SciAxisNew(dirx,psubwin,y1,fontsize,fontstyle,textcolor,ticscolor,seg);
+  SciAxisNew(dirx,psubwin,y1_,fontsize,fontstyle,textcolor,ticscolor,seg);
   
   /** y-axis **/
   SciAxisNew(dir,psubwin,x1,fontsize,fontstyle,textcolor,ticscolor,seg);
@@ -1547,7 +1537,7 @@ static void axesplot(strflag, psubwin)
      2. the box lines over if necessary (i.e. seg == 1) */
   if ( ppsubwin->axes.axes_visible[0] )
   {
-    SciDrawLines(dirx,psubwin,y1,textcolor,ticscolor);
+    SciDrawLines(dirx,psubwin,y1_,textcolor,ticscolor);
   }
   SciDrawLines(dir, psubwin,x1,textcolor,ticscolor);
   
