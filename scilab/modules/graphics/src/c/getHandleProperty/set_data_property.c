@@ -14,6 +14,7 @@
 #include "SetPropertyStatus.h"
 #include "returnProperty.h"
 #include "BasicAlgos.h"
+#include "set_data_property.h"
 #include "../ColorMapManagement.h"
 #include "MALLOC.h"
 
