@@ -2,6 +2,7 @@
  *    Graphic library
  *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
+ *    Copyright INRIA
  --------------------------------------------------------------------------*/
 
 /*----------------------BEGIN----------------------
@@ -40,15 +41,16 @@
 #define GXset 15
 #endif
 
+
+struct BCG  ScilabGCPos ;
+static BOOL ScilabGCPos_is_initialized = FALSE;
+
 #include "math_graphics.h"
 #include "Graphics.h" 
 #include "periPos.h"
 #include "color.h"
 #include "bcg.h" /* NG */
-
-
 #include "MALLOC.h" /* MALLOC */
-
 
 extern int versionflag;
 void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
@@ -60,7 +62,7 @@ void C2F(setdashstylePos)(integer *value, integer *xx, integer *n);
 void C2F(Write2VectPos)(integer *vx, integer *vy, integer from, integer n, char *string, integer flag, integer fv);
 void C2F(WriteGenericPos)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCPos)(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion();
+static void SetGraphicsVersion(void);
 void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -100,8 +102,6 @@ void FileInitFromScreenPos  __PARAMS((void));
 
 /** Structure to keep the graphic state  **/
 
-struct BCG  ScilabGCPos ;
-static BOOL ScilabGCPos_is_initialized = FALSE;
 /*-----------------------------------------------------
 \encadre{General routines}
 -----------------------------------------------------*/
@@ -1296,14 +1296,14 @@ void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer
 void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, integer *flag, integer *v6, integer *v7, double *angle, double *dv2, double *dv3, double *dv4)
 {     
   integer i,rect[4] ;
-  int yn = (int) (*y + ascentPos());
+  int yn_ = (int) (*y + ascentPos());
 
   if ( ScilabGCPos_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
     return;
   }
   
-  C2F(boundingboxPos)(string,x,&yn,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+  C2F(boundingboxPos)(string,x,&yn_,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   FPRINTF((file,"\n("));
   for ( i=0; i < (int)strlen(string);i++)
     {
@@ -1313,12 +1313,12 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
 	FPRINTF((file,"%c",string[i]));
     }
   FPRINTF((file,") %d %d %d %5.2f [%d %d %d %d] Show",
-	   (int)*x,yn ,
+	   (int)*x,yn_ ,
 	   (int)*flag,*angle,(int)rect[0],
 	   (int)rect[1],(int)rect[2],(int)rect[3]));
   
   FPRINTF((file,"\n%%Latex:\\myput{%d}{%d}{%d}{%s}",
-	   (int)*x,def_height*prec_fact - yn, 
+	   (int)*x,def_height*prec_fact - yn_, 
 	   fontsizePos ()/2,
 	   string));
  }
@@ -1646,9 +1646,9 @@ void C2F(drawsegmentsPos)(char *str, integer *vx, integer *vy, integer *n, integ
     {
       for ( i=0 ; i < *n/2 ; i++) 
 	{
-	  integer NDvalue;
-	  NDvalue = style[i];
-	  C2F(WriteGenericPos)("drawsegs",(integer)1L,(integer)4L,&vx[2*i],&vy[2*i],(integer)2L,(integer)1L,&NDvalue);
+	  integer NDvalue_;
+	  NDvalue_ = style[i];
+	  C2F(WriteGenericPos)("drawsegs",(integer)1L,(integer)4L,&vx[2*i],&vy[2*i],(integer)2L,(integer)1L,&NDvalue_);
 	}
     }
   /*C2F(set_dash_and_color_Pos)( Dvalue,PI0,PI0,PI0);*/
@@ -2138,7 +2138,7 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
   strcpy(ScilabGCPos.CurNumberDispFormat,"%-5.2g");
 }
 
-static void SetGraphicsVersion()
+static void SetGraphicsVersion(void)
 {
   ScilabGCPos.graphicsversion = versionflag; /* NG */ 
 }
