@@ -21,7 +21,7 @@ static unsigned int setGetHashTableHash( void * key )
   int c ;
   char * str = key ;
 
-  while ( c = *str++ )
+  while ( (c = *str++) )
   {
     hash = ((hash << 5) + hash) + c ; /* hash * 33 + c */
   }
