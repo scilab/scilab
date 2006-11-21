@@ -18,6 +18,7 @@
 #include "Rec.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
+#include "Graphics.h" 
 
 /*-----------------------------------------------------------------------------------*/
 int xs2file( char * fname, char * dr, unsigned long fname_len, unsigned long dr_len )
