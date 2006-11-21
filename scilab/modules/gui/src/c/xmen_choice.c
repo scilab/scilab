@@ -6,7 +6,10 @@
  ***********************************************************/
 #include "sci_mem_alloc.h"
 #include "men_scilab.h"
-
+#include "x_charproc.h" /* Scistring */
+#include "men_Sutils.h" /* ScilabMStr2C */
+#include "sciprint.h"
+#include "Graphics.h" /* get_pixel */
 extern int IsPrivateCmap();
 extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
 extern int AllocAndCopy(char **strh1, char *str2);
@@ -205,14 +208,14 @@ SciChoiceCreate(char **items, int *defval, int nitems)
 	}
       for ( j = 0 ; j < numch ; j++) 
 	{
-	  char loc[8];
+	  char loc_[8];
 	  SciData *dataloc = Everything[i]->data ;
 	  if ( AllocAndCopy(&(dataloc[j].name),items[j+1]) == 0) 
 	    {
 	      return(0);
 	    }
-	  sprintf(loc,"%d %d",i,j);
-	  if ( AllocAndCopy(&(dataloc[j].cbinfo),loc) == 0) 
+	  sprintf(loc_,"%d %d",i,j);
+	  if ( AllocAndCopy(&(dataloc[j].cbinfo),loc_) == 0) 
 	    {
 	      return(0);
 	    }
@@ -527,7 +530,7 @@ select_button(Widget w)
  *********************************************************************/
 
 static void
-line_up_labels(SciStuff **Everything, int num)
+line_up_labels(SciStuff **Everything_, int num)
 {
   int i;			/* counter */
   Dimension width;		/* current width */
@@ -541,14 +544,14 @@ line_up_labels(SciStuff **Everything, int num)
 
   /* Find the maximum width */
   for (i = 0; i < num; ++i) {
-    XtGetValues(Everything[i]->choice.label, widthargs, XtNumber(widthargs));
+    XtGetValues(Everything_[i]->choice.label, widthargs, XtNumber(widthargs));
     maxwidth = Max(maxwidth,width);
   }
 
   /* Set all labels to that width */
   widthargs[0].value = (XtArgVal) maxwidth;
   for (i = 0; i < num; ++i) {
-    XtSetValues(Everything[i]->choice.label, widthargs, XtNumber(widthargs));
+    XtSetValues(Everything_[i]->choice.label, widthargs, XtNumber(widthargs));
   }
 }
 
