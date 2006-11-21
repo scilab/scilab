@@ -227,13 +227,14 @@ extern int sciInitIsSelected( sciPointObj * pObj, BOOL is3d ) ;
 extern int sciSetIsSelected(  sciPointObj * pObj, BOOL is3d ) ;
 
 void setVersionFlag( int newFlag ) ;
+int getVersionFlag(void);
 
 extern int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
 extern int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;
 
 int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha );
 int sciInitdrawmode( BOOL mode );
-int getVersionFlag(void);
+
 int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
 
 /*---------------------------------------------------------------------------*/
