@@ -54,9 +54,9 @@ a.data_bounds = [0,-1,3;6,7,8] ;
 box42 = stringbox(e)
 
 // bounding box should be the same either we are in drawlater or not.
-if (  norm( box11 - box12 ) < 0.02
-    & norm( box21 - box22 ) < 0.02
-    & norm( box31 - box32 ) < 0.02
+if (  norm( box11 - box12 ) < 0.02 ..
+    & norm( box21 - box22 ) < 0.02 ..
+    & norm( box31 - box32 ) < 0.02 ..
     & norm( box41 - box42 ) < 0.02 ) then
   affich_result(%T,1902) ;
 else
