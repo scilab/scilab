@@ -109,6 +109,9 @@ am__libgui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
 	sci_gateway/fortran/sci_x_choose.f \
 	sci_gateway/fortran/sci_xgetfile.f \
 	sci_gateway/fortran/sci_x_message.f \
+	sci_gateway/fortran/sci_setmenu_old.f \
+	sci_gateway/fortran/sci_addmenu_old.f \
+	sci_gateway/fortran/sci_delmenu_old.f \
 	src/c/SciGUIConsole/SciGUIConsole.c
 am__objects_1 = libgui_la-wf_w_util.lo libgui_la-utils.lo \
 	libgui_la-x_cursor.lo libgui_la-x_main.lo \
@@ -143,7 +146,8 @@ am__objects_2 = libgui_la-sci_x_choice.lo libgui_la-sci_clc.lo \
 	libgui_la-sci_setmenu_old.lo
 am__objects_3 = sci_choices.lo sci_x_mdialog.lo sci_x_dialog.lo \
 	sci_x_message_modeless.lo sci_x_choose.lo sci_xgetfile.lo \
-	sci_x_message.lo
+	sci_x_message.lo sci_setmenu_old.lo sci_addmenu_old.lo \
+	sci_delmenu_old.lo
 am__objects_4 = libgui_la-SciGUIConsole.lo
 @JAVA_TRUE@am__objects_5 = $(am__objects_4)
 am_libgui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -454,7 +458,10 @@ sci_gateway/fortran/sci_x_dialog.f \
 sci_gateway/fortran/sci_x_message_modeless.f \
 sci_gateway/fortran/sci_x_choose.f \
 sci_gateway/fortran/sci_xgetfile.f \
-sci_gateway/fortran/sci_x_message.f
+sci_gateway/fortran/sci_x_message.f \
+sci_gateway/fortran/sci_setmenu_old.f \
+sci_gateway/fortran/sci_addmenu_old.f \
+sci_gateway/fortran/sci_delmenu_old.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
 libgui_la_includedir = $(includedir)/gui
@@ -1115,6 +1122,15 @@ sci_xgetfile.lo: sci_gateway/fortran/sci_xgetfile.f
 
 sci_x_message.lo: sci_gateway/fortran/sci_x_message.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_message.lo `test -f 'sci_gateway/fortran/sci_x_message.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_message.f
+
+sci_setmenu_old.lo: sci_gateway/fortran/sci_setmenu_old.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setmenu_old.lo `test -f 'sci_gateway/fortran/sci_setmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setmenu_old.f
+
+sci_addmenu_old.lo: sci_gateway/fortran/sci_addmenu_old.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_addmenu_old.lo `test -f 'sci_gateway/fortran/sci_addmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_addmenu_old.f
+
+sci_delmenu_old.lo: sci_gateway/fortran/sci_delmenu_old.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delmenu_old.lo `test -f 'sci_gateway/fortran/sci_delmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delmenu_old.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -76,7 +76,10 @@ sci_gateway/fortran/sci_x_dialog.f \
 sci_gateway/fortran/sci_x_message_modeless.f \
 sci_gateway/fortran/sci_x_choose.f \
 sci_gateway/fortran/sci_xgetfile.f \
-sci_gateway/fortran/sci_x_message.f
+sci_gateway/fortran/sci_x_message.f \
+sci_gateway/fortran/sci_setmenu_old.f \
+sci_gateway/fortran/sci_addmenu_old.f \
+sci_gateway/fortran/sci_delmenu_old.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
 
