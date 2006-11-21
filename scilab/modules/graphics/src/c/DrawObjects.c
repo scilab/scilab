@@ -65,6 +65,11 @@ int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, d
 static Vertices * pHead = (Vertices *) NULL;
 static Vertices * pHead2 = (Vertices *) NULL;
 
+void GradFixedlog( double minVal, double maxVal, double * ticks, int nbGrads );
+int sciGetLogExponent( double minBound, double maxBound, double * expMin, double * expMax );
+void retrieveFacetVertices( sciPointObj *  pobj, int facetIndex, double verticesX[], double verticesY[],double verticesZ[],double ** zOriginal);
+
+
 static double xz1,yz1;
 #define TX3D(x1,y1,z1) inint(xz1= Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1);
 #define TY3D(x1,y1,z1) inint(yz1= Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1);
@@ -337,10 +342,10 @@ void updateScale3d( sciPointObj * pobj    ,
     double FRect[4] ;
     double WRect[4] ;
     double ARect[4] ;
-    char   logf[2]  ;
+    char   logf_[2]  ;
     /* get current window size */
     C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    getscale2d(WRect,FRect,logf,ARect);
+    getscale2d(WRect,FRect,logf_,ARect);
     wmax=linint((double)wdim[0] * WRect[2]);
     hmax=linint((double)wdim[1] * WRect[3]); 
   }
@@ -711,23 +716,23 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
   /* draw the axis line if axes_visible is on */
   /********************************************/
   {
-    int x[5] ;
+    int x2[5] ;
     int two = 2 ;
     int one = 1 ;
-    int verbose = 0 ;
-    int dash[6] ;
+    int verbose2 = 0 ;
+    int dash2[6] ;
     int pat ;
-    int narg ;
-    x[0] = sciGetForeground (psubwin);
-    x[2] = sciGetLineWidth (psubwin) ;
-    x[3] = sciGetLineStyle (psubwin);
-    x[4] = 0;
-    C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-    C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4,PI0,PD0,PD0,PD0,PD0, 5L, 6L);
-    C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096); /* F.Leray 05.03.04 Useless too*/
-    C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    int narg2 ;
+    x2[0] = sciGetForeground (psubwin);
+    x2[2] = sciGetLineWidth (psubwin) ;
+    x2[3] = sciGetLineStyle (psubwin);
+    x2[4] = 0;
+    C2F(dr)("xget","line style",&verbose2,dash2,&narg2,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+    C2F(dr)("xget","pattern",&verbose2,&pat,&narg2,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F (dr) ("xset", "dashes", x2, x2, x2+4, x2+4, x2+4,PI0,PD0,PD0,PD0,PD0, 5L, 6L);
+    C2F (dr) ("xset","foreground",x2,x2,x2+4,x2+4,x2+4,PI0,PD0,PD0,PD0,PD0,5L,4096); /* F.Leray 05.03.04 Useless too*/
+    C2F (dr) ("xset","thickness",x2+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F (dr) ("xset", "line style", x2+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if ( ppsubwin->axes.axes_visible[2] )
     {
       /* draw the line of the axis like in 2d */
@@ -741,13 +746,13 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
       {
         /* draw the line of the axis like in 2d */
         /* the two bounds are (ixbox[3],iybox[3]) and (ixbox[3],iybox[3]) */
-        C2F(dr)("xpolys","v",&(ixbox[3]),&(iybox[3]),x,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
+        C2F(dr)("xpolys","v",&(ixbox[3]),&(iybox[3]),x2,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
       if ( ppsubwin->axes.axes_visible[0] )
       {
         /* draw the line of the axis like in 2d */
         /* the two bounds are (ixbox[4],iybox[4]) and (ixbox[4],iybox[4]) */
-        C2F(dr)("xpolys","v",&(ixbox[4]),&(iybox[4]),x,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
+        C2F(dr)("xpolys","v",&(ixbox[4]),&(iybox[4]),x2,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
     }
     else
@@ -756,17 +761,17 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
       {
         /* draw the line of the axis like in 2d */
         /* the two bounds are (ixbox[3],iybox[3]) and (ixbox[3],iybox[3]) */
-        C2F(dr)("xpolys","v",&(ixbox[4]),&(iybox[4]),x,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
+        C2F(dr)("xpolys","v",&(ixbox[4]),&(iybox[4]),x2,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
       if ( ppsubwin->axes.axes_visible[0] )
       {
         /* draw the line of the axis like in 2d */
         /* the two bounds are (ixbox[4],iybox[4]) and (ixbox[4],iybox[4]) */
-        C2F(dr)("xpolys","v",&(ixbox[3]),&(iybox[3]),x,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
+        C2F(dr)("xpolys","v",&(ixbox[3]),&(iybox[3]),x2,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
     }
     C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","line style",dash2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }  
 
   /********************/
@@ -1220,11 +1225,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		    } /* end NEW */
 		  else
 		    {
-		      double ztmp = ppsubwin->axes.zgrads[i];
+		      double ztmp2 = ppsubwin->axes.zgrads[i];
 		      double dz = (ppsubwin->axes.zgrads[i+1] - ppsubwin->axes.zgrads[i]) / nbsubtics;
 		      for(j=0;j<nbsubtics;j++)
 			{
-			  vzz1=ztmp+dz*j;
+			  vzz1=ztmp2+dz*j;
 			  
 			  if(vzz1<zminval || vzz1>zmaxval) continue;
 			  
@@ -1495,12 +1500,12 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			} /* end NEW */
 		      else
 			{
-			  double xtmp = ppsubwin->axes.u_xgrads[i];
+			  double xtmp2 = ppsubwin->axes.u_xgrads[i];
 			  double dx = (ppsubwin->axes.u_xgrads[i+1] - ppsubwin->axes.u_xgrads[i]) / nbsubtics;
 			  
 			  for (j=1;j<nbsubtics;j++)
 			    {  
-			      vxx1=xtmp+dx*j;
+			      vxx1=xtmp2+dx*j;
 			      
 			      if(vxx1<xminval || vxx1>xmaxval) continue;
 			      
@@ -1781,12 +1786,12 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			} /* end NEW */
 		      else
 			{
-			  double xtmp = ppsubwin->axes.xgrads[i];
+			  double xtmp2 = ppsubwin->axes.xgrads[i];
 			  double dx = (ppsubwin->axes.xgrads[i+1] - ppsubwin->axes.xgrads[i]) / nbsubtics;
 			  
 			  for (j=1;j<nbsubtics;j++)
 			    {  
-			      vxx1=xtmp+dx*j;
+			      vxx1=xtmp2+dx*j;
 			      
 			      if(vxx1<xminval || vxx1>xmaxval) continue;
 			      
@@ -2061,11 +2066,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			} /* end NEW */
 		      else
 			{
-			  double ytmp = ppsubwin->axes.u_ygrads[i];
+			  double ytmp2 = ppsubwin->axes.u_ygrads[i];
 			  double dy = (ppsubwin->axes.u_ygrads[i+1] - ppsubwin->axes.u_ygrads[i]) / nbsubtics;
 			  for(j=0;j<nbsubtics;j++)
 			    {
-			      vyy1=ytmp+dy*j;
+			      vyy1=ytmp2+dy*j;
 			      
 			      if(vyy1<yminval || vyy1>ymaxval) continue;
 			      
@@ -2121,16 +2126,16 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 	      for(i=0;i<nbtics;i++)
 		{
 		  char foo[256]; 
-		  double ytmp = ppsubwin->axes.ygrads[i];
+		  double ytmp2 = ppsubwin->axes.ygrads[i];
 	      
-		  if(ytmp<yminval || ytmp>ymaxval) 
+		  if(ytmp2<yminval || ytmp2>ymaxval) 
 		    {
 		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
 		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichees de tte facon */
 		      /* donc autant ne pas aller plus loin dans l'algo... */
 		    }
 	      
-		  sprintf(foo,c_format,ytmp);
+		  sprintf(foo,c_format,ytmp2);
 
 		  /***************************************************************/
 		  /************************* COMMON PART *************************/
@@ -2141,9 +2146,9 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 
 
 		  if(ppsubwin->axes.reverse[1] == TRUE)
-		    ytmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp);
+		    ytmp2 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp2);
 		  
-		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  ComputeGoodTrans3d(psubwin,1,&xm,&ym,&fx,&ytmp2,&fz);
 		  
 		  
 		  vx[0]=xm;vy[0]=ym;
@@ -2263,7 +2268,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			}
 		      else
 			{
-			  if(ytmp>yminval && ytmp<ymaxval) 
+			  if(ytmp2>yminval && ytmp2<ymaxval) 
 			    {
 			      xg[0]= xm;  yg[0]= ym;  
 			      if (Ishidden(psubwin))
@@ -2337,11 +2342,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			} /* end NEW */
 		      else
 			{
-			  double ytmp = ppsubwin->axes.ygrads[i];
+			  double ytmp3 = ppsubwin->axes.ygrads[i];
 			  double dy = (ppsubwin->axes.ygrads[i+1] - ppsubwin->axes.ygrads[i]) / nbsubtics;
 			  for(j=0;j<nbsubtics;j++)
 			    {
-			      vyy1=ytmp+dy*j;
+			      vyy1=ytmp3+dy*j;
 			  
 			      if(vyy1<yminval || vyy1>ymaxval) continue;
 			      
@@ -2614,12 +2619,12 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			} /* end NEW */
 		      else
 			{
-			  double xtmp = ppsubwin->axes.u_xgrads[i];
+			  double xtmp2 = ppsubwin->axes.u_xgrads[i];
 			  double dx = (ppsubwin->axes.u_xgrads[i+1] - ppsubwin->axes.u_xgrads[i]) / nbsubtics;
 			  
 			  for (j=1;j<nbsubtics;j++)
 			    {  
-			      vxx1=xtmp+dx*j;
+			      vxx1=xtmp2+dx*j;
 			      
 			      if(vxx1<xminval || vxx1>xmaxval) continue;
 
@@ -2880,12 +2885,12 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 			} /* end NEW */
 		      else
 			{
-			  double xtmp = ppsubwin->axes.xgrads[i];
+			  double xtmp2 = ppsubwin->axes.xgrads[i];
 			  double dx = (ppsubwin->axes.xgrads[i+1] - ppsubwin->axes.xgrads[i]) / nbsubtics;
 			  
 			  for (j=1;j<nbsubtics;j++)
 			    {  
-			      vxx1=xtmp+dx*j;
+			      vxx1=xtmp2+dx*j;
 			      
 			      if(vxx1<xminval || vxx1>xmaxval) continue;
 			      
@@ -3156,11 +3161,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		      else
 			{
 			  
-			  double ytmp = ppsubwin->axes.u_ygrads[i];
+			  double ytmp2 = ppsubwin->axes.u_ygrads[i];
 			  double dy = (ppsubwin->axes.u_ygrads[i+1] - ppsubwin->axes.u_ygrads[i]) / nbsubtics;
 			  for(j=0;j<nbsubtics;j++)
 			    {
-			      vyy1=ytmp+dy*j;
+			      vyy1=ytmp2+dy*j;
 			      
 			      if(vyy1<yminval || vyy1>ymaxval) continue;
 			      
@@ -3426,11 +3431,11 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
 		      else
 			{
 			  
-			  double ytmp = ppsubwin->axes.ygrads[i];
+			  double ytmp2 = ppsubwin->axes.ygrads[i];
 			  double dy = (ppsubwin->axes.ygrads[i+1] - ppsubwin->axes.ygrads[i]) / nbsubtics;
 			  for(j=0;j<nbsubtics;j++)
 			    {
-			      vyy1=ytmp+dy*j;
+			      vyy1=ytmp2+dy*j;
 			      
 			      if(vyy1<yminval || vyy1>ymaxval) continue;
 			      
@@ -5596,7 +5601,7 @@ void retrieveFacetVertices( sciPointObj *  pobj       ,
 
 void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 {
-  int N,i,j,index,p,max_p,n1,npoly;
+  int N,i,j,index_,p,max_p,n1,npoly;
   double * dist;
   double X[5],Y[5],Z[5];
   double * Zoriginal = NULL; /* used to conserve Z wether or not z axis is reversed ! (see plo3dn.c) */
@@ -5648,18 +5653,18 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   max_p=0; /* the maximum number of edge in a facet */
   for ( i =0 ; i < N ; i++) { /* loop on element*/
     pobj=(sciPointObj *) sciGetPointerFromHandle (ppMerge->from_entity[i]);
-    index = ppMerge->index_in_entity[i];
+    index_ = ppMerge->index_in_entity[i];
 
     /*compute element coordinates */
     switch (sciGetEntityType (pobj)) {  
     case SCI_SURFACE:
       if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D) { /* x,y,Z */
-	int l,k,n1,n2;
+	int l,k,n1_,n2;
 
-	n1= pSURFACE_FEATURE (pobj)->dimzx;
+	n1_= pSURFACE_FEATURE (pobj)->dimzx;
 	n2= pSURFACE_FEATURE (pobj)->dimzy;
-	l=(int)(index/(n1-1));
-	k=index-l*(n1-1);
+	l=(int)(index_/(n1_-1));
+	k=index_-l*(n1_-1);
 
 	xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
 	xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
@@ -5698,10 +5703,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  }
 	}
 
-	ztmp[0] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
-	ztmp[1] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
-	ztmp[2] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
-	ztmp[3] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
+	ztmp[0] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_];
+	ztmp[1] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_+n1_];
+	ztmp[2] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_+n1_+1];
+	ztmp[3] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_+1];
 
 
 	if(ppsubwin->axes.reverse[2] == TRUE){ 
@@ -5731,7 +5736,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	Y[0]=Y[3]=ytmp[0];
 	Y[1]=Y[2]=ytmp[1];
 
-	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]);
+	Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_]);
 	
 	p=4;
 	x=X;y=Y;z=Z;
@@ -5755,7 +5760,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
           return ;
         }
 
-        retrieveFacetVertices( pobj, index, verticesX, verticesY, verticesZ, &Zoriginal ) ;
+        retrieveFacetVertices( pobj, index_, verticesX, verticesY, verticesZ, &Zoriginal ) ;
 
         x = verticesX ;
         y = verticesY ;
@@ -5773,29 +5778,29 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       
       if ( ppPolyLine->plot != 2 && sciGetIsMark(pobj) == 1 )
       {
-        xtmp[0] = ppPolyLine->pvx[index];
+        xtmp[0] = ppPolyLine->pvx[index_];
         xtmp[1] = xtmp[0] ;
         
-        ytmp[0] = ppPolyLine->pvy[index];
+        ytmp[0] = ppPolyLine->pvy[index_];
         ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
 
         if( ppPolyLine->pvz != NULL )
         {
-          ztmp[0] = ppPolyLine->pvz[index];
+          ztmp[0] = ppPolyLine->pvz[index_];
           ztmp[1] = ztmp[0];
         }
       }
       else
       {
-        xtmp[0] = ppPolyLine->pvx[index];
-        xtmp[1] = ppPolyLine->pvx[index+1];
+        xtmp[0] = ppPolyLine->pvx[index_];
+        xtmp[1] = ppPolyLine->pvx[index_+1];
         
-        ytmp[0] = ppPolyLine->pvy[index];
-        ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+        ytmp[0] = ppPolyLine->pvy[index_];
+        ytmp[1] = ppPolyLine->pvy[index_+1]; /* used by trans3d + drawing : case 0,1 and 4 */
         if( ppPolyLine->pvz != NULL )
         {
-          ztmp[0] = ppPolyLine->pvz[index];
-          ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+          ztmp[0] = ppPolyLine->pvz[index_];
+          ztmp[1] = ppPolyLine->pvz[(index_+1)%n1];
         }
       }
       
@@ -5863,16 +5868,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       p = 2;
       /***************/
 
-      xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index];
-      xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index+1];
+      xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index_];
+      xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index_+1];
 
-      ytmp[0] =  pSEGS_FEATURE (pobj)->vy[2*index];
-      ytmp[1] =  pSEGS_FEATURE (pobj)->vy[2*index+1];
+      ytmp[0] =  pSEGS_FEATURE (pobj)->vy[2*index_];
+      ytmp[1] =  pSEGS_FEATURE (pobj)->vy[2*index_+1];
       
       
       if(pSEGS_FEATURE (pobj)->vz != NULL){
-	ztmp[0] = pSEGS_FEATURE (pobj)->vz[2*index];
-	ztmp[1] = pSEGS_FEATURE (pobj)->vz[2*index+1];
+	ztmp[0] = pSEGS_FEATURE (pobj)->vz[2*index_];
+	ztmp[1] = pSEGS_FEATURE (pobj)->vz[2*index_+1];
       }
       
       if(pSEGS_FEATURE (pobj)->vz != NULL)
@@ -5965,22 +5970,22 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
   }
   npoly=1; 
   for ( i = N ; i>0 ; i--) { /* loop on elements */
-    int j,nok;
-    j=locindex[i-1]-1;
-    index= ppMerge->index_in_entity[j];
-    pobj=(sciPointObj *) sciGetPointerFromHandle (ppMerge->from_entity[j]);
+    int j2,nok;
+    j2=locindex[i-1]-1;
+    index_= ppMerge->index_in_entity[j2];
+    pobj=(sciPointObj *) sciGetPointerFromHandle (ppMerge->from_entity[j2]);
     /*     if (sciGetVisibility (pobj)) { */
     if (sciGetVisibility(pobj)) {
       /* build the element coordinates */
       switch (sciGetEntityType (pobj)) {  
       case SCI_SURFACE:
 	if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D) { /* x,y,Z */
-	  int l,k,n1,n2;
+	  int l,k,n1_,n2;
 
-	  n1= pSURFACE_FEATURE (pobj)->dimzx;
+	  n1_= pSURFACE_FEATURE (pobj)->dimzx;
 	  n2= pSURFACE_FEATURE (pobj)->dimzy;
-	  l=(int)(index/(n1-1));
-	  k=index-l*(n1-1);
+	  l=(int)(index_/(n1_-1));
+	  k=index_-l*(n1_-1);
 
 	  xtmp[0] = pSURFACE_FEATURE (pobj)->pvecx[k];
 	  xtmp[1] = pSURFACE_FEATURE (pobj)->pvecx[k+1];
@@ -6019,10 +6024,10 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    }
 	  }
 
-	  ztmp[0] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
-	  ztmp[1] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
-	  ztmp[2] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
-	  ztmp[3] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
+	  ztmp[0] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_];
+	  ztmp[1] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_+n1_];
+	  ztmp[2] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_+n1_+1];
+	  ztmp[3] = pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_+1];
 
 
 	  if(ppsubwin->axes.reverse[2] == TRUE){ 
@@ -6051,7 +6056,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  Y[0]=Y[3]=ytmp[0];
 	  Y[1]=Y[2]=ytmp[1];
 	  
-	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]);
+	  Zoriginal = &(pSURFACE_FEATURE (pobj)->pvecz[k+l*n1_]);
 	  
 	  p=4;
 	  x=X;y=Y;z=Z;
@@ -6075,7 +6080,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
             return ;
           }
 
-          retrieveFacetVertices( pobj, index, verticesX, verticesY, verticesZ, &Zoriginal ) ;
+          retrieveFacetVertices( pobj, index_, verticesX, verticesY, verticesZ, &Zoriginal ) ;
 
           x = verticesX ;
           y = verticesY ;
@@ -6093,29 +6098,29 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
           /* check if we want to draw segments or marks */
           if ( ppPolyLine->plot != 2 && sciGetIsMark(pobj) == 1 )
           {
-            xtmp[0] = ppPolyLine->pvx[index];
+            xtmp[0] = ppPolyLine->pvx[index_];
             xtmp[1] = xtmp[0] ;
             
-            ytmp[0] = ppPolyLine->pvy[index];
+            ytmp[0] = ppPolyLine->pvy[index_];
             ytmp[1] = ytmp[0] ; /* used by trans3d + drawing : case 0,1 and 4 */
             if(ppPolyLine->pvz != NULL)
             {
-              ztmp[0] = ppPolyLine->pvz[index];
+              ztmp[0] = ppPolyLine->pvz[index_];
               ztmp[1] = ztmp[0] ;
             }
           }
           else
           {
-            xtmp[0] = ppPolyLine->pvx[index];
-            xtmp[1] = ppPolyLine->pvx[index+1];
+            xtmp[0] = ppPolyLine->pvx[index_];
+            xtmp[1] = ppPolyLine->pvx[index_+1];
             
-            ytmp[0] = ppPolyLine->pvy[index];
-            ytmp[1] = ppPolyLine->pvy[index+1]; /* used by trans3d + drawing : case 0,1 and 4 */
+            ytmp[0] = ppPolyLine->pvy[index_];
+            ytmp[1] = ppPolyLine->pvy[index_+1]; /* used by trans3d + drawing : case 0,1 and 4 */
             
             if(ppPolyLine->pvz != NULL)
             {
-              ztmp[0] = ppPolyLine->pvz[index];
-              ztmp[1] = ppPolyLine->pvz[(index+1)%n1];
+              ztmp[0] = ppPolyLine->pvz[index_];
+              ztmp[1] = ppPolyLine->pvz[(index_+1)%n1];
             }
           }
           
@@ -6181,7 +6186,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	if (pSEGS_FEATURE (pobj)->ptype == 0) /* ptype == 0 F.Leray : This is NOT A champ */
 	  {  
 	    if (pSEGS_FEATURE (pobj)->iflag == 1) {
-	      pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[index]);
+	      pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[index_]);
 	    }
 	    else{
 	      pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
@@ -6194,16 +6199,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	
 	iflag = pSEGS_FEATURE (pobj)->iflag;
 	
-	xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index];
-	xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index+1];
+	xtmp[0] =  pSEGS_FEATURE (pobj)->vx[2*index_];
+	xtmp[1] =  pSEGS_FEATURE (pobj)->vx[2*index_+1];
 	
-	ytmp[0] =  pSEGS_FEATURE (pobj)->vy[2*index];
-	ytmp[1] =  pSEGS_FEATURE (pobj)->vy[2*index+1];
+	ytmp[0] =  pSEGS_FEATURE (pobj)->vy[2*index_];
+	ytmp[1] =  pSEGS_FEATURE (pobj)->vy[2*index_+1];
 	
 	
 	if(pSEGS_FEATURE (pobj)->vz != NULL){
-	  ztmp[0] = pSEGS_FEATURE (pobj)->vz[2*index];
-	ztmp[1] = pSEGS_FEATURE (pobj)->vz[2*index+1];
+	  ztmp[0] = pSEGS_FEATURE (pobj)->vz[2*index_];
+	ztmp[1] = pSEGS_FEATURE (pobj)->vz[2*index_+1];
 	}
 	
       
@@ -6261,16 +6266,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
       if (p > 0) {
 	/* project 3D on 2D coordinates */
 	if (z != (double *)NULL) {
-	  for ( j =0 ; j < p ; j++) { 
-	    if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[j]),&(y[j]),&(z[j]))==0) {
+	  for ( j2 =0 ; j2 < p ; j2++) { 
+	    if (trans3d(psubwin ,1, &(polyx[j2]),&(polyy[j2]),&(x[j2]),&(y[j2]),&(z[j2]))==0) {
 	      nok=1;break; 
 	    }
 	  }
 	}
 	else {
 	  double zz=0.0;
-	  for ( j =0 ; j < p ; j++) { 
-	    if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[j]),&(y[j]),&zz)==0) {
+	  for ( j2 =0 ; j2 < p ; j2++) { 
+	    if (trans3d(psubwin ,1, &(polyx[j2]),&(polyy[j2]),&(x[j2]),&(y[j2]),&zz)==0) {
 	      nok=1;break; 
 	    }
 	  }
@@ -6352,7 +6357,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 2:
-	      fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index];
+	      fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index_];
 	      if ( flag < 0 ) fill[0]=-fill[0];
 	      if(sciGetIsLine(pobj)){
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
@@ -6384,14 +6389,14 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
 		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 			
-		scilab_shade(polyx,polyy,&(cvect[p*index]),p,ppsurface->flag[0]);
+		scilab_shade(polyx,polyy,&(cvect[p*index_]),p,ppsurface->flag[0]);
 		FREE(cvect); cvect = NULL;
 		if (sciGetIsMark (pobj))
 		  DrawMarks3D (pobj, p,polyx,polyy,DPI);
 	      }
 	      break;
 	    case 4: /* new case for "flat" mode matlab compatibility */
-	      fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index];
+	      fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index_];
 	      if ( flag < 0 ) fill[0]=-fill[0];
 	      if(sciGetIsLine(pobj)){
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
@@ -6408,16 +6413,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  if (sciGetIsMark(pobj) == TRUE){
 	    integer v;
 	    double dv=0;
-	    int x[4], markidsizenew[2];
+	    int x_[4], markidsizenew[2];
 	    
-	    x[0] = sciGetMarkForeground(pobj);
+	    x_[0] = sciGetMarkForeground(pobj);
 	    
 	    markidsizenew[0] = sciGetMarkStyle(pobj);
 	    markidsizenew[1] = sciGetMarkSize (pobj);
 	    
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	    C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 		      &dv, &dv, &dv, 5L, 4096);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	    C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 		      &dv, &dv, &dv, &dv, 5L, 4096);
 	    
 	    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -6440,13 +6445,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    {
 	      integer v;
 	      double dv=0;
-	      int x[4],close=1;
+	      int x_[4],close=1;
 	      char str[2] = "xv";
-	      x[0] = sciGetBackground(pobj);
+	      x_[0] = sciGetBackground(pobj);
 	      
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	      C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	      C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	      
 	      C2F (dr) ("xarea", str, &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
@@ -6455,16 +6460,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  if (sciGetIsMark(pobj) == TRUE){
 	    integer v;
 	    double dv=0;
-	    int x[4], markidsizenew[2];
+	    int x_[4], markidsizenew[2];
 	    
-	    x[0] = sciGetMarkForeground(pobj);
+	    x_[0] = sciGetMarkForeground(pobj);
 	    
 	    markidsizenew[0] = sciGetMarkStyle(pobj);
 	    markidsizenew[1] = sciGetMarkSize (pobj);
 	    
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	    C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 		      &dv, &dv, &dv, 5L, 4096);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	    C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 		      &dv, &dv, &dv, &dv, 5L, 4096);
 	    
 	    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -6488,13 +6493,13 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    {
 	      integer v;
 	      double dv=0;
-	      int x[4],close=1;
+	      int x_[4],close=1;
 	      char str[2] = "xv";
-	      x[0] = sciGetBackground(pobj);
+	      x_[0] = sciGetBackground(pobj);
 	      
-	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	      C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 			&dv, &dv, &dv, 5L, 4096);
-	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	      C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	      
 	      C2F (dr) ("xarea", str, &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
@@ -6503,16 +6508,16 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	  if (sciGetIsMark(pobj) == TRUE){
 	    integer v;
 	    double dv=0;
-	    int x[4], markidsizenew[2];
+	    int x_[4], markidsizenew[2];
 	    
-	    x[0] = sciGetMarkForeground(pobj);
+	    x_[0] = sciGetMarkForeground(pobj);
 	    
 	    markidsizenew[0] = sciGetMarkStyle(pobj);
 	    markidsizenew[1] = sciGetMarkSize (pobj);
 	    
-	    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	    C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 		      &dv, &dv, &dv, 5L, 4096);
-	    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	    C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 		      &dv, &dv, &dv, &dv, 5L, 4096);
 	    
 	    C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -6779,8 +6784,8 @@ sciDrawObj (sciPointObj * pobj)
 	  /* see zoom_box function in Plo2dEch.c*/
 	  if(GlobalFlag_Zoom3dOn == 1)
 	    {
-	      int un=1;
-	      C2F(dr)("xset","pixmap",&un,PI0,PI0,PI0,PI0,PI0,PD0,
+	      int un2=1;
+	      C2F(dr)("xset","pixmap",&un2,PI0,PI0,PI0,PI0,PI0,PD0,
 		      PD0,PD0,PD0,0L,0L);
 	      C2F (dr) ("xset","wwpc", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
 	    }
@@ -6997,7 +7002,7 @@ sciDrawObj (sciPointObj * pobj)
     {
       int curLineStyle = 0 ;
       int lineStyle    = 1 ;
-      int verbose      = 0 ;
+      int verbose_      = 0 ;
 
       if ( ! sciGetVisibility(pobj) ) { break; }
       
@@ -7015,35 +7020,35 @@ sciDrawObj (sciPointObj * pobj)
 	}
       else /* 3D version */
 	{
-	  double * xvect = NULL;
-	  double * yvect = NULL;
-	  int n = pFEC_FEATURE (pobj)->Nnode;
+	  double * xvect_ = NULL;
+	  double * yvect_ = NULL;
+	  int n_ = pFEC_FEATURE (pobj)->Nnode;
 	  
 
-	  if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-	  if ((yvect = MALLOC (n*sizeof (double))) == NULL){
-	    FREE(xvect); xvect = (double *) NULL; return -1;
+	  if ((xvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
+	  if ((yvect_ = MALLOC (n*sizeof (double))) == NULL){
+	    FREE(xvect_); xvect_ = (double *) NULL; return -1;
 	  }
 	  
-	  for(i=0;i<n;i++){
-	    xvect[i] = pFEC_FEATURE (pobj)->pvecx[i];
-	    yvect[i] = pFEC_FEATURE (pobj)->pvecy[i];
+	  for(i=0;i<n_;i++){
+	    xvect_[i] = pFEC_FEATURE (pobj)->pvecx[i];
+	    yvect_[i] = pFEC_FEATURE (pobj)->pvecy[i];
 	  }
 	  
-	  ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n);
-	  ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n);
+	  ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect_,n_);
+	  ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect_,n_);
 	  
-	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,NULL);
+	  trans3d(sciGetParentSubwin(pobj),n_,xm,ym,xvect_,yvect_,NULL);
 
-	  FREE(xvect); xvect = (double *) NULL;
-	  FREE(yvect); yvect = (double *) NULL;
+	  FREE(xvect_); xvect_ = (double *) NULL;
+	  FREE(yvect_); yvect_ = (double *) NULL;
 	}
 
 #ifdef _MSC_VER
       flag_DO=MaybeSetWinhdc();
 #endif
       /* need to put line style to plain otherwise bug 1872 occurs */
-      C2F(dr)("xget","line style",&verbose,&curLineStyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xget","line style",&verbose_,&curLineStyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xset", "line style", &lineStyle, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
 
       newfec(xm,ym,pFEC_FEATURE (pobj)->pnoeud,pFEC_FEATURE (pobj)->pfun,
@@ -7115,38 +7120,38 @@ sciDrawObj (sciPointObj * pobj)
         }
         if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
         {
-          double * xvect = NULL;
-          double * yvect = NULL;
-          double * zvect = NULL;
+          double * xvect_ = NULL;
+          double * yvect_ = NULL;
+          double * zvect_ = NULL;
 
-          if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-          if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((xvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((yvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
 
           for( i = 0 ; i < n ; i++ )
           {
-            xvect[i] = pSEGS_FEATURE (pobj)->vx[i];
-            yvect[i] = pSEGS_FEATURE (pobj)->vy[i];
+            xvect_[i] = pSEGS_FEATURE (pobj)->vx[i];
+            yvect_[i] = pSEGS_FEATURE (pobj)->vy[i];
           }
 
           if ( pSEGS_FEATURE (pobj)->vz != NULL )
           {
-            if ((zvect = MALLOC (n*sizeof (double))) == NULL) { return -1 ; }
+            if ((zvect_ = MALLOC (n*sizeof (double))) == NULL) { return -1 ; }
             for( i = 0 ; i < n ; i++ )
             {
-              zvect[i] = pSEGS_FEATURE (pobj)->vz[i];
+              zvect_[i] = pSEGS_FEATURE (pobj)->vz[i];
             }
           }
 
-          ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,zvect,n);
+          ReverseDataFor3D(sciGetParentSubwin(pobj),xvect_,yvect_,zvect_,n);
 
-          trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,zvect);
+          trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect_,yvect_,zvect_);
 
-          FREE(xvect); xvect = NULL;
-          FREE(yvect); yvect = NULL;
-          if ( zvect != NULL )
+          FREE(xvect); xvect_ = NULL;
+          FREE(yvect); yvect_ = NULL;
+          if ( zvect_ != NULL )
           {
-            FREE( zvect ) ;
-            zvect = NULL;
+            FREE( zvect_ ) ;
+            zvect_ = NULL;
           }
         }
         else
@@ -7254,29 +7259,29 @@ sciDrawObj (sciPointObj * pobj)
         /* test if we are in 3d HERE */
         if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
         {
-          double * xvect = NULL;
-          double * yvect = NULL;
-          double * zvect = NULL;
+          double * xvect_ = NULL;
+          double * yvect_ = NULL;
+          double * zvect_ = NULL;
 
-          if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-          if ((yvect = MALLOC (n*sizeof (double))) == NULL) return -1;
-          if ((zvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((xvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((yvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
+          if ((zvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
 
           for(i=0;i<n;i++){
-            xvect[i] = XPi2R(xm[i]);
-            yvect[i] = YPi2R(ym[i]);
+            xvect_[i] = XPi2R(xm[i]);
+            yvect_[i] = YPi2R(ym[i]);
           }
 
 
           /* F.Leray 06.12.04 */
           /* A REVOIR : ne marche pas en 3D */
-          ReverseDataFor3D(sciGetParentSubwin(pobj),xvect,yvect,NULL,n);
+          ReverseDataFor3D(sciGetParentSubwin(pobj),xvect_,yvect_,NULL,n);
 
-          trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect,yvect,NULL);
+          trans3d(sciGetParentSubwin(pobj),n,xm,ym,xvect_,yvect_,NULL);
 
-          FREE(xvect); xvect = NULL;
-          FREE(yvect); yvect = NULL;
-          FREE(zvect); zvect = NULL;
+          FREE(xvect_); xvect_ = NULL;
+          FREE(yvect_); yvect_ = NULL;
+          FREE(zvect_); zvect_ = NULL;
         }
 
         if ( sciGetIsMark( pobj ) )
@@ -7367,16 +7372,16 @@ sciDrawObj (sciPointObj * pobj)
 	  }
 	  else{
 	    /*3D version */
-	    double * xvect = NULL;
-	    double * yvect = NULL;
+	    double * xvect_ = NULL;
+	    double * yvect_ = NULL;
 	
-	    if ((xvect = MALLOC (n1*sizeof (double))) == NULL) return -1;
-	    if ((yvect = MALLOC (n2*sizeof (double))) == NULL){
-	      FREE(xvect); xvect = (double *) NULL; return -1;
+	    if ((xvect_ = MALLOC (n1*sizeof (double))) == NULL) return -1;
+	    if ((yvect_ = MALLOC (n2*sizeof (double))) == NULL){
+	      FREE(xvect_); xvect_ = (double *) NULL; return -1;
 	    }
 	    
-	    for(i=0;i<n1;i++) xvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecx[i];
-	    for(i=0;i<n2;i++) yvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecy[i];
+	    for(i=0;i<n1;i++) xvect_[i] = pGRAYPLOT_FEATURE (pobj)->pvecx[i];
+	    for(i=0;i<n2;i++) yvect_[i] = pGRAYPLOT_FEATURE (pobj)->pvecy[i];
 
 
 	    if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	return -1;
@@ -7384,13 +7389,13 @@ sciDrawObj (sciPointObj * pobj)
 	      FREE(xm); xm = (integer *) NULL; return -1; 
 	    }
 	    
-	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n1);
-	    ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n2);
+	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect_,n1);
+	    ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect_,n2);
 
 	    for ( i =0 ; i < n1 ; i++)  /* on x*/
 	      for ( j =0 ; j < n2 ; j++)  /* on y */
 		trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n1],&ym[j+i*n2],
-			&xvect[i],&yvect[j],NULL);
+			&xvect_[i],&yvect_[j],NULL);
 	    
 #ifdef _MSC_VER
 	    flag_DO = MaybeSetWinhdc();
@@ -7401,21 +7406,22 @@ sciDrawObj (sciPointObj * pobj)
 	    /*   for(i=0;i<(n1-1)*(n2-1);i++) */
 	    /* 	      { */
 	    for (i = 0 ; i < (n1)-1 ; i++)
+		  {
 	      for (j = 0 ; j < (n2)-1 ; j++)
 		{
 		  integer vertexx[5], vertexy[5];
-		  int cinq = 5, un = 1;
+		  int cinq = 5, un_ = 1;
 		  double zmoy,zmax,zmin,zmaxmin;
-		  integer verbose=0,whiteid,narg,fill[1],cpat,xz[2];
+		  integer verbose_=0,whiteid,narg_,fill[1],cpat,xz_[2];
 		  double *z = pGRAYPLOT_FEATURE (pobj)->pvecz;
 		  zmin=Mini(z,(n1)*(n2));
 		  zmax=Maxi(z,(n1)*(n2));
 		  zmaxmin=zmax-zmin;
 		  
 		  if (zmaxmin <= SMDOUBLE) zmaxmin=SMDOUBLE;
-		  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xget","lastpattern",&verbose_,&whiteid,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xget","pattern",&verbose_,&cpat,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xget","wdim",&verbose_,xz_,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  
 
 		  if(strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
@@ -7444,8 +7450,9 @@ sciDrawObj (sciPointObj * pobj)
 		  vertexy[3] = ym[j+n2*(i+1)];
 		  vertexy[4] = ym[j+n2*i];
 		  
-		  C2F(dr)("xliness","str",vertexx,vertexy,fill,&un,&cinq,
+		  C2F(dr)("xliness","str",vertexx,vertexy,fill,&un_,&cinq,
 			  PI0,PD0,PD0,PD0,PD0,0L,0L);
+		}
 		}
 	    
 	    frame_clip_off();  
@@ -7455,8 +7462,8 @@ sciDrawObj (sciPointObj * pobj)
 	    
 	    FREE(xm); xm = (integer *) NULL;
 	    FREE(ym); ym = (integer *) NULL;
-	    FREE(xvect); xvect = (double *) NULL;
-	    FREE(yvect); yvect = (double *) NULL;
+	    FREE(xvect_); xvect_ = (double *) NULL;
+	    FREE(yvect_); yvect_ = (double *) NULL;
 	  }
 	  break;
 	case 1: /* Matplot case */
@@ -7464,7 +7471,7 @@ sciDrawObj (sciPointObj * pobj)
 	    /* In this case (and inside Matplot1 too but Matplot and Matplot1 are almost the same), */
 	    /* dim x = n2 and dim y = n1 (cf. scimatplot in matdes.c) */ /* F.Leray 20.05.05 */
 	    sciPointObj * psubwin = sciGetParentSubwin(pobj);
-	    sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+	    sciSubWindow * ppsubwin_ = pSUBWIN_FEATURE (psubwin);
 	    
 	    if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	      if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
@@ -7479,7 +7486,7 @@ sciDrawObj (sciPointObj * pobj)
 	      flag_DO = MaybeSetWinhdc();
 #endif
 	      frame_clip_on(); 
-	      if(ppsubwin->axes.reverse[0] == TRUE || ppsubwin->axes.reverse[1] == TRUE)
+	      if(ppsubwin_->axes.reverse[0] == TRUE || ppsubwin_->axes.reverse[1] == TRUE)
 		GraySquare1_NGreverse(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2,psubwin);  
 	      else
 		GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
@@ -7496,17 +7503,17 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	    else{
 	      /* 3D version */
-	      double * xvect = NULL;
-	      double * yvect = NULL;
+	      double * xvect_ = NULL;
+	      double * yvect_ = NULL;
 	   
 	      /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
-	      if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
-	      if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
-		FREE(xvect); xvect = (double *) NULL; return -1;
+	      if ((xvect_ = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	      if ((yvect_ = MALLOC (n1*sizeof (double))) == NULL){
+		FREE(xvect_); xvect_ = (double *) NULL; return -1;
 	      }
 	    
-	      for(i=0;i<n2;i++) xvect[i] = i+0.5;
-	      for(i=0;i<n1;i++) yvect[i] = n1-1-i+0.5;
+	      for(i=0;i<n2;i++) xvect_[i] = i+0.5;
+	      for(i=0;i<n1;i++) yvect_[i] = n1-1-i+0.5;
 	    
 
 	      if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
@@ -7514,14 +7521,14 @@ sciDrawObj (sciPointObj * pobj)
 		FREE(xm); xm = (integer *) NULL; return -1; 
 	      }
 	    
-	      ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
-	      ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n1);
+	      ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect_,n2);
+	      ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect_,n1);
 
 	    
 	      for ( i =0 ; i < n2 ; i++)  /* on x*/
 		for ( j =0 ; j < n1 ; j++)  /* on y */
 		  trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
-			  &xvect[i],&yvect[j],NULL);
+			  &xvect_[i],&yvect_[j],NULL);
 	    
 #ifdef _MSC_VER
 	      flag_DO = MaybeSetWinhdc();
@@ -7535,7 +7542,7 @@ sciDrawObj (sciPointObj * pobj)
 		for (j = 0 ; j < (n1)-1 ; j++)
 		  {
 		    integer vertexx[5], vertexy[5];
-		    int cinq = 5, un = 1;
+		    int cinq = 5, un_ = 1;
 		    integer fill;
 
 		    fill = (int ) - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
@@ -7552,7 +7559,7 @@ sciDrawObj (sciPointObj * pobj)
 		    vertexy[3] = ym[j+n1*(i+1)];
 		    vertexy[4] = ym[j+n1*i];
 		    
-		    C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+		    C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un_,&cinq,
 			    PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
 	    
@@ -7563,8 +7570,8 @@ sciDrawObj (sciPointObj * pobj)
 	    
 	      FREE(xm); xm = (integer *) NULL;
 	      FREE(ym); ym = (integer *) NULL;
-	      FREE(xvect); xvect = (double *) NULL;
-	      FREE(yvect); yvect = (double *) NULL;
+	      FREE(xvect_); xvect_ = (double *) NULL;
+	      FREE(yvect_); yvect_ = (double *) NULL;
 	    }
 	  }
 	  break;
@@ -7606,13 +7613,13 @@ sciDrawObj (sciPointObj * pobj)
 	  }
 	  else{
 	    /* 3D version */
-	    double * xvect = NULL;
-	    double * yvect = NULL;
+	    double * xvect_ = NULL;
+	    double * yvect_ = NULL;
 	   
 	    /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
-	    if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
-	    if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
-	      FREE(xvect); xvect = (double *) NULL; return -1;
+	    if ((xvect_ = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	    if ((yvect_ = MALLOC (n1*sizeof (double))) == NULL){
+	      FREE(xvect_); xvect_ = (double *) NULL; return -1;
 	    }
 	   
 	    xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
@@ -7623,10 +7630,10 @@ sciDrawObj (sciPointObj * pobj)
 	   
 	    /** Boundaries of the frame **/
 	    for ( i =0 ; i < n2 ; i++)
-	      xvect[i]= (( xx[1]*i + xx[0]*((n2-1)-i) )/(n2-1));
+	      xvect_[i]= (( xx[1]*i + xx[0]*((n2-1)-i) )/(n2-1));
 	   
 	    for ( j =0 ; j < n1 ; j++)
-	      yvect[j]= (( yy[0]*j + yy[1]*((n1-1)-j) )/ (n1-1)); 
+	      yvect_[j]= (( yy[0]*j + yy[1]*((n1-1)-j) )/ (n1-1)); 
 	   
 	   
 	    if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
@@ -7634,14 +7641,14 @@ sciDrawObj (sciPointObj * pobj)
 	      FREE(xm); xm = (integer *) NULL; return -1; 
 	    }
 	   
-	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
-	    ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n1);
+	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect_,n2);
+	    ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect_,n1);
 	   
 	   
 	    for ( i =0 ; i < n2 ; i++)  /* on x*/
 	      for ( j =0 ; j < n1 ; j++)  /* on y */
 		trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
-			&xvect[i],&yvect[j],NULL);
+			&xvect_[i],&yvect_[j],NULL);
 	   
 #ifdef _MSC_VER
 	    flag_DO = MaybeSetWinhdc();
@@ -7649,11 +7656,11 @@ sciDrawObj (sciPointObj * pobj)
 	    frame_clip_on(); 
 	   
 	    /* draw the filled projected rectangle */
-	    for (i = 0 ; i < (n2)-1 ; i++)
+	    for (i = 0 ; i < (n2)-1 ; i++){
 	      for (j = 0 ; j < (n1)-1 ; j++)
 		{
 		  integer vertexx[5], vertexy[5];
-		  int cinq = 5, un = 1;
+		  int cinq = 5, un_ = 1;
 		  integer fill;
 
 		  fill = (int) - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
@@ -7670,9 +7677,10 @@ sciDrawObj (sciPointObj * pobj)
 		  vertexy[3] = ym[j+n1*(i+1)];
 		  vertexy[4] = ym[j+n1*i];
 		  
-		  C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+		  C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un_,&cinq,
 			  PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
+        }
 	   
 	    frame_clip_off();  
 #ifdef _MSC_VER
@@ -7680,8 +7688,8 @@ sciDrawObj (sciPointObj * pobj)
 #endif
 	    FREE(xm); xm = (integer *) NULL;
 	    FREE(ym); ym = (integer *) NULL;
-	    FREE(xvect); xvect = (double *) NULL;
-	    FREE(yvect); yvect = (double *) NULL;
+	    FREE(xvect_); xvect_ = (double *) NULL;
+	    FREE(yvect_); yvect_ = (double *) NULL;
 	  }
 	  break;
 	default:
@@ -7819,18 +7827,18 @@ sciDrawObj (sciPointObj * pobj)
 		nn1= n1*2;
 	      /* add mark support even for bar plot lines */
 	      if (sciGetIsMark(pobj) == TRUE){
-		int x[4], markidsizenew[2];
+		int x_[4], markidsizenew_[2];
 		x[0] = sciGetMarkForeground(pobj);
 		
-		markidsizenew[0] = sciGetMarkStyle(pobj);
-		markidsizenew[1] = sciGetMarkSize (pobj);
+		markidsizenew_[0] = sciGetMarkStyle(pobj);
+		markidsizenew_[1] = sciGetMarkSize (pobj);
 		
-		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+		C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 			  &dv, &dv, &dv, 5L, 4096);
-		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+		C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 		
-		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+		C2F (dr) ("xset", "mark", &markidsizenew_[0], &markidsizenew_[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);   
 		
 		DrawNewMarks(pobj,nn1,&xm[0],&ym[0],DPI);
@@ -7867,22 +7875,22 @@ sciDrawObj (sciPointObj * pobj)
 	      arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
 	      
 	      if(result_trans3d == 1){
-		integer lstyle=sciGetForeground(pobj) ,iflag=0;
+		integer lstyle_=sciGetForeground(pobj) ,iflag_=0;
 		
 		/* add mark support even for arrow line style */
 		if (sciGetIsMark(pobj) == TRUE){
-		  int x[4], markidsizenew[2];
-		  x[0] = sciGetMarkForeground(pobj);
+		  int x_[4], markidsizenew_[2];
+		  x_[0] = sciGetMarkForeground(pobj);
 		  
-		  markidsizenew[0] = sciGetMarkStyle(pobj);
-		  markidsizenew[1] = sciGetMarkSize (pobj);
+		  markidsizenew_[0] = sciGetMarkStyle(pobj);
+		  markidsizenew_[1] = sciGetMarkSize (pobj);
 		  
-		  C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+		  C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 			    &dv, &dv, &dv, 5L, 4096);
-		  C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+		  C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 			    &dv, &dv, &dv, &dv, 5L, 4096);
 		  
-		  C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+		  C2F (dr) ("xset", "mark", &markidsizenew_[0], &markidsizenew_[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			    PD0, PD0, 0L, 0L);   
 		  
 		  DrawNewMarks(pobj,nn2,&xm[0],&ym[0],DPI);
@@ -7904,7 +7912,7 @@ sciDrawObj (sciPointObj * pobj)
 		  
 		  arsize = (integer) pPOLYLINE_FEATURE(pobj)->arsize_factor * arsize;
 
-		  C2F(dr)("xarrow","v",&xm[0],&ym[0],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xarrow","v",&xm[0],&ym[0],&nn2,&arsize,&lstyle_,&iflag_,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	      }
 	      break;
@@ -7981,19 +7989,19 @@ sciDrawObj (sciPointObj * pobj)
 	      else
 		{
 		  double myX[4], myY[4];
-		  int pix_X[4], pix_Y[4],i;
+		  int pix_X[4], pix_Y[4],i2;
 		  int quatre = 4;
 		  
-		  for(i=0;i<n1;i++)
+		  for(i2=0;i2<n1;i2++)
 		    {
-		      myX[0] = myX[1] = xvect[jk][i] - bar_width/2;
-		      myX[2] = myX[3] = xvect[jk][i] + bar_width/2;
+		      myX[0] = myX[1] = xvect[jk][i2] - bar_width/2;
+		      myX[2] = myX[3] = xvect[jk][i2] + bar_width/2;
 		      
 		      if(y_shift == (double *) NULL)
 			myY[0] = myY[3] =  0.;
 		      else
-			myY[0] = myY[3] =  y_shift[i];
-		      myY[1] = myY[2] =  yvect[jk][i];
+			myY[0] = myY[3] =  y_shift[i2];
+		      myY[1] = myY[2] =  yvect[jk][i2];
 		      
 		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
 		      
@@ -8083,19 +8091,19 @@ sciDrawObj (sciPointObj * pobj)
 	      else
 		{
 		  double myX[4], myY[4];
-		  int pix_X[4], pix_Y[4],i;
+		  int pix_X[4], pix_Y[4],i2;
 		  int quatre = 4;
 		  
-		  for(i=0;i<n1;i++)
+		  for(i2=0;i2<n1;i2++)
 		    {
-		      myY[0] = myY[1] = yvect[jk][i] + bar_width/2;
-		      myY[2] = myY[3] = yvect[jk][i] - bar_width/2;
+		      myY[0] = myY[1] = yvect[jk][i2] + bar_width/2;
+		      myY[2] = myY[3] = yvect[jk][i2] - bar_width/2;
 		      
 		      if(y_shift == (double *) NULL)
 			myX[0] = myX[3] =  0.;
 		      else 
-			myX[0] = myX[3] =  y_shift[i];
-		      myX[1] = myX[2] =  xvect[jk][i];
+			myX[0] = myX[3] =  y_shift[i2];
+		      myX[1] = myX[2] =  xvect[jk][i2];
 		      
 		      C2F (echelle2d) (myX,myY, pix_X, pix_Y, &quatre, &un, "f2i",3L);
 		      
@@ -8154,18 +8162,18 @@ sciDrawObj (sciPointObj * pobj)
 	      
 	      if ( sciGetIsMark(pobj) )
               {
-		int x[4], markidsizenew[2];
-		x[0] = sciGetMarkForeground(pobj);
+		int x_[4], markidsizenew_[2];
+		x_[0] = sciGetMarkForeground(pobj);
 	       
-		markidsizenew[0] = sciGetMarkStyle(pobj);
-		markidsizenew[1] = sciGetMarkSize (pobj);
+		markidsizenew_[0] = sciGetMarkStyle(pobj);
+		markidsizenew_[1] = sciGetMarkSize (pobj);
 		
-		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+		C2F (dr) ("xset", "dashes", x_, x_, x_+4, x_+4, x_+4, &v, &dv,
 			  &dv, &dv, &dv, 5L, 4096);
-		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+		C2F (dr) ("xset", "foreground", x_, x_, x_+4, x_+4, x_+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 	       
-		C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+		C2F (dr) ("xset", "mark", &markidsizenew_[0], &markidsizenew_[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			  PD0, PD0, 0L, 0L);   
 		
 		DrawNewMarks(pobj,n1,xm,ym,DPI);
@@ -8266,32 +8274,32 @@ sciDrawObj (sciPointObj * pobj)
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	{
 	  
-	  double xvect;
-	  double yvect;
-	  double zvect;
+	  double xvect_;
+	  double yvect_;
+	  double zvect_;
 	  
-	  xvect = pARC_FEATURE(pobj)->x;
-	  yvect = pARC_FEATURE(pobj)->y;
-	  zvect = pARC_FEATURE(pobj)->z;
+	  xvect_ = pARC_FEATURE(pobj)->x;
+	  yvect_ = pARC_FEATURE(pobj)->y;
+	  zvect_ = pARC_FEATURE(pobj)->z;
 	  
-	  ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,un);
+	  ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect_,&yvect_,&zvect_,un);
 	  
-	  trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&xvect,&yvect,&zvect);
+	  trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&xvect_,&yvect_,&zvect_);
 	}
       else
 	{
-	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (sciGetParentSubwin(pobj));
+	  sciSubWindow * ppsubwin2 = pSUBWIN_FEATURE (sciGetParentSubwin(pobj));
 	  double tmpx = pARC_FEATURE (pobj)->x;
 	  double tmpy = pARC_FEATURE (pobj)->y;
 	  
 	  double tmpwidth = pARC_FEATURE (pobj)->width;
 	  double tmpheight= pARC_FEATURE (pobj)->height;
 	  
-	  if(ppsubwin->axes.reverse[0] == TRUE){
+	  if(ppsubwin2->axes.reverse[0] == TRUE){
 	    tmpx= tmpx + tmpwidth;
 	  }
 	  
-	  if(ppsubwin->axes.reverse[1] == TRUE){
+	  if(ppsubwin2->axes.reverse[1] == TRUE){
 	    tmpy = tmpy - tmpheight;
 	  }
 	  
@@ -9669,9 +9677,9 @@ int AdaptGraduationsOnYBottomLeft(int iof, int x, int y, int size, integer *Tics
       if(nb_grads_max > 4) {
 	/* we could display at least 4 graduations but we did not find a proper interval... */
 	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
-	double pas = (grads_tmp[lastyindex]-grads_tmp[0])/3;
+	double pas_ = (grads_tmp[lastyindex]-grads_tmp[0])/3;
 	for(i=0;i<3;i++){
-	  ppsubwin->axes.ygrads[i] = grads_tmp[0] + i*pas;
+	  ppsubwin->axes.ygrads[i] = grads_tmp[0] + i*pas_;
 	}
 	
 	ppsubwin->axes.ygrads[3] = grads_tmp[lastyindex]; /* exact max */
@@ -9907,9 +9915,9 @@ int AdaptGraduationsOnXBottomLeft(int iof, int x, int y, int size, integer *Tics
       if(nb_grads_max > 4) {
 	/* we could display at least 4 graduations but we did not find a proper interval... */
 	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
-	double pas = (grads_tmp[lastxindex]-grads_tmp[0])/3;
+	double pas_ = (grads_tmp[lastxindex]-grads_tmp[0])/3;
 	for(i=0;i<3;i++){
-	  ppsubwin->axes.xgrads[i] = grads_tmp[0] + i*pas;
+	  ppsubwin->axes.xgrads[i] = grads_tmp[0] + i*pas_;
 	}
 	
 	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
@@ -10139,9 +10147,9 @@ int AdaptGraduationsOnYBottomRight(int iof, int x, int y, int size, integer *Tic
       if(nb_grads_max > 4) {
 	/* we could display at least 4 graduations but we did not find a proper interval... */
 	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
-	double pas = (grads_tmp[lastyindex]-grads_tmp[0])/3;
+	double pas_ = (grads_tmp[lastyindex]-grads_tmp[0])/3;
 	for(i=0;i<3;i++){
-	  ppsubwin->axes.ygrads[i] = grads_tmp[0] + i*pas;
+	  ppsubwin->axes.ygrads[i] = grads_tmp[0] + i*pas_;
 	}
 	
 	ppsubwin->axes.ygrads[3] = grads_tmp[lastyindex]; /* exact max */
@@ -10369,9 +10377,9 @@ int AdaptGraduationsOnXBottomRight(int iof, int x, int y, int size, integer *Tic
       if(nb_grads_max > 4) {
 	/* we could display at least 4 graduations but we did not find a proper interval... */
 	/* To avoid to display only the min and max (see above), we add 2 newly created grads by interpolating between min and max */
-	double pas = (grads_tmp[lastxindex]-grads_tmp[0])/3;
+	double pas_ = (grads_tmp[lastxindex]-grads_tmp[0])/3;
 	for(i=0;i<3;i++){
-	  ppsubwin->axes.xgrads[i] = grads_tmp[0] + i*pas;
+	  ppsubwin->axes.xgrads[i] = grads_tmp[0] + i*pas_;
 	}
 	
 	ppsubwin->axes.xgrads[3] = grads_tmp[lastxindex]; /* exact max */
