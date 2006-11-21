@@ -2943,7 +2943,7 @@ sciSetZooming (sciPointObj * pobj, BOOL value)
  * @author Djalel ABDEMOUCHE
  */
 int
-sciSetDefaultValues ()
+sciSetDefaultValues (void)
 {
   if ((sciInitGraphicContext (sciGetCurrentFigure()) == -1) ||
       (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||

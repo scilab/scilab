@@ -154,7 +154,7 @@ extern int sciSetVisibility (sciPointObj * pobj, BOOL value); /* SET */
 extern int sciInitResize(sciPointObj * pobj, BOOL value);
 extern int sciSetResize (sciPointObj * pobj, BOOL value); /* SET */
 
-extern int sciSetDefaultValues (); /* SET */
+extern int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
@@ -230,6 +230,11 @@ void setVersionFlag( int newFlag ) ;
 
 extern int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
 extern int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;
+
+int setSubWinAngles( sciPointObj *psubwin, double theta, double alpha );
+int sciInitdrawmode( BOOL mode );
+int getVersionFlag(void);
+int sciInitGraphicsStyle( sciPointObj * pobj, BOOL value );
 
 /*---------------------------------------------------------------------------*/
 /* return 0 if the string contains any % character, 1 if a %d has been found */
