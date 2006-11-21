@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.56
+# in sync at least with v6.61
 
 
 # commons
@@ -302,11 +302,9 @@
 ::msgcat::mcset it "A decimal digit" "Cifra decimale"
 ::msgcat::mcset it "An alphanumeric (letter or digit)"\
                    "Carattere alfanumerico (lettera o cifra)"
-::msgcat::mcset it "A space or tab character"\
-                   "Spazio o tabulatore"
+::msgcat::mcset it "A space or tab character" "Spazio o tabulatore"
 ::msgcat::mcset it "A rational number" "Numero razionale"
-::msgcat::mcset it "A floating point number"\
-                   "Numero a virgola mobile"
+::msgcat::mcset it "A floating point number" "Numero a virgola mobile"
 ::msgcat::mcset it "A Scilab comment" "Commento Scilab"
 ::msgcat::mcset it "A Scilab name" "Variabile o parola chiave Scilab"
 ::msgcat::mcset it "A Scilab continued line (with dots)"\
@@ -512,6 +510,10 @@
 ::msgcat::mcset it "&Full path" "&Percorso completo"
 ::msgcat::mcset it "Full path if &ambiguous" "Percorso completo se &ambiguo"
 ::msgcat::mcset it "&Unambiguous pruned path" "Percorso &ridotto univoco"
+::msgcat::mcset it "Windows menu &sorting" "Or&dine del menu Finestre"
+::msgcat::mcset it "&File opening order" "secondo &momento di apertura"
+::msgcat::mcset it "&Alphabetically" "ordine &alfabetico"
+::msgcat::mcset it "&Most recently used" "secondo &uso più recente"
 ::msgcat::mcset it "&Recent files" "&Numero files recenti"
 ::msgcat::mcset it "&Backup files depth" "Numero &versioni backup"
 ::msgcat::mcset it "&Locale" "&Localizzazione"
