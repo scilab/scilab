@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "bcg.h"
 #include "WindowList.h"
+#include "Events.h"
 
 typedef struct but
 { int win; /* graphic window containing the locator */
@@ -15,8 +16,6 @@ typedef struct but
 } But;
 
 
-typedef int (*Scig_click_handler) (int,int,int,int,int,int);
-typedef void (*Scig_deletegwin_handler) (int);
 extern int StoreCommand1(char *,int);
 
 int demo_menu_activate=0; /* add a demo menu in the graphic Window */
