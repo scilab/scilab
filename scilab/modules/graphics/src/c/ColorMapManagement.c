@@ -9,7 +9,9 @@
 #include "sciprint.h"
 #include "getHandleProperty/SetPropertyStatus.h"
 #include "MALLOC.h"
-
+/*------------------------------------------------------------------------*/
+int LinearScaling2Colormap( sciPointObj * pobj );
+void convertColorMap2BW( double * bwColorMap, double * colorMap, int colorMapSize );
 /*------------------------------------------------------------------------*/
 int LinearScaling2Colormap( sciPointObj * pobj )
 {
