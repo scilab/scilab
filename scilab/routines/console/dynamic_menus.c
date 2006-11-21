@@ -10,6 +10,7 @@
 #include <sys/utsname.h>
 #endif
 
+#include <stdio.h>
 #include <string.h>
 #include "../machine.h"
 #ifdef WIN32
