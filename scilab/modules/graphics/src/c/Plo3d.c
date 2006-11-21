@@ -14,6 +14,7 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
+#include "Plo3d.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -109,7 +110,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 {
   static integer InsideU[4],InsideD[4],fg,fg1,dc;
   /* solid = color of 3D frame */
-  integer polysize,npoly,whiteid,verbose=0,narg;
+  integer polysize,npoly,whiteid,verbose=0,narg_;
   integer *polyx,*polyy,*fill;
   double xbox[8],ybox[8],zbox[8];
   static integer cache;
@@ -120,7 +121,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   if (GetDriver()=='R' && version_flag() != 0) 
     StorePlot3D(name,x,y,z,p,q,teta,alpha,legend,flag,bbox);
 
-  C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
  
   if (flag[1]!=0 && flag[1]!=1 && flag[1]!=3 && flag[1]!=5)
     {
@@ -143,7 +144,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   /** ainsi que les triedres caches ou non **/
   Convex_Box(xbox,ybox,InsideU,InsideD,legend,flag,bbox);
   /** Le triedre cach\'e **/
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (fg1==-1) fg1=0;
   if (zbox[InsideU[0]] > zbox[InsideD[0]])
     {
@@ -167,9 +168,9 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
  
   /** The 3d plot **/
 
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   dc =  flag[0];
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (fg1==-1) fg1=0;   
   for ( i =0 ; i < (*q)-1 ; i++)   fill[i]= dc ;
   polysize=5;
@@ -252,7 +253,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
 static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
 {
   static integer InsideU[4],InsideD[4],fg1;
-  integer polysize,npoly,whiteid,verbose=0,narg;
+  integer polysize,npoly,whiteid,verbose=0,narg_;
   integer *polyx,*polyy,*locindex,fill[4]; /* Modified by polpoth 4/5/2000 fill[4] instead of fill[1] */
   double xbox[8],ybox[8],zbox[8],*polyz;
   static integer cache;
@@ -284,7 +285,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   /** ainsi que les triedres caches ou non **/
   Convex_Box(xbox,ybox,InsideU,InsideD,legend,flag,bbox);
   /** Le triedre cach\'e **/
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (fg1==-1) fg1=0;  
   if (zbox[InsideU[0]] > zbox[InsideD[0]])
     {
@@ -312,9 +313,9 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
       return;
     }
 
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   fill[0]=  flag[0];
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** tri **/
   for ( i =0 ; i < *q ; i++)
     {
@@ -452,7 +453,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   if ( flag[2] >=3 )
     {
       integer fg;
-      C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /** Le triedre que l'on doit voir **/
       if (zbox[InsideU[0]] > zbox[InsideD[0]])
 	DrawAxis(xbox,ybox,InsideU,fg);
@@ -546,11 +547,11 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   integer style[1], npoly,j;
   static integer init;
   static integer *xm,*ym;
-  integer verbose=0,xz[10],narg,fg1;
+  integer verbose=0,xz[10],narg_,fg1;
   /** If Record is on **/
   if (GetDriver()=='R' && version_flag() != 0) 
     StoreParam3D("param3d",x,y,z,n,teta,alpha,legend,flag,bbox);
-  C2F(dr)("xget","dashes",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","dashes",&verbose,xz,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
   if (flag[1]!=0 && flag[1]!=1 && flag[1]!=3 && flag[1]!=5)
     {
@@ -565,7 +566,7 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   /** Calcule l' Enveloppe Convexe de la boite **/
   /** ainsi que les triedres caches ou non **/
   Convex_Box(xbox,ybox,InsideU,InsideD,legend,flag,bbox);
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** Le triedre cache **/
   if (zbox[InsideU[0]] > zbox[InsideD[0]])
     {
@@ -612,7 +613,7 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   if (flag[2] >=3 ) 
     {
       integer fg;
-      C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /** Le triedre que l'on doit voir **/
       if (zbox[InsideU[0]] > zbox[InsideD[0]])
 	DrawAxis(xbox,ybox,InsideU,fg);
@@ -634,12 +635,12 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   integer style[1], npoly,j;
   static integer init;
   static integer *xm,*ym;
-  integer verbose=0,xz[10],narg,fg1,cur;
+  integer verbose=0,xz[10],narg_,fg1,cur;
 
   /** If Record is on **/
   if (GetDriver()=='R' && version_flag() != 0) 
     StoreParam3D1("param3d1",x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox);
-  C2F(dr)("xget","dashes",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","dashes",&verbose,xz,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
   if (flag[1]!=0 && flag[1]!=1 && flag[1]!=3 && flag[1]!=5)
     {
@@ -655,7 +656,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   /** Calcule l' Enveloppe Convexe de la boite **/
   /** ainsi que les triedres caches ou non **/
   Convex_Box(xbox,ybox,InsideU,InsideD,legend,flag,bbox);
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** Le triedre cache **/
   if (zbox[InsideU[0]] > zbox[InsideD[0]])
     {
@@ -681,16 +682,16 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
       if ( *iflag != 0 ) style[0]=  colors[cur];
       while (1) 
 	{
-	  int nel = 0,j1;
-	  j1= (*m)*cur;
+	  int nel = 0,j1_;
+	  j1_= (*m)*cur;
 	  for ( j =init ; j < (*m) ; j++)	 
 	    {
-	      xm[  nel]=PGEOX(x[j+j1],y[j+j1],z[j+j1]);
+	      xm[  nel]=PGEOX(x[j+j1_],y[j+j1_],z[j+j1_]);
 	      if ( finite(xx1) ==0 ) 
 		{
 		  break;
 		}
-	      ym[  nel]=PGEOY(x[j+j1],y[j+j1],z[j+j1]);
+	      ym[  nel]=PGEOY(x[j+j1_],y[j+j1_],z[j+j1_]);
 	      if ( finite(yy1)==0)
 		{
 		  break;
@@ -707,7 +708,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   if (flag[2] >=3 ) 
     {
       integer fg;
-      C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /** Le triedre que l'on doit voir **/
       if (zbox[InsideU[0]] > zbox[InsideD[0]])
 	DrawAxis(xbox,ybox,InsideU,fg);
@@ -725,7 +726,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
 int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 {  
  
-  static integer InsideU[4],InsideD[4],flag[]={1,1,3},verbose=0,fg,narg,fg1;
+  static integer InsideU[4],InsideD[4],flag[]={1,1,3},verbose=0,fg,narg_,fg1;
   static integer ixbox[4],iybox[4], n=2, m=1;
   char * legends = NULL;
   sciPointObj * psubwin = NULL;
@@ -782,12 +783,12 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
   /**DJ.Abdemouche 2003**/
   if (version_flag() != 0) {
     /** le triedre vu **/
-    C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if (zbox[InsideU[0]] > zbox[InsideD[0]])
       DrawAxis(xbox,ybox,InsideU,fg);
     else 
       DrawAxis(xbox,ybox,InsideD,fg);
-    C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     if (fg1==-1) fg1=0;
     /** Le triedre cache **/
     if (zbox[InsideU[0]] > zbox[InsideD[0]])
@@ -870,23 +871,23 @@ int C2F(geom3d)(double *x, double *y, double *z, integer *n)
 
     for ( j =0 ; j < (*n) ; j++)
       {
-	double x1,y1;
+	double x1,y1_;
 	x1=TRX(x[j],y[j],z[j]);
-	y1=TRY(x[j],y[j],z[j]);
+	y1_=TRY(x[j],y[j],z[j]);
 	z[j]=TRZ(x[j],y[j],z[j]);
 	x[j]=x1;
-	y[j]=y1;
+	y[j]=y1_;
       }
   }
   else{
     for ( j =0 ; j < (*n) ; j++)	 
       {
-	double x1,y1;
+	double x1,y1_;
 	x1=TRX(x[j],y[j],z[j]);
-	y1=TRY(x[j],y[j],z[j]);
+	y1_=TRY(x[j],y[j],z[j]);
 	z[j]=TRZ(x[j],y[j],z[j]);
 	x[j]=x1;
-	y[j]=y1;
+	y[j]=y1_;
       }
   }
   return(0);
@@ -913,8 +914,8 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   double xmmin,ymmax,xmmax,ymmin,FRect[4],WRect[4],ARect[4];
   integer ib;
   static integer aaint[]={2,10,2,10};
-  int verbose=0,wdim[2],narg;
-  char logf[2];
+  int verbose=0,wdim[2],narg_;
+  char logf_[2];
   double R,xo,yo,zo,dx,dy,dz,hx,hy,hx1,hy1,Teta,Alpha;
   integer wmax,hmax;
   static double cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
@@ -983,9 +984,9 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
   if ( flag == 2 || flag == 3 )
     {
       /* get current window size */
-      C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,
+      C2F(dr)("xget","wdim",&verbose,wdim,&narg_, PI0,PI0,PI0,
               PD0,PD0,PD0,PD0,0L,0L);
-      getscale2d(WRect,FRect,logf,ARect);
+      getscale2d(WRect,FRect,logf_,ARect);
       wmax=linint((double)wdim[0] * WRect[2]);
       hmax=linint((double)wdim[1] * WRect[3]); 
     }
@@ -1037,7 +1038,7 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
 
 void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
 {
-  integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg,hiddencolor;
+  integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg_,hiddencolor;
   integer i, iflag=0, j=1;
   sciPointObj *psubwin;
   for ( i = 0 ; i <= 4 ; i=i+2)
@@ -1047,7 +1048,7 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   ixbox[1]=XScale(xbox[Indices[1]]);iybox[1]=YScale(ybox[Indices[1]]);
   ixbox[3]=XScale(xbox[Indices[2]]);iybox[3]=YScale(ybox[Indices[2]]);
   ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
-  C2F(dr)("xget","line style",&verbose,lstyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  C2F(dr)("xget","line style",&verbose,lstyle,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   /**DJ.Abdemouche 2003**/
   if (version_flag() == 0) 
   { 
@@ -1075,7 +1076,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
   integer xind[8];
   integer ind2,ind3,ind;
   integer p,n,dvect[1],dash[6];
-  integer verbose=0,narg,pat;
+  integer verbose=0,narg_,pat;
   integer i,j;
   /** dans xbox[8] se trouve l'abscisse des points successifs   **/
   /** de la boite qui continent la surface                      **/
@@ -1144,18 +1145,18 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
   p=7,n=1;
   /**DJ.Abdemouche 2003**/
   if (version_flag() != 0) 
-    C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xget","foreground",&verbose,dvect,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   else
     dvect[0]=2;       
   /** On trace l'enveloppe cvxe **/
-  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","line style",&verbose,dash,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdemouche 2003**/	   
   if (flag[2]>=3){
     C2F(dr)("xpolys","v",ixbox,iybox,dvect,&n,&p
 	    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
-  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","pattern",&verbose,&pat,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",dvect,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   if (flag[2]>=3)
     AxesStrings(flag[2],ixbox,iybox,xind,legend,bbox);
@@ -1171,7 +1172,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
 
 void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, char *legend, double *bbox)
 {
-  integer verbose=0,narg,xz[2];
+  integer verbose=0,narg_,xz[2];
   integer iof;
   char *loc = NULL;
   /*   char * buff = NULL; */
@@ -1198,7 +1199,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   legz=strtok(NULL,"@");
 
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","wdim",&verbose,xz,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   iof = (xz[0]+xz[1])/50;
   if (version_flag() != 0) 
     {x=ixbox[2]-iof ;y=iybox[2]-iof;}
@@ -1361,8 +1362,8 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
   char fornum[100];
   integer i,barlength;
   double xp, dx,dy,ticsx,ticsy,size;
-  integer verbose=0,narg,xz[2];
-  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  integer verbose=0,narg_,xz[2];
+  C2F(dr)("xget","wdim",&verbose,xz,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   size = xz[0]>=xz[1] ? xz[1]/50.0 : xz[0]/50.0; 
   C2F(TDdrawaxis)(size,FPval,LPval,nax,FPoint,LPoint,Ticsdir) ;
   ChoixFormatE(fornum,Min(FPval,LPval),Max(LPval,FPval),
@@ -1462,7 +1463,7 @@ static double theta,alpha;
 int I3dRotation(void)
 {
   char driver[4];
-  integer flag[3],pixmode,alumode,verbose=0,narg,ww;
+  integer flag[3],pixmode,alumode,verbose=0,narg_,ww;
   static integer iflag[]={0,0,0,0};
   double xx,yy;
   double theta0,alpha0;
@@ -1478,7 +1479,7 @@ int I3dRotation(void)
   BOOL cube_scaling; /* TEST F.Leray 22.04.04 */
 
 
-  C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr1)("xget","window",&verbose,&ww,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (version_flag() != 0) {
     if ( Check3DPlots("v",&ww) == 0) 
       {
@@ -1488,8 +1489,8 @@ int I3dRotation(void)
   }
 
   /**DJ.Abdemouche 2003**/
-  C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","alufunction",&verbose,&alumode,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (strcmp("Rec",driver) != 0 && version_flag() !=0) 
@@ -1500,7 +1501,7 @@ int I3dRotation(void)
   else 
     {
       integer ibutton,in,iwait=0,istr=0;
-      integer verbose=0,ww,narg;
+      integer verbose_=0,ww_;
       double x0,yy0,x,y,xl,yl,bbox[4];
 #ifdef _MSC_VER
       SetWinhdc();
@@ -1617,14 +1618,14 @@ int I3dRotation(void)
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       if (version_flag() != 0)
 	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr1)("xget","window",&verbose_,&ww_,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef _MSC_VER
       ReleaseWinHdc();
       SciMouseRelease();
 #endif
       if (version_flag() != 0)
-	Tape_ReplayNewAngle("v",&ww,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
+	Tape_ReplayNewAngle("v",&ww_,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
       else
 	{  
           if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0){
@@ -1665,8 +1666,8 @@ static void dbox(void)
 {
   double xbox[8],ybox[8],zbox[8];
 #ifdef _MSC_VER
-  integer verbose=0,pat,pat1=3,narg,un=1;
-  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  integer verbose_=0,pat,pat1=3,narg_,un=1;
+  C2F(dr)("xget","pattern",&verbose_,&pat,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "line style",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif/**DJ.Abdemouche 2003**/
@@ -1683,9 +1684,9 @@ static void dbox(void)
  *
  *******************************************************************************/
 
-int C2F(fac3d3)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha, char *legend, integer *flag, double *bbox, integer lstr)
+int C2F(fac3d3)(double *x, double *y, double *z, integer *cvect, integer *p, integer *q, double *teta, double *alpha_, char *legend, integer *flag, double *bbox, integer lstr)
 {
-  C2F(fac3dg)("fac3d3",3,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
+  C2F(fac3dg)("fac3d3",3,x,y,z,cvect,p,q,teta,alpha_,legend,flag,bbox);
   return(0);
 }
 

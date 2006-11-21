@@ -35,4 +35,6 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
 
 void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, char *legend, double *bbox) ;
 
+int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *polyx, integer *polyy, integer *fill);
+
 #endif /* _PLO3D_H_ */
