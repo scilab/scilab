@@ -68,10 +68,10 @@ extern void SciViewportMove __PARAMS((struct BCG *,int,int));
 extern void SciViewportGet __PARAMS((struct BCG *,int *,int*));
 extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
 #ifdef WITH_TK
-extern void flushTKEvents();
+extern void flushTKEvents(void);
 #endif
 extern int versionflag;
-extern int version_flag() ;
+extern int version_flag(void) ;
 extern void refreshMenus( struct BCG * ScilabGC ) ;
 
 
@@ -81,13 +81,13 @@ extern void refreshMenus( struct BCG * ScilabGC ) ;
 
 void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle);
 void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dv1);
-void C2F(WriteGeneric1X11)();
-void C2F(xgetmarkX11)();
-void C2F(xsetmarkX11)();
-void C2F(xgetfontX11)();
-void C2F(xsetfontX11)();
-void C2F(setdashstyleX11)();
-void C2F(Write2VectX11)();
+void C2F(WriteGeneric1X11)(void);
+void C2F(xgetmarkX11)(void);
+void C2F(xsetmarkX11)(void);
+void C2F(xgetfontX11)(void);
+void C2F(xsetfontX11)(void);
+void C2F(setdashstyleX11)(void);
+void C2F(Write2VectX11)(void);
 void C2F(WriteGenericX11)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCX11)(integer *v1, integer *v2, integer *v3, integer *v4);
 void C2F(setforegroundX11)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -96,6 +96,29 @@ void C2F(setbackgroundX11)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(set_cX11)(integer i);
 void C2F(idfromnameX11) (char *name1, integer *num);
 void C2F(getdashX11)(integer *verbose, integer *value, integer *narg, double *dummy);
+
+BOOL IsTKGraphicalMode(void);
+int XgcAllocColors(struct BCG *xgc, int m);
+void XgcFreeColors(struct BCG *xgc);
+int WithBackingStore(void);
+void sci_pixmap_resize(struct BCG *Xgc,int x,int y);
+void Setpopupname(char *string);
+int get_xclick_client_message_flag (void);
+void xset_alufunction(char *string);
+void C2F(CreatePatterns)(Pixel whitepixel, Pixel blackpixel);
+Pixel RGB2pixO(unsigned int r, unsigned int g, unsigned int b, long unsigned int r_mask, long unsigned int g_mask, long unsigned int b_mask);
+Pixel RGB2pix(unsigned int r, unsigned int g, unsigned int b, long unsigned int r_mask, long unsigned int g_mask, long unsigned int b_mask);
+void set_default_colormap(void);
+int IsPrivateCmap(void);
+void set_cmap(Window w);
+Pixmap get_pixmap(int i);
+void C2F(DispStringAngleold)(integer *x0, integer *yy0, char *string, double *angle);
+int GetEventWindow(XEvent* event);
+void SendScilab(Window local, integer winnum);
+Window Window_With_Name(Window top, char *name, int j, char *ResList0, char *ResList1, char *ResList2);
+int fontidscale(int fontsize);
+int CheckScilabXgc(void);
+
 
 BOOL IsTKGraphicalMode(void){
 	return FALSE;
@@ -276,7 +299,7 @@ static void xset_pixmapclear(integer *v1, integer *v2, integer *v3, integer *v4)
     }
 }
 
-int WithBackingStore()
+int WithBackingStore(void)
 
 {
   return (ScilabXgc->Cdrawable != (Drawable) 0) ;
@@ -438,9 +461,9 @@ void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer 
 /* } */
 
 static int client_message=0;
-static void set_client_message_on() { client_message=1;};
-static void set_client_message_off() { client_message=0;};
-int get_xclick_client_message_flag () { return client_message;}
+static void set_client_message_on(void) { client_message=1;};
+static void set_client_message_off(void) { client_message=0;};
+int get_xclick_client_message_flag (void) { return client_message;}
 
 extern void set_wait_click(int val); 
 extern void set_event_select(int val); 
@@ -2491,7 +2514,7 @@ void get_b(int i, float *b)
  *-----------------------------------------------------------*/
 
 static void InitMissileXgc(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion();
+static void SetGraphicsVersion(void);
 
 
 static void xset_empty(integer *verbose, integer *v2, integer *v3, integer *v4)
