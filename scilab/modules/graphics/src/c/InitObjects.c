@@ -50,7 +50,7 @@ sciPointObj * getAxesModel( void )
 
 
 /* DJ.A 08/01/04 */
-int C2F(graphicsmodels) ()
+int C2F(graphicsmodels) (void)
 {
   sciHandleTab * newhd1 ;
   sciHandleTab * newhd2 ;

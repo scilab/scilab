@@ -17,18 +17,20 @@
 #ifndef __SCI_INIT_GRAPHICS__
 #define __SCI_INIT_GRAPHICS__
 
-extern int C2F(graphicsmodels) ();
+extern int C2F(graphicsmodels) (void);
 extern int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
 extern int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
 extern int sciInitGraphicMode (sciPointObj * pobj);
 
 extern sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
 
-extern void initsubwin(); /* INITOBJECT */
+extern void initsubwin(void); /* INITOBJECT */
 extern void reinitSubwin( void ) ;
 
-extern int InitFigureModel(); /* INITOBJECT */
-extern int InitAxesModel();   /* INITOBJECT */
+extern int InitFigureModel(void); /* INITOBJECT */
+extern int InitAxesModel(void);   /* INITOBJECT */
+
+int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );
 
 int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
 
