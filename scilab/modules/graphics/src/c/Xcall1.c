@@ -52,6 +52,11 @@ static double  Dvide;
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 #endif
 
+const struct funreplace * in_word_set (register const char *str, register unsigned int len);
+void C2F(setautoclear)(integer *num,integer * v2,integer * v3,integer * v4);
+void C2F(getautoclear)(integer * verbose,integer * num,integer * narg,double *dummy);
+void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer *istr, integer *x1, integer *yy1, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
+void xgetmouse2(char *fname, char *str, integer *ibutton, integer *iflag, integer *x1, integer *yy1, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1);
 
 
 
@@ -112,9 +117,7 @@ hash (str, len)
 __inline
 #endif
 const struct funreplace *
-in_word_set (str, len)
-     register const char *str;
-     register unsigned int len;
+in_word_set (register const char *str, register unsigned int len)
 {
   static const struct funreplace wordlist[] =
     {
@@ -509,13 +512,13 @@ void xclick_2(char *fname, char *str, integer *ibutton, integer *iflag, integer 
  *-----------------------------------------------------------------------------*/
 void xclick_any_1(char *fname, char *str, integer *ibutton, integer *iwin, integer *iflag, integer *x5, integer *x6, integer *x7, double *x, double *y, double *dx3, double *dx4, integer lx0, integer lx1)
 { 
-  integer x1,y1,n=1;
+  integer x1,y1_,n=1;
   integer verb=0,cur,na;
-  C2F(dr)(fname,str,ibutton,&x1,&y1,iwin,iflag,x7,PD0,PD0,PD0,PD0,lx0,lx1);
+  C2F(dr)(fname,str,ibutton,&x1,&y1_,iwin,iflag,x7,PD0,PD0,PD0,PD0,lx0,lx1);
   if (*ibutton>=0){
     C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     C2F(dr)("xset","window",iwin,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    C2F(echelle2d)(x,y,&x1,&y1,&n,&n,"i2f",3L);
+    C2F(echelle2d)(x,y,&x1,&y1_,&n,&n,"i2f",3L);
     C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
 }
