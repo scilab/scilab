@@ -85,55 +85,55 @@ int sci_xtitle( char * fname, unsigned long fname_len )
 
 
   for ( narg = 1 ; narg <= nbLabels ; narg++)
-  {
-    int i,m,n;
-    char **Str;
-    GetRhsVar(narg,"S",&m,&n,&Str);
-    if ( m*n == 0 ) continue;
-    strcpy(C2F(cha1).buf,Str[0]);
-    for ( i= 1 ; i < m*n ; i++) 
-    {
-      strcat(C2F(cha1).buf,"@"); 
-      strcat(C2F(cha1).buf,Str[i]);
-    }
-    FreeRhsSVar(Str);
-    if (version_flag() == 0)
-    {
-      sciPointObj * modifiedLabel ;
-      switch(narg){
-    case 1:
-      modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_title ;
-      break;
-    case 2:
-      modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_x_label ;
-      break;
-    case 3:
-      modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_y_label ;
-      break;
-    case 4:
-      modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_z_label ;
-    default:
-      break;
-      }
-      {
-        char * text = C2F(cha1).buf ;
-        sciSetText( modifiedLabel, &text, 1, 1 ) ;
-      }
-      if ( box == 1 )
-      {
-        sciSetIsFilled( modifiedLabel, TRUE ) ;
-      }
-      else
-      {
-        sciSetIsFilled( modifiedLabel, FALSE ) ;
-      }
-      /*  sciRedrawFigure(); */
-    }
-    else
-    {
-      Xtitle (C2F(cha1).buf,narg);
-    }
-  }
+	  {
+		  int i,m,n;
+		  char **Str;
+		  GetRhsVar(narg,"S",&m,&n,&Str);
+		  if ( m*n == 0 ) continue;
+		  strcpy(C2F(cha1).buf,Str[0]);
+		  for ( i= 1 ; i < m*n ; i++) 
+			  {
+				  strcat(C2F(cha1).buf,"@"); 
+				  strcat(C2F(cha1).buf,Str[i]);
+			  }
+		  FreeRhsSVar(Str);
+		  if (version_flag() == 0)
+			  {
+				  sciPointObj * modifiedLabel ;
+				  switch(narg){
+					  case 1:
+						  modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_title ;
+						  break;
+					  case 2:
+						  modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_x_label ;
+						  break;
+					  case 3:
+						  modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_y_label ;
+						  break;
+					  case 4:
+						  modifiedLabel = pSUBWIN_FEATURE(psubwin)->mon_z_label ;
+					  default:
+						  break;
+				  }
+				  {
+					  char * text = C2F(cha1).buf ;
+					  sciSetText( modifiedLabel, &text, 1, 1 ) ;
+				  }
+				  if ( box == 1 )
+					  {
+						  sciSetIsFilled( modifiedLabel, TRUE ) ;
+					  }
+				  else
+					  {
+						  sciSetIsFilled( modifiedLabel, FALSE ) ;
+					  }
+				  /*  sciRedrawFigure(); */
+			  }
+		  else
+			  {
+				  Xtitle (C2F(cha1).buf,narg);
+			  }
+	  }
 
   if (version_flag() == 0){
     /*     sciSetCurrentObj( sciGetSelectedSubWin (sciGetCurrentFigure ())); */

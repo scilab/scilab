@@ -11,7 +11,7 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-returnedList * createReturnedList( int nbElements, const char * elementName[] )
+returnedList * createReturnedList( int nbElements, char * elementName[] )
 {
   returnedList * newList = NULL ;
   int nbRow = 1 ;
@@ -100,7 +100,7 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
   return 0 ;
 }
 /*------------------------------------------------------------------------*/
-int addStringColVectorToReturnedList( returnedList * list, const char * vector[], int nbValues )
+int addStringColVectorToReturnedList( returnedList * list, char * vector[], int nbValues )
 {
   int nbCol = 1 ;
   /* check we are not using all the allocated space for the list */

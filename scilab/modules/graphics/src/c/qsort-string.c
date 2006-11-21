@@ -2,6 +2,7 @@
  * Copyright Enpc Jean-Philippe Chancelier 
  * Modified 2006 S.Steer (changing generic code to sepcialized code 
  * by hand macro expansion).
+ * Copyright (C) 2006 INRIA (Serge Steer, Allan Cornet)
  */
 
 static int swapcodestring( char ** parmi, char ** parmj, int n,int incr) 

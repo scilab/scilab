@@ -86,7 +86,7 @@ void intArrayCopy( int dest[], const int src[], int nbElement )
   memcpy( dest, src, nbElement * sizeof(int) ) ;
 }
 /*------------------------------------------------------------------------*/
-void stringArrayCopy( char * dest[], const char * src[], int nbElement )
+void stringArrayCopy( char * dest[], char * src[], int nbElement )
 {
   int i ;
   for ( i = 0 ; i < nbElement ; i++ )
@@ -164,7 +164,7 @@ int * createIntArrayCopy( const int src[], int nbElement )
   return res ;
 }
 /*-----------------------------------------------------------------------------------*/
-char ** createStringArrayCopy( const char * src[], int nbElement )
+char ** createStringArrayCopy( char * src[], int nbElement )
 {
   int i ;
   char ** res = MALLOC( nbElement * sizeof(char *) ) ;

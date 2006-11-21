@@ -63,7 +63,7 @@ int sciReturnRowIntVector( const int values[], int nbValues ) ;
  * in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.
  */
-int sciReturnRowStringVector( const char * values[], int nbValues ) ;
+int sciReturnRowStringVector(char * values[], int nbValues ) ;
 
 /**
  * copy a handle in the scilab stack in order to see it the console.
@@ -88,14 +88,14 @@ int sciReturnColHandleVector( const long handles[], int nbValues ) ;
  * into a Scilab matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.
  */
-int sciReturnMatrix( const double values[], int nbRow, int nbCol ) ;
+int sciReturnMatrix( double values[], int nbRow, int nbCol ) ;
 
 /**
  * copy a matrix stored has a char * array
  * into a Scilab string matrix in the stack in order to see it the console.
  * @return 0 if the function was executed correctly, -1 if an error occured.
  */
-int sciReturnStringMatrix( const char * values[], int nbRow, int nbCol ) ;
+int sciReturnStringMatrix(char * values[], int nbRow, int nbCol ) ;
 
 /**
  * return user data in the scilab console.

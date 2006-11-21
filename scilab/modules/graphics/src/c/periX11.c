@@ -47,7 +47,7 @@ extern Tk_Window TKmainWindow;
 
 double t=0.; /*for xclick_any */
 extern void AddMenu  __PARAMS((integer *win_num, char *button_name, char **entries, integer *ne, integer *typ, char *fname, integer *ierr));
-extern int XRotDrawString();
+extern int XRotDrawString(Display *dpy, XFontStruct *font, float angle, Drawable drawable, GC gc_, int x, int y, char *str);
 /** jpc_SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
 

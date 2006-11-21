@@ -9,9 +9,9 @@
 #include "returnPropertyList.h"
 
 /*-----------------------------------------------------------------------------------------*/
-int buildTListForTicks( const double * locations, const char * labels[], int nbTics )
+int buildTListForTicks( const double * locations, char * labels[], int nbTics )
 {
-  const char * variable_tlist[] = {"ticks","locations","labels"};
+  char * variable_tlist[] = {"ticks","locations","labels"};
 
   returnedList * tList = createReturnedList( 2, variable_tlist ) ;
 

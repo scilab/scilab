@@ -14,6 +14,6 @@
 #include "returnPropertyList.h"
 #include "sciprint.h"
 
-int buildTListForTicks( const double * locations, const char * labels[], int nbTics ) ;
+int buildTListForTicks( const double * locations, char * labels[], int nbTics ) ;
 
 #endif /* _GET_TICKS_UTILS_H_ */

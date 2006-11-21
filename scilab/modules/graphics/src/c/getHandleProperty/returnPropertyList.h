@@ -1,4 +1,4 @@
-/*------------------------------------------------------------------------*/
+ /*------------------------------------------------------------------------*/
 /* file: returnProperty.h                                                 */
 /* Copyright INRIA 2006                                                   */
 /* Authors : Jean-Baptiste Silvy                                          */
@@ -24,7 +24,7 @@ typedef struct
  *                  and its properties. Its size is nbElement + 1.
  * @return a pointer to the newly created list or NULL if an error occurred.
  */
-returnedList * createReturnedList( int nbElements, const char * elementName[] ) ;
+returnedList * createReturnedList( int nbElements, char * elementName[] ) ;
 
 /**
  * free the list. Must be done after using the list.
@@ -72,6 +72,6 @@ int addMatrixToReturnedList( returnedList * list, const double matrix[], int nbR
  *                1  if the list is full so the item can not be inserted
  *                -1 if an other error occurred
  */
-int addStringColVectorToReturnedList( returnedList * list, const char * vector[], int nbValues ) ;
+int addStringColVectorToReturnedList( returnedList * list, char * vector[], int nbValues ) ;
 
 #endif /* _RETURN_PROPERTY_LIST_H_ */

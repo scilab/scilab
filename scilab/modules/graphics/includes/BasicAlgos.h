@@ -10,6 +10,7 @@
 #define _BASIC_ALGOS_H_
 
 #include "machine.h"
+#include <string.h>
 
 /**
  * Find the striclty positive minimum value of an array of double.
@@ -48,7 +49,7 @@ void intArrayCopy( int dest[], const int src[], int nbElement ) ;
 /**
  * copy a char * array into an other
  */
-void stringArrayCopy( char * dest[], const char * src[], int nbElement ) ;
+void stringArrayCopy( char * dest[], char * src[], int nbElement ) ;
 
 /**
  * set each element of an array to a certain value
@@ -77,7 +78,7 @@ int * createIntArrayCopy( const int src[], int nbElement ) ;
 /**
  * allocate a copy of a string array
  */
-char ** createStringArrayCopy( const char * src[], int nbElement ) ;
+char ** createStringArrayCopy( char * src[], int nbElement ) ;
 /*-----------------------------------------------------------------------------------*/
 
 #endif /* _BASIC_ALGOS_H_ */

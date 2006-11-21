@@ -2,6 +2,7 @@
  *    Graphic library
  *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
+ *    Copyright (C) 1998-2006 INRIA (Serge Steer, Fabrice Leray, Jean-Baptiste Silvy, Allan Cornet)
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------
  * save graphic code in a file  

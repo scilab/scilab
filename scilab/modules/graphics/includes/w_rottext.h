@@ -48,7 +48,7 @@
 
 /* ---------------------------------------------------------------------- */
 
-/* this shoulf be C++ compliant, thanks to 
+/* this should be C++ compliant, thanks to 
      vlp@latina.inesc.pt (Vasco Lopes Paulo) */
 
 #if defined(__cplusplus) || defined(c_plusplus)
@@ -71,14 +71,19 @@ XPoint *XRotTextExtents(XFontStruct*, float,
 
 #else
 
-extern float   XRotVersion();
-extern void    XRotSetMagnification();
-extern void    XRotSetBoundingBoxPad();
-extern int     XRotDrawString();
-extern int     XRotDrawImageString();
-extern int     XRotDrawAlignedString();
-extern int     XRotDrawAlignedImageString();
-extern XPoint *XRotTextExtents();
+extern float   XRotVersion(char*, int);
+extern void    XRotSetMagnification(float);
+extern void    XRotSetBoundingBoxPad(int);
+extern int     XRotDrawString(Display*, XFontStruct*, float,
+                       Drawable, GC, int, int, char*);
+extern int     XRotDrawImageString(Display*, XFontStruct*, float,
+                            Drawable, GC, int, int, char*);
+extern int     XRotDrawAlignedString(Display*, XFontStruct*, float,
+                              Drawable, GC, int, int, char*, int);
+extern int     XRotDrawAlignedImageString(Display*, XFontStruct*, float,
+                                   Drawable, GC, int, int, char*, int);
+extern XPoint *XRotTextExtents(XFontStruct*, float,
+			int, int, char*, int);
 
 #endif /* __cplusplus */
 

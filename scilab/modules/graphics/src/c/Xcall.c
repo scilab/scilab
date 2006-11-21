@@ -34,6 +34,7 @@
    *  Graphic library for 2D and 3D plotting 
    *  Copyright (C) 1998-2001 Chancelier Jean-Philippe
    * jpc@cermics.enpc.fr 
+   *  Copyright (C) 1998-2006 INRIA (Serge Steer, Fabrice Leray, Jean-Baptiste Silvy, Allan Cornet, Pierre Marechal)
    --------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
@@ -330,36 +331,35 @@ int GetDriverId() { return DriverId;}
    dr has 2 last extra parametres to deal with the size of
    x0 and x1 */
 
-int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
-	    integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
+int C2F(dr)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6, integer *x7,double *dx1,double *dx2,double *dx3,double *dx4,
 	    integer lx0, integer lx1)
 { 
 #ifdef _MSC_VER
   if ( DriverId == 0 && DriverName[0] != 'I' ) 
     {
       SetWinhdc();
-      C2F(all)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4);
+      C2F(all)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1);
       ReleaseWinHdc();
     }
   else 
     {
-      C2F(all)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4);
+      C2F(all)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1);
     }
 #else
-      C2F(all)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4);
+      C2F(all)(x0,x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1);
 #endif
   return 0;
 }
 
 static void C2F(all)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,
 		     integer *x6,
-		     integer *x7,double *dx1,double *dx2,double *dx3,double *dx4)
+		     integer *x7,double *dx1,double *dx2,double *dx3,double *dx4, integer lx0, integer lx1)
 { 
   const struct funreplace *fr;
   fr=xcall_in_word_set(x0,strlen(x0));
   if ( fr != NULL ) 
     {
-      (*(fr->action[DriverId]))(x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4);
+      (*(fr->action[DriverId]))(x1,x2,x3,x4,x5,x6,x7,dx1,dx2,dx3,dx4,lx0,lx1);
     }
   else 
     {

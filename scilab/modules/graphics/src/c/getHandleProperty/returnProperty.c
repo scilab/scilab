@@ -103,7 +103,7 @@ int sciReturnRowIntVector( const int values[], int nbValues )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciReturnRowStringVector( const char * values[], int nbValues )
+int sciReturnRowStringVector(char * values[], int nbValues )
 {
   return sciReturnStringMatrix( values, 1, nbValues ) ;
 }
@@ -144,7 +144,7 @@ int sciReturnColHandleVector( const long handles[], int nbValues )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciReturnMatrix( const double values[], int nbRow, int nbCol )
+int sciReturnMatrix( double values[], int nbRow, int nbCol )
 {
   int outIndex = 0 ;
   int i ;
@@ -156,7 +156,7 @@ int sciReturnMatrix( const double values[], int nbRow, int nbCol )
   return 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
-int sciReturnStringMatrix( const char * values[], int nbRow, int nbCol )
+int sciReturnStringMatrix(char * values[], int nbRow, int nbCol )
 {
   CreateVarFromPtr( Rhs+1, "S", &nbRow, &nbCol, values ) ;
   return 0 ;
