@@ -41,7 +41,6 @@
 #define GXset 15
 #endif
 
-
 #include "math_graphics.h"
 #include "periFig.h"
 #include "color.h"
@@ -116,9 +115,6 @@ static void C2F(FileInitFromScreenXfig) __PARAMS((void));
 static void set_dash  __PARAMS((int dash,int *l_style,int *_val));
 static void set_color  __PARAMS((int c,int *color));
 /** Structure to keep the graphic state  **/
-
-struct BCG  ScilabGCXfig ;
-static BOOL ScilabGCXfig_is_initialized = FALSE;
 
 /*-----------------------------------------------------
 \encadre{General routines}
@@ -2711,7 +2707,7 @@ void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer 
       FPRINTF((file,"# Object : %d %s -<%d>- \n", (int)0,string, (int)fvect[0]));
       for ( i =0 ; i < sizev ; i++)
 	{
-	  int flag = 1;
+	  flag = 1;
 	  if ( ScilabGCXfig.ClipRegionSet == 1 ) 
 	    {
 	      if ( vx[i] > ScilabGCXfig.CurClipRegion[0] 
