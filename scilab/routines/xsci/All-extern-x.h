@@ -160,7 +160,7 @@ extern void do_osc  __PARAMS(( int (*func) ()));
 extern void Changename  __PARAMS((register char *name));  
 extern void Changetitle  __PARAMS((register char *name));  
 extern void Panic  __PARAMS((char *s, int a));  
-extern char *SysErrorMsg  __PARAMS((int n));  
+extern const char *SysErrorMsg  __PARAMS((int n));  
 extern void SysError  __PARAMS((int i));  
 extern void Error  __PARAMS((int i));  
 extern void Cleanup  __PARAMS((int code));  

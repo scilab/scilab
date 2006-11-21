@@ -520,7 +520,7 @@ extern char    *sys_errlist[];
 
 static char UE[]="unknown error";
 
-char *SysErrorMsg(n)
+const char *SysErrorMsg(n)
   int n;
 {
   return ((n >= 0 && n < sys_nerr) ? sys_errlist[n] : UE );
