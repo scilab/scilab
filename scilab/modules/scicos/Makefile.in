@@ -113,6 +113,7 @@ am__objects_1 = libscicos_la-cstblk4.lo libscicos_la-readau.lo \
 	libscicos_la-slider.lo libscicos_la-tanh_blk.lo \
 	libscicos_la-switch2.lo libscicos_la-cmscope.lo \
 	libscicos_la-asinh_blk.lo libscicos_la-cpass2.lo \
+	libscicos_la-ExistScicos.lo libscicos_la-haltscicos.lo \
 	libscicos_la-bouncexy.lo
 am__objects_2 = scitovv.lo qzflr.lo writef.lo diffblk.lo tcsltj.lo \
 	dlradp.lo sciblk.lo lsplit.lo evtdly.lo mux.lo ifthel.lo \
@@ -451,6 +452,8 @@ src/c/switch2.c \
 src/c/cmscope.c \
 src/c/asinh_blk.c \
 src/c/cpass2.c \
+src/c/ExistScicos.c \
+src/c/haltscicos.c \
 src/c/bouncexy.c
 
 SCICOS_C_SOURCES_EXT = \
@@ -668,6 +671,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-ExistScicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-absolute_value.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-acos_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-acosh_blk.Plo@am__quote@
@@ -700,6 +704,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-gainblk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-gw_cscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-gw_scicos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-haltscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-hystheresis.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-import.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicos_la-intconnection.Plo@am__quote@
@@ -1271,6 +1276,20 @@ libscicos_la-cpass2.lo: src/c/cpass2.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cpass2.c' object='libscicos_la-cpass2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicos_la_CFLAGS) $(CFLAGS) -c -o libscicos_la-cpass2.lo `test -f 'src/c/cpass2.c' || echo '$(srcdir)/'`src/c/cpass2.c
+
+libscicos_la-ExistScicos.lo: src/c/ExistScicos.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicos_la_CFLAGS) $(CFLAGS) -MT libscicos_la-ExistScicos.lo -MD -MP -MF "$(DEPDIR)/libscicos_la-ExistScicos.Tpo" -c -o libscicos_la-ExistScicos.lo `test -f 'src/c/ExistScicos.c' || echo '$(srcdir)/'`src/c/ExistScicos.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libscicos_la-ExistScicos.Tpo" "$(DEPDIR)/libscicos_la-ExistScicos.Plo"; else rm -f "$(DEPDIR)/libscicos_la-ExistScicos.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ExistScicos.c' object='libscicos_la-ExistScicos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicos_la_CFLAGS) $(CFLAGS) -c -o libscicos_la-ExistScicos.lo `test -f 'src/c/ExistScicos.c' || echo '$(srcdir)/'`src/c/ExistScicos.c
+
+libscicos_la-haltscicos.lo: src/c/haltscicos.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicos_la_CFLAGS) $(CFLAGS) -MT libscicos_la-haltscicos.lo -MD -MP -MF "$(DEPDIR)/libscicos_la-haltscicos.Tpo" -c -o libscicos_la-haltscicos.lo `test -f 'src/c/haltscicos.c' || echo '$(srcdir)/'`src/c/haltscicos.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libscicos_la-haltscicos.Tpo" "$(DEPDIR)/libscicos_la-haltscicos.Plo"; else rm -f "$(DEPDIR)/libscicos_la-haltscicos.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/haltscicos.c' object='libscicos_la-haltscicos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicos_la_CFLAGS) $(CFLAGS) -c -o libscicos_la-haltscicos.lo `test -f 'src/c/haltscicos.c' || echo '$(srcdir)/'`src/c/haltscicos.c
 
 libscicos_la-bouncexy.lo: src/c/bouncexy.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicos_la_CFLAGS) $(CFLAGS) -MT libscicos_la-bouncexy.lo -MD -MP -MF "$(DEPDIR)/libscicos_la-bouncexy.Tpo" -c -o libscicos_la-bouncexy.lo `test -f 'src/c/bouncexy.c' || echo '$(srcdir)/'`src/c/bouncexy.c; \
