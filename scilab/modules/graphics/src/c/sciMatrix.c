@@ -10,6 +10,7 @@
 #include "sciMatrix.h"
 #include "string.h"
 #include "MALLOC.h"
+#include <stdlib.h>
 
 /*-------------------------------------------------------------------------------------------*/
 sciMatrix * emptyMatrix( void )
