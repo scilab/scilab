@@ -42,7 +42,6 @@ int sci_xrects( char *fname, unsigned long fname_len )
   }
   else 
   {
-    int i;
     m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
     for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
   }  
