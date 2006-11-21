@@ -7,24 +7,23 @@
 	<DATE>November 2006</DATE>
 	<SHORT_DESCRIPTION name="startup"> startup file</SHORT_DESCRIPTION>
 	<DESCRIPTION>
-		<P>Les fichiers de démarrage <VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
-		sont automatiquement executés (s'ils existent) au démarrage de Scilab, ainsi que le fichier 
-		SCI/scilab.star présent dans le répertoire de Scilab.
+		<P>
+			Les fichiers de démarrage <VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
+			sont automatiquement executés (s'ils existent) au démarrage de Scilab, ainsi que le fichier 
+			SCI/scilab.star présent dans le répertoire de Scilab.
+		</P>
 	</DESCRIPTION>
 	
-	<SECTION label="Remark">
-		
+	<SECTION label="Remarks">
 		<P>
 			les fichiers de démarrage doivent obligatoirement comporter une nouvelle ligne en fin 
 			de fichier pour être pris en compte.
 		</P>
-		
 		<P>
 			Définition de SCIHOME : 
 			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
 			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
 		</P>
-		
 	</SECTION>
 	
 	<SEE_ALSO>

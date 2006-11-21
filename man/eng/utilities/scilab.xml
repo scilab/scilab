@@ -110,11 +110,11 @@
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
    
-	<SECTION label='Remarque'>
+	<SECTION label='Remark'>
 		<P>
-			Définition de SCIHOME : 
-			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
-			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+			SCIHOME definition: 
+			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
+			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
 		</P>
 	</SECTION>
 	

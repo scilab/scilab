@@ -23,28 +23,23 @@
 			anciennes&quot; sont celles qui apparaissent avec la commande
 			<VERB>who(&apos;get&apos;)</VERB>.
 		</P>
-		
 		<P>
 			<VERB>predef()</VERB> renvoie le nombre de variables protégées.
 		</P>
-		
 		<P>
 			<VERB>predef(&apos;a[ll]&apos;)</VERB> protège toutes les variables et
 			renvoie l&apos;ancien et le nouveau nombre de variables protégées.
 		</P>
-		
 		<P>
 			<VERB>predef(&apos;c[lear]&apos;)</VERB> enlève la protection de toutes
 			les variables sauf les 7 définies dernièrement. Renvoie l&apos;ancien et
 			le nouveau nombre de variables protégées.
 		</P>
-		
 		<P>
 			<VERB>predef(n)</VERB> protège les <VERB>max(n,7)</VERB> variables
 			définies dernièrement. Renvoie l&apos;ancien et le nouveau nombre de
 			variables protégées.
 		</P>
-		
 	</DESCRIPTION>
 	
 	<SECTION label='Remarques'>
@@ -52,19 +47,13 @@
 			Le nombre de variables protégées est défini dans le fichier de démarrage
 			<VERB>SCI/scilab.star</VERB>. L&apos;utilisateur a la possibilité de
 			définir ses propres variables protégées dans les fichiers de démarrage
-			<VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
+			<VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>.
 		</P>
 		<P>
 			Définition de SCIHOME : 
 			Sous Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
 			Sous Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
 		</P>
-	</SECTION>
-		
-		
-		
-		
-		
 	</SECTION>
 	<SEE_ALSO>
 		<SEE_ALSO_ITEM> <LINK>clear</LINK> </SEE_ALSO_ITEM> 
