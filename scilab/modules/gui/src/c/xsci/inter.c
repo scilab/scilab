@@ -14,6 +14,8 @@
 #include "All-extern-x.h"
 #include "All-extern.h"
 #include "xscion.h"
+#include "TclEvents.h" /* flushTKEvents() */
+#include "dynamic_menus.h" /* ismenu() */
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -26,9 +28,9 @@
 #include <ctype.h>
 #include <errno.h>
 #include <stdio.h>
+#include "inter.h"
 
 /**
- added by HUYNH Olivier on the 10/06/2004 09:55
  hpux uses time.h instead of select.h
 **/
 #ifdef hpux
