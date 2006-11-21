@@ -5,7 +5,7 @@
 #include "men_scilab.h"
 #endif
 
-
+#include "sciprint.h"
 #include "MALLOC.h"
 
 #define OK 1

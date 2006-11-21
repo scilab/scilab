@@ -1,6 +1,8 @@
 /* Copyright ENPC */
 #include "sci_mem_alloc.h"
 #include "men_scilab.h"
+#include "x_charproc.h" /* Scistring */
+#include "sciprint.h"
 
 #define OK 1
 #define CANCEL 2

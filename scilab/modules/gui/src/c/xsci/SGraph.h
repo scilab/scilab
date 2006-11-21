@@ -5,17 +5,17 @@ int IswmDeleteWindow(XEvent *event);
 int IsCloseSGWindow(XEvent *event);
 
 
-void btn_pressed(Widget widget, XEvent*	event, String*	params, Cardinal*	num_params);
+void btn_pressed(Widget widget, XEvent*	event, String* params, Cardinal* num_params);
 
-void btn_released(Widget	widget, XEvent*	event,String*	params, Cardinal*	num_params);
+void btn_released(Widget widget, XEvent* event,String* params, Cardinal* num_params);
 
-void ctrl_key(Widget	widget, XEvent*	event, String*	params, Cardinal*	num_params);
+void ctrl_key(Widget widget, XEvent* event, String*	params, Cardinal* num_params);
 
-void key_pressed(Widget	widget, XEvent*	event, String*	params, Cardinal*	num_params);
+void key_pressed(Widget	widget, XEvent*	event, String* params, Cardinal* num_params);
 
-void key_released(Widget	widget,XEvent*	event, String*	params, Cardinal*	num_params);
+void key_released(Widget widget,XEvent*	event, String* params, Cardinal* num_params);
 
-void mouse_moved(Widget	widget, XEvent*	event, String*	params, Cardinal*	num_params);
+void mouse_moved(Widget	widget, XEvent*	event, String* params, Cardinal* num_params);
 
 void SciViewportMove(struct BCG *ScilabXgc, int x, int y);
 

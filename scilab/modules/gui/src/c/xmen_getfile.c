@@ -6,7 +6,8 @@
  ***********************************************************/
 #include "sci_mem_alloc.h"
 #include "men_scilab.h"
-#include "x_charproc.h"
+#include "x_charproc.h" /* Scistring */
+#include "men_Sutils.h" /* ScilabMStr2C */
 
 extern int set_cmap __PARAMS((Window w)); 
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));

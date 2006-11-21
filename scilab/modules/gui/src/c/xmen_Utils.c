@@ -26,7 +26,7 @@ extern XtAppContext app_con;
 static   Arg args[10];
 static   Cardinal iargs = 0;
 
-
+void ShellFormCreateOld(char *shellname, Widget *shell, Widget *form, Display **dpyh);
 
 /*****************************************************************
  * generic function used for all the Scilab transient `menus' 

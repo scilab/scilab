@@ -7,6 +7,7 @@
 #include "machine.h"
 #endif
 
+
 #include <X11/Xatom.h>
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
@@ -27,6 +28,9 @@
 #include <X11/Xaw3d/Toggle.h>
 #include <X11/Xaw3d/Viewport.h>
 #include <X11/Xaw3d/Cardinals.h>
+
+#include "Xcall1.h" /* dr_ */
+#include "xwidgets.h"
 
 typedef  struct  {
   char *name;
@@ -85,9 +89,7 @@ MenuSelect(w, junk, garbage)
  * AddNewMenu 
  */
 
-void AddNewMenu(parent, drawbox)
-     Widget parent;
-     Widget drawbox;
+void AddNewMenu(Widget parent, Widget drawbox)
 {
   Widget button,menu,entry;
   static Arg args[1] ;

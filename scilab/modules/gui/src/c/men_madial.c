@@ -5,7 +5,8 @@
 #include "men_scilab.h"
 #endif
 
-
+#include "men_Sutils.h" /* ScilabMStr2C */
+#include "sciprint.h"
 #include "MALLOC.h"
 
 int MatrixDialogWindow(void);

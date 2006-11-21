@@ -5,6 +5,7 @@
 #else
 #include "men_scilab.h"
 #endif
+#include "x_charproc.h" /* Scistring */
 
 extern MDialog SciMDialog;        /** used to stored the mdialog data **/
 

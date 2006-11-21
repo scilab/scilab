@@ -22,6 +22,8 @@
 #endif
 #include "stack-c.h"
 
+extern int IsConsoleMode(void);
+
 /*-----------------------------------------------------------------------------------*/
 int sci_clc( char * fname, unsigned long fname_len )
 {

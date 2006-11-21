@@ -6,6 +6,8 @@
 #endif
 
 #include "MALLOC.h"
+#include "men_Sutils.h" /* ScilabMStr2C */
+#include "sciprint.h"
 
 SciMess ScilabMessage ={NULL,NULL,-1,0};
 

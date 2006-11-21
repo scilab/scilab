@@ -7,6 +7,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scimdial) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(scimdial)(fname,fname_len);

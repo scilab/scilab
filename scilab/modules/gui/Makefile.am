@@ -56,28 +56,22 @@ src/c/men_print.c
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_x_message_modeless.c \
-sci_gateway/c/sci_unsetmenu_old.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
-sci_gateway/c/sci_delmenu_old.c \
 sci_gateway/c/sci_show_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_xgetfile.c \
-sci_gateway/c/sci_addmenu_old.c \
 sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_x_message.c \
-sci_gateway/c/sci_setmenu_old.c
+sci_gateway/c/sci_x_message.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_setmenu_old.f \
+GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/sci_choices.f \
-sci_gateway/fortran/sci_delmenu_old.f \
 sci_gateway/fortran/sci_x_mdialog.f \
 sci_gateway/fortran/sci_x_dialog.f \
 sci_gateway/fortran/sci_x_message_modeless.f \
 sci_gateway/fortran/sci_x_choose.f \
 sci_gateway/fortran/sci_xgetfile.f \
-sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_x_message.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c

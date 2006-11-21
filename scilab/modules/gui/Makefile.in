@@ -93,23 +93,17 @@ am__libgui_la_SOURCES_DIST = src/c/xsci/wf_w_util.c src/c/xsci/utils.c \
 	src/c/men_mdial.c src/c/men_madial.c src/c/xmen_dialog.c \
 	src/c/xmen_Utils.c src/c/men_choice.c src/c/men_print.c \
 	sci_gateway/c/sci_x_choice.c sci_gateway/c/sci_clc.c \
-	sci_gateway/c/sci_x_message_modeless.c \
-	sci_gateway/c/sci_unsetmenu_old.c sci_gateway/c/gw_gui.c \
+	sci_gateway/c/sci_x_message_modeless.c sci_gateway/c/gw_gui.c \
 	sci_gateway/c/sci_x_mdialog.c sci_gateway/c/sci_x_dialog.c \
-	sci_gateway/c/sci_delmenu_old.c \
 	sci_gateway/c/sci_show_window.c sci_gateway/c/sci_x_choose.c \
-	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_addmenu_old.c \
-	sci_gateway/c/sci_tohome.c sci_gateway/c/sci_x_message.c \
-	sci_gateway/c/sci_setmenu_old.c \
-	sci_gateway/fortran/sci_setmenu_old.f \
+	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_tohome.c \
+	sci_gateway/c/sci_x_message.c \
 	sci_gateway/fortran/sci_choices.f \
-	sci_gateway/fortran/sci_delmenu_old.f \
 	sci_gateway/fortran/sci_x_mdialog.f \
 	sci_gateway/fortran/sci_x_dialog.f \
 	sci_gateway/fortran/sci_x_message_modeless.f \
 	sci_gateway/fortran/sci_x_choose.f \
 	sci_gateway/fortran/sci_xgetfile.f \
-	sci_gateway/fortran/sci_addmenu_old.f \
 	sci_gateway/fortran/sci_x_message.f \
 	src/c/SciGUIConsole/SciGUIConsole.c
 am__objects_1 = libgui_la-wf_w_util.lo libgui_la-utils.lo \
@@ -136,16 +130,13 @@ am__objects_1 = libgui_la-wf_w_util.lo libgui_la-utils.lo \
 	libgui_la-xmen_dialog.lo libgui_la-xmen_Utils.lo \
 	libgui_la-men_choice.lo libgui_la-men_print.lo
 am__objects_2 = libgui_la-sci_x_choice.lo libgui_la-sci_clc.lo \
-	libgui_la-sci_x_message_modeless.lo \
-	libgui_la-sci_unsetmenu_old.lo libgui_la-gw_gui.lo \
+	libgui_la-sci_x_message_modeless.lo libgui_la-gw_gui.lo \
 	libgui_la-sci_x_mdialog.lo libgui_la-sci_x_dialog.lo \
-	libgui_la-sci_delmenu_old.lo libgui_la-sci_show_window.lo \
-	libgui_la-sci_x_choose.lo libgui_la-sci_xgetfile.lo \
-	libgui_la-sci_addmenu_old.lo libgui_la-sci_tohome.lo \
-	libgui_la-sci_x_message.lo libgui_la-sci_setmenu_old.lo
-am__objects_3 = sci_setmenu_old.lo sci_choices.lo sci_delmenu_old.lo \
-	sci_x_mdialog.lo sci_x_dialog.lo sci_x_message_modeless.lo \
-	sci_x_choose.lo sci_xgetfile.lo sci_addmenu_old.lo \
+	libgui_la-sci_show_window.lo libgui_la-sci_x_choose.lo \
+	libgui_la-sci_xgetfile.lo libgui_la-sci_tohome.lo \
+	libgui_la-sci_x_message.lo
+am__objects_3 = sci_choices.lo sci_x_mdialog.lo sci_x_dialog.lo \
+	sci_x_message_modeless.lo sci_x_choose.lo sci_xgetfile.lo \
 	sci_x_message.lo
 am__objects_4 = libgui_la-SciGUIConsole.lo
 @JAVA_TRUE@am__objects_5 = $(am__objects_4)
@@ -437,28 +428,22 @@ src/c/men_print.c
 GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
 sci_gateway/c/sci_clc.c \
 sci_gateway/c/sci_x_message_modeless.c \
-sci_gateway/c/sci_unsetmenu_old.c \
 sci_gateway/c/gw_gui.c \
 sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
-sci_gateway/c/sci_delmenu_old.c \
 sci_gateway/c/sci_show_window.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_xgetfile.c \
-sci_gateway/c/sci_addmenu_old.c \
 sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_x_message.c \
-sci_gateway/c/sci_setmenu_old.c
+sci_gateway/c/sci_x_message.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_setmenu_old.f \
+GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_choices.f \
-sci_gateway/fortran/sci_delmenu_old.f \
 sci_gateway/fortran/sci_x_mdialog.f \
 sci_gateway/fortran/sci_x_dialog.f \
 sci_gateway/fortran/sci_x_message_modeless.f \
 sci_gateway/fortran/sci_x_choose.f \
 sci_gateway/fortran/sci_xgetfile.f \
-sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_x_message.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
@@ -571,13 +556,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_mdial.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_message.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-men_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_addmenu_old.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_clc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_delmenu_old.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_setmenu_old.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_show_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_unsetmenu_old.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_choice.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_choose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgui_la-sci_x_dialog.Plo@am__quote@
@@ -1000,13 +981,6 @@ libgui_la-sci_x_message_modeless.lo: sci_gateway/c/sci_x_message_modeless.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_message_modeless.lo `test -f 'sci_gateway/c/sci_x_message_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message_modeless.c
 
-libgui_la-sci_unsetmenu_old.lo: sci_gateway/c/sci_unsetmenu_old.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_unsetmenu_old.lo -MD -MP -MF "$(DEPDIR)/libgui_la-sci_unsetmenu_old.Tpo" -c -o libgui_la-sci_unsetmenu_old.lo `test -f 'sci_gateway/c/sci_unsetmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu_old.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgui_la-sci_unsetmenu_old.Tpo" "$(DEPDIR)/libgui_la-sci_unsetmenu_old.Plo"; else rm -f "$(DEPDIR)/libgui_la-sci_unsetmenu_old.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_unsetmenu_old.c' object='libgui_la-sci_unsetmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_unsetmenu_old.lo `test -f 'sci_gateway/c/sci_unsetmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu_old.c
-
 libgui_la-gw_gui.lo: sci_gateway/c/gw_gui.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-gw_gui.lo -MD -MP -MF "$(DEPDIR)/libgui_la-gw_gui.Tpo" -c -o libgui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgui_la-gw_gui.Tpo" "$(DEPDIR)/libgui_la-gw_gui.Plo"; else rm -f "$(DEPDIR)/libgui_la-gw_gui.Tpo"; exit 1; fi
@@ -1027,13 +1001,6 @@ libgui_la-sci_x_dialog.lo: sci_gateway/c/sci_x_dialog.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_dialog.c' object='libgui_la-sci_x_dialog.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_dialog.lo `test -f 'sci_gateway/c/sci_x_dialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_dialog.c
-
-libgui_la-sci_delmenu_old.lo: sci_gateway/c/sci_delmenu_old.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_delmenu_old.lo -MD -MP -MF "$(DEPDIR)/libgui_la-sci_delmenu_old.Tpo" -c -o libgui_la-sci_delmenu_old.lo `test -f 'sci_gateway/c/sci_delmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delmenu_old.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgui_la-sci_delmenu_old.Tpo" "$(DEPDIR)/libgui_la-sci_delmenu_old.Plo"; else rm -f "$(DEPDIR)/libgui_la-sci_delmenu_old.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_delmenu_old.c' object='libgui_la-sci_delmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_delmenu_old.lo `test -f 'sci_gateway/c/sci_delmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_delmenu_old.c
 
 libgui_la-sci_show_window.lo: sci_gateway/c/sci_show_window.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_show_window.lo -MD -MP -MF "$(DEPDIR)/libgui_la-sci_show_window.Tpo" -c -o libgui_la-sci_show_window.lo `test -f 'sci_gateway/c/sci_show_window.c' || echo '$(srcdir)/'`sci_gateway/c/sci_show_window.c; \
@@ -1056,13 +1023,6 @@ libgui_la-sci_xgetfile.lo: sci_gateway/c/sci_xgetfile.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
 
-libgui_la-sci_addmenu_old.lo: sci_gateway/c/sci_addmenu_old.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_addmenu_old.lo -MD -MP -MF "$(DEPDIR)/libgui_la-sci_addmenu_old.Tpo" -c -o libgui_la-sci_addmenu_old.lo `test -f 'sci_gateway/c/sci_addmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addmenu_old.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgui_la-sci_addmenu_old.Tpo" "$(DEPDIR)/libgui_la-sci_addmenu_old.Plo"; else rm -f "$(DEPDIR)/libgui_la-sci_addmenu_old.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_addmenu_old.c' object='libgui_la-sci_addmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_addmenu_old.lo `test -f 'sci_gateway/c/sci_addmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addmenu_old.c
-
 libgui_la-sci_tohome.lo: sci_gateway/c/sci_tohome.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_tohome.lo -MD -MP -MF "$(DEPDIR)/libgui_la-sci_tohome.Tpo" -c -o libgui_la-sci_tohome.lo `test -f 'sci_gateway/c/sci_tohome.c' || echo '$(srcdir)/'`sci_gateway/c/sci_tohome.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgui_la-sci_tohome.Tpo" "$(DEPDIR)/libgui_la-sci_tohome.Plo"; else rm -f "$(DEPDIR)/libgui_la-sci_tohome.Tpo"; exit 1; fi
@@ -1076,13 +1036,6 @@ libgui_la-sci_x_message.lo: sci_gateway/c/sci_x_message.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_x_message.c' object='libgui_la-sci_x_message.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_x_message.lo `test -f 'sci_gateway/c/sci_x_message.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_message.c
-
-libgui_la-sci_setmenu_old.lo: sci_gateway/c/sci_setmenu_old.c
-@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-sci_setmenu_old.lo -MD -MP -MF "$(DEPDIR)/libgui_la-sci_setmenu_old.Tpo" -c -o libgui_la-sci_setmenu_old.lo `test -f 'sci_gateway/c/sci_setmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu_old.c; \
-@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgui_la-sci_setmenu_old.Tpo" "$(DEPDIR)/libgui_la-sci_setmenu_old.Plo"; else rm -f "$(DEPDIR)/libgui_la-sci_setmenu_old.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_setmenu_old.c' object='libgui_la-sci_setmenu_old.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -c -o libgui_la-sci_setmenu_old.lo `test -f 'sci_gateway/c/sci_setmenu_old.c' || echo '$(srcdir)/'`sci_gateway/c/sci_setmenu_old.c
 
 libgui_la-SciGUIConsole.lo: src/c/SciGUIConsole/SciGUIConsole.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgui_la_CFLAGS) $(CFLAGS) -MT libgui_la-SciGUIConsole.lo -MD -MP -MF "$(DEPDIR)/libgui_la-SciGUIConsole.Tpo" -c -o libgui_la-SciGUIConsole.lo `test -f 'src/c/SciGUIConsole/SciGUIConsole.c' || echo '$(srcdir)/'`src/c/SciGUIConsole/SciGUIConsole.c; \
@@ -1100,14 +1053,8 @@ libgui_la-SciGUIConsole.lo: src/c/SciGUIConsole/SciGUIConsole.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-sci_setmenu_old.lo: sci_gateway/fortran/sci_setmenu_old.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setmenu_old.lo `test -f 'sci_gateway/fortran/sci_setmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setmenu_old.f
-
 sci_choices.lo: sci_gateway/fortran/sci_choices.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_choices.lo `test -f 'sci_gateway/fortran/sci_choices.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_choices.f
-
-sci_delmenu_old.lo: sci_gateway/fortran/sci_delmenu_old.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_delmenu_old.lo `test -f 'sci_gateway/fortran/sci_delmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_delmenu_old.f
 
 sci_x_mdialog.lo: sci_gateway/fortran/sci_x_mdialog.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_mdialog.lo `test -f 'sci_gateway/fortran/sci_x_mdialog.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_mdialog.f
@@ -1123,9 +1070,6 @@ sci_x_choose.lo: sci_gateway/fortran/sci_x_choose.f
 
 sci_xgetfile.lo: sci_gateway/fortran/sci_xgetfile.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_xgetfile.lo `test -f 'sci_gateway/fortran/sci_xgetfile.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_xgetfile.f
-
-sci_addmenu_old.lo: sci_gateway/fortran/sci_addmenu_old.f
-	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_addmenu_old.lo `test -f 'sci_gateway/fortran/sci_addmenu_old.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_addmenu_old.f
 
 sci_x_message.lo: sci_gateway/fortran/sci_x_message.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_x_message.lo `test -f 'sci_gateway/fortran/sci_x_message.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_x_message.f
