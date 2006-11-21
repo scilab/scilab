@@ -123,9 +123,9 @@ extern int sciGetScrollPosV (sciPointObj * pobj);  /* GET */
 extern int sciGetScrollPosH (sciPointObj * pobj);  /* GET */
 
 extern sciPointObj * sciGetCurPointedFigure( void ) ; /* GET */
-extern sciPointObj * sciGetCurrentFigure (); /* GET */
-extern struct BCG *sciGetCurrentScilabXgc (); /* GET */
-extern BOOL sciGetReplay (); /* GET */
+extern sciPointObj * sciGetCurrentFigure (void); /* GET */
+extern struct BCG *sciGetCurrentScilabXgc (void); /* GET */
+extern BOOL sciGetReplay (void); /* GET */
 
 
 extern double *sciGetPoint (sciPointObj * pthis, int *num, int *numco); /* GET */
@@ -141,7 +141,7 @@ extern int sciType (char *marker, sciPointObj *pobj); /* GET */
 extern int  sciGetNbFigure( void ) ; /* GET */
 extern void sciGetFiguresId( int figIds[] ) ; /* GET */
 extern void sciGetIdFigure (int *vect, int *id, int *flag); /* GET */
-extern int version_flag(); /* GET */
+extern int version_flag(void); /* GET */
 extern unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
 /* extern struct BCG *sciGetCurrentScilabXgc (); /\* GET *\/ */
 
