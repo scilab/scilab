@@ -98,7 +98,7 @@ $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src
 
 CLEANFILES=$(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
-libgui_la_CFLAGS=  -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
+libgui_la_CFLAGS=  -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
 
 libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 

@@ -68,11 +68,14 @@
 
 #ifdef WITH_TK
 #include "TCL_Global.h"
+#include "TclEvents.h"
 #endif
 
 
 #include "All-extern-x.h"
 #include "All-extern.h"
+
+#include "x_charproc.h"
 
 #define CTRL_B                0x0002  /* back a character */
 #define CTRL_C                0x0003  /* redo line */
@@ -96,6 +99,7 @@ void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
 typedef  int (*osc_func) ();
 extern int C2F(ismenu)();
+extern int C2F(sigbas)();
 /*
  * Check for both EAGAIN and EWOULDBLOCK, because some supposedly POSIX
  * systems are broken and return EWOULDBLOCK when they should return EAGAIN.
@@ -568,8 +572,7 @@ void C2F(xscimore)(n)
 
 /* I/O Function for C routines : test for xscion */
 
-void Scisncr(str)
-     char *str;
+void Scisncr(char *str)
 {
   int i;
   integer lstr;
@@ -583,8 +586,7 @@ void Scisncr(str)
     }
 }
 
-void Scistring(str)
-     char *str;
+void Scistring(char *str)
 {
   int i;
   int n;
