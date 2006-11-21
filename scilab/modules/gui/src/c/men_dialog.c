@@ -10,9 +10,12 @@ char *dialog_str = (char *) 0;
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "sciprint.h"
+
+#include "men_Sutils.h" /* ScilabMStr2C */
 
 SciDialog ScilabDialog = { NULL,NULL,NULL,-1,0}; 
-
+void xdialg1(char *description, char *valueinit, char **pButName, char *value, int *ok);
 
 /*************************************************     
  * interface with scilab 
