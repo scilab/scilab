@@ -12,6 +12,7 @@
 
 
 #include "MALLOC.h"
+
 #include "stack-c.h" 
 
 #include "../../../string/includes/men_Sutils.h" 
@@ -34,6 +35,12 @@ static void rhs_opt_print_names __PARAMS((rhs_opts opts[]));
 static void intersci_pop();
 static int intersci_push();
 
+/*------------------------------------------------*/
+int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, integer *it, integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac, unsigned long type_len);
+void strcpy_tws(char *str1,char *str2, int len);
+int C2F(copyvarfromsciptr)(integer lw, integer n,integer l);
+static int intersci_push(void);
+static void intersci_pop(void);
 /*------------------------------------------------
  * checkrhs: checks right hand side arguments 
  *-----------------------------------------------*/
@@ -894,12 +901,7 @@ int C2F(createlistvarfrom)(lnumber, number, typex, m, n, lr, lar, type_len)
  * create a complex list variable from data 
  *---------------------------------------------------------------------*/
 
-int C2F(createlistcvarfrom)(lnumber, number, typex, it, m, n, lr, lc, lar, lac, 
-			type_len)
-     integer *lnumber, *number;
-     char *typex;
-     integer *it, *m, *n, *lr, *lc, *lar, *lac;
-     unsigned long type_len;
+int C2F(createlistcvarfrom)(integer *lnumber, integer *number, char *typex, integer *it, integer *m,integer *n,integer *lr,integer *lc,integer *lar,integer *lac, unsigned long type_len)
 {
   integer ix1;
   int mn = (*m)*(*n);
@@ -2854,9 +2856,7 @@ int C2F(convert2sci)(ix)
  * then second string is copied into first one 
  * ------------------------------------------------------------*/
 
-void strcpy_tws(str1,str2,len) 
-     char *str1,*str2;
-     int len;
+void strcpy_tws(char *str1,char *str2, int len)
 {
   int i; 
   for ( i =0 ; i  < (int)strlen(str2); i++ ) str1[i]=str2[i];
@@ -2904,8 +2904,7 @@ static char *Get_Iname()
 static char *pos[] ={"first","second","third","fourth"};
 static char arg_position[56];
 
-char *ArgPosition(i)
-     int i;
+char *ArgPosition(int i)
 {
   if ( i > 0 && i <= 4 ) 
     sprintf(arg_position,"%s argument",pos[i-1]);
@@ -2914,8 +2913,7 @@ char *ArgPosition(i)
   return arg_position;
 }
 
-char *ArgsPosition(i,j)
-     int i,j;
+char *ArgsPosition(int i,int j)
 {
   if ( i > 0 && i <= 4 ) 
     {
@@ -2940,9 +2938,7 @@ char *ArgsPosition(i,j)
  * (can be used with GetListRhsVar ) 
  *---------------------------------------------------------------------*/
 
-void ConvertData(type,size,l)
-     char *type;
-     int size,l;
+void ConvertData(char *type, int size,int l)
 {
   int zero=0,mu=-1; int laddr; int prov,m,n,it;
   double wsave;
@@ -2980,60 +2976,52 @@ void ConvertData(type,size,l)
  * Utility for checking properties 
  *---------------------------------------------------------------------*/
 
-static int check_prop(mes,pos,m)
-     char *mes;
-     int pos,m;
+static int check_prop(char *mes,int posi,int m)
 {
   if ( m ) 
     { 
       /* XXXX moduler 999 en fn des messages */
       Scierror(999,"%s: %s %s\r\n",
 	       Get_Iname(),
-	       ArgPosition(pos),
+	       ArgPosition(posi),
 	       mes);
       return FALSE_;
     }
   return TRUE_;
 }
 
-int check_square (pos,m,n) 
-     int pos,m,n;
+int check_square (int posi,int m,int n)
 {
-  return check_prop("should be square",pos, m != n);
+  return check_prop("should be square",posi, m != n);
 }
 
-int check_vector (pos,m,n) 
-     int pos,m,n;
+int check_vector (int posi,int m,int n)
 {
-  return check_prop("should be a vector",pos, m != 1 && n != 1);
+  return check_prop("should be a vector",posi, m != 1 && n != 1);
 }
 
-int check_row (pos,m,n) 
-     int pos,m,n;
+int check_row (int posi,int m,int n)
 {
-  return check_prop("should be a row vector",pos, m != 1);
+  return check_prop("should be a row vector",posi, m != 1);
 }
 
-int check_col (pos,m,n) 
-     int pos,m,n;
+int check_col (int posi,int m,int n)
 {
-  return check_prop("should be a column vector",pos, n != 1);
+  return check_prop("should be a column vector",posi, n != 1);
 }
 
-int check_scalar (pos,m,n) 
-     int pos,m,n;
+int check_scalar (int posi,int m,int n)
 {
-  return check_prop("should be a scalar",pos, n != 1 || m != 1);
+  return check_prop("should be a scalar",posi, n != 1 || m != 1);
 }
 
-int check_dims(pos,m,n,m1,n1)
-     int pos,m,n,m1,n1;
+int check_dims(int posi,int m,int n,int m1,int n1)
 {
   if ( m != m1 ||  n != n1 ) 
     { 
       Scierror(999,"%s: %s has wrong dimensions (%d,%d), expecting (%d,%d)\r\n",
 	       Get_Iname(),
-	       ArgPosition(pos),
+	       ArgPosition(posi),
 	       m,n,
 	       m1,n1);
       return FALSE_;
@@ -3041,14 +3029,13 @@ int check_dims(pos,m,n,m1,n1)
   return TRUE_;
 }
 
-int check_one_dim(pos,dim,val,valref)
-     int pos,dim,val,valref;
+int check_one_dim(int posi,int dim,int val,int valref)
 {
   if ( val != valref) 
     { 
       Scierror(999,"%s: %s has wrong %s dimension (%d), expecting (%d)\r\n",
 	       Get_Iname(),
-	       ArgPosition(pos),
+	       ArgPosition(posi),
 	       ( dim == 1 ) ? "first" : "second" ,
 	       val,valref);
       return FALSE_;
@@ -3056,22 +3043,20 @@ int check_one_dim(pos,dim,val,valref)
   return TRUE_;
 }
 
-int check_length(pos,m,m1)
-     int pos,m,m1;
+int check_length(int posi,int m,int m1)
 {
   if ( m != m1 )
     { 
       Scierror(999,"%s: %s has wrong length %d, expecting (%d)\r\n",
 	       Get_Iname(),
-	       ArgPosition(pos),
+	       ArgPosition(posi),
 	       m, m1);
       return FALSE_;
     }
   return TRUE_;
 }
 
-int check_same_dims(i,j,m1,n1,m2,n2) 
-     int i,j,m1,n1,m2,n2;
+int check_same_dims(int i,int j,int m1,int n1,int m2,int n2) 
 {
   if ( m1 == m2 && n1 == n2 ) return TRUE_ ;
   Scierror(999,"%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\r\n",
@@ -3081,8 +3066,7 @@ int check_same_dims(i,j,m1,n1,m2,n2)
   return FALSE_;
 }
 
-int check_dim_prop(i,j,flag) 
-     int i,j,flag;
+int check_dim_prop(int i,int j,int flag) 
 {
   if ( flag ) 
     {
@@ -3095,58 +3079,50 @@ int check_dim_prop(i,j,flag)
 }
  
 
-static int check_list_prop(mes,lpos,pos,m)
-     char *mes;
-     int lpos,pos,m;
+static int check_list_prop(char *mes, int lpos,int posi, int m)
 {
   if ( m ) 
     { 
       Scierror(999,"%s: %s should be a list with %d-element being %s \r\n",
 	       Get_Iname(),
-	       ArgPosition(pos),
-	       pos,mes);
+	       ArgPosition(posi),
+	       posi,mes);
       return FALSE_;
     }
   return TRUE_;
 }
 
-int check_list_square (lpos,pos,m,n) 
-     int lpos,pos,m,n;
+int check_list_square (int lpos,int posi,int m,int n) 
 {
   return check_list_prop("square",lpos,pos, m != n);
 }
 
-int check_list_vector (lpos,pos,m,n) 
-     int lpos,pos,m,n;
+int check_list_vector (int lpos,int posi,int m,int n) 
 {
-  return check_list_prop("a vector",lpos,pos, m != 1 && n != 1);
+  return check_list_prop("a vector",lpos,posi, m != 1 && n != 1);
 }
 
-int check_list_row (lpos,pos,m,n) 
-     int lpos,pos,m,n;
+int check_list_row (int lpos,int posi,int m,int n) 
 {
-  return check_list_prop("a row vector",lpos,pos, m != 1);
+  return check_list_prop("a row vector",lpos,posi, m != 1);
 }
 
-int check_list_col (lpos,pos,m,n) 
-     int lpos,pos,m,n;
+int check_list_col (int lpos,int posi,int m,int n) 
 {
-  return check_list_prop("a column vector",lpos,pos, n != 1);
+  return check_list_prop("a column vector",lpos,posi, n != 1);
 }
 
-int check_list_scalar (lpos,pos,m,n) 
-     int pos,m,n;
+int check_list_scalar (int lpos,int posi,int m,int n) 
 {
-  return check_list_prop("a scalar",lpos, pos, n != 1 || m != 1);
+  return check_list_prop("a scalar",lpos, posi, n != 1 || m != 1);
 }
 
-int check_list_one_dim(lpos,pos,dim,val,valref)
-     int lpos,pos,dim,val,valref;
+int check_list_one_dim(int lpos,int posi,int dim,int val,int valref)
 {
   if ( val != valref) 
     { 
       Scierror(999,"%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d)\r\n",
-	       Get_Iname(),lpos,pos,
+	       Get_Iname(),lpos,posi,
 	       ( dim == 1 ) ? "first" : "second" ,
 	       val,valref);
       return FALSE_;
@@ -3160,8 +3136,7 @@ int check_list_one_dim(lpos,pos,dim,val,valref)
  * Utility for hand writen data extraction or creation 
  *---------------------------------------------------------------------*/
 
-int C2F(createdata)(lw, n)
-     integer *lw, n;
+int C2F(createdata)(integer *lw, integer n)
 {
   integer lw1;
   char *fname = Get_Iname();
@@ -3191,8 +3166,7 @@ int C2F(createdata)(lw, n)
  *      - its size n
  *    to the variable position  lw
  *----------------------------------------------------------------------*/
-int C2F(copyvarfromsciptr)(lw, n,l)
-     integer lw, n,l;
+int C2F(copyvarfromsciptr)(integer lw, integer n,integer l)
 {
   int ret,un=1;
   if ((ret=C2F(createdata)(&lw, n))==FALSE_) return ret;
@@ -3200,9 +3174,8 @@ int C2F(copyvarfromsciptr)(lw, n,l)
   return TRUE_; 
 }
  
-void *GetData(lw)
+void *GetData(int lw)
      /* Usage: header = (int *) GetData(lw); header[0] = type of variable lw etc */
-     int lw;
 {
   int lw1 = lw + Top - Rhs ;
   int l1 = *Lstk(lw1);
@@ -3218,9 +3191,8 @@ void *GetData(lw)
   return loci;
 }
 
-int GetDataSize(lw)
+int GetDataSize(int lw)
      /* get memory used by the argument lw in double world etc */
-     int lw;
 {
   int lw1 = lw + Top - Rhs ;
   int l1 = *Lstk(lw1);
@@ -3235,9 +3207,8 @@ int GetDataSize(lw)
   return n;
 }
 
-void *GetRawData(lw)
+void *GetRawData(int lw)
      /* same as GetData BUT does not go to the pointed variable if lw is a reference */
-     int lw;
 {
   int lw1 = lw + Top - Rhs ;
   int l1 = *Lstk(lw1);
@@ -3263,8 +3234,7 @@ void *GetDataFromName( char *name )
     }
 }
 
-int C2F(createreference)(number, pointed)
-     int number; int pointed;
+int C2F(createreference)(int number, int pointed)
 /* variable number is created as a reference to variable pointed */
 {
   int offset; int point_ed; int *header;
@@ -3280,8 +3250,7 @@ int C2F(createreference)(number, pointed)
   return 1;
 }
 
-int C2F(changetoref)(number, pointed)
-     int number; int pointed;
+int C2F(changetoref)(int number, int pointed)
 /* variable number is changed as a reference to variable pointed */
 {
   int offset; int point_ed; int *header;
@@ -3296,8 +3265,7 @@ int C2F(changetoref)(number, pointed)
   return 1;
 }
 
-int C2F(createreffromname)(number, name)
-     int number; char *name;
+int C2F(createreffromname)(int number, char *name)
      /* variable number is created as a reference pointing to variable "name" */
      /* name must be an existing Scilab variable */
 {
@@ -3335,7 +3303,7 @@ typedef struct inter_l {
 static intersci_list * L_intersci;
 
 
-static int intersci_push() 
+static int intersci_push(void)
 {
   int i;
   intersci_list *loc;
@@ -3358,7 +3326,7 @@ static int intersci_push()
   return 1;
 }
 
-static void intersci_pop()
+static void intersci_pop(void)
 {
   int i;
   intersci_list *loc = L_intersci;
