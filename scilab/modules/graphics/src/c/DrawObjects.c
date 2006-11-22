@@ -737,7 +737,7 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     {
       /* draw the line of the axis like in 2d */
       /* the two bounds are (ixbox[2],iybox[2]) and (ixbox[2],iybox[2]) */
-      C2F(dr)("xpolys","v",&(ixbox[2]),&(iybox[2]),x,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xpolys","v",&(ixbox[2]),&(iybox[2]),x2,&one,&two, PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
     if ( ( xind[4]+xind[5] == 3) || ( xind[4]+xind[5] == 11 ) )
     {
@@ -7022,23 +7022,24 @@ sciDrawObj (sciPointObj * pobj)
 	{
 	  double * xvect_ = NULL;
 	  double * yvect_ = NULL;
-	  int n_ = pFEC_FEATURE (pobj)->Nnode;
+	  int nbNode = pFEC_FEATURE (pobj)->Nnode;
 	  
 
-	  if ((xvect_ = MALLOC (n*sizeof (double))) == NULL) return -1;
-	  if ((yvect_ = MALLOC (n*sizeof (double))) == NULL){
+	  if ((xvect_ = MALLOC ( nbNode * sizeof (double))) == NULL) return -1;
+	  if ((yvect_ = MALLOC ( nbNode * sizeof (double))) == NULL){
 	    FREE(xvect_); xvect_ = (double *) NULL; return -1;
 	  }
 	  
-	  for(i=0;i<n_;i++){
+	  for( i = 0 ; i < nbNode ; i++ )
+          {
 	    xvect_[i] = pFEC_FEATURE (pobj)->pvecx[i];
 	    yvect_[i] = pFEC_FEATURE (pobj)->pvecy[i];
 	  }
 	  
-	  ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect_,n_);
-	  ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect_,n_);
+	  ReverseDataFor3DXonly( sciGetParentSubwin(pobj), xvect_, nbNode ) ;
+	  ReverseDataFor3DYonly( sciGetParentSubwin(pobj), yvect_, nbNode ) ;
 	  
-	  trans3d(sciGetParentSubwin(pobj),n_,xm,ym,xvect_,yvect_,NULL);
+	  trans3d( sciGetParentSubwin(pobj), nbNode, xm, ym, xvect_, yvect_, NULL ) ;
 
 	  FREE(xvect_); xvect_ = (double *) NULL;
 	  FREE(yvect_); yvect_ = (double *) NULL;
