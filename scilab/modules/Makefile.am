@@ -71,7 +71,6 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/interpolation/libinterpolation.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/io/libio.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
@@ -92,6 +91,9 @@ if PVM
 libscilab_la_LIBADD += $(top_builddir)/modules/pvm/libscipvm.la
 endif
 
+if JAVA
+libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
+endif
 ## Libs 
 libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libblas.la \

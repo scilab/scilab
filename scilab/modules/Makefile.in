@@ -44,6 +44,7 @@ host_triplet = @host@
 @JAVA_TRUE@am__append_1 = jvm 
 @PVM_TRUE@am__append_2 = pvm
 @PVM_TRUE@am__append_3 = $(top_builddir)/modules/pvm/libscipvm.la
+@JAVA_TRUE@am__append_4 = $(top_builddir)/modules/jvm/libscijvm.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -70,6 +71,8 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 @PVM_TRUE@am__DEPENDENCIES_1 =  \
 @PVM_TRUE@	$(top_builddir)/modules/pvm/libscipvm.la
+@JAVA_TRUE@am__DEPENDENCIES_2 =  \
+@JAVA_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la
 libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/arnoldi/libarnoldi.la \
@@ -87,7 +90,6 @@ libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/interpolation/libinterpolation.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/io/libio.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
@@ -103,7 +105,8 @@ libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/statistics/libstatistics.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
-	$(am__DEPENDENCIES_1) $(top_builddir)/libs/blas/libblas.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
@@ -375,7 +378,6 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/interpolation/libinterpolation.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/io/libio.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/linear_algebra/liblinear_algebra.la \
 	$(top_builddir)/modules/localization/liblocalization.la \
 	$(top_builddir)/modules/metanet/libmetanet.la \
@@ -391,7 +393,8 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/statistics/libstatistics.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
-	$(am__append_3) $(top_builddir)/libs/blas/libblas.la \
+	$(am__append_3) $(am__append_4) \
+	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
