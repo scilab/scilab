@@ -14,6 +14,10 @@ extern int C2F(dmcopy)  __PARAMS((double *a, integer *na, double *b, integer *nb
 extern int C2F(stackg)  __PARAMS((integer *id));
 extern int C2F(stackp)  __PARAMS((integer *id, integer *macmod));
 
+/*------------------------------------------------------*/
+void *Name2ptr(char *namex);
+int Name2where(char *namex);
+
 /* Table of constant values */
 
 static integer cx0 = 0;
@@ -23,11 +27,7 @@ static integer cx1 = 1;
  * read a matrix 
  *------------------------------------------------------*/
 
-int C2F(readmat)(namex, m, n, scimat, name_len)
-     char *namex;
-     integer *m, *n;
-     double *scimat;
-     unsigned long name_len;
+int C2F(readmat)(char *namex,integer *m, integer *n, double *scimat, unsigned long name_len)
 {
     int j;
     j = C2F(creadmat)(namex, m, n, scimat, name_len);
@@ -56,11 +56,7 @@ int C2F(readmat)(namex, m, n, scimat, name_len)
  *                      scimat(6)=Amat(3,2) 
  *----------------------------------------------------------------*/
 
-int C2F(creadmat)(namex, m, n, scimat, name_len)
-     char *namex;
-     integer *m, *n;
-     double *scimat;
-     unsigned long name_len;
+int C2F(creadmat)(char *namex, integer *m, integer *n, double *scimat, unsigned long name_len)
 {
     integer l;
     integer id[nsiz];
@@ -109,11 +105,7 @@ int C2F(creadmat)(namex, m, n, scimat, name_len)
  *
  *----------------------------------------------------------------*/
 
-int C2F(creadcmat)(namex, m, n, scimat, name_len)
-     char *namex;
-     integer *m, *n;
-     double *scimat;
-     unsigned long name_len;
+int C2F(creadcmat)(char *namex, integer *m, integer *n, double *scimat, unsigned long name_len)
 {
     integer l, ix1;
     integer id[nsiz];
@@ -146,11 +138,7 @@ int C2F(creadcmat)(namex, m, n, scimat, name_len)
  * mat: matrix entries stored columnwise in Scilab object
 ----------------------------------------------------------------*/
 
-int C2F(cwritemat)(namex, m, n, mat, name_len)
-     char *namex;
-     integer *m, *n;
-     double *mat;
-     unsigned long name_len;
+int C2F(cwritemat)(char *namex, integer *m, integer *n,  double *mat, unsigned long name_len)
 {
   integer   ix1 = *m * *n;
   integer Rhs_k = Rhs , Top_k = Top ;
@@ -207,22 +195,18 @@ int C2F(cwritecmat)(char *namex,integer *m, integer*n,double *mat,unsigned long 
 	return TRUE_;
 } 
 /*-----------------------------------------------------------------------------------*/
-
-int C2F(putvar)(number, namex, name_len)
      /* Put variable number into Scilab internal stack with name "namex" */
-     char *namex;
-     int  *number;
-     unsigned long name_len;
+int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
 {
   integer Rhs_k = Rhs , Top_k = Top ;
-  integer l4, id[nsiz],/* lc, lr,*/ cx0=1;
+  integer l4, id[nsiz],/* lc, lr,*/ cx0_2=1;
   
   C2F(str2name)(namex, id, name_len);
   Top = *number + Top -Rhs;
   Rhs = 0;
   l4 = C2F(iop).lct[3];
   C2F(iop).lct[3] = -1;
-  C2F(stackp)(id, &cx0);
+  C2F(stackp)(id, &cx0_2);
   C2F(iop).lct[3] = l4;
   Top = Top_k;
   Rhs = Rhs_k;
@@ -234,11 +218,7 @@ int C2F(putvar)(number, namex, name_len)
  *     see creadchain 
  *------------------------------------------------------*/
 
-int C2F(readchain)(namex, itslen, chai, name_len, chai_len)
-     char *namex;
-     integer *itslen;
-     char *chai;
-     unsigned long name_len, chai_len;
+int C2F(readchain)(char *namex,  integer *itslen, char *chai,  unsigned long name_len, unsigned long chai_len)
 {
     int j;
     j = C2F(creadchain)(namex, itslen, chai, name_len, chai_len);
@@ -263,12 +243,7 @@ int C2F(readchain)(namex, itslen, chai, name_len, chai_len)
  *     logic= creadchain('x',l,ch) returns l=5 and ch='qwert' 
  *------------------------------------------------------*/
 
-int C2F(creadchain)(namex, itslen, chai, name_len, chai_len)
-     char *namex;
-     integer *itslen;
-     char *chai;
-     unsigned long name_len;
-     unsigned long chai_len;
+int C2F(creadchain)(char *namex,  integer *itslen,  char *chai,  unsigned long name_len,  unsigned long chai_len)
 {
     integer ix1;
     integer m1, n1;
@@ -324,12 +299,7 @@ int C2F(creadchain)(namex, itslen, chai, name_len, chai_len)
  *----------------------------------------------------------------------*/
 
 
-int C2F(creadchains)(namex, ir, ic, itslen, chai, name_len, chai_len)
-     char *namex;
-     integer *ir, *ic, *itslen;
-     char *chai;
-     unsigned long name_len;
-     unsigned long chai_len;
+int C2F(creadchains)(char *namex, integer *ir, integer *ic, integer *itslen, char *chai, unsigned long name_len,  unsigned long chai_len)
 {
     integer ix1;
     integer m1, n1;
@@ -377,11 +347,7 @@ int C2F(creadchains)(namex, ir, ic, itslen, chai, name_len, chai_len)
  *  mat: matrix entries stored columnwise in Scilab object 
  *----------------------------------------------------------------*/
 
-int C2F(cwritechain)(namex, m, chai, name_len, chai_len)
-     char *namex;
-     integer *m;
-     char *chai;
-     unsigned long name_len,  chai_len;
+int C2F(cwritechain)(char *namex, integer *m, char *chai, unsigned long name_len, unsigned long chai_len)
 {
     integer Rhs_k, Top_k;
     integer l4;
@@ -411,10 +377,7 @@ int C2F(cwritechain)(namex, m, chai, name_len, chai_len)
  *     see cmatptr 
  *----------------------------------------------------------------*/
 
-int C2F(matptr)(namex, m, n, lp, name_len)
-     char *namex;
-     integer *m, *n, *lp;
-     unsigned long name_len;
+int C2F(matptr)(char *namex, integer *m, integer *n, integer *lp, unsigned long name_len)
 {
     int ix;
     ix = C2F(cmatptr)(namex, m, n, lp, name_len);
@@ -444,10 +407,7 @@ int C2F(matptr)(namex, m, n, lp, name_len)
  *   see also  readmat.f, matz.f 
  *----------------------------------------------------------------*/
 
-int C2F(cmatptr)(namex, m, n, lp, name_len)
-     char *namex;
-     integer *m, *n, *lp;
-     unsigned long name_len;
+int C2F(cmatptr)(char *namex, integer *m,integer *n,integer *lp, unsigned long name_len)
 {
     integer id[nsiz];
     C2F(str2name)(namex, id, name_len);
@@ -499,10 +459,7 @@ int C2F(cmatptr)(namex, m, n, lp, name_len)
  *
  *----------------------------------------------------------------*/
 
-int C2F(cmatcptr)(namex, m, n, lp, name_len)
-     char *namex;
-     integer *m, *n, *lp;
-     unsigned long name_len;
+int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned long name_len)
 {
     integer id[nsiz];
     C2F(str2name)(namex, id, name_len);
@@ -548,10 +505,7 @@ int C2F(cmatcptr)(namex, m, n, lp, name_len)
  *   see also  readmat.f, matz.f 
  *----------------------------------------------------------------*/
 
-int C2F(cmatsptr)(namex, m, n, ix, j, lp, nlr, name_len)
-     char *namex;
-     integer *m, *n, *lp, *ix, *j, *nlr;
-     unsigned long name_len;
+int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *lp,integer *ix,integer *j,integer *nlr, unsigned long name_len)
 {
     integer id[nsiz];
     C2F(str2name)(namex, id, name_len);
@@ -574,13 +528,13 @@ int C2F(cmatsptr)(namex, m, n, ix, j, lp, nlr, name_len)
     return TRUE_ ;
 }
 
-void *Name2ptr(namex)
-     char *namex;
-     /*  Returns a pointer to the Scilab variable with name namex
-         Usage:   int *header;
-                  header = (int *) Name2ptr("pipo");
-                  header[0], header[1], etc contains header info 
-                  about Scilab variable "pipo"   */
+/*  Returns a pointer to the Scilab variable with name namex
+	Usage:   int *header;
+	header = (int *) Name2ptr("pipo");
+	header[0], header[1], etc contains header info 
+	about Scilab variable "pipo"   
+*/
+void *Name2ptr(char *namex)
 {
   int l1; int *loci;
   integer id[nsiz];
@@ -605,20 +559,19 @@ void *Name2ptr(namex)
   return loci;
 }
 
-int Name2where(namex)
-     /* returns the position in the internal stack of the variable with name
-	namex 
-     Usage:
-             int l=Name2where("pipo");
-	     stk(l) points to Scilab variable named "pipo"
-	     e.g. if pipo is a standard real matrix
-	     stk(l)[2]=first entry of the matrix pipo(1,1)
-	     stk(l)[3]=pipo(2,1)  etc
-	     (The header of pipo is given by istk(iadr(h))[0], 
-                                             istk(iadr(h))[1], etc )
-          */
-     char *namex;
-     /*     unsigned long name_len; */
+
+/* returns the position in the internal stack of the variable with name
+   namex 
+   Usage:
+   int l=Name2where("pipo");
+   stk(l) points to Scilab variable named "pipo"
+   e.g. if pipo is a standard real matrix
+   stk(l)[2]=first entry of the matrix pipo(1,1)
+   stk(l)[3]=pipo(2,1)  etc
+   (The header of pipo is given by istk(iadr(h))[0], 
+   istk(iadr(h))[1], etc )
+*/
+int Name2where(char *namex)
 {
   int loci;
   integer id[nsiz];
@@ -642,10 +595,7 @@ int Name2where(namex)
  *             by fort (intfort : function )
  *----------------------------------------------------------------*/
 
-int C2F(str2name)(namex, id, name_len)
-     char *namex;
-     integer *id;
-     unsigned long name_len;
+int C2F(str2name)(char *namex, integer *id, unsigned long name_len)
 {
     integer ix;
     integer lon;
@@ -663,10 +613,7 @@ int C2F(str2name)(namex, id, name_len)
  *     in scilab's internal stack 
  *----------------------------------------------------------------*/
 
-int C2F(objptr)(namex, lp, fin, name_len)
-     char *namex;
-     integer *lp; integer *fin;
-     unsigned long name_len;
+int C2F(objptr)(char *namex, integer *lp, integer *fin, unsigned long name_len)
 {
     integer id[nsiz];
     *lp = 0;
