@@ -26,6 +26,8 @@ int C2F(sci_intg) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_int2d) _PARAMS((char *fname,unsigned long fname_len));
 int C2F(sci_int3d) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_differential_equations4)(void);
+/*-----------------------------------------------------------------------------------*/
 static DifferentialEquations4Table Tab[]=
 {
 	{C2F(sci_intg),"intg"},
@@ -34,7 +36,7 @@ static DifferentialEquations4Table Tab[]=
 };
 
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations4)()
+int C2F(gw_differential_equations4)(void)
 {  
 #if _MSC_VER
 #ifndef _DEBUG

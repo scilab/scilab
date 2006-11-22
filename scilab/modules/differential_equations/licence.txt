@@ -1,3 +1,1 @@
-licence file
-
-INRIA 2006
+INRIA/ENPC 2006

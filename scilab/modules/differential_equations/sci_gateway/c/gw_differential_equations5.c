@@ -22,6 +22,8 @@ typedef struct table_struct
 	char *name;      /** its name **/
 } DifferentialEquations5Table;
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_differential_equations5)(void);
+/*-----------------------------------------------------------------------------------*/
 static int C2F(sci_feval) _PARAMS((char *fname,unsigned long fname_len))
 {
 	extern int C2F(feval)();
@@ -35,7 +37,7 @@ static DifferentialEquations5Table Tab[]=
 };
 
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations5)()
+int C2F(gw_differential_equations5)(void)
 {  
 #if _MSC_VER
 #ifndef _DEBUG

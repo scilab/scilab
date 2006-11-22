@@ -24,13 +24,15 @@ typedef struct table_struct
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scibvode) __PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_differential_equations6)(void);
+/*-----------------------------------------------------------------------------------*/
 static DifferentialEquations6Table Tab[]=
 {
 	{C2F(scibvode),"bvode"}
 };
 
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations6)()
+int C2F(gw_differential_equations6)(void)
 {  
 #if _MSC_VER
 #ifndef _DEBUG

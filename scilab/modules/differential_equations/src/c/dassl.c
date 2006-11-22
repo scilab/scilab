@@ -12,6 +12,10 @@ extern void C2F(ddassl)(void *res, int *neq, double *t, double *y, double *yprim
 
 void  C2F(dassl)(void *res, int *neq, double *t, double *y, double *yprime, double *tout, 
 	    int *info, double *rtol, double *atol, int *idid, double *rwork, 
+				 int *lrw, int *iwork, int *liw, double *rpar, int *ipar, void *jac);
+
+void  C2F(dassl)(void *res, int *neq, double *t, double *y, double *yprime, double *tout, 
+	    int *info, double *rtol, double *atol, int *idid, double *rwork, 
 	    int *lrw, int *iwork, int *liw, double *rpar, int *ipar, void *jac) 
 {
   int itemp[12],i;

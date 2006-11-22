@@ -26,6 +26,8 @@ extern int C2F(sciimpl) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(dassli) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(dasrti) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_differential_equations2)(void);
+/*-----------------------------------------------------------------------------------*/
 static DifferentialEquations2Table Tab[]=
 {
 	{C2F(sciimpl),"impl"},
@@ -34,7 +36,7 @@ static DifferentialEquations2Table Tab[]=
 };
 
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations2)()
+int C2F(gw_differential_equations2)(void)
 {  
 #if _MSC_VER
 #ifndef _DEBUG

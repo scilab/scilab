@@ -29,13 +29,15 @@ static int C2F(sci_odc) _PARAMS((char *fname,unsigned long l))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_differential_equations3)(void);
+/*-----------------------------------------------------------------------------------*/
 static DifferentialEquations3Table Tab[]=
 {
 	{C2F(sci_odc),"odc"}
 };
 
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_differential_equations3)()
+int C2F(gw_differential_equations3)(void)
 {  
 #if _MSC_VER
 #ifndef _DEBUG
