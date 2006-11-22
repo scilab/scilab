@@ -2017,7 +2017,7 @@ int C2F(scicos)
       }
     }
     
-    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0 && funtyp[C2F(curblk).kfun] < 0) {
       if (funtyp[C2F(curblk).kfun] == -1) {
 	if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
 	  i=2;
