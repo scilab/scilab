@@ -360,17 +360,14 @@ void CheckOptDim(f,var,nel)
 
 
 
-void CheckOptSquare(f,var,str1)
-     FILE *f;
-     VARPTR var;
-     char *str1;
+void CheckOptSquare(FILE *f, VARPTR var, char *str1_)
 {
   /* XXXXX cas liste ? */
   if (var->el[0] == var->el[1]) 
     {
       Fprintf(f,indent,"CheckSquare(opts[%d].position,opts[%s].m,opts[%s].n);\n",
 	      var->stack_position - basfun->NewMaxOpt +1 ,
-	      str1,str1);
+	      str1_,str1_);
     }
 }
 
