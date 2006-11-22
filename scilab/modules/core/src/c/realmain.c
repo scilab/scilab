@@ -5,6 +5,10 @@
 #include "realmain.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "getarg.h"
+#ifndef _MSC_VER
+#include "xscion.h"
+#endif
 /*-----------------------------------------------------------------------------------*/
 extern void C2F (settmpdir)(void);
 extern void sci_clear_and_exit(int n);
@@ -15,11 +19,13 @@ extern void sci_usr1_signal(int n);
 extern char *get_sci_data_strings(int n);
 extern int sci_exit(int n);
 extern int C2F(sciiargc) (void);
-#if _MSC_VER
+#ifdef _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);
 #else
 extern int IsNoInteractiveWindow(void);
 extern void InitXsession(void);
+extern void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory);
+
 #endif
 /*-----------------------------------------------------------------------------------*/
 static void strip_blank(char *source);
@@ -28,13 +34,13 @@ static int  no_startup_flag=0;
 /*-----------------------------------------------------------------------------------*/
 #define BSIZE 128 
 /*-----------------------------------------------------------------------------------*/
-void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory)
+void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
 {
   static int ini=-1;
   int ierr=0;
   char startup[256];
 
-  Set_no_startup_flag(no_startup_flag);
+  Set_no_startup_flag(no_startup_flag_l);
 
   /* create temp directory */
   C2F(settmpdir)();
@@ -64,7 +70,7 @@ void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_scr
 
   /*  prepare startup script  */
 
-  if ( no_startup_flag == 0) 
+  if ( no_startup_flag_l == 0) 
   {
 	/* execute a startup */
     if ( initial_script != NULL ) switch ( initial_script_type ) 
