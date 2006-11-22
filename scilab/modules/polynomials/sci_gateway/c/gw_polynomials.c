@@ -27,6 +27,8 @@ extern int C2F(sci_simp_mode) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_varn) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_cleanp) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_polynomials)(void);
+/*-----------------------------------------------------------------------------------*/
 static PolynomialsTable Tab[]=
 {
 {C2F(sci_poly),"poly"},
@@ -48,7 +50,7 @@ static PolynomialsTable Tab[]=
 {C2F(sci_cleanp),"cleanp"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_polynomials)()
+int C2F(gw_polynomials)(void)
 {  
 #if _MSC_VER
 	#ifndef _DEBUG
