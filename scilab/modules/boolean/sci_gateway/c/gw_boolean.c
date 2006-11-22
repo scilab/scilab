@@ -15,6 +15,8 @@ static int C2F(sci_bool2s) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intor) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intand) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_boolean)(void);
+/*-----------------------------------------------------------------------------------*/
 static BooleanTable Tab[]=
 {
 	{C2F(sci_find),"find"},
