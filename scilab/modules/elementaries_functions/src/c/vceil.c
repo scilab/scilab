@@ -1,8 +1,9 @@
 #include <math.h>
 #include "machine.h"
-void C2F(vceil)(n,x,ix,y,iy)
-     double *x, *y;
-     int *n, *ix, *iy;
+
+void C2F(vceil)(double *x, double *y, int *n, int *ix, int *iy);
+
+void C2F(vceil)(double *x, double *y, int *n, int *ix, int *iy)
 {
   int ix1,iy1,i;
   ix1=0;

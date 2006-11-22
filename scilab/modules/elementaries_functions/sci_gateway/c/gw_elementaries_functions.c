@@ -57,6 +57,8 @@ extern int C2F(sci_dsearch) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_isequal) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_spones) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_elementaries_functions)(void);
+/*-----------------------------------------------------------------------------------*/
 static ElementariesFunctionsTable Tab[]=
 {
 	{C2F(sci_abs),"abs"},
@@ -111,7 +113,7 @@ static ElementariesFunctionsTable Tab[]=
 	{C2F(sci_spones),"spones"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_elementaries_functions)()
+int C2F(gw_elementaries_functions)(void)
 {  
 #if _MSC_VER
 	#ifndef _DEBUG

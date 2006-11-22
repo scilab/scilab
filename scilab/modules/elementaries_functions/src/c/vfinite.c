@@ -4,6 +4,8 @@
 
 extern int finite __PARAMS( (double v));
 
+int C2F(vfinite)(int *n, double *v);
+
 int C2F(vfinite)(int *n, double *v)
 {
   int i;

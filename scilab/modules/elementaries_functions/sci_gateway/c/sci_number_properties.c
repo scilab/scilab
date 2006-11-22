@@ -8,6 +8,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intnbprop) _PARAMS((int *id));
 /*-----------------------------------------------------------------------------------*/
+int C2F(sci_number_properties) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_number_properties) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];

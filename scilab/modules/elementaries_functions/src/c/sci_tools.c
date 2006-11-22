@@ -86,16 +86,8 @@
 #include "MALLOC.h" /* MALLOC */
 
 
-#ifdef __STDC__
 void 
 C2F(ccomplexf)(int *n, double **ip, double *op)
-#else
-void 
-C2F(ccomplexf)(n, ip, op)
-  int *n;
-  double **ip;
-  double *op;
-#endif 
 {
   memcpy(op, *ip, *n * sizeof(double));
 
@@ -110,16 +102,7 @@ C2F(ccomplexf)(n, ip, op)
   FREE((char*) (*ip));
 } /* ccomplexf */
 
-#ifdef __STDC__
-void 
-(SciToF77)(double *ptr, int size, int lda)
-#else
-void 
-SciToF77(ptr, size, lda)
-  double *ptr;
-  int size;
-  int lda;
-#endif 
+void SciToF77(double *ptr, int size, int lda)
 {
   int i;
   double *tab;
@@ -144,16 +127,7 @@ SciToF77(ptr, size, lda)
 } /* SciToF77 */
 
 
-#ifdef __STDC__
-void 
-(F77ToSci)(double *ptr, int size, int lda)
-#else
-void 
-F77ToSci(ptr, size, lda)
-  double *ptr;
-  int size;
-  int lda;
-#endif 
+void F77ToSci(double *ptr, int size, int lda)
 {
   int i;
   double *tab;
@@ -182,16 +156,8 @@ F77ToSci(ptr, size, lda)
    double2z ptr = src, ptr77z = dest (z format)     
    z2double ptr = src (z format) , ptrsci = dest */  
 
-#ifdef __STDC__
 void 
-(double2z)(double *ptr,  double *ptr77z, int size, int lda)
-#else
-void 
-double2z(ptr, ptr77z, size, lda)
-  double *ptr; double *ptr77z; 
-  int size;
-  int lda;
-#endif 
+double2z(double *ptr, double *ptr77z, int size, int lda)
 {
   int i;
   double *tab;
@@ -212,16 +178,8 @@ double2z(ptr, ptr77z, size, lda)
 } 
 
 
-#ifdef __STDC__
 void 
-(z2double)(double *ptrz, double *ptrsci, int size, int lda)
-#else
-void 
-z2double(ptrz, ptrsci, size, lda)
-  double *ptrz; double *ptrsci;
-  int size;
-  int lda;
-#endif 
+z2double(double *ptrz, double *ptrsci, int size, int lda)
 {
   int i;
   double *tab;

@@ -1,9 +1,9 @@
 #include <math.h>
 #include "machine.h"
-void C2F(vfrexp)(n,x,ix,y,iy,z,iz)
-     double *x, *y;
-     double *z;
-     int *n, *ix, *iy, *iz;
+
+void C2F(vfrexp)(double *x, double *y, double *z, int *n, int *ix,int *iy,int *iz);
+
+void C2F(vfrexp)(double *x, double *y, double *z, int *n, int *ix,int *iy,int *iz)
 {
   int ix1,iy1,iz1,i,j;
   ix1=0;

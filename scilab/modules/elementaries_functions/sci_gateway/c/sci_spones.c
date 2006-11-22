@@ -8,6 +8,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intspones) _PARAMS((char *fname,int *id));
 /*-----------------------------------------------------------------------------------*/
+int C2F(sci_spones) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_spones) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];

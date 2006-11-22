@@ -347,7 +347,7 @@ libdummy_elementaries_functions_la_SOURCES = src/fortran/hqror2.f \
 	src/fortran/unsfdcopy.f \
 	src/fortran/icopy.f
 
-libdummy_elementaries_functions_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
+libdummy_elementaries_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
 libelementaries_functions_la_includedir=$(includedir)/elementaries_functions
 

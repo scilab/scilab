@@ -8,6 +8,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intcumsum) _PARAMS((int *id));
 /*-----------------------------------------------------------------------------------*/
+int C2F(sci_cumsum) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_cumsum) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int id[6];
