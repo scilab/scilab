@@ -1,7 +1,17 @@
 function tklib=gettklib()
   if MSDOS then 
-    tklib='tk84.dll', 
+    tklib='tk84.dll'
   else 
-    tklib='@GETLIBTK@.0',
+	execstr('link(''@GETLIBTK@'')', 'errcatch')
+	if ans == 0 then
+	    tklib='@GETLIBTK@'
+	else
+		execstr('link(''@GETLIBTK@.0'')', 'errcatch')
+		if ans == 0 then
+		    tklib='@GETLIBTK@.0'
+		else
+			 mprintf('Warning: Error loading @GETLIBTK@ :""'+lasterror()+'""')
+		end
+	end
   end
 endfunction

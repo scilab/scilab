@@ -122,7 +122,7 @@ int IsNoInteractiveWindow(void);
 void sci_sig_tstp(int n);
 int IsConsoleMode(void);
 void InitXsession(void);
-void C2F(mainscic)();
+void C2F(mainscic)(void);
 
 /*----------------------------------------------------------------------------------*/
 void C2F(mainscic)()

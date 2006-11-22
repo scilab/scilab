@@ -121,7 +121,7 @@ libinteger_la_includedir=$(includedir)/integer
 libinteger_la_include_HEADERS = includes/gw_integer.h
 
 libinteger_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
+
 lib_LTLIBRARIES = libinteger.la
 
 libinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
