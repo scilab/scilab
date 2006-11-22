@@ -5,9 +5,9 @@
 #include "realmain.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-#include "getarg.h"
 #ifndef _MSC_VER
 #include "xscion.h"
+#include "getarg.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
 extern void C2F (settmpdir)(void);
