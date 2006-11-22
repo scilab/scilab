@@ -27,6 +27,8 @@ extern int C2F(intdseupd) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intdneupd) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_arnoldi)(void);
+/*-----------------------------------------------------------------------------------*/
 static ArpackTable Tab[]={
   {C2F(intdsaupd),"dsaupd"},
   {C2F(intdnaupd),"dnaupd"},
@@ -36,7 +38,7 @@ static ArpackTable Tab[]={
   {C2F(intzneupd),"zneupd"},
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_arnoldi)()
+int C2F(gw_arnoldi)(void)
 {
 	Rhs = Max(0, Rhs);
 	

@@ -10,6 +10,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(dsaupd) __PARAMS((int *ido, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long bmat_len, unsigned long which_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(intdsaupd) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(intdsaupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int IDO,   mIDO,   nIDO,    pIDO;

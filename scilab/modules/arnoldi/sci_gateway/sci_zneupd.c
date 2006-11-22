@@ -10,6 +10,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(zneupd)();
 /*-----------------------------------------------------------------------------------*/
+int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(intzneupd) _PARAMS((char *fname,unsigned long fname_len))
 { 
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
