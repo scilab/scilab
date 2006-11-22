@@ -14,7 +14,7 @@
 /* Define C2F without Trailing Underscore */
 #undef F2C
 
-/* Uses G95 fortran */
+/* uses G95 fortran */
 #undef G95_FORTRAN
 
 /* Define to 1 if you have the `atexit' function. */
@@ -242,6 +242,12 @@
 /* Define to 1 if you have the <wctype.h> header file. */
 #undef HAVE_WCTYPE_H
 
+/* Define to 1 if you have the <X11/IntrinsicP.h> header file. */
+#undef HAVE_X11_INTRINSICP_H
+
+/* Define to 1 if you have the <X11/Xaw3d/ViewportP.h> header file. */
+#undef HAVE_X11_XAW3D_VIEWPORTP_H
+
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
 #undef LT_OBJDIR
@@ -291,6 +297,12 @@
 /* Define to 1 if the X Window System is missing or not being used. */
 #undef X_DISPLAY_MISSING
 
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES
+
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const
 
@@ -325,18 +337,18 @@ typedef int integer;
 
 /* define boolean type */
 #ifdef BOOL
-	#undef BOOL
+#undef BOOL
 #endif
 
 typedef int BOOL ;
 
 #ifdef TRUE
-	#undef TRUE
+#undef TRUE
 #endif
 #define TRUE 1
 
 #ifdef FALSE
-	#undef FALSE
+#undef FALSE
 #endif
 #define FALSE 0
 

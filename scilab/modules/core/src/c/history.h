@@ -67,6 +67,7 @@ char * getfilenamehistory(void);
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */
 /*-----------------------------------------------------------------------------------*/
 void GetCommentDateSession(char *line,int BeginSession);
+int GetSaveHistoryAfterNcommands(void);
 extern char *get_sci_data_strings(int n);
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 #ifndef  WITH_READLINE

@@ -13,6 +13,7 @@
 #include "wtext.h"
 #endif
 
+#include "xscion.h"
 #include "MALLOC.h"
 #include "sciquit.h"
 #include "getmodules.h"
@@ -43,7 +44,6 @@ extern int CloseTCLsci(void);
 /*-----------------------------------------------------------------------------------*/ 
 static int CloseConsoleGUI(void);
 static int CloseConsoleGUI(void);
-static int CloseGraphicsWindows(void);
 
 int ExitScilab(void);
 int C2F(sciquit)(void);
@@ -63,7 +63,6 @@ static int CloseConsoleGUI(void)
 /*-----------------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
-	int bOK=FALSE;
 	int i=0;
 		
     if ( Get_no_startup_flag() == 0) 

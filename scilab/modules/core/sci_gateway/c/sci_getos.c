@@ -4,12 +4,12 @@
 /*-----------------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
 #include <windows.h>
-#include <stdio.h>
 #include "../../../libs/GetWindowsVersion/GetWindowsVersion.h"
 #else
 #include <sys/utsname.h>
 #endif
 
+#include <stdio.h>
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"

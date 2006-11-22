@@ -70,7 +70,7 @@ extern int C2F(mktlist)(int *nbitems);
   - 0 if execution succeeds
   - not null if execution fails
 ****************************************************************/
-int C2F(macr2tree) _PARAMS((char *fname));
+int C2F(macr2tree) _PARAMS((char *fname, unsigned long fname_len));
 
 /****************************************************************
  Function name: CreateVariableTList

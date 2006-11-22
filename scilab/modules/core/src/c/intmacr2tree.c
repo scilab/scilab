@@ -18,10 +18,12 @@ static int nbvars = 0;
 static int last_eol_pos = 0;
 
 extern void sciprint __PARAMS((char *fmt,...));
+/****************************************************************/
+int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len));
 /****************************************************************
  Function name: macr2tree
 ****************************************************************/
-int C2F(macr2tree) _PARAMS((char *fname))
+int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len))
 {
   /* Returned value parameters */
   int m_pgrm_tlist = 1,n_pgrm_tlist = 6;

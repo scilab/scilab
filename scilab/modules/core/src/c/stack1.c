@@ -21,6 +21,11 @@ extern void sciprint __PARAMS((char *fmt,...));
 
 static int C2F(getwsmati) __PARAMS((char * fname, integer *topk, integer * spos,integer * lw,integer * m, integer *n,integer * ilr,integer * ilrd ,int * inlistx,integer* nel,unsigned long fname_len));
 
+int C2F(getrsparse)(char *fname, integer *topk, integer *lw, integer *m, integer *n,  integer *nel, integer *mnel, integer *icol, integer *lr,unsigned long fname_len);
+int C2F(getlistsmat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *m,integer *n,integer *ix,integer *j,integer *lr,integer *nlr,unsigned long fname_len);
+int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *Str[],unsigned long fname_len, integer *rep);
+int cre_sparse_from_ptr_i(char *fname, integer *lw, integer *m, integer *n, SciSparse *S, unsigned long fname_len,  integer *rep);
+int crelist_G(integer *slw,integer *ilen,integer *lw,integer type);
 /**********************************************************************
  * MATRICES 
  **********************************************************************/
@@ -750,10 +755,7 @@ int C2F(getsparse)(fname, topk, lw, it, m, n, nel, mnel, icol, lr, lc, fname_len
  * getrsparse : lie getsparse but we check for a real matrix  
  *------------------------------------------------------------------- */
 
-int C2F(getrsparse)(fname, topk, lw, m, n, nel, mnel, icol, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *nel, *mnel, *icol, *lr;
-     unsigned long fname_len;
+int C2F(getrsparse)(char *fname, integer *topk, integer *lw, integer *m, integer *n,  integer *nel, integer *mnel, integer *icol, integer *lr,unsigned long fname_len)
 {
   integer lc, it;  
   if ( C2F(getsparse)(fname, topk, lw, &it, m, n, nel, mnel, icol, lr, &lc, fname_len) == FALSE_ ) 
@@ -1093,10 +1095,7 @@ int C2F(getscalar)(fname, topk, lw, lr, fname_len)
  *       nlr : length of (ix,j)-th string 
  *------------------------------------------------------------------ */
 
-int C2F(getlistsmat)(fname, topk, spos, lnum, m,n , ix, j, lr, nlr, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *m, *n,*ix,*j, *lr, *nlr ;
-     unsigned long fname_len;
+int C2F(getlistsmat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *m,integer *n,integer *ix,integer *j,integer *lr,integer *nlr,unsigned long fname_len)
 {
   integer nv, ili;
 
@@ -1523,7 +1522,7 @@ int C2F(cresmati)(fname, stlw, m, n, nchar, job, lr, sz, fname_len)
       break;
     case 3 :
       {
-	int ix1 = mn + 1;
+	ix1 = mn + 1;
 	C2F(icopy)(&ix1, nchar, &cx1, istk(ilp ), &cx1);
       }
     }
@@ -1540,12 +1539,7 @@ int C2F(cresmati)(fname, stlw, m, n, nchar, job, lr, sz, fname_len)
  *     - lw  : where to create the matrix on the stack 
  *------------------------------------------------------------------ */
 
-int cre_smat_from_str_i(fname, lw, m, n, Str, fname_len ,rep)
-     char *fname;
-     integer *lw, *m, *n;
-     char *Str[];
-     unsigned long fname_len;
-     integer *rep;
+int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *Str[],unsigned long fname_len, integer *rep)
 {
   integer ix1, ix, ilast, il, nnchar, lr1, kij, ilp;
   integer *pos;
@@ -1635,17 +1629,12 @@ int cre_listsmat_from_str(fname, lw, numi, stlw,  m, n, Str, fname_len )
  *     - lw  : where to create the matrix on the stack 
  *------------------------------------------------------------------ */
 
-int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
-     char *fname;
-     integer *lw, *m, *n;
-     SciSparse *S;
-     unsigned long fname_len;
-     integer *rep;
+int cre_sparse_from_ptr_i(char *fname, integer *lw, integer *m, integer *n, SciSparse *S, unsigned long fname_len,  integer *rep)
 {
   double size = (double) ( (S->nel)*(S->it + 1) );
 
   integer ix1,  il, lr, lc;
-  integer cx1=1;
+  integer cx1l=1;
   il = iadr(*lw);
 
   ix1 = il + 5 + *m + S->nel;
@@ -1667,14 +1656,14 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
   /* end of the modified code */
   *istk(il + 3) = S->it;
   *istk(il + 4) = S->nel;
-  C2F(icopy)(&S->m, S->mnel, &cx1, istk(il+5 ), &cx1);
-  C2F(icopy)(&S->nel, S->icol, &cx1, istk(il+5+*m ), &cx1);
+  C2F(icopy)(&S->m, S->mnel, &cx1l, istk(il+5 ), &cx1l);
+  C2F(icopy)(&S->nel, S->icol, &cx1l, istk(il+5+*m ), &cx1l);
   ix1 = il + 5 + *m + S->nel;
   lr = sadr(ix1);
   lc = lr + S->nel;
-  C2F(dcopy)(&S->nel, S->R, &cx1, stk(lr), &cx1);
+  C2F(dcopy)(&S->nel, S->R, &cx1l, stk(lr), &cx1l);
   if ( S->it == 1) 
-    C2F(dcopy)(&S->nel, S->I, &cx1, stk(lc), &cx1);
+    C2F(dcopy)(&S->nel, S->I, &cx1l, stk(lc), &cx1l);
   *rep = lr + S->nel*(S->it+1);
   return TRUE_;
 } 
@@ -1965,8 +1954,7 @@ int C2F(setsimat)(fname, lw, ix, j, nlr, fname_len)
  * Note : elements are to be added to close the list creation 
  *------------------------------------------------------------------- */
 
-int crelist_G(slw, ilen, lw, type)
-     integer *slw, *ilen, *lw, type;
+int crelist_G(integer *slw,integer *ilen,integer *lw,integer type)
 {
   integer ix1;
   integer il;
@@ -1981,20 +1969,17 @@ int crelist_G(slw, ilen, lw, type)
 } 
 
 
-int C2F(crelist)(slw, ilen, lw)
-     integer *slw, *ilen, *lw;
+int C2F(crelist)(integer *slw,integer *ilen,integer *lw)
 {
   return crelist_G(slw,ilen,lw,15);
 } 
 
-int C2F(cretlist)(slw, ilen, lw)
-     integer *slw, *ilen, *lw;
+int C2F(cretlist)(integer *slw,integer *ilen,integer *lw)
 {
   return crelist_G(slw,ilen,lw,16);
 } 
 
-int C2F(cremlist)(slw, ilen, lw)
-     integer *slw, *ilen, *lw;
+int C2F(cremlist)(integer *slw,integer *ilen,integer *lw)
 {
   return crelist_G(slw,ilen,lw,17);
 } 

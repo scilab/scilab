@@ -6,6 +6,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "MALLOC.h" /* MALLOC */
+#include "getarg.h"
 
 extern int sci_iargc(void);
 extern int sci_getarg(int *,char *,long int ln);

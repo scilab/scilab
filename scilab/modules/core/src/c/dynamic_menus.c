@@ -9,6 +9,9 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+
+#include "dynamic_menus.h"
+
 /*-----------------------------------------------------------------------------------*/
 /*
  *  Command queue functions
