@@ -181,6 +181,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\do_xxprintf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\do_xxscanf.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\FileExist.c"
 				>
 			</File>
@@ -229,6 +237,42 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\sci_fprintfMat.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_fscanfMat.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_mfprintf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_mfscanf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_mprintf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_mscanf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_msprintf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_msscanf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\sci_NumTokens.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\sci_xls_open.c"
 				>
 			</File>
@@ -251,6 +295,14 @@
 			</File>
 			<File
 				RelativePath=".\src\bytedecoders.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\do_xxprintf.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\do_xxscanf.h"
 				>
 			</File>
 			<File
