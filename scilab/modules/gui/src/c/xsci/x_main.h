@@ -24,8 +24,13 @@
  * ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
  * SOFTWARE.
  */
+#include "x_main.h"
+#include "machine.h"
 
 #define	DEFFONT			"fixed"
 #define	DEFBOLDFONT		NULL 	/* no bold font uses overstriking */
 #define	DEFBORDER		2
 #define	DEFBORDERWIDTH		2
+
+void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory);
+
