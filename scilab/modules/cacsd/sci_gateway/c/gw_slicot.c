@@ -20,6 +20,8 @@ extern Gatefunc C2F(inthinf);
 extern Gatefunc C2F(intdhinf);
 extern Gatefunc C2F(intlinmeq);
 /*-----------------------------------------------------------------------------------*/ 
+int C2F(gw_slicot)(void);
+/*-----------------------------------------------------------------------------------*/ 
 static GenericTable Tab[]={
   {(Myinterfun) fortran_mex_gateway, C2F(sident),"sident"},
   {(Myinterfun) fortran_mex_gateway, C2F(sorder),"sorder"},
@@ -33,7 +35,7 @@ static GenericTable Tab[]={
   {(Myinterfun) sci_gateway, C2F(intlinmeq),"linmeq"}
 };
 /*-----------------------------------------------------------------------------------*/  
-int C2F(gw_slicot)()
+int C2F(gw_slicot)(void)
 {
 	Rhs = Max(0, Rhs);
 	#if _MSC_VER

@@ -13,6 +13,8 @@ extern int C2F(sci_arl2) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_ldiv) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_cacsd3)(void);
+/*-----------------------------------------------------------------------------------*/
 static Cacsd3Table Tab[]=
 {
 	{C2F(sci_arl2),"arl2_ius"},
@@ -20,7 +22,7 @@ static Cacsd3Table Tab[]=
 	{C2F(sci_ldiv),"ldiv"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd3)()
+int C2F(gw_cacsd3)(void)
 {  
 	if ( Fin-1 > 2) return 0;
 #if _MSC_VER

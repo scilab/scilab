@@ -15,6 +15,8 @@ extern int C2F(sci_freq) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_ltitr) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_rtitr) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_cacsd2)(void);
+/*-----------------------------------------------------------------------------------*/
 static int C2F(sci_xxxx)_PARAMS((char *fname,unsigned long fname_len))
 {
 	/* not used */
@@ -31,7 +33,7 @@ static Cacsd2Table Tab[]=
 	{C2F(sci_rtitr),"rtitr"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd2)()
+int C2F(gw_cacsd2)(void)
 {  
 #if _MSC_VER
 	#ifndef _DEBUG

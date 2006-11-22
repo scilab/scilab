@@ -14,6 +14,8 @@ extern int C2F(sci_gspec) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_ereduc) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_fstair) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_cacsd0)(void);
+/*-----------------------------------------------------------------------------------*/
 static Cacsd0Table Tab[]=
 {
 	{C2F(sci_gschur),"gschur"},
@@ -22,7 +24,7 @@ static Cacsd0Table Tab[]=
 	{C2F(sci_fstair),"fstair"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd0)()
+int C2F(gw_cacsd0)(void)
 {  
 #if _MSC_VER
 	#ifndef _DEBUG

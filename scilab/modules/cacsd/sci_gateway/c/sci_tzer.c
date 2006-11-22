@@ -7,6 +7,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scitzer) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_tzer) _PARAMS((char *fname,unsigned long fname_len))
 {
 	if (Rhs != 4)

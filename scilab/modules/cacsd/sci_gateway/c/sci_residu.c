@@ -7,6 +7,8 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(sciresidu) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
 int C2F(sci_residu) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(sciresidu)(fname,fname_len);

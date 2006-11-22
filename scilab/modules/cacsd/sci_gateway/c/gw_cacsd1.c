@@ -13,6 +13,8 @@ extern int C2F(scilyap) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(scisylv) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intricc)  _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
+int C2F(gw_cacsd1)(void);
+/*-----------------------------------------------------------------------------------*/
 static Cacsd1Table Tab[]=
 {
 	{C2F(scilyap),"lyap"},
@@ -20,7 +22,7 @@ static Cacsd1Table Tab[]=
 	{C2F(intricc),"ricc"}
 };
 /*-----------------------------------------------------------------------------------*/
-int C2F(gw_cacsd1)()
+int C2F(gw_cacsd1)(void)
 {  
 #if _MSC_VER
 	#ifndef _DEBUG
