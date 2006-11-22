@@ -6,6 +6,7 @@
 #include "machine.h"
 
 #include "Scierror.h"
+int C2F(erro)(char *str,long int str_len);
 /*-----------------------------------------------------------------------------------*/
  int C2F(erro)(char *str,long int str_len)
 {

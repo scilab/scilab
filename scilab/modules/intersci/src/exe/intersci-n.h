@@ -311,7 +311,7 @@ extern void ForSEQUENCE  __PARAMS((VARPTR var));
 extern void ForEMPTY  __PARAMS((VARPTR var)); 
 extern void ForWORK  __PARAMS((VARPTR var)); 
 extern void ForDIMFOREXT  __PARAMS((VARPTR var)); 
-extern int main  __PARAMS((unsigned int argc, char **argv)); 
+extern int main  __PARAMS((int argc, char **argv)); 
 extern void Generate  __PARAMS((char *file)); 
 extern int FixStackPositions  __PARAMS((void));
 extern void FixForNames  __PARAMS(());
@@ -392,6 +392,7 @@ extern void WriteVariableOutput  __PARAMS((FILE *f, VARPTR var, int convert, int
 void OptMATRIX  __PARAMS(( FILE *f, VARPTR var));
 void OptOpointer  __PARAMS(( FILE *f, VARPTR var));
 void GetDim  __PARAMS((char *str,IVAR ivar)) ;
+
 
 
 

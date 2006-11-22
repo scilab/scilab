@@ -27,12 +27,10 @@ char str1[4*MAXNAM];
 char str2[4*MAXNAM];
 
 static void GenBuilder __PARAMS(( char *file,char *files,char *libs ));
-
+void CheckCreateOrder();
 /* local variables */
 
-int main(argc,argv)
-     unsigned int argc;
-     char **argv;
+int main( int argc,char ** argv)
 { 
   char *files,*libs;
   char *file;
