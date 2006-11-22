@@ -71,10 +71,7 @@ sci_gateway/fortran/intfile.f
 # Disable optimisation of the file intmgetl.f
 noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
-libdummy_io_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
-
-#"`echo $(FFLAGS)| sed -e 's|-O[0-9+]|-O0|'`"
-
+libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 
 libio_la_includedir=$(includedir)/io
 
