@@ -6,7 +6,7 @@ MDialog SciMDialog = {{0},0,0,NULL,NULL,NULL,-1,0};  /** used to stored the mdia
 #include "men_scilab.h"
 MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data **/
 #endif
-#include "men_Sutils.h" /* ScilabMStr2C */
+#include "../../string/includes/men_Sutils.h" /* ScilabMStr2C */
 #include "sciprint.h"
 
 #include "MALLOC.h"

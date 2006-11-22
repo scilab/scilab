@@ -12,7 +12,7 @@ char *dialog_str = (char *) 0;
 
 #include "sciprint.h"
 
-#include "men_Sutils.h" /* ScilabMStr2C */
+#include "../../string/includes/men_Sutils.h" /* ScilabMStr2C */
 
 SciDialog ScilabDialog = { NULL,NULL,NULL,-1,0}; 
 void xdialg1(char *description, char *valueinit, char **pButName, char *value, int *ok);
