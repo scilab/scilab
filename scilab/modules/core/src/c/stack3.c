@@ -505,7 +505,7 @@ int C2F(cmatcptr)(char *namex, integer *m, integer *n, integer *lp, unsigned lon
  *   see also  readmat.f, matz.f 
  *----------------------------------------------------------------*/
 
-int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *lp,integer *ix,integer *j,integer *nlr, unsigned long name_len)
+int C2F(cmatsptr)(char *namex, integer *m, integer *n,integer *ix,integer *j,integer *lp,integer *nlr, unsigned long name_len)
 {
     integer id[nsiz];
     C2F(str2name)(namex, id, name_len);
