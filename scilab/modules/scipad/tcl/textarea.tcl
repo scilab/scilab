@@ -57,18 +57,6 @@ proc dupWidgetText {widget name} {
     $name insert end [$widget get 1.0 end]
 }
 
-###ES: who uses this, besides TextStyles which sets it? 
-# set the indent spacing (in cm) for lists
-# TK uses a "weird" tabbing model that causes \t to insert a single
-# space if the current line position is past the tab setting
-proc scipadindent {textarea cm} {
-    set tabs [expr $cm / 2.0]
-    $textarea configure -tabs ${tabs}c
-    set tab [expr 1 * $cm]
-    $textarea tag configure indentation -lmargin1 ${tab}c -lmargin2 ${tab}c \
-        -tabs "[expr $tab + $tabs]c [expr $tab + 2*$tabs]c"
-}
-
 proc TextStyles { t } {
     global colorpref
     foreach c1 $colorpref {global $c1}
@@ -90,12 +78,10 @@ proc TextStyles { t } {
     $t tag configure scicos -foreground $SCICCOLOR
     $t tag configure predef -foreground $PDEFCOLOR
     $t tag configure operator -foreground $OPCOLOR
-    $t tag configure text -foreground $FGCOLOR
     $t tag configure textquoted -foreground $QTXTCOLOR
     $t tag configure rem2 -foreground $REMCOLOR
     $t tag configure xmltag -foreground $XMLCOLOR
     $t tag configure number -foreground $NUMCOLOR
-    scipadindent $t .8
     $t tag configure breakpoint -background $BREAKPOINTCOLOR
     $t tag configure activebreakpoint -background $BREAKPOINTCOLOR
     $t tag configure activebreakpoint -font $actbptextFont \

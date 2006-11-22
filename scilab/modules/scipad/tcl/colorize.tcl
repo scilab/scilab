@@ -97,11 +97,9 @@ proc remalltags {w begin ende} {
     $w tag remove predef $begin $ende
     $w tag remove libfun $begin $ende
     $w tag remove scicos $begin $ende
-    $w tag remove text $begin $ende   ;# apparently used nowhere!
     $w tag remove rem2 $begin $ende
     $w tag remove xmltag $begin $ende
     $w tag remove textquoted $begin $ende  
-    $w tag remove indentation $begin $ende ;# can probably be plonked!
     # tag userfun is deleted in proc docolorizeuserfun
 }
 

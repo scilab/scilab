@@ -259,6 +259,7 @@ proc updatefont {{fontsource "newfont"}} {
             $tapwfr.clbutton  configure -font $menuFont
         }
     }
+    settabsize
 
     # This sets the font used in all dialogs (Unix only - on Windows
     # native platform dialogs are used by Tk)
@@ -325,5 +326,14 @@ proc setdefaultfonts {} {
     } else {
         set textFont [font actual -Adobe-Courier-medium-R-Normal-*-$textfontsize-*]
         set menuFont [font actual -adobe-helvetica-bold-r-normal--$menufontsize-*-75-75-*-*-*-*]
+    }
+}
+
+proc settabsize {} {
+# update the tab size in all the existing text widgets
+    global textfontsize tabsizeinchars listoftextarea
+    set tabsizeinpix [expr $textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars]
+    foreach textarea $listoftextarea {
+        $textarea configure -tabs $tabsizeinpix
     }
 }

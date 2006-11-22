@@ -21,7 +21,7 @@ if {$debuglog} {
     showinfo delinfo showinfo_menu_file showinfo_menu_wind \
     GetFirstRecentInd extractindexfromlabel \
     checkifanythingchangedondisk checkiffilechangedondisk \
-    TextStyles scipadindent managescroll \
+    TextStyles managescroll \
     schememenus setdbmenuentriesstates_bp getdbstate pbind \
     Button1BindTextArea IsBufferEditable changedmodified \
     gettextareacur settextareacur countcontlines reshape_bp \

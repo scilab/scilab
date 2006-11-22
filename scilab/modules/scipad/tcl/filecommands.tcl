@@ -834,6 +834,10 @@ proc writesave {textarea nametosave} {
             set listoffile("$textarea",readonly) $readonlyflag
             set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
             showinfo $msgWait
+            # windows menu entries must be sorted so that order is
+            # correct when sorting by MRU (the file that was just saved
+            # has become the most recently used)
+            sortwindowsmenuentries
             return 1
         } else {
             set msgWait [concat $nametosave [mc "cannot be written!"]]
@@ -1343,21 +1347,20 @@ proc UpdateRecentLabels {rec1ind} {
 # update labels of recent files entries with file tail preceded by a number
     global pad listofrecent nbrecentfiles
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
-        set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+        if {$i<9} {
+            set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+        } else {
+            set lab [file tail [lindex $listofrecent $i] ]
+        }
         set ind [expr $rec1ind + $i]
         # [list [lindex $listofrecent $i]] automatically escapes special characters
         $pad.filemenu.files entryconfigure $ind \
                    -label $lab \
                    -command "openfileifexists [list [lindex $listofrecent $i]]"
         if {$i<9} {
-            $pad.filemenu.files entryconfigure $ind \
-                   -underline 0
+            $pad.filemenu.files entryconfigure $ind -underline 0
         } else {
-            # this is a hack to remove the underline by setting it after the
-            # end of the entry
-            set len [expr [string length $lab] + 100]
-            $pad.filemenu.files entryconfigure $ind \
-                   -underline $len
+            $pad.filemenu.files entryconfigure $ind -underline -1
         }
     }
 }
@@ -1366,7 +1369,11 @@ proc BuildInitialRecentFilesList {} {
     global pad listofrecent nbrecentfiles
     set nbrecentfiles [llength $listofrecent]
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
-        set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+        if {$i<9} {
+            set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+        } else {
+            set lab [file tail [lindex $listofrecent $i] ]
+        }
         # [list [lindex $listofrecent $i]] automatically escapes special characters
         $pad.filemenu.files add command \
                    -label $lab \

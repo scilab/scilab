@@ -2540,3 +2540,29 @@ Francois VOGEL, 20/11/06
    it was previously), or to sort alphabetically, or by MRU (Most Recently
    Used) file, based on the last saving time
  * version --> 6.61
+
+Francois VOGEL, 22/11/06
+ * Fixed: Saving a buffer did not update the windows menu order (there is
+   a change when sorting by MRU)
+ * Fixed all "modselection bugs" I'm aware of:
+   . proc selectline, Un/IndentSel and Un/CommentSel use only the sel tag
+     of the text widget, and no longer the X selection
+   . no selection glitches any more (use of marks and code factorization)
+   . Ctrl-d (Indent) with a selection starting in the middle of a line now
+     indents the first line from column 0 instead of from the insert point
+   . Ctrl-m (Comment) without selection now inserts // at the insertion
+     point (and no longer at the beginning of the line)
+   . Unindenting a line with leading tabs does now properly unindent
+   . The indentation scheme takes into account the "Tab inserts..." settings
+     from the option menu. Previously indent/unindent always used spaces.
+     Now indentation uses tabs instead when "Tab inserts spaces" is
+     unchecked
+   . Ctrl-d (Indent) removes leading tabs before inserting spaces, and vice
+     versa (useful when reindenting text that was indented with the "wrong"
+     character)
+ * Removed useless proc scipadindent, as well as the "indentation" and
+   "text" tags
+ * Added a saved preference in the option menu to set the size of the tabs
+ * Pushed the maximum number of recent filenames in the file menu (15, 20 or
+   even 50 items now allowed)
+ * version --> 6.62

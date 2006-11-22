@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.61
+# in sync at least with v6.62
 
 
 # commons
@@ -433,7 +433,8 @@
         ::msgcat::mcset fr "&Scilab" "&Scilab"
     ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
         ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"
-        ::msgcat::mcset fr "&Indentation spaces" "&Dimension de l'indentation"
+        ::msgcat::mcset fr "&Indentation spaces" "&Dimension de l'indentation (espaces)"
+        ::msgcat::mcset fr "&Tab size (characters)" "&Taille d'une tabulation (caractères)"
     ::msgcat::mcset fr "Com&pletion" "Ter&minaison"
         ::msgcat::mcset fr "&Tab" "&Tab"
         ::msgcat::mcset fr "&Control-Tab" "&Control-Tab"

@@ -70,22 +70,6 @@ endfunction
 -watching some very large variable content looks like the variable is empty
  This is Tk bug 1449858.
 
--modselection bugs:
-  . <TODO> Ctrl-d with a selection starting in the middle of a line -> indent
-    the first line from column 0
-  . <TODO> Ctrl-m without selection -> // at the insert point (not at the
-    beginning of the line)
-  . When a line contains leading tabs and you hit ctrl-d and tab key
-    inserts spaces, each of these leading tabs are replaced by a *single*
-    space. It should be $indentspaces spaces.
-  . Unindenting a line with leading tabs does nothing. It should unindent.
-  . The indentation scheme should take into account the "Tab inserts..."
-    settings from the option menu. Actually as far as I understand/tried
-    indent/unindent always uses spaces. Using tabs instead when "Tab inserts
-    spaces" is unchecked would be a valuable improvement since some users
-    still use tabs to indent. Ctrl-d/D should transform existing tabs into
-    spaces or viceversa depending on the option,
-
 -after configuration, when the first debug command is issued, Scipad execs
  the current buffer and the buffer containing the configured function.
  It should actually exec only the configured function plus all its ancillaries
@@ -226,8 +210,6 @@ Other wishes:
 
 -smart indentation (i.e., for automatically indents the next line, end
  automatically indents back, etc)
- Note: proc scipadindent should be removed, since scipad now uses physical
- indentation
  
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n

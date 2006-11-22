@@ -241,6 +241,13 @@ proc createmenues {} {
                 [me "&Indentation spaces"]\
                 -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
                         indentspaces 1 2 3 4 5 6 7 8 9 10]"
+        set tabsizemenu [tk_optionMenu $pad.filemenu.options.tabs.tabsize \
+                        tabsizeinchars 1 2 3 4 5 6 7 8]
+        eval "$pad.filemenu.options.tabs add cascade  \
+                [me "&Tab size (characters)"] -menu $tabsizemenu"
+        for {set i 0} {$i<=[$tabsizemenu index last]} {incr i} {
+            $tabsizemenu entryconfigure $i -command {settabsize}
+        }
     eval "$pad.filemenu.options add cascade [me "Com&pletion"] \
                -menu $pad.filemenu.options.completion"
         menu $pad.filemenu.options.completion -tearoff 0
@@ -293,12 +300,12 @@ proc createmenues {} {
         eval "$pad.filemenu.options.windmenusort add radiobutton \
                  [me "&Most recently used"] -command {sortwindowsmenuentries}\
                  -value MRUorder -variable windowsmenusorting"
+    set recentnumbmenu [tk_optionMenu $pad.filemenu.options.recent \
+                    maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10 15 20 50]
     eval "$pad.filemenu.options add cascade  [me "&Recent files"]\
-               -menu [tk_optionMenu $pad.filemenu.options.recent \
-                    maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10]"
-    for {set i 0} {$i<=10} {incr i} {
-        $pad.filemenu.options.recent.menu entryconfigure $i \
-            -command {UpdateRecentFilesList}
+               -menu $recentnumbmenu"
+    for {set i 0} {$i<=[$recentnumbmenu index last]} {incr i} {
+        $recentnumbmenu entryconfigure $i -command {UpdateRecentFilesList}
     }
     eval "$pad.filemenu.options add cascade  [me "&Backup files depth"]\
                -menu [tk_optionMenu $pad.filemenu.options.backup \
@@ -392,7 +399,8 @@ proc createmenues {} {
     createarrayofmenuentriesid $pad.filemenu
 
     # set the correct font for menues, including tk_optionMenues, that do not
-    # have a -font option
+    # have a -font option - also set the tab size since updatefont all will
+    # call settabsize
     updatefont all
 }
 

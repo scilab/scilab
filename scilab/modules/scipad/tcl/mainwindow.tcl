@@ -41,14 +41,12 @@ $pad.filemenu configure -font $menuFont
 panedwindow $pad.pw0 -orient vertical -opaqueresize true
 set pwmaxid 0
 
-set taille [expr [font measure $textFont " "] *3]
-
 # creates the default textarea
 # -width 1 and -height 1 ensure that the scrollbars show up
 # whatever the size of the textarea
 text $textareacur -relief sunken -bd 0 \
     -wrap $wordWrap -width 1 -height 1\
-    -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
+    -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont \
     -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
     -selectbackground $SELCOLOR -exportselection 1 \
     -undo 1 -autoseparators 1

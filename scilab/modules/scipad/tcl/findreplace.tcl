@@ -166,11 +166,11 @@ proc findtextdialog {typ} {
     # (in case the keyboard is used to change the listbox content)
     bind $searchtagslb <ButtonRelease-1> \
         {set listoftagsforfind [tagsforfind "onlyselected"] ; \
-         resetfind $find \
+         resetfind \
         }
     bind $searchtagslb <FocusOut> \
         {set listoftagsforfind [tagsforfind "onlyselected"] ; \
-         resetfind $find \
+         resetfind \
         }
     pack $find.l.f4.f1.f1 $find.l.f4.f1.f2 -side top -anchor nw
     pack configure $find.l.f4.f1.f1 -anchor nw -expand 1 -fill x
@@ -180,18 +180,18 @@ proc findtextdialog {typ} {
         -text [mc "Find options"] -font $menuFont
     eval "checkbutton $find.l.f4.f5.cbox0 [bl "Match &whole word only"] \
         -variable wholeword  \
-        -command \"resetfind $find\" \
+        -command \"resetfind\" \
         -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] \
         -variable caset -onvalue \"-exact\" -offvalue \"-nocase\" \
-        -command \"resetfind $find\" -font \[list $menuFont\] "
+        -command \"resetfind\" -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] \
         -variable regexpcase  -onvalue \"regexp\" -offvalue \"standard\" \
-        -command \"resetfind $find ; setregexpstatesettings \" \
+        -command \"resetfind ; setregexpstatesettings \" \
         -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox3 [bl "In all &opened files"] \
         -variable multiplefiles \
-        -command \"resetfind $find ; \
+        -command \"resetfind ; \
                    $find.l.f4.f5.cbox4 deselect ; \
                    if {[string compare $typ find] == 0} { \
                        $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
@@ -200,7 +200,7 @@ proc findtextdialog {typ} {
          -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox4 [bl "In &selection only"] \
         -variable searchinsel \
-        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind $find ; \
+        -command \"tryrestoreseltag \[gettextareacur\] ; resetfind ; \
                    $find.l.f4.f5.cbox3 deselect ; \
                    if {[string compare $typ find] == 0} { \
                        $find.l.f4.f5.cbox5 deselect ; searchindirdisabled ; \
@@ -208,11 +208,11 @@ proc findtextdialog {typ} {
         -font \[list $menuFont\] "
     eval "checkbutton $find.l.f4.f5.cbox7 [bl "In typed te&xt"] \
         -variable searchintagged \
-        -command \"resetfind $find ; setsearchintagsettings\" -font \[list $menuFont\] "
+        -command \"resetfind ; setsearchintagsettings\" -font \[list $menuFont\] "
     if {$typ == "find"} {
         eval "checkbutton $find.l.f4.f5.cbox5 [bl "In a director&y"] \
             -variable searchindir \
-            -command \"resetfind $find ; togglesearchindir\" \
+            -command \"resetfind ; togglesearchindir\" \
             -font \[list $menuFont\] "
     }
     if {$typ == "find"} {
@@ -233,7 +233,7 @@ proc findtextdialog {typ} {
             -text [mc "Find in files search options"] -font $menuFont
         eval "checkbutton $find.b.cbox6 [bl "Directory r&ecurse search"] \
             -variable recursesearchindir \
-            -command \"resetfind $find\" \
+            -command \"resetfind\" \
             -font \[list $menuFont\] "
         pack $find.b.cbox6 -anchor w
         frame $find.b.f1
@@ -335,7 +335,7 @@ proc findtextdialog {typ} {
     # called and resetfind uses the searchinsel value set by the test on
     # $tahasnosel above
     $find.u.f1.entry configure -validate key \
-        -validatecommand {resetfind $find ; return 1}
+        -validatecommand {resetfind ; return 1}
 
     # initial settings for searching in multiple files
     if {!$tahasnosel} {
@@ -396,7 +396,7 @@ proc findtextdialog {typ} {
     }
 
     # initialize all the remaining startup settings
-    resetfind $find
+    resetfind
 }
 
 proc tryrestoreseltag {textarea} {
@@ -719,7 +719,7 @@ proc findit {w pw textarea tosearchfor reg} {
                 $textarea tag remove sel 0.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
-                resetfind $w
+                resetfind
                 set findres [findit $w $pw $textarea $tosearchfor $reg]
             } else {
                 # don't extend search, nothing to do
@@ -875,7 +875,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
                 $textarea tag remove sel 0.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
-                resetfind $w
+                resetfind
                 set replres [replaceit $w $pw $textarea $tosearchfor $reg 1]
             } else {
                 # don't extend search, nothing to do
@@ -995,7 +995,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
 proc multiplefilesreplaceall {w} {
 # search and replace all matches in all the opened buffers, or in the current one
 # depending on the state of the "search in all files" checkbox
-    global SearchString SearchDir regexpcase
+    global SearchString regexpcase
     global listofmatch indoffirstmatch indofcurrentmatch
     global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
     global prevfindres
@@ -1048,7 +1048,7 @@ proc multiplefilesreplaceall {w} {
 proc replaceall {w pw textarea tosearchfor reg} {
 # find all matches in $textarea, and replace these matches
 
-    global SearchString SearchDir
+    global SearchString
     global listofmatch indoffirstmatch indofcurrentmatch
     global listoffile multiplefiles
     global buffermodifiedsincelastsearch
@@ -1474,7 +1474,7 @@ proc setcurmatchasreplaced {textarea lenR} {
     }
 }
 
-proc resetfind {w} {
+proc resetfind {} {
 # reset the find/replace settings to their initial default values
 # so that the next find or replace will scan the buffer(s) again
 # and create a new list of matches
