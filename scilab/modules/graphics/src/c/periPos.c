@@ -19,6 +19,7 @@
 #endif
 
 #include "machine.h"
+#include "bcg.h"
 
 #if defined(THINK_C) || defined(_MSC_VER)
 #define CoordModePrevious 1
