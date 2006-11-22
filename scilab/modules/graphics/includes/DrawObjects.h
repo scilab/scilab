@@ -33,7 +33,7 @@ void wininfo  __PARAMS((char *fmt,...));
 
 int get_cf_type( void ) ;
 
-extern void GPopupResize();
+extern void GPopupResize(void);
 /* static struct BCG *tmpScilabXgc; */
 
 void set_cf_type( int val ) ;
@@ -69,12 +69,12 @@ extern HDC sciGetDC (sciPointObj * pobj);     /* DRAWINGS */
 /* extern HDC sciGetHDC (sciPointObj * pobj);    /\* DRAWINGS *\/ */ /* inexistant in Entities.c */
 #endif
 
-extern void sciRedrawFigure(); /* DRAWINGS */
+extern void sciRedrawFigure(void); /* DRAWINGS */
 extern void sciRedrawF(int *num); /* DRAWINGS */
-extern void sciXbasc();  /* DRAWINGS */
-extern void sciXClearFigure(); /* DRAWINGS */
-extern void sciXclear(); /* DRAWINGS */
-extern void sciXdraw();  /* DRAWINGS */
+extern void sciXbasc(void);  /* DRAWINGS */
+extern void sciXClearFigure(void); /* DRAWINGS */
+extern void sciXclear(void); /* DRAWINGS */
+extern void sciXdraw(void);  /* DRAWINGS */
  
 /* 3 next are in plo3d.c*/
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */

@@ -24,6 +24,14 @@ BOOL CheckDisplay( double fact_h, double fact_w, char logflag, char *foo,int *po
 /* point[1] : y component */
 BOOL IsInsideRectangle(int * rect, int *point) ;
 
+
+/*---------------------------------------------------------------------
+ *Trace l'enveloppe convexe de la boite contenant le dessin 
+ * et renvoit dans InsideU et InsideD les indices des points dans xbox et ybox
+ * qui sont sur les 2 tri\`edres a l'interieur de l'enveloppe convexe
+ *---------------------------------------------------------------------*/
+void Convex3d_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox);
+
 /* get the bounding rectangle of a label of a ticks */
 /* similar to stringBoundingRect but only for ticks labels */
 void getTicksLabelBox( double   fact_h   ,

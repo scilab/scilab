@@ -42,7 +42,6 @@
 #define GXset 15
 #endif
 
-
 struct BCG  ScilabGCPos ;
 static BOOL ScilabGCPos_is_initialized = FALSE;
 

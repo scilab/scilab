@@ -7,6 +7,7 @@ static int nnuees __PARAMS((double *x, double *y, double *z, integer *n, double 
 
 static int heapi2 __PARAMS((integer *criter, integer *record, integer *n));
 static int bblocs __PARAMS((double *x, double *y, double *z, integer *n, double *bx, double *by, double *bz, integer *nbbary, integer *chaine, integer *ierr));
+int C2F(nues1)(double *xyz, integer *n, double *bxyz, integer *nbbary, integer *chaine, integer *ierr);
 
 /*------------------------------------------------------
  *------------------------------------------------------*/

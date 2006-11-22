@@ -14,7 +14,7 @@ extern void reset_scig_click_handler (void);
 extern void scig_deletegwin_handler_none (int win);
 extern void scig_deletegwin_handler_sci (int win);
 extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
-extern void reset_scig_deletegwin_handler ();
+extern void reset_scig_deletegwin_handler (void);
 
 extern void seteventhandler(int *win_num,char *name,int *ierr);
 
@@ -23,6 +23,10 @@ extern void set_no_delete_win_mode(void);
 extern int  get_delete_win_mode(void);
 
 extern void set_wait_click(int val);
-extern int  get_wait_click();
+extern int  get_wait_click(void);
 
 Scig_deletegwin_handler scig_deletegwin_handler;
+
+extern void set_event_select(int val);
+extern int get_event_select(void);
+

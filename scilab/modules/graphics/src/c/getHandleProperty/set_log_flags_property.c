@@ -15,6 +15,10 @@
 #include "MALLOC.h"
 
 /*-----------------------------------------------------------------------------------*/
+char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels);
+/*-----------------------------------------------------------------------------------*/
+char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels);
+/*-----------------------------------------------------------------------------------*/
 /* Remove negative graduations when switching from N (linear) to L (logarithmic) scale */
 char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
 {

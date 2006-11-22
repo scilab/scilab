@@ -57,7 +57,7 @@ extern int versionflag;
 void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag); 
 void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion();
+static void SetGraphicsVersion(void);
 void C2F(setforegroundXfig)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetXfig)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundXfig)(integer *num, integer *v2, integer *v3, integer *v4);

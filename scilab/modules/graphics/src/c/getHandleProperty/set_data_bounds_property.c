@@ -16,6 +16,11 @@
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
+int getdDataBoundsFromStack( int  stackPointer, int nbRow, int nbCol,
+                             double * xMin, double * xMax,
+                             double * yMin, double * yMax,
+                             double * zMin, double * zMax );
+/*------------------------------------------------------------------------*/
 /**
  * fill bounds (xMin, xMax, yMin,... ) from the assigned value in the stack
  * beacause it might have several possible size.

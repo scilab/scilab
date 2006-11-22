@@ -33,7 +33,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, int stackPointer, int 
       ( nbCol == 4 && pPOLYLINE_FEATURE(pobj)->dim_icv == 4 ) )
   {
     int tmp[4] ;
-    double * values = getDoubleMatrixFromStack( stackPointer ) ;
+    getDoubleMatrixFromStack( stackPointer ) ;
 
     copyDoubleVectorToIntFromStack( stackPointer, tmp, nbCol ) ;
 

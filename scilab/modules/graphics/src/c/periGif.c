@@ -96,7 +96,7 @@ void C2F(setdashstyleGif)(integer *value, integer *xx, integer *n);
 void C2F(Write2VectGif)();
 void C2F(WriteGenericGif)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCGif)(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion();
+static void SetGraphicsVersion(void);
 void C2F(setforegroundGif)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetGif)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundGif)(integer *num, integer *v2, integer *v3, integer *v4);

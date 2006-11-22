@@ -15,7 +15,7 @@
 /*------------------------------------------------------------------------*/
 int set_visible_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
-  char * value = getStringFromStack( stackPointer ) ;
+  getStringFromStack( stackPointer ) ;
 
   if ( !isParameterStringMatrix( valueType ) )
   {

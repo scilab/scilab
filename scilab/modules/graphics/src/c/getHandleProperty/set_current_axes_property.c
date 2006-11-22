@@ -20,7 +20,6 @@ int set_current_axes_property( sciPointObj * pobj, int stackPointer, int valueTy
   sciPointObj * curAxes   = NULL ;
   sciPointObj * parentFig = NULL ;
   int num = -1 ;
-  int v    = 1 ;
   int status1 = 1 ;
   int status2 = 1 ;
   

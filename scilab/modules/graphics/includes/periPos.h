@@ -43,6 +43,25 @@
  extern void  C2F(queryfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
 /*----------------------------------END---------------------------*/
 
+
+void C2F(set_dash_or_color_Pos)(integer *value, integer *v2, integer *v3, integer *v4);
+
+void C2F(set_dash_and_color_Pos)(integer *value, integer *v2, integer *v3, integer *v4);
+
+void C2F(set_line_style_Pos)(integer *value, integer *v2, integer *v3, integer *v4);
+
+void C2F(get_dash_or_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy);
+
+void C2F(get_dash_and_color_Pos)(integer *verbose, integer *value, integer *narg, double *dummy);
+
+void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3);
+
+void C2F(getcolormapsizePos)(integer *v1, integer *v2, integer *v3, double *val);
+
+void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val);
+
+void C2F(setwwhowPos)(integer *verbose, integer *v2, integer *v3, integer *v4);
+
 void setposfig( integer * i, integer * j ) ;
 
 #endif /*__PERIPOS_H__*/

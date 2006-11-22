@@ -18,6 +18,7 @@
 #include "BuildObjects.h"
 #include "SetPropertyStatus.h"
 
+void updateMenus( struct BCG * XGC );
 /*-----------------------------------------------------------------------------------*/
 /* removeNewStyleMenu                                                                */
 /* remove the menu and toolbar which can not be used in old style                    */

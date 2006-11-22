@@ -83,20 +83,20 @@ int set_color_mode_property( sciPointObj * pobj, int stackPointer, int valueType
         }
         else
         {
-          int nc = psurf->nc;
+          int nc_ = psurf->nc;
 
           FREE(psurf->color);
           psurf->color = NULL ;
           
 
-          if ( nc > 0 )
+          if ( nc_ > 0 )
           {
-            if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
+            if ((psurf->color = MALLOC (nc_ * sizeof (double))) == NULL)
             {
               sciprint("Can not performed requested action, memory full.\n" ) ;
               return SET_PROPERTY_ERROR ;
             }
-            doubleArrayCopy( psurf->color, psurf->zcol, nc ) ;
+            doubleArrayCopy( psurf->color, psurf->zcol, nc_ ) ;
           }
           /* copy zcol that has just been freed and re-alloc + filled in */
         }

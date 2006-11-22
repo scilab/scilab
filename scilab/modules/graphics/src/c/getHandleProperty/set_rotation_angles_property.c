@@ -13,6 +13,7 @@
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "periScreen.h"
+#include "DrawObjects.h" 
 
 /*------------------------------------------------------------------------*/
 int set_rotation_angles_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )

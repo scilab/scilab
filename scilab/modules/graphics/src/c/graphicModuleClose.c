@@ -8,7 +8,8 @@
 #include "getHandleProperty/GetHashTable.h"
 #include "getHandleProperty/SetHashTable.h"
 #include "DestroyObjects.h"
-
+/*------------------------------------------------------------------------*/
+void closeGraphicModule( void );
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
 {

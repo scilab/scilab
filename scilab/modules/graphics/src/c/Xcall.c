@@ -43,13 +43,11 @@
 #include "../machine.h"
 #include "periMac.h"
 #else 
-#ifdef _MSC_VER
 #include "math_graphics.h"
 #include "Graphics.h" 
+#ifdef _MSC_VER
 #include "periWin.h"
 #else
-#include "math_graphics.h"
-#include "Graphics.h" 
 #include "periX11.h"
 #endif
 #endif 
@@ -57,6 +55,7 @@
 #include "periPos.h"
 #include "periFig.h"
 #include "periGif.h"
+#include "Xcall1.h"
 
 /* should be removed when scilab will be full ansi C */
 
@@ -87,10 +86,11 @@
 /* So it is not possible to choose any name, there can be only one name per basket. */
 /* However, I think it is easier than running gperf each time ;). */
 
-static void C2F(all)();
-
 static void C2F(vide)(char *v1,integer * v2,integer * v3,integer * v4,integer * v5,integer * v6,
 		      integer *v7,double * dv1,double * dv2,double * dv3,double * dv4) {}
+const struct funreplace * xcall_in_word_set (register const char *str, register unsigned int len);
+static void C2F(all)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5, integer *x6, integer *x7,double *dx1,double *dx2,double *dx3,double *dx4, integer lx0, integer lx1);
+
 
 typedef void (*func)();
 typedef void (function)() ;
@@ -153,9 +153,7 @@ hash (str, len)
 __inline
 #endif
 const struct funreplace *
-xcall_in_word_set (str, len)
-     register const char *str;
-     register unsigned int len;
+xcall_in_word_set (register const char *str, register unsigned int len)
 {
   static const struct funreplace wordlist[] =
     {
