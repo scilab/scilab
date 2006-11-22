@@ -71,10 +71,15 @@ am__objects_1 = libfileio_la-FileExist.lo libfileio_la-files.lo \
 	libfileio_la-olestream-unwrap.lo libfileio_la-pldstr.lo \
 	libfileio_la-ole.lo libfileio_la-bytedecoders.lo \
 	libfileio_la-logger.lo libfileio_la-ripole.lo \
-	libfileio_la-misc.lo libfileio_la-bt-int.lo
+	libfileio_la-misc.lo libfileio_la-bt-int.lo \
+	libfileio_la-do_xxprintf.lo libfileio_la-do_xxscanf.lo
 am__objects_2 = libfileio_la-sci_xls_read.lo libfileio_la-gw_fileio.lo \
 	libfileio_la-sci_fileio.lo libfileio_la-sci_xls_open.lo \
-	libfileio_la-intreadxls.lo
+	libfileio_la-intreadxls.lo libfileio_la-sci_mfprintf.lo \
+	libfileio_la-sci_mprintf.lo libfileio_la-sci_msprintf.lo \
+	libfileio_la-sci_mscanf.lo libfileio_la-sci_msscanf.lo \
+	libfileio_la-sci_mfscanf.lo libfileio_la-sci_fprintfMat.lo \
+	libfileio_la-sci_NumTokens.lo libfileio_la-sci_fscanfMat.lo
 am_libfileio_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libfileio_la_OBJECTS = $(am_libfileio_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)/modules/core/includes
@@ -312,14 +317,25 @@ src/bytedecoders.c \
 src/logger.c \
 src/ripole.c \
 src/misc.c \
-src/bt-int.c
+src/bt-int.c \
+src/do_xxprintf.c \
+src/do_xxscanf.c
 
 GATEWAY_SOURCES = \
 	sci_gateway/sci_xls_read.c \
 	sci_gateway/gw_fileio.c \
 	sci_gateway/sci_fileio.c \
 	sci_gateway/sci_xls_open.c \
-	sci_gateway/intreadxls.c
+	sci_gateway/intreadxls.c \
+	sci_gateway/sci_mfprintf.c \
+	sci_gateway/sci_mprintf.c \
+	sci_gateway/sci_msprintf.c \
+	sci_gateway/sci_mscanf.c \
+	sci_gateway/sci_msscanf.c \
+	sci_gateway/sci_mfscanf.c \
+	sci_gateway/sci_fprintfMat.c \
+	sci_gateway/sci_NumTokens.c \
+	sci_gateway/sci_fscanfMat.c
 
 libfileio_la_CFLAGS = -Iincludes/ -Isrc/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 lib_LTLIBRARIES = libfileio.la
@@ -402,6 +418,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-FileExist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-bt-int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-bytedecoders.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-do_xxprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-do_xxscanf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-fileio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-files.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-gw_fileio.Plo@am__quote@
@@ -412,7 +430,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-olestream-unwrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-pldstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-ripole.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_NumTokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_fileio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_fprintfMat.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_fscanfMat.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_mfprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_mfscanf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_mprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_mscanf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_msprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_msscanf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_xls_open.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-sci_xls_read.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libfileio_la-xls.Plo@am__quote@
@@ -522,6 +549,20 @@ libfileio_la-bt-int.lo: src/bt-int.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-bt-int.lo `test -f 'src/bt-int.c' || echo '$(srcdir)/'`src/bt-int.c
 
+libfileio_la-do_xxprintf.lo: src/do_xxprintf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-do_xxprintf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-do_xxprintf.Tpo" -c -o libfileio_la-do_xxprintf.lo `test -f 'src/do_xxprintf.c' || echo '$(srcdir)/'`src/do_xxprintf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-do_xxprintf.Tpo" "$(DEPDIR)/libfileio_la-do_xxprintf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-do_xxprintf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/do_xxprintf.c' object='libfileio_la-do_xxprintf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-do_xxprintf.lo `test -f 'src/do_xxprintf.c' || echo '$(srcdir)/'`src/do_xxprintf.c
+
+libfileio_la-do_xxscanf.lo: src/do_xxscanf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-do_xxscanf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-do_xxscanf.Tpo" -c -o libfileio_la-do_xxscanf.lo `test -f 'src/do_xxscanf.c' || echo '$(srcdir)/'`src/do_xxscanf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-do_xxscanf.Tpo" "$(DEPDIR)/libfileio_la-do_xxscanf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-do_xxscanf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/do_xxscanf.c' object='libfileio_la-do_xxscanf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-do_xxscanf.lo `test -f 'src/do_xxscanf.c' || echo '$(srcdir)/'`src/do_xxscanf.c
+
 libfileio_la-sci_xls_read.lo: sci_gateway/sci_xls_read.c
 @am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_xls_read.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_xls_read.Tpo" -c -o libfileio_la-sci_xls_read.lo `test -f 'sci_gateway/sci_xls_read.c' || echo '$(srcdir)/'`sci_gateway/sci_xls_read.c; \
 @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_xls_read.Tpo" "$(DEPDIR)/libfileio_la-sci_xls_read.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_xls_read.Tpo"; exit 1; fi
@@ -556,6 +597,69 @@ libfileio_la-intreadxls.lo: sci_gateway/intreadxls.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/intreadxls.c' object='libfileio_la-intreadxls.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-intreadxls.lo `test -f 'sci_gateway/intreadxls.c' || echo '$(srcdir)/'`sci_gateway/intreadxls.c
+
+libfileio_la-sci_mfprintf.lo: sci_gateway/sci_mfprintf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_mfprintf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_mfprintf.Tpo" -c -o libfileio_la-sci_mfprintf.lo `test -f 'sci_gateway/sci_mfprintf.c' || echo '$(srcdir)/'`sci_gateway/sci_mfprintf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_mfprintf.Tpo" "$(DEPDIR)/libfileio_la-sci_mfprintf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_mfprintf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_mfprintf.c' object='libfileio_la-sci_mfprintf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_mfprintf.lo `test -f 'sci_gateway/sci_mfprintf.c' || echo '$(srcdir)/'`sci_gateway/sci_mfprintf.c
+
+libfileio_la-sci_mprintf.lo: sci_gateway/sci_mprintf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_mprintf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_mprintf.Tpo" -c -o libfileio_la-sci_mprintf.lo `test -f 'sci_gateway/sci_mprintf.c' || echo '$(srcdir)/'`sci_gateway/sci_mprintf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_mprintf.Tpo" "$(DEPDIR)/libfileio_la-sci_mprintf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_mprintf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_mprintf.c' object='libfileio_la-sci_mprintf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_mprintf.lo `test -f 'sci_gateway/sci_mprintf.c' || echo '$(srcdir)/'`sci_gateway/sci_mprintf.c
+
+libfileio_la-sci_msprintf.lo: sci_gateway/sci_msprintf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_msprintf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_msprintf.Tpo" -c -o libfileio_la-sci_msprintf.lo `test -f 'sci_gateway/sci_msprintf.c' || echo '$(srcdir)/'`sci_gateway/sci_msprintf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_msprintf.Tpo" "$(DEPDIR)/libfileio_la-sci_msprintf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_msprintf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_msprintf.c' object='libfileio_la-sci_msprintf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_msprintf.lo `test -f 'sci_gateway/sci_msprintf.c' || echo '$(srcdir)/'`sci_gateway/sci_msprintf.c
+
+libfileio_la-sci_mscanf.lo: sci_gateway/sci_mscanf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_mscanf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_mscanf.Tpo" -c -o libfileio_la-sci_mscanf.lo `test -f 'sci_gateway/sci_mscanf.c' || echo '$(srcdir)/'`sci_gateway/sci_mscanf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_mscanf.Tpo" "$(DEPDIR)/libfileio_la-sci_mscanf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_mscanf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_mscanf.c' object='libfileio_la-sci_mscanf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_mscanf.lo `test -f 'sci_gateway/sci_mscanf.c' || echo '$(srcdir)/'`sci_gateway/sci_mscanf.c
+
+libfileio_la-sci_msscanf.lo: sci_gateway/sci_msscanf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_msscanf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_msscanf.Tpo" -c -o libfileio_la-sci_msscanf.lo `test -f 'sci_gateway/sci_msscanf.c' || echo '$(srcdir)/'`sci_gateway/sci_msscanf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_msscanf.Tpo" "$(DEPDIR)/libfileio_la-sci_msscanf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_msscanf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_msscanf.c' object='libfileio_la-sci_msscanf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_msscanf.lo `test -f 'sci_gateway/sci_msscanf.c' || echo '$(srcdir)/'`sci_gateway/sci_msscanf.c
+
+libfileio_la-sci_mfscanf.lo: sci_gateway/sci_mfscanf.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_mfscanf.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_mfscanf.Tpo" -c -o libfileio_la-sci_mfscanf.lo `test -f 'sci_gateway/sci_mfscanf.c' || echo '$(srcdir)/'`sci_gateway/sci_mfscanf.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_mfscanf.Tpo" "$(DEPDIR)/libfileio_la-sci_mfscanf.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_mfscanf.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_mfscanf.c' object='libfileio_la-sci_mfscanf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_mfscanf.lo `test -f 'sci_gateway/sci_mfscanf.c' || echo '$(srcdir)/'`sci_gateway/sci_mfscanf.c
+
+libfileio_la-sci_fprintfMat.lo: sci_gateway/sci_fprintfMat.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_fprintfMat.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_fprintfMat.Tpo" -c -o libfileio_la-sci_fprintfMat.lo `test -f 'sci_gateway/sci_fprintfMat.c' || echo '$(srcdir)/'`sci_gateway/sci_fprintfMat.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_fprintfMat.Tpo" "$(DEPDIR)/libfileio_la-sci_fprintfMat.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_fprintfMat.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_fprintfMat.c' object='libfileio_la-sci_fprintfMat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_fprintfMat.lo `test -f 'sci_gateway/sci_fprintfMat.c' || echo '$(srcdir)/'`sci_gateway/sci_fprintfMat.c
+
+libfileio_la-sci_NumTokens.lo: sci_gateway/sci_NumTokens.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_NumTokens.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_NumTokens.Tpo" -c -o libfileio_la-sci_NumTokens.lo `test -f 'sci_gateway/sci_NumTokens.c' || echo '$(srcdir)/'`sci_gateway/sci_NumTokens.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_NumTokens.Tpo" "$(DEPDIR)/libfileio_la-sci_NumTokens.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_NumTokens.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_NumTokens.c' object='libfileio_la-sci_NumTokens.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_NumTokens.lo `test -f 'sci_gateway/sci_NumTokens.c' || echo '$(srcdir)/'`sci_gateway/sci_NumTokens.c
+
+libfileio_la-sci_fscanfMat.lo: sci_gateway/sci_fscanfMat.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -MT libfileio_la-sci_fscanfMat.lo -MD -MP -MF "$(DEPDIR)/libfileio_la-sci_fscanfMat.Tpo" -c -o libfileio_la-sci_fscanfMat.lo `test -f 'sci_gateway/sci_fscanfMat.c' || echo '$(srcdir)/'`sci_gateway/sci_fscanfMat.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libfileio_la-sci_fscanfMat.Tpo" "$(DEPDIR)/libfileio_la-sci_fscanfMat.Plo"; else rm -f "$(DEPDIR)/libfileio_la-sci_fscanfMat.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/sci_fscanfMat.c' object='libfileio_la-sci_fscanfMat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libfileio_la_CFLAGS) $(CFLAGS) -c -o libfileio_la-sci_fscanfMat.lo `test -f 'sci_gateway/sci_fscanfMat.c' || echo '$(srcdir)/'`sci_gateway/sci_fscanfMat.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
