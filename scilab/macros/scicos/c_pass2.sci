@@ -297,6 +297,7 @@ function vec_clk0=set_primary_clk(vec_clk,primary,i)
 
   if vec_clk~=[] then
     n_vc0=find(vec_clk==i)
+    n_vc0=n_vc0($)
     vec_clk0=vec_clk(1:n_vc0)
     vec_clk1=vec_clk(n_vc0+1:size(vec_clk,1))
     for k=1:size(primary,1)
