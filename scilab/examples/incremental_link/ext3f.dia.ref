@@ -1,0 +1,53 @@
+ 
+// Demo file for ext3f example
+ 
+ 
+// builder code for ext3f.c
+ 
+link_name = 'ext3f';    // functions to be added to the call table
+ 
+flag  = "f";		// ext3f is a C function
+ 
+files = ['ext3f.o' ];   // objects files for ext3f
+ 
+libs  = [];		// other libs needed for linking
+ 
+ 
+// the next call generates files (Makelib,loader.sce) used
+ 
+// for compiling and loading ext3f and performs the compilation
+ 
+ 
+ilib_for_link(link_name,files,libs,flag);
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   compilation of ext3f
+   building shared library (be patient)
+ 
+ 
+// load new function code in the scope of call
+ 
+// using the previously generated loader
+ 
+exec loader.sce;
+shared archive loaded
+Link done
+ 
+ 
+// test new function through the call function
+ 
+ 
+a=[1,2,3];b=[4,5,6];n=3;
+ 
+c=call('ext3f','yes',1,'c',n,2,'i',a,3,'d',b,4,'d','out',[1,3],5,'d');
+ 
+if norm(c-(sin(a)+cos(b)))> %eps then bugmes();quit;end
+ 
+c=call('ext3f','no',1,'c',n,2,'i',a,3,'d',b,4,'d','out',[1,3],5,'d');
+ 
+if norm(c-(a+b)) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 

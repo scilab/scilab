@@ -1,0 +1,56 @@
+ 
+// Demo file for ext11f example
+ 
+ 
+// builder code for ext11f.c
+ 
+link_name = 'ext11f';    // functions to be added to the call table
+ 
+flag  = "f";		 // ext11f is a C function
+ 
+files = ['ext11f.o' ];   // objects files for ext11f
+ 
+libs  = [];		 // other libs needed for linking
+ 
+ 
+// the next call generates files (Makelib,loader.sce) used
+ 
+// for compiling and loading ext11f and performs the compilation
+ 
+ 
+ilib_for_link(link_name,files,libs,flag);
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   compilation of ext11f
+   building shared library (be patient)
+ 
+ 
+// load new function code in the scope of call
+ 
+// using the previously generated loader
+ 
+exec loader.sce;
+shared archive loaded
+Link done
+ 
+ 
+// test new function through the ode function
+ 
+// Passing a parameter to argument funtion of ode
+ 
+ 
+param=[0.04,10000,3d+7];
+ 
+y=ode([1;0;0],0,[0.4,4],'ext11f')
+ y  =
+ 
+    0.9851721    0.9055187  
+    0.0000339    0.0000224  
+    0.0147940    0.0944589  
+ 
+//param must be defined as a scilab variable upon calling ode
+ 
+ 
+ 
+ 
