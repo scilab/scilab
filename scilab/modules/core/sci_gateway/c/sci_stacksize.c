@@ -5,8 +5,10 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "scimem.h"
+
 /*-----------------------------------------------------------------------------------*/
-extern integer C2F(scimem)(integer *n, integer *ptr);
+
 extern integer C2F(adjuststacksize)();
 extern integer C2F(getstackinfo)();
 extern void sciprint __PARAMS((char *fmt,...));
@@ -15,6 +17,7 @@ extern void sciprint __PARAMS((char *fmt,...));
 #define KERNEL_MEMORY_ZONE  134217728  /* 2^27 0x80000000 */
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len));
+int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -22,8 +25,6 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
-/**
 /* stacksize - set scilab stack size 
 
 * Calling Sequence 
@@ -39,6 +40,7 @@ int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
 * sz : 2-vector [total used] 
 
 */
+int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
 	integer ptr;

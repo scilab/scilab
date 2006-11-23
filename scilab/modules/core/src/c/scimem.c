@@ -45,10 +45,11 @@
 #include <floatingpoint.h>
 #endif
 
-extern void sciprint __PARAMS((char *fmt,...));
+#include "sciprint.h"
+#include "scimem.h"
 
 #if defined(netbsd) || defined(freebsd)
-void C2F(nofpex)()
+void C2F(nofpex)(void)
 {
   fpsetmask(0);   /* Don't dump core on FPE return Inf or NaN */
 }
@@ -102,6 +103,7 @@ integer C2F(scimem)(integer *n, integer *ptr)
   }
   return(0);
 }
+
 integer C2F(scigmem)(integer *n, integer *ptr)
 {
   char *p1;
@@ -125,6 +127,7 @@ integer C2F(scigmem)(integer *n, integer *ptr)
   }
   return(0);
 }
+
 void C2F(freegmem)(void)
 {
   if (the_gps != NULL) SCISTACKFREE(the_gps);
