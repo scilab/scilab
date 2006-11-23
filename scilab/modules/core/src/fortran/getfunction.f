@@ -26,19 +26,23 @@ c
 c
       last=.false.
 
+      lmax=iadr(lstk(bot)-1)
       fcount=1
       if(top+3.ge.bot) then
          call error(18)
          return
       endif
+
 c     syntax line
       l4=lpt(4)-1
 c     analysing syntax to get the end of syntax definition
       call getsym
+      mlhs=0
       if(sym.eq.name) then
 c     .  a=func(..) or func(..) syntaxes
          if(char1.eq.equal) then
 c     .     a=func(..) 
+            mlhs=mlhs+1
             call getsym
             call getsym
          endif
@@ -46,51 +50,54 @@ c     .     a=func(..)
 c    .   [..]=func()
  41      call getsym
          if(sym.ne.name) goto  42
+         mlhs=mlhs+1
          call getsym
          if(sym.eq.comma) goto  41
- 42      if(sym.ne.right) goto 50
+ 42      if(sym.ne.right) goto 90
 c     
          call getsym
-         if(sym.ne.equal) goto 50
+         if(sym.ne.equal) goto 90
          call getsym
       else
-         goto 50
+         goto 90
       endif
 c     lhs analyzed
-      if(sym.ne.name) goto 50
+      if(sym.ne.name) goto 90
+      mrhs=0
 c     
       call getsym
       if(sym.eq.eol.or.sym.eq.cmt.or.sym.eq.semi.or.sym.eq.comma) then
-         lpt(4)=lpt(3)
+c     .  no calling sequence
          goto 46
       endif
-      if(sym.ne.lparen) goto 50
+c     analysing calling sequence
+      if(sym.ne.lparen) goto 90
  44   call getsym
       if(sym.ne.name) goto  45
+      mrhs=mrhs+1
       call getsym
       if(sym.eq.comma) goto  44
- 45   if(sym.ne.rparen) goto 50
+ 45   if(sym.ne.rparen) goto 90
+c     got calling sequence
 c     ok, check is next sym is valid
       call getsym
-      if(sym.ne.eol.and.sym.ne.semi.and.
-     $     sym.ne.comma.and.sym.ne.cmt) goto 50
-      lpt(4)=lpt(3)
  46   continue
-c     rhs analyzed
-      lf=lpt(4)
-      if(sym.ne.eol) lf=lf-1
+
       if(sym.eq.cmt) then
+         lpt(4)=lpt(3)-1
          sym=semi
-         char1=slash
+         goto 49
+      elseif(sym.eq.eol) then
+         goto 49
+      elseif(sym.eq.semi.or.sym.eq.comma) then
+c         lpt(4)=lpt(4)-2
+         lpt(4)=lpt(3)-1
+      else
+c     .  syntax error
+         goto 90
       endif
-      n=lf-l4
-      goto 60
- 50   continue
-c     invalid syntax
-      err=lct(8)
-      call error(37)
-      lct(8)=1
-      return
+
+ 49   n=lpt(4)-l4
 
  60   if(comp(1).ne.0) then 
 c     .  str instruction added to store the syntax line
@@ -114,6 +121,7 @@ c     .  str instruction added to store the syntax line
          call icopy(n,lin(l4),1,istk(l),1)
          ilc=iadr(lstk(top+1))
       endif
+      l4=l4+n
 c
 c     statements of the function
       nc=0
@@ -129,27 +137,7 @@ c     statements of the function
       endif
       istk(ilp)=1
       strcnt=0
-      
-      if(sym.eq.eol) then
-         if (lpt(4).ge.lpt(6)) then
-            if(comp(1).ne.0) then 
-               call getlin(2,0)
-               eof=.false.
-            else
-               call getlin(2,0)
-               eof=fin.eq.-2
-            endif
-         else
-            eof=.false.
-            lpt(4)=lpt(4)+1
-            call getsym
-         endif
-      else
-         eof=.false.
-      endif
-      l4=lpt(4)-1
-      psym=sym
-     
+      eof=.false.
 
  71   continue
       psym=sym
@@ -243,14 +231,16 @@ c     . allocate memory for cblock more characters
             l4=lpt(1)
          else
             lpt(4)=lpt(4)+1
-            call getsym
             l4=lpt(4)
+            call getsym
+c            l4=lpt(4)
          endif
          goto 71
       endif
 c
    73   continue
 c      call getsym
+
       il=ilc
       ilp1=il+2
       ilc1=ilp1+nr+1
@@ -273,6 +263,7 @@ c      call getsym
          istk(il+2)=1
          istk(il+3)=0
          comp(1)=ilc1+nc
+         lct(8)=lct(8)-1
          call setlnb
       else
          top=top+1
@@ -283,6 +274,12 @@ c      call getsym
          lstk(top+1)=sadr(ilc1+nc)
       endif
 c
+      return
+ 90   continue
+c     invalid syntax in declaration
+      err=lct(8)
+      call error(37)
+      lct(8)=1
       return
       end
 

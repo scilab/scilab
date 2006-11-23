@@ -1,7 +1,7 @@
       subroutine getfun(lunit,nlines)
 c
 c ======================================================================     
-c     get a user defined function
+c     get a user defined function, handles function, deff and getf
 c ======================================================================    
 c     
 c     Copyright INRIA
@@ -231,27 +231,6 @@ c
          lin(l)=istk(il+j)
          l=l+1
  31   continue
-      goto 40
-c     
- 33   mn=istk(ilt+1)*istk(ilt+2)
-      ili=ilt+4+mn
-      ilt=ilt+4
-      do 35 i=1,mn
-         n=istk(ilt+i)-istk(ilt+i-1)
-         if(n.gt.0) then
-            do 34 j=1,n
-               istk(l)=istk(ili+j)
-               l=l+1
- 34         continue
-         else
-           istk(l)=blank
-           l=l+1
-         endif
-         istk(l)=eol
-         l=l+1
-         ili=ili+n
- 35   continue
-      goto 61
 c     
 c     analyse de la ligne de declaration
  40   continue
@@ -376,16 +355,37 @@ c
 c     
       il=l
       l=l+1
-      if (sym.eq.cmt) then
-         call icopy(lpt(6)-lpt(4)+3,lin(lpt(4)-3),1,istk(l),1)
-         l=l+lpt(6)-lpt(4)+3
-         istk(l)=eol
-         l=l+1
-         sym=eol
+
+      if(lunit.eq.0) then
+c     .  deff or function
+         mn=istk(ilt+1)*istk(ilt+2)
+         ili=ilt+4+mn
+         ilt=ilt+4
+         do 51 i=1,mn
+            n=istk(ilt+i)-istk(ilt+i-1)
+            if(n.gt.0) then
+               do 50 j=1,n
+                  istk(l)=istk(ili+j)
+                  l=l+1
+ 50            continue
+            else
+               istk(l)=blank
+               l=l+1
+            endif
+            istk(l)=eol
+            l=l+1
+            ili=ili+n
+ 51      continue
+         goto 61
+      else
+c     .  getf
+         if(first.eq.1) then
+            istk(l)=eol
+            l=l+1
+            first=0
+         endif
+         goto 11
       endif
-      if(lunit.eq.0) goto 33
-      first=0
-      goto 11
 c     
 c     fin
  60   if(first.eq.1) then
