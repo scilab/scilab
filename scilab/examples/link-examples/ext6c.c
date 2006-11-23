@@ -1,5 +1,5 @@
 /* Copyright INRIA */
-#include "../../routines/stack-c.h"
+#include "stack-c.h"
 
 /******************************************
  *   example 6 

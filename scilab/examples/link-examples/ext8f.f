@@ -7,7 +7,7 @@ c     -->y=call('ext8c','out',size(param),1,'d');
 c     Copyright INRIA
       logical cmatptr
       double precision y(*)
-      include '../../routines/stack.h'
+      include 'stack.h'
 c     If variable 'param' exists gets its pointer in 
 c     internal stack else return
       if(.not.cmatptr('param'//char(0),m,n,lp)) return

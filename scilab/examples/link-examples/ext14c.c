@@ -9,7 +9,7 @@
  *     c=a+b 
  ************************************/
 
-#include "../../routines/stack-c.h"
+#include "stack-c.h"
 
 int ext14cI(fname)
      char* fname;

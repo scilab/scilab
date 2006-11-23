@@ -3,7 +3,7 @@ c     Copyright INRIA
       subroutine ext14fi(fname)
       character*(*) fname
       logical getrhsvar, createvar,  putlhsvar
-      include '../../routines/stack.h'
+      include 'stack.h'
 c
       nbvars=0
       minrhs=3

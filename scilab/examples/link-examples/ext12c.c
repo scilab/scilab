@@ -1,5 +1,5 @@
 /* Copyright INRIA */
-#include "../../routines/stack-c.h"
+#include "stack-c.h"
 
 /****************************************
  *     same example with call to GetMatrixptr 
