@@ -8,7 +8,7 @@ c     -->call('ext7f',a,1,'d',b,2,'d','out',1);
 c     c now exists
 c     -->c=a+2*b
 c     Copyright INRIA
-      double precision a(3),b(3),c(3),w
+      double precision a(3),b(3),c(3)
       logical cwritemat,cwritechain
       do 1 k=1,3
          c(k)=a(k)+2.0d0*b(k)

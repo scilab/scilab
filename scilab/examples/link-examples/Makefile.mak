@@ -38,7 +38,7 @@ test : $(OBJSF) $(OBJSC)
 !IF "$(USE_F2C)" == "YES"
 .f.dll	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@"$(SCIDIR1)\bin\f2c.exe" $*.f 
+	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 
 	@$(CC) $(CFLAGS) $*.c 
 	@del $*.c 
 	@echo Creation of dll $(DLL) and import lib 

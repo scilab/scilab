@@ -18,7 +18,7 @@ static int c3 = 3;
 int ext7c(a, b)
      double *a, *b;
 {
-  double c[3],w;
+  double c[3];
   int k,f=4;
   for (k = 0; k < 3; ++k) 
     c[k] = a[k] + b[k] * 2.;

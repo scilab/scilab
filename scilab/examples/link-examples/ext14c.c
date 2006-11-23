@@ -10,9 +10,10 @@
  ************************************/
 
 #include "stack-c.h"
+int ext14c(int *n,double *a,double *b,double *c);
+extern void sciprint();
 
-int ext14cI(fname)
-     char* fname;
+int ext14cI(char* fname)
 { 
   int m1,n1,l1,m2,n2,l2,m3,n3,l3,n,l4;
   int minlhs=1, minrhs=3, maxlhs=1, maxrhs=3;
@@ -36,9 +37,7 @@ int ext14cI(fname)
 }
 
 
-int ext14c(n, a, b, c)
-     int *n;
-     double *a, *b, *c;
+int ext14c(int *n,double *a,double *b,double *c)
 {   
   int k;
   for (k = 0; k < *n; ++k) 
