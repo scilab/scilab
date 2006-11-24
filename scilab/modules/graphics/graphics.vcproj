@@ -858,6 +858,46 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\qsort-char.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-char.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-double.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-double.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-int.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-int.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-short.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-short.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-string.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\qsort-string.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\qsort.c"
 				>
 			</File>

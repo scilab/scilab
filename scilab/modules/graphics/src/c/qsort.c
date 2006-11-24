@@ -179,14 +179,14 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
   }
 }
 /*-----------------------------------------------------------------------------------*/ 
-
-static int swapcodeint(char * parmi,char * parmj,int n,int incr) 
+int swapcodeint(char * parmi,char * parmj,int n,int incr) 
 { 		
   int i = n;
   register int *pi = (int *) (parmi); 		
   register int *pj = (int *) (parmj); 
   register int inc1 = incr/sizeof(int);
-  do { 						
+  do 
+  { 						
     register int t = *pi;		
     *pi = *pj;				
     *pj = t;				
@@ -195,3 +195,4 @@ static int swapcodeint(char * parmi,char * parmj,int n,int incr)
   } while (--i > 0);				
   return(0);
 }
+/*-----------------------------------------------------------------------------------*/ 

@@ -4,7 +4,7 @@
 /*------------------------------------------------------------------------*/
 
 void sciqsort(char *a, char *tab,int flag, int n, int es, int es1, int (*cmp) (),int (*swapcode) (), int (*swapcodeind) ());
-static int swapcodeint(char * parmi,char * parmj,int n,int incr);
+int swapcodeint(char * parmi,char * parmj,int n,int incr);
 
 #define swapcodeind swapcodeint
 #define swap(a, b) swapcode(a, b, 1,es)
