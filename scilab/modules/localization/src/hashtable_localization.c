@@ -52,7 +52,7 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 	int i=0;
 	char *FindString=NULL;
 	struct key_string *k;
-	struct key_string *kElem=NULL;
+	struct value_string *kElem=NULL;
 
 	k=(struct key_string*)MALLOC(sizeof(struct key_string));
 	k->Key_String=MALLOC((strlen(key)+1)*sizeof(char));
@@ -64,8 +64,8 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key)
 
 	if (kElem) 
 	{
-		FindString=(char*)MALLOC(sizeof(char)*(strlen(kElem->Key_String)+1));
-		if (FindString) strcpy(FindString,kElem->Key_String);
+		FindString=(char*)MALLOC(sizeof(char)*(strlen(kElem->Value_String)+1));
+		if (FindString) strcpy(FindString,kElem->Value_String);
 	}
 
 	return FindString;

@@ -68,9 +68,6 @@ int *default_node_diam,*default_node_border,*default_edge_width;
 int *default_edge_hi_width,*default_font_size;
 int *ndim,*ma;
 {
-  /** #ifdef _MSC_VER
-  return;
-  #else  **/
   FILE *fg;
 #if !(defined _MSC_VER)
   DIR *dirp;
@@ -80,7 +77,7 @@ int *ndim,*ma;
   char strname[MAXNAM], head_name[MAXNAM], tail_name[MAXNAM];
   int isize,dsize;
   int i,s;
-  ENTRY node,*found;
+  ENTRY node,*found=NULL;
   char dir[1024];
   char *pname;
   char **lar;
@@ -364,23 +361,28 @@ int *ndim,*ma;
     cerro("Running out of memory");
     return;
   }
+
   strcpy(node.key,head_name);
   found = myhsearch(node,SCIFIND);
-  if (found == NULL) {
-    sprintf(description,
-	    "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",
-	    head_name,(*edge_name)[i]);
+  if (found == NULL) 
+  {
+    sprintf(description,"Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",head_name,(*edge_name)[i]);
     cerro(description);
     return;
   }
   (*head)[i] = atoi(found->data);
-  if ((node.key = (char *)MALLOC(strlen(tail_name)+1)) == NULL) {
+  FREE(found);found=NULL;
+
+  if ((node.key = (char *)MALLOC(strlen(tail_name)+1)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
+
   strcpy(node.key,tail_name);
   found = myhsearch(node,SCIFIND);
-  if (found == NULL) {
+  if (found == NULL) 
+  {
     sprintf(description,
 	    "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",
 	    tail_name,(*edge_name)[i]);
@@ -388,6 +390,7 @@ int *ndim,*ma;
     return;
   }
   (*tail)[i] = atoi(found->data);
+  FREE(found);found=NULL;
  
   fgets(line,5 * MAXNAM,fg);
   sscanf(line,"%le %le %le %le %le %le %le",

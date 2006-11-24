@@ -6,7 +6,7 @@
 METANET_C_SOURCES = src/c/paths.c \
 src/c/dmtree.c \
 src/c/files.c \
-src/c/myhsearch.c \
+src/c/hashtable_metanet.c \
 src/c/saveg.c \
 src/c/loadg.c \
 src/c/connex.c \
@@ -127,6 +127,7 @@ libmetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWA
 
 libmetanet_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
+	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \

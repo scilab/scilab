@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* CORNET Allan */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __HASHTABLE_H__
-#define __HASHTABLE_H__
+#ifndef __HASHTABLE_LOCALIZATION_H__
+#define __HASHTABLE_LOCALIZATION_H__
 /*-----------------------------------------------------------------------------------*/ 
 #include "hashtable.h"
 #include "MALLOC.h"
@@ -31,5 +31,5 @@ char *SearchHashtable_string(struct hashtable *hash_table, const char* key);
 int InsertHashtable_string(struct hashtable *hash_table,struct key_string *k, struct value_string *v);
 
 /*-----------------------------------------------------------------------------------*/ 
-#endif /* __HASHTABLE_H__ */
+#endif /* __HASHTABLE_LOCALIZATION_H__ */
 /*-----------------------------------------------------------------------------------*/ 

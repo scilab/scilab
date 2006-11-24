@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../libs/hashtable;"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -125,7 +125,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../../libs/hashtable;"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -210,11 +210,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\loadg.c"
+				RelativePath=".\hashtable_metanet.c"
 				>
 			</File>
 			<File
-				RelativePath=".\myhsearch.c"
+				RelativePath=".\loadg.c"
 				>
 			</File>
 			<File
@@ -243,7 +243,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\mysearch.h"
+				RelativePath=".\hashtable_metanet.h"
 				>
 			</File>
 		</Filter>
