@@ -16,6 +16,8 @@
 #include <limits.h>
 #include <ctype.h>
 
+
+#include "files.h"
 #include "core_math.h"
 
 #include "MALLOC.h"
@@ -66,7 +68,7 @@ void C2F(getfiledesc)( integer *fd)
  * add a file in the files table
  **************************************/
 
-void C2F(addfile)(integer *fd, FILE *fa, integer *swap, integer *type, integer *mode, char *filename, integer *ierr)
+void C2F(addfile)(integer *fd, FILE *fa, integer *swap2, integer *type, integer *mode, char *filename, integer *ierr)
 {
   char* name;
   name= (char *) MALLOC((strlen(filename)+1)*sizeof(char));
@@ -84,7 +86,7 @@ void C2F(addfile)(integer *fd, FILE *fa, integer *swap, integer *type, integer *
     ftformat[*fd] = stderr;
   else
     ftformat[*fd] = (FILE *) 0;
-  ftswap[*fd] = *swap;
+  ftswap[*fd] = *swap2;
   fttype[*fd] = *type;
   ftmode[*fd] = *mode;
   ftname[*fd] = name;
@@ -96,7 +98,7 @@ void C2F(addfile)(integer *fd, FILE *fa, integer *swap, integer *type, integer *
  * get file info in the files table
  **************************************/
 
-void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap, integer *type, integer *mode, char *filename, integer *lf, integer *ierr)
+void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap2, integer *type, integer *mode, char *filename, integer *lf, integer *ierr)
 {
   if (*fd<0 || *fd>=MAXF ) {
     *ierr=1;
@@ -107,7 +109,7 @@ void C2F(getfileinfo)(integer *fd, FILE *fa, integer *swap, integer *type, integ
     return;
   }
   fa = ftformat[*fd];
-  *swap = ftswap[*fd];
+  *swap2 = ftswap[*fd];
   *type = fttype[*fd];
   *mode = ftmode[*fd];
   strcpy(filename,ftname[*fd]);
@@ -467,7 +469,7 @@ void C2F(mtell) (integer *fd, double *offset, integer *err)
 void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ierr)
 {  
   char c1,c2;
-  int i,swap,n;
+  int i,swap2,n;
   FILE *fa;
   n=*n1;
   *ierr=0;
@@ -476,7 +478,7 @@ void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ier
     *ierr=3;
     return;
   }
-  swap = GetSwap(fd);
+  swap2 = GetSwap(fd);
 
   c1 = ( strlen(type) > 1) ? type[1] : ' '; 
   c2 = ( strlen(type) > 2) ? type[2] : ' '; 
@@ -541,7 +543,7 @@ void C2F(mputnc) (integer *fd, void * res, integer *n1, char *type, integer *ier
 		  *ierr=1;return; \
 				    }
 
-void mput2 (FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr)
+void mput2 (FILE *fa, integer swap2, double *res, integer n, char *type, integer *ierr)
 {  
   char c1,c2;
   int i;
@@ -575,7 +577,7 @@ void mput2 (FILE *fa, integer swap, double *res, integer n, char *type, integer 
 
 void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 {
-  int nc,swap;
+  int nc,swap2;
   FILE *fa;
   *ierr=0;
   if ((nc = strlen(type)) == 0) 
@@ -586,8 +588,8 @@ void C2F(mput) (integer *fd, double *res, integer *n, char *type, integer *ierr)
     }
   if ((fa = GetFile(fd)) !=NULL)
     {
-      swap = GetSwap(fd);
-      mput2(fa,swap,res,*n,type,ierr);
+      swap2 = GetSwap(fd);
+      mput2(fa,swap2,res,*n,type,ierr);
       if (*ierr > 0)
 	sciprint("mput : %s format not recognized \r\n",type);
     }
@@ -701,7 +703,7 @@ void C2F(mgetnc)(integer *fd, void * res, integer *n1, char *type, integer *ierr
 #define MGET_CHAR(NumType)  MGET_CHAR_NC(NumType); CONVGD(NumType); 
 
 /* reads data and store them in double  */
-void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr)
+void mget2(FILE *fa, integer swap2, double *res, integer n, char *type, integer *ierr)
 {  
   char c1,c2;
   int i,items=n;
@@ -743,8 +745,7 @@ void mget2(FILE *fa, integer swap, double *res, integer n, char *type, integer *
 
 void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
 {  
-
-  int nc,swap;
+  int nc,swap2;
   FILE *fa;
   nc=strlen(type);
   *ierr=0;
@@ -757,8 +758,8 @@ void C2F(mget) (integer *fd, double *res, integer *n, char *type, integer *ierr)
   fa = GetFile(fd);
   if (fa ) 
     {
-      swap = GetSwap(fd);
-      mget2(fa,swap,res,*n,type,ierr);
+      swap2 = GetSwap(fd);
+      mget2(fa,swap2,res,*n,type,ierr);
       if (*ierr > 0)
 	sciprint("mget : %s format not recognized \r\n",type);
     }
