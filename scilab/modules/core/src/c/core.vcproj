@@ -266,6 +266,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\hashtable_core.c"
+				>
+			</File>
+			<File
 				RelativePath=".\history.c"
 				>
 			</File>
@@ -720,6 +724,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_core.h"
+				>
+			</File>
+			<File
+				RelativePath=".\hashtable_core.h"
 				>
 			</File>
 			<File

@@ -57,7 +57,8 @@ src/c/Scierror.c \
 src/c/sciprint.c \
 src/c/link.c \
 src/c/xscion.c \
-src/c/SciEnv.c
+src/c/SciEnv.c \
+src/c/hashtable_core.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \

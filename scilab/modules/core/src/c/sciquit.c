@@ -8,7 +8,6 @@
 	#endif
 #endif
 
-
 #ifdef _MSC_VER
 #include "wtext.h"
 #endif
@@ -29,6 +28,7 @@ extern int IsFromC(void);
 extern int IsFromJava(void);
 extern void C2F(freegmem)(void);
 extern void C2F(freemem)(void);
+extern void destroy_hashtable_scilab_functions();
 
 #ifdef _MSC_VER
 extern LPTW GetTextWinScilab(void);
@@ -106,6 +106,9 @@ int ExitScilab(void)
 	#ifdef _MSC_VER
 	DisposeHashTableScilabErrors();
 	#endif
+
+	destroy_hashtable_scilab_functions();
+
 
 	/** clean tmpfiles **/
 	C2F(tmpdirc)();
