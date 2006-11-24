@@ -19,7 +19,7 @@ LINKER_FLAGS=/NOLOGO /machine:ix86 /RELEASE
 #LINKER_FLAGS=/NOLOGO /machine:ix86 /DEBUG
 
 # include options 
-INCLUDES=-I"$(SCIDIR)/libs/f2c" $(TCL_INCLUDES) -I"$(SCIDIR)/modules/mexlib/includes"
+INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
 
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(USE_MT)
 
@@ -53,7 +53,7 @@ GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
 # XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN= "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib" "$(SCIDIR1)\bin\scicos.lib"
+XLIBSBIN= "$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" "$(SCIDIR1)\bin\arpack.lib" "$(SCIDIR1)\bin\scicos.lib"
 .c.obj	:
 	@echo ------------- Compile file $< --------------
 	$(CC) $(CFLAGS) $< 
@@ -67,7 +67,7 @@ XLIBSBIN= "$(SCIDIR1)\bin\blasplus.lib" "$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\
 !IF "$(USE_F2C)" == "YES"
 .f.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@"$(SCIDIR1)\bin\f2c.exe" -E -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 
+	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 
 	@$(CC) $(CFLAGS) $*.c 
 	-del $*.c 
 !ELSE 
