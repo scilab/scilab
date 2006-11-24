@@ -16,17 +16,18 @@
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
+extern int C2F(intdgebal) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgebal) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdggbal) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzggbal) __PARAMS((char *fname, unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
+int C2F(intbalanc)(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intbalanc)(char *fname,unsigned long fname_len)
 {
 	int *header1, *header2;
 	int CmplxA, CmplxB;
 	int ret;int X;
-
-	extern int C2F(intdgebal) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgebal) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intdggbal) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzggbal) __PARAMS((char *fname, unsigned long fname_len));
 
 	switch (Rhs) {
   case 1:   /* balanc(A)   */

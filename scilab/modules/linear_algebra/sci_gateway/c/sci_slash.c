@@ -16,14 +16,17 @@
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
+
+extern int C2F(intdgesv4) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgesv4) __PARAMS((char *fname, unsigned long fname_len));
+
+/*-----------------------------------------------------------------------------------*/
+int C2F(intslash)(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intslash)(char *fname,unsigned long fname_len)
 {
 	int *header1;int *header2;
 	int CmplxA;int CmplxB;int ret;int X;
-
-	extern int C2F(intdgesv4) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgesv4) __PARAMS((char *fname, unsigned long fname_len));
 
 	/*   X = slash(A,B) <=> X = A / B */
 	header1 = (int *) GetData(1);    header2 = (int *) GetData(2);

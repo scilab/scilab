@@ -17,20 +17,23 @@
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
 extern int C2F(issymmetric)  __PARAMS((int *num));
+
+extern int C2F(intdgeev) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdsyev) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgeev) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzheev) __PARAMS((char *fname, unsigned long fname_len));
+
+extern int C2F(intdggev) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzggev) __PARAMS((char *fname, unsigned long fname_len));
+
+/*-----------------------------------------------------------------------------------*/
+int C2F(inteig)(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(inteig)(char *fname,unsigned long fname_len)
 {
 	int *header1, *header2;
 	int CmplxA, CmplxB;
 	int ret;int Symmetric;int X;
-
-	extern int C2F(intdgeev) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intdsyev) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgeev) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzheev) __PARAMS((char *fname, unsigned long fname_len));
-
-	extern int C2F(intdggev) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzggev) __PARAMS((char *fname, unsigned long fname_len));
 
 	switch (Rhs) {
   case 1:   /* spec(A)   */

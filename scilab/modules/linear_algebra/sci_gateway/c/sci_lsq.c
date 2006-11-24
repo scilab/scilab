@@ -16,14 +16,15 @@
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
+extern int C2F(intdgelsy) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgelsy) __PARAMS((char *fname, unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
+int C2F(intlsq)(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intlsq)(char *fname,unsigned long fname_len)
 {
 	int *header1;int *header2;
 	int CmplxA;int Cmplxb;int ret;int I2;
-
-	extern int C2F(intdgelsy) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgelsy) __PARAMS((char *fname, unsigned long fname_len));
 
 	/*   lsq(A,b)  */
 	if (GetType(1)!=1) {

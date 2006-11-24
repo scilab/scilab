@@ -15,17 +15,21 @@
 #define YES 1
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
+extern int C2F(intdgesvd1) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgesvd1) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgesvd2) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgesvd2) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
+extern int C2F(intzoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
+
+/*-----------------------------------------------------------------------------------*/
+int C2F(intsvd)(char *fname,unsigned long fname_len);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intsvd)(char *fname,unsigned long fname_len)
 {
 	int *header1;int *header2;
 	int Cmplx;int ret;double tol;
 
-	extern int C2F(intdgesvd1) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgesvd1) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intdgesvd2) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgesvd2) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intdoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
-	extern int C2F(intzoldsvd) __PARAMS((double *tol, char *fname, unsigned long fname_len));
 	if (GetType(1)!=1) {
 		OverLoad(1);
 		return 0;

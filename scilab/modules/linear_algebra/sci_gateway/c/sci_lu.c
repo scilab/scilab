@@ -15,13 +15,15 @@
 #define YES 1
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
+extern int C2F(intdgetrf) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgetrf) __PARAMS((char *fname, unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
+int C2F(intlu)(char *fname,unsigned long fname_len);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intlu)(char *fname,unsigned long fname_len)
 {
 	int *header1;
 	int CmplxA;int ret;
-
-	extern int C2F(intdgetrf) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgetrf) __PARAMS((char *fname, unsigned long fname_len));
 
 	/*   lu(A)  */
 	if (GetType(1)!=1) {

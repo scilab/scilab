@@ -15,13 +15,15 @@
 #define YES 1
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
+extern int C2F(intddet) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzdet) __PARAMS((char *fname, unsigned long fname_len));
+/*-----------------------------------------------------------------------------------*/
+int C2F(intdet)(char *fname,unsigned long fname_len);
+/*-----------------------------------------------------------------------------------*/
 int C2F(intdet)(char *fname,unsigned long fname_len)
 {
 	int *header1;
 	int CmplxA;int ret;
-
-	extern int C2F(intddet) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzdet) __PARAMS((char *fname, unsigned long fname_len));
 
 
 	/*   det(A)  */

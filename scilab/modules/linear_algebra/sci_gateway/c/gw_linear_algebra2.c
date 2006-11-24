@@ -24,6 +24,8 @@ extern int C2F(inthess) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intdet) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(intbalanc) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/ 
+int C2F(gw_linear_algebra2)(void);
+/*-----------------------------------------------------------------------------------*/ 
 static LinearAlgebra2Table Tab[]={
 	{C2F(intqr),"qr"},
 	{C2F(intsvd),"svd"},
@@ -41,7 +43,7 @@ static LinearAlgebra2Table Tab[]={
 	{C2F(intbalanc),"balanc"},
 };
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(gw_linear_algebra2)()
+int C2F(gw_linear_algebra2)(void)
 {  
 	Rhs = Max(0, Rhs);
 #if _MSC_VER

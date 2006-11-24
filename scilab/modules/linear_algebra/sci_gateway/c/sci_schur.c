@@ -15,7 +15,28 @@
 #define YES 1
 #define NO 0
 /*-----------------------------------------------------------------------------------*/
+extern int C2F(intdgees0) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgees0) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intoschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intdgees1) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgees1) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intfschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzfschur) __PARAMS((char *fname, unsigned long fname_len));
+
+extern int C2F(intdgges) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgges) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intogschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intozgschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intzgschur) __PARAMS((char *fname, unsigned long fname_len));
+extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
+
+extern int schtst __PARAMS((int longueur, int *header));
+
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(complexify)  __PARAMS((int *num));
+/*-----------------------------------------------------------------------------------*/
+int C2F(intschur)(char *fname,unsigned long fname_len);
 /*-----------------------------------------------------------------------------------*/
 int C2F(intschur)(char *fname,unsigned long fname_len)
 {
@@ -24,23 +45,6 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	int ret, something, X;
 	int which = 1; int longueur;
 
-	extern int C2F(intdgees0) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgees0) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intoschur) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzschur) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intdgees1) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgees1) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intfschur) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzfschur) __PARAMS((char *fname, unsigned long fname_len));
-
-	extern int C2F(intdgges) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgges) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intogschur) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intozgschur) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intzgschur) __PARAMS((char *fname, unsigned long fname_len));
-	extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
-
-	extern int schtst __PARAMS((int longueur, int *header));
 	if (GetType(1)!=1) {
 		OverLoad(1);
 		return 0;
