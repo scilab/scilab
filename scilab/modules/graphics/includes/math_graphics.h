@@ -7,10 +7,9 @@
 
 #ifndef __SCIMATH_H__
 #define __SCIMATH_H__
-#include "machine.h"
 #include <limits.h>
-
 #include <math.h>
+#include "machine.h"
 
 #ifdef __STDC__
 #include <stdlib.h>
