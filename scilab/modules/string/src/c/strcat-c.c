@@ -2,20 +2,19 @@
 #include <string.h>
 #include <stdio.h>
 
-
 #include "machine.h"
-
-
 
 #include "MALLOC.h" /* MALLOC */
 
 #include "stack-c.h"
 
+
 /**************************************************** 
  * y= strcat(str1,sep,[op]) 
  * op = 'c' or 'r'
  ******************************************************/
-
+int C2F(intstrcat) (char* fname);
+/****************************************************/
 int C2F(intstrcat) (char* fname) 
 { 
   char typ = '*';
