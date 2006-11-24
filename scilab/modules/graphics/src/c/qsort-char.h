@@ -1,0 +1,20 @@
+/*------------------------------------------------------------------------*/
+/* Copyright INRIA 2006                                                   */
+/* Authors : Sylvestre ledru                                              */
+/*------------------------------------------------------------------------*/
+
+void ColSortchar(char *a,int *ind,int flag,int n,int p,char dir);
+void RowSortchar(char *a,int *ind,int flag,int n,int p,char dir);
+
+void GlobalSortchar(char *a,int *ind,int flag,int n,int p,char dir);
+
+void ColSortuchar(char *a,int *ind,int flag,int n,int p,char dir);
+void RowSortuchar(char *a,int *ind,int flag,int n,int p,char dir);
+
+void GlobalSortuchar(char *a,int *ind,int flag,int n,int p,char dir);
+
+
+void LexiColuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
+void LexiRowchar(char *a,int *ind,int flag,int n,int p,char dir);
+void LexiRowuchar(unsigned char *a,int *ind,int flag,int n,int p,char dir);
+void LexiColchar(char *a,int *ind,int flag,int n,int p,char dir);

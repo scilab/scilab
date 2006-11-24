@@ -300,6 +300,11 @@ src/c/DestroyObjects.c \
 src/c/Plo2d3.c \
 src/c/clipping.c \
 src/c/qsort.c \
+src/c/qsort-char.c \
+src/c/qsort-double.c \
+src/c/qsort-int.c \
+src/c/qsort-short.c \
+src/c/qsort-string.c \
 src/c/math_graphics.c \
 src/c/RecLoad.c \
 src/c/Interaction.c \

@@ -17,7 +17,7 @@
 
 /* Handle functions */
 extern void sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue);
-extern sciHandleTab * sciGetpendofhandletab(); /* HANDLE MANAGEMENT */
+extern sciHandleTab * sciGetpendofhandletab(void); /* HANDLE MANAGEMENT */
 extern int sciAddNewHandle (sciPointObj * pobj);
 extern int sciDelHandle (sciPointObj * pobj);
 extern long sciGetHandle (sciPointObj * pobj);
@@ -36,8 +36,8 @@ extern sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern sciSons * sciGetNextAccessibleSon( sciSons * son ) ; /* HANDLE MANAGEMENT */
 extern sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj ) ; /* HANDLE MANAGEMENT */
 extern sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
-extern long sciGetCurrentHandle (); /* HANDLE MANAGEMENT */
-extern sciPointObj *sciGetCurrentObj ();  /* HANDLE MANAGEMENT */
+extern long sciGetCurrentHandle (void); /* HANDLE MANAGEMENT */
+extern sciPointObj *sciGetCurrentObj (void);  /* HANDLE MANAGEMENT */
 extern int sciSetCurrentObj (sciPointObj * pobj); /* HANDLE MANAGEMENT */
 extern int sciGetNbFigures( void ) ;
 extern int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle ) ;

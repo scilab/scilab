@@ -7,28 +7,20 @@
 #include <string.h>
 #include "machine.h" 
 /*-----------------------------------------------------------------------------------*/ 
+#include "qsort.h"
+#include "qsort-int.h"
+#include "qsort-short.h"
+#include "qsort-char.h"
+#include "qsort-double.h"
+#include "qsort-string.h"
+/*-----------------------------------------------------------------------------------*/ 
 #ifndef Min
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #endif 
 /*-----------------------------------------------------------------------------------*/ 
-extern void sciqsort(char *a, char *tab,int flag, int n, int es, int es1, int (*cmp) (), int (*swapcode) (), int (*swapcodeind) ());
-/*-----------------------------------------------------------------------------------*/ 
-#define swapcodeind swapcodeint
-#define swap(a, b) swapcode(a, b, 1,es)
-#define swapind(a, b)  if ( flag==1) swapcodeind(a,b,1,es1)
-#define vecswap(a, b, n) if ((n) > 0) swapcode(a, b, n/es,es)
-#define vecswapind(a, b, n) if ((n) > 0 && flag == 1) swapcodeind(a,b,n/es1,es1) 
 
-#define med3(res,tabres,a, b, c, xa,xb,xc,cmp) cmp(a, b) < 0 ?		\
-  (cmp(b, c) < 0 ? (res=b,tabres=xb) :					\
-   (cmp(a, c) < 0 ? (res=c,tabres=xc) : (res=a,tabres=xa) ))		\
-    :(cmp(b, c) > 0 ? (res=b,tabres=xb) : (cmp(a, c) < 0 ? (res=a,tabres=xa) : (res=c,tabres=xc) ))
 /*-----------------------------------------------------------------------------------*/ 
-#include "qsort-int.c"
-#include "qsort-short.c"
-#include "qsort-char.c"
-#include "qsort-double.c"
-#include "qsort-string.c"
+
 /*-----------------------------------------------------------------------------------*/ 
 /*	$NetBSD: qsort.c,v 1.5 1995/12/28 08:52:36 thorpej Exp $	*/
 /*-
@@ -187,3 +179,19 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
   }
 }
 /*-----------------------------------------------------------------------------------*/ 
+
+static int swapcodeint(char * parmi,char * parmj,int n,int incr) 
+{ 		
+  int i = n;
+  register int *pi = (int *) (parmi); 		
+  register int *pj = (int *) (parmj); 
+  register int inc1 = incr/sizeof(int);
+  do { 						
+    register int t = *pi;		
+    *pi = *pj;				
+    *pj = t;				
+    pi += inc1;
+    pj += inc1;
+  } while (--i > 0);				
+  return(0);
+}

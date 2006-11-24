@@ -8,6 +8,7 @@
 #include "sci_newaxes.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "SetProperty.h"

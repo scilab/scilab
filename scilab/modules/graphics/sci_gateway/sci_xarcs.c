@@ -8,6 +8,7 @@
 #include "sci_xarcs.h"
 #include "Graphics.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "sciCall.h"
@@ -49,16 +50,16 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   }
   else 
   {
-    int i;
+    int i2;
     m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
     if (version_flag() == 0)
-      for (i = 0; i < n2; ++i)
+      for (i2 = 0; i2 < n2; ++i2)
       { 
-        *istk(l2 + i) =  sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
+        *istk(l2 + i2) =  sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
       }
     else
     {
-      for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
+      for (i2 = 0; i2 < n2; ++i2)  { *istk(l2 + i2) = 0; }
     }
   }  
   /* NG beg */

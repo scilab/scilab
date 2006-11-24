@@ -7,6 +7,7 @@
 
 #include "sci_move.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "Interaction.h"
 
 /*-----------------------------------------------------------------------------------*/

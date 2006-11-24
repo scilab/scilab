@@ -36,6 +36,8 @@
 sciHandleTab * PENDOFHANDLETAB;
 sciPointObj * PCURRENTPOBJ;
 
+int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
+int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
 
 /*********************************** Handle ******************************************/
 
@@ -80,8 +82,7 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
 }
 
 
-sciHandleTab *
-sciGetpendofhandletab()
+sciHandleTab * sciGetpendofhandletab()
 {
   return PENDOFHANDLETAB;
 }

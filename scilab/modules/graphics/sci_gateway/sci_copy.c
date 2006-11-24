@@ -8,6 +8,7 @@
 #include "sci_copy.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "ObjectStructure.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"

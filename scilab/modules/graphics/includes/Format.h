@@ -26,6 +26,7 @@ double * ReBuildTicksLog2Lin(char logflag, int nbtics, double *grads) ;
 
 int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int * N, int checkdim ) ;
 
+void correctBounds( double min, double max, double * lBound, double * uBound );
 /**
  * Create a new string which is the result the conversion of a double value
  * using a certain format

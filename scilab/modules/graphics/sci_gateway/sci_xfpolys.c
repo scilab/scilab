@@ -8,6 +8,7 @@
 #include "sci_xfpolys.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "Scierror.h"
 #include "ObjectStructure.h"
 #include "sciCall.h"

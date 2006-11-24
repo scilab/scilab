@@ -7,6 +7,7 @@
 
 #include "sci_xgetmouse.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Xcall1.h"
 

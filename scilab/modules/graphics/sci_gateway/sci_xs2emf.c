@@ -9,7 +9,8 @@
 #include "sci_xs2emf.h"
 #include "../../gui/src/c/wsci/ExportBmpEmf.h"
 #endif
-
+#include "sciprint.h"
+#include "gw_graphics.h"
 /*-----------------------------------------------------------------------------------*/
 extern int IsAScalar(int RhsNumber);
 /*-----------------------------------------------------------------------------------*/

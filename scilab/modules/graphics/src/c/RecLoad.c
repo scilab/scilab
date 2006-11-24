@@ -49,8 +49,13 @@
 extern void  xdrstdio_create();
 
 static char *SciF_version;
-static int LoadVectC(),LoadLI(),LoadVectLI(), LoadVectF(),LoadC(),LoadD();
-static int LoadTPlot();
+static int LoadVectC(char **nx);
+static int LoadLI(integer *ix);
+static int LoadVectLI(integer **nx);
+static int LoadVectF(double **nx);
+static int LoadC(char *c);
+static int LoadD(double *x);
+static int LoadTPlot(char *type);
 static int LoadVectS   __PARAMS((char ***nx));
 
 static int LoadPlot  __PARAMS((void)); 
@@ -69,7 +74,7 @@ static int LoadXcall1 __PARAMS((void));
 static int LoadEch __PARAMS((void)); 
 
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
-extern int version_flag();
+extern int version_flag(void);
 
 /*---------------------------------------------------------------------
  * reload a xcall1 statement 
@@ -815,8 +820,7 @@ int C2F(xloadplots)( char * fname1, integer lvx)
   return(0);
 }
 
-static int LoadTPlot(type)
-     char *type;
+static int LoadTPlot(char *type)
 {
   int i=0;
   while (LoadCTable[i].name != (char *) NULL)
@@ -840,8 +844,7 @@ static int LoadTPlot(type)
   return(0);
 }
 
-static int LoadD(x)
-     double *x;
+static int LoadD(double *x)
 {
   rszof = sizeof(double) ;
   rcount = (u_int) 1;
@@ -849,8 +852,7 @@ static int LoadD(x)
   return(1);
 }
 
-static int LoadLI(ix)
-     integer *ix;
+static int LoadLI(integer *ix)
 {
   rszof = sizeof(int) ;
   rcount = (u_int)1;
@@ -858,8 +860,7 @@ static int LoadLI(ix)
   return(1);
 }
 	
-static int LoadC(c)
-     char *c;
+static int LoadC(char *c)
 {
   assert( xdr_vector(rxdrs,(char *) &rszof,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int)) ;
   assert( xdr_opaque(rxdrs,c,rszof));
@@ -880,8 +881,7 @@ static int LoadVectI(nx)
 
 **/
 
-static int LoadVectLI(nx)
-     integer **nx;
+static int LoadVectLI(integer **nx)
 { 
   /** Attention integer peut etre un long int **/
   rszof = sizeof(int) ;
@@ -892,8 +892,7 @@ static int LoadVectLI(nx)
   return(1);
 }
 
-static int    LoadVectF(nx)
-     double **nx;
+static int    LoadVectF(double **nx)
 {
   rszof = sizeof(double) ;
   assert( xdr_vector(rxdrs,(char *) &rcount,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int)) ;
@@ -903,8 +902,7 @@ static int    LoadVectF(nx)
   return(1);
 }
 
-static int LoadVectC(nx)
-     char **nx;
+static int LoadVectC(char **nx)
 {
   assert( xdr_vector(rxdrs,(char *) &rszof,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int)) ;
   *nx = (char *)  MALLOC(rszof);
@@ -913,8 +911,7 @@ static int LoadVectC(nx)
   return(1);
 }
 
-static int LoadVectS(nx) 
-     char ***nx ;
+static int LoadVectS(char ***nx )
 {
   int i;
   char **loc;

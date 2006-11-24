@@ -9,6 +9,7 @@
 #include "stack-c.h"
 #include "Xcall1.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xclea( char *fname,unsigned long fname_len )

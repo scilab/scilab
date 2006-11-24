@@ -13,6 +13,7 @@
 #include "GetProperty.h"
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xget(char *fname,unsigned long fname_len)
@@ -87,7 +88,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   }
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
-    int i;
+    int i2;
     if( version_flag() == 0 )
     {
       sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
@@ -100,12 +101,13 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     x2=2;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
-    for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
+    for (i2 = 0 ; i2 < x2 ; ++i2)
+		*stk(l3 + i2 ) = (double) x1[i2];      
     LhsVar(1)=Rhs+1;
   }
   else if ( strcmp(cstk(l1),"mark size") == 0)
   {
-    int i;
+    int i2;
     if(version_flag() == 0){
       sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
       x1[0] = x1[1] = sciGetMarkSize(subwin);
@@ -118,7 +120,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     x1[0]=x1[1];
     x2=1;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
-    for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
+    for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
     LhsVar(1)=Rhs+1;
   }
   else if ( strcmp(cstk(l1),"line style") == 0) {
@@ -146,7 +148,7 @@ int sci_xget(char *fname,unsigned long fname_len)
   }   /* NG end*/
   else 
   {
-    int i;
+    int i2;
     x2=0;
     if(version_flag()==0){ /* NG */
       sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
@@ -175,7 +177,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
     if (x2 > 0) {
       CreateVar(Rhs+1,"d",&one,&x2,&l3);
-      for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
+      for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
     }
     else {
       x2=0;

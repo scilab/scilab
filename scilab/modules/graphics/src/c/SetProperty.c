@@ -4228,8 +4228,7 @@ sciSetdrawmode (BOOL mode)
 
 
 
-int sciSwitchWindow(winnum)
-     int *winnum; 
+int sciSwitchWindow(int *winnum)
 { 
   struct BCG *CurXGC; 
   static sciPointObj *mafigure;

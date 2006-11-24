@@ -4,6 +4,10 @@
  * by hand macro expansion).
  * Copyright (C) 2006 INRIA (Serge Steer, Allan Cornet)
  */
+#include <string.h>
+#include "qsort.h"
+#include "qsort-string.h"
+
 
 static int swapcodestring( char ** parmi, char ** parmj, int n,int incr) 
 { 		

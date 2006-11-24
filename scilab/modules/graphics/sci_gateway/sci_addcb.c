@@ -10,6 +10,7 @@
 #include "GetProperty.h"
 #include "Interaction.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_addcb(char *fname,unsigned long fname_len)

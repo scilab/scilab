@@ -10,6 +10,7 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DrawObjects.h"
 #include "StringBox.h"
 

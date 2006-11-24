@@ -11,6 +11,7 @@
 #include "Xcall1.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)

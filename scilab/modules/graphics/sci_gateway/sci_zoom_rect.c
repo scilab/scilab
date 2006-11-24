@@ -9,6 +9,7 @@
 #include "stack-c.h"
 #include "PloEch.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_zoom_rect(char *fname,unsigned long fname_len)

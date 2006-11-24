@@ -12,6 +12,7 @@
 #include "GetCommandArg.h"
 #include "Graphics.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DestroyObjects.h"
 
 /*-----------------------------------------------------------------------------------*/

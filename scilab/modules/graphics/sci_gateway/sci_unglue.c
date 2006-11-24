@@ -8,6 +8,7 @@
 #include "sci_unglue.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "DestroyObjects.h"

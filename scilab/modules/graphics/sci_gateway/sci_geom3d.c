@@ -7,6 +7,7 @@
 
 #include "sci_geom3d.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "sci_demo.h"
 #include "Plo3d.h"
 

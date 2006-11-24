@@ -10,6 +10,7 @@
 #include "DefaultCommandArg.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "Graphics.h"

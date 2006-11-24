@@ -12,6 +12,7 @@
 #include "Plo3d.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "GetProperty.h"
 #include "GetCommandArg.h"
 #include "DestroyObjects.h"

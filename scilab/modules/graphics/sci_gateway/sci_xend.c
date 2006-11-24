@@ -8,6 +8,7 @@
 #include "sci_xend.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "stack-c.h"
 #include "ObjectStructure.h"

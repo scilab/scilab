@@ -16,6 +16,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xpoly( char * fname, unsigned long fname_len )

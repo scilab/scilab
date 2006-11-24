@@ -7,6 +7,7 @@
 
 #include "sci_xgrid.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Plo2d.h"
 

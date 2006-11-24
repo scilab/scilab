@@ -33,12 +33,17 @@ extern int WithBackingStore();
 #endif
 static int scig_buzy = 0;
 
+void reset_scig_handler(void);
+int scig_handler_none(int win_num);
+
 /********************************************************
  * A handler which can be dynamically set to custiomize 
  * action of scig_xxx functions 
  ********************************************************/
 
-int scig_handler_none(int win_num) {return win_num;};
+int scig_handler_none(int win_num) {
+	return win_num;
+};
 
 Scig_handler scig_handler = scig_handler_none;
 

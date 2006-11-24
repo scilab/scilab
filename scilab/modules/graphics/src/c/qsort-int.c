@@ -4,22 +4,9 @@
  * by hand macro expansion).
  * Copyright (C) 2006 INRIA (Serge Steer, Allan Cornet)
  */
+#include "qsort.h"
+#include "qsort-int.h"
 
-static int swapcodeint(char * parmi,char * parmj,int n,int incr) 
-{ 		
-  int i = n;
-  register int *pi = (int *) (parmi); 		
-  register int *pj = (int *) (parmj); 
-  register int inc1 = incr/sizeof(int);
-  do { 						
-    register int t = *pi;		
-    *pi = *pj;				
-    *pj = t;				
-    pi += inc1;
-    pj += inc1;
-  } while (--i > 0);				
-  return(0);
-}
 /*-----------------------------------------------------------------------------------*/ 
 static int compareCint(char *i,char *j)
 {

@@ -120,7 +120,6 @@ extern int ReadbdfFont();
 extern void C2F(nues1)();
 extern int CheckScilabXgc();
 
-
 static double *vdouble = 0; /* used when a double argument is needed */
 
 static gdImagePtr GifIm = (gdImagePtr)0;
@@ -133,6 +132,16 @@ static int GifLineColor __PARAMS((void));
 static int GifPatternColor __PARAMS((int pat));
 static void LoadFontsGif(void);
 static void ColorInitGif(void);
+integer GetAluGif(void);
+void GetDriverName(char *DriverName);
+void C2F(set_dash_or_color_Gif)(integer *value, integer *v2, integer *v3, integer *v4);
+void C2F(set_line_style_Gif)(integer *value, integer *v2, integer *v3, integer *v4);
+void C2F(get_dash_or_color_Gif)(integer *verbose, integer *value, integer *narg, double *dummy);
+void C2F(get_dash_and_color_Gif)(integer *verbose, integer *value, integer *narg, double *dummy);
+void C2F(getcolormapsizeGif)(integer *v1, integer *v2, integer *v3, double *val);
+void C2F(setwwhowGif)(integer *verbose, integer *v2, integer *v3, integer *v4);
+void C2F(DispStringAngleGif)(integer *x0, integer *yy0, char *string, double *angle);
+
 static void C2F(getcolormapGif) __PARAMS((integer *v1, integer *v2, integer *v3, double *val));
 static void C2F(setgccolormapGif) __PARAMS((struct BCG *Xgc,integer m, double *a, integer *v3));
 
@@ -214,19 +223,16 @@ void C2F(clearwindowGif)(char *v1, integer *v2, integer *v3, integer *v4, intege
 
   /* F.Leray : I add a rectangle with  background color*/
   int zero = 0;
-  int col_white = col_index[ScilabGCGif.Numcolors+1];
+  int color_white = col_index[ScilabGCGif.Numcolors+1];
 
   if (GifIm == (gdImagePtr)0 ) {
     sciprint(" 1 xinit must be called before any action \r\n");
     return;
   }
 
-/*   sciprint("JE PASSE PAR ICI et col_white vaut: %d\n",col_white); */
-
   gdImageFilledRectangle(GifIm, zero, zero,  ScilabGCGif.CWindowWidth,  ScilabGCGif.CWindowHeight,
-			 col_white);
+			 color_white);
 
-  /* FPRINTF((file,"\n showpage")); */
   /** Sending the scale etc.. in case we want an other plot **/
   /* FileInitGif(file); */
 }
@@ -1545,9 +1551,9 @@ void C2F(drawsegmentsGif)(char *str, integer *vx, integer *vy, integer *n, integ
     {
       for ( i=0 ; i < *n/2 ; i++) 
 	{
-	  integer NDvalue;
-	  NDvalue = style[i];
-	  C2F(setpatternGif)(&NDvalue,PI0,PI0,PI0);
+	  integer NDvalue2;
+	  NDvalue2 = style[i];
+	  C2F(setpatternGif)(&NDvalue2,PI0,PI0,PI0);
           gdImageThickLine(GifIm, vx[2*i], vy[2*i],
 			   vx[2*i + 1], vy[2*i + 1],
 			   GifLineColor(),Max(1,ScilabGCGif.CurLineWidth));

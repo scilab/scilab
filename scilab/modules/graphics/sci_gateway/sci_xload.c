@@ -8,6 +8,7 @@
 #include "sci_xload.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "GetProperty.h"
 #include "Xcall1.h"
 #include "RecSaveLoad.h"

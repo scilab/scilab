@@ -3,6 +3,9 @@
  * Modified 2006 S.Steer (changing generic code to sepcialized code 
  * by hand macro expansion).
  */
+#include "qsort.h"
+#include "qsort-double.h"
+
 
 static int swapcodedouble(char *  parmi,char * parmj, int  n, int inc)  
 { 		

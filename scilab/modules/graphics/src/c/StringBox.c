@@ -383,7 +383,6 @@ void getTextAabb( sciPointObj * pText        ,
 {
   if ( cornPix == NULL )
   {
-    int cornPix[4][2] ;
 
     getTextBoundingBox( pText, cornPix, NULL ) ;
 

@@ -6,6 +6,7 @@
 #include <string.h>
 #include <math.h>
 #include "math_graphics.h"
+#include "gsort.h"
 
 #include "../../../string/includes/men_Sutils.h"
 #include "MALLOC.h"
@@ -205,43 +206,6 @@ int C2F(gsortuchar)(unsigned char *xI, int *ind, int *iflag, int *m, int *n, cha
   return(0);
 }
 
-
-
-/*-----------------------------------------------------------------------------------*/ 
-/******************************************************
- * General sort routine for Scilab 
- * The version for Scilab strings 
- * iflag == if 1 ind is to be computed if 0 ind is ignored 
- * m,n : matrix size 
- * type : the operation ( see the interface ) 
- * iord : 'i' or 'd' : increasind or decreasing sort 
- ******************************************************/
-void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrres, int *ierr, int *ind, int *iflag, char *type, char *iord)
-{
-  char **data;
-  int i,nv;
-  int maxchars= *ierr;
-  *ierr=0;
-  nv = *m*(*n);
-  /* conversion of scilab characters into strings */
-  ScilabMStr2CM(value,&nv,ptrv,&(data),ierr);
-  if ( *ierr == 1) return;
-  switch ( type[0])
-    {
-    case 'r' :  ColSortstring(data,ind,*iflag,*m,*n,iord[0]);break;
-    case 'c' :  RowSortstring(data,ind,*iflag,*m,*n,iord[0]);break;
-    case 'l' :  
-      if ( type[1] == 'r' ) 
-				LexiRowstring(data,ind,*iflag,*m,*n,iord[0]);
-      else
-				LexiColstring(data,ind,*iflag,*m,*n,iord[0]);
-      break;
-    case 'g' : 
-    default :  GlobalSortstring(data,ind,*iflag,*m,*n,iord[0]);break;
-    }
-  ScilabCM2MStr(data,nv,res,ptrres,maxchars,ierr);
-  for (i=0;i< nv ;i++) FREE(data[i]); FREE(data);
-}
 /*-----------------------------------------------------------------------------------*/ 
 /******************************************************
  * General sort routine for Scilab strings 

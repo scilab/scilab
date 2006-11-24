@@ -10,6 +10,7 @@
 #include "sci_xtitle.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "GetProperty.h"

@@ -8,6 +8,7 @@
 #include "sci_glue.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "../../elementaries_functions/includes/elementaries_functions.h"

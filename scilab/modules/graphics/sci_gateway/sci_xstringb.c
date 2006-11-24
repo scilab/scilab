@@ -11,6 +11,7 @@
 #include "stack-c.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "Scierror.h"
 #include "GetProperty.h"
 #include "MALLOC.h"

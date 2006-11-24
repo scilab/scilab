@@ -8,6 +8,7 @@
 #include "sci_xrects.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "dr1Call.h"

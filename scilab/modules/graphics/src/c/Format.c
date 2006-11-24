@@ -636,35 +636,35 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
      double *xminv, *xmaxv, *gr, *thewidth, *scal;
      int *nticks, *tst0;
 {
-  double span,width,low,up;
+  double span,width2,low,up;
   double nup,nlow;
   int res,k;
   span  = *xmaxv - *xminv ;
   res   = gradu2( &span, thewidth, scal ) ;
-  width = (*thewidth) * (*scal) ;
+  width2 = (*thewidth) * (*scal) ;
   
   
   
-  nlow= ROUND(*xminv/ width);
-  low=nlow* width;
-  nup = ROUND(*xmaxv/ width);
-  up = nup * width;
+  nlow= ROUND(*xminv/ width2);
+  low=nlow* width2;
+  nup = ROUND(*xmaxv/ width2);
+  up = nup * width2;
   
   if ( low > *xminv )
   { 
-    nlow = floor( *xminv / width ) ;
-    low  = nlow * width ;
+    nlow = floor( *xminv / width2 ) ;
+    low  = nlow * width2 ;
   }
   /* printf("%e %e %e %e %e\n", *xmaxv-up, *scal, nup, width, *thewidth); */
   if ( up < *xmaxv )
   {
-    nup = ceil( *xmaxv / width);
-    up = nup * width ;
+    nup = ceil( *xmaxv / width2);
+    up = nup * width2 ;
   }
   
   if ( *nticks > 0 )
   {
-    width = ( up - low ) / ( *nticks - 1 ) ;
+    width2 = ( up - low ) / ( *nticks - 1 ) ;
   }
   else
   {
@@ -673,7 +673,7 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
   gr[0]=low;gr[*nticks-1]=up;
   for (k=1; k<*nticks-1; ++k)
   {
-    gr[k]=gr[k-1]+width;
+    gr[k]=gr[k-1]+width2;
   }
   
 }
@@ -1167,10 +1167,10 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   }
   else
   {
-    int i ;
-    for ( i = 0 ; i < 5 ; i++ )
+    int i2 ;
+    for ( i2 = 0 ; i2 < 5 ; i2++ )
     {
-      c_format[i] = pAXES_FEATURE(pobj)->format[i] ;
+      c_format[i2] = pAXES_FEATURE(pobj)->format[i2] ;
     }
   }
 

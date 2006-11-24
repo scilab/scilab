@@ -11,6 +11,7 @@
 #include "SetProperty.h"
 #include "Xcall1.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xname(char *fname,unsigned long fname_len)

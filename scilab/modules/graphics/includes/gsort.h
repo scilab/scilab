@@ -7,13 +7,13 @@
 #ifndef _GSORT_H_
 #define _GSORT_H_
 
-extern void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortint)(int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortuint)(unsigned int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortshort)(short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortushort)(unsigned short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortchar)(char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-extern int C2F(gsortuchar)(unsigned char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortint)(int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortuint)(unsigned int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortshort)(short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortushort)(unsigned short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortchar)(char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+int C2F(gsortuchar)(unsigned char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
 
 #endif /* _GSORT_H_ */

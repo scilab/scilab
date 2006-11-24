@@ -12,6 +12,7 @@
 #include "DrawObjects.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xsegs(char *fname,unsigned long fname_len)

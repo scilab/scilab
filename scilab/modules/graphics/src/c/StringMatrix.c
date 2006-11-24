@@ -9,6 +9,7 @@
 #include <string.h>
 #include "StringMatrix.h"
 #include "MALLOC.h"
+#include <stdlib.h>
 
 /*-------------------------------------------------------------------------------------------*/
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )

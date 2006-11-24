@@ -15,6 +15,7 @@
 #include "ObjectStructure.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"

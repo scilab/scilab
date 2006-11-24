@@ -12,12 +12,14 @@
 #include "HandleManagement.h"
 #include "InitObjects.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 #include "../src/c/getHandleProperty/GetHashTable.h"
 
 #include "../src/c/getHandleProperty/getHandleProperty.h"
 
-
+/*-----------------------------------------------------------------------------------*/
+int sciGet(sciPointObj *pobj,char *marker);
 /*-----------------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker)
 {

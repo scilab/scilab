@@ -3,6 +3,8 @@
  * Modified 2006 S.Steer (changing generic code to sepcialized code 
  * by hand macro expansion).
  */
+#include "qsort.h"
+#include "qsort-short.h"
 
 static int swapcodeshort(char * parmi,char * parmj,int n,int incr) 
 { 		

@@ -14,6 +14,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 
 /*-----------------------------------------------------------------------------------*/

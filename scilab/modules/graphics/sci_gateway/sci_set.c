@@ -17,6 +17,7 @@
 #include "ObjectStructure.h"
 #include "InitObjects.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
 
@@ -31,7 +32,8 @@
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
 * Sets the value to the object
 */
-
+int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol);
+/*-----------------------------------------------------------------------------------*/
 int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol)
 {
 
@@ -46,9 +48,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numr
  * sciset(choice-name,x1,x2,x3,x4,x5)
  * or   xset()
  *-----------------------------------------------------------*/
-int sci_set(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int sci_set(char *fname, unsigned long fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
   unsigned long hdl; 
@@ -61,7 +61,6 @@ int sci_set(fname,fname_len)
   int numrow[4],i;
   int numcol[4], lxyzcol[4];
   int ptrindex[2];
-  int flagc = -1;
   int setStatus = 0 ; /* after the call to sciSet get the status : 0 <=> OK,          */ 
                       /*                                          -1 <=> Error,       */
                       /*                                           1 <=> nothing done */

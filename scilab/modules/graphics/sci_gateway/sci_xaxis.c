@@ -8,6 +8,7 @@
 #include "sci_xaxis.h"
 #include "Xcall1.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xaxis(char *fname,unsigned long fname_len)

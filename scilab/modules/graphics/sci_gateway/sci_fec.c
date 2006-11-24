@@ -12,6 +12,7 @@
 #include "stack-c.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "sciCall.h"
 #include "dr1Call.h"

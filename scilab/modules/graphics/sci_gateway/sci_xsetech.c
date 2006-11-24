@@ -8,6 +8,7 @@
 #include "sci_xsetech.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "PloEch.h"
 

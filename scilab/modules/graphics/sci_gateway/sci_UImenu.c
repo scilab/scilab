@@ -12,6 +12,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "ObjectStructure.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"

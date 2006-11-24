@@ -11,6 +11,7 @@
 #include "DrawObjects.h"
 #include "Graphics.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "HandleManagement.h"
 
 /*-----------------------------------------------------------------------------------*/

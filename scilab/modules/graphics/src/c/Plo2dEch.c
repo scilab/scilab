@@ -19,7 +19,7 @@
 #include "Interaction.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
-
+#include "Plo2dEch.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -598,7 +598,7 @@ int getscale2d( double WRect[4], double FRect[4], char * logscale, double ARect[
     }
   return(0);
 }
-/* reporte de CVS par serge 07/11/03*/
+
 void get_frame_in_pixel(integer WIRect[])
 {
   /* ajout bruno */
@@ -797,8 +797,7 @@ void set_scale( char    flag[6]        ,
  * Get the current window dimensions.
  *--------------------------------------------------------------------*/
 
-void get_cwindow_dims(wdims)
-     int wdims[2];
+void get_cwindow_dims(int wdims[2])
 {
   int verbose=0,narg;
   C2F(dr)("xget","wdim",&verbose,wdims,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1206,7 +1205,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 	      double xmin, ymin;
 	      double xmax, ymax;
 	      double zmin, zmax;
-	      sciSons *psonstmp = (sciSons *) NULL;
+	      sciSons *psonstmp2 = (sciSons *) NULL;
 	      double epsilon = 1e-16;
 
 	      int box3d[4];
@@ -1243,7 +1242,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		  /* this flag is used inside trans3d called many times by sciDrawObj */
 		  GlobalFlag_Zoom3dOn=1;
 	      
-		  psonstmp = sciGetLastSons (psousfen);
+		  psonstmp2 = sciGetLastSons (psousfen);
 		  
 		  sciDrawObj(psousfen); /* see GlobalFlag_Zoom3dOn impact flag in sciDrawObj & trans3d functions */
 		  
@@ -1281,24 +1280,24 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 /* 		  printf("------------------------\n\n"); */
 		  
 		  if(ppsubwin->axes.reverse[0] == TRUE) {
-		    double tmp;
-		    tmp = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmin);
+		    double tmp2;
+		    tmp2 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmin);
 		    xmin = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmax);
-		    xmax = tmp;
+		    xmax = tmp2;
 		  }
 		  
 		  if(ppsubwin->axes.reverse[1] == TRUE) {
-		    double tmp;
-		    tmp = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymin);
+		    double tmp2;
+		    tmp2 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymin);
 		    ymin = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymax);
-		    ymax = tmp;
+		    ymax = tmp2;
 		  }
 		  
 		  if(ppsubwin->axes.reverse[2] == TRUE) {
-		    double tmp;
-		    tmp = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmin);
+		    double tmp2;
+		    tmp2 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmin);
 		    zmin = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmax);
-		    zmax = tmp;
+		    zmax = tmp2;
 		  }
 
 		  FreeVertices(psousfen);
@@ -1551,13 +1550,7 @@ extern void unzoom_one_axes(sciPointObj *psousfen)
  *  (voir les fonctions qui suivent )
  */
 
-void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
-     char *logf;
-     double *FRectI;
-     integer *Xdec;
-     integer *Ydec;
-     integer *xnax;
-     integer *ynax;
+void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, integer *xnax, integer *ynax)
 {
   double FRectO[4];
   sciPointObj *psubwin; 
@@ -1810,8 +1803,6 @@ double YDPi2R( double y )
   sciprint("Error in YScale\n");
   return -9000;
 }
-
-
 
 double Zoom3d_XPi2R(int x)
 {

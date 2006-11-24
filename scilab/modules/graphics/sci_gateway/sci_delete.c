@@ -8,6 +8,7 @@
 #include "sci_delete.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
+#include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"

@@ -313,7 +313,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 
   if ( *colored == 0 ) 
     {
-      int j=0;
+      int j2=0;
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  integer x1n,y1n,x2n,y2n,flag1=0;
@@ -321,31 +321,30 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
 	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
 	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
-	  xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
-	  xm[2*j]  = (int)(xm[2*i]);
- 	  ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
-	  ym[2*j]  = (int)(ym[2*i]);
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  xm[1+2*j2]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
+	  xm[2*j2]  = (int)(xm[2*i]);
+ 	  ym[1+2*j2]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
+	  ym[2*j2]  = (int)(ym[2*i]);
+	  clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
 	  if (flag1 !=0)
 	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      /* sciprint("j'ai rajoute (%d,%d)->(%d,%d)\r\n",xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1]); */
-	      j++;
+	      if (flag1==1||flag1==3) { xm[2*j2]=x1n;ym[2*j2]=y1n;};
+	      if (flag1==2||flag1==3) { xm[2*j2+1]=x2n;ym[2*j2+1]=y2n;};
+	      j2++;
 	    }
 	}
-      *na=2*j;
+      *na=2*j2;
     }
   else 
     {
       integer x1n,y1n,x2n,y2n,flag1=0;
       integer whiteid;
-      int j=0;
+      int j2=0;
       C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-	  zm[j] = inint( ((double) whiteid - 1)*(1.0 - nor/maxx)) +1;
+	  zm[j2] = inint( ((double) whiteid - 1)*(1.0 - nor/maxx)) +1;
 	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
 
 	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
@@ -361,21 +360,21 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	   *
 	   *        the new code :
 	   */
-	  xm[1+2*j]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
-	  xm[2*j]  = (int)(xm[2*i]);
-	  ym[1+2*j]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
-	  ym[2*j]  = (int)(ym[2*i]);
+	  xm[1+2*j2]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
+	  xm[2*j2]  = (int)(xm[2*i]);
+	  ym[1+2*j2]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
+	  ym[2*j2]  = (int)(ym[2*i]);
 	  /* end of the modif */
 
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
 	  if (flag1 !=0)
 	    {
-	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
-	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
-	      j++;
+	      if (flag1==1||flag1==3) { xm[2*j2]=x1n;ym[2*j2]=y1n;};
+	      if (flag1==2||flag1==3) { xm[2*j2+1]=x2n;ym[2*j2+1]=y2n;};
+	      j2++;
 	    }
 	}
-      *na=2*j;
+      *na=2*j2;
     }
 }
 
@@ -456,46 +455,46 @@ void sciChamp2DRealToPixel( integer * xm         ,
 
   if ( *typeofchamp == 0 ) 
   {
-    int j=0;
+    int j2=0;
     for ( i = 0 ; i < (*n1)*(*n2) ; i++)
     {
       integer x1n,y1n,x2n,y2n,flag1=0;
-      xm[1+2*j]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
-      xm[2*j]  = (int)(xm[2*i]);
-      ym[1+2*j]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
-      ym[2*j]  = (int)(ym[2*i]);
-      clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+      xm[1+2*j2]= (int)(xfacteur*sfx*fx[i]+xm[2*i]);
+      xm[2*j2]  = (int)(xm[2*i]);
+      ym[1+2*j2]= (int)(-yfacteur*sfy*fy[i]+ym[2*i]);
+      ym[2*j2]  = (int)(ym[2*i]);
+      clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
       if ( flag1 != 0 )
       {
         if (flag1==1||flag1==3)
         {
-          xm[2*j] = x1n ;
-          ym[2*j] = y1n ;
+          xm[2*j2] = x1n ;
+          ym[2*j2] = y1n ;
         }
         if (flag1==2||flag1==3)
         {
-          xm[2*j+1] = x2n ;
-          ym[2*j+1] = y2n ;
+          xm[2*j2+1] = x2n ;
+          ym[2*j2+1] = y2n ;
         }
-        j++;
+        j2++;
       }
       else if ( !clipping )
       {
-        j++ ;
+        j2++ ;
       }
     }
-    *na=2*j;
+    *na=2*j2;
   }
   else 
   {
     integer x1n,y1n,x2n,y2n,flag1=0;
     integer whiteid;
-    int j=0;
+    int j2=0;
     C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     for ( i = 0 ; i < (*n1)*(*n2) ; i++)
     {
       double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
-      zm[j] = inint( ((double) whiteid -1 )*(1.0 - nor/maxx)) +1;
+      zm[j2] = inint( ((double) whiteid -1 )*(1.0 - nor/maxx)) +1;
       nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
 
       /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
@@ -504,40 +503,40 @@ void sciChamp2DRealToPixel( integer * xm         ,
       *
       *        this is the old code :
       *
-      * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
-      * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
-      * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
-      * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
+      * 	  xm[1+2*j2]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
+      * 	  xm[2*j2]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
+      * 	  ym[1+2*j2]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
+      * 	  ym[2*j2]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
       *
       *        the new code :
       */
-      xm[1+2*j]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
-      xm[2*j]  = (int)(xm[2*i]);
-      ym[1+2*j]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
-      ym[2*j]  = (int)(ym[2*i]);
+      xm[1+2*j2]= (int)(xfacteur*sfx*(fx[i])/(nor)+xm[2*i]);
+      xm[2*j2]  = (int)(xm[2*i]);
+      ym[1+2*j2]= (int)(-yfacteur*sfy*(fy[i])/(nor)+ym[2*i]);
+      ym[2*j2]  = (int)(ym[2*i]);
       /* end of the modif */
 
-      clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+      clip_line(xm[2*j2],ym[2*j2],xm[2*j2+1],ym[2*j2+1],&x1n,&y1n,&x2n,&y2n,&flag1);
       if ( flag1 != 0 )
       {
         if (flag1==1||flag1==3)
         {
-          xm[2*j] = x1n ;
-          ym[2*j] = y1n ;
+          xm[2*j2] = x1n ;
+          ym[2*j2] = y1n ;
         }
         if (flag1==2||flag1==3)
         {
-          xm[2*j+1] = x2n ;
-          ym[2*j+1] = y2n ;
+          xm[2*j2+1] = x2n ;
+          ym[2*j2+1] = y2n ;
         }
-        j++;
+        j2++;
       }
       else if ( !clipping )
       {
-        j++ ;
+        j2++ ;
       }
     }
-    *na=2*j;
+    *na=2*j2;
   }
 }
 
