@@ -18,9 +18,8 @@
 #include "machine.h"
 #include "All-extern-x.h"
 #endif
+#include "gw_gui.h"
 #include "../../graphics/includes/WindowList.h"
-/*-----------------------------------------------------------------------------------*/
-int sci_show_window( char * fname, unsigned long fname_len );
 /*-----------------------------------------------------------------------------------*/
 int sci_show_window( char * fname, unsigned long fname_len )
 {

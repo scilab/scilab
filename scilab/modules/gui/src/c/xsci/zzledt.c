@@ -161,13 +161,13 @@ static void PutChar(int c);
 static int  GetCharOrEvent(int interrupt);
 
 /* function for console mode */
-static void enable_keypad_mode();
-static void disable_keypad_mode();
-static void init_io();
-static void set_crmod();
-static void set_cbreak();
+static void enable_keypad_mode(void);
+static void disable_keypad_mode(void);
+static void init_io(void);
+static void set_crmod(void);
+static void set_cbreak(void);
 
-int using_readline();
+int using_readline(void);
 int XSaveNative _PARAMS((char *fname, unsigned long fname_len));
 int HomeFunction _PARAMS((char *fname, unsigned long fname_len));
 int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
@@ -176,7 +176,7 @@ int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len));
 /* --- extern functions ---  */
 extern void set_echo_mode(int mode);
 extern void set_is_reading(int mode);
-extern int  get_echo_mode();
+extern int  get_echo_mode(void);
 extern void sciprint_nd(char *fmt,...);
 extern void C2F(sigbas)(int *n);
 extern void XHomeFunction(void);

@@ -4,10 +4,9 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_gui.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(scimdial) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_x_mdialog) _PARAMS((char *fname,unsigned long fname_len))
 {

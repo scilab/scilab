@@ -28,7 +28,8 @@
 #ifndef _MSC_VER
 #include "version.h"
 #endif
-
+#include "realmain.h" /* realmain */
+#include "scimem.h" /* nofpex */
 
 #include "DestroyObjects.h"
 
@@ -93,16 +94,14 @@ extern void exit();
 char *ProgramName;
 /*-----------------------------------------------------------------------------------*/
 extern void sci_clear_and_exit (int);
-extern int C2F(nofpex) (void);
 extern int C2F(scigetarg) (int *,char *,long int l);
-extern char *strindex ();
-extern void do_hangup();
-extern void do_kill();
+extern char *strindex (register char *s1, register char *s2);
+extern void do_hangup(void);
+extern void do_kill(Widget gw, caddr_t closure, caddr_t data);
 extern void sci_usr1_signal(int n) ;
 extern char ** create_argv(int *argc);
-extern void settexmacs();
-extern void realmain(int nowin,int no_startup_flag,char *initial_script,int initial_script_type,int memory);
-extern void SetWITH_GUI();
+extern void settexmacs(void);
+extern void SetWITH_GUI(BOOL);
 /*-----------------------------------------------------------------------------------*/
 //static void Syntax __PARAMS((char *badOption));  
 //static void Syntax (char *badOption);  

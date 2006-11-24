@@ -12,15 +12,16 @@
 #include "../src/c/wsci/wcommon.h"
 #include "../src/c/wsci/Errors.h"
 #else
-#include "../src/c/xsci/x_ptyxP.h"
-#include "../src/c/xsci/x_data.h"
-#include "../src/c/xsci/x_error.h"
-#include "../src/c/xsci/x_menu.h"
+#include "x_ptyxP.h"
+#include "x_data.h"
+#include "x_error.h"
+#include "x_menu.h"
 #include "machine.h"
-#include "../src/c/xsci/All-extern-x.h"
+#include "All-extern-x.h"
 #endif
 
 #include "stack-c.h"
+#include "gw_gui.h"
 /*-----------------------------------------------------------------------------------*/
 extern int IsConsoleMode(void);
 
