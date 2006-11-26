@@ -221,11 +221,15 @@ proc focustextarea {textarea} {
     global pad Scheme ColorizeIt listoffile textareaid
     global buffermodifiedsincelastsearch
 
-    # clear the selection when leaving a buffer
+    # clear the selection when leaving a buffer - check first that the
+    # textarea still exists because it might have been destroyed when
+    # focustextarea is called after closure of the current file
     set oldta [gettextareacur]
-    if {($oldta != $textarea) && [$oldta tag ranges sel] != ""} {
-        $oldta tag remove sel 0.0 end
-        selection clear
+    if {[winfo exists $oldta]} {
+        if {($oldta != $textarea) && [$oldta tag ranges sel] != ""} {
+            $oldta tag remove sel 0.0 end
+            selection clear
+        }
     }
 
     # set the new buffer as current

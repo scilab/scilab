@@ -2566,3 +2566,9 @@ Francois VOGEL, 22/11/06
  * Pushed the maximum number of recent filenames in the file menu (15, 20 or
    even 50 items now allowed)
  * version --> 6.62
+
+Francois VOGEL, 26/11/06
+ * Fixed bug 2239: cursor blink now stops before typing a character, and is
+   restored afterwards
+ * The textarea itself is now destroyed when closing a file
+ * version --> 6.63

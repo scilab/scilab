@@ -191,6 +191,8 @@ proc byebye {textarea} {
             destroypaneframe $textarea
         }
 
+        destroy $textarea
+
         # place as current textarea the last one that is not already visible
         set i [getlasthiddentextareamenuind]
         if {$i == ""} {set i $FirstBufferNameInWindowsMenu}

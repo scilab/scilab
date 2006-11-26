@@ -23,7 +23,12 @@ sbind Text <Control-h><Control-KeyPress> {validpostfix %A %s "f"; break}
 #(that seems to be the easiest way to get out of the prefix troubles)
 
 
-sbind Text <KeyPress>  {if {{%A} != {{}}} {puttext %W %A}}
+# stop/restorecursorblink is to fix bug 2239
+sbind Text <KeyPress>  {if {{%A} != {{}}} { \
+                        stopcursorblink ; \
+                        puttext %W %A ; \
+                        restorecursorblink \
+                       }}
 
 
 
