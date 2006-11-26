@@ -23,10 +23,10 @@
 #define  getwd(x) _getcwd(x,1024)
 #endif
 
-#include "mysearch.h"
 #include "defs.h"
 #include "machine.h"
 #include "MALLOC.h"
+#include "hashtable_metanet.h"
 
 #define MAXNAM 80
 
