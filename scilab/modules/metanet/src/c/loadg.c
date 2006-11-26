@@ -69,22 +69,24 @@ int *default_edge_hi_width,*default_font_size;
 int *ndim,*ma;
 {
   FILE *fg;
-#if !(defined _MSC_VER)
-  DIR *dirp;
+#ifndef _MSC_VER
+  DIR *dirp=NULL;
 #endif
   char fname[2 * MAXNAM];
   char line[5 * MAXNAM];
   char strname[MAXNAM], head_name[MAXNAM], tail_name[MAXNAM];
   int isize,dsize;
   int i,s;
-  ENTRY node,*found=NULL;
+  ENTRY node;
+  ENTRY *found=NULL;
   char dir[1024];
-  char *pname;
-  char **lar;
+  char *pname=NULL;
+  char **lar=NULL;
 
   path[*lpath] = '\0';
-#if !(defined _MSC_VER)
-  if ((dirp=opendir(path)) != NULL) {
+#ifndef _MSC_VER
+  if ((dirp=opendir(path)) != NULL) 
+  {
     sprintf(description,"\"%s\" is a directory",path);
     cerro(description);
     closedir(dirp);
@@ -93,26 +95,32 @@ int *ndim,*ma;
 #endif
   if (dirname(path) == NULL) getwd(dir);
   else strcpy(dir,dirname(path));
-#if !(defined _MSC_VER)
-  if ((dirp=opendir(dir)) == NULL) {
+#ifndef _MSC_VER
+  if ((dirp=opendir(dir)) == NULL) 
+  {
     sprintf(description,"Directory \"%s\" does not exist",dir);
     cerro(description);
     return;
   }
   closedir(dirp);
 #endif
+
   pname = StripGraph(my_basename(path));
 
   *lname = (int)strlen(pname);
 
-  if ((*name = (char *)MALLOC((unsigned)sizeof(char)*(*lname + 1)))
-      == NULL) {
+  if ((*name = (char *)MALLOC((unsigned)sizeof(char)*(*lname + 1))) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
   strcpy(*name,pname);
-#if !(defined _MSC_VER)
-  if(!CheckGraphName(*name,dir)) {
+
+  if (pname) { FREE(pname); pname=NULL;}
+
+#ifndef _MSC_VER
+  if(!CheckGraphName(*name,dir)) 
+  {
     sprintf(description,"Graph file \"%s/%s.graph\" does not exist",dir,*name);
     cerro(description);
     return;
@@ -126,7 +134,8 @@ int *ndim,*ma;
   strcat(fname,*name);
   strcat(fname,".graph");
   fg = fopen(fname,"r");
-  if (fg == 0) {
+  if (fg == 0) 
+  {
     sprintf(description,"Unable to open file \"%s/%s.graph\"",dir,*name);
     cerro(description);
     return;
@@ -163,109 +172,131 @@ int *ndim,*ma;
   
   /* alloc memory for nodes */
   s = sizeof(char *) * *ndim;
-  if ((*node_name = (char **)MALLOC(s)) == NULL) {
+  if ((*node_name = (char **)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
   s = isize * *ndim;
-  if ((*node_type = (int *)MALLOC(s)) == NULL) {
+  if ((*node_type = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-    if ((*node_x = (int *)MALLOC(s)) == NULL) {
+  if ((*node_x = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*node_y = (int *)MALLOC(s)) == NULL) {
+  if ((*node_y = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*node_color = (int *)MALLOC(s)) == NULL) {
+  if ((*node_color = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*node_diam = (int *)MALLOC(s)) == NULL) {
+  if ((*node_diam = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*node_border = (int *)MALLOC(s)) == NULL) {
+  if ((*node_border = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*node_font_size = (int *)MALLOC(s)) == NULL) {
+  if ((*node_font_size = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
   s = dsize * *ndim;
-  if ((*node_demand = (double *)MALLOC(s)) == NULL) {
+  if ((*node_demand = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
 
   /* alloc memory for edges */
   s = sizeof(char *) * *ma;
-  if ((*edge_name = (char **)MALLOC(s)) == NULL) {
+  if ((*edge_name = (char **)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
   s = isize * *ma;
-  if ((*head = (int *)MALLOC(s)) == NULL) {
+  if ((*head = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*tail = (int *)MALLOC(s)) == NULL) {
+  if ((*tail = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   } 
-  if ((*edge_color = (int *)MALLOC(s)) == NULL) {
+  if ((*edge_color = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_width = (int *)MALLOC(s)) == NULL) {
+  if ((*edge_width = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_hi_width = (int *)MALLOC(s)) == NULL) {
+  if ((*edge_hi_width = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_font_size = (int *)MALLOC(s)) == NULL) {
+  if ((*edge_font_size = (int *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
   s = dsize * *ma;
-  if ((*edge_length = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_length = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_cost = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_cost = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_min_cap = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_min_cap = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_max_cap = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_max_cap = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_q_weight = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_q_weight = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_q_orig = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_q_orig = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
-  if ((*edge_weight = (double *)MALLOC(s)) == NULL) {
+  if ((*edge_weight = (double *)MALLOC(s)) == NULL) 
+  {
     cerro("Running out of memory");
     return;
   }
 
   /* jump to node description */
-  for (i = 0; i < 2 * *ma; i++)
-    fgets(line,5 * MAXNAM,fg);
+  for (i = 0; i < 2 * *ma; i++) fgets(line,5 * MAXNAM,fg);
 
   fgets(line,5 * MAXNAM,fg);
   fgets(line,5 * MAXNAM,fg);
@@ -275,11 +306,13 @@ int *ndim,*ma;
   fgets(line,5 * MAXNAM,fg);
 
   myhcreate(*ndim);
-  for (i = 0; i < *ndim; i++) {
+  for (i = 0; i < *ndim; i++) 
+  {
     fgets(line,5 * MAXNAM,fg);
     (*node_type)[i] = 0;
     sscanf(line,"%s %d",strname,&((*node_type)[i]));
-    if (((*node_name)[i] = (char *)MALLOC(strlen(strname)+1)) == NULL) {
+    if (((*node_name)[i] = (char *)MALLOC(strlen(strname)+1)) == NULL) 
+	{
       cerro("Running out of memory");
       return;
     }
@@ -296,110 +329,144 @@ int *ndim,*ma;
 	   &((*node_diam)[i]),&((*node_border)[i]),&((*node_font_size)[i]));
     fgets(line,5 * MAXNAM,fg);
     sscanf(line,"%le",&((*node_demand)[i]));
-    if ((node.key = (char *)MALLOC(strlen(strname)+1)) == NULL) {
+
+    if ((node.key = (char *)MALLOC(strlen(strname)+1)) == NULL) 
+	{
       cerro("Running out of memory");
       return;
     }
+
     strcpy(node.key,strname);
     sprintf(strname,"%d",i+1);
-    if ((node.data = (char *)MALLOC(strlen(strname)+1)) == NULL) {
+
+    if ((node.data = (char *)MALLOC(strlen(strname)+1)) == NULL) 
+	{
       cerro("Running out of memory");
       return;
     }   
     strcpy(node.data,strname);
-    myhsearch(node,SCIENTER);
+	myhsearch(node,SCIENTER);
+
+	if (node.data) {FREE(node.data);node.data=NULL;}
+	if (node.key) {FREE(node.key);node.key=NULL;}
   }
 
   /* check uniqueness of node names */
-  if (*ndim != 1) {
-    if ((lar = (char **)MALLOC(sizeof(char *) * *ndim)) == NULL) {
+  if (*ndim != 1) 
+  {
+    if ((lar = (char **)MALLOC(sizeof(char *) * *ndim)) == NULL) 
+	{
       cerro("Running out of memory");
       return;
     }
+
     for (i = 0; i < *ndim; i++) lar[i] = (*node_name)[i];
+
     qsort((char*)lar,*ndim,sizeof(char*),(PF)CompString);
-    for (i = 0; i < *ndim - 1; i++) {
-      if (!strcmp(lar[i],lar[i+1])) {
-	sprintf(description,
-		"Bad graph file. Node \"%s\" is duplicated",lar[i]);
-	cerro(description);
-	FREE(lar);
-	return;
+
+    for (i = 0; i < *ndim - 1; i++) 
+	{
+      if (!strcmp(lar[i],lar[i+1])) 
+	  {
+		sprintf(description,"Bad graph file. Node \"%s\" is duplicated",lar[i]);
+		cerro(description);
+		FREE(lar);
+		lar=NULL;
+		return;
       }
     }
-    if (!strcmp(lar[*ndim - 2],lar[*ndim - 1])) {
-      sprintf(description,
-	      "Bad graph file. Node \"%s\" is duplicated",lar[*ndim - 2]);
+
+    if (!strcmp(lar[*ndim - 2],lar[*ndim - 1])) 
+	{
+      sprintf(description,"Bad graph file. Node \"%s\" is duplicated",lar[*ndim - 2]);
       cerro(description);
-      FREE(lar);
+	  if (lar) {FREE(lar);lar=NULL;}
       return;
     }
-    FREE(lar);
+    if (lar) {FREE(lar);lar=NULL;}
   }
  
    /* rewind and go to arc description */
   rewind(fg);
-  for (i = 0; i < 11; i++)
-    fgets(line,5 * MAXNAM,fg);
-  for (i = 0; i < *ma; i++) {
-  fgets(line,5 * MAXNAM,fg);
-  (*edge_color)[i] = 0;
-  (*edge_width)[i] = 0;
-  (*edge_hi_width)[i] = 0;
-  (*edge_font_size)[i] = 0;
-  sscanf(line,"%s %s %s %d %d %d %d\n",strname,
-	 tail_name,head_name,
-	 &((*edge_color)[i]),&((*edge_width)[i]),&((*edge_hi_width)[i]),
-	 &((*edge_font_size)[i]));
-    if (((*edge_name)[i] = (char *)MALLOC(strlen(strname)+1)) == NULL) {
-      cerro("Running out of memory");
-      return;
+  for (i = 0; i < 11; i++) fgets(line,5 * MAXNAM,fg);
+
+  for (i = 0; i < *ma; i++) 
+  {
+	fgets(line,5 * MAXNAM,fg);
+	(*edge_color)[i] = 0;
+	(*edge_width)[i] = 0;
+	(*edge_hi_width)[i] = 0;
+	(*edge_font_size)[i] = 0;
+	sscanf(line,"%s %s %s %d %d %d %d\n",strname,
+		tail_name,head_name,
+		&((*edge_color)[i]),&((*edge_width)[i]),&((*edge_hi_width)[i]),
+		&((*edge_font_size)[i]));
+
+	if (((*edge_name)[i] = (char *)MALLOC(strlen(strname)+1)) == NULL) 
+	{
+		cerro("Running out of memory");
+		return;
     }
-  strcpy((*edge_name)[i],strname);
+	strcpy((*edge_name)[i],strname);
 
-  if ((node.key = (char *)MALLOC(strlen(head_name)+1)) == NULL) {
-    cerro("Running out of memory");
-    return;
-  }
+	if ((node.key = (char *)MALLOC(strlen(head_name)+1)) == NULL) 
+	{
+		cerro("Running out of memory");
+		return;
+	}
 
-  strcpy(node.key,head_name);
-  found = myhsearch(node,SCIFIND);
-  if (found == NULL) 
-  {
-    sprintf(description,"Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",head_name,(*edge_name)[i]);
-    cerro(description);
-    return;
-  }
-  (*head)[i] = atoi(found->data);
-  FREE(found);found=NULL;
+	strcpy(node.key,head_name);
+	found = myhsearch(node,SCIFIND);
+	if (found == NULL) 
+	{
+		sprintf(description,"Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",head_name,(*edge_name)[i]);
+		cerro(description);
+		return;
+	}
+	(*head)[i] = atoi(found->data);
 
-  if ((node.key = (char *)MALLOC(strlen(tail_name)+1)) == NULL) 
-  {
-    cerro("Running out of memory");
-    return;
-  }
+	if(found)
+	{
+		if (found->data) {FREE(found->data);found->data=NULL;}
+		if (found->key) {FREE(found->key);found->key=NULL;}
+		FREE(found);found=NULL;
+	}
+	
 
-  strcpy(node.key,tail_name);
-  found = myhsearch(node,SCIFIND);
-  if (found == NULL) 
-  {
-    sprintf(description,
+	if ((node.key = (char *)MALLOC(strlen(tail_name)+1)) == NULL) 
+	{
+		cerro("Running out of memory");
+		return;
+	}
+
+	strcpy(node.key,tail_name);
+	found = myhsearch(node,SCIFIND);
+	if (found == NULL) 
+	{
+		sprintf(description,
 	    "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found",
 	    tail_name,(*edge_name)[i]);
-    cerro(description);
-    return;
-  }
-  (*tail)[i] = atoi(found->data);
-  FREE(found);found=NULL;
+		cerro(description);
+		return;
+	}
+	(*tail)[i] = atoi(found->data);
+	if(found)
+	{
+		if (found->data) {FREE(found->data);found->data=NULL;}
+		if (found->key) {FREE(found->key);found->key=NULL;}
+		FREE(found);found=NULL;
+	}
  
-  fgets(line,5 * MAXNAM,fg);
-  sscanf(line,"%le %le %le %le %le %le %le",
-	 &((*edge_cost)[i]),&((*edge_min_cap)[i]),
-	 &((*edge_max_cap)[i]),&((*edge_length)[i]),
-	 &((*edge_q_weight)[i]),&((*edge_q_orig)[i]),
-	 &((*edge_weight)[i]));
-  }
-  myhdestroy();
-  fclose(fg);
-  /** #endif**/ /**  _MSC_VER **/
+	fgets(line,5 * MAXNAM,fg);
+	sscanf(line,"%le %le %le %le %le %le %le",
+		&((*edge_cost)[i]),&((*edge_min_cap)[i]),
+		&((*edge_max_cap)[i]),&((*edge_length)[i]),
+		&((*edge_q_weight)[i]),&((*edge_q_orig)[i]),
+		&((*edge_weight)[i]));
+	}
+  
+	myhdestroy();
+	fclose(fg);
+	if (node.key) {FREE(node.key);node.key=NULL;}
+	if (node.data) {FREE(node.data);node.data=NULL;}
 }
