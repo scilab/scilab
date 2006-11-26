@@ -2,89 +2,31 @@
 /* Copyright INRIA/ENPC */
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
-
-#if ~defined(THINK_C)
-	#if !(defined _MSC_VER)
-		#include <sys/time.h>
-	#else 
-		#include <windows.h>
-		#include <winbase.h> /* header du compteur haute résolution */
-	#endif 
-#endif 
-
 #include <time.h>
-#include "machine.h"
-
-#if defined(THINK_C)
-	#include <Threads.h> 
+#ifdef _MSC_VER
+	#include <windows.h>
+#else
+	#include <sys/time.h>
 #endif
+#include "machine.h"
 /*-----------------------------------------------------------------------------------*/
 #define DT_TIMER 10000
-
-#ifndef CLOCKS_PER_SEC
-	#if defined(sun)
-		#define CLOCKS_PER_SEC 1000000
-	#endif
-#endif
 /*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-	static __int64 i64UserTick1;
-	static LARGE_INTEGER   Tick1;
-#else
-	static clock_t t1;
-#endif
-
-static int init_clock = 1;
-
-#if _MSC_VER
-	static long stimerwin(void);
-#endif
-/*-----------------------------------------------------------------------------------*/
-/* define X_GETTIMEOFDAY macro, a portable gettimeofday() */
-#if  defined(VMS)
-	#define X_GETTIMEOFDAY(t) gettimeofday(t)
-#else
-	#if defined(THINK_C)
-		#define X_GETTIMEOFDAY(t) 0 
+#ifndef _MSC_VER
+	/* define X_GETTIMEOFDAY macro, a portable gettimeofday() */
+	#if  defined(VMS)
+		#define X_GETTIMEOFDAY(t) gettimeofday(t)
 	#else
-		#if defined(_MSC_VER)
-			#define X_GETTIMEOFDAY(t) 0
+		#if defined(THINK_C)
+			#define X_GETTIMEOFDAY(t) 0 
 		#else
-			#define X_GETTIMEOFDAY(t) gettimeofday(t, (struct timezone*)0)
+			#if defined(_MSC_VER)
+				#define X_GETTIMEOFDAY(t) 0
+			#else
+				#define X_GETTIMEOFDAY(t) gettimeofday(t, (struct timezone*)0)
+			#endif
 		#endif
-	#endif
-#endif 
-/*-----------------------------------------------------------------------------------*/
-/* this function is no more used  */
-/*-----------------------------------------------------------------------------------*/
-static long int scilab_stimer_deprecated(void)
-{
-#if defined(THINK_C)
-        YieldToAnyThread();
-        return(0);
-#else 
-#if !(defined _MSC_VER)
-  struct timeval ctime;
-  X_GETTIMEOFDAY(&ctime);
-  scilab_timer_check();
-  return(ctime.tv_usec);
-#else 
-  return(stimerwin());
-#endif /* !(defined _MSC_VER */ 
-#endif /* defined(THINK_C) */
-}
-/*-----------------------------------------------------------------------------------*/
-/* stimer */
-/*-----------------------------------------------------------------------------------*/
-#if _MSC_VER
-static long stimerwin(void)
-{
-	long int i;
-	union {FILETIME ftFileTime;__int64  ftInt64;} ftRealTime; 
-	GetSystemTimeAsFileTime(&ftRealTime.ftFileTime); 
-	i= (int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
-	return( i/10); /** convert to microseconds **/
-}
+	#endif 
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* returns 1 if interval from last call is greater than 
@@ -92,13 +34,27 @@ static long stimerwin(void)
  */
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
-static long int ctime_old=0;
+static ULARGE_INTEGER ctime_old;
+static BOOL Initialize_ctime_old=TRUE;
 int scilab_timer_check(void)
 {
-	int rep;
-	long int ctime = stimerwin();
-	rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
-	ctime_old=ctime;
+	int rep=0;
+	ULARGE_INTEGER ctime;
+	FILETIME ftFileTime;
+
+	if (Initialize_ctime_old)
+	{
+		ctime_old.LowPart = 0;
+		ctime_old.HighPart = 0;
+		Initialize_ctime_old=FALSE;
+	}
+
+	GetSystemTimeAsFileTime(&ftFileTime); /* Resolution 100 nsec */
+	ctime.LowPart = ftFileTime.dwLowDateTime; 
+	ctime.HighPart = ftFileTime.dwHighDateTime;
+
+	rep = ( (ctime.QuadPart  - ctime_old.QuadPart)  > DT_TIMER ) ? 1 : 0 ;
+	if (rep) ctime_old=ctime;
 	return rep;
 }
 #else 
