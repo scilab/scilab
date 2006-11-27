@@ -135,50 +135,32 @@ int C2F(timer)(double *etime)
 	#endif
 #endif 
 /*-----------------------------------------------------------------------------------*/
-/* this function is no more used  */
-/*-----------------------------------------------------------------------------------*/
-static long int scilab_stimer_deprecated(void)
-{
-#if defined(THINK_C)||defined(__MWERKS__) 
-        YieldToAnyThread();
-        return(0);
-#else 
-#if !(defined __MSC__) && !(defined __MINGW32__)
-  struct timeval ctime;
-  X_GETTIMEOFDAY(&ctime);
-  scilab_timer_check();
-  return(ctime.tv_usec);
-#else 
-  return(stimerwin());
-#endif /* !(defined __MSC__) && !(defined __MINGW32__) */ 
-#endif /* defined(THINK_C)||defined(__MWERKS__) */
-}
-/*-----------------------------------------------------------------------------------*/
-/* stimer */
-/*-----------------------------------------------------------------------------------*/
-#if WIN32
-static long stimerwin(void)
-{
-	long int i;
-	union {FILETIME ftFileTime;__int64  ftInt64;} ftRealTime; 
-	GetSystemTimeAsFileTime(&ftRealTime.ftFileTime); 
-	i= (int) (ftRealTime.ftInt64  & ((LONGLONG) 0x0ffffffff));
-	return( i/10); /** convert to microseconds **/
-}
-#endif
-/*-----------------------------------------------------------------------------------*/
 /* returns 1 if interval from last call is greater than 
  * a time interval of dt microsec (dt=10000)
  */
 /*-----------------------------------------------------------------------------------*/
 #if WIN32
-static long int ctime_old=0;
+static ULARGE_INTEGER ctime_old;
+static BOOL Initialize_ctime_old=TRUE;
 int scilab_timer_check(void)
 {
-	int rep;
-	long int ctime = stimerwin();
-	rep = ( ctime - ctime_old > DT_TIMER ) ? 1 : 0 ;
-	ctime_old=ctime;
+	int rep=0;
+	ULARGE_INTEGER ctime;
+	FILETIME ftFileTime;
+
+	if (Initialize_ctime_old)
+	{
+		ctime_old.LowPart = 0;
+		ctime_old.HighPart = 0;
+		Initialize_ctime_old=FALSE;
+	}
+
+	GetSystemTimeAsFileTime(&ftFileTime); /* Resolution 100 nsec */
+	ctime.LowPart = ftFileTime.dwLowDateTime; 
+	ctime.HighPart = ftFileTime.dwHighDateTime;
+
+	rep = ( (ctime.QuadPart  - ctime_old.QuadPart)  > DT_TIMER ) ? 1 : 0 ;
+	if (rep) ctime_old=ctime;
 	return rep;
 }
 #else 
