@@ -58,7 +58,8 @@ src/c/sciprint.c \
 src/c/link.c \
 src/c/xscion.c \
 src/c/SciEnv.c \
-src/c/hashtable_core.c
+src/c/hashtable_core.c \
+src/c/returnanan.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
@@ -181,7 +182,6 @@ src/fortran/eqid.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
 src/fortran/itosci.f \
-src/fortran/return_a_nan.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_savehistory.c \
 sci_gateway/c/sci_stacksize.c \

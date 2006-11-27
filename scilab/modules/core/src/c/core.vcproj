@@ -354,6 +354,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\returnanan.c"
+				>
+			</File>
+			<File
 				RelativePath=".\run.c"
 				>
 			</File>

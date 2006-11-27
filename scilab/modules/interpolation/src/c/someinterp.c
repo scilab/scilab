@@ -14,6 +14,7 @@ enum {NOT_A_KNOT, NATURAL, CLAMPED, PERIODIC, FAST, FAST_PERIODIC,
 
 #if _MSC_VER
 extern int C2F(isanan)();
+extern double C2F(returnanan)();
 #endif
 
 static int isearch(double t, double x[], int n) 
@@ -82,22 +83,6 @@ static void coord_by_periodicity(double *t, double x[], int n, int *i)
   else
     *i = isearch(*t, x, n);
 }
-
-
-static double return_a_nan()
-{
-  static int first = 1;
-  static double nan = 1.0;
-
-  if ( first )
-    {
-      nan = (nan - (double) first)/(nan - (double) first);
-      first = 0;
-    }
-  return (nan);
-}
-
-
 void nlinear_interp(double **x , double val[], int dim[], int n,
 		    double **xp, double yp[], int np, int outmode, 
 		    double u[], double v[], int ad[], int k[])
@@ -159,14 +144,14 @@ void nlinear_interp(double **x , double val[], int dim[], int n,
 	  xx = xp[j][i];
 	  if ( C2F(isanan)(&xx) )
 	    {
-	      v[0] = return_a_nan(); goto fin;
+	      v[0] = C2F(returnanan)(); goto fin;
 	    }
 	  fast_int_search(xx, x[j], dim[j], &(k[j]));
 	  if ( k[j] == -1 )   /* le point est a l'exterieur */ 
 	    switch (outmode)
 	      {
 	      case BY_NAN :
-		v[0] = return_a_nan();
+		v[0] = C2F(returnanan)();
 		goto fin;
 
 	      case BY_ZERO :

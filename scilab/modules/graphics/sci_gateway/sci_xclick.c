@@ -41,7 +41,7 @@ int sci_xclick(char *fname,unsigned long fname_len)
   }
 
   if ( ix < 0 ) {
-    x=y=-1; /*return_a_nan(); */ /* to better manage string conversion of the output */ /* F.Leray 20.04.05 */
+    x=y=-1; /*C2F(returnanan)(); */ /* to better manage string conversion of the output */ /* F.Leray 20.04.05 */
   }
 
   if ( Lhs == 1 )

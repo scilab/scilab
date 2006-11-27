@@ -22,8 +22,7 @@ extern void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err);
 extern FILE *GetFile(integer *fd);
 extern int GetSwap(integer *fd);
 extern void sciprint __PARAMS ((char *fmt,...));
-
-/*------------------------------------------------------------------*/
+extern double C2F(returnanan)();
 /*------------------------------------------------------------------*/
 /*Prototype*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
@@ -35,23 +34,6 @@ static void getBOF(int *fd ,int* Data, int *err);
 static void getString(int *fd, int flag,char **str,int *err);
 static int get_oleheader(int *fd);
 /*------------------------------------------------------------------*/
-/*------------------------------------------------------------------*/
-
-static double return_a_nan()
-{
-  static int first = 1;
-  static double nan = 1.0;
-
-  if ( first )
-    {
-      nan = (nan - (double) first)/(nan - (double) first);
-      first = 0;
-    }
-  return (nan);
-}
-
-
-
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err)
 {
   /*---------------Déclaration Des Variables*--------------------*/
@@ -82,7 +64,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   double resultat;/*Result of the formula*/
   short optionflag;/*Option flags*/
   int formula_notused; /*Not used*/
-  double NaN=return_a_nan();
+  double NaN=C2F(returnanan)();
 
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
   /* initialization of pointers corresponding to malloc's */
