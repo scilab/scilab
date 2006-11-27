@@ -916,10 +916,14 @@ else
 		if test "x$XML_CONFIG" = "xno"; then
 				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check your installation of libxml2])
 		fi
+
+		XML_FLAGS=`$XML_CONFIG --cflags`
+		XML_LIBS=`$XML_CONFIG --libs`
+#		CFLAGS="$CFLAGS $XML_FLAGS"
+		AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([libxml2 : library missing])])
+#		AC_CHECK_HEADERS([libxml/tree.h],,[AC_MSG_ERROR([libxml2: tree.h header missing])])	
 fi
 # Gets compilation and library flags
-XML_FLAGS=`$XML_CONFIG --cflags`
-XML_LIBS=`$XML_CONFIG --libs`
 
 
 
