@@ -73,7 +73,6 @@ static char RCSid[] =
 #include "spDefs.h"
 #include "spmalloc.h"
 
-
 static CountTwins();
 static SwapCols();
 static void ScaleComplexMatrix();

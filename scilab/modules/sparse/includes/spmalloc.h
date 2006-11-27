@@ -2,13 +2,13 @@
 #define __SPMALLOC_H__
 
 #include <stdlib.h>
-
-#define SPMALLOC(x) malloc(((size_t) x))
+#include "MALLOC.h"
+#define SPMALLOC(x) MALLOC(((size_t) x))
 #define SPALLOC(type,number)  ((type *)SPMALLOC((unsigned)(sizeof(type)*(number))))
 #define SPREALLOC(ptr,type,number)  \
-           ptr = (type *)realloc((char *)ptr,(unsigned)(sizeof(type)*(number)))
+           ptr = (type *)REALLOC((char *)ptr,(unsigned)(sizeof(type)*(number)))
 
-#define SPFREE(ptr) { if ((ptr) != NULL) {free((void *)(ptr)); (ptr) = NULL;}}
+#define SPFREE(ptr) { if ((ptr) != NULL) {FREE((void *)(ptr)); (ptr) = NULL;}}
 
 
 /* Calloc that properly handles allocating a cleared vector. */

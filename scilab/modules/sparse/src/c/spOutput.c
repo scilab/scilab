@@ -144,7 +144,7 @@ char *eMatrix;
 int  PrintReordered, Data, Header;
 {
 register  int  J = 0;
-int I, Row, Col, Size, Top, StartCol = 1, StopCol, Columns, ElementCount = 0;
+int I, Row, Col, Size, Top_, StartCol = 1, StopCol, Columns, ElementCount = 0;
 double  Magnitude, SmallestDiag, SmallestElement;
 double  LargestElement = 0.0, LargestDiag = 0.0;
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
@@ -157,12 +157,12 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
 
 /* Create a packed external to internal row and column translation array. */
 # if TRANSLATE
-    Top = Matrix->AllocatedExtSize;
+    Top_ = Matrix->AllocatedExtSize;
 #else
-    Top = Matrix->AllocatedSize;
+    Top_ = Matrix->AllocatedSize;
 #endif
-    SPCALLOC( PrintOrdToIntRowMap, int, Top + 1 );
-    SPCALLOC( PrintOrdToIntColMap, int, Top + 1 );
+    SPCALLOC( PrintOrdToIntRowMap, int, Top_ + 1 );
+    SPCALLOC( PrintOrdToIntColMap, int, Top_ + 1 );
     if ( PrintOrdToIntRowMap == NULL OR PrintOrdToIntColMap == NULL)
     {   Matrix->Error = spNO_MEMORY;
         return;
@@ -173,11 +173,11 @@ int  *PrintOrdToIntRowMap, *PrintOrdToIntColMap;
     }
 
 /* Pack the arrays. */
-    for (J = 1, I = 1; I <= Top; I++)
+    for (J = 1, I = 1; I <= Top_; I++)
     {   if (PrintOrdToIntRowMap[I] != 0)
             PrintOrdToIntRowMap[ J++ ] = PrintOrdToIntRowMap[ I ];
     }
-    for (J = 1, I = 1; I <= Top; I++)
+    for (J = 1, I = 1; I <= Top_; I++)
     {   if (PrintOrdToIntColMap[I] != 0)
             PrintOrdToIntColMap[ J++ ] = PrintOrdToIntColMap[ I ];
     }
