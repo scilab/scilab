@@ -65,12 +65,13 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libmetanet_la_DEPENDENCIES = $(top_builddir)/libs/MALLOC/libmalloc.la \
+	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la
 am__objects_1 = libmetanet_la-paths.lo libmetanet_la-dmtree.lo \
-	libmetanet_la-files.lo libmetanet_la-myhsearch.lo \
+	libmetanet_la-files.lo libmetanet_la-hashtable_metanet.lo \
 	libmetanet_la-saveg.lo libmetanet_la-loadg.lo \
 	libmetanet_la-connex.lo libmetanet_la-transc.lo
 am__objects_2 = visitor.lo cfc.lo bmatch.lo compmat.lo compc.lo \
@@ -325,7 +326,7 @@ top_srcdir = @top_srcdir@
 METANET_C_SOURCES = src/c/paths.c \
 src/c/dmtree.c \
 src/c/files.c \
-src/c/myhsearch.c \
+src/c/hashtable_metanet.c \
 src/c/saveg.c \
 src/c/loadg.c \
 src/c/connex.c \
@@ -440,6 +441,7 @@ lib_LTLIBRARIES = libmetanet.la
 libmetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libmetanet_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la \
+	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \
@@ -519,8 +521,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-dmtree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-files.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-gw_metanet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-hashtable_metanet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-loadg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-myhsearch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-paths.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-saveg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmetanet_la-transc.Plo@am__quote@
@@ -567,12 +569,12 @@ libmetanet_la-files.lo: src/c/files.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-files.lo `test -f 'src/c/files.c' || echo '$(srcdir)/'`src/c/files.c
 
-libmetanet_la-myhsearch.lo: src/c/myhsearch.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-myhsearch.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-myhsearch.Tpo -c -o libmetanet_la-myhsearch.lo `test -f 'src/c/myhsearch.c' || echo '$(srcdir)/'`src/c/myhsearch.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-myhsearch.Tpo $(DEPDIR)/libmetanet_la-myhsearch.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/myhsearch.c' object='libmetanet_la-myhsearch.lo' libtool=yes @AMDEPBACKSLASH@
+libmetanet_la-hashtable_metanet.lo: src/c/hashtable_metanet.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-hashtable_metanet.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-hashtable_metanet.Tpo -c -o libmetanet_la-hashtable_metanet.lo `test -f 'src/c/hashtable_metanet.c' || echo '$(srcdir)/'`src/c/hashtable_metanet.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libmetanet_la-hashtable_metanet.Tpo $(DEPDIR)/libmetanet_la-hashtable_metanet.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable_metanet.c' object='libmetanet_la-hashtable_metanet.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-myhsearch.lo `test -f 'src/c/myhsearch.c' || echo '$(srcdir)/'`src/c/myhsearch.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -c -o libmetanet_la-hashtable_metanet.lo `test -f 'src/c/hashtable_metanet.c' || echo '$(srcdir)/'`src/c/hashtable_metanet.c
 
 libmetanet_la-saveg.lo: src/c/saveg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmetanet_la_CFLAGS) $(CFLAGS) -MT libmetanet_la-saveg.lo -MD -MP -MF $(DEPDIR)/libmetanet_la-saveg.Tpo -c -o libmetanet_la-saveg.lo `test -f 'src/c/saveg.c' || echo '$(srcdir)/'`src/c/saveg.c
