@@ -926,7 +926,7 @@ else
 
 		AC_CHECK_LIB([xml2], [xmlReaderForFile],
                [],
-               [AC_MSG_ERROR([libxml2 : library missing])],
+               [AC_MSG_ERROR([libxml2 : library missing. (Cannot find symbol xmlReaderForFile). Check if libxml2 is installed and if the version is correct])],
                [$XML_LIBS])
 
 #		AC_CHECK_HEADERS([libxml/parser.h])

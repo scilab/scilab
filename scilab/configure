@@ -17667,8 +17667,8 @@ _ACEOF
   LIBS="-lxml2 $LIBS"
 
 else
-  { { echo "$as_me:$LINENO: error: libxml2 : library missing" >&5
-echo "$as_me: error: libxml2 : library missing" >&2;}
+  { { echo "$as_me:$LINENO: error: libxml2 : library missing. (Cannot find symbol xmlReaderForFile). Check if libxml2 is installed and if the version is correct" >&5
+echo "$as_me: error: libxml2 : library missing. (Cannot find symbol xmlReaderForFile). Check if libxml2 is installed and if the version is correct" >&2;}
    { (exit 1); exit 1; }; }
 fi
 
