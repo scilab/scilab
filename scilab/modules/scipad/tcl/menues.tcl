@@ -248,6 +248,8 @@ proc createmenues {} {
         for {set i 0} {$i<=[$tabsizemenu index last]} {incr i} {
             $tabsizemenu entryconfigure $i -command {settabsize}
         }
+        eval "$pad.filemenu.options.tabs add check [me "Use &keyword indentation"] \
+                    -offvalue 0 -onvalue 1 -variable usekeywordindent"
     eval "$pad.filemenu.options add cascade [me "Com&pletion"] \
                -menu $pad.filemenu.options.completion"
         menu $pad.filemenu.options.completion -tearoff 0

@@ -97,6 +97,13 @@ proc IndentSel {} {
         # extend selection to the beginning of the line
         $ta tag add sel "sel.first linestart" sel.last
 
+        # so only one undo is required to undo indentation
+        set oldSeparator [$ta cget -autoseparators]
+        if {$oldSeparator} {
+            $ta configure -autoseparators 0
+            $ta edit separator
+        }
+
         # remove leading spaces or tabs
         # this is useful when reindenting with tabs (or spaces) a text
         # already indented with spaces (respectively tabs)
@@ -108,12 +115,25 @@ proc IndentSel {} {
             apply_RE_to_sel_text $ta {^ *} ""
         }
 
-        # insert $skip at the beginning of the selected string and at each
-        # newline, but not after the last newline, if the selection ends at
-        # column 0 - moreover, do not modify (match) empty lines, so that
-        # there is no need to clean up lines which would otherwise contain
-        # only spaces
-        apply_RE_to_sel_text $ta {^(.)(?!\Z)} "$skip\\1"
+        # maybe the removal collapsed the selection, then select again
+        set tasel [$ta tag nextrange sel 1.0]
+        if {$tasel == ""} {
+            if {[selectline] != ""} {
+                IndentSel
+            }
+        } else {
+            # insert $skip at the beginning of the selected string and at each
+            # newline, but not after the last newline, if the selection ends at
+            # column 0 - moreover, do not modify (match) empty lines, so that
+            # there is no need to clean up lines which would otherwise contain
+            # only spaces
+            apply_RE_to_sel_text $ta {^(.)(?!\Z)} "$skip\\1"
+        }
+
+        if {$oldSeparator} {
+            $ta edit separator
+            $ta configure -autoseparators 1
+        }
     }
 }
 

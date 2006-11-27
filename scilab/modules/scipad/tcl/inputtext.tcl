@@ -141,7 +141,31 @@ proc insblinkquote {w quote} {
 
 proc insertnewline {w} {
     global buffermodifiedsincelastsearch
+    global listoffile
+    global tabinserts indentspaces usekeywordindent
+
     if {[IsBufferEditable] == "No"} {return}
+
+    # set the list of keywords that will create a forward indentation
+    # (Indent) on next line, and the list of keywords that will create
+    # a backward indentation (UnIndent) on current line
+    if {$listoffile("$w",language) == "scilab"} {
+        set fwindentkwlist [list \
+                for while \
+                if else elseif \
+                select case \
+                function ]
+        set bwindentkwlist [list \
+                else elseif \
+                end \
+                endfunction ]
+    } else {
+        set fwindentkwlist [list ]
+        set bwindentkwlist [list ]
+    }
+
+    # get the leading indentation characters on the line where
+    # the cursor is at the time enter is pressed
     set n {}
     $w mark set p1 {insert linestart}
     set c [$w get p1 {p1+1c}]
@@ -150,13 +174,81 @@ proc insertnewline {w} {
         set c [$w get p1 {p1+1c}]
     }
     set n [$w get {insert linestart} p1]
-    $w mark unset p1
+
+    if {$usekeywordindent} {
+        # get the first word of the line where enter has been pressed
+        set endind [$w index {p1 wordend}]
+        if {[$w compare $endind > insert]} {
+            set endind insert
+        }
+        set kw [$w get p1 $endind]
+        $w mark unset p1
+    }
+
+    # so only one undo is required to undo indentation
+    set oldSeparator [$w cget -autoseparators]
+    if {$oldSeparator} {
+        $w configure -autoseparators 0
+        $w edit separator
+    }
+
+    # insert a CR char and insert the same indentation as the previous line
     puttext $w "\n$n"
+
+    # remove possible indentation chars located after the insertion above
     set c [$w get insert "insert+1c"]
     while {$c == " " || $c == "\t"} {
         $w delete insert "insert+1c"
         set c [$w get insert "insert+1c"]
     }
+
+    if {$usekeywordindent} {
+
+        # if the starting keyword should destroy one indentation chunk
+        if {[lsearch -exact $bwindentkwlist $kw] != -1} {
+            # remove one indentation from the line on which the cursor was
+            # when the user hit enter
+            $w mark set p1 insert
+            $w mark set insert "insert - 1 l linestart"
+            UnIndentSel
+            $w tag remove sel 1.0 end
+            $w mark set insert p1
+            $w mark unset p1
+            # remove one indentation from the current line also
+            if {$tabinserts == "spaces"} {
+                set maxbackspace $indentspaces
+            } else {
+                set maxbackspace 1
+            }
+            for {set i 0} {$i<$maxbackspace} {incr i} {
+                # don't cross the start of line boundary while erasing chars
+                if {[$w compare insert > "insert linestart"]} {
+                    backspacetext
+                }
+            }
+        }
+
+        # if the starting keyword should create one indentation chunk
+        if {[lsearch -exact $fwindentkwlist $kw] != -1} {
+            # if the line after insertion of \n$n above is not a blank line,
+            # i.e. if the user did hit enter in the middle of a line, then
+            # indent, otherwise insert a tab char (or indentation spaces)
+            if {[string trim [selectline]] != ""} {
+                IndentSel
+            } else {
+                # remove selection is useful when line contains only blanks
+                $w tag remove sel 1.0 end
+                inserttab $w
+            }
+            $w tag remove sel 1.0 end
+       }
+    }
+
+    if {$oldSeparator} {
+        $w edit separator
+        $w configure -autoseparators 1
+    }
+
     set buffermodifiedsincelastsearch true
 }
 

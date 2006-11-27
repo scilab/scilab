@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 6.63"
+set version "Version 6.64"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
@@ -38,6 +38,7 @@ set colorpref "$bgcolors $fgcolors"
 # those are the preferences which are going to be saved
 set listofpref "$colorpref wordWrap \
        WMGEOMETRY WMSTATE printCommand indentspaces tabsizeinchars \
+       usekeywordindent \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
        tabinserts lang completionbinding showContinuedLines \
        filebackupdepth bindstyle doubleclickscheme colorizeenable \
@@ -73,6 +74,7 @@ set WMSTATE normal
 set printCommand lpr
 set indentspaces 2
 set tabsizeinchars 4
+set usekeywordindent 1  ; # use smart keyword indentation: 0 (no) or 1 (yes)
 set filenamesdisplaytype "pruned"  ;# "pruned" or "full" or "fullifambig"
 set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here

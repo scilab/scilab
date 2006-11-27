@@ -207,9 +207,6 @@ Other wishes:
  breakpoints
  Note: a first step to this has been implemented. During a debug session, 
  the popup menu is a debug menu.
-
--smart indentation (i.e., for automatically indents the next line, end
- automatically indents back, etc)
  
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n

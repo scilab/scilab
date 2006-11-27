@@ -2572,3 +2572,13 @@ Francois VOGEL, 26/11/06
    restored afterwards
  * The textarea itself is now destroyed when closing a file
  * version --> 6.63
+
+Francois VOGEL, 27/11/06
+ * Fixed IndentSel bug: when the selection contained only the leading blanks
+   of a line and Ctrl-d was hit, a Tcl error did pop up in apply_RE_to_sel_text
+   because the selection had collapsed after the first call to this proc
+ * Fixed: only one undo action is now needed to undo indentation
+ * Added smart indentation (i.e., for automatically indents the next line, end
+   automatically indents back, etc) - just a try for the moment, with a saved
+   preference in the option menu
+ * version --> 6.64
