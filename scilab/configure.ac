@@ -36,6 +36,10 @@ AC_PROG_LN_S
 AC_SYS_LARGEFILE
 #AC_PACKAGE_VERSION([4.0])
 
+# If configure detect that timestamp changed, 
+# it tries to rebuild configure & makefile which can be a painmaker 
+# if the version is different
+AM_MAINTAINER_MODE
 
 AM_INIT_AUTOMAKE([-Wall foreign]) # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
@@ -325,7 +329,8 @@ fi
 if test -n "$F77"; then
 # TODOO : il faut peut etre verifier que c'est bien gfortran
    if test "$enable_debug" != yes; then 
-	  FFLAGS="$FFLAGS -DNDEBUG -D_FORTIFY_SOURCE=2"
+	  FFLAGS="$FFLAGS -DNDEBUG"
+	  # -D_FORTIFY_SOURCE=2
    else
 	  FFLAGS="$FFLAGS -g -Wall "
    fi
@@ -409,7 +414,9 @@ F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
 if test "$CC" = "gcc"; then
    ## With GNU Compiler
    if test "$enable_debug" != yes; then 
-	  CFLAGS="$CFLAGS  -DNDEBUG -D_FORTIFY_SOURCE=2" # used to be -O
+	  CFLAGS="$CFLAGS  -DNDEBUG" 
+	  # used to be -O
+	  # -D_FORTIFY_SOURCE=2
    else
 	  CFLAGS="$CFLAGS -Wformat -Wshadow -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations -g -Wall "
    fi
