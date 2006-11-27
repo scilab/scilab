@@ -119,7 +119,7 @@ libmetanet_la_includedir=$(includedir)/metanet
 
 libmetanet_la_include_HEADERS = includes/gw_metanet.h
 
-libmetanet_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
+libmetanet_la_CFLAGS=  -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 
 lib_LTLIBRARIES = libmetanet.la
 

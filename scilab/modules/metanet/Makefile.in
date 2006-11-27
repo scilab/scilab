@@ -436,7 +436,7 @@ sci_gateway/fortran/sci_m6visitor.f
 
 libmetanet_la_includedir = $(includedir)/metanet
 libmetanet_la_include_HEADERS = includes/gw_metanet.h
-libmetanet_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/
+libmetanet_la_CFLAGS = -Iincludes/  -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/libs/hashtable/
 lib_LTLIBRARIES = libmetanet.la
 libmetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libmetanet_la_LIBADD = \
