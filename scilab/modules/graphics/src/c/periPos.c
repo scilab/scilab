@@ -21,7 +21,7 @@
 #include "machine.h"
 #include "bcg.h"
 
-#if defined(THINK_C) || defined(_MSC_VER)
+#if defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 #define GXclear 0

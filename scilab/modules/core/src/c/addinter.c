@@ -2,11 +2,7 @@
 
 #include <string.h> 
 #include <stdio.h>
-#if defined(THINK_C)
 #include "core_math.h"
-#else
-#include "core_math.h"
-#endif
 
 #include "../../../string/includes/men_Sutils.h"
 

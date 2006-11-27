@@ -51,7 +51,7 @@ extern  char  *getenv();
 #include "MALLOC.h" /* MALLOC */
 
 
-#if defined(THINK_C) || defined(_MSC_VER)
+#if defined(_MSC_VER)
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
 #define GXclear 0

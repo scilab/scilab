@@ -14,11 +14,7 @@
 #include "Xcall1.h"
 
 #define spINSIDE_SPARSE
-#if defined(THINK_C)
-#include "::sparse:spConfig.h" 
-#else
 #include "../../sparse/includes/spConfig.h"
-#endif
 
 #include "GetProperty.h"
 #include "DrawObjects.h"

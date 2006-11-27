@@ -4,22 +4,15 @@
 /*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 
-#if ~defined(THINK_C)
-	#if !(defined _MSC_VER)
-		#include <sys/time.h>
-	#else 
-		#include <windows.h>
-		#include <winbase.h> /* header du compteur haute résolution */
-	#endif 
+#ifndef _MSC_VER
+	#include <sys/time.h>
+#else 
+	#include <windows.h>
+	#include <winbase.h> /* header du compteur haute résolution */
 #endif 
 
 #include <time.h>
 #include "machine.h"
-
-#if defined(THINK_C)
-	#include <Threads.h> 
-#endif
-
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 	static __int64 i64UserTick1;

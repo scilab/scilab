@@ -13,20 +13,7 @@
 #define DT_TIMER 10000
 /*-----------------------------------------------------------------------------------*/
 #ifndef _MSC_VER
-	/* define X_GETTIMEOFDAY macro, a portable gettimeofday() */
-	#if  defined(VMS)
-		#define X_GETTIMEOFDAY(t) gettimeofday(t)
-	#else
-		#if defined(THINK_C)
-			#define X_GETTIMEOFDAY(t) 0 
-		#else
-			#if defined(_MSC_VER)
-				#define X_GETTIMEOFDAY(t) 0
-			#else
-				#define X_GETTIMEOFDAY(t) gettimeofday(t, (struct timezone*)0)
-			#endif
-		#endif
-	#endif 
+	#define X_GETTIMEOFDAY(t) gettimeofday(t, (struct timezone*)0)
 #endif
 /*-----------------------------------------------------------------------------------*/
 /* returns 1 if interval from last call is greater than 

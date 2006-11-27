@@ -423,11 +423,9 @@ static int SaveChamp(char *plot)
 #ifdef macintosh
 #include "types.h"
 #else /* not macintosh */
-	#ifndef VMS
-		#include <sys/types.h>	/* for <netinet/in.h> on some systems */
-			#if (!defined _MSC_VER)
-				#include <netinet/in.h>	/* for htonl() */
-			#endif
+	#include <sys/types.h>	/* for <netinet/in.h> on some systems */
+	#ifndef _MSC_VER
+		#include <netinet/in.h>	/* for htonl() */
 	#endif
 #endif /* not macintosh */
 

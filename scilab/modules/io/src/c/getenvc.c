@@ -11,9 +11,6 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
   char *getenv(const char *),*local;
   *ierr=0;
-#if defined(THINK_C)
-  *buf=0;
-#else
   if ( (local=getenv(var)) == 0)
     {
       if ( *iflag == 1 )
@@ -26,7 +23,6 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
       strncpy(buf,local,*buflen);
       *buflen = strlen(buf);
     }
-#endif
   return;
 }
 /*-----------------------------------------------------------------------------------*/

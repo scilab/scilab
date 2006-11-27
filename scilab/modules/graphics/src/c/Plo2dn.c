@@ -11,11 +11,7 @@
 #include "PloEch.h"
 
 #define spINSIDE_SPARSE
-#if defined(THINK_C)
-#include ":sparse:spConfig.h" 
-#else
 #include "../../sparse/includes/spConfig.h"
-#endif
 
 #include "SetProperty.h"
 #include "GetProperty.h"

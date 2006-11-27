@@ -13,11 +13,8 @@
  */
 
 #define spINSIDE_SPARSE
-#if defined(THINK_C)
-#include "::sparse:spConfig.h" 
-#else
 #include "../../sparse/includes/spConfig.h"
-#endif
+
 
 double Mini(double *vect, integer n);
 double Maxi(double *vect,integer n);
