@@ -94,8 +94,8 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/banier.c src/c/callinterf.c src/c/isanan.c src/c/parse.c \
 	src/c/matus2.c src/c/timer.c src/c/stack2.c src/c/Scierror.c \
 	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
-	src/c/hashtable_core.c src/c/getarg-hpux.c src/c/getarg.c \
-	src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/hashtable_core.c src/c/returnanan.c src/c/getarg-hpux.c \
+	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
 	src/fortran/getlin.f src/fortran/isany.f \
@@ -141,34 +141,33 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/fortran/compcl.f src/fortran/termf.f src/fortran/strdsp.f \
 	src/fortran/expsum.f src/fortran/eqid.f src/fortran/copyvar.f \
 	src/fortran/putid.f src/fortran/itosci.f \
-	src/fortran/return_a_nan.f src/fortran/fgetarg-hpux.f \
-	src/fortran/fgetarg.f sci_gateway/c/sci_savehistory.c \
-	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
-	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/intgetmd5.c \
-	sci_gateway/c/sci_banner.c sci_gateway/c/sci_where.c \
-	sci_gateway/c/sci_lines.c sci_gateway/c/sci_errcatch.c \
-	sci_gateway/c/sci_getos.c sci_gateway/c/sci_ulink.c \
-	sci_gateway/c/sci_format.c sci_gateway/c/sci_pwd.c \
-	sci_gateway/c/sci_fromjava.c sci_gateway/c/sci_link.c \
-	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_fromc.c \
-	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
-	sci_gateway/c/sci_loadhistory.c sci_gateway/c/intgetmemory.c \
-	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_isdef.c \
-	sci_gateway/c/sci_addinter.c sci_gateway/c/sci_isglobal.c \
-	sci_gateway/c/sci_who.c sci_gateway/c/sci_c_link.c \
-	sci_gateway/c/sci_errclear.c sci_gateway/c/sci_global.c \
-	sci_gateway/c/sci_funcprot.c sci_gateway/c/sci_gethistory.c \
-	sci_gateway/c/sci_newfun.c sci_gateway/c/sci_warning.c \
-	sci_gateway/c/sci_dispbpt.c sci_gateway/c/sci_whereis.c \
-	sci_gateway/c/sci_intppty.c sci_gateway/c/sci_ieee.c \
-	sci_gateway/c/sci_gstacksize.c sci_gateway/c/sci_lasterror.c \
-	sci_gateway/c/sci_funptr.c sci_gateway/c/sci_return.c \
-	sci_gateway/c/sci_exists.c sci_gateway/c/sci_getmd5.c \
-	sci_gateway/c/sci_clear.c sci_gateway/c/sci_chdir.c \
-	sci_gateway/c/sci_comp.c sci_gateway/c/sci_clearfun.c \
-	sci_gateway/c/sci_setbpt.c sci_gateway/c/sci_getmodules.c \
-	sci_gateway/c/sci_what.c sci_gateway/c/sci_predef.c \
-	sci_gateway/c/sci_resethistory.c \
+	src/fortran/fgetarg-hpux.f src/fortran/fgetarg.f \
+	sci_gateway/c/sci_savehistory.c sci_gateway/c/sci_stacksize.c \
+	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
+	sci_gateway/c/intgetmd5.c sci_gateway/c/sci_banner.c \
+	sci_gateway/c/sci_where.c sci_gateway/c/sci_lines.c \
+	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_getos.c \
+	sci_gateway/c/sci_ulink.c sci_gateway/c/sci_format.c \
+	sci_gateway/c/sci_pwd.c sci_gateway/c/sci_fromjava.c \
+	sci_gateway/c/sci_link.c sci_gateway/c/sci_getmemory.c \
+	sci_gateway/c/sci_fromc.c sci_gateway/c/sci_havewindow.c \
+	sci_gateway/c/sci_delbpt.c sci_gateway/c/sci_loadhistory.c \
+	sci_gateway/c/intgetmemory.c sci_gateway/c/sci_macr2lst.c \
+	sci_gateway/c/sci_isdef.c sci_gateway/c/sci_addinter.c \
+	sci_gateway/c/sci_isglobal.c sci_gateway/c/sci_who.c \
+	sci_gateway/c/sci_c_link.c sci_gateway/c/sci_errclear.c \
+	sci_gateway/c/sci_global.c sci_gateway/c/sci_funcprot.c \
+	sci_gateway/c/sci_gethistory.c sci_gateway/c/sci_newfun.c \
+	sci_gateway/c/sci_warning.c sci_gateway/c/sci_dispbpt.c \
+	sci_gateway/c/sci_whereis.c sci_gateway/c/sci_intppty.c \
+	sci_gateway/c/sci_ieee.c sci_gateway/c/sci_gstacksize.c \
+	sci_gateway/c/sci_lasterror.c sci_gateway/c/sci_funptr.c \
+	sci_gateway/c/sci_return.c sci_gateway/c/sci_exists.c \
+	sci_gateway/c/sci_getmd5.c sci_gateway/c/sci_clear.c \
+	sci_gateway/c/sci_chdir.c sci_gateway/c/sci_comp.c \
+	sci_gateway/c/sci_clearfun.c sci_gateway/c/sci_setbpt.c \
+	sci_gateway/c/sci_getmodules.c sci_gateway/c/sci_what.c \
+	sci_gateway/c/sci_predef.c sci_gateway/c/sci_resethistory.c \
 	sci_gateway/c/sci_clearglobal.c sci_gateway/c/sci_arg.c \
 	sci_gateway/c/sci_call.c sci_gateway/c/sci_getcwd.c \
 	sci_gateway/c/sci_type.c sci_gateway/c/sci_typename.c \
@@ -242,7 +241,8 @@ am__objects_3 = libcore_la-history.lo libcore_la-inffic.lo \
 	libcore_la-timer.lo libcore_la-stack2.lo \
 	libcore_la-Scierror.lo libcore_la-sciprint.lo \
 	libcore_la-link.lo libcore_la-xscion.lo libcore_la-SciEnv.lo \
-	libcore_la-hashtable_core.lo $(am__objects_1) $(am__objects_2)
+	libcore_la-hashtable_core.lo libcore_la-returnanan.lo \
+	$(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -266,8 +266,7 @@ am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
 	cvwm.lo storeglobal.lo lst2vars.lo fmttyp.lo basnms.lo matc.lo \
 	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
 	compcl.lo termf.lo strdsp.lo expsum.lo eqid.lo copyvar.lo \
-	putid.lo itosci.lo return_a_nan.lo $(am__objects_4) \
-	$(am__objects_5)
+	putid.lo itosci.lo $(am__objects_4) $(am__objects_5)
 am__objects_7 = libcore_la-sci_savehistory.lo \
 	libcore_la-sci_stacksize.lo libcore_la-sci_resume.lo \
 	libcore_la-sci_mtlb_mode.lo libcore_la-intgetmd5.lo \
@@ -557,7 +556,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/banier.c src/c/callinterf.c src/c/isanan.c src/c/parse.c \
 	src/c/matus2.c src/c/timer.c src/c/stack2.c src/c/Scierror.c \
 	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
-	src/c/hashtable_core.c $(am__append_2) $(am__append_4)
+	src/c/hashtable_core.c src/c/returnanan.c $(am__append_2) \
+	$(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -603,8 +603,8 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/seteol.f src/fortran/basin.f src/fortran/clause.f \
 	src/fortran/compcl.f src/fortran/termf.f src/fortran/strdsp.f \
 	src/fortran/expsum.f src/fortran/eqid.f src/fortran/copyvar.f \
-	src/fortran/putid.f src/fortran/itosci.f \
-	src/fortran/return_a_nan.f $(am__append_1) $(am__append_3)
+	src/fortran/putid.f src/fortran/itosci.f $(am__append_1) \
+	$(am__append_3)
 GATEWAY_C_SOURCES = sci_gateway/c/sci_savehistory.c \
 sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
@@ -876,6 +876,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-readline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-realmain.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-returnanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-run.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-sci_addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-sci_arg.Plo@am__quote@
@@ -1360,6 +1361,13 @@ libcore_la-hashtable_core.lo: src/c/hashtable_core.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/hashtable_core.c' object='libcore_la-hashtable_core.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-hashtable_core.lo `test -f 'src/c/hashtable_core.c' || echo '$(srcdir)/'`src/c/hashtable_core.c
+
+libcore_la-returnanan.lo: src/c/returnanan.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-returnanan.lo -MD -MP -MF $(DEPDIR)/libcore_la-returnanan.Tpo -c -o libcore_la-returnanan.lo `test -f 'src/c/returnanan.c' || echo '$(srcdir)/'`src/c/returnanan.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libcore_la-returnanan.Tpo $(DEPDIR)/libcore_la-returnanan.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/returnanan.c' object='libcore_la-returnanan.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-returnanan.lo `test -f 'src/c/returnanan.c' || echo '$(srcdir)/'`src/c/returnanan.c
 
 libcore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libcore_la-getarg-hpux.Tpo -c -o libcore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c
@@ -2208,9 +2216,6 @@ putid.lo: src/fortran/putid.f
 
 itosci.lo: src/fortran/itosci.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o itosci.lo `test -f 'src/fortran/itosci.f' || echo '$(srcdir)/'`src/fortran/itosci.f
-
-return_a_nan.lo: src/fortran/return_a_nan.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o return_a_nan.lo `test -f 'src/fortran/return_a_nan.f' || echo '$(srcdir)/'`src/fortran/return_a_nan.f
 
 fgetarg-hpux.lo: src/fortran/fgetarg-hpux.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fgetarg-hpux.lo `test -f 'src/fortran/fgetarg-hpux.f' || echo '$(srcdir)/'`src/fortran/fgetarg-hpux.f
