@@ -15,16 +15,9 @@
 #include "core_math.h" 
 #include "setgetSCIpath.h"
 #include "MALLOC.h"
+#include "inisci-c.h"
 /*************************************************************************************************/
-#ifdef _MSC_VER
-	BOOL ExistScicos(void);
-	BOOL ExistJavaSciWin(void);
-#endif
 static BOOL WITH_GUI=TRUE;
-/*************************************************************************************************/
-void SetWITH_GUI(int ON);
-BOOL  GetWITH_GUI(void);
-BOOL ExistModelicac(void);
 /*************************************************************************************************/
 extern int C2F(withtk)(int *rep);
 extern BOOL FileExist(char *filename);
