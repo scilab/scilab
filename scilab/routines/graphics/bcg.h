@@ -85,7 +85,7 @@ typedef struct BCG
   int CurClipRegion[4];
   int CurDashStyle;
   char CurNumberDispFormat[20]; 
-  int CurColorStatus;
+  int CurColorStatus; /* O meand black&white and 1 color */
   int IDLastPattern; /* number of last patter or color */
   /** Colormap Cmap; color map of current graphic window */
   int CmapFlag ; /* set to 1 if the Cmap has default colors */

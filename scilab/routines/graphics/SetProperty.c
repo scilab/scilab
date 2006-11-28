@@ -554,24 +554,6 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
 
   colorindex = sciSetGoodIndex(pobj,colorindex);
 
-  if ( (pobj != pfiguremdl) && (pobj != paxesmdl)
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
-       && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ) /* Addings F.Leray 10.06.04 */
-    {
-      /* code taken in void C2F(setbackground)(num, v2, v3, v4) from JPC */
-      if (sciGetScilabXgc (pobj)->CurColorStatus == 1)
-	{
-	  /* COLORREF px;                           COLORREF ? "periWin-bgc"*/
-	  sciGetScilabXgc (pobj)->NumBackground =
-	    Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-	  /* F.Leray 02.04.04: WARNING: What follows is wrong because it forces the background for the all figure, not the object!! IT HAS TO BE REMOVE!!!!*/
-	  /*	  C2F(dr) ("xset", "background",&colorindex,&colorindex,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,0L,0L); */ /* DJ.A 07/01/2004 */ 
-	  C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
-		  PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-	}
-    }
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
