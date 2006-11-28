@@ -13,12 +13,13 @@
 #define CR 13
 #define LF 10
 FILE *GetFile();
-int LineRead(fd,buf,n,cnt,nr)
-     FILE * fd;
-     int n;
-     char buf[];
-     int *cnt; /* number of charaters returned in buf */
-     int *nr; /* number of characters read */
+
+ /* 
+  * @params cnt : number of charaters returned in buf 
+  * @params nr : number of characters read 
+  */
+
+int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
 {
   int c,count,info;
   long int offset;
@@ -77,11 +78,7 @@ int LineRead(fd,buf,n,cnt,nr)
   return(info);
 }
  
-void C2F(readnextline)(fd,buf,n,count,nr,ierr)
-     integer *fd;
-     integer *n,*nr, *ierr;
-     char buf[];
-     integer *count;
+void C2F(readnextline)(integer *fd,char buf[],integer *n,integer *count,integer *nr,integer *ierr)
 {
 
 FILE *fa= GetFile(fd);

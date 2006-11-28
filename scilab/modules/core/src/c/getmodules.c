@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include <stdlib.h>
 #include "getmodules.h"
 #include "machine.h"
 #include "MALLOC.h"
