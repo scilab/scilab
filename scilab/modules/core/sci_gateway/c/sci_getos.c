@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_core.h"
 #include "MALLOC.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intgetos) _PARAMS((char *fname));

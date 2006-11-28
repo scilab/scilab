@@ -5,6 +5,7 @@
 #include "MALLOC.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_core.h"
 #include "getmodules.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))

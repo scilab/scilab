@@ -1,4 +1,5 @@
 #include "stack-c.h"
+#include "gw_core.h"
 #include "intgetmemory.h"
 /*-----------------------------------------------------------------------------------
 * INRIA 2005 

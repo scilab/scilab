@@ -5,6 +5,7 @@
 #include "../../src/c/history.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_core.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(resethistory) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/

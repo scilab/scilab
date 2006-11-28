@@ -5,6 +5,7 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-c.h"
+#include "gw_core.h"
 /*-----------------------------------------------------------------------------------*/
 extern void ulinkall(void);
 extern void C2F(isciulink)(integer *i) ;

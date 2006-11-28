@@ -6,10 +6,11 @@
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
+#include "parse.h"
 #undef Lstk
 #undef Infstk
 
-typedef int logical;
+
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(parse)() line 1393 */
@@ -1525,10 +1526,7 @@ void handle_onprompt(int *where)
 } /* handleonprompt */
 
 
-int C2F(syncexec)(str, ns, ierr, seq, str_len)
-     char *str;
-     int *ns, *ierr, *seq;
-     long int str_len;
+int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len)
 {
 
   /* Local variables */
