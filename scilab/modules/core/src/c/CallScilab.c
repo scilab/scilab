@@ -6,6 +6,8 @@
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
 #include "setgetSCIpath.h"
+#include "fromc.h"
+#include "sciquit.h"
 
 #if _MSC_VER
 #define putenv _putenv
@@ -26,8 +28,6 @@ extern int C2F(ismenu)();
 extern void SetFromCToON(void);
 extern int version_flag(void); 
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
-extern int IsFromC(void);
-extern int ExitScilab(void);
 extern BOOL GetWITH_GUI(void);
 extern void SetWITH_GUI(BOOL ON);
 
@@ -70,7 +70,6 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 {
 	int bOK=FALSE;
 
-	char *SCIpathUsed=NULL;
 	char *ScilabStartupUsed=NULL;
 	char *InitStringToScilab=NULL;
 	int StacksizeUsed=0;

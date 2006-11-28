@@ -41,7 +41,6 @@ extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_hand
 extern int StoreCommand  __PARAMS((char *command));  
 extern int StoreCommand1  __PARAMS((char *command, int flag));  
 extern int GetCommand  __PARAMS((char *str));  
-extern integer C2F (ismenu) __PARAMS((void));  
 extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
 extern void  reset_scig_command_handler __PARAMS((void));
 extern void write_scilab  __PARAMS((char *s));
@@ -190,7 +189,7 @@ int GetCommand ( char *str)
  * commandQueue 
  */
 /*-----------------------------------------------------------------------------------*/
-integer C2F(ismenu)()
+integer C2F(ismenu)(void)
 {
   /* Do not manage comands while compiling scilab function */
   if ( (commandQueue == NULL) || (C2F(com).comp[0] != 0)) 
@@ -226,7 +225,7 @@ void C2F(waitforinputend)( int *flag)
   wait_for_input_end=*flag;
 }
 /*-----------------------------------------------------------------------------------*/
-int iswaitingforinputend()
+int iswaitingforinputend(void)
 {
   int iwait;
   iwait=wait_for_input_end;

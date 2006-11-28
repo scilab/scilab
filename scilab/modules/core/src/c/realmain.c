@@ -32,13 +32,17 @@ static void strip_blank(char *source);
 /*-----------------------------------------------------------------------------------*/
 static int  no_startup_flag=0;
 /*-----------------------------------------------------------------------------------*/
-#define BSIZE 128 
+#define BSIZE 128
+#ifndef PATH_MAX
+#define PATH_MAX 1024
+#endif
 /*-----------------------------------------------------------------------------------*/
 void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_script_type,int memory)
 {
   static int ini=-1;
   int ierr=0;
-  char startup[256];
+  char *startup=(char*)MALLOC(sizeof(char)*PATH_MAX+1);
+	  //[256];
 
   Set_no_startup_flag(no_startup_flag_l);
 
@@ -154,7 +158,7 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
 		C2F(scirun)(startup,strlen(startup));
 	#endif
   #endif
-
+  FREE(startup);
   /* cleaning */
   C2F(sciquit)();
 }

@@ -2,7 +2,7 @@
 #include <string.h>
 #include "machine.h"
 #include "core_math.h"
-
+#include "inffic.h"
 
 #define MAXDATA 5 
 

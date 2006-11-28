@@ -13,11 +13,12 @@
 #endif
 
 #include <time.h>
+#include "sciquit.h"
 #include "stack-c.h"
+#include "run.h"
+
 #undef Lstk
 #undef Infstk
-
-typedef int logical;
 
 IMPORT struct {
   logical iflag, interruptible;
@@ -73,8 +74,6 @@ extern int C2F(ref2val)();
 extern int C2F(objvide)();
 
 extern int C2F(gettype)();
-extern int C2F(sciquit)();
-extern int C2F(adjustrhs)();
 extern int C2F(clunit)();
 
 extern logical Eptover(int n);

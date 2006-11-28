@@ -5,6 +5,7 @@
 #include <string.h>
 #include "machine.h"
 #include "stack-def.h"
+#include "basout.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(xscimore)();
 extern int C2F(writewtemore)();

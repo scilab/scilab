@@ -26,9 +26,8 @@ extern  char  *getenv();
 #if defined(_MSC_VER)
 #include <process.h>
 #endif
-
-extern void C2F(setprlev) __PARAMS((int*));
-
+#include "prompt.h"
+#include "tmpdir.h"
 
 static char tmp_dir[256],buf[256];
 
@@ -181,14 +180,14 @@ int DeleteDirectory(char *refcstrRootDirectory)
 
 void C2F(tmpdirc)(void)
 {
-  char *tmp_dir = get_sci_tmp_dir(); 
+  char *tmp_dir2 = get_sci_tmp_dir(); 
 #ifdef _MSC_VER 
-  DeleteDirectory(tmp_dir);
+  DeleteDirectory(tmp_dir2);
 #else 
 #if (defined(hppa))
   hppa_sci_unlink_shared();
 #endif
-  sprintf(buf,"rm -f -r %s >/dev/null  2>/dev/null",tmp_dir);
+  sprintf(buf,"rm -f -r %s >/dev/null  2>/dev/null",tmp_dir2);
   system(buf);
   sprintf(buf,"rm -f -r /tmp/%d.metanet.* > /dev/null  2>/dev/null",
 	  (int) getpid());

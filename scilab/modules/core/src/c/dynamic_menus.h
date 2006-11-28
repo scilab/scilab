@@ -1,6 +1,6 @@
-int iswaitingforinputend();
+int iswaitingforinputend(void);
 
-integer C2F(ismenu)();
+integer C2F(ismenu)(void);
 
 void SetCommandflag(int flag);
 

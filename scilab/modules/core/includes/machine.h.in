@@ -80,6 +80,9 @@
 /* Define to 1 if you have the <libintl.h> header file. */
 #undef HAVE_LIBINTL_H
 
+/* Define to 1 if you have the `xml2' library (-lxml2). */
+#undef HAVE_LIBXML2
+
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
 
@@ -337,18 +340,18 @@ typedef int integer;
 
 /* define boolean type */
 #ifdef BOOL
-#undef BOOL
+	#undef BOOL
 #endif
 
 typedef int BOOL ;
 
 #ifdef TRUE
-#undef TRUE
+	#undef TRUE
 #endif
 #define TRUE 1
 
 #ifdef FALSE
-#undef FALSE
+	#undef FALSE
 #endif
 #define FALSE 0
 

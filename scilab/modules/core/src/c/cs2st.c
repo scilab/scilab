@@ -4,9 +4,9 @@
  --------------------------------------------------------------------------*/
 
 #include "machine.h" 
+#include "cs2st.h"
 
-int C2F(cs2st)(i,ires)
-     integer *i,*ires;
+int C2F(cs2st)(integer *i,integer *ires)
 {
   unsigned int ui;
   ui = (unsigned int) *i;

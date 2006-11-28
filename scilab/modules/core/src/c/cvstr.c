@@ -117,7 +117,6 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,
 integer C2F(getcode)(unsigned char * mc,unsigned long mc_len)
 {
   static integer eol = 99;
-  static integer blank = 40;
   integer k;
   for (k = 0 ; k < csiz; ++k) {
     if ( *mc == C2F(cha1).alfa[k]) 

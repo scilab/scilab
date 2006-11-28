@@ -1,4 +1,3 @@
-
 /**************************************
  * Copyright Jean-Philippe Chancelier 
  * ENPC 
@@ -9,14 +8,13 @@
 #include "FTables.h"
 #define FTable_H   /* to prevent  a type conflict with GetFuncPtr */ 
 #include "stack-c.h"
-
+#include "sciprint.h"
 
 #include "link.h"
 
 extern int C2F(getcodc) __PARAMS((integer *nd1, integer *iflag1));
 static int SearchComp  __PARAMS((FTAB *Ftab, char *op, void (**realop) ( )));  
 static void Emptyfunc  __PARAMS((void)) {} ;
-extern void sciprint __PARAMS((char *fmt,...));
 
 voidf SetFunction  __PARAMS((char *name, int *rep, FTAB *table));  
 

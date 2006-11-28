@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include "machine.h" /* for C2F */
 #include "stack-def.h" /* for paus */
+#include "texmacs.h"
 
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')
@@ -39,12 +40,7 @@ void next_input () {
 }
 
 extern void
-C2F(texmacsin)(buffer, buf_size, len_line, eof, dummy1)
-     char buffer[];
-     int *buf_size;
-     int *len_line;
-     int *eof;
-     long int dummy1; 
+C2F(texmacsin)(char buffer[],int *buf_size, int *len_line,int *eof,long int dummy1)
 {
 
   int nr,info;

@@ -3092,9 +3092,9 @@ static int check_list_prop(char *mes, int lpos,int posi, int m)
   return TRUE_;
 }
 
-int check_list_square __PARAMS((int lpos,int pos,int m,int n))
+int check_list_square __PARAMS((int lpos,int posi,int m,int n))
 {
-  return check_list_prop("square",lpos,pos, (m != n));
+  return check_list_prop("square",lpos,posi, (m != n));
 }
 
 int check_list_vector (int lpos,int posi,int m,int n) 
