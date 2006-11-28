@@ -5,8 +5,8 @@
 #include "InitScilab.h"
 #include "MALLOC.h"
 #include "getmodules.h"
-
-extern void SciEnv(void);
+#include "SciEnv.h"
+#include "InitScilab.h"
 
 #ifdef _MSC_VER
 extern int InitializeHashTableScilabErrors(char* SCIPATH);
@@ -20,7 +20,9 @@ extern void initTCLTK ();
 /*-----------------------------------------------------------------------------------*/
 int C2F(initscilab)(void)
 {
+	#ifdef _MSC_VER
 	char *SCIPATH=NULL;
+	#endif
 
 	SciEnv();
 
