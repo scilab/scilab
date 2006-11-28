@@ -200,6 +200,7 @@ cd .."/>
 		<File RelativePath="..\expsum.f"/>
 		<File RelativePath="..\extlarg.f"/>
 		<File RelativePath="..\fmttyp.f"/>
+		<File RelativePath="..\formatnumber.f"/>
 		<File RelativePath="..\ftob.f"/>
 		<File RelativePath="..\getfun.f"/>
 		<File RelativePath="..\intstr.f"/>

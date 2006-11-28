@@ -7,7 +7,7 @@ LIBRARY = $(SCIDIR)/libs/system2.a
 
 OBJSC = intmacr2tree.o 
 
-OBJSF = fmttyp.o getfun.o chkvar.o\
+OBJSF = fmttyp.o formatnumber.o getfun.o chkvar.o\
 	btof.o btofm.o ftob.o \
 	bschur.o bjac.o bintg.o bj2.o bydot.o boptim.o bgety.o bgetx.o \
 	badd.o bresid.o bfeval.o bresd.o bjacd.o \

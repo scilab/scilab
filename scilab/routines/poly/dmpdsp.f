@@ -193,15 +193,12 @@ c
                   a=abs(mp(lp+j))
 c     
                   if(ifmt.eq.1) then
-                     nf=1
                      fl=maxc
                      n2=1
                   elseif(ifmt.ge.0) then
-                     nf=2
                      n1=ifmt/32
                      n2=ifmt-32*n1
                      fl=n1
-                     write(form(nf),120) fl,n2
                   elseif(ifmt.lt.0) then
 c     Inf/Nan
                      fl=3
@@ -227,13 +224,7 @@ c     gestion des lignes suites
 c     representation du monome
                   cw(l2:l2+1)=' '//sgn
                   l2=l2+1
-                  if(ifmt.ge.0) then
-                     write(cw(l2+1:l2+fl),form(nf)) a
-                  elseif(ifmt.eq.-1) then
-                     cw(l2+1:l2+fl)='Inf'
-                  elseif(ifmt.eq.-2) then
-                     cw(l2+1:l2+fl)='Nan'
-                  endif
+                  call formatnumber(a,ifmt,maxc,cw(l2+1:),fl)
                   l2=l2+fl
                   if(n2.eq.0) l2=l2-1
                   if(j.gt.1) then

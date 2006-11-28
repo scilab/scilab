@@ -135,6 +135,7 @@ void System2_contents( int x)
       C2F(tradsl)();
       /* stack3.c */
       get_optionals();
+      C2F(formatnumber)();
     }
 }
 
