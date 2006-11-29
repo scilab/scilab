@@ -44,6 +44,7 @@ if ~f_subwin & ~f_captions & ~f_flags & ~f_tics then
 // with 2,3,4 or five parameters
 
   f_tics = %t ;
+  tics = axisdata ;
   if rhs == 5 then
     select type(subwindow),
     case 1 , subwin   = subwindow, f_subwin   = %t ;
