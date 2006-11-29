@@ -8,9 +8,7 @@
  *     c=a+b 
  ************************************/
 
-int ext1c(n, a, b, c)
-     int *n;
-     double *a, *b, *c;
+int ext1c(int *n, double *a, double *b,  double *c)
 {   
   int k;
   for (k = 0; k < *n; ++k) 
