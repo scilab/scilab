@@ -110,7 +110,6 @@ src/fortran/getsym.f \
 src/fortran/findequal.f \
 src/fortran/stackg.f \
 src/fortran/find.f \
-src/fortran/wspdsp.f \
 src/fortran/israt.f \
 src/fortran/stack0.f \
 src/fortran/setlnb.f \
@@ -154,7 +153,6 @@ src/fortran/ptover.f \
 src/fortran/Ex-fort.f \
 src/fortran/getfunction.f \
 src/fortran/stackp.f \
-src/fortran/dspdsp.f \
 src/fortran/getpro.f \
 src/fortran/dbasin.f \
 src/fortran/macro.f \
@@ -176,7 +174,6 @@ src/fortran/basin.f \
 src/fortran/clause.f \
 src/fortran/compcl.f \
 src/fortran/termf.f \
-src/fortran/strdsp.f \
 src/fortran/expsum.f \
 src/fortran/eqid.f \
 src/fortran/copyvar.f \
