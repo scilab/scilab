@@ -171,28 +171,8 @@ C      if(a.lt.0.0d+0.and.typ.ne.-2) sgn='-'
 c
       cw(l1:l1+1)=' '//sgn
       l1=l1+2
-c
-      if(ifmt.eq.1) then
-         nf=1
-         fl=maxc
-         n2=1
-         write(cw(l1:l1+fl-1),form(nf)) a
-      elseif(ifmt.ge.0) then
-         nf=2
-         n1=ifmt/32
-         n2=ifmt-32*n1
-         fl=n1
-         write(form(nf),120) fl,n2
-         write(cw(l1:l1+fl-1),form(nf)) a
-      elseif(ifmt.eq.-1) then
-c     Inf
-         fl=3
-         cw(l1:l1+fl-1)='Inf'
-      elseif(ifmt.eq.-2) then
-c     Nan
-         fl=3
-         cw(l1:l1+fl-1)='Nan'
-      endif
+c     
+      call formatnumber(a,ifmt,maxc,cw(l1:),fl)
       l1=l1+fl
 c
 c      if(n2.eq.0) l1=l1-1
