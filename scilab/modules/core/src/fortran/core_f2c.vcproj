@@ -317,10 +317,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dspdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dtosci.c"
 				>
 			</File>
@@ -849,11 +845,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\where.c"
+				RelativePath=".\wmdsp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\wspdsp.c"
+				RelativePath="..\..\sci_gateway\fortran\where.c"
 				>
 			</File>
 			<File
@@ -1001,10 +997,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dspdsp.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dtosci.f"
 				>
 			</File>
@@ -1068,6 +1060,7 @@
 				RelativePath=".\formatnumber.f"
 				>
 			</File>
+
 			<File
 				RelativePath=".\ftob.f"
 				>
@@ -1533,11 +1526,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\where.f"
+				RelativePath=".\dmdsp.f"
 				>
 			</File>
 			<File
-				RelativePath=".\wspdsp.f"
+				RelativePath="..\..\sci_gateway\fortran\where.f"
 				>
 			</File>
 			<File
