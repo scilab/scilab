@@ -1065,6 +1065,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\formatnumber.f"
+				>
+			</File>
+			<File
 				RelativePath=".\ftob.f"
 				>
 			</File>
