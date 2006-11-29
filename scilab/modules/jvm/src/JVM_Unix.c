@@ -2,7 +2,9 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
+#include <string.h>
 #include "JVM_Unix.h"
+#include "sci_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef NULL
   #define NULL 0
@@ -37,14 +39,14 @@ int GetJVMDll(char *SCILAB_PATH)
 	int bOK=FALSE;
 	char *JVMDLLFULLNAME=NULL;
 	
-	JVMDLLFULLNAME=(char*)malloc( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/client/libjava.so")+1)*sizeof(char));
+	JVMDLLFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/client/libjava.so")+1)*sizeof(char));
 	/* A voir pour H.P(.sl) et autres comme Mac*/
 	/* http://www.informatik.uni-frankfurt.de/doc/man/hpux/shl_load.3x.html */
 	sprintf(JVMDLLFULLNAME,"%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/client/libjava.so");
 
 	hLibJVM = dlopen("libjava.so", RTLD_NOW | RTLD_GLOBAL); 
 	
-	if (JVMDLLFULLNAME){free(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
+	if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 
 	if (hLibJVM) bOK=TRUE;
 
