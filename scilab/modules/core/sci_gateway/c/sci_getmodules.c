@@ -2,10 +2,10 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "MALLOC.h"
+#include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_core.h"
+#include "MALLOC.h"
 #include "getmodules.h"
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))

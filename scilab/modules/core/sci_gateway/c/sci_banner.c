@@ -3,9 +3,9 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include <string.h>
+#include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_core.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(intbanner) _PARAMS((char *fname));
 extern void banner(void);

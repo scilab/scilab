@@ -2,11 +2,11 @@
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
-#include "../../src/c/fromc.h"
-#include "MALLOC.h"
+#include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
-#include "gw_core.h"
+#include "MALLOC.h"
+#include "../../src/c/fromc.h"
 /*-----------------------------------------------------------------------------------*/
 int C2F(intfromc) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
