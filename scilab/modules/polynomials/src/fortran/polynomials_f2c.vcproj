@@ -465,10 +465,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wmdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\wmpad.c"
 				>
 			</File>
@@ -802,10 +798,6 @@
 			</File>
 			<File
 				RelativePath=".\wdmpmu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wmdsp.f"
 				>
 			</File>
 			<File

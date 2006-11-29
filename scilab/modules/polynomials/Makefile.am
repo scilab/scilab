@@ -64,7 +64,6 @@ src/fortran/fmt.f \
 src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/dmrdsp.f \
-src/fortran/wmdsp.f \
 src/fortran/quad.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \

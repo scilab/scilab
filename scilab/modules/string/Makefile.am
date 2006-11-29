@@ -6,7 +6,7 @@
 STRING_C_SOURCES = src/c/strcat-c.c \
 src/c/men_Sutils.c
 
-STRING_FORTRAN_SOURCES =src/fortran/strord.f
+STRING_FORTRAN_SOURCES =src/fortran/strord.f src/fortran/strdsp.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_strcat.c \

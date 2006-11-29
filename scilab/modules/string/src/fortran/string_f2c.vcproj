@@ -260,6 +260,10 @@
 				RelativePath=".\strord.c"
 				>
 			</File>
+			<File
+				RelativePath=".\strdsp.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -342,6 +346,10 @@
 			</File>
 			<File
 				RelativePath=".\strord.f"
+				>
+			</File>
+			<File
+				RelativePath=".\strdsp.f"
 				>
 			</File>
 		</Filter>

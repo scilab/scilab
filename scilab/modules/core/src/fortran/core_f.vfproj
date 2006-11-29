@@ -64,7 +64,6 @@ cd .."/>
 		<File RelativePath="dldsp.f"/>
 		<File RelativePath="dmdsp.f"/>
 		<File RelativePath="dmdspf.f"/>
-		<File RelativePath="dspdsp.f"/>
 		<File RelativePath="dtosci.f"/>
 		<File RelativePath="eqid.f"/>
 		<File RelativePath="errmgr.f"/>
@@ -131,6 +130,7 @@ cd .."/>
 		<File RelativePath="putid.f"/>
 		<File RelativePath="ref2val.f"/>
 		<File RelativePath="savlod.f"/>
+		<File RelativePath="wmdsp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_addinter.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_argn.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_c_link.f"/>
@@ -198,7 +198,6 @@ cd .."/>
 		<File RelativePath="varfunptr.f"/>
 		<File RelativePath="whatln.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
-		<File RelativePath="wspdsp.f"/>
 		<File RelativePath="xerbla.f"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd">
 		<File RelativePath="..\..\includes\callinter.h"/>

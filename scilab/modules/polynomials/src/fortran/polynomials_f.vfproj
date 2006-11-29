@@ -102,7 +102,6 @@ cd .."/>
 		<File RelativePath="sfact2.f"/>
 		<File RelativePath="wdmpad.f"/>
 		<File RelativePath="wdmpmu.f"/>
-		<File RelativePath="wmdsp.f"/>
 		<File RelativePath="wmpad.f"/>
 		<File RelativePath="wmpadj.f"/>
 		<File RelativePath="wmpcle.f"/>
