@@ -68,7 +68,7 @@ libstring_la_DEPENDENCIES = $(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/modules/polynomials/libpolynomials.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 am__objects_1 = libstring_la-strcat-c.lo libstring_la-men_Sutils.lo
-am__objects_2 = strord.lo
+am__objects_2 = strord.lo strdsp.lo
 am__objects_3 = libstring_la-sci_strindex.lo \
 	libstring_la-sci_strcat.lo libstring_la-sci_tokens.lo \
 	libstring_la-gw_string.lo libstring_la-sci_string.lo \
@@ -310,7 +310,7 @@ top_srcdir = @top_srcdir@
 STRING_C_SOURCES = src/c/strcat-c.c \
 src/c/men_Sutils.c
 
-STRING_FORTRAN_SOURCES = src/fortran/strord.f
+STRING_FORTRAN_SOURCES = src/fortran/strord.f src/fortran/strdsp.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_strindex.c \
 sci_gateway/c/sci_strcat.c \
 sci_gateway/c/sci_tokens.c \
@@ -606,6 +606,9 @@ libstring_la-sci_convstr.lo: sci_gateway/c/sci_convstr.c
 
 strord.lo: src/fortran/strord.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o strord.lo `test -f 'src/fortran/strord.f' || echo '$(srcdir)/'`src/fortran/strord.f
+
+strdsp.lo: src/fortran/strdsp.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o strdsp.lo `test -f 'src/fortran/strdsp.f' || echo '$(srcdir)/'`src/fortran/strdsp.f
 
 sci_convstr.lo: sci_gateway/fortran/sci_convstr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_convstr.lo `test -f 'sci_gateway/fortran/sci_convstr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_convstr.f

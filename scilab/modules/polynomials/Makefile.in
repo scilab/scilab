@@ -75,7 +75,7 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wmptra.lo balbak.lo wmpins.lo mpdegr.lo ddmpev.lo realit.lo \
 	dpmul.lo sfact2.lo dmpad.lo nextk.lo blktit.lo dimin.lo \
 	newest.lo dwmpmu.lo impcnc.lo wdmpad.lo fmt.lo wmpcle.lo \
-	quadit.lo dmrdsp.lo wmdsp.lo quad.lo
+	quadit.lo dmrdsp.lo quad.lo
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
 	sci_f_bezout.lo sci_f_triu_tril.lo sci_f_roots.lo \
@@ -377,7 +377,6 @@ src/fortran/fmt.f \
 src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/dmrdsp.f \
-src/fortran/wmdsp.f \
 src/fortran/quad.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
@@ -857,9 +856,6 @@ quadit.lo: src/fortran/quadit.f
 
 dmrdsp.lo: src/fortran/dmrdsp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmrdsp.lo `test -f 'src/fortran/dmrdsp.f' || echo '$(srcdir)/'`src/fortran/dmrdsp.f
-
-wmdsp.lo: src/fortran/wmdsp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmdsp.lo `test -f 'src/fortran/wmdsp.f' || echo '$(srcdir)/'`src/fortran/wmdsp.f
 
 quad.lo: src/fortran/quad.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o quad.lo `test -f 'src/fortran/quad.f' || echo '$(srcdir)/'`src/fortran/quad.f
