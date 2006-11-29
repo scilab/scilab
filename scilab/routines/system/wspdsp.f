@@ -102,43 +102,14 @@ c        if (abs(ai).lt.eps .and. mode.ne.0) ai = 0.0d+0
 C     determination du format devant representer a
         typ = 1
         if (mode .eq. 1) call fmt(abs(ar),maxc,typ,n1,n2)
-        if (typ .eq. 2) then
-          fl = n1
-          ifmt = n2 + 32*n1
-        elseif (typ .lt. 0) then
-          ifmt = typ
-          fl = 3
-        else
-          ifmt = 1
-          fl = maxc
-          n2 = maxc - 7
-        endif
+        if (typ .eq. 2) typ=n2 + 32*n1
+
         sgn = ' '
         if (ar .lt. 0.0d+0) sgn = '-'
         ar = abs(ar)
         cw(l1:l1+1) = ' ' // sgn
         l1 = l1 + 2
-        if (ifmt .eq. 1) then
-          nf = 1
-          fl = maxc
-          n2 = 1
-          write (cw(l1:l1+fl-1),form(nf)) ar
-        elseif (ifmt .ge. 0) then
-          nf = 2
-          n1 = ifmt / 32
-          n2 = ifmt - 32*n1
-          fl = n1
-          write (form(nf),120) fl, n2
-          write (cw(l1:l1+fl-1),form(nf)) ar
-        elseif (ifmt .eq. -1) then
-C     Inf
-          fl = 3
-          cw(l1:l1+fl-1) = 'Inf'
-        elseif (ifmt .eq. -2) then
-C     Nan
-          fl = 3
-          cw(l1:l1+fl-1) = 'Nan'
-        endif
+        call formatnumber(ar,typ,maxc,cw(l1:),fl)
         l1 = l1 + fl
         if (ll .eq. 2) then
           cw(l1:l1) = 'i'
@@ -148,17 +119,8 @@ C     Nan
         if (ai .eq. 0.0d0) goto 17
         typ = 1
         if (mode .eq. 1) call fmt(abs(ai),maxc,typ,n1,n2)
-        if (typ .eq. 2) then
-          fl = n1
-          ifmt = n2 + 32*n1
-        elseif (typ .lt. 0) then
-          ifmt = typ
-          fl = 3
-        else
-          ifmt = 1
-          fl = maxc
-          n2 = maxc - 7
-        endif
+        if (typ .eq. 2) typ=n2 + 32*n1
+
         if (ar .ne. 0.0d+0) then
           sgn = '+'
         else
@@ -168,27 +130,7 @@ C     Nan
         ai = abs(ai)
         cw(l1:l1+1) = ' ' // sgn
         l1 = l1 + 2
-        if (ifmt .eq. 1) then
-          nf = 1
-          fl = maxc
-          n2 = 1
-          write (cw(l1:l1+fl-1),form(nf)) ai
-        elseif (ifmt .ge. 0) then
-          nf = 2
-          n1 = ifmt / 32
-          n2 = ifmt - 32*n1
-          fl = n1
-          write (form(nf),120) fl, n2
-          write (cw(l1:l1+fl-1),form(nf)) ai
-        elseif (ifmt .eq. -1) then
-C     Inf
-          fl = 3
-          cw(l1:l1+fl-1) = 'Inf'
-        elseif (ifmt .eq. -2) then
-C     Nan
-          fl = 3
-          cw(l1:l1+fl-1) = 'Nan'
-        endif
+        call formatnumber(aI,typ,maxc,cw(l1:),fl)
         l1 = l1 + fl
         cw(l1:l1) = 'i'
         l1 = l1 + 1

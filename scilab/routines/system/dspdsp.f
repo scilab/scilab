@@ -103,40 +103,8 @@ c         if(abs(a).lt.eps.and.mode.ne.0) a=0.0d+0
 c     determination du format devant representer a
          typ=1
          if(mode.eq.1) call fmt(a,maxc,typ,n1,n2)
-         if(typ.eq.2) then
-            fl=n1
-            ifmt=n2+32*n1
-         elseif(typ.lt.0) then
-            ifmt=typ
-            fl=3
-         else
-            ifmt=1
-            fl=maxc
-            n2=maxc-7
-         endif
-         cw(l1:l1+6)='      '//sgn
-         l1=l1+7
-         if(ifmt.eq.1) then
-            nf=1
-            fl=maxc
-            n2=1
-            write(cw(l1:l1+fl-1),form(nf)) a
-         elseif(ifmt.ge.0) then
-            nf=2
-            n1=ifmt/32
-            n2=ifmt-32*n1
-            fl=n1
-            write(form(nf),120) fl,n2
-            write(cw(l1:l1+fl-1),form(nf)) a
-         elseif(ifmt.eq.-1) then
-c     Inf
-            fl=3
-            cw(l1:l1+fl-1)='Inf'
-         elseif(ifmt.eq.-2) then
-c     Nan
-            fl=3
-            cw(l1:l1+fl-1)='Nan'
-         endif
+         if(typ.eq.2) typ=n2+32*n1
+         call formatnumber(a,typ,maxc,cw(l1:),fl)
          l1=l1+fl
          call basout(io,lunit,cw(1:l1) )
          if (io.eq.-1) goto 99
