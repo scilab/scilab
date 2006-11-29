@@ -80,6 +80,7 @@ cd .."/>
 		<File RelativePath="findequal.f"/>
 		<File RelativePath="fmttyp.f"/>
 		<File RelativePath="folhp.f"/>
+		<File RelativePath="formatnumber.f"/>
 		<File RelativePath="ftob.f"/>
 		<File RelativePath="functionsforbasout.f"/>
 		<File RelativePath="funnam.f"/>

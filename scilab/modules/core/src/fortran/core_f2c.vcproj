@@ -381,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\formatnumber.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ftob.c"
 				>
 			</File>
