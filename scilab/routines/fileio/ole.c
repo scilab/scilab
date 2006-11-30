@@ -1203,10 +1203,12 @@ int OLE_follow_minichain( struct OLE_object *ole, int miniFAT_sector_start )
 		int next_sector;
 
 		DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Requesting 4-byte value at '%d'",FL, ole->miniFAT +(LEN_ULONG *current_sector));
+		/* next text commented out because ole->miniFAT_limit is set to null ans vever change
 		if (ole->miniFAT +(LEN_ULONG *current_sector) > ole->miniFAT_limit) {
-			DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Requested location is out of bounds\n",FL);
-			return 0;
+		  DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Requested location is out of bounds\n",FL);
+		  return 0;
 		}
+		*/
 
 		next_sector = get_4byte_value( ole->miniFAT +(LEN_ULONG *current_sector));
 
@@ -1233,8 +1235,9 @@ int OLE_follow_minichain( struct OLE_object *ole, int miniFAT_sector_start )
 		};
 
 		DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: current sector = %d",FL,current_sector);
-	} while ((break_out==0)&&(current_sector <= ole->last_sector ));
-
+	/* Test changed  Serge Steer Scilab *
+	   /*	} while ((break_out==0) &&(current_sector <= ole->last_sector));*/
+	} while ((break_out==0));
 	DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Done.  Chainlength=%d",FL, chain_length);
 
 	return chain_length;
@@ -1266,6 +1269,7 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
 	int current_sector = miniFAT_sector_start;
 	unsigned char *buffer;
 	unsigned char *bp;
+	int break_out = 0;
 
 	DOLE LOGGER_log("%s:%d:OLE_load_minichain:DEBUG: Loading minichain starting at %d",FL, miniFAT_sector_start);
 
@@ -1291,7 +1295,22 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
 
 			next_sector = get_4byte_value( ole->miniFAT +(LEN_ULONG *current_sector));
 			current_sector = next_sector;
-		} while ((current_sector != OLE_SECTORID_ENDOFCHAIN)&&(current_sector >= 0)&&(current_sector <= ole->last_sector));
+			/* NEXT LINES ADDED TO BE COHERENT WITH  OLE_follow_minichain ABOVE Serge Steer Scilab */
+			switch (current_sector) {
+			case OLE_SECTORID_MSAT:
+			case OLE_SECTORID_SAT:
+			case OLE_SECTORID_ENDOFCHAIN:
+			case OLE_SECTORID_FREE:
+				break_out=1;
+				break;
+			default:
+				break_out=0;
+			};
+			/* Test changed  Serge Steer Scilab *
+	/* } while ((current_sector != OLE_SECTORID_ENDOFCHAIN)&&(current_sector >= 0)&&(current_sector <= ole->last_sector));*/
+
+	} while ((break_out==0));
+
 	} else {
 		LOGGER_log("%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain",FL);
 	}
