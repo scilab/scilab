@@ -101,6 +101,9 @@ c         if(abs(a).lt.eps.and.mode.ne.0) a=0.0d+0
          a=abs(a)
 
 c     determination du format devant representer a
+         cw(l1:l1+6)='      '//sgn
+         l1=l1+7
+
          typ=1
          if(mode.eq.1) call fmt(a,maxc,typ,n1,n2)
          if(typ.eq.2) typ=n2+32*n1
