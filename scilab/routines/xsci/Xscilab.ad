@@ -516,10 +516,10 @@ Xscilab*scigForm*scigraphic.height: 400
 Xscilab*scigForm*scigraphic.borderWidth: 0
 Xscilab*scigForm*scigraphic.internalWidth: 0
 !
-Xscilab.color*scigForm.graphicviewport.bbox.background:skyblue
+Xscilab.color*scigForm.graphicviewport.bbox.background:white
 Xscilab.color*scigForm.scigmForm.Panner.shadowColor: black
-Xscilab.color*scigForm.scigmForm.Panner.background:skyblue
-Xscilab.color*scigForm.scigmForm.Panner.foreground:gray
+Xscilab.color*scigForm.scigmForm.Panner.background:white
+Xscilab.color*scigForm.scigmForm.Panner.foreground:grey92
 ! 
 !---------------------------------------------------------------
 ! Colors
@@ -527,37 +527,37 @@ Xscilab.color*scigForm.scigmForm.Panner.foreground:gray
 ! For grayscale displays, use "Xscilab*gray".
 !---------------------------------------------------------------
 Xscilab.color.borderWidth:0
-scilab.color.internalWidth:0
+Xscilab.color.internalWidth:0
 Xscilab.color*background:white
 Xscilab.color*foreground:black
-Xscilab.color.background:gray
+Xscilab.color.background:grey85
 Xscilab.color*scigraphic.background:white
 Xscilab.color*scigraphic.foreground:black
-Xscilab.color*Form.background:gray
+Xscilab.color*Form.background:grey94
 Xscilab.color*vpane.msWindow.messageWindow.background:white
-Xscilab.color*vpane.msWindow.logoWindow.background:gray
+Xscilab.color*vpane.msWindow.logoWindow.background:grey94
 Xscilab.color*Label.foreground:black
-Xscilab.color*Command.background:skyblue
+Xscilab.color*Command.background:grey94
 Xscilab.color*Command.foreground:black
-Xscilab.color*Box.background:gray
-Xscilab.color*Toggle.background:skyblue
+Xscilab.color*Box.background:grey94
+Xscilab.color*Toggle.background:grey94
 Xscilab.color*Toggle.foreground:black
-Xscilab.color*Scrollbar.background:gray
-Xscilab.color*Paned.internalBorderColor:gray
-Xscilab.color*MenuButton.background:skyblue
+Xscilab.color*Scrollbar.background:grey94
+Xscilab.color*Paned.internalBorderColor:grey80
+Xscilab.color*MenuButton.background:grey94
 Xscilab.color*MenuButton.foreground:black
-Xscilab.color*SimpleMenu.background:skyblue
+Xscilab.color*SimpleMenu.background:grey94
 Xscilab.color*SimpleMenu.foreground:black
 Xscilab.color*SmeBSB.foreground:black
 Xscilab.color.vpane.Box.Form.background:blue
-Xscilab.color.helpForm.aproposInfo.background:gray
-Xscilab.color.helpForm.aproposLabel.background:gray
-Xscilab.color.helpForm.helpLabel.background:gray
-Xscilab.color.*.hpaned.paned.labelviewport.label.background:gray
-Xscilab.color.*.scigForm.scigraphicinfo.background:white
-Xscilab.color.mdialogShell.hpaned.paned.dViewport.form.kForm.kLabel.background:gray
-Xscilab.color.choiceShell.hpaned.paned.viewport.form.*.background:gray
-Xscilab.color.mtdialogShell.hpaned.paned.dViewport.form.*.label.background:gray
+Xscilab.color.helpForm.aproposInfo.background:grey94
+Xscilab.color.helpForm.aproposLabel.background:grey94
+Xscilab.color.helpForm.helpLabel.background:grey94
+Xscilab.color.*.hpaned.paned.labelviewport.label.background:grey94
+Xscilab.color.*.scigForm.scigraphicinfo.background:blue
+Xscilab.color.mdialogShell.hpaned.paned.dViewport.form.kForm.kLabel.background:grey94
+Xscilab.color.choiceShell.hpaned.paned.viewport.form.*.background:grey94
+Xscilab.color.mtdialogShell.hpaned.paned.dViewport.form.*.label.background:grey94
 
 Xscilab.gray.borderWidth:0
 Xscilab.gray.internalWidth:0
