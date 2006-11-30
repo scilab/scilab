@@ -3,6 +3,7 @@
  */
 #include <stdio.h>
 #include "machine.h"
+#include "readline.h"
 
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
 #define SEEK_SET 0

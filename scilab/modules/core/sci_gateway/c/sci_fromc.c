@@ -8,8 +8,6 @@
 #include "MALLOC.h"
 #include "../../src/c/fromc.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(intfromc) _PARAMS((char *fname));
-/*-----------------------------------------------------------------------------------*/
 int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len))
 {
 	C2F(intfromc)(fname);
@@ -18,7 +16,7 @@ int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intfromc) _PARAMS((char *fname))
 {
-	static int l1,n1,m1;
+	static int n1;
 	int *paramoutINT=(int*)MALLOC(sizeof(int));
 
 	Rhs = Max(0, Rhs);

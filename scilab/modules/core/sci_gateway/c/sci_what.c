@@ -59,9 +59,6 @@ int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwhat) _PARAMS((char *fname))
 {
-	static int l1,n1,m1;
-	int i=0;
-	int Size=0;
 
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,0);
@@ -80,7 +77,7 @@ int C2F(intwhat) _PARAMS((char *fname))
 	}
 	else /* Lhs == 2 */
 	{
-		int i=0;
+		int i2=0;
 
 		int ncol=1;	
 		int nrowFunctions=SizeLocalFunctionsTab;
@@ -92,7 +89,7 @@ int C2F(intwhat) _PARAMS((char *fname))
 		CreateVarFromPtr(Rhs+2, "S", &nrowCommands, &ncol, CommandWords);
 		LhsVar(2)=Rhs+2;
 
-		for (i=0;i<nrowFunctions;i++) { FREE(LocalFunctionsTab[i]);LocalFunctionsTab[i]=NULL; }
+		for (i2=0;i2<nrowFunctions;i2++) { FREE(LocalFunctionsTab[i2]);LocalFunctionsTab[i2]=NULL; }
 		FREE(LocalFunctionsTab);
 	}
 

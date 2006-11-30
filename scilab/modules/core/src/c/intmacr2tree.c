@@ -7,7 +7,7 @@
 #include "MALLOC.h"
 
 #include "intmacr2tree.h"
-
+#include "sciprint.h"
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
 
@@ -17,7 +17,9 @@ static int nbvars = 0;
 /* Store stack index for last EOL */
 static int last_eol_pos = 0;
 
-extern void sciprint __PARAMS((char *fmt,...));
+/****************************************************************/
+static int CreateRecursiveIndex2List(int *data,int *index2);
+
 /****************************************************************/
 int C2F(macr2tree) _PARAMS((char *fname,unsigned long fname_len));
 /****************************************************************
@@ -361,7 +363,7 @@ static int AddVar(char *name)
 ****************************************************************/
 static int IsDefinedVar(char *name)
 {
-  int index = -1;
+  int index2 = -1;
   int k;
   int maxlgth;
 
@@ -377,22 +379,22 @@ static int IsDefinedVar(char *name)
 	}
       if(varnames[k][0]=='\0')
 	{
-	  index = -1;
+	  index2 = -1;
 	  break;
 	} 
       else if(!strncmp(name,varnames[k],maxlgth))
 	{
-	  index = k;
+	  index2 = k;
 	  break;
 	}
     }
-  return index;
+  return index2;
 }
 
 /****************************************************************
  Function name: GetInstruction
 ****************************************************************/
-static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
+static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
 {
   int job1 = 1;
 
@@ -414,95 +416,95 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     }
   (name[0])[nlgh]='\0';
 
-  switch(data[*index]) {
+  switch(data[*index2]) {
   case 0: /* Deleted operation */
     /* This code is ignored */
-    *index += data[*index+1];
+    *index2 += data[*index2+1];
     break;
   case 1: /* Stack put (Obsolete) */
-    CreateEqualTList("code1",data,index);
+    CreateEqualTList("code1",data,index2);
     *addinstr=1;
     break;
   case 2: /* Stack get */
     /* Read name */
-    CvNameL(&data[*index+1],name[0],&job1,&namelgth);
+    CvNameL(&data[*index2+1],name[0],&job1,&namelgth);
     (name[0])[namelgth]='\0';
-    *index += nsiz;
+    *index2 += nsiz;
 
-    if(data[*index+2]==0) /* stack get (rhs=0) */
+    if(data[*index2+2]==0) /* stack get (rhs=0) */
       {
 	CreateVariableTList(name);
-	*index += 2;
+	*index2 += 2;
      }
     else
       {
-	if( (IsDefinedVar(name[0])>=0) || ( (data[*index+1]==-3) && (data[*index+2]!=0) ) )
+	if( (IsDefinedVar(name[0])>=0) || ( (data[*index2+1]==-3) && (data[*index2+2]!=0) ) )
 	  {
 	    /* Stack get for extraction from variable */
 	    CreateVariableTList(name);
-	    *index += 2;
+	    *index2 += 2;
 	  }
 	else
 	  {
 	    /* Macro call */
-	    data[*index+1] = data[*index+2];
-	    if(data[*index+3]==5 && data[*index+4]==3) /* 3=code for extraction */
+	    data[*index2+1] = data[*index2+2];
+	    if(data[*index2+3]==5 && data[*index2+4]==3) /* 3=code for extraction */
 	      /* If next instruction is an extraction, it is ignored */
 	      {
-		data[*index+2] = data[*index+6]; /* Replace number of lhs for macro call by the one of extraction */
-		CreateFuncallTList("macro",data,index);
-		*index += 4;
+		data[*index2+2] = data[*index2+6]; /* Replace number of lhs for macro call by the one of extraction */
+		CreateFuncallTList("macro",data,index2);
+		*index2 += 4;
 	      }
 	    else
 	      {
-		data[*index+2] = 1;
-		CreateFuncallTList("macro",data,index);
-		*index += 4;
+		data[*index2+2] = 1;
+		CreateFuncallTList("macro",data,index2);
+		*index2 += 4;
 	      }
 	  }
       }
     break;
   case 3: /* String */
-    CreateCsteTList("string",data,index);
+    CreateCsteTList("string",data,index2);
     break;
   case 4: /* Empty matrix */
-    CreateCsteTList("emptymatrix",data,index);
+    CreateCsteTList("emptymatrix",data,index2);
     break;
   case 5: /* Operations */
-    if(data[*index+2]==0) 
+    if(data[*index2+2]==0) 
       {
-        *index +=3;
+        *index2 +=3;
         break;
       }
-    CreateOperationTList(data,index);
+    CreateOperationTList(data,index2);
     break;
   case 6: /* Number */
-    CreateCsteTList("number",data,index);
+    CreateCsteTList("number",data,index2);
     break;
   case 7: /* 'for' control instruction */
-    GetControlInstruction(data,index,nblines);
+    GetControlInstruction(data,index2,nblines);
     *addinstr=1;
     break;
   case 8: /* 'if-then-else' control instruction */
-    GetControlInstruction(data,index,nblines);
+    GetControlInstruction(data,index2,nblines);
     *addinstr=1;
     break;
   case 9: /* 'while' control instruction */
-    GetControlInstruction(data,index,nblines);
+    GetControlInstruction(data,index2,nblines);
     *addinstr=1;
     break;
   case 10: /* 'select-case' control instruction */
-    GetControlInstruction(data,index,nblines);
+    GetControlInstruction(data,index2,nblines);
     *addinstr=1;
     break;
   case 11: /* 'try-catch' control instruction */
-    GetControlInstruction(data,index,nblines);
+    GetControlInstruction(data,index2,nblines);
     *addinstr=1;
     break;
   case 12: /* pause */
   case 13: /* break */
   case 14: /* abort */
-    CreateFuncallTList("datacode",data,index);
+    CreateFuncallTList("datacode",data,index2);
     *addinstr=1;
     break;
   case 15: /* EOL */
@@ -513,20 +515,20 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     break;
   case 16: /* Set line number */
     /* This code is ignored */
-    (*index)++;
+    (*index2)++;
     break;
   case 17: /* quit (Should never append) */
-    CreateFuncallTList("datacode",data,index);
+    CreateFuncallTList("datacode",data,index2);
     *addinstr=1;
     break;
   case 18: /* Mark named variable */
-    CreateEqualTList("code18",data,index);
+    CreateEqualTList("code18",data,index2);
     break;
-  case 19: /* Form recursive index list */
-    CreateRecursiveIndexList(data,index);
+  case 19: /* Form recursive index2 list */
+    CreateRecursiveIndex2List(data,index2);
     break;
   case 20: /* exit */
-    CreateFuncallTList("datacode",data,index);
+    CreateFuncallTList("datacode",data,index2);
     *addinstr=1;
     break;
   case 21: /* Beginning of rhs */
@@ -537,51 +539,51 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     /* This code is ignored */
     break;
   case 23: /* Create variable from name */
-    CreateCsteTList("code23",data,index);
+    CreateCsteTList("code23",data,index2);
     break;
   case 24: /* Create an object with type 0 */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
+    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index2]);
     break;
   case 25: /* Compute profiling data */
  /* This code is ignored */
-    *index += 2;
+    *index2 += 2;
     break;
   case 26: /* Vector of strings */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
+    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index2]);
     break;
   case 27: /* varfunptr */
-    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index]);
+    Scierror(999,"GetInstruction: code %d not yet implemented\r\n",data[*index2]);
     break;
   case 28: /* continue */
-    CreateFuncallTList("datacode",data,index);
+    CreateFuncallTList("datacode",data,index2);
     *addinstr=1;
     break;
   case 29: /* Affectation */
-    CreateEqualTList("code29",data,index);
+    CreateEqualTList("code29",data,index2);
     *addinstr=1;
     break;
   case 30: /* Expression evaluation short circuiting */
     /* This code is ignored */
-    *index += 2;
+    *index2 += 2;
     break;
   case 31: /* comment */
-     CreateCommentTList(data,index);
+     CreateCommentTList(data,index2);
     *addinstr=1;
     break;
 
   case 99: /* return */
-    CreateFuncallTList("datacode",data,index);
+    CreateFuncallTList("datacode",data,index2);
     *addinstr=1;
     break;
   default:
-    if(data[*index]/100*100==data[*index] && data[*index]!=0)
+    if(data[*index2]/100*100==data[*index2] && data[*index2]!=0)
       {
 	/* funptr */
-	CreateFuncallTList("funptr",data,index);
+	CreateFuncallTList("funptr",data,index2);
       }
     else
       {
-	Scierror(999,"GetInstruction: unknown code %d at index %d \r\n",data[*index],*index );
+	Scierror(999,"GetInstruction: unknown code %d at index2 %d \r\n",data[*index2],*index2 );
 	return 0;
       }
     break;
@@ -599,7 +601,7 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
 /****************************************************************
  Function name: GetControlInstruction
 ****************************************************************/
-static int GetControlInstruction(int *data,int *index,int *nblines)
+static int GetControlInstruction(int *data,int *index2,int *nblines)
 {
   /* try-catch */
   char *trycatch_tlist[] = {"trycatch","trystat","catchstat"};
@@ -637,7 +639,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
   int namelgth = 0;
 
   int job1=1;
-  int index0,endindex;
+  int index20,endindex2;
   int codelgth;
   int ncase = 0,icase = 0;
   int TopSave = 0,TopSave_elseifsorcases=0;
@@ -647,24 +649,24 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
   int newinstr=0; /* Used to call GetInstruction with enough parameters */
   
   /* FOR */
-  if(data[*index]==7)
+  if(data[*index2]==7)
     {
       /* Write list items */
       str2sci(for_tlist,m_for_tlist,n_for_tlist);
-      (*index)++;
-      codelgth = data[*index];
-      endindex = *index + codelgth;
-      (*index)++;
+      (*index2)++;
+      codelgth = data[*index2];
+      endindex2 = *index2 + codelgth;
+      (*index2)++;
 
       /* Get expression */
-      while(*index<=endindex)
+      while(*index2<=endindex2)
 	{
-	  GetInstruction(data,index,nblines,&newinstr);
-	  (*index)++;
+	  GetInstruction(data,index2,nblines,&newinstr);
+	  (*index2)++;
 	}
      
-      codelgth = data[*index];
-      (*index)++;
+      codelgth = data[*index2];
+      (*index2)++;
 
       /* Get loop variable */
       /* Memory allocation */
@@ -680,25 +682,25 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 	}
       (name[0])[nlgh]='\0';
       
-      CvNameL(&data[*index],name[0],&job1,&namelgth);
+      CvNameL(&data[*index2],name[0],&job1,&namelgth);
       (name[0])[namelgth]='\0';
-      *index += nsiz;
+      *index2 += nsiz;
       /* Create a variable tlist with name */
       CreateVariableTList(name);
       
       /* variable = expression */
-      CreateEqualTList("forexpr",data,index);
-      endindex = *index + codelgth;
+      CreateEqualTList("forexpr",data,index2);
+      endindex2 = *index2 + codelgth;
     
       /* Get all instructions */
       TopSave = Top;
-      while(*index<=endindex)
+      while(*index2<=endindex2)
 	{
 	  /* Get all instructions */
-	  GetInstruction(data,index,nblines,&newinstr);
-	  (*index)++;
+	  GetInstruction(data,index2,nblines,&newinstr);
+	  (*index2)++;
 	}
-      (*index)--;
+      (*index2)--;
       /* Make list of instructions */
       nbinstr = Top - TopSave;
       C2F(mklist)(&nbinstr);
@@ -713,24 +715,24 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
       name=NULL;
     }
     /* TRYCATCH */
-  else if(data[*index]==11)
+  else if(data[*index2]==11)
     {  
-      index0 = *index;
+      index20 = *index2;
       
       str2sci(trycatch_tlist,m_trycatch_tlist,n_trycatch_tlist);
       
-      /* index now point to first code to use as an instruction code */
-      *index += 3;
+      /* index2 now point to first code to use as an instruction code */
+      *index2 += 3;
       
-      codelgth = data[index0+1];
-      endindex = *index + codelgth - 1;
+      codelgth = data[index20+1];
+      endindex2 = *index2 + codelgth - 1;
       
       TopSave = Top;
       /* Get try instructions */
-      while(*index<=endindex)
+      while(*index2<=endindex2)
 	{
-	  GetInstruction(data,index,nblines,&newinstr);
-	  (*index)++;
+	  GetInstruction(data,index2,nblines,&newinstr);
+	  (*index2)++;
 	}
 	
       nbinstr = Top - TopSave;
@@ -739,15 +741,15 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
       C2F(mklist)(&nbinstr);
       last_eol_pos = -10; 
       
-      codelgth = data[index0+2];
-      endindex = *index + codelgth - 1;
+      codelgth = data[index20+2];
+      endindex2 = *index2 + codelgth - 1;
       
       TopSave = Top;
       /* Get catch instructions */
-      while(*index<=endindex)
+      while(*index2<=endindex2)
 	{
-	  GetInstruction(data,index,nblines,&newinstr);
-	  (*index)++;
+	  GetInstruction(data,index2,nblines,&newinstr);
+	  (*index2)++;
 	}  
       
       nbinstr = Top - TopSave;
@@ -755,7 +757,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
       /* Create list of catch instructions */
       C2F(mklist)(&nbinstr);
       
-     (*index)--;
+     (*index2)--;
       
       /* Create trycatch tlist */
       C2F(mktlist)(&n_trycatch_tlist);
@@ -763,10 +765,10 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
   /* IF - WHILE - SELECT */
   else
     {
-      index0 = *index;
+      index20 = *index2;
       
       /* if or while of Scilab version < 3 */
-      if( (data[*index]==8 || data[*index]==9) && data[*index+1]>=0 )
+      if( (data[*index2]==8 || data[*index2]==9) && data[*index2+1]>=0 )
 	{
 	  /* This part will not be written */
 	  /* No more used */
@@ -775,38 +777,38 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 	}
       else
 	{
-	  ncase = data[index0+2]; /* Number of elseif + number of else = number of elseif + 1 */
+	  ncase = data[index20+2]; /* Number of elseif + number of else = number of elseif + 1 */
 	  
 	  /* Write first tlist item (tlist fields) */
-	  if(data[index0]==8)
+	  if(data[index20]==8)
 	    {
 	       str2sci(if_tlist,m_if_tlist,n_if_tlist);
 	    }
-	  else if(data[index0]==9)
+	  else if(data[index20]==9)
 	    {
 	      str2sci(while_tlist,m_while_tlist,n_while_tlist);
 	    }
-	  else if(data[index0]==10)
+	  else if(data[index20]==10)
 	    {
 	      str2sci(select_tlist,m_select_tlist,n_select_tlist);
 	    }
 	  
-	  /* index now point to first code to use as an instruction code */
-	  *index += 4;
+	  /* index2 now point to first code to use as an instruction code */
+	  *index2 += 4;
 	  
-	  codelgth = data[index0+3];
-	  endindex = *index + codelgth - 1;
+	  codelgth = data[index20+3];
+	  endindex2 = *index2 + codelgth - 1;
 	  
 	  icase = ncase + 1;
 	  
 	  /* If control instruction is a select, I get expression */
-	  if(data[index0]==10)
+	  if(data[index20]==10)
 	    {
 	      TopSave = Top;
-	      while(*index<=endindex)
+	      while(*index2<=endindex2)
 		{
-		  GetInstruction(data,index,nblines,&newinstr);
-		  (*index)++;
+		  GetInstruction(data,index2,nblines,&newinstr);
+		  (*index2)++;
 		}
 	      /* Create a list for expression because can be expression+EOL */
 	      nbinstr = Top - TopSave;
@@ -824,61 +826,61 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 	      icase = icase - 1;
 	      
 	      /* For a select: on first pass save position on stack to get the number of cases */
-	      if(icase==ncase && data[index0]==10)
+	      if(icase==ncase && data[index20]==10)
       		TopSave_elseifsorcases = Top; /* Saved to know how many cases have been written */
 	      
-	      if(icase<ncase && data[index0]==8) /* For a if (if loop already executed one time): found a elseif */
+	      if(icase<ncase && data[index20]==8) /* For a if (if loop already executed one time): found a elseif */
 		{
 		  /* Write tlist items */
 		  str2sci(elseif_tlist,m_elseif_tlist,n_elseif_tlist);
 		}
 	      
-	      if(data[index0]==10) /* For a select: found a case */
+	      if(data[index20]==10) /* For a select: found a case */
 		{
 		  /* Write tlist items */
 		  str2sci(case_tlist,m_case_tlist,n_case_tlist);
 		}
 	      
-	      codelgth = data[*index];
-	      (*index)++;
-	      endindex = *index + codelgth - 1;
+	      codelgth = data[*index2];
+	      (*index2)++;
+	      endindex2 = *index2 + codelgth - 1;
 	      
 	      /* Get expression */
-	      while(*index<=endindex)
+	      while(*index2<=endindex2)
 		{
-		  GetInstruction(data,index,nblines,&newinstr);
-		  (*index)++;
+		  GetInstruction(data,index2,nblines,&newinstr);
+		  (*index2)++;
 		}
 	      last_eol_pos = -10;
-	      codelgth = data[*index];
-	      (*index)++;
-	      endindex = *index + codelgth - 1;
+	      codelgth = data[*index2];
+	      (*index2)++;
+	      endindex2 = *index2 + codelgth - 1;
 	      
 	      /* Get then instructions */
 	      TopSave = Top; /* Position on stack saved to get the number of instructions */
-	      while(*index<=endindex)
+	      while(*index2<=endindex2)
 		{
-		  GetInstruction(data,index,nblines,&newinstr);
-		  (*index)++;
+		  GetInstruction(data,index2,nblines,&newinstr);
+		  (*index2)++;
 		}
 	      nbinstr = Top - TopSave;
 	      /* Create list of then instructions */
 	      C2F(mklist)(&nbinstr);
 	      
-	      if(icase<ncase && data[index0]==8) /* IF: create elseif tlist */
+	      if(icase<ncase && data[index20]==8) /* IF: create elseif tlist */
 		{
 		  /* Create elseif tlist */
 		  C2F(mktlist)(&n_elseif_tlist);
 		}
 	      
-	      if(data[index0]==10) /* SELECT: create case tlist */
+	      if(data[index20]==10) /* SELECT: create case tlist */
 		{
 		  /* Create case tlist */
 		  C2F(mktlist)(&n_case_tlist);
 		}
 	      
 	      /* IF: after first pass, save position on stack to get the number of elseifs */
-	      if(icase==ncase && data[index0]==8)
+	      if(icase==ncase && data[index20]==8)
 		TopSave_elseifsorcases = Top; /* Saved to know how many elseifs have been written */
 	    }
 	  
@@ -886,44 +888,44 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 	  
 	  /* IF: create list of elseifs */
 	  /* SELECT: create list of cases */
-	  if(data[index0]==8 || data[index0]==10)
+	  if(data[index20]==8 || data[index20]==10)
 	    C2F(mklist)(&nbelseifsorcases);
 	  
 	  /* else (if there is one) (not used for WHILE) */
-	  (*index)++;
-	  codelgth = data[*index];
-	  (*index)++;
+	  (*index2)++;
+	  codelgth = data[*index2];
+	  (*index2)++;
 	  
 	  if(codelgth==0) /* When no else in IF or SELECT and when a WHILE */
-	    (*index)++;
+	    (*index2)++;
 	  
-	  endindex = *index + codelgth - 1;
+	  endindex2 = *index2 + codelgth - 1;
 	  
 	  /* Get else instructions */
 	  TopSave = Top;
-	  while(*index<=endindex)
+	  while(*index2<=endindex2)
 	    {
-	      GetInstruction(data,index,nblines,&newinstr);
-	      (*index)++;
+	      GetInstruction(data,index2,nblines,&newinstr);
+	      (*index2)++;
 	    }
 	  nbinstr = Top - TopSave;
 	  /* Create list of else instructions */
-	  if(data[index0]==8 || data[index0]==10)
+	  if(data[index20]==8 || data[index20]==10)
 	    C2F(mklist)(&nbinstr);
 	  
-	  (*index)--; /* Index is decremented because is incremented when going back to intmacr2tree() */
+	  (*index2)--; /* Index2 is decremented because is incremented when going back to intmacr2tree() */
 	  
-	  if(data[index0]==8)
+	  if(data[index20]==8)
 	    {
 	      /* Create if tlist */
 	      C2F(mktlist)(&n_if_tlist);
 	    }
-	  else if(data[index0]==9)
+	  else if(data[index20]==9)
 	    {
 	      /* Create while tlist */
 	      C2F(mktlist)(&n_while_tlist);
 	    }
-	  else if(data[index0]==10)
+	  else if(data[index20]==10)
 	    {
 	      /* Create select tlist */
 	      C2F(mktlist)(&n_select_tlist);
@@ -936,7 +938,7 @@ static int GetControlInstruction(int *data,int *index,int *nblines)
 /****************************************************************
  Function name: CreateCsteTList
 ****************************************************************/
-static int CreateCsteTList(char *type,int *data,int *index)
+static int CreateCsteTList(char *type,int *data,int *index2)
 {
   char *cste_tlist[] = {"cste","value"};
   int m_cste_tlist = 1;
@@ -961,7 +963,7 @@ static int CreateCsteTList(char *type,int *data,int *index)
   /* Used when type=="number" */
   double *value;
   int *ivalue;
-  int i = 0; /* Loop index */
+  int i = 0; /* Loop index2 */
 
   /* First item of returned list */
   str2sci(cste_tlist,m_cste_tlist,n_cste_tlist);
@@ -973,8 +975,8 @@ static int CreateCsteTList(char *type,int *data,int *index)
     }
   else if(!strncmp(type,"string",6))
     {
-      (*index)++;
-      strlgth = data[*index];
+      (*index2)++;
+      strlgth = data[*index2];
       
       /* Memory allocation */
       if((str=CALLOC(1,sizeof(char)))==NULL)
@@ -995,8 +997,8 @@ static int CreateCsteTList(char *type,int *data,int *index)
       /* Fill int_str */
       for(i=0;i<strlgth;i++)
 	{
-	  *index=*index + 1;
-	  int_str[i]=data[*index];
+	  *index2=*index2 + 1;
+	  int_str[i]=data[*index2];
 	}
       CvStr(&strlgth,int_str,str[0],&job1,strlgth);
       (str[0])[strlgth]='\0';
@@ -1027,9 +1029,9 @@ static int CreateCsteTList(char *type,int *data,int *index)
 	}
 
       /* Read name */
-      CvNameL(&data[*index+1],str[0],&job1,&strlgth);
+      CvNameL(&data[*index2+1],str[0],&job1,&strlgth);
       (str[0])[strlgth]='\0';
-      *index += nsiz;
+      *index2 += nsiz;
 
       /* Write on stack */
       str2sci(str,one,one);
@@ -1057,17 +1059,17 @@ static int CreateCsteTList(char *type,int *data,int *index)
       /* Read values in data */
       if(littlendian==1)
 	{
-	  *index = *index +1;
-	  *ivalue = data[*index];
-	  *index = *index +1;
-	  *(ivalue+1) = data[*index];
+	  *index2 = *index2 +1;
+	  *ivalue = data[*index2];
+	  *index2 = *index2 +1;
+	  *(ivalue+1) = data[*index2];
 	}
       else
 	{
-	  *index = *index + 1;
-	  *(ivalue+1) = data[*index];
-	  *index = *index + 1;
-	  *ivalue = data[*index];
+	  *index2 = *index2 + 1;
+	  *(ivalue+1) = data[*index2];
+	  *index2 = *index2 + 1;
+	  *ivalue = data[*index2];
 	}
 
       C2F(dtosci)(value,&one,&one);
@@ -1091,7 +1093,7 @@ static int CreateCsteTList(char *type,int *data,int *index)
 /****************************************************************
  Function name: CreateOperationTList
 ****************************************************************/
-static int CreateOperationTList(int *data,int *index)
+static int CreateOperationTList(int *data,int *index2)
 {
   char *op_tlist[] = {"operation","operands","operator"};
   int m_op_tlist = 1;
@@ -1110,9 +1112,9 @@ static int CreateOperationTList(int *data,int *index)
 			 49,100,202,151,62,50,59,60,109,110,119,
 			 44,1,2,3,53,4,57,58,61,113,104};
 
-  int operator_num,operator_index=-1,nb_operands,nb_lhs;
+  int operator_num,operator_index2=-1,nb_operands,nb_lhs;
 
-  int k; /* Loop index */
+  int k; /* Loop index2 */
 
   int orig,dest; /* Used when copy objects */
 
@@ -1134,26 +1136,26 @@ static int CreateOperationTList(int *data,int *index)
   (operator[0])[max_op_lgth] = '\0';
 
   /* Read useful data */
-  (*index)++; /* Pass index corresponding to 5 */
-  operator_num = data[*index];
-  (*index)++;
-  nb_operands = data[*index]; /* One or two */
-  (*index)++;
-  nb_lhs = data[*index]; /* Always one */
+  (*index2)++; /* Pass index2 corresponding to 5 */
+  operator_num = data[*index2];
+  (*index2)++;
+  nb_operands = data[*index2]; /* One or two */
+  (*index2)++;
+  nb_lhs = data[*index2]; /* Always one */
 
   /* Write tlist items names */
   str2sci(op_tlist,m_op_tlist,n_op_tlist);
 
-  /* Search operator index */
+  /* Search operator index2 */
   for(k=0;k<32;k++)
     {
     if(operators_num[k]==operator_num)                
 	{
-	  operator_index=k;
+	  operator_index2=k;
 	  break;
 	}
     }
-  if(operator_index<0) {
+  if(operator_index2<0) {
     Scierror(999,"CreateOperationTList: unknown operator %d\r\n",operator_num);
     return 0;
   }
@@ -1162,10 +1164,10 @@ static int CreateOperationTList(int *data,int *index)
   /* Special case for column concatenation followed by a EOL */
   /*  Example: a=[1,2;
                   3,4] */
-  if( (operator_index==26) && (last_eol_pos==Top-2) )
+  if( (operator_index2==26) && (last_eol_pos==Top-2) )
     {
       /* Change operator */
-      operator_index = 32;
+      operator_index2 = 32;
       
       /* First operand is placed before EOL */
       orig = last_eol_pos - 1;
@@ -1178,7 +1180,7 @@ static int CreateOperationTList(int *data,int *index)
       VCopyObj("CreateOperationTList",&orig,&dest,20L);
       offset = 1;
     }
-  else if(operator_index==24) /* For extraction: variable is moved to be the first operand */
+  else if(operator_index2==24) /* For extraction: variable is moved to be the first operand */
     {
       /* Move variable */
       orig = Top - 1;
@@ -1208,8 +1210,8 @@ static int CreateOperationTList(int *data,int *index)
   C2F(mklist)(&nb_operands);
   
   /* Add operator to stack */
-  strcpy(operator[0],operators[operator_index]);
-  (operator[0])[strlen(operators[operator_index])]='\0';
+  strcpy(operator[0],operators[operator_index2]);
+  (operator[0])[strlen(operators[operator_index2])]='\0';
   str2sci(operator,one,one);
 
   /* Create operation tlist */
@@ -1226,14 +1228,14 @@ static int CreateOperationTList(int *data,int *index)
 /****************************************************************
  Function name: CreateFuncallTList
 ****************************************************************/
-static int CreateFuncallTList(char *fromwhat,int *data,int *index)
+static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 {
   char *fun_tlist[] = {"funcall","rhs","name","lhsnb"};
   int m_fun_tlist = 1;
   int n_fun_tlist = 4;
 
   /* Used when fromwhat=="funptr" */
-  int interf_num,interf_index,funptr;
+  int interf_num,interf_index2,funptr;
   int job1 = 1,job2 = 2;
   int id[nsiz];
 
@@ -1267,15 +1269,15 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index)
 
   if(!strncmp(fromwhat,"funptr",6))
     {
-      interf_num = data[*index];
-      (*index)++;
-      nbrhs = data[*index];
-      (*index)++;
-      nblhs = data[*index];
-      (*index)++;
-      interf_index = data[*index];
+      interf_num = data[*index2];
+      (*index2)++;
+      nbrhs = data[*index2];
+      (*index2)++;
+      nblhs = data[*index2];
+      (*index2)++;
+      interf_index2 = data[*index2];
 
-      funptr = interf_num + interf_index;
+      funptr = interf_num + interf_index2;
 
       C2F(funtab)(id,&funptr,&job2);
 
@@ -1284,37 +1286,37 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index)
     }
   else if(!strncmp(fromwhat,"datacode",8))
     {
-      if(data[*index]==12)
+      if(data[*index2]==12)
 	{
 	  strncpy(funname[0],"pause",5);
 	  funnamelgth = 5;
 	}
-      else if(data[*index]==13)
+      else if(data[*index2]==13)
 	{
 	  strncpy(funname[0],"break",5);
 	  funnamelgth = 5;
 	}
-      else if(data[*index]==14)
+      else if(data[*index2]==14)
 	{
 	  strncpy(funname[0],"abort",5);
 	  funnamelgth = 5;
 	}
-      else if(data[*index]==17)
+      else if(data[*index2]==17)
 	{
 	  strncpy(funname[0],"quit",4);
 	  funnamelgth = 4;
 	}
-      else if(data[*index]==20)
+      else if(data[*index2]==20)
 	{
 	  strncpy(funname[0],"exit",4);
 	  funnamelgth = 4;
 	}
-      else if(data[*index]==28)
+      else if(data[*index2]==28)
 	{
 	  strncpy(funname[0],"continue",8);
 	  funnamelgth = 8;
 	}
-      else if(data[*index]==99)
+      else if(data[*index2]==99)
 	{
 	  strncpy(funname[0],"return",6);
 	  funnamelgth = 6;
@@ -1322,13 +1324,13 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index)
     }
   else if(!strncmp(fromwhat,"macro",5))
     {
-      CvNameL(&data[*index-nsiz+1],funname[0],&job1,&funnamelgth);
+      CvNameL(&data[*index2-nsiz+1],funname[0],&job1,&funnamelgth);
       (funname[0])[funnamelgth]='\0';
 
-      (*index)++;
-      nbrhs = data[*index];
-      (*index)++;
-      nblhs = data[*index];
+      (*index2)++;
+      nbrhs = data[*index2];
+      (*index2)++;
+      nblhs = data[*index2];
     }
   else /* Should never happen */
     {
@@ -1387,7 +1389,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index)
 /****************************************************************
  Function name: CreateEqualTList
 ****************************************************************/
-static int CreateEqualTList(char *fromwhat,int *data,int *index)
+static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 {
   char *eq_tlist[] = {"equal","expression","lhs","endsymbol"};
   int m_eq_tlist = 1;
@@ -1395,7 +1397,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
 
   int nblhs = 0,nbrhs = 0;
 
-  int k = 0,l = 0; /* Loop indexes */
+  int k = 0,l = 0; /* Loop index2es */
 
   int job1 = 1;
 
@@ -1405,8 +1407,8 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
   int namelgth = 0;
 
   /* Used for lhs which are insertion operations */
-  int indexes_pos;
-  int nb_indexes = 0;
+  int index2es_pos;
+  int nb_index2es = 0;
   char *op_tlist[] = {"operation","operands","operator"};
   int m_op_tlist = 1;
   int n_op_tlist = 3;
@@ -1454,15 +1456,15 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       dest = Top + 1;
       VCopyObj("CreateEqualTList",&orig,&dest,16L);
 
-      indexes_pos = Top - 3;
+      index2es_pos = Top - 3;
       
       /* Create list of lhs */
-      (*index)++; /* Code 29 is passed */
-      nblhs = data[*index];
-      (*index)++;
+      (*index2)++; /* Code 29 is passed */
+      nblhs = data[*index2];
+      (*index2)++;
       
       /* Symbol which ends the line: ; , or nothing */
-      symbol=data[*index];
+      symbol=data[*index2];
       if(symbol==43) /* ; */
 	{
 	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
@@ -1509,12 +1511,12 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
 	}
       for(k=0;k<nblhs;k++)
 	{
-	  (*index)++;
-	  CvNameL(&data[*index],name[0],&job1,&namelgth);
+	  (*index2)++;
+	  CvNameL(&data[*index2],name[0],&job1,&namelgth);
 	  (name[0])[namelgth] = '\0';
-	  *index = *index + nsiz;
-	  nbrhs = data[*index];
- 	  nb_indexes = nbrhs + nb_indexes;
+	  *index2 = *index2 + nsiz;
+	  nbrhs = data[*index2];
+ 	  nb_index2es = nbrhs + nb_index2es;
 
 	  if(nbrhs==0) /* Variable affectation */
 	    {
@@ -1528,14 +1530,14 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
 	      /* Name of variable where data will be inserted */
 	      CreateVariableTList(name);
 	      
-	      /* Indexes for insertion */
+	      /* Index2es for insertion */
 	      for(l=0;l<nbrhs;l++)
 		{
-		  orig = indexes_pos - nbrhs + l + 1;
+		  orig = index2es_pos - nbrhs + l + 1;
 		  dest = Top + 1;
 		  VCopyObj("CreateEqualTList",&orig,&dest,16L);
 		}
-	      indexes_pos = indexes_pos - nbrhs;
+	      index2es_pos = index2es_pos - nbrhs;
 	      
 	      /* Create list of operands */
 	      nbrhs = nbrhs + 1;
@@ -1572,7 +1574,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
  
       /* Copy tlist to first free place */
       orig = Top;
-      dest = Top - nb_indexes - 1;
+      dest = Top - nb_index2es - 1;
       VCopyObj("CreateEqualTList",&orig,&dest,16L);
     }
   else if(!strncmp(fromwhat,"code18",6)) /* A code 18 was found in data */
@@ -1582,13 +1584,13 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       dest = Top + 1;
       VCopyObj("CreateEqualTList",&orig,&dest,16L);
 
-      (*index)++;
+      (*index2)++;
       nblhs++;
-      CvNameL(&data[*index],name[0],&job1,&namelgth);
+      CvNameL(&data[*index2],name[0],&job1,&namelgth);
       (name[0])[namelgth]='\0';
       CreateVariableTList(name);
-      *index = *index + nsiz;
-      *index = *index - 1;
+      *index2 = *index2 + nsiz;
+      *index2 = *index2 - 1;
       
       /* Create list of lhs */
       C2F(mklist)(&nblhs);
@@ -1622,16 +1624,16 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
       dest = Top + 1;
       VCopyObj("CreateEqualTList",&orig,&dest,16L);
 
-      while(data[*index]==1)
+      while(data[*index2]==1)
 	{
-	  (*index)++;
+	  (*index2)++;
 	  nblhs++;
-	  CvNameL(&data[*index],name[0],&job1,&namelgth);
+	  CvNameL(&data[*index2],name[0],&job1,&namelgth);
 	  (name[0])[namelgth]='\0';
 	  CreateVariableTList(name);
-	  *index = *index + nsiz;
-	  (*index)++; /* Code 22 (print mode) is ignored */
-	  (*index)++; /* Code 99 is ignored */
+	  *index2 = *index2 + nsiz;
+	  (*index2)++; /* Code 22 (print mode) is ignored */
+	  (*index2)++; /* Code 99 is ignored */
 	}
       /* Create list of lhs */
       C2F(mklist)(&nblhs);
@@ -1716,7 +1718,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
 /****************************************************************
  Function name: CreateCommentTList
 ****************************************************************/
-static int CreateCommentTList(int *data,int *index)
+static int CreateCommentTList(int *data,int *index2)
 {
   char *fun_tlist[] = {"comment","text"};
   int m_fun_tlist = 1;
@@ -1733,19 +1735,19 @@ static int CreateCommentTList(int *data,int *index)
   str2sci(fun_tlist,m_fun_tlist,n_fun_tlist);
 
   /* Create data to write in field 'text' */
-  (*index)++;
-  strlgth = data[*index];
-  (*index)++;   
+  (*index2)++;
+  strlgth = data[*index2];
+  (*index2)++;   
   /* Memory allocation */
   if((text=(char *)CALLOC(1,sizeof(char)*(strlgth+1)))==NULL)
     {
       Scierror(999,"CreateCsteTList: No more memory available\r\n");
       return 0;
     }
-  CvStr(&strlgth,&(data[*index]),text,&job1,strlgth);
+  CvStr(&strlgth,&(data[*index2]),text,&job1,strlgth);
   text[strlgth]='\0';
   str2sci(&text,one,one);
-  *index = *index + strlgth-1;
+  *index2 = *index2 + strlgth-1;
   /* Free memory */
   FREE(text);
   text=NULL;
@@ -1755,17 +1757,17 @@ static int CreateCommentTList(int *data,int *index)
 }
 
 /****************************************************************
- Function name: CreateRecursiveIndexList
+ Function name: CreateRecursiveIndex2List
 ****************************************************************/
-static int CreateRecursiveIndexList(int *data,int *index)
+static int CreateRecursiveIndex2List(int *data,int *index2)
 {
   int m,n;
 
   /* Get infos in data */
-  (*index)++;
-  n = data[*index];
-  (*index)++;
-  m = data[*index];
+  (*index2)++;
+  n = data[*index2];
+  (*index2)++;
+  m = data[*index2];
 
   if(m>1)
     {
@@ -1797,17 +1799,17 @@ static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length)
 /****************************************************************
  Function name: complexity
 ****************************************************************/
-int complexity(int *data,int *index,int *lgth)
+int complexity(int *data,int *index2,int *lgth)
 {
   int count = 0;
   
-  int cur_ind = *index+1;
+  int cur_ind = *index2+1;
 
   int last_eol;
 
   int nbop = 0; /* Number of value stored on stack */
 
-  while(cur_ind<=*lgth+*index)
+  while(cur_ind<=*lgth+*index2)
     {
       switch(data[cur_ind])
 	{
@@ -1909,7 +1911,7 @@ int complexity(int *data,int *index,int *lgth)
 	case 18: /* Mark named variable */
 	  cur_ind = cur_ind + 1 + nsiz;
 	  break;
-	case 19: /* Form recursive index list */
+	case 19: /* Form recursive index2 list */
 	  nbop = nbop - data[cur_ind+1] + 1;
 	  cur_ind = cur_ind + 3;
 	  break;

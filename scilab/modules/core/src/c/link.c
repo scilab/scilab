@@ -28,6 +28,10 @@
 static void Underscores __PARAMS((int isfor,char *ename,char *ename1));
 static int SearchFandS  __PARAMS( ( char *,int ));
 int LinkStatus __PARAMS((void)) ;
+int C2F(scilinknorhs)(void);
+void C2F(iislink)(char *buf, integer *irep);
+void ulinkall(void);
+void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrdesc, int *nv, char *strf, int *ilib, int *iflag, int *rhs);
 /*********************************************
  * Structure to keep the entry points 
  *********************************************/

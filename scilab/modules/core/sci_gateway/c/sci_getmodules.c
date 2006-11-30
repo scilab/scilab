@@ -11,7 +11,6 @@
 int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
 {
 	struct MODULESLIST *Modules=NULL;
-	int i=0;
 
 	int ncol=0;	
 	int nrow=0;

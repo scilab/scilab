@@ -1,6 +1,8 @@
 #include <string.h>
 #include "MALLOC.h"
 #include "stack-c.h"
+#include "msgstore.h"
+
 /*-----------------------------------------------------------------------------------*/ 
 #define MEM_LACK 3
 #define MAX_LINES 2
@@ -56,9 +58,7 @@ void C2F(freemsgtable)()
   err_n = 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(lasterror)(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+int C2F(lasterror)(char *fname, unsigned long fname_len)
 {
   int k, one=1, l1, zero=0, m1, n1, clear, four=4,lr;
   int sz[MAX_MSG_LINES];

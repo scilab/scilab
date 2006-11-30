@@ -29,6 +29,7 @@ extern void reset_history(void);
   #define STRICT
 #endif
 
+#include "inffic.h" /* get_sci_data_strings */
 
 extern void write_scilab  __PARAMS((char *s));
 /*-----------------------------------------------------------------------------------*/
@@ -68,7 +69,7 @@ int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historiqu
 /*-----------------------------------------------------------------------------------*/
 void GetCommentDateSession(char *line,int BeginSession);
 int GetSaveHistoryAfterNcommands(void);
-extern char *get_sci_data_strings(int n);
+
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 #ifndef  WITH_READLINE
 int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);

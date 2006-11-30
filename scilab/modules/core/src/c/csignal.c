@@ -1,7 +1,8 @@
 /* Copyright INRIA/ENPC */
 
-#include "machine.h"
 #include <signal.h>
+#include "machine.h"
+#include "banier.h"
 
 extern int   C2F(sigbas)(); /*  __PARAMS((integer *));*/
 

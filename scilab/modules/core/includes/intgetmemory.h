@@ -13,7 +13,9 @@
 #include "stack-c.h"
 
 
-int getfreememory();
-int getmemorysize();
+int getfreememory(void);
+int getmemorysize(void);
+int C2F(intgetmemory) _PARAMS((char *fname));
+
 #endif /*__INTGETMEMORY__*/
 /*-----------------------------------------------------------------------------------*/ 

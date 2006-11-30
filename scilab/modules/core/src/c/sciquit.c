@@ -16,19 +16,17 @@
 #include "MALLOC.h"
 #include "sciquit.h"
 #include "getmodules.h"
+#include "scimem.h" /* freegmem */
+#include "fromjava.h" /* IsFromJava */
+#include "hashtable_core.h" /* destroy_hashtable_scilab_functions */
+#include "tmpdir.h" /* tmpdirc */
+#include "realmain.h" /* Get_no_startup_flag */
+#include "inffic.h" /* get_sci_data_strings */
 #include "../../../graphics/includes/DestroyObjects.h"
 #include "../../../graphics/includes/graphicModuleClose.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(deletewin)(integer *number);
-extern char *get_sci_data_strings(int n);
-extern int Get_no_startup_flag(void);
 extern int C2F(scirun)(char * startup, int lstartup);
-extern void C2F (tmpdirc) (void);
-extern int IsFromC(void);
-extern int IsFromJava(void);
-extern void C2F(freegmem)(void);
-extern void C2F(freemem)(void);
-extern void destroy_hashtable_scilab_functions();
 
 #ifdef _MSC_VER
 extern LPTW GetTextWinScilab(void);

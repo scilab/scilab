@@ -67,6 +67,9 @@
 
 #include <string.h>
 
+#include "tmpdir.h"
+#include "setgetSCIpath.h"
+
 #ifdef round
 	#undef round
 #endif 
@@ -80,8 +83,6 @@
 extern int Use_cpp_code;
 extern char * Use_c_cpp;
 
-extern char * get_sci_tmp_dir();
-
 static void Sci_Delsym __PARAMS((int ));
 static int Sci_dlopen __PARAMS((char *loaded_files[],int global));
 static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
@@ -89,6 +90,8 @@ static int SetArgv  __PARAMS((char *argv[], char *files[],int first,int max,int 
 static int SetArgv1  __PARAMS((char *argv[], char *files,int first,int max,int *err));
 static int CreateCppShared(char **loaded_files, char *tmp_file);
 static int CreateShared(char **loaded_files, char *tmp_file);
+
+void C2F(isciulink)(integer *i);
 
 int Call_shl_load = 0;
 
