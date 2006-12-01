@@ -18,7 +18,7 @@ int C2F(gw_cscicos)()
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int C2F(haltscicos)(char *name, integer *win, integer *entry,long int name_len)
+int haltscicos(char *name, integer *win, integer *entry,long int name_len)
 {
 	return 0;
 } 
