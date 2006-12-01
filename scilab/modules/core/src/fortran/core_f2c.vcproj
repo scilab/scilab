@@ -817,10 +817,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\strdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\terme.c"
 				>
 			</File>
@@ -845,11 +841,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wmdsp.c"
+				RelativePath="..\..\sci_gateway\fortran\where.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\where.c"
+				RelativePath=".\wmdsp.c"
 				>
 			</File>
 			<File
@@ -991,6 +987,14 @@
 			<File
 				RelativePath=".\dmdsp.f"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="f2c rule"
+						CommandLine="&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\..\core\includes &quot;$(InputDir)$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\dmdspf.f"
@@ -1060,7 +1064,6 @@
 				RelativePath=".\formatnumber.f"
 				>
 			</File>
-
 			<File
 				RelativePath=".\ftob.f"
 				>
@@ -1498,10 +1501,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\strdsp.f"
-				>
-			</File>
-			<File
 				RelativePath=".\terme.f"
 				>
 			</File>
@@ -1526,11 +1525,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dmdsp.f"
+				RelativePath="..\..\sci_gateway\fortran\where.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\where.f"
+				RelativePath=".\wmdsp.f"
 				>
 			</File>
 			<File
