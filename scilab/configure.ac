@@ -70,11 +70,9 @@ AC_ARG_WITH(local-xaw,
 AC_ARG_WITH(tk,
     [  --without-tk            do not compile with TCL/TK ])
 
-AC_ARG_WITH(ocaml,
-    [  --without-ocaml         do not compile ocaml modules ])
-
 AC_ARG_WITH(java,
     [  --without-java          do not compile java modules ])
+
 
 
 ##############################
@@ -566,12 +564,12 @@ if test "x$GUI" = "xX11"; then
 ##test Xmu (Required)
     AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
     if test "$XMu" = no; then
-		AC_MSG_ERROR([Cannot find the library Xmu])	
+		AC_MSG_ERROR([Cannot find the dev library Xmu])	
     else
       XMULIB=-lXmu
       AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
       if test "$XAthena3d" = no; then
-		AC_MSG_ERROR([Cannot find the library Xaw3d (Xathena3d)])	
+		AC_MSG_ERROR([Cannot find the dev library Xaw3d (Xathena3d)])	
       else
 		X_EXTRA_LIBS="$X_EXTRA_LIBS -lXaw3d -lXmu"
         XAW=Xaw3d
@@ -631,10 +629,10 @@ if test "$with_java" != no; then
 	AC_SUBST(JAVA_JNI_INCLUDE)
 	AC_SUBST(JAVA_JNI_LIBS)
 	AC_SUBST(JAVA_HOME)
-
+	AM_CONDITIONAL(JAVA, test "$JAVA_OK" = "1")	
 fi
 
-AM_CONDITIONAL(JAVA, test "$JAVA_OK" = "1")
+
 
 ##############################################################
 ## test for functions in standard C library and C math library
@@ -734,6 +732,20 @@ else
  AC_MSG_WARN([No termcap library detected])
  TERMCAPLIB=
 fi
+
+
+
+#################
+## SCICOS
+#################
+
+AC_ARG_WITH(ocaml,
+    [  --without-ocaml         do not compile ocaml modules ])
+
+AC_ARG_WITH(scicos,
+    [  --without-scicos        do not compile scicos ])
+
+AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
 
 #################
 ## PVM
