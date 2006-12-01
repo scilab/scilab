@@ -401,7 +401,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   #perform tk tests if tcl test passed
   if test $TCL_LIB_OK = 0; then 
 	if test $TCL_INCLUDE_OK = 0; then 
-        	AC_MSG_ERROR([no header file tcl.h found for 8.4*])
+        	AC_MSG_ERROR([no header file tcl.h found for 8.4*. Please install the dev library of tcl.4])
         else
 		AC_MSG_ERROR([header file tcl.h has been found for 8.4*  but no corresponding tcl library (ie libtcl8.4.so)])
         fi	
@@ -429,7 +429,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 
   if test $TK_LIB_OK = 0; then 
 	if test $TK_INCLUDE_OK = 0; then 
-        	AC_MSG_ERROR([no header file tk.h found for 8.4*])	
+        	AC_MSG_ERROR([no header file tk.h found for 8.4*. Please install the dev library of tk 8.4])	
         else
 		AC_MSG_ERROR([header file tk.h has been found for 8.4* but no corresponding tk library (libtk8.4.so)])
         fi
