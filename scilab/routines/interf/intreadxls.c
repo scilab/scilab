@@ -132,19 +132,31 @@ int C2F(intopenxls)(char *fname, long lfn)
   
   strcat(TMP,sep);
   strcat(TMP,xls_basename(IN));
-  result=ripole(IN, TMP, 0, 0);
-  if (result != OLE_OK) {
+  if (C2F(iop).ddt==-10) 
+    result=ripole(IN, TMP, 1, 1);
+  else
+    result=ripole(IN, TMP, 0, 0);
+   if (result != OLE_OK) {
     if (result == OLEER_NO_INPUT_FILE)
-      Scierror(999,"%s :There is no  file %s \r\n",fname,IN);
-    else if(result == OLEER_NOT_OLE_FILE || 
-	    result == OLEER_INSANE_OLE_FILE || 
-	    result == OLEER_LOADFAT_BAD_BOUNDARY || 
-	    result == OLEER_MINIFAT_READ_FAIL || 
-	    result == OLEER_PROPERTIES_READ_FAIL)
-      Scierror(999,"%s :file %s is not an ole2 file\r\n",fname,IN);
+      Scierror(999,"%s :There is no  file %s \r\n","xls_open",IN);
     else if(result == -1)
-      Scierror(999,"%s :file %s  cannot be opened\r\n",fname,IN);
-
+      Scierror(999,"%s :file %s  cannot be opened\r\n","xls_open",IN);
+    else if(result == OLEER_NOT_OLE_FILE)
+      Scierror(999,"%s :file %s is not an ole2 file\r\n","xls_open",IN);
+    else if(result == OLEER_INSANE_OLE_FILE)
+      Scierror(999,"%s :file %s is  an insane ole2 file\r\n","xls_open",IN);
+    else if(result == OLEER_MINIFAT_READ_FAIL)
+      Scierror(999,"%s :file %s error when reading minifat\r\n","xls_open",IN);
+    else if(result == OLEER_PROPERTIES_READ_FAIL)
+      Scierror(999,"%s :file %s error when reading ole properties\r\n","xls_open",IN);
+    else if(result == OLEER_MEMORY_OVERFLOW)
+      Scierror(999,"%s :file %s memory overflow when analysing ole stream\r\n","xls_open",IN);
+    else if(result == OLEER_MINISTREAM_READ_FAIL)
+      Scierror(999,"%s :file %s error when reading ole ministream\r\n","xls_open",IN);
+    else if(result == OLEER_NORMALSTREAM_STREAM_READ_FAIL)
+      Scierror(999,"%s :file %s error when reading ole stream\r\n","xls_open",IN);
+    else
+      Scierror(999,"%s :file %s  ripole converter problem=%d\r\n","xls_open",IN,result);
     return 0;
   }
   strcat(TMP,sep);
@@ -152,7 +164,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   C2F(mopen)(&fd, TMP,"rb", &f_swap, &res, &ierr);
   if (ierr != 0)
     {
-      Scierror(999,"%s :There is no xls stream in the ole2 file %s \r\n",fname,IN);
+      Scierror(999,"%s :There is no xls stream in the ole2 file %s \r\n","xls_open",IN);
       return 0;
     }
   CreateVar(Rhs+1,"i",&one,&one,&l2);
@@ -169,27 +181,27 @@ int C2F(intopenxls)(char *fname, long lfn)
    */
   if (ierr == 1)
     {
-      Scierror(999,"%s :Not an ole2 file \r\n",fname);
+      Scierror(999,"%s :Not an ole2 file \r\n","xls_open");
       return 0;
     }
   else  if (ierr == 2)
     {
-      Scierror(999,"%s : the file has no Workbook directory \r\n",fname);
+      Scierror(999,"%s : the file has no Workbook directory \r\n","xls_open");
       return 0;
     }
  else  if (ierr == 3)
     {
-      Scierror(999,"%s : impossible to alloc enough memory \r\n",fname);
+      Scierror(999,"%s : impossible to alloc enough memory \r\n","xls_open");
       return 0;
     }
   else  if (ierr == 4)
     {
-      Scierror(990,"%s : incorrect or corrupted file \r\n",fname);
+      Scierror(990,"%s : incorrect or corrupted file \r\n","xls_open");
       return 0;
     }
-  else  if (ierr == 3)
+  else  if ((ierr == 3)||(ierr == 5))
     {
-      Scierror(999,"%s : Only BIFF8 file format is handled \r\n",fname);
+      Scierror(999,"%s : Only BIFF8 file format is handled \r\n","xls_open");
       return 0;
     }
 
