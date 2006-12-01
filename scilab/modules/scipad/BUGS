@@ -178,7 +178,7 @@ Debugger wishes:
  Not worth the effort and complication I think.
 
 -add a debugger command: "Show next instruction", with a little yellow arrow
- in the margin
+ in the margin (see also request 138)
 
 -add a control in the watch window to gear in an automatic mode: all the
  local variables are added and displayed when entering a function, and
@@ -208,9 +208,6 @@ Other wishes:
  Note: a first step to this has been implemented. During a debug session, 
  the popup menu is a debug menu.
  
--"auto smart wrap on": lines exceeding a margin could be truncated at
- word boundaries with .. dots and \n
- 
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
 
@@ -219,11 +216,17 @@ Other wishes:
 
 -'Matlab' colorization scheme for .m files
 
+-"auto smart wrap on": lines exceeding a margin could be truncated at
+ word boundaries with .. dots and \n
+ 
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add
  some sort of left grey band in which some more information could be
  put (breakpoint pink dot, yellow arrow to show the next instruction
  to be executed like in Visual C++ or Matlab, or wrapped lines sign).
+ This is request 138, with the general demand for some sort of left band
+ that would also allow for hard line numbers, debugger information and
+ so on.
 
 -Block selection, copy/paste, move with dnd, indent/unindent, comment
  and uncomment. See last snaphot in http://www.winedt.com/ for an
@@ -303,3 +306,8 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  tabs, and reindents according to keywords (if, function, while, for...)
 
 -Request 262: tabbed buffers (see discussion in this request)
+
+-Rationalize the tests on the existence of a selection throughout the code
+ by creating one single proc gettextareasel {textarea} returning an empty
+ string if there is no selection in $textarea, or the selection if there is
+ one. Remove all uses of the X selection, except where appropriate

@@ -898,39 +898,81 @@ proc switchbuffersinpane {w} {
     montretext [lindex $talist $toshow]
 }
 
-proc nextbuffer {} {
+proc nextbuffer {type} {
+# switch to the next buffer
+# $type is either "all" or "visible"
     global pad listoftextarea listoffile
     global FirstBufferNameInWindowsMenu
+    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu]
     set ta [gettextareacur]
     set curbuf [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+    set initialcurbuf $curbuf
     incr curbuf
-    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu]
     if {$curbuf >= $nbuf} {
         set curbuf $FirstBufferNameInWindowsMenu
     }
-    $pad.filemenu.wind invoke $curbuf
-    # keypress must replace the selection if buffers are switched
-    set existsSel [[gettextareacur] tag nextrange sel 1.0]
-    if {$existsSel != {}} {
-        [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
+    set found false
+    while {!$found && $curbuf!=$initialcurbuf} {
+        if {$type == "visible"} {
+            set candidatetaid [$pad.filemenu.wind entrycget $curbuf -value]
+            if {[isdisplayed $pad.new$candidatetaid]} {
+                set found true
+            } else {
+                incr curbuf
+                if {$curbuf >= $nbuf} {
+                    set curbuf $FirstBufferNameInWindowsMenu
+                }
+            }
+        } else {
+            set found true
+        }
+    }
+    if {$found} {
+        $pad.filemenu.wind invoke $curbuf
+        # keypress must replace the selection if buffers are switched
+        set existsSel [[gettextareacur] tag nextrange sel 1.0]
+        if {$existsSel != {}} {
+            [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
+        }
     }
 }
 
-proc prevbuffer {} {
-   global pad listoftextarea listoffile
+proc prevbuffer {type} {
+# switch to the previous buffer
+# $type is either "all" or "visible"
+    global pad listoftextarea listoffile
     global FirstBufferNameInWindowsMenu
+    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu - 1]
     set ta [gettextareacur]
     set curbuf [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+    set initialcurbuf $curbuf
     incr curbuf -1
-    set nbuf [expr [llength $listoftextarea] + $FirstBufferNameInWindowsMenu - 1]
     if {$curbuf < $FirstBufferNameInWindowsMenu} {
         set curbuf $nbuf
     }
-    $pad.filemenu.wind invoke $curbuf
-    # keypress must replace the selection if buffers are switched
-    set existsSel [[gettextareacur] tag nextrange sel 1.0]
-    if {$existsSel != {}} {
-        [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
+    set found false
+    while {!$found && $curbuf!=$initialcurbuf} {
+        if {$type == "visible"} {
+            set candidatetaid [$pad.filemenu.wind entrycget $curbuf -value]
+            if {[isdisplayed $pad.new$candidatetaid]} {
+                set found true
+            } else {
+                incr curbuf -1
+                if {$curbuf < $FirstBufferNameInWindowsMenu} {
+                    set curbuf $nbuf
+                }
+            }
+        } else {
+            set found true
+        }
+    }
+    if {$found} {
+        $pad.filemenu.wind invoke $curbuf
+        # keypress must replace the selection if buffers are switched
+        set existsSel [[gettextareacur] tag nextrange sel 1.0]
+        if {$existsSel != {}} {
+            [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
+        }
     }
 }
 

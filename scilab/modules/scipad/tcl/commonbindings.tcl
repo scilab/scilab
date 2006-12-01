@@ -59,16 +59,8 @@ bind Text <Control-Button-3> {showpopupfont}
 
 bind $pad <Control-B> {showwhichfun}
 
-
-
-
 # remove the default bind ctrl-d=delete char
 bind Text <Control-d> ""
-
-bind $pad <F7> {nextbuffer}
-bind $pad <F6> {prevbuffer}
-bind $pad <Control-F7> {nextbuffer}
-bind $pad <Control-F6> {prevbuffer}
 
 bind $pad <Control-plus>  {set textfontsize [expr round($textfontsize*1.11)]; \
                            set menufontsize [expr round($menufontsize*1.11)]; \

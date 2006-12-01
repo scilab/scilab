@@ -102,10 +102,10 @@ sbind $pad <Control-h><Control-f> {helpword}
 sbind $pad <Control-Alt-backslash> {IndentSel}
 sbind $pad <Control-D> {UnIndentSel}
 
-sbind $pad <F7> {nextbuffer}
-sbind $pad <F6> {prevbuffer}
-sbind $pad <Control-F7> {nextbuffer}
-sbind $pad <Control-F6> {prevbuffer}
+sbind $pad <F7> {nextbuffer all}
+sbind $pad <F6> {prevbuffer all}
+sbind $pad <Control-F7> {nextbuffer visible}
+sbind $pad <Control-F6> {prevbuffer visible}
 
 sbind $pad <F4> {importmatlab}
 

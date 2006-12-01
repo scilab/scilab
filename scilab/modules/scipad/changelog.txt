@@ -2582,3 +2582,10 @@ Francois VOGEL, 27/11/06
    automatically indents back, etc) - just a try for the moment, with a saved
    preference in the option menu
  * version --> 6.64
+
+Francois VOGEL, 01/12/06
+ * Ctrl-F6/Ctrl-F7 now switch visible buffers only. F6/F7 still switch all
+   the buffers. This was discussed in request 349
+ * opensourceof dialog resizes nicer: buttons never disappear, entry field
+   fills all the available space
+ * version --> 6.65

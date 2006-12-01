@@ -283,21 +283,20 @@ proc opensourceof {} {
     toplevel $opensof
     wm title $opensof [mc "Open source of..."]
     setwingeom $opensof
-    wm resizable $opensof 1 1 
 
     frame $opensof.f1
     label $opensof.f1.l1 -text [mc "Open source of:"] -font $menuFont
     entry $opensof.f1.entry \
-        -width 30 -font $textFont -exportselection 0 \
+        -font $textFont -exportselection 0 \
         -validate key -validatecommand "updatecompletions %P %d"
     pack $opensof.f1.l1 $opensof.f1.entry -side left
     pack configure $opensof.f1.entry -expand 1 -fill x -padx 5
-    pack $opensof.f1
+    pack $opensof.f1 -fill x
 
     frame $opensof.f2
     set opensoflb $opensof.f2.lb
     scrollbar $opensof.f2.sb -command "$opensoflb yview"
-    listbox $opensoflb -height 6 -width 15 -font $textFont \
+    listbox $opensoflb -height 4 -width 10 -font $textFont \
         -yscrollcommand "$opensof.f2.sb set" -takefocus 0
     pack $opensoflb $opensof.f2.sb -side left -padx 2
     pack configure $opensoflb -expand 1 -fill both 
@@ -316,6 +315,17 @@ proc opensourceof {} {
             -width $bestwidth -font $menuFont
     pack $opensofbOK $opensof.f3.buttonCancel -side left -padx 10
     pack $opensof.f3 -pady 4 -after $opensof.f2
+
+    # arrange for the buttons to disappear last
+    # when the window size is reduced
+    pack configure $opensof.f2 -after $opensof.f3
+    pack configure $opensof.f2 -side bottom
+    pack configure $opensof.f3 -side bottom
+    pack configure $opensof.f1 -after $opensof.f3
+
+    wm resizable $opensof 1 1 
+    update
+    wm minsize $opensof [winfo width $opensof] [winfo height $opensof]
 
     bind $opensof <Return> {OKopensourceof %W}
     # bind to the listbox only, otherwise quick clicks on the scrollbar
