@@ -1235,7 +1235,7 @@ int OLE_follow_minichain( struct OLE_object *ole, int miniFAT_sector_start )
 		};
 
 		DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: current sector = %d",FL,current_sector);
-	/* Test changed  Serge Steer Scilab *
+		/* Test changed  Serge Steer Scilab */
 	   /*	} while ((break_out==0) &&(current_sector <= ole->last_sector));*/
 	} while ((break_out==0));
 	DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Done.  Chainlength=%d",FL, chain_length);
@@ -1306,7 +1306,7 @@ unsigned char *OLE_load_minichain( struct OLE_object *ole, int miniFAT_sector_st
 			default:
 				break_out=0;
 			};
-			/* Test changed  Serge Steer Scilab *
+			/* Test changed  Serge Steer Scilab */
 	/* } while ((current_sector != OLE_SECTORID_ENDOFCHAIN)&&(current_sector >= 0)&&(current_sector <= ole->last_sector));*/
 
 	} while ((break_out==0));
@@ -1739,9 +1739,9 @@ int OLE_decode_stream( struct OLE_object *ole,  struct OLE_directory_entry *adir
 
 	/* Added for Scilab */
 	if ((stream_data != NULL)&&(decode_result == OLEUW_STREAM_NOT_DECODED)&&
-	    (ole->save_unknown_streams==2)&&(strcmp(element_name,"Workbook")==0))
+	    (ole->save_unknown_streams==2)&&((strcmp(element_name,"Workbook")==0)||(strcmp(element_name,"Book")==0)))
 	  {
-
+	    strcpy(element_name,"Workbook");
 	    OLE_store_stream( ole, element_name, decode_path, stream_data, adir->stream_size );
 
 	  } /* If we needed to save an unknown stream*/
