@@ -1,4 +1,4 @@
-#if WIN32
+#if _MSC_VER
  #include <Windows.h>
 #endif
 #include <stdio.h>
@@ -21,14 +21,10 @@
 #define OLE_SECTORID_ENDOFCHAIN	-2 /** Sector marks the end of the a sector-ID chain **/
 #define OLE_SECTORID_SAT	-3 /** Sector used by sector allocation Table  **/
 #define OLE_SECTORID_MSAT	-4 /** Sector used by master sector allocation Table **/
-#ifdef WIN32
-#include "../os_specific/win_mem_alloc.h" /* MALLOC */
-#else
-#include "../os_specific/sci_mem_alloc.h" /* MALLOC */
-#endif
 
+#include "MALLOC.h" /* MALLOC */
 
-						/* Main header accessors*/
+/* Main header accessors*/
 #define header_id(x)						((x) +0)
 #define header_clid(x)					((x) +0x08)
 #define header_minor_version(x)		((x) +0x18)
