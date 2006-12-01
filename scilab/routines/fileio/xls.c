@@ -196,8 +196,8 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        if (*err > 0) goto ErrL;
 	
        /*Calcul de longueur, hauteur et capacite dela feuille*/
-       hauteur=l_row-f_row;
-       longueur=l_col-f_col;
+       hauteur=l_row;/*-f_row;*/
+       longueur=l_col;/*-f_col;*/
        capacite=hauteur*longueur;
 	
        /*Déclaration des tableaux de synthèse*/
@@ -218,6 +218,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
 	
        C2F(mgetnc) (fd, (void*) &resultat, &one, typ_double, err);
        if (*err > 0) goto ErrL;
+
        valeur[(col*hauteur+row)]=resultat;
 
        C2F(mgetnc) (fd, (void*)&optionflag, &one, typ_short, err);
