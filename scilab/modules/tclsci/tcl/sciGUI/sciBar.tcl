@@ -33,6 +33,8 @@ proc sciGUIBarWait { {winId -1} {title ""} {progress "-1"} } {
 		set locprogress $progress
 		if { $progress== "-1" } { set locprogress $sciGUITable(win,$winId2,data) }
 		set sciGUITable(win,$winId2,data) $locprogress
+		# deleting previous items in the canvas fixes bug 2006
+		$wname.cnv delete withtag all
 		$wname.cnv create line 0 10 300 10 -width 20 -fill LightGray
 		$wname.cnv create line 0 10 [expr 300*$locprogress] 10 -width 20 -fill red
 		$wname.cnv create text 150 10 -text "[expr 100*$locprogress]%" -anchor center -fill blue
@@ -72,6 +74,8 @@ proc sciGUIBarProgression { {winId -1} {title ""} } {
 		pack $wname.r.mes $wname.r.pb -side top -expand 1 -fill both
 	}
 	if { $sciGUITable(win,$winId2,type) == "progression" } {
+		# deleting previous items in the canvas fixes bug 2006
+		$wname.r.pb delete withtag all
 		$wname.r.pb create line 0 9 200 9 -width 10 -fill LightGray
 		set cpos [lindex $sciGUITable(win,$winId2,data) 0]
 		set cdir [lindex $sciGUITable(win,$winId2,data) 1]		
