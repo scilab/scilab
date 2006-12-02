@@ -10,6 +10,7 @@
 		<P>Les fichiers de démarrage <VERB>SCIHOME/.scilab</VERB> et <VERB>SCIHOME/scilab.ini</VERB>
 		sont automatiquement executés (s'ils existent) au démarrage de Scilab, ainsi que le fichier 
 		SCI/scilab.star présent dans le répertoire de Scilab.
+		</P>
 	</DESCRIPTION>
 	
 	<SECTION label="Remark">
