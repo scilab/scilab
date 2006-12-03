@@ -38,6 +38,7 @@ BOOL ON_WND_CONSOLE_WM_SIZE(HWND hwnd,UINT state,int cx,int cy);
 BOOL ON_WND_CONSOLE_WM_GETMINMAXINFO(HWND hwnd, LPMINMAXINFO lpMinMaxInfo);
 BOOL ON_WND_CONSOLE_WM_SETFOCUS(HWND hwnd, HWND hwndOldFocus);
 BOOL ON_WND_CONSOLE_WM_SYSCOMMAND(HWND hwnd, WPARAM wParam, LPARAM lParam);
+BOOL ON_WND_CONSOLE_WM_ENDSESSION(HWND hwnd, WPARAM wParam, LPARAM lParam);
 /*-----------------------------------------------------------------------------------*/
 #if (_MSC_VER >= 1200) && (_MSC_VER < 1300) /* Visual Studio 6 */
 
@@ -62,6 +63,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		case WM_ENTERSIZEMOVE : ON_WND_CONSOLE_WM_ENTERSIZEMOVE();  break;
 		case WM_EXITSIZEMOVE  : ON_WND_CONSOLE_WM_EXITSIZEMOVE();  break;
 		case WM_SYSCOMMAND    : ON_WND_CONSOLE_WM_SYSCOMMAND(hwnd,wParam,lParam); break;
+		case WM_ENDSESSION    : ON_WND_CONSOLE_WM_ENDSESSION(hwnd,wParam,lParam); break;
 
 		HANDLE_MSG(hwnd,WM_COMMAND,ON_WND_CONSOLE_WM_COMMAND);
 		HANDLE_MSG(hwnd,WM_SYSCOLORCHANGE,ON_WND_CONSOLE_WM_SYSCOLORCHANGE);
@@ -281,6 +283,11 @@ BOOL ON_WND_CONSOLE_WM_SYSCOMMAND(HWND hwnd, WPARAM wParam, LPARAM lParam)
 			SendMessage (lptw->hWndText, WM_COMMAND, wParam, lParam);
 		break;
 	}
+	return TRUE;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL ON_WND_CONSOLE_WM_ENDSESSION(HWND hwnd, WPARAM wParam, LPARAM lParam)
+{
 	return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/
