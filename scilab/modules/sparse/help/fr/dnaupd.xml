@@ -114,8 +114,8 @@ few eigenpairs of a real linear operator </SHORT_DESCRIPTION>
     <PARAM_DESCRIPTION>
        <SP>
        : scalar.   Stopping criterion: the relative accuracy of the Ritz value 
-	    is considered acceptable if BOUNDS(I) &le; TOL*ABS(RITZ(I)).
-	    If TOL &le; 0. is passed the machine precision is set.
+	    is considered acceptable if BOUNDS(I) &lt;= TOL*ABS(RITZ(I)).
+	    If TOL &lt;= 0. is passed the machine precision is set.
        </SP>
     </PARAM_DESCRIPTION>
     </PARAM_ITEM>
@@ -213,7 +213,7 @@ few eigenpairs of a real linear operator </SHORT_DESCRIPTION>
           IPARAM(8) = NP
           When ido = 3 and the user provides shifts through reverse
           communication (IPARAM(1)=0), dsaupd  returns NP, the number
-          of shifts the user is to provide. 0  &lt; NP  &le; NCV-NEV. See Remark
+          of shifts the user is to provide. 0  &lt; NP  &lt;= NCV-NEV. See Remark
           5 below.
 	  </P><P>
           IPARAM(9) = NUMOP, IPARAM(10) = NUMOPB, IPARAM(11) = NUMREO,
