@@ -157,7 +157,7 @@ void sci_clear_and_exit(int n) /* used with handlers */
   }
   MessageBox(NULL,Message,MSG_ERROR20,MB_ICONWARNING);
 #else
-  MessageBox(NULL,MSG_WARNING30,MSG_WARNING22,MB_ICONWARNING);
+  /* MessageBox(NULL,MSG_WARNING30,MSG_WARNING22,MB_ICONWARNING); */
 #endif
   WinExit();
   C2F(sciquit)();
