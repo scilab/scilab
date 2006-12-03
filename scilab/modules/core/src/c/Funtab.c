@@ -27,11 +27,7 @@ Funcs SciFuncs[]={
 	{(char*) 0 ,  0,  0  ,   1},
 };
 /*-----------------------------------------------------------------------------------*/
-extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
 extern void sciprint __PARAMS((char *fmt,...));
-/*-----------------------------------------------------------------------------------*/
-static void  Init(void) ;
-static int EnterStr(char *str, int *dataI, int *data, int *level);
 /*-----------------------------------------------------------------------------------*/
 /************************************************************
  *    Hash table for scilab functions 
@@ -59,7 +55,6 @@ static int EnterStr(char *str, int *dataI, int *data, int *level);
 int C2F(funtab)(int *id, int *fptr, int *job)
 {
   int level=0, j=0;
-  Init();
   switch ( *job) 
     {
     case 0 : /* print */ 
@@ -89,35 +84,3 @@ int C2F(funtab)(int *id, int *fptr, int *job)
   return(0);
 }
 /*-----------------------------------------------------------------------------------*/  
-static void  Init(void)
-{
-  static int firstentry = 0;
-  int j=0;
-  if ( firstentry != 0 ) return;
-  if ( create_hashtable_scilab_functions(MAXTAB) == 0 ) 
-  {
-     printf("Fatal Error : Can't create table for scilab functions \n");
-     exit(1);
-  }
-  while ( SciFuncs[j].name != (char *) 0 )
-  {
-    if ( EnterStr(SciFuncs[j].name,&SciFuncs[j].codeI,&SciFuncs[j].code,&SciFuncs[j].level) == FAILED)
-	{
-		printf("Fatal Error : Table for scilab functions is too small \n");
-		exit(1);
-	}
-    j++;
-  }
-  firstentry = 1;
-}
-/*-----------------------------------------------------------------------------------*/
-static int EnterStr(char *str, int *dataI, int *data, int *level)
-{
-	int ldata;
-	int id[NAMECODE];
-	int zero=0;
-	C2F(cvname)(id,str,&zero,strlen(str));
-	ldata= (*dataI)*100+*data;
-	return( action_hashtable_scilab_functions(id,&ldata,level,SCI_HFUNCTIONS_ENTER));
-}
-/*-----------------------------------------------------------------------------------*/

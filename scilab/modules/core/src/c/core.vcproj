@@ -310,6 +310,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LoadFunctionsTab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\matus2.c"
 				>
 			</File>

@@ -59,7 +59,8 @@ src/c/link.c \
 src/c/xscion.c \
 src/c/SciEnv.c \
 src/c/hashtable_core.c \
-src/c/returnanan.c
+src/c/returnanan.c \
+src/c/LoadFunctionsTab.c
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \

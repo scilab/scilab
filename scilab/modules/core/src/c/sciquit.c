@@ -34,6 +34,7 @@ extern BOOL IsWindowInterface(void);
 extern void RestoreConsoleColors(void);
 extern int TerminateJVMs(void);
 extern int DisposeHashTableScilabErrors(void);
+extern int IsFromC(void);
 #endif
 
 #ifdef WITH_TK

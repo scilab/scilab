@@ -5,3 +5,5 @@
 #include "machine.h"
 
 int C2F(initscilab)(void);
+void LoadFunctionsTab(void);
+/*-----------------------------------------------------------------------------------*/ 

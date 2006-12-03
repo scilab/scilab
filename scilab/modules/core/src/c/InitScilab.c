@@ -7,6 +7,9 @@
 #include "getmodules.h"
 #include "SciEnv.h"
 #include "InitScilab.h"
+#include "hashtable_core.h"
+
+extern void sciprint __PARAMS((char *fmt,...));
 
 #ifdef _MSC_VER
 extern int InitializeHashTableScilabErrors(char* SCIPATH);
@@ -27,6 +30,14 @@ int C2F(initscilab)(void)
 	SciEnv();
 
 	getmodules();
+
+	if ( create_hashtable_scilab_functions(MAXTAB) == 0 ) 
+	{
+		sciprint("Fatal Error : Can't create table for scilab functions \n");
+		exit(1);
+	}
+
+	LoadFunctionsTab();
 
 	#ifdef WITH_TK
 		initTCLTK();
