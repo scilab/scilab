@@ -38,7 +38,7 @@ extern int sciSetGoodIndex(sciPointObj * pobj, int colorindex);  /* SET */
 extern void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);  /* SET */
 extern int sciUpdateBaW (sciPointObj * pobj, int flag, int value ) ; /* SET */
 
-extern int sciInitMdlBackground( sciPointObj * pobj, int colorIndex ) ;
+extern int  sciInitMdlBackground( sciPointObj * pobj, int colorIndex ) ;
 extern int sciInitBackground( sciPointObj * pobj, int colorindex ) ;
 extern int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
