@@ -22,9 +22,10 @@ case 'getorigin' then
 	  ['number of inputs';'scilab expression';'use zero-crossing (0: no, 1 yes)'],..
 	  list('vec',1,'str',1,'vec',1),exprs)
     if ~ok then break,end
-    if stripblanks(%exx)==emptystr() then %exx='0',end  //avoid empty
-                                                        //expression
-							
+    // to avoid expressions like u1 - u2 - Patch to be improved
+    %exx=strsubst(%exx,' ','');
+    if %exx==emptystr() then %exx='0',end  //avoid empty expression
+    							
     if %nin==1 then 
       %nini=8,
     else
