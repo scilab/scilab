@@ -233,6 +233,7 @@ if ~super_block then
   end
   //%scicos_gui_mode=0
   if %scicos_gui_mode==1 then
+    funcprot(0);
     getfile=tk_getfile;
     savefile=tk_savefile;
     if MSDOS then getvalue=tk_getvalue,end
@@ -240,7 +241,8 @@ if ~super_block then
     if MSDOS then choose=tk_choose; else
       deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
     end
-    funcprot(0);getcolor=tk_getcolor;funcprot(1);
+    getcolor=tk_getcolor;
+    funcprot(1);
   else
     deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
     savefile=getfile;
