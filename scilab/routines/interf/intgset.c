@@ -411,9 +411,13 @@ int gset(fname,fname_len)
 	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 
+        /* The merge object need to be rebuild */
+        if ( sciIsMergeable( pobj ) && sciGetMerge( sciGetParentSubwin( pobj ) ) != NULL )
+        {
+          Merge3d( sciGetParentSubwin( pobj ) ) ;
+        }
+        
 	sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here*/
-	/* 	EraseAndOrRedraw(pobj); */  /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
-
 
 	C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
