@@ -34,6 +34,7 @@ case 'getorigin' then
     %head='%foo('
     for %jji=1:%nini-1,%head=%head+'u'+string(%jji)+',',end
     %head=%head+'u'+string(%nini)+')'
+    clear %foo
     ok=execstr('deff(%head,%exx)','errcatch')==0
     if ~ok then
       message(['Erroneous expression';lasterror()])
