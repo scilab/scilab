@@ -412,7 +412,7 @@ int gset(fname,fname_len)
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 
         /* The merge object need to be rebuild */
-        if ( sciIsMergeable( pobj ) && sciGetMerge( sciGetParentSubwin( pobj ) ) != NULL )
+        if ( sciIsMergeable( pobj ) && pSUBWIN_FEATURE(sciGetParentSubwin( pobj ))->facetmerge )
         {
           Merge3d( sciGetParentSubwin( pobj ) ) ;
         }

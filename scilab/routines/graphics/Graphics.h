@@ -692,7 +692,5 @@ extern void ReleaseWinHdc  __PARAMS((void));
 extern integer first_in __PARAMS(( integer,integer,integer *,integer*));
 extern integer first_out __PARAMS(( integer,integer,integer *,integer*));
 
-
-
 #endif /** SCIG_PROTO **/
 

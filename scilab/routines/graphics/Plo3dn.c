@@ -652,7 +652,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
 
 /**
- * @memo display a fac3d object. Apply the painter algorithm to the facets
+ * display a fac3d object. Apply the painter algorithm to the facets
  *       and draw them with the right color (hidden or not).
  * @param pobj the fac3d object
  * @param x the matrice of the x coordiantes of facets
