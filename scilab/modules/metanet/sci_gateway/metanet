@@ -1,0 +1,59 @@
+; --------------------------            
+; Scilab             
+; Allan CORNET            
+; INRIA 2006            
+; --------------------------            
+; core module primitives            
+; Don't edit if you aren't sure         
+; --------------------------     
+15 1 3 m6loadg
+15 2 3 m6saveg
+15 3 3 m6prevn2p
+15 4 3 m6ns2p
+15 5 3 m6p2ns
+15 6 3 m6edge2st
+15 7 3 m6prevn2st
+15 8 3 m6compc
+15 9 3 m6concom
+15 10 3 m6compfc
+15 11 3 m6sconcom
+15 12 3 m6pcchna
+15 13 3 m6fordfulk
+15 14 3 m6johns
+15 15 3 m6dijkst
+15 16 3 m6frang
+15 17 3 m6chcm
+15 18 3 m6transc
+15 19 3 m6dfs
+15 20 3 m6umtree
+15 21 3 m6umtree1
+15 22 3 m6dmtree
+15 23 3 m6tconex
+15 24 3 m6flomax
+15 25 3 m6kilter
+15 26 3 m6busack
+15 27 3 m6floqua
+15 28 3 m6relax
+15 29 3 m6findiso
+15 30 3 m6ta2lpd
+15 31 3 m6ta2lpu
+15 32 3 m6lp2tad
+15 33 3 m6lp2tau
+15 34 3 m6dfs2
+15 35 3 m6diam
+15 36 3 m6cent
+15 37 3 m6hullcvex
+15 38 3 m6clique
+15 39 3 m6clique1
+15 40 3 m6hamil
+15 41 3 m6visitor
+15 42 3 m6bmatch
+15 43 3 m6knapsk
+15 44 3 m6prfmatch
+15 45 3 m6permuto
+15 46 3 m6mesh2b
+15 47 3 m6deumesh
+15 48 3 m6bandred
+15 49 3 m6meshmesh
+15 50 3 m6ford
+; --------------------------     

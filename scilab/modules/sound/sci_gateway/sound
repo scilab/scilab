@@ -1,0 +1,13 @@
+; --------------------------            
+; Scilab             
+; Allan CORNET            
+; INRIA 2006            
+; --------------------------            
+; sound module primitives            
+; Don't edit if you aren't sure         
+; --------------------------     
+49 1 3 savewave
+49 2 3 loadwave
+49 3 3 PlaySound
+49 4 3 beep
+; --------------------------            

@@ -1,0 +1,29 @@
+; --------------------------            
+; Scilab             
+; Allan CORNET            
+; INRIA 2006            
+; --------------------------            
+; tclsci module primitives            
+; Don't edit if you aren't sure         
+; --------------------------     
+40 1 2 TCL_DoOneEvent
+40 2 2 TCL_EvalFile
+40 3 2 TCL_EvalStr
+40 4 2 TCL_GetVar
+40 5 2 TCL_SetVar
+40 6 2 opentk
+40 7 2 close
+40 8 2 findobj
+40 9 2 %s_set
+40 10 2 %s_get
+40 11 2 TCL_gcf
+40 12 2 TCL_scf
+40 13 2 TCL_GetVersion
+40 14 2 TCL_UnsetVar
+40 15 2 TCL_ExistVar
+40 16 2 TCL_UpVar
+40 17 2 TCL_DeleteInterp
+40 18 2 TCL_CreateSlave
+40 19 2 TCL_ExistInterp
+40 20 2 TCL_ExistArray
+; --------------------------     

@@ -1,0 +1,31 @@
+; --------------------------            
+; Scilab             
+; Allan CORNET            
+; INRIA 2006            
+; --------------------------            
+; fileio module primitives            
+; Don't edit if you aren't sure         
+; --------------------------    
+34 1 3 mopen
+34 2 3 mputstr
+34 3 3 mclose
+34 4 3 mput
+34 5 3 mget
+34 6 3 mgetstr
+34 7 3 meof
+34 8 3 mseek
+34 9 3 mtell
+34 10 3 mclearerr
+34 11 3 mprintf
+34 12 3 mfprintf
+34 13 3 msprintf
+34 14 3 mscanf
+34 15 3 mfscanf
+34 16 3 msscanf
+34 17 3 fscanfMat
+34 18 3 fprintfMat
+34 19 3 NumTokens
+34 20 3 merror
+34 21 1 xls_open
+34 22 1 xls_read
+; --------------------------    

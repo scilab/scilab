@@ -1,0 +1,13 @@
+; --------------------------
+; Scilab 
+; Allan CORNET
+; INRIA 2006
+; --------------------------
+; boolean module primitives
+; Don't edit if you aren't sure
+; --------------------------
+23 1 0 find
+23 2 0 bool2s
+23 3 0 or
+23 4 0 and
+; --------------------------

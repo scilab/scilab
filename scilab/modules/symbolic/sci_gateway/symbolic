@@ -1,0 +1,14 @@
+; --------------------------            
+; Scilab             
+; Allan CORNET            
+; INRIA 2006            
+; --------------------------            
+; symbolic module primitives            
+; Don't edit if you aren't sure         
+; --------------------------     
+22 1 0 addf
+22 2 0 subf
+22 3 0 mulf
+22 4 2 ldivf
+22 5 0 rdivf
+; --------------------------     

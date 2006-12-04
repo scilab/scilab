@@ -1,0 +1,39 @@
+; --------------------------            
+; Scilab             
+; Allan CORNET            
+; INRIA 2006            
+; --------------------------            
+; io module primitives            
+; Don't edit if you aren't sure         
+; --------------------------       
+5 1 1 oldload
+5 2 1 read
+5 3 1 getf
+5 4 1 exec
+5 5 1 lib
+5 6 1 diary
+5 7 1 oldsave
+5 8 1 write
+5 9 1 print
+5 10 2 rat
+5 11 1 deff
+5 12 1 file
+5 13 1 host
+5 14 1 unix
+5 15 1 readb
+5 16 1 writb
+5 17 1 execstr
+5 18 1 disp
+5 19 1 getpid
+5 20 1 getenv
+5 21 1 read4b
+5 22 1 write4b
+5 23 1 save
+5 24 1 load
+5 25 1 mgetl
+5 26 1 fileinfo
+5 27 1 getio
+5 28 1 setenv
+5 29 1 getrelativefilename
+5 30 1 newest
+; --------------------------            

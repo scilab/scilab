@@ -1,0 +1,15 @@
+; --------------------------
+; Scilab 
+; Allan CORNET
+; INRIA 2006
+; --------------------------
+; arnoldi module primitives
+; Don't edit if you aren't sure
+; --------------------------
+35 1 3 dsaupd
+35 2 3 dnaupd
+35 3 3 znaupd
+35 4 3 dseupd
+35 5 3 dneupd
+35 6 3 zneupd
+; --------------------------

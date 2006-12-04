@@ -1,0 +1,38 @@
+; --------------------------
+; Scilab 
+; Allan CORNET
+; INRIA 2006
+; --------------------------
+; cacsd module primitives
+; Don't edit if you aren't sure
+; --------------------------
+;/* 1 gschur obsolete */
+;/* 2 gspec obsolete */
+8 3 2 ereduc
+8 4 2 fstair
+; --------------------------
+9 3 2 ricc_old
+; --------------------------
+/* 1 not used */
+10 2 2 ppol
+10 3 2 tr_zer
+10 4 2 freq
+10 5 2 ltitr
+10 6 2 rtitr
+; --------------------------
+;/* ius means internal ugly stuff arl2 is the function*/  
+20 1 2 arl2_ius
+20 2 2 residu
+20 3 2 ldiv
+; --------------------------
+28 1 3 sident
+28 2 3 sorder
+28 3 3 findBD
+28 4 3 rankqr
+28 5 3 contr
+28 6 3 mucomp
+28 7 3 ricc
+28 8 3 hinf
+28 9 3 dhinf
+28 10 3 linmeq
+; --------------------------
