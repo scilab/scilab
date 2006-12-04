@@ -30,6 +30,7 @@ int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len))
 	C2F(putlhsvar)();
 
 	/* je ne libere pas Modules pour accelerer le prochain appel à getmodule */
+	/* liberé dans sciquit.c */
 
 	return 0;
 }

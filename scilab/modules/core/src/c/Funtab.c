@@ -8,27 +8,6 @@
 #include "stack-c.h"
 #include "machine.h"
 /*-----------------------------------------------------------------------------------*/
-/** maximum number of entries in the htable **/
-/** in fact create_hashtable_scilab_functions used a prime > MAXTAB **/
-/** WARNING : MAXTAB must be chosen > 2* the number of entries in fundef **/
-/** for good efficiency of the hash code **/
-#define MAXTAB 1536
-/*-----------------------------------------------------------------------------------*/
-typedef struct 
-{
-	char *name;
-	int codeI;
-	int code;
-	int level;
-} Funcs ;
-/*-----------------------------------------------------------------------------------*/
-Funcs SciFuncs[]={
-#include "../../sci_gateway/fundef"
-	{(char*) 0 ,  0,  0  ,   1},
-};
-/*-----------------------------------------------------------------------------------*/
-extern void sciprint __PARAMS((char *fmt,...));
-/*-----------------------------------------------------------------------------------*/
 /************************************************************
  *    Hash table for scilab functions 
  *    job is used to specify a job
