@@ -44,7 +44,7 @@ void destroy_hashtable_scilab_functions()
 	}
 }
 /*-----------------------------------------------------------------------------------*/
-int action_hashtable_scilab_functions(int *key, int *data, int *level, SCI_HFUNCTIONS_ACTION action)
+int action_hashtable_scilab_functions(int *key,char *name, int *data, int *level, SCI_HFUNCTIONS_ACTION action)
 {
 	int bOK=FAILED;
 
@@ -90,7 +90,8 @@ int action_hashtable_scilab_functions(int *key, int *data, int *level, SCI_HFUNC
 					switch (action) 
 					{
 					case SCI_HFUNCTIONS_ENTER :
-						htable[idx].entry.data = *data; 
+						htable[idx].entry.data = *data;
+						strcpy(htable[idx].entry.namefunction,name);
 						return OK;
 						break;
 					case SCI_HFUNCTIONS_DELETE :
@@ -122,6 +123,7 @@ int action_hashtable_scilab_functions(int *key, int *data, int *level, SCI_HFUNC
 						{
 						case SCI_HFUNCTIONS_ENTER :
 							htable[idx].entry.data = *data; 
+							strcpy(htable[idx].entry.namefunction,name);
 							return OK;
 						case SCI_HFUNCTIONS_DELETE :
 							htable[idx].used = 0;
@@ -143,6 +145,7 @@ int action_hashtable_scilab_functions(int *key, int *data, int *level, SCI_HFUNC
 			htable[idx].used  = hval;
 			for ( i=0 ; i < NAMECODE ; i++ ) htable[idx].entry.key[i] = key[i];
 			htable[idx].entry.data = *data;
+			strcpy(htable[idx].entry.namefunction,name);
 			filled++;
 			return OK ;
 		}
@@ -166,5 +169,35 @@ static int isprime(unsigned int number)
 	while (div*div < number && number%div != 0) div += 2;
 
 	return number%div != 0;
+}
+/*-----------------------------------------------------------------------------------*/  
+char **GetFunctionsList(int *sizeList)
+{
+	char **ListFunctions=NULL;
+	unsigned int i=0;
+	int j=0;
+
+	*sizeList=0;
+
+	for ( i = 0 ; i < hsize ; i++ ) if ( htable[i].used) 
+	{
+		if (htable[i].entry.namefunction) j++;
+	}
+	*sizeList=j;
+
+	ListFunctions=(char**)MALLOC(sizeof(char*)*(*sizeList));
+
+	j=0;
+
+	for ( i = 0 ; i < hsize ; i++ ) if ( htable[i].used) 
+	{
+		if (htable[i].entry.namefunction)
+		{
+			ListFunctions[j]=(char*)MALLOC(sizeof(char)*(strlen(htable[i].entry.namefunction)+1));
+			strcpy(ListFunctions[j],htable[i].entry.namefunction);
+			j++;
+		}
+	}
+	return ListFunctions;
 }
 /*-----------------------------------------------------------------------------------*/  

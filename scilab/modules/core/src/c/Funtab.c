@@ -57,28 +57,20 @@ int C2F(funtab)(int *id, int *fptr, int *job)
   int level=0, j=0;
   switch ( *job) 
     {
-    case 0 : /* print */ 
-	  /* OBSOLETE : what() scilab function  is so far the only user of this case */
-      sciprint("Internal functions: \n\n");      
-      while ( SciFuncs[j].name != (char *) 0 )
-	  {
-        sciprint("%s",SciFuncs[j].name); j++;
-        if (j%5==0) sciprint("\n"); else sciprint(" ");
-      }
-      sciprint("\n\n");      
+    case 0 : /* before do a printf for What OBSOLETE */
     break;
     case 1 :
       *fptr=0;
-      action_hashtable_scilab_functions(id,fptr,&level,SCI_HFUNCTIONS_FIND);
+      action_hashtable_scilab_functions(id,NULL,fptr,&level,SCI_HFUNCTIONS_FIND);
       break;
     case 2 : 
-      action_hashtable_scilab_functions(id,fptr,&level,SCI_HFUNCTIONS_BACKSEARCH);
+      action_hashtable_scilab_functions(id,NULL,fptr,&level,SCI_HFUNCTIONS_BACKSEARCH);
       break;
     case 3 : 
-      if ( action_hashtable_scilab_functions(id,fptr,&level,SCI_HFUNCTIONS_ENTER) == FAILED );
+      if ( action_hashtable_scilab_functions(id,NULL,fptr,&level,SCI_HFUNCTIONS_ENTER) == FAILED );
       break;
     case 4 : 
-      action_hashtable_scilab_functions(id,fptr,&level,SCI_HFUNCTIONS_DELETE);
+      action_hashtable_scilab_functions(id,NULL,fptr,&level,SCI_HFUNCTIONS_DELETE);
       break;
     }
   return(0);

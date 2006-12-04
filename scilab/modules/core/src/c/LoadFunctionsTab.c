@@ -52,6 +52,6 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data,
 	int zero=0;
 	C2F(cvname)(id,str,&zero,strlen(str));
 	ldata= (*dataI)*100+*data;
-	return( action_hashtable_scilab_functions(id,&ldata,level,SCI_HFUNCTIONS_ENTER));
+	return( action_hashtable_scilab_functions(id,str,&ldata,level,SCI_HFUNCTIONS_ENTER));
 }
 /*-----------------------------------------------------------------------------------*/

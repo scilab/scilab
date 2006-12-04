@@ -32,16 +32,6 @@ static char *CommandWords[]={
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
 /*-----------------------------------------------------------------------------------*/
-typedef struct 
-{
-	char *name;
-	int codeI;
-	int code;
-	int level;
-} Funcs ;
-/*-----------------------------------------------------------------------------------*/
-extern Funcs SciFuncs[];
-/*-----------------------------------------------------------------------------------*/
 static int CreateLocalFunctionsTab(void);
 static int GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands);
 static int IsACommand(char *primitive);
@@ -50,6 +40,7 @@ static void DispCommands(void);
 static void SortStrings(char **Strs,int SizeOfStrs);
 /*-----------------------------------------------------------------------------------*/
 extern void sciprint __PARAMS((char *fmt,...));
+extern char **GetFunctionsList(int *sizeList);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_what) _PARAMS((char *fname,unsigned long fname_len))
 {
@@ -97,23 +88,6 @@ int C2F(intwhat) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-static int GetFunTabSizes(int *MaxSize,int *MaxSizeWithoutCommands)
-{
-	int bOK=TRUE;
-	int i=0;
-	int Size=0;
-	while ( SciFuncs[i].name != (char *) 0 )
-	{
-		if (!IsACommand(SciFuncs[i].name)) Size++;
-		i++;
-	}
-
-	*MaxSize=i;
-	*MaxSizeWithoutCommands=Size;
-
-	return (bOK);
-}
-/*-----------------------------------------------------------------------------------*/
 static void DispInternalFunctions(void)
 {
 	int i=0;
@@ -156,25 +130,61 @@ static int IsACommand(char *primitive)
 /*-----------------------------------------------------------------------------------*/
 static int CreateLocalFunctionsTab(void)
 {
-	int SizeTab=0;
-	int SizeTabWithoutCommands=0;
+	char **LocalFunctionsTabTmp=NULL;
 	int i=0;
 	int j=0;
+	int SizeTab=0;
+	int MaxSizeWithoutCommands=0;
 
-	GetFunTabSizes(&SizeTab,&SizeTabWithoutCommands);
-	SizeLocalFunctionsTab=SizeTabWithoutCommands;
-	LocalFunctionsTab=(char **)MALLOC(SizeLocalFunctionsTab*sizeof(char **));
+	LocalFunctionsTabTmp=GetFunctionsList(&SizeTab);
 
-	j=0;
-	for(i=0;i<SizeTab;i++)
+	if (LocalFunctionsTabTmp)
 	{
-		if (!IsACommand(SciFuncs[i].name))
+		for (i=0;i<SizeTab;i++)
 		{
-			LocalFunctionsTab[j]=(char*)MALLOC((strlen(SciFuncs[i].name)+1)*sizeof(char));
-			sprintf(LocalFunctionsTab[j],"%s",SciFuncs[i].name);
-			j++;
+			if ( !IsACommand(LocalFunctionsTabTmp[i]) ) MaxSizeWithoutCommands++;
+		}
+
+		LocalFunctionsTab=(char **)MALLOC(sizeof(char**)*MaxSizeWithoutCommands);
+
+		if (LocalFunctionsTab == NULL) 
+		{
+			SizeLocalFunctionsTab = 0;
+			return FALSE;
+		}
+
+		j=0;
+		for (i=0;i<SizeTab;i++)
+		{
+			if ( !IsACommand(LocalFunctionsTabTmp[i]) ) 
+			{
+				LocalFunctionsTab[j]=(char*)MALLOC( (strlen(LocalFunctionsTabTmp[i])+1)*sizeof(char) );
+				strcpy(LocalFunctionsTab[j],LocalFunctionsTabTmp[i]);
+				j++;
+			}
+		}
+
+		if (LocalFunctionsTabTmp)
+		{
+			for (i=0;i<SizeTab;i++)	
+			{ 
+				if (LocalFunctionsTabTmp[i])
+				{
+					FREE(LocalFunctionsTabTmp[i]);
+					LocalFunctionsTabTmp[i]=NULL;
+				}
+			}
+			FREE(LocalFunctionsTabTmp);
+			LocalFunctionsTabTmp=NULL;
 		}
 	}
+	else
+	{
+		SizeLocalFunctionsTab = 0;
+		return FALSE;
+	}
+
+	SizeLocalFunctionsTab=MaxSizeWithoutCommands;
 
 	return TRUE;
 }

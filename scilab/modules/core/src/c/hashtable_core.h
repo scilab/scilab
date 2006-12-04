@@ -7,11 +7,13 @@
 #endif
 #define FAILED 0
 #define OK 1
+#define MAXLENGHTFUNCTIONNAME 256 /* 24 in fact in scilab */
 /*-----------------------------------------------------------------------------------*/
 typedef struct entry 
 {
 	int key[NAMECODE];
 	int data;
+	char namefunction[MAXLENGHTFUNCTIONNAME];
 } ENTRY;
 /*-----------------------------------------------------------------------------------*/
 typedef struct 
@@ -33,5 +35,5 @@ typedef enum
 /*-----------------------------------------------------------------------------------*/
 int	create_hashtable_scilab_functions(unsigned int nel);
 void destroy_hashtable_scilab_functions();
-int action_hashtable_scilab_functions(int *key, int *data, int *level, SCI_HFUNCTIONS_ACTION action);
+int action_hashtable_scilab_functions(int *key,char *name, int *data, int *level, SCI_HFUNCTIONS_ACTION action);
 /*-----------------------------------------------------------------------------------*/
