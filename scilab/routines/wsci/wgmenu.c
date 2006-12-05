@@ -1,4 +1,5 @@
 #include "wgmenu.h"
+#include <direct.h>
 
 #include "Messages.h"
 #include "Warnings.h"
@@ -108,8 +109,18 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      s++;
 	      break;
 	    case SCIPS:
-	      SavePs (ScilabGC);
-	      s++;
+		{
+   			char *SaveCurrentPath=NULL;
+			SaveCurrentPath=_getcwd( NULL, 0 );
+			SavePs (ScilabGC);
+			if (SaveCurrentPath)
+			{
+				_chdir(SaveCurrentPath);
+				free(SaveCurrentPath); /* here must be a "little" free with _getcwd*/
+				SaveCurrentPath=NULL;
+			}
+			s++;
+		}
 	      break;
 	    case SCIPR:
 	      PrintPs (ScilabGC);
