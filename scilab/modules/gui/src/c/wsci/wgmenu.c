@@ -116,6 +116,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 			{
 				_chdir(SaveCurrentPath);
 				free(SaveCurrentPath); /* here must be a "little" free with _getcwd*/
+				SaveCurrentPath=NULL;
 			}
 			s++;
 		}
