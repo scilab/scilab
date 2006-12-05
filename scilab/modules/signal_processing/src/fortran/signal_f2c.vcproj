@@ -802,7 +802,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\signal.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\signal_processing"
 			>
 		</File>
 	</Files>

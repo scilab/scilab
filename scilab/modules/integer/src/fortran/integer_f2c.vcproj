@@ -740,7 +740,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\integer.fundef"
+			RelativePath="..\..\sci_gateway\integer"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

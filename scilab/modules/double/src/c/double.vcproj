@@ -182,6 +182,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

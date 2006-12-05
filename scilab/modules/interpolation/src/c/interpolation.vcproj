@@ -180,11 +180,6 @@
 				RelativePath=".\interpolation.c"
 				>
 			</File>
-                        <File
-                                RelativePath=".\someinterp.c"
-                                >
-                        </File>
-
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_bsplin3val.c"
 				>
@@ -229,6 +224,10 @@
 				RelativePath="..\..\sci_gateway\c\sci_splin3d.c"
 				>
 			</File>
+			<File
+				RelativePath=".\someinterp.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -244,7 +243,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\interpolation.fundef"
+			RelativePath="..\..\sci_gateway\interpolation"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

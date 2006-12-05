@@ -248,7 +248,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\metanet.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\metanet"
 			>
 		</File>
 	</Files>

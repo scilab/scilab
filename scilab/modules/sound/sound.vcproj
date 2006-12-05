@@ -295,7 +295,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\sound.fundef"
+			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath=".\sci_gateway\sound"
 			>
 		</File>
 	</Files>

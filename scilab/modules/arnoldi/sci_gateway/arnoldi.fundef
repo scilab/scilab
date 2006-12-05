@@ -1,6 +1,0 @@
-{"dsaupd",		IN_intarpack,	1,	3},
-{"dnaupd",		IN_intarpack,	2,	3},
-{"znaupd",		IN_intarpack,	3,	3},
-{"dseupd",		IN_intarpack,	4,	3},
-{"dneupd",		IN_intarpack,	5,	3},
-{"zneupd",		IN_intarpack,	6,	3},

@@ -1,150 +1,26 @@
-/** you can insert in this file new scilab functions **/
+see SCI/modules/<module name>/sci_gateway/<module name> file in each module
 
-/* FREE 1  */
+example :
+SCI/modules/core/sci_gateway/core
+in core file :
+13 	1 	3 debug
+^   ^   ^   ^
+|   |   |   |
+(1) (2) (3) (4)
 
-#define  IN_MatdsRC 2
-#include "../../linear_algebra/sci_gateway/linear_algebra1.fundef"
+(1) : number of the gateway. here 13 (see callinterf.h in core)
+(2) : number of the function in the gateway. here 1
+(3) : level 0,1,2,3 (default 2)
+(4) : function's name in scilab. here "debug" (24 characters max)
 
-/* FREE 3  */
-/* FREE 4  */
+";" if you want to add a comment in file
 
-#define  IN_matio  5  
-#include "../../io/sci_gateway/io.fundef"
+gateways not used :
+/* <FREE> 1  */
+/* <FREE> 3  */
+/* <FREE> 4  */
+/* <FREE> 33 */  
 
-#define  IN_matelm  6
-#include "../../elementaries_functions/sci_gateway/elementaries_functions.fundef"  
-	
-#define  IN_matdes  7
-#include "../../graphics/sci_gateway/graphics.fundef"	
-  
-#define  IN_matqz  8
-#include "../../cacsd/sci_gateway/cacsd0.fundef"  
 
-#define  IN_matric 9
-#include "../../cacsd/sci_gateway/cacsd1.fundef"  
-
-#define  IN_matnew  10
-#include "../../cacsd/sci_gateway/cacsd2.fundef"  
-
-#define  IN_matopt  11  
-#include "../../optimization/sci_gateway/optim.fundef"
-
-#define  IN_matode  12
-#include "../../differential_equations/sci_gateway/differential_equations1.fundef"  
-
-#define  IN_matsys  13  
-#include "core.fundef"
-
-#define  IN_matusr  14  
-#include "user.fundef"
-
-#define  IN_metane  15
-#include "../../metanet/sci_gateway/metanet.fundef"  
-
-#define  IN_polelm  16
-#include "../../polynomials/sci_gateway/polynomials.fundef"  
-
-#define  IN_lstelm  17
-#include "../../data_structures/sci_gateway/data_structures1.fundef"  
-
-#define  IN_sigelm  18  
-#include "../../signal_processing/sci_gateway/signal.fundef"
-
-#define  IN_intinterp  19
-#include "../../interpolation/sci_gateway/interpolation.fundef"  
-
-#define  IN_polaut  20
-#include "../../cacsd/sci_gateway/cacsd3.fundef"
-
-#define  IN_strelm  21 
-#include "../../string/sci_gateway/string.fundef" 
-	
-#define  IN_fmlelm  22
-#include "../../symbolic/sci_gateway/symbolic.fundef"  
-
-#define  IN_logelm  23
-#include "../../boolean/sci_gateway/boolean.fundef"
-  
-#define  IN_matus2  24  
-
-#define  IN_xawelm  25
-#include "../../gui/sci_gateway/gui.fundef"  
-
-#define  IN_matimp  26
-#include "../../differential_equations/sci_gateway/differential_equations2.fundef"  
-
-#define  IN_spelm  27
-#include "../../sparse/sci_gateway/sparse.fundef"  
-
-#define  IN_intslicot  28
-#include "../../cacsd/sci_gateway/slicot.fundef"
-
-#define  IN_matodc  29  
-#include "../../differential_equations/sci_gateway/differential_equations3.fundef"  
-
-#define  IN_intdef  30  
-#include "../../differential_equations/sci_gateway/differential_equations4.fundef"  
-
-#define  IN_feval  31
-#include "../../differential_equations/sci_gateway/differential_equations5.fundef"  
-
-#define  IN_bva  32
-#include "../../differential_equations/sci_gateway/differential_equations6.fundef"  
-
-/* 33 <FREE> free position may be used */  
-
-#define  IN_matfileio  34
-#include "../../fileio/sci_gateway/fileio.fundef"  
-
-#define  IN_intarpack  35
-#include "../../arnoldi/sci_gateway/arnoldi.fundef"
-
-#define  IN_specfun  36
-#include "../../special_functions/sci_gateway/special_functions1.fundef"  
-
-#define  IN_dcd  37
-#include "../../statistics/sci_gateway/statistics.fundef"
-
-#define  IN_randlib  38
-#include "../../randlib/sci_gateway/randlib.fundef"
-
-#define  IN_otherspecfun  39
-#include "../../special_functions/sci_gateway/special_functions2.fundef"  
-
-#ifdef WITH_TK
-#define  IN_tclsci  40
-#include "../../tclsci/sci_gateway/tclsci.fundef"
-#endif 
-
-#define  IN_lstelmi  41
-#include "../../data_structures/sci_gateway/data_structures2.fundef"  
-
-#ifdef WITH_PVM
-#define  IN_pvm  42
-#include "../../pvm/sci_gateway/pvm.fundef"
-#endif
-
-#define  IN_intelm  43
-#include "../../integer/sci_gateway/integer.fundef"
-
-#define  IN_intlapack  44
-#include "../../linear_algebra/sci_gateway/linear_algebra2.fundef"
-
-#define  IN_intcos  45  
-#define  IN_intcscicos 46
-#include "../../scicos/sci_gateway/scicos.fundef"
-
-#define  IN_intwintools 47
-#include "../../wintools/sci_gateway/wintools.fundef"
-
-#define  IN_inttime 48
-#include "../../time/sci_gateway/time.fundef"
-
-#define  IN_intsound 49
-#include "../../sound/sci_gateway/sound.fundef"
-
-#ifdef _MSC_VER
-#define  IN_intfftw 50
-#include "../../fftw/sci_gateway/fftw.fundef" 
-#endif
-
+Allan CORNET
+INRIA 2006

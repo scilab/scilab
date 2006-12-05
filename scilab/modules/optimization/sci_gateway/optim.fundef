@@ -1,6 +1,0 @@
-{"optim",		IN_matopt,	1,	2},
-{"qpqpqp",		IN_matopt,	2,	2}, /* primitive non documentee utilisee par quapro macro*/
-{"semidef",		IN_matopt,	3,	2},
-{"fsolve",		IN_matopt,	4,	2},
-{"lsqrsolve",	IN_matopt,	5,	2},
-{"qld",			IN_matopt,	6,	2},

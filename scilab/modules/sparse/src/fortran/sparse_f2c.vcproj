@@ -1172,7 +1172,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\sparse.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\sparse"
 			>
 		</File>
 	</Files>

@@ -285,7 +285,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\time.fundef"
+			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath=".\sci_gateway\time"
 			>
 		</File>
 	</Files>

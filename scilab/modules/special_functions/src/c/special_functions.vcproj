@@ -251,11 +251,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\special_functions1.fundef"
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\special_functions2.fundef"
+			RelativePath="..\..\sci_gateway\special_functions"
 			>
 		</File>
 	</Files>

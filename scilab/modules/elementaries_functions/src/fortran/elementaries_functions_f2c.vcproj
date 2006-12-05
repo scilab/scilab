@@ -767,6 +767,22 @@
 			<File
 				RelativePath=".\unsfdcopy.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\urand.c"
@@ -1754,7 +1770,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\elementaries_functions.fundef"
+			RelativePath="..\..\sci_gateway\elementaries_functions"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

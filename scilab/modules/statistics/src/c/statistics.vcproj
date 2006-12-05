@@ -239,7 +239,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\statistics.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\statistics"
 			>
 		</File>
 	</Files>

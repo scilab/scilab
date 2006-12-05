@@ -346,6 +346,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath=".\sci_gateway\wintools"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -830,6 +830,10 @@
 				</FileConfiguration>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\Makefile.am"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

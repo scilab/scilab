@@ -491,6 +491,14 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath=".\sci_gateway\pvm"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

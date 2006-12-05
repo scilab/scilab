@@ -1,4 +1,0 @@
-{"savewave",	IN_intsound,	1,	3},	
-{"loadwave",	IN_intsound,	2,	3},	
-{"PlaySound",	IN_intsound,	3,	3},
-{"beep",		IN_intsound,	4,	3},

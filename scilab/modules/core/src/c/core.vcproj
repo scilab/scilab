@@ -828,7 +828,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\core.fundef"
+			RelativePath="..\..\sci_gateway\core"
 			>
 		</File>
 		<File
@@ -840,7 +840,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\user.fundef"
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

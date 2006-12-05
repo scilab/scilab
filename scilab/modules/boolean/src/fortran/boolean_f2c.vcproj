@@ -242,7 +242,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\boolean.fundef"
+			RelativePath="..\..\sci_gateway\boolean"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

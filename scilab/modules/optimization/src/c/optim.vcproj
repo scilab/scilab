@@ -223,7 +223,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\optim.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\optimization"
 			>
 		</File>
 	</Files>

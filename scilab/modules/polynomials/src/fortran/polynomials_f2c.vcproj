@@ -850,7 +850,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\polynomials.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\polynomials"
 			>
 		</File>
 	</Files>

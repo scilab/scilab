@@ -415,7 +415,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\elementaries_functions.fundef"
+			RelativePath="..\..\sci_gateway\elementaries_functions"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

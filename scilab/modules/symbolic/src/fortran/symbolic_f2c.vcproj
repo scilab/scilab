@@ -268,7 +268,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\symbolic.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\symbolic"
 			>
 		</File>
 	</Files>

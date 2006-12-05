@@ -328,7 +328,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\gui.fundef"
+			RelativePath="..\..\sci_gateway\gui"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

@@ -253,15 +253,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\strdsp.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\strops.c"
 				>
 			</File>
 			<File
 				RelativePath=".\strord.c"
-				>
-			</File>
-			<File
-				RelativePath=".\strdsp.c"
 				>
 			</File>
 		</Filter>
@@ -341,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\strdsp.f"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\strops.f"
 				>
 			</File>
@@ -348,13 +352,13 @@
 				RelativePath=".\strord.f"
 				>
 			</File>
-			<File
-				RelativePath=".\strdsp.f"
-				>
-			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\string.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\string"
 			>
 		</File>
 	</Files>

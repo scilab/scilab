@@ -1,7 +1,0 @@
-{"legendre",		IN_otherspecfun,	1,	3},	
-{"beta",		IN_otherspecfun,	2,	3},	
-{"besseli",		IN_otherspecfun,	3,	3},	
-{"besselj",		IN_otherspecfun,	4,	3},	
-{"besselk",		IN_otherspecfun,	5,	3},	
-{"bessely",		IN_otherspecfun,	6,	3},	
-{"besselh",		IN_otherspecfun,	7,	3},	

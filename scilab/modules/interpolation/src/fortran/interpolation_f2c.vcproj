@@ -250,7 +250,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\interpolation.fundef"
+			RelativePath="..\..\sci_gateway\interpolation"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

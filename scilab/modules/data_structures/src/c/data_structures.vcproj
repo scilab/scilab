@@ -247,11 +247,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\data_structures1.fundef"
+			RelativePath="..\..\sci_gateway\data_structures"
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\data_structures2.fundef"
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

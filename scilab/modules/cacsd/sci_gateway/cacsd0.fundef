@@ -1,4 +1,0 @@
-/* 1 gschur obsolete */
-/* 2 gspec obsolete */
-{"ereduc",		IN_matqz,	3,	2},	
-{"fstair",		IN_matqz,	4,	2},	

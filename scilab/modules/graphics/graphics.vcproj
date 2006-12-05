@@ -2404,7 +2404,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\graphics.fundef"
+			RelativePath=".\sci_gateway\graphics"
+			>
+		</File>
+		<File
+			RelativePath=".\Makefile.am"
 			>
 		</File>
 	</Files>

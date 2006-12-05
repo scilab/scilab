@@ -462,7 +462,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\tclsci.fundef"
+			RelativePath=".\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath=".\sci_gateway\tclsci"
 			>
 		</File>
 	</Files>

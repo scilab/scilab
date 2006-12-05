@@ -255,7 +255,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\linear_algebra.fundef"
+			RelativePath="..\..\sci_gateway\linear_algebra"
+			>
+		</File>
+		<File
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

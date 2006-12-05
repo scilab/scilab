@@ -1,7 +1,0 @@
-/* 1 not used */
-{"ppol",		IN_matnew,	2,	2},	
-{"tr_zer",		IN_matnew,	3,	2},	
-{"freq",		IN_matnew,	4,	2},	
-{"ltitr",		IN_matnew,	5,	2},	
-{"rtitr",		IN_matnew,	6,	2},	
-

@@ -1,4 +1,0 @@
-{"find",		IN_logelm,	1,	0},
-{"bool2s",		IN_logelm,	2,	0},
-{"or",			IN_logelm,	3,	0},
-{"and",			IN_logelm,	4,	0},

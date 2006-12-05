@@ -249,7 +249,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\sci_gateway\arnoldi.fundef"
+			RelativePath=".\sci_gateway\arnoldi"
+			>
+		</File>
+		<File
+			RelativePath=".\Makefile.am"
 			>
 		</File>
 	</Files>

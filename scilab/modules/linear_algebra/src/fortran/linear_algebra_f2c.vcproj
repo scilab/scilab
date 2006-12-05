@@ -698,11 +698,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\linear_algebra1.fundef"
+			RelativePath="..\..\sci_gateway\linear_algebra"
 			>
 		</File>
 		<File
-			RelativePath="..\..\sci_gateway\linear_algebra2.fundef"
+			RelativePath="..\..\Makefile.am"
 			>
 		</File>
 	</Files>

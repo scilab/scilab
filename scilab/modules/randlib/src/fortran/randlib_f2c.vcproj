@@ -394,7 +394,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\sci_gateway\randlib.fundef"
+			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\randlib"
 			>
 		</File>
 	</Files>
