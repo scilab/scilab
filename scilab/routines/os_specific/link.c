@@ -133,7 +133,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
 #include "link_SYSV.c"
 #else
 /** no more used on sun */
-#if defined(sun_old) ||  (defined(mips) && !defined(netbsd)) || defined(_IBMR2) || defined(hppa_old)
+#if (defined(sun_old) ||  (defined(mips) && !defined(netbsd)) || defined(_IBMR2) || defined(hppa_old)) && !defined(linux)
 #ifdef SUNOSDLD 
 #include "link_linux.c"
 #else 
