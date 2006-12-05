@@ -25,6 +25,10 @@ IMPORT_DLL int Initialize_SciGUIConsole_Object(JNIEnv *env);
 IMPORT_DLL int Events_Loop_SciGUIConsole(JNIEnv *env);
 IMPORT_DLL int IsEnabled_SciGUIConsole(JNIEnv *env);
 /*-----------------------------------------------------------------------------------*/ 
+void Thread_JVM_CONSOLE(void *arg);
+int Create_JVM_Thread_CONSOLE(void);
+int Terminate_JVM_Thread_CONSOLE(void);
+/*-----------------------------------------------------------------------------------*/
 void Thread_JVM_CONSOLE(void *arg)
 {
 	JNIEnv *env;
