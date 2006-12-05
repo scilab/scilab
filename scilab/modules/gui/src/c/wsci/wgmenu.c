@@ -108,8 +108,17 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      s++;
 	      break;
 	    case SCIPS:
-	      SavePs (ScilabGC);
-	      s++;
+		{
+			char *SaveCurrentPath=NULL;
+			SaveCurrentPath=_getcwd( NULL, 0 );
+			SavePs (ScilabGC);
+			if (SaveCurrentPath)
+			{
+				_chdir(SaveCurrentPath);
+				free(SaveCurrentPath); /* here must be a "little" free with _getcwd*/
+			}
+			s++;
+		}
 	      break;
 	    case SCIPR:
 	      PrintPs (ScilabGC);

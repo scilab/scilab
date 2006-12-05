@@ -15,19 +15,13 @@
 #endif
 
 #include <string.h>		/* only use  items */
-#include <process.h>		/* for getpid */
 
 
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-int system ();
-#endif
-
-/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include <commdlg.h>
+#include <direct.h>
+
 #include "Graphics.h"
 
 
