@@ -35,15 +35,7 @@ function ged(k,win)
       if isold then xbasr(win),end
     case 3 then //erase
       xbasc()
-   // case 4 then //copy
-   //   ged_copy_entity()
-   // case 5 then //past
-   //   ged_paste_entity()
-   // case 6 then //move
-   //   ged_move_entity()
-   // case 7 then //Delete Entity
-   //   ged_delete_entity()
-      
+         
     case 4 then //edit current figure properties
       
       // hierarchical viewer
