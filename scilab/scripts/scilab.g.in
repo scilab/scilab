@@ -35,6 +35,13 @@ else
 fi
 export LD_LIBRARY_PATH
 
+if test "$SHLIB_PATH" = ""; then
+	SHLIB_PATH=$SCI/bin:$SCI/libs
+else
+	SHLIB_PATH=$SCI/bin:$SCI/libs:$SHLIB_PATH
+fi
+export SHLIB_PATH
+
 #TCL_LIBRARY
 
 #TK_LIBRARY
