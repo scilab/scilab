@@ -2521,45 +2521,47 @@ integer C2F(maxvol)(lw, lw_type, type_len)
 
 static int Check_references()
 {
-  int ivar ; 
-  for (ivar = 1; ivar <= Rhs ; ++ivar) 
-    {
-      unsigned char Type = C2F(intersci).ntypes[ivar - 1];
-      if ( Type != '$') 
-	{
-	  int lw = ivar + Top - Rhs;
-	  int il = iadr(*Lstk(lw));
-	  if ( *istk(il) < 0) 
-	    {
-	      int m,n,it,size;
-	      /* back conversion if necessary of a reference */ 
-	      /* sciprint("%d: is a reference\r\n",ivar);  */
-	      if ( *istk(il) < 0)  il = iadr(*istk(il +1));
-	      m =*istk(il +1);
-	      n =*istk(il +2);
-	      it = *istk(il +3);
-	      switch ( Type ) {
-	      case 'i' : 
-	      case 'r' : 
-	      case 'd' :
-		size  = m * n * (it + 1); break; 
-	      case 'z' :
-		size  = 0;break; /* size is unsued for 'z' in ConvertData;*/
-	      case 'c' : 
-		size =*istk(il + 4  +1) - *istk(il + 4 ); break;
-	      case 'b' :
-		size = m*n ; break;
-	      }
-	      ConvertData(&Type,size,C2F(intersci).lad[ivar - 1]);
-	      C2F(intersci).ntypes[ivar - 1] = '$';
-	    }
-	}
-      else 
-	{
-	  /* sciprint("%d: is of type $ \n",ivar);  */
-	}
-    }
-  return TRUE_; 
+	int ivar ; 
+	for (ivar = 1; ivar <= Rhs ; ++ivar) 
+		{
+			unsigned char Type = C2F(intersci).ntypes[ivar - 1];
+			if ( Type != '$') 
+				{
+					int lw = ivar + Top - Rhs;
+					int il = iadr(*Lstk(lw));
+					if ( *istk(il) < 0) 
+						{
+							int m,n,it,size;
+							/* back conversion if necessary of a reference */ 
+							/* sciprint("%d: is a reference\r\n",ivar);  */
+							if ( *istk(il) < 0)  il = iadr(*istk(il +1));
+							m =*istk(il +1);
+							n =*istk(il +2);
+							it = *istk(il +3);
+							switch ( Type ) {
+								case 'i' : 
+								case 'r' : 
+								case 'd' :
+									size  = m * n * (it + 1); break; 
+								case 'z' :
+									size  = 0;break; /* size is unsued for 'z' in ConvertData;*/
+								case 'c' : 
+									size =*istk(il + 4  +1) - *istk(il + 4 ); break;
+								case 'b' :
+									size = m*n ; break;
+								default:
+									return FALSE_; 
+							}
+							ConvertData(&Type,size,C2F(intersci).lad[ivar - 1]);
+							C2F(intersci).ntypes[ivar - 1] = '$';
+						}
+				}
+			else 
+				{
+					/* sciprint("%d: is of type $ \n",ivar);  */
+				}
+		}
+	return TRUE_; 
 }
 
 

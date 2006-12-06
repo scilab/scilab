@@ -238,7 +238,7 @@ c     . hard predefined variables
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
 c     17 is the number of predefined variables 
-      bot=isiz-17
+      bot=isiz-18
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -248,44 +248,47 @@ c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
 c     3 strings (1024 chars max)
 c     8 booleans
-c     . COMPILER
-      call getcomp(buf,nbuf)
+      call getcomp(buf,nb1)
+      call getsci(buf,nb2)
+      call gettmpdir(buf,nb3)
       lpvar = (sadr(10-1) + 2) 
      $     + 8*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
-     $     + 3*(sadr(6+1024)+1)
+     $     + 1*(sadr(6+nb1)+1)
+     $     + 1*(sadr(6+nb2)+1)
+     $     + 1*(sadr(6+nb3)+1)
+
       l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
-      vname = ' '
-      vname(1:8) = "COMPILER"
+C     . COMPILER
+      call getcomp(buf,nbuf)
+      vname =  "COMPILER"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
 c     . SCI
       call getsci(buf,nbuf)
-      vname = ' '
-      vname(1:3) = "SCI"
+      vname =  "SCI"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
 c     . TMPDIR
       call gettmpdir(buf,nbuf)
-      vname = ' '
-      vname(1:6) = "TMPDIR"
+      vname = "TMPDIR"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
 c     . MSDOS
-	vname = ' '
+      vname = ' '
       vname(1:5) = "MSDOS"
       call withmsdos(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1 
 c     . %scicos
-	vname = ' '
+      vname = ' '
       vname(1:7) = "%scicos"
       call withscicos(irep)
       call cvname(idloc,vname,0)
@@ -358,7 +361,9 @@ c     .  %e : exp(1)
 c     .  %pi 
       call crematvar(pi,k,0,1,1,3.14159265358979320d+0,0.0d0)
       k=k+1
-c     .  blanc 
+c     .  blanc. Memory used by getsym to store parsed number
+C     .  then by getnum.f and macro.f to retreive it (stk(lstk(isiz) -))
+
       call crematvar(bl,k,0,1,1,0.0d0,0.0d0)
       k=k+1
 c     

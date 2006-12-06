@@ -11,7 +11,7 @@ c     Copyright INRIA
       equivalence (x,ix(1))
       data bl/nsiz*673720360/
       if (err1.gt.0) return
-      x=stk(lstk(isiz))
+      x=stk(lstk(isiz)-1)
       if (compil(6,ix,0,0,0)) return
 c     compilation getnum :<6 num>
       if (top+2 .ge. bot) then
