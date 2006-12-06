@@ -6,6 +6,10 @@
 /*-----------------------------------------------------------------------------------*/ 
 int INXscilab=0;
 /*-----------------------------------------------------------------------------------*/ 
+#if _MSC_VER
+	extern void switch_rlgets (int i);
+#endif
+/*-----------------------------------------------------------------------------------*/ 
 int C2F(xscion) (int *i)
 {
   *i = INXscilab;
@@ -15,7 +19,6 @@ int C2F(xscion) (int *i)
 void SetXsciOn(void)
 {
 	#if _MSC_VER
-	 extern void switch_rlgets (int i);
 	 switch_rlgets (1);
 	#endif
 	INXscilab = 1;

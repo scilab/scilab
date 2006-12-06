@@ -17,7 +17,7 @@ extern int C2F (sciquit)(void);
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F(scirun)(char *startup,int lstartup);
 extern void sci_usr1_signal(int n);
-extern int sci_exit(int n);
+extern void sci_exit(int n);
 extern int C2F(sciiargc) (void);
 #ifdef _MSC_VER
 extern char *GetExceptionString(DWORD ExceptionCode);

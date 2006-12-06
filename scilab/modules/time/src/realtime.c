@@ -127,7 +127,7 @@ int C2F(realtime)(double *t)
   delay = (__int64)(simulation_diff * 10000000) - realtime_diff;
 
   if (delay > 0) 
-	{
+  {
     Sleep((DWORD)(delay/10000));
   }
   return 0;

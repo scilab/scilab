@@ -13,7 +13,7 @@
 
 int C2F(sciquit)(void);
 int ExitScilab(void);
-int sci_exit(int n);
+void sci_exit(int n);
 
 #endif /*__SCIQUIT__*/
 /*-----------------------------------------------------------------------------------*/ 

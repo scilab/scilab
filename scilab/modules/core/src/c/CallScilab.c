@@ -36,6 +36,7 @@ extern void SetWITH_GUI(BOOL ON);
 extern char *GetScilabDirectory(BOOL UnixStyle);
 extern void InitWindowGraphDll(void);
 extern void TextMessage1 (int ctrlflag);
+extern void set_sci_env(char *DefaultSCIPATH);
 #else
 extern int C2F(sxevents)();
 #endif
@@ -43,7 +44,7 @@ extern int C2F(sxevents)();
 #ifdef _MSC_VER
 static void SetSciEnv(void)
 {
-  extern void set_sci_env(char *DefaultSCIPATH);
+  
   
   char *ScilabDirectory=NULL;
 

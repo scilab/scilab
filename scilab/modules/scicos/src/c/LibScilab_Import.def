@@ -76,7 +76,7 @@ mget2
 mput2
 ;
 ;differential_equations_f	
-	lsr001_
-  lsa001_
-  ls0001_
+lsr001_
+lsa001_
+ls0001_
   

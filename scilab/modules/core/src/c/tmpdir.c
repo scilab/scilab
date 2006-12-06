@@ -73,12 +73,11 @@ void C2F(settmpdir)(void)
 		  wsprintf(MsgErr,"Impossible to create : %s",tmp_dir);
 		  MessageBox(NULL,MsgErr,"Error",MB_ICONERROR);
 		  exit(1);
-		  #endif
-
+		  #else
 		  GetTempPath(PATH_MAX,TmpDirDefault);
 		  sprintf(tmp_dir,"%s",TmpDirDefault);
 		  tmp_dir[strlen(tmp_dir)-1]='\0'; /* Remove last \ */
-
+		  #endif
 		}
   }
 #else 

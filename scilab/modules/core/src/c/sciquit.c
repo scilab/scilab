@@ -46,7 +46,7 @@ static int CloseConsoleGUI(void);
 
 int ExitScilab(void);
 int C2F(sciquit)(void);
-int sci_exit(int n);
+void sci_exit(int n);
 /*-----------------------------------------------------------------------------------*/ 
 static int CloseConsoleGUI(void)
 {
@@ -62,8 +62,6 @@ static int CloseConsoleGUI(void)
 /*-----------------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
-	int i=0;
-		
     if ( Get_no_startup_flag() == 0) 
     {
       char *quit_script =  get_sci_data_strings(5);
@@ -123,7 +121,7 @@ int C2F(sciquit)(void)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/ 
-int sci_exit(int n) 
+void sci_exit(int n) 
 {
   /* really exit */
   #ifdef sun 
@@ -133,9 +131,7 @@ int sci_exit(int n)
     	ieee_flags("clearall","exeption","all", &out);
   	}
 		#endif 
-	#endif 
-
+  #endif 
   exit(n);
-  return(0);
 }
 /*-----------------------------------------------------------------------------------*/
