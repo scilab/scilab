@@ -234,17 +234,25 @@ c     . hard predefined variables
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     13 is the number of predefined variables 
-      bot=isiz-13
+C     If you want to add more predefined variables, takle care of the
+C     following points:
+C     - You have to update the number of predefined variable (npredef)
+C       ignoring bl
+c     - To update the total amount of memory (lpvar) used by all the predefined
+C       variables .
+c       memory requested for each type of predefined variables 
+c       mxn boolean matrix size : sadr(2+m*n+2)        --> sadr(5) for a boolean scalar
+c       mxn  matrix size        : sadr(3)+m*n*(it+1))  --> sadr(3)+1 for a real scalar
+c       1x1 string matrix       : sadr(6+nchar)+1
+c       $                       : sadr(10-1) + 2 
+c     - add the new variable at the beginning
+      npredef=13
+
+      bot=isiz-npredef
       bbot=bot
       bot0=bot
-c     memory requested for predefined variables 
-c     mxn bmat -> size : sadr(2+m*n+2)
-c     $        -> size : sadr(10-1) + 2 
-c     mxn mat  -> size : sadr(3)+m*n*(it+1)
-c     string   -> size : sadr(6+nchar)+1
       call getcomp(buf,nbuf)
-c     6 booleans      
+c     1 $, 6 booleans , 4 real scalar, 2 2x1 real array, 1 string     
       lpvar = (sadr(10-1) + 2) 
      $     + 6*sadr(5) 
      $     + 4*(sadr(3)+1)
