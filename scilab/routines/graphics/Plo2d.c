@@ -457,10 +457,10 @@ void Legends(style, n1, legend)
 	    { 
 	      /* down left point for string display */
 	      xi= xi1;
-	      yi= yi1 +(i-3)*yoffset+3*yoffset;}
+	      yi= yi1 +(i-3)*yoffset+3.0*yoffset;}
 	  else
 	    { 
-	      yi= yi1 + (i)*yoffset+3*yoffset;
+	      yi= yi1 + (i)*yoffset+3.0*yoffset;
 	    }
 	  xs=inint(xi+1.2*xoffset);
 	  ys=inint(yi);
@@ -475,7 +475,7 @@ void Legends(style, n1, legend)
 		{ 
 		  integer n=1,p=2;
 		  polyx[0]=inint(xi);polyx[1]=inint(xi+xoffset);
-		  polyy[0]=inint(yi - rect[3]/2);polyy[1]=inint(yi- rect[3]/2.0);
+		  polyy[0]=inint(yi - rect[3]/2.0);polyy[1]=inint(yi- rect[3]/2.0);
 		  lstyle[0]=style[i];
 		  C2F(dr)("xpolys","v",polyx,polyy,lstyle,&n,&p
 			  ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -484,7 +484,7 @@ void Legends(style, n1, legend)
 		{ 
 		  integer n=1,p=1;
 		  polyx[0]=inint(xi+xoffset);
-		  polyy[0]=inint(yi- rect[3]/2);
+		  polyy[0]=inint(yi- rect[3]/2.0);
 		  lstyle[0]=style[i];
 		  C2F(dr)("xpolys","v",polyx,polyy,lstyle,&n,&p
 			  ,PI0,PD0,PD0,PD0,PD0,0L,0L);

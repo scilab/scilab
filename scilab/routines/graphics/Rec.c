@@ -694,7 +694,7 @@ static int CopyVectF(double **nx, double *x, integer l)
 	return(1);
       }
       if ( *nx == NULL) return(0);
-      for ( i=0 ; i < l ; i++) (*nx)[i]= x[i];
+	  for ( i=0 ; i < l ; i++) { (*nx)[i]= x[i]; }
     }
   return(1);
 }
