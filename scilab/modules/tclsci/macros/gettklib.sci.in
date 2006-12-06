@@ -2,16 +2,27 @@ function tklib=gettklib()
   if MSDOS then 
     tklib='tk84.dll'
   else 
-	execstr('link(''@GETLIBTK@'')', 'errcatch')
-	if ans == 0 then
-	    tklib='@GETLIBTK@'
-	else
-		execstr('link(''@GETLIBTK@.0'')', 'errcatch')
-		if ans == 0 then
-		    tklib='@GETLIBTK@.0'
-		else
-			 mprintf('Warning: Error loading @GETLIBTK@ :""'+lasterror()+'""')
-		end
-	end
+    OS=getos();
+    localelibnametk=SCI+'/bin/@GETLIBTK@';
+    if (OS != 'HP-UX') then
+	    valret=execstr('link(localelibnametk)', 'errcatch')
+	  else
+	    valret=0;
+	  end
+	  if (valret == 0) then
+	    tklib=localelibnametk
+	  else
+		  localelibnametk=SCI+'/bin/@GETLIBTK@.0';
+		  if (OS != 'HP-UX') then
+	      valret=execstr('link(localelibnametk)', 'errcatch')
+	    else
+	      valret=0;
+	    end
+		  if (valret == 0) then
+		    tklib=localelibnametk
+		  else
+			  mprintf('Warning: Error loading @GETLIBTK@ :""'+lasterror()+'""')
+		  end
+	  end
   end
 endfunction
