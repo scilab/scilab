@@ -246,14 +246,15 @@ c     mxn bmat -> size : sadr(2+m*n+2)
 c     $        -> size : sadr(10-1) + 2 
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
-
+c     3 strings (1024 chars max)
+c     8 booleans
 c     . COMPILER
       call getcomp(buf,nbuf)
       lpvar = (sadr(10-1) + 2) 
-     $     + 5*sadr(5) 
+     $     + 8*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
-     $     + 1*(sadr(6+nbuf)+1)
+     $     + 3*(sadr(6+1024)+1)
       l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
