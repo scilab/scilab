@@ -1,3 +1,5 @@
+xset("default");
+set figure_style new ;
 kp=xget("pixmap");
 // Copyright INRIA
 dr=driver()
