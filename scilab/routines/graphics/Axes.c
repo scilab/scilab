@@ -198,7 +198,7 @@ void DrawAxesBackground()
 
 
 }
-
+/*-------------------------------------------------------------------------------------*/
 void drawAxesGrid( sciPointObj * psubwin )
 {
   if( pSUBWIN_FEATURE(psubwin)->grid[0] > -1 )
@@ -211,6 +211,7 @@ void drawAxesGrid( sciPointObj * psubwin )
     DrawYGrid(psubwin);
   }
 }
+/*-------------------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
  *  aplot: used to draw a box + x and y ticks and scales 

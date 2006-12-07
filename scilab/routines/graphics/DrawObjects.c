@@ -7671,6 +7671,7 @@ sciDrawObj (sciPointObj * pobj)
 	  /* 	 if (sciGetVisibility(pobj)) */
 	  DrawAxesBackground();
 
+	  /* grid is behind other objetcs */
       drawAxesGrid( pobj ) ;
 	   
           /* there is a bug here */
