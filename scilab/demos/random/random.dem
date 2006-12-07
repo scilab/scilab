@@ -7,14 +7,14 @@ oldln=lines();lines(0)
 deff('[]=demoex(num)','execstr(demolist(num,2))')
 
 demolist=[
-	'Simulation of a binomial random variable','xbasc();BinomialT();';
-	'Simulation of a discrete random variable','xbasc();RndDiscT();';
-	'Simulation of a geometric random variable','xbasc();GeomT(1000);';
-	'Simulation of a Poisson random variable','xbasc();PoissonT() ;';
-	'Simulation of an exponential random variable','xbasc();ExpT();';
-	'Simulation of a Weibull random variable','xbasc();WeibullT();';
-	'Simulation of an hyper geometric random variable','xbasc();HyperGeomT();';
-	'Simulation of an Erlang random variable','xbasc();ErlangT();'];
+	'Simulation of a binomial random variable','set figure_style new;xbasc();BinomialT();';
+	'Simulation of a discrete random variable','set figure_style new;xbasc();RndDiscT();';
+	'Simulation of a geometric random variable','set figure_style new;xbasc();GeomT(1000);';
+	'Simulation of a Poisson random variable','set figure_style new;xbasc();PoissonT() ;';
+	'Simulation of an exponential random variable','set figure_style new;xbasc();ExpT();';
+	'Simulation of a Weibull random variable','set figure_style new;xbasc();WeibullT();';
+	'Simulation of an hyper geometric random variable','set figure_style new;xbasc();HyperGeomT();';
+	'Simulation of an Erlang random variable','set figure_style new;xbasc();ErlangT();'];
 
 while %t then
 	num=tk_choose(demolist(:,1),'demo of random variable simulations');
