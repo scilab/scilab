@@ -199,6 +199,19 @@ void DrawAxesBackground()
 
 }
 
+void drawAxesGrid( sciPointObj * psubwin )
+{
+  if( pSUBWIN_FEATURE(psubwin)->grid[0] > -1 )
+  {
+    DrawXGrid(psubwin);
+  }
+
+  if( pSUBWIN_FEATURE(psubwin)->grid[1] > -1 )
+  {
+    DrawYGrid(psubwin);
+  }
+}
+
 /*--------------------------------------------------------------
  *  aplot: used to draw a box + x and y ticks and scales 
  *  xmin,ymin,xmax,ymax : are the boundary values
@@ -2144,6 +2157,11 @@ static int DrawYGrid(sciPointObj * psubwin)
   int nbtics = 0,i,j;
   int nbsubtics = ppsubwin->axes.nbsubtics[1];
   char logflag = ppsubwin->logflags[1];
+
+  if ( ppsubwin->grid[1] < 0 )
+  {
+	return 0 ;
+  }
    
   FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
   
@@ -2556,10 +2574,6 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
       /* subtics display*/
       DrawXSubTics(pos, psubwin, xy, ticscolor, color_kp);
     }
-        
-    /* grids if specified (val > -1) */
-    if(ppsubwin->grid[0] > -1)
-      DrawXGrid(psubwin);
     
     break;
   case 1: /* y vertical axis */
@@ -2581,10 +2595,6 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
       /* subtics display*/
       DrawYSubTics(pos, psubwin, xy, ticscolor, color_kp);
     }
-    
-    /* grids if specified (val > -1) */
-    if(ppsubwin->grid[1] > -1)
-      DrawYGrid(psubwin);
     
     break;
   default:

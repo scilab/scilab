@@ -42,6 +42,8 @@ int WindowsPrintScreen = 0;
 int Printer_XRes = 0;
 int Printer_YRes = 0;
 
+void drawAxesGrid(sciPointObj * psubwin);
+
 extern double C2F(dsort)();/*DJ.A merge*/ 
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 extern void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
@@ -7668,6 +7670,8 @@ sciDrawObj (sciPointObj * pobj)
 	  
 	  /* 	 if (sciGetVisibility(pobj)) */
 	  DrawAxesBackground();
+
+      drawAxesGrid( pobj ) ;
 	   
           /* there is a bug here */
           /* We should make a check for merge objects here */
