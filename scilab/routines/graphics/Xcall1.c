@@ -1008,8 +1008,8 @@ void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, do
       compteur++;
     }
     
-    x1=x+ (w- wmax)/2;
-    yy1=y - h + ( h - htot)/2 + rect[3];
+    x1  = x + (w- wmax)/2;
+    yy1 = round( y - h + ( h - htot)/2 + rect[3] ) ;
     
     bbox[0] = x1;
     bbox[1] = yy1 - hauteur;

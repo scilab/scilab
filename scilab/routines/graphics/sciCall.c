@@ -21,6 +21,7 @@
 #include "../os_specific/sci_mem_alloc.h" /* MALLOC */
 #endif
 
+extern void updateScaleIfRequired( sciPointObj * pSubWin ) ;
 
 extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 
