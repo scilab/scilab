@@ -475,7 +475,8 @@ void Legends(style, n1, legend)
 		{ 
 		  integer n=1,p=2;
 		  polyx[0]=inint(xi);polyx[1]=inint(xi+xoffset);
-		  polyy[0]=inint(yi - rect[3]/2.0);polyy[1]=inint(yi- rect[3]/2.0);
+		  polyy[0]=inint(yi - rect[3]/2.0);
+		  polyy[1]=polyy[0];
 		  lstyle[0]=style[i];
 		  C2F(dr)("xpolys","v",polyx,polyy,lstyle,&n,&p
 			  ,PI0,PD0,PD0,PD0,PD0,0L,0L);
