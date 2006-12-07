@@ -119,4 +119,10 @@ void updateSubWinScale( sciPointObj * pSubWin ) ;
 */
 void updateScaleIfRequired( sciPointObj * pSubWin ) ;
 /*--------------------------------------------------------------------------------------*/
+/**
+ * Draw the grid of an axes object if needed.
+ */
+void drawAxesGrid( sciPointObj * psubwin ) ;
+/*--------------------------------------------------------------------------------------*/
+
 #endif /*__SCI_AXES_H_*/

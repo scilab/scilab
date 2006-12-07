@@ -2555,22 +2555,15 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
   FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
 
 
-  switch (switchXY) {
+  switch (switchXY)
+  {
   case 0: /* x horizontal axis */
-
-    /** Horizontal axes **/
-    if ( /*ppsubwin->axes.axes_visible[0]*/ TRUE )
     {
+      /** Horizontal axes **/
+
       char formatY[5] ;
       barlength =  (integer) (Cscale.WIRect1[3]/50.0);
       
-      /* lastxindex = ppsubwin->axes.nxgrads - 1; */
-      
-/*       ChoixFormatE(c_format, */
-/* 		   ppsubwin->axes.xgrads[0], */
-/* 		   ppsubwin->axes.xgrads[lastxindex], */
-/* 		   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex)); /\* Adding F.Leray 06.05.04 *\/ */
-
       /* remove concealing tics labels */
       
       updateXaxesTics( psubwin, pos, xy, fontid, smallersize ) ;
@@ -2584,28 +2577,15 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
       /* subtics display*/
       DrawXSubTics(pos, psubwin, xy, ticscolor, color_kp);
     }
-        
-    /* grids if specified (val > -1) */
-    if(ppsubwin->grid[0] > -1)
-      DrawXGrid(psubwin);
-    
     break;
   case 1: /* y vertical axis */
-
+    {
     /** Vertical axes **/
-    if( /*ppsubwin->axes.axes_visible[1] ==*/ TRUE){
       char formatX[5] ;
       
       /* int ticsDir[2] = {1,0} ; */
       barlength =  (integer) (Cscale.WIRect1[2]/75.0);
-      
-      /* lastyindex = ppsubwin->axes.nygrads - 1; */
-/*       ChoixFormatE(c_format, */
-/* 		   ppsubwin->axes.ygrads[0], */
-/* 		   ppsubwin->axes.ygrads[lastyindex], */
-/* 		   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex)); /\* Adding F.Leray 06.05.04 *\/ */
-      
-      
+
       /* remove concealing tics labels */
       updateYaxesTics( psubwin, pos, xy, fontid, smallersize ) ;
 
@@ -2618,10 +2598,6 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
       /* subtics display*/
       DrawYSubTics(pos, psubwin, xy, ticscolor, color_kp);
     }
-    
-    /* grids if specified (val > -1) */
-    if(ppsubwin->grid[1] > -1)
-      DrawYGrid(psubwin);
     
     break;
   default:
@@ -3333,6 +3309,19 @@ void updateScaleIfRequired( sciPointObj * pSubWin )
   if ( !sciGetIsAutoDrawable( pSubWin ) )
   {
     updateSubWinScale( pSubWin ) ;
+  }
+}
+/*-----------------------------------------------------------------------------------------*/
+void drawAxesGrid( sciPointObj * psubwin )
+{
+  if( pSUBWIN_FEATURE(psubwin)->grid[0] > -1 )
+  {
+    DrawXGrid(psubwin);
+  }
+
+  if( pSUBWIN_FEATURE(psubwin)->grid[1] > -1 )
+  {
+    DrawYGrid(psubwin);
   }
 }
 /*-----------------------------------------------------------------------------------------*/

@@ -6866,9 +6866,10 @@ sciDrawObj (sciPointObj * pobj)
 	  sciClip(pobj); /* to update the clip_box if needed */
 	  sciUnClip(pobj);
 	  
-	  /* 	 if (sciGetVisibility(pobj)) */
 	  DrawAxesBackground();
 	   
+          drawAxesGrid( pobj ) ;
+
           /* there is a bug here */
           /* We should make a check for merge objects here */
           /* But merge object has been only created only for 3d */
