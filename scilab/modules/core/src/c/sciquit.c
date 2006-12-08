@@ -81,6 +81,7 @@ int ExitScilab(void)
 			if ( !IsFromC() && !IsFromJava() )  RestoreConsoleColors();
 		}
 	#else
+		int i=0;
 		C2F (xscion) (&i);
 		if (i != 0)	CloseConsoleGUI();
 	#endif
