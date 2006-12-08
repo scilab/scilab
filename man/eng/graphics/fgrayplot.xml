@@ -49,8 +49,8 @@
   <EXAMPLE>
 <![CDATA[
 t=-1:0.1:1;
-deff("[z]=surf(x,y)","z=x**2+y**2")
-fgrayplot(t,t,surf,rect=[-2,-2,2,2])
+deff("[z]=my_surface(x,y)","z=x**2+y**2")
+fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
@@ -67,5 +67,5 @@ fgrayplot(t,t,surf,rect=[-2,-2,2,2])
       <LINK>Sfgrayplot</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
+  <AUTHOR>J.Ph.C.</AUTHOR>
 </MAN>
