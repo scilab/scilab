@@ -274,16 +274,16 @@
   <EXAMPLE>
 <![CDATA[
 t=linspace(-%pi,%pi,30);
-function z=surf(x,y),z=x*sin(x)^2*cos(y),endfunction
+function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 
-contour(t,t,surf,10)
+contour(t,t,my_surface,10)
 // changing the format of the printing of the levels
 xset("fpf","%.1f")
 xbasc()
-contour(t,t,surf,10)
+contour(t,t,my_surface,10)
 // 3D
 xbasc()
-z=feval(t,t,surf);
+z=feval(t,t,my_surface);
 plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
 //
 

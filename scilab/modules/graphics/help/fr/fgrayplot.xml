@@ -5,7 +5,7 @@
   <TITLE>fgrayplot  </TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="fgrayplot"> représentation 2D en pseudo-couleurs d&apos;une surface définie par une fonction  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="fgrayplot"> reprï¿½entation 2D en pseudo-couleurs d&apos;une surface dï¿½inie par une fonction  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>fgrayplot(x,y,f,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>fgrayplot(x,y,f,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
@@ -32,7 +32,7 @@
   <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : une séquence d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... où <VERB>key1</VERB>, <VERB>key2,...</VERB> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <VERB>plot2d</VERB>).
+    : une sï¿½uence d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... o <VERB>key1</VERB>, <VERB>key2,...</VERB> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <VERB>plot2d</VERB>).
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -48,18 +48,18 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>fgrayplot</VERB> dessine une représentation 2D en pseudo-couleurs d&apos;une surface définie par <VERB>z=f(x,y)</VERB> sur une grille définie par <VERB>x</VERB> et <VERB>y</VERB>.
-    Chaque rectangle sur la grille est rempli avec une couleur dépendant de la moyenne des 
+    <VERB>fgrayplot</VERB> dessine une reprï¿½entation 2D en pseudo-couleurs d&apos;une surface dï¿½inie par <VERB>z=f(x,y)</VERB> sur une grille dï¿½inie par <VERB>x</VERB> et <VERB>y</VERB>.
+    Chaque rectangle sur la grille est rempli avec une couleur dï¿½endant de la moyenne des 
     valeurs de <VERB>z</VERB> aux coins du rectangle.
   </P>
   <P>
-    Taper <VERB>fgrayplot()</VERB> pour voir une démonstration de la fonction.
+    Taper <VERB>fgrayplot()</VERB> pour voir une dï¿½onstration de la fonction.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 t=-1:0.1:1;
-deff("[z]=surf(x,y)","z=x**2+y**2")
-fgrayplot(t,t,surf,rect=[-2,-2,2,2])
+deff("[z]=my_surface(x,y)","z=x**2+y**2")
+fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>Sfgrayplot</LINK> </SEE_ALSO_ITEM>
