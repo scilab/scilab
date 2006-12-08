@@ -696,11 +696,12 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD)
 {
   integer  x[5],narg = 0;
-  integer color_kp,verbose = 0,thick_kp,style_kp;
+  integer color_kp,verbose = 0,thick_kp ;
+  integer style_kp[3];
 
   C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray Replacement*/
   C2F(dr)("xget","thickness",&verbose,&thick_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
-  C2F(dr)("xget","line style",&verbose,&style_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
+  C2F(dr)("xget","line style",&verbose,style_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN) 
     if(pSUBWIN_FEATURE (pobj)->axes.rect== 1)
@@ -721,7 +722,7 @@ void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, intege
 	  DrawAxis(xbox,ybox,InsideD,x[0]);
       }
   
-  C2F(dr)("xset", "line style",&style_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);/*F.Leray addings here*/
+  C2F(dr)("xset", "line style",&(style_kp[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);/*F.Leray addings here*/
   C2F(dr)("xset","thickness",&thick_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);/*F.Leray addings here*/
   C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
   

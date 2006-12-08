@@ -543,7 +543,8 @@ static integer DashTabStyle[6] = {0,2,4,2,4,8};
 
 void C2F(set_dash_or_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
-  static integer maxdash = 6,l3 ;
+  integer maxdash = MAXDASH ;
+  integer l3 ;
 
   if ( ScilabGCXfig_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
@@ -559,22 +560,23 @@ void C2F(set_dash_or_color_Xfig)(integer *value, integer *v2, integer *v3, integ
     }
   else
     {
-      l3 = Max(0,Min(maxdash-1,*value-1));
+      l3 = Max(0,Min(maxdash-1,(*value)-1));
       ScilabGCXfig.CurDashStyle = l3;
     }
 }
 
 void C2F(setdashXfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
-  static integer maxdash = 6,l3 ;
+  int maxdash = MAXDASH ;
+  int l3 ;
 
   if ( ScilabGCXfig_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
     return;
   }
 
-  l3 = Max(0,Min(maxdash-1,*value-1));
-  ScilabGCXfig.CurDashStyle = l3;
+  l3 = Max(0,Min(maxdash-1,(*value)-1));
+	  ScilabGCXfig.CurDashStyle = l3;
 }
 
 void C2F(set_dash_and_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4)
