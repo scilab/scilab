@@ -144,7 +144,7 @@ c     save line pointers
       lin(k+5) = last
       lin(k+6) = ilk
       lin(k+7) = l
-      val = stk(lstk(isiz)-1)
+      val = stk(lstk(isiz))
       lin(k+8) = ival(1)
       lin(k+9) = ival(2)
       lin(k+10)=char1
@@ -428,7 +428,7 @@ c
       lpt(6)=k
       ival(1)=lin(k+8)
       ival(2)=lin(k+9)
-      stk(lstk(isiz)-1)=val
+      stk(lstk(isiz))=val
       return
 c     
 c     exec

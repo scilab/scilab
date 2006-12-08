@@ -91,7 +91,7 @@
 *        -> number (beginning with a digit => 2d arg of getval : dotdet = .false.)
          sym = num
          call getval(syv, .false.)
-         stk(lstk(isiz)-1) = syv
+         stk(lstk(isiz)) = syv
 
       elseif ( isAlphaNum(char1) .or. char1.eq.percen) then
 *        -> name
