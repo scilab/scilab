@@ -3094,6 +3094,27 @@ sciGetXorMode (sciPointObj * pobj)
   return FALSE;
 }
 
+/**
+ * To know wether an object will be displayed on the screen or not.
+ * Because if one of its parent is not visible then it won't be displayed.
+ */
+BOOL
+sciGetRealVisibility (sciPointObj * pobj)
+{
+
+  if ( sciGetEntityType( pobj) == SCI_FIGURE )
+  {
+    return sciGetVisibility( pobj ) ;
+  }
+
+  if ( !sciGetVisibility( pobj ) )
+  {
+    return FALSE ;
+  }
+
+  return sciGetRealVisibility( sciGetParent( pobj ) ) ;
+
+}
 
 /**sciGetVisibility*/
 BOOL

@@ -407,10 +407,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
  *-----------------------------------------------------*/
 
 
-void Legends(style, n1, legend)
-     integer *style;
-     integer *n1;
-     char *legend;
+void Legends( integer * style, integer * n1, char * legend )
 {
   int rect[4],xx,yy;
   char *leg,*loc;

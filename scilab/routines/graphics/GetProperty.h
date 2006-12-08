@@ -93,6 +93,7 @@ extern BOOL sciGetAutoScale (sciPointObj * pobj);  /* GET */
 extern BOOL sciGetZooming (sciPointObj * pobj);  /* GET */
 extern BOOL sciGetGraphicsStyle (sciPointObj * pobj);  /* GET */
 extern int sciGetXorMode (sciPointObj * pobj);  /* GET */
+extern BOOL sciGetRealVisibility (sciPointObj * pobj) ; /* GET */
 extern BOOL sciGetVisibility (sciPointObj * pobj);  /* GET */
 extern BOOL sciGetResize (sciPointObj * pobj);  /* GET */
 
