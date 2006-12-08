@@ -530,7 +530,8 @@ static integer DashTabStyle[MAXDASH] = {0,2,4,2,4,8} ;
 
 void C2F(set_dash_or_color_Xfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
-  static integer maxdash = 6,l3 ;
+  integer maxdash = MAXDASH ;
+  integer l3 ;
 
   if ( ScilabGCXfig_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
@@ -546,21 +547,22 @@ void C2F(set_dash_or_color_Xfig)(integer *value, integer *v2, integer *v3, integ
     }
   else
     {
-      l3 = Max(0,Min(maxdash-1,*value-1));
+      l3 = Max(0,Min(maxdash-1,(*value)-1));
       ScilabGCXfig.CurDashStyle = l3;
     }
 }
 
 void C2F(setdashXfig)(integer *value, integer *v2, integer *v3, integer *v4)
 {
-  static integer maxdash = 6,l3 ;
+  integer maxdash = MAXDASH ;
+  integer l3 ;
 
   if ( ScilabGCXfig_is_initialized == FALSE ) {
     sciprint("xinit must be called before any action \r\n");
     return;
   }
 
-  l3 = Max(0,Min(maxdash-1,*value-1));
+  l3 = Max(0,Min(maxdash-1,(*value)-1));
   ScilabGCXfig.CurDashStyle = l3;
 }
 
@@ -3049,13 +3051,11 @@ void C2F(setscilabxgcXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
 
 void C2F(initgraphicfromscreenXfig)(char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
 { 
-  char string1[50];
   static integer EntryCounter = 0;
   integer fnum;
   *v3 = 0;
   if (EntryCounter >= 1) C2F(xendgraphicXfig)();
-  strcpy(string1,string);
-  file=fopen(string1,"w");
+  file=fopen(string,"w");
   if (file == 0) 
     {
       /*sciprint("Can't open file %s, I'll use stdout\r\n",string1);*/
