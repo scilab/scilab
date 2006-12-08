@@ -2987,14 +2987,12 @@ void C2F(setscilabxgcXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
 /* directly from the screen */
 
 void C2F(initgraphicfromscreenXfig)(char *string, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
-{ 
-  char string1[50];
+{
   static integer EntryCounter = 0;
   integer fnum;
   *v3 = 0;
-  if (EntryCounter >= 1) C2F(xendgraphicXfig)();
-  strcpy(string1,string);
-  file=fopen(string1,"w");
+  if (EntryCounter >= 1) { C2F(xendgraphicXfig)(); }
+  file=fopen(string,"w");
   if (file == 0) 
     {
       /*sciprint("Can't open file %s, I'll use stdout\r\n",string1);*/
