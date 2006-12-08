@@ -3,15 +3,14 @@ see SCI/modules/<module name>/sci_gateway/<module name> file in each module
 example :
 SCI/modules/core/sci_gateway/core
 in core file :
-13 	1 	3 debug
-^   ^   ^   ^
-|   |   |   |
-(1) (2) (3) (4)
+13 	1 debug
+^   ^   ^
+|   |   | 
+(1) (2) (3)
 
 (1) : number of the gateway. here 13 (see callinterf.h in core)
 (2) : number of the function in the gateway. here 1
-(3) : level 0,1,2,3 (default 2)
-(4) : function's name in scilab. here "debug" (24 characters max)
+(3) : function's name in scilab. here "debug" (24 characters max)
 
 ";" if you want to add a comment in file
 

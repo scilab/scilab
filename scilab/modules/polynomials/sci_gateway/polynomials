@@ -6,21 +6,21 @@
 ; polynomials module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------     
-16 1 1 poly
-16 2 2 roots
-16 3 0 degree
-16 4 0 coeff
+16 1 poly
+16 2 roots
+16 3 degree
+16 4 coeff
 /* 5 eval implicit */
-16 6 2 pppdiv
-16 7 2 simp
+16 6 pppdiv
+16 7 simp
 ;/* 8 sum implicit */
 ;/* 9 prod implicit */
 ;/* 10 diag implicit */
 ;/* 11 triu implicit */
 ;/* 12 tril implicit */
-16 13 2 bezout
-16 14 2 sfact
-16 15 0 simp_mode
-16 16 1 varn
+16 13 bezout
+16 14 sfact
+16 15 simp_mode
+16 16 varn
 ;/* 17 cleanp implicit */
 ; --------------------------     

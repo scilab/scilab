@@ -6,16 +6,16 @@
 ; data_structures module primitives
 ; Don't edit if you aren't sure
 ; --------------------------
-17 1 1 list
-17 2 1 tlist
-17 3 1 rlist
-17 4 1 lsslist
-17 5 1 glist
-17 6 1 lstcat
-17 7 1 mlist
-17 8 1 definedfields
-17 9 1 lstsize
+17 1 list
+17 2 tlist
+17 3 rlist
+17 4 lsslist
+17 5 glist
+17 6 lstcat
+17 7 mlist
+17 8 definedfields
+17 9 lstsize
 ; --------------------------
-41 1 1 getfield
-41 2 1 setfield
+41 1 getfield
+41 2 setfield
 ; --------------------------

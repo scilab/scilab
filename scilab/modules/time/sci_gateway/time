@@ -6,11 +6,11 @@
 ; time module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------     
-48 1 2 getdate
-48 2 2 Calendar
-48 3 2 timer
-48 4 2 sleep
-48 5 2 xpause
-48 6 2 realtimeinit
-48 7 2 realtime
+48 1 getdate
+48 2 Calendar
+48 3 timer
+48 4 sleep
+48 5 xpause
+48 6 realtimeinit
+48 7 realtime
 ; --------------------------     

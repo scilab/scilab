@@ -6,99 +6,99 @@
 ; graphics module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------          
-7 1 2 champ
-7 2 2 champ1
-7 3 2 oldcontour
-7 4 2 driver
-7 5 2 fec
-7 6 2 geom3d
-7 7 2 grayplot
-7 8 2 Matplot
-7 9 2 Matplot1
-7 10 2 contour2di
-7 11 2 param3d
-7 12 2 param3d1
-7 13 2 xstringb
-7 14 2 plot2d
-7 15 2 plot2d1
-7 16 2 plot2d2
-7 17 2 plot2d3
-7 18 2 plot2d4
-7 19 2 plot3d
-7 20 2 plot3d1
-7 21 1 winsid
-7 22 2 xarc
-7 23 2 xarcs
-7 24 2 xarrows
-7 25 2 drawaxis
-7 26 2 xchange
-7 27 2 xclea
-7 28 2 oldxclear
-7 29 2 xclick
-7 30 2 xdel
-7 31 2 xend
-7 32 2 xfarc
-7 33 2 xfarcs
-7 34 2 xfpoly
-7 35 2 xfpolys
-7 36 2 xfrect
-7 37 2 xg2ps
-7 38 2 xget
-7 39 2 xgetech
-7 40 2 xgetmouse
-7 41 2 xgrid
-7 42 2 xinfo
-7 43 2 xinit
-7 44 2 xlfont
-7 45 2 xload
-7 46 2 xpoly
-7 47 2 xpolys
-7 48 2 xrect
-7 49 2 xrects
-7 50 2 xs2fig
-7 51 2 xsave
-7 52 2 xsegs
-7 53 2 xselect
-7 54 2 xset
-7 55 2 xsetech
-7 56 2 xstring
-7 57 2 xstringl
-7 58 2 xtape
-7 59 2 xtitle
-7 60 2 xgraduate
-7 61 2 xname
-7 62 2 xaxis
-7 63 2 seteventhandler
-7 64 2 xs2gif
-7 65 2 xs2ppm
-7 66 2 xs2ps
-7 67 2 xs2bmp
-7 68 2 xs2emf
-7 69 2 set_posfig_dim
-7 70 2 xsnative
-7 71 2 zoom_rect
-7 72 2 unzoom
-7 73 2 StringBox
+7 1 champ
+7 2 champ1
+7 3 oldcontour
+7 4 driver
+7 5 fec
+7 6 geom3d
+7 7 grayplot
+7 8 Matplot
+7 9 Matplot1
+7 10 contour2di
+7 11 param3d
+7 12 param3d1
+7 13 xstringb
+7 14 plot2d
+7 15 plot2d1
+7 16 plot2d2
+7 17 plot2d3
+7 18 plot2d4
+7 19 plot3d
+7 20 plot3d1
+7 21 winsid
+7 22 xarc
+7 23 xarcs
+7 24 xarrows
+7 25 drawaxis
+7 26 xchange
+7 27 xclea
+7 28 oldxclear
+7 29 xclick
+7 30 xdel
+7 31 xend
+7 32 xfarc
+7 33 xfarcs
+7 34 xfpoly
+7 35 xfpolys
+7 36 xfrect
+7 37 xg2ps
+7 38 xget
+7 39 xgetech
+7 40 xgetmouse
+7 41 xgrid
+7 42 xinfo
+7 43 xinit
+7 44 xlfont
+7 45 xload
+7 46 xpoly
+7 47 xpolys
+7 48 xrect
+7 49 xrects
+7 50 xs2fig
+7 51 xsave
+7 52 xsegs
+7 53 xselect
+7 54 xset
+7 55 xsetech
+7 56 xstring
+7 57 xstringl
+7 58 xtape
+7 59 xtitle
+7 60 xgraduate
+7 61 xname
+7 62 xaxis
+7 63 seteventhandler
+7 64 xs2gif
+7 65 xs2ppm
+7 66 xs2ps
+7 67 xs2bmp
+7 68 xs2emf
+7 69 set_posfig_dim
+7 70 xsnative
+7 71 zoom_rect
+7 72 unzoom
+7 73 StringBox
 ;/* NG beg */                    
-7 74 2 move
-7 75 2 glue
-7 76 2 unglue
-7 77 2 drawnow
-7 78 2 drawlater
-7 79 2 draw
-7 80 2 addcb
-7 81 2 copy
-7 82 2 delete
-7 83 2 get
-7 84 2 set
-7 85 2 newaxes
-7 86 2 relocate_handle
-7 87 2 swap_handles
+7 74 move
+7 75 glue
+7 76 unglue
+7 77 drawnow
+7 78 drawlater
+7 79 draw
+7 80 addcb
+7 81 copy
+7 82 delete
+7 83 get
+7 84 set
+7 85 newaxes
+7 86 relocate_handle
+7 87 swap_handles
 ;/* NG end */                    
-7 88 1 gsort
-7 89 2 help_gtk
-7 90 2 UImenu
-7 91 2 showalluimenushandles
-7 92 2 readxbm
-7 93 2 readgif
+7 88 gsort
+7 89 help_gtk
+7 90 UImenu
+7 91 showalluimenushandles
+7 92 readxbm
+7 93 readgif
 ; --------------------------          

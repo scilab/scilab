@@ -6,29 +6,29 @@
 ; wintools module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------     
-47 1 2 winopen
-47 2 2 winqueryreg
-47 3 2 getlongpathname
-47 4 2 getshortpathname
-47 5 2 ddeopen
-47 6 2 ddeclose
-47 7 2 ddeexec
-47 8 2 ddepoke
-47 9 2 ddereq
-47 10 2 ddeisopen
-47 11 2 ClipBoard
-47 12 2 hidetoolbar
-47 13 2 toolbar
-47 14 2 setlanguagemenu
-47 15 2 console
-47 16 2 about
-47 17 2 mcisendstring
-47 18 2 oemtochar
-47 19 2 chartooem
-47 20 2 printsetupbox
-47 21 2 toprint
-47 22 2 settextcolor
-47 23 2 settextbackgroundcolor
-47 24 2 filesassociationbox
-47 25 2 dos
+47 1 winopen
+47 2 winqueryreg
+47 3 getlongpathname
+47 4 getshortpathname
+47 5 ddeopen
+47 6 ddeclose
+47 7 ddeexec
+47 8 ddepoke
+47 9 ddereq
+47 10 ddeisopen
+47 11 ClipBoard
+47 12 hidetoolbar
+47 13 toolbar
+47 14 setlanguagemenu
+47 15 console
+47 16 about
+47 17 mcisendstring
+47 18 oemtochar
+47 19 chartooem
+47 20 printsetupbox
+47 21 toprint
+47 22 settextcolor
+47 23 settextbackgroundcolor
+47 24 filesassociationbox
+47 25 dos
 ; --------------------------            

@@ -16,7 +16,7 @@ static int firstentry = 0;
 extern int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
 extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/  
-static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data, int *level);
+static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data);
 static BOOL Load_primitives_from_file(char *filename);
 /*-----------------------------------------------------------------------------------*/  
 void LoadFunctionsTab(void)
@@ -52,7 +52,7 @@ void LoadFunctionsTab(void)
 
 }
 /*-----------------------------------------------------------------------------------*/
-static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data, int *level)
+static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 {
 	int ldata;
 	int id[NAMECODE];
@@ -72,7 +72,6 @@ static int Load_primitives_from_file(char *filename)
 		FILE *pFile;
 		int dataI=0;
 		int data=0;
-		int level=0;
 		char namefunction[MAXLENGHTFUNCTIONNAME];
 
 		pFile=fopen(filename,"rt");
@@ -81,10 +80,10 @@ static int Load_primitives_from_file(char *filename)
 			if (Line[0]!=';')
 			{
 				int retval=0;
-				retval=sscanf(Line,"%d %d %d %s",&dataI,&data,&level,namefunction);
-				if (retval == 4)
+				retval=sscanf(Line,"%d %d %s",&dataI,&data,namefunction);
+				if (retval == 3)
 				{
-					Add_a_Scilab_primitive_in_hashtable(namefunction,&dataI,&data,&level);
+					Add_a_Scilab_primitive_in_hashtable(namefunction,&dataI,&data);
 				}
 			}
 		}

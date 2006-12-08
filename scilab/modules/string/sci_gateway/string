@@ -6,20 +6,20 @@
 ; string module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------   
-21 1 1 length
-21 2 1 part
-21 3 1 string
-21 4 0 convstr
-21 5 1 emptystr
-21 6 1 str2code
-21 7 1 code2str
-;21 8 1 sort
+21 1 length
+21 2 part
+21 3 string
+21 4 convstr
+21 5 emptystr
+21 6 str2code
+21 7 code2str
+;21 8 sort
 ;/* sort overloading */
-21 9 1 strcat
-21 10 1 strindex
-21 11 1 strsubst
-21 12 1 ascii
-21 13 1 grep
-21 14 1 tokens
-21 15 1 strsplit
+21 9 strcat
+21 10 strindex
+21 11 strsubst
+21 12 ascii
+21 13 grep
+21 14 tokens
+21 15 strsplit
 ; --------------------------   

@@ -6,20 +6,20 @@
 ; special_functions module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------  
-36 1 3 oldbesseli
-36 2 3 oldbesselj
-36 3 3 oldbesselk
-36 4 3 oldbessely
-36 5 3 gamma
-36 6 3 gammaln
-36 7 3 dlgamma
-36 8 3 calerf
+36 1 oldbesseli
+36 2 oldbesselj
+36 3 oldbesselk
+36 4 oldbessely
+36 5 gamma
+36 6 gammaln
+36 7 dlgamma
+36 8 calerf
 ; --------------------------  
-39 1 3 legendre
-39 2 3 beta
-39 3 3 besseli
-39 4 3 besselj
-39 5 3 besselk
-39 6 3 bessely
-39 7 3 besselh
+39 1 legendre
+39 2 beta
+39 3 besseli
+39 4 besselj
+39 5 besselk
+39 6 bessely
+39 7 besselh
 ; --------------------------  

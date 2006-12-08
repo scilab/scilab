@@ -6,15 +6,15 @@
 ; statistics module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------   
-37 1 3 cdfbet
-37 2 3 cdfbin
-37 3 3 cdfchi
-37 4 3 cdfchn
-37 5 3 cdff
-37 6 3 cdffnc
-37 7 3 cdfgam
-37 8 3 cdfnbn
-37 9 3 cdfnor
-37 10 3 cdfpoi
-37 11 3 cdft
+37 1 cdfbet
+37 2 cdfbin
+37 3 cdfchi
+37 4 cdfchn
+37 5 cdff
+37 6 cdffnc
+37 7 cdfgam
+37 8 cdfnbn
+37 9 cdfnor
+37 10 cdfpoi
+37 11 cdft
 ; --------------------------   

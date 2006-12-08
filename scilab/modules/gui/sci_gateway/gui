@@ -6,18 +6,18 @@
 ; gui module primitives            
 ; Don't edit if you aren't sure         
 ; --------------------------          
-25 1 1 x_dialog              
-25 2 1 x_message             
-25 3 1 x_choose              
-25 4 1 x_mdialog             
-25 5 2 xchoicesi             
-25 6 3 addmenu_old           
-25 7 3 delmenu_old           
-25 8 3 setmenu_old           
-25 9 3 unsetmenu_old         
-25 10 2 xgetfile             
-25 11 1 x_message_modeless   
-25 12 2 clc                  
-25 13 2 show_window          
-25 14 2 tohome               
+25 1 x_dialog              
+25 2 x_message             
+25 3 x_choose              
+25 4 x_mdialog             
+25 5 xchoicesi             
+25 6 addmenu_old           
+25 7 delmenu_old           
+25 8 setmenu_old           
+25 9 unsetmenu_old         
+25 10 xgetfile             
+25 11 x_message_modeless   
+25 12 clc                  
+25 13 show_window          
+25 14 tohome               
 ; --------------------------                                       
