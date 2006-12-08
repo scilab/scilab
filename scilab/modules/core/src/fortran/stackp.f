@@ -67,7 +67,7 @@ c
       if (k .eq. bot-1) then
 c     .  the variable does not exist, check for function redefinition
          if(macprt.ne.0) then  
-            call funtab(id,ifun,1)
+            call funtab(id,ifun,1,'NULL_NAME',0)
             if(ifun.gt.0) then
                if(macprt.eq.2) then  
                   call  putid(ids(1,pt+1),id)

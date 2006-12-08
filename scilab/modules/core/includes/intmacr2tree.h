@@ -31,7 +31,7 @@ extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len);
 /* *jobptr==1: Get C-string from Scilab codes */
 
 /* Defined in SCI/modules/core/src/c/Funtab.c */
-extern int C2F(funtab)(int *id, int *fptr, int *job); 
+extern int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len); 
 /* *job==1: Find id-name associated to function pointer */
 /* *job==2: Find function pointer associated to id-name */
 

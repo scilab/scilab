@@ -31,7 +31,7 @@
  *   id  :vecteur de taille nsiz contenant le code scilab du nom
  *   fptr:entier
  ************************************************************/
-int C2F(funtab)(int *id, int *fptr, int *job)
+int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len) 
 {
   switch ( *job) 
     {

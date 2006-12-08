@@ -15,7 +15,7 @@
 
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
-extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job));  
+extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len));  
 extern int C2F(error)  __PARAMS((integer *n));  
 extern void GetenvB __PARAMS(( char *name,char *env, int len));
 extern void sciprint __PARAMS((char *fmt,...));
@@ -245,8 +245,8 @@ static void DynFuntab(int *Scistring, int *ptrstrings, int *nstring, int k1)
       li=ptrstrings[i];
       C2F(namstr)(id,SciS,&ni,&zero);
       fptr1= fptr= (DynInterfStart+k1)*100 +i;
-      C2F(funtab)(id,&fptr1,&quatre); /* clear previous def set fptr1 to 0*/
-      C2F(funtab)(id,&fptr,&trois);  /* reinstall */
+      C2F(funtab)(id,&fptr1,&quatre,"NULL_NAME",0); /* clear previous def set fptr1 to 0*/
+      C2F(funtab)(id,&fptr,&trois,"NULL_NAME",0);  /* reinstall */
       SciS += ni;
     }
 }

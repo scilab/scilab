@@ -275,7 +275,6 @@ sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_format.f \
 sci_gateway/fortran/sci_chdir.f \
-sci_gateway/fortran/sci_clearfun.f \
 sci_gateway/fortran/sci_link.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_havewindow.f \

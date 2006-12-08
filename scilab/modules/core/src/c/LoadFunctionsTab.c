@@ -55,7 +55,7 @@ void LoadFunctionsTab(void)
 static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 {
 	int ldata;
-	int id[NAMECODE];
+	int id[nsiz];
 	int zero=0;
 	C2F(cvname)(id,str,&zero,strlen(str));
 	ldata= (*dataI)*100+*data;

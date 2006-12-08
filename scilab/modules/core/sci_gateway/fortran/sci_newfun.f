@@ -20,7 +20,7 @@ c
       if(.not.checkval('newfun',m*n,1) ) return
       call namstr(id,istk(l),n1,0)
 c     
-      call funtab(id,fptr,3)
+      call funtab(id,fptr,3,'NULL_NAME',0)
       if(err.gt.0) return
       call objvide('newfun',top)
       return

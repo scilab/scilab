@@ -7,11 +7,11 @@
   <DATE>$LastChangedDate$</DATE>
   <SHORT_DESCRIPTION name="clearfun"> remove primitive.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>clearfun('name')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ret=clearfun('name')  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
     <P><VERB>clearfun('name')</VERB> removes the primitive <VERB>'name'</VERB> from the set of
-    primitives (built-in functions) .
+    primitives (built-in functions). clearfun returns %t or %f.
     This function allows to rename a primitive : a Scilab 
     primitive can be replaced by a user-defined function. For experts...</P>
   </DESCRIPTION>

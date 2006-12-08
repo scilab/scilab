@@ -1,6 +1,9 @@
 /*-----------------------------------------------------------------------------------*/
 /* Scilab */
+/* Allan CORNET */
+/* INRIA 2006 */
 /*-----------------------------------------------------------------------------------*/
+#include <string.h>
 #include "MALLOC.h"
 #include "hashtable_core.h"
 /*-----------------------------------------------------------------------------------*/
@@ -54,13 +57,13 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 		for ( i = 0 ; i < hsize ; i++ ) if ( htable[i].used && htable[i].entry.data == *data ) 
 		{
 			int j=0;
-			for (j = 0; j < NAMECODE ; j++ ) key[j] = htable[i].entry.key[j];
+			for (j = 0; j < nsiz ; j++ ) key[j] = htable[i].entry.key[j];
 			return (bOK=OK);
 		}
 	}
 	else
 	{
-		register unsigned len = NAMECODE;
+		register unsigned len = nsiz;
 		register unsigned hval=0;
 		register unsigned hval2=0;
 		register unsigned count=0;
@@ -143,7 +146,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 		{
 			int i=0;
 			htable[idx].used  = hval;
-			for ( i=0 ; i < NAMECODE ; i++ ) htable[idx].entry.key[i] = key[i];
+			for ( i=0 ; i < nsiz ; i++ ) htable[idx].entry.key[i] = key[i];
 			htable[idx].entry.data = *data;
 			strcpy(htable[idx].entry.namefunction,name);
 			filled++;
@@ -158,7 +161,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 static int Equal_id(int *x, int *y)
 {
 	int i;
-	for (i = 0; i < NAMECODE ; i++ ) if ( x[i] != y[i] ) return(1);
+	for (i = 0; i < nsiz ; i++ ) if ( x[i] != y[i] ) return(1);
 	return(0);
 }
 /*-----------------------------------------------------------------------------------*/  
@@ -199,5 +202,21 @@ char **GetFunctionsList(int *sizeList)
 		}
 	}
 	return ListFunctions;
+}
+/*-----------------------------------------------------------------------------------*/  
+BOOL ExistFunction(char *name)
+{
+	BOOL bOK=FALSE;
+	int i=0;
+
+	for ( i = 0 ; i < (int)hsize ; i++ ) if ( htable[i].used) 
+	{
+		if (strcmp(htable[i].entry.namefunction,name) == 0)
+		{
+			return TRUE;
+		}
+	}
+
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/  

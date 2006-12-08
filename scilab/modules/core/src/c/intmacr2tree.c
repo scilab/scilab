@@ -1279,7 +1279,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 
       funptr = interf_num + interf_index2;
 
-      C2F(funtab)(id,&funptr,&job2);
+      C2F(funtab)(id,&funptr,&job2,"NULL_NAME",0);
 
       CvNameL(id,funname[0],&job1,&funnamelgth);
       (funname[0])[funnamelgth]='\0';
