@@ -62,6 +62,7 @@ static int CloseConsoleGUI(void)
 /*-----------------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
+	int i=0;
     if ( Get_no_startup_flag() == 0) 
     {
       char *quit_script =  get_sci_data_strings(5);
@@ -81,15 +82,14 @@ int ExitScilab(void)
 			if ( !IsFromC() && !IsFromJava() )  RestoreConsoleColors();
 		}
 	#else
-		int i=0;
 		C2F (xscion) (&i);
 		if (i != 0)	CloseConsoleGUI();
 	#endif
 
-		//	#ifdef _MSC_VER /* Bug sous Linux lors de la liberation memoire */
+		/*	#ifdef _MSC_VER */ /* Bug sous Linux lors de la liberation memoire */
 		C2F(freegmem)();
 		C2F(freemem)();
-		//	#endif
+		/*	#endif */
 
 	#ifdef WITH_TK
 		CloseTCLsci();
