@@ -81,10 +81,11 @@ extern logical Ptover(int n);
 extern void Msgs(int n,int ierr);
 extern void SciError(int n);
 extern int scilab_timer_check(void);
+extern logical C2F(istrue)();
 
 logical Istrue(int n)
 {
-  extern logical C2F(istrue)();
+
   return C2F(istrue)(&n);
 }
 

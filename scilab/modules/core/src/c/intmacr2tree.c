@@ -1805,7 +1805,7 @@ int complexity(int *data,int *index2,int *lgth)
   
   int cur_ind = *index2+1;
 
-  int last_eol;
+  int last_eol=0;
 
   int nbop = 0; /* Number of value stored on stack */
 

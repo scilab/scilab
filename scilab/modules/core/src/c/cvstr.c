@@ -67,7 +67,7 @@ int C2F(codetoascii)(integer *n,integer * line,char * str,
     else if (Abs(m) > csiz) 
       {
 	if (m > eol) {
-	  str[j] = (m - (eol + 1));
+	  str[j] = (char)(m - (eol + 1));
 	} else {
 	  str[j] = '!';
 	}
@@ -92,17 +92,16 @@ int C2F(codetoascii)(integer *n,integer * line,char * str,
  *   Copyright INRIA/ENPC 
  *--------------------------------------------- */
 
-int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,
-		     unsigned long  str_len)
+int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsigned long  str_len)
 {
   integer j;
   if (*flagx == 1) {
     for (j = 0; j < *n ; ++j) {
-      line[j] = C2F(getfastcode)(str+j, 1L);
+      line[j] = (integer *)C2F(getfastcode)(str+j, 1L);
     }
   } else {
     for (j = *n -1 ; j >= 0; --j) {
-      line[j] = C2F(getfastcode)(str+j, 1L);
+      line[j] = (integer *)C2F(getfastcode)(str+j, 1L);
     }
   }
   return 0;

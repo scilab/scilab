@@ -145,7 +145,7 @@
 #define D 13
 #define E 14
 
-
+extern int C2F(fortrangetch)();
 
 
 int C2F(getval)(double *s, int *dotdet)
@@ -158,7 +158,6 @@ int C2F(getval)(double *s, int *dotdet)
   static int expo;
   static int code0;
   static int i, k;
-  extern int C2F(fortrangetch)();
   static int digit[25], ndgrec;
   static int detdot;
   static int ndgexp, expcor, sgnexp;

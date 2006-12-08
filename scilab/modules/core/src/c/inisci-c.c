@@ -203,10 +203,10 @@ BOOL ExistJavaSciWin(void)
 int ExistJavaSciUnix(void)
 {
 	int bOK=0;
+#ifndef _MSC_VER
 	char *SCIPATH = (char*)getSCIpath();
 	char *fullpathJavaSci=NULL;
 
-#ifndef _MSC_VER
 	#define JavaSciName "libjavasci"
 
 	struct utsname uname_pointer;

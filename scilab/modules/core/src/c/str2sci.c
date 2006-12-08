@@ -8,7 +8,7 @@ void str2sci(char** x,int n,int m)
      x is supposed to be a fortran image of var2vec result
      Copyright INRIA */
       
-  int l,il,zero=0,err,n1,i,m1=0;
+  int l=0,il=0,zero=0,err,n1,i,m1=0;
       
   if (Top >= Bot) {
     i=18;

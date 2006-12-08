@@ -32,9 +32,7 @@ static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
  *   -5 : pb with one of the entry point 
  *************************************/
 
-void SciLink(iflag,rhs,ilib,files,en_names,strf)
-     int iflag,*ilib,*rhs;
-     char *files[],*en_names[],*strf;
+void SciLink(int iflag,int *rhs,int *ilib,char *files[],char *en_names[],char *strf)
 {
   int i;
   if ( iflag == 0 )
@@ -73,8 +71,7 @@ int LinkStatus()
  * Unlink a shared lib 
  *************************************/
 
-void C2F(isciulink)(i) 
-     integer *i;
+void C2F(isciulink)(integer *i) 
 {
   Sci_Delsym(*i);
 }
@@ -134,10 +131,7 @@ int Sci_dlopen( char *loaded_files[], int global)
  *     from shared lib ishared 
  *************************************/
 
-int Sci_dlsym(ename,ishared,strf)
-     int ishared;
-     char *ename;
-     char *strf;
+int Sci_dlsym(char *ename,int ishared,char *strf)
 {
   HINSTANCE  hd1 = NULL;
   int ish = Min(Max(0,ishared),ENTRYMAX-1);
@@ -188,8 +182,7 @@ int Sci_dlsym(ename,ishared,strf)
  * then delete the shared lib 
  ****************************************************/
 
-void Sci_Delsym( ishared) 
-     int ishared;
+void Sci_Delsym(int ishared) 
 {
   int ish = Min(Max(0,ishared),ENTRYMAX-1);
   int i=0;

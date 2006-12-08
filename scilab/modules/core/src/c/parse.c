@@ -89,38 +89,37 @@ extern int C2F(allops)();
 extern int C2F(run)();
 extern int C2F(name2var)();
 extern void C2F(parsecomment)();
-
+extern int C2F(msgs)();
+extern int C2F(error)();
 extern int scilab_timer_check();
+extern logical C2F(compil)();
+extern logical C2F(eptover)();
+extern logical C2F(Ptover)();
 
 void handle_onprompt(int *n);
 
 void Msgs(int n,int ierr)
 {
-  extern int C2F(msgs)();
-  C2F(msgs)(&n,&ierr);
+   C2F(msgs)(&n,&ierr);
 }
  
 void SciError(int n)
 {
-  extern int C2F(error)();
-  C2F(error)(&n);
+ C2F(error)(&n);
 }
 
 logical Compil(int code,int * val1,int val2,int val3,int val4)
 {
-  extern logical C2F(compil)();
   return C2F(compil)(&code, val1, &val2, &val3, &val4);
 }
 
 logical Eptover(int n)
 {
-  extern logical C2F(eptover)();
   int c;
   return C2F(eptover)(&n,(c=psiz,&c));
 }
 logical Ptover(int n)
 {
-  extern logical C2F(Ptover)();
   int c;
   return C2F(ptover)(&n,(c=psiz,&c));
 }

@@ -45,10 +45,7 @@ int crelist_G(integer *slw,integer *ilen,integer *lw,integer type);
  *       lc : stk(lc+i-1)= imag(a(i)) exists only if it==1 
  *------------------------------------------------------------------ */
 
-int C2F(getlistmat)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getlistmat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   integer nv, ili;
 
@@ -76,10 +73,7 @@ int C2F(getlistmat)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
  *       lc : stk(lc+i-1)= imag(a(i)) exists only if it==1 
  *------------------------------------------------------------------- */
 
-int C2F(getmat)(fname, topk, lw, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *lw, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getmat)(char *fname,integer *topk,integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   return C2F(getmati)(fname, topk, lw,Lstk(*lw), it, m, n, lr, lc, &c_false, &cx0, fname_len);
 }
@@ -88,10 +82,7 @@ int C2F(getmat)(fname, topk, lw, it, m, n, lr, lc, fname_len)
  * getrmat like getmat but we check for a real matrix 
  *------------------------------------------------------------------ */
 
-int C2F(getrmat)(fname, topk, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getrmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer lc, it;
 
@@ -109,10 +100,7 @@ int C2F(getrmat)(fname, topk, lw, m, n, lr, fname_len)
  * getcmat like getmat but we check for a complex matrix
  *------------------------------------------------------------------ */
 
-int C2F(getcmat)(fname, topk, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getcmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer lc, it;
 
@@ -133,10 +121,7 @@ int C2F(getcmat)(fname, topk, lw, m, n, lr, fname_len)
  *    and we check that matrix is of size (m,n) 
  *------------------------------------------------------------------ */
 
-int C2F(matsize)(fname, topk, lw, m, n, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n;
-     unsigned long fname_len;
+int C2F(matsize)(char *fname,integer *topk,integer *lw,integer *m,integer *n,unsigned long fname_len)
 {
   integer m1, n1, lc, it, lr;
   
@@ -154,12 +139,7 @@ int C2F(matsize)(fname, topk, lw, m, n, fname_len)
  * For internal use 
  *------------------------------------------------------------------- */
 
-int C2F(getmati)(fname, topk, spos, lw, it, m, n, lr, lc, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw, *it, *m, *n, *lr, *lc;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+int C2F(getmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc,int *inlistx,integer *nel,unsigned long fname_len)
 {
   integer il;
   il = iadr(*lw);
@@ -192,10 +172,7 @@ int C2F(getmati)(fname, topk, spos, lw, it, m, n, lr, lc, inlistx, nel, fname_le
  *      lw est aussi mis a jour 
  *---------------------------------------------------------- */
 
-int C2F(listcremat)(fname, lw, numi, stlw, it, m, n, lrs, lcs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *it, *m, *n, *lrs, *lcs;
-     unsigned long fname_len;
+int C2F(listcremat)(char *fname,integer *lw,integer *numi,integer *stlw,integer *it,integer *m,integer *n,integer *lrs,integer *lcs,unsigned long fname_len)
 {
   integer ix1,il ;
     
@@ -227,10 +204,7 @@ int C2F(listcremat)(fname, lw, numi, stlw, it, m, n, lrs, lcs, fname_len)
  *     but stk(lr+..) and stk(lc+..) are unchanged 
  *---------------------------------------------------------- */
 
-int C2F(cremat)(fname, lw, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *lw, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(cremat)(char *fname,integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
 
   if (*lw + 1 >= Bot) {
@@ -248,8 +222,7 @@ int C2F(cremat)(fname, lw, it, m, n, lr, lc, fname_len)
  * no data is stored 
  *-------------------------------------------------*/
 
-int C2F(fakecremat)(lw, it, m, n, lr, lc)
-     integer *lw, *it, *m, *n, *lr, *lc;
+int C2F(fakecremat)(integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc)
 {
   if (*lw + 1 >= Bot) return FALSE_;
   if (C2F(cremati)("cremat", Lstk(*lw ), it, m, n, lr, lc, &c_false, 6L) == FALSE_) 
@@ -262,12 +235,7 @@ int C2F(fakecremat)(lw, it, m, n, lr, lc)
 /*--------------------------------------------------------- 
  * internal function used by cremat and listcremat 
  *---------------------------------------------------------- */
-
-int C2F(cremati)(fname, stlw, it, m, n, lr, lc, flagx, fname_len)
-     char *fname;
-     integer *stlw, *it, *m, *n, *lr, *lc;
-     int *flagx;
-     unsigned long fname_len;
+int C2F(cremati)(char *fname,integer *stlw,integer *it,integer *m,integer *n,integer *lr,integer *lc,int *flagx,unsigned long fname_len)
 {
   integer ix1;
   integer il;
@@ -318,10 +286,7 @@ int C2F(cremati)(fname, stlw, it, m, n, lr, lc, flagx, fname_len)
  *                             according to it value 
  *------------------------------------------------------------------ */
 
-int C2F(getlistimat)(fname, topk, spos, lnum,it, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *m, *n, *lr,*it;
-     unsigned long fname_len;
+int C2F(getlistimat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *it,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer nv, ili;
 
@@ -348,10 +313,7 @@ int C2F(getlistimat)(fname, topk, spos, lnum,it, m, n, lr, fname_len)
  *       lr : istk(lr+i-1)= a(i)
  *------------------------------------------------------------------- */
 
-int C2F(getimat)(fname, topk, lw,it, m, n, lr,  fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr,*it;
-     unsigned long fname_len;
+int C2F(getimat)(char *fname,integer *topk,integer *lw,integer *it,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   return C2F(getimati)(fname, topk, lw,Lstk(*lw),it,m, n, lr,&c_false, &cx0, fname_len);
 }
@@ -360,12 +322,7 @@ int C2F(getimat)(fname, topk, lw,it, m, n, lr,  fname_len)
  * For internal use 
  *------------------------------------------------------------------- */
 
-int C2F(getimati)(fname, topk, spos, lw, it,m, n, lr, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw,  *m, *n, *lr,*it;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+int C2F(getimati)(char *fname,integer *topk,integer *spos,integer *lw,integer *it,integer *m,integer *n,integer *lr,int *inlistx,integer *nel,unsigned long fname_len)
 {
   integer il;
   il = iadr(*lw);
@@ -397,10 +354,7 @@ int C2F(getimati)(fname, topk, spos, lw, it,m, n, lr, inlistx, nel, fname_len)
  *      lw est aussi mis a jour 
  *---------------------------------------------------------- */
 
-int C2F(listcreimat)(fname, lw, numi, stlw,it, m, n, lrs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *m, *n, *lrs,*it;
-     unsigned long fname_len;
+int C2F(listcreimat)(char *fname,integer *lw,integer *numi,integer *stlw,integer *it,integer *m,integer *n,integer *lrs,unsigned long fname_len)
 {
   integer ix1,il ;
     
@@ -430,10 +384,7 @@ int C2F(listcreimat)(fname, lw, numi, stlw,it, m, n, lrs, fname_len)
  *     but stk(lr+..) are unchanged 
  *---------------------------------------------------------- */
 
-int C2F(creimat)(fname, lw, it, m, n, lr, fname_len)
-     char *fname;
-     integer *lw, *it, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(creimat)(char *fname,integer *lw,integer *it,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
 
   if (*lw + 1 >= Bot) {
@@ -450,11 +401,7 @@ int C2F(creimat)(fname, lw, it, m, n, lr, fname_len)
  * internal function used by cremat and listcremat 
  *---------------------------------------------------------- */
 
-int C2F(creimati)(fname, stlw, it, m, n, lr, flagx, fname_len)
-     char *fname;
-     integer *stlw, *it, *m, *n, *lr;
-     int *flagx;
-     unsigned long fname_len;
+int C2F(creimati)(char *fname,integer *stlw,integer *it,integer *m,integer *n,integer *lr,int *flagx,unsigned long fname_len)
 {
   integer ix1;
   integer il;
@@ -490,10 +437,7 @@ int C2F(creimati)(fname, stlw, it, m, n, lr, flagx, fname_len)
  *    extracts matrix information(m,n,lr) 
  *------------------------------------------------------------------ */
 
-int C2F(getlistbmat)(fname, topk, spos, lnum, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getlistbmat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer nv;
   integer ili;
@@ -521,10 +465,7 @@ int C2F(getlistbmat)(fname, topk, spos, lnum, m, n, lr, fname_len)
  *       lr : istk(lr+i-1)= a(i)
  *------------------------------------------------------------------- */
 
-int C2F(getbmat)(fname, topk, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getbmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   return C2F(getbmati)(fname, topk, lw, Lstk(*lw ), m, n, lr, &c_false, &cx0, fname_len);
 }
@@ -535,10 +476,7 @@ int C2F(getbmat)(fname, topk, lw, m, n, lr, fname_len)
  *    and we check that matrix is of size (m,n) 
  *------------------------------------------------------------------ */
 
-int C2F(matbsize)(fname, topk, lw, m, n, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n;
-     unsigned long fname_len;
+int C2F(matbsize)(char *fname,integer *topk,integer *lw,integer *m,integer *n,unsigned long fname_len)
 {
   integer m1, n1, lr;
   if ( C2F(getbmat)(fname, topk, lw, &m1, &n1, &lr, fname_len) == FALSE_)
@@ -555,12 +493,7 @@ int C2F(matbsize)(fname, topk, lw, m, n, fname_len)
  * For internal use 
  *------------------------------------------------------------------- */
 
-int C2F(getbmati)(fname, topk, spos, lw, m, n, lr, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw, *m, *n, *lr;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+int C2F(getbmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m,integer *n,integer *lr,int *inlistx,integer *nel,unsigned long fname_len)
 {
   integer il;
 
@@ -592,10 +525,7 @@ int C2F(getbmati)(fname, topk, spos, lw, m, n, lr, inlistx, nel, fname_len)
  *      lw est aussi mis a jour 
  *---------------------------------------------------------- */
 
-int C2F(listcrebmat)(fname, lw, numi, stlw, m, n, lrs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *m, *n, *lrs;
-     unsigned long fname_len;
+int C2F(listcrebmat)(char *fname,integer *lw,integer *numi,integer *stlw,integer *m,integer *n,integer *lrs,unsigned long fname_len)
 {
   integer ix1;
   integer il;
@@ -627,10 +557,7 @@ int C2F(listcrebmat)(fname, lw, numi, stlw, m, n, lrs, fname_len)
  *     but istk(lr+..) is unchanged 
  *---------------------------------------------------------- */
 
-int C2F(crebmat)(fname, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(crebmat)(char *fname,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer ix1;
   
@@ -652,8 +579,7 @@ int C2F(crebmat)(fname, lw, m, n, lr, fname_len)
  * no data is stored 
  *-------------------------------------------------*/
 
-int C2F(fakecrebmat)( lw, m, n, lr) 
-     integer *lw, *m, *n, *lr;
+int C2F(fakecrebmat)(integer *lw,integer *m,integer *n,integer *lr) 
 {
   if (*lw + 1 >= Bot) {
     Scierror(18,"fakecrebmat: too many names\r\n");
@@ -669,11 +595,7 @@ int C2F(fakecrebmat)( lw, m, n, lr)
  * internal function used by crebmat and listcrebmat 
  *---------------------------------------------------------- */
 
-int C2F(crebmati)(fname, stlw, m, n, lr, flagx, fname_len)
-     char *fname;
-     integer *stlw, *m, *n, *lr;
-     int *flagx;
-     unsigned long fname_len;
+int C2F(crebmati)(char *fname,integer *stlw,integer *m,integer *n,integer *lr,int *flagx,unsigned long fname_len)
 {
   double size = ((double) *m) * ((double) *n) ;
   integer il;
@@ -712,10 +634,7 @@ int C2F(crebmati)(fname, stlw, m, n, lr, flagx, fname_len)
  *    extracts matrix information(it,m,n,nel,mnel,icol,lr,lc) 
  *------------------------------------------------------------------ */
 
-int C2F(getlistsparse)(fname, topk, spos, lnum, it, m, n, nel, mnel, icol, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *it, *m, *n, *nel, *mnel, *icol, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getlistsparse)(char *fname,integer *topk,integer *spos,integer *lnum,integer *it,integer *m,integer *n,integer *nel,integer *mnel,integer *icol,integer *lr,integer *lc,unsigned long fname_len)
 {
   integer  nv;
   integer ili;
@@ -743,10 +662,7 @@ int C2F(getlistsparse)(fname, topk, spos, lnum, it, m, n, nel, mnel, icol, lr, l
  *       [it,m,n,nel,mnel,icol,lr,lc] matrix dimensions 
  *------------------------------------------------------------------- */
 
-int C2F(getsparse)(fname, topk, lw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *lw, *it, *m, *n, *nel, *mnel, *icol, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getsparse)(char *fname,integer *topk,integer *lw,integer *it,integer *m,integer *n,integer *nel,integer *mnel,integer *icol,integer *lr,integer *lc,unsigned long fname_len)
 {
   return C2F(getsparsei)(fname, topk, lw, Lstk(*lw ), it, m, n, nel, mnel, icol, lr, lc, &c_false, &cx0, fname_len);
 }
@@ -773,12 +689,7 @@ int C2F(getrsparse)(char *fname, integer *topk, integer *lw, integer *m, integer
  * internal function for getmat and listgetmat 
  *--------------------------------------- */
 
-int C2F(getsparsei)(fname, topk, spos, lw, it, m, n, nel, mnel, icol, lr, lc, inlistx, nellist, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw, *it, *m, *n, *nel, *mnel, *icol, *lr, *lc;
-     int *inlistx;
-     integer *nellist;
-     unsigned long fname_len;
+int C2F(getsparsei)(char *fname,integer *topk,integer *spos,integer *lw,integer *it,integer *m,integer *n,integer *nel,integer *mnel,integer *icol,integer *lr,integer *lc,int *inlistx,integer *nellist,unsigned long fname_len)
 {
   integer il;
 
@@ -816,10 +727,7 @@ int C2F(getsparsei)(fname, topk, spos, lw, it, m, n, nel, mnel, icol, lr, lc, in
  *---------------------------------------------------------- */
 
 
-int C2F(listcresparse)(fname, lw, numi, stlw, it, m, n, nel, mnel, icol, lrs, lcs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *it, *m, *n, *nel, *mnel, *icol, *lrs, *lcs;
-     unsigned long fname_len;
+int C2F(listcresparse)(char *fname,integer *lw,integer *numi,integer *stlw,integer *it,integer *m,integer *n,integer *nel,integer *mnel,integer *icol,integer *lrs,integer *lcs,unsigned long fname_len)
 {
   integer ix1,il;
 
@@ -852,10 +760,7 @@ int C2F(listcresparse)(fname, lw, numi, stlw, it, m, n, nel, mnel, icol, lrs, lc
  *     but data is unchanged 
  *---------------------------------------------------------- */
 
-int C2F(cresparse)(fname, lw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
-     char *fname;
-     integer *lw, *it, *m, *n, *nel, *mnel, *icol, *lr, *lc;
-     unsigned long fname_len;
+int C2F(cresparse)(char *fname,integer *lw,integer *it,integer *m,integer *n,integer *nel,integer *mnel,integer *icol,integer *lr,integer *lc,unsigned long fname_len)
 {
   if (*lw + 1 >= Bot) {
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
@@ -874,10 +779,7 @@ int C2F(cresparse)(fname, lw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
  * internal function used by cremat and listcremat 
  *---------------------------------------------------------- */
 
-int C2F(cresparsei)(fname, stlw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
-     char *fname;
-     integer *stlw, *it, *m, *n, *nel, *mnel, *icol, *lr, *lc;
-     unsigned long fname_len;
+int C2F(cresparsei)(char *fname,integer *stlw,integer *it,integer *m,integer *n,integer *nel,integer *mnel,integer *icol,integer *lr,integer *lc,unsigned long fname_len)
 {
   integer il,ix1;
 
@@ -919,10 +821,7 @@ int C2F(cresparsei)(fname, stlw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
  *    extracts vector information(it,m,n,lr,lc) 
  *------------------------------------------------------------------ */
 
-int C2F(getlistvect)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getlistvect)(char *fname,integer *topk,integer *spos,integer *lnum,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   if (C2F(getlistmat)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)== FALSE_) 
     return FALSE_;
@@ -947,10 +846,7 @@ int C2F(getlistvect)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
  *       lc : stk(lc+i-1)= imag(a(i)) exists only if it==1 
  *------------------------------------------------------------------- */
 
-int C2F(getvect)(fname, topk, lw, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *lw, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getvect)(char *fname,integer *topk,integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   if ( C2F(getmat)(fname, topk, lw, it, m, n, lr, lc, fname_len) == FALSE_) 
     return FALSE_;
@@ -968,10 +864,7 @@ int C2F(getvect)(fname, topk, lw, it, m, n, lr, lc, fname_len)
  * getrvect : like getvect but we expect a real vector 
  *------------------------------------------------------------------ */
 
-int C2F(getrvect)(fname, topk, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getrvect)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   if ( C2F(getrmat)(fname, topk, lw, m, n, lr, fname_len)  == FALSE_)
     return FALSE_;
@@ -990,10 +883,7 @@ int C2F(getrvect)(fname, topk, lw, m, n, lr, fname_len)
  *    and we check that vector is of size (n) 
  *------------------------------------------------------------------ */
 
-int C2F(vectsize)(fname, topk, lw, n, fname_len)
-     char *fname;
-     integer *topk, *lw, *n;
-     unsigned long fname_len;
+int C2F(vectsize)(char *fname,integer *topk,integer *lw,integer *n,unsigned long fname_len)
 {
   integer m1, n1, lc, lr, it1;
 
@@ -1016,10 +906,7 @@ int C2F(vectsize)(fname, topk, lw, n, fname_len)
  *     getlistscalar : recupere un scalaire 
  *------------------------------------------------------------------ */
 
-int C2F(getlistscalar)(fname, topk, spos, lnum, lr, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *lr;
-     unsigned long fname_len;
+int C2F(getlistscalar)(char *fname,integer *topk,integer *spos,integer *lnum,integer *lr,unsigned long fname_len)
 {
   integer m, n;
   integer lc, it, nv;
@@ -1056,10 +943,7 @@ int C2F(getlistscalar)(fname, topk, spos, lnum, lr, fname_len)
  *       lr : stk(lr)= scalar_value 
  *------------------------------------------------------------------ */
 
-int C2F(getscalar)(fname, topk, lw, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *lr;
-     unsigned long fname_len;
+int C2F(getscalar)(char *fname,integer *topk,integer *lw,integer *lr,unsigned long fname_len)
 {
   integer m, n;
 
@@ -1125,10 +1009,7 @@ int C2F(getlistsmat)(char *fname,integer *topk,integer *spos,integer *lnum,integ
  *        then other elements can be accessed through getsimat 
  *------------------------------------------------------------------- */
 
-int C2F(getsmat)(fname, topk, lw, m, n, ix, j, lr, nlr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *ix, *j, *lr, *nlr;
-     unsigned long fname_len;
+int C2F(getsmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *ix,integer *j,integer *lr,integer *nlr,unsigned long fname_len)
 {
   return C2F(getsmati)(fname, topk, lw, Lstk(*lw), m, n, ix,j , lr ,nlr,  &c_false, &cx0, fname_len);
 }
@@ -1146,10 +1027,7 @@ int C2F(getsmat)(fname, topk, lw, m, n, ix, j, lr, nlr, fname_len)
  * Note : like getsmat but do not check that object is a string matrix 
  *------------------------------------------------------------------- */
 
-int C2F(getsimat)(fname, topk, lw, m, n, ix, j, lr, nlr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *ix, *j, *lr, *nlr;
-     unsigned long fname_len;
+int C2F(getsimat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *ix,integer *j,integer *lr,integer *nlr,unsigned long fname_len)
 {
   return C2F(getsimati)(fname, topk, lw, Lstk(*lw), m, n, ix,j , lr ,nlr,  &c_false, &cx0, fname_len);
 }
@@ -1163,10 +1041,7 @@ int C2F(getsimat)(fname, topk, lw, m, n, ix, j, lr, nlr, fname_len)
  *    which can be converted to C with ScilabMStr2CM (see stack2.c)
  *------------------------------------------------------------------ */
 
-int C2F(getlistwsmat)(fname, topk, spos, lnum, m, n, ilr, ilrd, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *m, *n, *ilr, *ilrd;
-     unsigned long fname_len;
+int C2F(getlistwsmat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *m,integer *n,integer *ilr,integer *ilrd,unsigned long fname_len)
 {
   integer nv, ili;
 
@@ -1188,10 +1063,7 @@ int C2F(getlistwsmat)(fname, topk, spos, lnum, m, n, ilr, ilrd, fname_len)
  *    which can be converted to C with ScilabMStr2CM (see stack2.c)
  *--------------------------------------------------------------------------*/
 
-int C2F(getwsmat)(fname, topk, lw, m, n, ilr, ilrd, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *ilr, *ilrd;
-     unsigned long fname_len;
+int C2F(getwsmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *ilr,integer *ilrd,unsigned long fname_len)
 {
   return C2F(getwsmati)(fname, topk, lw,Lstk(*lw), m, n, ilr, ilrd, &c_false, &cx0, fname_len);
 }
@@ -1200,12 +1072,7 @@ int C2F(getwsmat)(fname, topk, lw, m, n, ilr, ilrd, fname_len)
  * For internal use 
  *------------------------------------------------------------------- */
 
-static int C2F(getwsmati)(fname, topk, spos, lw, m, n, ilr, ilrd , inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw,  *m, *n, *ilr, *ilrd;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+static int C2F(getwsmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m,integer *n,integer *ilr,integer *ilrd ,int *inlistx,integer *nel,unsigned long fname_len)
 {
     integer il;
     il = iadr(*lw);
@@ -1230,11 +1097,7 @@ static int C2F(getwsmati)(fname, topk, spos, lw, m, n, ilr, ilrd , inlistx, nel,
  * For internal use 
  *------------------------------------------------------------------- */
 
-int C2F(getsmati)(fname, topk, spos, lw, m, n, ix,j , lr ,nlr, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw,  *m, *n, *ix,*j,*lr,*nlr;
-     int *inlistx, *nel;
-     unsigned long fname_len;
+int C2F(getsmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m,integer *n,integer *ix,integer *j,integer *lr,integer *nlr,int *inlistx,int *nel,unsigned long fname_len)
 {
   integer il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
@@ -1251,12 +1114,7 @@ int C2F(getsmati)(fname, topk, spos, lw, m, n, ix,j , lr ,nlr, inlistx, nel, fna
   return TRUE_;
 } 
 
-int C2F(getsimati)(fname, topk, spos, lw, m, n, ix,j , lr ,nlr, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw, *m, *n,*ix,*j,*lr,*nlr;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+int C2F(getsimati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m,integer *n,integer *ix,integer *j ,integer *lr ,integer *nlr,int *inlistx,integer *nel,unsigned long fname_len)
 {
   integer k, il =  iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1)); 
@@ -1282,10 +1140,7 @@ int C2F(getsimati)(fname, topk, spos, lw, m, n, ix,j , lr ,nlr, inlistx, nel, fn
  *             de la matrice 
  *---------------------------------------------------------- */
 
-int C2F(listcresmat)(fname, lw, numi, stlw, m, n, nchar, job, ilrs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *m, *n, *nchar, *job, *ilrs;
-     unsigned long fname_len;
+int C2F(listcresmat)(char *fname,integer *lw,integer *numi,integer *stlw,integer *m,integer *n,integer *nchar,integer *job,integer *ilrs,unsigned long fname_len)
 {
   integer ix1;
   integer il, sz;
@@ -1309,10 +1164,7 @@ int C2F(listcresmat)(fname, lw, numi, stlw, m, n, nchar, job, ilrs, fname_len)
  * Note that each string can be filled with getsimat 
  *---------------------------------------------------------- */
 
-int C2F(cresmat)(fname, lw, m, n, nchar, fname_len)
-     char *fname;
-     integer *lw, *m, *n, *nchar;
-     unsigned long fname_len;
+int C2F(cresmat)(char *fname,integer *lw,integer *m,integer *n,integer *nchar,unsigned long fname_len)
 {
   int job = 1;
   integer ix1, ilast, sz,lr ;
@@ -1338,10 +1190,7 @@ int C2F(cresmat)(fname, lw, m, n, nchar, fname_len)
  *  Note that each string can be filled with getsimat 
  *------------------------------------------------------------------ */
 
-int C2F(cresmat1)(fname, lw, m, nchar, fname_len)
-     char *fname;
-     integer *lw, *m, *nchar;
-     unsigned long fname_len;
+int C2F(cresmat1)(char *fname,integer *lw,integer *m,integer *nchar,unsigned long fname_len)
 {
   int job = 2, n=1;
   integer ix1, ilast, sz,lr ;
@@ -1365,10 +1214,7 @@ int C2F(cresmat1)(fname, lw, m, nchar, fname_len)
  *          allocated for string code 
  *------------------------------------------------------------------ */
 
-int C2F(cresmat2)(fname, lw, nchar, lr, fname_len)
-     char *fname;
-     integer *lw, *nchar, *lr;
-     unsigned long fname_len;
+int C2F(cresmat2)(char *fname,integer *lw,integer *nchar,integer *lr,unsigned long fname_len)
 {
   int job = 1, n=1,m=1;
   integer ix1, ilast, sz ;
@@ -1397,12 +1243,7 @@ int C2F(cresmat2)(fname, lw, nchar, lr, fname_len)
  *     - lw  : stack position for string creation 
  *------------------------------------------------------------------ */
 
-int C2F(cresmat3)(fname, lw, m, n, nchar, buffer, fname_len, buffer_len)
-     char *fname;
-     integer *lw, *m, *n, *nchar;
-     char *buffer;
-     unsigned long fname_len;
-     unsigned long buffer_len;
+int C2F(cresmat3)(char *fname,integer *lw,integer *m,integer *n,integer *nchar,char *buffer,unsigned long fname_len,unsigned long buffer_len)
 {
   int job = 2;
   integer ix1, ilast, sz,lr,lr1 ;
@@ -1428,10 +1269,7 @@ int C2F(cresmat3)(fname, lw, m, n, nchar, buffer, fname_len, buffer_len)
  *     istk(lr) --- beginning of chains 
  *------------------------------------------------------------------ */
 
-int C2F(cresmat4)(fname, lw, m, nchar, lr, fname_len)
-     char *fname;
-     integer *lw, *m, *nchar, *lr;
-     unsigned long fname_len;
+int C2F(cresmat4)(char *fname,integer *lw,integer *m,integer *nchar,integer *lr,unsigned long fname_len)
 {
   integer ix1,ix, ilast, il, nnchar, kij, ilp;
   if (*lw + 1 >= Bot) {
@@ -1473,10 +1311,7 @@ int C2F(cresmat4)(fname, lw, m, nchar, lr, fname_len)
  *   case 3: ? 
  *---------------------------------------------------------- */
 
-int C2F(cresmati)(fname, stlw, m, n, nchar, job, lr, sz, fname_len)
-     char *fname;
-     integer *stlw, *m, *n, *nchar, *job, *lr, *sz;
-     unsigned long fname_len;
+int C2F(cresmati)(char *fname,integer *stlw,integer *m,integer *n,integer *nchar,integer *job,integer *lr,integer *sz,unsigned long fname_len)
 {
   integer ix1, ix, il, kij, ilp, mn= (*m)*(*n);
   il = iadr(*stlw);
@@ -1582,11 +1417,7 @@ int cre_smat_from_str_i(char *fname, integer *lw, integer *m, integer *n, char *
 } 
 
 
-int cre_smat_from_str(fname, lw, m, n, Str, fname_len )
-     char *fname;
-     integer *lw, *m, *n;
-     char *Str[];
-     unsigned long fname_len;
+int cre_smat_from_str(char *fname,integer *lw,integer *m,integer *n,char *Str[],unsigned long fname_len)
 {
   int rep;
   
@@ -1602,11 +1433,7 @@ int cre_smat_from_str(fname, lw, m, n, Str, fname_len )
 } 
 
 
-int cre_listsmat_from_str(fname, lw, numi, stlw,  m, n, Str, fname_len )
-     char *fname;
-     integer *lw, *m, *n,*numi,*stlw;
-     char *Str[];
-     unsigned long fname_len;
+int cre_listsmat_from_str(char *fname,integer *lw,integer *numi,integer *stlw,integer *m,integer *n,char *Str[],unsigned long fname_len )
 {
   int rep,ix1,il;
   if ( cre_smat_from_str_i(fname, stlw, m, n, Str, fname_len,&rep)== FALSE_ )
@@ -1669,11 +1496,7 @@ int cre_sparse_from_ptr_i(char *fname, integer *lw, integer *m, integer *n, SciS
 } 
 
 
-int cre_sparse_from_ptr(fname, lw, m, n, Str, fname_len )
-     char *fname;
-     integer *lw, *m, *n;
-     SciSparse *Str;
-     unsigned long fname_len;
+int cre_sparse_from_ptr(char *fname,integer *lw,integer *m,integer *n,SciSparse *Str,unsigned long fname_len )
 {
   int rep;
   if (*lw + 1 >= Bot) {
@@ -1688,11 +1511,7 @@ int cre_sparse_from_ptr(fname, lw, m, n, Str, fname_len )
 } 
 
 
-int cre_listsparse_from_ptr(fname, lw, numi, stlw,  m, n, Str, fname_len )
-     char *fname;
-     integer *lw, *m, *n,*numi,*stlw;
-     SciSparse *Str;
-     unsigned long fname_len;
+int cre_listsparse_from_ptr(char *fname,integer *lw,integer *numi,integer *stlw,integer *m,integer *n,SciSparse *Str,unsigned long fname_len )
 {
   int rep,ix1,il;
   if ( cre_sparse_from_ptr_i(fname, stlw, m, n, Str, fname_len,&rep)== FALSE_ )
@@ -1712,10 +1531,7 @@ int cre_listsparse_from_ptr(fname, lw, numi, stlw,  m, n, Str, fname_len )
  * listcrestring 
  *------------------------------------------------------------------ */
 
-int C2F(listcrestring)(fname, lw, numi, stlw, nch, ilrs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *nch, *ilrs;
-     unsigned long fname_len;
+int C2F(listcrestring)(char *fname,integer *lw,integer *numi,integer *stlw,integer *nch,integer *ilrs,unsigned long fname_len)
 {
   integer ix1, il ;
 
@@ -1744,10 +1560,7 @@ int C2F(listcrestring)(fname, lw, numi, stlw, nch, ilrs, fname_len)
 *       ilrs 
 *------------------------------------------------------------------ */
 
-int C2F(crestring)(fname, spos, nchar, ilrs, fname_len)
-     char *fname;
-     integer *spos, *nchar, *ilrs;
-     unsigned long fname_len;
+int C2F(crestring)(char *fname,integer *spos,integer *nchar,integer *ilrs,unsigned long fname_len)
 {
   integer ix1;
   if ( C2F(crestringi)(fname, Lstk(*spos ), nchar, ilrs, fname_len) == FALSE_) 
@@ -1771,10 +1584,7 @@ int C2F(crestring)(fname, spos, nchar, ilrs, fname_len)
  *       lr : pointe sur  a(1,1)=istk(lr) 
  *------------------------------------------------------------------ */
 
-int C2F(crestringi)(fname, stlw, nchar, ilrs, fname_len)
-     char *fname;
-     integer *stlw, *nchar, *ilrs;
-     unsigned long fname_len;
+int C2F(crestringi)(char *fname,integer *stlw,integer *nchar,integer *ilrs,unsigned long fname_len)
 {
 
   integer ix1, ilast, il;
@@ -1803,8 +1613,7 @@ int C2F(crestringi)(fname, stlw, nchar, ilrs, fname_len)
  *  checks if we can store a string of size nchar at position lw 
  *---------------------------------------------------------------------*/
 
-int C2F(fakecresmat2)(lw, nchar, lr)
-     integer *lw, *nchar, *lr;
+int C2F(fakecresmat2)(integer *lw,integer *nchar,integer *lr)
 {
   static integer cx17 = 17;
   int retval;
@@ -1833,10 +1642,7 @@ int C2F(fakecresmat2)(lw, nchar, lr)
  *       j  : colonne a extraire 
  *------------------------------------------------------------------ */
 
-int C2F(smatj)(fname, lw, j, fname_len)
-     char *fname;
-     integer *lw, *j;
-     unsigned long fname_len;
+int C2F(smatj)(char *fname,integer *lw,integer *j,unsigned long fname_len)
 {
   integer ix1, ix2;
   integer incj;
@@ -1893,10 +1699,7 @@ int C2F(smatj)(fname, lw, j, fname_len)
  *     Lstk(tlw+1) est modifie si necessaire 
  *------------------------------------------------------------------ */
 
-int C2F(copysmat)(fname, flw, tlw, fname_len)
-     char *fname;
-     integer *flw, *tlw;
-     unsigned long fname_len;
+int C2F(copysmat)(char *fname,integer *flw,integer *tlw,unsigned long fname_len)
 {
   integer ix1;
   integer dflw, fflw;
@@ -1927,10 +1730,7 @@ int C2F(copysmat)(fname, flw, tlw, fname_len)
  *       lr  : 
  *------------------------------------------------------------------ */
 
-int C2F(setsimat)(fname, lw, ix, j, nlr, fname_len)
-     char *fname;
-     integer *lw, *ix, *j, *nlr;
-     unsigned long fname_len;
+int C2F(setsimat)(char *fname,integer *lw,integer *ix,integer *j,integer *nlr,unsigned long fname_len)
 {
   integer k, m, il;
   il = iadr(*Lstk(*lw ));
@@ -1994,10 +1794,7 @@ int C2F(cremlist)(integer *slw,integer *ilen,integer *lw)
  *       j  : element to be extracted 
  *------------------------------------------------------------------ */
 
-int C2F(lmatj)(fname, lw, j, fname_len)
-     char *fname;
-     integer *lw, *j;
-     unsigned long fname_len;
+int C2F(lmatj)(char *fname,integer *lw,integer *j,unsigned long fname_len)
 {
   integer ix1, ix2;
   integer n;
@@ -2037,10 +1834,7 @@ int C2F(lmatj)(fname, lw, j, fname_len)
  *     de faire un lk=Lstk(top);Lstk(top)=ili; getmat(...,top,...);stk(top)=lk 
  *------------------------------------------------*/
 
-int C2F(getilist)(fname, topk, lw, n, ix, ili, fname_len)
-     char *fname;
-     integer *topk, *lw, *n, *ix, *ili;
-     unsigned long fname_len;
+int C2F(getilist)(char *fname,integer *topk,integer *lw,integer *n,integer *ix,integer *ili,unsigned long fname_len)
 {
   integer ix1;
   integer itype, il;
@@ -2088,13 +1882,7 @@ int C2F(getilist)(fname, topk, lw, n, ix, ili, fname_len)
 *      implicit undefined (a-z) 
 *------------------------------------------------*/
 
-int C2F(getpoly)(fname, topk, lw, it, m, n, namex, namel, ilp, lr, lc, fname_len, name_len)
-     char *fname;
-     integer *topk, *lw, *it, *m, *n;
-     char *namex;
-     integer *namel, *ilp, *lr, *lc;
-     unsigned long fname_len;
-     unsigned long name_len;
+int C2F(getpoly)(char *fname,integer *topk,integer *lw,integer *it,integer *m,integer *n,char *namex,integer *namel,integer *ilp,integer *lr,integer *lc,unsigned long fname_len,unsigned long name_len)
 {
   integer ix1;
 
@@ -2133,13 +1921,7 @@ int C2F(getpoly)(fname, topk, lw, it, m, n, namex, namel, ilp, lr, lc, fname_len
 *     Finir les tests 
 *------------------------------------------------------------------ */
 
-int C2F(getonepoly)(fname, topk, lw, it, md, namex, namel, lr, lc, fname_len, name_len)
-     char *fname;
-     integer *topk, *lw, *it, *md;
-     char *namex;
-     integer *namel, *lr, *lc;
-     unsigned long fname_len;
-     unsigned long name_len;
+int C2F(getonepoly)(char *fname,integer *topk,integer *lw,integer *it,integer *md,char *namex,integer *namel,integer *lr,integer *lc, unsigned long fname_len, unsigned long name_len)
 {
   integer m, n;
   integer ilp;
@@ -2168,10 +1950,7 @@ int C2F(getonepoly)(fname, topk, lw, it, md, namex, namel, lr, lc, fname_len, na
  *       j  : column  to be extracted 
  *------------------------------------------------------------------ */
 
-int C2F(pmatj)(fname, lw, j, fname_len)
-     char *fname;
-     integer *lw, *j;
-     unsigned long fname_len;
+int C2F(pmatj)(char *fname,integer *lw,integer *j,unsigned long fname_len)
 {
   integer ix1, ix2;
   char namex[4];
@@ -2243,10 +2022,7 @@ int C2F(pmatj)(fname, lw, j, fname_len)
  *       lr : stk(lr+i) is the working area 
  *------------------------------------------------------------------ */
 
-int C2F(crewmat)(fname, lw, m, lr, fname_len)
-     char *fname;
-     integer *lw, *m, *lr;
-     unsigned long fname_len;
+int C2F(crewmat)(char *fname,integer *lw,integer *m,integer *lr,unsigned long fname_len)
 {
   integer il,ix1; 
   if (*lw + 1 >= Bot) {
@@ -2274,10 +2050,7 @@ int C2F(crewmat)(fname, lw, m, lr, fname_len)
  *       lr : istk(lr+i) is the working area 
  *------------------------------------------------------------------ */
 
-int C2F(crewimat)(fname, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(crewimat)(char *fname,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   double size = ((double) *m) * ((double) *n ); 
   integer ix1,il;
@@ -2311,10 +2084,7 @@ int C2F(crewimat)(fname, lw, m, n, lr, fname_len)
  *       lr : working area is istk(lr+i) i=0,m*n-1
  *------------------------------------------------ */
 
-int C2F(getwimat)(fname, topk, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getwimat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer il;
   il = iadr(*Lstk(*lw ));
@@ -2342,10 +2112,7 @@ int C2F(getwimat)(fname, topk, lw, m, n, lr, fname_len)
  *     pointeur qui pointe vers une traduction en C de la stringMat 
  *------------------------------------------------------------------- */
 
-int C2F(crestringv)(fname, spos, ilorig, lw, fname_len)
-     char *fname;
-     integer *spos, *ilorig, *lw;
-     unsigned long fname_len;
+int C2F(crestringv)(char *fname,integer *spos,integer *ilorig,integer *lw,unsigned long fname_len)
 {
   integer ierr;
   if (C2F(crepointer)(fname, spos, lw, fname_len) == FALSE_) 
@@ -2364,10 +2131,7 @@ int C2F(crestringv)(fname, spos, ilorig, lw, fname_len)
  *  listcrepointer(top,numero,lw,....) 
  *---------------------------------------------------------- */
 
-int C2F(listcrepointer)(fname, lw, numi, stlw, lrs, fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *lrs;
-     unsigned long fname_len;
+int C2F(listcrepointer)(char *fname,integer *lw,integer *numi,integer *stlw,integer *lrs,unsigned long fname_len)
 {
   integer ix1,il ;
   if (C2F(crepointeri)(fname, stlw,  lrs, &c_true, fname_len)==FALSE_)
@@ -2384,10 +2148,7 @@ int C2F(listcrepointer)(fname, lw, numi, stlw, lrs, fname_len)
  *  crepointer :
  *---------------------------------------------------------- */
 
-int C2F(crepointer)(fname, lw, lr, fname_len)
-     char *fname;
-     integer *lw,  *lr;
-     unsigned long fname_len;
+int C2F(crepointer)(char *fname,integer *lw,integer *lr,unsigned long fname_len)
 {
 
   if (*lw + 1 >= Bot) {
@@ -2403,12 +2164,7 @@ int C2F(crepointer)(fname, lw, lr, fname_len)
 /*--------------------------------------------------------- 
  * internal function used by crepointer and listcrepointer 
  *---------------------------------------------------------- */
-
-int C2F(crepointeri)(fname, stlw, lr,  flagx, fname_len)
-     char *fname;
-     integer *stlw, *lr;
-     int *flagx;
-     unsigned long fname_len;
+int C2F(crepointeri)(char *fname,integer *stlw,integer *lr,int *flagx,unsigned long fname_len)
 {
   integer ix1;
   integer il;
@@ -2438,10 +2194,7 @@ int C2F(crepointeri)(fname, stlw, lr,  flagx, fname_len)
  *     and the data stored at stk(lorig) is freed 
  *------------------------------------------------------------------- */
 
-int C2F(lcrestringmatfromc)(fname, spos, numi, stlw, lorig, m, n, fname_len)
-     char *fname;
-     integer *spos, *numi, *stlw, *lorig, *m, *n;
-     unsigned long fname_len;
+int C2F(lcrestringmatfromc)(char *fname,integer *spos,integer *numi,integer *stlw,integer *lorig,integer *m,integer *n,unsigned long fname_len)
 {
   integer ix1;
   integer ierr;
@@ -2472,10 +2225,7 @@ int C2F(lcrestringmatfromc)(fname, spos, numi, stlw, lorig, m, n, fname_len)
  *     and the data stored at stk(lorig) is freed 
  *------------------------------------------------------------------- */
 
-int C2F(crestringmatfromc)(fname, spos, lorig, m, n, fname_len)
-     char *fname;
-     integer *spos, *lorig, *m, *n;
-     unsigned long fname_len;
+int C2F(crestringmatfromc)(char *fname,integer *spos,integer *lorig,integer *m,integer *n,unsigned long fname_len)
 {
   integer ix1;
   integer ierr;
@@ -2496,10 +2246,7 @@ int C2F(crestringmatfromc)(fname, spos, lorig, m, n, fname_len)
  *     getlistvectrow : recupere un vecteur ligne dans une liste 
  *------------------------------------------------------------------ */
 
-int C2F(getlistvectrow)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getlistvectrow)(char *fname,integer *topk,integer *spos,integer *lnum,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   integer nv;
   integer ili;
@@ -2543,10 +2290,7 @@ int C2F(getlistvectrow)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
  *       lc : pointe sur la partie imaginaire si elle existe sinon sur zero 
  *------------------------------------------------------------------ */
 
-int C2F(getvectrow)(fname, topk, spos, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getvectrow)(char *fname,integer *topk,integer *spos,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   if (C2F(getmati)(fname, topk, spos, Lstk(*spos ), it, m, n, lr, lc, &c_false, &cx0, fname_len) == FALSE_) 
     return FALSE_;
@@ -2563,10 +2307,7 @@ int C2F(getvectrow)(fname, topk, spos, it, m, n, lr, lc, fname_len)
  *
  *------------------------------------------------------------------ */
 
-int C2F(getlistvectcol)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getlistvectcol)(char *fname,integer *topk,integer *spos,integer *lnum,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
   integer nv;
   integer ili;
@@ -2608,10 +2349,7 @@ int C2F(getlistvectcol)(fname, topk, spos, lnum, it, m, n, lr, lc, fname_len)
 *       lc : pointe sur la partie imaginaire si elle existe sinon sur zero 
 *------------------------------------------------------------------ */
 
-int C2F(getvectcol)(fname, topk, spos, it, m, n, lr, lc, fname_len)
-     char *fname;
-     integer *topk, *spos, *it, *m, *n, *lr, *lc;
-     unsigned long fname_len;
+int C2F(getvectcol)(char *fname,integer *topk,integer *spos,integer *it,integer *m,integer *n,integer *lr,integer *lc,unsigned long fname_len)
 {
 
   if ( C2F(getmati)(fname, topk, spos, Lstk(*spos ), it, m, n, lr, lc, &c_false, &cx0, fname_len)
@@ -2627,10 +2365,7 @@ int C2F(getvectcol)(fname, topk, spos, it, m, n, lr, lc, fname_len)
 }
 
 
-int C2F(getlistsimat)(fname, topk, spos, lnum, m, n, ix, j, lr, nlr, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *m, *n, *ix, *j, *lr, *nlr;
-     unsigned long fname_len;
+int C2F(getlistsimat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *m,integer *n,integer *ix,integer *j,integer *lr,integer *nlr,unsigned long fname_len)
 {
   integer nv;
   integer ili;
@@ -2650,10 +2385,7 @@ int C2F(getlistsimat)(fname, topk, spos, lnum, m, n, ix, j, lr, nlr, fname_len)
  *     recuperation d'un pointer 
  *------------------------------------------------------------------- */
 
-int C2F(getpointer)(fname, topk, lw, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *lr;
-     unsigned long fname_len;
+int C2F(getpointer)(char *fname,integer *topk,integer *lw,integer *lr,unsigned long fname_len)
 {
   return C2F(getpointeri)(fname, topk, lw,Lstk(*lw), lr, &c_false, &cx0, fname_len);
 } 
@@ -2671,10 +2403,7 @@ int C2F(getpointer)(fname, topk, lw, lr, fname_len)
  *       lw : stk(lw) a <<pointer>> casted to a double 
  *------------------------------------------------------------------ */
 
-int C2F(getlistpointer)(fname, topk, spos, lnum, lw, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *lw;
-     unsigned long fname_len;
+int C2F(getlistpointer)(char *fname,integer *topk,integer *spos,integer *lnum,integer *lw,unsigned long fname_len)
 {
   integer nv, ili;
 
@@ -2693,12 +2422,7 @@ int C2F(getlistpointer)(fname, topk, spos, lnum, lw, fname_len)
  * For internal use 
  *------------------------------------------------------------------- */
 
-int C2F(getpointeri)(fname, topk, spos, lw, lr, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw, *lr;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+int C2F(getpointeri)(char *fname,integer *topk,integer *spos,integer *lw,integer *lr,int *inlistx,integer *nel,unsigned long fname_len)
 {
   integer il;
   il = iadr(*lw);
@@ -2721,8 +2445,7 @@ int C2F(getpointeri)(fname, topk, spos, lw, lr, inlistx, nel, fname_len)
  *     creates a matlab-like sparse matrix 
  *-----------------------------------------------------------*/
 
-int C2F(mspcreate)(lw, m, n, nzMax, it)
-     integer *lw, *m, *n, *nzMax, *it;
+int C2F(mspcreate)(integer *lw,integer *m,integer *n,integer *nzMax,integer *it)
 {
   integer ix1;
   integer jc, il, ir; int NZMAX;
@@ -2780,9 +2503,7 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
 
 static char Fname[nlgh+1];
 
-char *get_fname(fname,fname_len)
-     char *fname;
-     unsigned long fname_len;
+char *get_fname(char *fname,unsigned long fname_len)
 {
   int i;
   strncpy(Fname,fname,Min(fname_len,nlgh));
@@ -2824,10 +2545,7 @@ int C2F(realmat)()
 *      implicit undefined (a-z) 
 *------------------------------------------------------------------ */
 
-int C2F(copyobj)(fname, lw, lwd, fname_len)
-     char *fname;
-     integer *lw, *lwd;
-     unsigned long fname_len;
+int C2F(copyobj)(char *fname,integer *lw,integer *lwd,unsigned long fname_len)
 {
   integer ix1,l,ld;
   l=*Lstk(*lw );
@@ -2852,10 +2570,7 @@ int C2F(copyobj)(fname, lw, lwd, fname_len)
  *     et verification 
  *------------------------------------------------*/
 
-int C2F(vcopyobj)(fname, lw, lwd, fname_len)
-     char *fname;
-     integer *lw, *lwd;
-     unsigned long fname_len;
+int C2F(vcopyobj)(char *fname,integer *lw,integer *lwd,unsigned long fname_len)
 {
   integer l;
   integer l1, lv;
@@ -2894,10 +2609,7 @@ int C2F(vcopyobj)(fname, lw, lwd, fname_len)
 *------------------------------------------------== */
 
 
-int C2F(swapmat)(fname, topk, lw, it1, m1, n1, mn1, it2, m2, n2, mn2, fname_len)
-     char *fname;
-     integer *topk, *lw, *it1, *m1, *n1, *mn1, *it2, *m2, *n2, *mn2;
-     unsigned long fname_len;
+int C2F(swapmat)(char *fname,integer *topk,integer *lw,integer *it1,integer *m1,integer *n1,integer *mn1,integer *it2,integer *m2,integer *n2,integer *mn2,unsigned long fname_len)
 {
   integer ix1, ix2;
   integer lc, lr;
@@ -2950,8 +2662,7 @@ int C2F(swapmat)(fname, topk, lw, it1, m1, n1, mn1, it2, m2, n2, mn2, fname_len)
 *            ( matrice qui a ete copiee de lw a lw+1 
 *------------------------------------------------== */
 
-int C2F(insmat)(topk, lw, it, m, n, lr, lc, lr1, lc1)
-     integer *topk, *lw, *it, *m, *n, *lr, *lc, *lr1, *lc1;
+int C2F(insmat)(integer *topk,integer *lw,integer *it,integer *m,integer *n,integer *lr,integer *lc,integer *lr1,integer *lc1)
 {
 
   integer ix1;
@@ -2983,8 +2694,7 @@ int C2F(insmat)(topk, lw, it, m, n, lr, lc, lr1, lc1)
  * 	  double precision suivant typ 
  *------------------------------------------------*/
 
-int C2F(stackinfo)(lw, typ)
-     integer *lw, *typ;
+int C2F(stackinfo)(integer *lw,integer *typ)
 {
   integer ix, l, m, n;
   integer il, nn;
@@ -3033,10 +2743,7 @@ int C2F(stackinfo)(lw, typ)
  *     m,n
  *------------------------------------------------*/
 
-int C2F(allmat)(fname, topk, lw, m, n, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n;
-     unsigned long fname_len;
+int C2F(allmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,unsigned long fname_len)
 {
   integer itype, il;
   il = iadr(*Lstk(*lw ));
@@ -3057,10 +2764,7 @@ int C2F(allmat)(fname, topk, lw, m, n, fname_len)
  * and set its size to (m,n) 
  *------------------------------------------------*/
 
-int C2F(allmatset)(fname, lw, m, n, fname_len)
-     char *fname;
-     integer *lw, *m, *n;
-     unsigned long fname_len;
+int C2F(allmatset)(char *fname,integer *lw,integer *m,integer *n,unsigned long fname_len)
 {
   integer il;
   il = iadr(*Lstk(*lw ));
@@ -3078,10 +2782,7 @@ int C2F(allmatset)(fname, lw, m, n, fname_len)
  *     n'a pas d'arguments (ou il faut faire top=top+1) 
  *------------------------------------------------ */
 
-int C2F(objvide)(fname, lw, fname_len)
-     char *fname;
-     integer *lw;
-     unsigned long fname_len;
+int C2F(objvide)(char *fname,integer *lw,unsigned long fname_len)
 {
   if (*lw == 0 || Rhs < 0) {
     ++(*lw);
@@ -3109,14 +2810,7 @@ int C2F(objvide)(fname, lw, fname_len)
  *       et type est mise a true 
  *------------------------------------------------ */
 
-int C2F(getexternal)(fname, topk, lw, namex, typex, setfun, fname_len, name_len)
-     char *fname;
-     integer *topk, *lw;
-     char *namex;
-     int *typex;
-     void (*setfun) __PARAMS((char *,int *));
-     unsigned long fname_len;
-     unsigned long name_len;
+int C2F(getexternal)(char *fname,integer *topk,integer *lw,char *namex,int *typex,void (*setfun) __PARAMS((char *,int *)),unsigned long fname_len,unsigned long name_len)
 {
   int ret_value;
   integer irep;
@@ -3158,12 +2852,10 @@ int C2F(getexternal)(fname, topk, lw, namex, typex, setfun, fname_len, name_len)
 /*------------------------------------------------
  *------------------------------------------------ */
 
-int C2F(checkval)(fname, ival1, ival2, fname_len)
-     char *fname;
-     integer *ival1, *ival2;
-     unsigned long fname_len;
+int C2F(checkval)(char *fname,integer *ival1,integer *ival2,unsigned long fname_len)
 {
-  if (*ival1 != *ival2) {
+  if (*ival1 != *ival2) 
+  {
     Scierror(999,"%s: incompatible sizes \r\n",get_fname(fname,fname_len));
     return  FALSE_;
   } ;
@@ -3177,12 +2869,7 @@ int C2F(checkval)(fname, ival1, ival2, fname_len)
  *      si la variable cherchee n'existe pas on renvoit false 
  *------------------------------------------------------------- */
 
-int C2F(optvarget)(fname, topk, iel, namex, fname_len, name_len)
-     char *fname;
-     integer *topk, *iel;
-     char *namex;
-     unsigned long fname_len;
-     unsigned long name_len;
+int C2F(optvarget)(char *fname,integer *topk,integer *iel,char *namex,unsigned long fname_len,unsigned long name_len)
 {
   integer id[nsiz];
   C2F(cvname)(id, namex, &cx0, name_len);
@@ -3213,10 +2900,7 @@ int C2F(optvarget)(fname, topk, iel, namex, fname_len, name_len)
  *
  *------------------------------------------------------------- */
 
-int C2F(bufstore)(fname, lbuf, lbufi, lbuff, lr, nlr, fname_len)
-     char *fname;
-     integer *lbuf, *lbufi, *lbuff, *lr, *nlr;
-     unsigned long fname_len;
+int C2F(bufstore)(char *fname,integer *lbuf,integer *lbufi,integer *lbuff,integer *lr,integer *nlr,unsigned long fname_len)
 {
   *lbufi = *lbuf;
   *lbuff = *lbufi + *nlr - 1;
@@ -3236,11 +2920,7 @@ int C2F(bufstore)(fname, lbuf, lbufi, lbuff, lr, nlr, fname_len)
 /*------------------------------------------------------------- 
  * 
  *------------------------------------------------------------- */
-
-int C2F(credata)(fname, lw, m, fname_len)
-     char *fname;
-     integer *lw, m;
-     unsigned long fname_len;
+int C2F(credata)(char *fname,integer *lw,integer m,unsigned long fname_len)
 {
   integer lr;
   lr = *Lstk(*lw );
@@ -3267,11 +2947,7 @@ MATRIX OF HANDLE
  * internal function used by crehmat and listcrehmat 
  *---------------------------------------------------------- */
 
-int C2F(crehmati)(fname, stlw, m, n, lr, flagx, fname_len)
-     char *fname;
-     integer *stlw, *m, *n, *lr;
-     int *flagx;
-     unsigned long fname_len;
+int C2F(crehmati)(char *fname,integer *stlw,integer *m,integer *n,integer *lr,int *flagx,unsigned long fname_len)
 {
   integer ix1;
   integer il;
@@ -3305,10 +2981,7 @@ int C2F(crehmati)(fname, stlw, m, n, lr, flagx, fname_len)
  *      lw est aussi mis a jour 
  *---------------------------------------------------------- */
 
-int C2F(listcrehmat)(fname, lw, numi, stlw, m, n, lrs,fname_len)
-     char *fname;
-     integer *lw, *numi, *stlw, *m, *n, *lrs;
-     unsigned long fname_len;
+int C2F(listcrehmat)(char *fname,integer *lw,integer *numi,integer *stlw,integer *m,integer *n,integer *lrs,unsigned long fname_len)
 {
   integer ix1,il ;
     
@@ -3337,10 +3010,7 @@ int C2F(listcrehmat)(fname, lw, numi, stlw, m, n, lrs,fname_len)
  *     and lr is returned but stk(lr+..)  are unchanged 
  *---------------------------------------------------------- */
 
-int C2F(crehmat)(fname, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(crehmat)(char *fname,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
 
   if (*lw + 1 >= Bot) {
@@ -3366,10 +3036,7 @@ int C2F(crehmat)(fname, lw, m, n, lr, fname_len)
  *       lr : stk(lr+i-1)= h(i)) 
  *------------------------------------------------------------------ */
 
-int C2F(getlisthmat)(fname, topk, spos, lnum, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *spos, *lnum, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(getlisthmat)(char *fname,integer *topk,integer *spos,integer *lnum,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   integer nv, ili;
 
@@ -3396,10 +3063,7 @@ int C2F(getlisthmat)(fname, topk, spos, lnum, m, n, lr, fname_len)
  *       lr : stk(lr+i-1)= h(i)
  *------------------------------------------------------------------- */
 
-int C2F(gethmat)(fname, topk, lw, m, n, lr, fname_len)
-     char *fname;
-     integer *topk, *lw, *m, *n, *lr;
-     unsigned long fname_len;
+int C2F(gethmat)(char *fname,integer *topk,integer *lw,integer *m,integer *n,integer *lr,unsigned long fname_len)
 {
   return C2F(gethmati)(fname, topk, lw,Lstk(*lw), m, n, lr, &c_false, &cx0, fname_len);
 }
@@ -3408,12 +3072,7 @@ int C2F(gethmat)(fname, topk, lw, m, n, lr, fname_len)
  * For internal use 
  *------------------------------------------------------------------- */
 
-int C2F(gethmati)(fname, topk, spos, lw, m, n, lr, inlistx, nel, fname_len)
-     char *fname;
-     integer *topk, *spos, *lw, *m, *n, *lr;
-     int *inlistx;
-     integer *nel;
-     unsigned long fname_len;
+int C2F(gethmati)(char *fname,integer *topk,integer *spos,integer *lw,integer *m,integer *n,integer *lr,int *inlistx,integer *nel,unsigned long fname_len)
 {
   integer il;
   il = iadr(*lw);

@@ -144,7 +144,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
                                                  
 {
   int ierr,i;
-  char **files,**en_names;
+  char **files=NULL,**en_names=NULL;
   ierr=0;
   en_names=NULL; /* Initialisation variable pour Windows */
 
