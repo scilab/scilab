@@ -5976,7 +5976,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
     index_= ppMerge->index_in_entity[j2];
     pobj=(sciPointObj *) sciGetPointerFromHandle (ppMerge->from_entity[j2]);
     /*     if (sciGetVisibility (pobj)) { */
-    if (sciGetVisibility(pobj)) {
+    if ( sciGetRealVisibility(pobj) ) {
       /* build the element coordinates */
       switch (sciGetEntityType (pobj)) {  
       case SCI_SURFACE:
