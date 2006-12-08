@@ -147,7 +147,7 @@
 
    t=get("hdl")   //get the handle of the newly created object
 
-   t.foreground=9;
+   t.font_foreground=6;
    t.font_size=5;
    t.font_style=5;
    t.text="SCILAB";
