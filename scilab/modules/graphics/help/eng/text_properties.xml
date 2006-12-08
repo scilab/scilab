@@ -169,7 +169,7 @@
 
   t=get("hdl")   //get the handle of the newly created object
 
-  t.foreground=9; // change font properties
+  t.font_foreground=6; // change font properties
   t.font_size=5;
   t.font_style=5;
 
