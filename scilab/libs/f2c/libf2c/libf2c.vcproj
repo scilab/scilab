@@ -43,7 +43,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../routines/f2c"
 				PreprocessorDefinitions="_LIB;STRICT;USE_CLOCK;NO_ONEXIT;MSDOS;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
@@ -69,7 +69,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\..\bin\libf2c.dll"
+				LinkIncremental="1"
 				ModuleDefinitionFile="..\..\..\bin\libf2c.def"
 				ImportLibrary="..\..\..\bin\libf2c.lib"
 			/>

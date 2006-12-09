@@ -42,7 +42,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../../libs/MALLOC/includes;"
 				PreprocessorDefinitions="_LIB;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""

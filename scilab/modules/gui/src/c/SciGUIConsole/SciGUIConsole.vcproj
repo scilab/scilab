@@ -45,7 +45,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="../../../../core/includes;../../../../jvm/bin/jdk/include;../../../../jvm/bin/jdk/include/win32"
 				PreprocessorDefinitions="EXPORT_SCIGUICONSOLE_DLL"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
@@ -72,8 +72,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="libjvm_Import.lib"
 				OutputFile="..\..\..\..\..\bin\SciGUIConsole.dll"
+				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				ImportLibrary="..\..\..\..\..\libs\SciGUIConsole.lib"

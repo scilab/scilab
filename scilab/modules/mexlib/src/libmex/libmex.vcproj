@@ -43,7 +43,7 @@
 				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -66,8 +66,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
 				OutputFile="../../../../bin/libmex.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				ModuleDefinitionFile="libmex.def"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(ConfigurationName)/libmex.pdb"

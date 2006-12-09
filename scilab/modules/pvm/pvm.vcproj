@@ -43,7 +43,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src/pvm3/include,src/pvm3/src;../../libs/MALLOC/includes;../core/includes"
 				PreprocessorDefinitions="_LIB;STRICT;__STDC__;_DEBUG;_CRT_SECURE_NO_DEPRECATE;WIN32"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""

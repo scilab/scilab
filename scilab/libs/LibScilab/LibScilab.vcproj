@@ -55,7 +55,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;STRICT;WITH_TK;_CRT_SECURE_NO_DEPRECATE"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -83,9 +83,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
+				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
-				LinkIncremental="0"
+				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
@@ -407,11 +408,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\modules\gui\src\c\wsci\scilab.ico"
+				RelativePath="..\..\modules\gui\src\c\wsci\Icones Scilab\scilab.ico"
 				>
 			</File>
 			<File

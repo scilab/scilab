@@ -45,7 +45,7 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="../bin/jdk/include;../bin/jdk/include/win32;../../core/includes;../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LIBJVM_DLL"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
@@ -72,8 +72,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab_Import.lib SciGUIConsole_Import.lib"
 				OutputFile="..\..\..\bin\libjvm.dll"
+				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				ImportLibrary="..\..\..\bin\libjvm.lib"

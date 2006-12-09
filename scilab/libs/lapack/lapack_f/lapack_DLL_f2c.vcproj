@@ -55,7 +55,7 @@
 				AdditionalIncludeDirectories="../../f2c"
 				PreprocessorDefinitions="STRICT;__STDC__;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
@@ -81,6 +81,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
+				AdditionalOptions="/fixed:no"
 				OutputFile="../../../bin/lapack.dll"
 				ModuleDefinitionFile="..\..\..\bin\lapack.def"
 			/>

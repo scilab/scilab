@@ -56,12 +56,12 @@
 				AdditionalIncludeDirectories="../../../../../libs/f2c"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SLATEC_F2C_EXPORTS;FORDLL"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -80,6 +80,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
+				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\slatec_f.dll"
 				LinkIncremental="2"
