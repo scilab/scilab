@@ -48,6 +48,7 @@ void LoadFunctionsTab(void)
 		if (filename_primitives_list) { FREE(filename_primitives_list);filename_primitives_list=NULL;}
 	}
 
+	if (SciPath){FREE(SciPath);SciPath=NULL;}
 	firstentry = 1;
 
 }

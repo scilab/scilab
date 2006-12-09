@@ -1,11 +1,11 @@
-#include "../includes/win_mem_alloc.h"
+/*-----------------------------------------------------------------------------------*/
 /* Allan CORNET */
 /* INRIA 2005 */
+/*-----------------------------------------------------------------------------------*/
+#include "../includes/win_mem_alloc.h"
 #include <stdio.h>
 #include <string.h>
 #include <memory.h>
-/*-----------------------------------------------------------------------------------*/
-#define MEMDISPO (MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN)
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
@@ -88,7 +88,7 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 
 	if (dwSize>0)
 	{
-		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEM_RESERVE, PAGE_NOCACHE | PAGE_READWRITE);
 
 		if (NewPointer==NULL)
 		{
@@ -97,6 +97,11 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 			wsprintf(MsgError,"MALLOC (VirtualAlloc 1) Error File %s Line %d ",fichier,ligne);
 			MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 			#endif
+			VirtualFree(NewPointer,0, MEM_RELEASE);
+		}
+		else
+		{
+			NewPointer=VirtualAlloc(NewPointer,((unsigned) dwSize),MEM_COMMIT, PAGE_NOCACHE | PAGE_READWRITE);
 		}
 	}
 	else
@@ -107,15 +112,19 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int l
 		MessageBox(NULL,MsgError,"Error",MB_ICONSTOP | MB_OK);
 		#endif
 
-		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEMDISPO,PAGE_READWRITE);
+		NewPointer=VirtualAlloc(NULL,((unsigned) dwSize),MEM_RESERVE, PAGE_NOCACHE | PAGE_READWRITE);
+		NewPointer=VirtualAlloc(NewPointer,((unsigned) dwSize),MEM_COMMIT, PAGE_NOCACHE | PAGE_READWRITE);
 	}
-
 	return NewPointer;
 
 }
 /*-----------------------------------------------------------------------------------*/
-IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne)
+IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
-	VirtualFree(lpAddress,0,MEM_RELEASE);
+	if (lpAddress)
+	{
+		VirtualFree(lpAddress, dwSize, MEM_DECOMMIT);
+		VirtualFree(lpAddress,0, MEM_RELEASE);
+	}
 }
 /*-----------------------------------------------------------------------------------*/

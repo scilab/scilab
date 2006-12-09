@@ -86,6 +86,8 @@ static BOOL ReadModulesFile(void)
 		ScilabModules->ModuleList=(char**)MALLOC(sizeof(char*)*NumberofLines);
 		ScilabModules->numberofModules=NumberofLines;
 		AppendModules(ModulesFilename);
+		FREE(ModulesFilename);
+		ModulesFilename=NULL;
 	}
 	else
 	{

@@ -71,7 +71,7 @@ void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr)
 
 void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, int *ierr)
 {
-  char **strings,*p;
+  char **strings,*p=NULL;
   int li,ni,*SciS,i;
   strings=(char **) MALLOC( ((*nstring)+1)*sizeof(char *));
   if (strings==NULL) {*ierr=1; return;}

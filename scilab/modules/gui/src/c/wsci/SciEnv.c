@@ -314,7 +314,7 @@ BOOL Set_LCC_PATH(char *DefaultPath)
 				if (NewPath){ FREE(NewPath); NewPath=NULL; }
 			}
 		}
-
+		if (PathWsci) {FREE(PathWsci);PathWsci=NULL;}
 	}
 	else
 	{

@@ -203,7 +203,7 @@ char *GetSciPath(void)
 			if (PathUnix[i]=='\\') PathUnix[i]='/';
 		}
 	}
-	
+	if (SciPathTmp) {FREE(SciPathTmp);SciPathTmp=NULL;}
 	return PathUnix;
 }
 /*-----------------------------------------------------------------------------------*/

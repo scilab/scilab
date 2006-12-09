@@ -29,6 +29,9 @@ void Thread_JVM_CONSOLE(void *arg);
 int Create_JVM_Thread_CONSOLE(void);
 int Terminate_JVM_Thread_CONSOLE(void);
 /*-----------------------------------------------------------------------------------*/
+static char *JAVACLASSPATH=NULL;
+static char *JAVALIBRARYPATH=NULL;
+/*-----------------------------------------------------------------------------------*/
 void Thread_JVM_CONSOLE(void *arg)
 {
 	JNIEnv *env;
@@ -104,16 +107,15 @@ int Terminate_JVM_Thread_CONSOLE(void)
 	JNIEnv *env=NULL;
 	int bOK=FALSE;
 	long status=0;
-	char *JAVACLASSPATH=NULL;
-	char *JAVALIBRARYPATH=NULL;
+
 
 	JavaVMInitArgs vm_args;
 	JavaVMOption options[3];
 	
-	JAVACLASSPATH=(char*)MALLOC( (strlen("-Djava.class.path=%s/bin;.")+strlen(SCILAB_PATH)+strlen(SCILAB_PATH)+strlen("/Java/SWT/SWT.jar")+strlen(SCILAB_PATH)+strlen("/modules/jvm/classes")+10)*sizeof(char) );
+	JAVACLASSPATH=(char*)MALLOC( (strlen("-Djava.class.path=%s/bin;.")+strlen(SCILAB_PATH)+strlen(SCILAB_PATH)+strlen("/Java/SWT/SWT.jar")+strlen(SCILAB_PATH)+strlen("/modules/jvm/classes")+64)*sizeof(char) );
 	sprintf(JAVACLASSPATH,"-Djava.class.path=%s/bin%c%s%s%c%s%s%c%s",SCILAB_PATH,PATH_SEPARATOR,SCILAB_PATH,"/modules/jvm/bin/SWT/SWT.jar",PATH_SEPARATOR,SCILAB_PATH,"/modules/jvm/classes",PATH_SEPARATOR,USER_CLASSPATH);
 
-	JAVALIBRARYPATH=(char*)MALLOC( (strlen("-Djava.library.path=%s/lib")+strlen(JRE_PATH)+strlen(SCILAB_PATH)+strlen("/modules/jvm/bin/SWT")+10)*sizeof(char) );
+	JAVALIBRARYPATH=(char*)MALLOC( (strlen("-Djava.library.path=%s/lib")+strlen(JRE_PATH)+strlen(SCILAB_PATH)+strlen("/modules/jvm/bin/SWT")+64)*sizeof(char) );
 	sprintf(JAVALIBRARYPATH,"-Djava.library.path=%s/lib%c%s%s",JRE_PATH,PATH_SEPARATOR,SCILAB_PATH,"/modules/jvm/bin/SWT");
 
 	/* JAVACLASSPATH & JAVALIBRARYPATH sont liberes à la fin de l'execution de la JVM */
@@ -174,7 +176,9 @@ int TerminateJVM_CONSOLE(void)
 			else bOK=FALSE;
 		}
 	}
-	
+	if (JAVACLASSPATH){FREE(JAVACLASSPATH);JAVACLASSPATH=NULL;}
+	if (JAVALIBRARYPATH){FREE(JAVALIBRARYPATH);JAVALIBRARYPATH=NULL;}
+
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/ 

@@ -46,7 +46,8 @@ int C2F(initscilab)(void)
 	#ifdef _MSC_VER
 	SCIPATH=GetScilabDirectory(TRUE);
 	InitializeHashTableScilabErrors(SCIPATH);
-	StartJVMs(SCIPATH); 
+	StartJVMs(SCIPATH);
+	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
 	#endif
 
 	return 0;

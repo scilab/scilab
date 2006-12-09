@@ -138,10 +138,12 @@ int SetSci()
  */
 int C2F(getsci)(char *buf,int *nbuf,long int lbuf)
 {
+	char *pathtmp=NULL;
 	SetSci();
-	strcpy(buf,getSCIpath());
-
+	pathtmp=getSCIpath();
+	strcpy(buf,pathtmp);
 	*nbuf = strlen(buf);
+	if (pathtmp) {FREE(pathtmp);pathtmp=NULL;}
 	return 0;
 }
 /*************************************************************************************************/
@@ -180,6 +182,7 @@ BOOL ExistModelicac(void)
 	#endif
 	bOK=FileExist(fullpathModelicac);
 	if (fullpathModelicac) FREE(fullpathModelicac);
+	if (SCIPATH) FREE(SCIPATH);
 	return bOK;
 }
 /*************************************************************************************************/
@@ -196,6 +199,7 @@ BOOL ExistJavaSciWin(void)
 	wsprintf(fullpathJavaSci,"%s%s",SCIPATH,JavaSCIName);
 	bOK=FileExist(fullpathJavaSci);
 	if (fullpathJavaSci) FREE(fullpathJavaSci);
+	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
 	return bOK;
 }
 #endif

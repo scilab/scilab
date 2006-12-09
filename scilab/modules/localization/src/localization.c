@@ -177,6 +177,7 @@ IMPORT_EXPORT_LOCALIZATION_DLL int AppendXmlFile(const char *filename, struct ha
 	{
 		bOK=0;
 	}
+	if (encoding) {FREE(encoding);encoding=NULL;}
 	return bOK;
 	
 }

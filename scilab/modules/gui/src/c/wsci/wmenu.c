@@ -2080,6 +2080,7 @@ int GetLanguageCodeInScilabDotStar(void)
 					if (strcmp(LanguageTemp,"eng")==0) ReturnLanguageCode=0;
 
 					fclose(fileR);
+					if (WSCIPath) {FREE(WSCIPath);WSCIPath=NULL;}
 					return ReturnLanguageCode;
 				}
 				
@@ -2088,6 +2089,7 @@ int GetLanguageCodeInScilabDotStar(void)
 		}
 		fclose(fileR);
 	}
+	if (WSCIPath) {FREE(WSCIPath);WSCIPath=NULL;}
 	return ReturnLanguageCode;
 }
 /*-----------------------------------------------------------------------------------*/
