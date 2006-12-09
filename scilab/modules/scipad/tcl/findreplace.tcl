@@ -716,7 +716,7 @@ proc findit {w pw textarea tosearchfor reg} {
                 # therefore the next call to findit will do a search in the full buffer
                 # the selection will be restored later on by proc cancelfind
                 # or by checking again the "search in selection only" box
-                $textarea tag remove sel 0.0 end
+                $textarea tag remove sel 1.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
                 resetfind
@@ -772,8 +772,8 @@ proc findit {w pw textarea tosearchfor reg} {
     foreach ta $listoftextarea {
         # this must be done for each ta, not only for $textarea
         # because of the switch buffer case in tile mode
-        $ta tag remove foundtext 0.0 end
-        $ta tag remove replacedtext 0.0 end
+        $ta tag remove foundtext 1.0 end
+        $ta tag remove replacedtext 1.0 end
     }
     $textarea tag add foundtext $mpos  "$mpos + $mlen char"
     
@@ -872,7 +872,7 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
                 # therefore the next call to replaceit will do a search in the full buffer
                 # the selection will be restored later on by proc cancelfind
                 # or by checking again the "search in selection only" box
-                $textarea tag remove sel 0.0 end
+                $textarea tag remove sel 1.0 end
                 # no search in selection allowed once search has been extended
                 $w.l.f4.f5.cbox4 deselect
                 resetfind
@@ -957,8 +957,8 @@ proc replaceit {w pw textarea tosearchfor reg {replacesingle 1}} {
     foreach ta $listoftextarea {
         # this must be done for each ta, not only for $textarea
         # because of the switch buffer case in tile mode
-        $ta tag remove foundtext 0.0 end
-        $ta tag remove replacedtext 0.0 end
+        $ta tag remove foundtext 1.0 end
+        $ta tag remove replacedtext 1.0 end
     }
     set lenR [string length $ReplaceString]
     $textarea tag add replacedtext $mpos  "$mpos + $lenR char"
@@ -1498,13 +1498,13 @@ proc cancelfind {} {
     global findreplaceboxalreadyopen
 
     foreach textarea $listoftextarea {
-        $textarea tag remove foundtext 0.0 end
-        $textarea tag remove replacedtext 0.0 end
+        $textarea tag remove foundtext 1.0 end
+        $textarea tag remove replacedtext 1.0 end
 
         if {[$textarea tag ranges fakeselection] != {}} {
             # there was a selection at the time the find dialog was opened, restore it
             $textarea tag add sel fakeselection.first fakeselection.last 
-            $textarea tag remove fakeselection 0.0 end
+            $textarea tag remove fakeselection 1.0 end
         }
     }
 

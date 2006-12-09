@@ -17,6 +17,27 @@ proc selectline {} {
     return $seltext
 }
 
+proc gettaseltext {textarea} {
+# return the selected text if there is one in $textarea, or an empty string
+# if there is none
+# the X selection is not used nor changed, it's the sel tag of $textarea
+# that is checked
+    if {[gettaselind $textarea] != ""} {
+        set tasel [$textarea get sel.first sel.last]
+    } else {
+        set tasel ""
+    }
+    return $tasel
+}
+
+proc gettaselind {textarea} {
+# return the selection as a list of start / stop indices if there is one
+# in $textarea, or an empty string if there is none
+# the X selection is not used nor changed, it's the sel tag of $textarea
+# that is checked
+    return [$textarea tag nextrange sel 1.0]
+}
+
 proc CommentSel {} {
 # comment the selection, or insert "//" at the current point
 # if there is no selection
@@ -24,9 +45,8 @@ proc CommentSel {} {
     if {[IsBufferEditable] == "No"} {return}
 
     set ta [gettextareacur]
-    set tasel [$ta tag nextrange sel 1.0]
 
-    if {$tasel == ""} {
+    if {[gettaselind $ta] == {}} {
         # if there is no selection, simply insert // at the insert point
         puttext $ta "//"
 
@@ -48,9 +68,8 @@ proc UnCommentSel {} {
     if {[IsBufferEditable] == "No"} {return}
 
     set ta [gettextareacur]
-    set tasel [$ta tag nextrange sel 1.0]
 
-    if {$tasel == ""} {
+    if {[gettaselind $ta] == {}} {
         # if there is no selection, select the current line and uncomment
         # if this selected line is not empty
         if {[selectline] != ""} {
@@ -83,9 +102,8 @@ proc IndentSel {} {
     }
 
     set ta [gettextareacur]
-    set tasel [$ta tag nextrange sel 1.0]
 
-    if {$tasel == ""} {
+    if {[gettaselind $ta] == {}} {
         # if there is no selection, select the current line and indent
         # if this selected line is not empty
         if {[selectline] != ""} {
@@ -116,8 +134,7 @@ proc IndentSel {} {
         }
 
         # maybe the removal collapsed the selection, then select again
-        set tasel [$ta tag nextrange sel 1.0]
-        if {$tasel == ""} {
+        if {[gettaselind $ta] == {}} {
             if {[selectline] != ""} {
                 IndentSel
             }
@@ -145,9 +162,8 @@ proc UnIndentSel {} {
     if {[IsBufferEditable] == "No"} {return}
 
     set ta [gettextareacur]
-    set tasel [$ta tag nextrange sel 1.0]
 
-    if {$tasel == ""} {
+    if {[gettaselind $ta] == {}} {
         # if there is no selection, select the current line and unindent
         # if this selected line is not empty
         if {[selectline] != ""} {

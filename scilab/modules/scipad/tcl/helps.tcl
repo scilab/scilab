@@ -12,25 +12,25 @@ proc aboutme {} {
 }
 
 proc helpword {} {
-    global textareacur
     if {[isscilabbusy 0]} {return}
-    set seltexts [selection own]
-    if {[catch {selection get -selection PRIMARY} sel] ||$seltexts != $textareacur} {
-        # if there is no selection in the current textarea, select the word at the cursor position
+    set textareacur [gettextareacur]
+    if {[gettaselind $textareacur] == {}} {
+        # if there is no selection in the current textarea,
+        # select the word at the cursor position
         set i1 [$textareacur index insert]
         $textareacur tag add sel [$textareacur index "$i1 wordstart"] \
                                  [$textareacur index "$i1 wordend"]
-        set curterm [selection get]
-    } else {
-        set cursel [string trim [selection get]]
-        # get only the first word of the selection (or a symbol)
-        regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
     }
+    set cursel [string trim [gettaseltext $textareacur]]
+    # get only the first word of the selection (or a symbol)
+    regexp "(\\A\\w*\\M|\\A\\W)" $cursel curterm
     if {[info exists curterm]} {
         set curterm [string trim $curterm]
         set curterm [duplicatechars $curterm "\""]
         set curterm [duplicatechars $curterm "'"]
-        if {$curterm!=""} { ScilabEval_lt "help \"$curterm\"" }
+        if {$curterm!=""} {
+            ScilabEval_lt "help \"$curterm\""
+        }
     }
 }
 

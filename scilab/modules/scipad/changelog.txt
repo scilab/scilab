@@ -2589,3 +2589,16 @@ Francois VOGEL, 01/12/06
  * opensourceof dialog resizes nicer: buttons never disappear, entry field
    fills all the available space
  * version --> 6.65
+
+Francois VOGEL, 09/12/06
+ * Fixed: On Windows, opening files and then closing one of them did prevent
+   from selecting the remaining ones in the windows menu. This is Tk bug
+   1224330, that was fixed in Tcl/Tk 8.4.14 and Tcl/Tk 8.5a5. Scilab now
+   comes with 8.4.14 on Windows, therefore this is closed.
+ * Changed all occurrences of index 0.0 in text widgets since lines are
+   numbered from 1 according to the Tcl/Tk help
+ * Rationalized the tests on the existence of a selection in a textarea
+   throughout the code. Removed all uses of the X selection, except where
+   appropriate i.e. in proc button2copypaste
+ * Added a Pause button in the find in files results window
+ * version --> 6.66

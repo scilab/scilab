@@ -117,7 +117,6 @@ proc filesetasnew {} {
     newfilebind
     showinfo [mc "New Script"]
     montretext $pad.new$winopened
-    selection clear
     resetmodified $pad.new$winopened
 }
 
@@ -503,7 +502,7 @@ proc showopenwin {tiledisplay} {
 # created by splitting the current one horizontally
 # in which case $tiledisplay == "horizontal", or
 # vertically in which case $tiledisplay == "vertical"
-    global pad winopened textareacur listoffile
+    global pad winopened listoffile
     global startdir
     global tileprocalreadyrunning
     if {$tileprocalreadyrunning} {return}
@@ -527,7 +526,6 @@ proc showopenwin {tiledisplay} {
             fileisopen $file
             $pad.filemenu.wind invoke $res
         }
-        selection clear
     }
     [gettextareacur] mark set insert "1.0"
     keyposn [gettextareacur]
@@ -605,7 +603,6 @@ proc openfile {file} {
             fileisopen $file
             $pad.filemenu.wind invoke $res
         }
-        selection clear
         return 1
     } else {
         return 0
@@ -871,7 +868,7 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
         backupfile $nametosave $filebackupdepth
     }
     set FileNameToSave [open $nametosave w+]
-    puts -nonewline $FileNameToSave [$textarea get 0.0 end]
+    puts -nonewline $FileNameToSave [$textarea get 1.0 end]
     close $FileNameToSave
 }
 

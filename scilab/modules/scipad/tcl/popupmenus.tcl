@@ -1,5 +1,5 @@
 proc showpopup2 {} {
-    global pad mouseoversel
+    global pad mouseoversel snRE
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     # if there is no debug session, popup menu is the edit menu
@@ -15,7 +15,7 @@ proc showpopup2 {} {
         if {$mouseoversel == "true"} {
             if {[lsearch [$ta tag names sel.first] "sel"] != -1} {
                 set watchvar [string trim [$ta get sel.first sel.last]]
-                regexp {\A[\%_\#\!\$\?a-zA-Z][_\#\!\$\?a-zA-Z0-9]*\Z} $watchvar validwatchvar
+                regexp "\\A$snRE\\Z" $watchvar validwatchvar
             }
         }
         if {[info exists validwatchvar]} {
@@ -41,7 +41,8 @@ proc showpopupfont {} {
 }
 
 proc showpopupsource {ind} {
-    global pad textareacur menuFont words
+    global pad menuFont words
+    set textareacur [gettextareacur]
     set numx [winfo pointerx $pad]
     set numy [winfo pointery $pad]
     catch {destroy $pad.popsource}

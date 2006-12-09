@@ -63,7 +63,7 @@ proc selectprint_unix {textarea} {
     if {[ismodified $textarea] ||
         ![file exists $listoffile("$textarea",fullname)]} {
         set TempPrintFile [open /tmp/SciPadtmpfile w]
-        puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+        puts -nonewline $TempPrintFile [$textarea get 1.0 end]
         close $TempPrintFile
         catch {eval exec "$printCommand /tmp/SciPadtmpfile"} result
     } else {
@@ -89,7 +89,7 @@ proc selectprint_win {textarea} {
         ![file exists $listoffile("$textarea",fullname)]} {
         set fname [file join $tmpdir SciPadtmpfile]
         set TempPrintFile [open $fname w]
-        puts -nonewline $TempPrintFile [$textarea get 0.0 end]
+        puts -nonewline $TempPrintFile [$textarea get 1.0 end]
         close $TempPrintFile
         ScilabEval_lt "toprint(\"$fname\")" "sync"
         file delete $fname

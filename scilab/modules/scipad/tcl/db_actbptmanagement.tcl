@@ -78,7 +78,7 @@ proc closecurifjustopenedbyuabpt {} {
 proc removeallactive_bp {} {
     global listoftextarea
     foreach textarea $listoftextarea {
-        $textarea tag remove activebreakpoint 0.0 end
+        $textarea tag remove activebreakpoint 1.0 end
     }
 }
 

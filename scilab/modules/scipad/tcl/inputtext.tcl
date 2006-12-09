@@ -6,7 +6,6 @@ proc blinkchars {w sta sto} {
     update idletasks
     after 300
     $w tag remove sel $sta $sto
-    selection clear
     $w see insert
 }
 
@@ -254,12 +253,11 @@ proc insertnewline {w} {
 
 proc inserttab {w} {
     global indentspaces tabinserts buffermodifiedsincelastsearch
-    set textarea [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
-    set selstart [lindex [$textarea tag nextrange sel 0.0] 0]
-    if {$selstart != ""} {
+    set taselind [gettaselind $w]
+    if {$taselind != {}} {
         # there is a selection, put 1st column of selection in col
-        scan $selstart "%d.%d" line col
+        scan [lindex $taselind 0] "%d.%d" line col
     } else {
         # there is no selection
         set col -1
@@ -270,7 +268,7 @@ proc inserttab {w} {
     } else {
         if {$tabinserts == "spaces"} {
             # insert spaces up to the next tab stop
-            set curpos [$textarea index insert]
+            set curpos [$w index insert]
             scan $curpos "%d.%d" curline curcol
             set nexttabstop [expr ($curcol / $indentspaces + 1) * $indentspaces]
             set nbtoinsert [expr $nexttabstop - $curcol]
@@ -296,13 +294,8 @@ proc puttext {w text} {
         $w configure -autoseparators 0 ;# so only one undo is required to undo text replacement
         $w edit separator
     }
-    set cuttexts [selection own]
-    if {[string range $cuttexts 0 [expr [string length [gettextareacur]]-1]] == [gettextareacur]} {
-        if [catch {selection get -selection PRIMARY} sel] {
-        } else {
-            $cuttexts delete sel.first sel.last
-            selection clear
-        }
+    if {[gettaselind $w] != ""} {
+        $w delete sel.first sel.last
     }
     set i1 [$w index insert]
     $w insert insert $text

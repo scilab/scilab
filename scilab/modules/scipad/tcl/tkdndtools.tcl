@@ -45,7 +45,7 @@ proc tkdndbind {w} {
                     # the mouse, in fact the destination mark cursor, is not
                     # inside the selection
                     if {"%A" == "copy"} {
-                        %W tag remove sel 0.0 end
+                        %W tag remove sel 1.0 end
                     }
                     puttext %W %D
                 } else {
@@ -53,7 +53,7 @@ proc tkdndbind {w} {
                 }
             } else {
                 # drag from a Scipad buffer, drop in another Scipad buffer
-                %W tag remove sel 0.0 end
+                %W tag remove sel 1.0 end
                 puttext %W %D
                 if {"%A" == "move"} {
                     focustextarea $sourcetextarea
@@ -64,7 +64,7 @@ proc tkdndbind {w} {
             unset sourcetextarea
         } else {
             # drag from outside of Scipad, drop in Scipad
-            %W tag remove sel 0.0 end
+            %W tag remove sel 1.0 end
             puttext %W %D   
         }
         restorecursorblink ; # needed for drags from the outside
@@ -111,7 +111,7 @@ proc tkdndbind {w} {
     bind $w <Control-Button-1> { if {[Button1BindTextArea %W %x %y] == "true"} { \
                                      break ; \
                                  } else { \
-                                     %W tag remove sel 0.0 end ; \
+                                     %W tag remove sel 1.0 end ; \
                                  } \
                                }
     # if {[info exists listoffile("%W",fullname]} in the else clause below

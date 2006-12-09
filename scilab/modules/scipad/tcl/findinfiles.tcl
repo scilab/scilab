@@ -4,13 +4,15 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
 # type, regexp/standard, whole word, recurse search)
 # if $searchforfilesonly is true, then files themselves are searched wrt
 # to matching the glob pattern
-    global allthematches cancelsearchflag openerrorfiles searchinfilesalreadyrunning
+    global allthematches pausesearchflag cancelsearchflag
+    global openerrorfiles searchinfilesalreadyrunning
 
     set searchinfilesalreadyrunning 1
 
     # create a toplevel window where the matches will be displayed
     displaymatchresultswin
     disablesearchresultsbuttons
+    set pausesearchflag 0
     set cancelsearchflag 0
     update
 
@@ -34,6 +36,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
                     lappend allthematches $amatch
                 }
                 if {$cancelsearchflag} {break}
+                if {$pausesearchflag} {tkwait variable pausesearchflag}
             }
         } else {
             # search for files themselves - display the matched files
@@ -43,6 +46,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
                 lappend allthematches [constructfilematchresult $filename]
                 update
                 if {$cancelsearchflag} {break}
+                if {$pausesearchflag} {tkwait variable pausesearchflag}
             }
         }
         updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"]]
@@ -64,7 +68,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
 
 proc getallfilenames {initdir globpat recursesearch} {
 # return all the file names matching $globpat in directory $initdir
-    global tcl_platform cancelsearchflag
+    global tcl_platform pausesearchflag cancelsearchflag
 
     set fnames {}
 
@@ -96,6 +100,7 @@ proc getallfilenames {initdir globpat recursesearch} {
             foreach adir $dirmatches {
                 eval lappend fnames [getallfilenames $adir $globpat $recursesearch]
                 if {$cancelsearchflag} {break}
+                if {$pausesearchflag} {tkwait variable pausesearchflag}
             }
         }
     }
@@ -117,7 +122,7 @@ proc findinonefile {fname str cas reg whword} {
 #    - the three elements returned by proc doonesearch
 # each match is displayed in a search results window
 
-    global pad matchres cancelsearchflag openerrorfiles
+    global pad matchres pausesearchflag cancelsearchflag openerrorfiles
     set filematchlist {}
 
     # open file
@@ -155,6 +160,7 @@ proc findinonefile {fname str cas reg whword} {
         # (for cancel button, but also for all the Scipad functions)
         update
         if {$cancelsearchflag} {break}
+        if {$pausesearchflag} {tkwait variable pausesearchflag}
     }
 
     # do the cleaning
@@ -184,10 +190,33 @@ proc constructfilematchresult {fname} {
     return $filematchlist
 }
 
+proc pauseresumesearchinfiles {} {
+# set a flag used to pause search in files
+    global pausesearchflag matchres
+    if {!$pausesearchflag} {
+        set pausesearchflag 1
+        $matchres.f2.buttonPause configure -relief sunken
+    } else {
+        set pausesearchflag 0
+        $matchres.f2.buttonPause configure -relief raised
+    }
+}
+
 proc cancelsearchinfiles {} {
 # set a flag used to cancel search in files
-    global cancelsearchflag
+    global cancelsearchflag pausesearchflag
     set cancelsearchflag 1
+    # if cancel is pressed while in pause mode, resuming search
+    # will make cancel be executed immediately
+    if {[info exists pausesearchflag]} {
+        if {$pausesearchflag} {
+            pauseresumesearchinfiles
+        }
+    } else {
+        # proc cancelsearchinfiles has been called without having previously
+        # searched in files, which happens for instance when Scipad is exited
+        # in this case, there is nothing more to do here
+    }
 }
 
 proc displaymatchresultswin {} {
@@ -240,6 +269,7 @@ proc displaymatchresultswin {} {
         set bestwidth [mcmaxra "&Previous" \
                                "&Next" \
                                "&Close" \
+                               "Pau&se" \
                                "Cance&l"]
         eval "button $matchres.f2.buttonPrev [bl "&Previous"] \
             -command \"openprevmatch $matchres.f1.resarea\" \
@@ -250,12 +280,15 @@ proc displaymatchresultswin {} {
         eval "button $matchres.f2.buttonClose [bl "&Close"] \
             -command \"destroy $matchres\" \
             -width $bestwidth -font \[list $menuFont\] "
+        eval "button $matchres.f2.buttonPause [bl "Pau&se"] \
+            -command \"pauseresumesearchinfiles\" \
+            -width $bestwidth -font \[list $menuFont\] "
         eval "button $matchres.f2.buttonCancel [bl "Cance&l"] \
             -command \"cancelsearchinfiles\" \
             -width $bestwidth -font \[list $menuFont\] "
         pack $matchres.f2.buttonPrev $matchres.f2.buttonNext \
-             $matchres.f2.buttonClose $matchres.f2.buttonCancel -side left \
-             -padx 6 -pady 2
+             $matchres.f2.buttonClose $matchres.f2.buttonPause \
+             $matchres.f2.buttonCancel -side left -padx 6 -pady 2
 
         # make all this visible (order matters wrt to clipping on external resizing)
         pack $matchres.f2 -side bottom
@@ -286,6 +319,7 @@ proc disablesearchresultsbuttons {} {
     $matchres.f2.buttonNext   configure -state disabled
     $matchres.f2.buttonPrev   configure -state disabled
     $matchres.f2.buttonClose  configure -state disabled
+    $matchres.f2.buttonPause  configure -state normal
     $matchres.f2.buttonCancel configure -state normal
 }
 
@@ -297,6 +331,7 @@ proc enablesearchresultsbuttons {} {
         $matchres.f2.buttonNext   configure -state normal
         $matchres.f2.buttonPrev   configure -state normal
         $matchres.f2.buttonClose  configure -state normal
+        $matchres.f2.buttonPause  configure -state disabled
         $matchres.f2.buttonCancel configure -state disabled
     } else {
         # scipad has been closed during a search in files

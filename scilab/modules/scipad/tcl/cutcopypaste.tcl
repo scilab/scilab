@@ -10,17 +10,10 @@ proc deletetext {} {
         $textareacur configure -autoseparators 0
         $textareacur edit separator
     }
-    set cuttexts [selection own]
-    if {[string range $cuttexts 0 [expr [string length $textareacur]-1]] \
-            == $textareacur} {
-        if [catch {selection get -selection PRIMARY} sel] {
-            $textareacur delete "insert" "insert +1c"
-        } else {
-            $cuttexts delete sel.first sel.last
-            selection clear
-        }
+    if {[gettaselind $textareacur] == {}} {
+        $textareacur delete "insert" "insert+1c"
     } else {
-        $textareacur delete "insert" "insert +1c"
+        $textareacur delete sel.first sel.last
     }
     set i1 [$textareacur index insert]
     tagcontlines $textareacur
@@ -52,17 +45,10 @@ proc backspacetext {} {
         $textareacur configure -autoseparators 0
         $textareacur edit separator
     }
-    set cuttexts [selection own]
-    if {[string range $cuttexts 0 [expr [string length $textareacur]-1]]\
-             == $textareacur} {
-        if [catch {selection get -selection PRIMARY} sel] {
-            $textareacur delete "insert-1c" "insert"
-        } else {
-            $cuttexts delete sel.first sel.last
-            selection clear
-        }
-    } else {
+    if {[gettaselind $textareacur] == {}} {
         $textareacur delete "insert-1c" "insert"
+    } else {
+        $textareacur delete sel.first sel.last
     }
     set i1 [$textareacur index insert]
     tagcontlines $textareacur
@@ -89,6 +75,8 @@ proc cuttext {} {
     if {[IsBufferEditable] == "No"} {return}
     set listoffile("$textareacur",redostackdepth) 0
     tk_textCut $textareacur
+    $textareacur tag remove sel 1.0 end
+    $textareacur see insert
     set i1 [$textareacur index insert]
     tagcontlines $textareacur
     set uplimit [getstartofcolorization $textareacur $i1]
@@ -96,9 +84,7 @@ proc cuttext {} {
     colorize $textareacur [$textareacur index $uplimit] \
                           [$textareacur index $dnlimit]
     backgroundcolorizeuserfun
-    selection clear
     reshape_bp
-    $textareacur see insert
     # update menues contextually
     keyposn $textareacur
     set buffermodifiedsincelastsearch true
@@ -106,8 +92,7 @@ proc cuttext {} {
 
 proc copytext {} {
 # copy text procedure
-    set selowner [selection own]
-    tk_textCopy  $selowner
+    tk_textCopy [gettextareacur]
 }
 
 proc pastetext {} {
@@ -121,7 +106,7 @@ proc pastetext {} {
         $textareacur configure -autoseparators 0
         $textareacur edit separator
     }
-    catch {
+    if {[gettaselind $textareacur] != {}} {
         $textareacur delete sel.first sel.last
     }
     set i1 [$textareacur index insert]

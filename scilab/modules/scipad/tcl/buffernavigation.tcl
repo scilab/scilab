@@ -227,8 +227,7 @@ proc focustextarea {textarea} {
     set oldta [gettextareacur]
     if {[winfo exists $oldta]} {
         if {($oldta != $textarea) && [$oldta tag ranges sel] != ""} {
-            $oldta tag remove sel 0.0 end
-            selection clear
+            $oldta tag remove sel 1.0 end
         }
     }
 
@@ -400,7 +399,6 @@ proc createnewtextarea {} {
 
     newfilebind
     showinfo [mc "New Script"]
-    selection clear
     return $pad.new$winopened
 }
 
@@ -929,11 +927,6 @@ proc nextbuffer {type} {
     }
     if {$found} {
         $pad.filemenu.wind invoke $curbuf
-        # keypress must replace the selection if buffers are switched
-        set existsSel [[gettextareacur] tag nextrange sel 1.0]
-        if {$existsSel != {}} {
-            [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
-        }
     }
 }
 
@@ -968,11 +961,6 @@ proc prevbuffer {type} {
     }
     if {$found} {
         $pad.filemenu.wind invoke $curbuf
-        # keypress must replace the selection if buffers are switched
-        set existsSel [[gettextareacur] tag nextrange sel 1.0]
-        if {$existsSel != {}} {
-            [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
-        }
     }
 }
 
