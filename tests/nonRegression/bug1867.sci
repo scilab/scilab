@@ -44,7 +44,7 @@ L3 = msscanf(str3,""..
 "");";
 errmsg=execstr(StrExec,'errcatch');
 
-Test3=(errmsg==998);
+Test3=(errmsg==0);
 
 if (Test1 & Test2 & Test3) then 
  affich_result(%T,1867);

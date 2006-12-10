@@ -34,7 +34,7 @@ foo_code=['#include ""stack-c.h""'
 	  '  }'];
 mputl(foo_code,path+'/foo.c')
 
-intersci=getshortpathname(SCI+'/bin/intersci-n')
+intersci=getshortpathname(SCI+'/modules/intersci/bin/intersci-n')
 
 curpath=pwd()
 chdir(path)

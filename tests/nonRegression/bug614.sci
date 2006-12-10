@@ -25,6 +25,6 @@ exec(TMPDIR+'/loader.sce');
 diary('bug614.dia')
 mexf16(rand(2,3,2))
 diary(0)
-ok=mgetl('bug614.dia')=="2 3 2";
+ok=or(mgetl('bug614.dia')=="2 3 2");
 affich_result(ok,614);
 cd(D)
