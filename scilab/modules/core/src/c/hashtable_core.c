@@ -94,7 +94,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 					{
 					case SCI_HFUNCTIONS_ENTER :
 						htable[idx].entry.data = *data;
-						strcpy(htable[idx].entry.namefunction,name);
+						if (name) strcpy(htable[idx].entry.namefunction,name);
 						return OK;
 						break;
 					case SCI_HFUNCTIONS_DELETE :
@@ -126,7 +126,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 						{
 						case SCI_HFUNCTIONS_ENTER :
 							htable[idx].entry.data = *data; 
-							strcpy(htable[idx].entry.namefunction,name);
+							if (name) strcpy(htable[idx].entry.namefunction,name);
 							return OK;
 						case SCI_HFUNCTIONS_DELETE :
 							htable[idx].used = 0;
@@ -148,7 +148,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 			htable[idx].used  = hval;
 			for ( i=0 ; i < nsiz ; i++ ) htable[idx].entry.key[i] = key[i];
 			htable[idx].entry.data = *data;
-			strcpy(htable[idx].entry.namefunction,name);
+			if (name) strcpy(htable[idx].entry.namefunction,name);
 			filled++;
 			return OK ;
 		}

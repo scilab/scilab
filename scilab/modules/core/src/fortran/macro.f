@@ -7,7 +7,7 @@ c
       double precision val
       integer eol
       logical eqid,ptover,vargin,vargout,exec,vcopyobj
-      integer blank,r,ival(2),ptr,top1,count,iadr,wmacn,p
+      integer blank,r,ival(2),ptr,top1,count,iadr,wmacn
       integer varargin(nsiz),varargout(nsiz),id(nsiz)
       integer scivarindex
       equivalence (ival(1),val)
@@ -235,7 +235,6 @@ c     *call* run
          rstk(pt)=502
 c         pstk(pt)=0
          icall=7
-         if (comp(1).ne.0) call getlin(0,0)
 c     *call* parse
       endif
       go to 99
@@ -262,6 +261,7 @@ c     .  looking for a previous execstr(....,'errcatch') see intexecstr
          endif
       endif
 
+ 
       lhsr=lhs
 c     
       lct(4)=pstk(pt)
@@ -467,9 +467,10 @@ c
       rstk(pt)=503
       pstk(pt)=wmac
       
-c     preserve current error recovery modes
       if(r.eq.701.or.r.eq.604) then 
 c     .  disable error recovery mode , for pause only
+c     .  disable error recovery mode , for pause only
+c         print *,'macro ',err1,err2,errct,errpt
          ids(2,pt)=errct
          ids(3,pt)=err2
          ids(4,pt)=err1
@@ -503,6 +504,7 @@ c     fin exec
       r=rstk(pt-1)
       if(r.eq.701.or.r.eq.604) then 
 c     restore current error recovery modes
+c         print *,'macro ',err1,err2,errct,errpt
          errct=ids(2,pt)
          err2=ids(3,pt)
          err1=ids(4,pt)

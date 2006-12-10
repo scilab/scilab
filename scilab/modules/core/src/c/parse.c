@@ -780,11 +780,7 @@ int C2F(parse)()
       goto L98;
     }
   }
-  if (C2F(com).sym == semi || C2F(com).sym == comma || C2F(com).sym == eol){
-    goto L70;
-  }
-  else if (C2F(com).sym == cmt) { 
-    C2F(parsecomment)();
+  if (C2F(com).sym == semi || C2F(com).sym == comma || C2F(com).sym == eol|| C2F(com).sym == cmt) {
     goto L70;
   }
   if (Rstk[Pt - Lhs] == 808) {/* syntax error while in try */
