@@ -45,7 +45,7 @@ C2F(stack);
 /*-----------------------------------------------------------------------------------*/
 integer C2F(scimem)(integer *n, integer *ptr)
 {
-  char *p1 = NULL;
+  register char *p1 = NULL;
   if (*n > 0)
   {
     /* add 1 for alignment problems */
@@ -84,7 +84,7 @@ integer C2F(scimem)(integer *n, integer *ptr)
 /*-----------------------------------------------------------------------------------*/
 integer C2F(scigmem)(integer *n, integer *ptr)
 {
-  char *p1;
+  register char *p1=NULL;
   if (*n > 0)
   {
     /* add 1 for alignment problems */

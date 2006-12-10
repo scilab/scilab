@@ -196,6 +196,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\includes\MALLOC.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\sci_mem_alloc.h"
 				>
 			</File>
