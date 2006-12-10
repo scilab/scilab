@@ -259,7 +259,6 @@ sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
-sci_gateway/fortran/sci_newfun.f \
 sci_gateway/fortran/sci_useascommand.f \
 sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
