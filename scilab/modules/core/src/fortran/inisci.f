@@ -48,6 +48,11 @@ c     ippty: interfaces properties
       integer idloc(nsiz)
       integer offset,goffset
       integer iadr,sadr
+      
+      character bufcomp*(bsiz)
+      character bufsci*(bsiz)
+      character buftmp*(bsiz)
+
 c     
       double precision  iov(2)
       character*(nlgh) vname 
@@ -238,7 +243,8 @@ c     . hard predefined variables
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
 c     17 is the number of predefined variables 
-      bot=isiz-18
+c     18 - 1 blank not include
+      bot=isiz-17
       bbot=bot
       bot0=bot
 c     memory requested for predefined variables 
@@ -246,39 +252,36 @@ c     mxn bmat -> size : sadr(2+m*n+2)
 c     $        -> size : sadr(10-1) + 2 
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
-c     3 strings (1024 chars max)
+c     3 strings
 c     8 booleans
-      call getcomp(buf,nb1)
-      call getsci(buf,nb2)
-      call gettmpdir(buf,nb3)
+      call getcomp(bufcomp,nbcomp)
+      call getsci(bufsci,nbsci)
+      call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
      $     + 8*sadr(5) 
      $     + 4*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
-     $     + 1*(sadr(6+nb1)+1)
-     $     + 1*(sadr(6+nb2)+1)
-     $     + 1*(sadr(6+nb3)+1)
+     $     + 1*(sadr(6+nbcomp)+1)
+     $     + 1*(sadr(6+nbsci)+1)
+     $     + 1*(sadr(6+nbtmpdir)+1)
 
       l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
 C     . COMPILER
-      call getcomp(buf,nbuf)
       vname =  "COMPILER"
       call cvname(idloc,vname,0)
-      call cresmatvar(idloc,k,buf,nbuf)
+      call cresmatvar(idloc,k,bufcomp,nbcomp)
       k=k+1
 c     . SCI
-      call getsci(buf,nbuf)
       vname =  "SCI"
       call cvname(idloc,vname,0)
-      call cresmatvar(idloc,k,buf,nbuf)
+      call cresmatvar(idloc,k,bufsci,nbsci)
       k=k+1
 c     . TMPDIR
-      call gettmpdir(buf,nbuf)
       vname = "TMPDIR"
       call cvname(idloc,vname,0)
-      call cresmatvar(idloc,k,buf,nbuf)
+      call cresmatvar(idloc,k,buftmp,nbtmpdir)
       k=k+1
 c     . MSDOS
       vname = ' '
