@@ -299,7 +299,7 @@ newfun('mysin',fptr);
  
 if mysin(1)<>sin(1) then bugmes();quit;end
  
-clearfun('mysin')
+clearfun('mysin');
  
 errcatch(4,'continue','nomessage')
  

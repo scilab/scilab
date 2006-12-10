@@ -150,7 +150,7 @@ fptr=funptr('sin');
 if fptr<>623 then pause,end
 newfun('mysin',fptr);
 if mysin(1)<>sin(1) then pause,end
-clearfun('mysin')
+clearfun('mysin');
 errcatch(4,'continue','nomessage')
 mysin(1)
 if iserror()<>1 then pause,end
