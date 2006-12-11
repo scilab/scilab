@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "genextrac2.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -18,12 +19,7 @@ Type *TO;\
 }
 
 
-int C2F(genextrac2)(typ,mi,nj,indxi,indxj,from,m,to)
-integer *typ;
-integer *mi,*nj,*m;
-integer *indxi,*indxj;
-integer *from;
-integer *to;
+int C2F(genextrac2)(integer *typ,integer *mi,integer *nj,integer *indxi,integer *indxj,integer *from,integer *m,integer *to)
 {
   static integer i, j, l;
   --indxi;

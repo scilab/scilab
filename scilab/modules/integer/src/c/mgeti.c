@@ -6,10 +6,9 @@
 #include <stdlib.h>
 #endif
 #include "machine.h"
+#include "mgeti.h"
 
 #include "../../../fileio/src/misc.h"
-
-int SWAP(char type[],integer *fd); /* Defined at the end of this file */
 
 struct soundstream ftf;
 extern FILE *GetFile();
@@ -34,10 +33,7 @@ for ( i=0; i< *n; i++)  { \
 
 
 
-void C2F(mgeti) (fd,res,n,type,ierr)
-     integer *res;
-     integer *n,*ierr,*fd;
-     char type[];
+void C2F(mgeti) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 {  
   char c1,c2;
   int i,items=-1,nc,swap;
@@ -187,9 +183,8 @@ void C2F(mgeti) (fd,res,n,type,ierr)
   sciprint("No input file \r\n");
   *ierr=1;
 }
-int SWAP(type,fd)
-char type[];
-integer *fd;
+
+int SWAP(char type[],integer *fd)
 {
 int nc,swap;
   nc=strlen(type);

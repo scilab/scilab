@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "gencheck.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -75,12 +76,7 @@ Type *B;\
 
 
 
-int C2F(gencheck)(typ, op, n, a, ia, b, ib, r)
-integer *typ;
-integer *op, *n, *ia, *ib;
-int *a;
-int *b;
-int *r;
+int C2F(gencheck)(integer *typ, integer *op, integer *n, int *a, integer *ia, int *b, integer *ib, int *r)
 {
   static integer i, i1, i2, ii1;
   static integer less = 59;

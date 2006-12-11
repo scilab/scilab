@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "gencopy.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -28,13 +29,7 @@ Type *DY;\
 
 
 
-int C2F(gencopy)(typ,n, dx, incx, dy, incy)
-integer *n;
-integer *incx;
-integer *incy;
-integer *typ;
-int *dx;
-int *dy;
+int C2F(gencopy)(integer *typ,integer *n, int *dx, integer *incx, int *dy, integer *incy)
 {
   static integer i, ix, iy;
   switch (*typ) {
