@@ -679,7 +679,7 @@ void Objplot3d ( char    * fname ,
       /* y is considered as a matrix */
       dimvecty = -1 ;
     }
-    if ( *m2 == 1 ) /* y is a row vector */
+    else if ( *m2 == 1 ) /* y is a row vector */
     {
       dimvecty = *n2 ;
     }
