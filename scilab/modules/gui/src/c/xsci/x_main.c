@@ -142,8 +142,10 @@ void C2F(mainscic)()
 		putenv ("COMPILER=cc or another");
 	#endif
 
-  /* floating point exceptions */
-  C2F(nofpex)(); 
+#if defined(netbsd) || defined(freebsd)
+/* floating point exceptions */
+fpsetmask(0);
+#endif
   /* create argv */
   if (( argv = create_argv(&argc))== NULL)  exit(1);
   ProgramName = argv[0];
