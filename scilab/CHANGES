@@ -185,10 +185,10 @@ Other Improvements:
   - Java interface written to allow calling Scilab computational engine from Java.
     Scilab 4.1 :
     add SciComplex , SciComplexArray classes add new methods for Scilab object
-		public static native boolean ExistVar(String VarName); /* Detect if Variable name exists in Scilab */ 
-		public static native int TypeVar(String VarName); /* Get Scilab type of a variable */ 
-		public static native int GetLastErrorCode(); /* Get Last Error Code */ /* 0 no error */ 
-		add a example implements java.io.Serializable 
+    public static native boolean ExistVar(String VarName); /* Detect if Variable name exists in Scilab */
+    public static native int TypeVar(String VarName); /* Get Scilab type of a variable */
+    public static native int GetLastErrorCode(); /* Get Last Error Code */ /* 0 no error */
+    add a example implements java.io.Serializable
 
   - Font rotation is now possible under Xwindow.
 
@@ -220,10 +220,10 @@ Other Improvements:
   - Optimisations disabled for calelm/icopy.f calelm/unsfdcopy.f on every plateform,
     routines/system/getsym.f on Solaris 
 
-	- add scilex -nogui mode no window, no interactive, no gui, no events.
-	  %gui variable in scilab to detect this mode.
-	
-	- Add 2 keys in registry to detect scilab (Windows): 
+  - add scilex -nogui mode no window, no interactive, no gui, no events.
+    %gui variable in scilab to detect this mode.
+
+  - Add 2 keys in registry to detect scilab (Windows): 
     On Windows XP 32 bits 
     [HKEY_LOCAL_MACHINE\SOFTWARE\Scilab] "LASTINSTALL"="Scilab-4.1" 
     [HKEY_LOCAL_MACHINE\SOFTWARE\Scilab\Scilab-4.1] "SCIPATH"="\"C:\\Program Files\\scilab-4.1\"" 
