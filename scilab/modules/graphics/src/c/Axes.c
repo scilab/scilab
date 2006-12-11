@@ -2776,7 +2776,9 @@ BOOL CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,int *pos
 {
   int rect[4],i;
   int point[4][2];
-  int logrect[4], XX, YY;
+  int logrect[4] ;
+  int XX = 0 ;
+  int YY = 0 ;
   
   if(old_rect[0] == 0 && old_rect[1] == 0 && old_rect[2] == 0 && old_rect[3] == 0)
   {

@@ -78,8 +78,8 @@ int sci_xget(char *fname,unsigned long fname_len)
   {
     /*     special case for colormap : must allocate space */
     int m3=0,n3=3;
-    /*      CheckColormap(&m3); */
-    C2F(dr)("xget","cmap_size",x1,&m3,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+    int verbose = 0 ;
+    C2F(dr)("xget","cmap_size",&verbose,&m3,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
 
     if ( m3 == 0) n3=0;
     CreateVar(Rhs+1,"d",&m3,&n3,&l3);
