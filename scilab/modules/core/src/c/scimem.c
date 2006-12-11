@@ -34,8 +34,8 @@ static char *the_ps=NULL;
 static char *the_gp=NULL;
 static char *the_gps=NULL;
 /*-----------------------------------------------------------------------------------*/
-static SIZE_T SizeStack=0;
-static SIZE_T SizeGStack=0;
+static size_t SizeStack=0;
+static size_t SizeGStack=0;
 /*-----------------------------------------------------------------------------------*/
 extern struct 
 {
