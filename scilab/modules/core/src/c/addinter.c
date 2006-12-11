@@ -12,7 +12,10 @@
 
 #include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */
+
+#ifdef _MSC_VER
 #include "ExceptionMessage.h"
+#endif
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
 extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len));  
