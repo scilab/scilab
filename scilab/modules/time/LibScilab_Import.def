@@ -3,7 +3,7 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
  sciprint
- GetExceptionString
+ ExceptionMessage
  putlhsvar_
  intersci_
  Scierror

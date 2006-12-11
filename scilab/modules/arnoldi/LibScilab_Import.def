@@ -10,4 +10,4 @@ EXPORTS
  checkrhs_
  errorinfo_
  sciprint
- GetExceptionString
+ ExceptionMessage

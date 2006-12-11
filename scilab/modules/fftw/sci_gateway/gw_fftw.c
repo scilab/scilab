@@ -6,8 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 #include <Windows.h>
-#include "MALLOC.h"
-extern char *GetExceptionString(DWORD ExceptionCode);
+#include "ExceptionMessage.h"
 #endif
 /*-----------------------------------------------------------------------------------*/
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
@@ -62,9 +61,7 @@ int C2F(gw_fftw)()
 		}
 		_except (EXCEPTION_EXECUTE_HANDLER)
 		{
-			char *ExceptionString=GetExceptionString(GetExceptionCode());
-			sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+			ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
 		}
 		#else
 			(*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));

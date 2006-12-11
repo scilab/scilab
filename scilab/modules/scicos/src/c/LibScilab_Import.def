@@ -12,7 +12,7 @@ errgst_
 cha1_
 iop_
 sciprint
-GetExceptionString
+ExceptionMessage
 Scierror
 putlhsvar_
 ExistScicos

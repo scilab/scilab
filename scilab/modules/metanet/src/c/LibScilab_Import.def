@@ -5,7 +5,7 @@ EXPORTS
 ;core
 com_
 sciprint
-GetExceptionString
+ExceptionMessage
 ;
 ;intersci
 cerro

@@ -15,4 +15,4 @@ EXPORTS
  intersci_
  createvarfromptr_
  Scierror
- GetExceptionString
+ ExceptionMessage

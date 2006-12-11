@@ -29,7 +29,7 @@ EXPORTS
  intersci_
  createvarfromptr_
  Scierror
- GetExceptionString
+ ExceptionMessage
  set_cf_type
  getSCIpath
  FileExist

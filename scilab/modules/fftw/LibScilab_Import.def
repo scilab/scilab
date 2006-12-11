@@ -12,7 +12,7 @@ EXPORTS
  checklhs_
  checkrhs_
  Scierror
- GetExceptionString
+ ExceptionMessage
  createcvar_
  vartype_
  check_dims

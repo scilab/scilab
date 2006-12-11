@@ -4,11 +4,10 @@
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_graphics.h"
 #include <string.h>
-#include "MALLOC.h"
-/*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
-extern char *GetExceptionString(DWORD ExceptionCode);
+#include "ExceptionMessage.h"
 #endif
+/*-----------------------------------------------------------------------------------*/ 
 extern int GetWITH_GUI(void);
 /*-----------------------------------------------------------------------------------*/ 
 static MatdesTable Tab[]={
@@ -98,8 +97,8 @@ static MatdesTable Tab[]={
 	{sci_get,"get"},
 	{sci_set,"set"},
 	{sci_newaxes,"newaxes"},
-        {sci_relocate_handle,"relocate_handle"},
-        {sci_swap_handles,"swap_handles"},
+    {sci_relocate_handle,"relocate_handle"},
+    {sci_swap_handles,"swap_handles"},
      /* NG end */
 	{sci_xsort,"gsort"},
 	{sci_help_gtk,"help_gtk"},
@@ -124,9 +123,7 @@ int C2F(gw_graphics)(void)
 	  }
 	  _except (EXCEPTION_EXECUTE_HANDLER)
 	  {
-		  char *ExceptionString=GetExceptionString(GetExceptionCode());
-		  sciprint("Warning !!!\nScilab has found a critical error (%s)\nwith \"%s\" function.\nScilab may become unstable.\n",ExceptionString,Tab[Fin-1].name);
-		  if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+		  ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
 	  }
 #else
 	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));

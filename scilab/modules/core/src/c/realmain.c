@@ -20,7 +20,7 @@ extern void sci_usr1_signal(int n);
 extern void sci_exit(int n);
 extern int C2F(sciiargc) (void);
 #ifdef _MSC_VER
-extern char *GetExceptionString(DWORD ExceptionCode);
+#include "ExceptionMessage.h"
 #else
 extern int IsNoInteractiveWindow(void);
 extern void InitXsession(void);
@@ -140,9 +140,7 @@ void realmain(int nowin,int no_startup_flag_l,char *initial_script,int initial_s
 	{
 		Rerun:
 		{
-			char *ExceptionString=GetExceptionString(GetExceptionCode());
-			sciprint("Warning !!!\nScilab has found a critical error (%s).\nScilab may become unstable.\n",ExceptionString);
-			if (ExceptionString) {FREE(ExceptionString);ExceptionString=NULL;}
+			ExceptionMessage(GetExceptionCode(),NULL);
 		}
 		_try
 		{
