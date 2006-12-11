@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "genprod.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -16,8 +17,7 @@ Type *DX;\
  }\
 }
 
-integer C2F(genprod)(typ, n, dx, incx)
-integer *typ,*n, *dx, *incx;
+integer C2F(genprod)(integer *typ, integer *n, integer *dx, integer *incx)
 {
     integer  i1, i2;
     static integer i, dtemp;

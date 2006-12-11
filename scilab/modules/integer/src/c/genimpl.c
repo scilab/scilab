@@ -60,11 +60,7 @@ Type j;\
    *res = i;\
 }
 
-int C2F(genimpl2)(typ,first,last,res)
-integer *first;
-integer *last;
-integer *typ;
-integer *res;
+int C2F(genimpl2)(integer *typ,integer *first,integer *last,integer *res)
 {
   static int i;
 
@@ -91,12 +87,7 @@ integer *res;
   return 0;
 }
 
-int C2F(genimpl3)(typ,first,step,last,res)
-integer *first;
-integer *step;
-integer *last;
-integer *typ;
-integer *res;
+int C2F(genimpl3)(integer *typ,integer *first,integer *step,integer *last,integer *res)
 {
   static int i;
 
@@ -123,12 +114,7 @@ integer *res;
   return 0;
 }
 
-int C2F(genimpl2dim)(typ,first,last,res)
-integer *first;
-
-integer *last;
-integer *typ;
-integer *res;
+int C2F(genimpl2dim)(integer *typ,integer *first,integer *last,integer *res)
 {
 
   switch (*typ) {
@@ -153,12 +139,7 @@ integer *res;
   }
   return 0;
 }
-int C2F(genimpl3dim)(typ,first,step,last,res)
-integer *first;
-integer *step;
-integer *last;
-integer *typ;
-integer *res;
+int C2F(genimpl3dim)(integer * typ,integer * first,integer * step,integer * last,integer * res)
 {
   static int i;
 

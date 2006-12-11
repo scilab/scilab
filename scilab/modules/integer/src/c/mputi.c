@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #endif
 #include "machine.h"
+#include "mputi.h"
 
 #include "../../../fileio/src/misc.h"
 
@@ -27,11 +28,7 @@ for ( i=0; i< *n; i++)  { \
 }
 
 
-void C2F(mputi) (fd,res,n,type,ierr)
-     integer *res;
-     integer *n,*ierr;
-     char type[];
-     integer *fd;
+void C2F(mputi) (integer *fd,integer *res,integer *n,char type[],integer *ierr)
 {  
   char c1,c2;
   int i,nc,swap;
@@ -41,7 +38,6 @@ void C2F(mputi) (fd,res,n,type,ierr)
   unsigned char *RES_uc;
   unsigned long *RES_ul;
   unsigned short *RES_us;
-
 
   RES_c=(char *)res;
   RES_uc=(unsigned char *)res;

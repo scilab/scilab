@@ -38,11 +38,7 @@ Type *R;\
     }\
 }
 
-int C2F(genrdiv)(typ,a, ia, b, ib, r, ir, n, ierr)
-integer *typ;
-int *a,*b,*r;
-integer *ia,*ib;
-integer *ir, *n, *ierr;
+int C2F(genrdiv)(integer *typ,int *a, integer *ia, int *b, integer *ib, int *r, integer *ir, integer *n, integer *ierr)
 {
   integer i1;
   static integer k, jb, ja, jr;

@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "genabs.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -13,11 +14,7 @@ Type *DX;\
     }\
 }
 
-int C2F(genabs)(typ, n, dx, incx)
-integer *n;
-integer *incx;
-integer *typ;
-int *dx;
+int C2F(genabs)(integer *typ, integer *n, int *dx, integer *incx)
 {
   static integer i, i1, i2, nincx;
   if (*n <= 0 || *incx <= 0) return 0;

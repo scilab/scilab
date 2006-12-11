@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "genconcatcol.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
@@ -24,10 +25,7 @@ Type *XR;\
 }
 
 
-int C2F(genconcatcol)(typ,x1,m1,n1,x2,m2,n2,xr)
-     integer *m1, *n1, *m2, *n2;
-     integer *x1, *x2, *xr;
-     integer *typ;
+int C2F(genconcatcol)(integer *typ,integer *x1,integer *m1,integer *n1,integer *x2,integer *m2,integer *n2,integer *xr)
 {
 static integer i, j, i1, i2, ir1, ir2;
 integer m;

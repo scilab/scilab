@@ -1,4 +1,5 @@
 #include "machine.h"
+#include "genmin2.h"
 typedef signed char integer1;
 typedef short integer2;
 /*     Author: Serge Steer, Copyright INRIA */
@@ -19,14 +20,7 @@ Ytype *DY;\
     }\
 }
 
-void C2F(genmin2)(n, dx, incx, xtyp, dy, ytyp, ind, no)
-integer *n, *no;
-integer *xtyp, *ytyp;
-integer *incx;
-void *dx;
-void *dy;
-integer *ind;
-
+void C2F(genmin2)(integer *n, void *dx, integer *incx, integer *xtyp, void *dy, integer *ytyp, integer *ind, integer *no)
 {
   static integer i,ix;
   /*    printf("%d %d\n",*xtyp,*ytyp);*/
