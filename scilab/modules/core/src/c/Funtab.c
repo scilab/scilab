@@ -45,7 +45,14 @@ int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction,unsigned long na
       action_hashtable_scilab_functions(id,NULL,fptr,SCI_HFUNCTIONS_BACKSEARCH);
       break;
     case 3 : 
-      action_hashtable_scilab_functions(id,namefunction,fptr,SCI_HFUNCTIONS_ENTER);
+		if ( (namefunction_len) && (strcmp(namefunction,"NULL_NAME")) )
+		{
+			action_hashtable_scilab_functions(id,namefunction,fptr,SCI_HFUNCTIONS_ENTER);
+		}
+		else
+		{
+			action_hashtable_scilab_functions(id,NULL,fptr,SCI_HFUNCTIONS_ENTER);
+		}
       break;
     case 4 : 
       action_hashtable_scilab_functions(id,NULL,fptr,SCI_HFUNCTIONS_DELETE);

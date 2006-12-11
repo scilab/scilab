@@ -5,7 +5,7 @@
 #include <memory.h>
 #include "../includes/win_mem_alloc.h"
 /*-----------------------------------------------------------------------------------*/
-#define MEMDISPO (MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN)
+#define MEMDISPO (MEM_COMMIT | MEM_TOP_DOWN)
 /*-----------------------------------------------------------------------------------*/
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapRealloc(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne)
 {
@@ -118,7 +118,6 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,SIZE_T dwSize,char 
 {
 	if (lpAddress) 
 	{
-		VirtualFree(lpAddress,dwSize,MEM_DECOMMIT);
 		VirtualFree(lpAddress,0,MEM_RELEASE);
 	}
 }
