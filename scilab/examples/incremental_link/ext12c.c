@@ -14,9 +14,7 @@
  *     (note that vector param not used in this example) 
  ****************************************/
 
-int ext12c(neq, t, y, ydot)
-     int *neq;
-     double *t, *y, *ydot;
+int ext12c(int *neq, double *t, double *y, double *ydot)
 {
   static int m, n, lp;
   GetMatrixptr("param", &m, &n, &lp);

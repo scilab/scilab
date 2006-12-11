@@ -10,9 +10,7 @@
 
 #include <math.h>
 
-int ext2c(n, a, b, c)
-     int *n;
-     double *a, *b, *c;
+int ext2c(int *n, double *a, double *b, double *c)
 {
     static int k;
     for (k = 0; k < *n; ++k) {

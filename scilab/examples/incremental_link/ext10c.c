@@ -26,9 +26,7 @@
  *     where np=dimension of scilab variable param 
  *********************************************/
 
-int ext10c(n, t, y, ydot)
-     int *n;
-     double *t, *y, *ydot;
+int ext10c(int *n, double *t, double *y, double *ydot)
 {
   static double param[3];
   param[0] = y[*n + 0];

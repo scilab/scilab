@@ -23,7 +23,7 @@
  *     -->ode([1;0;0],0,[0.4,4],'ext9c') 
  *********************************************/
 
-int ext9c(n, t, y, ydot)
+int ext9c(int *n, double *t, double *y, double *ydot)
      int *n;
      double *t, *y, *ydot;
 {

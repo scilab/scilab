@@ -11,8 +11,7 @@
  *     -->c=Amatrix+2*b 
  ******************************************/
 
-int ext5c(b, c)
-     double *b, *c;
+int ext5c(double *b, double *c)
 { 
   static double a[3];
   static int k, m, n;

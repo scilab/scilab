@@ -10,10 +10,7 @@
  *     -->c=a+2*b 
  ******************************************/
 
-int ext6c(aname, b, c)
-     char *aname;
-     double *b, *c;
-     
+int ext6c(char *aname, double *b, double *c)
 {   
   double a[3];
   int k, m, n;

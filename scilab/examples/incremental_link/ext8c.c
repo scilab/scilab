@@ -8,8 +8,7 @@
  *     -->y=call('ext8c','out',size(param),1,'d');
  ****************************************/
 
-int ext8c(y)
-     double *y;
+int ext8c(double *y)
 {
   static int m, n, lp,i;
   GetMatrixptr("param", &m, &n, &lp);

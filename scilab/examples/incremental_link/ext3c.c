@@ -15,10 +15,7 @@
 #include <math.h>
 #include <string.h>
 
-int ext3c(ch, n, a, b, c)
-     char *ch;
-     int *n;
-     double *a, *b, *c;
+int ext3c(char *ch, int *n, double *a, double *b, double *c)
 {
   static int k;
   if (strcmp(ch, "yes") == 0) 

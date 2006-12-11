@@ -15,9 +15,7 @@
 
 #define MAXCH 10
 
-int ext4c(n, a, b, c)
-     int *n;
-     double *a, *b, *c;
+int ext4c(int *n, double *a, double *b, double *c)
 {
   int k;
   char ch[MAXCH];

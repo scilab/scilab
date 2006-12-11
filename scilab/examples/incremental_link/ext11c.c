@@ -10,9 +10,7 @@
  *     param must be defined as a scilab variable 
  *********************************/
 
-int ext11c(neq, t, y, ydot)
-     int *neq;
-     double *t, *y, *ydot;
+int ext11c(int *neq, double *t, double *y, double *ydot)
 {
     static int m, n;
     static double param[3];

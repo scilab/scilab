@@ -15,8 +15,7 @@
 static int c1 = 1;
 static int c3 = 3;
 
-int ext7c(a, b)
-     double *a, *b;
+int ext7c(double *a, double *b)
 {
   double c[3],w;
   int k,f=4;

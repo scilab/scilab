@@ -6,9 +6,7 @@ struct {
 
 #define Max(x,y)        (((x)>(y))?(x):(y))
 
-int ext13ic(n, a)
-     int *n;
-     float *a;
+int ext13ic(int *n, float *a)
 {
   int i1;
   static int k;
@@ -18,9 +16,7 @@ int ext13ic(n, a)
   }
 } 
 
-int ext13oc(n, c)
-     int *n;
-     float *c;
+int ext13oc(int *n, float *c)
 {
   int i1;
   static int k;
