@@ -13,7 +13,8 @@
   grids</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])</CALLING_SEQUENCE_ITEM>
+	  <CALLING_SEQUENCE_ITEM>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])</CALLING_SEQUENCE_ITEM>
+ <CALLING_SEQUENCE_ITEM>plotframe(rect,&lt;opts_args&gt;)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -115,7 +116,7 @@ rect=[min(x),min(y),max(x),max(y)];
 tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
 plotframe(rect,tics,[%f,%f],["My plot","x","y"],[0,0,0.5,0.5])
 plot2d(x,y,2,"000")
-plotframe(rect,tics,[%t,%f],["My plot with grids","x","y"],[0.5,0,0.5,0.5])
+plotframe(rect,tics=tics,flags=[%t,%f],captions=["My plot with grids","x","y"],subwin=[0.5,0,0.5,0.5])
 plot2d(x,y,3,"000")
 plotframe(rect,tics,[%t,%t],..
 ["My plot with grids and automatic bounds","x","y"],[0,0.5,0.5,0.5])
