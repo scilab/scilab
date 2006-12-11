@@ -7,13 +7,12 @@
 #endif
 #include "machine.h"
 #include "mgeti.h"
-
+#include "sciprint.h"
 #include "../../../fileio/src/misc.h"
 
 struct soundstream ftf;
 extern FILE *GetFile();
 extern int GetSwap();
-extern void sciprint __PARAMS ((char *fmt,...));
 extern int islittle_endian(void); /* Defined in SCI/routines/fileio/sound.c */
 
 #define MGETI(Type,Fswap) {\

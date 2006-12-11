@@ -16,6 +16,8 @@
 #include "stack-c.h"
 #include "sciprint.h"
 
+int C2F(gw_integer)(void);
+
 typedef int (*Integer_Interf) __PARAMS((char *fname,unsigned long fname_len));
 
 typedef struct table_struct 
