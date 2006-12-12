@@ -4723,8 +4723,11 @@ static int ReallocVector(n)
 /*-----------------------------------------------------------------------------------*/
 void deletePoints( void )
 {
-  FREE( points ) ;
-  points = NULL ;
+  if( points != NULL )
+  {
+    FREE( points ) ;
+    points = NULL ;
+  }
 }
 /*-----------------------------------------------------------------------------------*/
 int C2F(AllocVectorStorage)()
