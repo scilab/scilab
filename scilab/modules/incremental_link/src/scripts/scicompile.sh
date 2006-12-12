@@ -20,7 +20,9 @@ SOURCES=$*
 
 # Check if files exist
 for file in $SOURCES; do
-	if test ! -s $file; then 
+	CFILE=`echo $file|sed -s 's|\.o|\.c|'`
+	FFILE=`echo $file|sed -s 's|\.o|\.f|'`
+	if test ! -s $file -a -s $CFILE -a -s $FFILE; then 
 		echo "Cannot find $file"
 		exit -3
 	fi
@@ -40,3 +42,5 @@ sed -si "s|am_libsciexternal_la_OBJECTS = foo.lo foo2.lo foo3.lo|am_lib"$LIB"_la
 ### Changes objects in the source code
 sed -si "s|libsciexternal|lib"$LIB"|g" Makefile
 
+### Remove the dependencies computed by the system
+sed -si "s|^include[[:space:]]\(.*\)Plo||" Makefile
