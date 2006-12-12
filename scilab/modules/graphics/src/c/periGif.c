@@ -50,6 +50,8 @@ extern  char  *getenv();
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "prompt.h"
+
 
 #if defined(_MSC_VER)
 #define CoordModePrevious 1
