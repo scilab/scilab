@@ -646,6 +646,10 @@
 			RelativePath=".\scicos_f.lib"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

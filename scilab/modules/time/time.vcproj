@@ -293,6 +293,10 @@
 			RelativePath=".\sci_gateway\time"
 			>
 		</File>
+		<File
+			RelativePath=".\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

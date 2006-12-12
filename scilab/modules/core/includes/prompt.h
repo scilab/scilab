@@ -2,7 +2,8 @@
 /* INRIA 2006 */
 /* Ledru Sylvestre */
 /*-----------------------------------------------------------------------------------*/ 
-
+#ifndef _PROMPT_H_
+#define _PROMPT_H_
 /* Define prompts of Scilab */
 
 #ifdef SCIPROMPT
@@ -20,7 +21,8 @@
 #endif
 #define SCIPROMPT_INTERRUPT "-%d->"
 
-
-
+/*-----------------------------------------------------------------------------------*/ 
 void C2F(setprlev)( int *pause);
 void GetCurrentPrompt(char *CurrentPrompt);
+/*-----------------------------------------------------------------------------------*/ 
+#endif /* _PROMPT_H_ */

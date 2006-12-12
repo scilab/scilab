@@ -230,6 +230,10 @@
 			RelativePath="..\..\sci_gateway\optimization"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -256,6 +256,10 @@
 			RelativePath="..\..\sci_gateway\metanet"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

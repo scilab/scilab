@@ -229,6 +229,10 @@
 			RelativePath="..\Makefile.am"
 			>
 		</File>
+		<File
+			RelativePath="..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

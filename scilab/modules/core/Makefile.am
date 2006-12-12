@@ -61,7 +61,9 @@ src/c/SciEnv.c \
 src/c/hashtable_core.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
-src/c/with_module.c
+src/c/with_module.c \
+src/c/loadversion.c
+
 
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \

@@ -303,6 +303,10 @@
 			RelativePath=".\sci_gateway\sound"
 			>
 		</File>
+		<File
+			RelativePath=".\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

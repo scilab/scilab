@@ -351,6 +351,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\VERSION"
+			>
+		</File>
+		<File
 			RelativePath=".\sci_gateway\wintools"
 			>
 		</File>

@@ -234,6 +234,10 @@
 			RelativePath="..\..\sci_gateway\randlib"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

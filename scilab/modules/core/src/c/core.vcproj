@@ -318,6 +318,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\loadversion.c"
+				>
+			</File>
+			<File
 				RelativePath=".\matus2.c"
 				>
 			</File>
@@ -779,6 +783,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\loadversion.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\machine.h"
 				>
 			</File>
@@ -792,6 +800,10 @@
 			</File>
 			<File
 				RelativePath=".\Os_specific.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\prompt.h"
 				>
 			</File>
 			<File
@@ -861,6 +873,10 @@
 		</File>
 		<File
 			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\VERSION"
 			>
 		</File>
 	</Files>

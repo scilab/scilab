@@ -258,6 +258,10 @@
 			RelativePath="..\..\sci_gateway\special_functions"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

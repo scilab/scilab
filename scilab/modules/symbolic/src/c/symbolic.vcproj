@@ -210,6 +210,10 @@
 			RelativePath="..\..\sci_gateway\symbolic"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

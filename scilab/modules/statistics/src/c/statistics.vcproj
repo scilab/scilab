@@ -246,6 +246,10 @@
 			RelativePath="..\..\sci_gateway\statistics"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

@@ -354,6 +354,10 @@
 			RelativePath="..\..\sci_gateway\sparse"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

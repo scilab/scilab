@@ -470,6 +470,10 @@
 			RelativePath=".\sci_gateway\tclsci"
 			>
 		</File>
+		<File
+			RelativePath=".\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

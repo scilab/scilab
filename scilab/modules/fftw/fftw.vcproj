@@ -315,6 +315,10 @@
 			RelativePath=".\sci_gateway\fftw"
 			>
 		</File>
+		<File
+			RelativePath=".\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

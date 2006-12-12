@@ -266,6 +266,10 @@
 			RelativePath="..\..\sci_gateway\string"
 			>
 		</File>
+		<File
+			RelativePath="..\..\VERSION"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
