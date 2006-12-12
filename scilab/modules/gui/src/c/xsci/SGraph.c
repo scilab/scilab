@@ -38,6 +38,7 @@
 #include "Graphics.h"
 #include "xs2file.h" /* for scig_toPs */
 #include "Xcall1.h" /* dr_ */
+#include "WindowList.h"
 
 extern int StoreCommand  __PARAMS((char *command));
 
@@ -70,7 +71,6 @@ extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
 extern integer F2C(fbutn) __PARAMS((char *,integer*,integer*));
 extern void DeleteObjs __PARAMS((int win_num)); /* NG */
-struct BCG *GetWindowXgcNumber __PARAMS((int));
 extern int demo_menu_activate; /* add a demo menu in the graphic Window */
 extern int GetEventWindow(XEvent* event);
 /*---------------------------------------------------------------
@@ -906,7 +906,7 @@ EventProc1( Widget widget,  XtPointer number,  XEvent *event)
       */
       if ( event1->count == 0) 
 	{
-	  struct BCG *SciGc =  GetWindowXgcNumber(win_num );
+	  struct BCG *SciGc =  getWindowXgcNumber(win_num );
 	  if ( SciGc->Cdrawable_flag ==  1) 
 	    {
 	      FDEBUG_EP1((stderr,"EventProc1: Expose: --> scig_resize %d \r\n",counter)); 
@@ -1292,7 +1292,7 @@ void SGDeleteWindow(w, event, params, num__PARAMS)
 {
   int i;
   Window Win = XtWindow(w), Win1;
-  int wincount =  GetWinsMaxId()+1;
+  int wincount =  getWinsMaxId()+1;
   for (i=0 ; i < wincount ; i++) 
     {
       Win1=GetBGWindowNumber(i);
@@ -1373,7 +1373,7 @@ void ChangeBandF(win_num,fg,bg)
   Widget popup,toplevel;
   static Display *dpy = (Display *) NULL;
   DisplayInit("",&dpy,&toplevel);
-  SciGc = GetWindowXgcNumber(win_num);
+  SciGc = getWindowXgcNumber(win_num);
   if ( SciGc != NULL ) 
     {
       popup = SciGc->popup;
@@ -1808,7 +1808,7 @@ static int GetChilds(win_num,nc,wL,outer,name,name_pos)
   else 
     {
       struct BCG *SciGc;
-      SciGc = GetWindowXgcNumber(win_num);
+      SciGc = getWindowXgcNumber(win_num);
       if ( SciGc ==  NULL ) return FALSE;
       if ((popup = SciGc->popup)== NULL) return FALSE;
       *outer=XtNameToWidget(popup,"*.scigForm.scigmForm");
