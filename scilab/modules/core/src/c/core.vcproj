@@ -214,6 +214,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ExceptionMessage.c"
+				>
+			</File>
+			<File
 				RelativePath=".\flags.c"
 				>
 			</File>
@@ -678,6 +682,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\with_module.c"
+				>
+			</File>
+			<File
 				RelativePath=".\xscion.c"
 				>
 			</File>
@@ -700,6 +708,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\core_math.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ExceptionMessage.h"
 				>
 			</File>
 			<File
@@ -820,6 +832,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\version.h"
+				>
+			</File>
+			<File
+				RelativePath=".\with_module.h"
 				>
 			</File>
 			<File
