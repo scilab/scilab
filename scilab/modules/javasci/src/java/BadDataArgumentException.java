@@ -4,7 +4,7 @@ package javasci ;
 /* INRIA 2005 */
 /********************************************************************************************************/
 /**
-* Cette classe permet de gérer les exceptions dans les constructeurs SciDoubleArray , SciStringArray 
+* Thanks to this class, exceptions can be managed in the constructor of SciDoubleArray , SciStringArray 
 */
 /********************************************************************************************************/
 public class BadDataArgumentException  extends RuntimeException 
