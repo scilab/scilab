@@ -9,7 +9,12 @@
 #define _GRAPHIC_MODULE_CLOSE_H_
 
 /**
- * the closing function freeing all memory used by the graphic module
+ * Routine creating all needed objetcs for the module
+ */
+void loadGraphicModule( void ) ;
+
+/**
+ * Closing function freeing all memory used by the graphic module
  */
 void closeGraphicModule( void ) ;
 

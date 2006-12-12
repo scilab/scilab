@@ -8,13 +8,29 @@
 #include "getHandleProperty/GetHashTable.h"
 #include "getHandleProperty/SetHashTable.h"
 #include "DestroyObjects.h"
-#include "graphicModuleClose.h"
+#include "graphicModuleLoad.h"
 #include "InitObjects.h"
 #include "periScreen.h"
 
+static BOOL isGraphicModuleLoaded = FALSE ;
+
+/*------------------------------------------------------------------------*/
+void loadGraphicModule( void )
+{
+  if ( isGraphicModuleLoaded ) { return ; }
+  
+  createScilabGetHashTable() ;
+  createScilabSetHashTable() ;
+
+  C2F(graphicsmodels)() ;
+
+  isGraphicModuleLoaded = TRUE ;
+}
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
 {
+  if ( !isGraphicModuleLoaded ) { return ;}
+
   /* destroy hashtables */
   destroyScilabGetHashTable() ;
   destroyScilabSetHashTable() ;
@@ -28,5 +44,8 @@ void closeGraphicModule( void )
 
   /* deleteTemporary points points in peri***.c */
   deletePoints() ;
+
+  isGraphicModuleLoaded = FALSE ;
+
 }
 /*------------------------------------------------------------------------*/

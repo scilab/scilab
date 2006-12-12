@@ -23,7 +23,7 @@
 #include "realmain.h" /* Get_no_startup_flag */
 #include "inffic.h" /* get_sci_data_strings */
 #include "../../../graphics/includes/DestroyObjects.h"
-#include "../../../graphics/includes/graphicModuleClose.h"
+#include "../../../graphics/includes/graphicModuleLoad.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int C2F(deletewin)(integer *number);
 extern int C2F(scirun)(char * startup, int lstartup);

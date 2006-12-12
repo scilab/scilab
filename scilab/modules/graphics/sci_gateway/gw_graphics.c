@@ -3,6 +3,7 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/ 
 #include "gw_graphics.h"
+#include "graphicModuleLoad.h"
 #include <string.h>
 #if _MSC_VER
 #include "ExceptionMessage.h"
@@ -115,6 +116,8 @@ int C2F(gw_graphics)(void)
   Rhs = Max(0, Rhs);
   if ( GetWITH_GUI() || (strcmp(Tab[Fin-1].name,"gsort")==0) ) /*Veru en attendant de deplacer gsort*/
   {
+    /* create needed data structure if not already created */
+    loadGraphicModule() ;
 #if _MSC_VER
 #ifndef _DEBUG
 	  _try

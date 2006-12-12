@@ -753,7 +753,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\graphicModuleClose.c"
+				RelativePath=".\src\c\graphicModuleLoad.c"
 				>
 			</File>
 			<File
@@ -1895,7 +1895,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\graphicModuleClose.h"
+				RelativePath=".\includes\graphicModuleLoad.h"
 				>
 			</File>
 			<File
