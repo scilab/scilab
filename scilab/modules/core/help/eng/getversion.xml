@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-10-17 20:39:36 +0200 (mar., 17 oct. 2006)
-  $</DATE>
+  <DATE>$LastChangedDate: 2006-10-17 20:39:36 +0200 (mar., 17 oct. 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="getversion">get scilab and modules version
   information</SHORT_DESCRIPTION>
