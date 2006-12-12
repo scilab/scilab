@@ -622,6 +622,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_with_module.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scicurdir.c"
 				>
 			</File>

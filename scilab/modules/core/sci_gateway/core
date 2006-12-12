@@ -69,7 +69,8 @@
 13 	61 getmd5      	  
 13 	62 warning     	  
 13  63 getcwd         
-13  64 getmodules     
+13  64 getmodules  
+13  65 with_module   
 ; --------------------------
 14 1 user
 ; --------------------------

@@ -1,8 +1,8 @@
-#include "gw_core.h"
 /*-----------------------------------------------------------------------------------*/
 /* INRIA 2006 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+#include "gw_core.h"
 #if _MSC_VER
 #include <Windows.h>
 #include "ExceptionMessage.h"
@@ -72,6 +72,7 @@ extern int C2F(sci_fromc) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_getmd5) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len));
 extern int C2F(sci_getmodules) _PARAMS((char *fname,unsigned long fname_len));
+extern int C2F(sci_with_module) _PARAMS((char *fname,unsigned long fname_len));
 /*-----------------------------------------------------------------------------------*/
 static CoreTable Tab[]=
 {
@@ -138,7 +139,8 @@ static CoreTable Tab[]=
 {C2F(sci_getmd5),"getmd5"},
 {C2F(sci_warning),"warning"},
 {C2F(sci_getcwd),"getcwd"},
-{C2F(sci_getmodules),"getmodules"}
+{C2F(sci_getmodules),"getmodules"},
+{C2F(sci_with_module),"with_module"}
 };
 /*-----------------------------------------------------------------------------------*/
 int C2F(gw_core)()
