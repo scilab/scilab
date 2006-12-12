@@ -38,6 +38,8 @@
 #include "clipping.h"
 #include "WindowList.h"
 
+#include "prompt.h"
+
 #ifdef WITH_TK
 #include <tcl.h>
 #include <tk.h>
@@ -4419,6 +4421,15 @@ static int ReallocVector(integer n)
       sciprint(MESSAGE5); return 0;
     }
   return 1;
+}
+
+void deletePoints( void )
+{
+  if ( points != NULL )
+  {
+    FREE( points ) ;
+    points = NULL ;
+  }
 }
 
 /************************************************************
