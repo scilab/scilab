@@ -8,8 +8,8 @@
 #include "getHandleProperty/GetHashTable.h"
 #include "getHandleProperty/SetHashTable.h"
 #include "DestroyObjects.h"
-/*------------------------------------------------------------------------*/
-void closeGraphicModule( void );
+#include "graphicModuleClose.h"
+
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
 {
@@ -20,5 +20,8 @@ void closeGraphicModule( void )
 
   /* destroy all graphic windows */
   AllGraphWinDelete() ;
+
+  /* destroy default objects */
+  destroyDefaultObjects() ;
 }
 /*------------------------------------------------------------------------*/

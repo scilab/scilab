@@ -37,5 +37,6 @@ int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
 sciPointObj * getFigureModel( void ) ;
 sciPointObj * getAxesModel( void ) ;
 
+void destroyDefaultObjects( void ) ;
 
 #endif /* __SCI_INIT_GRAPHICS__ */

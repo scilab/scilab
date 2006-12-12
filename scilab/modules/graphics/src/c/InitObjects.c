@@ -983,3 +983,10 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
 }
 
 /*------------------------------------------------------------------------------------------*/
+void destroyDefaultObjects( void )
+{
+  DestroyAllGraphicsSons( pfiguremdl ) ;
+  DestroyFigure( pfiguremdl ) ;
+  pfiguremdl = NULL ;
+}
+/*------------------------------------------------------------------------------------------*/
