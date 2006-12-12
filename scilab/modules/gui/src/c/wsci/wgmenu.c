@@ -491,6 +491,11 @@ void CloseGraphMacros (struct BCG *ScilabGC)
 	  ScilabGC->lpmw.macro = (BYTE **) NULL;
 	}
     }
+
+    if ( ScilabGC->lpmw.szMenuName != NULL )
+    {
+      FREE( ScilabGC->lpmw.szMenuName ) ;
+    }
 }
 /*-----------------------------------------------------------------------------------*/
 /***********************************

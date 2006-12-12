@@ -3692,6 +3692,13 @@ void DeleteWindowToList( integer num )
   DestroyWindow(window->Statusbar);
   CloseGraphMacros( window ) ;
   XgcFreeColors( window );
+  
+  /* allocated in wgmenu.c:UpdateFileGraphNameMenu */
+  if ( window->lpgw->szMenuName != NULL )
+  {
+    FREE(window->lpgw->szMenuName) ;
+  }
+
   if ( window->CurPixmapStatus == 1) 
   {
     /** Freeing bitmaps  **/
@@ -4712,6 +4719,12 @@ static int ReallocVector(n)
       }
   }
   return(1);
+}
+/*-----------------------------------------------------------------------------------*/
+void deletePoints( void )
+{
+  FREE( points ) ;
+  points = NULL ;
 }
 /*-----------------------------------------------------------------------------------*/
 int C2F(AllocVectorStorage)()

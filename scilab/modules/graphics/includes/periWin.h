@@ -56,6 +56,8 @@
 
  void wininfo(char *fmt,...) ;
 
+void deletePoints( void ) ;
+
 /*-------------------------------------------------------------------------------*/
 int   MaybeSetWinhdc( void ) ;
 void  ReleaseWinHdc( void ) ;

@@ -9,6 +9,8 @@
 #include "getHandleProperty/SetHashTable.h"
 #include "DestroyObjects.h"
 #include "graphicModuleClose.h"
+#include "InitObjects.h"
+#include "periScreen.h"
 
 /*------------------------------------------------------------------------*/
 void closeGraphicModule( void )
@@ -23,5 +25,8 @@ void closeGraphicModule( void )
 
   /* destroy default objects */
   destroyDefaultObjects() ;
+
+  /* deleteTemporary points points in peri***.c */
+  deletePoints() ;
 }
 /*------------------------------------------------------------------------*/
