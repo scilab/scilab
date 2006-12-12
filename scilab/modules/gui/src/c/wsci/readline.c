@@ -67,6 +67,7 @@
 #include "printf.h"	
 #include "wtext.h"
 #include "machine.h"
+#include "prompt.h"
 
 /*-----------------------------------------------------------------------------------*/
 #define TEXTUSER 0xf1
@@ -97,7 +98,6 @@ extern TW textwin;
 extern int MyGetCh (void);
 extern BOOL IsWindowInterface(void);
 extern struct sci_hist * SearchBackwardInHistory(char *line);
-extern void GetCurrentPrompt(char *CurrentPrompt);
 extern int C2F(ismenu) ();
 extern int IsFromC(void);
 /*-----------------------------------------------------------------------------------*/
@@ -240,14 +240,14 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
       /** We are reading a file ==> no prompts : XXXXX to test **/
 		if (IsWindowInterface())
 		{
-			MyFPutS ("-->", stdout);
+			MyFPutS (SCIPROMPT, stdout);
 			/* read a line into the buffer, but not too* big */
 			*eof = (MyFGetS (buffer, buf_size, stdin) == NULL);
 			/* remove newline character if there */
 		}
 		else
 		{
-			fputs ("-->", stdout);
+			fputs (SCIPROMPT, stdout);
 			/* read a line into the buffer, but not too* big */
 			*eof = (fgets (buffer, buf_size, stdin) == NULL);
 			/* remove newline character if there */

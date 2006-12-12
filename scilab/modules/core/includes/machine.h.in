@@ -369,7 +369,5 @@ typedef int BOOL ;
 #endif
 #endif
 
-
-
 #endif /* MACHINE_H  */
 

@@ -39,6 +39,7 @@
 #include "Errors.h"
 #include "WindowList.h"
 
+#include "prompt.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
@@ -1525,17 +1526,17 @@ void CleanPromptFromText(char *Text)
 	CleanText=(char*)MALLOC(LenText*sizeof(char));
 	strcpy(CleanText,Text);
 	
-	strcpy(prompt,"-->");
+	strcpy(prompt,SCIPROMPT);
 	ReplacePrompt(CleanText,prompt);
 	
-	strcpy(prompt,">>");
+	strcpy(prompt,SCIPROMPT_PAUSE);
 	ReplacePrompt(CleanText,prompt);
 	
 
 	for (i=1;i<127;i++)
 	{
 		char TmpPrompt[6];
-		wsprintf(TmpPrompt,"-%d->",i);
+		wsprintf(TmpPrompt,SCIPROMPT_INTERRUPT,i);
 		ReplacePrompt(CleanText,TmpPrompt);
 		strcpy(TmpPrompt," ");
 	}

@@ -13,11 +13,11 @@ static char Sci_Prompt[10];
 void C2F(setprlev)( int *pause)
 {
 	if ( *pause == 0 ) 
-		sprintf(Sci_Prompt,"-->");
+		sprintf(Sci_Prompt,SCIPROMPT);
 	else if ( *pause > 0 )
-		sprintf(Sci_Prompt,"-%d->",*pause);
+		sprintf(Sci_Prompt,SCIPROMPT_INTERRUPT,*pause);
 	else
-		sprintf(Sci_Prompt,">>");
+		sprintf(Sci_Prompt,SCIPROMPT_PAUSE);
 }
 /*------------------------------------------------------------------------*/
 void GetCurrentPrompt(char *CurrentPrompt)

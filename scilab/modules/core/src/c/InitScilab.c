@@ -8,8 +8,8 @@
 #include "SciEnv.h"
 #include "InitScilab.h"
 #include "hashtable_core.h"
-
-extern void sciprint __PARAMS((char *fmt,...));
+#include "prompt.h"
+#include "sciprint.h"
 
 #ifdef _MSC_VER
 extern int InitializeHashTableScilabErrors(char* SCIPATH);
@@ -26,7 +26,7 @@ int C2F(initscilab)(void)
 	#ifdef _MSC_VER
 	char *SCIPATH=NULL;
 	#endif
-
+	int pause=0;
 	SciEnv();
 
 	getmodules();
@@ -50,6 +50,7 @@ int C2F(initscilab)(void)
 	if (SCIPATH) {FREE(SCIPATH);SCIPATH=NULL;}
 	#endif
 
+	C2F(setprlev)(&pause);
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

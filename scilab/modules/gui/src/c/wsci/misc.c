@@ -53,6 +53,8 @@
 
 #include "win_mem_alloc.h" /* MALLOC */
 
+#include "prompt.h"
+
 extern char input_line[];
 extern jmp_buf env;		/* from plot.c */
 /****************************************************************
@@ -109,7 +111,7 @@ int_error (char *str, int t_num)
   /* reprint line if screen has been written to */
   if (t_num != NO_CARET)
     {				/* put caret under error */
-      sciprint ("\n%s%s\n", "-->", input_line);
+      sciprint ("\n%s%s\n", SCIPROMPT, input_line);
     }
   sciprint ("\t%s\n\n", str);
   longjmp (env, TRUE);		/* bail out to command line */

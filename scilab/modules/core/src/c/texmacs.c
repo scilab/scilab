@@ -2,6 +2,7 @@
 #include "machine.h" /* for C2F */
 #include "stack-def.h" /* for paus */
 #include "texmacs.h"
+#include "prompt.h"
 
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')
@@ -32,9 +33,9 @@ int  C2F(intexmacs)() {
 void next_input () {
   fprintf(stdout,"%cchannel:prompt%c",DATA_BEGIN,DATA_END);
   if (Pause==0)
-    fprintf(stdout,"--> ");
+    fprintf(stdout,SCIPROMPT);
   else
-    fprintf(stdout,"-%d-> ",Pause);
+    fprintf(stdout,SCIPROMPT_INTERRUPT,Pause);
   
   fprintf(stdout,"%c",DATA_END);fflush (stdout);
 }

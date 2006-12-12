@@ -4151,7 +4151,7 @@ static void  xget_font(integer *verbose, integer *font, integer *nargs, double *
   if (*verbose == 1) 
     {
       sciprint("\nFontId : %d ", ScilabXgc->FontId );
-      sciprint("--> %s at size %s pts\r\n",
+      sciprint("%s %s at size %s pts\r\n",SCIPROMPT,
 	       FontInfoTab_[ScilabXgc->FontId].fname,
 	       size_[ScilabXgc->FontSize]);
     }

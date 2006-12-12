@@ -68,6 +68,7 @@ static char Sci_Prompt[10];
 #include "machine.h"
 #include "core_math.h"
 #include "Scierror.h"
+#include "prompt.h"
 
 #ifndef HAVE_TERMCAP
 #undef TERMCAP
@@ -202,7 +203,6 @@ static int interrupted=0;
 /*  ---- end of interruption handling ---*/
 
 static int sendprompt=1;
-/*static char Sci_Prompt[10];*/
 
 extern int groundtable[]; /* character table */ 
 
@@ -252,6 +252,8 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
 
+  GetCurrentPrompt(Sci_Prompt);
+
   modeX=*modex;
 
   if(!modeX) {
@@ -293,7 +295,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
   else {
     if(sendprompt) sciprint_nd(Sci_Prompt);/* write prompt */
   }
-
+  
   sendprompt=1;
   set_is_reading(TRUE); /* did not exist in old gtk version */
         

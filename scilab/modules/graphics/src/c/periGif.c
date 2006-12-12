@@ -2307,7 +2307,7 @@ void C2F(xgetfontGif)(integer *verbose, integer *font, integer *nargs, double *d
   if (*verbose == 1) 
     {
       sciprint("\nFontId : %d ",	      ScilabGCGif.FontId );
-      sciprint("--> %s at size %s pts\r\n",
+      sciprint("%s %s at size %s pts\r\n",SCIPROMPT,
 	     "GifFont",
 	     sizeGif[ScilabGCGif.FontSize]);
     }

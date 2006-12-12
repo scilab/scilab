@@ -83,7 +83,6 @@
 #define CTRL_K                0x000b  /* delete to end of line */
 #define CTRL_Z                0x0020  /* stop */
 
-
 /** JPC **/
 #ifndef XtRGravity
 #define XtRGravity "Gravity"
@@ -557,8 +556,7 @@ void C2F(xscistring)(char *str,integer *n,long int dummy)
 
 #define MORESTR "[More (y or n ) ?] "
 
-void C2F(xscimore)(n)
-     int *n;
+void C2F(xscimore)(int *n)
 {
   int n1,ln;
   *n=0;
@@ -658,8 +656,7 @@ void sciprint_nd(va_alist) va_dcl
 
 /* I/O Function */
 
-void Xputchar(c)
-  unsigned char c;
+void Xputchar(unsigned char c)
 {
   char locbuf[2];
   register TScreen *screen = &term->screen;
@@ -2078,11 +2075,12 @@ void SwitchBufPtrs(screen)
   bcopy((char *) save, (char *) screen->altbuf, 2 * sizeof(char *) * rows);
 }
 
-#define PROMPT "==>"
+
 
 void VTRun(char *startup, int lstartup,int memory)
 {
   static int ini=-1, ierr =0 ;
+
   register TScreen *screen = &term->screen;
   if (!screen->Vshow) set_vt_visibility(TRUE);
   if (screen->allbuf == NULL)  VTallocbuf();
@@ -2096,24 +2094,21 @@ void VTRun(char *startup, int lstartup,int memory)
   C2F(inisci)(&ini, &memory, &ierr);
   if (ierr > 0) sci_exit(1) ;
   /** An interaction Loop for scilab interpreter */
-  C2F(scirun)(startup,strlen(startup));
+
+  C2F(scirun)(startup,lstartup);
   HideCursor();
   screen->cursor_set = OFF;
 }
 
 
-static void VTExpose(w, event, region)
-  Widget w;
-  XEvent *event;
-  Region region;
+static void VTExpose(Widget w, XEvent *event, Region region)
 {
   register TScreen *screen = &term->screen;
   if (event->type == Expose)
     HandleExposure(screen, event);
 }
 
-static void VTGraphicsOrNoExpose(event)
-  XEvent *event;
+static void VTGraphicsOrNoExpose(XEvent *event)
 {
   register TScreen *screen = &term->screen;
   if (screen->incopy <= 0)
@@ -2136,12 +2131,15 @@ static void VTGraphicsOrNoExpose(event)
   }
 }
 
+/*
+ *
+ * @param w : unused 
+ * @param closure : unused 
+ * @param *cont : unused 
+ */ 
 
-static void VTNonMaskableEvent(w, closure, event, cont)
-  Widget w;	/* unused */
-  XtPointer closure;	/* unused */
-  XEvent *event;
-  Boolean *cont;	/* unused */
+static void VTNonMaskableEvent(Widget w, XtPointer closure, XEvent *event, Boolean *cont)
+
 {
   switch (event->type)
   {
@@ -2153,8 +2151,7 @@ static void VTNonMaskableEvent(w, closure, event, cont)
 }
 
 
-static void VTResize(w)
-  Widget w;
+static void VTResize(Widget w)
 {
   if (XtIsRealized(w))
     ScreenResize(&term->screen,(int)  term->core.width,(int)  term->core.height,
@@ -2172,8 +2169,7 @@ static String xterm_trans =
 
 /* JPC :New init */
 
-void VTInit1(parent)
-  Widget parent;
+void VTInit1(Widget parent)
 {
   XSizeHints size_hints;
   register TScreen *screen = &term->screen;
