@@ -134,7 +134,7 @@ src/c/getHandleProperty/get_ticks_utils.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/GetHashTable.c \
-src/c/graphicModuleClose.c \
+src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
 src/c/getHandleProperty/set_figure_name_property.c \
 src/c/getHandleProperty/getPropertyAssignedValue.c \
