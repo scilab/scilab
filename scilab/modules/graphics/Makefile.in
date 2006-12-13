@@ -198,7 +198,7 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-setGetHashTable.lo \
 	libgraphics_la-get_segs_color_property.lo \
 	libgraphics_la-GetHashTable.lo \
-	libgraphics_la-graphicModuleClose.lo \
+	libgraphics_la-graphicModuleLoad.lo \
 	libgraphics_la-set_old_style_property.lo \
 	libgraphics_la-set_figure_name_property.lo \
 	libgraphics_la-getPropertyAssignedValue.lo \
@@ -698,7 +698,7 @@ src/c/getHandleProperty/get_ticks_utils.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/GetHashTable.c \
-src/c/graphicModuleClose.c \
+src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
 src/c/getHandleProperty/set_figure_name_property.c \
 src/c/getHandleProperty/getPropertyAssignedValue.c \
@@ -1245,7 +1245,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-get_zoom_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-get_zoom_state_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gifimg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-graphicModuleClose.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-graphicModuleLoad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-graphicSession.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gw_graphics.Plo@am__quote@
@@ -2413,12 +2413,12 @@ libgraphics_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
 
-libgraphics_la-graphicModuleClose.lo: src/c/graphicModuleClose.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-graphicModuleClose.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-graphicModuleClose.Tpo -c -o libgraphics_la-graphicModuleClose.lo `test -f 'src/c/graphicModuleClose.c' || echo '$(srcdir)/'`src/c/graphicModuleClose.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-graphicModuleClose.Tpo $(DEPDIR)/libgraphics_la-graphicModuleClose.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/graphicModuleClose.c' object='libgraphics_la-graphicModuleClose.lo' libtool=yes @AMDEPBACKSLASH@
+libgraphics_la-graphicModuleLoad.lo: src/c/graphicModuleLoad.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-graphicModuleLoad.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-graphicModuleLoad.Tpo -c -o libgraphics_la-graphicModuleLoad.lo `test -f 'src/c/graphicModuleLoad.c' || echo '$(srcdir)/'`src/c/graphicModuleLoad.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-graphicModuleLoad.Tpo $(DEPDIR)/libgraphics_la-graphicModuleLoad.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/graphicModuleLoad.c' object='libgraphics_la-graphicModuleLoad.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-graphicModuleClose.lo `test -f 'src/c/graphicModuleClose.c' || echo '$(srcdir)/'`src/c/graphicModuleClose.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-graphicModuleLoad.lo `test -f 'src/c/graphicModuleLoad.c' || echo '$(srcdir)/'`src/c/graphicModuleLoad.c
 
 libgraphics_la-set_old_style_property.lo: src/c/getHandleProperty/set_old_style_property.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-set_old_style_property.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-set_old_style_property.Tpo -c -o libgraphics_la-set_old_style_property.lo `test -f 'src/c/getHandleProperty/set_old_style_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_old_style_property.c
