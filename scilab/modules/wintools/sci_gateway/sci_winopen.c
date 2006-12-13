@@ -3,6 +3,8 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "sci_winopen.h"
+/*-----------------------------------------------------------------------------------*/
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
 /* Open Web Browser*/
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))
@@ -10,7 +12,7 @@ int C2F(sci_winopen) _PARAMS((char *fname,unsigned long l))
 	#ifndef _MSC_VER
 	#define FILENAME_MAX 4096 
 	#endif
-	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
+	
 	char filename[FILENAME_MAX];
 	int m1,n1,l1;
 	int out_n;

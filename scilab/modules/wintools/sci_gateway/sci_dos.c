@@ -403,9 +403,6 @@ static DWORD WINAPI ReadFromPipe (LPVOID args)
 
 		if (moreOutput) 
 		{
-			int i=0;
-			char *line=NULL;
-
 			readSoFar += dwRead;
 			pi->OutputBuffer  = (char*) REALLOC(pi->OutputBuffer , readSoFar+BUFSIZE);
 			op = pi->OutputBuffer + readSoFar;
@@ -508,13 +505,13 @@ static BOOL DetectDetachProcessInCommandLine(char *command)
 	BOOL bOK=FALSE;
 	if (command)
 	{
-		int i=strlen(command);
-		for (i=strlen(command)-1;i>=0;i--)
+		int i=(int)strlen(command);
+		for (i=(int)strlen(command)-1;i>=0;i--)
 		{
 			if (command[i]==' ') command[i]='\0';
 			else break;
 		}
-		i=strlen(command);
+		i=(int)strlen(command);
 		if ( (i>0) &&(command[i-1]=='&') ) bOK=TRUE;
 	}
 	return bOK;

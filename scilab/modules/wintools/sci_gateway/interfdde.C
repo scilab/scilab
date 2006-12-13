@@ -308,7 +308,7 @@ int	InterfaceWindowsDDEreq _PARAMS((char *fname))
 			char *output=NULL ;
 			output=(char*)MALLOC((strlen(Buffer)+1)*sizeof(char));
 			wsprintf(output,"%s",Buffer);
-			CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+			CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 			FREE(output);
 			LhsVar(1)=1;
 		}

@@ -41,7 +41,6 @@ int C2F(sci_hidetoolbar) _PARAMS((char *fname,unsigned long l))
 int C2F(sci_toolbar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
-	int bOK=FALSE;
 	char *Output=NULL;
 
 	CheckRhs(1,2);

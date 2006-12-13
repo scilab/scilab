@@ -91,7 +91,7 @@ int mcisendstringWindowsfunction _PARAMS((char *fname))
 			CreateVarFromPtr(2, "i", &n1, &n1, &CodeOutput);
 			LhsVar(2)=2;
 
-			CreateVarFromPtr( 3, "c",(m1=strlen(Output), &m1),&n1,&Output);
+			CreateVarFromPtr( 3, "c",(m1=(int)strlen(Output), &m1),&n1,&Output);
 			LhsVar(3)=3;
 		}
 		

@@ -70,17 +70,17 @@ int C2F(gw_wintools)()
     #ifndef _DEBUG
     _try
     {
-  	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+  	  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(int)strlen(Tab[Fin-1].name));
     }
     _except (EXCEPTION_EXECUTE_HANDLER)
     {
 		ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
     }
     #else
-      (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+      (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(int)strlen(Tab[Fin-1].name));
     #endif
   #else
-    (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+    (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(int)strlen(Tab[Fin-1].name));
   #endif
 
   return 0;

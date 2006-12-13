@@ -76,7 +76,6 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 
 		if (strcmp(param1,"name") == 0)
 		{
-			int Col=0;
 			int NumbersElm=0;
 
 			WindowsQueryRegistryNumberOfElementsInList(param2,param3,&NumbersElm);
@@ -138,7 +137,7 @@ int InterfaceWindowsQueryRegistry _PARAMS((char *fname))
 		n1=1;
 		if ( OuputIsREG_SZ )
 		{
-			CreateVarFromPtr(Rhs+1, "c",(m1=strlen(output), &m1),&n1,&output);
+			CreateVarFromPtr(Rhs+1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
 		}
 		else
 		{
