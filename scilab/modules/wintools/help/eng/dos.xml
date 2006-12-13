@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-12-13 10:29:16 +0200 (ven., 13 decembre 2006)
-  $</DATE>
+  <DATE>$LastChangedDate: 2006-12-13 10:29:16 +0200 (ven., 13 decembre 2006)$</DATE>
 
   <SHORT_DESCRIPTION name="dos">shell (cmd) command execution (Windows
   only)</SHORT_DESCRIPTION>
