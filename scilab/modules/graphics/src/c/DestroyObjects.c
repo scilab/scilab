@@ -438,10 +438,9 @@ DestroyLegend (sciPointObj * pthis)
 {
   sciLegend * ppLegend = pLEGEND_FEATURE (pthis) ;
   FREE ( ppLegend->pptabofpointobj );
-  /*FREE ( ppLegend->pstyle ) ;*/
+  FREE ( ppLegend->pstyle ) ;
   deleteMatrix( ppLegend->text.pStrings ) ;
   FREE ( ppLegend->user_data);
-  /*FREE ( ppLegend->associatedentity ) ;*/
   ppLegend->size_of_user_data = 0;
 
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
