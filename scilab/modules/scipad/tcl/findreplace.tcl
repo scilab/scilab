@@ -9,13 +9,13 @@ proc findtextdialog {typ} {
     global listoftagsforfind searchintagged
     global findreplaceboxalreadyopen
 
+    if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
+
     if {$findreplaceboxalreadyopen} {
         tk_messageBox -message [mc "Dialog box already open!"] -icon warning
         return
     }
     set findreplaceboxalreadyopen true
-
-    if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
     set find $pad.find
     catch {destroy $find}

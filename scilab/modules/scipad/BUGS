@@ -283,10 +283,6 @@ Other wishes:
     target window that will contain the search results)
   . More than one find in files thread at the same time
 
--Perhaps rethink how to sort out the duplication of "Open", "Open in
- new", "Open Source of.." and "Open function source". Four entries
- scattered in the same menu starts to be much...
-
 -detect duplicate/missing underlines detection in the message files
 
 -Improve further the regexps for continued lines detection, the goal being
@@ -299,3 +295,5 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  tabs, and reindents according to keywords (if, function, while, for...)
 
 -Request 262: tabbed buffers (see discussion in this request)
+
+-Extract the target of windows shortcuts during drag and drop

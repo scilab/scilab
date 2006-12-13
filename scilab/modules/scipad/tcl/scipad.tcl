@@ -73,6 +73,11 @@ if { [info exists pad] } {
     update
     focustextarea [gettextareacur]
 
+    # create Scipad version string for the about box - do it here because
+    # when lauching Scipad outside of Scilab the showinfo message requires
+    # the Scipad window to be ready to display it
+    setScipadVersionString
+
     # finally source debug settings that must be executed after the procs definition
     source [file join $sourcedir scipaddebug2.tcl]
 

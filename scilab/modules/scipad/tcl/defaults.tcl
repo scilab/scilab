@@ -1,5 +1,4 @@
 set winTitle "SciPad"
-set version "Version 6.66"
 
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without

@@ -472,8 +472,8 @@ proc openlistoffiles {filelist} {
     disablemenuesbinds
     foreach f $filelist {
         regsub "^file:" $f "" f
-# in unix, .* files are not matched by *, but .* matches . and ..
-# If we don't exclude them, we have infinite recursion
+        # in unix, .* files are not matched by *, but .* matches . and ..
+        # If we don't exclude them, we have infinite recursion
         if {[file tail $f] == "." | [file tail $f] == ".."} continue
         if {[file isfile $f] == 1} {
             openfile $f

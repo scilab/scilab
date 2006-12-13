@@ -1,14 +1,31 @@
-proc helpme {} {
-# help
-    if {[isscilabbusy 0]} {return}
-    ScilabEval_lt "help scipad"
+proc setScipadVersionString {} {
+# set the version string for Scipad, using the information from the
+# VERSION file of the Scipad module
+    global ScipadVersion
+    set ScipadVersion "" ; # for when launched outside of Scilab
+    set comm1 "ScipadVer=getversion(\"scipad\");"
+    set comm2 "if ScipadVer(3)==0 then"
+    set comm3   "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm4 "else"
+    set comm5   "TCL_EvalStr(\"set ScipadVersion \"\"\"+string(ScipadVer(1))+\".\"+string(ScipadVer(2))+\".\"+string(ScipadVer(3))+\" - \"+getversion(\"scipad\",\"string_info\")+\"\"\"\",\"scipad\");"
+    set comm6 "end;"
+    # <TODO> SCI_VERSION_REVISION are not used until some automatic way to
+    #        fill in this field at commit exist
+    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
+    ScilabEval_lt $fullcomm "seq"
 }
 
 proc aboutme {} {
 # about
-    global winTitle version
+    global winTitle ScipadVersion
     tk_messageBox -title [mc "About"] -type ok -message \
-        " $winTitle $version [mc aboutme_message]"
+        " $winTitle  $ScipadVersion [mc aboutme_message]"
+}
+
+proc helpme {} {
+# help
+    if {[isscilabbusy 0]} {return}
+    ScilabEval_lt "help scipad"
 }
 
 proc helpword {} {

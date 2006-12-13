@@ -2602,3 +2602,13 @@ Francois VOGEL, 09/12/06
    appropriate i.e. in proc button2copypaste
  * Added a Pause button in the find in files results window
  * version --> 6.66
+
+Francois VOGEL, 13/12/06
+ * Fixed: Trying to open the replace dialog during the debug did correctly
+   fail, but then this dialog could not be opened later, even after the debug
+   was aborted
+ * Fixed: clicking in the textarea could hide the cursor outside of the
+   visible part of the buffer (added $w see insert in Button-1 binding)
+ * Scipad uses the new VERSION file to retrieve its version number (the
+   svn revision number is not yet used)
+ * version --> 6.67

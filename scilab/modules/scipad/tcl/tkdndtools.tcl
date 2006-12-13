@@ -156,6 +156,7 @@ proc tkdndbind {w} {
 proc Button1BindTextArea { w x y } {
     global dndinitiated savedsel savedseli1 savedseli2 dndreallystarted
     $w mark set insert @$x,$y
+    $w see insert
     set dndreallystarted "false"
     if {[$w tag ranges sel] != ""} {
         if { [$w compare sel.first <= [$w index @$x,$y]] && \
