@@ -728,8 +728,7 @@ fi
 if test "$TERMCAP_LIB" != no; then
   AC_DEFINE([HAVE_TERMCAP],[],[Have Term Cap])
 else
- AC_MSG_WARN([No termcap library detected])
- TERMCAPLIB=
+ AC_MSG_ERROR([No termcap library detected. Please install ncurses dev library (or termcap library)])
 fi
 AC_SUBST(TERMCAP_LIB)
 
@@ -1040,8 +1039,6 @@ typedef int BOOL ;
 #define  _PARAMS(paramlist)		()
 #endif
 #endif
-
-
 
 #endif /* MACHINE_H  */
 ])
