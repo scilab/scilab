@@ -9,11 +9,11 @@
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
 #include "string.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define basenamemodulesfile "modules/modules" 
 /*-----------------------------------------------------------------------------------*/ 
 extern BOOL FileExist(char *filename);
-extern void sciprint();
 /*-----------------------------------------------------------------------------------*/ 
 static struct MODULESLIST *ScilabModules=NULL;
 /*-----------------------------------------------------------------------------------*/ 
@@ -79,7 +79,7 @@ static BOOL ReadModulesFile(void)
 	sprintf(ModulesFilename,"%s/%s",SciPath,basenamemodulesfile);
 	FREE(SciPath);
 	SciPath=NULL;
-
+	
 	if (FileExist(ModulesFilename))
 	{
 		int NumberofLines=GetNumberOfLinesInFile(ModulesFilename);
@@ -91,7 +91,7 @@ static BOOL ReadModulesFile(void)
 	}
 	else
 	{
-		sciprint("Error with %s file.\n",ModulesFilename);
+		sciprint("Cannot load the module declaration file : %s.\n",ModulesFilename);
 		FREE(ModulesFilename);
 		ModulesFilename=NULL;
 		return FALSE;
