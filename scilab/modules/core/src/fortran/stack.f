@@ -128,30 +128,3 @@ c     routine for adjuststacksize
       endif
       end
 c ====================================================================
-      subroutine getstackinfo(total,used)
-c     return info about stacksize 
-c     [total used] 
-      INCLUDE 'stack.h'
-      integer total,used
-      
-      total=lstk(isiz)-lstk(1)
-      used=lstk(isiz)-lstk(bot)+1
-      
-      end
-c ====================================================================
-      subroutine getgstackinfo(total,used)
-c     return info about gstacksize 
-c     [total used] 
-      INCLUDE 'stack.h'
-      integer total,used
-      
-      total=lstk(gbot)-lstk(isiz+2)+1
-      
-      if(gtop.ge.isiz+2) then
-        used=lstk(gtop+1)-lstk(isiz+2)+1
-      else 
-        used=0.0d0
-      endif
-      
-      end
-c ====================================================================      

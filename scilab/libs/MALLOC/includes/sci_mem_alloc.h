@@ -65,7 +65,7 @@
 
     /* Only for Scilab Stacksize use VirtualAlloc on Window */
    #define SCISTACKMALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
-   #define SCISTACKFREE(x,y) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
+   #define SCISTACKFREE(x) if (x  != NULL) MyFree((char *) x,__FILE__,__LINE__);
  #endif
 #else
 	#define MALLOC(x) malloc(((unsigned) x))
@@ -74,7 +74,7 @@
 	#define CALLOC(x,y) calloc( x,(unsigned) y)
 	#ifndef _MSC_VER
 	#define SCISTACKMALLOC(x) malloc(((unsigned) x))
-	#define SCISTACKFREE(x,y) if (x  != NULL) free((char *) x);
+	#define SCISTACKFREE(x) if (x  != NULL) free((char *) x);
 	#endif
 
 

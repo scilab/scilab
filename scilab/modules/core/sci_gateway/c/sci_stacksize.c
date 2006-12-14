@@ -6,25 +6,15 @@
 #include "machine.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "getmaxMALLOC.h"
 #include "scimem.h"
-
+#include "stackinfo.h"
 /*-----------------------------------------------------------------------------------*/
-
 extern integer C2F(adjuststacksize)();
 extern integer C2F(getstackinfo)();
 extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
-#define KERNEL_MEMORY_ZONE  134217728  /* 2^27 0x80000000 */
-/*-----------------------------------------------------------------------------------*/
-extern int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len));
-int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/
-int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
-{
-	C2F(intstacksize)(fname,fname_len);
-	return 0;
-}
 /*-----------------------------------------------------------------------------------*/
 /* stacksize - set scilab stack size 
 
@@ -32,27 +22,28 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 
 * stacksize(n)   
 * stacksize('max')   
+* stacksize('min')   
 * sz=stacksize()   
 
 * Parameters 
 
 * n : integer, the required stack size given in number of double precision words 
 * 'max' : try to allocate the maximum of memory
+* 'max' : allocate the minimum of memory
 * sz : 2-vector [total used] 
-
 */
-int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
+/*-----------------------------------------------------------------------------------*/
+int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 {
 	static int l1,n1,m1;
-	integer ptr;
-	int *paramoutINT=NULL;
-
+	
 	Rhs=Max(0,Rhs);
 	CheckRhs(0,1);
 	CheckLhs(0,1);
 
 	if (Rhs == 0)
 	{
+		int *paramoutINT=NULL;
 		int total=0;
 		int used=0;
 		paramoutINT=(int*)MALLOC(sizeof(int)*2);
@@ -73,42 +64,57 @@ int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
 	{
 		if ( GetType(1) == sci_matrix )
 		{
-			GetRhsVar(1,"i",&m1,&n1,&l1);
+			GetRhsVar(1,"d",&m1,&n1,&l1);
 
 			if ( (m1 == 1) && (n1 == 1) )
 			{
-				int MEMSTACKSIZE=*istk(l1);
+				unsigned long MEMSTACKSIZE = (unsigned long) *stk(l1);
 
-				if ( (MEMSTACKSIZE>=MIN_STACKSIZE) && (MEMSTACKSIZE<=KERNEL_MEMORY_ZONE) )
+				/* add 1 for alignment problems */
+				if ( is_a_valid_size_for_scilab_stack(MEMSTACKSIZE + 1) )
 				{
-					int currentstacksize=0;
-					int used=0;
-
-					C2F(getstackinfo)(&currentstacksize,&used);
-
-					if (MEMSTACKSIZE != currentstacksize)
+					if ( (MEMSTACKSIZE>=MIN_STACKSIZE) && ((unsigned long)MEMSTACKSIZE<=get_max_memory_for_scilab_stack()) )
 					{
-						C2F(scimem)(&MEMSTACKSIZE,&ptr);
-						C2F(adjuststacksize)(&MEMSTACKSIZE,&ptr);
+						int currentstacksize=0;
+						int used=0;
+
+						C2F(getstackinfo)(&currentstacksize,&used);
+
+						if (MEMSTACKSIZE != currentstacksize)
+						{
+							integer ptr;
+							C2F(scimem)(&MEMSTACKSIZE,&ptr);
+							if (ptr) C2F(adjuststacksize)(&MEMSTACKSIZE,&ptr);
+							else
+							{
+								Scierror(999,"%s: can't alloc more memory.\ntry stacksize('max')",fname);
+								return 0;
+							}
+						}
+						else
+						{
+							/* same stacksize nothing to do */
+						}
+
+						LhsVar(1) = 0;
+						C2F(putlhsvar)();
+						return 0;
 					}
 					else
 					{
-						/* same stacksize nothing to do */
+						Scierror(1504,"%s: Out of bounds value not in [%lu,%lu].",fname,MIN_STACKSIZE,get_max_memory_for_scilab_stack()-1);
+						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,"%s: %d not in [%d,%d].",fname,MEMSTACKSIZE,MIN_STACKSIZE,KERNEL_MEMORY_ZONE);
+					Scierror(1504,"%s: Out of bounds value not in [%lu,%lu].",fname,MIN_STACKSIZE,get_max_memory_for_scilab_stack()-1);
 					return 0;
 				}
 			}
-			else
-			{
-				Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'max'.",fname);
-				return 0;
-			}
 		}
 		else
+		{
 			if ( GetType(1) == sci_strings )
 			{
 				char *param=NULL;
@@ -118,13 +124,61 @@ int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
 
 				if ( strcmp("max",param) == 0 )
 				{
-					int currentstacksize=0;
-					int used=0;
+					integer ptr=0;
+					integer memstacktotal=0;
+					integer memstackused=0;
+					integer newmaxstack=0;
 
-					/* max allocation function to do */
+					unsigned long memmaxavailablebyscilab=get_max_memory_for_scilab_stack();
+					unsigned long maxmemfree=(GetLargestFreeMemoryRegion())/sizeof(double);
 
-					C2F(getstackinfo)(&currentstacksize,&used);
-					sciprint("%s('max') fixed to %d.\n",fname,currentstacksize);
+					C2F(getstackinfo)(&memstacktotal,&memstackused);
+
+					newmaxstack = maxmemfree-memstackused;
+
+					if ( newmaxstack > (integer)memmaxavailablebyscilab )
+					{
+						newmaxstack = memmaxavailablebyscilab;
+					}
+					
+					C2F(scimem)(&newmaxstack,&ptr);
+					if (ptr) 
+					{
+						C2F(adjuststacksize)(&newmaxstack,&ptr);
+					}
+
+					LhsVar(1) = 0;
+					C2F(putlhsvar)();
+					return 0;
+				}
+				else if ( strcmp("min",param) == 0 )
+				{
+					integer ptr=0;
+					integer memstacktotal=0;
+					integer memstackused=0;
+					integer newminstack=0;
+					
+					C2F(getstackinfo)(&memstacktotal,&memstackused);
+
+					if (memstackused<MIN_STACKSIZE)
+					{
+						newminstack = MIN_STACKSIZE;
+					}
+					else
+					{
+						// Add 3000 security for the stack
+						newminstack = memstackused+3000;
+					}
+				
+					C2F(scimem)(&newminstack,&ptr);
+					if (ptr) 
+					{
+						C2F(adjuststacksize)(&newminstack,&ptr);
+					}
+					LhsVar(1) = 0;
+					C2F(putlhsvar)();
+					return 0;
+
 				}
 				else
 				{
@@ -137,8 +191,7 @@ int C2F(intstacksize) __PARAMS((char *fname,unsigned long fname_len))
 				Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'max'.",fname);
 				return 0;
 			}
-			LhsVar(1) = 0;
-			C2F(putlhsvar)();
+		}
 	}
 	return 0;
 }

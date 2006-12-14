@@ -670,6 +670,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\stackinfo.c"
+				>
+			</File>
+			<File
 				RelativePath=".\str2sci.c"
 				>
 			</File>
@@ -844,6 +848,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\stack3.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stackinfo.h"
 				>
 			</File>
 			<File

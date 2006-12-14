@@ -8,6 +8,8 @@
   <SHORT_DESCRIPTION name="stacksize"> set scilab stack size</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>stacksize(n)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>stacksize('max')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>stacksize('min')  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sz=stacksize()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -32,10 +34,15 @@
     <P><VERB>stacksize(n)</VERB> allows the user to increase or decrease the size of
     this stack. The maximum allowed size depends on the amount of
     free memory and swap space available at the time.</P>
+    <P><VERB>stacksize('max')</VERB> allows the user to increase the size of
+    this stack to the maximum.</P>
+    <P><VERB>stacksize('min')</VERB> allows the user to decrease the size of
+    this stack to the minimum.</P>
+    
     <P>
     This function with the <VERB>n</VERB> argument can now be used everywhere.</P>
     <P><VERB>sz=stacksize()</VERB> returns a 2-vector which contains  the current
-    total and used stack size. It can be used everywhere.</P>
+    total and used stack size.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

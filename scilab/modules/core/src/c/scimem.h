@@ -2,8 +2,8 @@
 /* INRIA 2006 */
 /* Sylvestre Ledru */
 /*-----------------------------------------------------------------------------------*/ 
-#ifndef __SCIMEM_H_
-#define  __SCIMEM_H_
+#ifndef __SCIMEM_H__
+#define __SCIMEM_H__
 
 #include "machine.h"
 

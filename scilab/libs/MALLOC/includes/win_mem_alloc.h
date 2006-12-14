@@ -27,8 +27,7 @@ IMPORT_EXPORT_MALLOC_DLL LPVOID MyHeapAlloc(SIZE_T dwSize,char *fichier,int lign
 IMPORT_EXPORT_MALLOC_DLL void MyHeapFree(LPVOID lpAddress,char *fichier,int ligne);
 
 IMPORT_EXPORT_MALLOC_DLL LPVOID MyVirtualAlloc(SIZE_T dwSize,char *fichier,int ligne);
-IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,SIZE_T dwSize,char *fichier,int ligne);
-
+IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int ligne);
 
 
 #ifdef MALLOC
@@ -60,7 +59,7 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,SIZE_T dwSize,char 
 #ifdef SCISTACKFREE
 #undef SCISTACKFREE
 #endif
-#define SCISTACKFREE(x,y) if (x  != NULL) MyVirtualFree((char *) x,y,__FILE__,__LINE__);
+#define SCISTACKFREE(x) if (x  != NULL) MyVirtualFree((char *) x,__FILE__,__LINE__);
 
 #define Top C2F(vstk).top
 

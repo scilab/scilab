@@ -3,12 +3,13 @@
 ### INRIA - Scilab 2006 
 ##########
 
-MALLOC_C_SOURCES = src/sci_mem_alloc.c
+MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c
 
 libmalloc_la_includedir=$(includedir)/malloc
 
 libmalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
-includes/MALLOC.h
+includes/MALLOC.h \
+includes/getmaxMALLOC.h
 
 libmalloc_la_CFLAGS= 
 
