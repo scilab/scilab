@@ -1,4 +1,6 @@
 c ====================================================================
+c INRIA 
+c ====================================================================
       subroutine intgstacksize
 c     Copyright INRIA
       include 'stack.h'
@@ -36,15 +38,14 @@ c
          call error(1503)
          return
       endif
-      
       call scigmem(mem+1,offset)
-      
       if(offset.eq.0) then
          call error(112)
          return
       endif
       
-      call adjustgstacksize(mem,offset)
+      call adjustgstacksize(mem,offset,l)
+      
  10   call objvide('gstacksize',top)
       return
       end

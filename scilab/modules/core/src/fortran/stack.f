@@ -6,9 +6,8 @@ c ====================================================================
 c     ajuste la stacksize apres allocation
 c     routine for intstacksize
       INCLUDE 'stack.h'
-      integer mem,offset
+      integer offset,p
       integer iadr,sadr
-      integer p
          
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -78,21 +77,17 @@ c     Check if a compiled macro is running
       leps=sadr(iadr(lstk(isiz-5)) +4)
       end
 c ====================================================================
-      subroutine adjustgstacksize(mem,offset)
-c     ajuste la stacksize apres allocation
-c     routine for intgstacksize
-      INCLUDE 'stack.h'
-      integer mem,offset
+      subroutine adjustgstacksize(mem,offset,l)
+      include 'stack.h'
+      integer offset
+      integer l
       integer iadr,sadr
       logical eqid
-      
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-
+      
       offset=offset+1
-      
-      lbot=lstk(isiz)-lstk(bot)
-      
       call unsfdcopy(l,stk(lstk(isiz+2)),1,stk(offset),1)
       kd=offset-lstk(isiz+2)
       do 05 k=isiz+2,gtop+1
