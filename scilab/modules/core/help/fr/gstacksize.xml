@@ -1,47 +1,74 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../../../modules/helptools/help.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
-  <TITLE>gstacksize  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>$LastChangedDate$</DATE>
-  <SHORT_DESCRIPTION name="gstacksize"> obtenir ou changer la taille de la pile des variables globales  </SHORT_DESCRIPTION>
+
+  <TITLE>gstacksize</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 aoÃƒÂ»t 2006)
+  $</DATE>
+
+  <SHORT_DESCRIPTION name="gstacksize">obtenir ou changer la taille de la pile
+  des variables globales</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>gstacksize(n)  </CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>sz=gstacksize()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>gstacksize(n)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>sz=gstacksize()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>gstacksize('min')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>gstacksize('max')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>n  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : entier, la taille de pile désirée, en nombre de mots double-précision
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>sz  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur à deux composantes [taille_totale taille_utilisée] 
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: entier, la taille de pile dÃ©sirÃ©e, en nombre de mots
+          double-prÃ©cision</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>sz</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur Ã  deux composantes [taille_totale
+          taille_utilisÃ©e]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-  <P>
-    Scilab stocke les variables globales dans une pile.
-  </P>
-  <P>
-    <VERB>gstacksize(n)</VERB> permet d&apos;augmenter ou de diminuer la taille de cette pile. La taille maximum dépend de la mémoire (physique ou virtuelle) restante. Notez que Scilab peut augmenter automatiquement la taille de la pile globale si cela s&apos;avère nécessaire.
-  </P>
-  <P>
-    <VERB>sz=gstacksize()</VERB> renvoie un vecteur à deux composantes contenant la taille
-    totale de la pile et la taille actuellement utilisée.
-    SH VOIR AUSSI
-    who, stacksize
-  </P>
+    <P>Scilab stocke les variables globales dans une pile.</P>
+
+    <P><VERB>gstacksize(n)</VERB> permet d'augmenter ou de diminuer la taille
+    de cette pile. La taille maximum dÃ©pend de la mÃ©moire (physique ou
+    virtuelle) restante. Notez que Scilab peut augmenter automatiquement la
+    taille de la pile globale si cela s'avÃ¨re nÃ©cessaire.</P>
+
+    <P><VERB>sz=gstacksize()</VERB> renvoie un vecteur Ã  deux composantes
+    contenant la taille totale de la pile et la taille actuellement
+    utilisÃ©e.</P>
+
+    <P><VERB>gstacksize('max')</VERB> permet d'augmenter la taille au maximum
+    de la pile scilab des variables globales.</P>
+
+    <P><VERB>gstacksize('min')</VERB> permet de diminuer la taille au minimum
+    de la pile scilab des variables globales.</P>
   </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>who , </LINK>
+
+      <LINK>stacksize</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
 </MAN>

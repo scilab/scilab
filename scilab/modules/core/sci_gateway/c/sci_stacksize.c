@@ -9,10 +9,9 @@
 #include "getmaxMALLOC.h"
 #include "scimem.h"
 #include "stackinfo.h"
+#include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
 extern integer C2F(adjuststacksize)();
-extern integer C2F(getstackinfo)();
-extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 180000
 /*-----------------------------------------------------------------------------------*/
@@ -112,6 +111,11 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 					return 0;
 				}
 			}
+			else
+			{
+				Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.",fname);
+				return 0;
+			}
 		}
 		else
 		{
@@ -125,20 +129,29 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 				if ( strcmp("max",param) == 0 )
 				{
 					integer ptr=0;
+
 					integer memstacktotal=0;
 					integer memstackused=0;
+					integer memgstacktotal=0;
+					integer memgstackused=0;
+
 					integer newmaxstack=0;
 
 					unsigned long memmaxavailablebyscilab=get_max_memory_for_scilab_stack();
 					unsigned long maxmemfree=(GetLargestFreeMemoryRegion())/sizeof(double);
 
 					C2F(getstackinfo)(&memstacktotal,&memstackused);
+					C2F(getgstackinfo)(&memgstacktotal,&memgstackused);
 
-					newmaxstack = maxmemfree-memstackused;
+					newmaxstack = maxmemfree-memstackused-memgstackused;
 
 					if ( newmaxstack > (integer)memmaxavailablebyscilab )
 					{
 						newmaxstack = memmaxavailablebyscilab;
+					}
+					if (newmaxstack < MIN_STACKSIZE)
+					{
+						newmaxstack = MIN_STACKSIZE;
 					}
 					
 					C2F(scimem)(&newmaxstack,&ptr);
@@ -178,17 +191,16 @@ int C2F(sci_stacksize) _PARAMS((char *fname,unsigned long fname_len))
 					LhsVar(1) = 0;
 					C2F(putlhsvar)();
 					return 0;
-
 				}
 				else
 				{
-					Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'max'.",fname);
+					Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.",fname);
 					return 0;
 				}
 			}
 			else
 			{
-				Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'max'.",fname);
+				Scierror(204,"%s: Argument 1: wrong type argument expecting a scalar or 'min' or 'max'.",fname);
 				return 0;
 			}
 		}

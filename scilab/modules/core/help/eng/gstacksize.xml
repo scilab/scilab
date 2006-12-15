@@ -8,6 +8,8 @@
   <SHORT_DESCRIPTION name="gstacksize"> set/get scilab global stack size</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>gstacksize(n)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>gstacksize('max')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>gstacksize('min')  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sz=gstacksize()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -35,6 +37,10 @@
     increase automatically the global stacksize when needed</P>
     <P><VERB>sz=gstacksize()</VERB> returns a 2-vector which contains  the current
     total and used global stack size.</P>
+    <P><VERB>gstacksize('max')</VERB> allows the user to increase the size of
+    this global stack to the maximum.</P>
+    <P><VERB>gstacksize('min')</VERB> allows the user to decrease the size of
+    this global stack to the minimum.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
