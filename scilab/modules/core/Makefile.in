@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -65,6 +66,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libcore_la_demosintrodir)" \
+	"$(DESTDIR)$(libcore_la_etcdir)" \
+	"$(DESTDIR)$(libcore_la_helpendir)" \
+	"$(DESTDIR)$(libcore_la_helpfrdir)" \
+	"$(DESTDIR)$(libcore_la_macrodir)" \
+	"$(DESTDIR)$(libcore_la_rootdir)" \
+	"$(DESTDIR)$(libcore_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libcore_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -96,8 +104,8 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
 	src/c/hashtable_core.c src/c/returnanan.c \
 	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c src/c/getarg-hpux.c src/c/getarg.c \
-	src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/loadversion.c src/c/stackinfo.c src/c/getarg-hpux.c \
+	src/c/getarg.c src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
 	src/fortran/getlin.f src/fortran/isany.f \
@@ -190,7 +198,6 @@ am__libcore_la_SOURCES_DIST = src/c/history.c src/c/inffic.c \
 	sci_gateway/fortran/sci_whereis.f \
 	sci_gateway/fortran/sci_intppty.f \
 	sci_gateway/fortran/sci_ieee.f \
-	sci_gateway/fortran/sci_gstacksize.f \
 	sci_gateway/fortran/sci_notify.f \
 	sci_gateway/fortran/sci_macrovar.f \
 	sci_gateway/fortran/sci_lines.f \
@@ -245,7 +252,8 @@ am__objects_3 = libcore_la-history.lo libcore_la-inffic.lo \
 	libcore_la-link.lo libcore_la-xscion.lo libcore_la-SciEnv.lo \
 	libcore_la-hashtable_core.lo libcore_la-returnanan.lo \
 	libcore_la-LoadFunctionsTab.lo libcore_la-with_module.lo \
-	libcore_la-loadversion.lo $(am__objects_1) $(am__objects_2)
+	libcore_la-loadversion.lo libcore_la-stackinfo.lo \
+	$(am__objects_1) $(am__objects_2)
 @IS_HPUX_TRUE@am__objects_4 = fgetarg-hpux.lo
 @IS_HPUX_FALSE@am__objects_5 = fgetarg.lo
 am__objects_6 = algebre.lo clunit.lo complexify.lo allowptr.lo \
@@ -308,14 +316,14 @@ am__objects_7 = libcore_la-sci_savehistory.lo \
 am__objects_8 = sci_errclear.lo sci_who.lo sci_c_link.lo \
 	sci_funcprot.lo sci_global.lo sci_mtlb_mode.lo sci_resume.lo \
 	sci_dispbpt.lo sci_useascommand.lo sci_whereis.lo \
-	sci_intppty.lo sci_ieee.lo sci_gstacksize.lo sci_notify.lo \
-	sci_macrovar.lo sci_lines.lo sci_funptr.lo sci_exists.lo \
-	sci_errcatch.lo sci_clear.lo sci_argn.lo sci_format.lo \
-	sci_chdir.lo sci_link.lo sci_comp.lo sci_havewindow.lo \
-	sci_setbpt.lo sci_predef.lo sci_typnam.lo sci_clearglobal.lo \
-	sci_fort.lo sci_delbpt.lo sci_getcwd.lo where.lo \
-	sci_iserror.lo sci_type.lo sci_mode.lo sci_addinter.lo \
-	sci_debug.lo sci_error.lo sci_sciargs.lo sci_isglobal.lo
+	sci_intppty.lo sci_ieee.lo sci_notify.lo sci_macrovar.lo \
+	sci_lines.lo sci_funptr.lo sci_exists.lo sci_errcatch.lo \
+	sci_clear.lo sci_argn.lo sci_format.lo sci_chdir.lo \
+	sci_link.lo sci_comp.lo sci_havewindow.lo sci_setbpt.lo \
+	sci_predef.lo sci_typnam.lo sci_clearglobal.lo sci_fort.lo \
+	sci_delbpt.lo sci_getcwd.lo where.lo sci_iserror.lo \
+	sci_type.lo sci_mode.lo sci_addinter.lo sci_debug.lo \
+	sci_error.lo sci_sciargs.lo sci_isglobal.lo
 am_libcore_la_OBJECTS = $(am__objects_3) $(am__objects_6) \
 	$(am__objects_7) $(am__objects_8)
 libcore_la_OBJECTS = $(am_libcore_la_OBJECTS)
@@ -343,6 +351,17 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libcore_la_SOURCES)
 DIST_SOURCES = $(am__libcore_la_SOURCES_DIST)
+libcore_la_demosintroDATA_INSTALL = $(INSTALL_DATA)
+libcore_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libcore_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libcore_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libcore_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libcore_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libcore_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libcore_la_demosintro_DATA) $(libcore_la_etc_DATA) \
+	$(libcore_la_helpen_DATA) $(libcore_la_helpfr_DATA) \
+	$(libcore_la_macro_DATA) $(libcore_la_root_DATA) \
+	$(libcore_la_sci_gateway_DATA)
 libcore_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libcore_la_include_HEADERS)
 ETAGS = etags
@@ -455,7 +474,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -507,7 +526,8 @@ CORE_C_SOURCES = src/c/history.c src/c/inffic.c src/c/cs2st.c \
 	src/c/sciprint.c src/c/link.c src/c/xscion.c src/c/SciEnv.c \
 	src/c/hashtable_core.c src/c/returnanan.c \
 	src/c/LoadFunctionsTab.c src/c/with_module.c \
-	src/c/loadversion.c $(am__append_2) $(am__append_4)
+	src/c/loadversion.c src/c/stackinfo.c $(am__append_2) \
+	$(am__append_4)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/complexify.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/bcol.f src/fortran/msgs.f \
@@ -635,7 +655,6 @@ sci_gateway/fortran/sci_useascommand.f \
 sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
-sci_gateway/fortran/sci_gstacksize.f \
 sci_gateway/fortran/sci_notify.f \
 sci_gateway/fortran/sci_macrovar.f \
 sci_gateway/fortran/sci_lines.f \
@@ -666,34 +685,6 @@ sci_gateway/fortran/sci_error.f \
 sci_gateway/fortran/sci_sciargs.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libcore_la_includedir = $(includedir)/core
-libcore_la_include_HEADERS = includes/machine.h \
-includes/CallScilab.h \
-includes/link.h \
-includes/intmacr2tree.h \
-includes/intgetmd5.h \
-includes/core_math.h \
-includes/stack-def.h \
-includes/stack.h \
-includes/getmodules.h \
-includes/callinter.h \
-includes/InitScilab.h \
-includes/sciquit.h \
-includes/msg_errors.h \
-includes/intgetmemory.h \
-includes/gw_core.h \
-includes/stack-c.h \
-includes/version.h \
-includes/Os_specific.h \
-includes/stack1.h \
-includes/stack2.h \
-includes/Scierror.h \
-includes/realmain.h \
-includes/stack3.h \
-includes/setgetSCIpath.h \
-includes/sciprint.h \
-includes/xscion.h
-
 libcore_la_CFLAGS = -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ 
 libcore_la_LDFLAGS = 
 lib_LTLIBRARIES = libcore.la
@@ -711,6 +702,383 @@ libcore_la_LIBADD = \
 	$(top_builddir)/modules/fileio/libfileio.la
 
 libcore_la_PKGCONFIG = core.pc
+#### Target ######
+target = $(datadir)/core
+
+#### core : Conf files ####
+libcore_la_rootdir = $(target)
+libcore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### core : Scilab macros ###
+libcore_la_macrodir = $(target)/macros
+libcore_la_macro_DATA = macros/perl.sci \
+macros/typeof.sci \
+macros/getshell.sci \
+macros/with_tk.sci \
+macros/with_javasci.sci \
+macros/toolboxes.sci \
+macros/with_gtk.sci \
+macros/whos.sci \
+macros/scilab_demos.sci \
+macros/OS_Version.sci \
+macros/sethomedirectory.sci \
+macros/who_user.sci \
+macros/add_demo.sci \
+macros/with_macros_source.sci \
+macros/with_atlas.sci \
+macros/with_texmacs.sci \
+macros/whereami.sci macros/add_demo.bin \
+macros/getshell.bin \
+macros/OS_Version.bin \
+macros/perl.bin \
+macros/scilab_demos.bin \
+macros/sethomedirectory.bin \
+macros/toolboxes.bin \
+macros/typeof.bin \
+macros/whereami.bin \
+macros/whos.bin \
+macros/who_user.bin \
+macros/with_atlas.bin \
+macros/with_gtk.bin \
+macros/with_javasci.bin \
+macros/with_macros_source.bin \
+macros/with_texmacs.bin \
+macros/with_tk.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### core : init scripts #### 
+libcore_la_etcdir = $(target)/etc
+libcore_la_etc_DATA = etc/core.quit etc/core.start
+
+#### core : gateway declaration #### 
+libcore_la_sci_gatewaydir = $(target)/sci_gateway
+libcore_la_sci_gateway_DATA = sci_gateway/core
+
+#### core : documentation FR #### 
+libcore_la_helpfrdir = $(target)/help/fr
+libcore_la_helpfr_DATA = help/fr/with_tk.htm \
+help/fr/intppty.htm \
+help/fr/continue.htm \
+help/fr/c_link.htm \
+help/fr/funcprot.htm \
+help/fr/delbpt.htm \
+help/fr/dispbpt.htm \
+help/fr/equal.htm \
+help/fr/format.htm \
+help/fr/error_table.htm \
+help/fr/fort.htm \
+help/fr/less.htm \
+help/fr/funptr.htm \
+help/fr/getmd5.htm \
+help/fr/getversion.htm \
+help/fr/getmemory.htm \
+help/fr/getmodules.htm \
+help/fr/lasterror.htm \
+help/fr/lines.htm \
+help/fr/link.htm \
+help/fr/macr2lst.htm \
+help/fr/newfun.htm \
+help/fr/setbpt.htm \
+help/fr/ulink.htm \
+help/fr/warning.htm \
+help/fr/who_user.htm \
+help/fr/with_gtk.htm \
+help/fr/with_module.htm \
+help/fr/with_texmacs.htm \
+help/fr/whatis.htm \
+help/fr/call.htm \
+help/fr/addinter.htm \
+help/fr/clearfun.htm \
+help/fr/comparison.htm \
+help/fr/sethomedirectory.htm \
+help/fr/resethistory.htm \
+help/fr/stacksize.htm \
+help/fr/startup.htm \
+help/fr/abort.htm \
+help/fr/ans.htm \
+help/fr/argn.htm \
+help/fr/backslash.htm \
+help/fr/banner.htm \
+help/fr/boolean.htm \
+help/fr/brackets.htm \
+help/fr/break.htm \
+help/fr/case.htm \
+help/fr/chdir.htm \
+help/fr/clearglobal.htm \
+help/fr/clear.htm \
+help/fr/colon.htm \
+help/fr/comma.htm \
+help/fr/comments.htm \
+help/fr/comp.htm \
+help/fr/debug.htm \
+help/fr/dot.htm \
+help/fr/do.htm \
+help/fr/elseif.htm \
+help/fr/else.htm \
+help/fr/empty.htm \
+help/fr/end.htm \
+help/fr/errcatch.htm \
+help/fr/errclear.htm \
+help/fr/error.htm \
+help/fr/evstr.htm \
+help/fr/exec.htm \
+help/fr/exists.htm \
+help/fr/exit.htm \
+help/fr/external.htm \
+help/fr/extraction.htm \
+help/fr/for.htm \
+help/fr/gethistory.htm \
+help/fr/getos.htm \
+help/fr/getshell.htm \
+help/fr/global.htm \
+help/fr/gstacksize.htm \
+help/fr/hat.htm \
+help/fr/hypermat.htm \
+help/fr/hypermatrices.htm \
+help/fr/ieee.htm \
+help/fr/if.htm \
+help/fr/insertion.htm \
+help/fr/inv_coeff.htm \
+help/fr/iserror.htm \
+help/fr/isglobal.htm \
+help/fr/left.htm \
+help/fr/loadhistory.htm \
+help/fr/macr2tree.htm \
+help/fr/matrices.htm \
+help/fr/matrix.htm \
+help/fr/mode.htm \
+help/fr/mtlb_mode.htm \
+help/fr/names.htm \
+help/fr/null.htm \
+help/fr/parents.htm \
+help/fr/pause.htm \
+help/fr/percent.htm \
+help/fr/perl.htm \
+help/fr/plus.htm \
+help/fr/poly.htm \
+help/fr/power.htm \
+help/fr/predef.htm \
+help/fr/pwd.htm \
+help/fr/quit.htm \
+help/fr/quote.htm \
+help/fr/rational.htm \
+help/fr/typename.htm \
+help/fr/resume.htm \
+help/fr/return.htm \
+help/fr/sciargs.htm \
+help/fr/savehistory.htm \
+help/fr/scilab.htm \
+help/fr/select.htm \
+help/fr/semi.htm \
+help/fr/semicolon.htm \
+help/fr/slash.htm \
+help/fr/star.htm \
+help/fr/symbols.htm \
+help/fr/then.htm \
+help/fr/testmatrix.htm \
+help/fr/tilda.htm \
+help/fr/try.htm \
+help/fr/whereami.htm \
+help/fr/type.htm \
+help/fr/user.htm \
+help/fr/varn.htm \
+help/fr/what.htm \
+help/fr/with_pvm.htm \
+help/fr/whereis.htm \
+help/fr/where.htm \
+help/fr/while.htm \
+help/fr/whos.htm \
+help/fr/who.htm \
+help/fr/with_javasci.htm \
+help/fr/with_atlas.htm \
+help/fr/with_macros_source.htm
+
+
+#### core : documentation EN #### 
+libcore_la_helpendir = $(target)/help/eng
+libcore_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/resethistory.htm \
+help/eng/stacksize.htm \
+help/eng/getmodules.htm \
+help/eng/with_module.htm \
+help/eng/getversion.htm \
+help/eng/clearfun.htm \
+help/eng/startup.htm \
+help/eng/abort.htm \
+help/eng/addinter.htm \
+help/eng/ans.htm \
+help/eng/argn.htm \
+help/eng/backslash.htm \
+help/eng/banner.htm \
+help/eng/boolean.htm \
+help/eng/brackets.htm \
+help/eng/break.htm \
+help/eng/call.htm \
+help/eng/case.htm \
+help/eng/chdir.htm \
+help/eng/clearglobal.htm \
+help/eng/clear.htm \
+help/eng/c_link.htm \
+help/eng/colon.htm \
+help/eng/comma.htm \
+help/eng/comments.htm \
+help/eng/comparison.htm \
+help/eng/comp.htm \
+help/eng/continue.htm \
+help/eng/debug.htm \
+help/eng/delbpt.htm \
+help/eng/dispbpt.htm \
+help/eng/dot.htm \
+help/eng/do.htm \
+help/eng/elseif.htm \
+help/eng/else.htm \
+help/eng/empty.htm \
+help/eng/end.htm \
+help/eng/equal.htm \
+help/eng/errcatch.htm \
+help/eng/errclear.htm \
+help/eng/error_table.htm \
+help/eng/error.htm \
+help/eng/evstr.htm \
+help/eng/exec.htm \
+help/eng/exists.htm \
+help/eng/exit.htm \
+help/eng/external.htm \
+help/eng/extraction.htm \
+help/eng/format.htm \
+help/eng/fort.htm \
+help/eng/for.htm \
+help/eng/funcprot.htm \
+help/eng/funptr.htm \
+help/eng/gethistory.htm \
+help/eng/getmd5.htm \
+help/eng/getmemory.htm \
+help/eng/getos.htm \
+help/eng/getshell.htm \
+help/eng/global.htm \
+help/eng/gstacksize.htm \
+help/eng/hat.htm \
+help/eng/hypermat.htm \
+help/eng/hypermatrices.htm \
+help/eng/ieee.htm \
+help/eng/if.htm \
+help/eng/insertion.htm \
+help/eng/intppty.htm \
+help/eng/inv_coeff.htm \
+help/eng/iserror.htm \
+help/eng/isglobal.htm \
+help/eng/lasterror.htm \
+help/eng/left.htm \
+help/eng/less.htm \
+help/eng/lines.htm \
+help/eng/link.htm \
+help/eng/loadhistory.htm \
+help/eng/macr2lst.htm \
+help/eng/macr2tree.htm \
+help/eng/matrices.htm \
+help/eng/matrix.htm \
+help/eng/mode.htm \
+help/eng/mtlb_mode.htm \
+help/eng/names.htm \
+help/eng/newfun.htm \
+help/eng/null.htm \
+help/eng/parents.htm \
+help/eng/pause.htm \
+help/eng/percent.htm \
+help/eng/perl.htm \
+help/eng/plus.htm \
+help/eng/poly.htm \
+help/eng/power.htm \
+help/eng/predef.htm \
+help/eng/pwd.htm \
+help/eng/quit.htm \
+help/eng/quote.htm \
+help/eng/rational.htm \
+help/eng/typename.htm \
+help/eng/resume.htm \
+help/eng/return.htm \
+help/eng/sciargs.htm \
+help/eng/savehistory.htm \
+help/eng/scilab.htm \
+help/eng/select.htm \
+help/eng/semi.htm \
+help/eng/semicolon.htm \
+help/eng/setbpt.htm \
+help/eng/slash.htm \
+help/eng/sethomedirectory.htm \
+help/eng/star.htm \
+help/eng/symbols.htm \
+help/eng/then.htm \
+help/eng/testmatrix.htm \
+help/eng/tilda.htm \
+help/eng/try.htm \
+help/eng/whereami.htm \
+help/eng/type.htm \
+help/eng/ulink.htm \
+help/eng/user.htm \
+help/eng/varn.htm \
+help/eng/warning.htm \
+help/eng/what.htm \
+help/eng/who_user.htm \
+help/eng/whereis.htm \
+help/eng/where.htm \
+help/eng/while.htm \
+help/eng/whos.htm \
+help/eng/who.htm \
+help/eng/with_javasci.htm \
+help/eng/with_atlas.htm \
+help/eng/with_gtk.htm \
+help/eng/with_macros_source.htm \
+help/eng/with_pvm.htm \
+help/eng/with_texmacs.htm \
+help/eng/with_tk.htm
+
+
+#### core : include files ####
+libcore_la_includedir = $(includedir)/core
+libcore_la_include_HEADERS = includes/GetExceptionCode.h \
+includes/CallScilab.h \
+includes/sciprint.h \
+includes/link.h \
+includes/intmacr2tree.h \
+includes/intgetmd5.h \
+includes/core_math.h \
+includes/stack-def.h \
+includes/xscion.h \
+includes/stack.h \
+includes/setgetSCIpath.h \
+includes/getmodules.h \
+includes/callinter.h \
+includes/InitScilab.h \
+includes/sciquit.h \
+includes/msg_errors.h \
+includes/intgetmemory.h \
+includes/gw_core.h \
+includes/stack-c.h \
+includes/version.h \
+includes/Os_specific.h \
+includes/stack1.h \
+includes/SciEnv.h \
+includes/stack2.h \
+includes/Scierror.h \
+includes/realmain.h \
+includes/stack3.h \
+includes/machine.h \
+includes/ExceptionMessage.h \
+includes/prompt.h \
+includes/loadversion.h
+
+
+#### core : demos files ####
+libcore_la_demosintrodir = $(target)/demos/intro/
+libcore_la_demosintro_DATA = demos/intro/extf.sce \
+demos/intro/Makefile.mak \
+demos/intro/MakeC.mak \
+demos/intro/MakeF.mak \
+demos/intro/dem01.dem \
+demos/intro/extc.sce \
+demos/intro/Makefile
+
 all: all-am
 
 .SUFFIXES:
@@ -901,6 +1269,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-stack1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-stack2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-stack3.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-stackinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-str2sci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-texmacs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcore_la-timer.Plo@am__quote@
@@ -1342,6 +1711,13 @@ libcore_la-loadversion.lo: src/c/loadversion.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/loadversion.c' object='libcore_la-loadversion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-loadversion.lo `test -f 'src/c/loadversion.c' || echo '$(srcdir)/'`src/c/loadversion.c
+
+libcore_la-stackinfo.lo: src/c/stackinfo.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-stackinfo.lo -MD -MP -MF $(DEPDIR)/libcore_la-stackinfo.Tpo -c -o libcore_la-stackinfo.lo `test -f 'src/c/stackinfo.c' || echo '$(srcdir)/'`src/c/stackinfo.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libcore_la-stackinfo.Tpo $(DEPDIR)/libcore_la-stackinfo.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stackinfo.c' object='libcore_la-stackinfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -c -o libcore_la-stackinfo.lo `test -f 'src/c/stackinfo.c' || echo '$(srcdir)/'`src/c/stackinfo.c
 
 libcore_la-getarg-hpux.lo: src/c/getarg-hpux.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcore_la_CFLAGS) $(CFLAGS) -MT libcore_la-getarg-hpux.lo -MD -MP -MF $(DEPDIR)/libcore_la-getarg-hpux.Tpo -c -o libcore_la-getarg-hpux.lo `test -f 'src/c/getarg-hpux.c' || echo '$(srcdir)/'`src/c/getarg-hpux.c
@@ -2237,9 +2613,6 @@ sci_intppty.lo: sci_gateway/fortran/sci_intppty.f
 sci_ieee.lo: sci_gateway/fortran/sci_ieee.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_ieee.lo `test -f 'sci_gateway/fortran/sci_ieee.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_ieee.f
 
-sci_gstacksize.lo: sci_gateway/fortran/sci_gstacksize.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_gstacksize.lo `test -f 'sci_gateway/fortran/sci_gstacksize.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_gstacksize.f
-
 sci_notify.lo: sci_gateway/fortran/sci_notify.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_notify.lo `test -f 'sci_gateway/fortran/sci_notify.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_notify.f
 
@@ -2332,6 +2705,125 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libcore_la_demosintroDATA: $(libcore_la_demosintro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_demosintrodir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_demosintrodir)"
+	@list='$(libcore_la_demosintro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_demosintroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_demosintrodir)/$$f'"; \
+	  $(libcore_la_demosintroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_demosintrodir)/$$f"; \
+	done
+
+uninstall-libcore_la_demosintroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_demosintro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_demosintrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_demosintrodir)/$$f"; \
+	done
+install-libcore_la_etcDATA: $(libcore_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_etcdir)"
+	@list='$(libcore_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_etcdir)/$$f'"; \
+	  $(libcore_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_etcdir)/$$f"; \
+	done
+
+uninstall-libcore_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_etcdir)/$$f"; \
+	done
+install-libcore_la_helpenDATA: $(libcore_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_helpendir)"
+	@list='$(libcore_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_helpendir)/$$f'"; \
+	  $(libcore_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_helpendir)/$$f"; \
+	done
+
+uninstall-libcore_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_helpendir)/$$f"; \
+	done
+install-libcore_la_helpfrDATA: $(libcore_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_helpfrdir)"
+	@list='$(libcore_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_helpfrdir)/$$f'"; \
+	  $(libcore_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libcore_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_helpfrdir)/$$f"; \
+	done
+install-libcore_la_macroDATA: $(libcore_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_macrodir)"
+	@list='$(libcore_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_macrodir)/$$f'"; \
+	  $(libcore_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_macrodir)/$$f"; \
+	done
+
+uninstall-libcore_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_macrodir)/$$f"; \
+	done
+install-libcore_la_rootDATA: $(libcore_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_rootdir)"
+	@list='$(libcore_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_rootdir)/$$f'"; \
+	  $(libcore_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_rootdir)/$$f"; \
+	done
+
+uninstall-libcore_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_rootdir)/$$f"; \
+	done
+install-libcore_la_sci_gatewayDATA: $(libcore_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libcore_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_sci_gatewaydir)"
+	@list='$(libcore_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libcore_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_sci_gatewaydir)/$$f'"; \
+	  $(libcore_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libcore_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libcore_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libcore_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libcore_la_sci_gatewaydir)/$$f"; \
+	done
 install-libcore_la_includeHEADERS: $(libcore_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libcore_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_includedir)"
@@ -2426,9 +2918,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcore_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcore_la_demosintrodir)" "$(DESTDIR)$(libcore_la_etcdir)" "$(DESTDIR)$(libcore_la_helpendir)" "$(DESTDIR)$(libcore_la_helpfrdir)" "$(DESTDIR)$(libcore_la_macrodir)" "$(DESTDIR)$(libcore_la_rootdir)" "$(DESTDIR)$(libcore_la_sci_gatewaydir)" "$(DESTDIR)$(libcore_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2476,7 +2968,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libcore_la_includeHEADERS
+install-data-am: install-libcore_la_demosintroDATA \
+	install-libcore_la_etcDATA install-libcore_la_helpenDATA \
+	install-libcore_la_helpfrDATA \
+	install-libcore_la_includeHEADERS install-libcore_la_macroDATA \
+	install-libcore_la_rootDATA install-libcore_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -2513,7 +3009,12 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libcore_la_includeHEADERS
+	uninstall-libcore_la_demosintroDATA \
+	uninstall-libcore_la_etcDATA uninstall-libcore_la_helpenDATA \
+	uninstall-libcore_la_helpfrDATA \
+	uninstall-libcore_la_includeHEADERS \
+	uninstall-libcore_la_macroDATA uninstall-libcore_la_rootDATA \
+	uninstall-libcore_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -2524,14 +3025,23 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libcore_la_includeHEADERS \
+	install-libLTLIBRARIES install-libcore_la_demosintroDATA \
+	install-libcore_la_etcDATA install-libcore_la_helpenDATA \
+	install-libcore_la_helpfrDATA \
+	install-libcore_la_includeHEADERS install-libcore_la_macroDATA \
+	install-libcore_la_rootDATA install-libcore_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libcore_la_includeHEADERS
+	uninstall-libcore_la_demosintroDATA \
+	uninstall-libcore_la_etcDATA uninstall-libcore_la_helpenDATA \
+	uninstall-libcore_la_helpfrDATA \
+	uninstall-libcore_la_includeHEADERS \
+	uninstall-libcore_la_macroDATA uninstall-libcore_la_rootDATA \
+	uninstall-libcore_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

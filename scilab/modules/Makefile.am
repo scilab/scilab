@@ -5,6 +5,7 @@
 
 # The order DOES matter !!!
 SUBDIRS = \
+helptools \
 intersci \
 polynomials \
 cacsd \
@@ -37,7 +38,20 @@ io \
 gui \
 graphics \
 scicos \
-wintools
+wintools \
+functions \
+incremental_link \
+others \
+overloading \
+javasci \
+maple2scilab \
+m2sci \
+texmacs \
+tfds \
+scipad \
+scilab2fortran \
+development_tools
+
 
 if JAVA
 SUBDIRS += jvm 
@@ -48,6 +62,15 @@ SUBDIRS += pvm
 endif
 
 SUBDIRS += .
+
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)
+
+#### Basic files ####
+libscilab_la_rootdir = $(target)
+libscilab_la_root_DATA = modules
 
 # 
 lib_LTLIBRARIES = libscilab.la
@@ -100,3 +123,9 @@ $(top_builddir)/libs/blas/libblas.la \
 $(top_builddir)/libs/hashtable/libhashtable.la \
 $(top_builddir)/libs/lapack/liblapack.la \
 $(top_builddir)/libs/MALLOC/libmalloc.la 
+
+BUILT_SOURCES = modules
+
+# Generate the module list from the SUBDIRS
+modules:
+	@for module in $(SUBDIRS); do if test $$module != "."; then echo $$module; fi;	done > modules

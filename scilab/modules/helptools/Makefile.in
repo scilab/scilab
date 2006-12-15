@@ -19,7 +19,6 @@
 ### INRIA - Scilab 2006 
 ##########
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -38,9 +37,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/javasci
-DIST_COMMON = $(libjavasci_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+subdir = modules/helptools
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -62,24 +60,19 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libjavasci_la_etcdir)" \
-	"$(DESTDIR)$(libjavasci_la_helpendir)" \
-	"$(DESTDIR)$(libjavasci_la_helpfrdir)" \
-	"$(DESTDIR)$(libjavasci_la_macrodir)" \
-	"$(DESTDIR)$(libjavasci_la_rootdir)" \
-	"$(DESTDIR)$(libjavasci_la_includedir)"
-libjavasci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_macroDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_helpen_DATA) \
-	$(libjavasci_la_helpfr_DATA) $(libjavasci_la_macro_DATA) \
-	$(libjavasci_la_root_DATA)
-libjavasci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libjavasci_la_include_HEADERS)
-ETAGS = etags
-CTAGS = ctags
+am__installdirs = "$(DESTDIR)$(libhelptools_la_etcdir)" \
+	"$(DESTDIR)$(libhelptools_la_helpendir)" \
+	"$(DESTDIR)$(libhelptools_la_helpfrdir)" \
+	"$(DESTDIR)$(libhelptools_la_macrodir)" \
+	"$(DESTDIR)$(libhelptools_la_rootdir)"
+libhelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libhelptools_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libhelptools_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libhelptools_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libhelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libhelptools_la_etc_DATA) $(libhelptools_la_helpen_DATA) \
+	$(libhelptools_la_helpfr_DATA) $(libhelptools_la_macro_DATA) \
+	$(libhelptools_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -223,54 +216,93 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 #### Target ######
-target = $(datadir)/javasci
+target = $(datadir)/helptools
 
-#### javasci : Conf files ####
-libjavasci_la_rootdir = $(target)
-libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+#### helptools : Conf files ####
+libhelptools_la_rootdir = $(target)
+libhelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-#### javasci : Scilab macros ###
-libjavasci_la_macrodir = $(target)/macros
-libjavasci_la_macro_DATA = macros/buildmacros.sce
+#### helptools : Scilab macros ###
+libhelptools_la_macrodir = $(target)/macros
+libhelptools_la_macro_DATA = macros/add_help_chapter.sci \
+macros/browsehelp.sci \
+macros/help_menu.sci \
+macros/make_help_index.sci \
+macros/change_old_man.sci \
+macros/find_links.sci \
+macros/extract_help_examples.sci \
+macros/manedit.sci \
+macros/del_help_chapter.sci \
+macros/apropos.sci \
+macros/formatman.sci \
+macros/dehtmlize.sci \
+macros/check_help.sci \
+macros/help.sci \
+macros/gethelpfile.sci \
+macros/loaddefaultbrowser.sci \
+macros/xmlfiletohtml.sci \
+macros/xmltohtml.sci \
+macros/clean_help.sci \
+macros/initial_help_chapters.sci \
+macros/help_skeleton.sci \
+macros/change_help_language.sci macros/add_help_chapter.bin \
+macros/apropos.bin \
+macros/browsehelp.bin \
+macros/change_help_language.bin \
+macros/change_old_man.bin \
+macros/check_help.bin \
+macros/clean_help.bin \
+macros/dehtmlize.bin \
+macros/del_help_chapter.bin \
+macros/extract_help_examples.bin \
+macros/find_links.bin \
+macros/formatman.bin \
+macros/gethelpfile.bin \
+macros/help_menu.bin \
+macros/help.bin \
+macros/help_skeleton.bin \
+macros/initial_help_chapters.bin \
+macros/loaddefaultbrowser.bin \
+macros/make_help_index.bin \
+macros/manedit.bin \
+macros/xmlfiletohtml.bin \
+macros/xmltohtml.bin macros/names macros/lib macros/buildmacros.sce
 
-#### javasci : init scripts #### 
-libjavasci_la_etcdir = $(target)/etc
-libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
-#### javasci : documentation FR #### 
-libjavasci_la_helpfrdir = $(target)/help/fr
-libjavasci_la_helpfr_DATA = help/fr/SciComplex.htm \
-help/fr/SciDouble.htm \
-help/fr/Scilab.htm \
-help/fr/SciString.htm \
+#### helptools : init scripts #### 
+libhelptools_la_etcdir = $(target)/etc
+libhelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
+
+#### helptools : documentation FR #### 
+libhelptools_la_helpfrdir = $(target)/help/fr
+libhelptools_la_helpfr_DATA = help/fr/help_skeleton.htm \
+help/fr/make_index.htm \
+help/fr/manedit.htm \
+help/fr/man.htm \
+help/fr/xmltohtml.htm \
+help/fr/apropos.htm \
+help/fr/help.htm \
 help/fr/whatis.htm \
-help/fr/javasci.htm \
-help/fr/SciStringArray.htm \
-help/fr/SciComplexArray.htm \
-help/fr/SciDoubleArray.htm
+help/fr/foo.htm \
+help/fr/add_help_chapter.htm \
+help/fr/formatman.htm \
+help/fr/percenthelps.htm
 
 
-#### javasci : documentation EN #### 
-libjavasci_la_helpendir = $(target)/help/eng
-libjavasci_la_helpen_DATA = help/eng/whatis.htm \
-help/eng/javasci.htm \
-help/eng/Scilab.htm \
-help/eng/SciComplexArray.htm \
-help/eng/SciComplex.htm \
-help/eng/SciDoubleArray.htm \
-help/eng/SciDouble.htm \
-help/eng/SciStringArray.htm \
-help/eng/SciString.htm
-
-
-#### javasci : include files ####
-libjavasci_la_includedir = $(includedir)/javasci
-libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
-includes/javasci_Scilab2.h \
-includes/javasci_globals.h \
-includes/javasci_SciStringArray.h \
-includes/javasci_SciComplexArray.h \
-includes/javasci_SciDoubleArray.h
+#### helptools : documentation EN #### 
+libhelptools_la_helpendir = $(target)/help/eng
+libhelptools_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/help.htm \
+help/eng/apropos.htm \
+help/eng/add_help_chapter.htm \
+help/eng/foo.htm \
+help/eng/manedit.htm \
+help/eng/formatman.htm \
+help/eng/make_index.htm \
+help/eng/help_skeleton.htm \
+help/eng/man.htm \
+help/eng/percenthelps.htm \
+help/eng/xmltohtml.htm
 
 all: all-am
 
@@ -284,9 +316,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__confi
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/javasci/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/helptools/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  modules/javasci/Makefile
+	  $(AUTOMAKE) --foreign  modules/helptools/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -310,156 +342,97 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libjavasci_la_etcDATA: $(libjavasci_la_etc_DATA)
+install-libhelptools_la_etcDATA: $(libhelptools_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_etcdir)"
-	@list='$(libjavasci_la_etc_DATA)'; for p in $$list; do \
+	test -z "$(libhelptools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_etcdir)"
+	@list='$(libhelptools_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_etcdir)/$$f'"; \
-	  $(libjavasci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_etcdir)/$$f"; \
+	  echo " $(libhelptools_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_etcdir)/$$f'"; \
+	  $(libhelptools_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_etcdir)/$$f"; \
 	done
 
-uninstall-libjavasci_la_etcDATA:
+uninstall-libhelptools_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_etc_DATA)'; for p in $$list; do \
+	@list='$(libhelptools_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_etcdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libhelptools_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libhelptools_la_etcdir)/$$f"; \
 	done
-install-libjavasci_la_helpenDATA: $(libjavasci_la_helpen_DATA)
+install-libhelptools_la_helpenDATA: $(libhelptools_la_helpen_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_helpendir)"
-	@list='$(libjavasci_la_helpen_DATA)'; for p in $$list; do \
+	test -z "$(libhelptools_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_helpendir)"
+	@list='$(libhelptools_la_helpen_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_helpendir)/$$f'"; \
-	  $(libjavasci_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_helpendir)/$$f"; \
+	  echo " $(libhelptools_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_helpendir)/$$f'"; \
+	  $(libhelptools_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_helpendir)/$$f"; \
 	done
 
-uninstall-libjavasci_la_helpenDATA:
+uninstall-libhelptools_la_helpenDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_helpen_DATA)'; for p in $$list; do \
+	@list='$(libhelptools_la_helpen_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_helpendir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libhelptools_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libhelptools_la_helpendir)/$$f"; \
 	done
-install-libjavasci_la_helpfrDATA: $(libjavasci_la_helpfr_DATA)
+install-libhelptools_la_helpfrDATA: $(libhelptools_la_helpfr_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_helpfrdir)"
-	@list='$(libjavasci_la_helpfr_DATA)'; for p in $$list; do \
+	test -z "$(libhelptools_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_helpfrdir)"
+	@list='$(libhelptools_la_helpfr_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f'"; \
-	  $(libjavasci_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f"; \
+	  echo " $(libhelptools_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f'"; \
+	  $(libhelptools_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f"; \
 	done
 
-uninstall-libjavasci_la_helpfrDATA:
+uninstall-libhelptools_la_helpfrDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_helpfr_DATA)'; for p in $$list; do \
+	@list='$(libhelptools_la_helpfr_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f"; \
 	done
-install-libjavasci_la_macroDATA: $(libjavasci_la_macro_DATA)
+install-libhelptools_la_macroDATA: $(libhelptools_la_macro_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_macrodir)"
-	@list='$(libjavasci_la_macro_DATA)'; for p in $$list; do \
+	test -z "$(libhelptools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_macrodir)"
+	@list='$(libhelptools_la_macro_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_macrodir)/$$f'"; \
-	  $(libjavasci_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_macrodir)/$$f"; \
+	  echo " $(libhelptools_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_macrodir)/$$f'"; \
+	  $(libhelptools_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_macrodir)/$$f"; \
 	done
 
-uninstall-libjavasci_la_macroDATA:
+uninstall-libhelptools_la_macroDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_macro_DATA)'; for p in $$list; do \
+	@list='$(libhelptools_la_macro_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_macrodir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libhelptools_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libhelptools_la_macrodir)/$$f"; \
 	done
-install-libjavasci_la_rootDATA: $(libjavasci_la_root_DATA)
+install-libhelptools_la_rootDATA: $(libhelptools_la_root_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_rootdir)"
-	@list='$(libjavasci_la_root_DATA)'; for p in $$list; do \
+	test -z "$(libhelptools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_rootdir)"
+	@list='$(libhelptools_la_root_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_rootdir)/$$f'"; \
-	  $(libjavasci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_rootdir)/$$f"; \
+	  echo " $(libhelptools_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_rootdir)/$$f'"; \
+	  $(libhelptools_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_rootdir)/$$f"; \
 	done
 
-uninstall-libjavasci_la_rootDATA:
+uninstall-libhelptools_la_rootDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_root_DATA)'; for p in $$list; do \
+	@list='$(libhelptools_la_root_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_rootdir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libhelptools_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libhelptools_la_rootdir)/$$f"; \
 	done
-install-libjavasci_la_includeHEADERS: $(libjavasci_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_includedir)"
-	@list='$(libjavasci_la_include_HEADERS)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_includedir)/$$f'"; \
-	  $(libjavasci_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_includedir)/$$f"; \
-	done
-
-uninstall-libjavasci_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_include_HEADERS)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_includedir)/$$f"; \
-	done
-
-ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
-	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
-	unique=`for i in $$list; do \
-	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-	  done | \
-	  $(AWK) '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
-	mkid -fID $$unique
 tags: TAGS
+TAGS:
 
-TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
-		$(TAGS_FILES) $(LISP)
-	tags=; \
-	here=`pwd`; \
-	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
-	unique=`for i in $$list; do \
-	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-	  done | \
-	  $(AWK) '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
-	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
-	  test -n "$$unique" || unique=$$empty_fix; \
-	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
-	    $$tags $$unique; \
-	fi
 ctags: CTAGS
-CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
-		$(TAGS_FILES) $(LISP)
-	tags=; \
-	here=`pwd`; \
-	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
-	unique=`for i in $$list; do \
-	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-	  done | \
-	  $(AWK) '    { files[$$0] = 1; } \
-	       END { for (i in files) print i; }'`; \
-	test -z "$(CTAGS_ARGS)$$tags$$unique" \
-	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
-	     $$tags $$unique
+CTAGS:
 
-GTAGS:
-	here=`$(am__cd) $(top_builddir) && pwd` \
-	  && cd $(top_srcdir) \
-	  && gtags -i $(GTAGS_ARGS) $$here
-
-distclean-tags:
-	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -489,9 +462,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA) $(HEADERS)
+all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_helpendir)" "$(DESTDIR)$(libjavasci_la_helpfrdir)" "$(DESTDIR)$(libjavasci_la_macrodir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libhelptools_la_etcdir)" "$(DESTDIR)$(libhelptools_la_helpendir)" "$(DESTDIR)$(libhelptools_la_helpfrdir)" "$(DESTDIR)$(libhelptools_la_macrodir)" "$(DESTDIR)$(libhelptools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -524,7 +497,7 @@ clean-am: clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic distclean-tags
+distclean-am: clean-am distclean-generic
 
 dvi: dvi-am
 
@@ -536,11 +509,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libjavasci_la_etcDATA \
-	install-libjavasci_la_helpenDATA \
-	install-libjavasci_la_helpfrDATA \
-	install-libjavasci_la_includeHEADERS \
-	install-libjavasci_la_macroDATA install-libjavasci_la_rootDATA
+install-data-am: install-libhelptools_la_etcDATA \
+	install-libhelptools_la_helpenDATA \
+	install-libhelptools_la_helpfrDATA \
+	install-libhelptools_la_macroDATA \
+	install-libhelptools_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -574,37 +547,33 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libjavasci_la_etcDATA \
-	uninstall-libjavasci_la_helpenDATA \
-	uninstall-libjavasci_la_helpfrDATA \
-	uninstall-libjavasci_la_includeHEADERS \
-	uninstall-libjavasci_la_macroDATA \
-	uninstall-libjavasci_la_rootDATA
+uninstall-am: uninstall-libhelptools_la_etcDATA \
+	uninstall-libhelptools_la_helpenDATA \
+	uninstall-libhelptools_la_helpfrDATA \
+	uninstall-libhelptools_la_macroDATA \
+	uninstall-libhelptools_la_rootDATA
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-libtool ctags distclean distclean-generic \
-	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-libjavasci_la_etcDATA \
-	install-libjavasci_la_helpenDATA \
-	install-libjavasci_la_helpfrDATA \
-	install-libjavasci_la_includeHEADERS \
-	install-libjavasci_la_macroDATA install-libjavasci_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags uninstall uninstall-am \
-	uninstall-libjavasci_la_etcDATA \
-	uninstall-libjavasci_la_helpenDATA \
-	uninstall-libjavasci_la_helpfrDATA \
-	uninstall-libjavasci_la_includeHEADERS \
-	uninstall-libjavasci_la_macroDATA \
-	uninstall-libjavasci_la_rootDATA
+.PHONY: all all-am check check-am clean clean-generic clean-libtool \
+	distclean distclean-generic distclean-libtool distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-libhelptools_la_etcDATA \
+	install-libhelptools_la_helpenDATA \
+	install-libhelptools_la_helpfrDATA \
+	install-libhelptools_la_macroDATA \
+	install-libhelptools_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-libhelptools_la_etcDATA \
+	uninstall-libhelptools_la_helpenDATA \
+	uninstall-libhelptools_la_helpfrDATA \
+	uninstall-libhelptools_la_macroDATA \
+	uninstall-libhelptools_la_rootDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

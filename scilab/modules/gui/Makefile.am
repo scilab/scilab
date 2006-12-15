@@ -83,15 +83,6 @@ sci_gateway/fortran/sci_delmenu_old.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
 
-libgui_la_includedir=$(includedir)/gui
-
-libgui_la_include_HEADERS = includes/men_choice.h \
-includes/sci_tohome.h \
-includes/men_scilab.h \
-includes/sci_clc.h \
-includes/gw_gui.h \
-includes/sci_show_window.h
-
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c
@@ -121,3 +112,103 @@ libgui_la_LIBADD = \
 #	$(top_builddir)/modules/jvm/libscijvm.la
 
 libgui_la_PKGCONFIG = gui.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/gui
+
+
+#### gui : Conf files ####
+libgui_la_rootdir = $(target)
+libgui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### gui : Scilab macros ###
+libgui_la_macrodir = $(target)/macros
+libgui_la_macro_DATA = macros/unsetmenu.sci \
+macros/x_choices.sci \
+macros/savedefaultbrowser.sci \
+macros/delmenu.sci \
+macros/menubar.sci \
+macros/x_matrix.sci \
+macros/getvalue.sci \
+macros/addmenu.sci \
+macros/show_startupinfo.sci \
+macros/clipboard.sci \
+macros/setmenu.sci macros/addmenu.bin \
+macros/clipboard.bin \
+macros/delmenu.bin \
+macros/getvalue.bin \
+macros/menubar.bin \
+macros/savedefaultbrowser.bin \
+macros/setmenu.bin \
+macros/show_startupinfo.bin \
+macros/unsetmenu.bin \
+macros/x_choices.bin \
+macros/x_matrix.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### gui : init scripts #### 
+libgui_la_etcdir = $(target)/etc
+libgui_la_etc_DATA = etc/gui.quit etc/gui.start
+
+#### gui : gateway declaration #### 
+libgui_la_sci_gatewaydir = $(target)/sci_gateway
+libgui_la_sci_gateway_DATA = sci_gateway/gui
+
+
+#### gui : documentation FR #### 
+libgui_la_helpfrdir = $(target)/help/fr
+libgui_la_helpfr_DATA = help/fr/xgetfile.htm \
+help/fr/setmenu.htm \
+help/fr/x_matrix.htm \
+help/fr/clc.htm \
+help/fr/getvalue.htm \
+help/fr/whatis.htm \
+help/fr/delmenu.htm \
+help/fr/addmenu.htm \
+help/fr/tohome.htm \
+help/fr/unsetmenu.htm \
+help/fr/x_choices.htm \
+help/fr/x_choose.htm \
+help/fr/x_dialog.htm \
+help/fr/x_mdialog.htm \
+help/fr/x_message.htm \
+help/fr/x_message_modeless.htm
+
+
+#### gui : documentation EN #### 
+libgui_la_helpendir = $(target)/help/eng
+libgui_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/getvalue.htm \
+help/eng/addmenu.htm \
+help/eng/clc.htm \
+help/eng/delmenu.htm \
+help/eng/x_choose.htm \
+help/eng/setmenu.htm \
+help/eng/tohome.htm \
+help/eng/unsetmenu.htm \
+help/eng/x_choices.htm \
+help/eng/x_dialog.htm \
+help/eng/xgetfile.htm \
+help/eng/x_matrix.htm \
+help/eng/x_mdialog.htm \
+help/eng/x_message.htm \
+help/eng/x_message_modeless.htm
+
+
+#### gui : include files ####
+libgui_la_includedir=$(includedir)/gui
+libgui_la_include_HEADERS = includes/men_choice.h \
+includes/sci_tohome.h \
+includes/men_scilab.h \
+includes/sci_clc.h \
+includes/gw_gui.h \
+includes/wmen_scilab.h \
+includes/sci_show_window.h
+
+
+#### gui : demos files ####
+libgui_la_demosdir=$(target)/demos/
+libgui_la_demos_DATA = demos/dialog.dem
+

@@ -15,6 +15,7 @@
 @SET_MAKE@
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -55,7 +56,12 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)"
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
+	"$(DESTDIR)$(libintersci_la_etcdir)" \
+	"$(DESTDIR)$(libintersci_la_helpendir)" \
+	"$(DESTDIR)$(libintersci_la_helpfrdir)" \
+	"$(DESTDIR)$(libintersci_la_macrodir)" \
+	"$(DESTDIR)$(libintersci_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libintersci_la_DEPENDENCIES =  \
@@ -90,6 +96,14 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libintersci_la_SOURCES) $(intersci_SOURCES)
 DIST_SOURCES = $(libintersci_la_SOURCES) $(intersci_SOURCES)
+libintersci_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libintersci_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libintersci_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libintersci_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libintersci_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libintersci_la_etc_DATA) $(libintersci_la_helpen_DATA) \
+	$(libintersci_la_helpfr_DATA) $(libintersci_la_macro_DATA) \
+	$(libintersci_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -200,7 +214,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -261,6 +275,32 @@ libintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libintersci_la_PKGCONFIG = intersci.pc
+#### Target ######
+target = $(datadir)/intersci
+
+#### intersci : Conf files ####
+libintersci_la_rootdir = $(target)
+libintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### intersci : Scilab macros ###
+libintersci_la_macrodir = $(target)/macros
+libintersci_la_macro_DATA = macros/buildmacros.sce
+
+#### intersci : init scripts #### 
+libintersci_la_etcdir = $(target)/etc
+libintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
+
+#### intersci : documentation FR #### 
+libintersci_la_helpfrdir = $(target)/help/fr
+libintersci_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/intersci.htm
+
+
+#### intersci : documentation EN #### 
+libintersci_la_helpendir = $(target)/help/eng
+libintersci_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/intersci.htm
+
 all: all-am
 
 .SUFFIXES:
@@ -577,6 +617,91 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libintersci_la_etcDATA: $(libintersci_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libintersci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_etcdir)"
+	@list='$(libintersci_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libintersci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_etcdir)/$$f'"; \
+	  $(libintersci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_etcdir)/$$f"; \
+	done
+
+uninstall-libintersci_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libintersci_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libintersci_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libintersci_la_etcdir)/$$f"; \
+	done
+install-libintersci_la_helpenDATA: $(libintersci_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libintersci_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_helpendir)"
+	@list='$(libintersci_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libintersci_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_helpendir)/$$f'"; \
+	  $(libintersci_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_helpendir)/$$f"; \
+	done
+
+uninstall-libintersci_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libintersci_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libintersci_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libintersci_la_helpendir)/$$f"; \
+	done
+install-libintersci_la_helpfrDATA: $(libintersci_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libintersci_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_helpfrdir)"
+	@list='$(libintersci_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libintersci_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_helpfrdir)/$$f'"; \
+	  $(libintersci_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libintersci_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libintersci_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libintersci_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libintersci_la_helpfrdir)/$$f"; \
+	done
+install-libintersci_la_macroDATA: $(libintersci_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libintersci_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_macrodir)"
+	@list='$(libintersci_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libintersci_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_macrodir)/$$f'"; \
+	  $(libintersci_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_macrodir)/$$f"; \
+	done
+
+uninstall-libintersci_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libintersci_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libintersci_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libintersci_la_macrodir)/$$f"; \
+	done
+install-libintersci_la_rootDATA: $(libintersci_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libintersci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libintersci_la_rootdir)"
+	@list='$(libintersci_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libintersci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libintersci_la_rootdir)/$$f'"; \
+	  $(libintersci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libintersci_la_rootdir)/$$f"; \
+	done
+
+uninstall-libintersci_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libintersci_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libintersci_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libintersci_la_rootdir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -654,11 +779,11 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(PROGRAMS)
+all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA)
 install-binPROGRAMS: install-libLTLIBRARIES
 
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(libintersci_la_etcdir)" "$(DESTDIR)$(libintersci_la_helpendir)" "$(DESTDIR)$(libintersci_la_helpfrdir)" "$(DESTDIR)$(libintersci_la_macrodir)" "$(DESTDIR)$(libintersci_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -706,7 +831,11 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-libintersci_la_etcDATA \
+	install-libintersci_la_helpenDATA \
+	install-libintersci_la_helpfrDATA \
+	install-libintersci_la_macroDATA \
+	install-libintersci_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -742,7 +871,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES
+uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES \
+	uninstall-libintersci_la_etcDATA \
+	uninstall-libintersci_la_helpenDATA \
+	uninstall-libintersci_la_helpfrDATA \
+	uninstall-libintersci_la_macroDATA \
+	uninstall-libintersci_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -754,12 +888,21 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libLTLIBRARIES
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-info install-info-am install-libLTLIBRARIES \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-binPROGRAMS uninstall-libLTLIBRARIES
+	install-libintersci_la_etcDATA \
+	install-libintersci_la_helpenDATA \
+	install-libintersci_la_helpfrDATA \
+	install-libintersci_la_macroDATA \
+	install-libintersci_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-binPROGRAMS \
+	uninstall-libLTLIBRARIES uninstall-libintersci_la_etcDATA \
+	uninstall-libintersci_la_helpenDATA \
+	uninstall-libintersci_la_helpfrDATA \
+	uninstall-libintersci_la_macroDATA \
+	uninstall-libintersci_la_rootDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

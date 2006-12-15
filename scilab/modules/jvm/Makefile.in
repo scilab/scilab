@@ -39,8 +39,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = modules/jvm
-DIST_COMMON = $(libscijvm_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,7 +60,11 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libscijvm_la_includedir)"
+	"$(DESTDIR)$(libjvm_la_etcdir)" \
+	"$(DESTDIR)$(libjvm_la_helpendir)" \
+	"$(DESTDIR)$(libjvm_la_helpfrdir)" \
+	"$(DESTDIR)$(libjvm_la_macrodir)" \
+	"$(DESTDIR)$(libjvm_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libscijvm_la_DEPENDENCIES = $(top_builddir)/modules/gui/libgui.la
@@ -86,8 +89,14 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscijvm_la_SOURCES)
 DIST_SOURCES = $(libscijvm_la_SOURCES)
-libscijvm_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libscijvm_la_include_HEADERS)
+libjvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libjvm_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libjvm_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libjvm_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libjvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libjvm_la_etc_DATA) $(libjvm_la_helpen_DATA) \
+	$(libjvm_la_helpfr_DATA) $(libjvm_la_macro_DATA) \
+	$(libjvm_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -198,7 +207,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -236,8 +245,6 @@ JVM_C_SOURCES = src/JVM_CONSOLE.c \
 src/JVM_Unix.c \
 src/jvms.c
 
-libscijvm_la_includedir = $(includedir)/scijvm
-libscijvm_la_include_HEADERS = 
 libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
 libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
 lib_LTLIBRARIES = libscijvm.la
@@ -246,6 +253,28 @@ libscijvm_la_LIBADD = \
 $(top_builddir)/modules/gui/libgui.la
 
 libscijvm_la_PKGCONFIG = scijvm.pc
+#### Target ######
+target = $(datadir)/jvm
+
+#### jvm : Conf files ####
+libjvm_la_rootdir = $(target)
+libjvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### jvm : Scilab macros ###
+libjvm_la_macrodir = $(target)/macros
+libjvm_la_macro_DATA = macros/buildmacros.sce
+
+#### jvm : init scripts #### 
+libjvm_la_etcdir = $(target)/etc
+libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+
+#### jvm : documentation FR #### 
+libjvm_la_helpfrdir = $(target)/help/fr
+libjvm_la_helpfr_DATA = 
+
+#### jvm : documentation EN #### 
+libjvm_la_helpendir = $(target)/help/eng
+libjvm_la_helpen_DATA = 
 all: all-am
 
 .SUFFIXES:
@@ -366,22 +395,90 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscijvm_la_includeHEADERS: $(libscijvm_la_include_HEADERS)
+install-libjvm_la_etcDATA: $(libjvm_la_etc_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscijvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscijvm_la_includedir)"
-	@list='$(libscijvm_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libjvm_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_etcdir)"
+	@list='$(libjvm_la_etc_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscijvm_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscijvm_la_includedir)/$$f'"; \
-	  $(libscijvm_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscijvm_la_includedir)/$$f"; \
+	  echo " $(libjvm_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_etcdir)/$$f'"; \
+	  $(libjvm_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_etcdir)/$$f"; \
 	done
 
-uninstall-libscijvm_la_includeHEADERS:
+uninstall-libjvm_la_etcDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscijvm_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libjvm_la_etc_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscijvm_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscijvm_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libjvm_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjvm_la_etcdir)/$$f"; \
+	done
+install-libjvm_la_helpenDATA: $(libjvm_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libjvm_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_helpendir)"
+	@list='$(libjvm_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libjvm_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_helpendir)/$$f'"; \
+	  $(libjvm_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_helpendir)/$$f"; \
+	done
+
+uninstall-libjvm_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libjvm_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libjvm_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjvm_la_helpendir)/$$f"; \
+	done
+install-libjvm_la_helpfrDATA: $(libjvm_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libjvm_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_helpfrdir)"
+	@list='$(libjvm_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libjvm_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_helpfrdir)/$$f'"; \
+	  $(libjvm_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libjvm_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libjvm_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libjvm_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjvm_la_helpfrdir)/$$f"; \
+	done
+install-libjvm_la_macroDATA: $(libjvm_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libjvm_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_macrodir)"
+	@list='$(libjvm_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libjvm_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_macrodir)/$$f'"; \
+	  $(libjvm_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_macrodir)/$$f"; \
+	done
+
+uninstall-libjvm_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libjvm_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libjvm_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjvm_la_macrodir)/$$f"; \
+	done
+install-libjvm_la_rootDATA: $(libjvm_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libjvm_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_rootdir)"
+	@list='$(libjvm_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libjvm_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_rootdir)/$$f'"; \
+	  $(libjvm_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_rootdir)/$$f"; \
+	done
+
+uninstall-libjvm_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libjvm_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libjvm_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libjvm_la_rootdir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -460,9 +557,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libjvm_la_etcdir)" "$(DESTDIR)$(libjvm_la_helpendir)" "$(DESTDIR)$(libjvm_la_helpfrdir)" "$(DESTDIR)$(libjvm_la_macrodir)" "$(DESTDIR)$(libjvm_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -510,7 +607,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libscijvm_la_includeHEADERS
+install-data-am: install-libjvm_la_etcDATA \
+	install-libjvm_la_helpenDATA install-libjvm_la_helpfrDATA \
+	install-libjvm_la_macroDATA install-libjvm_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -546,8 +645,9 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libscijvm_la_includeHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
+	uninstall-libjvm_la_helpenDATA uninstall-libjvm_la_helpfrDATA \
+	uninstall-libjvm_la_macroDATA uninstall-libjvm_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -558,14 +658,18 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libscijvm_la_includeHEADERS \
+	install-libLTLIBRARIES install-libjvm_la_etcDATA \
+	install-libjvm_la_helpenDATA install-libjvm_la_helpfrDATA \
+	install-libjvm_la_macroDATA install-libjvm_la_rootDATA \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libscijvm_la_includeHEADERS
+	uninstall-libjvm_la_etcDATA uninstall-libjvm_la_helpenDATA \
+	uninstall-libjvm_la_helpfrDATA uninstall-libjvm_la_macroDATA \
+	uninstall-libjvm_la_rootDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

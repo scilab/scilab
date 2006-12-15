@@ -19,6 +19,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -58,7 +59,13 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)"
+am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libspecial_functions_la_etcdir)" \
+	"$(DESTDIR)$(libspecial_functions_la_helpendir)" \
+	"$(DESTDIR)$(libspecial_functions_la_helpfrdir)" \
+	"$(DESTDIR)$(libspecial_functions_la_macrodir)" \
+	"$(DESTDIR)$(libspecial_functions_la_rootdir)" \
+	"$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libspecial_functions_la_DEPENDENCIES = $(top_builddir)/modules/elementaries_functions/libelementaries_functions.la \
@@ -96,6 +103,18 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libspecial_functions_la_SOURCES)
 DIST_SOURCES = $(libspecial_functions_la_SOURCES)
+libspecial_functions_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libspecial_functions_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libspecial_functions_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libspecial_functions_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libspecial_functions_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libspecial_functions_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libspecial_functions_la_etc_DATA) \
+	$(libspecial_functions_la_helpen_DATA) \
+	$(libspecial_functions_la_helpfr_DATA) \
+	$(libspecial_functions_la_macro_DATA) \
+	$(libspecial_functions_la_root_DATA) \
+	$(libspecial_functions_la_sci_gateway_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -206,7 +225,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -284,6 +303,50 @@ libspecial_functions_la_LIBADD = \
 #	$(top_builddir)/libs/blas/libblas.la \
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la
 libspecial_functions_la_PKGCONFIG = special_functions.pc
+#### Target ######
+target = $(datadir)/special_functions
+
+#### special_functions : Conf files ####
+libspecial_functions_la_rootdir = $(target)
+libspecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### special_functions : Scilab macros ###
+libspecial_functions_la_macrodir = $(target)/macros
+libspecial_functions_la_macro_DATA = macros/buildmacros.sce
+
+#### special_functions : init scripts #### 
+libspecial_functions_la_etcdir = $(target)/etc
+libspecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start
+
+#### special_functions : gateway declaration #### 
+libspecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
+libspecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions
+
+#### special_functions : documentation FR #### 
+libspecial_functions_la_helpfrdir = $(target)/help/fr
+libspecial_functions_la_helpfr_DATA = help/fr/legendre.htm \
+help/fr/oldbessel.htm \
+help/fr/calerf.htm \
+help/fr/whatis.htm \
+help/fr/beta.htm \
+help/fr/bessel.htm \
+help/fr/gamma.htm \
+help/fr/dlgamma.htm \
+help/fr/gammaln.htm
+
+
+#### special_functions : documentation EN #### 
+libspecial_functions_la_helpendir = $(target)/help/eng
+libspecial_functions_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/legendre.htm \
+help/eng/bessel.htm \
+help/eng/beta.htm \
+help/eng/calerf.htm \
+help/eng/dlgamma.htm \
+help/eng/gammaln.htm \
+help/eng/gamma.htm \
+help/eng/oldbessel.htm
+
 all: all-am
 
 .SUFFIXES:
@@ -549,6 +612,108 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libspecial_functions_la_etcDATA: $(libspecial_functions_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libspecial_functions_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libspecial_functions_la_etcdir)"
+	@list='$(libspecial_functions_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libspecial_functions_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libspecial_functions_la_etcdir)/$$f'"; \
+	  $(libspecial_functions_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libspecial_functions_la_etcdir)/$$f"; \
+	done
+
+uninstall-libspecial_functions_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libspecial_functions_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libspecial_functions_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libspecial_functions_la_etcdir)/$$f"; \
+	done
+install-libspecial_functions_la_helpenDATA: $(libspecial_functions_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libspecial_functions_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libspecial_functions_la_helpendir)"
+	@list='$(libspecial_functions_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libspecial_functions_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libspecial_functions_la_helpendir)/$$f'"; \
+	  $(libspecial_functions_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libspecial_functions_la_helpendir)/$$f"; \
+	done
+
+uninstall-libspecial_functions_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libspecial_functions_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libspecial_functions_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libspecial_functions_la_helpendir)/$$f"; \
+	done
+install-libspecial_functions_la_helpfrDATA: $(libspecial_functions_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libspecial_functions_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libspecial_functions_la_helpfrdir)"
+	@list='$(libspecial_functions_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libspecial_functions_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libspecial_functions_la_helpfrdir)/$$f'"; \
+	  $(libspecial_functions_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libspecial_functions_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libspecial_functions_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libspecial_functions_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libspecial_functions_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libspecial_functions_la_helpfrdir)/$$f"; \
+	done
+install-libspecial_functions_la_macroDATA: $(libspecial_functions_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libspecial_functions_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libspecial_functions_la_macrodir)"
+	@list='$(libspecial_functions_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libspecial_functions_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libspecial_functions_la_macrodir)/$$f'"; \
+	  $(libspecial_functions_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libspecial_functions_la_macrodir)/$$f"; \
+	done
+
+uninstall-libspecial_functions_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libspecial_functions_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libspecial_functions_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libspecial_functions_la_macrodir)/$$f"; \
+	done
+install-libspecial_functions_la_rootDATA: $(libspecial_functions_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libspecial_functions_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libspecial_functions_la_rootdir)"
+	@list='$(libspecial_functions_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libspecial_functions_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libspecial_functions_la_rootdir)/$$f'"; \
+	  $(libspecial_functions_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libspecial_functions_la_rootdir)/$$f"; \
+	done
+
+uninstall-libspecial_functions_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libspecial_functions_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libspecial_functions_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libspecial_functions_la_rootdir)/$$f"; \
+	done
+install-libspecial_functions_la_sci_gatewayDATA: $(libspecial_functions_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libspecial_functions_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)"
+	@list='$(libspecial_functions_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libspecial_functions_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)/$$f'"; \
+	  $(libspecial_functions_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libspecial_functions_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libspecial_functions_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -626,9 +791,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES)
+all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libspecial_functions_la_etcdir)" "$(DESTDIR)$(libspecial_functions_la_helpendir)" "$(DESTDIR)$(libspecial_functions_la_helpfrdir)" "$(DESTDIR)$(libspecial_functions_la_macrodir)" "$(DESTDIR)$(libspecial_functions_la_rootdir)" "$(DESTDIR)$(libspecial_functions_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -676,7 +841,12 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-libspecial_functions_la_etcDATA \
+	install-libspecial_functions_la_helpenDATA \
+	install-libspecial_functions_la_helpfrDATA \
+	install-libspecial_functions_la_macroDATA \
+	install-libspecial_functions_la_rootDATA \
+	install-libspecial_functions_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -712,7 +882,13 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libspecial_functions_la_etcDATA \
+	uninstall-libspecial_functions_la_helpenDATA \
+	uninstall-libspecial_functions_la_helpfrDATA \
+	uninstall-libspecial_functions_la_macroDATA \
+	uninstall-libspecial_functions_la_rootDATA \
+	uninstall-libspecial_functions_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -723,12 +899,24 @@ uninstall-am: uninstall-libLTLIBRARIES
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES
+	install-libLTLIBRARIES install-libspecial_functions_la_etcDATA \
+	install-libspecial_functions_la_helpenDATA \
+	install-libspecial_functions_la_helpfrDATA \
+	install-libspecial_functions_la_macroDATA \
+	install-libspecial_functions_la_rootDATA \
+	install-libspecial_functions_la_sci_gatewayDATA install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-libLTLIBRARIES \
+	uninstall-libspecial_functions_la_etcDATA \
+	uninstall-libspecial_functions_la_helpenDATA \
+	uninstall-libspecial_functions_la_helpfrDATA \
+	uninstall-libspecial_functions_la_macroDATA \
+	uninstall-libspecial_functions_la_rootDATA \
+	uninstall-libspecial_functions_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

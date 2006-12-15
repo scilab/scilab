@@ -116,10 +116,6 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-libinteger_la_includedir=$(includedir)/integer
-
-libinteger_la_include_HEADERS = includes/gw_integer.h
-
 libinteger_la_CFLAGS=  -Iincludes/ 
 
 lib_LTLIBRARIES = libinteger.la
@@ -132,3 +128,143 @@ libinteger_la_LIBADD = \
 	$(top_builddir)/modules/fileio/libfileio.la 
 
 libinteger_la_PKGCONFIG = integer.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/integer
+
+
+#### integer : Conf files ####
+libinteger_la_rootdir = $(target)
+libinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### integer : Scilab macros ###
+libinteger_la_macrodir = $(target)/macros
+libinteger_la_macro_DATA = macros/%i_plot2d1.sci \
+macros/%i_mfprintf.sci \
+macros/%i_plot2d2.sci \
+macros/%i_contour.sci \
+macros/%i_sign.sci \
+macros/%i_j_i.sci \
+macros/%i_msprintf.sci \
+macros/%i_a_s.sci \
+macros/%s_a_i.sci \
+macros/%i_plot2d.sci \
+macros/%i_d_s.sci \
+macros/%s_d_i.sci \
+macros/%i_string.sci \
+macros/%i_p_i.sci \
+macros/%i_champ1.sci \
+macros/%s_i_i.sci \
+macros/%i_j_s.sci \
+macros/%s_j_i.sci \
+macros/%i_l_s.sci \
+macros/%s_l_i.sci \
+macros/%i_m_s.sci \
+macros/%s_m_i.sci \
+macros/%i_n_s.sci \
+macros/%i_mprintf.sci \
+macros/%i_contour2d.sci \
+macros/%s_n_i.sci \
+macros/%i_o_s.sci \
+macros/%i_Matplot.sci \
+macros/%s_o_i.sci \
+macros/%i_p_s.sci \
+macros/%s_p_i.sci \
+macros/%i_q_s.sci \
+macros/%i_1_s.sci \
+macros/%s_1_i.sci \
+macros/%s_q_i.sci \
+macros/%i_r_s.sci \
+macros/%i_2_s.sci \
+macros/%s_2_i.sci \
+macros/%s_r_i.sci \
+macros/%i_s_s.sci \
+macros/%i_3_s.sci \
+macros/%s_3_i.sci \
+macros/%s_s_i.sci \
+macros/%i_4_s.sci \
+macros/%s_4_i.sci \
+macros/%i_champ.sci \
+macros/%i_x_s.sci \
+macros/%s_x_i.sci \
+macros/%i_fft.sci macros/%i_1_s.bin \
+macros/%i_2_s.bin \
+macros/%i_3_s.bin \
+macros/%i_4_s.bin \
+macros/%i_a_s.bin \
+macros/%i_champ1.bin \
+macros/%i_champ.bin \
+macros/%i_contour2d.bin \
+macros/%i_contour.bin \
+macros/%i_d_s.bin \
+macros/%i_fft.bin \
+macros/%i_j_i.bin \
+macros/%i_j_s.bin \
+macros/%i_l_s.bin \
+macros/%i_Matplot.bin \
+macros/%i_mfprintf.bin \
+macros/%i_mprintf.bin \
+macros/%i_msprintf.bin \
+macros/%i_m_s.bin \
+macros/%i_n_s.bin \
+macros/%i_o_s.bin \
+macros/%i_p_i.bin \
+macros/%i_plot2d1.bin \
+macros/%i_plot2d2.bin \
+macros/%i_plot2d.bin \
+macros/%i_p_s.bin \
+macros/%i_q_s.bin \
+macros/%i_r_s.bin \
+macros/%i_sign.bin \
+macros/%i_s_s.bin \
+macros/%i_string.bin \
+macros/%i_x_s.bin \
+macros/%s_1_i.bin \
+macros/%s_2_i.bin \
+macros/%s_3_i.bin \
+macros/%s_4_i.bin \
+macros/%s_a_i.bin \
+macros/%s_d_i.bin \
+macros/%s_i_i.bin \
+macros/%s_j_i.bin \
+macros/%s_l_i.bin \
+macros/%s_m_i.bin \
+macros/%s_n_i.bin \
+macros/%s_o_i.bin \
+macros/%s_p_i.bin \
+macros/%s_q_i.bin \
+macros/%s_r_i.bin \
+macros/%s_s_i.bin \
+macros/%s_x_i.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### integer : init scripts #### 
+libinteger_la_etcdir = $(target)/etc
+libinteger_la_etc_DATA = etc/integer.quit etc/integer.start
+
+#### integer : gateway declaration #### 
+libinteger_la_sci_gatewaydir = $(target)/sci_gateway
+libinteger_la_sci_gateway_DATA = sci_gateway/integer
+
+
+#### integer : documentation FR #### 
+libinteger_la_helpfrdir = $(target)/help/fr
+libinteger_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/iconvert.htm \
+help/fr/inttype.htm
+
+
+#### integer : documentation EN #### 
+libinteger_la_helpendir = $(target)/help/eng
+libinteger_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/iconvert.htm \
+help/eng/inttype.htm
+
+
+#### integer : include files ####
+libinteger_la_includedir=$(includedir)/integer
+libinteger_la_include_HEADERS = includes/gw_integer.h \
+includes/def.h
+

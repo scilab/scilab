@@ -105,11 +105,6 @@ sci_gateway/fortran/Ex-bvode.f \
 sci_gateway/fortran/bbvode.f \
 sci_gateway/fortran/Ex-feval.f
 
-libdifferential_equations_la_includedir=$(includedir)/differential_equations
-
-libdifferential_equations_la_include_HEADERS = 
-#includes/gw_differential_equations.h
-
 libdifferential_equations_la_CFLAGS= 
 # -Iincludes/ 
 #-Isrc/c/
@@ -122,3 +117,62 @@ libdifferential_equations_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
 libdifferential_equations_la_PKGCONFIG = differential_equations.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/differential_equations
+
+
+#### differential_equations : Conf files ####
+libdifferential_equations_la_rootdir = $(target)
+libdifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### differential_equations : Scilab macros ###
+libdifferential_equations_la_macrodir = $(target)/macros
+libdifferential_equations_la_macro_DATA = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### differential_equations : init scripts #### 
+libdifferential_equations_la_etcdir = $(target)/etc
+libdifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/differential_equations.start
+
+#### differential_equations : gateway declaration #### 
+libdifferential_equations_la_sci_gatewaydir = $(target)/sci_gateway
+libdifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations
+
+#### differential_equations : documentation FR #### 
+libdifferential_equations_la_helpfrdir = $(target)/help/fr
+libdifferential_equations_la_helpfr_DATA = help/fr/ode_root.htm \
+help/fr/impl.htm \
+help/fr/int2d.htm \
+help/fr/int3d.htm \
+help/fr/odedc.htm \
+help/fr/odeoptions.htm \
+help/fr/feval.htm \
+help/fr/intg.htm \
+help/fr/ode.htm \
+help/fr/whatis.htm \
+help/fr/dassl.htm \
+help/fr/dasrt.htm \
+help/fr/ode_discrete.htm \
+help/fr/ode_optional_output.htm
+
+
+#### differential_equations : documentation EN #### 
+libdifferential_equations_la_helpendir = $(target)/help/eng
+libdifferential_equations_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/ode_root.htm \
+help/eng/dasrt.htm \
+help/eng/dassl.htm \
+help/eng/feval.htm \
+help/eng/impl.htm \
+help/eng/int2d.htm \
+help/eng/int3d.htm \
+help/eng/intg.htm \
+help/eng/odedc.htm \
+help/eng/ode_discrete.htm \
+help/eng/odeoptions.htm \
+help/eng/ode_optional_output.htm \
+help/eng/ode.htm
+

@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -62,6 +63,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libgui_la_demosdir)" \
+	"$(DESTDIR)$(libgui_la_etcdir)" \
+	"$(DESTDIR)$(libgui_la_helpendir)" \
+	"$(DESTDIR)$(libgui_la_helpfrdir)" \
+	"$(DESTDIR)$(libgui_la_macrodir)" \
+	"$(DESTDIR)$(libgui_la_rootdir)" \
+	"$(DESTDIR)$(libgui_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libgui_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -173,6 +181,17 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libgui_la_SOURCES)
 DIST_SOURCES = $(am__libgui_la_SOURCES_DIST)
+libgui_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libgui_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libgui_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libgui_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libgui_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libgui_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libgui_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libgui_la_demos_DATA) $(libgui_la_etc_DATA) \
+	$(libgui_la_helpen_DATA) $(libgui_la_helpfr_DATA) \
+	$(libgui_la_macro_DATA) $(libgui_la_root_DATA) \
+	$(libgui_la_sci_gateway_DATA)
 libgui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libgui_la_include_HEADERS)
 ETAGS = etags
@@ -285,7 +304,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -398,14 +417,6 @@ sci_gateway/fortran/sci_addmenu_old.f \
 sci_gateway/fortran/sci_delmenu_old.f
 
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
-libgui_la_includedir = $(includedir)/gui
-libgui_la_include_HEADERS = includes/men_choice.h \
-includes/sci_tohome.h \
-includes/men_scilab.h \
-includes/sci_clc.h \
-includes/gw_gui.h \
-includes/sci_show_window.h
-
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 libgui_la_CFLAGS = -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
@@ -423,6 +434,100 @@ libgui_la_LIBADD = \
 #	$(top_builddir)/modules/graphics/libgraphics.la
 #	$(top_builddir)/modules/jvm/libscijvm.la
 libgui_la_PKGCONFIG = gui.pc
+#### Target ######
+target = $(datadir)/gui
+
+#### gui : Conf files ####
+libgui_la_rootdir = $(target)
+libgui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### gui : Scilab macros ###
+libgui_la_macrodir = $(target)/macros
+libgui_la_macro_DATA = macros/unsetmenu.sci \
+macros/x_choices.sci \
+macros/savedefaultbrowser.sci \
+macros/delmenu.sci \
+macros/menubar.sci \
+macros/x_matrix.sci \
+macros/getvalue.sci \
+macros/addmenu.sci \
+macros/show_startupinfo.sci \
+macros/clipboard.sci \
+macros/setmenu.sci macros/addmenu.bin \
+macros/clipboard.bin \
+macros/delmenu.bin \
+macros/getvalue.bin \
+macros/menubar.bin \
+macros/savedefaultbrowser.bin \
+macros/setmenu.bin \
+macros/show_startupinfo.bin \
+macros/unsetmenu.bin \
+macros/x_choices.bin \
+macros/x_matrix.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### gui : init scripts #### 
+libgui_la_etcdir = $(target)/etc
+libgui_la_etc_DATA = etc/gui.quit etc/gui.start
+
+#### gui : gateway declaration #### 
+libgui_la_sci_gatewaydir = $(target)/sci_gateway
+libgui_la_sci_gateway_DATA = sci_gateway/gui
+
+#### gui : documentation FR #### 
+libgui_la_helpfrdir = $(target)/help/fr
+libgui_la_helpfr_DATA = help/fr/xgetfile.htm \
+help/fr/setmenu.htm \
+help/fr/x_matrix.htm \
+help/fr/clc.htm \
+help/fr/getvalue.htm \
+help/fr/whatis.htm \
+help/fr/delmenu.htm \
+help/fr/addmenu.htm \
+help/fr/tohome.htm \
+help/fr/unsetmenu.htm \
+help/fr/x_choices.htm \
+help/fr/x_choose.htm \
+help/fr/x_dialog.htm \
+help/fr/x_mdialog.htm \
+help/fr/x_message.htm \
+help/fr/x_message_modeless.htm
+
+
+#### gui : documentation EN #### 
+libgui_la_helpendir = $(target)/help/eng
+libgui_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/getvalue.htm \
+help/eng/addmenu.htm \
+help/eng/clc.htm \
+help/eng/delmenu.htm \
+help/eng/x_choose.htm \
+help/eng/setmenu.htm \
+help/eng/tohome.htm \
+help/eng/unsetmenu.htm \
+help/eng/x_choices.htm \
+help/eng/x_dialog.htm \
+help/eng/xgetfile.htm \
+help/eng/x_matrix.htm \
+help/eng/x_mdialog.htm \
+help/eng/x_message.htm \
+help/eng/x_message_modeless.htm
+
+
+#### gui : include files ####
+libgui_la_includedir = $(includedir)/gui
+libgui_la_include_HEADERS = includes/men_choice.h \
+includes/sci_tohome.h \
+includes/men_scilab.h \
+includes/sci_clc.h \
+includes/gw_gui.h \
+includes/wmen_scilab.h \
+includes/sci_show_window.h
+
+
+#### gui : demos files ####
+libgui_la_demosdir = $(target)/demos/
+libgui_la_demos_DATA = demos/dialog.dem
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1071,6 +1176,125 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libgui_la_demosDATA: $(libgui_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_demosdir)"
+	@list='$(libgui_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_demosdir)/$$f'"; \
+	  $(libgui_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_demosdir)/$$f"; \
+	done
+
+uninstall-libgui_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_demos_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_demosdir)/$$f"; \
+	done
+install-libgui_la_etcDATA: $(libgui_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_etcdir)"
+	@list='$(libgui_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_etcdir)/$$f'"; \
+	  $(libgui_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_etcdir)/$$f"; \
+	done
+
+uninstall-libgui_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_etcdir)/$$f"; \
+	done
+install-libgui_la_helpenDATA: $(libgui_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_helpendir)"
+	@list='$(libgui_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_helpendir)/$$f'"; \
+	  $(libgui_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_helpendir)/$$f"; \
+	done
+
+uninstall-libgui_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_helpendir)/$$f"; \
+	done
+install-libgui_la_helpfrDATA: $(libgui_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_helpfrdir)"
+	@list='$(libgui_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_helpfrdir)/$$f'"; \
+	  $(libgui_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libgui_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_helpfrdir)/$$f"; \
+	done
+install-libgui_la_macroDATA: $(libgui_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_macrodir)"
+	@list='$(libgui_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_macrodir)/$$f'"; \
+	  $(libgui_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_macrodir)/$$f"; \
+	done
+
+uninstall-libgui_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_macrodir)/$$f"; \
+	done
+install-libgui_la_rootDATA: $(libgui_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_rootdir)"
+	@list='$(libgui_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_rootdir)/$$f'"; \
+	  $(libgui_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_rootdir)/$$f"; \
+	done
+
+uninstall-libgui_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_rootdir)/$$f"; \
+	done
+install-libgui_la_sci_gatewayDATA: $(libgui_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgui_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_sci_gatewaydir)"
+	@list='$(libgui_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libgui_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f'"; \
+	  $(libgui_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libgui_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libgui_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgui_la_sci_gatewaydir)/$$f"; \
+	done
 install-libgui_la_includeHEADERS: $(libgui_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libgui_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_includedir)"
@@ -1166,9 +1390,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgui_la_demosdir)" "$(DESTDIR)$(libgui_la_etcdir)" "$(DESTDIR)$(libgui_la_helpendir)" "$(DESTDIR)$(libgui_la_helpfrdir)" "$(DESTDIR)$(libgui_la_macrodir)" "$(DESTDIR)$(libgui_la_rootdir)" "$(DESTDIR)$(libgui_la_sci_gatewaydir)" "$(DESTDIR)$(libgui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1219,7 +1443,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libgui_la_includeHEADERS
+install-data-am: install-libgui_la_demosDATA install-libgui_la_etcDATA \
+	install-libgui_la_helpenDATA install-libgui_la_helpfrDATA \
+	install-libgui_la_includeHEADERS install-libgui_la_macroDATA \
+	install-libgui_la_rootDATA install-libgui_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1255,8 +1482,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libgui_la_includeHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libgui_la_demosDATA \
+	uninstall-libgui_la_etcDATA uninstall-libgui_la_helpenDATA \
+	uninstall-libgui_la_helpfrDATA \
+	uninstall-libgui_la_includeHEADERS \
+	uninstall-libgui_la_macroDATA uninstall-libgui_la_rootDATA \
+	uninstall-libgui_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1267,14 +1498,21 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libgui_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libgui_la_includeHEADERS
+	install-libLTLIBRARIES install-libgui_la_demosDATA \
+	install-libgui_la_etcDATA install-libgui_la_helpenDATA \
+	install-libgui_la_helpfrDATA install-libgui_la_includeHEADERS \
+	install-libgui_la_macroDATA install-libgui_la_rootDATA \
+	install-libgui_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libgui_la_demosDATA uninstall-libgui_la_etcDATA \
+	uninstall-libgui_la_helpenDATA uninstall-libgui_la_helpfrDATA \
+	uninstall-libgui_la_includeHEADERS \
+	uninstall-libgui_la_macroDATA uninstall-libgui_la_rootDATA \
+	uninstall-libgui_la_sci_gatewayDATA
 
 
 $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad src/c/xsci/x_main.c

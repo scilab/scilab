@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -61,6 +62,12 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libstring_la_etcdir)" \
+	"$(DESTDIR)$(libstring_la_helpendir)" \
+	"$(DESTDIR)$(libstring_la_helpfrdir)" \
+	"$(DESTDIR)$(libstring_la_macrodir)" \
+	"$(DESTDIR)$(libstring_la_rootdir)" \
+	"$(DESTDIR)$(libstring_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libstring_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -107,6 +114,15 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libstring_la_SOURCES)
 DIST_SOURCES = $(libstring_la_SOURCES)
+libstring_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libstring_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libstring_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libstring_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libstring_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libstring_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libstring_la_etc_DATA) $(libstring_la_helpen_DATA) \
+	$(libstring_la_helpfr_DATA) $(libstring_la_macro_DATA) \
+	$(libstring_la_root_DATA) $(libstring_la_sci_gateway_DATA)
 libstring_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libstring_la_include_HEADERS)
 ETAGS = etags
@@ -219,7 +235,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -291,10 +307,6 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libstring_la_includedir = $(includedir)/string
-libstring_la_include_HEADERS = includes/men_Sutils.h \
-includes/gw_string.h
-
 libstring_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libstring.la
 libstring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -306,6 +318,107 @@ libstring_la_LIBADD = \
 # Cyclic deps
 #	$(top_builddir)/modules/core/libcore.la
 libstring_la_PKGCONFIG = string.pc
+#### Target ######
+target = $(datadir)/string
+
+#### string : Conf files ####
+libstring_la_rootdir = $(target)
+libstring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### string : Scilab macros ###
+libstring_la_macrodir = $(target)/macros
+libstring_la_macro_DATA = macros/dec2hex.sci \
+macros/hex2dec.sci \
+macros/tokenpos.sci \
+macros/evstr.sci \
+macros/oct2dec.sci \
+macros/eval.sci \
+macros/base2dec.sci \
+macros/stripblanks.sci \
+macros/justify.sci \
+macros/arobasestring2strings.sci \
+macros/ascii2string.sci \
+macros/fun2string.sci macros/arobasestring2strings.bin \
+macros/ascii2string.bin \
+macros/base2dec.bin \
+macros/dec2hex.bin \
+macros/eval.bin \
+macros/evstr.bin \
+macros/fun2string.bin \
+macros/hex2dec.bin \
+macros/justify.bin \
+macros/oct2dec.bin \
+macros/stripblanks.bin \
+macros/tokenpos.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### string : init scripts #### 
+libstring_la_etcdir = $(target)/etc
+libstring_la_etc_DATA = etc/string.quit etc/string.start
+
+#### string : gateway declaration #### 
+libstring_la_sci_gatewaydir = $(target)/sci_gateway
+libstring_la_sci_gateway_DATA = sci_gateway/string
+
+#### string : documentation FR #### 
+libstring_la_helpfrdir = $(target)/help/fr
+libstring_la_helpfr_DATA = help/fr/code2str.htm \
+help/fr/fun2string.htm \
+help/fr/grep.htm \
+help/fr/hex2dec.htm \
+help/fr/justify.htm \
+help/fr/length.htm \
+help/fr/part.htm \
+help/fr/str2code.htm \
+help/fr/strcat.htm \
+help/fr/strindex.htm \
+help/fr/strings.htm \
+help/fr/string.htm \
+help/fr/stripblanks.htm \
+help/fr/strsplit.htm \
+help/fr/strsubst.htm \
+help/fr/tokenpos.htm \
+help/fr/tokens.htm \
+help/fr/dec2hex.htm \
+help/fr/whatis.htm \
+help/fr/convstr.htm \
+help/fr/ascii.htm \
+help/fr/emptystr.htm \
+help/fr/sci2exp.htm
+
+
+#### string : documentation EN #### 
+libstring_la_helpendir = $(target)/help/eng
+libstring_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/code2str.htm \
+help/eng/ascii.htm \
+help/eng/emptystr.htm \
+help/eng/convstr.htm \
+help/eng/dec2hex.htm \
+help/eng/fun2string.htm \
+help/eng/grep.htm \
+help/eng/hex2dec.htm \
+help/eng/justify.htm \
+help/eng/length.htm \
+help/eng/part.htm \
+help/eng/sci2exp.htm \
+help/eng/str2code.htm \
+help/eng/strcat.htm \
+help/eng/strindex.htm \
+help/eng/strings.htm \
+help/eng/string.htm \
+help/eng/stripblanks.htm \
+help/eng/strsplit.htm \
+help/eng/strsubst.htm \
+help/eng/tokenpos.htm \
+help/eng/tokens.htm
+
+
+#### string : include files ####
+libstring_la_includedir = $(includedir)/string
+libstring_la_include_HEADERS = includes/men_Sutils.h \
+includes/gw_string.h
+
 all: all-am
 
 .SUFFIXES:
@@ -609,6 +722,108 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libstring_la_etcDATA: $(libstring_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libstring_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_etcdir)"
+	@list='$(libstring_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libstring_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_etcdir)/$$f'"; \
+	  $(libstring_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_etcdir)/$$f"; \
+	done
+
+uninstall-libstring_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libstring_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libstring_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libstring_la_etcdir)/$$f"; \
+	done
+install-libstring_la_helpenDATA: $(libstring_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libstring_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_helpendir)"
+	@list='$(libstring_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libstring_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_helpendir)/$$f'"; \
+	  $(libstring_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_helpendir)/$$f"; \
+	done
+
+uninstall-libstring_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libstring_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libstring_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libstring_la_helpendir)/$$f"; \
+	done
+install-libstring_la_helpfrDATA: $(libstring_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libstring_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_helpfrdir)"
+	@list='$(libstring_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libstring_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_helpfrdir)/$$f'"; \
+	  $(libstring_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libstring_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libstring_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libstring_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libstring_la_helpfrdir)/$$f"; \
+	done
+install-libstring_la_macroDATA: $(libstring_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libstring_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_macrodir)"
+	@list='$(libstring_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libstring_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_macrodir)/$$f'"; \
+	  $(libstring_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_macrodir)/$$f"; \
+	done
+
+uninstall-libstring_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libstring_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libstring_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libstring_la_macrodir)/$$f"; \
+	done
+install-libstring_la_rootDATA: $(libstring_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libstring_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_rootdir)"
+	@list='$(libstring_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libstring_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_rootdir)/$$f'"; \
+	  $(libstring_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_rootdir)/$$f"; \
+	done
+
+uninstall-libstring_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libstring_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libstring_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libstring_la_rootdir)/$$f"; \
+	done
+install-libstring_la_sci_gatewayDATA: $(libstring_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libstring_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_sci_gatewaydir)"
+	@list='$(libstring_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libstring_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f'"; \
+	  $(libstring_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libstring_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libstring_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libstring_la_sci_gatewaydir)/$$f"; \
+	done
 install-libstring_la_includeHEADERS: $(libstring_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libstring_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libstring_la_includedir)"
@@ -703,9 +918,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libstring_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libstring_la_etcdir)" "$(DESTDIR)$(libstring_la_helpendir)" "$(DESTDIR)$(libstring_la_helpfrdir)" "$(DESTDIR)$(libstring_la_macrodir)" "$(DESTDIR)$(libstring_la_rootdir)" "$(DESTDIR)$(libstring_la_sci_gatewaydir)" "$(DESTDIR)$(libstring_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -753,7 +968,12 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libstring_la_includeHEADERS
+install-data-am: install-libstring_la_etcDATA \
+	install-libstring_la_helpenDATA \
+	install-libstring_la_helpfrDATA \
+	install-libstring_la_includeHEADERS \
+	install-libstring_la_macroDATA install-libstring_la_rootDATA \
+	install-libstring_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -789,8 +1009,13 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libstring_la_includeHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libstring_la_etcDATA \
+	uninstall-libstring_la_helpenDATA \
+	uninstall-libstring_la_helpfrDATA \
+	uninstall-libstring_la_includeHEADERS \
+	uninstall-libstring_la_macroDATA \
+	uninstall-libstring_la_rootDATA \
+	uninstall-libstring_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -801,14 +1026,24 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libstring_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libstring_la_includeHEADERS
+	install-libLTLIBRARIES install-libstring_la_etcDATA \
+	install-libstring_la_helpenDATA \
+	install-libstring_la_helpfrDATA \
+	install-libstring_la_includeHEADERS \
+	install-libstring_la_macroDATA install-libstring_la_rootDATA \
+	install-libstring_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libstring_la_etcDATA \
+	uninstall-libstring_la_helpenDATA \
+	uninstall-libstring_la_helpfrDATA \
+	uninstall-libstring_la_includeHEADERS \
+	uninstall-libstring_la_macroDATA \
+	uninstall-libstring_la_rootDATA \
+	uninstall-libstring_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

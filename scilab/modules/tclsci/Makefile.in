@@ -61,7 +61,15 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(tcldir)" \
+am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libtclsci_la_demosdir)" \
+	"$(DESTDIR)$(libtclsci_la_etcdir)" \
+	"$(DESTDIR)$(libtclsci_la_helpendir)" \
+	"$(DESTDIR)$(libtclsci_la_helpfrdir)" \
+	"$(DESTDIR)$(libtclsci_la_macrodir)" \
+	"$(DESTDIR)$(libtclsci_la_rootdir)" \
+	"$(DESTDIR)$(libtclsci_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libtclsci_la_tcldir)" \
 	"$(DESTDIR)$(libtclsci_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -104,8 +112,18 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libtclsci_la_SOURCES)
 DIST_SOURCES = $(libtclsci_la_SOURCES)
-tclDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(tcl_DATA)
+libtclsci_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+libtclsci_la_tclDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libtclsci_la_demos_DATA) $(libtclsci_la_etc_DATA) \
+	$(libtclsci_la_helpen_DATA) $(libtclsci_la_helpfr_DATA) \
+	$(libtclsci_la_macro_DATA) $(libtclsci_la_root_DATA) \
+	$(libtclsci_la_sci_gateway_DATA) $(libtclsci_la_tcl_DATA)
 libtclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libtclsci_la_include_HEADERS)
 ETAGS = etags
@@ -218,7 +236,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -287,54 +305,233 @@ sci_gateway/sci_set.c \
 sci_gateway/sci_TCL_ExistArray.c \
 sci_gateway/sci_TCL_UpVar.c
 
+lib_LTLIBRARIES = libtclsci.la
+libtclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
+libtclsci_la_LDFLAGS = $(TCLTK_LIBS)
+libtclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
+libtclsci_la_LIBADD = 
+libtclsci_la_PKGCONFIG = tclsci.pc
+#### Target ######
+target = $(datadir)/tclsci
+
+#### tclsci : Conf files ####
+libtclsci_la_rootdir = $(target)
+libtclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### tclsci : Scilab macros ###
+libtclsci_la_macrodir = $(target)/macros
+libtclsci_la_macro_DATA = macros/TK_SetVar.sci \
+macros/IsAScalar.sci \
+macros/uimenu.sci \
+macros/config.sci \
+macros/gettklib.sci \
+macros/sciGUI_init.sci \
+macros/demoplay.sci \
+macros/browsevar.sci \
+macros/tk_getdir.sci \
+macros/GetUiControlValueType.sci \
+macros/tk_getfile.sci \
+macros/TK_EvalStr.sci \
+macros/tk_choose.sci \
+macros/uicontrol.sci \
+macros/figure.sci \
+macros/winclose.sci \
+macros/GetUiControlPropertyName.sci \
+macros/TK_EvalFile.sci \
+macros/TK_GetVar.sci \
+macros/waitbar.sci \
+macros/winlist.sci \
+macros/buttondialog.sci \
+macros/sciGUIhelp.sci \
+macros/tk_savefile.sci \
+macros/editvar_get.sci \
+macros/editvar.sci \
+macros/progressionbar.sci \
+macros/GetUiControlStyleName.sci macros/browsevar.bin \
+macros/buttondialog.bin \
+macros/config.bin \
+macros/demoplay.bin \
+macros/editvar_get.bin \
+macros/editvar.bin \
+macros/figure.bin \
+macros/gettklib.bin \
+macros/GetUiControlPropertyName.bin \
+macros/GetUiControlStyleName.bin \
+macros/GetUiControlValueType.bin \
+macros/IsAScalar.bin \
+macros/progressionbar.bin \
+macros/sciGUIhelp.bin \
+macros/sciGUI_init.bin \
+macros/tk_choose.bin \
+macros/TK_EvalFile.bin \
+macros/TK_EvalStr.bin \
+macros/tk_getdir.bin \
+macros/tk_getfile.bin \
+macros/TK_GetVar.bin \
+macros/tk_savefile.bin \
+macros/TK_SetVar.bin \
+macros/uicontrol.bin \
+macros/uimenu.bin \
+macros/waitbar.bin \
+macros/winclose.bin \
+macros/winlist.bin macros/names macros/lib macros/buildmacros.sce
+
+
+### TCL macros ###
+libtclsci_la_tcldir = $(target)/tcl/
+libtclsci_la_tcl_DATA = tcl/uicontrol.tcl \
+tcl/callbacks.tcl \
+tcl/get.tcl \
+tcl/figure.tcl \
+tcl/tkcontrols.tcl \
+tcl/uimenu.tcl \
+tcl/html_library.tcl \
+tcl/browsehelp.tcl \
+tcl/TK_Scilab.tcl \
+tcl/misc.tcl \
+tcl/set.tcl
+
+
+#### tclsci : init scripts #### 
+libtclsci_la_etcdir = $(target)/etc
+libtclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+
+#### tclsci : gateway declaration #### 
+libtclsci_la_sci_gatewaydir = $(target)/sci_gateway
+libtclsci_la_sci_gateway_DATA = sci_gateway/tclsci
+
+#### tclsci : documentation FR #### 
+libtclsci_la_helpfrdir = $(target)/help/fr
+libtclsci_la_helpfr_DATA = help/fr/buttondialog.htm \
+help/fr/demoplay.htm \
+help/fr/config.htm \
+help/fr/winclose.htm \
+help/fr/editvar.htm \
+help/fr/figure.htm \
+help/fr/findobj.htm \
+help/fr/TCL_ExistVar.htm \
+help/fr/ScilabEval.htm \
+help/fr/uimenu.htm \
+help/fr/TCL_ExistArray.htm \
+help/fr/TCL_ExistInterp.htm \
+help/fr/TCL_GetVar.htm \
+help/fr/TCL_GetVersion.htm \
+help/fr/TCL_SetVar.htm \
+help/fr/TCL_UnsetVar.htm \
+help/fr/TCL_UpVar.htm \
+help/fr/TK_EvalFile.htm \
+help/fr/TK_EvalStr.htm \
+help/fr/tk_getdir.htm \
+help/fr/tk_getfile.htm \
+help/fr/TK_GetVar.htm \
+help/fr/tk_savefile.htm \
+help/fr/TK_SetVar.htm \
+help/fr/uicontrol.htm \
+help/fr/waitbar.htm \
+help/fr/winlist.htm \
+help/fr/whatis.htm \
+help/fr/close.htm \
+help/fr/browsevar.htm \
+help/fr/TCL_CreateSlave.htm \
+help/fr/progressionbar.htm \
+help/fr/TCL_DeleteInterp.htm
+
+
+#### tclsci : documentation EN #### 
+libtclsci_la_helpendir = $(target)/help/eng
+libtclsci_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/buttondialog.htm \
+help/eng/browsevar.htm \
+help/eng/demoplay.htm \
+help/eng/close.htm \
+help/eng/config.htm \
+help/eng/winclose.htm \
+help/eng/editvar.htm \
+help/eng/figure.htm \
+help/eng/findobj.htm \
+help/eng/TCL_DeleteInterp.htm \
+help/eng/progressionbar.htm \
+help/eng/ScilabEval.htm \
+help/eng/TCL_CreateSlave.htm \
+help/eng/uimenu.htm \
+help/eng/TCL_ExistArray.htm \
+help/eng/TCL_ExistInterp.htm \
+help/eng/TCL_ExistVar.htm \
+help/eng/TCL_GetVar.htm \
+help/eng/TCL_GetVersion.htm \
+help/eng/TCL_SetVar.htm \
+help/eng/TCL_UnsetVar.htm \
+help/eng/TCL_UpVar.htm \
+help/eng/TK_EvalFile.htm \
+help/eng/TK_EvalStr.htm \
+help/eng/tk_getdir.htm \
+help/eng/tk_getfile.htm \
+help/eng/TK_GetVar.htm \
+help/eng/tk_savefile.htm \
+help/eng/TK_SetVar.htm \
+help/eng/uicontrol.htm \
+help/eng/waitbar.htm \
+help/eng/winlist.htm
+
+
+#### tclsci : include files ####
 libtclsci_la_includedir = $(includedir)/tclsci
-libtclsci_la_include_HEADERS = includes/GedManagement.h \
-includes/sci_set.h \
-includes/TclUiSet.h \
+libtclsci_la_include_HEADERS = includes/sci_set.h \
 includes/sci_TCL_ExistArray.h \
-includes/sci_TCL_ExistVar.h \
+includes/TclUiSet.h \
+includes/GedManagement.h \
 includes/sci_TCL_UpVar.h \
-includes/sci_opentk.h \
-includes/Errors.h \
 includes/sci_TCL_CreateSlave.h \
+includes/sci_opentk.h \
 includes/sci_TCL_gcf.h \
 includes/TCL_Global.h \
 includes/sci_close.h \
 includes/sci_TCL_SetVar.h \
 includes/ScilabEval.h \
 includes/InitTclTk.h \
-includes/sci_TCL_ExistInterp.h \
+includes/sci_TCL_ExistVar.h \
 includes/sci_TCL_DoOneEvent.h \
 includes/TclEvents.h \
 includes/Messages.h \
 includes/sci_TCL_UnsetVar.h \
 includes/sci_findobj.h \
+includes/Errors.h \
 includes/sci_get.h \
 includes/gw_tclsci.h \
-includes/sci_TCL_DeleteInterp.h \
+includes/sci_TCL_ExistInterp.h \
 includes/sci_TCL_EvalStr.h \
 includes/TclUiGet.h \
+includes/sci_TCL_DeleteInterp.h \
 includes/sci_TCL_GetVersion.h \
 includes/sci_TCL_EvalFile.h \
 includes/Warnings.h \
 includes/sci_TCL_GetVar.h
 
-tcl_DATA = $(top_srcdir)/modules/tclsci/tcl/TK_Scilab.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/misc.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/callbacks.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/tkcontrols.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/set.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/get.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/figure.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/uicontrol.tcl \
-	$(top_srcdir)/modules/tclsci/tcl/uimenu.tcl
 
-libtclsci_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ $(TCL_INC_PATH) $(TK_INC_PATH)
-libtclsci_la_LDFLAGS = $(TCLTK_LIBS)
-lib_LTLIBRARIES = libtclsci.la
-libtclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
-libtclsci_la_LIBADD = 
-libtclsci_la_PKGCONFIG = tclsci.pc
+#### tclsci : demos files ####
+libtclsci_la_demosdir = $(target)/demos/
+libtclsci_la_demos_DATA = demos/sciGUI/sciGUIdemo.dpf \
+demos/sciGUI/test_demoplay.dpf \
+demos/sciGUI/scilab01.gif \
+demos/sciGUI/logo01.gif \
+demos/tk/timer \
+demos/tk/tk.dem \
+demos/tk/rolodex.sce \
+demos/tk/demredraw.sci \
+demos/tk/rgb.txt \
+demos/tk/timer.sce \
+demos/tk/puzzle \
+demos/tk/uicontrol.sci \
+demos/tk/scale.sce \
+demos/tk/cscroll \
+demos/tk/tcolor \
+demos/tk/puzzle.sce \
+demos/tk/scroll.sce \
+demos/tk/uicontrol1.sce \
+demos/tk/tcolor.sce \
+demos/tk/rolodex \
+demos/tk/vscale
+
 all: all-am
 
 .SUFFIXES:
@@ -671,22 +868,141 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-tclDATA: $(tcl_DATA)
+install-libtclsci_la_demosDATA: $(libtclsci_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(tcldir)" || $(MKDIR_P) "$(DESTDIR)$(tcldir)"
-	@list='$(tcl_DATA)'; for p in $$list; do \
+	test -z "$(libtclsci_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_demosdir)"
+	@list='$(libtclsci_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(tcldir)/$$f'"; \
-	  $(tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(tcldir)/$$f"; \
+	  echo " $(libtclsci_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_demosdir)/$$f'"; \
+	  $(libtclsci_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_demosdir)/$$f"; \
 	done
 
-uninstall-tclDATA:
+uninstall-libtclsci_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(tcl_DATA)'; for p in $$list; do \
+	@list='$(libtclsci_la_demos_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(tcldir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(tcldir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_demosdir)/$$f"; \
+	done
+install-libtclsci_la_etcDATA: $(libtclsci_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_etcdir)"
+	@list='$(libtclsci_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_etcdir)/$$f'"; \
+	  $(libtclsci_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_etcdir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_etcdir)/$$f"; \
+	done
+install-libtclsci_la_helpenDATA: $(libtclsci_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_helpendir)"
+	@list='$(libtclsci_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_helpendir)/$$f'"; \
+	  $(libtclsci_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_helpendir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_helpendir)/$$f"; \
+	done
+install-libtclsci_la_helpfrDATA: $(libtclsci_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_helpfrdir)"
+	@list='$(libtclsci_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_helpfrdir)/$$f'"; \
+	  $(libtclsci_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_helpfrdir)/$$f"; \
+	done
+install-libtclsci_la_macroDATA: $(libtclsci_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_macrodir)"
+	@list='$(libtclsci_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_macrodir)/$$f'"; \
+	  $(libtclsci_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_macrodir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_macrodir)/$$f"; \
+	done
+install-libtclsci_la_rootDATA: $(libtclsci_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_rootdir)"
+	@list='$(libtclsci_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_rootdir)/$$f'"; \
+	  $(libtclsci_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_rootdir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_rootdir)/$$f"; \
+	done
+install-libtclsci_la_sci_gatewayDATA: $(libtclsci_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_sci_gatewaydir)"
+	@list='$(libtclsci_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_sci_gatewaydir)/$$f'"; \
+	  $(libtclsci_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_sci_gatewaydir)/$$f"; \
+	done
+install-libtclsci_la_tclDATA: $(libtclsci_la_tcl_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libtclsci_la_tcldir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_tcldir)"
+	@list='$(libtclsci_la_tcl_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libtclsci_la_tclDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_tcldir)/$$f'"; \
+	  $(libtclsci_la_tclDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_tcldir)/$$f"; \
+	done
+
+uninstall-libtclsci_la_tclDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libtclsci_la_tcl_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libtclsci_la_tcldir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libtclsci_la_tcldir)/$$f"; \
 	done
 install-libtclsci_la_includeHEADERS: $(libtclsci_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
@@ -784,7 +1100,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(tcldir)" "$(DESTDIR)$(libtclsci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libtclsci_la_demosdir)" "$(DESTDIR)$(libtclsci_la_etcdir)" "$(DESTDIR)$(libtclsci_la_helpendir)" "$(DESTDIR)$(libtclsci_la_helpfrdir)" "$(DESTDIR)$(libtclsci_la_macrodir)" "$(DESTDIR)$(libtclsci_la_rootdir)" "$(DESTDIR)$(libtclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libtclsci_la_tcldir)" "$(DESTDIR)$(libtclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -832,7 +1148,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libtclsci_la_includeHEADERS install-tclDATA
+install-data-am: install-libtclsci_la_demosDATA \
+	install-libtclsci_la_etcDATA install-libtclsci_la_helpenDATA \
+	install-libtclsci_la_helpfrDATA \
+	install-libtclsci_la_includeHEADERS \
+	install-libtclsci_la_macroDATA install-libtclsci_la_rootDATA \
+	install-libtclsci_la_sci_gatewayDATA \
+	install-libtclsci_la_tclDATA
 
 install-dvi: install-dvi-am
 
@@ -869,7 +1191,15 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libtclsci_la_includeHEADERS uninstall-tclDATA
+	uninstall-libtclsci_la_demosDATA \
+	uninstall-libtclsci_la_etcDATA \
+	uninstall-libtclsci_la_helpenDATA \
+	uninstall-libtclsci_la_helpfrDATA \
+	uninstall-libtclsci_la_includeHEADERS \
+	uninstall-libtclsci_la_macroDATA \
+	uninstall-libtclsci_la_rootDATA \
+	uninstall-libtclsci_la_sci_gatewayDATA \
+	uninstall-libtclsci_la_tclDATA
 
 .MAKE: install-am install-strip
 
@@ -880,14 +1210,27 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libtclsci_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip install-tclDATA installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-libLTLIBRARIES install-libtclsci_la_demosDATA \
+	install-libtclsci_la_etcDATA install-libtclsci_la_helpenDATA \
+	install-libtclsci_la_helpfrDATA \
+	install-libtclsci_la_includeHEADERS \
+	install-libtclsci_la_macroDATA install-libtclsci_la_rootDATA \
+	install-libtclsci_la_sci_gatewayDATA \
+	install-libtclsci_la_tclDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libtclsci_la_includeHEADERS uninstall-tclDATA
+	uninstall-libtclsci_la_demosDATA \
+	uninstall-libtclsci_la_etcDATA \
+	uninstall-libtclsci_la_helpenDATA \
+	uninstall-libtclsci_la_helpfrDATA \
+	uninstall-libtclsci_la_includeHEADERS \
+	uninstall-libtclsci_la_macroDATA \
+	uninstall-libtclsci_la_rootDATA \
+	uninstall-libtclsci_la_sci_gatewayDATA \
+	uninstall-libtclsci_la_tclDATA
 
 	$(top_builddir)/modules/intersci/libintersci.la \
 	$(top_builddir)/modules/core/libcore.la \

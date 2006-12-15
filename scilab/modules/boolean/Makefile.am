@@ -17,10 +17,6 @@ sci_gateway/c/gw_boolean.c
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_bool2s.f \
 sci_gateway/fortran/sci_find.f
 
-libboolean_la_includedir=$(includedir)/boolean
-
-libboolean_la_include_HEADERS = includes/gw_boolean.h
-
 libboolean_la_CFLAGS=  -Iincludes/ 
 
 lib_LTLIBRARIES = libboolean.la
@@ -33,3 +29,46 @@ libboolean_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
 libboolean_la_PKGCONFIG = boolean.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/boolean
+
+
+#### boolean : Conf files ####
+libboolean_la_rootdir = $(target)
+libboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### boolean : Scilab macros ###
+libboolean_la_macrodir = $(target)/macros
+libboolean_la_macro_DATA =  macros/buildmacros.sce
+
+
+#### boolean : init scripts #### 
+libboolean_la_etcdir = $(target)/etc
+libboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
+
+#### boolean : gateway declaration #### 
+libboolean_la_sci_gatewaydir = $(target)/sci_gateway
+libboolean_la_sci_gateway_DATA = sci_gateway/boolean
+
+
+#### boolean : documentation FR #### 
+libboolean_la_helpfrdir = $(target)/help/fr
+libboolean_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/find.htm \
+help/fr/bool2s.htm
+
+
+#### boolean : documentation EN #### 
+libboolean_la_helpendir = $(target)/help/eng
+libboolean_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/bool2s.htm \
+help/eng/find.htm
+
+
+#### boolean : include files ####
+libboolean_la_includedir=$(includedir)/boolean
+libboolean_la_include_HEADERS = includes/gw_boolean.h
+

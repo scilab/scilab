@@ -1065,6 +1065,7 @@ libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/hashtable/Makefile
 libs/f2c/Makefile
+modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
 modules/optimization/Makefile
@@ -1101,6 +1102,18 @@ modules/wintools/Makefile
 modules/core/Makefile
 modules/scicos/Makefile
 modules/scicos/src/ocaml/Makefile
+modules/functions/Makefile
+modules/incremental_link/Makefile
+modules/others/Makefile
+modules/overloading/Makefile
+modules/javasci/Makefile
+modules/maple2scilab/Makefile
+modules/m2sci/Makefile
+modules/texmacs/Makefile
+modules/tfds/Makefile
+modules/scipad/Makefile
+modules/scilab2fortran/Makefile
+modules/development_tools/Makefile
 modules/Makefile
 libs/Makefile 
 Makefile

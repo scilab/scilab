@@ -39,13 +39,6 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/gw_randlib.c \
 sci_gateway/sci_grand.c
 
-librandlib_la_includedir=$(includedir)/randlib
-
-librandlib_la_include_HEADERS = includes/grand.h \
-includes/clcg4.h \
-includes/others_generators.h
-
-
 librandlib_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
 lib_LTLIBRARIES = librandlib.la
@@ -61,3 +54,53 @@ librandlib_la_LIBADD = \
 
 
 librandlib_la_PKGCONFIG = randlib.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/randlib
+
+
+#### randlib : Conf files ####
+librandlib_la_rootdir = $(target)
+librandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### randlib : Scilab macros ###
+librandlib_la_macrodir = $(target)/macros
+librandlib_la_macro_DATA =  macros/buildmacros.sce
+
+
+#### randlib : init scripts #### 
+librandlib_la_etcdir = $(target)/etc
+librandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
+
+#### randlib : gateway declaration #### 
+librandlib_la_sci_gatewaydir = $(target)/sci_gateway
+librandlib_la_sci_gateway_DATA = sci_gateway/randlib
+
+
+#### randlib : documentation FR #### 
+librandlib_la_helpfrdir = $(target)/help/fr
+librandlib_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/grand.htm
+
+
+#### randlib : documentation EN #### 
+librandlib_la_helpendir = $(target)/help/eng
+librandlib_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/grand.htm
+
+
+#### randlib : include files ####
+librandlib_la_includedir=$(includedir)/randlib
+librandlib_la_include_HEADERS = includes/grand.h \
+includes/clcg4.h \
+includes/others_generators.h
+
+
+#### randlib : demos files ####
+librandlib_la_demosdir=$(target)/demos/
+librandlib_la_demos_DATA = demos/randomT.sci \
+demos/random.dem \
+demos/random.sci
+

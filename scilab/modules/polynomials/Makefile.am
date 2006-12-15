@@ -104,10 +104,6 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
-libpolynomials_la_includedir=$(includedir)/polynomials
-
-libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
-
 #libpolynomials_la_FFLAGS= -Iincludes/ 
 libpolynomials_la_CFLAGS= -Iincludes/ 
 #-Isrc/c/
@@ -121,3 +117,172 @@ libpolynomials_la_LIBADD =
 #	$(top_builddir)/modules/core/libcore.la 
 
 libpolynomials_la_PKGCONFIG = polynomials.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/polynomials
+
+
+#### polynomials : Conf files ####
+libpolynomials_la_rootdir = $(target)
+libpolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### polynomials : Scilab macros ###
+libpolynomials_la_macrodir = $(target)/macros
+libpolynomials_la_macro_DATA = macros/denom.sci \
+macros/pdiv.sci \
+macros/systmat.sci \
+macros/pol2str.sci \
+macros/diophant.sci \
+macros/htrianr.sci \
+macros/pol2des.sci \
+macros/rowcompr.sci \
+macros/hrmt.sci \
+macros/lcm.sci \
+macros/cmndred.sci \
+macros/colcompr.sci \
+macros/invr.sci \
+macros/determ.sci \
+macros/pfactors.sci \
+macros/coffg.sci \
+macros/routh_t.sci \
+macros/sylm.sci \
+macros/numer.sci \
+macros/hermit.sci \
+macros/polfact.sci \
+macros/horner.sci \
+macros/gcd.sci \
+macros/pol2tex.sci \
+macros/inv_coeff.sci \
+macros/detr.sci \
+macros/derivat.sci \
+macros/lcmdiag.sci \
+macros/factors.sci macros/cmndred.bin \
+macros/coffg.bin \
+macros/colcompr.bin \
+macros/denom.bin \
+macros/derivat.bin \
+macros/determ.bin \
+macros/detr.bin \
+macros/diophant.bin \
+macros/factors.bin \
+macros/gcd.bin \
+macros/hermit.bin \
+macros/horner.bin \
+macros/hrmt.bin \
+macros/htrianr.bin \
+macros/inv_coeff.bin \
+macros/invr.bin \
+macros/lcmdiag.bin \
+macros/lcm.bin \
+macros/numer.bin \
+macros/pdiv.bin \
+macros/pfactors.bin \
+macros/pol2des.bin \
+macros/pol2str.bin \
+macros/pol2tex.bin \
+macros/polfact.bin \
+macros/routh_t.bin \
+macros/rowcompr.bin \
+macros/sylm.bin \
+macros/systmat.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### polynomials : init scripts #### 
+libpolynomials_la_etcdir = $(target)/etc
+libpolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
+
+#### polynomials : gateway declaration #### 
+libpolynomials_la_sci_gatewaydir = $(target)/sci_gateway
+libpolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
+
+
+#### polynomials : documentation FR #### 
+libpolynomials_la_helpfrdir = $(target)/help/fr
+libpolynomials_la_helpfr_DATA = help/fr/colcompr.htm \
+help/fr/systmat.htm \
+help/fr/bezout.htm \
+help/fr/whatis.htm \
+help/fr/routh_t.htm \
+help/fr/pol2tex.htm \
+help/fr/clean.htm \
+help/fr/cmndred.htm \
+help/fr/coeff.htm \
+help/fr/coffg.htm \
+help/fr/diophant.htm \
+help/fr/degree.htm \
+help/fr/denom.htm \
+help/fr/derivat.htm \
+help/fr/determ.htm \
+help/fr/detr.htm \
+help/fr/rowcompr.htm \
+help/fr/factors.htm \
+help/fr/gcd.htm \
+help/fr/hermit.htm \
+help/fr/horner.htm \
+help/fr/hrmt.htm \
+help/fr/htrianr.htm \
+help/fr/invr.htm \
+help/fr/lcmdiag.htm \
+help/fr/lcm.htm \
+help/fr/ldiv.htm \
+help/fr/numer.htm \
+help/fr/pdiv.htm \
+help/fr/pol2des.htm \
+help/fr/pol2str.htm \
+help/fr/polfact.htm \
+help/fr/residu.htm \
+help/fr/roots.htm \
+help/fr/sfact.htm \
+help/fr/simp.htm \
+help/fr/simp_mode.htm \
+help/fr/sylm.htm
+
+
+#### polynomials : documentation EN #### 
+libpolynomials_la_helpendir = $(target)/help/eng
+libpolynomials_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/colcompr.htm \
+help/eng/bezout.htm \
+help/eng/clean.htm \
+help/eng/cmndred.htm \
+help/eng/coeff.htm \
+help/eng/coffg.htm \
+help/eng/diophant.htm \
+help/eng/degree.htm \
+help/eng/denom.htm \
+help/eng/derivat.htm \
+help/eng/determ.htm \
+help/eng/detr.htm \
+help/eng/rowcompr.htm \
+help/eng/factors.htm \
+help/eng/gcd.htm \
+help/eng/hermit.htm \
+help/eng/horner.htm \
+help/eng/hrmt.htm \
+help/eng/htrianr.htm \
+help/eng/invr.htm \
+help/eng/lcmdiag.htm \
+help/eng/lcm.htm \
+help/eng/ldiv.htm \
+help/eng/numer.htm \
+help/eng/pdiv.htm \
+help/eng/pol2des.htm \
+help/eng/pol2str.htm \
+help/eng/pol2tex.htm \
+help/eng/polfact.htm \
+help/eng/residu.htm \
+help/eng/roots.htm \
+help/eng/routh_t.htm \
+help/eng/sfact.htm \
+help/eng/simp.htm \
+help/eng/simp_mode.htm \
+help/eng/sylm.htm \
+help/eng/systmat.htm
+
+
+#### polynomials : include files ####
+libpolynomials_la_includedir=$(includedir)/polynomials
+libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
+

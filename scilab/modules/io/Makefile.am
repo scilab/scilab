@@ -73,11 +73,6 @@ noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
 libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
 
-libio_la_includedir=$(includedir)/io
-
-libio_la_include_HEADERS = includes/gw_io.h \
-includes/sci_getrelativefilename.h
-
 libio_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 lib_LTLIBRARIES = libio.la
@@ -93,3 +88,148 @@ libio_la_PKGCONFIG = io.pc
 
 libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
+
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/io
+
+
+#### io : Conf files ####
+libio_la_rootdir = $(target)
+libio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### io : Scilab macros ###
+libio_la_macrodir = $(target)/macros
+libio_la_macro_DATA = macros/printf.sci \
+macros/ssprint.sci \
+macros/getscilabkeywords.sci \
+macros/sprintf.sci \
+macros/unix_s.sci \
+macros/fprintf.sci \
+macros/halt.sci \
+macros/unix_g.sci \
+macros/unix_w.sci \
+macros/unix_x.sci \
+macros/readc_.sci \
+macros/sscanf.sci \
+macros/input.sci \
+macros/fscanf.sci macros/fprintf.bin \
+macros/fscanf.bin \
+macros/getscilabkeywords.bin \
+macros/halt.bin \
+macros/input.bin \
+macros/printf.bin \
+macros/readc_.bin \
+macros/sprintf.bin \
+macros/sscanf.bin \
+macros/ssprint.bin \
+macros/unix_g.bin \
+macros/unix_s.bin \
+macros/unix_w.bin \
+macros/unix_x.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### io : init scripts #### 
+libio_la_etcdir = $(target)/etc
+libio_la_etc_DATA = etc/io.quit etc/io.start
+
+#### io : gateway declaration #### 
+libio_la_sci_gatewaydir = $(target)/sci_gateway
+libio_la_sci_gateway_DATA = sci_gateway/io
+
+
+#### io : documentation FR #### 
+libio_la_helpfrdir = $(target)/help/fr
+libio_la_helpfr_DATA = help/fr/fileinfo.htm \
+help/fr/disp.htm \
+help/fr/keyboard.htm \
+help/fr/file.htm \
+help/fr/halt.htm \
+help/fr/load.htm \
+help/fr/getscilabkeywords.htm \
+help/fr/input.htm \
+help/fr/lib.htm \
+help/fr/mgetl.htm \
+help/fr/newest.htm \
+help/fr/oldload.htm \
+help/fr/oldsave.htm \
+help/fr/printf.htm \
+help/fr/printf_conversion.htm \
+help/fr/print.htm \
+help/fr/read4b.htm \
+help/fr/readb.htm \
+help/fr/readc_.htm \
+help/fr/read.htm \
+help/fr/save.htm \
+help/fr/writb.htm \
+help/fr/write4b.htm \
+help/fr/write.htm \
+help/fr/execstr.htm \
+help/fr/getenv.htm \
+help/fr/getf.htm \
+help/fr/whatis.htm \
+help/fr/getio.htm \
+help/fr/deff.htm \
+help/fr/diary.htm \
+help/fr/getrelativefilename.htm \
+help/fr/getpid.htm \
+help/fr/host.htm \
+help/fr/setenv.htm \
+help/fr/unix_g.htm \
+help/fr/unix_s.htm \
+help/fr/unix_w.htm \
+help/fr/unix.htm \
+help/fr/unix_x.htm
+
+
+#### io : documentation EN #### 
+libio_la_helpendir = $(target)/help/eng
+libio_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/fileinfo.htm \
+help/eng/deff.htm \
+help/eng/diary.htm \
+help/eng/disp.htm \
+help/eng/execstr.htm \
+help/eng/keyboard.htm \
+help/eng/file.htm \
+help/eng/getenv.htm \
+help/eng/getf.htm \
+help/eng/getio.htm \
+help/eng/getpid.htm \
+help/eng/halt.htm \
+help/eng/host.htm \
+help/eng/getrelativefilename.htm \
+help/eng/getscilabkeywords.htm \
+help/eng/input.htm \
+help/eng/load.htm \
+help/eng/lib.htm \
+help/eng/mgetl.htm \
+help/eng/newest.htm \
+help/eng/oldload.htm \
+help/eng/oldsave.htm \
+help/eng/printf.htm \
+help/eng/printf_conversion.htm \
+help/eng/print.htm \
+help/eng/read4b.htm \
+help/eng/readb.htm \
+help/eng/readc_.htm \
+help/eng/read.htm \
+help/eng/save.htm \
+help/eng/setenv.htm \
+help/eng/unix_g.htm \
+help/eng/unix_s.htm \
+help/eng/unix_w.htm \
+help/eng/unix.htm \
+help/eng/unix_x.htm \
+help/eng/writb.htm \
+help/eng/write4b.htm \
+help/eng/write.htm
+
+
+#### io : include files ####
+libio_la_includedir=$(includedir)/io
+libio_la_include_HEADERS = includes/sci_getrelativefilename.h \
+includes/gw_io.h
+

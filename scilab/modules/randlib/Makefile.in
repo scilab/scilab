@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -61,6 +62,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(librandlib_la_demosdir)" \
+	"$(DESTDIR)$(librandlib_la_etcdir)" \
+	"$(DESTDIR)$(librandlib_la_helpendir)" \
+	"$(DESTDIR)$(librandlib_la_helpfrdir)" \
+	"$(DESTDIR)$(librandlib_la_macrodir)" \
+	"$(DESTDIR)$(librandlib_la_rootdir)" \
+	"$(DESTDIR)$(librandlib_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(librandlib_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -100,6 +108,17 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(librandlib_la_SOURCES)
 DIST_SOURCES = $(librandlib_la_SOURCES)
+librandlib_la_demosDATA_INSTALL = $(INSTALL_DATA)
+librandlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
+librandlib_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+librandlib_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+librandlib_la_macroDATA_INSTALL = $(INSTALL_DATA)
+librandlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
+librandlib_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(librandlib_la_demos_DATA) $(librandlib_la_etc_DATA) \
+	$(librandlib_la_helpen_DATA) $(librandlib_la_helpfr_DATA) \
+	$(librandlib_la_macro_DATA) $(librandlib_la_root_DATA) \
+	$(librandlib_la_sci_gateway_DATA)
 librandlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(librandlib_la_include_HEADERS)
 ETAGS = etags
@@ -212,7 +231,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -282,11 +301,6 @@ src/fortran/gennor.f
 GATEWAY_C_SOURCES = sci_gateway/gw_randlib.c \
 sci_gateway/sci_grand.c
 
-librandlib_la_includedir = $(includedir)/randlib
-librandlib_la_include_HEADERS = includes/grand.h \
-includes/clcg4.h \
-includes/others_generators.h
-
 librandlib_la_CFLAGS = -Iincludes/ 
 #-Isrc/c/
 lib_LTLIBRARIES = librandlib.la
@@ -299,6 +313,50 @@ librandlib_la_LIBADD = \
 #	$(top_builddir)/libs/blas/libblas.la \
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 librandlib_la_PKGCONFIG = randlib.pc
+#### Target ######
+target = $(datadir)/randlib
+
+#### randlib : Conf files ####
+librandlib_la_rootdir = $(target)
+librandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### randlib : Scilab macros ###
+librandlib_la_macrodir = $(target)/macros
+librandlib_la_macro_DATA = macros/buildmacros.sce
+
+#### randlib : init scripts #### 
+librandlib_la_etcdir = $(target)/etc
+librandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
+
+#### randlib : gateway declaration #### 
+librandlib_la_sci_gatewaydir = $(target)/sci_gateway
+librandlib_la_sci_gateway_DATA = sci_gateway/randlib
+
+#### randlib : documentation FR #### 
+librandlib_la_helpfrdir = $(target)/help/fr
+librandlib_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/grand.htm
+
+
+#### randlib : documentation EN #### 
+librandlib_la_helpendir = $(target)/help/eng
+librandlib_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/grand.htm
+
+
+#### randlib : include files ####
+librandlib_la_includedir = $(includedir)/randlib
+librandlib_la_include_HEADERS = includes/grand.h \
+includes/clcg4.h \
+includes/others_generators.h
+
+
+#### randlib : demos files ####
+librandlib_la_demosdir = $(target)/demos/
+librandlib_la_demos_DATA = demos/randomT.sci \
+demos/random.dem \
+demos/random.sci
+
 all: all-am
 
 .SUFFIXES:
@@ -545,6 +603,125 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-librandlib_la_demosDATA: $(librandlib_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_demosdir)"
+	@list='$(librandlib_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_demosdir)/$$f'"; \
+	  $(librandlib_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_demosdir)/$$f"; \
+	done
+
+uninstall-librandlib_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_demos_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_demosdir)/$$f"; \
+	done
+install-librandlib_la_etcDATA: $(librandlib_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_etcdir)"
+	@list='$(librandlib_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_etcdir)/$$f'"; \
+	  $(librandlib_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_etcdir)/$$f"; \
+	done
+
+uninstall-librandlib_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_etcdir)/$$f"; \
+	done
+install-librandlib_la_helpenDATA: $(librandlib_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_helpendir)"
+	@list='$(librandlib_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_helpendir)/$$f'"; \
+	  $(librandlib_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_helpendir)/$$f"; \
+	done
+
+uninstall-librandlib_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_helpendir)/$$f"; \
+	done
+install-librandlib_la_helpfrDATA: $(librandlib_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_helpfrdir)"
+	@list='$(librandlib_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_helpfrdir)/$$f'"; \
+	  $(librandlib_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-librandlib_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_helpfrdir)/$$f"; \
+	done
+install-librandlib_la_macroDATA: $(librandlib_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_macrodir)"
+	@list='$(librandlib_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_macrodir)/$$f'"; \
+	  $(librandlib_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_macrodir)/$$f"; \
+	done
+
+uninstall-librandlib_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_macrodir)/$$f"; \
+	done
+install-librandlib_la_rootDATA: $(librandlib_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_rootdir)"
+	@list='$(librandlib_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_rootdir)/$$f'"; \
+	  $(librandlib_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_rootdir)/$$f"; \
+	done
+
+uninstall-librandlib_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_rootdir)/$$f"; \
+	done
+install-librandlib_la_sci_gatewayDATA: $(librandlib_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(librandlib_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_sci_gatewaydir)"
+	@list='$(librandlib_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(librandlib_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f'"; \
+	  $(librandlib_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-librandlib_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(librandlib_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(librandlib_la_sci_gatewaydir)/$$f"; \
+	done
 install-librandlib_la_includeHEADERS: $(librandlib_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(librandlib_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_includedir)"
@@ -639,9 +816,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_demosdir)" "$(DESTDIR)$(librandlib_la_etcdir)" "$(DESTDIR)$(librandlib_la_helpendir)" "$(DESTDIR)$(librandlib_la_helpfrdir)" "$(DESTDIR)$(librandlib_la_macrodir)" "$(DESTDIR)$(librandlib_la_rootdir)" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -689,7 +866,12 @@ info: info-am
 
 info-am:
 
-install-data-am: install-librandlib_la_includeHEADERS
+install-data-am: install-librandlib_la_demosDATA \
+	install-librandlib_la_etcDATA install-librandlib_la_helpenDATA \
+	install-librandlib_la_helpfrDATA \
+	install-librandlib_la_includeHEADERS \
+	install-librandlib_la_macroDATA install-librandlib_la_rootDATA \
+	install-librandlib_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -726,7 +908,14 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-librandlib_la_includeHEADERS
+	uninstall-librandlib_la_demosDATA \
+	uninstall-librandlib_la_etcDATA \
+	uninstall-librandlib_la_helpenDATA \
+	uninstall-librandlib_la_helpfrDATA \
+	uninstall-librandlib_la_includeHEADERS \
+	uninstall-librandlib_la_macroDATA \
+	uninstall-librandlib_la_rootDATA \
+	uninstall-librandlib_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -737,14 +926,25 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-librandlib_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-librandlib_la_includeHEADERS
+	install-libLTLIBRARIES install-librandlib_la_demosDATA \
+	install-librandlib_la_etcDATA install-librandlib_la_helpenDATA \
+	install-librandlib_la_helpfrDATA \
+	install-librandlib_la_includeHEADERS \
+	install-librandlib_la_macroDATA install-librandlib_la_rootDATA \
+	install-librandlib_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-librandlib_la_demosDATA \
+	uninstall-librandlib_la_etcDATA \
+	uninstall-librandlib_la_helpenDATA \
+	uninstall-librandlib_la_helpfrDATA \
+	uninstall-librandlib_la_includeHEADERS \
+	uninstall-librandlib_la_macroDATA \
+	uninstall-librandlib_la_rootDATA \
+	uninstall-librandlib_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

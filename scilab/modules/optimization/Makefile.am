@@ -133,11 +133,6 @@ sci_gateway/fortran/Ex-fsolve.f \
 sci_gateway/fortran/Ex-lsqrsolve.f
 
 
-liboptimization_la_includedir=$(includedir)/optimization
-
-liboptimization_la_include_HEADERS = includes/gw_optim.h  \
-includes/spd.h
-
 
 liboptimization_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
@@ -152,3 +147,164 @@ liboptimization_la_LIBADD = \
 	$(top_builddir)/modules/core/libcore.la
 
 liboptimization_la_PKGCONFIG = optimization.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/optimization
+
+
+#### optimization : Conf files ####
+liboptimization_la_rootdir = $(target)
+liboptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### optimization : Scilab macros ###
+liboptimization_la_macrodir = $(target)/macros
+liboptimization_la_macro_DATA = macros/derivative.sci \
+macros/linpro.sci \
+macros/quapro.sci \
+macros/fit_dat.sci \
+macros/pencost.sci \
+macros/karmarkar.sci \
+macros/lmisolver.sci \
+macros/leastsq.sci \
+macros/datafit.sci \
+macros/pack.sci \
+macros/lmitool.sci \
+macros/unpack.sci \
+macros/bvodeS.sci \
+macros/numdiff.sci \
+macros/NDcost.sci \
+macros/list2vec.sci \
+macros/vec2list.sci \
+macros/aplat.sci macros/aplat.bin \
+macros/bvodeS.bin \
+macros/datafit.bin \
+macros/derivative.bin \
+macros/fit_dat.bin \
+macros/karmarkar.bin \
+macros/leastsq.bin \
+macros/linpro.bin \
+macros/list2vec.bin \
+macros/lmisolver.bin \
+macros/lmitool.bin \
+macros/NDcost.bin \
+macros/numdiff.bin \
+macros/pack.bin \
+macros/pencost.bin \
+macros/quapro.bin \
+macros/unpack.bin \
+macros/vec2list.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### optimization : init scripts #### 
+liboptimization_la_etcdir = $(target)/etc
+liboptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
+
+#### optimization : gateway declaration #### 
+liboptimization_la_sci_gatewaydir = $(target)/sci_gateway
+liboptimization_la_sci_gateway_DATA = sci_gateway/optimization
+
+#### optimization : documentation FR #### 
+liboptimization_la_helpfrdir = $(target)/help/fr
+liboptimization_la_helpfr_DATA = help/fr/datafit.htm \
+help/fr/fit_dat.htm \
+help/fr/leastsq.htm \
+help/fr/linpro.htm \
+help/fr/lmitool.htm \
+help/fr/lmisolver.htm \
+help/fr/NDcost.htm \
+help/fr/lsqrsolve.htm \
+help/fr/mps2linpro.htm \
+help/fr/numdiff.htm \
+help/fr/optim.htm \
+help/fr/qld.htm \
+help/fr/quapro.htm \
+help/fr/semidef.htm \
+help/fr/fsolve.htm \
+help/fr/whatis.htm \
+help/fr/bvode.htm \
+help/fr/bvodeS.htm \
+help/fr/karmarkar.htm \
+help/fr/derivative.htm
+
+
+#### optimization : documentation EN #### 
+liboptimization_la_helpendir = $(target)/help/eng
+liboptimization_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/bvodeS.htm \
+help/eng/bvode.htm \
+help/eng/datafit.htm \
+help/eng/fit_dat.htm \
+help/eng/derivative.htm \
+help/eng/fsolve.htm \
+help/eng/leastsq.htm \
+help/eng/karmarkar.htm \
+help/eng/linpro.htm \
+help/eng/lmitool.htm \
+help/eng/lmisolver.htm \
+help/eng/NDcost.htm \
+help/eng/lsqrsolve.htm \
+help/eng/mps2linpro.htm \
+help/eng/numdiff.htm \
+help/eng/optim.htm \
+help/eng/qld.htm \
+help/eng/quapro.htm \
+help/eng/semidef.htm
+
+
+#### optimization : include files ####
+liboptimization_la_includedir=$(includedir)/optimization
+liboptimization_la_include_HEADERS = includes/gw_optim.h \
+includes/spd.h
+
+
+#### optimization : demos files ####
+liboptimization_la_demosdir=$(target)/demos/
+liboptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
+demos/lmitool/dscr_lyap2.sci \
+demos/lmitool/fullstate.sci \
+demos/lmitool/testdscr_lyap \
+demos/lmitool/of.sci \
+demos/lmitool/lmidem.sci \
+demos/lmitool/norminf.sci \
+demos/lmitool/lmi.dem \
+demos/lmitool/linprog.sci \
+demos/lmitool/h2hinf.sci \
+demos/lmitool/bigM.sci \
+demos/lmitool/test.sci \
+demos/lmitool/tset.sci \
+demos/lmitool/normopt2.sci \
+demos/lmitool/dscr_lyap.sci \
+demos/lmitool/phase1.sci \
+demos/lmitool/testnormopt \
+demos/lmitool/ric_dscr.sci \
+demos/lmitool/testnorminf \
+demos/lmitool/testlinprog \
+demos/lmitool/normopt.sci \
+demos/lmitool/sylvester.sci \
+demos/lmitool/testh2hinf \
+demos/multiflow/ex3.graph \
+demos/multiflow/demo_multiflow.sci \
+demos/multiflow/demo_multiflow_fr.htm \
+demos/multiflow/multiflow.dem \
+demos/icse/icse.sci \
+demos/icse/icseinit.sce \
+demos/icse/icsu.sci \
+demos/icse/icsua.sci \
+demos/icse/icsuq.sci \
+demos/icse/icsvisu.sci \
+demos/icse/seros.sce \
+demos/icse/navet.sce \
+demos/icse/icob.sci \
+demos/icse/icsegen.sci \
+demos/icse/icot.sci \
+demos/icse/icse.contexte \
+demos/icse/lqv.sce \
+demos/icse/sero.mes \
+demos/icse/README \
+demos/datafit/datafit.dem \
+demos/datafit/demo_datafit.sci \
+demos/datafit/demo_datafit_fr.htm \
+demos/optimization.dem
+

@@ -14,6 +14,7 @@
 
 @SET_MAKE@
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -53,7 +54,12 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)"
+am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libdouble_la_etcdir)" \
+	"$(DESTDIR)$(libdouble_la_helpendir)" \
+	"$(DESTDIR)$(libdouble_la_helpfrdir)" \
+	"$(DESTDIR)$(libdouble_la_macrodir)" \
+	"$(DESTDIR)$(libdouble_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libdouble_la_DEPENDENCIES = $(top_builddir)/libs/blas/libblas.la \
@@ -89,6 +95,14 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libdouble_la_SOURCES)
 DIST_SOURCES = $(libdouble_la_SOURCES)
+libdouble_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libdouble_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libdouble_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libdouble_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libdouble_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libdouble_la_etc_DATA) $(libdouble_la_helpen_DATA) \
+	$(libdouble_la_helpfr_DATA) $(libdouble_la_macro_DATA) \
+	$(libdouble_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -199,7 +213,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -256,12 +270,6 @@ sci_gateway/fortran/matcc.f \
 sci_gateway/fortran/mattrc.f \
 sci_gateway/fortran/matadd.f
 
-
-#libdouble_la_includedir=$(includedir)/double
-#libdouble_la_include_HEADERS = includes/gw_double.h
-
-#libdouble_la_CFLAGS=  -Iincludes/ 
-#-Isrc/c/
 lib_LTLIBRARIES = libdouble.la
 libdouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libdouble_la_LIBADD = \
@@ -272,6 +280,28 @@ libdouble_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libintersci.la
 
 libdouble_la_PKGCONFIG = double.pc
+#### Target ######
+target = $(datadir)/double
+
+#### double : Conf files ####
+libdouble_la_rootdir = $(target)
+libdouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### double : Scilab macros ###
+libdouble_la_macrodir = $(target)/macros
+libdouble_la_macro_DATA = macros/buildmacros.sce
+
+#### double : init scripts #### 
+libdouble_la_etcdir = $(target)/etc
+libdouble_la_etc_DATA = etc/double.quit etc/double.start
+
+#### double : documentation FR #### 
+libdouble_la_helpfrdir = $(target)/help/fr
+libdouble_la_helpfr_DATA = 
+
+#### double : documentation EN #### 
+libdouble_la_helpendir = $(target)/help/eng
+libdouble_la_helpen_DATA = 
 all: all-am
 
 .SUFFIXES:
@@ -448,6 +478,91 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libdouble_la_etcDATA: $(libdouble_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libdouble_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_etcdir)"
+	@list='$(libdouble_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libdouble_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_etcdir)/$$f'"; \
+	  $(libdouble_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_etcdir)/$$f"; \
+	done
+
+uninstall-libdouble_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdouble_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libdouble_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libdouble_la_etcdir)/$$f"; \
+	done
+install-libdouble_la_helpenDATA: $(libdouble_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libdouble_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_helpendir)"
+	@list='$(libdouble_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libdouble_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_helpendir)/$$f'"; \
+	  $(libdouble_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_helpendir)/$$f"; \
+	done
+
+uninstall-libdouble_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdouble_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libdouble_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libdouble_la_helpendir)/$$f"; \
+	done
+install-libdouble_la_helpfrDATA: $(libdouble_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libdouble_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_helpfrdir)"
+	@list='$(libdouble_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libdouble_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_helpfrdir)/$$f'"; \
+	  $(libdouble_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libdouble_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdouble_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libdouble_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libdouble_la_helpfrdir)/$$f"; \
+	done
+install-libdouble_la_macroDATA: $(libdouble_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libdouble_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_macrodir)"
+	@list='$(libdouble_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libdouble_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_macrodir)/$$f'"; \
+	  $(libdouble_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_macrodir)/$$f"; \
+	done
+
+uninstall-libdouble_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdouble_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libdouble_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libdouble_la_macrodir)/$$f"; \
+	done
+install-libdouble_la_rootDATA: $(libdouble_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libdouble_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_rootdir)"
+	@list='$(libdouble_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libdouble_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_rootdir)/$$f'"; \
+	  $(libdouble_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_rootdir)/$$f"; \
+	done
+
+uninstall-libdouble_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdouble_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libdouble_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libdouble_la_rootdir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -525,9 +640,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES)
+all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libdouble_la_etcdir)" "$(DESTDIR)$(libdouble_la_helpendir)" "$(DESTDIR)$(libdouble_la_helpfrdir)" "$(DESTDIR)$(libdouble_la_macrodir)" "$(DESTDIR)$(libdouble_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -575,7 +690,10 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-libdouble_la_etcDATA \
+	install-libdouble_la_helpenDATA \
+	install-libdouble_la_helpfrDATA install-libdouble_la_macroDATA \
+	install-libdouble_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -611,7 +729,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libdouble_la_etcDATA \
+	uninstall-libdouble_la_helpenDATA \
+	uninstall-libdouble_la_helpfrDATA \
+	uninstall-libdouble_la_macroDATA \
+	uninstall-libdouble_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -622,12 +744,20 @@ uninstall-am: uninstall-libLTLIBRARIES
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-libLTLIBRARIES install-libdouble_la_etcDATA \
+	install-libdouble_la_helpenDATA \
+	install-libdouble_la_helpfrDATA install-libdouble_la_macroDATA \
+	install-libdouble_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libdouble_la_etcDATA \
+	uninstall-libdouble_la_helpenDATA \
+	uninstall-libdouble_la_helpfrDATA \
+	uninstall-libdouble_la_macroDATA \
+	uninstall-libdouble_la_rootDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -48,43 +48,6 @@ sci_gateway/sci_pvm_config.c \
 sci_gateway/sci_pvm_recv_var.c \
 sci_gateway/sci_pvm_exit.c
 
-libscipvm_la_includedir=$(includedir)/pvm
-
-libscipvm_la_include_HEADERS = includes/sci_pvm_get_timer.h \
-includes/sci_pvm_exit.h \
-includes/sci_pvm_sci2f77.h \
-includes/sci_pvm_gettid.h \
-includes/sci_pvm_gsize.h \
-includes/sci_pvm_f772sci.h \
-includes/sci_pvm_delhosts.h \
-includes/sci_pvm_spawn.h \
-includes/sci_pvm_send.h \
-includes/sci_pvm_parent.h \
-includes/sci_pvm_error.h \
-includes/sci_pvm_set_timer.h \
-includes/sci_pvm_kill.h \
-includes/sci_pvm_bcast.h \
-includes/sci_pvm_recv.h \
-includes/sci_pvm_reduce.h \
-includes/gw_pvm.h \
-includes/sci_pvm_spawn_independent.h \
-includes/sci_pvm_probe.h \
-includes/sci_pvm_addhosts.h \
-includes/sci_pvm_joingroup.h \
-includes/sci_pvm_getinst.h \
-includes/sci_pvm_tidtohost.h \
-includes/sci_pvm_tasks.h \
-includes/sci_pvm_mytid.h \
-includes/sci_pvm_barrier.h \
-includes/sci_pvm_bufinfo.h \
-includes/sci_pvm_halt.h \
-includes/sci_pvm_start.h \
-includes/sci_pvm_error_mode.h \
-includes/sci_pvm_lvgroup.h \
-includes/sci_pvm_send_var.h \
-includes/sci_pvm_config.h \
-includes/sci_pvm_recv_var.h
-
 libscipvm_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 lib_LTLIBRARIES = libscipvm.la
@@ -98,6 +61,87 @@ libscipvm_la_LIBADD = \
 libscipvm_la_LDFLAGS = $(PVM_LIB)
 
 libscipvm_la_PKGCONFIG = scipvm.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/pvm
+
+
+#### pvm : Conf files ####
+libpvm_la_rootdir = $(target)
+libpvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### pvm : Scilab macros ###
+libpvm_la_macrodir = $(target)/macros
+libpvm_la_macro_DATA = macros/configure_pvm.sci \
+macros/with_pvm.sci macros/configure_pvm.bin \
+macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### pvm : init scripts #### 
+libpvm_la_etcdir = $(target)/etc
+libpvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
+
+#### pvm : gateway declaration #### 
+libpvm_la_sci_gatewaydir = $(target)/sci_gateway
+libpvm_la_sci_gateway_DATA = sci_gateway/pvm
+
+
+#### pvm : documentation FR #### 
+libpvm_la_helpfrdir = $(target)/help/fr
+libpvm_la_helpfr_DATA = 
+
+
+#### pvm : documentation EN #### 
+libpvm_la_helpendir = $(target)/help/eng
+libpvm_la_helpen_DATA = 
+
+
+#### pvm : include files ####
+libpvm_la_includedir=$(includedir)/pvm
+libpvm_la_include_HEADERS = includes/sci_pvm_exit.h \
+includes/sci_pvm_get_timer.h \
+includes/sci_pvm_gettid.h \
+includes/sci_pvm_gsize.h \
+includes/sci_pvm_sci2f77.h \
+includes/sci_pvm_f772sci.h \
+includes/sci_pvm_delhosts.h \
+includes/sci_pvm_spawn.h \
+includes/sci_pvm_send.h \
+includes/sci_pvm_parent.h \
+includes/sci_pvm_error.h \
+includes/sci_pvm_set_timer.h \
+includes/sci_pvm_kill.h \
+includes/sci_pvm_bcast.h \
+includes/sci_pvm_recv.h \
+includes/sci_pvm_spawn_independent.h \
+includes/sci_pvm_reduce.h \
+includes/sci_pvm_probe.h \
+includes/sci_pvm_addhosts.h \
+includes/sci_pvm_joingroup.h \
+includes/sci_pvm_getinst.h \
+includes/gw_pvm.h \
+includes/sci_pvm_tidtohost.h \
+includes/sci_pvm_tasks.h \
+includes/sci_pvm_mytid.h \
+includes/sci_pvm_barrier.h \
+includes/sci_pvm_bufinfo.h \
+includes/sci_pvm_halt.h \
+includes/sci_pvm_start.h \
+includes/sci_pvm_error_mode.h \
+includes/sci_pvm_lvgroup.h \
+includes/sci_pvm_send_var.h \
+includes/sci_pvm_config.h \
+includes/sci_pvm_recv_var.h
+
+
+#### pvm : demos files ####
+libpvm_la_demosdir=$(target)/demos/
+libpvm_la_demos_DATA = demos/pvm.dem \
+demos/pvm1.sce \
+demos/script.sce
+
 else
 		echo "PVM not activated. Skip this module."
 endif

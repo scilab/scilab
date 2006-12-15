@@ -69,6 +69,7 @@ libarnoldi_la_includedir=$(includedir)/arnoldi
 
 libarnoldi_la_include_HEADERS = 
 
+
 libarnoldi_la_CFLAGS= -I$(top_srcdir)/libs/MALLOC/includes/ 
 libarnoldi_la_FFLAGS= -Isrc/arpack/
 
@@ -84,3 +85,48 @@ $(top_builddir)/libs/MALLOC/libmalloc.la
 #$(top_builddir)/modules/core/libcore.la
 
 libarnoldi_la_PKGCONFIG = arnoldi.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/arnoldi
+
+
+#### arnoldi : Conf files ####
+libarnoldi_la_rootdir = $(target)
+libarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### arnoldi : Scilab macros ###
+libarnoldi_la_macrodir = $(target)/macros
+libarnoldi_la_macro_DATA =  macros/buildmacros.sce
+
+
+#### arnoldi : init scripts #### 
+libarnoldi_la_etcdir = $(target)/etc
+libarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
+
+#### arnoldi : gateway declaration #### 
+libarnoldi_la_sci_gatewaydir = $(target)/sci_gateway
+libarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi
+
+#### arnoldi : documentation FR #### 
+libarnoldi_la_helpfrdir = $(target)/help/fr
+libarnoldi_la_helpfr_DATA = help/fr/dsaupd.htm \
+help/fr/dseupd.htm \
+help/fr/znaupd.htm \
+help/fr/zneupd.htm \
+help/fr/whatis.htm \
+help/fr/dneupd.htm \
+help/fr/dnaupd.htm
+
+
+#### arnoldi : documentation EN #### 
+libarnoldi_la_helpendir = $(target)/help/eng
+libarnoldi_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/dnaupd.htm \
+help/eng/dneupd.htm \
+help/eng/dsaupd.htm \
+help/eng/dseupd.htm \
+help/eng/znaupd.htm \
+help/eng/zneupd.htm
+

@@ -22,6 +22,7 @@
 # SUBDIRS = src/ocaml/
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -63,6 +64,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libscicos_la_demosdir)" \
+	"$(DESTDIR)$(libscicos_la_etcdir)" \
+	"$(DESTDIR)$(libscicos_la_helpendir)" \
+	"$(DESTDIR)$(libscicos_la_helpfrdir)" \
+	"$(DESTDIR)$(libscicos_la_macrodir)" \
+	"$(DESTDIR)$(libscicos_la_rootdir)" \
+	"$(DESTDIR)$(libscicos_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscicos_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -167,6 +175,17 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscicos_la_SOURCES)
 DIST_SOURCES = $(libscicos_la_SOURCES)
+libscicos_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libscicos_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libscicos_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libscicos_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libscicos_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libscicos_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libscicos_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libscicos_la_demos_DATA) $(libscicos_la_etc_DATA) \
+	$(libscicos_la_helpen_DATA) $(libscicos_la_helpfr_DATA) \
+	$(libscicos_la_macro_DATA) $(libscicos_la_root_DATA) \
+	$(libscicos_la_sci_gateway_DATA)
 libscicos_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscicos_la_include_HEADERS)
 ETAGS = etags
@@ -279,7 +298,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -503,18 +522,6 @@ sci_gateway/fortran/sci_vec2var.f \
 sci_gateway/fortran/sci_scicos_debug.f \
 sci_gateway/fortran/sci_getblocklabel.f
 
-libscicos_la_includedir = $(includedir)/scicos
-libscicos_la_include_HEADERS = includes/cc_pass2.h \
-includes/import.h \
-includes/scicos_block.h \
-includes/gw_scicos.h \
-includes/intcscicos.h \
-includes/scicos_block4.h \
-includes/blocks.h \
-includes/gw_cscicos.h \
-includes/scicos.h \
-includes/blocks.h
-
 BUILT_SOURCES = includes/blocks.h
 CLEANFILES = includes/blocks.h build/Cblocknames build/Fblocknames 
 libscicos_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
@@ -532,6 +539,1539 @@ libscicos_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libscicos_la_PKGCONFIG = scicos.pc
+#### Target ######
+target = $(datadir)/scicos
+
+#### scicos : Conf files ####
+libscicos_la_rootdir = $(target)
+libscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### scicos : Scilab macros ###
+libscicos_la_macrodir = $(target)/macros
+libscicos_la_macro_DATA = macros/scicos_blocks/Sources/TIME_f.sci \
+macros/scicos_blocks/Sources/GENSQR_f.sci \
+macros/scicos_blocks/Sources/CLKIN_f.sci \
+macros/scicos_blocks/Sources/READAU_f.sci \
+macros/scicos_blocks/Sources/RFILE_f.sci \
+macros/scicos_blocks/Sources/Modulo_Count.sci \
+macros/scicos_blocks/Sources/IN_f.sci \
+macros/scicos_blocks/Sources/STEP.sci \
+macros/scicos_blocks/Sources/SAWTOOTH_f.sci \
+macros/scicos_blocks/Sources/STEP_FUNCTION.sci \
+macros/scicos_blocks/Sources/READC_f.sci \
+macros/scicos_blocks/Sources/CURV_f.sci \
+macros/scicos_blocks/Sources/CONST.sci \
+macros/scicos_blocks/Sources/SLIDER_f.sci \
+macros/scicos_blocks/Sources/GENSIN_f.sci \
+macros/scicos_blocks/Sources/RAND_f.sci \
+macros/scicos_blocks/Sources/CONST_f.sci \
+macros/scicos_blocks/Sources/CLKINV_f.sci \
+macros/scicos_blocks/Sources/INIMPL_f.sci \
+macros/scicos_blocks/Sources/RAMP.sci \
+macros/scicos_blocks/Sources/CLOCK_f.sci \
+macros/scicos_blocks/Sources/RFILE.sci \
+macros/scicos_blocks/Events/CLKSOMV_f.sci \
+macros/scicos_blocks/Events/MFCLCK_f.sci \
+macros/scicos_blocks/Events/TRASH_f.sci \
+macros/scicos_blocks/Events/ANDLOG_f.sci \
+macros/scicos_blocks/Events/ANDBLK.sci \
+macros/scicos_blocks/Events/EVTDLY_f.sci \
+macros/scicos_blocks/Events/CLKSOM_f.sci \
+macros/scicos_blocks/Events/EVTGEN_f.sci \
+macros/scicos_blocks/Events/HALT_f.sci \
+macros/scicos_blocks/Events/MCLOCK_f.sci \
+macros/scicos_blocks/Events/freq_div.sci \
+macros/scicos_blocks/Events/CLOCK_f.sci \
+macros/scicos_blocks/Events/EVTVARDLY.sci \
+macros/scicos_blocks/Events/IFTHEL_f.sci \
+macros/scicos_blocks/NonLinear/SIGNUM.sci \
+macros/scicos_blocks/NonLinear/POWBLK_f.sci \
+macros/scicos_blocks/NonLinear/FSV_f.sci \
+macros/scicos_blocks/NonLinear/ABSBLK_f.sci \
+macros/scicos_blocks/NonLinear/INTRPLBLK_f.sci \
+macros/scicos_blocks/NonLinear/PROD_f.sci \
+macros/scicos_blocks/NonLinear/INTRP2BLK_f.sci \
+macros/scicos_blocks/NonLinear/LOOKUP_f.sci \
+macros/scicos_blocks/NonLinear/TrigFun.sci \
+macros/scicos_blocks/NonLinear/LOGBLK_f.sci \
+macros/scicos_blocks/NonLinear/PRODUCT.sci \
+macros/scicos_blocks/NonLinear/TANBLK_f.sci \
+macros/scicos_blocks/NonLinear/COSBLK_f.sci \
+macros/scicos_blocks/NonLinear/INVBLK.sci \
+macros/scicos_blocks/NonLinear/SINBLK_f.sci \
+macros/scicos_blocks/NonLinear/MIN_f.sci \
+macros/scicos_blocks/NonLinear/MAXMIN.sci \
+macros/scicos_blocks/NonLinear/SATURATION.sci \
+macros/scicos_blocks/NonLinear/MAX_f.sci \
+macros/scicos_blocks/NonLinear/INVBLK_f.sci \
+macros/scicos_blocks/NonLinear/EXPBLK_f.sci \
+macros/scicos_blocks/NonLinear/SAT_f.sci \
+macros/scicos_blocks/NonLinear/QUANT_f.sci \
+macros/scicos_blocks/NonLinear/DLRADAPT_f.sci \
+macros/scicos_blocks/NonLinear/ABS_VALUE.sci \
+macros/scicos_blocks/Electrical/Resistor.sci \
+macros/scicos_blocks/Electrical/ConstantVoltage.sci \
+macros/scicos_blocks/Electrical/CurrentSensor.sci \
+macros/scicos_blocks/Electrical/VariableResistor.sci \
+macros/scicos_blocks/Electrical/VVsourceAC.sci \
+macros/scicos_blocks/Electrical/Diode.sci \
+macros/scicos_blocks/Electrical/PotentialSensor.sci \
+macros/scicos_blocks/Electrical/VoltageSensor.sci \
+macros/scicos_blocks/Electrical/MOTOR.sci \
+macros/scicos_blocks/Electrical/Capacitor.sci \
+macros/scicos_blocks/Electrical/SineVoltage.sci \
+macros/scicos_blocks/Electrical/Inductor.sci \
+macros/scicos_blocks/Electrical/VsourceAC.sci \
+macros/scicos_blocks/Electrical/NPN.sci \
+macros/scicos_blocks/Electrical/PNP.sci \
+macros/scicos_blocks/Electrical/Ground.sci \
+macros/scicos_blocks/Hydraulics/Bache.sci \
+macros/scicos_blocks/Hydraulics/source_inputs.sci \
+macros/scicos_blocks/Hydraulics/PerteDP.sci \
+macros/scicos_blocks/Hydraulics/bache_inputs.sci \
+macros/scicos_blocks/Hydraulics/source_draw_ports.sci \
+macros/scicos_blocks/Hydraulics/bache_outputs.sci \
+macros/scicos_blocks/Hydraulics/bache_draw_ports.sci \
+macros/scicos_blocks/Hydraulics/vanne_inputs.sci \
+macros/scicos_blocks/Hydraulics/vanne_outputs.sci \
+macros/scicos_blocks/Hydraulics/vanne_draw_ports.sci \
+macros/scicos_blocks/Hydraulics/SourceP.sci \
+macros/scicos_blocks/Hydraulics/puit_inputs.sci \
+macros/scicos_blocks/Hydraulics/PuitsP.sci \
+macros/scicos_blocks/Hydraulics/puit_draw_ports.sci \
+macros/scicos_blocks/Hydraulics/VanneReglante.sci \
+macros/scicos_blocks/Sinks/WRITEC_f.sci \
+macros/scicos_blocks/Sinks/WFILE.sci \
+macros/scicos_blocks/Sinks/CLKOUT_f.sci \
+macros/scicos_blocks/Sinks/ANIMXY_f.sci \
+macros/scicos_blocks/Sinks/WFILE_f.sci \
+macros/scicos_blocks/Sinks/OUT_f.sci \
+macros/scicos_blocks/Sinks/CSCOPE.sci \
+macros/scicos_blocks/Sinks/SCOPE_f.sci \
+macros/scicos_blocks/Sinks/EVENTSCOPE_f.sci \
+macros/scicos_blocks/Sinks/FSCOPE_f.sci \
+macros/scicos_blocks/Sinks/AFFICH_f.sci \
+macros/scicos_blocks/Sinks/WRITEAU_f.sci \
+macros/scicos_blocks/Sinks/TRASH_f.sci \
+macros/scicos_blocks/Sinks/CMSCOPE.sci \
+macros/scicos_blocks/Sinks/SCOPXY_f.sci \
+macros/scicos_blocks/Sinks/MSCOPE_f.sci \
+macros/scicos_blocks/Sinks/CLKOUTV_f.sci \
+macros/scicos_blocks/Sinks/OUTIMPL_f.sci \
+macros/scicos_blocks/PDE/IHM_EDP.sci \
+macros/scicos_blocks/PDE/setint.sci \
+macros/scicos_blocks/PDE/eval_pts_vf.sci \
+macros/scicos_blocks/PDE/nombre_etats.sci \
+macros/scicos_blocks/PDE/lecture_xml.sci \
+macros/scicos_blocks/PDE/addfv.sci \
+macros/scicos_blocks/PDE/Disc2_5_FVM1d.sci \
+macros/scicos_blocks/PDE/subfv.sci \
+macros/scicos_blocks/PDE/mulf3.sci \
+macros/scicos_blocks/PDE/cformatlinedp.sci \
+macros/scicos_blocks/PDE/eval_pts_EF.sci \
+macros/scicos_blocks/PDE/msprintfv.sci \
+macros/scicos_blocks/PDE/coef_FEM1d.sci \
+macros/scicos_blocks/PDE/mulfv.sci \
+macros/scicos_blocks/PDE/gen_code_FDM.sci \
+macros/scicos_blocks/PDE/mulfstring.sci \
+macros/scicos_blocks/PDE/setvalue_IHM-PDE.sci \
+macros/scicos_blocks/PDE/multVectStr.sci \
+macros/scicos_blocks/PDE/translate.sci \
+macros/scicos_blocks/PDE/unimesh1D.sci \
+macros/scicos_blocks/PDE/addf_mat.sci \
+macros/scicos_blocks/PDE/shape.sci \
+macros/scicos_blocks/PDE/multMatVect.sci \
+macros/scicos_blocks/PDE/Disc_diff_oper45.sci \
+macros/scicos_blocks/PDE/PDE.sci \
+macros/scicos_blocks/PDE/arbre_decision.sci \
+macros/scicos_blocks/PDE/elemoper.sci \
+macros/scicos_blocks/PDE/maillage_FE1D.sci \
+macros/scicos_blocks/PDE/assemb.sci \
+macros/scicos_blocks/PDE/gen_code_FVM.sci \
+macros/scicos_blocks/PDE/mulf3v.sci \
+macros/scicos_blocks/PDE/extraction_infos.sci \
+macros/scicos_blocks/PDE/Disc_diff_oper2.sci \
+macros/scicos_blocks/PDE/formkf.sci \
+macros/scicos_blocks/PDE/code_generation.sci \
+macros/scicos_blocks/PDE/eval_pts_df.sci \
+macros/scicos_blocks/PDE/CFORTREDP.sci \
+macros/scicos_blocks/PDE/mulf_string.sci \
+macros/scicos_blocks/PDE/gen_code_FEM.sci \
+macros/scicos_blocks/PDE/subf_mat.sci \
+macros/scicos_blocks/Linear/DELAY_f.sci \
+macros/scicos_blocks/Linear/SOM_f.sci \
+macros/scicos_blocks/Linear/VARIABLE_DELAY.sci \
+macros/scicos_blocks/Linear/CLSS.sci \
+macros/scicos_blocks/Linear/DLSS.sci \
+macros/scicos_blocks/Linear/INTEGRAL.sci \
+macros/scicos_blocks/Linear/CLINDUMMY_f.sci \
+macros/scicos_blocks/Linear/GAINBLK.sci \
+macros/scicos_blocks/Linear/SAMPHOLD.sci \
+macros/scicos_blocks/Linear/DERIV.sci \
+macros/scicos_blocks/Linear/CLSS_f.sci \
+macros/scicos_blocks/Linear/SUM_f.sci \
+macros/scicos_blocks/Linear/DLSS_f.sci \
+macros/scicos_blocks/Linear/INTEGRAL_f.sci \
+macros/scicos_blocks/Linear/GAINBLK_f.sci \
+macros/scicos_blocks/Linear/SUMMATION.sci \
+macros/scicos_blocks/Linear/TIME_DELAY.sci \
+macros/scicos_blocks/Linear/CLR.sci \
+macros/scicos_blocks/Linear/DLR.sci \
+macros/scicos_blocks/Linear/GAIN_f.sci \
+macros/scicos_blocks/Linear/REGISTER.sci \
+macros/scicos_blocks/Linear/CLR_f.sci \
+macros/scicos_blocks/Linear/BIGSOM_f.sci \
+macros/scicos_blocks/Linear/DLR_f.sci \
+macros/scicos_blocks/Linear/TCLSS.sci \
+macros/scicos_blocks/Linear/DELAYV_f.sci \
+macros/scicos_blocks/Linear/REGISTER_f.sci \
+macros/scicos_blocks/Linear/SAMPLEHOLD_f.sci \
+macros/scicos_blocks/Linear/TCLSS_f.sci \
+macros/scicos_blocks/Branching/SWITCH_f.sci \
+macros/scicos_blocks/Branching/MUX.sci \
+macros/scicos_blocks/Branching/SCALAR2VECTOR.sci \
+macros/scicos_blocks/Branching/EXTRACTOR.sci \
+macros/scicos_blocks/Branching/M_SWITCH.sci \
+macros/scicos_blocks/Branching/MUX_f.sci \
+macros/scicos_blocks/Branching/NRMSOM_f.sci \
+macros/scicos_blocks/Branching/IFTHEL_f.sci \
+macros/scicos_blocks/Branching/RELAY_f.sci \
+macros/scicos_blocks/Branching/DEMUX.sci \
+macros/scicos_blocks/Branching/SWITCH2.sci \
+macros/scicos_blocks/Branching/SELECT_f.sci \
+macros/scicos_blocks/Branching/DEMUX_f.sci \
+macros/scicos_blocks/Branching/ESELECT_f.sci \
+macros/scicos_blocks/Branching/ISELECT_f.sci \
+macros/scicos_blocks/Misc/SUPER_f.sci \
+macros/scicos_blocks/Misc/scifunc_block.sci \
+macros/scicos_blocks/Misc/func_block.sci \
+macros/scicos_blocks/Misc/m_sin.sci \
+macros/scicos_blocks/Misc/IMPSPLIT_f.sci \
+macros/scicos_blocks/Misc/BACKLASH.sci \
+macros/scicos_blocks/Misc/LOGICAL_OP.sci \
+macros/scicos_blocks/Misc/HYSTHERESIS.sci \
+macros/scicos_blocks/Misc/BOUNCE.sci \
+macros/scicos_blocks/Misc/DOLLAR.sci \
+macros/scicos_blocks/Misc/DIFF_f.sci \
+macros/scicos_blocks/Misc/MEMORY_f.sci \
+macros/scicos_blocks/Misc/RATELIMITER.sci \
+macros/scicos_blocks/Misc/DOLLAR_f.sci \
+macros/scicos_blocks/Misc/DEADBAND.sci \
+macros/scicos_blocks/Misc/EDGE_TRIGGER.sci \
+macros/scicos_blocks/Misc/EDGETRIGGER.sci \
+macros/scicos_blocks/Misc/DEBUG_SCICOS.sci \
+macros/scicos_blocks/Misc/CONSTRAINT_f.sci \
+macros/scicos_blocks/Misc/RELATIONALOP.sci \
+macros/scicos_blocks/Misc/TEXT_f.sci \
+macros/scicos_blocks/Misc/CLKSPLIT_f.sci \
+macros/scicos_blocks/Misc/Extract_Activation.sci \
+macros/scicos_blocks/Misc/BOUNCEXY.sci \
+macros/scicos_blocks/Misc/CBLOCK.sci \
+macros/scicos_blocks/Misc/EXPRESSION.sci \
+macros/scicos_blocks/Misc/SPLIT_f.sci \
+macros/scicos_blocks/Threshold/GENERAL_f.sci \
+macros/scicos_blocks/Threshold/NEGTOPOS_f.sci \
+macros/scicos_blocks/Threshold/POSTONEG_f.sci \
+macros/scicos_blocks/Threshold/ZCROSS_f.sci \
+macros/scicos/connected_links.sci \
+macros/scicos/standard_origin.sci \
+macros/scicos/genmoc.sci \
+macros/scicos/%model_e.sci \
+macros/scicos/%c_i_block.sci \
+macros/scicos/standard_define.sci \
+macros/scicos/menu_stuff.sci \
+macros/scicos/DuplicateRegion_.sci \
+macros/scicos/Palettes_.sci \
+macros/scicos/default_color.sci \
+macros/scicos/Context_.sci \
+macros/scicos/do_delete_region.sci \
+macros/scicos/do_block_info.sci \
+macros/scicos/%graphics_i_Block.sci \
+macros/scicos/getoutputports.sci \
+macros/scicos/Identification_.sci \
+macros/scicos/%s_i_block.sci \
+macros/scicos/scicos_flat.sci \
+macros/scicos/get_info.sci \
+macros/scicos/get_inside2.sci \
+macros/scicos/getblocktext.sci \
+macros/scicos/create_modelica.sci \
+macros/scicos/adjust_s_ports.sci \
+macros/scicos/standard_outputs.sci \
+macros/scicos/do_SaveAs.sci \
+macros/scicos/Window_.sci \
+macros/scicos/splitfilepath.sci \
+macros/scicos/getobj.sci \
+macros/scicos/do_navigator.sci \
+macros/scicos/%c_i_graphics.sci \
+macros/scicos/disconnect_ports.sci \
+macros/scicos/generic_block.sci \
+macros/scicos/Addcolor_.sci \
+macros/scicos/delete_unconnected.sci \
+macros/scicos/lnkptrcomp.sci \
+macros/scicos/hilite_path.sci \
+macros/scicos/do_view.sci \
+macros/scicos/value2modelica.sci \
+macros/scicos/Shortcuts_.sci \
+macros/scicos/%s_i_graphics.sci \
+macros/scicos/do_focus.sci \
+macros/scicos/scicos_model.sci \
+macros/scicos/newc_pass2.sci \
+macros/scicos/do_newblk.sci \
+macros/scicos/standard_draw_ports.sci \
+macros/scicos/%params_p.sci \
+macros/scicos/hilite_obj.sci \
+macros/scicos/generic_block2.sci \
+macros/scicos/disablemenus.sci \
+macros/scicos/Modelica_.sci \
+macros/scicos/DebugLevel_.sci \
+macros/scicos/%b_i_graphics.sci \
+macros/scicos/CFORTR2.sci \
+macros/scicos/is_modelica_block.sci \
+macros/scicos/do_resize.sci \
+macros/scicos/scicos_state.sci \
+macros/scicos/genfunc.sci \
+macros/scicos/splitted_links.sci \
+macros/scicos/show_info.sci \
+macros/scicos/analyse.sci \
+macros/scicos/c_block.sci \
+macros/scicos/drawtitle.sci \
+macros/scicos/scicos_diagram.sci \
+macros/scicos/Duplicate_.sci \
+macros/scicos/Displaymode_.sci \
+macros/scicos/scicos_block_link.sci \
+macros/scicos/Zoomout_.sci \
+macros/scicos/clickin.sci \
+macros/scicos/changeports.sci \
+macros/scicos/tk_mpopup.sci \
+macros/scicos/do_stupidmove.sci \
+macros/scicos/do_move.sci \
+macros/scicos/Flip_.sci \
+macros/scicos/Link_.sci \
+macros/scicos/check_mac.sci \
+macros/scicos/dialog.sci \
+macros/scicos/dist2polyline.sci \
+macros/scicos/init_agenda.sci \
+macros/scicos/Popup_.sci \
+macros/scicos/get_rectangle.sci \
+macros/scicos/Replot_.sci \
+macros/scicos/do_context.sci \
+macros/scicos/build_modelica_block.sci \
+macros/scicos/do_version.sci \
+macros/scicos/drawblock.sci \
+macros/scicos/Addnewblock_.sci \
+macros/scicos/Export_.sci \
+macros/scicos/choosefile.sci \
+macros/scicos/do_addnew.sci \
+macros/scicos/do_run.sci \
+macros/scicos/getorigin.sci \
+macros/scicos/Help_.sci \
+macros/scicos/drawobj.sci \
+macros/scicos/Align_.sci \
+macros/scicos/c_pass1.sci \
+macros/scicos/getblock.sci \
+macros/scicos/do_duplicate.sci \
+macros/scicos/getlink.sci \
+macros/scicos/draw.sci \
+macros/scicos/default_options.sci \
+macros/scicos/get_tree_elt.sci \
+macros/scicos/IDfonts_.sci \
+macros/scicos/add_palette.sci \
+macros/scicos/tk_mpopupX.sci \
+macros/scicos/window_set_size.sci \
+macros/scicos/select_hilite.sci \
+macros/scicos/LoadasPalette_.sci \
+macros/scicos/getoutputs.sci \
+macros/scicos/do_doc.sci \
+macros/scicos/%l_i_model.sci \
+macros/scicos/do_zoomin.sci \
+macros/scicos/Save_.sci \
+macros/scicos/standard_document.sci \
+macros/scicos/getparpath.sci \
+macros/scicos/SaveasPalette_.sci \
+macros/scicos/scicos_link.sci \
+macros/scicos/scicos_graphics.sci \
+macros/scicos/get_block_info.sci \
+macros/scicos/DeleteRegion_.sci \
+macros/scicos/generic_block3.sci \
+macros/scicos/drawlink.sci \
+macros/scicos/modelica.sci \
+macros/scicos/%Block_p.sci \
+macros/scicos/save_csuper.sci \
+macros/scicos/Purge_.sci \
+macros/scicos/%graphics_p.sci \
+macros/scicos/getinputports.sci \
+macros/scicos/getgeom.sci \
+macros/scicos/Icon_.sci \
+macros/scicos/%model_i_Block.sci \
+macros/scicos/mkvect.sci \
+macros/scicos/scicos_sim.sci \
+macros/scicos/check_edge.sci \
+macros/scicos/Undo_.sci \
+macros/scicos/do_delete1.sci \
+macros/scicos/bad_connection.sci \
+macros/scicos/build_block.sci \
+macros/scicos/do_icon_edit.sci \
+macros/scicos/create_modelica1.sci \
+macros/scicos/whereintree.sci \
+macros/scicos/CodeGeneration_.sci \
+macros/scicos/scs_show.sci \
+macros/scicos/mark_newpars.sci \
+macros/scicos/cosclick.sci \
+macros/scicos/do_Displaymode.sci \
+macros/scicos/do_purge.sci \
+macros/scicos/Move_.sci \
+macros/scicos/SaveasInterfFunc_.sci \
+macros/scicos/do_eval.sci \
+macros/scicos/Copy_.sci \
+macros/scicos/unhilite_obj.sci \
+macros/scicos/Color_.sci \
+macros/scicos/Label_.sci \
+macros/scicos/Paleditor_.sci \
+macros/scicos/do_xsetech.sci \
+macros/scicos/compile_modelica.sci \
+macros/scicos/scs_full_path.sci \
+macros/scicos/%l_i_graphics.sci \
+macros/scicos/replayifnecessary.sci \
+macros/scicos/s_port_names.sci \
+macros/scicos/dig_bound.sci \
+macros/scicos/c_pass2.sci \
+macros/scicos/pwindow_set_size.sci \
+macros/scicos/scicos_block.sci \
+macros/scicos/CFORTR.sci \
+macros/scicos/script2var.sci \
+macros/scicos/Delete_.sci \
+macros/scicos/do_palettes.sci \
+macros/scicos/do_export.sci \
+macros/scicos/Run_.sci \
+macros/scicos/get_region2.sci \
+macros/scicos/%c_i_model.sci \
+macros/scicos/do_save.sci \
+macros/scicos/update_scicos_pal.sci \
+macros/scicos/Defaultlinkcolors_.sci \
+macros/scicos/fortran_block.sci \
+macros/scicos/do_ident.sci \
+macros/scicos/%diagram_p.sci \
+macros/scicos/New_.sci \
+macros/scicos/genmac.sci \
+macros/scicos/do_replace.sci \
+macros/scicos/enablemenus.sci \
+macros/scicos/gridpoint.sci \
+macros/scicos/%s_i_model.sci \
+macros/scicos/%Block_e.sci \
+macros/scicos/sci2tcl.sci \
+macros/scicos/getblocklink.sci \
+macros/scicos/%graphics_e.sci \
+macros/scicos/do_block.sci \
+macros/scicos/save_super.sci \
+macros/scicos/tabule.sci \
+macros/scicos/Backgroundcolor_.sci \
+macros/scicos/do_tild.sci \
+macros/scicos/get_blocks_in_rect.sci \
+macros/scicos/RegiontoSuperBlock_.sci \
+macros/scicos/MoveLink_.sci \
+macros/scicos/modipar.sci \
+macros/scicos/SelectLink_.sci \
+macros/scicos/Setup_.sci \
+macros/scicos/standard_inputs.sci \
+macros/scicos/CtrlSelect_.sci \
+macros/scicos/extract_implicit.sci \
+macros/scicos/do_delete2.sci \
+macros/scicos/Zoomin_.sci \
+macros/scicos/Paste_.sci \
+macros/scicos/lstfiles.sci \
+macros/scicos/standard_etiquette.sci \
+macros/scicos/FORTR.sci \
+macros/scicos/get_subobj_path.sci \
+macros/scicos/do_copy_region.sci \
+macros/scicos/do_region2block.sci \
+macros/scicos/ctree.sci \
+macros/scicos/gen_modelica.sci \
+macros/scicos/get_inside.sci \
+macros/scicos/OpenSet_.sci \
+macros/scicos/Load_.sci \
+macros/scicos/tk_choose.sci \
+macros/scicos/update_redraw_obj.sci \
+macros/scicos/getporttyp.sci \
+macros/scicos/get_region.sci \
+macros/scicos/%l_i_block.sci \
+macros/scicos/get_selection.sci \
+macros/scicos/do_delete.sci \
+macros/scicos/%model_p.sci \
+macros/scicos/build_scs_tree.sci \
+macros/scicos/setvalue.sci \
+macros/scicos/do_exit.sci \
+macros/scicos/SetDiagramInfo_.sci \
+macros/scicos/c_pass3.sci \
+macros/scicos/%debug_scicos.sci \
+macros/scicos/select_hilite2.sci \
+macros/scicos/do_label.sci \
+macros/scicos/do_load_as_palette.sci \
+macros/scicos/systshow.sci \
+macros/scicos/restore_scs_gc.sci \
+macros/scicos/Replace_.sci \
+macros/scicos/tk_getvalue.sci \
+macros/scicos/drawobjs.sci \
+macros/scicos/tk_getcolor.sci \
+macros/scicos/point2pixel.sci \
+macros/scicos/standard_draw.sci \
+macros/scicos/%b_i_model.sci \
+macros/scicos/select_unhilite.sci \
+macros/scicos/Eval_.sci \
+macros/scicos/scicos_cpr.sci \
+macros/scicos/do_set_info.sci \
+macros/scicos/do_rename.sci \
+macros/scicos/Cut_.sci \
+macros/scicos/under_connection.sci \
+macros/scicos/IconEditor_.sci \
+macros/scicos/do_color.sci \
+macros/scicos/Resize_.sci \
+macros/scicos/SUPER_f.sci \
+macros/scicos/do_update.sci \
+macros/scicos/check_io.sci \
+macros/scicos/shiftcors.sci \
+macros/scicos/genfunc1.sci \
+macros/scicos/Documentation_.sci \
+macros/scicos/change_tree_elt.sci \
+macros/scicos/standard_draw_ports_up.sci \
+macros/scicos/ExportAll_.sci \
+macros/scicos/getportsiz.sci \
+macros/scicos/do_help.sci \
+macros/scicos/SmartMove_.sci \
+macros/scicos/adjust_in2out2.sci \
+macros/scicos/do_options.sci \
+macros/scicos/Aspect_.sci \
+macros/scicos/prt_align.sci \
+macros/scicos/SaveAs_.sci \
+macros/scicos/do_setup.sci \
+macros/scicos/message.sci \
+macros/scicos/loadpallibs.sci \
+macros/scicos/is_split.sci \
+macros/scicos/countblocks.sci \
+macros/scicos/GetInfo_.sci \
+macros/scicos/adjust.sci \
+macros/scicos/set_background.sci \
+macros/scicos/do_zoomout.sci \
+macros/scicos/do_load.sci \
+macros/scicos/Calc_.sci \
+macros/scicos/do_edit_pal.sci \
+macros/scicos/width2pixel.sci \
+macros/scicos/systexport.sci \
+macros/scicos/Rename_.sci \
+macros/scicos/do_terminate.sci \
+macros/scicos/do_compile.sci \
+macros/scicos/Nyquist_.sci \
+macros/scicos/mark_prt.sci \
+macros/scicos/get_new_window.sci \
+macros/scicos/save_scs_gc.sci \
+macros/scicos/cos2cosf.sci \
+macros/scicos/getinputs.sci \
+macros/scicos/SelectRegion_.sci \
+macros/scicos/scicos_params.sci \
+macros/scicos/Compile_.sci \
+macros/scicos/do_window.sci \
+macros/scicos/Navigator_.sci \
+macros/scicos/set_cmap.sci \
+macros/scicos/do_copy.sci \
+macros/scicos/get_connected.sci \
+macros/with_modelica_compiler.sci \
+macros/scicos.sci \
+macros/add_palette.sci \
+macros/initial_scicos_tables.sci \
+macros/scicos_simulate.sci \
+macros/with_ocaml.sci \
+macros/with_modelicac.sci \
+macros/steadycos.sci \
+macros/initial_scicosnew_tables.sci \
+macros/create_palette.sci macros/scicos_blocks/Sources/CLKIN_f.bin \
+macros/scicos_blocks/Sources/CLKINV_f.bin \
+macros/scicos_blocks/Sources/CLOCK_f.bin \
+macros/scicos_blocks/Sources/CONST_f.bin \
+macros/scicos_blocks/Sources/CONST.bin \
+macros/scicos_blocks/Sources/CURV_f.bin \
+macros/scicos_blocks/Sources/GENSIN_f.bin \
+macros/scicos_blocks/Sources/GENSQR_f.bin \
+macros/scicos_blocks/Sources/IN_f.bin \
+macros/scicos_blocks/Sources/INIMPL_f.bin \
+macros/scicos_blocks/Sources/Modulo_Count.bin \
+macros/scicos_blocks/Sources/RAMP.bin \
+macros/scicos_blocks/Sources/RAND_f.bin \
+macros/scicos_blocks/Sources/READAU_f.bin \
+macros/scicos_blocks/Sources/READC_f.bin \
+macros/scicos_blocks/Sources/RFILE_f.bin \
+macros/scicos_blocks/Sources/RFILE.bin \
+macros/scicos_blocks/Sources/SAWTOOTH_f.bin \
+macros/scicos_blocks/Sources/SLIDER_f.bin \
+macros/scicos_blocks/Sources/STEP_FUNCTION.bin \
+macros/scicos_blocks/Sources/STEP.bin \
+macros/scicos_blocks/Sources/TIME_f.bin \
+macros/scicos_blocks/Events/ANDBLK.bin \
+macros/scicos_blocks/Events/ANDLOG_f.bin \
+macros/scicos_blocks/Events/CLKSOM_f.bin \
+macros/scicos_blocks/Events/CLKSOMV_f.bin \
+macros/scicos_blocks/Events/CLOCK_f.bin \
+macros/scicos_blocks/Events/EVTDLY_f.bin \
+macros/scicos_blocks/Events/EVTGEN_f.bin \
+macros/scicos_blocks/Events/EVTVARDLY.bin \
+macros/scicos_blocks/Events/freq_div.bin \
+macros/scicos_blocks/Events/HALT_f.bin \
+macros/scicos_blocks/Events/IFTHEL_f.bin \
+macros/scicos_blocks/Events/MCLOCK_f.bin \
+macros/scicos_blocks/Events/MFCLCK_f.bin \
+macros/scicos_blocks/Events/TRASH_f.bin \
+macros/scicos_blocks/NonLinear/ABSBLK_f.bin \
+macros/scicos_blocks/NonLinear/ABS_VALUE.bin \
+macros/scicos_blocks/NonLinear/COSBLK_f.bin \
+macros/scicos_blocks/NonLinear/DLRADAPT_f.bin \
+macros/scicos_blocks/NonLinear/EXPBLK_f.bin \
+macros/scicos_blocks/NonLinear/FSV_f.bin \
+macros/scicos_blocks/NonLinear/INTRP2BLK_f.bin \
+macros/scicos_blocks/NonLinear/INTRPLBLK_f.bin \
+macros/scicos_blocks/NonLinear/INVBLK_f.bin \
+macros/scicos_blocks/NonLinear/INVBLK.bin \
+macros/scicos_blocks/NonLinear/LOGBLK_f.bin \
+macros/scicos_blocks/NonLinear/LOOKUP_f.bin \
+macros/scicos_blocks/NonLinear/MAX_f.bin \
+macros/scicos_blocks/NonLinear/MAXMIN.bin \
+macros/scicos_blocks/NonLinear/MIN_f.bin \
+macros/scicos_blocks/NonLinear/POWBLK_f.bin \
+macros/scicos_blocks/NonLinear/PROD_f.bin \
+macros/scicos_blocks/NonLinear/PRODUCT.bin \
+macros/scicos_blocks/NonLinear/QUANT_f.bin \
+macros/scicos_blocks/NonLinear/SAT_f.bin \
+macros/scicos_blocks/NonLinear/SATURATION.bin \
+macros/scicos_blocks/NonLinear/SIGNUM.bin \
+macros/scicos_blocks/NonLinear/SINBLK_f.bin \
+macros/scicos_blocks/NonLinear/TANBLK_f.bin \
+macros/scicos_blocks/NonLinear/TrigFun.bin \
+macros/scicos_blocks/Electrical/Capacitor.bin \
+macros/scicos_blocks/Electrical/ConstantVoltage.bin \
+macros/scicos_blocks/Electrical/CurrentSensor.bin \
+macros/scicos_blocks/Electrical/Diode.bin \
+macros/scicos_blocks/Electrical/Ground.bin \
+macros/scicos_blocks/Electrical/Inductor.bin \
+macros/scicos_blocks/Electrical/MOTOR.bin \
+macros/scicos_blocks/Electrical/NPN.bin \
+macros/scicos_blocks/Electrical/PNP.bin \
+macros/scicos_blocks/Electrical/PotentialSensor.bin \
+macros/scicos_blocks/Electrical/Resistor.bin \
+macros/scicos_blocks/Electrical/SineVoltage.bin \
+macros/scicos_blocks/Electrical/VariableResistor.bin \
+macros/scicos_blocks/Electrical/VoltageSensor.bin \
+macros/scicos_blocks/Electrical/VsourceAC.bin \
+macros/scicos_blocks/Electrical/VVsourceAC.bin \
+macros/scicos_blocks/Hydraulics/bache_draw_ports.bin \
+macros/scicos_blocks/Hydraulics/bache_inputs.bin \
+macros/scicos_blocks/Hydraulics/bache_outputs.bin \
+macros/scicos_blocks/Hydraulics/Bache.bin \
+macros/scicos_blocks/Hydraulics/PerteDP.bin \
+macros/scicos_blocks/Hydraulics/puit_draw_ports.bin \
+macros/scicos_blocks/Hydraulics/puit_inputs.bin \
+macros/scicos_blocks/Hydraulics/PuitsP.bin \
+macros/scicos_blocks/Hydraulics/source_draw_ports.bin \
+macros/scicos_blocks/Hydraulics/source_inputs.bin \
+macros/scicos_blocks/Hydraulics/SourceP.bin \
+macros/scicos_blocks/Hydraulics/vanne_draw_ports.bin \
+macros/scicos_blocks/Hydraulics/vanne_inputs.bin \
+macros/scicos_blocks/Hydraulics/vanne_outputs.bin \
+macros/scicos_blocks/Hydraulics/VanneReglante.bin \
+macros/scicos_blocks/Sinks/AFFICH_f.bin \
+macros/scicos_blocks/Sinks/ANIMXY_f.bin \
+macros/scicos_blocks/Sinks/CLKOUT_f.bin \
+macros/scicos_blocks/Sinks/CLKOUTV_f.bin \
+macros/scicos_blocks/Sinks/CMSCOPE.bin \
+macros/scicos_blocks/Sinks/CSCOPE.bin \
+macros/scicos_blocks/Sinks/EVENTSCOPE_f.bin \
+macros/scicos_blocks/Sinks/FSCOPE_f.bin \
+macros/scicos_blocks/Sinks/MSCOPE_f.bin \
+macros/scicos_blocks/Sinks/OUT_f.bin \
+macros/scicos_blocks/Sinks/OUTIMPL_f.bin \
+macros/scicos_blocks/Sinks/SCOPE_f.bin \
+macros/scicos_blocks/Sinks/SCOPXY_f.bin \
+macros/scicos_blocks/Sinks/TRASH_f.bin \
+macros/scicos_blocks/Sinks/WFILE_f.bin \
+macros/scicos_blocks/Sinks/WFILE.bin \
+macros/scicos_blocks/Sinks/WRITEAU_f.bin \
+macros/scicos_blocks/Sinks/WRITEC_f.bin \
+macros/scicos_blocks/PDE/addf_mat.bin \
+macros/scicos_blocks/PDE/addfv.bin \
+macros/scicos_blocks/PDE/arbre_decision.bin \
+macros/scicos_blocks/PDE/assemb.bin \
+macros/scicos_blocks/PDE/cformatlinedp.bin \
+macros/scicos_blocks/PDE/CFORTREDP.bin \
+macros/scicos_blocks/PDE/code_generation.bin \
+macros/scicos_blocks/PDE/coef_FEM1d.bin \
+macros/scicos_blocks/PDE/Disc2_5_FVM1d.bin \
+macros/scicos_blocks/PDE/Disc_diff_oper2.bin \
+macros/scicos_blocks/PDE/Disc_diff_oper45.bin \
+macros/scicos_blocks/PDE/elemoper.bin \
+macros/scicos_blocks/PDE/eval_pts_df.bin \
+macros/scicos_blocks/PDE/eval_pts_EF.bin \
+macros/scicos_blocks/PDE/eval_pts_vf.bin \
+macros/scicos_blocks/PDE/extraction_infos.bin \
+macros/scicos_blocks/PDE/formkf.bin \
+macros/scicos_blocks/PDE/gen_code_FDM.bin \
+macros/scicos_blocks/PDE/gen_code_FEM.bin \
+macros/scicos_blocks/PDE/gen_code_FVM.bin \
+macros/scicos_blocks/PDE/IHM_EDP.bin \
+macros/scicos_blocks/PDE/lecture_xml.bin \
+macros/scicos_blocks/PDE/maillage_FE1D.bin \
+macros/scicos_blocks/PDE/msprintfv.bin \
+macros/scicos_blocks/PDE/mulf3.bin \
+macros/scicos_blocks/PDE/mulf3v.bin \
+macros/scicos_blocks/PDE/mulf_string.bin \
+macros/scicos_blocks/PDE/mulfstring.bin \
+macros/scicos_blocks/PDE/mulfv.bin \
+macros/scicos_blocks/PDE/multMatVect.bin \
+macros/scicos_blocks/PDE/multVectStr.bin \
+macros/scicos_blocks/PDE/nombre_etats.bin \
+macros/scicos_blocks/PDE/PDE.bin \
+macros/scicos_blocks/PDE/setint.bin \
+macros/scicos_blocks/PDE/setvalue_IHM-PDE.bin \
+macros/scicos_blocks/PDE/shape.bin \
+macros/scicos_blocks/PDE/subf_mat.bin \
+macros/scicos_blocks/PDE/subfv.bin \
+macros/scicos_blocks/PDE/translate.bin \
+macros/scicos_blocks/PDE/unimesh1D.bin \
+macros/scicos_blocks/Linear/BIGSOM_f.bin \
+macros/scicos_blocks/Linear/CLINDUMMY_f.bin \
+macros/scicos_blocks/Linear/CLR_f.bin \
+macros/scicos_blocks/Linear/CLR.bin \
+macros/scicos_blocks/Linear/CLSS_f.bin \
+macros/scicos_blocks/Linear/CLSS.bin \
+macros/scicos_blocks/Linear/DELAY_f.bin \
+macros/scicos_blocks/Linear/DELAYV_f.bin \
+macros/scicos_blocks/Linear/DERIV.bin \
+macros/scicos_blocks/Linear/DLR_f.bin \
+macros/scicos_blocks/Linear/DLR.bin \
+macros/scicos_blocks/Linear/DLSS_f.bin \
+macros/scicos_blocks/Linear/DLSS.bin \
+macros/scicos_blocks/Linear/GAINBLK_f.bin \
+macros/scicos_blocks/Linear/GAINBLK.bin \
+macros/scicos_blocks/Linear/GAIN_f.bin \
+macros/scicos_blocks/Linear/INTEGRAL_f.bin \
+macros/scicos_blocks/Linear/INTEGRAL.bin \
+macros/scicos_blocks/Linear/REGISTER_f.bin \
+macros/scicos_blocks/Linear/REGISTER.bin \
+macros/scicos_blocks/Linear/SAMPHOLD.bin \
+macros/scicos_blocks/Linear/SAMPLEHOLD_f.bin \
+macros/scicos_blocks/Linear/SOM_f.bin \
+macros/scicos_blocks/Linear/SUM_f.bin \
+macros/scicos_blocks/Linear/SUMMATION.bin \
+macros/scicos_blocks/Linear/TCLSS_f.bin \
+macros/scicos_blocks/Linear/TCLSS.bin \
+macros/scicos_blocks/Linear/TIME_DELAY.bin \
+macros/scicos_blocks/Linear/VARIABLE_DELAY.bin \
+macros/scicos_blocks/Branching/DEMUX_f.bin \
+macros/scicos_blocks/Branching/DEMUX.bin \
+macros/scicos_blocks/Branching/ESELECT_f.bin \
+macros/scicos_blocks/Branching/EXTRACTOR.bin \
+macros/scicos_blocks/Branching/IFTHEL_f.bin \
+macros/scicos_blocks/Branching/ISELECT_f.bin \
+macros/scicos_blocks/Branching/M_SWITCH.bin \
+macros/scicos_blocks/Branching/MUX_f.bin \
+macros/scicos_blocks/Branching/MUX.bin \
+macros/scicos_blocks/Branching/NRMSOM_f.bin \
+macros/scicos_blocks/Branching/RELAY_f.bin \
+macros/scicos_blocks/Branching/SCALAR2VECTOR.bin \
+macros/scicos_blocks/Branching/SELECT_f.bin \
+macros/scicos_blocks/Branching/SWITCH2.bin \
+macros/scicos_blocks/Branching/SWITCH_f.bin \
+macros/scicos_blocks/Misc/BACKLASH.bin \
+macros/scicos_blocks/Misc/BOUNCE.bin \
+macros/scicos_blocks/Misc/BOUNCEXY.bin \
+macros/scicos_blocks/Misc/CBLOCK.bin \
+macros/scicos_blocks/Misc/CLKSPLIT_f.bin \
+macros/scicos_blocks/Misc/CONSTRAINT_f.bin \
+macros/scicos_blocks/Misc/DEADBAND.bin \
+macros/scicos_blocks/Misc/DEBUG_SCICOS.bin \
+macros/scicos_blocks/Misc/DIFF_f.bin \
+macros/scicos_blocks/Misc/DOLLAR_f.bin \
+macros/scicos_blocks/Misc/DOLLAR.bin \
+macros/scicos_blocks/Misc/EDGE_TRIGGER.bin \
+macros/scicos_blocks/Misc/EDGETRIGGER.bin \
+macros/scicos_blocks/Misc/EXPRESSION.bin \
+macros/scicos_blocks/Misc/Extract_Activation.bin \
+macros/scicos_blocks/Misc/func_block.bin \
+macros/scicos_blocks/Misc/HYSTHERESIS.bin \
+macros/scicos_blocks/Misc/IMPSPLIT_f.bin \
+macros/scicos_blocks/Misc/LOGICAL_OP.bin \
+macros/scicos_blocks/Misc/MEMORY_f.bin \
+macros/scicos_blocks/Misc/m_sin.bin \
+macros/scicos_blocks/Misc/RATELIMITER.bin \
+macros/scicos_blocks/Misc/RELATIONALOP.bin \
+macros/scicos_blocks/Misc/scifunc_block.bin \
+macros/scicos_blocks/Misc/SPLIT_f.bin \
+macros/scicos_blocks/Misc/SUPER_f.bin \
+macros/scicos_blocks/Misc/TEXT_f.bin \
+macros/scicos_blocks/Threshold/GENERAL_f.bin \
+macros/scicos_blocks/Threshold/NEGTOPOS_f.bin \
+macros/scicos_blocks/Threshold/POSTONEG_f.bin \
+macros/scicos_blocks/Threshold/ZCROSS_f.bin \
+macros/scicos/Addcolor_.bin \
+macros/scicos/Addnewblock_.bin \
+macros/scicos/add_palette.bin \
+macros/scicos/adjust_in2out2.bin \
+macros/scicos/adjust.bin \
+macros/scicos/adjust_s_ports.bin \
+macros/scicos/Align_.bin \
+macros/scicos/analyse.bin \
+macros/scicos/Aspect_.bin \
+macros/scicos/Backgroundcolor_.bin \
+macros/scicos/bad_connection.bin \
+macros/scicos/%b_i_graphics.bin \
+macros/scicos/%b_i_model.bin \
+macros/scicos/%Block_e.bin \
+macros/scicos/%Block_p.bin \
+macros/scicos/build_block.bin \
+macros/scicos/build_modelica_block.bin \
+macros/scicos/build_scs_tree.bin \
+macros/scicos/Calc_.bin \
+macros/scicos/c_block.bin \
+macros/scicos/CFORTR2.bin \
+macros/scicos/CFORTR.bin \
+macros/scicos/changeports.bin \
+macros/scicos/change_tree_elt.bin \
+macros/scicos/check_edge.bin \
+macros/scicos/check_io.bin \
+macros/scicos/check_mac.bin \
+macros/scicos/Cut_.bin \
+macros/scicos/choosefile.bin \
+macros/scicos/%c_i_block.bin \
+macros/scicos/%c_i_graphics.bin \
+macros/scicos/%c_i_model.bin \
+macros/scicos/clickin.bin \
+macros/scicos/CodeGeneration_.bin \
+macros/scicos/Color_.bin \
+macros/scicos/compile_modelica.bin \
+macros/scicos/Compile_.bin \
+macros/scicos/connected_links.bin \
+macros/scicos/Context_.bin \
+macros/scicos/Copy_.bin \
+macros/scicos/cos2cosf.bin \
+macros/scicos/cosclick.bin \
+macros/scicos/countblocks.bin \
+macros/scicos/c_pass1.bin \
+macros/scicos/c_pass2.bin \
+macros/scicos/c_pass3.bin \
+macros/scicos/create_modelica1.bin \
+macros/scicos/create_modelica.bin \
+macros/scicos/ctree.bin \
+macros/scicos/CtrlSelect_.bin \
+macros/scicos/DebugLevel_.bin \
+macros/scicos/%debug_scicos.bin \
+macros/scicos/default_color.bin \
+macros/scicos/Defaultlinkcolors_.bin \
+macros/scicos/default_options.bin \
+macros/scicos/DeleteRegion_.bin \
+macros/scicos/Delete_.bin \
+macros/scicos/delete_unconnected.bin \
+macros/scicos/%diagram_p.bin \
+macros/scicos/dialog.bin \
+macros/scicos/dig_bound.bin \
+macros/scicos/disablemenus.bin \
+macros/scicos/disconnect_ports.bin \
+macros/scicos/Displaymode_.bin \
+macros/scicos/dist2polyline.bin \
+macros/scicos/do_addnew.bin \
+macros/scicos/do_block_info.bin \
+macros/scicos/do_block.bin \
+macros/scicos/do_color.bin \
+macros/scicos/do_compile.bin \
+macros/scicos/do_context.bin \
+macros/scicos/do_copy_region.bin \
+macros/scicos/do_copy.bin \
+macros/scicos/Documentation_.bin \
+macros/scicos/do_delete1.bin \
+macros/scicos/do_delete2.bin \
+macros/scicos/do_delete_region.bin \
+macros/scicos/do_delete.bin \
+macros/scicos/do_Displaymode.bin \
+macros/scicos/do_doc.bin \
+macros/scicos/do_duplicate.bin \
+macros/scicos/do_edit_pal.bin \
+macros/scicos/do_eval.bin \
+macros/scicos/do_exit.bin \
+macros/scicos/do_export.bin \
+macros/scicos/do_focus.bin \
+macros/scicos/do_help.bin \
+macros/scicos/do_icon_edit.bin \
+macros/scicos/do_ident.bin \
+macros/scicos/do_label.bin \
+macros/scicos/do_load_as_palette.bin \
+macros/scicos/do_load.bin \
+macros/scicos/do_move.bin \
+macros/scicos/do_navigator.bin \
+macros/scicos/do_newblk.bin \
+macros/scicos/do_options.bin \
+macros/scicos/do_palettes.bin \
+macros/scicos/do_purge.bin \
+macros/scicos/do_region2block.bin \
+macros/scicos/do_rename.bin \
+macros/scicos/do_replace.bin \
+macros/scicos/do_resize.bin \
+macros/scicos/do_run.bin \
+macros/scicos/do_SaveAs.bin \
+macros/scicos/do_save.bin \
+macros/scicos/do_set_info.bin \
+macros/scicos/do_setup.bin \
+macros/scicos/do_stupidmove.bin \
+macros/scicos/do_terminate.bin \
+macros/scicos/do_tild.bin \
+macros/scicos/do_update.bin \
+macros/scicos/do_version.bin \
+macros/scicos/do_view.bin \
+macros/scicos/do_window.bin \
+macros/scicos/do_xsetech.bin \
+macros/scicos/do_zoomin.bin \
+macros/scicos/do_zoomout.bin \
+macros/scicos/drawblock.bin \
+macros/scicos/drawlink.bin \
+macros/scicos/drawobj.bin \
+macros/scicos/drawobjs.bin \
+macros/scicos/draw.bin \
+macros/scicos/drawtitle.bin \
+macros/scicos/DuplicateRegion_.bin \
+macros/scicos/Duplicate_.bin \
+macros/scicos/enablemenus.bin \
+macros/scicos/Eval_.bin \
+macros/scicos/ExportAll_.bin \
+macros/scicos/Export_.bin \
+macros/scicos/extract_implicit.bin \
+macros/scicos/Flip_.bin \
+macros/scicos/fortran_block.bin \
+macros/scicos/FORTR.bin \
+macros/scicos/generic_block2.bin \
+macros/scicos/generic_block3.bin \
+macros/scicos/generic_block.bin \
+macros/scicos/genfunc1.bin \
+macros/scicos/genfunc.bin \
+macros/scicos/genmac.bin \
+macros/scicos/genmoc.bin \
+macros/scicos/gen_modelica.bin \
+macros/scicos/get_block_info.bin \
+macros/scicos/getblocklink.bin \
+macros/scicos/getblock.bin \
+macros/scicos/get_blocks_in_rect.bin \
+macros/scicos/getblocktext.bin \
+macros/scicos/get_connected.bin \
+macros/scicos/getgeom.bin \
+macros/scicos/get_info.bin \
+macros/scicos/GetInfo_.bin \
+macros/scicos/getinputports.bin \
+macros/scicos/getinputs.bin \
+macros/scicos/get_inside2.bin \
+macros/scicos/get_inside.bin \
+macros/scicos/getlink.bin \
+macros/scicos/get_new_window.bin \
+macros/scicos/getobj.bin \
+macros/scicos/getorigin.bin \
+macros/scicos/getoutputports.bin \
+macros/scicos/getoutputs.bin \
+macros/scicos/getparpath.bin \
+macros/scicos/getportsiz.bin \
+macros/scicos/getporttyp.bin \
+macros/scicos/get_rectangle.bin \
+macros/scicos/get_region2.bin \
+macros/scicos/get_region.bin \
+macros/scicos/get_selection.bin \
+macros/scicos/get_subobj_path.bin \
+macros/scicos/get_tree_elt.bin \
+macros/scicos/%graphics_e.bin \
+macros/scicos/%graphics_i_Block.bin \
+macros/scicos/%graphics_p.bin \
+macros/scicos/gridpoint.bin \
+macros/scicos/Help_.bin \
+macros/scicos/hilite_obj.bin \
+macros/scicos/hilite_path.bin \
+macros/scicos/IconEditor_.bin \
+macros/scicos/Icon_.bin \
+macros/scicos/Identification_.bin \
+macros/scicos/IDfonts_.bin \
+macros/scicos/init_agenda.bin \
+macros/scicos/is_modelica_block.bin \
+macros/scicos/is_split.bin \
+macros/scicos/Label_.bin \
+macros/scicos/%l_i_block.bin \
+macros/scicos/%l_i_graphics.bin \
+macros/scicos/%l_i_model.bin \
+macros/scicos/Link_.bin \
+macros/scicos/lnkptrcomp.bin \
+macros/scicos/LoadasPalette_.bin \
+macros/scicos/loadpallibs.bin \
+macros/scicos/Load_.bin \
+macros/scicos/lstfiles.bin \
+macros/scicos/mark_newpars.bin \
+macros/scicos/mark_prt.bin \
+macros/scicos/menu_stuff.bin \
+macros/scicos/message.bin \
+macros/scicos/mkvect.bin \
+macros/scicos/%model_e.bin \
+macros/scicos/%model_i_Block.bin \
+macros/scicos/modelica.bin \
+macros/scicos/Modelica_.bin \
+macros/scicos/%model_p.bin \
+macros/scicos/modipar.bin \
+macros/scicos/MoveLink_.bin \
+macros/scicos/Move_.bin \
+macros/scicos/Navigator_.bin \
+macros/scicos/newc_pass2.bin \
+macros/scicos/New_.bin \
+macros/scicos/Nyquist_.bin \
+macros/scicos/OpenSet_.bin \
+macros/scicos/Paleditor_.bin \
+macros/scicos/Palettes_.bin \
+macros/scicos/%params_p.bin \
+macros/scicos/Paste_.bin \
+macros/scicos/point2pixel.bin \
+macros/scicos/Popup_.bin \
+macros/scicos/prt_align.bin \
+macros/scicos/Purge_.bin \
+macros/scicos/pwindow_set_size.bin \
+macros/scicos/RegiontoSuperBlock_.bin \
+macros/scicos/Rename_.bin \
+macros/scicos/Replace_.bin \
+macros/scicos/replayifnecessary.bin \
+macros/scicos/Replot_.bin \
+macros/scicos/Resize_.bin \
+macros/scicos/restore_scs_gc.bin \
+macros/scicos/Run_.bin \
+macros/scicos/SaveasInterfFunc_.bin \
+macros/scicos/SaveasPalette_.bin \
+macros/scicos/SaveAs_.bin \
+macros/scicos/save_csuper.bin \
+macros/scicos/Save_.bin \
+macros/scicos/save_scs_gc.bin \
+macros/scicos/save_super.bin \
+macros/scicos/sci2tcl.bin \
+macros/scicos/scicos_block_link.bin \
+macros/scicos/scicos_block.bin \
+macros/scicos/scicos_cpr.bin \
+macros/scicos/scicos_diagram.bin \
+macros/scicos/scicos_flat.bin \
+macros/scicos/scicos_graphics.bin \
+macros/scicos/scicos_link.bin \
+macros/scicos/scicos_model.bin \
+macros/scicos/scicos_params.bin \
+macros/scicos/scicos_sim.bin \
+macros/scicos/scicos_state.bin \
+macros/scicos/script2var.bin \
+macros/scicos/scs_full_path.bin \
+macros/scicos/scs_show.bin \
+macros/scicos/select_hilite2.bin \
+macros/scicos/select_hilite.bin \
+macros/scicos/SelectLink_.bin \
+macros/scicos/SelectRegion_.bin \
+macros/scicos/select_unhilite.bin \
+macros/scicos/set_background.bin \
+macros/scicos/set_cmap.bin \
+macros/scicos/SetDiagramInfo_.bin \
+macros/scicos/Setup_.bin \
+macros/scicos/setvalue.bin \
+macros/scicos/shiftcors.bin \
+macros/scicos/Shortcuts_.bin \
+macros/scicos/show_info.bin \
+macros/scicos/%s_i_block.bin \
+macros/scicos/%s_i_graphics.bin \
+macros/scicos/%s_i_model.bin \
+macros/scicos/SmartMove_.bin \
+macros/scicos/splitfilepath.bin \
+macros/scicos/splitted_links.bin \
+macros/scicos/s_port_names.bin \
+macros/scicos/standard_define.bin \
+macros/scicos/standard_document.bin \
+macros/scicos/standard_draw_ports.bin \
+macros/scicos/standard_draw_ports_up.bin \
+macros/scicos/standard_draw.bin \
+macros/scicos/standard_etiquette.bin \
+macros/scicos/standard_inputs.bin \
+macros/scicos/standard_origin.bin \
+macros/scicos/standard_outputs.bin \
+macros/scicos/SUPER_f.bin \
+macros/scicos/systexport.bin \
+macros/scicos/systshow.bin \
+macros/scicos/tabule.bin \
+macros/scicos/tk_choose.bin \
+macros/scicos/tk_getcolor.bin \
+macros/scicos/tk_getvalue.bin \
+macros/scicos/tk_mpopup.bin \
+macros/scicos/tk_mpopupX.bin \
+macros/scicos/under_connection.bin \
+macros/scicos/Undo_.bin \
+macros/scicos/unhilite_obj.bin \
+macros/scicos/update_redraw_obj.bin \
+macros/scicos/update_scicos_pal.bin \
+macros/scicos/value2modelica.bin \
+macros/scicos/whereintree.bin \
+macros/scicos/width2pixel.bin \
+macros/scicos/Window_.bin \
+macros/scicos/window_set_size.bin \
+macros/scicos/Zoomin_.bin \
+macros/scicos/Zoomout_.bin \
+macros/add_palette.bin \
+macros/create_palette.bin \
+macros/initial_scicosnew_tables.bin \
+macros/initial_scicos_tables.bin \
+macros/scicos.bin \
+macros/scicos_simulate.bin \
+macros/steadycos.bin \
+macros/with_modelica_compiler.bin \
+macros/with_modelicac.bin \
+macros/with_ocaml.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### scicos : init scripts #### 
+libscicos_la_etcdir = $(target)/etc
+libscicos_la_etc_DATA = etc/scicos.quit etc/scicos.start
+
+#### scicos : gateway declaration #### 
+libscicos_la_sci_gatewaydir = $(target)/sci_gateway
+libscicos_la_sci_gateway_DATA = sci_gateway/scicos
+
+#### scicos : documentation FR #### 
+libscicos_la_helpfrdir = $(target)/help/fr
+libscicos_la_helpfr_DATA = help/fr/node21.htm \
+help/fr/RAND_f.htm \
+help/fr/CMSCOPE.htm \
+help/fr/MAXMIN.htm \
+help/fr/node23.htm \
+help/fr/ANDBLK.htm \
+help/fr/node60.htm \
+help/fr/node25.htm \
+help/fr/SAMPLEHOLD_f.htm \
+help/fr/HALT_f.htm \
+help/fr/QUANT_f.htm \
+help/fr/node62.htm \
+help/fr/OUTIMPL_f.htm \
+help/fr/node27.htm \
+help/fr/RAMP.htm \
+help/fr/node64.htm \
+help/fr/node29.htm \
+help/fr/node66.htm \
+help/fr/WRITEC_f.htm \
+help/fr/node68.htm \
+help/fr/add_palette.htm \
+help/fr/PDE.htm \
+help/fr/MUX.htm \
+help/fr/scicosim.htm \
+help/fr/scicos.htm \
+help/fr/WRITEAU_f.htm \
+help/fr/scicos_simulate.htm \
+help/fr/whatis_chm.htm \
+help/fr/scicos_cpr.htm \
+help/fr/GENSIN_f.htm \
+help/fr/node30.htm \
+help/fr/TEXT_f.htm \
+help/fr/RELATIONALOP.htm \
+help/fr/node32.htm \
+help/fr/CONST_f.htm \
+help/fr/CLKOUTV_f.htm \
+help/fr/node34.htm \
+help/fr/TCLSS_f.htm \
+help/fr/INIMPL_f.htm \
+help/fr/node71.htm \
+help/fr/node36.htm \
+help/fr/node38.htm \
+help/fr/scicos_link.htm \
+help/fr/TIME_f.htm \
+help/fr/SUPER_f.htm \
+help/fr/GENSQR_f.htm \
+help/fr/scifunc_block.htm \
+help/fr/INTEGRAL.htm \
+help/fr/DERIV.htm \
+help/fr/INTRP2BLK_f.htm \
+help/fr/SAWTOOTH_f.htm \
+help/fr/EVTVARDLY.htm \
+help/fr/DOLLAR_f.htm \
+help/fr/node167.htm \
+help/fr/CURV_f.htm \
+help/fr/FSCOPE_f.htm \
+help/fr/AFFICH_f.htm \
+help/fr/CLR_f.htm \
+help/fr/DLR_f.htm \
+help/fr/SATURATION.htm \
+help/fr/node41.htm \
+help/fr/node43.htm \
+help/fr/node45.htm \
+help/fr/EXPRESSION.htm \
+help/fr/node47.htm \
+help/fr/ABS_VALUE.htm \
+help/fr/node49.htm \
+help/fr/VARIABLE_DELAY.htm \
+help/fr/RFILE_f.htm \
+help/fr/CLINDUMMY_f.htm \
+help/fr/node2.htm \
+help/fr/node4.htm \
+help/fr/SCALAR2VECTOR.htm \
+help/fr/IN_f.htm \
+help/fr/EVTDLY_f.htm \
+help/fr/node135.htm \
+help/fr/node11.htm \
+help/fr/node13.htm \
+help/fr/ESELECT_f.htm \
+help/fr/node50.htm \
+help/fr/node15.htm \
+help/fr/CLKINV_f.htm \
+help/fr/node52.htm \
+help/fr/node17.htm \
+help/fr/CBLOCK.htm \
+help/fr/ISELECT_f.htm \
+help/fr/node54.htm \
+help/fr/steadycos.htm \
+help/fr/node19.htm \
+help/fr/node56.htm \
+help/fr/node58.htm \
+help/fr/Modulo_Count.htm \
+help/fr/SUM_f.htm \
+help/fr/M_SWITCH.htm \
+help/fr/NRMSOM_f.htm \
+help/fr/DEADBAND.htm \
+help/fr/CLKSOMV_f.htm \
+help/fr/node20.htm \
+help/fr/node22.htm \
+help/fr/INVBLK_f.htm \
+help/fr/node24.htm \
+help/fr/node61.htm \
+help/fr/node26.htm \
+help/fr/scicos_block.htm \
+help/fr/node63.htm \
+help/fr/node28.htm \
+help/fr/node65.htm \
+help/fr/node67.htm \
+help/fr/POWBLK_f.htm \
+help/fr/node69.htm \
+help/fr/INTRPLBLK_f.htm \
+help/fr/LOGICAL_OP.htm \
+help/fr/HYSTHERESIS.htm \
+help/fr/WFILE_f.htm \
+help/fr/node151.htm \
+help/fr/node118.htm \
+help/fr/create_palette.htm \
+help/fr/RELAY_f.htm \
+help/fr/RATELIMITER.htm \
+help/fr/SWITCH2.htm \
+help/fr/READC_f.htm \
+help/fr/SELECT_f.htm \
+help/fr/fortran_block.htm \
+help/fr/lincos.htm \
+help/fr/REGISTER_f.htm \
+help/fr/node31.htm \
+help/fr/node33.htm \
+help/fr/node70.htm \
+help/fr/node35.htm \
+help/fr/node72.htm \
+help/fr/freq_div.htm \
+help/fr/node37.htm \
+help/fr/whatis.htm \
+help/fr/node39.htm \
+help/fr/SIGNUM.htm \
+help/fr/generic_block2.htm \
+help/fr/PROD_f.htm \
+help/fr/EXTRACTOR.htm \
+help/fr/TIME_DELAY.htm \
+help/fr/CSCOPE.htm \
+help/fr/OUT_f.htm \
+help/fr/LOOKUP_f.htm \
+help/fr/EVENTSCOPE_f.htm \
+help/fr/PRODUCT.htm \
+help/fr/node40.htm \
+help/fr/SCOPXY_f.htm \
+help/fr/EXPBLK_f.htm \
+help/fr/node42.htm \
+help/fr/c_block.htm \
+help/fr/node44.htm \
+help/fr/node46.htm \
+help/fr/node48.htm \
+help/fr/node1.htm \
+help/fr/SWITCH_f.htm \
+help/fr/READAU_f.htm \
+help/fr/GAINBLK.htm \
+help/fr/scicos_diagram.htm \
+help/fr/node3.htm \
+help/fr/ANDLOG_f.htm \
+help/fr/CLSS_f.htm \
+help/fr/SUMMATION.htm \
+help/fr/node9.htm \
+help/fr/STEP_FUNCTION.htm \
+help/fr/IFTHEL_f.htm \
+help/fr/node10.htm \
+help/fr/node12.htm \
+help/fr/ZCROSS_f.htm \
+help/fr/CONSTRAINT_f.htm \
+help/fr/node14.htm \
+help/fr/node51.htm \
+help/fr/node16.htm \
+help/fr/EVTGEN_f.htm \
+help/fr/node53.htm \
+help/fr/node18.htm \
+help/fr/node90.htm \
+help/fr/node55.htm \
+help/fr/CLOCK_f.htm \
+help/fr/node57.htm \
+help/fr/NEGTOPOS_f.htm \
+help/fr/POSTONEG_f.htm \
+help/fr/node59.htm \
+help/fr/BACKLASH.htm \
+help/fr/node104.htm \
+help/fr/DLSS_f.htm \
+help/fr/ANIMXY_f.htm \
+help/fr/TrigFun.htm \
+help/fr/LOGBLK_f.htm \
+help/fr/node147.htm \
+help/fr/node184.htm \
+help/fr/DEMUX.htm
+
+
+#### scicos : documentation EN #### 
+libscicos_la_helpendir = $(target)/help/eng
+libscicos_la_helpen_DATA = help/eng/node21.htm \
+help/eng/RAND_f.htm \
+help/eng/CMSCOPE.htm \
+help/eng/MAXMIN.htm \
+help/eng/node23.htm \
+help/eng/ANDBLK.htm \
+help/eng/node60.htm \
+help/eng/node25.htm \
+help/eng/SAMPLEHOLD_f.htm \
+help/eng/HALT_f.htm \
+help/eng/QUANT_f.htm \
+help/eng/node62.htm \
+help/eng/OUTIMPL_f.htm \
+help/eng/node27.htm \
+help/eng/RAMP.htm \
+help/eng/node64.htm \
+help/eng/node29.htm \
+help/eng/node66.htm \
+help/eng/WRITEC_f.htm \
+help/eng/node68.htm \
+help/eng/add_palette.htm \
+help/eng/PDE.htm \
+help/eng/MUX.htm \
+help/eng/scicosim.htm \
+help/eng/scicos.htm \
+help/eng/WRITEAU_f.htm \
+help/eng/scicos_simulate.htm \
+help/eng/whatis_chm.htm \
+help/eng/scicos_cpr.htm \
+help/eng/GENSIN_f.htm \
+help/eng/node30.htm \
+help/eng/TEXT_f.htm \
+help/eng/RELATIONALOP.htm \
+help/eng/node32.htm \
+help/eng/CONST_f.htm \
+help/eng/CLKOUTV_f.htm \
+help/eng/node34.htm \
+help/eng/TCLSS_f.htm \
+help/eng/INIMPL_f.htm \
+help/eng/node71.htm \
+help/eng/node36.htm \
+help/eng/node38.htm \
+help/eng/scicos_link.htm \
+help/eng/TIME_f.htm \
+help/eng/SUPER_f.htm \
+help/eng/GENSQR_f.htm \
+help/eng/scifunc_block.htm \
+help/eng/INTEGRAL.htm \
+help/eng/DERIV.htm \
+help/eng/INTRP2BLK_f.htm \
+help/eng/SAWTOOTH_f.htm \
+help/eng/EVTVARDLY.htm \
+help/eng/DOLLAR_f.htm \
+help/eng/node167.htm \
+help/eng/CURV_f.htm \
+help/eng/FSCOPE_f.htm \
+help/eng/AFFICH_f.htm \
+help/eng/CLR_f.htm \
+help/eng/DLR_f.htm \
+help/eng/SATURATION.htm \
+help/eng/node41.htm \
+help/eng/node43.htm \
+help/eng/node45.htm \
+help/eng/EXPRESSION.htm \
+help/eng/node47.htm \
+help/eng/ABS_VALUE.htm \
+help/eng/node49.htm \
+help/eng/VARIABLE_DELAY.htm \
+help/eng/RFILE_f.htm \
+help/eng/CLINDUMMY_f.htm \
+help/eng/node2.htm \
+help/eng/node4.htm \
+help/eng/SCALAR2VECTOR.htm \
+help/eng/IN_f.htm \
+help/eng/EVTDLY_f.htm \
+help/eng/node135.htm \
+help/eng/node11.htm \
+help/eng/node13.htm \
+help/eng/ESELECT_f.htm \
+help/eng/node50.htm \
+help/eng/node15.htm \
+help/eng/CLKINV_f.htm \
+help/eng/node52.htm \
+help/eng/node17.htm \
+help/eng/CBLOCK.htm \
+help/eng/ISELECT_f.htm \
+help/eng/node54.htm \
+help/eng/steadycos.htm \
+help/eng/node19.htm \
+help/eng/node56.htm \
+help/eng/node58.htm \
+help/eng/Modulo_Count.htm \
+help/eng/SUM_f.htm \
+help/eng/M_SWITCH.htm \
+help/eng/NRMSOM_f.htm \
+help/eng/DEADBAND.htm \
+help/eng/CLKSOMV_f.htm \
+help/eng/node20.htm \
+help/eng/node22.htm \
+help/eng/INVBLK_f.htm \
+help/eng/node24.htm \
+help/eng/node61.htm \
+help/eng/node26.htm \
+help/eng/scicos_block.htm \
+help/eng/node63.htm \
+help/eng/node28.htm \
+help/eng/node65.htm \
+help/eng/node67.htm \
+help/eng/POWBLK_f.htm \
+help/eng/node69.htm \
+help/eng/INTRPLBLK_f.htm \
+help/eng/LOGICAL_OP.htm \
+help/eng/HYSTHERESIS.htm \
+help/eng/WFILE_f.htm \
+help/eng/node151.htm \
+help/eng/node118.htm \
+help/eng/create_palette.htm \
+help/eng/RELAY_f.htm \
+help/eng/RATELIMITER.htm \
+help/eng/SWITCH2.htm \
+help/eng/READC_f.htm \
+help/eng/SELECT_f.htm \
+help/eng/fortran_block.htm \
+help/eng/lincos.htm \
+help/eng/REGISTER_f.htm \
+help/eng/node31.htm \
+help/eng/node33.htm \
+help/eng/node70.htm \
+help/eng/node35.htm \
+help/eng/node72.htm \
+help/eng/freq_div.htm \
+help/eng/node37.htm \
+help/eng/whatis.htm \
+help/eng/node39.htm \
+help/eng/SIGNUM.htm \
+help/eng/generic_block2.htm \
+help/eng/PROD_f.htm \
+help/eng/EXTRACTOR.htm \
+help/eng/TIME_DELAY.htm \
+help/eng/CSCOPE.htm \
+help/eng/OUT_f.htm \
+help/eng/LOOKUP_f.htm \
+help/eng/EVENTSCOPE_f.htm \
+help/eng/PRODUCT.htm \
+help/eng/node40.htm \
+help/eng/SCOPXY_f.htm \
+help/eng/EXPBLK_f.htm \
+help/eng/node42.htm \
+help/eng/c_block.htm \
+help/eng/node44.htm \
+help/eng/node46.htm \
+help/eng/node48.htm \
+help/eng/node1.htm \
+help/eng/SWITCH_f.htm \
+help/eng/READAU_f.htm \
+help/eng/GAINBLK.htm \
+help/eng/scicos_diagram.htm \
+help/eng/node3.htm \
+help/eng/ANDLOG_f.htm \
+help/eng/CLSS_f.htm \
+help/eng/SUMMATION.htm \
+help/eng/node9.htm \
+help/eng/STEP_FUNCTION.htm \
+help/eng/IFTHEL_f.htm \
+help/eng/node10.htm \
+help/eng/node12.htm \
+help/eng/ZCROSS_f.htm \
+help/eng/CONSTRAINT_f.htm \
+help/eng/node14.htm \
+help/eng/node51.htm \
+help/eng/node16.htm \
+help/eng/EVTGEN_f.htm \
+help/eng/node53.htm \
+help/eng/node18.htm \
+help/eng/node90.htm \
+help/eng/node55.htm \
+help/eng/CLOCK_f.htm \
+help/eng/node57.htm \
+help/eng/NEGTOPOS_f.htm \
+help/eng/POSTONEG_f.htm \
+help/eng/node59.htm \
+help/eng/BACKLASH.htm \
+help/eng/node104.htm \
+help/eng/DLSS_f.htm \
+help/eng/ANIMXY_f.htm \
+help/eng/TrigFun.htm \
+help/eng/LOGBLK_f.htm \
+help/eng/node147.htm \
+help/eng/node184.htm \
+help/eng/DEMUX.htm
+
+
+#### scicos : include files ####
+libscicos_la_includedir = $(includedir)/scicos
+libscicos_la_include_HEADERS = includes/import.h \
+includes/cc_pass2.h \
+includes/scicos_block.h \
+includes/scicos-def.h \
+includes/gw_scicos.h \
+includes/intcscicos.h \
+includes/scicos_block4.h \
+includes/gw_cscicos.h \
+includes/scicos.h \
+includes/blocks.h
+
+
+#### scicos : demos files ####
+libscicos_la_demosdir = $(target)/demos/
+libscicos_la_demos_DATA = demos/CodeGen/Fibo_standalone.c \
+demos/CodeGen/Therm.cosf \
+demos/CodeGen/Therm_standalone.c \
+demos/CodeGen/fibo.cosf \
+demos/CodeGen/data \
+demos/CodeGen/controller.cosf \
+demos/CodeGen/foo.cosf \
+demos/sound.cosf \
+demos/dialogs_play.sci \
+demos/Thermique_bloc.cosf \
+demos/tut1 \
+demos/tut2 \
+demos/Temp.cosf \
+demos/tut3 \
+demos/demo2.cosf \
+demos/tut4 \
+demos/Ifsub.cosf \
+demos/demo4.cosf \
+demos/tut5 \
+demos/Cont.Disc-Observer.cosf \
+demos/tut6 \
+demos/demo6.cosf \
+demos/bounce.cosf \
+demos/Rectifier.cosf \
+demos/imppart_Hydraulics.mo \
+demos/dialogs_learn.sci \
+demos/scicos_learn.sci \
+demos/scicos_play.sci \
+demos/scicos.dem \
+demos/rlc1.cosf \
+demos/demo1.cosf \
+demos/dialogs.sci \
+demos/Hydraulics.cosf \
+demos/demo3.cosf \
+demos/System-Observer.cosf \
+demos/demo5.cosf \
+demos/demo7.cosf \
+demos/live.dat \
+demos/fibo.cosf \
+demos/Controller.cosf
+
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -1657,6 +3197,125 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libscicos_la_demosDATA: $(libscicos_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_demosdir)"
+	@list='$(libscicos_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_demosdir)/$$f'"; \
+	  $(libscicos_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_demosdir)/$$f"; \
+	done
+
+uninstall-libscicos_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_demos_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_demosdir)/$$f"; \
+	done
+install-libscicos_la_etcDATA: $(libscicos_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_etcdir)"
+	@list='$(libscicos_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_etcdir)/$$f'"; \
+	  $(libscicos_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_etcdir)/$$f"; \
+	done
+
+uninstall-libscicos_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_etcdir)/$$f"; \
+	done
+install-libscicos_la_helpenDATA: $(libscicos_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_helpendir)"
+	@list='$(libscicos_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_helpendir)/$$f'"; \
+	  $(libscicos_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_helpendir)/$$f"; \
+	done
+
+uninstall-libscicos_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_helpendir)/$$f"; \
+	done
+install-libscicos_la_helpfrDATA: $(libscicos_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_helpfrdir)"
+	@list='$(libscicos_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_helpfrdir)/$$f'"; \
+	  $(libscicos_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libscicos_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_helpfrdir)/$$f"; \
+	done
+install-libscicos_la_macroDATA: $(libscicos_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_macrodir)"
+	@list='$(libscicos_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_macrodir)/$$f'"; \
+	  $(libscicos_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_macrodir)/$$f"; \
+	done
+
+uninstall-libscicos_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_macrodir)/$$f"; \
+	done
+install-libscicos_la_rootDATA: $(libscicos_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_rootdir)"
+	@list='$(libscicos_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_rootdir)/$$f'"; \
+	  $(libscicos_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_rootdir)/$$f"; \
+	done
+
+uninstall-libscicos_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_rootdir)/$$f"; \
+	done
+install-libscicos_la_sci_gatewayDATA: $(libscicos_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicos_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_sci_gatewaydir)"
+	@list='$(libscicos_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicos_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_sci_gatewaydir)/$$f'"; \
+	  $(libscicos_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libscicos_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicos_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicos_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicos_la_sci_gatewaydir)/$$f"; \
+	done
 install-libscicos_la_includeHEADERS: $(libscicos_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicos_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_includedir)"
@@ -1752,9 +3411,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscicos_la_demosdir)" "$(DESTDIR)$(libscicos_la_etcdir)" "$(DESTDIR)$(libscicos_la_helpendir)" "$(DESTDIR)$(libscicos_la_helpfrdir)" "$(DESTDIR)$(libscicos_la_macrodir)" "$(DESTDIR)$(libscicos_la_rootdir)" "$(DESTDIR)$(libscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1805,7 +3464,12 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libscicos_la_includeHEADERS
+install-data-am: install-libscicos_la_demosDATA \
+	install-libscicos_la_etcDATA install-libscicos_la_helpenDATA \
+	install-libscicos_la_helpfrDATA \
+	install-libscicos_la_includeHEADERS \
+	install-libscicos_la_macroDATA install-libscicos_la_rootDATA \
+	install-libscicos_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1842,7 +3506,14 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libscicos_la_includeHEADERS
+	uninstall-libscicos_la_demosDATA \
+	uninstall-libscicos_la_etcDATA \
+	uninstall-libscicos_la_helpenDATA \
+	uninstall-libscicos_la_helpfrDATA \
+	uninstall-libscicos_la_includeHEADERS \
+	uninstall-libscicos_la_macroDATA \
+	uninstall-libscicos_la_rootDATA \
+	uninstall-libscicos_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1853,14 +3524,25 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libscicos_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libscicos_la_includeHEADERS
+	install-libLTLIBRARIES install-libscicos_la_demosDATA \
+	install-libscicos_la_etcDATA install-libscicos_la_helpenDATA \
+	install-libscicos_la_helpfrDATA \
+	install-libscicos_la_includeHEADERS \
+	install-libscicos_la_macroDATA install-libscicos_la_rootDATA \
+	install-libscicos_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libscicos_la_demosDATA \
+	uninstall-libscicos_la_etcDATA \
+	uninstall-libscicos_la_helpenDATA \
+	uninstall-libscicos_la_helpfrDATA \
+	uninstall-libscicos_la_includeHEADERS \
+	uninstall-libscicos_la_macroDATA \
+	uninstall-libscicos_la_rootDATA \
+	uninstall-libscicos_la_sci_gatewayDATA
 
 
 includes/blocks.h:

@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -61,6 +62,12 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libpolynomials_la_etcdir)" \
+	"$(DESTDIR)$(libpolynomials_la_helpendir)" \
+	"$(DESTDIR)$(libpolynomials_la_helpfrdir)" \
+	"$(DESTDIR)$(libpolynomials_la_macrodir)" \
+	"$(DESTDIR)$(libpolynomials_la_rootdir)" \
+	"$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libpolynomials_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -116,6 +123,16 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libpolynomials_la_SOURCES)
 DIST_SOURCES = $(libpolynomials_la_SOURCES)
+libpolynomials_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libpolynomials_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libpolynomials_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libpolynomials_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libpolynomials_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libpolynomials_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libpolynomials_la_etc_DATA) $(libpolynomials_la_helpen_DATA) \
+	$(libpolynomials_la_helpfr_DATA) \
+	$(libpolynomials_la_macro_DATA) $(libpolynomials_la_root_DATA) \
+	$(libpolynomials_la_sci_gateway_DATA)
 libpolynomials_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libpolynomials_la_include_HEADERS)
 ETAGS = etags
@@ -228,7 +245,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -363,8 +380,6 @@ sci_gateway/fortran/sci_f_pclean.f \
 sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
-libpolynomials_la_includedir = $(includedir)/polynomials
-libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
 
 #libpolynomials_la_FFLAGS= -Iincludes/ 
 libpolynomials_la_CFLAGS = -Iincludes/ 
@@ -376,6 +391,169 @@ libpolynomials_la_LIBADD =
 #	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la  
 #	$(top_builddir)/modules/core/libcore.la 
 libpolynomials_la_PKGCONFIG = polynomials.pc
+#### Target ######
+target = $(datadir)/polynomials
+
+#### polynomials : Conf files ####
+libpolynomials_la_rootdir = $(target)
+libpolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### polynomials : Scilab macros ###
+libpolynomials_la_macrodir = $(target)/macros
+libpolynomials_la_macro_DATA = macros/denom.sci \
+macros/pdiv.sci \
+macros/systmat.sci \
+macros/pol2str.sci \
+macros/diophant.sci \
+macros/htrianr.sci \
+macros/pol2des.sci \
+macros/rowcompr.sci \
+macros/hrmt.sci \
+macros/lcm.sci \
+macros/cmndred.sci \
+macros/colcompr.sci \
+macros/invr.sci \
+macros/determ.sci \
+macros/pfactors.sci \
+macros/coffg.sci \
+macros/routh_t.sci \
+macros/sylm.sci \
+macros/numer.sci \
+macros/hermit.sci \
+macros/polfact.sci \
+macros/horner.sci \
+macros/gcd.sci \
+macros/pol2tex.sci \
+macros/inv_coeff.sci \
+macros/detr.sci \
+macros/derivat.sci \
+macros/lcmdiag.sci \
+macros/factors.sci macros/cmndred.bin \
+macros/coffg.bin \
+macros/colcompr.bin \
+macros/denom.bin \
+macros/derivat.bin \
+macros/determ.bin \
+macros/detr.bin \
+macros/diophant.bin \
+macros/factors.bin \
+macros/gcd.bin \
+macros/hermit.bin \
+macros/horner.bin \
+macros/hrmt.bin \
+macros/htrianr.bin \
+macros/inv_coeff.bin \
+macros/invr.bin \
+macros/lcmdiag.bin \
+macros/lcm.bin \
+macros/numer.bin \
+macros/pdiv.bin \
+macros/pfactors.bin \
+macros/pol2des.bin \
+macros/pol2str.bin \
+macros/pol2tex.bin \
+macros/polfact.bin \
+macros/routh_t.bin \
+macros/rowcompr.bin \
+macros/sylm.bin \
+macros/systmat.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### polynomials : init scripts #### 
+libpolynomials_la_etcdir = $(target)/etc
+libpolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
+
+#### polynomials : gateway declaration #### 
+libpolynomials_la_sci_gatewaydir = $(target)/sci_gateway
+libpolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
+
+#### polynomials : documentation FR #### 
+libpolynomials_la_helpfrdir = $(target)/help/fr
+libpolynomials_la_helpfr_DATA = help/fr/colcompr.htm \
+help/fr/systmat.htm \
+help/fr/bezout.htm \
+help/fr/whatis.htm \
+help/fr/routh_t.htm \
+help/fr/pol2tex.htm \
+help/fr/clean.htm \
+help/fr/cmndred.htm \
+help/fr/coeff.htm \
+help/fr/coffg.htm \
+help/fr/diophant.htm \
+help/fr/degree.htm \
+help/fr/denom.htm \
+help/fr/derivat.htm \
+help/fr/determ.htm \
+help/fr/detr.htm \
+help/fr/rowcompr.htm \
+help/fr/factors.htm \
+help/fr/gcd.htm \
+help/fr/hermit.htm \
+help/fr/horner.htm \
+help/fr/hrmt.htm \
+help/fr/htrianr.htm \
+help/fr/invr.htm \
+help/fr/lcmdiag.htm \
+help/fr/lcm.htm \
+help/fr/ldiv.htm \
+help/fr/numer.htm \
+help/fr/pdiv.htm \
+help/fr/pol2des.htm \
+help/fr/pol2str.htm \
+help/fr/polfact.htm \
+help/fr/residu.htm \
+help/fr/roots.htm \
+help/fr/sfact.htm \
+help/fr/simp.htm \
+help/fr/simp_mode.htm \
+help/fr/sylm.htm
+
+
+#### polynomials : documentation EN #### 
+libpolynomials_la_helpendir = $(target)/help/eng
+libpolynomials_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/colcompr.htm \
+help/eng/bezout.htm \
+help/eng/clean.htm \
+help/eng/cmndred.htm \
+help/eng/coeff.htm \
+help/eng/coffg.htm \
+help/eng/diophant.htm \
+help/eng/degree.htm \
+help/eng/denom.htm \
+help/eng/derivat.htm \
+help/eng/determ.htm \
+help/eng/detr.htm \
+help/eng/rowcompr.htm \
+help/eng/factors.htm \
+help/eng/gcd.htm \
+help/eng/hermit.htm \
+help/eng/horner.htm \
+help/eng/hrmt.htm \
+help/eng/htrianr.htm \
+help/eng/invr.htm \
+help/eng/lcmdiag.htm \
+help/eng/lcm.htm \
+help/eng/ldiv.htm \
+help/eng/numer.htm \
+help/eng/pdiv.htm \
+help/eng/pol2des.htm \
+help/eng/pol2str.htm \
+help/eng/pol2tex.htm \
+help/eng/polfact.htm \
+help/eng/residu.htm \
+help/eng/roots.htm \
+help/eng/routh_t.htm \
+help/eng/sfact.htm \
+help/eng/simp.htm \
+help/eng/simp_mode.htm \
+help/eng/sylm.htm \
+help/eng/systmat.htm
+
+
+#### polynomials : include files ####
+libpolynomials_la_includedir = $(includedir)/polynomials
+libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
 all: all-am
 
 .SUFFIXES:
@@ -865,6 +1043,108 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libpolynomials_la_etcDATA: $(libpolynomials_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpolynomials_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_etcdir)"
+	@list='$(libpolynomials_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpolynomials_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_etcdir)/$$f'"; \
+	  $(libpolynomials_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_etcdir)/$$f"; \
+	done
+
+uninstall-libpolynomials_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpolynomials_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpolynomials_la_etcdir)/$$f"; \
+	done
+install-libpolynomials_la_helpenDATA: $(libpolynomials_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpolynomials_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_helpendir)"
+	@list='$(libpolynomials_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpolynomials_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_helpendir)/$$f'"; \
+	  $(libpolynomials_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_helpendir)/$$f"; \
+	done
+
+uninstall-libpolynomials_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpolynomials_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpolynomials_la_helpendir)/$$f"; \
+	done
+install-libpolynomials_la_helpfrDATA: $(libpolynomials_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpolynomials_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_helpfrdir)"
+	@list='$(libpolynomials_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpolynomials_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_helpfrdir)/$$f'"; \
+	  $(libpolynomials_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libpolynomials_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpolynomials_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpolynomials_la_helpfrdir)/$$f"; \
+	done
+install-libpolynomials_la_macroDATA: $(libpolynomials_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpolynomials_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_macrodir)"
+	@list='$(libpolynomials_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpolynomials_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_macrodir)/$$f'"; \
+	  $(libpolynomials_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_macrodir)/$$f"; \
+	done
+
+uninstall-libpolynomials_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpolynomials_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpolynomials_la_macrodir)/$$f"; \
+	done
+install-libpolynomials_la_rootDATA: $(libpolynomials_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpolynomials_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_rootdir)"
+	@list='$(libpolynomials_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpolynomials_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_rootdir)/$$f'"; \
+	  $(libpolynomials_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_rootdir)/$$f"; \
+	done
+
+uninstall-libpolynomials_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpolynomials_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpolynomials_la_rootdir)/$$f"; \
+	done
+install-libpolynomials_la_sci_gatewayDATA: $(libpolynomials_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpolynomials_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)"
+	@list='$(libpolynomials_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpolynomials_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)/$$f'"; \
+	  $(libpolynomials_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libpolynomials_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpolynomials_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)/$$f"; \
+	done
 install-libpolynomials_la_includeHEADERS: $(libpolynomials_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libpolynomials_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_includedir)"
@@ -959,9 +1239,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpolynomials_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpolynomials_la_etcdir)" "$(DESTDIR)$(libpolynomials_la_helpendir)" "$(DESTDIR)$(libpolynomials_la_helpfrdir)" "$(DESTDIR)$(libpolynomials_la_macrodir)" "$(DESTDIR)$(libpolynomials_la_rootdir)" "$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libpolynomials_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1009,7 +1289,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libpolynomials_la_includeHEADERS
+install-data-am: install-libpolynomials_la_etcDATA \
+	install-libpolynomials_la_helpenDATA \
+	install-libpolynomials_la_helpfrDATA \
+	install-libpolynomials_la_includeHEADERS \
+	install-libpolynomials_la_macroDATA \
+	install-libpolynomials_la_rootDATA \
+	install-libpolynomials_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1046,7 +1332,13 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libpolynomials_la_includeHEADERS
+	uninstall-libpolynomials_la_etcDATA \
+	uninstall-libpolynomials_la_helpenDATA \
+	uninstall-libpolynomials_la_helpfrDATA \
+	uninstall-libpolynomials_la_includeHEADERS \
+	uninstall-libpolynomials_la_macroDATA \
+	uninstall-libpolynomials_la_rootDATA \
+	uninstall-libpolynomials_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1057,15 +1349,25 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES \
-	install-libpolynomials_la_includeHEADERS install-man \
+	install-libLTLIBRARIES install-libpolynomials_la_etcDATA \
+	install-libpolynomials_la_helpenDATA \
+	install-libpolynomials_la_helpfrDATA \
+	install-libpolynomials_la_includeHEADERS \
+	install-libpolynomials_la_macroDATA \
+	install-libpolynomials_la_rootDATA \
+	install-libpolynomials_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-libLTLIBRARIES \
-	uninstall-libpolynomials_la_includeHEADERS
+	uninstall-libLTLIBRARIES uninstall-libpolynomials_la_etcDATA \
+	uninstall-libpolynomials_la_helpenDATA \
+	uninstall-libpolynomials_la_helpfrDATA \
+	uninstall-libpolynomials_la_includeHEADERS \
+	uninstall-libpolynomials_la_macroDATA \
+	uninstall-libpolynomials_la_rootDATA \
+	uninstall-libpolynomials_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

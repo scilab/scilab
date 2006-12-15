@@ -1,3 +1,7 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
 
 BLAS_FORTRAN_SOURCES = zrotg.f \
 zhpr2.f \

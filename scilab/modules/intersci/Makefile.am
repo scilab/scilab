@@ -32,3 +32,35 @@ libintersci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libintersci_la_PKGCONFIG = intersci.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/intersci
+
+
+#### intersci : Conf files ####
+libintersci_la_rootdir = $(target)
+libintersci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### intersci : Scilab macros ###
+libintersci_la_macrodir = $(target)/macros
+libintersci_la_macro_DATA =   macros/buildmacros.sce
+
+
+#### intersci : init scripts #### 
+libintersci_la_etcdir = $(target)/etc
+libintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
+
+
+#### intersci : documentation FR #### 
+libintersci_la_helpfrdir = $(target)/help/fr
+libintersci_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/intersci.htm
+
+
+#### intersci : documentation EN #### 
+libintersci_la_helpendir = $(target)/help/eng
+libintersci_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/intersci.htm
+

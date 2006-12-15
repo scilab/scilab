@@ -90,10 +90,6 @@ sci_gateway/fortran/bgetx.f \
 sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
-libsignal_processing_la_includedir=$(includedir)/signal_processing
-
-libsignal_processing_la_include_HEADERS = includes/gw_signal.h
-
 libsignal_processing_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
 lib_LTLIBRARIES = libsignal_processing.la
@@ -106,3 +102,325 @@ libsignal_processing_la_LIBADD = \
 #	$(top_builddir)/modules/core/libcore.la
 
 libsignal_processing_la_PKGCONFIG = signal_processing.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/signal_processing
+
+
+#### signal_processing : Conf files ####
+libsignal_processing_la_rootdir = $(target)
+libsignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### signal_processing : Scilab macros ###
+libsignal_processing_la_macrodir = $(target)/macros
+libsignal_processing_la_macro_DATA = macros/srkf.sci \
+macros/intdec.sci \
+macros/phc.sci \
+macros/lindquist.sci \
+macros/system.sci \
+macros/detrend.sci \
+macros/ifft.sci \
+macros/jmat.sci \
+macros/mfft.sci \
+macros/group.sci \
+macros/sincd.sci \
+macros/czt.sci \
+macros/cheb2mag.sci \
+macros/casc.sci \
+macros/eqiir.sci \
+macros/hilb.sci \
+macros/faurre.sci \
+macros/lev.sci \
+macros/%asn.sci \
+macros/zpell.sci \
+macros/trans.sci \
+macros/zpbutt.sci \
+macros/wiener.sci \
+macros/yulewalk.sci \
+macros/find_freq.sci \
+macros/findm.sci \
+macros/iirgroup.sci \
+macros/analpf.sci \
+macros/lgfft.sci \
+macros/cepstrum.sci \
+macros/buttmag.sci \
+macros/sskf.sci \
+macros/wfir.sci \
+macros/cheb1mag.sci \
+macros/frfit.sci \
+macros/fsfirlin.sci \
+macros/dft.sci \
+macros/iirlp.sci \
+macros/mrfit.sci \
+macros/cspect.sci \
+macros/lattn.sci \
+macros/iirmod.sci \
+macros/kalm.sci \
+macros/convol.sci \
+macros/srfaur.sci \
+macros/ffilt.sci \
+macros/eqfir.sci \
+macros/window.sci \
+macros/chepol.sci \
+macros/levin.sci \
+macros/fftshift.sci \
+macros/hank.sci \
+macros/ell1mag.sci \
+macros/iir.sci \
+macros/remezb.sci \
+macros/zpch1.sci \
+macros/%sn.sci \
+macros/zpch2.sci \
+macros/mese.sci \
+macros/bilt.sci \
+macros/wigner.sci \
+macros/frmag.sci \
+macros/pspect.sci \
+macros/%k.sci \
+macros/fft2.sci macros/analpf.bin \
+macros/%asn.bin \
+macros/bilt.bin \
+macros/buttmag.bin \
+macros/casc.bin \
+macros/cepstrum.bin \
+macros/cheb1mag.bin \
+macros/cheb2mag.bin \
+macros/chepol.bin \
+macros/convol.bin \
+macros/cspect.bin \
+macros/czt.bin \
+macros/detrend.bin \
+macros/dft.bin \
+macros/ell1mag.bin \
+macros/eqfir.bin \
+macros/eqiir.bin \
+macros/faurre.bin \
+macros/ffilt.bin \
+macros/fft2.bin \
+macros/fftshift.bin \
+macros/find_freq.bin \
+macros/findm.bin \
+macros/frfit.bin \
+macros/frmag.bin \
+macros/fsfirlin.bin \
+macros/group.bin \
+macros/hank.bin \
+macros/hilb.bin \
+macros/ifft.bin \
+macros/iirgroup.bin \
+macros/iirlp.bin \
+macros/iirmod.bin \
+macros/iir.bin \
+macros/intdec.bin \
+macros/jmat.bin \
+macros/kalm.bin \
+macros/%k.bin \
+macros/lattn.bin \
+macros/levin.bin \
+macros/lev.bin \
+macros/lgfft.bin \
+macros/lindquist.bin \
+macros/mese.bin \
+macros/mfft.bin \
+macros/mrfit.bin \
+macros/phc.bin \
+macros/pspect.bin \
+macros/remezb.bin \
+macros/sincd.bin \
+macros/%sn.bin \
+macros/srfaur.bin \
+macros/srkf.bin \
+macros/sskf.bin \
+macros/system.bin \
+macros/trans.bin \
+macros/wfir.bin \
+macros/wiener.bin \
+macros/wigner.bin \
+macros/window.bin \
+macros/yulewalk.bin \
+macros/zpbutt.bin \
+macros/zpch1.bin \
+macros/zpch2.bin \
+macros/zpell.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### signal_processing : init scripts #### 
+libsignal_processing_la_etcdir = $(target)/etc
+libsignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
+
+#### signal_processing : gateway declaration #### 
+libsignal_processing_la_sci_gatewaydir = $(target)/sci_gateway
+libsignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing
+
+
+#### signal_processing : documentation FR #### 
+libsignal_processing_la_helpfrdir = $(target)/help/fr
+libsignal_processing_la_helpfr_DATA = help/fr/cepstrum.htm \
+help/fr/casc.htm \
+help/fr/cheb2mag.htm \
+help/fr/chepol.htm \
+help/fr/convol.htm \
+help/fr/corr.htm \
+help/fr/cspect.htm \
+help/fr/czt.htm \
+help/fr/detrend.htm \
+help/fr/dft.htm \
+help/fr/ell1mag.htm \
+help/fr/eqfir.htm \
+help/fr/eqiir.htm \
+help/fr/faurre.htm \
+help/fr/ffilt.htm \
+help/fr/fft2.htm \
+help/fr/fftshift.htm \
+help/fr/fft.htm \
+help/fr/filter.htm \
+help/fr/find_freq.htm \
+help/fr/findm.htm \
+help/fr/frfit.htm \
+help/fr/frmag.htm \
+help/fr/fsfirlin.htm \
+help/fr/group.htm \
+help/fr/hank.htm \
+help/fr/hilb.htm \
+help/fr/iirgroup.htm \
+help/fr/iirlp.htm \
+help/fr/iir.htm \
+help/fr/intdec.htm \
+help/fr/jmat.htm \
+help/fr/kalm.htm \
+help/fr/lattn.htm \
+help/fr/lattp.htm \
+help/fr/levin.htm \
+help/fr/lev.htm \
+help/fr/lgfft.htm \
+help/fr/lindquist.htm \
+help/fr/mese.htm \
+help/fr/mfft.htm \
+help/fr/mrfit.htm \
+help/fr/percentasn.htm \
+help/fr/percentk.htm \
+help/fr/percentsn.htm \
+help/fr/phc.htm \
+help/fr/pspect.htm \
+help/fr/remezb.htm \
+help/fr/remez.htm \
+help/fr/rpem.htm \
+help/fr/Signal.htm \
+help/fr/sincd.htm \
+help/fr/sinc.htm \
+help/fr/srfaur.htm \
+help/fr/srkf.htm \
+help/fr/sskf.htm \
+help/fr/system.htm \
+help/fr/trans.htm \
+help/fr/wfir.htm \
+help/fr/wiener.htm \
+help/fr/wigner.htm \
+help/fr/window.htm \
+help/fr/yulewalk.htm \
+help/fr/zpbutt.htm \
+help/fr/zpch1.htm \
+help/fr/zpch2.htm \
+help/fr/zpell.htm \
+help/fr/whatis.htm \
+help/fr/buttmag.htm \
+help/fr/analpf.htm \
+help/fr/cheb1mag.htm
+
+
+#### signal_processing : documentation EN #### 
+libsignal_processing_la_helpendir = $(target)/help/eng
+libsignal_processing_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/cepstrum.htm \
+help/eng/analpf.htm \
+help/eng/buttmag.htm \
+help/eng/casc.htm \
+help/eng/cheb1mag.htm \
+help/eng/cheb2mag.htm \
+help/eng/chepol.htm \
+help/eng/convol.htm \
+help/eng/corr.htm \
+help/eng/cspect.htm \
+help/eng/czt.htm \
+help/eng/detrend.htm \
+help/eng/dft.htm \
+help/eng/ell1mag.htm \
+help/eng/eqfir.htm \
+help/eng/eqiir.htm \
+help/eng/faurre.htm \
+help/eng/ffilt.htm \
+help/eng/fft2.htm \
+help/eng/fftshift.htm \
+help/eng/fft.htm \
+help/eng/filter.htm \
+help/eng/find_freq.htm \
+help/eng/findm.htm \
+help/eng/frfit.htm \
+help/eng/frmag.htm \
+help/eng/fsfirlin.htm \
+help/eng/group.htm \
+help/eng/hank.htm \
+help/eng/hilb.htm \
+help/eng/iirgroup.htm \
+help/eng/iirlp.htm \
+help/eng/iir.htm \
+help/eng/intdec.htm \
+help/eng/jmat.htm \
+help/eng/kalm.htm \
+help/eng/lattn.htm \
+help/eng/lattp.htm \
+help/eng/levin.htm \
+help/eng/lev.htm \
+help/eng/lgfft.htm \
+help/eng/lindquist.htm \
+help/eng/mese.htm \
+help/eng/mfft.htm \
+help/eng/mrfit.htm \
+help/eng/percentasn.htm \
+help/eng/percentk.htm \
+help/eng/percentsn.htm \
+help/eng/phc.htm \
+help/eng/pspect.htm \
+help/eng/remezb.htm \
+help/eng/remez.htm \
+help/eng/rpem.htm \
+help/eng/Signal.htm \
+help/eng/sincd.htm \
+help/eng/sinc.htm \
+help/eng/srfaur.htm \
+help/eng/srkf.htm \
+help/eng/sskf.htm \
+help/eng/system.htm \
+help/eng/trans.htm \
+help/eng/wfir.htm \
+help/eng/wiener.htm \
+help/eng/wigner.htm \
+help/eng/window.htm \
+help/eng/yulewalk.htm \
+help/eng/zpbutt.htm \
+help/eng/zpch1.htm \
+help/eng/zpch2.htm \
+help/eng/zpell.htm
+
+
+#### signal_processing : include files ####
+libsignal_processing_la_includedir=$(includedir)/signal_processing
+libsignal_processing_la_include_HEADERS = includes/gw_signal.h
+
+
+#### signal_processing : demos files ####
+libsignal_processing_la_demosdir=$(target)/demos/
+libsignal_processing_la_demos_DATA = demos/arma/arma1.dem \
+demos/arma/arma2.dem \
+demos/arma/arma3.dem \
+demos/winfilt.dem \
+demos/signal.dem \
+demos/spect.dem \
+demos/remezfilt.dem \
+demos/iirfilt.dem \
+demos/iir.dem \
+demos/bode.dem \
+demos/wiener.dem
+

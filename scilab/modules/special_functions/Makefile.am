@@ -49,3 +49,53 @@ libspecial_functions_la_LIBADD = \
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la
 
 libspecial_functions_la_PKGCONFIG = special_functions.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/special_functions
+
+
+#### special_functions : Conf files ####
+libspecial_functions_la_rootdir = $(target)
+libspecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### special_functions : Scilab macros ###
+libspecial_functions_la_macrodir = $(target)/macros
+libspecial_functions_la_macro_DATA =  macros/buildmacros.sce
+
+
+#### special_functions : init scripts #### 
+libspecial_functions_la_etcdir = $(target)/etc
+libspecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functions.start
+
+#### special_functions : gateway declaration #### 
+libspecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
+libspecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions
+
+
+#### special_functions : documentation FR #### 
+libspecial_functions_la_helpfrdir = $(target)/help/fr
+libspecial_functions_la_helpfr_DATA = help/fr/legendre.htm \
+help/fr/oldbessel.htm \
+help/fr/calerf.htm \
+help/fr/whatis.htm \
+help/fr/beta.htm \
+help/fr/bessel.htm \
+help/fr/gamma.htm \
+help/fr/dlgamma.htm \
+help/fr/gammaln.htm
+
+
+#### special_functions : documentation EN #### 
+libspecial_functions_la_helpendir = $(target)/help/eng
+libspecial_functions_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/legendre.htm \
+help/eng/bessel.htm \
+help/eng/beta.htm \
+help/eng/calerf.htm \
+help/eng/dlgamma.htm \
+help/eng/gammaln.htm \
+help/eng/gamma.htm \
+help/eng/oldbessel.htm
+

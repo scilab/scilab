@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -61,6 +62,12 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libwintools_la_etcdir)" \
+	"$(DESTDIR)$(libwintools_la_helpendir)" \
+	"$(DESTDIR)$(libwintools_la_helpfrdir)" \
+	"$(DESTDIR)$(libwintools_la_macrodir)" \
+	"$(DESTDIR)$(libwintools_la_rootdir)" \
+	"$(DESTDIR)$(libwintools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libwintools_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -95,6 +102,15 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libwintools_la_SOURCES)
 DIST_SOURCES = $(libwintools_la_SOURCES)
+libwintools_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libwintools_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libwintools_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libwintools_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libwintools_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libwintools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libwintools_la_etc_DATA) $(libwintools_la_helpen_DATA) \
+	$(libwintools_la_helpfr_DATA) $(libwintools_la_macro_DATA) \
+	$(libwintools_la_root_DATA) $(libwintools_la_sci_gateway_DATA)
 libwintools_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libwintools_la_include_HEADERS)
 ETAGS = etags
@@ -207,7 +223,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -259,27 +275,6 @@ sci_gateway/intOEMconvert.c \
 sci_gateway/sci_toprint.c \
 sci_gateway/sci_clipboard.c
 
-libwintools_la_includedir = $(includedir)/wintools
-libwintools_la_include_HEADERS = includes/intOEMconvert.h \
-includes/sci_dde.h \
-includes/sci_mcisendstring.h \
-includes/sci_toprint.h \
-includes/sci_clipboard.h \
-includes/sci_toolbar.h \
-includes/sci_printbox.h \
-includes/interfdde.h \
-includes/sci_consoledos.h \
-includes/intpathname.h \
-includes/sci_about.h \
-includes/sci_winqueryreg.h \
-includes/gw_wintools.h \
-includes/sci_winopen.h \
-includes/sci_setlanguagemenu.h \
-includes/sci_fileassociationbox.h \
-includes/sci_dos.h \
-includes/intihmcolor.h \
-includes/TextToPrint.h
-
 libwintools_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libwintools.la
 libwintools_la_SOURCES = $(GATEWAY_C_SOURCES)
@@ -288,6 +283,85 @@ libwintools_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libwintools_la_PKGCONFIG = wintools.pc
+#### Target ######
+target = $(datadir)/wintools
+
+#### wintools : Conf files ####
+libwintools_la_rootdir = $(target)
+libwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### wintools : Scilab macros ###
+libwintools_la_macrodir = $(target)/macros
+libwintools_la_macro_DATA = macros/buildmacros.sce 
+
+#### wintools : init scripts #### 
+libwintools_la_etcdir = $(target)/etc
+libwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start 
+
+#### wintools : gateway declaration #### 
+libwintools_la_sci_gatewaydir = $(target)/sci_gateway
+libwintools_la_sci_gateway_DATA = sci_gateway/wintools
+
+#### wintools : documentation FR #### 
+libwintools_la_helpfrdir = $(target)/help/fr
+libwintools_la_helpfr_DATA = help/fr/oemtochar.htm \
+help/fr/toprint.htm \
+help/fr/about.htm \
+help/fr/clipboard.htm \
+help/fr/console.htm \
+help/fr/whatis.htm \
+help/fr/dos.htm \
+help/fr/chartooem.htm \
+help/fr/mcisendstring.htm \
+help/fr/printsetupbox.htm \
+help/fr/getshortpathname.htm \
+help/fr/getlongpathname.htm \
+help/fr/toolbar.htm \
+help/fr/winopen.htm \
+help/fr/winqueryreg.htm
+
+
+#### wintools : documentation EN #### 
+libwintools_la_helpendir = $(target)/help/eng
+libwintools_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/dos.htm \
+help/eng/about.htm \
+help/eng/console.htm \
+help/eng/chartooem.htm \
+help/eng/clipboard.htm \
+help/eng/getshortpathname.htm \
+help/eng/getlongpathname.htm \
+help/eng/toolbar.htm \
+help/eng/mcisendstring.htm \
+help/eng/oemtochar.htm \
+help/eng/printsetupbox.htm \
+help/eng/toprint.htm \
+help/eng/winopen.htm \
+help/eng/winqueryreg.htm
+
+
+#### wintools : include files ####
+libwintools_la_includedir = $(includedir)/wintools
+libwintools_la_include_HEADERS = includes/sci_dde.h \
+includes/intOEMconvert.h \
+includes/sci_clipboard.h \
+includes/sci_toprint.h \
+includes/sci_toolbar.h \
+includes/sci_printbox.h \
+includes/interfdde.h \
+includes/TextToPrint.h \
+includes/sci_consoledos.h \
+includes/sci_mcisendstring.h \
+includes/sci_about.h \
+includes/intpathname.h \
+includes/gw_wintools.h \
+includes/sci_winopen.h \
+includes/sci_winqueryreg.h \
+includes/sci_setlanguagemenu.h \
+includes/sci_fileassociationbox.h \
+includes/sci_dos.h \
+includes/intihmcolor.h
+
 all: all-am
 
 .SUFFIXES:
@@ -520,6 +594,108 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libwintools_la_etcDATA: $(libwintools_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libwintools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_etcdir)"
+	@list='$(libwintools_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libwintools_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_etcdir)/$$f'"; \
+	  $(libwintools_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_etcdir)/$$f"; \
+	done
+
+uninstall-libwintools_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libwintools_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libwintools_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libwintools_la_etcdir)/$$f"; \
+	done
+install-libwintools_la_helpenDATA: $(libwintools_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libwintools_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_helpendir)"
+	@list='$(libwintools_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libwintools_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_helpendir)/$$f'"; \
+	  $(libwintools_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_helpendir)/$$f"; \
+	done
+
+uninstall-libwintools_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libwintools_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libwintools_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libwintools_la_helpendir)/$$f"; \
+	done
+install-libwintools_la_helpfrDATA: $(libwintools_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libwintools_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_helpfrdir)"
+	@list='$(libwintools_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libwintools_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_helpfrdir)/$$f'"; \
+	  $(libwintools_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libwintools_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libwintools_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libwintools_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libwintools_la_helpfrdir)/$$f"; \
+	done
+install-libwintools_la_macroDATA: $(libwintools_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libwintools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_macrodir)"
+	@list='$(libwintools_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libwintools_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_macrodir)/$$f'"; \
+	  $(libwintools_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_macrodir)/$$f"; \
+	done
+
+uninstall-libwintools_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libwintools_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libwintools_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libwintools_la_macrodir)/$$f"; \
+	done
+install-libwintools_la_rootDATA: $(libwintools_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libwintools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_rootdir)"
+	@list='$(libwintools_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libwintools_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_rootdir)/$$f'"; \
+	  $(libwintools_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_rootdir)/$$f"; \
+	done
+
+uninstall-libwintools_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libwintools_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libwintools_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libwintools_la_rootdir)/$$f"; \
+	done
+install-libwintools_la_sci_gatewayDATA: $(libwintools_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libwintools_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_sci_gatewaydir)"
+	@list='$(libwintools_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libwintools_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_sci_gatewaydir)/$$f'"; \
+	  $(libwintools_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libwintools_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libwintools_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libwintools_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libwintools_la_sci_gatewaydir)/$$f"; \
+	done
 install-libwintools_la_includeHEADERS: $(libwintools_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libwintools_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_includedir)"
@@ -614,9 +790,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libwintools_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libwintools_la_etcdir)" "$(DESTDIR)$(libwintools_la_helpendir)" "$(DESTDIR)$(libwintools_la_helpfrdir)" "$(DESTDIR)$(libwintools_la_macrodir)" "$(DESTDIR)$(libwintools_la_rootdir)" "$(DESTDIR)$(libwintools_la_sci_gatewaydir)" "$(DESTDIR)$(libwintools_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -664,7 +840,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libwintools_la_includeHEADERS
+install-data-am: install-libwintools_la_etcDATA \
+	install-libwintools_la_helpenDATA \
+	install-libwintools_la_helpfrDATA \
+	install-libwintools_la_includeHEADERS \
+	install-libwintools_la_macroDATA \
+	install-libwintools_la_rootDATA \
+	install-libwintools_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -701,7 +883,13 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libwintools_la_includeHEADERS
+	uninstall-libwintools_la_etcDATA \
+	uninstall-libwintools_la_helpenDATA \
+	uninstall-libwintools_la_helpfrDATA \
+	uninstall-libwintools_la_includeHEADERS \
+	uninstall-libwintools_la_macroDATA \
+	uninstall-libwintools_la_rootDATA \
+	uninstall-libwintools_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -712,14 +900,25 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libwintools_la_includeHEADERS \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libwintools_la_includeHEADERS
+	install-libLTLIBRARIES install-libwintools_la_etcDATA \
+	install-libwintools_la_helpenDATA \
+	install-libwintools_la_helpfrDATA \
+	install-libwintools_la_includeHEADERS \
+	install-libwintools_la_macroDATA \
+	install-libwintools_la_rootDATA \
+	install-libwintools_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libwintools_la_etcDATA \
+	uninstall-libwintools_la_helpenDATA \
+	uninstall-libwintools_la_helpfrDATA \
+	uninstall-libwintools_la_includeHEADERS \
+	uninstall-libwintools_la_macroDATA \
+	uninstall-libwintools_la_rootDATA \
+	uninstall-libwintools_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

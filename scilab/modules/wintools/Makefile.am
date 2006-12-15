@@ -22,28 +22,6 @@ sci_gateway/intOEMconvert.c \
 sci_gateway/sci_toprint.c \
 sci_gateway/sci_clipboard.c
 
-libwintools_la_includedir=$(includedir)/wintools
-
-libwintools_la_include_HEADERS = includes/intOEMconvert.h \
-includes/sci_dde.h \
-includes/sci_mcisendstring.h \
-includes/sci_toprint.h \
-includes/sci_clipboard.h \
-includes/sci_toolbar.h \
-includes/sci_printbox.h \
-includes/interfdde.h \
-includes/sci_consoledos.h \
-includes/intpathname.h \
-includes/sci_about.h \
-includes/sci_winqueryreg.h \
-includes/gw_wintools.h \
-includes/sci_winopen.h \
-includes/sci_setlanguagemenu.h \
-includes/sci_fileassociationbox.h \
-includes/sci_dos.h \
-includes/intihmcolor.h \
-includes/TextToPrint.h
-
 libwintools_la_CFLAGS= -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 lib_LTLIBRARIES = libwintools.la
@@ -55,3 +33,88 @@ libwintools_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libwintools_la_PKGCONFIG = wintools.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/wintools
+
+
+#### wintools : Conf files ####
+libwintools_la_rootdir = $(target)
+libwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### wintools : Scilab macros ###
+libwintools_la_macrodir = $(target)/macros
+libwintools_la_macro_DATA =  macros/buildmacros.sce 
+
+
+#### wintools : init scripts #### 
+libwintools_la_etcdir = $(target)/etc
+libwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start 
+
+
+#### wintools : gateway declaration #### 
+libwintools_la_sci_gatewaydir = $(target)/sci_gateway
+libwintools_la_sci_gateway_DATA = sci_gateway/wintools
+
+#### wintools : documentation FR #### 
+libwintools_la_helpfrdir = $(target)/help/fr
+libwintools_la_helpfr_DATA = help/fr/oemtochar.htm \
+help/fr/toprint.htm \
+help/fr/about.htm \
+help/fr/clipboard.htm \
+help/fr/console.htm \
+help/fr/whatis.htm \
+help/fr/dos.htm \
+help/fr/chartooem.htm \
+help/fr/mcisendstring.htm \
+help/fr/printsetupbox.htm \
+help/fr/getshortpathname.htm \
+help/fr/getlongpathname.htm \
+help/fr/toolbar.htm \
+help/fr/winopen.htm \
+help/fr/winqueryreg.htm
+
+
+#### wintools : documentation EN #### 
+libwintools_la_helpendir = $(target)/help/eng
+libwintools_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/dos.htm \
+help/eng/about.htm \
+help/eng/console.htm \
+help/eng/chartooem.htm \
+help/eng/clipboard.htm \
+help/eng/getshortpathname.htm \
+help/eng/getlongpathname.htm \
+help/eng/toolbar.htm \
+help/eng/mcisendstring.htm \
+help/eng/oemtochar.htm \
+help/eng/printsetupbox.htm \
+help/eng/toprint.htm \
+help/eng/winopen.htm \
+help/eng/winqueryreg.htm
+
+
+#### wintools : include files ####
+libwintools_la_includedir=$(includedir)/wintools
+libwintools_la_include_HEADERS = includes/sci_dde.h \
+includes/intOEMconvert.h \
+includes/sci_clipboard.h \
+includes/sci_toprint.h \
+includes/sci_toolbar.h \
+includes/sci_printbox.h \
+includes/interfdde.h \
+includes/TextToPrint.h \
+includes/sci_consoledos.h \
+includes/sci_mcisendstring.h \
+includes/sci_about.h \
+includes/intpathname.h \
+includes/gw_wintools.h \
+includes/sci_winopen.h \
+includes/sci_winqueryreg.h \
+includes/sci_setlanguagemenu.h \
+includes/sci_fileassociationbox.h \
+includes/sci_dos.h \
+includes/intihmcolor.h
+

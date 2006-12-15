@@ -14,6 +14,12 @@
 
 @SET_MAKE@
 
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
+
 
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
@@ -56,6 +62,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libinterpolation_la_demosdir)" \
+	"$(DESTDIR)$(libinterpolation_la_etcdir)" \
+	"$(DESTDIR)$(libinterpolation_la_helpendir)" \
+	"$(DESTDIR)$(libinterpolation_la_helpfrdir)" \
+	"$(DESTDIR)$(libinterpolation_la_macrodir)" \
+	"$(DESTDIR)$(libinterpolation_la_rootdir)" \
+	"$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libinterpolation_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -107,6 +120,20 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libinterpolation_la_SOURCES)
 DIST_SOURCES = $(libinterpolation_la_SOURCES)
+libinterpolation_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libinterpolation_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libinterpolation_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libinterpolation_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libinterpolation_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libinterpolation_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libinterpolation_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libinterpolation_la_demos_DATA) \
+	$(libinterpolation_la_etc_DATA) \
+	$(libinterpolation_la_helpen_DATA) \
+	$(libinterpolation_la_helpfr_DATA) \
+	$(libinterpolation_la_macro_DATA) \
+	$(libinterpolation_la_root_DATA) \
+	$(libinterpolation_la_sci_gateway_DATA)
 libinterpolation_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libinterpolation_la_include_HEADERS)
 ETAGS = etags
@@ -219,7 +246,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -275,11 +302,6 @@ sci_gateway/c/sci_splin3d.c \
 sci_gateway/c/sci_bsplin3val.c \
 sci_gateway/c/sci_eval_cshep2d.c
 
-libinterpolation_la_includedir = $(includedir)/interpolation
-libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
-includes/interpolation.h \
-includes/constinterp.h
-
 libinterpolation_la_FFLAGS = -Iincludes/
 libinterpolation_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libinterpolation.la
@@ -289,6 +311,65 @@ libinterpolation_la_LIBADD = \
 	$(top_builddir)/modules/elementaries_functions/libelementaries_functions.la 
 
 libinterpolation_la_PKGCONFIG = interpolation.pc
+#### Target ######
+target = $(datadir)/interpolation
+
+#### interpolation : Conf files ####
+libinterpolation_la_rootdir = $(target)
+libinterpolation_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### interpolation : Scilab macros ###
+libinterpolation_la_macrodir = $(target)/macros
+libinterpolation_la_macro_DATA = macros/buildmacros.sce
+
+#### interpolation : init scripts #### 
+libinterpolation_la_etcdir = $(target)/etc
+libinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
+
+#### interpolation : gateway declaration #### 
+libinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
+libinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
+
+#### interpolation : documentation FR #### 
+libinterpolation_la_helpfrdir = $(target)/help/fr
+libinterpolation_la_helpfr_DATA = help/fr/interp3d.htm \
+help/fr/interp.htm \
+help/fr/lsq_splin.htm \
+help/fr/splin3d.htm \
+help/fr/splin.htm \
+help/fr/intsplin.htm \
+help/fr/whatis.htm \
+help/fr/cshep2d.htm \
+help/fr/bsplin3val.htm \
+help/fr/eval_cshep2d.htm \
+help/fr/linear_interpn.htm
+
+
+#### interpolation : documentation EN #### 
+libinterpolation_la_helpendir = $(target)/help/eng
+libinterpolation_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/eval_cshep2d.htm \
+help/eng/bsplin3val.htm \
+help/eng/cshep2d.htm \
+help/eng/interp3d.htm \
+help/eng/interp.htm \
+help/eng/intsplin.htm \
+help/eng/lsq_splin.htm \
+help/eng/linear_interpn.htm \
+help/eng/splin3d.htm \
+help/eng/splin.htm
+
+
+#### interpolation : include files ####
+libinterpolation_la_includedir = $(includedir)/interpolation
+libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \
+includes/interpolation.h \
+includes/constinterp.h
+
+
+#### interpolation : demos files ####
+libinterpolation_la_demosdir = $(target)/demos/
+libinterpolation_la_demos_DATA = demos/interp_demo.sci
 all: all-am
 
 .SUFFIXES:
@@ -521,6 +602,125 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libinterpolation_la_demosDATA: $(libinterpolation_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_demosdir)"
+	@list='$(libinterpolation_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_demosdir)/$$f'"; \
+	  $(libinterpolation_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_demosdir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_demos_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_demosdir)/$$f"; \
+	done
+install-libinterpolation_la_etcDATA: $(libinterpolation_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_etcdir)"
+	@list='$(libinterpolation_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_etcdir)/$$f'"; \
+	  $(libinterpolation_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_etcdir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_etcdir)/$$f"; \
+	done
+install-libinterpolation_la_helpenDATA: $(libinterpolation_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_helpendir)"
+	@list='$(libinterpolation_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_helpendir)/$$f'"; \
+	  $(libinterpolation_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_helpendir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_helpendir)/$$f"; \
+	done
+install-libinterpolation_la_helpfrDATA: $(libinterpolation_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_helpfrdir)"
+	@list='$(libinterpolation_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_helpfrdir)/$$f'"; \
+	  $(libinterpolation_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_helpfrdir)/$$f"; \
+	done
+install-libinterpolation_la_macroDATA: $(libinterpolation_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_macrodir)"
+	@list='$(libinterpolation_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_macrodir)/$$f'"; \
+	  $(libinterpolation_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_macrodir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_macrodir)/$$f"; \
+	done
+install-libinterpolation_la_rootDATA: $(libinterpolation_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_rootdir)"
+	@list='$(libinterpolation_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_rootdir)/$$f'"; \
+	  $(libinterpolation_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_rootdir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_rootdir)/$$f"; \
+	done
+install-libinterpolation_la_sci_gatewayDATA: $(libinterpolation_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libinterpolation_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)"
+	@list='$(libinterpolation_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libinterpolation_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)/$$f'"; \
+	  $(libinterpolation_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libinterpolation_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libinterpolation_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)/$$f"; \
+	done
 install-libinterpolation_la_includeHEADERS: $(libinterpolation_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libinterpolation_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libinterpolation_la_includedir)"
@@ -615,9 +815,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libinterpolation_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libinterpolation_la_demosdir)" "$(DESTDIR)$(libinterpolation_la_etcdir)" "$(DESTDIR)$(libinterpolation_la_helpendir)" "$(DESTDIR)$(libinterpolation_la_helpfrdir)" "$(DESTDIR)$(libinterpolation_la_macrodir)" "$(DESTDIR)$(libinterpolation_la_rootdir)" "$(DESTDIR)$(libinterpolation_la_sci_gatewaydir)" "$(DESTDIR)$(libinterpolation_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -665,7 +865,14 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libinterpolation_la_includeHEADERS
+install-data-am: install-libinterpolation_la_demosDATA \
+	install-libinterpolation_la_etcDATA \
+	install-libinterpolation_la_helpenDATA \
+	install-libinterpolation_la_helpfrDATA \
+	install-libinterpolation_la_includeHEADERS \
+	install-libinterpolation_la_macroDATA \
+	install-libinterpolation_la_rootDATA \
+	install-libinterpolation_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -702,7 +909,14 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libinterpolation_la_includeHEADERS
+	uninstall-libinterpolation_la_demosDATA \
+	uninstall-libinterpolation_la_etcDATA \
+	uninstall-libinterpolation_la_helpenDATA \
+	uninstall-libinterpolation_la_helpfrDATA \
+	uninstall-libinterpolation_la_includeHEADERS \
+	uninstall-libinterpolation_la_macroDATA \
+	uninstall-libinterpolation_la_rootDATA \
+	uninstall-libinterpolation_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -713,15 +927,28 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES \
-	install-libinterpolation_la_includeHEADERS install-man \
+	install-libLTLIBRARIES install-libinterpolation_la_demosDATA \
+	install-libinterpolation_la_etcDATA \
+	install-libinterpolation_la_helpenDATA \
+	install-libinterpolation_la_helpfrDATA \
+	install-libinterpolation_la_includeHEADERS \
+	install-libinterpolation_la_macroDATA \
+	install-libinterpolation_la_rootDATA \
+	install-libinterpolation_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
 	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libLTLIBRARIES \
-	uninstall-libinterpolation_la_includeHEADERS
+	uninstall-libinterpolation_la_demosDATA \
+	uninstall-libinterpolation_la_etcDATA \
+	uninstall-libinterpolation_la_helpenDATA \
+	uninstall-libinterpolation_la_helpfrDATA \
+	uninstall-libinterpolation_la_includeHEADERS \
+	uninstall-libinterpolation_la_macroDATA \
+	uninstall-libinterpolation_la_rootDATA \
+	uninstall-libinterpolation_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

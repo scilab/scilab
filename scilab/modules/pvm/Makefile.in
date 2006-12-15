@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -39,8 +40,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = modules/pvm
-DIST_COMMON = $(am__libscipvm_la_include_HEADERS_DIST) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(libpvm_la_include_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,7 +62,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libscipvm_la_includedir)"
+	"$(DESTDIR)$(libpvm_la_demosdir)" \
+	"$(DESTDIR)$(libpvm_la_etcdir)" \
+	"$(DESTDIR)$(libpvm_la_helpendir)" \
+	"$(DESTDIR)$(libpvm_la_helpfrdir)" \
+	"$(DESTDIR)$(libpvm_la_macrodir)" \
+	"$(DESTDIR)$(libpvm_la_rootdir)" \
+	"$(DESTDIR)$(libpvm_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 @PVM_TRUE@libscipvm_la_DEPENDENCIES =  \
@@ -146,26 +153,17 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscipvm_la_SOURCES)
 DIST_SOURCES = $(am__libscipvm_la_SOURCES_DIST)
-am__libscipvm_la_include_HEADERS_DIST = includes/sci_pvm_get_timer.h \
-	includes/sci_pvm_exit.h includes/sci_pvm_sci2f77.h \
-	includes/sci_pvm_gettid.h includes/sci_pvm_gsize.h \
-	includes/sci_pvm_f772sci.h includes/sci_pvm_delhosts.h \
-	includes/sci_pvm_spawn.h includes/sci_pvm_send.h \
-	includes/sci_pvm_parent.h includes/sci_pvm_error.h \
-	includes/sci_pvm_set_timer.h includes/sci_pvm_kill.h \
-	includes/sci_pvm_bcast.h includes/sci_pvm_recv.h \
-	includes/sci_pvm_reduce.h includes/gw_pvm.h \
-	includes/sci_pvm_spawn_independent.h includes/sci_pvm_probe.h \
-	includes/sci_pvm_addhosts.h includes/sci_pvm_joingroup.h \
-	includes/sci_pvm_getinst.h includes/sci_pvm_tidtohost.h \
-	includes/sci_pvm_tasks.h includes/sci_pvm_mytid.h \
-	includes/sci_pvm_barrier.h includes/sci_pvm_bufinfo.h \
-	includes/sci_pvm_halt.h includes/sci_pvm_start.h \
-	includes/sci_pvm_error_mode.h includes/sci_pvm_lvgroup.h \
-	includes/sci_pvm_send_var.h includes/sci_pvm_config.h \
-	includes/sci_pvm_recv_var.h
-libscipvm_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
-HEADERS = $(libscipvm_la_include_HEADERS)
+libpvm_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libpvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libpvm_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libpvm_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libpvm_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libpvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libpvm_la_demos_DATA) $(libpvm_la_etc_DATA) \
+	$(libpvm_la_helpen_DATA) $(libpvm_la_helpfr_DATA) \
+	$(libpvm_la_macro_DATA) $(libpvm_la_root_DATA)
+libpvm_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libpvm_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -276,7 +274,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -354,42 +352,6 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/sci_pvm_recv_var.c \
 @PVM_TRUE@sci_gateway/sci_pvm_exit.c
 
-@PVM_TRUE@libscipvm_la_includedir = $(includedir)/pvm
-@PVM_TRUE@libscipvm_la_include_HEADERS = includes/sci_pvm_get_timer.h \
-@PVM_TRUE@includes/sci_pvm_exit.h \
-@PVM_TRUE@includes/sci_pvm_sci2f77.h \
-@PVM_TRUE@includes/sci_pvm_gettid.h \
-@PVM_TRUE@includes/sci_pvm_gsize.h \
-@PVM_TRUE@includes/sci_pvm_f772sci.h \
-@PVM_TRUE@includes/sci_pvm_delhosts.h \
-@PVM_TRUE@includes/sci_pvm_spawn.h \
-@PVM_TRUE@includes/sci_pvm_send.h \
-@PVM_TRUE@includes/sci_pvm_parent.h \
-@PVM_TRUE@includes/sci_pvm_error.h \
-@PVM_TRUE@includes/sci_pvm_set_timer.h \
-@PVM_TRUE@includes/sci_pvm_kill.h \
-@PVM_TRUE@includes/sci_pvm_bcast.h \
-@PVM_TRUE@includes/sci_pvm_recv.h \
-@PVM_TRUE@includes/sci_pvm_reduce.h \
-@PVM_TRUE@includes/gw_pvm.h \
-@PVM_TRUE@includes/sci_pvm_spawn_independent.h \
-@PVM_TRUE@includes/sci_pvm_probe.h \
-@PVM_TRUE@includes/sci_pvm_addhosts.h \
-@PVM_TRUE@includes/sci_pvm_joingroup.h \
-@PVM_TRUE@includes/sci_pvm_getinst.h \
-@PVM_TRUE@includes/sci_pvm_tidtohost.h \
-@PVM_TRUE@includes/sci_pvm_tasks.h \
-@PVM_TRUE@includes/sci_pvm_mytid.h \
-@PVM_TRUE@includes/sci_pvm_barrier.h \
-@PVM_TRUE@includes/sci_pvm_bufinfo.h \
-@PVM_TRUE@includes/sci_pvm_halt.h \
-@PVM_TRUE@includes/sci_pvm_start.h \
-@PVM_TRUE@includes/sci_pvm_error_mode.h \
-@PVM_TRUE@includes/sci_pvm_lvgroup.h \
-@PVM_TRUE@includes/sci_pvm_send_var.h \
-@PVM_TRUE@includes/sci_pvm_config.h \
-@PVM_TRUE@includes/sci_pvm_recv_var.h
-
 @PVM_TRUE@libscipvm_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 @PVM_TRUE@lib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -399,6 +361,76 @@ top_srcdir = @top_srcdir@
 
 @PVM_TRUE@libscipvm_la_LDFLAGS = $(PVM_LIB)
 @PVM_TRUE@libscipvm_la_PKGCONFIG = scipvm.pc
+#### Target ######
+target = $(datadir)/pvm
+
+#### pvm : Conf files ####
+libpvm_la_rootdir = $(target)
+libpvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### pvm : Scilab macros ###
+libpvm_la_macrodir = $(target)/macros
+libpvm_la_macro_DATA = macros/configure_pvm.sci \
+macros/with_pvm.sci macros/configure_pvm.bin \
+macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### pvm : init scripts #### 
+libpvm_la_etcdir = $(target)/etc
+libpvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
+
+#### pvm : documentation FR #### 
+libpvm_la_helpfrdir = $(target)/help/fr
+libpvm_la_helpfr_DATA = 
+
+#### pvm : documentation EN #### 
+libpvm_la_helpendir = $(target)/help/eng
+libpvm_la_helpen_DATA = 
+
+#### pvm : include files ####
+libpvm_la_includedir = $(includedir)/pvm
+libpvm_la_include_HEADERS = includes/sci_pvm_exit.h \
+includes/sci_pvm_get_timer.h \
+includes/sci_pvm_gettid.h \
+includes/sci_pvm_gsize.h \
+includes/sci_pvm_sci2f77.h \
+includes/sci_pvm_f772sci.h \
+includes/sci_pvm_delhosts.h \
+includes/sci_pvm_spawn.h \
+includes/sci_pvm_send.h \
+includes/sci_pvm_parent.h \
+includes/sci_pvm_error.h \
+includes/sci_pvm_set_timer.h \
+includes/sci_pvm_kill.h \
+includes/sci_pvm_bcast.h \
+includes/sci_pvm_recv.h \
+includes/sci_pvm_spawn_independent.h \
+includes/sci_pvm_reduce.h \
+includes/sci_pvm_probe.h \
+includes/sci_pvm_addhosts.h \
+includes/sci_pvm_joingroup.h \
+includes/sci_pvm_getinst.h \
+includes/gw_pvm.h \
+includes/sci_pvm_tidtohost.h \
+includes/sci_pvm_tasks.h \
+includes/sci_pvm_mytid.h \
+includes/sci_pvm_barrier.h \
+includes/sci_pvm_bufinfo.h \
+includes/sci_pvm_halt.h \
+includes/sci_pvm_start.h \
+includes/sci_pvm_error_mode.h \
+includes/sci_pvm_lvgroup.h \
+includes/sci_pvm_send_var.h \
+includes/sci_pvm_config.h \
+includes/sci_pvm_recv_var.h
+
+
+#### pvm : demos files ####
+libpvm_la_demosdir = $(target)/demos/
+libpvm_la_demos_DATA = demos/pvm.dem \
+demos/pvm1.sce \
+demos/script.sce
+
 all: all-am
 
 .SUFFIXES:
@@ -831,22 +863,124 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscipvm_la_includeHEADERS: $(libscipvm_la_include_HEADERS)
+install-libpvm_la_demosDATA: $(libpvm_la_demos_DATA)
 	@$(NORMAL_INSTALL)
-	test -z "$(libscipvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_includedir)"
-	@list='$(libscipvm_la_include_HEADERS)'; for p in $$list; do \
+	test -z "$(libpvm_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_demosdir)"
+	@list='$(libpvm_la_demos_DATA)'; for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  f=$(am__strip_dir) \
-	  echo " $(libscipvm_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipvm_la_includedir)/$$f'"; \
-	  $(libscipvm_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipvm_la_includedir)/$$f"; \
+	  echo " $(libpvm_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_demosdir)/$$f'"; \
+	  $(libpvm_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_demosdir)/$$f"; \
 	done
 
-uninstall-libscipvm_la_includeHEADERS:
+uninstall-libpvm_la_demosDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(libscipvm_la_include_HEADERS)'; for p in $$list; do \
+	@list='$(libpvm_la_demos_DATA)'; for p in $$list; do \
 	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscipvm_la_includedir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscipvm_la_includedir)/$$f"; \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_demosdir)/$$f"; \
+	done
+install-libpvm_la_etcDATA: $(libpvm_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpvm_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_etcdir)"
+	@list='$(libpvm_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpvm_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_etcdir)/$$f'"; \
+	  $(libpvm_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_etcdir)/$$f"; \
+	done
+
+uninstall-libpvm_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpvm_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_etcdir)/$$f"; \
+	done
+install-libpvm_la_helpenDATA: $(libpvm_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpvm_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_helpendir)"
+	@list='$(libpvm_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpvm_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_helpendir)/$$f'"; \
+	  $(libpvm_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_helpendir)/$$f"; \
+	done
+
+uninstall-libpvm_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpvm_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_helpendir)/$$f"; \
+	done
+install-libpvm_la_helpfrDATA: $(libpvm_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpvm_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_helpfrdir)"
+	@list='$(libpvm_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpvm_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_helpfrdir)/$$f'"; \
+	  $(libpvm_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libpvm_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpvm_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_helpfrdir)/$$f"; \
+	done
+install-libpvm_la_macroDATA: $(libpvm_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpvm_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_macrodir)"
+	@list='$(libpvm_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpvm_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_macrodir)/$$f'"; \
+	  $(libpvm_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_macrodir)/$$f"; \
+	done
+
+uninstall-libpvm_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpvm_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_macrodir)/$$f"; \
+	done
+install-libpvm_la_rootDATA: $(libpvm_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpvm_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_rootdir)"
+	@list='$(libpvm_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpvm_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_rootdir)/$$f'"; \
+	  $(libpvm_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_rootdir)/$$f"; \
+	done
+
+uninstall-libpvm_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpvm_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_rootdir)/$$f"; \
+	done
+install-libpvm_la_includeHEADERS: $(libpvm_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libpvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_includedir)"
+	@list='$(libpvm_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libpvm_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_includedir)/$$f'"; \
+	  $(libpvm_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_includedir)/$$f"; \
+	done
+
+uninstall-libpvm_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libpvm_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libpvm_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libpvm_la_includedir)/$$f"; \
 	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
@@ -925,9 +1059,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpvm_la_demosdir)" "$(DESTDIR)$(libpvm_la_etcdir)" "$(DESTDIR)$(libpvm_la_helpendir)" "$(DESTDIR)$(libpvm_la_helpfrdir)" "$(DESTDIR)$(libpvm_la_macrodir)" "$(DESTDIR)$(libpvm_la_rootdir)" "$(DESTDIR)$(libpvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -975,7 +1109,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libscipvm_la_includeHEADERS
+install-data-am: install-libpvm_la_demosDATA install-libpvm_la_etcDATA \
+	install-libpvm_la_helpenDATA install-libpvm_la_helpfrDATA \
+	install-libpvm_la_includeHEADERS install-libpvm_la_macroDATA \
+	install-libpvm_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1011,8 +1148,11 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libscipvm_la_includeHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
+	uninstall-libpvm_la_etcDATA uninstall-libpvm_la_helpenDATA \
+	uninstall-libpvm_la_helpfrDATA \
+	uninstall-libpvm_la_includeHEADERS \
+	uninstall-libpvm_la_macroDATA uninstall-libpvm_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -1023,14 +1163,20 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libscipvm_la_includeHEADERS \
+	install-libLTLIBRARIES install-libpvm_la_demosDATA \
+	install-libpvm_la_etcDATA install-libpvm_la_helpenDATA \
+	install-libpvm_la_helpfrDATA install-libpvm_la_includeHEADERS \
+	install-libpvm_la_macroDATA install-libpvm_la_rootDATA \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libscipvm_la_includeHEADERS
+	uninstall-libpvm_la_demosDATA uninstall-libpvm_la_etcDATA \
+	uninstall-libpvm_la_helpenDATA uninstall-libpvm_la_helpfrDATA \
+	uninstall-libpvm_la_includeHEADERS \
+	uninstall-libpvm_la_macroDATA uninstall-libpvm_la_rootDATA
 
 @PVM_FALSE@		echo "PVM not activated. Skip this module."
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

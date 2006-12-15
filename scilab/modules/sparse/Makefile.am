@@ -160,15 +160,6 @@ sci_gateway/fortran/sci_lusolve.f \
 sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
-
-libsparse_la_includedir=$(includedir)/sparse
-
-libsparse_la_include_HEADERS = includes/gw_sparse.h \
-includes/sp.h \
-includes/spDefs.h \
-includes/spmatrix.h \
-includes/spConfig.h
-
 libsparse_la_CFLAGS=  -Iincludes/ 
 #-Isrc/c/
 lib_LTLIBRARIES = libsparse.la
@@ -181,3 +172,91 @@ libsparse_la_LIBADD = \
 	$(top_builddir)/modules/intersci/libintersci.la
 
 libsparse_la_PKGCONFIG = sparse.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/sparse
+
+
+#### sparse : Conf files ####
+libsparse_la_rootdir = $(target)
+libsparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### sparse : Scilab macros ###
+libsparse_la_macrodir = $(target)/macros
+libsparse_la_macro_DATA = macros/adj2sp.sci \
+macros/sp2adj.sci \
+macros/issparse.sci \
+macros/pcg.sci \
+macros/gmres.sci \
+macros/qmr.sci macros/adj2sp.bin \
+macros/gmres.bin \
+macros/issparse.bin \
+macros/pcg.bin \
+macros/qmr.bin \
+macros/sp2adj.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### sparse : init scripts #### 
+libsparse_la_etcdir = $(target)/etc
+libsparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
+
+#### sparse : gateway declaration #### 
+libsparse_la_sci_gatewaydir = $(target)/sci_gateway
+libsparse_la_sci_gateway_DATA = sci_gateway/sparse
+
+
+#### sparse : documentation FR #### 
+libsparse_la_helpfrdir = $(target)/help/fr
+libsparse_la_helpfr_DATA = help/fr/full.htm \
+help/fr/gmres.htm \
+help/fr/pcg.htm \
+help/fr/qmr.htm \
+help/fr/readmps.htm \
+help/fr/sparse.htm \
+help/fr/spget.htm \
+help/fr/ludel.htm \
+help/fr/lufact.htm \
+help/fr/luget.htm \
+help/fr/whatis.htm \
+help/fr/dsaupd.htm \
+help/fr/dnaupd.htm \
+help/fr/spcompack.htm \
+help/fr/mtlb_sparse.htm \
+help/fr/lusolve.htm \
+help/fr/nnz.htm \
+help/fr/spchol.htm
+
+
+#### sparse : documentation EN #### 
+libsparse_la_helpendir = $(target)/help/eng
+libsparse_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/dnaupd.htm \
+help/eng/dsaupd.htm \
+help/eng/full.htm \
+help/eng/gmres.htm \
+help/eng/ludel.htm \
+help/eng/lufact.htm \
+help/eng/luget.htm \
+help/eng/lusolve.htm \
+help/eng/nnz.htm \
+help/eng/mtlb_sparse.htm \
+help/eng/pcg.htm \
+help/eng/qmr.htm \
+help/eng/readmps.htm \
+help/eng/sparse.htm \
+help/eng/spchol.htm \
+help/eng/spget.htm \
+help/eng/spcompack.htm
+
+
+#### sparse : include files ####
+libsparse_la_includedir=$(includedir)/sparse
+libsparse_la_include_HEADERS = includes/gw_sparse.h \
+includes/spmalloc.h \
+includes/sp.h \
+includes/spDefs.h \
+includes/spmatrix.h \
+includes/spConfig.h
+

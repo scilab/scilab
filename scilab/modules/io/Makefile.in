@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -60,7 +61,12 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)" \
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libio_la_etcdir)" \
+	"$(DESTDIR)$(libio_la_helpendir)" \
+	"$(DESTDIR)$(libio_la_helpfrdir)" \
+	"$(DESTDIR)$(libio_la_macrodir)" \
+	"$(DESTDIR)$(libio_la_rootdir)" \
+	"$(DESTDIR)$(libio_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libio_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES) $(noinst_LTLIBRARIES)
@@ -122,6 +128,15 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libdummy_io_la_SOURCES) $(libio_la_SOURCES)
 DIST_SOURCES = $(libdummy_io_la_SOURCES) $(libio_la_SOURCES)
+libio_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libio_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libio_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libio_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libio_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libio_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libio_la_etc_DATA) $(libio_la_helpen_DATA) \
+	$(libio_la_helpfr_DATA) $(libio_la_macro_DATA) \
+	$(libio_la_root_DATA) $(libio_la_sci_gateway_DATA)
 libio_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libio_la_include_HEADERS)
 ETAGS = etags
@@ -234,7 +249,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -338,10 +353,6 @@ sci_gateway/fortran/intfile.f
 noinst_LTLIBRARIES = libdummy-io.la
 libdummy_io_la_SOURCES = sci_gateway/fortran/intmgetl.f
 libdummy_io_la_FFLAGS = $(FFLAGS:-O%=)
-libio_la_includedir = $(includedir)/io
-libio_la_include_HEADERS = includes/gw_io.h \
-includes/sci_getrelativefilename.h
-
 libio_la_CFLAGS = -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libio.la
 libio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -351,6 +362,145 @@ libio_la_LIBADD = libdummy-io.la \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libio_la_PKGCONFIG = io.pc
+#### Target ######
+target = $(datadir)/io
+
+#### io : Conf files ####
+libio_la_rootdir = $(target)
+libio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### io : Scilab macros ###
+libio_la_macrodir = $(target)/macros
+libio_la_macro_DATA = macros/printf.sci \
+macros/ssprint.sci \
+macros/getscilabkeywords.sci \
+macros/sprintf.sci \
+macros/unix_s.sci \
+macros/fprintf.sci \
+macros/halt.sci \
+macros/unix_g.sci \
+macros/unix_w.sci \
+macros/unix_x.sci \
+macros/readc_.sci \
+macros/sscanf.sci \
+macros/input.sci \
+macros/fscanf.sci macros/fprintf.bin \
+macros/fscanf.bin \
+macros/getscilabkeywords.bin \
+macros/halt.bin \
+macros/input.bin \
+macros/printf.bin \
+macros/readc_.bin \
+macros/sprintf.bin \
+macros/sscanf.bin \
+macros/ssprint.bin \
+macros/unix_g.bin \
+macros/unix_s.bin \
+macros/unix_w.bin \
+macros/unix_x.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### io : init scripts #### 
+libio_la_etcdir = $(target)/etc
+libio_la_etc_DATA = etc/io.quit etc/io.start
+
+#### io : gateway declaration #### 
+libio_la_sci_gatewaydir = $(target)/sci_gateway
+libio_la_sci_gateway_DATA = sci_gateway/io
+
+#### io : documentation FR #### 
+libio_la_helpfrdir = $(target)/help/fr
+libio_la_helpfr_DATA = help/fr/fileinfo.htm \
+help/fr/disp.htm \
+help/fr/keyboard.htm \
+help/fr/file.htm \
+help/fr/halt.htm \
+help/fr/load.htm \
+help/fr/getscilabkeywords.htm \
+help/fr/input.htm \
+help/fr/lib.htm \
+help/fr/mgetl.htm \
+help/fr/newest.htm \
+help/fr/oldload.htm \
+help/fr/oldsave.htm \
+help/fr/printf.htm \
+help/fr/printf_conversion.htm \
+help/fr/print.htm \
+help/fr/read4b.htm \
+help/fr/readb.htm \
+help/fr/readc_.htm \
+help/fr/read.htm \
+help/fr/save.htm \
+help/fr/writb.htm \
+help/fr/write4b.htm \
+help/fr/write.htm \
+help/fr/execstr.htm \
+help/fr/getenv.htm \
+help/fr/getf.htm \
+help/fr/whatis.htm \
+help/fr/getio.htm \
+help/fr/deff.htm \
+help/fr/diary.htm \
+help/fr/getrelativefilename.htm \
+help/fr/getpid.htm \
+help/fr/host.htm \
+help/fr/setenv.htm \
+help/fr/unix_g.htm \
+help/fr/unix_s.htm \
+help/fr/unix_w.htm \
+help/fr/unix.htm \
+help/fr/unix_x.htm
+
+
+#### io : documentation EN #### 
+libio_la_helpendir = $(target)/help/eng
+libio_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/fileinfo.htm \
+help/eng/deff.htm \
+help/eng/diary.htm \
+help/eng/disp.htm \
+help/eng/execstr.htm \
+help/eng/keyboard.htm \
+help/eng/file.htm \
+help/eng/getenv.htm \
+help/eng/getf.htm \
+help/eng/getio.htm \
+help/eng/getpid.htm \
+help/eng/halt.htm \
+help/eng/host.htm \
+help/eng/getrelativefilename.htm \
+help/eng/getscilabkeywords.htm \
+help/eng/input.htm \
+help/eng/load.htm \
+help/eng/lib.htm \
+help/eng/mgetl.htm \
+help/eng/newest.htm \
+help/eng/oldload.htm \
+help/eng/oldsave.htm \
+help/eng/printf.htm \
+help/eng/printf_conversion.htm \
+help/eng/print.htm \
+help/eng/read4b.htm \
+help/eng/readb.htm \
+help/eng/readc_.htm \
+help/eng/read.htm \
+help/eng/save.htm \
+help/eng/setenv.htm \
+help/eng/unix_g.htm \
+help/eng/unix_s.htm \
+help/eng/unix_w.htm \
+help/eng/unix.htm \
+help/eng/unix_x.htm \
+help/eng/writb.htm \
+help/eng/write4b.htm \
+help/eng/write.htm
+
+
+#### io : include files ####
+libio_la_includedir = $(includedir)/io
+libio_la_include_HEADERS = includes/sci_getrelativefilename.h \
+includes/gw_io.h
+
 all: all-am
 
 .SUFFIXES:
@@ -835,6 +985,108 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libio_la_etcDATA: $(libio_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libio_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_etcdir)"
+	@list='$(libio_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libio_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libio_la_etcdir)/$$f'"; \
+	  $(libio_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libio_la_etcdir)/$$f"; \
+	done
+
+uninstall-libio_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libio_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libio_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libio_la_etcdir)/$$f"; \
+	done
+install-libio_la_helpenDATA: $(libio_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libio_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_helpendir)"
+	@list='$(libio_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libio_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libio_la_helpendir)/$$f'"; \
+	  $(libio_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libio_la_helpendir)/$$f"; \
+	done
+
+uninstall-libio_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libio_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libio_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libio_la_helpendir)/$$f"; \
+	done
+install-libio_la_helpfrDATA: $(libio_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libio_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_helpfrdir)"
+	@list='$(libio_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libio_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libio_la_helpfrdir)/$$f'"; \
+	  $(libio_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libio_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libio_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libio_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libio_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libio_la_helpfrdir)/$$f"; \
+	done
+install-libio_la_macroDATA: $(libio_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libio_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_macrodir)"
+	@list='$(libio_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libio_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libio_la_macrodir)/$$f'"; \
+	  $(libio_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libio_la_macrodir)/$$f"; \
+	done
+
+uninstall-libio_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libio_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libio_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libio_la_macrodir)/$$f"; \
+	done
+install-libio_la_rootDATA: $(libio_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libio_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_rootdir)"
+	@list='$(libio_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libio_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libio_la_rootdir)/$$f'"; \
+	  $(libio_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libio_la_rootdir)/$$f"; \
+	done
+
+uninstall-libio_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libio_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libio_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libio_la_rootdir)/$$f"; \
+	done
+install-libio_la_sci_gatewayDATA: $(libio_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libio_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_sci_gatewaydir)"
+	@list='$(libio_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libio_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libio_la_sci_gatewaydir)/$$f'"; \
+	  $(libio_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libio_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libio_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libio_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libio_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libio_la_sci_gatewaydir)/$$f"; \
+	done
 install-libio_la_includeHEADERS: $(libio_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libio_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libio_la_includedir)"
@@ -929,9 +1181,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libio_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libio_la_etcdir)" "$(DESTDIR)$(libio_la_helpendir)" "$(DESTDIR)$(libio_la_helpfrdir)" "$(DESTDIR)$(libio_la_macrodir)" "$(DESTDIR)$(libio_la_rootdir)" "$(DESTDIR)$(libio_la_sci_gatewaydir)" "$(DESTDIR)$(libio_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -979,7 +1231,10 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libio_la_includeHEADERS
+install-data-am: install-libio_la_etcDATA install-libio_la_helpenDATA \
+	install-libio_la_helpfrDATA install-libio_la_includeHEADERS \
+	install-libio_la_macroDATA install-libio_la_rootDATA \
+	install-libio_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1015,8 +1270,10 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libio_la_includeHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libio_la_etcDATA \
+	uninstall-libio_la_helpenDATA uninstall-libio_la_helpfrDATA \
+	uninstall-libio_la_includeHEADERS uninstall-libio_la_macroDATA \
+	uninstall-libio_la_rootDATA uninstall-libio_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -1028,13 +1285,19 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am install-info \
 	install-info-am install-libLTLIBRARIES \
-	install-libio_la_includeHEADERS install-man install-pdf \
+	install-libio_la_etcDATA install-libio_la_helpenDATA \
+	install-libio_la_helpfrDATA install-libio_la_includeHEADERS \
+	install-libio_la_macroDATA install-libio_la_rootDATA \
+	install-libio_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libio_la_includeHEADERS
+	uninstall-libio_la_etcDATA uninstall-libio_la_helpenDATA \
+	uninstall-libio_la_helpfrDATA \
+	uninstall-libio_la_includeHEADERS uninstall-libio_la_macroDATA \
+	uninstall-libio_la_rootDATA uninstall-libio_la_sci_gatewayDATA
 
 
 libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f

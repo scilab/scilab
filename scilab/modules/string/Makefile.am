@@ -42,12 +42,6 @@ sci_gateway/fortran/sci_ascii.f \
 sci_gateway/fortran/sci_strsubst.f \
 sci_gateway/fortran/strops.f
 
-libstring_la_includedir=$(includedir)/string
-
-libstring_la_include_HEADERS = includes/men_Sutils.h \
-includes/gw_string.h
-
-
 libstring_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 
 lib_LTLIBRARIES = libstring.la
@@ -63,3 +57,109 @@ libstring_la_LIBADD = \
 
 
 libstring_la_PKGCONFIG = string.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/string
+
+
+#### string : Conf files ####
+libstring_la_rootdir = $(target)
+libstring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### string : Scilab macros ###
+libstring_la_macrodir = $(target)/macros
+libstring_la_macro_DATA = macros/dec2hex.sci \
+macros/hex2dec.sci \
+macros/tokenpos.sci \
+macros/evstr.sci \
+macros/oct2dec.sci \
+macros/eval.sci \
+macros/base2dec.sci \
+macros/stripblanks.sci \
+macros/justify.sci \
+macros/arobasestring2strings.sci \
+macros/ascii2string.sci \
+macros/fun2string.sci macros/arobasestring2strings.bin \
+macros/ascii2string.bin \
+macros/base2dec.bin \
+macros/dec2hex.bin \
+macros/eval.bin \
+macros/evstr.bin \
+macros/fun2string.bin \
+macros/hex2dec.bin \
+macros/justify.bin \
+macros/oct2dec.bin \
+macros/stripblanks.bin \
+macros/tokenpos.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### string : init scripts #### 
+libstring_la_etcdir = $(target)/etc
+libstring_la_etc_DATA = etc/string.quit etc/string.start
+
+#### string : gateway declaration #### 
+libstring_la_sci_gatewaydir = $(target)/sci_gateway
+libstring_la_sci_gateway_DATA = sci_gateway/string
+
+
+#### string : documentation FR #### 
+libstring_la_helpfrdir = $(target)/help/fr
+libstring_la_helpfr_DATA = help/fr/code2str.htm \
+help/fr/fun2string.htm \
+help/fr/grep.htm \
+help/fr/hex2dec.htm \
+help/fr/justify.htm \
+help/fr/length.htm \
+help/fr/part.htm \
+help/fr/str2code.htm \
+help/fr/strcat.htm \
+help/fr/strindex.htm \
+help/fr/strings.htm \
+help/fr/string.htm \
+help/fr/stripblanks.htm \
+help/fr/strsplit.htm \
+help/fr/strsubst.htm \
+help/fr/tokenpos.htm \
+help/fr/tokens.htm \
+help/fr/dec2hex.htm \
+help/fr/whatis.htm \
+help/fr/convstr.htm \
+help/fr/ascii.htm \
+help/fr/emptystr.htm \
+help/fr/sci2exp.htm
+
+
+#### string : documentation EN #### 
+libstring_la_helpendir = $(target)/help/eng
+libstring_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/code2str.htm \
+help/eng/ascii.htm \
+help/eng/emptystr.htm \
+help/eng/convstr.htm \
+help/eng/dec2hex.htm \
+help/eng/fun2string.htm \
+help/eng/grep.htm \
+help/eng/hex2dec.htm \
+help/eng/justify.htm \
+help/eng/length.htm \
+help/eng/part.htm \
+help/eng/sci2exp.htm \
+help/eng/str2code.htm \
+help/eng/strcat.htm \
+help/eng/strindex.htm \
+help/eng/strings.htm \
+help/eng/string.htm \
+help/eng/stripblanks.htm \
+help/eng/strsplit.htm \
+help/eng/strsubst.htm \
+help/eng/tokenpos.htm \
+help/eng/tokens.htm
+
+
+#### string : include files ####
+libstring_la_includedir=$(includedir)/string
+libstring_la_include_HEADERS = includes/men_Sutils.h \
+includes/gw_string.h
+

@@ -39,13 +39,6 @@ sci_gateway/fortran/sci_getfield.f \
 sci_gateway/fortran/sci_lstcat.f \
 sci_gateway/fortran/sci_list.f
 
-libdata_structures_la_includedir=$(includedir)/data_structures
-
-libdata_structures_la_include_HEADERS = includes/gw_data_structures1.h  \
-includes/gw_data_structures2.h \
-includes/DoublyLinkedList.h
-
-
 libdata_structures_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
 lib_LTLIBRARIES = libdata_structures.la
 
@@ -58,3 +51,72 @@ libdata_structures_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libdata_structures_la_PKGCONFIG = data_structures.pc
+
+datadir=${prefix}/modules
+#### Target ######
+target=$(datadir)/data_structures
+
+
+#### data_structures : Conf files ####
+libdata_structures_la_rootdir = $(target)
+libdata_structures_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+
+#### data_structures : Scilab macros ###
+libdata_structures_la_macrodir = $(target)/macros
+libdata_structures_la_macro_DATA = macros/struct.sci \
+macros/iscell.sci \
+macros/cell.sci \
+macros/isfield.sci \
+macros/isstruct.sci macros/cell.bin \
+macros/iscell.bin \
+macros/isfield.bin \
+macros/isstruct.bin \
+macros/struct.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### data_structures : init scripts #### 
+libdata_structures_la_etcdir = $(target)/etc
+libdata_structures_la_etc_DATA = etc/data_structures.quit etc/data_structures.start
+
+#### data_structures : gateway declaration #### 
+libdata_structures_la_sci_gatewaydir = $(target)/sci_gateway
+libdata_structures_la_sci_gateway_DATA = sci_gateway/data_structures
+
+
+#### data_structures : documentation FR #### 
+libdata_structures_la_helpfrdir = $(target)/help/fr
+libdata_structures_la_helpfr_DATA = help/fr/whatis.htm \
+help/fr/getfield.htm \
+help/fr/definedfields.htm \
+help/fr/list.htm \
+help/fr/lsslist.htm \
+help/fr/lstcat.htm \
+help/fr/mlist.htm \
+help/fr/rlist.htm \
+help/fr/setfield.htm \
+help/fr/struct.htm \
+help/fr/tlist.htm
+
+
+#### data_structures : documentation EN #### 
+libdata_structures_la_helpendir = $(target)/help/eng
+libdata_structures_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/definedfields.htm \
+help/eng/getfield.htm \
+help/eng/list.htm \
+help/eng/lsslist.htm \
+help/eng/lstcat.htm \
+help/eng/mlist.htm \
+help/eng/rlist.htm \
+help/eng/setfield.htm \
+help/eng/struct.htm \
+help/eng/tlist.htm
+
+
+#### data_structures : include files ####
+libdata_structures_la_includedir=$(includedir)/data_structures
+libdata_structures_la_include_HEADERS = includes/gw_data_structures1.h \
+includes/gw_data_structures2.h \
+includes/DoublyLinkedList.h
+

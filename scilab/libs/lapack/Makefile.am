@@ -7,7 +7,6 @@ lib_LTLIBRARIES = liblapack.la
 
 noinst_LTLIBRARIES = libdummy-lapack.la
 
-
 LAPACK_FORTRAN_SOURCES = dlasv2.f \
 zgeqpf.f \
 zrot.f \

@@ -19,6 +19,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -38,7 +40,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = modules/fileio
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+DIST_COMMON = $(libfileio_la_include_HEADERS) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -58,7 +61,15 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libdir)"
+am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libfileio_la_demosdir)" \
+	"$(DESTDIR)$(libfileio_la_etcdir)" \
+	"$(DESTDIR)$(libfileio_la_helpendir)" \
+	"$(DESTDIR)$(libfileio_la_helpfrdir)" \
+	"$(DESTDIR)$(libfileio_la_macrodir)" \
+	"$(DESTDIR)$(libfileio_la_rootdir)" \
+	"$(DESTDIR)$(libfileio_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libfileio_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libfileio_la_DEPENDENCIES = $(top_builddir)/libs/MALLOC/libmalloc.la
@@ -95,6 +106,19 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libfileio_la_SOURCES)
 DIST_SOURCES = $(libfileio_la_SOURCES)
+libfileio_la_demosDATA_INSTALL = $(INSTALL_DATA)
+libfileio_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libfileio_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libfileio_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libfileio_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libfileio_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libfileio_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libfileio_la_demos_DATA) $(libfileio_la_etc_DATA) \
+	$(libfileio_la_helpen_DATA) $(libfileio_la_helpfr_DATA) \
+	$(libfileio_la_macro_DATA) $(libfileio_la_root_DATA) \
+	$(libfileio_la_sci_gateway_DATA)
+libfileio_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
+HEADERS = $(libfileio_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -205,7 +229,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -279,6 +303,181 @@ libfileio_la_LIBADD = \
 # cyclic deps
 #	$(top_builddir)/modules/core/libcore.la
 libfileio_la_PKGCONFIG = fileio.pc
+#### Target ######
+target = $(datadir)/fileio
+
+#### fileio : Conf files ####
+libfileio_la_rootdir = $(target)
+libfileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### fileio : Scilab macros ###
+libfileio_la_macrodir = $(target)/macros
+libfileio_la_macro_DATA = macros/fullfile.sci \
+macros/readxls.sci \
+macros/mkdir.sci \
+macros/isdir.sci \
+macros/copyfile.sci \
+macros/listvarinfile.sci \
+macros/basename.sci \
+macros/rmdir.sci \
+macros/dir.sci \
+macros/ls.sci \
+macros/dirname.sci \
+macros/mdelete.sci \
+macros/excel2sci.sci \
+macros/sci2excel.sci \
+macros/dispfiles.sci \
+macros/cd.sci \
+macros/format_txt.sci \
+macros/get_absolute_file_path.sci \
+macros/fileparts.sci \
+macros/get_file_path.sci \
+macros/scanf.sci \
+macros/pathconvert.sci \
+macros/listfiles.sci \
+macros/savematfile.sci \
+macros/mputl.sci macros/basename.bin \
+macros/cd.bin \
+macros/copyfile.bin \
+macros/dirname.bin \
+macros/dir.bin \
+macros/dispfiles.bin \
+macros/excel2sci.bin \
+macros/fileparts.bin \
+macros/format_txt.bin \
+macros/fullfile.bin \
+macros/get_absolute_file_path.bin \
+macros/get_file_path.bin \
+macros/isdir.bin \
+macros/listfiles.bin \
+macros/listvarinfile.bin \
+macros/ls.bin \
+macros/mdelete.bin \
+macros/mkdir.bin \
+macros/mputl.bin \
+macros/pathconvert.bin \
+macros/readxls.bin \
+macros/rmdir.bin \
+macros/savematfile.bin \
+macros/scanf.bin \
+macros/sci2excel.bin macros/names macros/lib macros/buildmacros.sce
+
+
+#### fileio : init scripts #### 
+libfileio_la_etcdir = $(target)/etc
+libfileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
+
+#### fileio : gateway declaration #### 
+libfileio_la_sci_gatewaydir = $(target)/sci_gateway
+libfileio_la_sci_gateway_DATA = sci_gateway/fileio
+
+#### fileio : documentation FR #### 
+libfileio_la_helpfrdir = $(target)/help/fr
+libfileio_la_helpfr_DATA = help/fr/meof.htm \
+help/fr/dir.htm \
+help/fr/ls.htm \
+help/fr/excel2sci.htm \
+help/fr/fileparts.htm \
+help/fr/fprintfMat.htm \
+help/fr/fprintf.htm \
+help/fr/fscanfMat.htm \
+help/fr/fscanf.htm \
+help/fr/isdir.htm \
+help/fr/listfiles.htm \
+help/fr/mclearerr.htm \
+help/fr/mclose.htm \
+help/fr/mdelete.htm \
+help/fr/mfscanf.htm \
+help/fr/mgetstr.htm \
+help/fr/mget.htm \
+help/fr/mopen.htm \
+help/fr/mprintf.htm \
+help/fr/mputl.htm \
+help/fr/mputstr.htm \
+help/fr/mput.htm \
+help/fr/mseek.htm \
+help/fr/mtell.htm \
+help/fr/pathconvert.htm \
+help/fr/readxls.htm \
+help/fr/save_format.htm \
+help/fr/scanf.htm \
+help/fr/scanf_conversion.htm \
+help/fr/sprintf.htm \
+help/fr/sscanf.htm \
+help/fr/xls_open.htm \
+help/fr/xls_read.htm \
+help/fr/fullfile.htm \
+help/fr/mkdir.htm \
+help/fr/whatis.htm \
+help/fr/dirname.htm \
+help/fr/basename.htm \
+help/fr/dispfiles.htm \
+help/fr/rmdir.htm \
+help/fr/listvarinfile.htm
+
+
+#### fileio : documentation EN #### 
+libfileio_la_helpendir = $(target)/help/eng
+libfileio_la_helpen_DATA = help/eng/whatis.htm \
+help/eng/basename.htm \
+help/eng/dirname.htm \
+help/eng/dir.htm \
+help/eng/dispfiles.htm \
+help/eng/excel2sci.htm \
+help/eng/fileparts.htm \
+help/eng/fprintfMat.htm \
+help/eng/fprintf.htm \
+help/eng/fscanfMat.htm \
+help/eng/fscanf.htm \
+help/eng/fullfile.htm \
+help/eng/isdir.htm \
+help/eng/listfiles.htm \
+help/eng/ls.htm \
+help/eng/listvarinfile.htm \
+help/eng/mclearerr.htm \
+help/eng/mclose.htm \
+help/eng/mdelete.htm \
+help/eng/meof.htm \
+help/eng/mfscanf.htm \
+help/eng/mgetstr.htm \
+help/eng/mget.htm \
+help/eng/mkdir.htm \
+help/eng/mopen.htm \
+help/eng/mprintf.htm \
+help/eng/mputl.htm \
+help/eng/mputstr.htm \
+help/eng/mput.htm \
+help/eng/mseek.htm \
+help/eng/mtell.htm \
+help/eng/pathconvert.htm \
+help/eng/readxls.htm \
+help/eng/rmdir.htm \
+help/eng/save_format.htm \
+help/eng/scanf.htm \
+help/eng/scanf_conversion.htm \
+help/eng/sprintf.htm \
+help/eng/sscanf.htm \
+help/eng/xls_open.htm \
+help/eng/xls_read.htm
+
+
+#### fileio : include files ####
+libfileio_la_includedir = $(includedir)/fileio
+libfileio_la_include_HEADERS = includes/FileExist.h \
+includes/gw_fileio.h \
+includes/sci_fileio.h
+
+
+#### fileio : demos files ####
+libfileio_la_demosdir = $(target)/demos/
+libfileio_la_demos_DATA = demos/excel/Testo1.xls \
+demos/excel/o1.xls \
+demos/excel/Test1.xls \
+demos/excel/Testobig.xls \
+demos/excel/Testbig.xls \
+demos/excel/t1.xls \
+demos/excel/README
+
 all: all-am
 
 .SUFFIXES:
@@ -599,6 +798,142 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libfileio_la_demosDATA: $(libfileio_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_demosdir)"
+	@list='$(libfileio_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_demosdir)/$$f'"; \
+	  $(libfileio_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_demosdir)/$$f"; \
+	done
+
+uninstall-libfileio_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_demos_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_demosdir)/$$f"; \
+	done
+install-libfileio_la_etcDATA: $(libfileio_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_etcdir)"
+	@list='$(libfileio_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_etcdir)/$$f'"; \
+	  $(libfileio_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_etcdir)/$$f"; \
+	done
+
+uninstall-libfileio_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_etcdir)/$$f"; \
+	done
+install-libfileio_la_helpenDATA: $(libfileio_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_helpendir)"
+	@list='$(libfileio_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_helpendir)/$$f'"; \
+	  $(libfileio_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_helpendir)/$$f"; \
+	done
+
+uninstall-libfileio_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_helpendir)/$$f"; \
+	done
+install-libfileio_la_helpfrDATA: $(libfileio_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_helpfrdir)"
+	@list='$(libfileio_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_helpfrdir)/$$f'"; \
+	  $(libfileio_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libfileio_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_helpfrdir)/$$f"; \
+	done
+install-libfileio_la_macroDATA: $(libfileio_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_macrodir)"
+	@list='$(libfileio_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_macrodir)/$$f'"; \
+	  $(libfileio_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_macrodir)/$$f"; \
+	done
+
+uninstall-libfileio_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_macrodir)/$$f"; \
+	done
+install-libfileio_la_rootDATA: $(libfileio_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_rootdir)"
+	@list='$(libfileio_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_rootdir)/$$f'"; \
+	  $(libfileio_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_rootdir)/$$f"; \
+	done
+
+uninstall-libfileio_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_rootdir)/$$f"; \
+	done
+install-libfileio_la_sci_gatewayDATA: $(libfileio_la_sci_gateway_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_sci_gatewaydir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_sci_gatewaydir)"
+	@list='$(libfileio_la_sci_gateway_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_sci_gatewayDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_sci_gatewaydir)/$$f'"; \
+	  $(libfileio_la_sci_gatewayDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_sci_gatewaydir)/$$f"; \
+	done
+
+uninstall-libfileio_la_sci_gatewayDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_sci_gateway_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_sci_gatewaydir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_sci_gatewaydir)/$$f"; \
+	done
+install-libfileio_la_includeHEADERS: $(libfileio_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libfileio_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libfileio_la_includedir)"
+	@list='$(libfileio_la_include_HEADERS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libfileio_la_includeHEADERS_INSTALL) '$$d$$p' '$(DESTDIR)$(libfileio_la_includedir)/$$f'"; \
+	  $(libfileio_la_includeHEADERS_INSTALL) "$$d$$p" "$(DESTDIR)$(libfileio_la_includedir)/$$f"; \
+	done
+
+uninstall-libfileio_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libfileio_la_include_HEADERS)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libfileio_la_includedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libfileio_la_includedir)/$$f"; \
+	done
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -676,9 +1011,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libfileio_la_demosdir)" "$(DESTDIR)$(libfileio_la_etcdir)" "$(DESTDIR)$(libfileio_la_helpendir)" "$(DESTDIR)$(libfileio_la_helpfrdir)" "$(DESTDIR)$(libfileio_la_macrodir)" "$(DESTDIR)$(libfileio_la_rootdir)" "$(DESTDIR)$(libfileio_la_sci_gatewaydir)" "$(DESTDIR)$(libfileio_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -726,7 +1061,12 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-libfileio_la_demosDATA \
+	install-libfileio_la_etcDATA install-libfileio_la_helpenDATA \
+	install-libfileio_la_helpfrDATA \
+	install-libfileio_la_includeHEADERS \
+	install-libfileio_la_macroDATA install-libfileio_la_rootDATA \
+	install-libfileio_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -762,7 +1102,15 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES
+uninstall-am: uninstall-libLTLIBRARIES \
+	uninstall-libfileio_la_demosDATA \
+	uninstall-libfileio_la_etcDATA \
+	uninstall-libfileio_la_helpenDATA \
+	uninstall-libfileio_la_helpfrDATA \
+	uninstall-libfileio_la_includeHEADERS \
+	uninstall-libfileio_la_macroDATA \
+	uninstall-libfileio_la_rootDATA \
+	uninstall-libfileio_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
 
@@ -773,12 +1121,25 @@ uninstall-am: uninstall-libLTLIBRARIES
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
+	install-libLTLIBRARIES install-libfileio_la_demosDATA \
+	install-libfileio_la_etcDATA install-libfileio_la_helpenDATA \
+	install-libfileio_la_helpfrDATA \
+	install-libfileio_la_includeHEADERS \
+	install-libfileio_la_macroDATA install-libfileio_la_rootDATA \
+	install-libfileio_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libfileio_la_demosDATA \
+	uninstall-libfileio_la_etcDATA \
+	uninstall-libfileio_la_helpenDATA \
+	uninstall-libfileio_la_helpfrDATA \
+	uninstall-libfileio_la_includeHEADERS \
+	uninstall-libfileio_la_macroDATA \
+	uninstall-libfileio_la_rootDATA \
+	uninstall-libfileio_la_sci_gatewayDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

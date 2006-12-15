@@ -20,6 +20,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -61,6 +62,11 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
+	"$(DESTDIR)$(libmexlib_la_etcdir)" \
+	"$(DESTDIR)$(libmexlib_la_helpendir)" \
+	"$(DESTDIR)$(libmexlib_la_helpfrdir)" \
+	"$(DESTDIR)$(libmexlib_la_macrodir)" \
+	"$(DESTDIR)$(libmexlib_la_rootdir)" \
 	"$(DESTDIR)$(libmexlib_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -86,6 +92,14 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libmexlib_la_SOURCES)
 DIST_SOURCES = $(libmexlib_la_SOURCES)
+libmexlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
+libmexlib_la_helpenDATA_INSTALL = $(INSTALL_DATA)
+libmexlib_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
+libmexlib_la_macroDATA_INSTALL = $(INSTALL_DATA)
+libmexlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(libmexlib_la_etc_DATA) $(libmexlib_la_helpen_DATA) \
+	$(libmexlib_la_helpfr_DATA) $(libmexlib_la_macro_DATA) \
+	$(libmexlib_la_root_DATA)
 libmexlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libmexlib_la_include_HEADERS)
 ETAGS = etags
@@ -198,7 +212,7 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = @datadir@
+datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -233,8 +247,6 @@ tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 MEXLIB_C_SOURCES = src/mexlib.c
-libmexlib_la_includedir = $(includedir)/mexlib
-libmexlib_la_include_HEADERS = includes/mex.h
 libmexlib_la_CFLAGS = -Iincludes/ 
 lib_LTLIBRARIES = libmexlib.la
 libmexlib_la_SOURCES = $(MEXLIB_C_SOURCES)
@@ -245,6 +257,32 @@ libmexlib_la_LIBADD = \
 #	$(top_builddir)/libs/blas/libblas.la \
 #	$(top_builddir)/modules/arnoldi/libarnoldi.la
 libmexlib_la_PKGCONFIG = mexlib.pc
+#### Target ######
+target = $(datadir)/mexlib
+
+#### mexlib : Conf files ####
+libmexlib_la_rootdir = $(target)
+libmexlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+
+#### mexlib : Scilab macros ###
+libmexlib_la_macrodir = $(target)/macros
+libmexlib_la_macro_DATA = macros/buildmacros.sce
+
+#### mexlib : init scripts #### 
+libmexlib_la_etcdir = $(target)/etc
+libmexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
+
+#### mexlib : documentation FR #### 
+libmexlib_la_helpfrdir = $(target)/help/fr
+libmexlib_la_helpfr_DATA = 
+
+#### mexlib : documentation EN #### 
+libmexlib_la_helpendir = $(target)/help/eng
+libmexlib_la_helpen_DATA = 
+
+#### mexlib : include files ####
+libmexlib_la_includedir = $(includedir)/mexlib
+libmexlib_la_include_HEADERS = includes/mex.h
 all: all-am
 
 .SUFFIXES:
@@ -349,6 +387,91 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-libmexlib_la_etcDATA: $(libmexlib_la_etc_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libmexlib_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_etcdir)"
+	@list='$(libmexlib_la_etc_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libmexlib_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmexlib_la_etcdir)/$$f'"; \
+	  $(libmexlib_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmexlib_la_etcdir)/$$f"; \
+	done
+
+uninstall-libmexlib_la_etcDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libmexlib_la_etc_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libmexlib_la_etcdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmexlib_la_etcdir)/$$f"; \
+	done
+install-libmexlib_la_helpenDATA: $(libmexlib_la_helpen_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libmexlib_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_helpendir)"
+	@list='$(libmexlib_la_helpen_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libmexlib_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmexlib_la_helpendir)/$$f'"; \
+	  $(libmexlib_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmexlib_la_helpendir)/$$f"; \
+	done
+
+uninstall-libmexlib_la_helpenDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libmexlib_la_helpen_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libmexlib_la_helpendir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmexlib_la_helpendir)/$$f"; \
+	done
+install-libmexlib_la_helpfrDATA: $(libmexlib_la_helpfr_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libmexlib_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_helpfrdir)"
+	@list='$(libmexlib_la_helpfr_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libmexlib_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmexlib_la_helpfrdir)/$$f'"; \
+	  $(libmexlib_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmexlib_la_helpfrdir)/$$f"; \
+	done
+
+uninstall-libmexlib_la_helpfrDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libmexlib_la_helpfr_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libmexlib_la_helpfrdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmexlib_la_helpfrdir)/$$f"; \
+	done
+install-libmexlib_la_macroDATA: $(libmexlib_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libmexlib_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_macrodir)"
+	@list='$(libmexlib_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libmexlib_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmexlib_la_macrodir)/$$f'"; \
+	  $(libmexlib_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmexlib_la_macrodir)/$$f"; \
+	done
+
+uninstall-libmexlib_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libmexlib_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libmexlib_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmexlib_la_macrodir)/$$f"; \
+	done
+install-libmexlib_la_rootDATA: $(libmexlib_la_root_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libmexlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_rootdir)"
+	@list='$(libmexlib_la_root_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libmexlib_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmexlib_la_rootdir)/$$f'"; \
+	  $(libmexlib_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmexlib_la_rootdir)/$$f"; \
+	done
+
+uninstall-libmexlib_la_rootDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libmexlib_la_root_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libmexlib_la_rootdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libmexlib_la_rootdir)/$$f"; \
+	done
 install-libmexlib_la_includeHEADERS: $(libmexlib_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libmexlib_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_includedir)"
@@ -443,9 +566,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmexlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmexlib_la_etcdir)" "$(DESTDIR)$(libmexlib_la_helpendir)" "$(DESTDIR)$(libmexlib_la_helpfrdir)" "$(DESTDIR)$(libmexlib_la_macrodir)" "$(DESTDIR)$(libmexlib_la_rootdir)" "$(DESTDIR)$(libmexlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -493,7 +616,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libmexlib_la_includeHEADERS
+install-data-am: install-libmexlib_la_etcDATA \
+	install-libmexlib_la_helpenDATA \
+	install-libmexlib_la_helpfrDATA \
+	install-libmexlib_la_includeHEADERS \
+	install-libmexlib_la_macroDATA install-libmexlib_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -529,8 +656,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libmexlib_la_includeHEADERS
+uninstall-am: uninstall-libLTLIBRARIES uninstall-libmexlib_la_etcDATA \
+	uninstall-libmexlib_la_helpenDATA \
+	uninstall-libmexlib_la_helpfrDATA \
+	uninstall-libmexlib_la_includeHEADERS \
+	uninstall-libmexlib_la_macroDATA \
+	uninstall-libmexlib_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -541,14 +672,23 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libmexlib_la_includeHEADERS \
+	install-libLTLIBRARIES install-libmexlib_la_etcDATA \
+	install-libmexlib_la_helpenDATA \
+	install-libmexlib_la_helpfrDATA \
+	install-libmexlib_la_includeHEADERS \
+	install-libmexlib_la_macroDATA install-libmexlib_la_rootDATA \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libmexlib_la_includeHEADERS
+	uninstall-libmexlib_la_etcDATA \
+	uninstall-libmexlib_la_helpenDATA \
+	uninstall-libmexlib_la_helpfrDATA \
+	uninstall-libmexlib_la_includeHEADERS \
+	uninstall-libmexlib_la_macroDATA \
+	uninstall-libmexlib_la_rootDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
