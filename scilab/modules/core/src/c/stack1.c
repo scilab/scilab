@@ -340,7 +340,7 @@ int C2F(crebmatvar)(integer *id, integer *lw, integer *m, integer *n, integer *v
 	return 0;
 } 
 /*--------------------------------------------------------- 
-*     crebmat without check and call to putid 
+*     cresmatvar without check and call to putid 
 *     internal function
 *---------------------------------------------------------- */
 int C2F(cresmatvar)(integer *id, integer *lw, char *str, integer *lstr, unsigned long str_len)
