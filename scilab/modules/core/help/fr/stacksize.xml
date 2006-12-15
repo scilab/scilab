@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 aoÃ»t 2006)
-  $</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="stacksize">change la taille de la pile
   Scilab</SHORT_DESCRIPTION>
