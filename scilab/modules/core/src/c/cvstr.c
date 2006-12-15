@@ -97,11 +97,11 @@ int C2F(asciitocode)(integer * n,integer * line,char * str,integer * flagx,unsig
   integer j;
   if (*flagx == 1) {
     for (j = 0; j < *n ; ++j) {
-      line[j] = (integer *)C2F(getfastcode)(str+j, 1L);
+      line[j] = C2F(getfastcode)(str+j, 1L);
     }
   } else {
     for (j = *n -1 ; j >= 0; --j) {
-      line[j] = (integer *)C2F(getfastcode)(str+j, 1L);
+      line[j] = C2F(getfastcode)(str+j, 1L);
     }
   }
   return 0;
