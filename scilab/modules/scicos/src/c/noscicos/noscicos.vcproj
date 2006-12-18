@@ -65,7 +65,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib"
-				OutputFile="../../../../../bin/$(ProjectName).dll"
+				OutputFile="../../../../../bin/scicos.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noscicos.def"
 				GenerateDebugInformation="true"
@@ -149,7 +149,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
-				OutputFile="../../../../../bin/$(ProjectName).dll"
+				OutputFile="../../../../../bin/scicos.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noscicos.def"
 				GenerateDebugInformation="true"

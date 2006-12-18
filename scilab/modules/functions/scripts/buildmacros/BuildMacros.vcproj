@@ -49,7 +49,7 @@
 				BuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
 				ReBuildCommandLine="..\..\..\..\bin\scilex -ns -nwni -f buildmacros.sce"
 				CleanCommandLine="cleanmacros.bat"
-				Output="BuildMacros.exe"
+				Output=""
 				PreprocessorDefinitions=""
 				IncludeSearchPath=""
 				ForcedIncludes=""
