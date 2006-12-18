@@ -6,7 +6,7 @@
 #include <string.h>
 #include "machine.h"
 #include "MALLOC.h" /* MALLOC */
-
+#include "sciprint.h"
 
 #define  typ_short "s"
 #define  typ_ushort "us"
@@ -21,7 +21,7 @@ extern void C2F(mtell) (integer *fd, double *offset, integer *err);
 extern void C2F(mseek) (integer *fd, integer *offset, char *flag, integer *err);
 extern FILE *GetFile(integer *fd);
 extern int GetSwap(integer *fd);
-extern void sciprint __PARAMS ((char *fmt,...));
+
 extern double C2F(returnanan)();
 /*------------------------------------------------------------------*/
 /*Prototype*/
@@ -45,7 +45,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   int three=3;
 
   int i;  /*Variables de boucle*/
-  int hauteur, longueur, capacite;   /*Hauteur, longueur de la feuille,  */
+  int hauteur=NULL, longueur=NULL, capacite;   /*Hauteur, longueur de la feuille,  */
   int taille; /*Nombre de types de caractèers a enregistrer*/
   char *sheetname;   /*Nom de la feuille*/
   int rkvalue; /*RK value*/

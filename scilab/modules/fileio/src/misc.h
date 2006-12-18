@@ -76,4 +76,8 @@ float          rfloat(P1(ft_t ft));
 void wfloat(ft_t ft, float f);
 double         rdouble(P1(ft_t ft));
 void           wdouble(P2(ft_t ft, double d));
+
+long gcd(long int a, long int b);
+long lcm(long int a, long int b);
+
 /*-----------------------------------------------------------------------------------*/

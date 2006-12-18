@@ -1231,7 +1231,7 @@ int OLE_follow_minichain( struct OLE_object *ole, int miniFAT_sector_start )
 		};
 
 		DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: current sector = %d",FL,current_sector);
-	/* Test changed  Serge Steer Scilab *
+		/* Test changed  Serge Steer Scilab */
 	   /*	} while ((break_out==0) &&(current_sector <= ole->last_sector));*/
 	} while ((break_out==0));
 	DOLE LOGGER_log("%s:%d:OLE_follow_minichain:DEBUG: Done.  Chainlength=%d",FL, chain_length);

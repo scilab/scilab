@@ -4,12 +4,12 @@
 #include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
-
+#include "ole.h"
+#include "ripole.h"
 /*---------------------------------------------------------------
   Authors Pierrick Mode, Serge Steer INRIA 2005, Copyright INRIA
   --------------------------------------------------------------*/
 
-extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 extern void GetenvB( char *name,char *env, int len);
 extern void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 extern int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
@@ -81,7 +81,7 @@ int C2F(intreadxls)(char *fname, long lfn)
   return 0;
 }
 
-#include "ole.h"
+
 static char *xls_basename (name)
 char *name;
 {

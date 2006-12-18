@@ -29,5 +29,6 @@ typedef union
 } entry;
 typedef enum {SF_C,SF_S,SF_LUI,SF_SUI,SF_UI,SF_LI,SF_SI,SF_I,SF_LF,SF_F} sfdir;
 
+int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type);
 #endif /* __DO_XXSCANF_H__ */
 

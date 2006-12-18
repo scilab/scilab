@@ -152,6 +152,14 @@ int OLE_open_file( struct OLE_object *ole, char *fullpath );
 int OLE_decode_file( struct OLE_object *ole, char *fname, char *decode_path );
 int OLE_decode_file_done( struct OLE_object *ole );
 
+int OLE_dir_init(struct OLE_directory_entry *dir );
+int OLE_sectorpos( struct OLE_object *ole, int SID );
+int OLE_is_file_OLE( struct OLE_object *ole );
+int OLE_open_directory( struct OLE_object *ole, char *directory );
+int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory, char *stream, size_t stream_size );
+int OLE_terminate_and_return( struct OLE_object *ole, int result );
+int OLE_decode_stream( struct OLE_object *ole,  struct OLE_directory_entry *adir, char *decode_path );
+
 
 /* Our callbacks.*/
 int OLE_set_filename_report_fn( struct OLE_object *ole, int (*ptr_to_fn)(char *) );

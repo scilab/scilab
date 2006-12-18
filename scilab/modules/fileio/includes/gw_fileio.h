@@ -26,5 +26,7 @@ int intsmtell(char *fname,unsigned long fname_len);
 int intsmclearerr(char *fname,unsigned long fname_len);
 int intsmerror(char *fname,unsigned long fname_len);
 
+int C2F(gw_fileio)(void);
+
 #endif /*  __INTFILEIO__ */
 /*-----------------------------------------------------------------------------------*/

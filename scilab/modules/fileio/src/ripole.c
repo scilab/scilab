@@ -9,20 +9,11 @@
 #include "logger.h"
 #include "pldstr.h"
 #include "ole.h"
+#include "ripole.h"
 
 #undef WITHMAIN
 
 #include "MALLOC.h"
-
-struct ripOLE_object {
-	int debug;
-	int verbose;
-	int save_unknown_streams;
-
-	char *inputfile;
-	char *outputdir;
-
-};
 
 #if _MSC_VER
 #define strdup _strdup
@@ -374,7 +365,6 @@ int main( int argc, char **argv )
 
 #endif
 /** end of ripOLE **/
-extern int OLE_set_filename_report_fn( struct OLE_object *ole, int (*ptr_to_fn)(char *) );
 
 int ripole(char *inputfile, char *outputdir, int debug, int verbose)
 {

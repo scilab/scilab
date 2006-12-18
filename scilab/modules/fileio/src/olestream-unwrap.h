@@ -24,3 +24,4 @@ int OLEUNWRAP_decodestream( struct OLEUNWRAP_object *oleuw, char *element_string
 
 int OLEUNWRAP_set_filename_report_fn( struct OLEUNWRAP_object *oleuw, int (*ptr_to_fn)(char *) );
 
+int OLEUNWRAP_sanitize_filename(char *fname);

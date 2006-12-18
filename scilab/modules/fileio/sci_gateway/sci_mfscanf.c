@@ -6,13 +6,7 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern int StringConvert(char *str);
-extern FILE *GetFile(integer *fd);
-extern int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type);
-extern int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, int *retval_s, rec_entry *buf, entry **data, int rowcount, int n);
-extern void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data);
-extern int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s);
+#include "fileio.h"
 /*-----------------------------------------------------------------------------------*/ 
 int int_objfscanf(char *fname,unsigned long fname_len)
 {

@@ -25,4 +25,5 @@ int LOGGER_set_wrap( int level );
 int LOGGER_close_logfile( void );
 FILE *LOGGER_get_file( void );
 
+int LOGGER_clean_output( char *string, char **buffer );
 #endif
