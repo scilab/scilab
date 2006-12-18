@@ -62,13 +62,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libgraphics_la_demosdir)" \
 	"$(DESTDIR)$(libgraphics_la_etcdir)" \
 	"$(DESTDIR)$(libgraphics_la_helpendir)" \
 	"$(DESTDIR)$(libgraphics_la_helpfrdir)" \
 	"$(DESTDIR)$(libgraphics_la_macrodir)" \
 	"$(DESTDIR)$(libgraphics_la_rootdir)" \
 	"$(DESTDIR)$(libgraphics_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libgraphics_la_demosdir)" \
 	"$(DESTDIR)$(libgraphics_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -429,17 +429,17 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libgraphics_la_SOURCES)
 DIST_SOURCES = $(libgraphics_la_SOURCES)
-libgraphics_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_helpenDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libgraphics_la_demos_DATA) $(libgraphics_la_etc_DATA) \
-	$(libgraphics_la_helpen_DATA) $(libgraphics_la_helpfr_DATA) \
-	$(libgraphics_la_macro_DATA) $(libgraphics_la_root_DATA) \
-	$(libgraphics_la_sci_gateway_DATA)
+nobase_libgraphics_la_demosDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libgraphics_la_etc_DATA) $(libgraphics_la_helpen_DATA) \
+	$(libgraphics_la_helpfr_DATA) $(libgraphics_la_macro_DATA) \
+	$(libgraphics_la_root_DATA) $(libgraphics_la_sci_gateway_DATA) \
+	$(nobase_libgraphics_la_demos_DATA)
 libgraphics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libgraphics_la_include_HEADERS)
 ETAGS = etags
@@ -1896,8 +1896,8 @@ includes/periGif.h
 
 
 #### graphics : demos files ####
-libgraphics_la_demosdir = $(target)/demos/
-libgraphics_la_demos_DATA = demos/anim/anim7.dem \
+libgraphics_la_demosdir = $(target)
+nobase_libgraphics_la_demos_DATA = demos/anim/anim7.dem \
 demos/anim/anim8.dem \
 demos/anim/~anim6.sci \
 demos/anim/riemann.sci \
@@ -5292,23 +5292,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libgraphics_la_demosDATA: $(libgraphics_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libgraphics_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libgraphics_la_demosdir)"
-	@list='$(libgraphics_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libgraphics_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgraphics_la_demosdir)/$$f'"; \
-	  $(libgraphics_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgraphics_la_demosdir)/$$f"; \
-	done
-
-uninstall-libgraphics_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libgraphics_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgraphics_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgraphics_la_demosdir)/$$f"; \
-	done
 install-libgraphics_la_etcDATA: $(libgraphics_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libgraphics_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libgraphics_la_etcdir)"
@@ -5411,6 +5394,25 @@ uninstall-libgraphics_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libgraphics_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libgraphics_la_sci_gatewaydir)/$$f"; \
 	done
+install-nobase_libgraphics_la_demosDATA: $(nobase_libgraphics_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libgraphics_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libgraphics_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libgraphics_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libgraphics_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgraphics_la_demosdir)/$$f'"; \
+	  $(nobase_libgraphics_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgraphics_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_libgraphics_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libgraphics_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libgraphics_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libgraphics_la_demosdir)/$$f"; \
+	done
 install-libgraphics_la_includeHEADERS: $(libgraphics_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libgraphics_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libgraphics_la_includedir)"
@@ -5507,7 +5509,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgraphics_la_demosdir)" "$(DESTDIR)$(libgraphics_la_etcdir)" "$(DESTDIR)$(libgraphics_la_helpendir)" "$(DESTDIR)$(libgraphics_la_helpfrdir)" "$(DESTDIR)$(libgraphics_la_macrodir)" "$(DESTDIR)$(libgraphics_la_rootdir)" "$(DESTDIR)$(libgraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libgraphics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgraphics_la_etcdir)" "$(DESTDIR)$(libgraphics_la_helpendir)" "$(DESTDIR)$(libgraphics_la_helpfrdir)" "$(DESTDIR)$(libgraphics_la_macrodir)" "$(DESTDIR)$(libgraphics_la_rootdir)" "$(DESTDIR)$(libgraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libgraphics_la_demosdir)" "$(DESTDIR)$(libgraphics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -5555,14 +5557,14 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libgraphics_la_demosDATA \
-	install-libgraphics_la_etcDATA \
+install-data-am: install-libgraphics_la_etcDATA \
 	install-libgraphics_la_helpenDATA \
 	install-libgraphics_la_helpfrDATA \
 	install-libgraphics_la_includeHEADERS \
 	install-libgraphics_la_macroDATA \
 	install-libgraphics_la_rootDATA \
-	install-libgraphics_la_sci_gatewayDATA
+	install-libgraphics_la_sci_gatewayDATA \
+	install-nobase_libgraphics_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -5599,14 +5601,14 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libgraphics_la_demosDATA \
 	uninstall-libgraphics_la_etcDATA \
 	uninstall-libgraphics_la_helpenDATA \
 	uninstall-libgraphics_la_helpfrDATA \
 	uninstall-libgraphics_la_includeHEADERS \
 	uninstall-libgraphics_la_macroDATA \
 	uninstall-libgraphics_la_rootDATA \
-	uninstall-libgraphics_la_sci_gatewayDATA
+	uninstall-libgraphics_la_sci_gatewayDATA \
+	uninstall-nobase_libgraphics_la_demosDATA
 
 .MAKE: install-am install-strip
 
@@ -5617,27 +5619,27 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libgraphics_la_demosDATA \
-	install-libgraphics_la_etcDATA \
+	install-libLTLIBRARIES install-libgraphics_la_etcDATA \
 	install-libgraphics_la_helpenDATA \
 	install-libgraphics_la_helpfrDATA \
 	install-libgraphics_la_includeHEADERS \
 	install-libgraphics_la_macroDATA \
 	install-libgraphics_la_rootDATA \
-	install-libgraphics_la_sci_gatewayDATA install-man install-pdf \
+	install-libgraphics_la_sci_gatewayDATA install-man \
+	install-nobase_libgraphics_la_demosDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libgraphics_la_demosDATA \
 	uninstall-libgraphics_la_etcDATA \
 	uninstall-libgraphics_la_helpenDATA \
 	uninstall-libgraphics_la_helpfrDATA \
 	uninstall-libgraphics_la_includeHEADERS \
 	uninstall-libgraphics_la_macroDATA \
 	uninstall-libgraphics_la_rootDATA \
-	uninstall-libgraphics_la_sci_gatewayDATA
+	uninstall-libgraphics_la_sci_gatewayDATA \
+	uninstall-nobase_libgraphics_la_demosDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

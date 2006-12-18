@@ -260,8 +260,8 @@ includes/spd.h
 
 
 #### optimization : demos files ####
-liboptimization_la_demosdir=$(target)/demos/
-liboptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
+liboptimization_la_demosdir=$(target)
+nobase_liboptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
 demos/lmitool/dscr_lyap2.sci \
 demos/lmitool/fullstate.sci \
 demos/lmitool/testdscr_lyap \

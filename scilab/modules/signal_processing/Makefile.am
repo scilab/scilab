@@ -411,8 +411,8 @@ libsignal_processing_la_include_HEADERS = includes/gw_signal.h
 
 
 #### signal_processing : demos files ####
-libsignal_processing_la_demosdir=$(target)/demos/
-libsignal_processing_la_demos_DATA = demos/arma/arma1.dem \
+libsignal_processing_la_demosdir=$(target)
+nobase_libsignal_processing_la_demos_DATA = demos/arma/arma1.dem \
 demos/arma/arma2.dem \
 demos/arma/arma3.dem \
 demos/winfilt.dem \

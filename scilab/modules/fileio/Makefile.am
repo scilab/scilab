@@ -218,8 +218,8 @@ includes/sci_fileio.h
 
 
 #### fileio : demos files ####
-libfileio_la_demosdir=$(target)/demos/
-libfileio_la_demos_DATA = demos/excel/Testo1.xls \
+libfileio_la_demosdir=$(target)
+nobase_libfileio_la_demos_DATA = demos/excel/Testo1.xls \
 demos/excel/o1.xls \
 demos/excel/Test1.xls \
 demos/excel/Testobig.xls \

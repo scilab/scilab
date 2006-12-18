@@ -1322,8 +1322,8 @@ includes/periGif.h
 
 
 #### graphics : demos files ####
-libgraphics_la_demosdir=$(target)/demos/
-libgraphics_la_demos_DATA = demos/anim/anim7.dem \
+libgraphics_la_demosdir=$(target)
+nobase_libgraphics_la_demos_DATA = demos/anim/anim7.dem \
 demos/anim/anim8.dem \
 demos/anim/~anim6.sci \
 demos/anim/riemann.sci \

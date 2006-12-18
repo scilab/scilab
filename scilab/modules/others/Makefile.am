@@ -36,9 +36,9 @@ help/eng/add_demo.htm \
 help/eng/edit.htm
 
 
-#### others : demos files ####
-libothers_la_demosdir=$(target)/demos/
-libothers_la_demos_DATA = demos/velpic/id_rgn.desc \
+#### others : demos files - velpic ####
+libothers_la_demosdir=$(target)
+nobase_libothers_la_demos_DATA = demos/velpic/id_rgn.desc \
 demos/velpic/velpic.sci \
 demos/velpic/plotdb.sci \
 demos/velpic/velpic.1 \
@@ -214,4 +214,3 @@ demos/loop_demo/scilab_logo.ppm \
 demos/loop_demo/cmplxfun.sci \
 demos/loop_demo/demo_isoSurf.sci \
 demos/loop_demo/demo_image.htm
-

@@ -19,6 +19,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
+
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
@@ -52,6 +53,15 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
+am__installdirs = "$(DESTDIR)$(libincremental_link_la_scriptdir)" \
+	"$(DESTDIR)$(libincremental_link_la_etcdir)" \
+	"$(DESTDIR)$(libincremental_link_la_helpendir)" \
+	"$(DESTDIR)$(libincremental_link_la_helpfrdir)" \
+	"$(DESTDIR)$(libincremental_link_la_macrodir)" \
+	"$(DESTDIR)$(libincremental_link_la_rootdir)" \
+	"$(DESTDIR)$(libincremental_link_la_scriptdir)"
+libincremental_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
+SCRIPTS = $(libincremental_link_la_script_SCRIPTS)
 SOURCES =
 DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -60,21 +70,18 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libincremental_link_la_etcdir)" \
-	"$(DESTDIR)$(libincremental_link_la_helpendir)" \
-	"$(DESTDIR)$(libincremental_link_la_helpfrdir)" \
-	"$(DESTDIR)$(libincremental_link_la_macrodir)" \
-	"$(DESTDIR)$(libincremental_link_la_rootdir)"
 libincremental_link_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_helpenDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_rootDATA_INSTALL = $(INSTALL_DATA)
+libincremental_link_la_scriptDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libincremental_link_la_etc_DATA) \
 	$(libincremental_link_la_helpen_DATA) \
 	$(libincremental_link_la_helpfr_DATA) \
 	$(libincremental_link_la_macro_DATA) \
-	$(libincremental_link_la_root_DATA)
+	$(libincremental_link_la_root_DATA) \
+	$(libincremental_link_la_script_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -288,6 +295,26 @@ help/eng/scilink.htm \
 help/eng/ilib_gen_loader.htm \
 help/eng/ilib_gen_Make.htm
 
+
+#### incremental_link : compilation scripts #### 
+libincremental_link_la_scriptdir = $(target)/src/scripts/
+libincremental_link_la_script_DATA = src/scripts/Makefile.in \
+src/scripts/configure.ac \
+src/scripts/ltmain.sh \
+src/scripts/Makefile.am \
+src/scripts/aclocal.m4
+
+libincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
+src/scripts/config.guess \
+src/scripts/config.status \
+src/scripts/config.sub \
+src/scripts/configure \
+src/scripts/depcomp \
+src/scripts/install-sh \
+src/scripts/missing \
+src/scripts/scicompile.sh \
+src/scripts/libtool
+
 all: all-am
 
 .SUFFIXES:
@@ -320,6 +347,25 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+install-libincremental_link_la_scriptSCRIPTS: $(libincremental_link_la_script_SCRIPTS)
+	@$(NORMAL_INSTALL)
+	test -z "$(libincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_scriptdir)"
+	@list='$(libincremental_link_la_script_SCRIPTS)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  if test -f $$d$$p; then \
+	    f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	    echo " $(libincremental_link_la_scriptSCRIPT_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
+	    $(libincremental_link_la_scriptSCRIPT_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-libincremental_link_la_scriptSCRIPTS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libincremental_link_la_script_SCRIPTS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's|^.*/||;$(transform)'`; \
+	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	done
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -411,6 +457,23 @@ uninstall-libincremental_link_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libincremental_link_la_rootdir)/$$f"; \
 	done
+install-libincremental_link_la_scriptDATA: $(libincremental_link_la_script_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libincremental_link_la_scriptdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_scriptdir)"
+	@list='$(libincremental_link_la_script_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libincremental_link_la_scriptDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
+	  $(libincremental_link_la_scriptDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	done
+
+uninstall-libincremental_link_la_scriptDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libincremental_link_la_script_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libincremental_link_la_scriptdir)/$$f"; \
+	done
 tags: TAGS
 TAGS:
 
@@ -446,9 +509,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(DATA)
+all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_helpendir)" "$(DESTDIR)$(libincremental_link_la_helpfrdir)" "$(DESTDIR)$(libincremental_link_la_macrodir)" "$(DESTDIR)$(libincremental_link_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libincremental_link_la_scriptdir)" "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_helpendir)" "$(DESTDIR)$(libincremental_link_la_helpfrdir)" "$(DESTDIR)$(libincremental_link_la_macrodir)" "$(DESTDIR)$(libincremental_link_la_rootdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -497,7 +560,9 @@ install-data-am: install-libincremental_link_la_etcDATA \
 	install-libincremental_link_la_helpenDATA \
 	install-libincremental_link_la_helpfrDATA \
 	install-libincremental_link_la_macroDATA \
-	install-libincremental_link_la_rootDATA
+	install-libincremental_link_la_rootDATA \
+	install-libincremental_link_la_scriptDATA \
+	install-libincremental_link_la_scriptSCRIPTS
 
 install-dvi: install-dvi-am
 
@@ -535,7 +600,9 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	uninstall-libincremental_link_la_helpenDATA \
 	uninstall-libincremental_link_la_helpfrDATA \
 	uninstall-libincremental_link_la_macroDATA \
-	uninstall-libincremental_link_la_rootDATA
+	uninstall-libincremental_link_la_rootDATA \
+	uninstall-libincremental_link_la_scriptDATA \
+	uninstall-libincremental_link_la_scriptSCRIPTS
 
 .MAKE: install-am install-strip
 
@@ -549,7 +616,9 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	install-libincremental_link_la_helpenDATA \
 	install-libincremental_link_la_helpfrDATA \
 	install-libincremental_link_la_macroDATA \
-	install-libincremental_link_la_rootDATA install-man \
+	install-libincremental_link_la_rootDATA \
+	install-libincremental_link_la_scriptDATA \
+	install-libincremental_link_la_scriptSCRIPTS install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
@@ -559,7 +628,9 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	uninstall-libincremental_link_la_helpenDATA \
 	uninstall-libincremental_link_la_helpfrDATA \
 	uninstall-libincremental_link_la_macroDATA \
-	uninstall-libincremental_link_la_rootDATA
+	uninstall-libincremental_link_la_rootDATA \
+	uninstall-libincremental_link_la_scriptDATA \
+	uninstall-libincremental_link_la_scriptSCRIPTS
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

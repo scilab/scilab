@@ -62,13 +62,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(liboptimization_la_demosdir)" \
 	"$(DESTDIR)$(liboptimization_la_etcdir)" \
 	"$(DESTDIR)$(liboptimization_la_helpendir)" \
 	"$(DESTDIR)$(liboptimization_la_helpfrdir)" \
 	"$(DESTDIR)$(liboptimization_la_macrodir)" \
 	"$(DESTDIR)$(liboptimization_la_rootdir)" \
 	"$(DESTDIR)$(liboptimization_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(liboptimization_la_demosdir)" \
 	"$(DESTDIR)$(liboptimization_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -129,19 +129,20 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(liboptimization_la_SOURCES)
 DIST_SOURCES = $(liboptimization_la_SOURCES)
-liboptimization_la_demosDATA_INSTALL = $(INSTALL_DATA)
 liboptimization_la_etcDATA_INSTALL = $(INSTALL_DATA)
 liboptimization_la_helpenDATA_INSTALL = $(INSTALL_DATA)
 liboptimization_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 liboptimization_la_macroDATA_INSTALL = $(INSTALL_DATA)
 liboptimization_la_rootDATA_INSTALL = $(INSTALL_DATA)
 liboptimization_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(liboptimization_la_demos_DATA) $(liboptimization_la_etc_DATA) \
+nobase_liboptimization_la_demosDATA_INSTALL = $(install_sh_DATA)
+DATA = $(liboptimization_la_etc_DATA) \
 	$(liboptimization_la_helpen_DATA) \
 	$(liboptimization_la_helpfr_DATA) \
 	$(liboptimization_la_macro_DATA) \
 	$(liboptimization_la_root_DATA) \
-	$(liboptimization_la_sci_gateway_DATA)
+	$(liboptimization_la_sci_gateway_DATA) \
+	$(nobase_liboptimization_la_demos_DATA)
 liboptimization_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(liboptimization_la_include_HEADERS)
 ETAGS = etags
@@ -537,8 +538,8 @@ includes/spd.h
 
 
 #### optimization : demos files ####
-liboptimization_la_demosdir = $(target)/demos/
-liboptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
+liboptimization_la_demosdir = $(target)
+nobase_liboptimization_la_demos_DATA = demos/lmitool/normoptd.sci \
 demos/lmitool/dscr_lyap2.sci \
 demos/lmitool/fullstate.sci \
 demos/lmitool/testdscr_lyap \
@@ -1110,23 +1111,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-liboptimization_la_demosDATA: $(liboptimization_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(liboptimization_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(liboptimization_la_demosdir)"
-	@list='$(liboptimization_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(liboptimization_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liboptimization_la_demosdir)/$$f'"; \
-	  $(liboptimization_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liboptimization_la_demosdir)/$$f"; \
-	done
-
-uninstall-liboptimization_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(liboptimization_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liboptimization_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liboptimization_la_demosdir)/$$f"; \
-	done
 install-liboptimization_la_etcDATA: $(liboptimization_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(liboptimization_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(liboptimization_la_etcdir)"
@@ -1229,6 +1213,25 @@ uninstall-liboptimization_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(liboptimization_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(liboptimization_la_sci_gatewaydir)/$$f"; \
 	done
+install-nobase_liboptimization_la_demosDATA: $(nobase_liboptimization_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(liboptimization_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(liboptimization_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_liboptimization_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_liboptimization_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liboptimization_la_demosdir)/$$f'"; \
+	  $(nobase_liboptimization_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liboptimization_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_liboptimization_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_liboptimization_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(liboptimization_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(liboptimization_la_demosdir)/$$f"; \
+	done
 install-liboptimization_la_includeHEADERS: $(liboptimization_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(liboptimization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(liboptimization_la_includedir)"
@@ -1325,7 +1328,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liboptimization_la_demosdir)" "$(DESTDIR)$(liboptimization_la_etcdir)" "$(DESTDIR)$(liboptimization_la_helpendir)" "$(DESTDIR)$(liboptimization_la_helpfrdir)" "$(DESTDIR)$(liboptimization_la_macrodir)" "$(DESTDIR)$(liboptimization_la_rootdir)" "$(DESTDIR)$(liboptimization_la_sci_gatewaydir)" "$(DESTDIR)$(liboptimization_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liboptimization_la_etcdir)" "$(DESTDIR)$(liboptimization_la_helpendir)" "$(DESTDIR)$(liboptimization_la_helpfrdir)" "$(DESTDIR)$(liboptimization_la_macrodir)" "$(DESTDIR)$(liboptimization_la_rootdir)" "$(DESTDIR)$(liboptimization_la_sci_gatewaydir)" "$(DESTDIR)$(liboptimization_la_demosdir)" "$(DESTDIR)$(liboptimization_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1373,14 +1376,14 @@ info: info-am
 
 info-am:
 
-install-data-am: install-liboptimization_la_demosDATA \
-	install-liboptimization_la_etcDATA \
+install-data-am: install-liboptimization_la_etcDATA \
 	install-liboptimization_la_helpenDATA \
 	install-liboptimization_la_helpfrDATA \
 	install-liboptimization_la_includeHEADERS \
 	install-liboptimization_la_macroDATA \
 	install-liboptimization_la_rootDATA \
-	install-liboptimization_la_sci_gatewayDATA
+	install-liboptimization_la_sci_gatewayDATA \
+	install-nobase_liboptimization_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -1417,14 +1420,14 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-liboptimization_la_demosDATA \
 	uninstall-liboptimization_la_etcDATA \
 	uninstall-liboptimization_la_helpenDATA \
 	uninstall-liboptimization_la_helpfrDATA \
 	uninstall-liboptimization_la_includeHEADERS \
 	uninstall-liboptimization_la_macroDATA \
 	uninstall-liboptimization_la_rootDATA \
-	uninstall-liboptimization_la_sci_gatewayDATA
+	uninstall-liboptimization_la_sci_gatewayDATA \
+	uninstall-nobase_liboptimization_la_demosDATA
 
 .MAKE: install-am install-strip
 
@@ -1435,28 +1438,27 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-liboptimization_la_demosDATA \
-	install-liboptimization_la_etcDATA \
+	install-libLTLIBRARIES install-liboptimization_la_etcDATA \
 	install-liboptimization_la_helpenDATA \
 	install-liboptimization_la_helpfrDATA \
 	install-liboptimization_la_includeHEADERS \
 	install-liboptimization_la_macroDATA \
 	install-liboptimization_la_rootDATA \
 	install-liboptimization_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-libLTLIBRARIES \
-	uninstall-liboptimization_la_demosDATA \
+	install-nobase_liboptimization_la_demosDATA install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-liboptimization_la_etcDATA \
 	uninstall-liboptimization_la_helpenDATA \
 	uninstall-liboptimization_la_helpfrDATA \
 	uninstall-liboptimization_la_includeHEADERS \
 	uninstall-liboptimization_la_macroDATA \
 	uninstall-liboptimization_la_rootDATA \
-	uninstall-liboptimization_la_sci_gatewayDATA
+	uninstall-liboptimization_la_sci_gatewayDATA \
+	uninstall-nobase_liboptimization_la_demosDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

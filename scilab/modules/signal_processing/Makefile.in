@@ -62,13 +62,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(libsignal_processing_la_demosdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_etcdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_helpendir)" \
 	"$(DESTDIR)$(libsignal_processing_la_helpfrdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_macrodir)" \
 	"$(DESTDIR)$(libsignal_processing_la_rootdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libsignal_processing_la_demosdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -122,20 +122,20 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsignal_processing_la_SOURCES)
 DIST_SOURCES = $(libsignal_processing_la_SOURCES)
-libsignal_processing_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_helpenDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsignal_processing_la_demos_DATA) \
-	$(libsignal_processing_la_etc_DATA) \
+nobase_libsignal_processing_la_demosDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libsignal_processing_la_etc_DATA) \
 	$(libsignal_processing_la_helpen_DATA) \
 	$(libsignal_processing_la_helpfr_DATA) \
 	$(libsignal_processing_la_macro_DATA) \
 	$(libsignal_processing_la_root_DATA) \
-	$(libsignal_processing_la_sci_gateway_DATA)
+	$(libsignal_processing_la_sci_gateway_DATA) \
+	$(nobase_libsignal_processing_la_demos_DATA)
 libsignal_processing_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsignal_processing_la_include_HEADERS)
 ETAGS = etags
@@ -682,8 +682,8 @@ libsignal_processing_la_includedir = $(includedir)/signal_processing
 libsignal_processing_la_include_HEADERS = includes/gw_signal.h
 
 #### signal_processing : demos files ####
-libsignal_processing_la_demosdir = $(target)/demos/
-libsignal_processing_la_demos_DATA = demos/arma/arma1.dem \
+libsignal_processing_la_demosdir = $(target)
+nobase_libsignal_processing_la_demos_DATA = demos/arma/arma1.dem \
 demos/arma/arma2.dem \
 demos/arma/arma3.dem \
 demos/winfilt.dem \
@@ -1102,23 +1102,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsignal_processing_la_demosDATA: $(libsignal_processing_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsignal_processing_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libsignal_processing_la_demosdir)"
-	@list='$(libsignal_processing_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsignal_processing_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f'"; \
-	  $(libsignal_processing_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f"; \
-	done
-
-uninstall-libsignal_processing_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsignal_processing_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f"; \
-	done
 install-libsignal_processing_la_etcDATA: $(libsignal_processing_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsignal_processing_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsignal_processing_la_etcdir)"
@@ -1221,6 +1204,25 @@ uninstall-libsignal_processing_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)/$$f"; \
 	done
+install-nobase_libsignal_processing_la_demosDATA: $(nobase_libsignal_processing_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libsignal_processing_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libsignal_processing_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsignal_processing_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libsignal_processing_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f'"; \
+	  $(nobase_libsignal_processing_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_libsignal_processing_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libsignal_processing_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libsignal_processing_la_demosdir)/$$f"; \
+	done
 install-libsignal_processing_la_includeHEADERS: $(libsignal_processing_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsignal_processing_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libsignal_processing_la_includedir)"
@@ -1317,7 +1319,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsignal_processing_la_demosdir)" "$(DESTDIR)$(libsignal_processing_la_etcdir)" "$(DESTDIR)$(libsignal_processing_la_helpendir)" "$(DESTDIR)$(libsignal_processing_la_helpfrdir)" "$(DESTDIR)$(libsignal_processing_la_macrodir)" "$(DESTDIR)$(libsignal_processing_la_rootdir)" "$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)" "$(DESTDIR)$(libsignal_processing_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsignal_processing_la_etcdir)" "$(DESTDIR)$(libsignal_processing_la_helpendir)" "$(DESTDIR)$(libsignal_processing_la_helpfrdir)" "$(DESTDIR)$(libsignal_processing_la_macrodir)" "$(DESTDIR)$(libsignal_processing_la_rootdir)" "$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)" "$(DESTDIR)$(libsignal_processing_la_demosdir)" "$(DESTDIR)$(libsignal_processing_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1365,14 +1367,14 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libsignal_processing_la_demosDATA \
-	install-libsignal_processing_la_etcDATA \
+install-data-am: install-libsignal_processing_la_etcDATA \
 	install-libsignal_processing_la_helpenDATA \
 	install-libsignal_processing_la_helpfrDATA \
 	install-libsignal_processing_la_includeHEADERS \
 	install-libsignal_processing_la_macroDATA \
 	install-libsignal_processing_la_rootDATA \
-	install-libsignal_processing_la_sci_gatewayDATA
+	install-libsignal_processing_la_sci_gatewayDATA \
+	install-nobase_libsignal_processing_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -1409,14 +1411,14 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
-	uninstall-libsignal_processing_la_demosDATA \
 	uninstall-libsignal_processing_la_etcDATA \
 	uninstall-libsignal_processing_la_helpenDATA \
 	uninstall-libsignal_processing_la_helpfrDATA \
 	uninstall-libsignal_processing_la_includeHEADERS \
 	uninstall-libsignal_processing_la_macroDATA \
 	uninstall-libsignal_processing_la_rootDATA \
-	uninstall-libsignal_processing_la_sci_gatewayDATA
+	uninstall-libsignal_processing_la_sci_gatewayDATA \
+	uninstall-nobase_libsignal_processing_la_demosDATA
 
 .MAKE: install-am install-strip
 
@@ -1427,29 +1429,27 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES \
-	install-libsignal_processing_la_demosDATA \
-	install-libsignal_processing_la_etcDATA \
+	install-libLTLIBRARIES install-libsignal_processing_la_etcDATA \
 	install-libsignal_processing_la_helpenDATA \
 	install-libsignal_processing_la_helpfrDATA \
 	install-libsignal_processing_la_includeHEADERS \
 	install-libsignal_processing_la_macroDATA \
 	install-libsignal_processing_la_rootDATA \
 	install-libsignal_processing_la_sci_gatewayDATA install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-libLTLIBRARIES \
-	uninstall-libsignal_processing_la_demosDATA \
+	install-nobase_libsignal_processing_la_demosDATA install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libsignal_processing_la_etcDATA \
 	uninstall-libsignal_processing_la_helpenDATA \
 	uninstall-libsignal_processing_la_helpfrDATA \
 	uninstall-libsignal_processing_la_includeHEADERS \
 	uninstall-libsignal_processing_la_macroDATA \
 	uninstall-libsignal_processing_la_rootDATA \
-	uninstall-libsignal_processing_la_sci_gatewayDATA
+	uninstall-libsignal_processing_la_sci_gatewayDATA \
+	uninstall-nobase_libsignal_processing_la_demosDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

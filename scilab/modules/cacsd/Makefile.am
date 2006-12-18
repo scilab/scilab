@@ -832,8 +832,8 @@ includes/gw_cacsd3.h
 
 
 #### cacsd : demos files ####
-libcacsd_la_demosdir=$(target)/demos/
-libcacsd_la_demos_DATA = demos/tracking/track.dem \
+libcacsd_la_demosdir=$(target)
+nobase_libcacsd_la_demos_DATA = demos/tracking/track.dem \
 demos/lqg/lqg.dem \
 demos/lqg/scheme.dem \
 demos/lqg/lqg2.dem \

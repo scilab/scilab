@@ -60,21 +60,21 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libothers_la_demosdir)" \
-	"$(DESTDIR)$(libothers_la_etcdir)" \
+am__installdirs = "$(DESTDIR)$(libothers_la_etcdir)" \
 	"$(DESTDIR)$(libothers_la_helpendir)" \
 	"$(DESTDIR)$(libothers_la_helpfrdir)" \
 	"$(DESTDIR)$(libothers_la_macrodir)" \
-	"$(DESTDIR)$(libothers_la_rootdir)"
-libothers_la_demosDATA_INSTALL = $(INSTALL_DATA)
+	"$(DESTDIR)$(libothers_la_rootdir)" \
+	"$(DESTDIR)$(libothers_la_demosdir)"
 libothers_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libothers_la_helpenDATA_INSTALL = $(INSTALL_DATA)
 libothers_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libothers_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libothers_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libothers_la_demos_DATA) $(libothers_la_etc_DATA) \
-	$(libothers_la_helpen_DATA) $(libothers_la_helpfr_DATA) \
-	$(libothers_la_macro_DATA) $(libothers_la_root_DATA)
+nobase_libothers_la_demosDATA_INSTALL = $(install_sh_DATA)
+DATA = $(libothers_la_etc_DATA) $(libothers_la_helpen_DATA) \
+	$(libothers_la_helpfr_DATA) $(libothers_la_macro_DATA) \
+	$(libothers_la_root_DATA) $(nobase_libothers_la_demos_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -246,9 +246,9 @@ help/eng/add_demo.htm \
 help/eng/edit.htm
 
 
-#### others : demos files ####
-libothers_la_demosdir = $(target)/demos/
-libothers_la_demos_DATA = demos/velpic/id_rgn.desc \
+#### others : demos files - velpic ####
+libothers_la_demosdir = $(target)
+nobase_libothers_la_demos_DATA = demos/velpic/id_rgn.desc \
 demos/velpic/velpic.sci \
 demos/velpic/plotdb.sci \
 demos/velpic/velpic.1 \
@@ -463,23 +463,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libothers_la_demosDATA: $(libothers_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libothers_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_demosdir)"
-	@list='$(libothers_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libothers_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_demosdir)/$$f'"; \
-	  $(libothers_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_demosdir)/$$f"; \
-	done
-
-uninstall-libothers_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libothers_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libothers_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libothers_la_demosdir)/$$f"; \
-	done
 install-libothers_la_etcDATA: $(libothers_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libothers_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_etcdir)"
@@ -565,6 +548,25 @@ uninstall-libothers_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libothers_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libothers_la_rootdir)/$$f"; \
 	done
+install-nobase_libothers_la_demosDATA: $(nobase_libothers_la_demos_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libothers_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_demosdir)"
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libothers_la_demos_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  $(am__vpath_adj) \
+	  echo " $(nobase_libothers_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_demosdir)/$$f'"; \
+	  $(nobase_libothers_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_demosdir)/$$f"; \
+	done
+
+uninstall-nobase_libothers_la_demosDATA:
+	@$(NORMAL_UNINSTALL)
+	@$(am__vpath_adj_setup) \
+	list='$(nobase_libothers_la_demos_DATA)'; for p in $$list; do \
+	  $(am__vpath_adj) \
+	  echo " rm -f '$(DESTDIR)$(libothers_la_demosdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libothers_la_demosdir)/$$f"; \
+	done
 tags: TAGS
 TAGS:
 
@@ -602,7 +604,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libothers_la_demosdir)" "$(DESTDIR)$(libothers_la_etcdir)" "$(DESTDIR)$(libothers_la_helpendir)" "$(DESTDIR)$(libothers_la_helpfrdir)" "$(DESTDIR)$(libothers_la_macrodir)" "$(DESTDIR)$(libothers_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libothers_la_etcdir)" "$(DESTDIR)$(libothers_la_helpendir)" "$(DESTDIR)$(libothers_la_helpfrdir)" "$(DESTDIR)$(libothers_la_macrodir)" "$(DESTDIR)$(libothers_la_rootdir)" "$(DESTDIR)$(libothers_la_demosdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -647,10 +649,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libothers_la_demosDATA \
-	install-libothers_la_etcDATA install-libothers_la_helpenDATA \
+install-data-am: install-libothers_la_etcDATA \
+	install-libothers_la_helpenDATA \
 	install-libothers_la_helpfrDATA install-libothers_la_macroDATA \
-	install-libothers_la_rootDATA
+	install-libothers_la_rootDATA \
+	install-nobase_libothers_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -684,12 +687,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libothers_la_demosDATA \
-	uninstall-libothers_la_etcDATA \
+uninstall-am: uninstall-libothers_la_etcDATA \
 	uninstall-libothers_la_helpenDATA \
 	uninstall-libothers_la_helpfrDATA \
 	uninstall-libothers_la_macroDATA \
-	uninstall-libothers_la_rootDATA
+	uninstall-libothers_la_rootDATA \
+	uninstall-nobase_libothers_la_demosDATA
 
 .MAKE: install-am install-strip
 
@@ -698,20 +701,21 @@ uninstall-am: uninstall-libothers_la_demosDATA \
 	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-libothers_la_demosDATA \
-	install-libothers_la_etcDATA install-libothers_la_helpenDATA \
+	install-info install-info-am install-libothers_la_etcDATA \
+	install-libothers_la_helpenDATA \
 	install-libothers_la_helpfrDATA install-libothers_la_macroDATA \
-	install-libothers_la_rootDATA install-man install-pdf \
+	install-libothers_la_rootDATA install-man \
+	install-nobase_libothers_la_demosDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libothers_la_demosDATA \
 	uninstall-libothers_la_etcDATA \
 	uninstall-libothers_la_helpenDATA \
 	uninstall-libothers_la_helpfrDATA \
 	uninstall-libothers_la_macroDATA \
-	uninstall-libothers_la_rootDATA
+	uninstall-libothers_la_rootDATA \
+	uninstall-nobase_libothers_la_demosDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

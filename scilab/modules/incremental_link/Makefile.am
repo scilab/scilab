@@ -77,3 +77,22 @@ help/eng/scilink.htm \
 help/eng/ilib_gen_loader.htm \
 help/eng/ilib_gen_Make.htm
 
+
+#### incremental_link : compilation scripts #### 
+libincremental_link_la_scriptdir = $(target)/src/scripts/
+libincremental_link_la_script_DATA = src/scripts/Makefile.in \
+src/scripts/configure.ac \
+src/scripts/ltmain.sh \
+src/scripts/Makefile.am \
+src/scripts/aclocal.m4
+
+libincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
+src/scripts/config.guess \
+src/scripts/config.status \
+src/scripts/config.sub \
+src/scripts/configure \
+src/scripts/depcomp \
+src/scripts/install-sh \
+src/scripts/missing \
+src/scripts/scicompile.sh \
+src/scripts/libtool
