@@ -10,6 +10,7 @@
 #endif
 
 #include "MALLOC.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 #if _MSC_VER
 	#define vsnprintf _vsnprintf
@@ -26,7 +27,7 @@ extern int C2F(errloc)  __PARAMS((integer *n));
 extern void C2F(freemsgtable)();
 extern int C2F(msgstore)(char *str,int *n);
 extern int C2F(errstore)(int *n);
-extern void sciprint __PARAMS((char *fmt,...));
+
 static int Scierror_internal __PARAMS((integer *n,char *buffer));
 /*-----------------------------------------------------------------------------------*/ 
 /* Scilab Error at C level */

@@ -9,6 +9,7 @@
  *  - History functions changed to use linked lists
  **********************************************************************/
 #include "machine.h" 
+#include "sciprint.h"
 
 static char Sci_Prompt[10];
 
@@ -178,7 +179,6 @@ int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len));
 extern void set_echo_mode(int mode);
 extern void set_is_reading(int mode);
 extern int  get_echo_mode(void);
-extern void sciprint_nd(char *fmt,...);
 extern void C2F(sigbas)(int *n);
 extern void XHomeFunction(void);
 extern int XClearScreenConsole(char *fname);

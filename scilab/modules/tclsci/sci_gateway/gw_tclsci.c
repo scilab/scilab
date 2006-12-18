@@ -7,9 +7,9 @@
 	#include <Windows.h>
 	#include "ExceptionMessage.h"
 #endif
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern int GetWITH_GUI(void);
-extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/

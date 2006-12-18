@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include "core_math.h"
 #include "../../../../graphics/includes/bcg.h" /* Scilab graphic window */
+#include "sciprint.h"
 
 /*-----------------------------------------------------------------------------------*/
 #define MAX_LINE_LEN 512	/* maximum number of chars allowed on line */
@@ -42,9 +43,6 @@ typedef struct tagGFILE {
 } GFILE;
 /*-----------------------------------------------------------------------------------*/
 /* wmenu.c - Menu */
-extern void sciprint(char *fmt, ...);
-extern void sciprint_nd(char *fmt, ...);
-extern int sciprint2(int v,char *fmt,...);
 extern void WinExit(void);
 extern void Scistring(char *str);
 extern int C2F(clearexit)(integer *n);

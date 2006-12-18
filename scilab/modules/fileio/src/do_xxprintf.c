@@ -8,6 +8,7 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "Scierror.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 typedef int (*XXPRINTF) __PARAMS((FILE *, char *,...));
 typedef int (*FLUSH) __PARAMS((FILE *));
@@ -30,7 +31,6 @@ static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target);
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval );
 static void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target);
 /*-----------------------------------------------------------------------------------*/
-extern int sciprint2() ;
 extern int SciStrtoStr(int *Scistring, int *nstring, int *ptrstrings, char **strh);
 /*-----------------------------------------------------------------------------------*/
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)

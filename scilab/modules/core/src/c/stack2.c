@@ -14,10 +14,9 @@
 #include "MALLOC.h"
 
 #include "stack-c.h" 
+#include "sciprint.h"
 
 #include "../../../string/includes/men_Sutils.h" 
-
-extern void sciprint __PARAMS((char *fmt,...));
 
 
 #ifdef _MSC_VER

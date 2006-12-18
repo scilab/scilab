@@ -1,9 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
 #include "machine.h"
-
-
-extern void sciprint __PARAMS((char *fmt,...));
+#include "sciprint.h"
 
 void variable_delay(scicos_block *block,int flag)
 {/*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */

@@ -24,6 +24,8 @@
 
 
 #include "scicos-def.h"
+#include "sciprint.h"
+
 
 typedef struct {
 	integer iero;
@@ -113,8 +115,6 @@ extern  integer C2F(ddaskr)();
 extern  integer C2F(lsodar2)();
 
 extern int scilab_timer_check();
-
-extern void sciprint __PARAMS((char *fmt,...));
 
 ScicosImport  scicos_imp;
 

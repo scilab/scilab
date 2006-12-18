@@ -11,6 +11,7 @@
 #include "MALLOC.h"
 
 #include "dynamic_menus.h"
+#include "sciprint.h"
 
 /*-----------------------------------------------------------------------------------*/
 /*
@@ -45,8 +46,6 @@ extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));
 extern void  reset_scig_command_handler __PARAMS((void));
 extern void write_scilab  __PARAMS((char *s));
 extern int get_is_reading  __PARAMS((void));
-extern void sciprint __PARAMS((char *fmt,...));
-extern void sciprint_full __PARAMS((char *fmt,...));
 #ifdef _MSC_VER
 extern BOOL IsToThePrompt(void);
 #endif /*_MSC_VER*/

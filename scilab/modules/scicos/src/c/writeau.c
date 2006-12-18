@@ -3,8 +3,8 @@
 #include <math.h>
 
 #include "machine.h"
+#include "sciprint.h"
 
-extern void sciprint __PARAMS((char *fmt,...));
 void mput2  __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
 
 void 

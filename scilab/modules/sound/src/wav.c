@@ -31,8 +31,7 @@
 #include <string.h>
 #include "st.h"
 #include "wav.h"
-/*-----------------------------------------------------------------------------------*/ 
-extern void sciprint __PARAMS((char *fmt, ...));
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 /* Private data for .wav file */
 typedef struct wavstuff 

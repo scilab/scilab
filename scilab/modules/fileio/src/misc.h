@@ -1,3 +1,4 @@
+#include "sciprint.h"
 
 #define	PRIVSIZE	100
 #define NLOOPS		8
@@ -16,7 +17,7 @@ unsigned short swapw(P1(unsigned short us));		/* Swap short */
 unsigned long  swapl(P1(unsigned long ul));		/* Swap long */
 float  	       swapf(P1(float f));			/* Swap float */
 unsigned int   swapi(P1(unsigned int us));		/* Swap int */
-extern void sciprint __PARAMS((char *fmt,...));
+
 /*-----------------------------------------------------------------------------------*/
 struct  signalinfo {
 	long		rate;		/* sampling rate */

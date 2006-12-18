@@ -21,8 +21,7 @@ extern char *GetExceptionString(DWORD ExceptionCode);
 #include "clcg4.h"
 #include "others_generators.h"
 #include <math.h>
-
-extern void sciprint __PARAMS((char *fmt,...));
+#include "sciprint.h"
 
 enum {MT, KISS, CLCG4, CLCG2, URAND, FSULTRA};
 

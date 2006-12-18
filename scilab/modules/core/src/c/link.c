@@ -14,6 +14,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "../../../string/includes/men_Sutils.h"
 #include "link.h"
+#include "sciprint.h"
 
 
 #ifdef __STDC__
@@ -66,8 +67,6 @@ static int Nshared  = 0   ;
 static Epoints EP[ENTRYMAX];  /* entryPoints */
 static int NEpoints = 0   ;        /* Number of Linked names */
 
-/*-----------------------------------------------------------------------------------*/
-extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
 int C2F(scilinknorhs)()
 {

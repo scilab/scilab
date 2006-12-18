@@ -1,9 +1,6 @@
 #include "scicos_block.h"
 #include <math.h>
-
-#if _MSC_VER
-extern void sciprint();
-#endif
+#include "sciprint.h"
 
 void edgetrig(scicos_block *block,int flag)
 {

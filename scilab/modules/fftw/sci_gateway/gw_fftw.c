@@ -8,6 +8,7 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 /*-----------------------------------------------------------------------------------*/
@@ -22,7 +23,6 @@ extern int sci_freefftw_plan __PARAMS((char *fname,unsigned long fname_len));
 extern int sci_loadfftwlibrary __PARAMS((char *fname,unsigned long fname_len));
 extern int sci_disposefftwlibrary __PARAMS((char *fname,unsigned long fname_len));
 extern int sci_fftwlibraryisloaded __PARAMS((char *fname,unsigned long fname_len));
-extern void sciprint ();
 /*-----------------------------------------------------------------------------------*/ 
 static intFFTWTable Tab[]={
 { sci_loadfftwlibrary,"loadfftwlibrary"},

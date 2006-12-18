@@ -32,6 +32,7 @@
 #include "intcscicos.h"
 #include "sci_mem_alloc.h"  /* malloc */
 #include "stack-c.h"
+#include "sciprint.h"
 
 #if _MSC_VER
 extern int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr, int* ord,int* nord,int* ok);
@@ -40,8 +41,6 @@ extern int ctree4(int* vec,int nb,int *nd,int nnd,int* typ_r,int* outoin,int* ou
 extern int C2F(scicos)();
 extern int C2F(namstr)();
 #endif
-
-extern void sciprint __PARAMS((char *fmt,...));
 
 /* fonction pour recuperer le nombre du champs a partir de son nom */
 int MlistGetFieldNumber(int *ptr, const char *string)

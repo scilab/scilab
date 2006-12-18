@@ -1,6 +1,8 @@
 #ifndef __CC_PASS2_H__
 #define __CC_PASS2_H__
 
+#include "sciprint.h"
+
 #define true  1
 #define false 0
 #define TEST (bllst2==NULL) && (bllst3==NULL) && (bllst4==NULL) && (bllst5==NULL) && (bllst10==NULL) && (bllst11==NULL) && (bllst12==NULL) && (bllst13==NULL)  
@@ -41,7 +43,6 @@ static void Invd(double* Vect);
 extern int Message(char* code);
 extern int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
 extern int connection(int* path_out,int* path_in);
-extern void sciprint __PARAMS((char *fmt, ...));  
 extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
 				  char *type,char *iord));
 

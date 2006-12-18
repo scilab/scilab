@@ -9,11 +9,11 @@
 #include "mputi.h"
 
 #include "../../../fileio/src/misc.h"
+#include "sciprint.h"
 
 struct soundstream ftf;
 extern FILE *GetFile();
 extern int GetSwap();
-extern void sciprint __PARAMS ((char *fmt,...));
 
 extern int SWAP(char type[],integer *fd); /* Defined in mgeti.c */
 

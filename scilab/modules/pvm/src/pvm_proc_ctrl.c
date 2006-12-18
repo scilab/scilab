@@ -167,9 +167,9 @@
 #define stat _stat 
 #endif 
 
-#include <stdarg.h> 
-extern void sciprint_nd (char *fmt,...);
-extern void sciprint (char *fmt,...);
+#include <stdarg.h>
+#include "sciprint.h"
+
 extern int pvmendtask(void);
 
 typedef char *strings;

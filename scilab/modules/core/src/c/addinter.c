@@ -12,6 +12,7 @@
 
 #include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */
+#include "sciprint.h"
 
 #ifdef _MSC_VER
 #include "ExceptionMessage.h"
@@ -21,7 +22,6 @@ extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer 
 extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job,char *namefunction,unsigned long namefunction_len));  
 extern int C2F(error)  __PARAMS((integer *n));  
 extern void GetenvB __PARAMS(( char *name,char *env, int len));
-extern void sciprint __PARAMS((char *fmt,...));
 
 #ifdef __STDC__
 #include <stdlib.h>

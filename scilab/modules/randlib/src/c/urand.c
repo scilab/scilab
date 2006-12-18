@@ -19,8 +19,8 @@
 
 
 #include <math.h>             /* to use floor    */
-#include "machine.h" /* to use sciprint */
-extern void sciprint __PARAMS((char *fmt,...));
+#include "machine.h"
+#include "sciprint.h"
 
 static unsigned long s = 0;
 

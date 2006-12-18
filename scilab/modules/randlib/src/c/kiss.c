@@ -24,8 +24,9 @@
  */
 #include <math.h>             /* to use floor    */
 
-#include "machine.h" /* to use sciprint */
-extern void sciprint __PARAMS((char *fmt,...));
+#include "machine.h" 
+#include "sciprint.h"
+
 
 /* The Marsaglia 's macros : */
 #define znew  (z=36969*(z&65535)+(z>>16))

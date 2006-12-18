@@ -8,6 +8,7 @@
 #include <signal.h>
 
 #include "machine.h"
+#include "sciprint.h"
 
 
 #include "addinter.h" /* for DynInterfStart */
@@ -16,7 +17,6 @@
 static  jmp_buf jmp_env; 
 
 extern int  C2F(error) __PARAMS((int *));
-extern void sciprint __PARAMS((char* ,...));
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 
 extern void  errjump(int n);

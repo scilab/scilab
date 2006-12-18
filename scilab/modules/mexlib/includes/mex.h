@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 #include "stack-c.h"
+#include "sciprint.h"
 
 typedef int Matrix;
 typedef unsigned long int vraiptrst;
@@ -116,7 +117,6 @@ extern int C2F(getrhsvar) __PARAMS((integer *, char *, integer *, integer *, int
 extern int C2F(initmex) __PARAMS((integer *nlhs,mxArray *plhs[],integer *nrhs,mxArray *prhs[]));
 extern int C2F(putlhsvar) __PARAMS((void));
 extern void errjump __PARAMS((void));
-extern void sciprint __PARAMS((char *fmt,...));
 extern vraiptrst C2F(locptr) __PARAMS(( void *x));
 int  C2F(mxgetm)  __PARAMS((mxArray *ptr));
 int  C2F(mxgetn)  __PARAMS((mxArray *ptr));

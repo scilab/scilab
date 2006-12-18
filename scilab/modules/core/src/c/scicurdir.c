@@ -12,13 +12,10 @@
 	#define GETCWD(x,y) getcwd(x,y)
 #endif 
 
+#include "sciprint.h"
 
 #define FSIZE 1024
 static char     cur_dir[FSIZE];
-
-#ifdef _MSC_VER
-extern void sciprint (char *fmt,...);
-#endif
 
 
 /*******************************

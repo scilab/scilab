@@ -14,7 +14,7 @@
 #endif
 
 #include "x_ptyxP.h"
-
+#include "sciprint.h"
 /*  "x_button-n.c.X1"*/
 
 extern Boolean SendMousePosition  __PARAMS((Widget w, XEvent *));  
@@ -42,9 +42,6 @@ extern void C2F (xscisncr) __PARAMS((char *str, integer *n, integer dummy));
 extern void C2F (xscistring) __PARAMS((char *str, int *n, long int dummy));  
 extern void C2F (xscimore) __PARAMS((int *n));  
 extern void Scisncr  __PARAMS((char *str));  
-extern void sciprint __PARAMS((char *fmt, ...));
-extern void sciprint_nd __PARAMS((char *fmt, ...));
-extern int sciprint2 __PARAMS((int i,char *fmt, ...));
 extern void Scistring __PARAMS((char *str));
 extern void Xputchar  __PARAMS((unsigned char c));  
 extern void v_write  __PARAMS((int f, char *d, int len));  

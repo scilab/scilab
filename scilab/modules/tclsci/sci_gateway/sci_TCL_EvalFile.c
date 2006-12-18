@@ -3,8 +3,8 @@
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
 #include "sci_TCL_EvalFile.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
-extern void sciprint __PARAMS((char *fmt,...));
 extern BOOL FileExist(char *filename);
 /*-----------------------------------------------------------------------------------*/
 int C2F(sci_TCL_EvalFile) _PARAMS((char *fname,unsigned long l))

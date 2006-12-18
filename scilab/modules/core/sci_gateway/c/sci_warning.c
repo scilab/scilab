@@ -6,10 +6,10 @@
 #include "gw_core.h"
 #include "machine.h"
 #include "stack-c.h"
+#include "sciprint.h"
+
 /*-----------------------------------------------------------------------------------*/
 int C2F(intwarning) __PARAMS((char *fname,unsigned long fname_len));
-/*-----------------------------------------------------------------------------------*/ 
-extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/ 
 int C2F(sci_warning) _PARAMS((char *fname,unsigned long fname_len))
 {

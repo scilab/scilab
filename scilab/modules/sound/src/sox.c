@@ -22,10 +22,10 @@
 #include <errno.h>
 #include "machine.h"
 #include "sox.h" 
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )
 #define Min(x,y) ( ( (x) < (y))  ? (x) : (y) )
-extern void sciprint __PARAMS((char *fmt, ...));
 struct soundstream informat;
 ft_t ft;
 /*-----------------------------------------------------------------------------------*/ 

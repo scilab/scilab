@@ -60,8 +60,8 @@ See Also:	README		for a brief description
 */
 #include <math.h>             /* to use floor    */
 #include "others_generators.h"
-#include "machine.h" /* to use sciprint */
-
+#include "machine.h" 
+#include "sciprint.h"
 
 #define N  37           /* size of table        */
 #define N2 24           /* The shorter lag      */

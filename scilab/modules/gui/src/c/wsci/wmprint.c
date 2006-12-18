@@ -15,11 +15,12 @@
 #include "Warnings.h"
 #include "Errors.h"
 
+#include "sciprint.h"
+
 
 static int Sed __PARAMS ((int, char *, FILE *, char *, char *, char *, char *, char *, char *));
 static void readOneLine __PARAMS ((char *buff, int *stop, FILE * fd));
 static void ConvertName __PARAMS ((char *filein, char *fileout));
-extern void sciprint __PARAMS ((char *fmt,...));
 
 extern char *getSCIpath(void);
 

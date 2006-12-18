@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_dos.h"
 #include "MALLOC.h" /* MALLOC */
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*-----------------------------------------------------------------------------------*/
@@ -28,7 +29,7 @@ static BOOL DetectDetachProcessInCommandLine(char *command);
 extern BOOL IsWindowInterface(void);
 extern BOOL IsAFile(char *chainefichier);
 #endif
-extern void sciprint __PARAMS((char *fmt,...));
+
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 static pipeinfo pipeOut= {INVALID_HANDLE_VALUE, NULL,0};

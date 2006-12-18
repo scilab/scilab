@@ -5,10 +5,10 @@
 #include <string.h>
 #include "stack-c.h"
 #include "interpolation.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int good_order(double x[], int n);
 extern int C2F(dset)();
-extern void sciprint();
 /* from dspfit.f */
 extern int C2F(spfit)(double *xp, double *yp, double *wp, int *m, double *x, int *l,double *y, double *d, double *wk, int *ierr);
 /*-----------------------------------------------------------------------------------*/ 

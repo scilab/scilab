@@ -4,6 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "sci_toprint.h"
 #include "MALLOC.h" /* MALLOC */
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 #if _MSC_VER
 	extern void PrintFile(char *filename);
@@ -12,7 +13,7 @@
 	extern BOOL FigureToPrint(int figurenumber,BOOL Postscript);
 	extern int IsAScalar(int RhsNumber);
 #endif
-extern void sciprint __PARAMS((char *fmt,...));
+
 /*-----------------------------------------------------------------------------------*/
 /* Print from scilab (Windows) for Scipad and figure */
 int C2F(sci_toprint) _PARAMS((char *fname,unsigned long l))

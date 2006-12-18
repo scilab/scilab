@@ -53,6 +53,7 @@
 #include "machine.h"
 #include "clcg4.h"
 #include <math.h>             /* for floor */
+#include "sciprint.h"
 
 /***********************************************************************/
 /* Private part.                                                       */
@@ -72,7 +73,6 @@ static int  is_init = 0;
 static long v_default = 31;
 static long w_default = 41;
 
-extern void sciprint __PARAMS((char *fmt,...));
 
 static long MultModM (long s, long t, long M)
    /* Returns (s*t) MOD M.  Assumes that -M < s < M and -M < t < M.    */

@@ -7,7 +7,7 @@
  *------------------------------------------*/
 #include <string.h>
 #include "stack-c.h"
-
+#include "sciprint.h"
 /* Table of constant values */
 
 static integer cx0 = 0;
@@ -15,8 +15,6 @@ static integer cx1 = 1;
 static integer cx4 = 4;
 static int c_true = TRUE_;
 static int c_false = FALSE_;
-
-extern void sciprint __PARAMS((char *fmt,...));
 
 
 static int C2F(getwsmati) __PARAMS((char * fname, integer *topk, integer * spos,integer * lw,integer * m, integer *n,integer * ilr,integer * ilrd ,int * inlistx,integer* nel,unsigned long fname_len));

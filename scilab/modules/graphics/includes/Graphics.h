@@ -8,13 +8,8 @@
 #define SCIG_PROTO
 
 #include "machine.h"
+#include "sciprint.h"
 /* #include "ObjectStructure.h" */
-
-/* Other functions */
-
-extern void sciprint __PARAMS((char *fmt,...));
-extern void sciprint_nd __PARAMS((char *fmt,...));
-extern void Scistring __PARAMS((char *str));
 
 /*Actions.c */
 
