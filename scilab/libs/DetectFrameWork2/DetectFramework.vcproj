@@ -117,6 +117,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				WholeProgramOptimization="true"
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -137,7 +138,7 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

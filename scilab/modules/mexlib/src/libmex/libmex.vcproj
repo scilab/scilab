@@ -125,7 +125,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes;"
+				AdditionalIncludeDirectories="../../../core/includes;../../includes;../../../../libs/MALLOC/includes"
 				PreprocessorDefinitions="STRICT;mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="1"
@@ -150,7 +150,7 @@
 				OutputFile="../../../../bin/libmex.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="libmex.def"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

@@ -2,7 +2,9 @@
 #ifdef __STDC__
 #include <stdlib.h>
 #else
-#include <malloc.h>
+	#ifndef _MSC_VER
+		#include <malloc.h>
+	#endif
 #endif
 
 

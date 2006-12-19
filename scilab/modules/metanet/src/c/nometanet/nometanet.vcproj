@@ -152,7 +152,7 @@
 				OutputFile="../../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="nometanet.def"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

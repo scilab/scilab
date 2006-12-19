@@ -70,6 +70,7 @@
 				ModuleDefinitionFile="noscicos.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
+				ImportLibrary="../../../../../bin/scicos.dll"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -152,11 +153,12 @@
 				OutputFile="../../../../../bin/scicos.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="noscicos.def"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				LinkTimeCodeGeneration="0"
+				ImportLibrary="../../../../../bin/scicos.lib"
 				TargetMachine="1"
 			/>
 			<Tool

@@ -145,7 +145,7 @@
 				Name="VCLinkerTool"
 				OutputFile="../../bin/Javasci.dll"
 				LinkIncremental="2"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="0"
