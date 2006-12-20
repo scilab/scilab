@@ -17,6 +17,6 @@
 
 IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void);
 
-#endif /* __GETMAXMALLOC_H__
+#endif /* __GETMAXMALLOC_H__ */
 /*-----------------------------------------------------------------------------------*/ 
 
