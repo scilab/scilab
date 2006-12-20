@@ -8,6 +8,15 @@
 /*-----------------------------------------------------------------------------------*/ 
 extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(evalpwhermite) (double *t, double *st, double *dst, double *ddst, double *dddst,int *m, double *x, double *y, double *d, int *n, int *outmode);
+/*-----------------------------------------------------------------------------------*/
+#define NB_OUTMODE 6
+static TableType OutModeTable[NB_OUTMODE] = {
+	{ "C0"        , C0         },
+	{ "by_zero"   , BY_ZERO    },
+	{ "natural"   , NATURAL    },
+	{ "periodic"  , PERIODIC   },
+	{ "by_nan"    , BY_NAN     },
+	{ "linear"    , LINEAR     }};
 /*-----------------------------------------------------------------------------------*/ 
 int intinterp1(char *fname,unsigned long fname_len)
 {

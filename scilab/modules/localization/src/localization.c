@@ -38,7 +38,7 @@ char* ConvertEncoding(char *encodingFrom, char *encodingTo, char* inputStr)
   inputLen = strlen(inputStr) + 1;
   outputLen = LENGTH_OUTPUT;
   outputStr = strBufOut;
-  result = iconv(c_pt, &inputStr, &inputLen, &outputStr, &outputLen);
+  result = iconv(c_pt, &(const char*)inputStr, &inputLen, &outputStr, &outputLen);
 
   if (result == -1)
   {

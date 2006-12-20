@@ -100,6 +100,10 @@ static FILE *file= stdout ;
 void FileInit  __PARAMS((void));
 void FileInitFromScreenPos  __PARAMS((void));
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
 /** Structure to keep the graphic state  **/
 
 /*-----------------------------------------------------

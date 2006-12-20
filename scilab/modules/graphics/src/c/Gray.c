@@ -50,6 +50,10 @@ extern int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
 /*------------------------------------------------------------
  * - z is a (n1,n2) matrix 
  * - x is a (1,n1) matrix 

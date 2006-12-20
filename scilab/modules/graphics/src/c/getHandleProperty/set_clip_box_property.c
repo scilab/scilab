@@ -33,7 +33,7 @@ int set_clip_box_property( sciPointObj * pobj, int stackPointer, int valueType, 
   }
   status1 = sciSetClipping( pobj, getDoubleMatrixFromStack( stackPointer ) ) ;
   status2 = sciSetIsClipping( pobj, 1 ) ;
-  return sciSetFinalStatus( status1, status2 ) ;
+  return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
 
 }
 /*------------------------------------------------------------------------*/

@@ -32,7 +32,9 @@ ft_t ft;
 static void checkformat __PARAMS((ft_t ft));
 static void cleanup  __PARAMS((void));
 static void init  __PARAMS((void));
+#ifndef _MSC_VER
 static int filetype __PARAMS((int fd));
+#endif
 /*-----------------------------------------------------------------------------------*/ 
 /************************************************************
  * loadwave 
@@ -246,7 +248,7 @@ void init(void)
  *	one buffer at a time
  */
 #if defined(_MSC_VER)
-int filetype(int fd) { return 0;}
+/*int filetype(int fd) { return 0;}*/ /* not used --> not defined */
 #else 
 int filetype(int fd)
 {

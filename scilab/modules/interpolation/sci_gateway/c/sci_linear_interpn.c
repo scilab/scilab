@@ -10,6 +10,15 @@ extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int good_order(double x[], int n);
 extern void nlinear_interp(double **x , double val[], int dim[], int n, double **xp, double yp[], int np, int outmode,double u[], double v[], int ad[], int k[]);
 /*-----------------------------------------------------------------------------------*/
+#define NB_OUTMODE 6
+static TableType OutModeTable[NB_OUTMODE] = {
+	{ "C0"        , C0         },
+	{ "by_zero"   , BY_ZERO    },
+	{ "natural"   , NATURAL    },
+	{ "periodic"  , PERIODIC   },
+	{ "by_nan"    , BY_NAN     },
+	{ "linear"    , LINEAR     }};
+/*-----------------------------------------------------------------------------------*/
 int intlinear_interpn(char *fname,unsigned long fname_len)
 {
 /*  interpolation lineaire n-dimensionnelle

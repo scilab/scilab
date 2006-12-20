@@ -104,7 +104,7 @@
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
-			WholeProgramOptimization="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -154,7 +154,8 @@
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="arnoldi.def"
-				GenerateDebugInformation="true"
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile="../../bin/$(ProjectName).pdb"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

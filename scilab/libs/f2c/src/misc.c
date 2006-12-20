@@ -1324,7 +1324,8 @@ struct_eq(chainp s1, chainp s2)
     return s1 == CHNULL && s2 == CHNULL;
 } /* struct_eq */
 
- static int
+ #ifndef NO_LONG_LONG
+static int
 #ifdef KR_headers
 int_trunc(n0, s0) int n0; char *s0;
 #else
@@ -1338,7 +1339,8 @@ int_trunc(int n0, char *s0)
 	sprintf(buff, "integer constant %.*s truncated.", n0, s0);
 	err(buff);
 	return 1;
-	}
+}
+#endif
 
  tagptr
 #ifdef KR_headers

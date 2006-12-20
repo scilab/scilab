@@ -13,6 +13,16 @@ extern int good_order(double x[], int n);
 extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(bicubicsubspline)(double *x, double *y, double *z, int *nx, int *ny,double *C, double *p, double *q, double *r, int *spline_type);
 extern int C2F(bicubicspline)(double *x, double *y, double *u, int *nx, int *ny,double *C, double *p, double *q, double *r, double *A_d, double *A_sd, double *d, double *ll,double *qdu, double *u_temp, int *spline_type);
+/*-----------------------------------------------------------------------------------*/
+#define NB_SPLINE_TYPE 7
+static TableType SplineTable[NB_SPLINE_TYPE] = { 
+	{ "not_a_knot"   , NOT_A_KNOT    },
+	{ "natural"      , NATURAL       },
+	{ "clamped"      , CLAMPED       },
+	{ "periodic"     , PERIODIC      },
+	{ "monotone"     , MONOTONE      },
+	{ "fast"         , FAST          },
+	{ "fast_periodic", FAST_PERIODIC }};
 /*-----------------------------------------------------------------------------------*/ 
 int intsplin2d(char *fname,unsigned long fname_len)
 {

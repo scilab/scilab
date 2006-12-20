@@ -640,7 +640,6 @@ int C2F(intehm)()
    *    He = ehm ( v_1, v_2, ..., v_nb_iv, H ) 
    *
    */
-  int minlhs=1, maxlhs=1;
   HyperMat H, He;
   int dec, i, k, l, m, n, mn, ntot, ind_max;
   int *j, ier, one=1, zero=0, ltot, nb_index_vectors, final_dimsize, lr, lc;
@@ -813,7 +812,6 @@ int C2F(intihm)()
       et B une hypermatrice ou bien une matrice
    */
 
-  int minlhs=1, maxlhs=1;
   HyperMat A, B;
   int i, k,/* l, li, m, n,*/ ntot, mn,/* err_neg,*/ iconf, ind_max;
   int nb_index_vectors, B_is_scalar;

@@ -144,7 +144,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="../../bin/Javasci.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"

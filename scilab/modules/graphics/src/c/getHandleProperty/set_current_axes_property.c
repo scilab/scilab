@@ -52,7 +52,7 @@ int set_current_axes_property( sciPointObj * pobj, int stackPointer, int valueTy
   status2 = sciSetUsedWindow( num ) ;
 
   /* End modif. on the 11.02.05 */
-  return sciSetFinalStatus( status1, status2 ) ;
+  return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
 
 }
 /*------------------------------------------------------------------------*/

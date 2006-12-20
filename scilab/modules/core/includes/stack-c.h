@@ -95,6 +95,24 @@ typedef struct sciintmat {
 static int c1_local=0;
 static int c_local=0;
 
+/* Correction Warning variable "c_local" was declared but never referenced */
+/* initial_c_local not used */
+static void initial_c_local() 
+{
+	static void initial_c1_local();
+	initial_c1_local();
+	c_local=0;
+}
+/* Correction Warning variable "c1_local" was declared but never referenced */
+/* initial_c1_local not used */
+static void initial_c1_local() 
+{
+	static void initial_c_local();
+	initial_c_local();
+	c1_local=0;
+}
+
+
 #define TRUE_ 1
 #define FALSE_ 0
 
@@ -257,6 +275,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
   }
 
 #endif
+
 /** used for conversion to Scilab internal format **/
 
 #define Convert2Sci(x)  C2F(convert2sci)((c_local=x,&c_local))

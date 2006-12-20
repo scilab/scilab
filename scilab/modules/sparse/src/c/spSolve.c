@@ -35,10 +35,10 @@
  */
 
 #ifndef lint
-static char copyright[] =
-    "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
-static char RCSid[] =
-    "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spSolve.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
+	#ifndef _MSC_VER
+static char copyright[] = "Sparse1.3: Copyright (c) 1985,86,87,88 by Kenneth S. Kundert";
+static char RCSid[] = "@(#)$Header: /usr/local/cvsroot_tmp/scilab/routines/sparse/spSolve.c,v 1.1 2001/04/26 07:48:07 scilab Exp $";
+	#endif
 #endif
 
 

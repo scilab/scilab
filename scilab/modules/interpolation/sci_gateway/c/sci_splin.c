@@ -11,6 +11,16 @@ extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(derivd) (double *x, double *y, double *d, int *n, int *inc, int *type);
 extern int C2F(dpchim) (int *n, double *x, double *y, double *d, int *inc);
 extern int C2F(splinecub) (double *x, double *y, double *d, int *n, int *type,double *wk1, double *wk2, double *wk3, double *wk4);
+/*-----------------------------------------------------------------------------------*/
+#define NB_SPLINE_TYPE 7
+static TableType SplineTable[NB_SPLINE_TYPE] = { 
+	{ "not_a_knot"   , NOT_A_KNOT    },
+	{ "natural"      , NATURAL       },
+	{ "clamped"      , CLAMPED       },
+	{ "periodic"     , PERIODIC      },
+	{ "monotone"     , MONOTONE      },
+	{ "fast"         , FAST          },
+	{ "fast_periodic", FAST_PERIODIC }};
 /*-----------------------------------------------------------------------------------*/ 
 int intsplin(char *fname,unsigned long fname_len)
 {

@@ -74,6 +74,10 @@ static int LoadEch __PARAMS((void));
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
 extern int version_flag(void);
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
 /*---------------------------------------------------------------------
  * reload a xcall1 statement 
  *---------------------------------------------------------------------------*/

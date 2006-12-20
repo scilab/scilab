@@ -27,6 +27,6 @@ int set_mark_style_property( sciPointObj * pobj, int stackPointer, int valueType
    status1 = sciSetIsMark( pobj, TRUE ) ;
    status2 = sciSetMarkStyle( pobj, (int) getDoubleFromStack(stackPointer) ) ;
 
-  return sciSetFinalStatus( status1, status2 ) ;
+  return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
 }
 /*------------------------------------------------------------------------*/

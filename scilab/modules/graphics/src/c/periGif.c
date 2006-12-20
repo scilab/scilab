@@ -157,6 +157,10 @@ static int col_index[gdMaxColors];
 static int fillpolylines_closeflag = 0;
 
 extern char *getSCIpath();
+
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
 /*-----------------------------------------------------
 \encadre{General routines}
 -----------------------------------------------------*/

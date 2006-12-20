@@ -57,7 +57,7 @@ typedef struct table_struct {
 #ifdef __STDC__ 
 void mexPrintf __PARAMS((char *fmt,...));
 #else 
-void  mexPrintf __PARAMS(()); 
+void  mexPrintf __PARAMS((char *fmt,...)); 
 #endif
 
 /** Put a matrix in Scilab Workspace */ 

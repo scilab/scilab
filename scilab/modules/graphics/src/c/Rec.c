@@ -39,6 +39,9 @@ static int CopyVectF  __PARAMS((double **,double *,integer ));
 static int CopyVectC  __PARAMS((char **,char *,int )); 
 static int CopyVectS  __PARAMS((char ***,char **)); 
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
 
 static int curwin(void)
 {

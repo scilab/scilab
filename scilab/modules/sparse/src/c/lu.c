@@ -138,24 +138,10 @@ int *n,*nel,*nrank,*lln,*col,*ierr;
  */
 extern void Cout(char *str);
 
-static int 
-spSolveCheck(eMatrix)
-char *eMatrix;
-{
-  MatrixPtr Matrix = (MatrixPtr) eMatrix;
-  if (Matrix->Error == spSINGULAR OR Matrix->Error == spSMALL_PIVOT )
-    {      
-	Cout("A matrix is singular or ill conditioned ");
-	Cout("result will be fine only if b is in Im(A)");
-    }
-  return(1);
-}
-
 void C2F(lusolve1)(fmat,b,x)
 double *b, *x;
 long *fmat;
 {
-/*  if (spSolveCheck((char *) *fmat) != 0)*/
     spSolve((char*) *fmat,(spREAL*)b,(spREAL*)x);
 }
 

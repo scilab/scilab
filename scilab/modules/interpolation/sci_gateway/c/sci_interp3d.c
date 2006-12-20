@@ -13,6 +13,15 @@
 extern int get_type(TableType *Tab, int dim_table, int *scistr, int strlength);
 extern int C2F(driverdb3valwithgrad)();
 extern int C2F(driverdb3val)();
+/*-----------------------------------------------------------------------------------*/
+#define NB_OUTMODE 6
+static TableType OutModeTable[NB_OUTMODE] = {
+	{ "C0"        , C0         },
+	{ "by_zero"   , BY_ZERO    },
+	{ "natural"   , NATURAL    },
+	{ "periodic"  , PERIODIC   },
+	{ "by_nan"    , BY_NAN     },
+	{ "linear"    , LINEAR     }};
 /*-----------------------------------------------------------------------------------*/ 
 int intinterp3d(char *fname,unsigned long fname_len)
 {

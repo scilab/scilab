@@ -44,6 +44,10 @@ extern int re_index_brect(double * brect, double * drect);
 extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
 void get_frame_in_pixel(integer WIRect[]);
 
 /*------------------------------------------------------------

@@ -33,19 +33,19 @@ int set_text_box_mode_property( sciPointObj * pobj, int stackPointer, int valueT
   {
     int status1 = sciSetCenterPos( pobj, FALSE ) ;
     int status2 = sciSetAutoSize(  pobj, TRUE  ) ;
-    return sciSetFinalStatus( status1, status2 ) ;
+    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
   }
   else if ( isStringParamEqual( stackPointer, "centered" ) )
   {
     int status1 = sciSetCenterPos( pobj, TRUE  ) ;
     int status2 = sciSetAutoSize(  pobj, TRUE  ) ;
-    return sciSetFinalStatus( status1, status2 ) ;
+    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
   }
   else if ( isStringParamEqual( stackPointer, "filled" ) )
   {
     int status1 = sciSetCenterPos( pobj, TRUE  ) ;
     int status2 = sciSetAutoSize(  pobj, FALSE ) ;
-    return sciSetFinalStatus( status1, status2 ) ;
+    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
   }
   else
   {

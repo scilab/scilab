@@ -6,13 +6,11 @@
              functions     others.o      mex.c .f      startup generic
 */
 
-int main(argc,argv)
-     int argc;char *argv[];
+int main(int argc,char *argv[])
 {
   char nam1[256]; char nam2[256]; char generic[256]; char nam4[256];
   char fname[256]; char suffix;
   FILE *filesce,*filegat,*filei1,*filei2,*filei3,*filei4;
-  int i=0;
   int narg;
   narg=argc-1;
   if ((narg!=4) & (narg!=3)) return 1;

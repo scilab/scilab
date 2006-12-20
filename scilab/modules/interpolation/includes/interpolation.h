@@ -8,25 +8,6 @@ MONOTONE, BY_ZERO, C0, LINEAR, BY_NAN, UNDEFINED};
 /*-----------------------------------------------------------------------------------*/
 typedef struct { char *str_type; int type; } TableType;
 /*-----------------------------------------------------------------------------------*/
-#define NB_SPLINE_TYPE 7
-static TableType SplineTable[NB_SPLINE_TYPE] = { 
-	{ "not_a_knot"   , NOT_A_KNOT    },
-	{ "natural"      , NATURAL       },
-	{ "clamped"      , CLAMPED       },
-	{ "periodic"     , PERIODIC      },
-	{ "monotone"     , MONOTONE      },
-	{ "fast"         , FAST          },
-	{ "fast_periodic", FAST_PERIODIC }};
-/*-----------------------------------------------------------------------------------*/
-#define NB_OUTMODE 6
-static TableType OutModeTable[NB_OUTMODE] = {
-	{ "C0"        , C0         },
-	{ "by_zero"   , BY_ZERO    },
-	{ "natural"   , NATURAL    },
-	{ "periodic"  , PERIODIC   },
-	{ "by_nan"    , BY_NAN     },
-	{ "linear"    , LINEAR     }};
-/*-----------------------------------------------------------------------------------*/
 typedef struct realhypermat 
 {
 	int dimsize;        /* number of dimensions of the hyper matrix */

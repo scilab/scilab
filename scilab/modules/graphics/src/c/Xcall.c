@@ -111,10 +111,12 @@ __inline
 inline
 #endif
 #endif
-static unsigned int
-hash (str, len)
-     register const char *str;
-     register unsigned int len;
+
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
+static unsigned int hash (register const char *str, register unsigned int len)
 {
   static const unsigned char asso_values[] =
     {
@@ -152,8 +154,7 @@ hash (str, len)
 #ifdef __GNUC__
 __inline
 #endif
-const struct funreplace *
-xcall_in_word_set (register const char *str, register unsigned int len)
+const struct funreplace * xcall_in_word_set (register const char *str, register unsigned int len)
 {
   static const struct funreplace wordlist[] =
     {

@@ -5,10 +5,6 @@
 #ifndef __SCIERROR__
 #define __SCIERROR__
 
-#ifdef _MSC_VER
-  #include <windows.h>
-#endif
-
 #include <string.h>
 #include <stdio.h>
 

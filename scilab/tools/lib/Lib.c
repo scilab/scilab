@@ -8,13 +8,11 @@
    Lib File : generates : tmp_Macros tmp_Bin 
 */
 
-int main(argc,argv)
-     int argc;char *argv[];
+int main(int argc,char *argv[])
 {
   char name[256];
   char fname[256];
   FILE *filei,*fileo2,*fileo3;
-  int i=0;
   strcpy(fname,argv[1]);
   fname[strlen(fname)]= '\0';
   /** we use fname +1 since msvc makefile temporary filenames 

@@ -114,6 +114,12 @@ static void C2F(FileInitXfig) __PARAMS((void));
 static void C2F(FileInitFromScreenXfig) __PARAMS((void));
 static void set_dash  __PARAMS((int dash,int *l_style,int *_val));
 static void set_color  __PARAMS((int c,int *color));
+
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
+
 /** Structure to keep the graphic state  **/
 
 /*-----------------------------------------------------

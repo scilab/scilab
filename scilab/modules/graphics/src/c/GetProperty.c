@@ -4839,9 +4839,9 @@ EAxesBoxType sciGetBoxType( sciPointObj * pobj )
       return pSUBWIN_FEATURE(pobj)->axes.rect ;
     default:
       sciprint ("This object has no box type \n") ;
-      return 0 ;
+      return (EAxesBoxType)0 ;
   }
-  return 0;
+  return (EAxesBoxType)0;
 }
 
 

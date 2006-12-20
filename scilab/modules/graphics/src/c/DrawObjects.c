@@ -59,6 +59,9 @@ extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer p
 extern void xstringb_angle (char *string, integer x, integer y, integer w, integer h, double angle);
 extern void xstringb_bbox (char *string, integer x, integer y, integer w, integer h, double angle, int *bbox);
 extern int GlobalFlag_Zoom3dOn;
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
 
 extern int index_vertex;
 int Store3DPixelValues(sciPointObj * pobj, int xm, int ym, double x, double y, double z);

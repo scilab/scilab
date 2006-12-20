@@ -26,6 +26,9 @@ extern int facet_facing_rear (integer facteur, integer * x, integer * y,
                               integer * yr, integer * cr, integer * rsize);
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
 
 /*-------------------------------------------------------------------------
  *   plo3dn function  ( 3D Plotting of surfaces given by z=f(x,y)  )

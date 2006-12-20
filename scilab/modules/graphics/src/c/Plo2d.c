@@ -22,6 +22,10 @@
 
 #include "MALLOC.h" /* MALLOC */
 
+#ifdef _MSC_VER
+extern void Scistring (char *str);
+#endif
+
 /*--------------------------------------------------------------------
  *  C2F(plot2d)(x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
  *  
