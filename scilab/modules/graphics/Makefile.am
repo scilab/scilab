@@ -320,7 +320,25 @@ src/gd/bdftogd.c \
 src/gd/xfonts.c \
 src/gd/gd.c \
 src/c/StringBox.c \
+src/c/drawMarks.c \
+src/c/axesScale.c \
+src/c/Vertices.c \
+src/c/GraphicZoom.c \
+src/c/handleDrawing/drawArcEntity.c \
+src/c/handleDrawing/drawAxesEntity.c \
+src/c/handleDrawing/drawCompoundEntity.c \
+src/c/handleDrawing/drawFecEntity.c \
+src/c/handleDrawing/drawFigureEntity.c \
+src/c/handleDrawing/drawGrayplotEntity.c \
+src/c/handleDrawing/drawLegendEntity.c \
+src/c/handleDrawing/drawMergeEntity.c \
+src/c/handleDrawing/drawPolylineEntity.c \
+src/c/handleDrawing/drawRectangleEntity.c \
+src/c/handleDrawing/drawSegsEntity.c \
+src/c/handleDrawing/drawSubWinEntity.c \
+src/c/handleDrawing/drawSurfaceEntity.c \
 src/c/handleDrawing/drawTextEntity.c
+
 
 # A voir si c'st utilisé
 #src/xdr/xdr_reference.c \
