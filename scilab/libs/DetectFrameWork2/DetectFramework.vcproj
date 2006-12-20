@@ -120,6 +120,7 @@
 				WholeProgramOptimization="false"
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
 				RuntimeLibrary="2"
+				EnableEnhancedInstructionSet="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
