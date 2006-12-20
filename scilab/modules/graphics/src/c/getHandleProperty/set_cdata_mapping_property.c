@@ -27,7 +27,7 @@ int set_cdata_mapping_property( sciPointObj * pobj, int stackPointer, int valueT
     return SET_PROPERTY_ERROR ;
   }
 
-  if (sciGetEntityType (pobj) != SCI_SURFACE || ppSurf->typeof3d != SCI_FAC3D )
+  if ( sciGetEntityType(pobj) != SCI_SURFACE || pSURFACE_FEATURE(pobj)->typeof3d != SCI_FAC3D )
   {
     sciprint("cdata_mapping property does not exist for this handle.\n") ;
     return SET_PROPERTY_ERROR ;
