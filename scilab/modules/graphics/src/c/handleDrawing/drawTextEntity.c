@@ -15,9 +15,10 @@
 #include "StringBox.h"
 #include "math_graphics.h"
 #include "sciprint.h"
+#include "clipping.h"
 
 /*----------------------------------------------------------------------------------------*/
-void drawText( sciPointObj * pObj )
+int drawTextEntity( sciPointObj * pObj )
 {
   int    v  = 0  ;
   double dv = 0. ;
@@ -37,7 +38,7 @@ void drawText( sciPointObj * pObj )
 
   if (!sciGetVisibility(pObj))
   {
-    return ;
+    return 0 ;
   }
 
 
@@ -191,6 +192,8 @@ void drawText( sciPointObj * pObj )
 #ifdef _MSC_VER
   if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
+
+  return 0 ;
 
 }
 /*----------------------------------------------------------------------------------------*/

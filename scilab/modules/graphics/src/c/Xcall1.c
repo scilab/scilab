@@ -622,7 +622,7 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
     px=(integer *)MALLOC(((*p)+1)*sizeof(integer));
     py=(integer *)MALLOC(((*p)+1)*sizeof(integer));
 	if (px==NULL || py==NULL) {
-		Scistring("fillpolylines_1 : malloc No more Place\n");
+		sciprint("fillpolylines_1 : malloc No more Place\n");
 		return;
 	}    
     for (i=0 ; i< (*n) ;i++) {
@@ -827,7 +827,7 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
     }
   else
     {
-      Scistring("xstring : No more Place  \n");
+      sciprint("xstring : No more Place  \n");
     }
 }
 
@@ -929,7 +929,7 @@ void xstringb_angle (char *string, integer x, integer y, integer w, integer h, d
     }
   else
     {
-      Scistring("xstring : No more Place  \n");
+      sciprint("xstring : No more Place  \n");
     }
 }
 
@@ -1053,7 +1053,7 @@ static void Myalloc(integer **xm, integer **ym, integer n, integer *err)
       *ym= graphic_alloc(7,n,sizeof(integer));
       if ( *xm == 0 || *ym == 0 )
 	{
-	  Scistring("malloc: Running out of memory\n");
+	  sciprint("malloc: Running out of memory\n");
 	  *err=1;
 	}
     }
@@ -1065,7 +1065,7 @@ static void Myalloc1(integer **xm, integer n, integer *err)
     {
       if (( *xm= graphic_alloc(6,n,sizeof(integer)))  == 0  )
 	{
-	  Scistring("malloc: Running out of memory\n");
+	  sciprint("malloc: Running out of memory\n");
 	  *err=1;
 	}
     }

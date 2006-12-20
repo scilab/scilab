@@ -12,6 +12,7 @@
 #include "PloEch.h"
 #include "Plo2d.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
@@ -281,7 +282,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	}
       else
 	{
-	  Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
+	  sciprint("Warning: Can't use Log on X-axis xmin is negative \n");
 	  xmax= 1; xmin= 0;
 	}
       aaint[0]=1;aaint[1]=inint(xmax-xmin);
@@ -297,7 +298,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	}
       else
 	{
-	  Scistring(" Can't use Log on y-axis ymin is negative \n");
+	  sciprint(" Can't use Log on y-axis ymin is negative \n");
 	  ymax= 1; ymin= 0;
 	}
       aaint[2]=1;aaint[3]=inint(ymax-ymin);
@@ -320,7 +321,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	       || (ylog == 1 && Cscale.logflag[1] == 'n')
 	       || (ylog == 0 && Cscale.logflag[1] == 'l') )
 	    {
-	      Scistring("Warning: you cannot use automatic rescale if you switch from log to normal or normal to log \n");
+	      sciprint("Warning: you cannot use automatic rescale if you switch from log to normal or normal to log \n");
 	    }
 	  else 
 	    { 
@@ -390,7 +391,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       if (strcmp("Rec",driver) != 0) 
 	{
-	  Scistring("Auto rescale only works with the rec driver\n");
+	  sciprint("Auto rescale only works with the rec driver\n");
 	  return;
 	}
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -410,12 +411,11 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
  *-----------------------------------------------------*/
 
 
-void Legends(style, n1, legend)
-     integer *style;
-     integer *n1;
-     char *legend;
+void Legends( integer * style, integer * n1, char * legend )
 {
-  int rect[4],xx,yy;
+  int rect[4] ;
+  int xx = 0  ;
+  int yy = 0  ;
   char *leg,*loc;
   double xi,xi1,yi,yi1,xoffset,yoffset;  
   int i;
@@ -499,7 +499,7 @@ void Legends(style, n1, legend)
     }
   else
     {
-      Scistring("Legends : running out of memory to store legends\n");
+      sciprint("Legends : running out of memory to store legends\n");
     }
 }
 

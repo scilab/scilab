@@ -15,6 +15,7 @@
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "Plo3d.h"
+#include "axesScale.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -165,7 +166,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   fill  = graphic_alloc(2,(*q),sizeof(int));
   if ( (polyx == NULL) || (polyy == NULL) || (fill  == NULL)) 
     {
-      Scistring("plot3dg_ : malloc No more Place\n");
+      sciprint("plot3dg_ : malloc No more Place\n");
       return;
     }
  
@@ -303,7 +304,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   polyz = graphic_alloc(5,(*q),sizeof(double));
   if ( (polyz == NULL) && (*q) != 0)
     {
-      Scistring("plot3dg_ : malloc No more Place\n");
+      sciprint("plot3dg_ : malloc No more Place\n");
       return;
     }
   /** Allocation  **/
@@ -312,7 +313,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   locindex = graphic_alloc(2,(*q),sizeof(int));
   if ( ( polyx == NULL) ||  ( polyy== NULL) || ( locindex== NULL) )
     {
-      Scistring("plot3dg_ : malloc No more Place\n");
+      sciprint("plot3dg_ : malloc No more Place\n");
       return;
     }
 
@@ -432,7 +433,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	    int k;
               
 	    if ( (*p) != 3 && (*p) !=4 ) {
-	      Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
+	      sciprint("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
 	      return;
 	    } else {
 	      for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
@@ -586,7 +587,7 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   ym = graphic_alloc(1,(*n),sizeof(int));
   if ( ( (xm == NULL) && *n != 0 ) || ((ym == NULL) && *n != 0)) 
     {
-      Scistring("Param3d : malloc  No more Place\n");
+      sciprint("Param3d : malloc  No more Place\n");
       return(0);
     }
   init = 0 ; 
@@ -676,7 +677,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   ym = graphic_alloc(1,(*m),sizeof(int));
   if ( ( (xm == NULL) && *m != 0 ) || ((ym == NULL) && *m != 0)) 
     {
-      Scistring("Param3d : malloc  No more Place\n");
+      sciprint("Param3d : malloc  No more Place\n");
       return(0);
     }
   for ( cur=0 ; cur < *n ; cur++)
@@ -757,7 +758,7 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 			      strlen(legy)+
 			      strlen(legz)+
 			      7)*sizeof (char))) == NULL)
-	Scistring("box3d : No more Place to store legends (3D labels)\n");
+	sciprint("box3d : No more Place to store legends (3D labels)\n");
 
       if(legx == NULL)
 	strcpy(legends,"");
@@ -1108,7 +1109,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
     }
   if (ind < 0 || ind > 8) 
     {
-      Scistring("xind out of bounds");
+      sciprint("xind out of bounds");
       xind[0]=0;
     }
   UpNext(xind[0],&ind2,&ind3);
@@ -1188,7 +1189,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
   if ( loc == NULL)
     {
-      Scistring("AxesString : No more Place to store Legends\n");
+      sciprint("AxesString : No more Place to store Legends\n");
       return;
     }
   
@@ -1757,7 +1758,7 @@ int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize
 	x[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer));
 	y[i]=(integer *)MALLOC((n[i]+2)*sizeof(integer)); 
 	if (x[i]==NULL || y[i]==NULL) {
-	  Scistring("shade : MALLOC No more Place\n");
+	  sciprint("shade : MALLOC No more Place\n");
 	  return 0;
 	}
 		

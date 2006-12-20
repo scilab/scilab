@@ -16,7 +16,7 @@
  * Routine which draw a text object
  * @param pObj the pointer on the text object
  */
-void drawText( sciPointObj * pObj ) ;
+int drawTextEntity( sciPointObj * pObj ) ;
 
 /**
  * Given a matrix of strings and an array of cells positions, draw each strings in

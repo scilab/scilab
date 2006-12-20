@@ -10,11 +10,10 @@
 #include "math_graphics.h"
 #include "Graphics.h" 
 #include "PloEch.h"
-
+#include "Plo2d1.h"
 #include "GetProperty.h"
 #include "Xcall1.h"
 
-extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 
 /*--------------------------------------------------------------------
   C2F(plot2d3)(xf,x,y,n1,n2,style,strflag,legend,brect,aaint)
@@ -81,7 +80,7 @@ int C2F(plot2d3)(char *xf, double *x, double *y, integer *n1, integer *n2, integ
 }
 
 
-extern void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
 {
   integer i,j;
   /** Computing y-values **/

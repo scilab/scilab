@@ -18,6 +18,7 @@
 #include "PloEch.h"
 #include "Plo2d.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -127,7 +128,7 @@ void StoreXcall1(char *fname, char *string, integer *x1, integer n1, integer *x2
 	  Store("xcall1",(char *) lplot);
 	  return;}
     }
-  Scistring("\nStore Plot (xcall1): No more place \n");
+  sciprint("\nStore Plot (xcall1): No more place \n");
 }
 
   
@@ -153,7 +154,7 @@ void StoreEch(char *name, double *WRect, double *FRect, char *logflag)
 	  Store("scale",(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storeEch): No more place \n");
+  sciprint("\n Store Plot (storeEch): No more place \n");
 }
 
 void StoreNEch(char *name, char *flag, double *WRect, double *ARect, double *FRect, char *logflag)
@@ -176,7 +177,7 @@ void StoreNEch(char *name, char *flag, double *WRect, double *ARect, double *FRe
 	  Store("nscale",(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storeEch): No more place \n");
+  sciprint("\n Store Plot (storeEch): No more place \n");
 }
 
   
@@ -222,7 +223,7 @@ void StorePlot(char *name, char *xf, double *x, double *y, integer *n1, integer 
 	  Store("plot2d",(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storeplot): No more place \n");
+  sciprint("\n Store Plot (storeplot): No more place \n");
 }
 
 /*---------------------------------------------------------------------
@@ -234,7 +235,7 @@ void StoreSciAxis(char *name, char pos, char xy_type, double *x, int *nx, double
   struct sciaxis_rec *lplot = ((struct sciaxis_rec *) MALLOC(sizeof(struct sciaxis_rec)));
   if (lplot == NULL)
     {
-      Scistring("\nRunning out of memory in Store plots\n");
+      sciprint("\nRunning out of memory in Store plots\n");
       return ;
     }
   lplot->pos= pos;
@@ -277,7 +278,7 @@ void StoreGrid(char *name, integer *style)
 	  return;
 	}
     }
-  Scistring("\n Store (storegrid): No more place \n");
+  sciprint("\n Store (storegrid): No more place \n");
 }
 
 /*---------------------------------------------------------------------
@@ -306,7 +307,7 @@ void StoreParam3D(char *name, double *x, double *y, double *z, integer *n, doubl
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storeparam3d): No more place \n");
+  sciprint("\n Store Plot (storeparam3d): No more place \n");
 }
 
 void StoreParam3D1(char *name, double *x, double *y, double *z, integer *m, integer *n, integer *iflag, integer *colors, double *teta, double *alpha, char *legend, integer *flag, double *bbox)
@@ -335,7 +336,7 @@ void StoreParam3D1(char *name, double *x, double *y, double *z, integer *m, inte
 	  return;
 	}
     }
-  Scistring("\n Store Plot (storeparam3d): No more place \n");
+  sciprint("\n Store Plot (storeparam3d): No more place \n");
 }
 
 /*---------------------------------------------------------------------
@@ -365,7 +366,7 @@ void StorePlot3D(char *name, double *x, double *y, double *z, integer *p, intege
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storeplot3d): No more place \n");
+  sciprint("\n Store Plot (storeplot3d): No more place \n");
 }
 
 /*---------------------------------------------------------------------
@@ -417,7 +418,7 @@ void StoreFac3D(char *name, double *x, double *y, double *z, integer *cvect, int
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storefac3d): No more place \n");
+  sciprint("\n Store Plot (storefac3d): No more place \n");
 }
 
 /*---------------------------------------------------------------------
@@ -454,7 +455,7 @@ void StoreFec(char *name, double *x, double *y, double *triangles, double *func,
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storefec): No more place \n");
+  sciprint("\n Store Plot (storefec): No more place \n");
 }
 
 
@@ -493,7 +494,7 @@ void StoreContour(char *name, double *x, double *y, double *z, integer *n1, inte
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storecontour): No more place \n");
+  sciprint("\n Store Plot (storecontour): No more place \n");
 }
 
 void StoreContour2D(char *name, double *x, double *y, double *z, integer *n1, integer *n2, integer *flagnz, integer *nz, double *zz, integer *style, char *strflag, char *legend, double *brect, integer *aint)
@@ -531,7 +532,7 @@ void StoreContour2D(char *name, double *x, double *y, double *z, integer *n1, in
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storecontour): No more place \n");
+  sciprint("\n Store Plot (storecontour): No more place \n");
 }
 
 
@@ -563,7 +564,7 @@ void StoreGray(char *name, double *x, double *y, double *z, integer *n1, integer
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storegray): No more place \n");
+  sciprint("\n Store Plot (storegray): No more place \n");
 }
 
 /** For matrices  z(i,j) **/
@@ -592,7 +593,7 @@ void StoreGray1(char *name, double *z, integer *n1, integer *n2, char *strflag, 
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storegray): No more place \n");
+  sciprint("\n Store Plot (storegray): No more place \n");
 }
 
 
@@ -614,7 +615,7 @@ void StoreGray2(char *name, double *z, integer *n1, integer *n2, double *xrect)
 	  Store(name,(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storegray): No more place \n");
+  sciprint("\n Store Plot (storegray): No more place \n");
 }
 
 
@@ -646,7 +647,7 @@ void StoreChamp(char *name, double *x, double *y, double *fx, double *fy, intege
 	  Store("champ",(char *) lplot);
 	  return;}
     }
-  Scistring("\n Store Plot (storechamp): No more place \n");
+  sciprint("\n Store Plot (storechamp): No more place \n");
 }
 
 /*---------------------------------------------------------------------
@@ -2699,7 +2700,7 @@ int Store(char *type, char *plot)
 	  {
 	    if (CopyVectC(&(ListPFirst->type),type,((int)strlen(type))+1)==0)
 	      { ListPFirst=NULL;
-		Scistring("Store : No more Place \n");
+		sciprint("Store : No more Place \n");
 		return(0);
 	      }
 	    ListPFirst->theplot=plot;
@@ -2710,7 +2711,7 @@ int Store(char *type, char *plot)
 	  }
 	else
 	  {
-	    Scistring("Store (store-1): malloc No more Place");
+	    sciprint("Store (store-1): malloc No more Place");
 	    return(0);
 	  }
       }
@@ -2730,7 +2731,7 @@ int Store(char *type, char *plot)
 	{
 	  if (CopyVectC(&(list->ptrplot->type),type,((int)strlen(type))+1)==0)
 	    { list=NULL;
-	      Scistring("Store (store-2): No more Place \n");
+	      sciprint("Store (store-2): No more Place \n");
 	      return(0);}
 	  list->ptrplot->theplot=plot;
 	  list->ptrplot->previous=list;
@@ -2740,7 +2741,7 @@ int Store(char *type, char *plot)
 	}
       else 
 	{
-	  Scistring("Store (store-3):No more Place\n");
+	  sciprint("Store (store-3):No more Place\n");
 	  return(0);
 	}
     }

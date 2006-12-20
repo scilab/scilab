@@ -137,6 +137,9 @@ extern double YDPi2R( double y ) ;
 #define GEOX(x1,y1,z1)  XScale(TRX(x1,y1,z1))
 #define GEOY(x1,y1,z1)  YScale(TRY(x1,y1,z1))
 
+#define TX3D(x1,y1,z1) Cscale.Wscx1*(TRX(x1,y1,z1)-Cscale.frect[0]) +Cscale.Wxofset1 ;
+#define TY3D(x1,y1,z1) Cscale.Wscy1*(-TRY(x1,y1,z1)+Cscale.frect[3])+Cscale.Wyofset1 ;
+
 /**
 * convert the coordinates of a 2d or 3d point to its pixel coordinates.
 * @param pSubWin SubWindow in which the point is, might be either in 2d or 3d.

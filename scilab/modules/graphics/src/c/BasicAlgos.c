@@ -150,6 +150,20 @@ void destroyStringArray( char * src[], int nbStrings )
   FREE( src ) ;
 }
 /*-----------------------------------------------------------------------------------*/
+double * createDoubleArrayCopy( const double src[], int nbElement )
+{
+  double * res = MALLOC( nbElement * sizeof(double) ) ;
+
+  if ( res == NULL )
+  {
+    return NULL ;
+  }
+
+  memcpy( res, src, nbElement * sizeof(double) ) ;
+
+  return res ;
+}
+/*-----------------------------------------------------------------------------------*/
 int * createIntArrayCopy( const int src[], int nbElement )
 {
   int * res = MALLOC( nbElement * sizeof(int) ) ;

@@ -629,7 +629,7 @@ int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax)
 /* 		  ppsubwin->axes.u_xgrads, ppsubwin->axes.u_nxgrads); */
   
   GraduateWithNax(ppsubwin,&xmin,&xmax,nbtics_x,ppsubwin->axes.u_xgrads);
-  
+
   ppsubwin->axes.u_xlabels = AllocAndSetUserLabels(ppsubwin->axes.u_xlabels, 
 						   ppsubwin->axes.u_xgrads, 
 						   ppsubwin->axes.u_nxgrads, 

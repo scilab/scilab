@@ -35,18 +35,6 @@ extern void GPopupResize (struct BCG * ScilabXgc,int * width,int * height);
 
 void set_cf_type( int val ) ;
 
-extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-			     integer *Ntr,double *zminmax, integer *colminmax, integer *colout, BOOL with_mesh));
-extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2);
-extern void GraySquare1_NGreverse(integer *x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin);
-
-extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2);
-extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
-extern void GraySquareScaled(integer *x, integer *y, double *z, integer n1, integer n2); /* for NG, grayplot direct mode */
-extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf);
-extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
-extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
-extern void Plo2d4RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 
 
 char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
@@ -76,16 +64,11 @@ extern void sciXdraw(void);  /* DRAWINGS */
 /* 3 next are in plo3d.c*/
 extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag); /* DRAWINGS */
 extern void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox); /* DRAWINGS */
-extern void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style); /* DRAWINGS */
 
-extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
-extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
 extern void Nextind(integer ind1, integer *ind2, integer *ind3); /* DRAWINGS */
-extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z); /* DRAWINGS */
 extern int GradLog(double _min, double _max, double *_grads, int * n_grads, int compNgrads );
 extern BOOL Ishidden(sciPointObj *pobj); /* DRAWINGS */
 extern BOOL IsDownAxes(sciPointObj *pobj); /* DRAWINGS */
-extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1); /* DRAWINGS */
 extern void sciGetDisplayedBounds( sciPointObj * pSubWin,
                                    double      * xmin   ,
                                    double      * xmax   ,
@@ -100,9 +83,6 @@ extern void updateScale3d( sciPointObj * pobj    ,
                            double        zbox[8]  );
 extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj);  /* DRAWINGS */
 extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);  /* DRAWINGS */
-
-extern void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG); /* DRAWINGS */
-extern int labels2D_draw(sciPointObj * psubwin); /* DRAWINGS */
 
 extern int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input); /* DRAWINGS */
 extern int ComputeNbSubTicsFor3dUse(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input);
@@ -119,21 +99,11 @@ extern int CheckDisplay(double fact_h, double fact_w, char logflag, char *foo,in
 extern int IsInsideRectangle(int * rect, int *point);
 
 extern int CheckIfiisNan(int j, int dim, int * tab); /* DRAWINGS */
-extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * psubwin, int * nb_curves, 
-						 double *** xvect, double *** yvect, double *** zvect, int ** curves_size); /* DRAWINGS */
 extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz); /* DRAWINGS */
-extern double InvAxis(double min, double max, double u); /* DRAWINGS */
-extern int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1); /* DRAWINGS */
-extern int ReverseDataFor3DXonly(sciPointObj * psubwin, double * xvect, int n1); /* DRAWINGS */
-extern int ReverseDataFor3DYonly(sciPointObj * psubwin, double * yvect, int n1); /* DRAWINGS */
-extern int ReverseDataFor3DZonly(sciPointObj * psubwin, double * zvect, int n1); /* DRAWINGS */
 extern void DrawAxesIfRequired(sciPointObj*); /* DRAWINGS */
 extern void DrawAxes(sciPointObj*); /* DRAWINGS */
 
 extern void UpdateSubwinScale(sciPointObj * pobj); /* DRAWINGS */
-
-extern void sciClip (sciPointObj *pobj); /* DRAWINGS */
-extern void sciUnClip (sciPointObj *pobj); /* DRAWINGS */
 
 extern int sciDrawObj (sciPointObj * pobj); /* DRAWINGS */
 extern int sciDrawObjIfRequired (sciPointObj * pobj); /* DRAWINGS */
@@ -147,42 +117,18 @@ extern int ComputeXIntervals(sciPointObj *pobj, char xy_type, double **vector, i
 
 /*F.Leray : Format pour imprimer un nombre de la forme k10^a ; cf. Axes.c*/
 extern void NumberFormat __PARAMS((char *str,integer k,integer a));
-extern void C2F(plot3dn)(sciPointObj *pobj, 
-			 double *x, double *y, double *z, 
-			 integer *p, integer *q, int *DPI);
 
-extern void C2F(fac3dn)(sciPointObj *pobj, 
-			double *x, double *y, double *z, 
-			double *cvect, integer *p, integer *q, int *DPI);
 /**DJ.Abdemouche 2003**/
 
 extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg, sciPointObj *psurface); /* DRAWINGS */
 extern void Merge3d(sciPointObj *psubwin);/*DJ.A merge*/   /* DRAWINGS */
 extern void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos);
 extern int Merge3dDimension(sciPointObj *pparent);
-extern void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int *DPI);  /* DRAWINGS */
 
-extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI);
-extern void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym, int *DPI);
 extern int CheckPixelStatus(void);
 
-extern int DrawMark_FullDot(int x1, int yy1, double size, int foreground, int background, int pixel_offset);
-extern int DrawMark_Plus(int xmi, int ymi, int size, int foreground, int pixel_offset);
-extern int DrawMark_Cross(int xmi, int ymi, int size, int foreground, int pixel_offset);
-extern int DrawMark_FullDiamond(int xmi, int ymi, int size, int foreground, int background);
-extern int DrawMark_FullTriangleUp(int xmi, int ymi, int size, int foreground, int background);
-extern int DrawMark_FullTriangleDown(int xmi, int ymi, int size, int foreground, int background);
-extern int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offset);
-extern int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background, int pixel_offset);
-extern int DrawMark_FullTriangleRight(int xmi, int ymi, int size, int foreground, int background);
-extern int DrawMark_FullTriangleLeft(int xmi, int ymi, int size, int foreground, int background);
-extern int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int background);
 extern int GetDPIFromDriver(int * DPI);
 extern int ChooseFormatForOneGrad(char *c_format, double *grad);
-extern int SetMinMaxVertices(Vertices *vertices_list, double *xmin, double *ymin, double *zmin, double *xmax, double *ymax, double *zmax);
-extern int GetVerticesAt(Vertices *vertices_list, int *xm, int *ym, double *x, double *y, double *z);
-extern int RemoveNext(Vertices *pCurrent);
-extern int FreeVertices(sciPointObj * psubwin);
 extern int ChildrenCounter(sciPointObj *pparent);
 extern int GetBarNumber(sciPointObj * pobj);
 extern double FindWidth(sciPointObj * pobj, int n1, int bar_number, double *x);
@@ -197,21 +143,11 @@ extern void sciAxesVerticesIndices( integer insideU[4],
 
 extern void matrixLine2String( char ** matrix, int matrixSize[2], int numLine, char * dest ) ;
 
-extern void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
-                                   double        ulPoint[3]   ,
-                                   double        userSize[2]  ,
-                                   int           edgesX[4]    ,
-                                   int           edgesY[4]     ) ;
 
 void computeLabelAutoPos( sciPointObj * pLabel, int axisStart[2], int axisEnd[2], int offsets[2] ) ;
 
 void sciDrawFigure( int numFigure ) ;
 
-extern void drawPolyMarks( sciPointObj * pObj    ,
-                          int           nbMarks ,
-                          int           xCoord[],
-                          int           yCoord[],
-                          int         * DPI      ) ;
 
 extern int computeRealArrowSize( sciPointObj * pSegs,
                                 int nbSegs         ,

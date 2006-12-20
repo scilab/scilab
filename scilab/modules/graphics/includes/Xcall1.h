@@ -27,6 +27,10 @@ int GetDriverId( void ) ;
 
 void C2F(SetDriver)(char *x0, integer *v2,integer * v3,integer * v4, integer *v5,integer * v6, integer * v7,double * dv1,double * dv2,double * dv3,double * dv4);
 
-
+/**
+ *we draw marks in pixel
+ * Returns the DPI depending on the used driver
+ */
+int GetDPIFromDriver( int DPI[2] ) ;
 
 #endif /* _XCALL1_H_ */

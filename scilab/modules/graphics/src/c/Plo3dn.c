@@ -16,6 +16,9 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Xcall1.h"
+#include "axesScale.h"
+#include "drawMarks.h"
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -29,10 +32,6 @@ extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer p
 #ifdef _MSC_VER
 extern void Scistring (char *str);
 #endif
-
-/*-------------------------------------------------------------------------
- *   plo3dn function  ( 3D Plotting of surfaces given by z=f(x,y)  )
- *-------------------------------------------------------------------------*/
 
 void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     integer * p, integer * q, int *DPI)
@@ -144,7 +143,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   fill = graphic_alloc (2, (*q), sizeof (int));
   if ((polyx == NULL) || (polyy == NULL) || (fill == NULL))
     {
-      Scistring ("plot3dg_ : malloc No more Place\n");
+      sciprint ("plot3dg_ : malloc No more Place\n");
       return;
     }
 
@@ -652,18 +651,6 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   ytmp = NULL;
 }
 
-/**
- * @memo display a fac3d object. Apply the painter algorithm to the facets
- *       and draw them with the right color (hidden or not).
- * @param pobj the fac3d object
- * @param x the matrice of the x coordiantes of facets
- * @param y the matrice of the y coordiantes of facets
- * @param z the matrice of the z coordiantes of facets
- * @param cvect the color vector
- * @param p the number of vertice the facests contains
- * @param q the number of facets
- * @param DPI not yet identified (deals with display probably)
- */
 void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                    double * cvect, integer * p, integer * q, int *DPI)
 {
@@ -722,7 +709,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
       || rear_y == NULL || rear_col == NULL || xtmp     == NULL
       || ytmp   == NULL || ztmp     == NULL )
   {
-    Scistring ("plot3dg_ : malloc No more Place\n");
+    sciprint ("plot3dg_ : malloc No more Place\n");
     return;
   }
 
@@ -1002,7 +989,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
               if ((*p) != 3 && (*p) != 4)
                 {
-                  Scistring
+                  sciprint
                     ("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
                   return;
                 }

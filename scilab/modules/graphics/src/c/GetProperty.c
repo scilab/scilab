@@ -5234,7 +5234,7 @@ int sciGetHiddenColor( sciPointObj * pObj )
 /**
  * return if an object can be added to a merge object and then can be sorted for correct
  * drawing.
- * Normaly, each object shoul dbe mergeable. But it needs some development.
+ * Normaly, each object should be mergeable. But it needs some development.
  */
 BOOL sciIsMergeable( sciPointObj * pObj )
 {

@@ -19,6 +19,9 @@
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "Xcall1.h"
+#include "SetProperty.h"
+#include "handleDrawing/drawTextEntity.h"
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -169,7 +172,7 @@ void axis_draw2(char strflag[])
 
 /* Only paint the area of the axes */
 /* ans does not draw any graduations or ticks, lines... */
-void DrawAxesBackground()
+void DrawAxesBackground( void )
 { 
 	static sciPointObj * psubwin;
   /* using foreground to draw axis */
@@ -1211,7 +1214,7 @@ void Convex3d_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD
     }
   if (ind < 0 || ind > 8) 
     {
-      Scistring("xind out of bounds");
+      sciprint("xind out of bounds");
       xind[0]=0;
     }
   UpNext(xind[0],&ind2,&ind3);
@@ -3328,5 +3331,361 @@ void drawAxesGrid( sciPointObj * psubwin )
   {
     DrawYGrid(psubwin);
   }
+}
+/*-----------------------------------------------------------------------------------------*/
+/**axis_3ddraw 10/2003
+* @author Djalel Abdemouche
+* Should be in Axes.c file
+*/
+void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD) 
+{
+  double dbox[6];
+  integer flag,i,p,n,pat,hiddencolor, x[5]; /* F. Leray : redimmensionnment (+1) du tableau x[4];*/
+  static double Alpha, Teta;
+  int verbose=0,narg;
+  integer ixbox[8],iybox[8],xind[8],dash[6];
+  integer background,zero=0, color_old; /* Adding color_old 04.03.04*/
+  sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
+  EAxesBoxType subWinBoxType = sciGetBoxType( pobj ) ;
+
+  /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
+  for(i=0;i<5;i++) { x[i] = -1000 ; }
+
+  if(sciGetEntityType (pobj) == SCI_SUBWIN)
+  {  
+
+    updateScale3d( pobj, dbox, xbox, ybox, zbox ) ;
+    /* Until here we have computed + reset the 3d scale*/
+    Teta  = ppsubwin->theta  ;
+    Alpha =  ppsubwin->alpha ;
+    if( Abs( Teta ) < 0.1 )
+    {
+      /* to avoid bug at limit when theta == 0 */
+      /* I recompute temp value xyzbox with theta == 0.1 */
+      /* to have a correct xind, InsideU et InsideD */
+      ComputeCorrectXindAndInsideUD( Teta, Alpha, dbox, xind, InsideU, InsideD ) ;
+    }
+    else
+    {
+      sciAxesVerticesIndices( InsideU, InsideD, xbox, ybox, xind ) ;
+    }
+
+    /* F.Leray Rajout 02.04.04 :*/
+    background = sciGetBackground(pobj) ;
+
+    for ( i = 0 ; i < 6 ; i++ )
+    {
+      ixbox[i]=XScale(xbox[xind[i]]);
+      iybox[i]=YScale(ybox[xind[i]]);
+    }
+    ixbox[6] = ixbox[0] ;
+    iybox[6] = iybox[0] ;
+    p = 7 ;
+    n = 1 ; 
+
+    C2F(dr)("xget","pattern",&verbose,&color_old,&zero,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
+    C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+    C2F(dr)("xset","pattern",&color_old,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /***********/
+    /***  hidden axis */
+
+    flag = ppsubwin->axes.flag[2]; /* box drawing */
+
+    if ( subWinBoxType != BT_OFF )
+    { 
+      x[2] = sciGetLineWidth (pobj);
+      x[3] = sciGetLineStyle (pobj);
+      C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+      hiddencolor = sciSetGoodIndex( pobj, ppsubwin->axes.hiddenAxisColor ) ;
+
+      if (zbox[InsideU[0]] > zbox[InsideD[0]])
+      {
+        DrawAxis(xbox,ybox,InsideD,hiddencolor);
+      }	 
+      else
+      {
+        DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
+      }
+      if (Ishidden(pobj))
+      {
+        ppsubwin->hiddenstate=(InsideU[0] % 4);
+      }
+      else
+      {
+        ppsubwin->hiddenstate=(InsideD[0] % 4);
+      }
+    }
+    /**  l'enveloppe cvxe*/
+    x[0] = sciGetForeground (pobj);	 /* F.Leray 05.03.04 Useless or not?? because we used set pattern instead of set foreground (because Windows uses BRUSH and PEN...)*/
+    /* Wrong explanation: We use sciGetForeground in NG mode and used set foreground in old graphic mode*/
+    x[2] = sciGetLineWidth (pobj); /* Adding this line 05.03.04*/
+    x[3] = sciGetLineStyle (pobj);
+    x[4] = 0; 
+    C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+    C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    /* We are in axis_3ddraw() and sciGetEntityType (pobj) == SCI_SUBWIN*/
+    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4,PI0,PD0,PD0,PD0,PD0, 5L, 6L);
+    C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096); /* F.Leray 05.03.04 Useless too*/
+    C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+    p = 7 ;
+    n = 1 ;
+    for ( i = 0 ; i < p ; i++ )
+    {
+      ixbox[i] = XScale( xbox[ xind[i] ] ) ;
+      iybox[i] = YScale( ybox[ xind[i] ] ) ;
+    }
+    ixbox[p-1]=ixbox[0];iybox[p-1]=iybox[0]; 
+
+    if ( subWinBoxType == BT_BACK_HALF || subWinBoxType == BT_ON )
+    {
+      C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+    }
+    Axes3dStrings2(ixbox,iybox,xind) ;
+
+    C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+}
+/*-----------------------------------------------------------------------------------------*/
+void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD)
+{
+  integer  x[5],narg = 0;
+  integer color_kp,verbose = 0,thick_kp ;
+  integer style_kp[3] ;
+
+  C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray Replacement*/
+  C2F(dr)("xget","thickness",&verbose,&thick_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
+  C2F(dr)("xget","line style",&verbose,style_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
+
+  if(sciGetEntityType (pobj) == SCI_SUBWIN)
+  {
+    if(pSUBWIN_FEATURE (pobj)->axes.rect == BT_ON)
+    {
+      x[0] = sciGetForeground (pobj);	
+      x[2] = sciGetLineWidth (pobj);
+      x[3] = sciGetLineStyle (pobj);
+      x[4] = 0;
+
+      /* C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096);*/
+      C2F(dr)("xset","pattern",x,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      C2F(dr)("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+      if (zbox[InsideU[0]] > zbox[InsideD[0]])
+      {
+        DrawAxis(xbox,ybox,InsideU,x[0]);
+      }
+      else
+      {
+        DrawAxis(xbox,ybox,InsideD,x[0]);
+      }
+    }
+  }
+  C2F(dr)("xset", "line style",&(style_kp[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);/*F.Leray addings here*/
+  C2F(dr)("xset","thickness",&thick_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);/*F.Leray addings here*/
+  C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
+
+}
+/*-----------------------------------------------------------------------------------------*/
+/* F.Leray 07.05.04 */
+/* This routine rebuild a needed strflag for axis_draw call in sciDrawObj*/
+/* It may be less complete than the original strflag given in plot2dn (or other 2D - plot function)
+due to less info. Nevertheless this new strflag is sufficient for axis_draw because
+tests are on strflag[1] (case =='5' or '6') and strflag[2] */
+void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
+{
+
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  BOOL isaxes = GetIsAxes2D(psubwin);
+
+  /* strflag[0]*/
+  STRFLAG[0] = '0'; /* flag for caption display unused here so set to NULL by default */
+  if( pSUBWIN_FEATURE (psubwin)->with_leg == 1)
+    STRFLAG[0] = '0';
+  else
+    STRFLAG[0] = '1';
+
+  /* strflag[1]*/
+  /* Here isoview mode test is not needed because axis_draw do not use it */
+  STRFLAG[1] = '0'; /* Init. to NULL <=> use the previous scale */
+  if(ppsubwin->tight_limits == TRUE)
+  {
+    STRFLAG[1] = '8';
+  }
+  else /* using auto rescale : enlarged for pretty axes*/
+  {
+    STRFLAG[1] = '6';
+  }
+
+  /* strflag[2]*/
+  STRFLAG[2] = '1'; /* Init with y-axis on the left AND axes is on*/
+  if(isaxes == TRUE)
+  {
+    if(ppsubwin->axes.ydir =='l')
+      STRFLAG[2] = '1';
+    else if(ppsubwin->axes.ydir =='r')
+      STRFLAG[2] = '3';
+    else if((ppsubwin->axes.xdir =='c') && (ppsubwin->axes.ydir =='c'))
+      STRFLAG[2] = '5';
+  }
+  else
+  {
+    if(ppsubwin->axes.rect == BT_ON)
+      STRFLAG[2] = '2';
+    else
+      STRFLAG[2] = '0';
+  }
+
+  STRFLAG[3] = '\0';
+}
+/*-----------------------------------------------------------------------------------------*/
+
+/*----------------------------------------------------------------------------------*/
+/* draw the title and the two labels of a 2d axis                                 */
+/*----------------------------------------------------------------------------------*/
+int labels2D_draw( sciPointObj * psubwin )
+{
+  /* Rewritten by jb Silvy 06/2006 */
+
+  integer rect1[4] ;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  int offset[2] ; /* vertical and horizontal offsets to move labels a little from axes */
+
+  if ( !sciGetVisibility(psubwin) )
+  {
+    return 0 ;
+  }
+
+  /* get the size of the current subwin in pixels */
+  rect1[0]= Cscale.WIRect1[0] ; /* upper left point of the axes x coordinate. */
+  rect1[1]= Cscale.WIRect1[1] ; /* upper left point of the axes y coordinate. */
+  rect1[2]= Cscale.WIRect1[2] ; /* width of the axes */
+  rect1[3]= Cscale.WIRect1[3] ; /* height of the axes */
+
+  /* the little displacment of the labels from the axes box */
+  offset[0] = rect1[2] / 50 + 1 ;
+  offset[1] = rect1[3] / 25 + 1 ;
+
+
+  /*********/
+  /* TITLE */
+  /*********/
+
+  if ( sciGetVisibility(ppsubwin->mon_title) )
+  {
+    /* get the pointer on the title */
+    sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_title ) ;
+
+    /* get position and orientation of the title */
+    if ( ppLabel->auto_rotation )
+    {
+      sciSetFontOrientation( ppsubwin->mon_title, 0 ) ;
+    }
+
+
+    if ( ppLabel->auto_position )
+    {
+      int segmentStart[2] = { rect1[0] + rect1[2], rect1[1] } ;
+      int segmentEnd[2]   = { rect1[0]           , rect1[1] } ;
+      computeLabelAutoPos( ppsubwin->mon_title, segmentStart, segmentEnd, offset ) ;
+    }
+    /* draw the label */
+    drawTextEntity( ppLabel->text ) ;
+
+  }
+
+  /***********/
+  /* x label */
+  /***********/
+
+  if( sciGetVisibility(ppsubwin->mon_x_label) )
+  {
+    /* get the pointer on the title */
+    sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_x_label ) ;
+
+    if( ppLabel->auto_rotation )
+    {
+      sciSetFontOrientation(ppsubwin->mon_x_label, 0 ) ;
+    }
+
+
+    if( ppLabel->auto_position )
+    {
+      int segmentStart[2] ;
+      int segmentEnd[2]   ;
+
+      if(ppsubwin->axes.xdir == 'u')
+      {
+        segmentStart[0] = rect1[0] + rect1[2] ;
+        segmentEnd[0]   = rect1[0] ;
+
+        /* we add the size of the numbers to the height */
+        segmentStart[1] = ppsubwin->XGradMostOnTop ;
+        segmentEnd[1]   = ppsubwin->XGradMostOnTop ;
+      }
+      else
+      {
+        segmentStart[0] = rect1[0] ;
+        segmentEnd[0]   = rect1[0] + rect1[2] ;
+
+        segmentStart[1] = ppsubwin->XGradMostOnBottom ;
+        segmentEnd[1]   = ppsubwin->XGradMostOnBottom ;
+      }
+      computeLabelAutoPos( ppsubwin->mon_x_label, segmentStart, segmentEnd, offset ) ;
+    }
+
+    drawTextEntity( ppLabel->text ) ;
+
+  }
+
+
+  /***********/
+  /* y label */
+  /***********/
+
+
+  if ( sciGetVisibility(ppsubwin->mon_y_label) )
+  {
+    sciLabel * ppLabel = pLABEL_FEATURE( ppsubwin->mon_y_label ) ;
+
+    if( ppLabel->auto_rotation )
+    {
+      sciInitFontOrientation( ppsubwin->mon_y_label, 270 * 10 ) ;
+    }
+
+    if( ppLabel->auto_position )
+    {
+      int segmentStart[2] ;
+      int segmentEnd[2]   ;
+
+      if(ppsubwin->axes.ydir == 'r')
+      {
+
+        /* we add the size of the numbers to the height */
+        segmentStart[0] = ppsubwin->YGradMostOnRight ;
+        segmentEnd[0]   = ppsubwin->YGradMostOnRight ;
+
+        segmentStart[1] = rect1[1] + rect1[3] ;
+        segmentEnd[1]   = rect1[1] ;
+      }
+      else
+      {
+        segmentStart[0] = ppsubwin->YGradMostOnLeft ;
+        segmentEnd[0]   = ppsubwin->YGradMostOnLeft ;
+
+        segmentStart[1] = rect1[1] ;
+        segmentEnd[1]   = rect1[1] + rect1[3] ;
+      }
+      computeLabelAutoPos( ppsubwin->mon_y_label, segmentStart, segmentEnd, offset ) ;
+    }
+    drawTextEntity( ppLabel->text ) ;
+  }
+
+  return 0;
 }
 /*-----------------------------------------------------------------------------------------*/

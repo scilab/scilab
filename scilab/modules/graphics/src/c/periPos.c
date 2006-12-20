@@ -20,6 +20,7 @@
 
 #include "machine.h"
 #include "bcg.h"
+#include "sciprint.h"
 
 #if defined(_MSC_VER)
 #define CoordModePrevious 1
@@ -252,7 +253,7 @@ void C2F(getcurwinPos)(integer *verbose, integer *intnum, integer *narg, double 
   *narg =1 ;
   *intnum = ScilabGCPos.CurWindow ;
   if (*verbose == 1) 
-    Scistring("\nJust one graphic page at a time ");
+    sciprint("\nJust one graphic page at a time ");
 }
 
 /** Set a clip zone (rectangle ) **/
@@ -317,7 +318,7 @@ void C2F(getclipPos)(integer *verbose, integer *x, integer *narg, double *dummy)
 		 ScilabGCPos.CurClipRegion[2],
 		 ScilabGCPos.CurClipRegion[3]);
       else 
-	Scistring("\nNo Clip Region");
+	sciprint("\nNo Clip Region");
     }
 }
 
@@ -355,9 +356,9 @@ void C2F(getabsourelPos)(integer *verbose, integer *num, integer *narg, double *
   if (*verbose == 1) 
     {
       if (ScilabGCPos.CurVectorStyle == CoordModeOrigin)
-	Scistring("\nTrace Absolu");
+	sciprint("\nTrace Absolu");
       else 
-	Scistring("\nTrace Relatif");
+	sciprint("\nTrace Relatif");
     }
 }
 
@@ -414,7 +415,7 @@ void C2F(idfromnamePos)(char *name1, integer *num)
       *num=AluStrucPos[i].id;
   if (*num == -1 ) 
     {
-      Scistring("\n Use the following keys :");
+      sciprint("\n Use the following keys :");
       for ( i=0 ; i < 16 ; i++)
 	sciprint("\nkey %s -> %s\r\n",AluStrucPos[i].name,
 		 AluStrucPos[i].info);
@@ -697,7 +698,7 @@ void C2F(get_dash_or_color_Pos)(integer *verbose, integer *value, integer *narg,
     }
   *value=ScilabGCPos.CurDashStyle+1;
   if ( *value == 1) 
-    { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+    { if (*verbose == 1) sciprint("\nLine style = Line Solid");}
   else 
     {
       value[1]=4;
@@ -708,7 +709,7 @@ void C2F(get_dash_or_color_Pos)(integer *verbose, integer *value, integer *narg,
 	  sciprint("\nDash Style %d:<",(int)*value);
 	  for ( i =0 ; i < value[1]; i++)
 	    sciprint("%d ",(int)value[i+2]);
-	  Scistring(">\n");
+	  sciprint(">\n");
 	}
     }
 }
@@ -725,7 +726,7 @@ void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *du
   *narg =1 ;
   *value=ScilabGCPos.CurDashStyle+1;
   if ( *value == 1) 
-    { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+    { if (*verbose == 1) sciprint("\nLine style = Line Solid");}
   else 
     {
       value[1]=4;
@@ -736,7 +737,7 @@ void C2F(getdashPos)(integer *verbose, integer *value, integer *narg, double *du
 	  sciprint("\nDash Style %d:<",(int)*value);
 	  for ( i =0 ; i < value[1]; i++)
 	    sciprint("%d ",(int)value[i+2]);
-	  Scistring(">\n");
+	  sciprint(">\n");
 	}
     }
 }
@@ -859,7 +860,7 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       *v3 = 1;
       return;
     }
@@ -888,16 +889,16 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
   /* don't forget black and white */
   mm = m;
   if (!(Xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     return;
   }
   if (!(Xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(Xgc->Red);
     return;
   }
   if (!(Xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(Xgc->Red);
     FREE(Xgc->Green);
     return;
@@ -944,7 +945,7 @@ void C2F(getcolormapPos)(integer *v1, integer *v2, integer *v3, double *val)
   }
 
 /*   if (*v2 != 3 ||  *v1 < 0) { */
-/*     Scistring("Colormap must be a m x 3 array \n"); */
+/*     sciprint("Colormap must be a m x 3 array \n"); */
 /*     *v3 = 1; */
 /*     return; */
 /*   } */
@@ -965,7 +966,7 @@ void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, int
   }
 
   if (*v2 != 3 ||  *v1 < 0) {
-    Scistring("Colormap must be a m x 3 array \n");
+    sciprint("Colormap must be a m x 3 array \n");
     *v3 = 1;
     return;
   }
@@ -1158,7 +1159,7 @@ void C2F(gethidden3dPos)(integer *verbose, integer *num, integer *narg, double *
 
 void C2F(semptyPos)(integer *v1, integer *v2, integer *v3, integer *v4)
 {
-  /* if ( *verbose ==1 ) Scistring("\n No operation "); */
+  /* if ( *verbose ==1 ) sciprint("\n No operation "); */
 }
 
 void C2F(setwwhowPos)(integer *verbose, integer *v2, integer *v3, integer *v4)
@@ -1169,7 +1170,7 @@ void C2F(setwwhowPos)(integer *verbose, integer *v2, integer *v3, integer *v4)
 
 void C2F(gemptyPos)(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 #define NUMSETFONC 33 /* NG */
@@ -2368,7 +2369,7 @@ void C2F(xsetfontPos)(integer *fontid, integer *fontsize, integer *v3, integer *
   if ( FontInfoTabPos[i].ok !=1 )
     {
       /* currently this case occurs only when i=FONTNUMBER-1 */
-      Scistring("\n Sorry This Font is Not available: use default font (Times)\n");
+      sciprint("\n Sorry This Font is Not available: use default font (Times)\n");
       i = 2;
     }
   ScilabGCPos.FontId = i;

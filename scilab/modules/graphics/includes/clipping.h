@@ -98,5 +98,31 @@ void C2F(clipPolyLine)( integer       n     ,
  */
 void getPixelClipping( sciPointObj * pObj, SClipRegion * clipping ) ;
 /*----------------------------------------------------------------------------------------*/
+/**
+ * Set the clipping rectangl.
+ * Note that clipping is not supported at all in 3D mode for now :
+ * This assertion includes axes (in 3D), surfaces and parametric curves objects.
+ * @author Djalel ABDEMOUCHE
+ * 29/11/2002
+ */
+void sciClip ( sciPointObj * pobj ) ;
+
+/**
+ * Clear the clipping rectangle 
+ * @author Djalel ABDEMOUCHE
+ * 29/11/2002
+ */
+void sciUnClip ( sciPointObj * pobj ) ;
+/*----------------------------------------------------------------------------------------*/
+/**
+ * use current scale to set the clipping rectangle 
+ */
+void frame_clip_on(  void ) ;
+
+/**
+ * disable clipping (to be called after frame_clip_on
+ */
+void frame_clip_off( void ) ;
+/*----------------------------------------------------------------------------------------*/
 
 #endif // __SCI_CLIPPING__

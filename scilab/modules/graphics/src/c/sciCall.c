@@ -18,6 +18,7 @@
 #include "PloEch.h"
 #include "Axes.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -481,7 +482,7 @@ void Objplot3d ( char    * fname ,
     /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
     loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
     if ( loc == NULL)    
-      Scistring("Objplot3d : No more Place to store all the labels\n");
+      sciprint("Objplot3d : No more Place to store all the labels\n");
   
     strcpy(loc,legend);
   

@@ -1,11 +1,13 @@
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
- *    jpc@cermics.enpc.fr 
+ *    Copyright (C) 1998-2001 Enpc
+ *    Copyright INRIA 2006
+ *    Jean-Philippe Chancelier - jpc@cermics.enpc.fr
+ *    Jean-Baptiste Silvy
  *
  *    modified by Bruno Pincon 01/02/2001 for gain in speed and added 
  *    possibilities to set zmin, zmax by the user and also to set the 
- *    first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
+ *    first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr
  *
 for entities handling
  --------------------------------------------------------------------------*/
@@ -22,6 +24,8 @@ for entities handling
 #include "BuildObjects.h"
 #include "DrawObjects.h"
 #include "Xcall1.h"
+#include "MALLOC.h"
+#include "sciprint.h"
 
 extern int version_flag(void); /* NG */
 
@@ -344,14 +348,14 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
  
   /* allocations for some arrays ... */
   nz = color_max - color_min + 1;
-  zone = graphic_alloc(2,(*Nnode),sizeof(int));
-  zlevel = graphic_alloc(3,nz+1,sizeof(double));
-  fill  = graphic_alloc(4,nz+2,sizeof(int));
+  zone   = MALLOC( *Nnode * sizeof(int)    ) ; /*graphic_alloc(2,(*Nnode),sizeof(int)); */
+  zlevel = MALLOC( (nz+1) * sizeof(double) ) ;/* graphic_alloc(3,nz+1,sizeof(double));*/
+  fill   = MALLOC( (nz+2) * sizeof(int)    ) ; /*graphic_alloc(4,nz+2,sizeof(int));*/
   if ( (zone == NULL) || (zlevel == NULL) || (fill  == NULL)) 
-    {
-      Scistring("fec: malloc No more Place\n");
-      return;
-    }
+  {
+    sciprint("fec: malloc No more Place\n");
+    return;
+  }
 
   /* compute the fill array (fill = - num color) */
   fill[0] = -col_under_min;
@@ -432,6 +436,11 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
 	PaintTriangle(sx, sy, fxy, zxy, zlevel, fill, with_mesh);
       }
     }
+
+  FREE( zone   ) ;
+  FREE( zlevel ) ;
+  FREE( fill   ) ;
+
 
   frame_clip_off();
 }

@@ -6,6 +6,8 @@
 *    Jean-Baptiste Silvy
 --------------------------------------------------------------------------*/
 
+#include "machine.h"
+
 int C2F(plot2d)(double    x[]      ,
                 double    y[]      ,
                 integer * n1       ,
@@ -19,3 +21,5 @@ int C2F(plot2d)(double    x[]      ,
                 integer   lstr2     ) ;
 
 int C2F(xgrid)( integer * style ) ;
+
+void Legends( integer * style, integer * n1, char * legend ) ;

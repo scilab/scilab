@@ -3697,6 +3697,7 @@ void DeleteWindowToList( integer num )
   if ( window->lpgw->szMenuName != NULL )
   {
     FREE(window->lpgw->szMenuName) ;
+    window->lpgw->szMenuName = NULL ;
   }
 
   if ( window->CurPixmapStatus == 1) 

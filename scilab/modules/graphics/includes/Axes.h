@@ -124,5 +124,15 @@ void updateScaleIfRequired( sciPointObj * pSubWin ) ;
  */
 void drawAxesGrid( sciPointObj * psubwin ) ;
 /*--------------------------------------------------------------------------------------*/
+extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
+extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD); /* DRAWINGS */
+void DrawAxesBackground( void ) ;
+int labels2D_draw( sciPointObj * psubwin ) ;
+void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG) ;
+void axis_draw2(char strflag[]) ;
+void Sci_Axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
+              char *str[], int subtics, char *format, int fontsize, int textcolor, 
+              int fontstyle, int ticscolor, char logflag, int seg_flag, int axisbuild_flag) ;
+/*--------------------------------------------------------------------------------------*/
 
 #endif /*__SCI_AXES_H_*/

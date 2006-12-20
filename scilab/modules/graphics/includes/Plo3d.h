@@ -37,4 +37,6 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 
 int  triangleSort(integer *polyxin, integer *polyyin, integer *fillin, integer *polyx, integer *polyy, integer *fill);
 
+int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag) ;
+
 #endif /* _PLO3D_H_ */

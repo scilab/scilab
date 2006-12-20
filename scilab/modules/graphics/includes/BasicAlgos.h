@@ -71,6 +71,11 @@ double * createNewArrayFromSource( int destSize, const double src[], int srcSize
 void destroyStringArray( char * src[], int nbStrings ) ;
 
 /**
+ * allocate a copy of a double array
+ */
+double * createDoubleArrayCopy( const double src[], int nbElement ) ;
+
+/**
  * allocate a copy of a int array.
  */
 int * createIntArrayCopy( const int src[], int nbElement ) ;

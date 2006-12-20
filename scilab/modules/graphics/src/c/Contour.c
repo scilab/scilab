@@ -11,6 +11,7 @@
 #include "Graphics.h" 
 #include "PloEch.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 #include "GetProperty.h"
 
@@ -429,7 +430,7 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
   if ( (itg_cont == NULL) && n1*n2 != 0) check= 0;
   if ( check == 0) 
     {
-      Scistring("contourI_: Running out of memory\n");
+      sciprint("contourI_: Running out of memory\n");
       return;
     }
   /* just a parametrization of the boundary points */
@@ -531,7 +532,7 @@ static void look(ptr_level_f func, integer i, integer j, integer ib, integer jb,
 	      y_cont(j));
       break;
       default :
-	Scistring(" Error in case wrong value ");
+	sciprint(" Error in case wrong value ");
       break;
     }
   wflag=1;

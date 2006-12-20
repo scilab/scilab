@@ -45,6 +45,7 @@ extern  char  *getenv();
 #include "Graphics.h" 
 #include "periGif.h"
 #include "color.h"
+#include "sciprint.h"
 #include "../../src/gd/gd.h"
 #include "bcg.h" /* NG */
 
@@ -411,7 +412,7 @@ void C2F(getcurwinGif)(integer *verbose, integer *intnum, integer *narg, double 
   *narg =1 ;
   *intnum = ScilabGCGif.CurWindow ;
   if (*verbose == 1) 
-    Scistring("\nJust one graphic page at a time ");
+    sciprint("\nJust one graphic page at a time ");
 }
 
 /** Set a clip zone (rectangle ) **/
@@ -471,7 +472,7 @@ void C2F(getclipGif)(integer *verbose, integer *x, integer *narg, double *dummy)
 		 ScilabGCGif.CurClipRegion[2],
 		 ScilabGCGif.CurClipRegion[3]);
       else 
-	Scistring("\nNo Clip Region");
+	sciprint("\nNo Clip Region");
     }
 }
 
@@ -499,9 +500,9 @@ void C2F(getabsourelGif)(integer *verbose, integer *num, integer *narg, double *
   if (*verbose == 1) 
     {
       if (ScilabGCGif.CurVectorStyle == CoordModeOrigin)
-	Scistring("\nTrace Absolu");
+	sciprint("\nTrace Absolu");
       else 
-	Scistring("\nTrace Relatif");
+	sciprint("\nTrace Relatif");
     }
 }
 
@@ -554,7 +555,7 @@ void C2F(idfromnameGif)(char *name1, integer *num)
      *num=AluStrucGif[i].id;
  if (*num == -1 ) 
    {
-     Scistring("\n Use the following keys :");
+     sciprint("\n Use the following keys :");
      for ( i=0 ; i < 16 ; i++)
        sciprint("\nkey %s -> %s\r\n",AluStrucGif[i].name,
 	       AluStrucGif[i].info);
@@ -802,7 +803,7 @@ void C2F(get_dash_or_color_Gif)(integer *verbose, integer *value, integer *narg,
    }
  *value=ScilabGCGif.CurDashStyle+1;
  if ( *value == 1) 
-   { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+   { if (*verbose == 1) sciprint("\nLine style = Line Solid");}
  else 
    {
      value[1]=4;
@@ -813,7 +814,7 @@ void C2F(get_dash_or_color_Gif)(integer *verbose, integer *value, integer *narg,
 	 sciprint("\nDash Style %d:<",(int)*value);
 	 for ( i =0 ; i < value[1]; i++)
 	   sciprint("%d ",(int)value[i+2]);
-	 Scistring(">\n");
+	 sciprint(">\n");
        }
    }
 }
@@ -823,7 +824,7 @@ void C2F(getdashGif)(integer *verbose, integer *value, integer *narg, double *du
  *narg =1 ;
  *value=ScilabGCGif.CurDashStyle+1;
  if ( *value == 1) 
-   { if (*verbose == 1) Scistring("\nLine style = Line Solid");}
+   { if (*verbose == 1) sciprint("\nLine style = Line Solid");}
  else 
    {
      value[1]=4;
@@ -834,7 +835,7 @@ void C2F(getdashGif)(integer *verbose, integer *value, integer *narg, double *du
 	 sciprint("\nDash Style %d:<",(int)*value);
 	 for ( i =0 ; i < value[1]; i++)
 	   sciprint("%d ",(int)value[i+2]);
-	 Scistring(">\n");
+	 sciprint(">\n");
        }
    }
 }
@@ -927,7 +928,7 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       *v3 = 1;
       return;
     }
@@ -946,12 +947,12 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
     sciprint(COLORMAP_WARNING,gdMaxColors-2) ;
       m1 = gdMaxColors-2;
     if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) {
-      Scistring("Not enough memory\n");
+      sciprint("Not enough memory\n");
       *v3 = 1;
       return;
     }
     if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) {
-      Scistring("Not enough memory\n");
+      sciprint("Not enough memory\n");
       FREE(cmap);
       *v3 = 1;
       return;
@@ -1035,16 +1036,16 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
   /* don't forget black and white */
   mm = m;
   if (!(Xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     return;
   }
   if (!(Xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(Xgc->Red);
     return;
   }
   if (!(Xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(Xgc->Red);
     FREE(Xgc->Green);
     return;
@@ -1077,7 +1078,7 @@ void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, int
   *v3 = 0;
 
   if (*v2 != 3 ||  *v1 < 0 ) {
-    Scistring("Colormap must be a m x 3 array \n");
+    sciprint("Colormap must be a m x 3 array \n");
     *v3 = 1;
     return;
   }
@@ -1282,7 +1283,7 @@ void C2F(setwwhowGif)(integer *verbose, integer *v2, integer *v3, integer *v4)
 
 void C2F(gemptyGif)(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 #define NUMSETFONC 32
@@ -2020,7 +2021,7 @@ static void FileInitGif(void)
 
 /*     if (m>gdMaxColors-3) {/\* reduce the number of colors *\/ */
 /*       if ( (bigcmap = (double*) MALLOC(3*m * sizeof(double)))== NULL) { */
-/* 	Scistring("Not enough memory\n"); */
+/* 	sciprint("Not enough memory\n"); */
 /* 	return; */
 /*       } */
 /*       for ( i=0; i < m; i++) { /\* get the previously defined colormap *\/ */
@@ -2033,12 +2034,12 @@ static void FileInitGif(void)
 /*       } */
 /*       m1 = gdMaxColors-2; */
 /*       if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) { */
-/* 	Scistring("Not enough memory\n"); */
+/* 	sciprint("Not enough memory\n"); */
 /* 	FREE(bigcmap); */
 /* 	return; */
 /*       } */
 /*       if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) { */
-/* 	Scistring("Not enough memory\n"); */
+/* 	sciprint("Not enough memory\n"); */
 /* 	FREE(bigcmap); */
 /* 	FREE(cmap); */
 /* 	return; */
@@ -2398,7 +2399,7 @@ void C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, intege
   SciPath=getSCIpath();
   if (SciPath==NULL)
     {
-      Scistring("The SCI environment variable is not set\n");
+      sciprint("The SCI environment variable is not set\n");
       return;
     }
   fname[0]=0;
@@ -2584,7 +2585,7 @@ static void FileInitFromScreenGif(void)
     if (m>gdMaxColors-3) {/* reduce the number of colors */
       sciprint(COLORMAP_WARNING,gdMaxColors-2) ;
       if ( (bigcmap = (double*) MALLOC(3*m * sizeof(double)))== NULL) {
-	Scistring("Not enough memory\n");
+	sciprint("Not enough memory\n");
 	return;
       }
       for ( i=0; i < m; i++) { /* get the previously defined colormap */
@@ -2597,12 +2598,12 @@ static void FileInitFromScreenGif(void)
       }
       m1 = gdMaxColors-2;
       if ( (cmap = (double*) MALLOC(3*m1 * sizeof(double)))== NULL) {
-	Scistring("Not enough memory\n");
+	sciprint("Not enough memory\n");
 	FREE(bigcmap);
 	return;
       }
       if ( (ind = (int*) MALLOC(m * sizeof(int)))== NULL) {
-	Scistring("Not enough memory\n");
+	sciprint("Not enough memory\n");
 	FREE(bigcmap);
 	FREE(cmap);
 	return;

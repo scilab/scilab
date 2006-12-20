@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\axesScale.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\BasicAlgos.c"
 				>
 			</File>
@@ -229,7 +233,63 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\handleDrawing\drawArcEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawAxesEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawCompoundEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawFecEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawFigureEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawGrayplotEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawLegendEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\drawMarks.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawMergeEntity.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\DrawObjects.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawPolylineEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawRectangleEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawSegsEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawSubWinEntity.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawSurfaceEntity.c"
 				>
 			</File>
 			<File
@@ -758,6 +818,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\graphicSession.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GraphicZoom.c"
 				>
 			</File>
 			<File
@@ -1774,6 +1838,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\Vertices.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\WindowList.c"
 				>
 			</File>
@@ -1796,6 +1864,10 @@
 			>
 			<File
 				RelativePath=".\includes\Axes.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\axesScale.h"
 				>
 			</File>
 			<File
@@ -1847,7 +1919,63 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\handleDrawing\drawArcEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawAxesEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawCompoundEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawFecEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawFigureEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawGrayplotEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawLegendEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\drawMarks.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawMergeEntity.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\DrawObjects.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawPolylineEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawRectangleEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawSegsEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawSubWinEntity.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\handleDrawing\drawSurfaceEntity.h"
 				>
 			</File>
 			<File
@@ -1856,6 +1984,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Events.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Fec.h"
 				>
 			</File>
 			<File
@@ -1904,6 +2036,14 @@
 			</File>
 			<File
 				RelativePath=".\includes\graphicSession.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\GraphicZoom.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Gray.h"
 				>
 			</File>
 			<File
@@ -1972,6 +2112,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Plo3d.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Plo3dn.h"
 				>
 			</File>
 			<File
@@ -2384,6 +2528,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\Vect2Matrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\Vertices.h"
 				>
 			</File>
 			<File

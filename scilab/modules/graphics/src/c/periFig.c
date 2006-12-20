@@ -46,6 +46,7 @@
 #include "color.h"
 #include "bcg.h" /* NG */
 #include "clipping.h"
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -254,7 +255,7 @@ void C2F(getcurwinXfig)(integer *verbose, integer *intnum, integer *narg, double
   *narg =1 ;
   *intnum = ScilabGCXfig.CurWindow ;
   if (*verbose == 1) 
-    Scistring("\nJust one graphic page at a time ");
+    sciprint("\nJust one graphic page at a time ");
 }
 
 /** Set a clip zone (rectangle ) **/
@@ -316,7 +317,7 @@ void C2F(getclipXfig)(integer *verbose, integer *x, integer *narg, double *dummy
 		 ScilabGCXfig.CurClipRegion[2],
 		 ScilabGCXfig.CurClipRegion[3]);
       else 
-	Scistring("\nNo Clip Region");
+	sciprint("\nNo Clip Region");
     }
 }
 
@@ -344,9 +345,9 @@ void C2F(getabsourelXfig)(integer *verbose, integer *num, integer *narg, double 
   if (*verbose == 1) 
     {
       if (ScilabGCXfig.CurVectorStyle == CoordModeOrigin)
-	Scistring("\nTrace Absolu");
+	sciprint("\nTrace Absolu");
       else 
-	Scistring("\nTrace Relatif");
+	sciprint("\nTrace Relatif");
     }
 }
 
@@ -403,7 +404,7 @@ void C2F(idfromnameXfig)(char *name1, integer *num)
      *num=AluStrucXfig_[i].id;
  if (*num == -1 ) 
    {
-     Scistring("\n Use the following keys :");
+     sciprint("\n Use the following keys :");
      for ( i=0 ; i < 16 ; i++)
        {
 	 sciprint("\nkey %s ",AluStrucXfig_[i].name);
@@ -648,7 +649,7 @@ void C2F(getdashXfig)(integer *verbose, integer *value, integer *narg, double *d
     {
       sciprint("\nDash Style %d.",(int) *value);
       sciprint("%d %d ",(int)value[1],(int)value[2]);
-      Scistring(">\n");
+      sciprint(">\n");
     }
  
 }
@@ -747,14 +748,14 @@ void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a, integer *v3)
     return;
   }
  
-  Scistring("Warning : you will have to move the colors definition\n");
-  Scistring(" at the top of the xfig file \n");
+  sciprint("Warning : you will have to move the colors definition\n");
+  sciprint(" at the top of the xfig file \n");
 
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
         a[i+2*m] < 0 || a[i+2*m]> 1) {
-      Scistring("RGB values must be between 0 and 1\n");
+      sciprint("RGB values must be between 0 and 1\n");
       *v3 = 1;
       return;
     }
@@ -790,16 +791,16 @@ void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a, integer *v3)
   /* don't forget black and white */
   mm = m;
   if (!(Xgc->Red = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     return;
   }
   if (!(Xgc->Green = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(Xgc->Red);
     return;
   }
   if (!(Xgc->Blue = (float *) MALLOC(mm*sizeof(float)))) {
-    Scistring("XgcAllocColors: unable to alloc\n");
+    sciprint("XgcAllocColors: unable to alloc\n");
     FREE(Xgc->Red);
     FREE(Xgc->Green);
     return;
@@ -863,10 +864,10 @@ void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, in
     return;
   }
  
-  Scistring("Warning : you will have to move the colors definition\n");
-  Scistring(" at the top of the xfig file \n");
+  sciprint("Warning : you will have to move the colors definition\n");
+  sciprint(" at the top of the xfig file \n");
   if (*v2 != 3 ||  *v1 < 0) {
-    Scistring("Colormap must be a m x 3 array \n");
+    sciprint("Colormap must be a m x 3 array \n");
     *v3 = 1;
     return;
   }
@@ -1020,7 +1021,7 @@ void C2F(gethidden3dXfig)(integer *verbose, integer *num, integer *narg, double 
 /*   i = Min(FONTNUMBER-1,Max(*fontid,0)); */
 /*   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0)); */
 /*   if ( FontInfoTabXfig_[i].ok !=1 ) */
-/*     Scistring("\n Sorry This Font is Not available\n"); */
+/*     sciprint("\n Sorry This Font is Not available\n"); */
 /*   else  */
 /*    { */
 /*      ScilabGCXfig.FontId = i; */
@@ -1046,7 +1047,7 @@ void C2F(xsetfontXfig)(integer *fontid, integer *fontsize, integer *v3, integer 
   if ( FontInfoTabXfig_[i].ok !=1 )
     {
       /* currently this case occurs only when i=FONTNUMBER-1 */
-      Scistring("\n Sorry This Font is Not available: use default font (Times)\n");
+      sciprint("\n Sorry This Font is Not available: use default font (Times)\n");
       i = 2;
     }
   ScilabGCXfig.FontId = i;
@@ -1122,12 +1123,12 @@ void C2F(getcursymbolXfig)(integer *verbose, integer *symb, integer *narg, doubl
 
 void C2F(semptyXfig)(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 void C2F(gemptyXfig)(integer *verbose, integer *v2, integer *v3, double *dummy)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
 

@@ -19,6 +19,8 @@
 #include "BuildObjects.h"
 #include "Axes.h"
 #include "Xcall1.h"
+#include "Gray.h"
+#include "sciprint.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -457,7 +459,7 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
     xm = graphic_alloc(0,(*n2)+1,sizeof(int));
     ym = graphic_alloc(1,(*n1)+1,sizeof(int));
     if ( xm == 0 || ym == 0 ) {
-      Scistring("Xgray: running out of memory\n");return 0;}
+      sciprint("Xgray: running out of memory\n");return 0;}
     frame_clip_on();
     for ( j =0 ; j < (*n2+1) ; j++)	 
       xm[j]= (int) (( xx1[1]*j + xx1[0]*((*n2)-j) )/((double) *n2));
@@ -503,7 +505,7 @@ static void GraySquare1_base(integer *x, integer *y, double *z, integer n1, inte
   C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
-extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2)
+void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2)
 {
  
   if ( GetDriverId() == 0 ) 
@@ -518,7 +520,7 @@ extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n
 /* Only for new graphics */
 /* NG: New Graphics */
 /* reverse means reverse case on X and/or Y axis */
-extern void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin)
+void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin)
 {
   int i,j;
   integer verbose=0,narg,fill[1],cpat,xz[2];
@@ -566,16 +568,7 @@ extern void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1
   
 }
 
-
-
-
-
-
-
-
-
-
-extern void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2)
+void GraySquareDirect(integer *x, integer *y, double *z, integer n1, integer n2)
 {
   integer i,j,verbose=0,whiteid,narg,fill,cpat,xz[2];
   integer vertexx[5], vertexy[5];

@@ -9,6 +9,7 @@
 #include "math_graphics.h"
 #include "GetProperty.h"
 #include "Xcall1.h"
+#include "SetProperty.h"
 
 /*-------------------------------------------------------------------------------------*/
 /* Functions taken from periX11.c used here to work on every plateform                 */
@@ -386,5 +387,90 @@ void getPixelClipping( sciPointObj * pObj, SClipRegion * clipping )
   clipping->bottomY = YDouble2Pixel( clipRegion[1] ) ;
   clipping->topY = YDouble2Pixel( clipRegion[1] - clipRegion[3] ) ;
   
+}
+/*-------------------------------------------------------------------------------------*/
+void sciClip (sciPointObj *pobj)
+{
+  int x,y,w,h; 
+  int value;
+  double *clip_region = NULL;
+
+  sciPointObj * psubwin = sciGetParentSubwin(pobj);
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+
+  value = sciGetIsClipping(pobj);     /* clipping state */
+
+  if(value == -1) return;
+  if(ppsubwin->is3d == TRUE) return; /* no clipping in 3d */
+
+  clip_region = sciGetClipping(pobj); /* clipping region */
+
+
+  if(sciGetIsClipRegionValuated(pobj) == 0)
+    value = 0; /* we use the 'clipgrf' value instead */
+
+  if (value == 0){
+    double clip[4];
+    double tmpx, tmpy, tmpw, tmph;
+
+    tmpw = fabs(ppsubwin->FRect[2] - ppsubwin->FRect[0]);
+    tmph = fabs(ppsubwin->FRect[3] - ppsubwin->FRect[1]);
+
+    tmpx = ppsubwin->FRect[0]; /* xmin */
+    tmpy = ppsubwin->FRect[3]; /* ymax */
+
+    clip[0] = tmpx;
+    clip[1] = tmpy;
+    clip[2] = tmpw;
+    clip[3] = tmph;
+
+    sciSetClipping(pobj,clip);
+
+    frame_clip_on();
+  }
+  else if (value > 0)
+  { 
+    double tmpw, tmph;
+    double tmpx, tmpy;
+
+    tmpw = clip_region[2];
+    tmph = clip_region[3];
+
+    tmpx = clip_region[0];
+    tmpy = clip_region[1];
+
+    if(ppsubwin->axes.reverse[0] == TRUE)
+      tmpx = tmpx + tmpw;
+
+    if(ppsubwin->axes.reverse[1] == TRUE)
+      tmpy = tmpy - tmph;
+
+    x = XDouble2Pixel( tmpx);
+    y = YDouble2Pixel( tmpy);
+    w = WDouble2Pixel( tmpx, tmpw);
+    h = HDouble2Pixel( tmpy, tmph);
+    C2F(dr)("xset","clipping",&x, &y, &w, &h,PI0,PI0,PD0,PD0,PD0,PD0,4L,8L);
+  }
+}
+/*-------------------------------------------------------------------------------------*/
+void sciUnClip ( sciPointObj * pobj )
+{
+  int value = sciGetIsClipping(pobj);     /* clipping state */
+
+  if ( value > -1 )
+  {
+    C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L) ;
+  }
+}
+/*-------------------------------------------------------------------------------------*/
+void frame_clip_on( void )
+{
+  C2F(dr)("xset","clipping",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+    &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+}
+/*-------------------------------------------------------------------------------------*/
+void frame_clip_off( void )
+{
+  C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 /*-------------------------------------------------------------------------------------*/

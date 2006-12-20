@@ -56,6 +56,7 @@
 #include "periFig.h"
 #include "periGif.h"
 #include "Xcall1.h"
+#include "sciprint.h"
 
 /* should be removed when scilab will be full ansi C */
 
@@ -63,6 +64,9 @@
 #define const 
 #endif 
 
+int WindowsPrintScreen = 0;
+int Printer_XRes = 0;
+int Printer_YRes = 0;
 
 /*---------------------------------------------------------------
  * The basic graphic driver is X11 
@@ -308,7 +312,7 @@ void C2F(SetDriver)(char *x0, integer *v2,integer * v3,integer * v4, integer *v5
       DriverId = 0;
       break;
     default:
-      Scistring("\n Wrong driver name I'll use X11");
+      sciprint("\n Wrong driver name I'll use X11");
       strcpy(DriverName,"X11");
       DriverId = 0;
       break;
@@ -368,6 +372,60 @@ static void C2F(all)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,int
 
 
 /*----------------------------------END---------------------------*/
+extern int GetScreenDPI(int *ixres, int *iyres) ;
+/*---------------------------------------------------------------------------------------------------*/
+int GetDPIFromDriver(int DPI[2])
+{
+  int driver = GetDriverId(); /* return the first letter of the driver name (see XCall.c) */
+  int succeed = 0;
+  int ixres, iyres;
 
+  switch(driver)
+  {
+  case 0: 
+    if(WindowsPrintScreen == 1)
+    {
+      ixres = Printer_XRes;
+      iyres = Printer_YRes;
+      succeed = 1;
+    }
+    else
+    {
+      succeed = GetScreenDPI(&ixres,&iyres);
+      if(succeed == -1){
+        ixres = (int)72.; /* default value*/
+        iyres = (int)72.; /* default value*/
+      }
+    }
+    break;
+  case 1: /* Pos */
+    /*       printf("DRIVERS POS enabled -- -- -- --\n"); */
+    /* when using Pos driver, the output file is 6000x4240 pixels */
+    /* computed DPI: height : 6000/(30cm/2.54) = 508 ; width: 4240/(21.20/2.54) = 508 */
+    ixres = (int)(524.*1.5);
+    iyres = (int)(524.*1.5);
+    break;
+  case 2: /* Fig. */
+    /*       printf("DRIVERS FIG enabled -- -- -- --\n"); */
+    /* when using Pos driver, the output file is 6000x4240 pixels */
+    /* computed DPI: height : 9600/(8inches) = 1200 ; width: 6784/(5.7inches) = 1190 */
+    ixres = (int)1200.;
+    iyres = (int)1190.;
+    break;
+  case 3: /* Gif & PPM driver */ /* NOT SURE: may be 72. avery time... */
+  default:
+    succeed = GetScreenDPI(&ixres,&iyres);
+    if(succeed == -1){
+      ixres = (int)72.; /* default value*/	
+      iyres = (int)72.; /* default value*/
+    }
+    break;
+  }
 
+  DPI[0] = ixres;
+  DPI[1] = iyres;
+
+  return 0;
+}
+/*---------------------------------------------------------------------------------------------------*/
 

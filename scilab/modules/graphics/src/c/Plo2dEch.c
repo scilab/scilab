@@ -20,11 +20,13 @@
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "Plo2dEch.h"
+#include "Vertices.h"
+#include "GraphicZoom.h"
+#include "axesScale.h"
 
 #include "MALLOC.h" /* MALLOC */
 
-int GlobalFlag_Zoom3dOn=0;
-int index_vertex=0;
+//int index_vertex=0;
 /* static double xz1,yz1; */
 /* #define pixel2TRX(x) xz1= Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1) */
 /* #define pixel2TRY(y) yz1= Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1) */
@@ -186,7 +188,7 @@ static void set_scale_win(listptr, i,scale)
       /* window i does not exist add an entry for it */
       if ((*listptr = (ScaleList *) MALLOC( sizeof (ScaleList)))==0)
 	{
-	  Scistring("AddWindowScale_ memory exhausted\n");
+	  sciprint("AddWindowScale_ memory exhausted\n");
 	  return;
 	}
       else 
@@ -197,7 +199,7 @@ static void set_scale_win(listptr, i,scale)
 	  if ( (*listptr)->scales == 0) 
 	    {
 	      *listptr = 0;
-	      Scistring("AddWindowScale_ memory exhausted\n");
+	      sciprint("AddWindowScale_ memory exhausted\n");
 	    }
 	  return ;
 	}
@@ -225,7 +227,7 @@ static void set_scale_win(listptr, i,scale)
 	  /* subwin does not exists we add it a the begining of the list */
 	  if (( loc = new_wcscale(scale))== NULL)
 	    {
-	      Scistring("AddWindowScale_ memory exhausted\n");
+	      sciprint("AddWindowScale_ memory exhausted\n");
 	      return ;
 	    }
 	  else 
@@ -553,7 +555,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	{
 	  if ( FRect[0] <= 0 || FRect[2] <= 0 ) 
 	    {
-	      Scistring("Warning: negative boundaries on x scale with a log scale \n");
+	      sciprint("Warning: negative boundaries on x scale with a log scale \n");
 	      FRect[0]=1.e-8;FRect[2]=1.e+8;
 	    } 
 	  FRect[0]=log10(FRect[0]);
@@ -563,7 +565,7 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	{
 	  if ( FRect[1] <= 0 || FRect[3] <= 0 ) 
 	    {
-	      Scistring("Warning: negative boundaries on y scale with a log scale \n");
+	      sciprint("Warning: negative boundaries on y scale with a log scale \n");
 	      FRect[1]=1.e-8;FRect[3]=1.e+8;
 	    } 
 	  FRect[1]=log10(FRect[1]);
@@ -803,21 +805,6 @@ void get_cwindow_dims(int wdims[2])
 {
   int verbose=0,narg;
   C2F(dr)("xget","wdim",&verbose,wdims,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
-
-/*--------------------------------------------------------------------
- * use current scale to set the clipping rectangle 
- *--------------------------------------------------------------------*/
-
-void frame_clip_on()
-{
-  C2F(dr)("xset","clipping",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
-	  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-}
-
-void frame_clip_off()
-{
-  C2F(dr)("xset","clipoff",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
 /*--------------------------------------------------------------------
@@ -1239,16 +1226,16 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 		  		  
 		  /* determine how many vertices we will have to draw */
 		  /* this is used for 3d zoom (to know size of the global vector) */
-		  index_vertex = 0;
+		  setVertexIndex( 0 ) ;
 
 		  /* this flag is used inside trans3d called many times by sciDrawObj */
-		  GlobalFlag_Zoom3dOn=1;
+		  setZoom3dStatus( TRUE );
 	      
 		  psonstmp2 = sciGetLastSons (psousfen);
 		  
 		  sciDrawObj(psousfen); /* see GlobalFlag_Zoom3dOn impact flag in sciDrawObj & trans3d functions */
 		  
-		  GlobalFlag_Zoom3dOn=0;
+		  setZoom3dStatus( FALSE );
 		  
 		  SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
 
@@ -1258,7 +1245,7 @@ int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 /* 		  printf("zmin = %lf \t zmax = %lf\n",zmin,zmax); */
 /* 		  printf("------------------------\n\n"); */
 		
-		  for(i=0;i<index_vertex;i++)
+		  for( i = 0 ; i < getVertexIndex() ; i++ )
 		    {
 		      int xp,yp;
 		      double x,y,z;
@@ -1424,7 +1411,7 @@ int zoom()
     GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     if (strcmp("Rec",driver) != 0)
       {
-	Scistring("\n Use the Rec driver to zoom " );
+	sciprint("\n Use the Rec driver to zoom " );
 	return 0;
       }
     ierr=zoom_get_rectangle(bbox,x_pixel,y_pixel);
@@ -1450,7 +1437,7 @@ extern void unzoom()
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (strcmp("Rec",driver) != 0 && version_flag() !=0)  /* F.Leray 03.03.04*/
     {
-      Scistring("\n Use the Rec driver to unzoom " );
+      sciprint("\n Use the Rec driver to unzoom " );
       return;
     }
   else

@@ -39,6 +39,7 @@
 #include "Rec.h"
 #include "Xcall1.h"
 #include "RecSaveLoad.h"
+#include "sciprint.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -114,7 +115,7 @@ static int LoadXcall1()
     }
   else 
     {
-      Scistring("\nLoad Plot (xcall1): No more place \n");
+      sciprint("\nLoad Plot (xcall1): No more place \n");
       return(0);
     }
   return(1);
@@ -140,7 +141,7 @@ static int LoadEch()
     }
   else 
     {
-      Scistring("\nLoad Plot (Ech): No more place \n");
+      sciprint("\nLoad Plot (Ech): No more place \n");
       return(0);
     }
   return(1);
@@ -163,7 +164,7 @@ static int LoadNEch()
     }
   else 
     {
-      Scistring("\nLoad Plot (Ech): No more place \n");
+      sciprint("\nLoad Plot (Ech): No more place \n");
       return(0);
     }
   return(1);
@@ -209,7 +210,7 @@ static int LoadPlot()
     }
   else 
     {
-      Scistring("\nLoad Plot (plot): No more place \n");
+      sciprint("\nLoad Plot (plot): No more place \n");
       return(0);
     }
   return(1);
@@ -226,7 +227,7 @@ static int LoadSciAxis()
   struct sciaxis_rec *lplot;
   if ((lplot= ((struct sciaxis_rec *) MALLOC(sizeof(struct sciaxis_rec)))) == NULL) 
     {
-      Scistring("\nLoad Plot (grid): No more place \n");
+      sciprint("\nLoad Plot (grid): No more place \n");
       return(0);
     }
   if ( LoadC(type)== 0) return(0);
@@ -273,7 +274,7 @@ static int LoadGrid()
     }
   else 
     {
-      Scistring("\nLoad Plot (grid): No more place \n");
+      sciprint("\nLoad Plot (grid): No more place \n");
       return(0);
     }
   return(1);
@@ -305,7 +306,7 @@ static int LoadParam3D()
     }
   else
     {
-      Scistring("\nLoad Plot (param3d): No more place \n");
+      sciprint("\nLoad Plot (param3d): No more place \n");
       return(0);
     }
   return(1);
@@ -336,7 +337,7 @@ static int LoadParam3D1()
     }
   else
     {
-      Scistring("\nLoad Plot (param3d1): No more place \n");
+      sciprint("\nLoad Plot (param3d1): No more place \n");
       return(0);
     }
   return(1);
@@ -368,7 +369,7 @@ static int LoadPlot3D()
     }
   else 
     {
-      Scistring("\nLoad Plot (plot3d): No more place \n");
+      sciprint("\nLoad Plot (plot3d): No more place \n");
       return(0);
     }
   return(1);
@@ -404,7 +405,7 @@ static int LoadFac3D()
     }
   else 
     {
-      Scistring("\nLoad Plot (fac3d): No more place \n");
+      sciprint("\nLoad Plot (fac3d): No more place \n");
       return(0);
     }
   return(1);
@@ -446,7 +447,7 @@ static int LoadFec()
     }
   else 
     {
-      Scistring("\nLoad Plot (fec): No more place \n");
+      sciprint("\nLoad Plot (fec): No more place \n");
       return(0);
     }
   return(1);
@@ -481,7 +482,7 @@ static int LoadFec_n()
     }
   else 
     {
-      Scistring("\nLoad Plot (fec): No more place \n");
+      sciprint("\nLoad Plot (fec): No more place \n");
       return(0);
     }
   return(1);
@@ -521,7 +522,7 @@ static int LoadContour()
     }
   else 
     {
-      Scistring("\nLoad Plot (contour): No more place \n");
+      sciprint("\nLoad Plot (contour): No more place \n");
       return(0);
     }
   return(1);
@@ -559,7 +560,7 @@ static int LoadContour2D()
     }
   else 
     {
-      Scistring("\nLoad Plot (contour): No more place \n");
+      sciprint("\nLoad Plot (contour): No more place \n");
       return(0);
     }
   return(1);
@@ -594,7 +595,7 @@ static int LoadGray()
     }
   else 
     {
-      Scistring("\nLoad Plot (gray): No more place \n");
+      sciprint("\nLoad Plot (gray): No more place \n");
       return(0);
     }
   return(1);
@@ -623,7 +624,7 @@ static int LoadGray1()
     }
   else 
     {
-      Scistring("\nLoad Plot (gray): No more place \n");
+      sciprint("\nLoad Plot (gray): No more place \n");
       return(0);
     }
   return(1);
@@ -646,7 +647,7 @@ static int LoadGray2()
     }
   else 
     {
-      Scistring("\nLoad Plot (gray): No more place \n");
+      sciprint("\nLoad Plot (gray): No more place \n");
       return(0);
     }
   return(1);
@@ -681,7 +682,7 @@ static int LoadChamp()
     }
   else 
     {
-      Scistring("\nLoad Plot (champ): No more place \n");
+      sciprint("\nLoad Plot (champ): No more place \n");
       return(0);
     }
   return(1);
