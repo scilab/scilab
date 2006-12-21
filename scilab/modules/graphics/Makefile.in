@@ -360,7 +360,22 @@ am__objects_1 = libgraphics_la-GetCommandArg.lo \
 	libgraphics_la-gdfontt.lo libgraphics_la-gdfontg.lo \
 	libgraphics_la-gdfontl.lo libgraphics_la-bdftogd.lo \
 	libgraphics_la-xfonts.lo libgraphics_la-gd.lo \
-	libgraphics_la-StringBox.lo libgraphics_la-drawTextEntity.lo
+	libgraphics_la-StringBox.lo libgraphics_la-drawMarks.lo \
+	libgraphics_la-axesScale.lo libgraphics_la-Vertices.lo \
+	libgraphics_la-GraphicZoom.lo libgraphics_la-drawArcEntity.lo \
+	libgraphics_la-drawAxesEntity.lo \
+	libgraphics_la-drawCompoundEntity.lo \
+	libgraphics_la-drawFecEntity.lo \
+	libgraphics_la-drawFigureEntity.lo \
+	libgraphics_la-drawGrayplotEntity.lo \
+	libgraphics_la-drawLegendEntity.lo \
+	libgraphics_la-drawMergeEntity.lo \
+	libgraphics_la-drawPolylineEntity.lo \
+	libgraphics_la-drawRectangleEntity.lo \
+	libgraphics_la-drawSegsEntity.lo \
+	libgraphics_la-drawSubWinEntity.lo \
+	libgraphics_la-drawSurfaceEntity.lo \
+	libgraphics_la-drawTextEntity.lo
 am__objects_2 = libgraphics_la-sci_swap_handles.lo \
 	libgraphics_la-sci_readgif.lo libgraphics_la-sci_grayplot.lo \
 	libgraphics_la-sci_matplot1.lo libgraphics_la-sci_xfpolys.lo \
@@ -903,6 +918,23 @@ src/gd/bdftogd.c \
 src/gd/xfonts.c \
 src/gd/gd.c \
 src/c/StringBox.c \
+src/c/drawMarks.c \
+src/c/axesScale.c \
+src/c/Vertices.c \
+src/c/GraphicZoom.c \
+src/c/handleDrawing/drawArcEntity.c \
+src/c/handleDrawing/drawAxesEntity.c \
+src/c/handleDrawing/drawCompoundEntity.c \
+src/c/handleDrawing/drawFecEntity.c \
+src/c/handleDrawing/drawFigureEntity.c \
+src/c/handleDrawing/drawGrayplotEntity.c \
+src/c/handleDrawing/drawLegendEntity.c \
+src/c/handleDrawing/drawMergeEntity.c \
+src/c/handleDrawing/drawPolylineEntity.c \
+src/c/handleDrawing/drawRectangleEntity.c \
+src/c/handleDrawing/drawSegsEntity.c \
+src/c/handleDrawing/drawSubWinEntity.c \
+src/c/handleDrawing/drawSurfaceEntity.c \
 src/c/handleDrawing/drawTextEntity.c
 
 
@@ -2036,6 +2068,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-GetCommandArg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-GetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-GetProperty.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-GraphicZoom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-Gray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-HandleManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-InitObjects.Plo@am__quote@
@@ -2058,12 +2091,28 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-StringBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-StringMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-Vect2Matrix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-Vertices.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-WindowList.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-Xcall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-Xcall1.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-axesScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-bdftogd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-clipping.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-dr1Call.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawArcEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawAxesEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawCompoundEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawFecEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawFigureEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawGrayplotEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawLegendEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawMarks.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawMergeEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawPolylineEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawRectangleEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawSegsEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawSubWinEntity.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawSurfaceEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-drawTextEntity.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgraphics_la-gdfontg.Plo@am__quote@
@@ -4663,6 +4712,125 @@ libgraphics_la-StringBox.lo: src/c/StringBox.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/StringBox.c' object='libgraphics_la-StringBox.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-StringBox.lo `test -f 'src/c/StringBox.c' || echo '$(srcdir)/'`src/c/StringBox.c
+
+libgraphics_la-drawMarks.lo: src/c/drawMarks.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawMarks.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawMarks.Tpo -c -o libgraphics_la-drawMarks.lo `test -f 'src/c/drawMarks.c' || echo '$(srcdir)/'`src/c/drawMarks.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawMarks.Tpo $(DEPDIR)/libgraphics_la-drawMarks.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/drawMarks.c' object='libgraphics_la-drawMarks.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawMarks.lo `test -f 'src/c/drawMarks.c' || echo '$(srcdir)/'`src/c/drawMarks.c
+
+libgraphics_la-axesScale.lo: src/c/axesScale.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-axesScale.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-axesScale.Tpo -c -o libgraphics_la-axesScale.lo `test -f 'src/c/axesScale.c' || echo '$(srcdir)/'`src/c/axesScale.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-axesScale.Tpo $(DEPDIR)/libgraphics_la-axesScale.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/axesScale.c' object='libgraphics_la-axesScale.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-axesScale.lo `test -f 'src/c/axesScale.c' || echo '$(srcdir)/'`src/c/axesScale.c
+
+libgraphics_la-Vertices.lo: src/c/Vertices.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-Vertices.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-Vertices.Tpo -c -o libgraphics_la-Vertices.lo `test -f 'src/c/Vertices.c' || echo '$(srcdir)/'`src/c/Vertices.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-Vertices.Tpo $(DEPDIR)/libgraphics_la-Vertices.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Vertices.c' object='libgraphics_la-Vertices.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-Vertices.lo `test -f 'src/c/Vertices.c' || echo '$(srcdir)/'`src/c/Vertices.c
+
+libgraphics_la-GraphicZoom.lo: src/c/GraphicZoom.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-GraphicZoom.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-GraphicZoom.Tpo -c -o libgraphics_la-GraphicZoom.lo `test -f 'src/c/GraphicZoom.c' || echo '$(srcdir)/'`src/c/GraphicZoom.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-GraphicZoom.Tpo $(DEPDIR)/libgraphics_la-GraphicZoom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GraphicZoom.c' object='libgraphics_la-GraphicZoom.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-GraphicZoom.lo `test -f 'src/c/GraphicZoom.c' || echo '$(srcdir)/'`src/c/GraphicZoom.c
+
+libgraphics_la-drawArcEntity.lo: src/c/handleDrawing/drawArcEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawArcEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawArcEntity.Tpo -c -o libgraphics_la-drawArcEntity.lo `test -f 'src/c/handleDrawing/drawArcEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawArcEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawArcEntity.Tpo $(DEPDIR)/libgraphics_la-drawArcEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawArcEntity.c' object='libgraphics_la-drawArcEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawArcEntity.lo `test -f 'src/c/handleDrawing/drawArcEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawArcEntity.c
+
+libgraphics_la-drawAxesEntity.lo: src/c/handleDrawing/drawAxesEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawAxesEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawAxesEntity.Tpo -c -o libgraphics_la-drawAxesEntity.lo `test -f 'src/c/handleDrawing/drawAxesEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawAxesEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawAxesEntity.Tpo $(DEPDIR)/libgraphics_la-drawAxesEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawAxesEntity.c' object='libgraphics_la-drawAxesEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawAxesEntity.lo `test -f 'src/c/handleDrawing/drawAxesEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawAxesEntity.c
+
+libgraphics_la-drawCompoundEntity.lo: src/c/handleDrawing/drawCompoundEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawCompoundEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawCompoundEntity.Tpo -c -o libgraphics_la-drawCompoundEntity.lo `test -f 'src/c/handleDrawing/drawCompoundEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawCompoundEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawCompoundEntity.Tpo $(DEPDIR)/libgraphics_la-drawCompoundEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawCompoundEntity.c' object='libgraphics_la-drawCompoundEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawCompoundEntity.lo `test -f 'src/c/handleDrawing/drawCompoundEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawCompoundEntity.c
+
+libgraphics_la-drawFecEntity.lo: src/c/handleDrawing/drawFecEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawFecEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawFecEntity.Tpo -c -o libgraphics_la-drawFecEntity.lo `test -f 'src/c/handleDrawing/drawFecEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawFecEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawFecEntity.Tpo $(DEPDIR)/libgraphics_la-drawFecEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawFecEntity.c' object='libgraphics_la-drawFecEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawFecEntity.lo `test -f 'src/c/handleDrawing/drawFecEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawFecEntity.c
+
+libgraphics_la-drawFigureEntity.lo: src/c/handleDrawing/drawFigureEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawFigureEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawFigureEntity.Tpo -c -o libgraphics_la-drawFigureEntity.lo `test -f 'src/c/handleDrawing/drawFigureEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawFigureEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawFigureEntity.Tpo $(DEPDIR)/libgraphics_la-drawFigureEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawFigureEntity.c' object='libgraphics_la-drawFigureEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawFigureEntity.lo `test -f 'src/c/handleDrawing/drawFigureEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawFigureEntity.c
+
+libgraphics_la-drawGrayplotEntity.lo: src/c/handleDrawing/drawGrayplotEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawGrayplotEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawGrayplotEntity.Tpo -c -o libgraphics_la-drawGrayplotEntity.lo `test -f 'src/c/handleDrawing/drawGrayplotEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawGrayplotEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawGrayplotEntity.Tpo $(DEPDIR)/libgraphics_la-drawGrayplotEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawGrayplotEntity.c' object='libgraphics_la-drawGrayplotEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawGrayplotEntity.lo `test -f 'src/c/handleDrawing/drawGrayplotEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawGrayplotEntity.c
+
+libgraphics_la-drawLegendEntity.lo: src/c/handleDrawing/drawLegendEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawLegendEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawLegendEntity.Tpo -c -o libgraphics_la-drawLegendEntity.lo `test -f 'src/c/handleDrawing/drawLegendEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawLegendEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawLegendEntity.Tpo $(DEPDIR)/libgraphics_la-drawLegendEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawLegendEntity.c' object='libgraphics_la-drawLegendEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawLegendEntity.lo `test -f 'src/c/handleDrawing/drawLegendEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawLegendEntity.c
+
+libgraphics_la-drawMergeEntity.lo: src/c/handleDrawing/drawMergeEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawMergeEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawMergeEntity.Tpo -c -o libgraphics_la-drawMergeEntity.lo `test -f 'src/c/handleDrawing/drawMergeEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawMergeEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawMergeEntity.Tpo $(DEPDIR)/libgraphics_la-drawMergeEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawMergeEntity.c' object='libgraphics_la-drawMergeEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawMergeEntity.lo `test -f 'src/c/handleDrawing/drawMergeEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawMergeEntity.c
+
+libgraphics_la-drawPolylineEntity.lo: src/c/handleDrawing/drawPolylineEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawPolylineEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawPolylineEntity.Tpo -c -o libgraphics_la-drawPolylineEntity.lo `test -f 'src/c/handleDrawing/drawPolylineEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawPolylineEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawPolylineEntity.Tpo $(DEPDIR)/libgraphics_la-drawPolylineEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawPolylineEntity.c' object='libgraphics_la-drawPolylineEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawPolylineEntity.lo `test -f 'src/c/handleDrawing/drawPolylineEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawPolylineEntity.c
+
+libgraphics_la-drawRectangleEntity.lo: src/c/handleDrawing/drawRectangleEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawRectangleEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawRectangleEntity.Tpo -c -o libgraphics_la-drawRectangleEntity.lo `test -f 'src/c/handleDrawing/drawRectangleEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawRectangleEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawRectangleEntity.Tpo $(DEPDIR)/libgraphics_la-drawRectangleEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawRectangleEntity.c' object='libgraphics_la-drawRectangleEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawRectangleEntity.lo `test -f 'src/c/handleDrawing/drawRectangleEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawRectangleEntity.c
+
+libgraphics_la-drawSegsEntity.lo: src/c/handleDrawing/drawSegsEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawSegsEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawSegsEntity.Tpo -c -o libgraphics_la-drawSegsEntity.lo `test -f 'src/c/handleDrawing/drawSegsEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawSegsEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawSegsEntity.Tpo $(DEPDIR)/libgraphics_la-drawSegsEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawSegsEntity.c' object='libgraphics_la-drawSegsEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawSegsEntity.lo `test -f 'src/c/handleDrawing/drawSegsEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawSegsEntity.c
+
+libgraphics_la-drawSubWinEntity.lo: src/c/handleDrawing/drawSubWinEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawSubWinEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawSubWinEntity.Tpo -c -o libgraphics_la-drawSubWinEntity.lo `test -f 'src/c/handleDrawing/drawSubWinEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawSubWinEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawSubWinEntity.Tpo $(DEPDIR)/libgraphics_la-drawSubWinEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawSubWinEntity.c' object='libgraphics_la-drawSubWinEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawSubWinEntity.lo `test -f 'src/c/handleDrawing/drawSubWinEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawSubWinEntity.c
+
+libgraphics_la-drawSurfaceEntity.lo: src/c/handleDrawing/drawSurfaceEntity.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawSurfaceEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawSurfaceEntity.Tpo -c -o libgraphics_la-drawSurfaceEntity.lo `test -f 'src/c/handleDrawing/drawSurfaceEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawSurfaceEntity.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libgraphics_la-drawSurfaceEntity.Tpo $(DEPDIR)/libgraphics_la-drawSurfaceEntity.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/handleDrawing/drawSurfaceEntity.c' object='libgraphics_la-drawSurfaceEntity.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -c -o libgraphics_la-drawSurfaceEntity.lo `test -f 'src/c/handleDrawing/drawSurfaceEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawSurfaceEntity.c
 
 libgraphics_la-drawTextEntity.lo: src/c/handleDrawing/drawTextEntity.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgraphics_la_CFLAGS) $(CFLAGS) -MT libgraphics_la-drawTextEntity.lo -MD -MP -MF $(DEPDIR)/libgraphics_la-drawTextEntity.Tpo -c -o libgraphics_la-drawTextEntity.lo `test -f 'src/c/handleDrawing/drawTextEntity.c' || echo '$(srcdir)/'`src/c/handleDrawing/drawTextEntity.c
