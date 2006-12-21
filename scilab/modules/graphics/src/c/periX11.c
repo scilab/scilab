@@ -73,8 +73,6 @@ extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
 #ifdef WITH_TK
 extern void flushTKEvents(void);
 #endif
-extern int versionflag;
-extern int version_flag(void) ;
 extern void refreshMenus( struct BCG * ScilabGC ) ;
 
 
@@ -204,7 +202,7 @@ static xset_f xset_windowpos,xset_windowdim,xset_popupdim,xset_viewport,xset_cur
 static xset_f xset_absourel,xset_alufunction1,xset_thickness,xset_pattern,xset_dash;
 static xset_f xset_pixmapOn,xset_wresize,xset_background,xset_foreground,xset_hidden3d; 
 static xset_f xset_unclip,xset_font,xset_usecolor,xset_mark,xset_pixmapclear,xset_show,xset_dash_or_color;
-static xset_f xset_scilabxgc,xset_scilabVersion;/* NG */
+static xset_f xset_scilabxgc ;
 static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
 static void xset_alufunction2(struct BCG *Xgc,integer *num, integer *v2, integer *v3, integer *v4);
 
@@ -214,7 +212,7 @@ static xget_f xget_windowpos,xget_windowdim,xget_popupdim,xget_viewport,xget_cur
 static xget_f xget_absourel,xget_alufunction,xget_thickness,xget_pattern,xget_last,xget_dash;
 static xget_f xget_usecolor,xget_pixmapOn,xget_wresize,xget_colormap,xget_background,xget_foreground,xget_hidden3d;
 static xget_f xget_font,xget_mark,xget_dash_or_color;
-static xget_f xget_scilabxgc,xget_scilabFigure,xget_scilabVersion;/* NG */
+static xget_f xget_scilabxgc,xget_scilabFigure ;/* NG */
 static xget_f xget_colormap_size;
 
 
@@ -829,17 +827,6 @@ static void xget_scilabFigure(integer *verbose, integer *x,integer *narg, double
 {   
   *narg=1;
   figure=(double *)ScilabXgc->mafigure;
-}
-
-static void xset_scilabVersion(integer *vers, integer *v2, integer *v3, integer *v4)
-{
-  ScilabXgc->graphicsversion=*vers;
-}
-
-static void xget_scilabVersion(integer *verbose, integer *vers, integer *narg, double *dummy)
-{   
-  *narg =1 ;
-  *vers = ScilabXgc->graphicsversion;
 }
 
 static void xset_scilabxgc(v1, v2, v3, v4)
@@ -2505,7 +2492,6 @@ void get_b(int i, float *b)
  *-----------------------------------------------------------*/
 
 static void InitMissileXgc(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion(void);
 
 
 static void xset_empty(integer *verbose, integer *v2, integer *v3, integer *v4)
@@ -2518,7 +2504,7 @@ static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 
-#define NUMSETFONC 33
+#define NUMSETFONC 32
 
 /** Table in lexicographic order **/
 
@@ -2550,7 +2536,6 @@ MissileGCTab_[] = {
   {"pixmap",xset_pixmapOn,xget_pixmapOn},
   {"thickness",xset_thickness,xget_thickness},
   {"use color",xset_usecolor,xget_usecolor},
-  {"version",xset_scilabVersion,xget_scilabVersion},/* NG */
   {"viewport",xset_viewport,xget_viewport},
   {"wdim",xset_windowdim,xget_windowdim},
   {"white",xset_empty,xget_last},
@@ -3589,7 +3574,6 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       XSetIOErrorHandler((XIOErrorHandler) X_error_handler);
     }
   InitMissileXgc(PI0,PI0,PI0,PI0);
-  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
   /* to be sure that current values are recorded */
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
@@ -3877,18 +3861,12 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
       to force usecolorPos to perform initialisations 
   **/
   ScilabXgc->mafigure = (sciPointObj *)NULL;
-/*   ScilabXgc->graphicsversion = versionflag; /\* NG *\/  */
 
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   xset_usecolor(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");
   /** default scales **/
   Cscale2default();
-}
-
-static void SetGraphicsVersion()
-{
-  ScilabXgc->graphicsversion = versionflag; /* NG */ 
 }
 
 

@@ -1033,16 +1033,14 @@ Delete(Widget w, XtPointer number, XtPointer client_data)
     }
   /** Delete the graphic window **/
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
-  if (version_flag() == 0) {DeleteObjs(win_num); v_flag = 0;}
+  DeleteObjs(win_num);
+  v_flag = 0;
   scig_deletegwin_handler(win_num);
   DeleteSGWin(win_num); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
                         /*         2) or reset the ScilabXgc to the next one see DeleteSGWin*/
 
-  /* That's why we can not use version_flag below because this function uses ScilabXgc->graphicsversion 
-     that could have been possibly previously deleted !! */
-
   /* So, we use another flag named v_flag :*/
-  delete_sgwin_entities(win_num,v_flag);
+  delete_sgwin_entities(win_num);
 }
 
 /* for Fortran call */
@@ -1884,41 +1882,5 @@ int getNbSubMenus( int winNumber, char * menuName )
 }
 
 /*------------------------------------------------------------------------------------*/
-/* put some menus in gray under old graphic style                                     */
-/* or put them back under new graphic style                                           */
-void refreshMenus( struct BCG * ScilabGC )
-{
-
-  /* put some menu in grey in old graphic style */
-  if ( version_flag() == 0 )
-  {
-    /* new graphic style */
-    int        subMenuNumber = 0 ;
-    int        nbChildren        ;
-    
-    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, True ) ;
-    
-    /* get the number of children of the Edit menu */
-    nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
-    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
-    {
-      SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, True ) ;
-    }
-  }
-  else
-  {
-    /* old graphic style */
-    int        subMenuNumber = 0 ;
-    int        nbChildren        ;
-    
-    SetUnsetMenu( &ScilabGC->CurWindow, "Insert", &subMenuNumber, False ) ;
-
-    nbChildren = getNbSubMenus( ScilabGC->CurWindow, "Edit" ) ;
-    for ( subMenuNumber = 5 ; subMenuNumber <= nbChildren ; subMenuNumber++ )
-    {
-      SetUnsetMenu( &ScilabGC->CurWindow, "Edit", &subMenuNumber, False ) ;
-    }
-  }
-    
-}
+void refreshMenus( struct BCG * ScilabGC ) {}
 /*------------------------------------------------------------------------------------*/
