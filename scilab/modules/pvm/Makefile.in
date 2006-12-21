@@ -295,7 +295,6 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-@PVM_TRUE@datadir = ${prefix}/modules
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -383,8 +382,10 @@ top_srcdir = @top_srcdir@
 
 @PVM_TRUE@libscipvm_la_LDFLAGS = $(PVM_LIB)
 @PVM_TRUE@libscipvm_la_PKGCONFIG = scipvm.pc
+
+#datadir=${prefix}/modules
 #### Target ######
-@PVM_TRUE@target = $(datadir)/pvm
+@PVM_TRUE@target = $(datadir)/modules/pvm
 
 #### pvm : Conf files ####
 @PVM_TRUE@libpvm_la_rootdir = $(target)

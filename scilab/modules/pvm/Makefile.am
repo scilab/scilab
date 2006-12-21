@@ -4,6 +4,7 @@
 ##########
 
 if PVM
+
 PVM_C_SOURCES = src/pvm_proc_ctrl.c \
 src/sci_tools.c \
 src/pvm_recv.c \
@@ -62,10 +63,9 @@ libscipvm_la_LDFLAGS = $(PVM_LIB)
 
 libscipvm_la_PKGCONFIG = scipvm.pc
 
-datadir=${prefix}/modules
+#datadir=${prefix}/modules
 #### Target ######
-target=$(datadir)/pvm
-
+target=$(datadir)/modules/pvm
 
 #### pvm : Conf files ####
 libpvm_la_rootdir = $(target)
