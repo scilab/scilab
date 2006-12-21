@@ -24,6 +24,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				CommandLine="if NOT EXIST {$Solutiondir}bin\noscicos.lib if EXIST {$Solutiondir}bin\scicos.lib copy {$Solutiondir}bin\scicos.lib {$Solutiondir}bin\noscicos.lib&#x0D;&#x0A;if NOT EXIST {$Solutiondir}bin\noscicos.dll if EXIST {$Solutiondir}bin\scicos.dll copy {$Solutiondir}bin\scicos.dll {$Solutiondir}bin\noscicos.dll"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -96,6 +97,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="$(SolutionDir)bin\scilex -nb -ns -nwni -e exec(&apos;$(SolutionDir)modules\scicos\macros\buildmacros.sce&apos;);quit;"
 			/>
 		</Configuration>
 		<Configuration
@@ -108,6 +110,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				CommandLine="if NOT EXIST {$Solutiondir}bin\noscicos.lib if EXIST {$Solutiondir}bin\scicos.lib copy {$Solutiondir}bin\scicos.lib {$Solutiondir}bin\noscicos.lib&#x0D;&#x0A;if NOT EXIST {$Solutiondir}bin\noscicos.dll if EXIST {$Solutiondir}bin\scicos.dll copy {$Solutiondir}bin\scicos.dll {$Solutiondir}bin\noscicos.dll"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -184,6 +187,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="$(SolutionDir)bin\scilex -nb -ns -nwni -e exec(&apos;$(SolutionDir)modules\scicos\macros\buildmacros.sce&apos;);quit;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -276,6 +280,10 @@
 			</File>
 			<File
 				RelativePath=".\deriv.c"
+				>
+			</File>
+			<File
+				RelativePath=".\DllmainScicos.c"
 				>
 			</File>
 			<File
@@ -639,11 +647,19 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\..\..\bin\MALLOC.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\sci_gateway\scicos"
 			>
 		</File>
 		<File
 			RelativePath=".\scicos_f.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\bin\time.lib"
 			>
 		</File>
 		<File

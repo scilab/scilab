@@ -3,11 +3,11 @@ mode(-1)
 //blocks
 //mprintf('Compiling Modelica models in '+pwd()')
 
-load('SCI/modules/core/macros/lib')
-load('SCI/modules/overloading/macros/lib')
-load('SCI/modules/integer/macros/lib')
-load('SCI/modules/elementaries_functions/macros/lib')
-load('SCI/modules/polynomials/macros/lib')
+if ~exists('corelib') then load('SCI/modules/core/macros/lib'),end
+if ~exists('percentlib') then load('SCI/modules/overloading/macros/lib'),end
+if ~exists('intlib') then load('SCI/modules/integer/macros/lib'),end
+if ~exists('elemlib') then load('SCI/modules/elementaries_functions/macros/lib'),end
+if ~exists('polylib') then load('SCI/modules/polynomials/macros/lib'),end
 
 if ~isdef('genmoc_verbose') then 
   genmoc_verbose=%f

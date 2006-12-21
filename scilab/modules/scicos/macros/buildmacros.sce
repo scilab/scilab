@@ -1,6 +1,14 @@
 //------------------------------------
 // Allan CORNET INRIA 2006
 //------------------------------------
+// load some libraries 
+if ~exists('corelib') then load('SCI/modules/core/macros/lib'),end
+if ~exists('functionslib') then load('SCI/modules/functions/macros/lib'),end
+if ~exists('fileiolib') then load('SCI/modules/fileio/macros/lib'),end
+if ~exists('stringlib') then load('SCI/modules/string/macros/lib'),end
+if ~exists('percentlib') then load('SCI/modules/overloading/macros/lib'),end
+if ~exists('iolib') then load('SCI/modules/io/macros/lib'),end
+//------------------------------------
 genlib('libscicos','SCI/modules/scicos/macros');
 //------------------------------------
 disp('-- Creation of [SCI/modules/scicos/macros/scicos] (Macros) --');
