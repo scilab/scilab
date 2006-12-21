@@ -465,21 +465,20 @@ proc doopenfunsource {keywtype nametoopen} {
     }
 }
 
-proc openlistoffiles {filelist} {
+proc openlistoffiles {filelist tiledisplay} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
-    disablemenuesbinds
     foreach f $filelist {
         regsub "^file:" $f "" f
         # in unix, .* files are not matched by *, but .* matches . and ..
         # If we don't exclude them, we have infinite recursion
         if {[file tail $f] == "." | [file tail $f] == ".."} continue
         if {[file isfile $f] == 1} {
-            openfile $f
+            openfile $f $tiledisplay
         } elseif {[file isdirectory $f] == 1} {
-            openlistoffiles [glob -nocomplain -directory $f -types hidden *]
-            openlistoffiles [glob -nocomplain -directory $f -types {f d} *]
+            openlistoffiles [glob -nocomplain -directory $f -types hidden *] $tiledisplay
+            openlistoffiles [glob -nocomplain -directory $f -types {f d} *] $tiledisplay
         } else {
             # In windows this never happened to us, but linux applications
             # allow sometimes drag of e.g. http:// or ftp://; moreover
@@ -490,7 +489,6 @@ proc openlistoffiles {filelist} {
                        you hit a bug of the dnd mechanism." ] ]
         }
     }
-    restoremenuesbinds
 }
 
 proc showopenwin {tiledisplay} {
@@ -509,26 +507,12 @@ proc showopenwin {tiledisplay} {
     showinfo [mc "Open file"]
     # remember the latest path used for opening files
     if {![info exists startdir]} {set startdir [pwd]}
-    set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad -initialdir $startdir]
-    if [string compare "$file" ""] {
-        if [fileunreadable $file] return 
-        set startdir [file dirname $file]
-        # search for an opened existing file
-        set res [lookiffileisopen "$file"]
-        if {$res == 0} {
-            notopenedfile $file
-            set listoffile("$pad.new$winopened",thetime) [file mtime $file]
-            shownewbuffer $file $tiledisplay
-            reshape_bp
-            showinfo " "
-            newfilebind
-        } else {
-            fileisopen $file
-            $pad.filemenu.wind invoke $res
-        }
+    set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad \
+                             -initialdir $startdir -multiple 1]
+    if {[llength $file] > 0} {
+        set startdir [file dirname [lindex $file 0]]
+        openlistoffiles $file $tiledisplay
     }
-    [gettextareacur] mark set insert "1.0"
-    keyposn [gettextareacur]
 }
 
 proc openfileifexists {file} {
@@ -566,7 +550,7 @@ proc openfileifexists {file} {
     }
 }
 
-proc openfile {file} {
+proc openfile {file {tiledisplay "currenttile"}} {
 # try to open a file with filename $file (no file selection through a dialog)
 # if file is not already open, open it
 # otherwise just switch buffers to show it
@@ -575,16 +559,16 @@ proc openfile {file} {
 #    1 if file could be open or displayed (switched buffers)
     global pad winopened listoftextarea listoffile
     global closeinitialbufferallowed
-    if [fileunreadable $file] {return 0}
-    if [string compare $file ""] {
+    if {[fileunreadable $file]} {return 0}
+    if {[string compare $file ""]} {
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
         if {$res == 0} {
             notopenedfile $file
-            if [ file exists $file ] {
+            if {[file exists $file]} {
                 set listoffile("$pad.new$winopened",thetime) [file mtime $file]
                 set listoffile("$pad.new$winopened",new) 0
-                shownewbuffer $file "currenttile"
+                shownewbuffer $file $tiledisplay
             } else {
                 set listoffile("$pad.new$winopened",thetime) 0
                 set listoffile("$pad.new$winopened",new) 1
@@ -652,7 +636,7 @@ proc notopenedfile {file} {
 
 proc shownewbuffer {file tiledisplay} {
     global pad winopened closeinitialbufferallowed
-    if [fileunreadable $file] return
+    if {[fileunreadable $file]} {return}
     openfileondisk $pad.new$winopened $file $tiledisplay
     resetmodified $pad.new$winopened
     # colorization must be launched before showing the textarea
@@ -935,7 +919,7 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
     if [ file exists $thefile ] {
 # check for the perverse case that someone changed the file to unreadable
 # in the meantime
-        if [fileunreadable $thefile] return
+        if {[fileunreadable $thefile]} {return}
         if {$ConfirmFlag == "ConfirmNeeded"} {
             set answer [tk_messageBox \
                 -message [concat [mc "Revert"] $thefile [mc "to saved?"] ] \

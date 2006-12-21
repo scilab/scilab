@@ -77,6 +77,12 @@ endfunction
  a Scipad buffer, and dump all their definitions only to a temporary file
  and execute that file only.
 
+-Multiple file open in the file dialog: There is a Tcl bug on tk_getOpenFile,
+ which does not correctly work on Linux with -multiple 1 option. See Tcl
+ bug 1614032. I have proposed a patch for this bug to the Tcl core team, but
+ it is not yet committed in the Tcl source code. There is also bug 1578519
+ about special dirs on Windows, still for tk_getOpenFile.
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -297,3 +303,8 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 -Request 262: tabbed buffers (see discussion in this request)
 
 -Extract the target of windows shortcuts during drag and drop
+
+-There is something strange with the scrollbars linked to the textarea. In
+ some not yet well understood situations they do not reflect the width or
+ height of the text contained in the textarea, and/or are located at the
+ wrong place

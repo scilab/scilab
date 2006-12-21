@@ -11,6 +11,15 @@ proc blinkchars {w sta sto} {
 
 proc blinkbrace {w pos brace} {
 # blink an entity delimited by matching brackets, braces or parenthesis
+
+    # in very special cases, $brace contains two characters
+    # this happens for instance when typing ^( : both characters appear
+    # at the same time in $brace, and this would produce a Tcl error
+    # "couldn't compile regexp" in blinkbrace because ^ has a meaning as a
+    # regexp - this is fixed by sending only the last character of $brace
+    # to proc blinkbrace
+    set brace [string range $brace end end]
+
     if {[regexp \\$brace "\{\}\[\]\(\)"] == 0} return
 
     switch $brace {
@@ -127,6 +136,7 @@ proc blinkquote {w pos char} {
 }
 
 proc insblinkbrace {w brace} {
+# this proc gets called when the user types a brace, one of ()[]{}
     if {[IsBufferEditable] == "No"} {return}
     puttext $w $brace
     blinkbrace $w insert $brace 
