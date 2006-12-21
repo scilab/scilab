@@ -6,13 +6,13 @@
 #include "Warnings.h"
 #include "Errors.h"
 #include "WindowList.h"
+#include "periScreen.h"
 
 #include "win_mem_alloc.h" /* MALLOC */
 /*-----------------------------------------------------------------------------------*/
 extern HINSTANCE hdllInstance;
 extern TW textwin;
 extern GW graphwin;
-extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
 extern void sci_pixmapclear(HDC hdc_c, struct BCG *ScilabGC );
 extern void sci_pixmapclear_rect(HDC hdc_c, struct BCG *ScilabGC,int w,int h); 
 extern void sci_pixmap_resize(struct BCG * ScilabGC, int x, int y) ;
@@ -20,7 +20,7 @@ extern void   set_no_delete_win_mode() ;
 extern void DebugGW (char *fmt,...);
 extern void DebugGW1 (char *fmt,...);
 extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
-extern void delete_sgwin_entities(int win_num,int v_flag);
+extern void delete_sgwin_entities(int win_num);
 extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len));  
 extern EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 extern EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -33,7 +33,6 @@ static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
-  int v_flag = 1;
   double dv=0;
   int v=0;
   int num = *number;
@@ -41,16 +40,14 @@ int C2F (deletewin) (integer * number)
   /* destroying recorded graphic commands */
   scig_erase (num);
   /* delete the windows and resources */
-  if (version_flag()==0) {DeleteObjs(num); v_flag = 0;}
+  DeleteObjs(num);
   scig_deletegwin_handler (num);
   DeleteSGWin (num); /* Here we 1) destroy the ScilabXgc (set to NULL) if it is the last window in the list */
                         /*         2) or reset the ScilabXgc to the next one see DeleteSGWin*/
 
-  /* That's why we can not use version_flag below because this function uses ScilabXgc->graphicsversion 
-     that could have been possibly previously deleted !! */
   
   /* So, we use another flag named v_flag :*/
-  delete_sgwin_entities(num,v_flag);
+  delete_sgwin_entities(num);
   return (0);
 }
 /*-----------------------------------------------------------------------------------*/
@@ -461,13 +458,8 @@ void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  i
   if (sciGetPixmapStatus() != 1)
     C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
 	      PD0, 0L, 0L);
-  if (version_flag() == 0)
-    {
-      sciRedrawF(&win_num); /* NG */
-	}
-  else
-    C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, 
-	      PD0, PD0, PD0, 0L, 0L);
+
+  sciRedrawF(&win_num); /* NG */
   C2F (dr1) ("xset", "alufunction", &alu, PI0, PI0, PI0, PI0, PI0, PD0, 
 	     PD0, PD0, PD0, 0L, 0L);
   C2F (dr) ("xset", "window", &cur, PI0, PI0, PI0, PI0, PI0, PD0, PD0, 

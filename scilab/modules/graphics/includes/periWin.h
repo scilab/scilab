@@ -58,6 +58,8 @@
 
 void deletePoints( void ) ;
 
+void SetGHdc(lhdc,width,height) ;
+
 /*-------------------------------------------------------------------------------*/
 int   MaybeSetWinhdc( void ) ;
 void  ReleaseWinHdc( void ) ;

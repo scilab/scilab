@@ -41,10 +41,9 @@ int sci_xclear( char * fname, unsigned long fname_len )
     C2F(dr1)("xset","window",&win,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
     C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,7L,2L); 
   } 
-  if ( version_flag() == 0 )
-  {
-    sciXclear();   /* NG */
-  }
+
+  sciXclear();   /* NG */
+
   LhsVar(1)=0;
   return 0;
 }

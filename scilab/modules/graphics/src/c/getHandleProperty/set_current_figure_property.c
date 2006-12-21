@@ -17,6 +17,7 @@
 int set_current_figure_property( sciPointObj * pobj, int stackPointer, int valueType, int nbRow, int nbCol )
 {
   int figNum = -1 ;
+  int res = -1 ;
 
   if ( isParameterHandle( valueType ) )
   {
@@ -44,24 +45,13 @@ int set_current_figure_property( sciPointObj * pobj, int stackPointer, int value
     return -1 ;
   }
 
-
-  if( version_flag() == 0  )
+  /* select the figure num */
+  res = sciSetUsedWindow( figNum ) ;
+  if ( res < 0 )
   {
-    /* select the figure num */
-    int res = sciSetUsedWindow( figNum ) ;
-    if ( res < 0 )
-    {
-      sciprint("It was not possible to create the requested figure.\n");
-    }
-    return res ;
+    sciprint("It was not possible to create the requested figure.\n");
   }
-  else
-  {
-    int v  = 1 ;
-    C2F(dr1)("xset","window",&figNum,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L) ;
-    return 0 ;
-  }
+  return res ;
 
-  return -1 ;
 }
 /*------------------------------------------------------------------------*/

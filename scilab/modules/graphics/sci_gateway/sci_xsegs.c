@@ -21,6 +21,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   integer mn2;
   integer m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3; 
   double arsize = 0.0 ;
+  sciPointObj * psubwin = NULL ;
 
   SciWin();
 
@@ -42,52 +43,37 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   }
   mn2 = m2 * n2; 
 
-  /* NG beg */
-  if (version_flag() == 0)
+  psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+
+  if (Rhs == 3 && m3 * n3 != 1)
   {
-    sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-
-    if (Rhs == 3 && m3 * n3 != 1)
-    {
-      style = istk(l3);
-      flag = 1 ;
-    }
-    else if (Rhs == 3 && m3 * n3 == 1) {
-      style = istk(l3);
-      flag = 0 ;
-    }
-    else
-    { /* Rhs < 3 => no color specified, use current color (taken from axes parent) */
-      int col = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
-      style = &col;
-      flag= 0 ;
-    }
-
-    Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
-
-    if ( pSUBWIN_FEATURE(psubwin)->surfcounter > 0 )
-    {
-      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-      /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-      sciDrawObj(sciGetCurrentFigure ());}
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-    }
+    style = istk(l3);
+    flag = 1 ;
   }
-  else{
-    if (Rhs == 3 && m3 * n3 != 1) {
-      style = istk(l3);
-      flag = 1 ;
-    } 
-    else {
-      style = &dstyle ;
-      flag = 0 ;
-    }
-
-    Xsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  else if (Rhs == 3 && m3 * n3 == 1) {
+    style = istk(l3);
+    flag = 0 ;
   }
-  /* NG end */
+  else
+  { /* Rhs < 3 => no color specified, use current color (taken from axes parent) */
+    int col = sciGetForeground(psubwin);
+    style = &col;
+    flag= 0 ;
+  }
+
+  Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+
+  if ( pSUBWIN_FEATURE(psubwin)->surfcounter > 0 )
+  {
+    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+    /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+    sciDrawObj(sciGetCurrentFigure ());}
+  else
+  {
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+  }
+    
+
   LhsVar(1)=0;
   return 0;
 } 

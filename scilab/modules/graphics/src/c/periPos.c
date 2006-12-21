@@ -53,7 +53,6 @@ static BOOL ScilabGCPos_is_initialized = FALSE;
 #include "bcg.h" /* NG */
 #include "MALLOC.h" /* MALLOC */
 
-extern int versionflag;
 void C2F(WriteGeneric1Pos)(char *string, integer nobjpos, integer objbeg, integer sizeobj, integer *vx, integer *vy, integer flag, integer *fvect);
 void C2F(xgetmarkPos)(integer *verbose, integer *symb, integer *narg, double *dummy);
 void C2F(xsetmarkPos)(integer *number, integer *size, integer *v3, integer *v4);
@@ -63,7 +62,6 @@ void C2F(setdashstylePos)(integer *value, integer *xx, integer *n);
 void C2F(Write2VectPos)(integer *vx, integer *vy, integer from, integer n, char *string, integer flag, integer fv);
 void C2F(WriteGenericPos)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCPos)(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion(void);
 void C2F(setforegroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetPos)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundPos)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -1173,7 +1171,7 @@ void C2F(gemptyPos)(integer *verbose, integer *v2, integer *v3, double *dummy)
   if ( *verbose ==1 ) sciprint("\n No operation ");
 }
 
-#define NUMSETFONC 33 /* NG */
+#define NUMSETFONC 32 /* NG */
 
 /** Table in lexicographic order **/
 
@@ -1204,7 +1202,6 @@ struct bgc { char *name ;
     {"pixmap",C2F(semptyPos),C2F(gemptyPos)},
     {"thickness",C2F(setthicknessPos),C2F(getthicknessPos)},
     {"use color",C2F(usecolorPos),C2F(getusecolorPos)},
-    {"version",C2F(setscilabVersionPos),C2F(getscilabVersionPos)},/* NG */
     {"viewport",C2F(semptyPos),C2F(gemptyPos)},
     {"wdim",C2F(setwindowdimPos),C2F(getwindowdimPos)},
     {"white",C2F(semptyPos),C2F(getlastPos)},
@@ -2037,7 +2034,6 @@ void FileInit(void)
 
   ScilabGCPos_is_initialized = TRUE; /* add the flag ScilabGCPos_is_initialized to test if xinit has been called */
   InitScilabGCPos(PI0,PI0,PI0,PI0);
-  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
   
   FPRINTF((file,"\n%% End init driver "));
   FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));
@@ -2135,17 +2131,11 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
     to force usecolorPos to perform initialisations 
     **/
   ScilabGCPos.mafigure = (sciPointObj *)NULL;
-/*   ScilabGCPos.graphicsversion = versionflag; /\* NG *\/  */
 
   ScilabGCPos.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorPos)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCPos.IDLastPattern = ScilabGCPos.Numcolors - 1;
   strcpy(ScilabGCPos.CurNumberDispFormat,"%-5.2g");
-}
-
-static void SetGraphicsVersion(void)
-{
-  ScilabGCPos.graphicsversion = versionflag; /* NG */ 
 }
 
 /*-----------------------------------------------------
@@ -2522,12 +2512,12 @@ void C2F(getscilabFigurePos)(integer *verbose, integer *x,integer *narg, double 
 }
 void C2F(setscilabVersionPos)(integer *vers, integer *v2, integer *v3, integer *v4)
 {
-  ScilabGCPos.graphicsversion=*vers;
+  /*ScilabGCPos.graphicsversion=*vers;*/
 }
 
 void C2F(getscilabVersionPos)(integer *verbose, integer *vers, integer *narg, double *dummy)
 {   
-  *vers = ScilabGCPos.graphicsversion;
+  *vers = 0 ;
 }
 void C2F(getscilabxgcPos)(integer *verbose, integer *x,integer *narg, double *dummy)
 {   
@@ -2600,7 +2590,6 @@ void FileInitFromScreenPos(void)
 
   ScilabGCPos_is_initialized = TRUE; /* add the flag ScilabGCPos_is_initialized to test if xinit has been called */
   InitScilabGCPos(PI0,PI0,PI0,PI0);
-  SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
   
   FPRINTF((file,"\n%% End init driver "));
   FPRINTF((file,"\n/WhiteLev %d def",ScilabGCPos.IDLastPattern));

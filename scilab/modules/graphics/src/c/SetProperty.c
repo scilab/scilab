@@ -37,9 +37,8 @@
 
 #include "MALLOC.h"
 
-/* sciClipTab ptabclip[15]; */
 BOOL modereplay = FALSE;
-extern int versionflag ;
+
 
 /*------------------------------------------------------------------------------------*/
 /* setSubWinAngles                                                                    */
@@ -2955,7 +2954,6 @@ sciSetDefaultValues (void)
   else
   {
     C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L); 
-    sciGetScilabXgc (sciGetCurrentFigure())->graphicsversion = 0; /* To Re enable the NG -> graphicsversion = 0*/
     return 0 ;
   }
 }
@@ -4247,7 +4245,6 @@ int sciSwitchWindow(int *winnum)
 	{
 	  sciSetCurrentObj (mafigure); /* F.Leray 25.03.04*/
 	  CurXGC->mafigure = mafigure;
-          CurXGC->graphicsversion = 0;
 	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL) {
 	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
@@ -4294,53 +4291,7 @@ int sciSetUsedWindow( int winNum )
 
 /*-------------------------------------------------------------------------------------------*/
 
-int init_version_flag( int flag )
-{
-  double *XGC,dv=0;
-  struct BCG *CurrentScilabXgc; 
-  int v=0;
-  
-  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc=(struct BCG *)XGC;
-  if (CurrentScilabXgc != (struct BCG *)NULL )
-  {
-    CurrentScilabXgc->graphicsversion = flag;
-    return 0 ;
-  }
-  else
-  {
-    /* problem */
-    return -1 ;
-  }
-}
 
-int set_version_flag(int flag) 
-{ 
-  double *XGC,dv=0;
-  struct BCG *CurrentScilabXgc; 
-  int v=0;
-  
-  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc=(struct BCG *)XGC;
-  if (CurrentScilabXgc != (struct BCG *)NULL )
-  {
-    if ( CurrentScilabXgc->graphicsversion == flag )
-    {
-      /* nothing to do */
-      return 1 ;
-    }
-    else
-    {
-      CurrentScilabXgc->graphicsversion = flag;
-      return 0 ;
-    }
-  }
-  else
-  {
-    /* problem */
-    return -1 ;
-  }
-}
 
 int sciInitIsFilled( sciPointObj * pobj, BOOL isfilled )
 {
@@ -4887,24 +4838,6 @@ int sciSetIs3d( sciPointObj * pObj, BOOL is3d )
     return 1 ;
   }
   return sciInitIs3d( pObj, is3d ) ;
-}
-/*--------------------------------------------------------------------------------------------*/
-/**
- * Set the version flag.
- * @param[in] newversion If 1 we set the old graphic mode and if 0 the new one.
- *                       Don't use other values than 0 and 1.
- */
-void setVersionFlag( int newFlag )
-{
-  versionflag = newFlag ;
-}
-/*--------------------------------------------------------------------------------------------*/
-/**
-* Get the version flag.
-*/
-int getVersionFlag(void)
-{
-	return versionflag;
 }
 /*--------------------------------------------------------------------------------------------*/
 int sciInitHiddenColor( sciPointObj * pObj, int newColor )

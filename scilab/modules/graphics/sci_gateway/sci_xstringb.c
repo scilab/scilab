@@ -27,6 +27,7 @@ int sci_xstringb(char *fname,unsigned long fname_len)
   char **Str;
   double rect[4],angle=0;
   long hdlstr;
+  double userSize[2] ;
 
   SciWin();
 
@@ -64,29 +65,10 @@ int sci_xstringb(char *fname,unsigned long fname_len)
     }
   }
 
-  if ( version_flag() == 0 )
-  {
-    double userSize[2] = { w, hx } ;
-    Objstring (Str,m3,n3,x,y,&angle,rect,autoSize,userSize,&hdlstr,TRUE,NULL,NULL,FALSE,TRUE,FALSE,ALIGN_CENTER);
-  }
-  else 
-  { /* NG end */
-    int v ;
-    int i ;
-    int j ;
-    int ib = 0;
-    for (i = 0 ; i < m3 ; ++i) {
-      for (j = 0 ; j < n3; ++j) 
-      {
-        strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-        ib += strlen(Str[i+ m3*j]);
-        if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
-      }
-      C2F(cha1).buf[ib]= '\n'; ib++;
-    }
-    C2F(cha1).buf[ib-1]='\0';
-    C2F(dr1)("xstringb",C2F(cha1).buf,&autoSize,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
-  }
+  userSize[0] = w ;
+  userSize[1] = hx ;
+  Objstring (Str,m3,n3,x,y,&angle,rect,autoSize,userSize,&hdlstr,TRUE,NULL,NULL,FALSE,TRUE,FALSE,ALIGN_CENTER);
+
 
   LhsVar(1)=0;
 

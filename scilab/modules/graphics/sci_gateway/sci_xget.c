@@ -89,16 +89,9 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"mark") == 0)
   {
     int i2;
-    if( version_flag() == 0 )
-    {
-      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      x1[0] = sciGetMarkStyle(subwin);
-      x1[1] = sciGetMarkSize(subwin);
-    }
-    else
-    {
-      C2F(dr1)("xget","mark",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
-    }
+    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    x1[0] = sciGetMarkStyle(subwin);
+    x1[1] = sciGetMarkSize(subwin);
     x2=2;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
     for (i2 = 0 ; i2 < x2 ; ++i2)
@@ -108,14 +101,8 @@ int sci_xget(char *fname,unsigned long fname_len)
   else if ( strcmp(cstk(l1),"mark size") == 0)
   {
     int i2;
-    if(version_flag() == 0){
-      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      x1[0] = x1[1] = sciGetMarkSize(subwin);
-    }
-    else
-    {
-      C2F(dr1)("xget","mark",&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
-    }
+    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    x1[0] = x1[1] = sciGetMarkSize(subwin);
 
     x1[0]=x1[1];
     x2=1;
@@ -123,16 +110,11 @@ int sci_xget(char *fname,unsigned long fname_len)
     for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      
     LhsVar(1)=Rhs+1;
   }
-  else if ( strcmp(cstk(l1),"line style") == 0) {
-    if(version_flag() == 0){
-      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      x1[0] = sciGetLineStyle(subwin);
-    }
-    else
-    {
-      C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
-    }
-
+  else if ( strcmp(cstk(l1),"line style") == 0)
+  {
+    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    x1[0] = sciGetLineStyle(subwin);
+  
     x2=1;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
     *stk(l3 ) = (double) x1[0];      
@@ -143,38 +125,35 @@ int sci_xget(char *fname,unsigned long fname_len)
   {
     x2=1;
     CreateVar(Rhs+1,"d",&one,&x2,&l3);
-    *stk(l3 ) = version_flag();      
+    *stk(l3 ) = 0 ;    
     LhsVar(1)=Rhs+1;          
   }   /* NG end*/
   else 
   {
     int i2;
+    sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     x2=0;
-    if(version_flag()==0){ /* NG */
-      sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      if(strcmp(cstk(l1),"font")==0){
-        x1[0] = sciGetFontStyle(psubwin);
-        x1[1] = sciGetFontDeciWidth(psubwin)/100;
-        x2 = 2;
-      }
-      else if(strcmp(cstk(l1),"font size")==0){
-        x1[0] = sciGetFontDeciWidth(psubwin)/100;
-        x2 = 1;
-      }
-      else if(strcmp(cstk(l1),"dashes")==0){
-        x1[0] = sciGetLineStyle(psubwin);
-        x2 = 1;
-      }
-      else if(strcmp(cstk(l1),"hidden3d")==0){
-        x1[0] = pSUBWIN_FEATURE(psubwin)->hiddencolor;
-        x2 = 1;
-      }
-      else
-        C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
+    if(strcmp(cstk(l1),"font")==0){
+      x1[0] = sciGetFontStyle(psubwin);
+      x1[1] = sciGetFontDeciWidth(psubwin)/100;
+      x2 = 2;
+    }
+    else if(strcmp(cstk(l1),"font size")==0){
+      x1[0] = sciGetFontDeciWidth(psubwin)/100;
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"dashes")==0){
+      x1[0] = sciGetLineStyle(psubwin);
+      x2 = 1;
+    }
+    else if(strcmp(cstk(l1),"hidden3d")==0){
+      x1[0] = pSUBWIN_FEATURE(psubwin)->hiddencolor;
+      x2 = 1;
     }
     else
+    {
       C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
-
+    }
     if (x2 > 0) {
       CreateVar(Rhs+1,"d",&one,&x2,&l3);
       for (i2 = 0 ; i2 < x2 ; ++i2) *stk(l3 + i2 ) = (double) x1[i2];      

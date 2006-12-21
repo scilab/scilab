@@ -28,21 +28,18 @@ int sci_xend(char *fname,unsigned long fname_len)
   SciWin();
 
   CheckRhs(-1,0);
-  if( version_flag() == 0 )
-  {
-    closeGraphicSession() ;   /* we DO draw now into the file/memory (depending on the driver type) */
-    figure = sciGetCurrentFigure();
-    sciDrawObj(figure);
-  }
+
+  closeGraphicSession() ;   /* we DO draw now into the file/memory (depending on the driver type) */
+  figure = sciGetCurrentFigure();
+  sciDrawObj(figure);
   C2F(dr1)("xend","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,2L);
-  if( version_flag() == 0 )
-  {
-    /* figure already defined above */
-    Xgc = pFIGURE_FEATURE(figure)->pScilabXgc;
-    DestroyAllGraphicsSons (figure);
-    DestroyFigure (figure); figure = (sciPointObj *) NULL;
-    Xgc->mafigure = (sciPointObj *) NULL;
-  }
+
+  /* figure already defined above */
+  Xgc = pFIGURE_FEATURE(figure)->pScilabXgc;
+  DestroyAllGraphicsSons (figure);
+  DestroyFigure (figure); figure = (sciPointObj *) NULL;
+  Xgc->mafigure = (sciPointObj *) NULL;
+
   LhsVar(1)=0;
   return 0;
 }

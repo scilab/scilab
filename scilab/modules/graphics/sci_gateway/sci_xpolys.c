@@ -24,6 +24,8 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   int i;
   long hdl;
 
+  sciPointObj *psubwin = NULL ;
+
   SciWin();
   CheckRhs(2,3);
 
@@ -48,30 +50,26 @@ int sci_xpolys(char *fname,unsigned long fname_len)
     CreateVar(3,"i",&un,&n1,&l3);
     for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
   } 
-  if (version_flag() == 0)
+
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()) ;
+
+  for (i = 0; i < n1; ++i) 
+    Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
+
+  /** construct Compound and make it current object**/
+  sciSetCurrentObj (ConstructCompoundSeq (n1));
+
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0)
   {
-    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-    for (i = 0; i < n1; ++i) 
-      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
-
-    /** construct Compound and make it current object**/
-    sciSetCurrentObj (ConstructCompoundSeq (n1));
-
-    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0)
-    {
-      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-      /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
-      sciDrawObj(sciGetCurrentFigure ());
-    }
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-    }
+    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+    /*    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
+    sciDrawObj(sciGetCurrentFigure ());
   }
   else
   {
-    Xpolys(istk(l3),n2,m2,stk(l1),stk(l2));
+    sciDrawObjIfRequired(sciGetCurrentObj ());
   }
+
   LhsVar(1)=0;
   return 0;
 }

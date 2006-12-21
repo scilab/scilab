@@ -27,8 +27,6 @@ for entities handling
 #include "MALLOC.h"
 #include "sciprint.h"
 
-extern int version_flag(void); /* NG */
-
 
 /* functions used by the modified version : */
 static void PaintTriangle __PARAMS((double sx[], double sy[], double fxy[], 
@@ -81,171 +79,141 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 	     char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, 
 	     integer *colminmax, integer *colout, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2)
 {
-  integer *xm,*ym,n1=1/*,i*/;
+  integer n1=1;
   
   /* Fec code */
   
-  /* NG  beg */
-  if (version_flag() == 0){
-    long hdltab[2];
-    int cmpt=0,styl[2];
-    sciPointObj *pptabofpointobj;
-    sciPointObj  *psubwin;
-    double drect[6];
-    
-    BOOL bounds_changed = FALSE;
-    BOOL axes_properties_changed = FALSE;
-    
-    
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-    
-    checkRedrawing() ;
 
-    
-     
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-      {
-	pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-	pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-      }
-    else
-      {
-	pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-	pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
-      }
+  long hdltab[2];
+  int cmpt=0,styl[2];
+  sciPointObj *pptabofpointobj;
+  sciPointObj  *psubwin;
+  double drect[6];
 
-    pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-    pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-          
-    /* Force psubwin->axes.aaint to those given by argument aaint*/
-    /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
- 
-    /* Force "cligrf" clipping */
-    sciSetIsClipping (psubwin,0); 
- 
-    /* Force  axes_visible property */
-    /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
+  BOOL bounds_changed = FALSE;
+  BOOL axes_properties_changed = FALSE;
 
-    if (sciGetGraphicMode (psubwin)->autoscaling) {
-      /* compute and merge new specified bounds with psubwin->Srect */
-      switch (strflag[1])  {
-      case '0': 
-	/* do not change psubwin->Srect */
-	break;
-      case '1' : case '3' : case '5' : case '7':
-	/* Force psubwin->Srect=brect */
-	re_index_brect(brect, drect);
-	break;
-      case '2' : case '4' : case '6' : case '8':case '9':
-	/* Force psubwin->Srect to the x and y bounds */
-	/* compute_data_bounds(0,'g',x,y,n1,*Nnode,drect); */
-	compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
-	break;
-      }
-      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
-	  (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
-      }
-      if (strflag[1] != '0') 
-	bounds_changed = update_specification_bounds(psubwin, drect,2);
-    } 
 
-    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
-    
-    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-    
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
-     
-    /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
-       u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
-     
-    pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
-     
-    if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
-      if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
-	{
-	  pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-	  pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
-	   
-	  CreatePrettyGradsFromNax(psubwin,aaint);
-	}
-      else{
-	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
-    }
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-    {
-      sciDrawObj(sciGetCurrentFigure());
-    }
- /*      EraseAndOrRedraw(psubwin);  /\*  inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-    
-    sciSetCurrentObj (ConstructFec 
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
-    
-    /* retrieve the created object : fec */
-    pptabofpointobj = sciGetCurrentObj();
-    hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
-    cmpt++;   
-    sciDrawObjIfRequired(sciGetCurrentObj ());
-    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-    /** Drawing the Legends **/
-    if ((int)strlen(strflag) >=1  && strflag[0] == '1')
-    {
-      n1=1; styl[0]=1;styl[1]=0;
-      sciSetCurrentObj (ConstructLegend
-			((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			 legend, strlen(legend), n1, styl, &pptabofpointobj)); 
+  checkRedrawing() ;
 
-       /*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
-      
-      /* removed JB Silvy 12/05 */
-      /* fec object has no mark properties */
-      /*sciSetIsMark(pptabofpointobj, TRUE);*/
-      /*sciSetMarkStyle (pptabofpointobj, *styl);*/
-      
 
-      sciDrawObjIfRequired(sciGetCurrentObj ()); 
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-      hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
-      cmpt++;
-    }
-    sciSetCurrentObj(ConstructCompound (hdltab, cmpt));  /** construct Compound **/
+
+  /* Force psubwin->is3d to FALSE: we are in 2D mode */
+  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+  {
+    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
   }
-  else { /* NG end */
-    /** Boundaries of the frame **/
-    update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
+  else
+  {
+    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+  }
 
-    /* Storing values if using the Record driver */
-    if ((GetDriver()=='R') && (version_flag() != 0)) /* NG */
-      /* added zminmax and colminmax (bruno) then colout, then with_mesh */
-      StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,
-	       zminmax,colminmax,colout,with_mesh);
+  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
 
-    /** Allocation **/
-    xm = graphic_alloc(0,*Nnode,sizeof(int));
-    ym = graphic_alloc(1,*Nnode,sizeof(int));
-    if ( xm == 0 || ym == 0) {
-      sciprint("Running out of memory \n"); return 0;}      
-  
-    C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
+  /* Force psubwin->axes.aaint to those given by argument aaint*/
+  /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
 
-    newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,colout,with_mesh);
-    axis_draw(strflag); 
+  /* Force "cligrf" clipping */
+  sciSetIsClipping (psubwin,0); 
 
-    /** Drawing the Legends **/
-    if ((int)strlen(strflag) >=1  && strflag[0] == '1')
-      {
-	integer styl[2] = {-1,0}; 
-	n1=1;
-	Legends(styl,&n1,legend);
-      }        
-  } /** version_flag ***/
+  /* Force  axes_visible property */
+  /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
+
+  if (sciGetGraphicMode (psubwin)->autoscaling) {
+    /* compute and merge new specified bounds with psubwin->Srect */
+    switch (strflag[1])  {
+      case '0': 
+        /* do not change psubwin->Srect */
+        break;
+      case '1' : case '3' : case '5' : case '7':
+        /* Force psubwin->Srect=brect */
+        re_index_brect(brect, drect);
+        break;
+      case '2' : case '4' : case '6' : case '8':case '9':
+        /* Force psubwin->Srect to the x and y bounds */
+        /* compute_data_bounds(0,'g',x,y,n1,*Nnode,drect); */
+        compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
+        break;
+    }
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
+      (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
+        drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+        drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+        drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+        drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+    }
+    if (strflag[1] != '0') 
+      bounds_changed = update_specification_bounds(psubwin, drect,2);
+  } 
+
+  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+
+  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+
+  /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
+  u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+
+  pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
+
+  if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
+    if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+    {
+      pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
+      pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
+
+      CreatePrettyGradsFromNax(psubwin,aaint);
+    }
+    else{
+      sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+  }
+
+  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+  {
+    sciDrawObj(sciGetCurrentFigure());
+  }
+  /*      EraseAndOrRedraw(psubwin);  /\*  inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
+
+  sciSetCurrentObj (ConstructFec 
+    ((sciPointObj *)
+    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
+
+  /* retrieve the created object : fec */
+  pptabofpointobj = sciGetCurrentObj();
+  hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
+  cmpt++;   
+  sciDrawObjIfRequired(sciGetCurrentObj ());
+  DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+  /** Drawing the Legends **/
+  if ((int)strlen(strflag) >=1  && strflag[0] == '1')
+  {
+    n1=1; styl[0]=1;styl[1]=0;
+    sciSetCurrentObj (ConstructLegend
+      ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
+      legend, strlen(legend), n1, styl, &pptabofpointobj)); 
+
+    /*       sciSetMarkSizeUnit(sciGetCurrentObj(),2); /\* force switch to tabulated mode : old syntax *\/ */
+
+    /* removed JB Silvy 12/05 */
+    /* fec object has no mark properties */
+    /*sciSetIsMark(pptabofpointobj, TRUE);*/
+    /*sciSetMarkStyle (pptabofpointobj, *styl);*/
+
+
+    sciDrawObjIfRequired(sciGetCurrentObj ()); 
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+    hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
+    cmpt++;
+  }
+  sciSetCurrentObj(ConstructCompound (hdltab, cmpt));  /** construct Compound **/
+
    
   return(0);
    

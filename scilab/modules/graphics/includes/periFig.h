@@ -74,8 +74,6 @@ void C2F(drawarcsXfig_old)(char *str, integer *vects, integer *style, integer *n
 
 void C2F(drawClippedPolylineXfig)(char *str, integer *n, integer *vx, integer *vy, integer *closeflag, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4);
 
-static void SetGraphicsVersion(void);
-
 void C2F(queryfamilyXfig)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
 
 void C2F(getFontMaxSizeXfig)(char *str, integer * sizeMin, integer *sizeMax, integer *v1, integer *v2, integer *v3, integer *v4, double *dx1, double *dx2, double *dx3, double *dx4);

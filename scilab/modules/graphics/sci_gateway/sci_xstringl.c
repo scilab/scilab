@@ -46,10 +46,7 @@ int sci_xstringl( char *fname, unsigned long fname_len )
 
   C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-  if ( version_flag() == 0 )
-  {
-    updateScaleIfRequired( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
-  }
+  updateScaleIfRequired( sciGetSelectedSubWin ( sciGetCurrentFigure () ) ) ;
 
 
   wc = 0.;

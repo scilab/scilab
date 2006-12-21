@@ -119,10 +119,7 @@ int C2F(sciwin)( void )
   double  dv       ;
   C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
   C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  if (version_flag() == 0) { 
-    return sciSwitchWindow(&win); 
-  }
-  return 0;
+  return sciSwitchWindow(&win); 
 } 
 /*-----------------------------------------------------------------------------*/
 

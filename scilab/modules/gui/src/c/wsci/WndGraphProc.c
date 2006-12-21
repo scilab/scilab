@@ -264,150 +264,130 @@ void ON_WND_GRAPH_WM_KEY(HWND hwnd, UINT vk, BOOL fDown, int cRepeat, UINT flags
 /*-----------------------------------------------------------------------------------*/
 BOOL ON_WND_GRAPH_WM_COMMAND(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify)
 {
-	struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
+  struct BCG *ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
 
-	if (id < NUMMENU) 
-	{
-		if (!SendMacroEntityPicker(ScilabGC, id)) SendGraphMacro (ScilabGC, id);
-	}
-	else
-	{
-		switch (id)
-		{
-			case TOOLBAR_ROTATE3D:
-				scig_3drot (ScilabGC->CurWindow);
-			break;
+  if (id < NUMMENU) 
+  {
+    if (!SendMacroEntityPicker(ScilabGC, id)) SendGraphMacro (ScilabGC, id);
+  }
+  else
+  {
+    switch (id)
+    {
+    case TOOLBAR_ROTATE3D:
+      scig_3drot (ScilabGC->CurWindow);
+      break;
 
-			case TOOLBAR_ZOOM:
-				scig_2dzoom (ScilabGC->CurWindow);
-			break;
+    case TOOLBAR_ZOOM:
+      scig_2dzoom (ScilabGC->CurWindow);
+      break;
 
-			case TOOLBAR_UNZOOM:
-				scig_unzoom (ScilabGC->CurWindow);
-			break;
+    case TOOLBAR_UNZOOM:
+      scig_unzoom (ScilabGC->CurWindow);
+      break;
 
-			case TOOLBAR_GED:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged(8,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
+    case TOOLBAR_GED:
+      {
 
-			case TOOLBAR_PICKER:
-			{
-				LRESULT lResult;
+        char command[1024];
+        wsprintf(command,"ged(8,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
 
-				HWND hwndPicker=NULL;
-				hwndPicker=GetDlgItem(ScilabGC->CWindow,TOOLBAR_PICKER);
+    case TOOLBAR_PICKER:
+      {
+        LRESULT lResult;
 
-				lResult=SendMessage(hwndPicker,(UINT) BM_GETCHECK,0,0);  
+        HWND hwndPicker=NULL;
+        hwndPicker=GetDlgItem(ScilabGC->CWindow,TOOLBAR_PICKER);
 
-				if (lResult == BST_CHECKED)
-				{
-					char command[1024];
-					wsprintf(command,"ged(10,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-					
-				}
-				else
-				{
-					char command[1024];
-					wsprintf(command,"ged(11,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-				
-			}
-			break;
+        lResult=SendMessage(hwndPicker,(UINT) BM_GETCHECK,0,0);  
 
-			case TOOLBAR_LINE:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged_insert(1,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
+        if (lResult == BST_CHECKED)
+        {
+          char command[1024];
+          wsprintf(command,"ged(10,%d);",ScilabGC->CurWindow);
+          StoreCommand(command);
 
-			case TOOLBAR_POLYLINE:
-				{
-				if (ScilabGC->graphicsversion == 0)
-					{
-					char command[1024];
-					wsprintf(command,"ged_insert(2,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-					}
-				}
-			break;
+        }
+        else
+        {
+          char command[1024];
+          wsprintf(command,"ged(11,%d);",ScilabGC->CurWindow);
+          StoreCommand(command);
+        }
 
-			case TOOLBAR_ARROW:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged_insert(3,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
+      }
+      break;
 
-			/* Disable Double Arrow */
-			/*
-			case TOOLBAR_DOUBLEARROW:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged_insert(4,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
-			*/
+    case TOOLBAR_LINE:
+      {
 
-			case TOOLBAR_TEXT:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged_insert(4,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
+        char command[1024];
+        wsprintf(command,"ged_insert(1,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
 
-			case TOOLBAR_RECTANGLE:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged_insert(5,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
+    case TOOLBAR_POLYLINE:
+      {
 
-			case TOOLBAR_CIRCLE:
-			{
-				if (ScilabGC->graphicsversion == 0)
-				{
-					char command[1024];
-					wsprintf(command,"ged_insert(6,%d);",ScilabGC->CurWindow);
-					StoreCommand(command);
-				}
-			}
-			break;
-		}
-		SetFocus(ScilabGC->CWindow);
-		SetActiveWindow(ScilabGC->CWindow);
-	}
-		
+        char command[1024];
+        wsprintf(command,"ged_insert(2,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
 
-	return TRUE;
+    case TOOLBAR_ARROW:
+      {
+        char command[1024];
+        wsprintf(command,"ged_insert(3,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
+
+      /* Disable Double Arrow */
+      /*
+      case TOOLBAR_DOUBLEARROW:
+      {
+      char command[1024];
+      wsprintf(command,"ged_insert(4,%d);",ScilabGC->CurWindow);
+      StoreCommand(command);
+      }
+      break;
+      */
+
+    case TOOLBAR_TEXT:
+      {
+
+        char command[1024];
+        wsprintf(command,"ged_insert(4,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
+
+    case TOOLBAR_RECTANGLE:
+      {
+        char command[1024];
+        wsprintf(command,"ged_insert(5,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
+
+    case TOOLBAR_CIRCLE:
+      {
+        char command[1024];
+        wsprintf(command,"ged_insert(6,%d);",ScilabGC->CurWindow);
+        StoreCommand(command);
+      }
+      break;
+    }
+    SetFocus(ScilabGC->CWindow);
+    SetActiveWindow(ScilabGC->CWindow);
+  }
+
+
+  return TRUE;
 }
 /*-----------------------------------------------------------------------------------*/

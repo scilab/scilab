@@ -99,14 +99,16 @@ int sci_set(char *fname, unsigned long fname_len)
 	    lw = 1 + Top - Rhs;
 	    C2F(overload)(&lw,"set",3);return 0;
 	  }
-	  if (version_flag() ==0)
-	    hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */ 
-	  else
-	    hdl = (unsigned long)0;
-	  if (hdl == (unsigned long)0 )
+          hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */ 
+
+          if (hdl == (unsigned long)0 )
+          {
 	    pobj = (sciPointObj *) NULL;
+          }
 	  else
+          {
 	    pobj = sciGetPointerFromHandle(hdl);
+          }
 	} 
       else 
 	{
@@ -165,19 +167,25 @@ int sci_set(char *fname, unsigned long fname_len)
 	  else
 	    {
 	      SciWin();
-	      if (version_flag() == 0 )
-		if ((strcmp(cstk(l2),"zoom_") !=0) && 
+              if ((strcmp(cstk(l2),"zoom_") !=0) && 
 		    (strcmp(cstk(l2),"auto_") !=0) && 
 		    (strcmp(cstk(l2),"clip_box") !=0) )   
-		  hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ; 
-		else  
-		  hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
-	      else
-		hdl = (unsigned long)0;
+              {
+		hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ;
+              }
+		else
+              {
+		hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+              }
+
 	      if (hdl == (unsigned long)0 )
+              {
 		pobj = (sciPointObj *) NULL;
+              }
 	      else
+              {
 		pobj = sciGetPointerFromHandle(hdl);
+              }
 	    }
 	}
       else

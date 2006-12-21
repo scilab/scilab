@@ -14,16 +14,8 @@
 
 int get_old_style_property( sciPointObj * pobj )
 {
-
-  if ( version_flag() != 0)
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
-
+  /* no more old style */
+  return sciReturnString( "off" ) ;
   return 0 ;
 }
 

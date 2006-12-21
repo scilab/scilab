@@ -147,7 +147,6 @@ static integer DashTab[MAXDASH] = { PS_SOLID,PS_DASH,PS_DOT,PS_DASHDOT,PS_DASHDO
 
 extern GW graphwin; /** keeps information for the current graphic window **/
 extern TW textwin; /** keeps information for the current scilab window **/
-extern int versionflag;
 
 /** XXX a mettre ailleurs **/
 
@@ -2560,7 +2559,6 @@ void get_b(i,b)
   -------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 static void InitMissileXgc();
-static void SetGraphicsVersion();
 /*-----------------------------------------------------------------------------------*/
 
 void C2F(sempty)(verbose, v2, v3, v4)
@@ -2581,7 +2579,7 @@ void C2F(gempty)(verbose, v2, v3,dummy)
   if ( *verbose ==1 ) Scistring("\n No operation ");
 }
 /*-----------------------------------------------------------------------------------*/
-#define NUMSETFONC 33
+#define NUMSETFONC 32
 /*-----------------------------------------------------------------------------------*/
 /** Table in lexicographic order **/
 
@@ -2613,7 +2611,6 @@ MissileGCTab_[] = {
   {"pixmap",C2F(setpixmapOn),C2F(getpixmapOn)},
   {"thickness",C2F(setthickness),C2F(getthickness)},
   {"use color",C2F(usecolor),C2F(getusecolor)},
-  {"version",C2F(setscilabVersion),C2F(getscilabVersion)},/* NG */
   {"viewport", C2F(setviewport), C2F(getviewport)},
   {"wdim",C2F(setwindowdim),C2F(getwindowdim)},
   {"white",C2F(sempty),C2F(getlast)},
@@ -3952,7 +3949,6 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 	} 
 	InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
 	/* to be sure that current values are recorded */  
-	SetGraphicsVersion(); /* set the graphics version using global versionflag variable */
 	StoreXgc(WinNum);
 	EntryCounter=Max(EntryCounter,WinNum);
 	EntryCounter++;
@@ -4110,7 +4106,6 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
    *  to force usecolorPos to perform initialisations
    **/
   ScilabXgc->mafigure = (sciPointObj *)NULL;
-  /*   ScilabXgc->graphicsversion = versionflag; /\* NG *\/  */
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   C2F(usecolor)(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");
@@ -4131,10 +4126,6 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   C2F(setpixmapOn)((i = 0,&i),PI0,PI0,PI0);
 }
 
-static void SetGraphicsVersion()
-{
-  ScilabXgc->graphicsversion = versionflag; /* NG */ 
-}
 
 /*-----------------------------------------------------------------------------------*/
 /* returns the current color status */
@@ -4972,12 +4963,12 @@ static void C2F(getscilabFigure)(integer *verbose, integer *x,integer *narg, dou
 /*-----------------------------------------------------------------------------------*/
 static void C2F(setscilabVersion)(integer *vers, integer *v2, integer *v3, integer *v4)
 {
-  ScilabXgc->graphicsversion=*vers;
+  /*ScilabXgc->graphicsversion=*vers;*/
 }
 /*-----------------------------------------------------------------------------------*/
 static void C2F(getscilabVersion)(integer *verbose, integer *vers, integer *narg, double *dummy)
 {   
-  *vers = ScilabXgc->graphicsversion;
+  *vers = 0 ;
 }
 /*-----------------------------------------------------------------------------------*/
 static void C2F(setscilabxgc)(integer *v1, integer *v2, integer *v3, integer *v4)

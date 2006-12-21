@@ -25,22 +25,8 @@ int get_current_figure_property( sciPointObj * pobj )
   {
     /* graphic window */
     C2F(sciwin)() ;
-    if( version_flag() == 0 )
-    {
-      /* return handle on the current figure */
-      return sciReturnHandle( sciGetHandle( sciGetCurrentFigure() ) ) ;
-    }
-    else
-    {
-      /* return id of the current figure */
-      double *XGC,dv=0;
-      int v=0;
-      struct BCG * CurrentScilabXgc = NULL;
-      C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-      CurrentScilabXgc = (struct BCG *) XGC ;
-
-      return sciReturnDouble( CurrentScilabXgc->CurWindow ) ;
-    }
+    /* return handle on the current figure */
+    return sciReturnHandle( sciGetHandle( sciGetCurrentFigure() ) ) ;
   }
   else
   {

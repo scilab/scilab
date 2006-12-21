@@ -34,12 +34,6 @@ int sci_UImenu( char *fname,unsigned long fname_len )
   CheckRhs(2,3);
   CheckLhs(0,1);
 
-  if (version_flag()!=0)
-    {
-      Scierror(999,"Not valid under old graphics mode.");
-      return 0;
-    }
-
   if (Rhs == 2)
     {
       if ( (VarType(1) == sci_strings) && (VarType(2) == sci_strings) )

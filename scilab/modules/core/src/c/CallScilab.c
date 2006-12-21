@@ -26,7 +26,6 @@ extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern int C2F(ismenu)();
 extern void SetFromCToON(void);
-extern int version_flag(void); 
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern BOOL GetWITH_GUI(void);
 extern void SetWITH_GUI(BOOL ON);
@@ -226,17 +225,9 @@ int ScilabHaveAGraph(void)
 
 	if ( GetWITH_GUI() )
 	{
-		if (version_flag() == 0)
-		{
-			sciGetIdFigure (&ids,&num,&iflag);
-			if (num > 0) vInt=1;
-
-		}/* NG end*/
-		else
-		{
-			getWins(&num,&ids ,&iflag);
-			if (num > 0) vInt=1;
-		} 
+			
+          sciGetIdFigure (&ids,&num,&iflag);
+          if (num > 0) { vInt = 1 ; }
 	}
 	else
 	{

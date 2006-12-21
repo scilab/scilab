@@ -22,7 +22,7 @@ int sci_xgrid(char *fname,unsigned long fname_len)
     style = (integer) *stk(l1);
   }
   SciWin();
-  C2F(xgrid)(&style); /* test on version_flag() inside Plo2.c F.Leray 07.05.04 */
+  C2F(xgrid)(&style);
   LhsVar(1)=0;
   return 0;
 } 

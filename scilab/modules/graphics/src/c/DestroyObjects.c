@@ -887,37 +887,34 @@ DestroySciMenu (sciPointObj * pthis)
 /**delete_sgwin_entities(int win_num)
  * @memo This function is to be called after window deletion 
  */
-void delete_sgwin_entities(int win_num,int v_flag)
+void delete_sgwin_entities( int win_num )
 {
   double dv=0;
   double *XGC;
   struct BCG *CurrentScilabXgc; 
   int v=0;
+  /* Need to reset the new current figure returned by sciGetCurrentFigure */
+  sciHandleTab *hdl = NULL;
+  sciPointObj  *pobj= NULL;
 
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
 
-  if(v_flag == 0)
+
+  hdl = sciGetpendofhandletab();
+
+  if(CurrentScilabXgc != NULL)
+    while (hdl != NULL)
     {
-      /* Need to reset the new current figure returned by sciGetCurrentFigure */
-      sciHandleTab *hdl = NULL;
-      sciPointObj  *pobj= NULL;
-      
-      hdl = sciGetpendofhandletab();
-		 
-      if(CurrentScilabXgc != NULL)
-	while (hdl != NULL)
-	  {
-	    pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-	    if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
-	      {
-		sciSetCurrentFigure(pobj);
-                sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
-		break;
-		
-	      }
-	    hdl = hdl->pprev;
-	  }
+      pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+      if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
+      {
+        sciSetCurrentFigure(pobj);
+        sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
+        break;
+
+      }
+      hdl = hdl->pprev;
     }
 }
 
@@ -969,49 +966,26 @@ int updateMerge( sciPointObj * pSubwin )
 /*-----------------------------------------------------------------------------------------*/
 void AllGraphWinDelete( void )
 {
-  if (version_flag() == 0) /*  New Graphic Mode */
+
+  integer iflag=0,num=0;
+  int *ArrayWGraph=NULL;
+
+  sciGetIdFigure (ArrayWGraph,&num,&iflag);
+
+  if (num > 0)
   {
-    integer iflag=0,num=0;
-    int *ArrayWGraph=NULL;
-
-    sciGetIdFigure (ArrayWGraph,&num,&iflag);
-
-    if (num > 0) 
-    {
-      int i=0;
-      ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
-
-      iflag = 1;
-      sciGetIdFigure (ArrayWGraph,&num,&iflag);
-
-      for (i=0;i<num;i++)
-      {
-        C2F (deletewin) (&ArrayWGraph[i]);
-        FREE (ArrayWGraph);
-      }
-      ArrayWGraph=NULL;
-    }
-  }
-  else /* Old Graphics mode */
-  {	
-    integer iflag = 0, num, *ids = (integer *) 0;
-
-    getWins(&num, ids, &iflag);
-    if (num > 0)
-    {
-      ids = MALLOC ((unsigned) num * sizeof (integer));
-    }
+    int i=0;
+    ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
 
     iflag = 1;
+    sciGetIdFigure (ArrayWGraph,&num,&iflag);
 
-    if (ids != NULL)
+    for (i=0;i<num;i++)
     {
-      int i;
-      getWins(&num, ids, &iflag);
-      for (i = 0; i < num; i++)
-        C2F (deletewin) (&ids[i]);
-      FREE (ids);
+      C2F (deletewin) (&ArrayWGraph[i]);
+      FREE (ArrayWGraph);
     }
+    ArrayWGraph=NULL;
   }
 }
 /*-----------------------------------------------------------------------------------------*/

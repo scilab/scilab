@@ -25,7 +25,6 @@
 
 #include "MALLOC.h" /* MALLOC */
 
-extern int version_flag(void); /* NG */
 
 extern void fill_grid_rectangles __PARAMS(( integer *x,  integer *y, 
 					    double *z, integer n1, integer n2));
@@ -73,138 +72,111 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 {
   int N = Max((*n1),(*n2));
   double xx[2],yy[2];
-  integer *xm,*ym,j,nn1=1,nn2=2/*,i*/;
+  integer nn1=1,nn2=2;
   sciPointObj  *psubwin = NULL;
   double drect[6];
   BOOL bounds_changed = FALSE;
+  BOOL isRedrawn ;
   BOOL axes_properties_changed = FALSE;
   
   xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
   yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
   
-  /* NG beg */
-  if (version_flag() == 0){
-    BOOL isRedrawn ;
-    /* Adding F.Leray 22.04.04 */
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-
-    isRedrawn = checkRedrawing() ;
     
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-      {
-	pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-	pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-      }
-    else
-      {
-	pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-	pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
-      }
+  /* Adding F.Leray 22.04.04 */
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-    pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-    pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-    
-    /* Force psubwin->axes.aaint to those given by argument aaint*/
-    /*****TO CHANGE F.Leray 10.09.04  for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
-    
-    /* Force "cligrf" clipping */
-    sciSetIsClipping (psubwin,0); 
+  isRedrawn = checkRedrawing() ;
 
-    /* Force  axes_visible property */
-    /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
+  /* Force psubwin->is3d to FALSE: we are in 2D mode */
+  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+  {
+    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+  }
+  else
+  {
+    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+  }
 
-    if (sciGetGraphicMode (psubwin)->autoscaling) {
-      /* compute and merge new specified bounds with psubwin->Srect */
-      switch (strflag[1])  {
+  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+
+  /* Force psubwin->axes.aaint to those given by argument aaint*/
+  /*****TO CHANGE F.Leray 10.09.04  for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
+
+  /* Force "cligrf" clipping */
+  sciSetIsClipping (psubwin,0); 
+
+
+  if (sciGetGraphicMode (psubwin)->autoscaling) {
+    /* compute and merge new specified bounds with psubwin->Srect */
+    switch (strflag[1])  {
       case '0': 
-	/* do not change psubwin->Srect */
-	break;
+        /* do not change psubwin->Srect */
+        break;
       case '1' : case '3' : case '5' : case '7':
-	/* Force psubwin->Srect=brect */
-	re_index_brect(brect, drect);
-	break;
+        /* Force psubwin->Srect=brect */
+        re_index_brect(brect, drect);
+        break;
       case '2' : case '4' : case '6' : case '8': case '9':
-	/* Force psubwin->Srect to the x and y bounds */
-	/* compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
-	compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
-	break;
-      }
-      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
-	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
-      }
-      if (strflag[1] != '0') 
-	bounds_changed = update_specification_bounds(psubwin, drect,2);
-    } 
+        /* Force psubwin->Srect to the x and y bounds */
+        /* compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
+        compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
+        break;
+    }
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+      drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+      drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+      drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+      drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+    }
+    if (strflag[1] != '0') 
+      bounds_changed = update_specification_bounds(psubwin, drect,2);
+  } 
 
-    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
 
-    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-    
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
-   
-    /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
-       u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
-    
-    pSUBWIN_FEATURE (psubwin)->flagNax = flagNax; /* store new value for flagNax */
-    
-    if(pSUBWIN_FEATURE (psubwin)->flagNax == TRUE){
-      if(pSUBWIN_FEATURE (psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE (psubwin)->logflags[1] == 'n')
-	{
-	  pSUBWIN_FEATURE (psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-	  pSUBWIN_FEATURE (psubwin)->axes.auto_ticks[1] = FALSE;
-	  
-	  CreatePrettyGradsFromNax(psubwin,aaint);
-	}
-      else{
-	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
-    }
-    
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      sciDrawObj(sciGetCurrentFigure());
-/*       EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-    
-    sciSetCurrentObj (ConstructGrayplot 
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       x,y,z,*n1,*n2,0));
-    /* if the auto_clear is on we must redraw everything */
-    if ( isRedrawn )
+  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+
+  /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
+  u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+
+  pSUBWIN_FEATURE (psubwin)->flagNax = flagNax; /* store new value for flagNax */
+
+  if(pSUBWIN_FEATURE (psubwin)->flagNax == TRUE){
+    if(pSUBWIN_FEATURE (psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE (psubwin)->logflags[1] == 'n')
     {
-      sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+      pSUBWIN_FEATURE (psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
+      pSUBWIN_FEATURE (psubwin)->axes.auto_ticks[1] = FALSE;
+
+      CreatePrettyGradsFromNax(psubwin,aaint);
     }
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-    }
+    else{
+      sciprint("Warning : Nax does not work with logarithmic scaling\n");}
   }
 
-  else { 
-    /** Boundaries of the frame **/
-    update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
-    /** If Record is on **/
-    if (GetDriver()=='R') 
-      StoreGray("gray",x,y,z,n1,n2,strflag,brect,aaint);
-    /** Allocation **/
-    xm = graphic_alloc(0,N,sizeof(int));
-    ym = graphic_alloc(1,N,sizeof(int));
-    if ( xm == 0 || ym == 0)  {
-      sciprint("Running out of memory \n");return 0;}      
+  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+    sciDrawObj(sciGetCurrentFigure());
 
-    axis_draw(strflag);
-    /** Drawing the curves **/
-    frame_clip_on();
-    for ( j =0 ; j < (*n1) ; j++)	 xm[j]= XScale(x[j]);
-    for ( j =0 ; j < (*n2) ; j++)	 ym[j]= YScale(y[j]);
-    GraySquare(xm,ym,z,*n1,*n2); 
-    frame_clip_off(); 
-    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
-	    ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  sciSetCurrentObj (ConstructGrayplot 
+    ((sciPointObj *)
+    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    x,y,z,*n1,*n2,0));
+  /* if the auto_clear is on we must redraw everything */
+  if ( isRedrawn )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
   }
+  else
+  {
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+  }
+  
   return(0);
 }
 
@@ -276,130 +248,104 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   double drect[6];
   BOOL bounds_changed = FALSE;
   BOOL axes_properties_changed = FALSE;
+  BOOL isRedrawn ;
   
   xx[0]=0.5;xx[1]= *n2+0.5;
   yy[0]=0.5;yy[1]= *n1+0.5;
   
-  if (version_flag() == 0){
-    BOOL isRedrawn ;
-    /* Adding F.Leray 22.04.04 */
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-    
-    isRedrawn = checkRedrawing() ;
+  /* Adding F.Leray 22.04.04 */
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-    /* Force psubwin->is3d to FALSE: we are in 2D mode */
-    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-      {
-	pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-	pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-	}
-    else
-      {
-	pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-	pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
-      }
+  isRedrawn = checkRedrawing() ;
 
-    pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-    pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-          
-    /*****TO CHANGE F.Leray 10.09.04    for (i=0;i<4;i++)     pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
-    
-    /*---- Boundaries of the frame ----*/
-    if (sciGetGraphicMode (psubwin)->autoscaling){
-      /* compute and merge new specified bounds with psubwin->Srect */
-      switch (strflag[1])  {
-      case '0': 
-	/* do not change psubwin->Srect */
-	break;
-      case '1' : case '3' : case '5' : case '7':
-	/* Force psubwin->Srect=brect */
-	re_index_brect(brect, drect);
-	break;
-      case '2' : case '4' : case '6' : case '8': case '9':
-	/* Force psubwin->Srect to the x and y bounds */
-/* 	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
-	compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
-	break;
-      }
-      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
-	  (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
-      }
-      if (strflag[1] != '0') 
-	bounds_changed = update_specification_bounds(psubwin, drect,2);
-    } 
-  
-    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
-    
-    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-     
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
- 
-    /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
-       u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
-    
-    pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
-    
-    if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
-      if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
-	{
-	  pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-	  pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
-	  
-	  CreatePrettyGradsFromNax(psubwin,aaint);
-	}
-      else{
-	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
-    }
-    
-
-  /*   sciDrawObj(psubwin); /\* ???? *\/ */
-    
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      sciDrawObj(sciGetCurrentFigure());
- /*      EraseAndOrRedraw(psubwin); /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-    
-    sciSetCurrentObj (ConstructGrayplot 
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       NULL,NULL,z,*n1 + 1,*n2 + 1,1));
-    /* if the auto_clear is on we must redraw everything */
-    if ( isRedrawn )
-    {
-      sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-    }
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-    }
+  /* Force psubwin->is3d to FALSE: we are in 2D mode */
+  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+  {
+    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
   }
-  else { /* NG end */
-    /** Boundaries of the frame **/
-    update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
-
-    /** If Record is on **/
-    if (GetDriver()=='R')
-      StoreGray1("gray1",z,n1,n2,strflag,brect,aaint);
-
-    /** Allocation **/
-    xm = graphic_alloc(0,N,sizeof(int));
-    ym = graphic_alloc(1,N,sizeof(int));
-    if ( xm == 0 || ym == 0) {
-      sciprint("Running out of memory \n");return 0;}      
-
-    axis_draw(strflag);
-    frame_clip_on();
-    for ( j =0 ; j < (*n2+1) ; j++) xm[j]= XScale(j+0.5);
-    for ( j =0 ; j < (*n1+1) ; j++) ym[j]= YScale(((*n1)-j+0.5));
-    GraySquare1(xm,ym,z,*n1+1,*n2+1);
-    frame_clip_off(); 
-    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
-	    ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  else
+  {
+    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
   }
+
+  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+
+  /*****TO CHANGE F.Leray 10.09.04    for (i=0;i<4;i++)     pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
+
+  /*---- Boundaries of the frame ----*/
+  if (sciGetGraphicMode (psubwin)->autoscaling){
+    /* compute and merge new specified bounds with psubwin->Srect */
+    switch (strflag[1])  {
+    case '0': 
+      /* do not change psubwin->Srect */
+      break;
+    case '1' : case '3' : case '5' : case '7':
+      /* Force psubwin->Srect=brect */
+      re_index_brect(brect, drect);
+      break;
+    case '2' : case '4' : case '6' : case '8': case '9':
+      /* Force psubwin->Srect to the x and y bounds */
+      /* 	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
+      compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
+      break;
+    }
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
+      (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
+        drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+        drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+        drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+        drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+    }
+    if (strflag[1] != '0') 
+      bounds_changed = update_specification_bounds(psubwin, drect,2);
+  } 
+
+  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+
+  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+
+  /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
+  u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+
+  pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
+
+  if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
+    if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+    {
+      pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
+      pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
+
+      CreatePrettyGradsFromNax(psubwin,aaint);
+    }
+    else{
+      sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+  }
+
+
+
+  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+    sciDrawObj(sciGetCurrentFigure());
+
+  sciSetCurrentObj (ConstructGrayplot 
+    ((sciPointObj *)
+    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    NULL,NULL,z,*n1 + 1,*n2 + 1,1));
+  /* if the auto_clear is on we must redraw everything */
+  if ( isRedrawn )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
+  }
+  else
+  {
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+  }
+
   return (0);
 }
   
@@ -413,63 +359,33 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
 {
 
-  /* NG beg */
-  if (version_flag() == 0){
-    BOOL isRedrawn ;
-    double y; /* void for ConstructGrayplot */ 
-    sciPointObj *psubwin = NULL;
-    
-    isRedrawn = checkRedrawing() ;
-  
-    /*---- Boundaries of the frame ----*/
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-    sciSetIsClipping (psubwin,0); 
+  BOOL isRedrawn ;
+  double y; /* void for ConstructGrayplot */ 
+  sciPointObj *psubwin = NULL;
 
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
-    sciSetCurrentObj (ConstructGrayplot 
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
-		       xrect,&y,z,*n1+1,*n2+1,2));
-    /* if the auto_clear is on we must redraw everything */
-    if ( isRedrawn )
-    {
-      sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
-    }
-    else
-    {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
-      DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
-    }
+  isRedrawn = checkRedrawing() ;
+
+  /*---- Boundaries of the frame ----*/
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  sciSetIsClipping (psubwin,0); 
+
+  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
+  sciSetCurrentObj (ConstructGrayplot 
+    ((sciPointObj *)
+    sciGetSelectedSubWin (sciGetCurrentFigure ()),
+    xrect,&y,z,*n1+1,*n2+1,2));
+  /* if the auto_clear is on we must redraw everything */
+  if ( isRedrawn )
+  {
+    sciDrawObjIfRequired( sciGetCurrentFigure() ) ;
   }
-  else { /* NG end */
-    double xx[2],yy[2];
-    integer xx1[2],yy1[2],nn1=1,nn2=2;
-    integer *xm,*ym,  j;
+  else
+  {
+    sciDrawObjIfRequired(sciGetCurrentObj ());
+    DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
+  }
 
-
-    xx[0]=xrect[0];xx[1]=xrect[2];
-    yy[0]=xrect[1];yy[1]=xrect[3];
  
-    /** If Record is on **/
-    if  (GetDriver()=='R')
-      StoreGray2("gray2",z,n1,n2,xrect);
-      /** Boundaries of the frame **/
-    C2F(echelle2d)(xx,yy,xx1,yy1,&nn1,&nn2,"f2i",3L);  
-
-    xm = graphic_alloc(0,(*n2)+1,sizeof(int));
-    ym = graphic_alloc(1,(*n1)+1,sizeof(int));
-    if ( xm == 0 || ym == 0 ) {
-      sciprint("Xgray: running out of memory\n");return 0;}
-    frame_clip_on();
-    for ( j =0 ; j < (*n2+1) ; j++)	 
-      xm[j]= (int) (( xx1[1]*j + xx1[0]*((*n2)-j) )/((double) *n2));
-  
-    for ( j =0 ; j < (*n1+1) ; j++)	 
-      ym[j]= (int) (( yy1[0]*j + yy1[1]*((*n1)-j) )/((double) *n1));
-    GraySquare1(xm,ym,z,*n1+1,*n2+1);
-    frame_clip_off(); 
- 
-    }
   return (0);
 }
  

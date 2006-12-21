@@ -24,17 +24,9 @@ JNIEXPORT jboolean JNICALL Java_javasci_Scilab_HaveAGraph (JNIEnv *env , jobject
 	integer iflag =0,ids,num;
 	jboolean bOK=0;
 
-	if (version_flag() == 0)
-	{
-		sciGetIdFigure (&ids,&num,&iflag);
-		if (num > 0) bOK=1;
+        sciGetIdFigure (&ids,&num,&iflag);
+        if (num > 0) { bOK=1; }
 		
-	}/* NG end*/
-	else
-	{
-		getWins(&num,&ids ,&iflag);
-		if (num > 0) bOK=1;
-  } 
  
 	return bOK;
 }

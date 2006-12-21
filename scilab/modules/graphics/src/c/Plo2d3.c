@@ -85,16 +85,13 @@ void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *
   integer i,j;
   /** Computing y-values **/
   double y_zero = 0.;
+  sciPointObj *  psubwin =  sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
 
-  if(version_flag()==0)
-    {
-      sciPointObj *  psubwin =  sciGetSelectedSubWin (sciGetCurrentFigure ());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-
-      if(ppsubwin->logflags[1]=='l')
-	y_zero = ppsubwin->FRect[1];
-    }
-  
+  if(ppsubwin->logflags[1]=='l')
+  {
+    y_zero = ppsubwin->FRect[1];
+  }
 
 
 

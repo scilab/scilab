@@ -15,12 +15,6 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 {
   CheckRhs(1,1);
   CheckLhs(1,1);
-	
-  if ( version_flag() != 0 )
-  {
-    Scierror(999,"Not valid under old graphics mode.");
-    return 0;
-  }
 
   if (VarType(1) == sci_handles)
   {

@@ -64,7 +64,7 @@ extern int DestroySciMenu (sciPointObj * pthis);
 
 /* ADDED */
 
-extern void delete_sgwin_entities(int win_num,int v_flag);
+extern void delete_sgwin_entities(int win_num);
 
 /* free the user_data */
 extern void clearUserData( sciPointObj * pObj ) ;

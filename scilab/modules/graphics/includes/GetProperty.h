@@ -143,7 +143,6 @@ extern int sciType (char *marker, sciPointObj *pobj); /* GET */
 extern int  sciGetNbFigure( void ) ; /* GET */
 extern void sciGetFiguresId( int figIds[] ) ; /* GET */
 extern void sciGetIdFigure (int *vect, int *id, int *flag); /* GET */
-extern int version_flag(void); /* GET */
 extern unsigned int sciGetFontNameLength (sciPointObj * pobj); /* GET */
 /* extern struct BCG *sciGetCurrentScilabXgc (); /\* GET *\/ */
 

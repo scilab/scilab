@@ -980,43 +980,26 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
   int FreeNumber=-1;
   integer iflag =0,ids,num,un=1;
 
-  if (ScilabGC->graphicsversion == 1) /* old mode */
-    {
-      HWND hWndGraph=NULL;
-      int Num=0;
-      char NameWindow[MAX_PATH];
+  integer *tab=NULL;
+  int sizetab=0;
+  int i=0;
 
-      wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
-      while ( FindWindow(NULL,NameWindow) )
-	{
-	  Num++;
-	  wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
-	}
-      FreeNumber=Num;
-    }
-  else
-    {
-      integer *tab=NULL;
-      int sizetab=0;
-      int i=0;
+  iflag = 0; 
+  getWins(&num,&ids ,&iflag);
+  sizetab=num;
 
-      iflag = 0; 
-      getWins(&num,&ids ,&iflag);
-      sizetab=num;
+  tab=(integer*)MALLOC(sizeof(integer)*sizetab);
+  for(i=0;i<sizetab;i++) tab[i]=0;
 
-      tab=(integer*)MALLOC(sizeof(integer)*sizetab);
-      for(i=0;i<sizetab;i++) tab[i]=0;
+  iflag = 1; 
+  getWins(&num,tab,&iflag);
 
-      iflag = 1; 
-      getWins(&num,tab,&iflag);
-
-      for(i=0;i<sizetab;i++)
-	{
-	  if(FreeNumber<tab[i]) FreeNumber=tab[i];	
-	}
-      FreeNumber=FreeNumber+1;
-      FREE(tab);
-    } 
+  for(i=0;i<sizetab;i++)
+  {
+    if(FreeNumber<tab[i]) FreeNumber=tab[i];	
+  }
+  FreeNumber=FreeNumber+1;
+  FREE(tab);
   return FreeNumber;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1082,70 +1065,50 @@ void RefreshMenus(struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 void CreateGedMenus(struct BCG * ScilabGC)
 {
-	int WinNum=ScilabGC->CurWindow;
-	if (ScilabGC->graphicsversion!=0)
-	{
-		integer ne=3, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
-		char *EditMenusF[]={"&Selectionner figure","&Redessiner figure","&Effacer figure"};
+  int WinNum=ScilabGC->CurWindow;
 
-		UpdateFileGraphNameMenu(ScilabGC);
-		LoadGraphMacros(ScilabGC);
 
-		switch( ScilabGC->lpmw.CodeLanguage)
-		{
-			case 1:
-				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
-			break;
-			default:
-				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-			break;
-		}
-	}
-	else
-	{
-		/*
-		for new menus
-		ScilabXgc->hMenuRoot=CreateMenu();
-		ScilabXgc->IDM_Count=1;
+  /*
+  for new menus
+  ScilabXgc->hMenuRoot=CreateMenu();
+  ScilabXgc->IDM_Count=1;
 
-		SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
-		*/
-	#ifdef WITH_TK
-		integer ne=14, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
-		char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
+  SetMenu(ScilabXgc->hWndParent,ScilabXgc->hMenuRoot); 
+  */
+#ifdef WITH_TK
+  integer ne=14, menutyp=2, ierr;
+  char *EditMenusE[]={"&Select figure as current","&Redraw figure","&Erase figure","[--]","&Copy object","&Paste object","Move object","Delete object","[--]","Figure properties","Current &axes properties","[--]",MSG_SCIMSG116,MSG_SCIMSG117};
+  char *EditMenusF[]={"&Selectionner figure comme courante","&Redessiner figure","[--]","&Effacer figure","Copier objet","Coller objet","Déplacer objet","Détruire objet","[--]","Propriétés de la &figure","Propriétés des &axes courants","[--]",MSG_SCIMSG118,MSG_SCIMSG119};
 
-		/* Disable Double Arrow */
-		integer ni=/*7*/6;
-		char *InsertMenusE[]={"&Line","&Polyline","&Arrow",/*"&Double Arrow",*/"&Text","&Rectangle","&Circle"};
-		char *InsertMenusF[]={"&Ligne","L&igne brisée","&Fleche",/*"&Double Fleche",*/"&Texte","&Rectangle","&Cercle"};
-	#else
-		integer ne=3, menutyp=2, ierr;
-		char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
-		char *EditMenusF[]={"&Selectionner figure","&Redessiner figure","&Effacer figure"};
-	#endif
+  /* Disable Double Arrow */
+  integer ni=/*7*/6;
+  char *InsertMenusE[]={"&Line","&Polyline","&Arrow",/*"&Double Arrow",*/"&Text","&Rectangle","&Circle"};
+  char *InsertMenusF[]={"&Ligne","L&igne brisée","&Fleche",/*"&Double Fleche",*/"&Texte","&Rectangle","&Cercle"};
+#else
+  integer ne=3, menutyp=2, ierr;
+  char *EditMenusE[]={"&Select figure","&Redraw figure","&Erase figure"};
+  char *EditMenusF[]={"&Selectionner figure","&Redessiner figure","&Effacer figure"};
+#endif
 
-		UpdateFileGraphNameMenu(ScilabGC);
-		LoadGraphMacros(ScilabGC);
+  UpdateFileGraphNameMenu(ScilabGC);
+  LoadGraphMacros(ScilabGC);
 
-		switch( ScilabGC->lpmw.CodeLanguage)
-		{
-			case 1:
-				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
-			#ifdef WITH_TK
-				/*AddMenu(&WinNum,"&Inserer", InsertMenusF, &ni, &menutyp, "ged_insert", &ierr);*/
-			#endif
-			break;
-			default:
-				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-			#ifdef WITH_TK
-				/*AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);*/
-			#endif
-			break;
-		}
+  switch( ScilabGC->lpmw.CodeLanguage)
+  {
+  case 1:
+    AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+#ifdef WITH_TK
+    /*AddMenu(&WinNum,"&Inserer", InsertMenusF, &ni, &menutyp, "ged_insert", &ierr);*/
+#endif
+    break;
+  default:
+    AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+#ifdef WITH_TK
+    /*AddMenu(&WinNum,"&Insert", InsertMenusE, &ni, &menutyp, "ged_insert", &ierr);*/
+#endif
+    break;
+  }
 
-	}
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL SendMacroEntityPicker(struct BCG * ScilabGC,int id)

@@ -124,66 +124,15 @@ int C2F(plot2d)(double    x[]      ,
 
 int C2F(xgrid)( integer * style )
 {
-  integer closeflag=0,n=2,vx[2],vy[2],i,j;
-  double pas;
-  integer verbose=0,narg,xz[10];
-  if (version_flag() == 0) /* put it back to support xgrid under new graphics style*/
-    {
-      sciPointObj *psubwin;
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      for (i=0 ; i<3 ; i++) /**DJ.Abdmouche 2003**/
-	pSUBWIN_FEATURE (psubwin)->grid[i] = *style;
-      sciDrawObj(sciGetParentFigure(psubwin));
-      return(0);
-    }
+  sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   
-  /* Recording command */
-  if (GetDriver()=='R') StoreGrid("xgrid",style);
+  pSUBWIN_FEATURE (psubwin)->grid[0] = *style;
+  pSUBWIN_FEATURE (psubwin)->grid[1] = *style;
+  pSUBWIN_FEATURE (psubwin)->grid[2] = *style;
 
-  /* changes dash style if necessary */
-  C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","color",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /** Get current scale **/
-  pas = ((double) Cscale.WIRect1[2]) / ((double) Cscale.Waaint1[1]);
-  /** x-axis grid (i.e vertical lines ) */
-  for ( i=0 ; i < Cscale.Waaint1[1]; i++)
-    {
-      vy[0]=Cscale.WIRect1[1];
-      vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
-      vx[0]=vx[1]= Cscale.WIRect1[0] + inint( ((double) i)*pas);
-      if ( i!=0) C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if (Cscale.logflag[0] == 'l') 
-	{
-	  int jinit=1;
-	  if ( i== 0 ) jinit=2; /* no grid on plot boundary */
-	  for (j= jinit; j < 10 ; j++)
-	    {
-	      vx[0]=vx[1]= Cscale.WIRect1[0] + inint( ((double) i)*pas)+ inint(log10(((double)j))*pas);
-	      C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	}
-    }
-  /** y-axis grid (i.e horizontal lines ) **/
-  pas = ((double) Cscale.WIRect1[3]) / ((double) Cscale.Waaint1[3]);
-  for ( i=0 ; i < Cscale.Waaint1[3]; i++)
-    {
-      vx[0]=Cscale.WIRect1[0];
-      vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];
-      vy[0]=vy[1]= Cscale.WIRect1[1] + inint( ((double) i)*pas);
-      if (i!=0)  C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if (Cscale.logflag[1] == 'l') 
-	{
-	  int jinit=1;
-	  if ( i== Cscale.Waaint1[3]-1 ) jinit=2; /* no grid on plot boundary */
-	  for (j= jinit; j < 10 ; j++)
-	    {
-	      vy[0]=vy[1]= Cscale.WIRect1[1] + inint( ((double) i+1)*pas)- inint(log10(((double)j))*pas);
-	      C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	}
-    }
-  C2F(dr)("xset","color",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  sciDrawObj(sciGetParentFigure(psubwin));
   return(0);
+  
 }
 
 

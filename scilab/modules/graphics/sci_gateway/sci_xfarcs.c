@@ -43,21 +43,17 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
     m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
     for (i = 0; i < n2; ++i) { *istk(l2 + i) = i+1 ; }
   }
-  if (version_flag() == 0) {
-    for (i = 0; i < n1; ++i)
-    { 
-      a1 = (int)(*stk(l1+(6*i)+4));
-      a2 = (int)(*stk(l1+(6*i)+5));
-      Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
-        stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
-    }
-    /** construct Compound and make it current object **/
-    sciSetCurrentObj (ConstructCompoundSeq (n1));
+
+  for (i = 0; i < n1; ++i)
+  { 
+    a1 = (int)(*stk(l1+(6*i)+4));
+    a2 = (int)(*stk(l1+(6*i)+5));
+    Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
+      stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),istk(l2+i),TRUE,FALSE,&hdl); 
   }
-  else
-  {
-    Xfarcs(fname,fname_len,istk(l2), n1,stk(l1)); 
-  }
+  /** construct Compound and make it current object **/
+  sciSetCurrentObj (ConstructCompoundSeq (n1));
+
   LhsVar(1)=0;
   return 0;
 

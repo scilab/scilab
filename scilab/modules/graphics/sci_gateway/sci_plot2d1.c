@@ -216,14 +216,8 @@ int sci_plot2d1_G( char * fname, int ptype, int (*func) (), unsigned long fname_
 
   if ( isDefStrf( strf ) ) {
     char strfl[4];
-    if (version_flag() == 0)
-    {
-      strcpy(strfl,DEFSTRFN);
-    }
-    else
-    {
-      strcpy(strfl,DEFSTRF);
-    }
+    strcpy(strfl,DEFSTRFN);
+
     strf = strfl;
     if ( !isDefRect( rect ) )
     {
@@ -245,17 +239,9 @@ int sci_plot2d1_G( char * fname, int ptype, int (*func) (), unsigned long fname_
     }
   }
 
+  if(ptype == 0) { ptype = 1 ; }
+  Objplot2d (ptype,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend,rect, nax, flagNax);
 
-  /* NG beg */
-  if (version_flag() == 0){
-    if(ptype == 0) { ptype = 1 ; }
-    Objplot2d (ptype,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend,rect, nax, flagNax);
-  }
-  else /* NG end */
-  {
-    (*func)(logFlags,stk(l1),stk(l2),&n1,&m1,style,strf,legend,rect,nax,
-    4L,strlen(strf),strlen(legend));
-  }
   LhsVar(1)=0;
   return 0;
 }

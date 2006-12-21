@@ -51,12 +51,9 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     style = &dstyle ;
     flag = 0;
   }
-  if (version_flag() == 0)
-    Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
-  else
-    Xsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
-  /* NG end */
-
+  
+  Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  
 
   LhsVar(1)=0;
   return 0;

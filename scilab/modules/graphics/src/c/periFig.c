@@ -53,12 +53,10 @@
 
 #define WHITE 7
 #define BLACK 0
-extern int versionflag;
 
 void C2F(Write2VectXfig)(integer *vx, integer *vy, integer n, integer flag); 
 void C2F(WriteGenericXfig)(char *string, integer nobj, integer sizeobj, integer *vx, integer *vy, integer sizev, integer flag, integer *fvect);
 void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4);
-static void SetGraphicsVersion(void);
 void C2F(setforegroundXfig)(integer *num, integer *v2, integer *v3, integer *v4);
 void C2F(ScilabGCGetorSetXfig)(char *str, integer flag, integer *verbose, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1);
 void C2F(setbackgroundXfig)(integer *num, integer *v2, integer *v3, integer *v4);
@@ -1133,7 +1131,7 @@ void C2F(gemptyXfig)(integer *verbose, integer *v2, integer *v3, double *dummy)
 
 
 
-#define NUMSETFONC 33 /* NG */
+#define NUMSETFONC 32 /* NG */
 
 struct bgc { char *name ;
 	     void  (*setfonc )() ;
@@ -1162,7 +1160,6 @@ struct bgc { char *name ;
    {"pixmap",C2F(semptyXfig),C2F(gemptyXfig)},
    {"thickness",C2F(setthicknessXfig),C2F(getthicknessXfig)},
    {"use color",C2F(usecolorXfig),C2F(getusecolorXfig)},
-   {"version",C2F(setscilabVersionXfig),C2F(getscilabVersionXfig)},/* NG */
    {"viewport",C2F(semptyXfig),C2F(gemptyXfig)},
    {"wdim",C2F(setwindowdimXfig),C2F(getwindowdimXfig)},
    {"white",C2F(semptyXfig),C2F(getlastXfig)},
@@ -2126,39 +2123,6 @@ static void C2F(FileInitXfig)(void)
   FPRINTF((file,"#FIG 3.1\nPortrait\nCenter\nInches\n1200 2\n"));
   ScilabGCXfig_is_initialized = TRUE; /* add the flag ScilabGCXfig_is_initialized to test if xinit has been called */
   C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0);
-  SetGraphicsVersion();
-
-/*   if (  CheckColormap(&m) == 1)  */
-/*     {  */
-/*       int i; */
-/*       float r,g,b; */
-/*       ScilabGCXfig.Numcolors = m; */
-/*       ScilabGCXfig.NumForeground = m; */
-/*       ScilabGCXfig.NumBackground = m + 1; */
-
-/*       if (ScilabGCXfig.CurColorStatus == 1)  */
-/* 	{ */
-/* 	  ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1; */
-/* 	} */
-/*       for ( i=0; i < m ; i++) */
-/* 	{ */
-/* 	  unsigned short ur,ug,ub; */
-/* 	  get_r(i,&r); */
-/* 	  get_g(i,&g); */
-/* 	  get_b(i,&b); */
-/* 	  ur = (unsigned short) (65535.0*r); */
-/* 	  ug = (unsigned short) (65535.0*g); */
-/* 	  ub = (unsigned short) (65535.0*b);  */
-/* 	  ur = ur >> 8 ; */
-/* 	  ug = ug >> 8 ;	 */
-/* 	  ub = ub >> 8 ;  */
-/* 	  FPRINTF((file,"0 %d #%02x%02x%02x\n",32+i,ur,ug,ub)); */
-/* 	} */
-/*       FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m,0,0,0)); */
-/*       FPRINTF((file,"0 %d #%02x%02x%02x \n",32+m+1,255,255,255)); */
-/*     } */
-/*   else  */
-/*     { */
 
   /** the default_colors are the xfig default colors **/
   m = DEFAULTNUMCOLORS;
@@ -2214,18 +2178,12 @@ void C2F(InitScilabGCXfig)(integer *v1, integer *v2, integer *v3, integer *v4)
     to force usecolorPos to perform initialisations 
     **/
   ScilabGCXfig.mafigure = (sciPointObj *)NULL;
-/*   ScilabGCXfig.graphicsversion = versionflag; /\* NG *\/ */
   ScilabGCXfig.CurColorStatus = (col == 1) ? 0: 1;
   C2F(usecolorXfig)(&col,PI0,PI0,PI0);
   if (col == 1) ScilabGCXfig.IDLastPattern = ScilabGCXfig.Numcolors - 1;
   strcpy(ScilabGCXfig.CurNumberDispFormat,"%-5.2g");
 }
 
-
-static void SetGraphicsVersion()
-{ 
-  ScilabGCXfig.graphicsversion = versionflag; /* NG */
-}
 
 /*-------------------------------------------------------
 \encadre{Check if a specified family of font exist in 
@@ -3035,12 +2993,12 @@ void C2F(getscilabFigureXfig)(integer *verbose, integer *x,integer *narg, double
 }
 void C2F(setscilabVersionXfig)(integer *vers, integer *v2, integer *v3, integer *v4)
 {
-  ScilabGCXfig.graphicsversion=*vers;
+  /*ScilabGCXfig.graphicsversion=*vers;*/
 }
 
 void C2F(getscilabVersionXfig)(integer *verbose, integer *vers, integer *narg, double *dummy)
 {   
-  *vers = ScilabGCXfig.graphicsversion;
+  *vers = 0 ;
 }
 void C2F(getscilabxgcXfig)(integer *verbose, integer *x,integer *narg, double *dummy)
 {   
@@ -3097,7 +3055,6 @@ static void C2F(FileInitFromScreenXfig)(void)
   FPRINTF((file,"#FIG 3.1\nPortrait\nCenter\nInches\n1200 2\n"));
   ScilabGCXfig_is_initialized = TRUE; /* add the flag ScilabGCXfig_is_initialized to test if xinit has been called */
   C2F(InitScilabGCXfig)(PI0,PI0,PI0,PI0);
-  SetGraphicsVersion();
   if (  CheckColormap(&m) == 1) 
     { 
       int i;

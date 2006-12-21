@@ -52,32 +52,21 @@ int sci_xarcs(char *fname,unsigned long fname_len)
   {
     int i2;
     m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
-    if (version_flag() == 0)
-      for (i2 = 0; i2 < n2; ++i2)
-      { 
-        *istk(l2 + i2) =  sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
-      }
-    else
-    {
-      for (i2 = 0; i2 < n2; ++i2)  { *istk(l2 + i2) = 0; }
+    for (i2 = 0; i2 < n2; ++i2)
+    { 
+      *istk(l2 + i2) =  sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
     }
   }  
   /* NG beg */
-  if (version_flag() == 0){ 
-    for (i = 0; i < n1; ++i)
-    { 
-      a1=(int)(*stk(l1+(6*i)+4));
-      a2=(int)(*stk(l1+(6*i)+5));
-      Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
-        stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
-    }
-    /** construct Compound and make it current object **/
-    sciSetCurrentObj (ConstructCompoundSeq (n1));
-  }   
-  else
-  {
-    Xarcs(fname,fname_len,istk(l2), n1,stk(l1));
+  for (i = 0; i < n1; ++i)
+  { 
+    a1=(int)(*stk(l1+(6*i)+4));
+    a2=(int)(*stk(l1+(6*i)+5));
+    Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
+      stk(l1+(6*i)+2),stk(l1+(6*i)+3),istk(l2+i),NULL,FALSE,TRUE,&hdl); 
   }
+  /** construct Compound and make it current object **/
+  sciSetCurrentObj (ConstructCompoundSeq (n1));
   /* NG end */
   LhsVar(1)=0;
   return 0;

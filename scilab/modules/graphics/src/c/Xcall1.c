@@ -23,7 +23,6 @@ typedef void (f_xcall1) (char *,char *,integer *,integer *,integer *,integer *,i
 typedef void (*func) (char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
 			       double *,double *,double *,double *,integer,integer );
 extern int C2F(sciwin) (void);
-extern int version_flag();
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 #ifdef _MSC_VER
 extern void Scistring (char *str);
@@ -253,19 +252,15 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
     }
   else if ( strcmp(str,"auto clear")==0) 
     {
-      if (strcmp(str1,"on")==0 ){
+      sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+      if (strcmp(str1,"on")==0 )
+      {
 	Autoclear = 1;
-	if(version_flag() == 0){
-	  sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-	  sciSetAddPlot((sciPointObj *) subwin,FALSE);
-	}
+	sciSetAddPlot( subwin,FALSE);
       }
       else{
 	Autoclear = 0;
-	if(version_flag() == 0){
-	  sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-	  sciSetAddPlot((sciPointObj *) subwin,TRUE);
-	}
+	sciSetAddPlot( subwin,TRUE);
       }
     }
   else if ( strcmp(str,"default")==0)
@@ -283,40 +278,26 @@ int C2F(xsetg)(char * str,char * str1,integer lx0,integer lx1)
 int C2F(xgetg)( char * str, char * str1, integer * len,integer  lx0,integer lx1)
 {
   if ( strcmp(str,"fpf") == 0) 
-    {
-      strncpy(str1,FPF,32);
-      *len= strlen(str1);
-    }
+  {
+    strncpy(str1,FPF,32);
+    *len= strlen(str1);
+  }
   else if ( strcmp(str,"auto clear")==0) 
+  {
+    int autoclear;
+    sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    autoclear = !(sciGetAddPlot(subwin));
+    if (autoclear == 1) 
     {
-      if(version_flag() == 0){
-	int autoclear;
-	sciPointObj * subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-	autoclear = !(sciGetAddPlot(subwin));
-	if (autoclear == 1) 
-	  {
-	    strncpy(str1,"on",2);
-	    *len=2;
-	  }
-	else 
-	  {
-	    strncpy(str1,"off",3);
-	    *len=3;
-	  }
-      }
-      else{
-	if ( Autoclear == 1) 
-	  {
-	    strncpy(str1,"on",2);
-	    *len=2;
-	  }
-	else 
-	  {
-	    strncpy(str1,"off",3);
-	    *len=3;
-	  }
-      }
+      strncpy(str1,"on",2);
+      *len=2;
     }
+    else 
+    {
+      strncpy(str1,"off",3);
+      *len=3;
+    }
+  }
   return 0;
 }
 
@@ -964,9 +945,6 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
 {
   integer x,y,w,h,wbox,hbox,size,n=1;
   integer fontid[2],narg,verbose=0;
-  if (GetDriver()=='R' && (version_flag() != 0)) 
-    StoreXcall1(fname,str,fflag,1L,v2,1L,v3,1L,v4,1L,
-		&Ivide,1L,&Ivide,1L,xd,1L,yd,1L,wd,1L,hd,1L);
   x = XDouble2Pixel(*xd);
   y = YDouble2Pixel(*yd);
   C2F(echelle2dl)(wd,hd,&wbox,&hbox,&n,&n,"f2i"); 

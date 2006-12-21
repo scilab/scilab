@@ -21,6 +21,7 @@ int sci_xrects( char *fname, unsigned long fname_len )
   integer m1,n1,l1,m2,n2,l2;
   long  hdl;
   int i;
+  sciPointObj * psubwin = NULL ;
   SciWin();
   CheckRhs(1,2);
 
@@ -46,51 +47,45 @@ int sci_xrects( char *fname, unsigned long fname_len )
     m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
     for (i = 0; i < n2; ++i)  { *istk(l2 + i) = 0; }
   }  
-  /* NG beg */
-  if (version_flag() == 0){
-    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-    for (i = 0; i < n1; ++i) { 
-      /*       j = (i==0) ? 0 : 1; */
-      if (*istk(l2+i) == 0){
-        /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
-        /* color setting is done now */
-        int foreground = sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ()));
-        Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-          &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
-      }
-      else
-      {
-        if (*istk(l2+i) < 0){
-          /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
-          int tmp = - (*istk(l2+i));
-          Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-            &tmp,NULL,FALSE,TRUE,0,&hdl,FALSE);
-        }
-        else         
-          /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
-          Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
-          NULL,istk(l2+i),TRUE,FALSE,0,&hdl,FALSE);
-      }
-    }
-    /** construct Compound and make it current object **/
-    sciSetCurrentObj (ConstructCompoundSeq (n1));  
-
-    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
-      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-      /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
-      sciDrawObj(sciGetCurrentFigure ());
+  for (i = 0; i < n1; ++i) { 
+    /*       j = (i==0) ? 0 : 1; */
+    if (*istk(l2+i) == 0){
+      /** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
+      /* color setting is done now */
+      int foreground = sciGetForeground(psubwin);
+      Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
+        &foreground,NULL,FALSE,TRUE,0,&hdl,FALSE);
     }
     else
     {
-      sciDrawObjIfRequired(sciGetCurrentObj ());
+      if (*istk(l2+i) < 0){
+        /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
+        int tmp = - (*istk(l2+i));
+        Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
+          &tmp,NULL,FALSE,TRUE,0,&hdl,FALSE);
+      }
+      else         
+        /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
+        Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),
+        NULL,istk(l2+i),TRUE,FALSE,0,&hdl,FALSE);
     }
+  }
+  /** construct Compound and make it current object **/
+  sciSetCurrentObj (ConstructCompoundSeq (n1));  
 
-  }   
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
+    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+    /*     EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));} */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */
+    sciDrawObj(sciGetCurrentFigure ());
+  }
   else
   {
-    Xrects(fname,fname_len,istk(l2), n1,stk(l1));
+    sciDrawObjIfRequired(sciGetCurrentObj ());
   }
+
   LhsVar(1)=0;
   return 0;
 } 

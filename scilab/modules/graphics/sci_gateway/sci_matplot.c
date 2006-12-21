@@ -64,26 +64,15 @@ int sci_matplot(char *fname,unsigned long fname_len)
 
   if ( isDefStrf( strf ) ) {
     char strfl[4];
-    if (version_flag() == 0)
-    {
-      strcpy(strfl,DEFSTRFN) ;
-    }
-    else
-    {
-      strcpy(strfl,DEFSTRF) ;
-    }
+   
+    strcpy(strfl,DEFSTRFN) ;
+   
     strf = strfl;
     if ( !isDefRect( rect ) )
     {
       strfl[1]='7';
     }
-    if( version_flag() != 0 )
-    {
-      if ( !isDefNax( nax ))
-      {
-        strfl[1] = '1' ;
-      }
-    }
+
     GetOptionalIntArg(fname,5,"frameflag",&frame,1,opts);
     if(frame != &frame_def)
     {
@@ -97,15 +86,9 @@ int sci_matplot(char *fname,unsigned long fname_len)
   }
 
 
-  /* NG beg */
-  if ( version_flag() == 0 )
-  {
-    Objmatplot( stk(l1), &m1, &n1, strf, rect, nax, flagNax ) ;
-  }
-  else
-  {
-    Xmatplot( stk(l1), &m1, &n1, strf, rect, nax ) ;
-  }
+
+  Objmatplot( stk(l1), &m1, &n1, strf, rect, nax, flagNax ) ;
+
   /* NG end */
   LhsVar(1)=0;
   return 0;

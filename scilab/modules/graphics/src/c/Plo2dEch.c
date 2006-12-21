@@ -490,22 +490,20 @@ int C2F(Nsetscale2d)( double    WRect[4],
   if ( WRect != NULL) 
     {
       /* Ajout djalel */
-      if (version_flag() == 0)
-        {
-	  if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL)
-	    sciSetSelectedSubWin(masousfen);
-	  else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
-	    {
-	      /* F.Leray Adding here 26.03.04*/
-	      sciSetCurrentObj(masousfen);
-	      sciSetSelectedSubWin(masousfen);
-	      pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
-	      pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
-	      pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
-	      pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
-            }
-	} 
-      /** */
+    
+      if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL)
+        sciSetSelectedSubWin(masousfen);
+      else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
+      {
+        /* F.Leray Adding here 26.03.04*/
+        sciSetCurrentObj(masousfen);
+        sciSetSelectedSubWin(masousfen);
+        pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
+        pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
+        pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
+        pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
+      }
+      
       /* a subwindow is specified */
       flag[1]='t';
       if (! same_subwin( WRect, Cscale.subwin_rect))
@@ -528,24 +526,25 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	}
     }
   else WRect = Cscale.subwin_rect; 
-  if (version_flag() == 0)
-    if (FRect != NULL)
-      { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
-      pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
-      pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
-      pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
-      pSUBWIN_FEATURE (masousfen)->SRect[3]   = FRect[3];
-      }
+  if (FRect != NULL)
+  {
+    masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+    pSUBWIN_FEATURE (masousfen)->SRect[0]   = FRect[0];
+    pSUBWIN_FEATURE (masousfen)->SRect[2]   = FRect[1];
+    pSUBWIN_FEATURE (masousfen)->SRect[1]   = FRect[2];
+    pSUBWIN_FEATURE (masousfen)->SRect[3]   = FRect[3];
+  }
   if ( FRect != NULL) flag[2]='t'; else FRect = Cscale.frect;
 
-  if (version_flag() == 0)
-    if (ARect != NULL)
-      { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
-      pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
-      pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
-      pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
-      pSUBWIN_FEATURE (masousfen)->ARect[3]   = ARect[3];
-      }
+
+  if (ARect != NULL)
+  {
+    masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+    pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
+    pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
+    pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
+    pSUBWIN_FEATURE (masousfen)->ARect[3]   = ARect[3];
+  }
 
   if ( ARect != NULL) flag[5]='t'; else ARect = Cscale.axis;
   if ( logscale != NULL) flag[4] ='t'; else logscale = Cscale.logflag;
@@ -572,7 +571,6 @@ int C2F(Nsetscale2d)( double    WRect[4],
 	  FRect[3]=log10(FRect[3]);
 	}
     }
-  if ((GetDriver()=='R') && (version_flag() != 0)) StoreNEch("nscale",flag,WRect,ARect,FRect,logscale);
   set_scale(flag,WRect,FRect,NULL,logscale,ARect);  
   return(0);
 }
@@ -717,6 +715,10 @@ void set_scale( char    flag[6]        ,
     {
       /* Upgrading constants for 2D transformation */
       double scx,scy,xoff,yoff,val;
+
+      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
       scx =  ((double) Cscale.wdim[0]*Cscale.subwin_rect[2]-Cscale.wdim[0]*Cscale.subwin_rect[2]
 	      *(Cscale.axis[0]+Cscale.axis[1]));
       scy =  ((double) Cscale.wdim[1]*Cscale.subwin_rect[3]-Cscale.wdim[1]*Cscale.subwin_rect[3]
@@ -734,41 +736,28 @@ void set_scale( char    flag[6]        ,
       val = Abs(Cscale.frect[1]- Cscale.frect[3]);
       Cscale.Wscy1 = (val <=SMDOUBLE) ? Cscale.Wscy1/SMDOUBLE : Cscale.Wscy1/val;
 
-      if(version_flag()!=0)
-	{
-	  Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
-	  Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
-	  Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-	  Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
-	}
+      /*	  F.Leray 12.10.04 : MODIF named scale_modification*/
+      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+      {
+        Cscale.WIRect1[0] = XScale( Cscale.frect[2]);
+        Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+      }
       else
-	{
-	  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-	  
-	  /*	  F.Leray 12.10.04 : MODIF named scale_modification*/
-	  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-	    {
-	      Cscale.WIRect1[0] = XScale( Cscale.frect[2]);
-	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-	    }
-	  else
-	    {
-	      Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
-	      Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
-	    }
-	  
-	  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
-	    {
-	      Cscale.WIRect1[1] = YScale( Cscale.frect[1]);
-	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
-	    }
-	  else
-	    {
-	      Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
-	      Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
-	    }
-	}
+      {
+        Cscale.WIRect1[0] = XScale( Cscale.frect[0]);
+        Cscale.WIRect1[2] = Abs(XScale( Cscale.frect[2]) -  XScale( Cscale.frect[0]));
+      }
+
+      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+      {
+        Cscale.WIRect1[1] = YScale( Cscale.frect[1]);
+        Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
+      }
+      else
+      {
+        Cscale.WIRect1[1] = YScale( Cscale.frect[3]);
+        Cscale.WIRect1[3] = Abs(YScale( Cscale.frect[3]) -  YScale( Cscale.frect[1]));
+      }
     }
   if (  aaint_changed== 't' ) 
     {
@@ -1170,228 +1159,207 @@ int zoom_get_rectangle(double *bbox,int *x_pixel, int *y_pixel)
 int zoom_box(double *bbox,int *x_pixel, int *y_pixel)
 {
   integer min,max,puiss,deux=2,dix=10,box[4],box1[4],section[4];
-  if (version_flag() == 0){
-    double fmin,fmax,lmin,lmax;
-    sciPointObj *psousfen,*tmpsousfen;
-    sciPointObj * pfigure = NULL;
-    sciSons *psonstmp;
-    sciSubWindow * ppsubwin = NULL; /* debug */
 
-    box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-    box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-    box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
-    box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+  double fmin,fmax,lmin,lmax;
+  sciPointObj *psousfen,*tmpsousfen;
+  sciPointObj * pfigure = NULL;
+  sciSons *psonstmp;
+  sciSubWindow * ppsubwin = NULL; /* debug */
 
-    pfigure = sciGetCurrentFigure();
-    tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (pfigure);
-    psonstmp = sciGetSons (sciGetCurrentFigure());
-    while (psonstmp != (sciSons *) NULL)
-      {
-	if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	  {
-	    psousfen= (sciPointObj *)psonstmp->pointobj;
-	    if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
-	      double xmin, ymin;
-	      double xmax, ymax;
-	      double zmin, zmax;
-	      sciSons *psonstmp2 = (sciSons *) NULL;
-	      double epsilon = 1e-16;
+  box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+  box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+  box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+  box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
 
-	      int box3d[4];
-	      int section3d[4];
+  pfigure = sciGetCurrentFigure();
+  tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (pfigure);
+  psonstmp = sciGetSons (sciGetCurrentFigure());
+  while (psonstmp != (sciSons *) NULL)
+  {
+    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
+    {
+      psousfen= (sciPointObj *)psonstmp->pointobj;
+      if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
+        double xmin, ymin;
+        double xmax, ymax;
+        double zmin, zmax;
+        sciSons *psonstmp2 = (sciSons *) NULL;
+        double epsilon = 1e-16;
 
-	      sciSetSelectedSubWin(psousfen);
-	      ppsubwin = pSUBWIN_FEATURE (psousfen);
-		      
-	      box3d[0] = x_pixel[0];
-	      box3d[2] = x_pixel[1];
-	      box3d[1] = y_pixel[0];
-	      box3d[3] = y_pixel[1];
-	      
-	      box1[0]= Cscale.WIRect1[0];
-	      box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-	      box1[1]= Cscale.WIRect1[1];
-	      box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
-	      
-	      if (sciIsAreaZoom(box3d,box1,section3d))
-		{
-		  int tmp[4],i;
+        int box3d[4];
+        int section3d[4];
 
-		  for(i=0;i<4;i++) tmp[i] = section3d[i];
+        sciSetSelectedSubWin(psousfen);
+        ppsubwin = pSUBWIN_FEATURE (psousfen);
 
-		  section3d[0] = Min(tmp[0],tmp[2]);
-		  section3d[2] = Max(tmp[0],tmp[2]);
-		  section3d[1] = Min(tmp[1],tmp[3]);
-		  section3d[3] = Max(tmp[1],tmp[3]);
-		  		  
-		  /* determine how many vertices we will have to draw */
-		  /* this is used for 3d zoom (to know size of the global vector) */
-		  setVertexIndex( 0 ) ;
+        box3d[0] = x_pixel[0];
+        box3d[2] = x_pixel[1];
+        box3d[1] = y_pixel[0];
+        box3d[3] = y_pixel[1];
 
-		  /* this flag is used inside trans3d called many times by sciDrawObj */
-		  setZoom3dStatus( TRUE );
-	      
-		  psonstmp2 = sciGetLastSons (psousfen);
-		  
-		  sciDrawObj(psousfen); /* see GlobalFlag_Zoom3dOn impact flag in sciDrawObj & trans3d functions */
-		  
-		  setZoom3dStatus( FALSE );
-		  
-		  SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
+        box1[0]= Cscale.WIRect1[0];
+        box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+        box1[1]= Cscale.WIRect1[1];
+        box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
 
-/* 		  printf("------AVANT SEARCH DES MIN MAX ------------------\n"); */
-/* 		  printf("xmin = %lf \t xmax = %lf\n",xmin,xmax); */
-/* 		  printf("ymin = %lf \t ymax = %lf\n",ymin,ymax); */
-/* 		  printf("zmin = %lf \t zmax = %lf\n",zmin,zmax); */
-/* 		  printf("------------------------\n\n"); */
-		
-		  for( i = 0 ; i < getVertexIndex() ; i++ )
-		    {
-		      int xp,yp;
-		      double x,y,z;
-		      
-		      if(GetVerticesAt(pSUBWIN_FEATURE(psousfen)->vertices_list, &xp, &yp, &x, &y, &z)==-1) 
-			break; /* all the vertices have been scanned inside the current psubwin */
-		      
-		      if(xp >= section3d[0] && xp <= section3d[2] && yp >= section3d[1] && yp <= section3d[3])
-			{
-/* 			  printf("ICI => xp = %d \t yp = %d et x = %lf \t y = %lf \t z = %lf\n",xp,yp,x,y,z); */
-			  if(x < xmin) xmin=x; if(x > xmax) xmax=x;
-			  if(y < ymin) ymin=y; if(y > ymax) ymax=y;
-			  if(z < zmin) zmin=z; if(z > zmax) zmax=z;
-			}
-		    }
-		    	
-/* 		  printf("------------------------\n"); */
-/* 		  printf("xmin = %lf \t xmax = %lf\n",xmin,xmax); */
-/* 		  printf("ymin = %lf \t ymax = %lf\n",ymin,ymax); */
-/* 		  printf("zmin = %lf \t zmax = %lf\n",zmin,zmax); */
-/* 		  printf("------------------------\n\n"); */
-		  
-		  if(ppsubwin->axes.reverse[0] == TRUE) {
-		    double tmp2;
-		    tmp2 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmin);
-		    xmin = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmax);
-		    xmax = tmp2;
-		  }
-		  
-		  if(ppsubwin->axes.reverse[1] == TRUE) {
-		    double tmp2;
-		    tmp2 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymin);
-		    ymin = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymax);
-		    ymax = tmp2;
-		  }
-		  
-		  if(ppsubwin->axes.reverse[2] == TRUE) {
-		    double tmp2;
-		    tmp2 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmin);
-		    zmin = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmax);
-		    zmax = tmp2;
-		  }
+        if (sciIsAreaZoom(box3d,box1,section3d))
+        {
+          int tmp[4],i;
 
-		  FreeVertices(psousfen);
+          for(i=0;i<4;i++) tmp[i] = section3d[i];
 
-		  /* case where no vertex has been selected : */
-		  /* no zoom is performed */
-		  if(xmin > xmax || ymin > ymax || zmin > zmax)
-		    {
-		      xmin = ppsubwin->SRect[0];
-		      xmax = ppsubwin->SRect[1];
-		      
-		      ymin = ppsubwin->SRect[2];
-		      ymax = ppsubwin->SRect[3];
-		      
-		      zmin = ppsubwin->SRect[4];
-		      zmax = ppsubwin->SRect[5];
-		    }
-	      
-		  if (!(sciGetZooming(psousfen)))
-		    sciSetZooming(psousfen, 1);
-	      
+          section3d[0] = Min(tmp[0],tmp[2]);
+          section3d[2] = Max(tmp[0],tmp[2]);
+          section3d[1] = Min(tmp[1],tmp[3]);
+          section3d[3] = Max(tmp[1],tmp[3]);
 
-		  /* case where a 3d rotated plot2d is zoomed */
-		  if(fabs(zmin) < epsilon && fabs(zmax) < epsilon){
-		    zmin = pSUBWIN_FEATURE (psousfen)->SRect[4];
-		    zmax = pSUBWIN_FEATURE (psousfen)->SRect[5];
-		  }
-		  
-		  pSUBWIN_FEATURE (psousfen)->ZRect[0] = xmin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[2] = xmax;
+          /* determine how many vertices we will have to draw */
+          /* this is used for 3d zoom (to know size of the global vector) */
+          setVertexIndex( 0 ) ;
 
-		  pSUBWIN_FEATURE (psousfen)->ZRect[1] = ymin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[3] = ymax;
+          /* this flag is used inside trans3d called many times by sciDrawObj */
+          setZoom3dStatus( TRUE );
 
-		  pSUBWIN_FEATURE (psousfen)->ZRect[4] = zmin;
-		  pSUBWIN_FEATURE (psousfen)->ZRect[5] = zmax;
-		
- 		}
-	    }
-	    sciSetSelectedSubWin(psousfen);
-	    ppsubwin = pSUBWIN_FEATURE (psousfen);
+          psonstmp2 = sciGetLastSons (psousfen);
 
-	    if ( pSUBWIN_FEATURE (psousfen)->is3d == FALSE) {
-	      
-	      box1[0]= Cscale.WIRect1[0];
-	      box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
-	      box1[1]= Cscale.WIRect1[1];
-	      box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
-	      
-	      if (sciIsAreaZoom(box,box1,section))
-		{
-		  bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));
-		  bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
-		  bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3]));
-		  bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3]));
-		  
-		  if (!(sciGetZooming(psousfen)))
-		    sciSetZooming(psousfen, 1);
-		  
-		  /** regraduation de l'axe des axes ***/
-		  fmin=  bbox[0];
-		  fmax=  bbox[2];
-		  if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
-		    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;}
-		  else {
-		    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
-		  }
-		  
-		  
-		  fmin= bbox[1]; 
-		  fmax= bbox[3];
-		  if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
-		    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;}
-		  else {
-		    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
-		    pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;}
-		}
-	    }
-	  }
-	psonstmp = psonstmp->pnext;
+          sciDrawObj(psousfen); /* see GlobalFlag_Zoom3dOn impact flag in sciDrawObj & trans3d functions */
+
+          setZoom3dStatus( FALSE );
+
+          SetMinMaxVertices(pSUBWIN_FEATURE(psousfen)->vertices_list, &xmin, &ymin, &zmin, &xmax, &ymax, &zmax);
+
+
+          for( i = 0 ; i < getVertexIndex() ; i++ )
+          {
+            int xp,yp;
+            double x,y,z;
+
+            if(GetVerticesAt(pSUBWIN_FEATURE(psousfen)->vertices_list, &xp, &yp, &x, &y, &z)==-1) 
+              break; /* all the vertices have been scanned inside the current psubwin */
+
+            if(xp >= section3d[0] && xp <= section3d[2] && yp >= section3d[1] && yp <= section3d[3])
+            {
+              /* 			  printf("ICI => xp = %d \t yp = %d et x = %lf \t y = %lf \t z = %lf\n",xp,yp,x,y,z); */
+              if(x < xmin) xmin=x; if(x > xmax) xmax=x;
+              if(y < ymin) ymin=y; if(y > ymax) ymax=y;
+              if(z < zmin) zmin=z; if(z > zmax) zmax=z;
+            }
+          }
+
+          if(ppsubwin->axes.reverse[0] == TRUE) {
+            double tmp2;
+            tmp2 = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmin);
+            xmin = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xmax);
+            xmax = tmp2;
+          }
+
+          if(ppsubwin->axes.reverse[1] == TRUE) {
+            double tmp2;
+            tmp2 = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymin);
+            ymin = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ymax);
+            ymax = tmp2;
+          }
+
+          if(ppsubwin->axes.reverse[2] == TRUE) {
+            double tmp2;
+            tmp2 = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmin);
+            zmin = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],zmax);
+            zmax = tmp2;
+          }
+
+          FreeVertices(psousfen);
+
+          /* case where no vertex has been selected : */
+          /* no zoom is performed */
+          if(xmin > xmax || ymin > ymax || zmin > zmax)
+          {
+            xmin = ppsubwin->SRect[0];
+            xmax = ppsubwin->SRect[1];
+
+            ymin = ppsubwin->SRect[2];
+            ymax = ppsubwin->SRect[3];
+
+            zmin = ppsubwin->SRect[4];
+            zmax = ppsubwin->SRect[5];
+          }
+
+          if (!(sciGetZooming(psousfen)))
+            sciSetZooming(psousfen, 1);
+
+
+          /* case where a 3d rotated plot2d is zoomed */
+          if(fabs(zmin) < epsilon && fabs(zmax) < epsilon){
+            zmin = pSUBWIN_FEATURE (psousfen)->SRect[4];
+            zmax = pSUBWIN_FEATURE (psousfen)->SRect[5];
+          }
+
+          pSUBWIN_FEATURE (psousfen)->ZRect[0] = xmin;
+          pSUBWIN_FEATURE (psousfen)->ZRect[2] = xmax;
+
+          pSUBWIN_FEATURE (psousfen)->ZRect[1] = ymin;
+          pSUBWIN_FEATURE (psousfen)->ZRect[3] = ymax;
+
+          pSUBWIN_FEATURE (psousfen)->ZRect[4] = zmin;
+          pSUBWIN_FEATURE (psousfen)->ZRect[5] = zmax;
+
+        }
       }
-    sciSetSelectedSubWin(tmpsousfen);
-    sciSetReplay(1);
-    sciDrawObj(sciGetCurrentFigure());
-    sciSetReplay(0);
-  }
-  else {
-    integer aaint[4],flag[2];
-    integer verbose=0,narg,ww;
+      sciSetSelectedSubWin(psousfen);
+      ppsubwin = pSUBWIN_FEATURE (psousfen);
 
-    C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( pSUBWIN_FEATURE (psousfen)->is3d == FALSE) {
 
-    C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    flag[0] =1 ; flag[1]=0;
-    Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
+        box1[0]= Cscale.WIRect1[0];
+        box1[2]= Cscale.WIRect1[2]+Cscale.WIRect1[0];
+        box1[1]= Cscale.WIRect1[1];
+        box1[3]= Cscale.WIRect1[3]+Cscale.WIRect1[1];
+
+        if (sciIsAreaZoom(box,box1,section))
+        {
+          bbox[0]= Min(XPixel2Double(section[0]),XPixel2Double(section[2]));
+          bbox[2]= Max(XPixel2Double(section[0]),XPixel2Double(section[2]));
+          bbox[1]= Min(YPixel2Double(section[1]),YPixel2Double(section[3]));
+          bbox[3]= Max(YPixel2Double(section[1]),YPixel2Double(section[3]));
+
+          if (!(sciGetZooming(psousfen)))
+            sciSetZooming(psousfen, 1);
+
+          /** regraduation de l'axe des axes ***/
+          fmin=  bbox[0];
+          fmax=  bbox[2];
+          if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
+            C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+            pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+            pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
+            pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;}
+          else {
+            pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
+            pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
+            pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
+          }
+
+
+          fmin= bbox[1]; 
+          fmax= bbox[3];
+          if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
+            C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+            pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+            pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
+            pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;}
+          else {
+            pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
+            pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
+            pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;}
+        }
+      }
+    }
+    psonstmp = psonstmp->pnext;
   }
+  sciSetSelectedSubWin(tmpsousfen);
+  sciSetReplay(1);
+  sciDrawObj(sciGetCurrentFigure());
+  sciSetReplay(0);
+
   return 0;
 }
 
@@ -1401,23 +1369,8 @@ int zoom()
   double bbox[4];
   int x_pixel[2], y_pixel[2];
 
-  if (version_flag() == 0){
-    if (zoom_get_rectangle(bbox,x_pixel,y_pixel)==1) return 1;
-  }
-  else {
-    integer ierr;
-    char driver[4];
- 
-    GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-    if (strcmp("Rec",driver) != 0)
-      {
-	sciprint("\n Use the Rec driver to zoom " );
-	return 0;
-      }
-    ierr=zoom_get_rectangle(bbox,x_pixel,y_pixel);
-    C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-    if (ierr != 0) return 1;
-  }
+  if ( zoom_get_rectangle(bbox,x_pixel,y_pixel) == 1 ) { return 1 ; }
+  
   zoom_box(bbox,x_pixel,y_pixel);
   return 0;
 }
@@ -1425,7 +1378,6 @@ int zoom()
 
 extern void unzoom()
 {
-  char driver[4];
   integer ww,verbose=0,narg;
   /** 17/09/2002 ***/
   double fmin,fmax,lmin,lmax;
@@ -1434,64 +1386,51 @@ extern void unzoom()
   sciSons *psonstmp;
 
 
-  GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0 && version_flag() !=0)  /* F.Leray 03.03.04*/
+  C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /***** 02/10/2002 ****/
+  psonstmp = sciGetSons (sciGetCurrentFigure());
+  while (psonstmp != (sciSons *) NULL)
+  {
+    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
     {
-      sciprint("\n Use the Rec driver to unzoom " );
-      return;
-    }
-  else
-    {
-      C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if (version_flag() == 0){
-	/***** 02/10/2002 ****/
-        psonstmp = sciGetSons (sciGetCurrentFigure());
-        while (psonstmp != (sciSons *) NULL)
-          {
-	    if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
-	      {
-                psousfen= (sciPointObj *)psonstmp->pointobj;
-        	if (sciGetZooming(psousfen))
-		  {
-		    sciSetZooming(psousfen, 0);
-		    /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
-		    /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
-		    /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
-		    /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
-		      
-		    pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
-		    pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
-		    pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
-		    pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
-		 
-		    /*}  SS: moved below because if sciGetZooming(psousfen)==0 
-		      ZRect is undefined -> code may enter in infinite recursion loop to compute graduation
-		      and there is no use to regraduate */
+      psousfen= (sciPointObj *)psonstmp->pointobj;
+      if (sciGetZooming(psousfen))
+      {
+        sciSetZooming(psousfen, 0);
+        /*   pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]; */
+        /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]; */
+        /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]; */
+        /* 		      pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]; */
 
-		    /** regraduation de l'axe des axes ***/
-		    fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
-		    fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
-		    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+        pSUBWIN_FEATURE (psousfen)->ZRect[0]   = pSUBWIN_FEATURE (psousfen)->SRect[0];
+        pSUBWIN_FEATURE (psousfen)->ZRect[1]   = pSUBWIN_FEATURE (psousfen)->SRect[1];
+        pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
+        pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
 
-		    fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
-		    fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
-		    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-		    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-		    /*****/
-		  }
-	      }
-	    psonstmp = psonstmp->pnext;
-	  }
+        /*}  SS: moved below because if sciGetZooming(psousfen)==0 
+        ZRect is undefined -> code may enter in infinite recursion loop to compute graduation
+        and there is no use to regraduate */
 
-	sciSetReplay(1);
-	sciDrawObj(sciGetCurrentFigure());
-	sciSetReplay(0);
+        /** regraduation de l'axe des axes ***/
+        fmin= pSUBWIN_FEATURE (psousfen)->ZRect[0];
+        fmax= pSUBWIN_FEATURE (psousfen)->ZRect[2];
+        C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+        pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+
+        fmin= pSUBWIN_FEATURE (psousfen)->ZRect[1];
+        fmax= pSUBWIN_FEATURE (psousfen)->ZRect[3];
+        C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+        pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+        /*****/
       }
-      else
-	Tape_ReplayUndoScale("v",&ww);
     }
+    psonstmp = psonstmp->pnext;
+  }
+
+  sciSetReplay(1);
+  sciDrawObj(sciGetCurrentFigure());
+  sciSetReplay(0);
 }
 
 extern void unzoom_one_axes(sciPointObj *psousfen)
@@ -1546,15 +1485,14 @@ void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, intege
   int i;
 
   /** 18/06/2002 **/
-  if (version_flag() == 0){
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     for (i=0;i<4 ; i++)
-      pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];}
+      pSUBWIN_FEATURE (psubwin)->axes.limits[i+1]=FRectI[i];
      
     
   if (logf[0] == 'n') 
     { 
-      if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->tight_limits == FALSE))
+      if (!pSUBWIN_FEATURE (psubwin)->tight_limits )
 	{
           C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
 	  FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
@@ -1573,7 +1511,7 @@ void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, intege
     }
   if (logf[1] == 'n') 
     {
-      if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->tight_limits == FALSE))
+      if ( !pSUBWIN_FEATURE (psubwin)->tight_limits)
 	{
 	  C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
 	  FRectI[1]=FRectO[1];FRectI[3]=FRectO[3];
@@ -1596,28 +1534,24 @@ void Gr_Rescale(char *logf, double *FRectI, integer *Xdec, integer *Ydec, intege
 int XScale(double x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647));
-  else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-      {
 
-        /* 2147483647 == 2^31 - 1 == INT32MAX */
-        /*return inint( Max( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1, INT_MAX ), INT_MIN ) ) ;*/
-        double dRes = Cscale.Wscx1 * (Cscale.frect[2] - (x)) + Cscale.Wxofset1 ;
-        return FLOAT_2_INT( dRes ) ;
-      }
-      else
-      {
-	      /*return inint( Max( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1, INT_MAX ), INT_MIN ) );*/
-        double dRes = Cscale.Wscx1 * ((x) -Cscale.frect[0]) + Cscale.Wxofset1 ;
-        return FLOAT_2_INT( dRes ) ;
-      }
-    }
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+  {
+
+    /* 2147483647 == 2^31 - 1 == INT32MAX */
+    /*return inint( Max( Min(Cscale.Wscx1*(Cscale.frect[2] - (x)) + Cscale.Wxofset1, INT_MAX ), INT_MIN ) ) ;*/
+    double dRes = Cscale.Wscx1 * (Cscale.frect[2] - (x)) + Cscale.Wxofset1 ;
+    return FLOAT_2_INT( dRes ) ;
+  }
+  else
+  {
+    /*return inint( Max( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1, INT_MAX ), INT_MIN ) );*/
+    double dRes = Cscale.Wscx1 * ((x) -Cscale.frect[0]) + Cscale.Wxofset1 ;
+    return FLOAT_2_INT( dRes ) ;
+  }
   
 
   sciprint("Error in XScale\n");
@@ -1630,20 +1564,15 @@ int XScale(double x)
 int XLogScale(double x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1);
+
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+    return inint( Cscale.Wscx1*(Cscale.frect[2] - log10(x)) + Cscale.Wxofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-	return inint( Cscale.Wscx1*(Cscale.frect[2] - log10(x)) + Cscale.Wxofset1);
-      else
-	return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1);
+    return inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1);
      	
-    }
-  
 
   sciprint("Error in XLogScale\n");
   return -9000;
@@ -1655,29 +1584,21 @@ int XLogScale(double x)
 int YScale(double y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647));
-  else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if( ppsubwin->axes.reverse[1] && !ppsubwin->is3d )
-      {
-        double dRes = Cscale.Wscy1 * ( y - Cscale.frect[1] ) + Cscale.Wyofset1 ;
-        return FLOAT_2_INT( dRes ) ;
-      }
-      else
-      {
-        double dRes = Cscale.Wscy1 * ( -y + Cscale.frect[3] ) + Cscale.Wyofset1 ;
-        return FLOAT_2_INT( dRes ) ;
-      }
 
-      /* if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE) */
-/* 	return inint(  Max( Min(Cscale.Wscy1*((y)-Cscale.frect[1]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ; */
-/*       else */
-/* 	return inint(  Max( Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1, INT_MAX), INT_MIN ) ) ;  */
-    }
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if( ppsubwin->axes.reverse[1] && !ppsubwin->is3d )
+  {
+    double dRes = Cscale.Wscy1 * ( y - Cscale.frect[1] ) + Cscale.Wyofset1 ;
+    return FLOAT_2_INT( dRes ) ;
+  }
+  else
+  {
+    double dRes = Cscale.Wscy1 * ( -y + Cscale.frect[3] ) + Cscale.Wyofset1 ;
+    return FLOAT_2_INT( dRes ) ;
+  }
+
   
   sciprint("Error in YScale\n");
   return -9000;
@@ -1687,18 +1608,14 @@ int YScale(double y)
 int YLogScale(double y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1);
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+    return inint( Cscale.Wscy1*(log10(y)-Cscale.frect[1]) + Cscale.Wyofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
-	return inint( Cscale.Wscy1*(log10(y)-Cscale.frect[1]) + Cscale.Wyofset1);
-      else
-	return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1);
-    }
+    return inint( Cscale.Wscy1*(-log10(y)+Cscale.frect[3]) + Cscale.Wyofset1);
+ 
   
 
   sciprint("Error in YLogScale\n");
@@ -1710,19 +1627,15 @@ int YLogScale(double y)
 double XPi2R(int x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+    return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-	return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-      else
-	return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-    }
-  
+    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+ 
 
   sciprint("Error in XScale\n");
   return -9000;
@@ -1732,20 +1645,15 @@ double XPi2R(int x)
 double YPi2R(int y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+    return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
-	return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-      else
-	return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-    }
-  
-  
+    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+
+
   sciprint("Error in YScale\n");
   return -9000;
 }
@@ -1753,19 +1661,14 @@ double YPi2R(int y)
 double XDPi2R( double x )
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
+    return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[0]==TRUE && ppsubwin->is3d == FALSE)
-	return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-      else
-	return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-    }
-  
+    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+
 
   sciprint("Error in XScale\n");
   return -9000;
@@ -1775,18 +1678,14 @@ double XDPi2R( double x )
 double YDPi2R( double y )
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
+    return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[1]==TRUE && ppsubwin->is3d == FALSE)
-	return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-      else
-	return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-    }
+    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+
   
   
   sciprint("Error in YScale\n");
@@ -1796,18 +1695,13 @@ double YDPi2R( double y )
 double Zoom3d_XPi2R(int x)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[0]==TRUE) /* difference is HERE */
+    return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[0]==TRUE) /* difference is HERE */
-	return Cscale.frect[2] - (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-      else
-	return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
-    }
+    return Cscale.frect[0] + (1.0/Cscale.Wscx1)*((x) - Cscale.Wxofset1);
   
 
   sciprint("Error in Zoom3d_XScale\n");
@@ -1818,18 +1712,15 @@ double Zoom3d_XPi2R(int x)
 double Zoom3d_YPi2R(int y)
 {
   /*F.Leray 12.10.04 : MODIF named scale_modification*/
-  if(version_flag()!=0)
-    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+
+  sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+  if(ppsubwin->axes.reverse[1]==TRUE) /* difference is HERE */
+    return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
   else
-    {
-      sciPointObj *pobj = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
-      
-      if(ppsubwin->axes.reverse[1]==TRUE) /* difference is HERE */
-	return Cscale.frect[1] + (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-      else
-	return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
-    }
+    return Cscale.frect[3] - (1.0/Cscale.Wscy1)*((y) - Cscale.Wyofset1);
+
   
   
   sciprint("Error in Zoom3d_YScale\n");
@@ -1921,10 +1812,6 @@ void scizoom( double bbox[4], sciPointObj * pobj )
   if ( !( sciGetZooming(pobj) ) )
   {
     sciSetZooming(psousfen, 1);
-    /*    pSUBWIN_FEATURE (psousfen)->ZRect_kp[0]   = pSUBWIN_FEATURE (psousfen)->ZRect[0]; */
-    /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[1]   = pSUBWIN_FEATURE (psousfen)->ZRect[1]; */
-    /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[2]   = pSUBWIN_FEATURE (psousfen)->ZRect[2]; */
-    /*       pSUBWIN_FEATURE (psousfen)->ZRect_kp[3]   = pSUBWIN_FEATURE (psousfen)->ZRect[3]; */
   }
   /** regraduation de l'axe des axes ***/
   fmin=  bbox[0];

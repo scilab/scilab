@@ -194,9 +194,6 @@ extern int sciSwitchWindow(int *winnum); /* SET */
 extern int sciInitUsedWindow( int winNum ) ; /* SET */
 extern int sciSetUsedWindow( int winNum ) ; /* SET */
 
-extern int init_version_flag(int flag) ;
-extern int set_version_flag (int flag) ; /* SET */
-
 extern int sciSetInterpVector(sciPointObj * pobj, int size, int * value);
 
 extern int sciInitPosition( sciPointObj * pobj, double x, double y);
@@ -225,9 +222,6 @@ extern int sciSetIs3d(  sciPointObj * pObj, BOOL is3d ) ;
 
 extern int sciInitIsSelected( sciPointObj * pObj, BOOL is3d ) ;
 extern int sciSetIsSelected(  sciPointObj * pObj, BOOL is3d ) ;
-
-void setVersionFlag( int newFlag ) ;
-int getVersionFlag(void);
 
 extern int sciInitHiddenColor( sciPointObj * pObj, int newColor ) ;
 extern int sciSetHiddenColor(  sciPointObj * pObj, int newColor ) ;

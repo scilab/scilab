@@ -25,7 +25,6 @@ void wininfo  __PARAMS((char *fmt,...));
 extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
-extern int version_flag();
 extern int scilab_shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integer flag);
 #ifdef _MSC_VER
 extern void Scistring (char *str);
@@ -121,9 +120,6 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   static double zmin,zmax;
   integer i,j;
  
-  /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() != 0) 
-    StorePlot3D(name,x,y,z,p,q,teta,alpha,legend,flag,bbox);
 
   C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
  
@@ -263,9 +259,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   static integer cache;
   static double zmin,zmax;
   integer i,flag_det=0,flag_det0=0,flag_det1=0,flag_det2=0,flag_det3=0;
-  /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() != 0) 
-    StoreFac3D(name,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
+
 
   if (flag[1]!=1 && flag[1] != 0 && flag[1]!=3 && flag[1]!=5)
     {
@@ -552,9 +546,7 @@ int C2F(param3d)(double *x, double *y, double *z, integer *n, double *teta, doub
   static integer init;
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg_,fg1;
-  /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() != 0) 
-    StoreParam3D("param3d",x,y,z,n,teta,alpha,legend,flag,bbox);
+
   C2F(dr)("xget","dashes",&verbose,xz,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
   if (flag[1]!=0 && flag[1]!=1 && flag[1]!=3 && flag[1]!=5)
@@ -641,9 +633,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg_,fg1,cur;
 
-  /** If Record is on **/
-  if (GetDriver()=='R' && version_flag() != 0) 
-    StoreParam3D1("param3d1",x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox);
+
   C2F(dr)("xget","dashes",&verbose,xz,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   style[0]= xz[0];
   if (flag[1]!=0 && flag[1]!=1 && flag[1]!=3 && flag[1]!=5)
@@ -743,83 +733,61 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
   /** ainsi que les triedres caches ou non **/
 
 
-  if (version_flag() != 0)
-    Convex_Box(xbox,ybox,InsideU,InsideD,"X@Y@Z",flag,Cscale.bbox1);
+
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  ppsubwin = pSUBWIN_FEATURE (psubwin);
+
+  legx = getStrMatElement( sciGetText(ppsubwin->mon_x_label), 0, 0 ) ;
+  legy = getStrMatElement( sciGetText(ppsubwin->mon_y_label), 0, 0 ) ;
+  legz = getStrMatElement( sciGetText(ppsubwin->mon_z_label), 0, 0 ) ;
+
+  if ((legends = MALLOC ((strlen(legx)+
+    strlen(legy)+
+    strlen(legz)+
+    7)*sizeof (char))) == NULL)
+    sciprint("box3d : No more Place to store legends (3D labels)\n");
+
+  if(legx == NULL)
+    strcpy(legends,"");
   else
-    {
-      psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-      ppsubwin = pSUBWIN_FEATURE (psubwin);
+    strcpy(legends,legx);
 
-      legx = getStrMatElement( sciGetText(ppsubwin->mon_x_label), 0, 0 ) ;
-      legy = getStrMatElement( sciGetText(ppsubwin->mon_y_label), 0, 0 ) ;
-      legz = getStrMatElement( sciGetText(ppsubwin->mon_z_label), 0, 0 ) ;
-                  
-      if ((legends = MALLOC ((strlen(legx)+
-			      strlen(legy)+
-			      strlen(legz)+
-			      7)*sizeof (char))) == NULL)
-	sciprint("box3d : No more Place to store legends (3D labels)\n");
+  strcat(legends,"@"); 
 
-      if(legx == NULL)
-	strcpy(legends,"");
-      else
-	strcpy(legends,legx);
-      
-      strcat(legends,"@"); 
-      
-      if(legy == NULL)
-	strcat(legends,"");
-      else
-	strcat(legends,legy);
-
-      strcat(legends,"@"); 
-
-      if(legz == NULL)
-	strcat(legends,"");
-      else
-	strcat(legends,legz);
-      
-      Convex_Box(xbox,ybox,InsideU,InsideD,legends,flag,Cscale.bbox1);
-      FREE(legends); legends = NULL;
-    }
-
-
-  /**DJ.Abdemouche 2003**/
-  if (version_flag() != 0) {
-    /** le triedre vu **/
-    C2F(dr)("xget","foreground",&verbose,&fg,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    if (zbox[InsideU[0]] > zbox[InsideD[0]])
-      DrawAxis(xbox,ybox,InsideU,fg);
-    else 
-      DrawAxis(xbox,ybox,InsideD,fg);
-    C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    if (fg1==-1) fg1=0;
-    /** Le triedre cache **/
-    if (zbox[InsideU[0]] > zbox[InsideD[0]])
-      DrawAxis(xbox,ybox,InsideD,fg1);
-    else 
-      DrawAxis(xbox,ybox,InsideU,fg1);
-  }
+  if(legy == NULL)
+    strcat(legends,"");
   else
-    {
-      C2F (dr) ("xset","thickness",&m,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-      if (zbox[InsideU[0]] > zbox[InsideD[0]])
-	DrawAxis(xbox,ybox,InsideU,2);
-      else 
-	DrawAxis(xbox,ybox,InsideD,2);    
-      if (zbox[InsideU[0]] > zbox[InsideD[0]])
-	DrawAxis(xbox,ybox,InsideD,2);
-      else 
-	DrawAxis(xbox,ybox,InsideU,2);
-    
-      ixbox[0]=XScale(xbox[0]);ixbox[1]=XScale(xbox[2]);
-      ixbox[2]=XScale(xbox[1]);ixbox[3]=XScale(xbox[3]);
-      iybox[0]=YScale(ybox[0]); iybox[1]=YScale(ybox[2]);
-      iybox[2]=YScale(ybox[1]); iybox[3]=YScale(ybox[3]);
-      C2F(dr)("xpolys","v",ixbox,iybox,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      C2F(dr)("xpolys","v",ixbox+2,iybox+2,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+    strcat(legends,legy);
 
-    }
+  strcat(legends,"@"); 
+
+  if(legz == NULL)
+    strcat(legends,"");
+  else
+    strcat(legends,legz);
+
+  Convex_Box(xbox,ybox,InsideU,InsideD,legends,flag,Cscale.bbox1);
+  FREE(legends); legends = NULL;
+
+
+  C2F (dr) ("xset","thickness",&m,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+  if (zbox[InsideU[0]] > zbox[InsideD[0]])
+    DrawAxis(xbox,ybox,InsideU,2);
+  else 
+    DrawAxis(xbox,ybox,InsideD,2);    
+  if (zbox[InsideU[0]] > zbox[InsideD[0]])
+    DrawAxis(xbox,ybox,InsideD,2);
+  else 
+    DrawAxis(xbox,ybox,InsideU,2);
+
+  ixbox[0]=XScale(xbox[0]);ixbox[1]=XScale(xbox[2]);
+  ixbox[2]=XScale(xbox[1]);ixbox[3]=XScale(xbox[3]);
+  iybox[0]=YScale(ybox[0]); iybox[1]=YScale(ybox[2]);
+  iybox[2]=YScale(ybox[1]); iybox[3]=YScale(ybox[3]);
+  C2F(dr)("xpolys","v",ixbox,iybox,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+  C2F(dr)("xpolys","v",ixbox+2,iybox+2,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+
+
 
   return(0);
 }
@@ -833,66 +801,65 @@ int C2F(geom3d)(double *x, double *y, double *z, integer *n)
 {
   integer j;
 
-  if(version_flag() == 0){
-    sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-    sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-    
-    if(ppsubwin->logflags[0] =='l')
-      for ( j =0 ; j < (*n) ; j++) {
-	if(x[j] <= 0.){
-	  sciprint("geom3d error : Operation can not be performed because X axis is in logscale mode and the specified x vector has a negative value\n");
-	  return -1;
-	}
-	x[j] = log10(x[j]);
-      }
+  sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
 
-    if(ppsubwin->logflags[1] =='l')
-      for ( j =0 ; j < (*n) ; j++) {
-	if(y[j] <= 0.){
-	  sciprint("geom3d error : Operation can not be performed because Y axis is in logscale mode and the specified y vector has a negative value\n");
-	  return -1;
-	}
-	y[j] = log10(y[j]);
+  if(ppsubwin->logflags[0] =='l')
+  {
+    for ( j =0 ; j < (*n) ; j++) {
+      if(x[j] <= 0.){
+        sciprint("geom3d error : Operation can not be performed because X axis is in logscale mode and the specified x vector has a negative value\n");
+        return -1;
       }
-
-    if(ppsubwin->logflags[2] =='l')
-      for ( j =0 ; j < (*n) ; j++) {
-	if(z[j] <= 0.){
-	  sciprint("geom3d error : Operation can not be performed because Z axis is in logscale mode and the specified z vector has a negative value\n");
-	  return -1;
-	}
-	z[j] = log10(z[j]);
-      }
-   
-    if(ppsubwin->axes.reverse[0] == TRUE)
-      for ( j =0 ; j < (*n) ; j++) x[j] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],x[j]);
-    
-    if(ppsubwin->axes.reverse[1] == TRUE)
-      for ( j =0 ; j < (*n) ; j++) y[j] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],y[j]);
-    
-    if(ppsubwin->axes.reverse[2] == TRUE)
-      for ( j =0 ; j < (*n) ; j++) z[j] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],z[j]);
-
-    for ( j =0 ; j < (*n) ; j++)
-      {
-	double x1,y1_;
-	x1=TRX(x[j],y[j],z[j]);
-	y1_=TRY(x[j],y[j],z[j]);
-	z[j]=TRZ(x[j],y[j],z[j]);
-	x[j]=x1;
-	y[j]=y1_;
-      }
+      x[j] = log10(x[j]);
+    }
   }
-  else{
-    for ( j =0 ; j < (*n) ; j++)	 
-      {
-	double x1,y1_;
-	x1=TRX(x[j],y[j],z[j]);
-	y1_=TRY(x[j],y[j],z[j]);
-	z[j]=TRZ(x[j],y[j],z[j]);
-	x[j]=x1;
-	y[j]=y1_;
+
+  if(ppsubwin->logflags[1] =='l')
+  {
+    for ( j =0 ; j < (*n) ; j++) {
+      if(y[j] <= 0.){
+        sciprint("geom3d error : Operation can not be performed because Y axis is in logscale mode and the specified y vector has a negative value\n");
+        return -1;
       }
+      y[j] = log10(y[j]);
+    }
+  }
+
+  if(ppsubwin->logflags[2] =='l')
+  {
+    for ( j =0 ; j < (*n) ; j++) {
+      if(z[j] <= 0.){
+        sciprint("geom3d error : Operation can not be performed because Z axis is in logscale mode and the specified z vector has a negative value\n");
+        return -1;
+      }
+      z[j] = log10(z[j]);
+    }
+  }
+
+  if( ppsubwin->axes.reverse[0] )
+  {
+    for ( j =0 ; j < (*n) ; j++) x[j] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],x[j]);
+  }
+
+  if( ppsubwin->axes.reverse[1] )
+  {
+    for ( j =0 ; j < (*n) ; j++) y[j] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],y[j]);
+  }
+
+  if( ppsubwin->axes.reverse[2] )
+  {
+    for ( j =0 ; j < (*n) ; j++) z[j] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],z[j]);
+  }
+
+  for ( j =0 ; j < (*n) ; j++)
+  {
+    double x1,y1_;
+    x1=TRX(x[j],y[j],z[j]);
+    y1_=TRY(x[j],y[j],z[j]);
+    z[j]=TRZ(x[j],y[j],z[j]);
+    x[j]=x1;
+    y[j]=y1_;
   }
   return(0);
 }
@@ -1054,13 +1021,11 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
   C2F(dr)("xget","line style",&verbose,lstyle,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   /**DJ.Abdemouche 2003**/
-  if (version_flag() == 0) 
-  { 
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-    hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;
-    j = sciGetLineStyle (psubwin) ;
-  }  	
-  /***/  
+
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;
+  j = sciGetLineStyle (psubwin) ;
+
   C2F(dr)("xset","line style",&j,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsegs","v",ixbox,iybox,&npoly,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",lstyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1148,10 +1113,8 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
   ixbox[6]=ixbox[0];iybox[6]=iybox[0];
   p=7,n=1;
   /**DJ.Abdemouche 2003**/
-  if (version_flag() != 0) 
-    C2F(dr)("xget","foreground",&verbose,dvect,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  else
-    dvect[0]=2;       
+
+  dvect[0]=2;       
   /** On trace l'enveloppe cvxe **/
   C2F(dr)("xget","line style",&verbose,dash,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1205,10 +1168,9 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   C2F(dr)("xget","wdim",&verbose,xz,&narg_, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   iof = (xz[0]+xz[1])/50;
-  if (version_flag() != 0) 
-    {x=ixbox[2]-iof ;y=iybox[2]-iof;}
-  else
-    {x = (integer) (ixbox[2]-(xz[0]+xz[1])/20) ; y = (integer) (0.5*iybox[3]+0.5*iybox[2]);}
+
+  x = (integer) (ixbox[2]-(xz[0]+xz[1])/20) ;
+  y = (integer) (0.5*iybox[3]+0.5*iybox[2]);
   /*** le z scaling ***/
   if ( axflag>=4)
     {
@@ -1230,12 +1192,10 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	      ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
     }
   /** le cot\^e en bas \`a gauche **/
-  if (version_flag() != 0) {
-    x=inint((ixbox[3]+ixbox[4])/2.0 -iof);
-    y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+iof);}
-  else{
-    x=inint((ixbox[3]+ixbox[4])/2.0 -iof);
-    y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+(xz[0]+xz[1])/30);}
+  
+  x=inint((ixbox[3]+ixbox[4])/2.0 -iof);
+  y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+(xz[0]+xz[1])/30);
+
   if ( xind[3]+xind[4] == 3)
     {
       if ( axflag>=4)
@@ -1283,14 +1243,12 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	}
     }
   /** le cot\'e en bas a droite **/
-  if (version_flag() != 0) {
-    x=inint((ixbox[4]+ixbox[5])/2+iof);
-    y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+iof); }
-  else{
-    x=inint((ixbox[4]+ixbox[5])/2+(xz[0]+xz[1])/30);
-    y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+iof); }
+  
+  x=inint((ixbox[4]+ixbox[5])/2+(xz[0]+xz[1])/30);
+  y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+iof);
+
   if ( xind[4]+xind[5] == 3)
-    {
+  {
       if ( axflag>=4)
 	{
 	  double fx,fy,fz,lx,ly,lz;
@@ -1466,8 +1424,7 @@ static double theta,alpha;
 /* return 1 if figure has been close during rotation */
 int I3dRotation(void)
 {
-  char driver[4];
-  integer flag[3],pixmode,alumode,verbose=0,narg_,ww;
+  integer pixmode,alumode,verbose=0,narg_,ww;
   static integer iflag[]={0,0,0,0};
   double xx,yy;
   double theta0,alpha0;
@@ -1482,180 +1439,146 @@ int I3dRotation(void)
 
   BOOL cube_scaling; /* TEST F.Leray 22.04.04 */
 
+  integer ibutton,in,iwait=0,istr=0;
+  integer verbose_=0,ww_;
+  double x0,yy0,x,y,xl,yl ;
 
   C2F(dr1)("xget","window",&verbose,&ww,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (version_flag() != 0) {
-    if ( Check3DPlots("v",&ww) == 0) 
-      {
-	wininfo("No 3d recorded plots in your graphic window");
-	return 0;
-      }
-  }
 
   /**DJ.Abdemouche 2003**/
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","alufunction",&verbose,&alumode,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-  GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0 && version_flag() !=0) 
+
+#ifdef _MSC_VER
+  SetWinhdc();
+  SciMouseCapture();  
+#endif
+  C2F(dr)("xclick","one",&ibutton,&xr,&yr,&iwait,&istr,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#ifdef _MSC_VER
+  ReleaseWinHdc();
+  SciMouseRelease();
+#endif
+  theta=Cscale.theta ;
+  alpha=Cscale.alpha ;
+  theta0=theta;
+  alpha0=alpha;
+
+  ibutton=-1;
+  tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());   
+  if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
+  {
+    psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
+    /**DJ.Abdemouche 2003**/
+    if((sciPointObj *) psubwin != NULL)
     {
-      wininfo("Use the Rec driver for 3d Rotation" );
+      sciSetSelectedSubWin (psubwin);
+
+      theta0 =  pSUBWIN_FEATURE (psubwin)-> theta; 
+      alpha0 =  pSUBWIN_FEATURE (psubwin)-> alpha;
+      pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
+      Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
+
+      /* Modif. HERE F.Leray 24.05.04 : we take advantage of update_specification_bounds and update_3dbounds previous call */
+      /* brect variable should not exist any more.*/
+      Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->FRect[0]; 
+      Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->FRect[2];
+      Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->FRect[1];
+      Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->FRect[3];
+      Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->FRect[4];
+      Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->FRect[5];
+
+      cube_scaling =  pSUBWIN_FEATURE (psubwin)->cube_scaling;
+      if(cube_scaling == TRUE)
+      {
+        Cscale.bbox1[0] =  0.; 
+        Cscale.bbox1[1] =  1.;
+        Cscale.bbox1[2] =  0.;
+        Cscale.bbox1[3] =  1.;
+        Cscale.bbox1[4] =  0.;
+        Cscale.bbox1[5] =  1.;
+      }
+    }
+    else
+    {
+      wininfo("No 3d object selected");
       return 0;
     }
-  else 
-    {
-      integer ibutton,in,iwait=0,istr=0;
-      integer verbose_=0,ww_;
-      double x0,yy0,x,y,xl,yl,bbox[4];
-#ifdef _MSC_VER
-      SetWinhdc();
-      SciMouseCapture();
-      if (version_flag() != 0)
-	C2F(SetDriver)("Int",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-#else
-      if (version_flag() != 0)
-	C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-#endif
-      C2F(dr)("xclick","one",&ibutton,&xr,&yr,&iwait,&istr,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      /*C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);*/
-      if (version_flag() != 0)
-	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#ifdef _MSC_VER
-      ReleaseWinHdc();
-      SciMouseRelease();
-#endif
-      theta=Cscale.theta ;
-      alpha=Cscale.alpha ;
-      theta0=theta;
-      alpha0=alpha;
+  }
+  else
+  {                  
+    psonstmp = sciGetLastSons (sciGetCurrentFigure());  
+    while (psonstmp != (sciSons *) NULL)
+    {  
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
+        break;   
+      psonstmp = psonstmp->pnext;
+    } 
+    sciSetSelectedSubWin (psonstmp->pointobj);
+  } 
+  xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
+  yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
 
-      ibutton=-1;
-      if (version_flag() == 0)
-	{
-	  tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());   
-          if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
-	    {
-	      psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
-	      /**DJ.Abdemouche 2003**/
-	      if((sciPointObj *) psubwin != NULL)
-		{
-		  sciSetSelectedSubWin (psubwin);
-
-		  theta0 =  pSUBWIN_FEATURE (psubwin)-> theta; 
-		  alpha0 =  pSUBWIN_FEATURE (psubwin)-> alpha;
-		  pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
-		  Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
-
-		  /* Modif. HERE F.Leray 24.05.04 : we take advantage of update_specification_bounds and update_3dbounds previous call */
-		  /* brect variable should not exist any more.*/
-		  Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->FRect[0]; 
-		  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->FRect[2];
-		  Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->FRect[1];
-		  Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->FRect[3];
-		  Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->FRect[4];
-		  Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->FRect[5];
-		  
-		  cube_scaling =  pSUBWIN_FEATURE (psubwin)->cube_scaling;
-		  if(cube_scaling == TRUE)
-		    {
-		      Cscale.bbox1[0] =  0.; 
-		      Cscale.bbox1[1] =  1.;
-		      Cscale.bbox1[2] =  0.;
-		      Cscale.bbox1[3] =  1.;
-		      Cscale.bbox1[4] =  0.;
-		      Cscale.bbox1[5] =  1.;
-		    }
-		}
-	      else
-		{
-		  wininfo("No 3d object selected");
-		  return 0;
-		}
-	    }
-          else
-	    {                  
-	      psonstmp = sciGetLastSons (sciGetCurrentFigure());  
-	      while (psonstmp != (sciSons *) NULL)
-		{  
-		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) 
-		    break;   
-		  psonstmp = psonstmp->pnext;
-		} 
-	      sciSetSelectedSubWin (psonstmp->pointobj);
-	    } 
-	}
-      xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
-      yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
-
-      C2F(echelle2d)(&x0,&yy0,&xr,&yr,&one,&one,"i2f",3L);
-      x0=(x0-Cscale.frect[0])*xx;
-      yy0=(yy0-Cscale.frect[1])*yy;
-      x=x0;y=yy0;
+  C2F(echelle2d)(&x0,&yy0,&xr,&yr,&one,&one,"i2f",3L);
+  x0=(x0-Cscale.frect[0])*xx;
+  yy0=(yy0-Cscale.frect[1])*yy;
+  x=x0;y=yy0;
 
 #ifdef _MSC_VER
-      SetWinhdc();
-      SciMouseCapture();
+  SetWinhdc();
+  SciMouseCapture();
 #endif
-      if (version_flag() != 0)
-	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    
-      while ( ibutton == -1 ) 
-	{
-	  /* dessin d'un rectangle */
-	  theta= ((int)(theta0 - 180.0*(x-x0)) % 360);
-	  alpha= ((int)(alpha0 + 180.0*(y-yy0)) % 360);
-	  wininfo("alpha=%.1f,theta=%.1f",alpha,theta); 
-	  if ( pixmode == 1) C2F(dr1)("xset","wwpc",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  dbox();
-	  if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
-	  if (ibutton==-100) return 1;/* window has been closed */
-	  /* effacement du rectangle */
-	  dbox();
-	  xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
-	  yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
-	  x=(xl-Cscale.frect[0])*xx;
-	  y=(yl-Cscale.frect[1])*yy;
-	}
-      if ( pixmode == 0) C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-      if (version_flag() != 0)
-	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr1)("xget","window",&verbose_,&ww_,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  while ( ibutton == -1 ) 
+  {
+    /* dessin d'un rectangle */
+    theta= ((int)(theta0 - 180.0*(x-x0)) % 360);
+    alpha= ((int)(alpha0 + 180.0*(y-yy0)) % 360);
+    wininfo("alpha=%.1f,theta=%.1f",alpha,theta); 
+    if ( pixmode == 1) C2F(dr1)("xset","wwpc",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    dbox();
+    if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
+    if (ibutton==-100) return 1;/* window has been closed */
+    /* effacement du rectangle */
+    dbox();
+    xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
+    yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
+    x=(xl-Cscale.frect[0])*xx;
+    y=(yl-Cscale.frect[1])*yy;
+  }
+  if ( pixmode == 0) C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr1)("xget","window",&verbose_,&ww_,&narg_,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef _MSC_VER
-      ReleaseWinHdc();
-      SciMouseRelease();
+  ReleaseWinHdc();
+  SciMouseRelease();
 #endif
-      if (version_flag() != 0)
-	Tape_ReplayNewAngle("v",&ww_,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
-      else
-	{  
-          if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0){
-	    pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-	    sciSetSelectedSubWin(psubwin);
-	    Obj_RedrawNewAngle(psubwin,theta,alpha);
-	    sciSetSelectedSubWin(pold);
-	  }
-	  else
-            { 
-	      psonstmp = sciGetSons (sciGetCurrentFigure());  
-	      while (psonstmp != (sciSons *) NULL)	
-		{  
-		  if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN){
-		    pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-		    sciSetSelectedSubWin(psonstmp->pointobj);
-		    Obj_RedrawNewAngle(psonstmp->pointobj,theta,alpha);
-		    sciSetSelectedSubWin(pold);
-		  }
-		  psonstmp = psonstmp->pnext;
-		} 
-            }
-	  sciRedrawFigure(); 
-	  sciSetSelectedSubWin (tmpsubwin);
-	}
-    }
+
+  if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0){
+    pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+    sciSetSelectedSubWin(psubwin);
+    Obj_RedrawNewAngle(psubwin,theta,alpha);
+    sciSetSelectedSubWin(pold);
+  }
+  else
+  { 
+    psonstmp = sciGetSons (sciGetCurrentFigure());  
+    while (psonstmp != (sciSons *) NULL)	
+    {  
+      if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN){
+        pold = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+        sciSetSelectedSubWin(psonstmp->pointobj);
+        Obj_RedrawNewAngle(psonstmp->pointobj,theta,alpha);
+        sciSetSelectedSubWin(pold);
+      }
+      psonstmp = psonstmp->pnext;
+    } 
+  }
+  sciRedrawFigure(); 
+  sciSetSelectedSubWin (tmpsubwin);
   return 0;
 }
 

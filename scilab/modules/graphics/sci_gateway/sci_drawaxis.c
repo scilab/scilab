@@ -165,15 +165,9 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
     nb_tics_labels = opts[8].m*opts[8].n;
   }
 
-  /* NG beg */
-  if (version_flag() == 0)
-  {
-    Objdrawaxis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag,nb_tics_labels);
-  }
-  else
-  {
-    Xdrawaxis (dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag);
-  }
+  
+  Objdrawaxis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag,nb_tics_labels);
+
 
   LhsVar(1)=0;
   return 0;

@@ -36,14 +36,9 @@ int sci_matplot1( char * fname, unsigned long fname_len )
   SciWin();
 
   /* NG beg */
-  if ( version_flag() == 0 )
-  {
-    Objmatplot1 (stk(l1), &m1, &n1,stk(l2)) ;
-  }
-  else
-  {
-    Xmatplot1 (stk(l1), &m1, &n1,stk(l2)) ; /* NG end */
-  }
+
+  Objmatplot1 (stk(l1), &m1, &n1,stk(l2)) ;
+
   LhsVar(1)=0;
   return 0;
 } 

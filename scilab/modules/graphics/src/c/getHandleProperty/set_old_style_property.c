@@ -23,15 +23,14 @@ int set_old_style_property( sciPointObj * pobj, int stackPointer, int valueType,
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    setVersionFlag( 1 ) ;
-    return SET_PROPERTY_SUCCEED ;
+    return SET_PROPERTY_UNCHANGED ;
   }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
+  else if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    setVersionFlag( 0 ) ;
-    return SET_PROPERTY_SUCCEED ;
+    sciprint("Old graphic mode is no longer available. Please refer to the set help page.\n") ;
+    return SET_PROPERTY_ERROR ;
   }
   else
   {

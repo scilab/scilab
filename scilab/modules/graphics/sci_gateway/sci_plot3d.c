@@ -107,8 +107,7 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     }
   }
   SciWin();
-  if (version_flag() == 0) { iflag_def[1]=8; }
-  else { iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */ }
+  iflag_def[1]=8;
 
   GetOptionalDoubleArg(fname,4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(fname,5,"alpha",&alpha,1,opts);
@@ -151,30 +150,9 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     isfac=0;
   }
 
-  if (version_flag() == 0)
-  {
-    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 and 19.03.04*/
-  }
-  else
-  {
-    integer *cvect = NULL,i;
-    if((m3n)*(n3n) != 0){
-      if((cvect=MALLOC((m3n)*(n3n)*sizeof(integer)))==NULL){
-        Scierror(999,"Allocation failed for color matrix in %s\r\n",fname);
-        return 0;
-      }
-    }
 
-    for( i = 0 ; i < m3n * n3n ; i++ )
-    {
-      cvect[i] = (int) zcol[i];
-    }
+  Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 and 19.03.04*/
 
-    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),cvect,&m3,&n3,theta,alpha,legend,iflag,ebox) ;
-    FREE( cvect ) ;
-    cvect = NULL;
-  }
-  /* NG end */
   LhsVar(1)=0;
   return 0;
 

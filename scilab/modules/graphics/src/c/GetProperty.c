@@ -36,7 +36,6 @@ extern sciHandleTab *PENDOFHANDLETAB;
 extern sciPointObj *pfiguremdl;
 extern sciPointObj *paxesmdl;
 
-int versionflag = 1 ; /* just used for version_flag() function */
 extern int cf_type;
 
 /* extern sciClipTab ptabclip[15]; */
@@ -3797,7 +3796,6 @@ sciPointObj *sciGetCurrentFigure ()
 	{
 	  sciSetCurrentObj (mafigure); 
 	  moncurScilabXgc->mafigure = mafigure;
-          moncurScilabXgc->graphicsversion = 0;
 	  if ((masousfen = ConstructSubWin (mafigure, moncurScilabXgc->CurWindow)) != NULL) {
 	    sciSetCurrentObj (masousfen);
 	    sciSetOriginalSubWin (mafigure, masousfen);
@@ -4611,21 +4609,7 @@ sciGetIdFigure ( int * vect, int * id, int * flag )
     }
 
 }
-int version_flag() 
-{ 
-  double *XGC,dv=0;
-  struct BCG *CurrentScilabXgc = (struct BCG *) NULL;
-  int v = 0;
 
-  C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
-  CurrentScilabXgc = (struct BCG *) XGC;
-  if (CurrentScilabXgc == NULL )
-  {
-    return versionflag; /* default versionflag is returned */
-  }
-  
-  return CurrentScilabXgc->graphicsversion;
-}
 
 /**
  * Return the first surface found within the descendant of the object.

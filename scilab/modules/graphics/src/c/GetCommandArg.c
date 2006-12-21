@@ -185,16 +185,9 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf )
   {
     /* def value can be changed */
       
-    if ( version_flag() == 0 )
-    {
-	    reinitDefStrfN() ;
-      *strf = getDefStrf() ;
-    }
-    else
-    {
-	    reinitDefStrfN() ;
-      *strf = getDefStrf() ;
-    }
+    reinitDefStrfN() ;
+    *strf = getDefStrf() ;
+   
   }
   return 1;
 }
@@ -241,19 +234,13 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
     }
     else
     {
-      if ( version_flag() == 0 )
+
+      /* jb silvy 03/2006 */
+      /* do not change the legend if one already exists */
+      sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+      if ( sciGetLegendDefined( pSubWin ) )
       {
-        /* jb silvy 03/2006 */
-        /* do not change the legend if one already exists */
-        sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
-        if ( sciGetLegendDefined( pSubWin ) )
-        {
-          *labels = NULL ;
-        }
-        else
-        {
-          *labels = getDefLegend() ;
-        }
+        *labels = NULL ;
       }
       else
       {
@@ -268,19 +255,13 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels )
   }
   else
   {
-    if ( version_flag() == 0 )
+
+    /* jb silvy 03/2006 */
+    /* do not change the legend if one already exists */
+    sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
+    if ( sciGetLegendDefined( pSubWin ) )
     {
-      /* jb silvy 03/2006 */
-      /* do not change the legend if one already exists */
-      sciPointObj * pSubWin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
-      if ( sciGetLegendDefined( pSubWin ) )
-      {
-        *labels = NULL ;
-      }
-      else
-      {
-        *labels = getDefLegend() ;
-      }
+      *labels = NULL ;
     }
     else
     {

@@ -81,20 +81,11 @@ int sci_xsnative( char * fname, unsigned long fname_len )
     break;
   }
 
-  if (version_flag() == 0) /* New Graphic mode */
-  {
-    sciGetIdFigure (&ids,&num,&iflag);
-    iflag = 1;
-    ArrayWGraph = MALLOC( sizeof(int) * num );
-    sciGetIdFigure (ArrayWGraph,&num,&iflag);	
-  }
-  else
-  {
-    getWins(&num,&ids ,&iflag);
-    iflag = 1; 
-    ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
-    getWins(&num,ArrayWGraph,&iflag);
-  } 
+
+  sciGetIdFigure (&ids,&num,&iflag);
+  iflag = 1;
+  ArrayWGraph = MALLOC( sizeof(int) * num );
+  sciGetIdFigure (ArrayWGraph,&num,&iflag);	
 
   for (i=0;i<num;i++)
   {

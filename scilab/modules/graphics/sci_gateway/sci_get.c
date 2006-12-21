@@ -78,14 +78,8 @@ int sci_get(char *fname,unsigned long fname_len)
             SciWin();
           }
 
-	  if ( version_flag() == 0 )
-          {
-	    hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle */
-          }
-	  else
-          {
-	    hdl = (unsigned long)0;
-          }
+	  hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle */
+          
 
 	}/* DJ.A 08/01/04 */
       else
@@ -103,26 +97,23 @@ int sci_get(char *fname,unsigned long fname_len)
 	  }
 	  else
 	    {
+              sciPointObj * ppobj;
 	      SciWin();
-	      if (version_flag() == 0)
-		{
-		  /* Test debug F.Leray 13.04.04 */
-		  sciPointObj * ppobj;
-		  if ((strcmp(cstk(l2),"children") != 0) &&  
-		      (strcmp(cstk(l2),"zoom_") !=0) && 
-		      (strcmp(cstk(l2),"clip_box") !=0) && 
-		      (strcmp(cstk(l2),"auto_") !=0)) 
-		  {
-		    ppobj = sciGetCurrentObj();
-		    hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());
-                  }
-		  else
-                  {
-		    hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
-                  }
-		}
-	      else
-		hdl = (unsigned long)0;
+
+              /* Test debug F.Leray 13.04.04 */
+              if ((strcmp(cstk(l2),"children") != 0) &&  
+                (strcmp(cstk(l2),"zoom_") !=0) && 
+                (strcmp(cstk(l2),"clip_box") !=0) && 
+                (strcmp(cstk(l2),"auto_") !=0)) 
+              {
+                ppobj = sciGetCurrentObj();
+                hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());
+              }
+              else
+              {
+                hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
+              }
+
 	    }/* DJ.A 08/01/04 */
 	}
       else

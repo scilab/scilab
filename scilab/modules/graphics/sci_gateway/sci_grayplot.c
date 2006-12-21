@@ -72,25 +72,15 @@ int sci_grayplot( char *fname, unsigned long fname_len )
   if ( isDefStrf( strf ) )
   {
     char strfl[4];
-    if (version_flag() == 0)
-    {
-      strcpy(strfl,DEFSTRFN);
-    }
-    else
-    {
-      strcpy(strfl,DEFSTRF);
-    }
+  
+    strcpy(strfl,DEFSTRFN);
+  
     strf = strfl;
     if ( !isDefRect( rect ) )
     {
       strfl[1]='7';
     }
-    if(version_flag() != 0) {
-      if ( !isDefNax( nax ))
-      {
-        strfl[1]='1';
-      }
-    }
+
     GetOptionalIntArg(fname,7,"frameflag",&frame,1,opts);
     if(frame != &frame_def)
     {
@@ -105,15 +95,9 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
 
 
-  /* NG beg */
-  if (version_flag() == 0)
-  {
-    Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
-  }
-  else /* NG end */
-  {
-    Xgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax);
-  }
+
+  Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
+
   LhsVar(1)=0;
   return 0;
 }

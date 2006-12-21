@@ -189,14 +189,8 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   if ( isDefStrf( strf ) )
   {
     char strfl[4];
-    if ( version_flag() == 0 )
-    {
-      strcpy(strfl,DEFSTRFN);
-    }
-    else
-    {
-      strcpy(strfl,DEFSTRF);
-    }
+    strcpy(strfl,DEFSTRFN);
+
     strf = strfl;
     if ( !isDefRect( rect ) )
     {
@@ -206,13 +200,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     {
       strfl[0] = '1';
     }
-    if( version_flag() != 0 )
-    {
-      if ( !isDefNax( nax ) ) /* F.Leray 12.10.04 1. If rect does not exist, there is a pb here... */
-      {
-	      strfl[1] = '1';   /*                  2. Where is the link between Nax and Rect ??? */
-      }
-    }
+
     GetOptionalIntArg(fname,9,"frameflag",&frame,1,opts);
     if( frame != &frame_def )
     {
@@ -225,105 +213,90 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     }
   }
 
-  /* NG beg */
-  if (version_flag() == 0)
+  /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
+  Rect case :
+  - if the min bound is strictly posivite, we can use log. mode
+  - if not, send error message 
+  x/y min/max case:
+  - we find the first strictly positive min bound in Plo2dn.c ?? */
+
+  switch (strf[1])
   {
-    /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
-       Rect case :
-       - if the min bound is strictly posivite, we can use log. mode
-       - if not, send error message 
-       x/y min/max case:
-       - we find the first strictly positive min bound in Plo2dn.c ?? */
-
-    switch (strf[1])
+  case '0': 
+    /* no computation, the plot use the previous (or default) scale */
+    break;
+  case '1' : case '3' : case '5' : case '7':
+    /* based on Rect arg */ 
+    if( rect[0] > rect[2] || rect[1] > rect[3])
     {
-    case '0': 
-      /* no computation, the plot use the previous (or default) scale */
-      break;
-    case '1' : case '3' : case '5' : case '7':
-      /* based on Rect arg */ 
-      if( rect[0] > rect[2] || rect[1] > rect[3])
-	    {
-        sciprint("Error:  Impossible status min > max in x or y rect data\n") ;
-        return -1 ;
-      }
-
-      if( rect[0] <= 0. && logFlags[1] =='l') /* xmin */
-	    {
-        sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n") ;
-        return -1 ;
-      }
-
-      if( rect[1] <= 0. && logFlags[2] =='l') /* ymin */
-	    {
-        sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n") ;
-        return -1 ;
-      }
-
-      break;
-    case '2' : case '4' : case '6' : case '8': case '9':
-      /* computed from the x/y min/max */
-      if ( (int)strlen(logFlags) < 1)
-      {
-        dataflag='g' ;
-      }
-      else
-      {
-        dataflag=logFlags[0];
-      }
-
-      switch ( dataflag )
-      {
-      case 'e' : 
-	      xd[0] = 1.0; xd[1] = (double)m1;
-        x1 = xd;size_x = (m1 != 0) ? 2 : 0 ;
-	      break; 
-      case 'o' : 
-	      x1 = stk(l1);size_x = m1;
-	      break;
-      case 'g' : 
-      default  : 
-	      x1 = stk(l1);size_x = (n1*m1) ;
-	      break; 
-      }
-
-      if (size_x != 0)
-      {
-	      if(logFlags[1] == 'l' && sciFindStPosMin(stk(l1),size_x) <= 0.0 )
-	      {
-          sciprint("Error: at least one x data must be strictly positive to compute the bounds and use logarithmic mode\n") ;
-          return -1 ;
-        }
-      }
-
-      size_y = (n1*m1) ;
-
-      if (size_y != 0)
-      {
-	      if( logFlags[2] == 'l' && sciFindStPosMin(stk(l2),size_y) <= 0.0 )
-	      {
-          sciprint("Error: at least one y data must be strictly positive to compute the bounds and use logarithmic mode\n") ;
-          return -1 ;
-        }
-      }
-
-      break;
+      sciprint("Error:  Impossible status min > max in x or y rect data\n") ;
+      return -1 ;
     }
 
-    Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
-  }
-  else
-  { /* NG end */
-    if (   !isDefLogFlags( logFlags ) )
+    if( rect[0] <= 0. && logFlags[1] =='l') /* xmin */
     {
-      C2F(plot2d1)(logFlags,stk(l1),stk(l2),&n1,&m1,style,strf,legend,rect,nax,
-		   4L,strlen(strf),strlen(legend));
+      sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n") ;
+      return -1 ;
+    }
+
+    if( rect[1] <= 0. && logFlags[2] =='l') /* ymin */
+    {
+      sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n") ;
+      return -1 ;
+    }
+
+    break;
+  case '2' : case '4' : case '6' : case '8': case '9':
+    /* computed from the x/y min/max */
+    if ( (int)strlen(logFlags) < 1)
+    {
+      dataflag='g' ;
     }
     else
     {
-      Xplot2d (stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect, nax); /* NG */
+      dataflag=logFlags[0];
     }
+
+    switch ( dataflag )
+    {
+    case 'e' : 
+      xd[0] = 1.0; xd[1] = (double)m1;
+      x1 = xd;size_x = (m1 != 0) ? 2 : 0 ;
+      break; 
+    case 'o' : 
+      x1 = stk(l1);size_x = m1;
+      break;
+    case 'g' : 
+    default  : 
+      x1 = stk(l1);size_x = (n1*m1) ;
+      break; 
+    }
+
+    if (size_x != 0)
+    {
+      if(logFlags[1] == 'l' && sciFindStPosMin(stk(l1),size_x) <= 0.0 )
+      {
+        sciprint("Error: at least one x data must be strictly positive to compute the bounds and use logarithmic mode\n") ;
+        return -1 ;
+      }
+    }
+
+    size_y = (n1*m1) ;
+
+    if (size_y != 0)
+    {
+      if( logFlags[2] == 'l' && sciFindStPosMin(stk(l2),size_y) <= 0.0 )
+      {
+        sciprint("Error: at least one y data must be strictly positive to compute the bounds and use logarithmic mode\n") ;
+        return -1 ;
+      }
+    }
+
+    break;
   }
+
+  Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
+  
   LhsVar(1)=0;
   return 0;
 }

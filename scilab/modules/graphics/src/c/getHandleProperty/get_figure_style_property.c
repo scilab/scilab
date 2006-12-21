@@ -15,22 +15,8 @@
 /*------------------------------------------------------------------------*/
 int get_figure_style_property( sciPointObj * pobj )
 {
-  if ( pobj != getFigureModel() )
-  {
-    if ( version_flag() != 0 )
-    {
-      return sciReturnString( "old" ) ;
-    }
-    else
-    {
-      return sciReturnString( "new" ) ;
-    }
-  }
-  else /* what is it usefull for ? F.Leray 20.04.05 */
-  {
-    return sciReturnString( "customized" ) ;
-  }
-
+  /* no more old style */
+  sciReturnString("new") ;
   return 0 ;
 }
 /*------------------------------------------------------------------------*/

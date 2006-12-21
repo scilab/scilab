@@ -89,14 +89,9 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   if ( isDefStrf ( strf ) ) {
     char strfl[4];
-    if (version_flag() == 0)
-    {
-      strcpy(strfl,DEFSTRFN);
-    }
-    else
-    {
-      strcpy(strfl,DEFSTRF);
-    }
+
+    strcpy(strfl,DEFSTRFN);
+    
     strf = strfl;
     if ( !isDefRect( rect ))
     {
@@ -106,26 +101,11 @@ int sci_fec(char *fname,unsigned long fname_len)
     {
       strfl[0]='1';
     }
-    if(version_flag() != 0)
-    {
-      if ( !isDefNax( nax ) )
-      {
-        strfl[1]='1';
-      }
-    }
   }
   mn1 = m1 * n1;
 
-  /* NG beg */
-  if (version_flag() == 0)
-  {
-    Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh,flagNax);
-  }
-  else
-  {
-    Xfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh);
-  }
-  /* NG end */
+  Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh,flagNax);
+
   LhsVar(1)=0;
   return 0;
 }

@@ -100,7 +100,7 @@ typedef struct BCG
   int CWindowWidthView;	 /** graphic window width **/
   int CWindowHeightView;  /** graphic window height **/
   sciPointObj *mafigure;  /* Entities root */
-  int graphicsversion;
+  /*int graphicsversion;*/ /* old style is dead */
   /* NG end */
 #ifdef _MSC_VER
   /** windows specific objects **/

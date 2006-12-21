@@ -22,7 +22,7 @@ int sci_xinit(char *fname, unsigned long fname_len )
   if (Rhs <= 0 )
   {
     C2F(dr1)("xinit"," ",&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,2L);
-    if(version_flag() == 0) { openGraphicSession() ; } /* we do not draw now into the file/memory (depending on the driver type) */
+    openGraphicSession() ; /* we do not draw now into the file/memory (depending on the driver type) */
   } 
   else 
   {
@@ -31,9 +31,10 @@ int sci_xinit(char *fname, unsigned long fname_len )
 
     param1=cstk(l1);
     C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
-    if(version_flag() == 0) { openGraphicSession() ; } /* we do not draw now into the file/memory (depending on the driver type) */
+    openGraphicSession() ; /* we do not draw now into the file/memory (depending on the driver type) */
 
   }
-  LhsVar(1)=0; return 0;
+  LhsVar(1)=0;
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/

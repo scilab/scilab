@@ -73,7 +73,6 @@ static int LoadXcall1 __PARAMS((void));
 static int LoadEch __PARAMS((void)); 
 
 extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
-extern int version_flag(void);
 
 #ifdef _MSC_VER
 extern void Scistring (char *str);
@@ -761,8 +760,9 @@ static LoadTable LoadCTable[] ={
 
 int C2F(xloadplots)( char * fname1, integer lvx)
 {
-  integer verb=0,cur,na;
-  char name[4],*type;
+  integer verb=0,na;
+  char temp[256];
+  integer ierr,seq=1;
   strncpy(RFname,fname1,128);
 #ifdef __STDC__
   RF = fopen(RFname,"rb") ;
@@ -779,47 +779,12 @@ int C2F(xloadplots)( char * fname1, integer lvx)
   /*if ( LoadVectC(&SciF_version) == 0 )  replaced by the following line to avoid error message*/
   xdr_vector(rxdrs,(char *) &rszof,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int);
   SciF_version = (char *)  MALLOC(rszof);
-  if (( version_flag() == 0||SciF_version == NULL) || (xdr_opaque(rxdrs, SciF_version,rszof)==0))
-    {
-      char temp[256];
-      integer ierr,seq=1;
-      fclose(RF);
-      sprintf(temp,"%%xload('%s')",fname1);
-      na=strlen(temp);
-      C2F(syncexec)(temp,&na,&ierr,&seq);
-      if(ierr != 0)  sciprint("Wrong plot file : %s\n\n",fname1);
-      return(0);
-    }
 
-  if ( strncmp(SciF_version,"SciG",4) != 0 )
-    {
-      sciprint("Not a save graphics file: %s\n\n",fname1);
-      return(0);
-    }
-  if ( strcmp(SciF_version,"SciG1.0") != 0 && 
-       strcmp(SciF_version,"SciG1.1") != 0 )
-    {
-      sciprint("Wrong version of saved graphics %s : %s\n\n",
-	       SciF_version,fname1);
-      return(0);
-    }
-
-
-  while (LoadVectC(&type) != 0 && strcmp(type,"endplots") != 0) 
-    {
-      if (LoadTPlot(type) == 0) break;
-    }
-  assert(fflush((FILE *)rxdrs->x_private) != EOF) ; 
-  assert(fclose(RF) != EOF) ;
-  /** we plot the Loaded graphics **/
-  GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if ( (GetDriver()) !='R')
-    C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  CPixmapResize1();
-  C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xreplay","v",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  fclose(RF);
+  sprintf(temp,"%%xload('%s')",fname1);
+  na=strlen(temp);
+  C2F(syncexec)(temp,&na,&ierr,&seq);
+  if(ierr != 0) { sciprint("Wrong plot file : %s\n\n",fname1) ; }
   return(0);
 }
 

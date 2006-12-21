@@ -65,8 +65,7 @@ int sci_param3d( char * fname, unsigned long fname_len )
   GetOptionalDoubleArg(fname,5,"alpha",&alpha,1,opts);
   GetLabels(fname,6,opts,&labels);
 
-  if (version_flag() == 0) iflag_def[1]=8;
-  else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
+  iflag_def[1]=8;
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(fname,7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
@@ -78,14 +77,9 @@ int sci_param3d( char * fname, unsigned long fname_len )
   /* NG beg */
   isfac=-1;
   izcol=0;
-  if (version_flag() == 0)
-  {
-    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(double *) NULL,&ix1,&one,theta,alpha,labels,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 */
-  }
-  else
-  {
-    Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(integer *) NULL,&ix1,&one,theta,alpha,labels,iflag,ebox);
-  }
+  
+  Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),(double *) NULL,&ix1,&one,theta,alpha,labels,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 */
+  
 
   /* NG end */
   LhsVar(1)=0;

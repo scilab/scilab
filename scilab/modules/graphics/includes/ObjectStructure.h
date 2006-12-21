@@ -221,17 +221,6 @@ typedef struct tagHandleTab
 }/** */
 sciHandleTab; 
 
-/* /\**@name sciClipTab */
-/*  * Used to determine store clipping associated to the entity */
-/*  *\/ */
-/* typedef struct  */
-/* {/\** *\/ */
-/*   int index; */
-/*   /\** *\/ */
-/*   double clip[4]; */
-/* }/\** *\/ */
-/* sciClipTab;   */
-
 
 /**@name Sons
  * Used to determine the hierarchy

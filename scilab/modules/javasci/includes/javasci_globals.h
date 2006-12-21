@@ -38,7 +38,6 @@ extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F(storeversion)(char *str,int n);
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
-extern int version_flag();
 extern void SetFromJavaToON(void);
 extern int SendScilabJob(char *job); 
 extern void ScilabDoOneEvent(void);

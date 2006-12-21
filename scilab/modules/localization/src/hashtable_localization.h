@@ -18,13 +18,13 @@ struct value_string
 	char *Value_String;
 };
 /*-----------------------------------------------------------------------------------*/ 
-/* new a hashtable and return it */
+/* create a hashtable and return it */
 struct hashtable *CreateHashtable_string();
 
 /* destroy the hashtable and clean the resources used */
 void DestroyHashtable_string(struct hashtable *hash_table);
 
-/* search a key in a hashtable. if succeed, return the value needed. if fail, return NULL */
+/* search a key in a hashtable. if succeed, return the value needed. if failed, return NULL */
 char *SearchHashtable_string(struct hashtable *hash_table, const char* key);
 
 /* Insert a element in Hashtable */

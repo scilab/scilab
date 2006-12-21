@@ -478,25 +478,20 @@ static SaveTable SaveCTable[] ={
 #define __STDC__
 #endif 
 
-extern int version_flag(void); /* NG */
-
 int C2F(xsaveplots)(integer *winnumber, char *fname1, integer lxv)
 {
   static char endplots[]={"endplots"};
   static char scig[]={"SciG1.1"};
   struct listplot *list;
-  int verb=0,cur,na;
+  int verb=0,na;
 
-  if (version_flag() == 0) {
-    char temp[256];
-    integer ierr,seq=1;
-    sprintf(temp,"%%xsave('%s',%d)",fname1,*winnumber);
-    na=strlen(temp);
-    C2F(syncexec)(temp,&na,&ierr,&seq);
-    return 0;
-  }
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","window",winnumber,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  char temp[256];
+  integer ierr,seq=1;
+  sprintf(temp,"%%xsave('%s',%d)",fname1,*winnumber);
+  na=strlen(temp);
+  C2F(syncexec)(temp,&na,&ierr,&seq);
+  return 0;
+
 
 
 #ifdef lint 

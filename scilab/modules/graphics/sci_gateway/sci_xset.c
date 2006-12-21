@@ -104,44 +104,30 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   if (strcmp(cstk(l1),"clipping") == 0) 
     C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
-  else if ( strcmp(cstk(l1),"colormap") == 0) {
-
-    if (version_flag() == 0)
-    {
-      sciSetColormap (sciGetCurrentFigure(), stk(lr), *xm, *xn);
-      sciRedrawFigure();
-    }
-    else {
-      C2F(dr1)("xset",cstk(l1),xm,xn,&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,bsiz);
-      x[0] = xm[0]+1;
-      C2F(dr1)("xset","color",&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
-    }
+  else if ( strcmp(cstk(l1),"colormap") == 0)
+  {
+    sciSetColormap (sciGetCurrentFigure(), stk(lr), *xm, *xn);
+    sciRedrawFigure();
   }
   else if ( strcmp(cstk(l1),"mark size") == 0) {
     C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
 
-    if(version_flag() == 0){
-      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
-    }
+    subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
+
 
     mark[1]=(int)xx[0];
-    if(version_flag() == 0){
-      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSetMarkSize(subwin,mark[1]);
-    }
-    else
-      C2F(dr1)("xset","mark",&(mark[0]),&(mark[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
+    subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciSetMarkSize(subwin,mark[1]);
+    
   }
-  else if ( strcmp(cstk(l1),"mark") == 0) {
-    if(version_flag() == 0){
-      subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
-      sciSetMarkStyle(subwin,(int) xx[0]);
-      sciSetMarkSize(subwin,(int) xx[1]);
-    }
-    else
-      C2F(dr1)("xset","mark",&(x[0]),&(x[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
+  else if ( strcmp(cstk(l1),"mark") == 0)
+  {
+    subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+    sciSetMarkSizeUnit(subwin,2); /* force switch to tabulated mode : old syntax */
+    sciSetMarkStyle(subwin,(int) xx[0]);
+    sciSetMarkSize(subwin,(int) xx[1]);
+    
   }
   else if ( strcmp(cstk(l1),"font size") == 0) {
     verb=0;
@@ -150,21 +136,19 @@ int sci_xset( char *fname, unsigned long fname_len )
     C2F(dr1)("xset","font",&(font[0]),&(font[1]),&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,5L);
   } 
   /* NG beg */
-  else if ( strcmp(cstk(l1),"old_style") == 0) {
-    if (*stk(lr) == 0)
+  else if ( strcmp(cstk(l1),"old_style") == 0)
+  {
+    if (*stk(lr) == 1)
     {
-      setVersionFlag( (int) *stk(lr) ) ;
-    }
-    else if (*stk(lr) == 1)
-    {
-      setVersionFlag( (int) *stk(lr) ) ;
+      sciprint("Old graphic mode is no longer available. Please refer to the set help page.\n") ;
     }
     else
     {
       Scierror(999,"%s: Value must be 1 or 0",fname);
     }
   }/* NG end */
-  else if((strcmp(cstk(l1),"default")==0) && (version_flag()==0)) {
+  else if( strcmp(cstk(l1),"default") == 0 )
+  {
     sciPointObj * pfigure = sciGetCurrentFigure();
     ResetFigureToDefaultValues(pfigure);
 
@@ -172,17 +156,17 @@ int sci_xset( char *fname, unsigned long fname_len )
     /* mimic clf(gcf(),'reset') behaviour here */
     sciXbasc();
   }
-  else if((strcmp(cstk(l1),"clipgrf")==0) && (version_flag()==0)) {
+  else if( strcmp(cstk(l1),"clipgrf") == 0 ) {
     /* special treatement for xset("cligrf") */
     sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     sciSetIsClipping(psubwin,0);
   }
-  else if((strcmp(cstk(l1),"clipoff")==0) && (version_flag()==0)) {
+  else if( strcmp(cstk(l1),"clipoff") == 0 ) {
     /* special treatement for xset("clipoff") */
     sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     sciSetIsClipping(psubwin,-1);
   }
-  else if((strcmp(cstk(l1),"hidden3d")==0) && (version_flag()==0)) {
+  else if( strcmp(cstk(l1),"hidden3d") == 0 ) {
     /* special treatement for xset("hidden3d") */
     sciPointObj * psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     pSUBWIN_FEATURE(psubwin)->hiddencolor = x[0];
@@ -190,12 +174,12 @@ int sci_xset( char *fname, unsigned long fname_len )
   else 
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   /* NG beg */
-  if ((version_flag() == 0) && (strcmp(cstk(l1),"window") == 0))
+  if ( strcmp(cstk(l1),"window") == 0 )
     if (sciSwitchWindow(&x[0]) != 0){
       Scierror(999,"%s: It was not possible to create the requested figure",fname);
     }
 
-    if (version_flag() == 0&&strcmp(cstk(l1),"wshow")!=0)
+    if ( strcmp(cstk(l1),"wshow") != 0 )
     {
       subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
       if (( strcmp(cstk(l1),"foreground") == 0) || (strcmp(cstk(l1),"color") == 0) ||( strcmp(cstk(l1),"pattern") == 0) ) {

@@ -61,7 +61,6 @@
 #include "Events.h"
 #include "Xcall1.h"
 
-extern int version_flag();
 
 /*-----------------------------------------------------------------------------------*/
 void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);

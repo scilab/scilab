@@ -18,10 +18,11 @@
 int sci_xstring( char *fname, unsigned long fname_len )
 {
   double rect[4],wc,x,y,yi,angle=0.0;
-  integer i,j,iv=0,flagx=0;
+  integer iv=0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
   long hdlstr ;
+  BOOL isboxed = FALSE;
 
   CheckRhs(3,5);
 
@@ -50,44 +51,15 @@ int sci_xstring( char *fname, unsigned long fname_len )
   SciWin();
   wc = 0.;/* to keep the size of the largest line */
 
-  if ( version_flag() == 0 )
+
+  if ( (flagx == 1) && (*stk(l4) == 0))
   {
-    BOOL isboxed = FALSE;
-
-    if ( (flagx == 1) && (*stk(l4) == 0))
-    {
-      isboxed = TRUE;
-    }
-
-    /* create the object */
-    Objstring ( Str,m3,n3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed,TRUE,FALSE, ALIGN_LEFT ) ;
-
+    isboxed = TRUE;
   }
-  else {
-    for (i = m3 -1 ; i >= 0; --i) {
-      int ib = 0;
-      for (j = 0 ; j < n3 ; ++j) {
-        strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
-        ib += strlen(Str[i+ m3*j]);
-        if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
-      }
-      Xstring (C2F(cha1).buf,bsiz,iv,x,y,angle,rect);
-      wc = Max(wc,rect[2]);
-      if (i != 0 )
-      {
-        y += rect[3] * 1.2;
-      }
-      else
-      {
-        y += rect[3];
-      }
-    }
-    if (flagx == 1)
-    {
-      double dx1 = y - yi;
-      Xrect ("xrect",6L,&x,&y,&wc,&dx1); 
-    }
-  } 
+
+  /* create the object */
+  Objstring ( Str,m3,n3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed,TRUE,FALSE, ALIGN_LEFT ) ;
+
 
   /* we must free Str memory */ 
   FreeRhsSVar(Str);

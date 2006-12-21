@@ -93,14 +93,7 @@ int sci_champ_G(char *fname,int (*func) (),unsigned long fname_len)
   if ( isDefStrf( strf ) )
   {
     char strfl[4];
-    if (version_flag() == 0)
-    {
-      strcpy(strfl,DEFSTRFN);
-    }
-    else
-    {
-      strcpy(strfl,DEFSTRF);
-    }
+    strcpy(strfl,DEFSTRFN);
     strf = strfl;
     if ( !isDefRect( rect ) ) {strf[1]='5';} 
   }

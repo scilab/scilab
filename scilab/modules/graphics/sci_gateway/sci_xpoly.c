@@ -25,6 +25,8 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
   long hdl;/* NG */
   int mark;/* NG */
+  sciPointObj * pobj    = NULL ;
+  sciPointObj * psubwin = NULL ;
 
   SciWin();
 
@@ -54,36 +56,35 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
   if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
   /* NG beg */
-  if (version_flag() == 0){
-    sciPointObj *pobj = NULL;
-    sciPointObj *psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
-    Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
+  
+  psubwin = sciGetSelectedSubWin( sciGetCurrentFigure() ) ;
 
-    pobj = sciGetCurrentObj(); /* the polyline newly created */
-    if(mark == 0){ 
-      /* marks are enabled but markstyle & foreground 
-      is determined by parents' markstyle & foreground */
-      sciSetIsMark(pobj, TRUE);
-      sciSetIsLine(pobj,FALSE);
-      sciSetMarkStyle (pobj,sciGetMarkStyle(psubwin));
-      sciSetForeground (pobj, sciGetForeground (psubwin));
-    }
-    else{
-      sciSetIsMark(pobj, FALSE);
-      sciSetIsLine(pobj, TRUE);
-      sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
-      sciSetForeground (pobj, sciGetForeground (psubwin));
-    }
+  Objpoly (stk(l1),stk(l2),mn2,close,mark,&hdl);
 
-    if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
-      Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-      sciDrawObj(sciGetCurrentFigure ());}
-    else
-      sciDrawObjIfRequired(pobj);
+  pobj = sciGetCurrentObj(); /* the polyline newly created */
+  if(mark == 0){ 
+    /* marks are enabled but markstyle & foreground 
+    is determined by parents' markstyle & foreground */
+    sciSetIsMark(pobj, TRUE);
+    sciSetIsLine(pobj,FALSE);
+    sciSetMarkStyle (pobj,sciGetMarkStyle(psubwin));
+    sciSetForeground (pobj, sciGetForeground (psubwin));
   }
+  else{
+    sciSetIsMark(pobj, FALSE);
+    sciSetIsLine(pobj, TRUE);
+    sciSetLineStyle(pobj, sciGetLineStyle (psubwin));
+    sciSetForeground (pobj, sciGetForeground (psubwin));
+  }
+
+  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
+    Merge3d(psubwin); /* an addtomerge function should be much more efficient */
+    sciDrawObj(sciGetCurrentFigure ());}
   else
-    Xpoly(C2F(cha1).buf,bsiz,mn2,close,stk(l1),stk(l2));
+  {
+    sciDrawObjIfRequired(pobj);
+  }
   /* NG end */
   LhsVar(1)=0;
   return 0;
