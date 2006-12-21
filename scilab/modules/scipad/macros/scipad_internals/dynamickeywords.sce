@@ -50,18 +50,22 @@ function dynamickeywords()
     n=string(eval(l)); scicosfun=(n(2:$));
     execstr("clear "+l);
 
+
     //scicos palettes: read each lib
     scicosblocks=[];
-    subdirs=listfiles("SCI/modules/scicos/macros/scicos_blocks");
-    for i=1:size(subdirs,"r")
-      blocklib="SCI/modules/scicos/macros/scicos_blocks/"+subdirs(i)+"/lib";
-      if fileinfo(blocklib)<>[] then
-        [l,s,b]=listvarinfile(blocklib);
-        load(blocklib);
-        n=string(eval(l)); scicosblocks=[scicosblocks;(n(2:$))];
-        execstr("clear "+l);
-      end
-    end
+    if with_module('scicos') then
+     subdirs=listfiles("SCI/modules/scicos/macros/scicos_blocks");
+     for i=1:size(subdirs,"r")
+       blocklib="SCI/modules/scicos/macros/scicos_blocks/"+subdirs(i)+"/lib";
+       if fileinfo(blocklib)<>[] then
+         [l,s,b]=listvarinfile(blocklib);
+         load(blocklib);
+         n=string(eval(l)); scicosblocks=[scicosblocks;(n(2:$))];
+         execstr("clear "+l);
+       end
+     end
+   end
+    
 
     setscipadwords([scicosfun;scicosblocks],"scicos")
   end
