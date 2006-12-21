@@ -40,6 +40,20 @@ integer C2F(getgstackinfo)(integer *total,integer *used)
 	return(0);
 }
 /*-----------------------------------------------------------------------------------*/
+integer C2F(getvariablesinfo)(integer *total,integer *used)
+{
+	*used = C2F(vstk).isiz - C2F(vstk).bot - 1 ;
+	*total = C2F(vstk).isiz - 1;
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+integer C2F(getgvariablesinfo)(integer *total,integer *used)
+{
+	*used = C2F(vstk).gtop - C2F(vstk).isiz - 1;
+	*total = 10000 - C2F(vstk).isiz - 1;
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
 BOOL is_a_valid_size_for_scilab_stack(int sizestack)
 {
 	BOOL bOK=TRUE;
