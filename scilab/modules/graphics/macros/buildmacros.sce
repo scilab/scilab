@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET        INRIA 2005
 //------------------------------------
-genlib('graphics','SCI/modules/graphics/macros');
+genlib('graphicslib','SCI/modules/graphics/macros');
 //------------------------------------
