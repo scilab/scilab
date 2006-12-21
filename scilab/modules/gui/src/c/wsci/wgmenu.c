@@ -1005,45 +1005,7 @@ int FindFreeGraphicWindow(struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 void RefreshMenus(struct BCG * ScilabGC)
 {
-	//if (ScilabGC->graphicsversion!=0) 
-	//{
-	//	BOOL LockToolBar=ScilabGC->lpmw.LockToolBar;
-	//	int nButton=ScilabGC->lpmw.nButton;
-	//	BOOL StateToolBar=ScilabGC->lpmw.ShowToolBar;
 
-	//	DestroyMenu(ScilabGC->hMenuRoot);
-	//	ScilabGC->hMenuRoot=NULL;
-	//	ScilabGC->IDM_Count=1;
-	//	SetMenu(ScilabGC->hWndParent,NULL);
-
-	//	UpdateFileGraphNameMenu( ScilabGC);
-	//	LoadGraphMacros( ScilabGC);
-
-	//	ScilabGC->lpmw.nButton=nButton;
-	//	ScilabGC->lpmw.ShowToolBar=StateToolBar;
-	//	ScilabGC->lpmw.LockToolBar=LockToolBar;
-
-	//}
-	//else
-	//{
-	//	BOOL LockToolBar=ScilabGC->lpmw.LockToolBar;
-	//	int nButton=ScilabGC->lpmw.nButton;
-	//	BOOL StateToolBar=ScilabGC->lpmw.ShowToolBar;
-
-
-	//	DestroyMenu(GetMenu(ScilabGC->hWndParent));
-	//	SetMenu(ScilabGC->hWndParent,NULL);
-	//	CloseGraphMacros ( ScilabGC);
-	//	ScilabGC->lpmw.nButton=nButton;
-	//	ScilabGC->lpmw.ShowToolBar=StateToolBar;
-	//	ScilabGC->lpmw.LockToolBar=LockToolBar;
-
-	//	ScilabGC->hMenuRoot=CreateMenu();
-	//	ScilabGC->IDM_Count=1;
-
-	//	SetMenu(ScilabGC->hWndParent,ScilabGC->hMenuRoot);
-
-	//}
 	int WinNum=ScilabGC->CurWindow;
 	BOOL LockToolBar=ScilabGC->lpmw.LockToolBar;
 	int nButton=ScilabGC->lpmw.nButton;
