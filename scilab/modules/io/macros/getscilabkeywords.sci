@@ -29,11 +29,13 @@ function list_keywords=getscilabkeywords()
   end
   
    //scicos basic functions: read the lib
-  [l,s,b]=listvarinfile(SCI+"/modules/scicos/macros/scicos/lib");
-  load(SCI+"/modules/scicos/macros/scicos/lib");
-  n=string(eval(l));
-  scicos_functions=(n(2:$));
-  execstr("clear "+l);
+  if with_module('scicos') then
+    [l,s,b]=listvarinfile(SCI+"/modules/scicos/macros/scicos/lib");
+    load(SCI+"/modules/scicos/macros/scicos/lib");
+    n=string(eval(l));
+    scicos_functions=(n(2:$));
+    execstr("clear "+l);
+   end
 
   list_keywords=list(scilab_primitives,scilab_commands,predef_variables,scilab_functions,scicos_functions);
     
