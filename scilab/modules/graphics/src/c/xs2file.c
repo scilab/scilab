@@ -15,7 +15,6 @@
 #include "periScreen.h"
 #include "graphicSession.h"
 #include "DrawObjects.h"
-#include "Rec.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
 #include "Graphics.h" 

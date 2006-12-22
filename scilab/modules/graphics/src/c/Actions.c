@@ -4,6 +4,9 @@
  *    jpc@cermics.enpc.fr 
  --------------------------------------------------------------------------*/
 
+#include <stdio.h>
+#include <string.h>
+
 #include "math_graphics.h"
 #include "Graphics.h" 
 #include "GetProperty.h"
@@ -11,6 +14,7 @@
 #include "DrawObjects.h"
 #include "Xcall1.h"
 #include "WindowList.h"
+#include "MALLOC.h"
 
 extern int xinitxend_flag;
 
@@ -28,6 +32,7 @@ extern int xinitxend_flag;
  ********************************************************/
 extern int sciSwitchWindow  __PARAMS((int *winnum));/* NG */
 extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
+extern int C2F(syncexec)(char *str, int *ns, int *ierr, int *seq, long int str_len) ;
 #if !defined(_MSC_VER)
 extern int WithBackingStore();
 #endif
@@ -353,13 +358,47 @@ void scig_raise(integer win_num)
 
 void scig_loadsg(int win_num, char *filename)
 {
-  integer verb=0,cur,na;
-  if ( scig_buzy  == 1 ) return ;
-  scig_buzy =1;
-  C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  integer verb = 0 ;
+  int cur = 0 ;
+  int narg = 0 ;
+  int ierr = 0 ;
+  int seq = 1 ;
+  char * macroCall = NULL ;
+  /* the sting is "%%xload('(1)')" where (1) is filemame */
+  /* Consequently we have 12 fixed character and two variable strings. */
+  int macroCallLength = 10 + strlen(filename) ;
+
+  if ( scig_buzy  == 1 ) { return ; }
+  scig_buzy  = 1 ;
+
+  C2F(dr)("xget","window",&verb,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(xloadplots)(filename,0L);
+  
+  macroCall = MALLOC( (macroCallLength+1) * sizeof(char) ) ; /* +1 for the \0 terminating character */
+  sprintf(macroCall,"%%xload('%s')",filename);
+
+  C2F(syncexec)(macroCall,&macroCallLength,&ierr,&seq, macroCallLength );
+
+  FREE( macroCall ) ;
+  if(ierr != 0) { sciprint("Wrong plot file : %s\r\n",filename) ; }
+
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   scig_buzy = 0;
 }
 
+void scig_savesg( int win_num, char * filename )
+{
+  integer ierr ;
+  integer seq = 1 ;
+  char * macroCall = NULL ;
+
+  /* the sting is "%%xsave('(1)',(2))" where (1) is filemame and (2) the string */
+  /* corresponding of win_num. Consequently we have 12 fixed character and two variable strings. */
+  int macroCallLength = 11 + strlen(filename) + GET_NB_DIGITS(win_num) ;
+
+  macroCall = MALLOC( (macroCallLength+1) * sizeof(char) ) ; /* +1 for the \0 terminating character */
+
+  sprintf( macroCall, "%%xsave('%s',%d)", filename, win_num ) ; /* call xsave macro */
+  C2F(syncexec)(macroCall,&macroCallLength,&ierr,&seq, macroCallLength );
+  FREE( macroCall ) ;
+}

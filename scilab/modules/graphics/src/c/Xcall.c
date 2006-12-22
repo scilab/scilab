@@ -57,6 +57,7 @@
 #include "periGif.h"
 #include "Xcall1.h"
 #include "sciprint.h"
+#include "DestroyObjects.h"
 
 /* should be removed when scilab will be full ansi C */
 
@@ -101,7 +102,6 @@ typedef void (function)() ;
 /* #line 51 "Xcall.gperf" */
 struct funreplace { char *name; func action[4]; };
 
-#define TOTAL_KEYWORDS 41
 #define MIN_WORD_LENGTH 4
 #define MAX_WORD_LENGTH 9
 #define MIN_HASH_VALUE 9
@@ -186,15 +186,15 @@ const struct funreplace * xcall_in_word_set (register const char *str, register 
       {"xstart",    {CleanPlots,CleanPlots,CleanPlots,CleanPlots}},
       {""}, 
       {""},
-      {"xreplaysc",    {Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale,Tape_ReplayNewScale}},
+      {""},
       {"xsegs",    {C2F(drawsegments),C2F(drawsegmentsPos),C2F(drawsegmentsXfig),C2F(drawsegmentsGif)}},
       {"xmarks",    {C2F(drawpolymark),C2F(drawpolymarkPos),C2F(drawpolymarkXfig),C2F(drawpolymarkGif)}},
       {"xstring",    {C2F(displaystring),C2F(displaystringPos),C2F(displaystringXfig),C2F(displaystringGif)}},
       {""},
-      {"xreplayna",    {Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle,Tape_ReplayNewAngle}},
+      {""},
       {"xinit",    {C2F(initgraphic),C2F(initgraphicPos),C2F(initgraphicXfig),C2F(initgraphicGif)}}, /* 30 */
       {"xgetdr",    {GetDriver1,GetDriver1,GetDriver1,GetDriver1}},
-      {"xreplay",    {Tape_Replay,Tape_Replay,Tape_Replay,Tape_Replay}},
+      {""},
       {""},
       {"xget",    {C2F(MissileGCget),C2F(scilabgcgetPos),C2F(scilabgcgetXfig),C2F(scilabgcgetGif)}},
       {"xaxis",    {C2F(drawaxis),C2F(drawaxisPos),C2F(drawaxisXfig),C2F(drawaxisGif)}},
@@ -211,7 +211,7 @@ const struct funreplace * xcall_in_word_set (register const char *str, register 
       {""},
       {""}, 
       {""},
-      {"xreplaysh",    {Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show,Tape_Replay_Show}},
+      {""},
       {"xname",    {C2F(setpopupname),C2F(vide),C2F(vide),C2F(vide)}}, /* 50 */
       {"xlines",    {C2F(drawClippedPolyline),C2F(drawpolylinePos),C2F(drawClippedPolylineXfig),C2F(drawpolylineGif)}},
       {"xliness",    {C2F(fillpolylines),C2F(fillpolylinesPos),C2F(fillpolylinesXfig),C2F(fillpolylinesGif)}},

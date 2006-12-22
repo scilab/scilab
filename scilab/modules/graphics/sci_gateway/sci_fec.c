@@ -15,7 +15,6 @@
 #include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
 

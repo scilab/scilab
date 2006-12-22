@@ -7,7 +7,6 @@
 
 #include "sci_xsegs.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "stack-c.h"

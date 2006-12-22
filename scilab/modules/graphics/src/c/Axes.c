@@ -497,8 +497,6 @@ void sci_axis(char pos, char xy_type, double *x, int *nx, double *y, int *ny,
               char *str[], int subtics, char *format, int fontsize, int textcolor, 
               int fontstyle, int ticscolor, char logflag, int seg_flag)
 {
-  if (GetDriver()=='R') 
-    StoreSciAxis("axis",pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag);
   Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag,0);
 }
 

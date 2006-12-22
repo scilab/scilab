@@ -37,7 +37,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numr
 int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numrow, int *numcol)
 {
 
-  createScilabSetHashTable() ;
+  /*createScilabSetHashTable() ;*/
 
   return callSetProperty( pobj, *value, valueType, *numrow, *numcol, marker ) ;
 
@@ -50,8 +50,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int valueType, int *numr
  *-----------------------------------------------------------*/
 int sci_set(char *fname, unsigned long fname_len)
 {
-  integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
-  unsigned long hdl; 
+  integer m1,n1,l1,m2,n2,l2,num,cur,na,verb=0;
+  integer numrow3 = 0 ;
+  integer numcol3 = 0 ;
+  integer l3 = 0 ;
+  unsigned long hdl;
   int lw,t2;
   BOOL vis_save = FALSE ;
   sciPointObj *pobj;

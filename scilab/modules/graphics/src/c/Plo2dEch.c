@@ -371,7 +371,7 @@ static void scale_copy( WCScaleList * s1, WCScaleList * s2 )
  * return current window : ok if driver is Rec
  *-------------------------------------------*/
 
-static integer curwin()
+static integer curwin( void )
 {
   integer verbose=0,narg,winnum;
   C2F(dr)("xget","window",&verbose,&winnum,&narg ,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -432,7 +432,6 @@ int C2F(setscale2d)(WRect,FRect,logscale,l1)
      integer l1;
 {
   static integer aaint[]={2,10,2,10};
-  if (GetDriver()=='R') StoreEch("scale",WRect,FRect,logscale);
   if (logscale[0]=='l') 
     {
       FRect[0]=log10(FRect[0]);
@@ -1963,6 +1962,312 @@ void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
     edgesY[2] = ulPointPix[1] + sizePix[1]  ;
     edgesY[3] = ulPointPix[1] + sizePix[1]  ;
 
+  }
+}
+/*-----------------------------------------------------------------------------------*/
+void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+{
+  integer i,j;
+  /** Computing y-values **/
+  if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
+  {
+    for ( i=0 ; i < (*n2) ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+        ym[2*i+1+2*(*n2)*j]= ym[2*i+2*(*n2)*j]= YLogScale(y[i+(*n2)*j]);
+  }
+  else 
+  {
+    for ( i=0 ; i < (*n2) ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+        ym[2*i+1+2*(*n2)*j]= ym[2*i+2*(*n2)*j]= YScale(y[i+(*n2)*j]);
+  }
+
+  /** Computing x-values **/
+  switch (xf[0])
+  {
+  case 'e' :
+    /** No X-value given by the user **/
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=1 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XLogScale(i+1.0);
+          xm[2*i-1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+        xm[2*(*n2)*j]= XScale(0);
+        xm[2*(*n2)-1+ 2*(*n2)*j]= xm[2*(*n2-1)+ 2*(*n2)*j];
+      }
+    else 
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=1 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XScale((i+1.0));
+          xm[2*i-1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+        xm[2*(*n2)*j]= XScale(1.0);
+        xm[2*(*n2)-1+ 2*(*n2)*j]=	 xm[2*(*n2-1)+ 2*(*n2)*j];
+      }
+      break ;
+  case 'o' :
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=1 ; i < (*n2) ; i++)
+        {
+
+          xm[2*i+2*(*n2)*j]= XLogScale(x[i]);
+          xm[2*i-1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+        }
+        xm[2*(*n2)*j]= XLogScale(x[0]);
+        xm[2*(*n2)-1+ 2*(*n2)*j]= xm[2*(*n2-1)+ 2*(*n2)*j];
+      }
+    else 
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=1 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XScale(x[i]);
+          xm[2*i-1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+        xm[2*(*n2)*j]= XScale(x[0]);
+        xm[2*(*n2)-1+ 2*(*n2)*j]= xm[2*(*n2-1)+ 2*(*n2)*j];
+      }
+      break;
+  case 'g' :
+  default:
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=1 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XLogScale(x[i+(*n2)*j]);
+          xm[2*i-1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+        xm[2*(*n2)*j]= XLogScale(x[(*n2)*j]);
+        xm[2*(*n2)-1+ 2*(*n2)*j]= xm[2*(*n2-1)+ 2*(*n2)*j];
+      }
+    else 
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=1 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XScale(x[i+(*n2)*j]);
+          xm[2*i-1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+        xm[2*(*n2)*j]= XScale(x[(*n2)*j]);
+        xm[2*(*n2)-1+ 2*(*n2)*j]= xm[2*(*n2-1)+ 2*(*n2)*j];
+      }
+      break;
+  }
+}
+/*-----------------------------------------------------------------------------------*/
+void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+{
+  integer i,j;
+  /** Computing y-values **/
+  double y_zero = 0.;
+  sciPointObj *  psubwin =  sciGetSelectedSubWin (sciGetCurrentFigure ());
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+
+  if(ppsubwin->logflags[1]=='l')
+  {
+    y_zero = ppsubwin->FRect[1];
+  }
+
+
+
+  if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
+  {
+    for ( i=0 ; i < (*n2) ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        ym[2*i+1+2*(*n2)*j]= YScale(y_zero);
+        ym[2*i+2*(*n2)*j]= YLogScale(y[i+(*n2)*j]);
+      }
+  }
+  else 
+  {
+    for ( i=0 ; i < (*n2) ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        ym[2*i+1+2*(*n2)*j]= YScale(y_zero);
+        ym[2*i+2*(*n2)*j]= YScale(y[i+(*n2)*j]);
+      }
+  }
+
+  /** Computing x-values **/
+  switch (xf[0])
+  {
+  case 'e' :
+    /** No X-value given by the user **/
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=0 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XLogScale(i+1.0);
+          xm[2*i+1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+      }
+    else 
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=0 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XScale((i+1.0));
+          xm[2*i+1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+      }
+      break ;
+  case 'o' :
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=0 ; i < (*n2) ; i++)
+        {
+
+          xm[2*i+2*(*n2)*j]= XLogScale(x[i]);
+          xm[2*i+1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+        }
+      }
+    else 
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=0 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XScale(x[i]);
+          xm[2*i+1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+      }
+      break;
+  case 'g' :
+  default:
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=0 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XLogScale(x[i+(*n2)*j]);
+          xm[2*i+1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+
+        }
+      }
+    else 
+      for (j=0 ; j< (*n1) ; j++)
+      {
+        for ( i=0 ; i < (*n2) ; i++)
+        {
+          xm[2*i+2*(*n2)*j]= XScale(x[i+(*n2)*j]);
+          xm[2*i+1+2*(*n2)*j]=xm[2*i+2*(*n2)*j];
+        }
+      }
+      break;
+  }
+}
+/*-----------------------------------------------------------------------------------*/
+void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf)
+{
+  integer i,j;
+  /** Computing y-values **/
+  if ((int)strlen(xf) >= 3 && xf[2]=='l')	  
+  {
+    for ( i=0 ; i < (*n2) ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+        ym[2*i+2*(*n2)*j]= YLogScale(y[i+(*n2)*j]);
+    for ( i=0 ; i < (*n2)-1 ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+        ym[2*i+1+2*(*n2)*j]=	  ym[2*i+2+2*(*n2)*j];
+  }
+  else 
+  {
+    for ( i=0 ; i < (*n2) ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+        ym[2*i+2*(*n2)*j]= YScale(y[i+(*n2)*j]);
+    for ( i=0 ; i < (*n2)-1 ; i++)
+      for (j=0 ; j< (*n1) ; j++)
+        ym[2*i+1+2*(*n2)*j]=	  ym[2*i+2+2*(*n2)*j];
+
+  }
+
+  /** Computing x-values **/
+  switch (xf[0])
+  {
+  case 'e' :
+    /** No X-value given by the user **/
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+    {
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2) ; i++)
+          xm[2*i+2*(*n2)*j]= XLogScale(i+1.0);
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2)-1 ; i++)
+          xm[2*i+1+2*(*n2)*j]=	   xm[2*i+2+2*(*n2)*j];
+    }
+    else 
+    {
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2) ; i++)
+          xm[2*i+2*(*n2)*j]= XScale((i+1.0));
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2)-1 ; i++)
+          xm[2*i+1+2*(*n2)*j]=	   xm[2*i+2+2*(*n2)*j];
+    }
+    break ;
+  case 'o' :
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+    {
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2) ; i++)
+          xm[2*i+2*(*n2)*j]= XLogScale(x[i]);
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2)-1 ; i++)
+          xm[2*i+1+2*(*n2)*j]=	   xm[2*i+2+2*(*n2)*j];
+    }
+    else 
+
+    {
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2) ; i++)
+          xm[2*i+2*(*n2)*j]= XScale(x[i]);
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2)-1 ; i++)
+          xm[2*i+1+2*(*n2)*j]=	   xm[2*i+2+2*(*n2)*j];
+
+    }
+    break;
+  case 'g' :
+  default:
+    if ((int)strlen(xf) >= 2 && xf[1]=='l')
+    {
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2) ; i++)
+          xm[2*i+2*(*n2)*j]= XLogScale(x[i+(*n2)*j]);
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2)-1 ; i++)
+          xm[2*i+1+2*(*n2)*j]=	   xm[2*i+2+2*(*n2)*j];
+
+    }
+    else 
+    {
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2) ; i++)
+          xm[2*i+2*(*n2)*j]= XScale(x[i+(*n2)*j]);
+      for (j=0 ; j< (*n1) ; j++)
+        for ( i=0 ; i < (*n2)-1 ; i++)
+          xm[2*i+1+2*(*n2)*j]=	xm[2*i+2+2*(*n2)*j];
+
+    }
+    break;
   }
 }
 /*-----------------------------------------------------------------------------------*/

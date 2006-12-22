@@ -186,6 +186,10 @@ void rectangleDouble2Pixel( sciPointObj * parentSubWin ,
                             int           edgesX[4]    ,
                             int           edgesY[4]     ) ;
 
+void Plo2d2RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
+void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
+void Plo2d4RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf) ;
+
 #endif  /* _SCI_ECH */
 
 

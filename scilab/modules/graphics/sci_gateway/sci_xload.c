@@ -8,7 +8,6 @@
 #include "sci_xload.h"
 #include "stack-c.h"
 #include "GetProperty.h"
-#include "RecSaveLoad.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xload(char *fname,unsigned long fname_len)

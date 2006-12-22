@@ -15,7 +15,6 @@
 #include "GetProperty.h"
 #include "Graphics.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_matplot(char *fname,unsigned long fname_len)

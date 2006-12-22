@@ -168,10 +168,7 @@ int C2F(contour)(double *x, double *y, double *z, integer *n1, integer *n2, inte
   double zmin,zmax;
   integer N[3],i;
   double xbox[8],ybox[8],zbox[8];
-  /** If Record is on **/
-  if (GetDriver()=='R') 
-    StoreContour("contour",x,y,z,n1,n2,flagnz,nz,zz,teta,alpha,
-		 legend,flag,bbox,zlev);
+
   switch (flag[0])
     {
     case 0: func=ContStore; break;  /* 3D geometry with projection on the surface */
@@ -327,10 +324,6 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
 
   pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
-  
-  /** If Record is on **/
-  if (GetDriver()=='R' && strcmp(name,"contour2")==0 ) 
-    StoreContour2D("contour2",x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,aaint);
 
   zmin=(double) Mini(z,*n1*(*n2)); 
   zmax=(double) Maxi(z,*n1*(*n2));

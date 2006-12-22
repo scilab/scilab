@@ -18,7 +18,6 @@
 #include "SetProperty.h"
 #include "DrawObjects.h"
 #include "MALLOC.h"
-#include "dr1Call.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xtitle( char * fname, unsigned long fname_len )

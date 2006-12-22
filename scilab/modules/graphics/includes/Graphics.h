@@ -178,51 +178,6 @@ extern void DrawAxis  __PARAMS((double *,double *,integer *Indices,integer style
 extern void Convex_Box  __PARAMS((double *,double *,integer *,integer *,char *,integer *,double *)); 
 
 
-/* Rec.c */ 
-
-extern void SCPlots  __PARAMS((char *unused,integer *winnumber,integer *,double *,integer *,int,int *,double *)); 
-extern int Check3DPlots  __PARAMS((char *unused,integer *winnumber)); 
-extern int EchCheckSCPlots  __PARAMS((char *unused,integer *winnumber)); 
-extern void Tape_ReplayUndoScale  __PARAMS((char *unused,integer *winnumber)); 
-extern void Tape_ReplayNewScale  __PARAMS((char *unused,integer *winnumber,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
-extern void Tape_ReplayNewScale1  __PARAMS((char *unused,integer *winnumber,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
- extern void Tape_ReplayNewAngle  __PARAMS((char *unused,integer *winnumber,integer *,integer *,integer *,integer *,integer *,double *theta,double *,double *,double *)); 
- extern void Tape_Replay_Show  __PARAMS((char *unused,integer *winnumber,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
- extern void Tape_Replay  __PARAMS((char *unused,integer *winnumber,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
- extern void UseColorFlag  __PARAMS((int flag)); 
- extern int  Store  __PARAMS((char *type,char *plot)); 
- extern void CleanPlots  __PARAMS((char *,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 
- extern void StoreXcall1  __PARAMS((char *,char *,integer *,integer,integer *,integer ,integer *,integer ,integer *,integer ,integer *,integer ,integer *,integer ,double *,integer ,double *,integer ,double *,integer ,double *,integer )); 
-
- extern void StoreEch  __PARAMS((char *,double *WRect,double *,char *logflag)); 
- extern void StoreNEch  __PARAMS((char *,char *flag,double *,double *,double *,char *logflag)); 
- extern void StorePlot  __PARAMS((char *,char *f,double *,double *,integer *,integer *,integer *,char *,char *,double *,integer *aint)); 
- extern void StoreGrid  __PARAMS((char *,integer *)); 
- extern void StoreParam3D  __PARAMS((char *,double *,double *,double *,integer *,double *teta,double *,char *,integer *,double *)); 
- extern void StoreParam3D1  __PARAMS((char *,double *,double *,double *,integer *,integer *,integer *,integer *colors,double *teta,double *,char *,integer *,double *)); 
- extern void StorePlot3D  __PARAMS((char *,double *,double *,double *,integer *p,integer *q,double *teta,double *,char *,integer *,double *)); 
- extern void StoreFac3D  __PARAMS((char *,double *,double *,double *,integer *cvect,integer *p,integer *q,double *teta,double *,char *,integer *,double *)); 
-
- extern void StoreFec  __PARAMS((char *,double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *, double *, integer *, integer *, int)); 
-
-/* old  extern void StoreFec  __PARAMS((char *,double *,double *,double *triangles,double *func,integer *Nnode,integer *Ntr,char *,char *,double *,integer *)); */
- extern void StoreContour  __PARAMS((char *,double *,double *,double *,integer *,integer *,integer *,integer *,double *,double *teta,double *,char *,integer *,double *,double *zlev)); 
- extern void StoreContour2D  __PARAMS((char *,double *,double *,double *,integer *,integer *,integer *,integer *,double *,integer *,char *,char *,double *,integer *)); 
- extern void StoreGray  __PARAMS((char *,double *,double *,double *,integer *,integer *,char *,double *,integer *)); 
- extern void StoreGray1  __PARAMS((char *,double *,integer *,integer *,char *,double *,integer *)); 
- extern void StoreGray2  __PARAMS((char *,double *,integer *,integer *,double *)); 
- extern void StoreChamp  __PARAMS((char *,double *,double *,double *,double *,integer *,integer *,char *,double *,double *)); 
- extern void StoreXgc  __PARAMS((integer )); 
-extern void StoreSciAxis __PARAMS((char *name,char pos,char xy_type,double *x,int *nx,double *y,int *ny,char **str,int subtics,char *format,int fontsize,int textcolor, int fontstyle,int ticscolor,char logflag,int seg_flag));
-
-/* RecLoad.c  */
-
-extern int C2F(xloadplots)  __PARAMS((char *,integer lvx)); 
-
-/* RecSave.c */ 
-
-extern int C2F(xsaveplots)  __PARAMS((integer *winnumber,char *,integer lxv)); 
-
 /* Xcall.c */
 
 extern void C2F(SetDriver)  __PARAMS((char * ,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *)); 

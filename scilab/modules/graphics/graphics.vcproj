@@ -229,10 +229,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\dr1Call.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\handleDrawing\drawArcEntity.c"
 				>
 			</File>
@@ -890,22 +886,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\Plo2d1.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Plo2d2.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Plo2d3.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Plo2d4.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\Plo2dEch.c"
 				>
 			</File>
@@ -963,18 +943,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\qsort.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\Rec.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\RecLoad.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\RecSave.c"
 				>
 			</File>
 			<File
@@ -1915,10 +1883,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\dr1Call.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\handleDrawing\drawArcEntity.h"
 				>
 			</File>
@@ -2107,10 +2071,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\Plo2d1.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\Plo3d.h"
 				>
 			</File>
@@ -2120,14 +2080,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\PloEch.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\Rec.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\RecSaveLoad.h"
 				>
 			</File>
 			<File

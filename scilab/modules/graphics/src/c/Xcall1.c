@@ -317,12 +317,7 @@ void xinit_1(char *fname, char *str, integer *x1, integer *x2, integer *x3, inte
 
 void xset_1(char *fname, char *str, integer *x1, integer *x2, integer *x3, integer *x4, integer *x5, integer *x6, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
 {
-  /** Warning : we must not record : wdim,wpos,colormap,window and viewport **/
-  if (GetDriver()=='R' &&strcmp(str,"wdim")!=0 && strcmp(str,"wpos")!=0 && strcmp(str,"colormap") !=0
-      && strcmp(str,"window") != 0 && strcmp(str,"viewport") != 0 && strcmp(str,"wresize") !=0 
-      && strcmp(str,"wpdim") !=0 
-      ) 
-    StoreXcall1(fname,str,x1,1L,x2,1L,x3,1L,x4,1L,x5,1L,x6,1L,dx1,1L,dx2,1L,dx3,1L,dx4,1L);
+
   if (strcmp(str,"clipping")==0)
     {
       /** and clipping is special its args are floats **/
@@ -357,8 +352,6 @@ void drawarc_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, in
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
   C2F(echelle2dl)(width,height,&w1,&h1,&n,&n,"f2i"); 
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,v3,1L,v4,1L,angle1,1L,angle2,1L,x,1L,y,1L,width,1L,height,1L);
   C2F(dr)(fname,str,&x1,&yy1,&w1,&h1,angle1,angle2,PD0,PD0,PD0,PD0,lx0,lx1);
 }
 
@@ -372,8 +365,6 @@ void fillarcs_1(char *fname, char *str, integer *v1, integer *fillvect, integer 
   Myalloc1(&xm,6*(*n),&err);
   if (err ==  1) return;
   C2F(ellipse2d)(vects,xm,(n2=6*(*n),&n2),"f2i");
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,fillvect,*n,n,1L,&Ivide,1L,&Ivide,1L,&Ivide,1L,vects,6*(*n),dx2,1L,dx3,1L,dx4,1L);
   C2F(dr)(fname,str,xm,fillvect,n,x6,x7,x8,PD0,dx2,dx3,dx4,lx0,lx1);
 }
 
@@ -387,8 +378,6 @@ void drawarcs_1(char *fname, char *str, integer *v1, integer *style, integer *n,
   Myalloc1(&xm,6*(*n),&err);
   if (err ==  1) return;
   C2F(ellipse2d)(vects,xm,(n2=6*(*n),&n2),"f2i");
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,style,*n,n,1L,&Ivide,1L,&Ivide,1L,&Ivide,1L,vects,6*(*n),dx2,1L,dx3,1L,dx4,1L);
   C2F(dr)(fname,str,xm,style,n,x6,x7,x8,PD0,dx2,dx3,dx4,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -401,8 +390,6 @@ void fillpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2
   Myalloc(&xm,&ym,*n,&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,n,1L,v1,1L,v2,1L,closeflag,1L,&Ivide,1L,&Ivide,1L,vx,*n,vy,*n,dx3,1L,dx4,1L);
   C2F(dr)(fname,str,n,xm,ym,closeflag,x7,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 }
 
@@ -433,13 +420,6 @@ void drawarrows_1(char *fname, char *str, integer *style, integer *iflag, intege
       *as = Mnorm/5.0;
     }
   C2F(echelle2dl)(as,as,&ias,&ias1,&n1,&n1,"f2i"); 
-  if (GetDriver()=='R') 
-    {
-      if ( (int) *iflag== 1) 
-	StoreXcall1(fname,str,style,*n,iflag,1L,n,1L,v3,1L,&Ivide,1L,&Ivide,1L,vx,*n,vy,*n,as,1L,dx4,1L);
-      else 
-	StoreXcall1(fname,str,style,1L,iflag,1L,n,1L,v3,1L,&Ivide,1L,&Ivide,1L,vx,*n,vy,*n,as,1L,dx4,1L);
-    }
   ias=10*ias;
   C2F(dr)(fname,str,xm,ym,n,&ias,style,iflag,PD0,PD0,PD0,dx4,lx0,lx1);
 }
@@ -453,9 +433,7 @@ void drawaxis_1(char *fname, char *str, integer *v1, integer *nsteps, integer *v
   integer initpoint1[2],alpha1;
   double size1[3];
   alpha1=inint( *alpha);
-  C2F(axis2d)(alpha,initpoint,size,initpoint1,size1);  
-  if (GetDriver()=='R') 
-    StoreXcall1(fname,str,&Ivide,1L,nsteps,2L,&Ivide,1L,&Ivide,1L,&Ivide,1L,&Ivide,1L,alpha,1L,size,3L,initpoint,2L,&Dvide,1L);
+  C2F(axis2d)(alpha,initpoint,size,initpoint1,size1);
 
   C2F(dr)(fname,str,&alpha1,nsteps,PI0,initpoint1,x7,x8,size1,PD0,PD0,PD0,lx0,lx1);
 }
@@ -469,8 +447,6 @@ void cleararea_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, 
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
   C2F(echelle2dl)(w,h,&w1,&h1,&n,&n,"f2i"); 
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,v3,1L,v4,1L,&Ivide,1L,&Ivide,1L,x,1L,y,1L,w,1L,h,1L);
   C2F(dr)(fname,str,&x1,&yy1,&w1,&h1,x7,x8,PD0,PD0,PD0,PD0,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -538,9 +514,6 @@ void fillarc_1(char *fname, char *str, integer *v1, integer *v2, integer *v3, in
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
   C2F(echelle2dl)(width,height,&w1,&h1,&n,&n,"f2i"); 
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,v3,1L,v4,1L,
-	angle1,1L,angle2,1L,x,1L,y,1L,width,1L,height,1L);
   C2F(dr)(fname,str,&x1,&yy1,&w1,&h1,angle1,angle2,PD0,PD0,PD0,PD0,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -553,9 +526,6 @@ void fillrectangle_1(char *fname, char *str, integer *v1, integer *v2, integer *
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
   C2F(echelle2dl)(width,height,&w1,&h1,&n,&n,"f2i"); 
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,v3,1L,v4,1L,
-				&Ivide,1L,&Ivide,1L,x,1L,y,1L,width,1L,height,1L);
   C2F(dr)(fname,str,&x1,&yy1,&w1,&h1,x7,x8,PD0,PD0,PD0,PD0,lx0,lx1);
 }
 
@@ -569,9 +539,6 @@ void drawpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2
   Myalloc(&xm,&ym,*n,&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,n,1L,v1,1L,v2,1L,closeflag,1L,
-				&Ivide,1L,&Ivide,1L,vx,*n,vy,*n,dx3,1L,dx4,1L);
   C2F(dr)(fname,str,n,xm,ym,closeflag,x7,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 }
 
@@ -587,18 +554,7 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,p,"f2i",3L);
 
-  if (GetDriver()=='R') { 	  
-  /* Code modified by polpoth 11/7/2000 (interpolated shading) */
-  
-     if (*v1==2) 
-	StoreXcall1(fname,str,v1,1L,v2,1L,fillvect,(*n)*(*p),
-	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
 
-     else /* other cases v1==1 or v1==0 */
-     
-       	StoreXcall1(fname,str,v1,1L,v2,1L,fillvect,*n,
-	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
-  }
   if (*v1==2) {
     px=(integer *)MALLOC(((*p)+1)*sizeof(integer));
     py=(integer *)MALLOC(((*p)+1)*sizeof(integer));
@@ -632,9 +588,6 @@ void drawpolymark_1(char *fname, char *str, integer *n, integer *v1, integer *v2
   Myalloc(&xm,&ym,*n,&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,n,1L,v1,1L,v2,1L,
-		&Ivide,1L,&Ivide,1L,&Ivide,1L,vx,(*n),vy,(*n),dx3,1L,dx4,1L);
   C2F(dr)(fname,str,n,xm,ym,x6,x7,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 
 }
@@ -649,8 +602,6 @@ void displaynumbers_1(char *fname, char *str, integer *v1, integer *v2, integer 
   Myalloc(&xm,&ym,*n,&err);
   if (err ==  1) return;
   C2F(echelle2d)(x,y,xm,ym,n,&n2,"f2i",3L);
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,v3,1L,v4,1L,n,1L,flag,1L,x,(*n),y,(*n),z,*n,alpha,*n);
   C2F(dr)(fname,str,xm,ym,PI0,PI0,n,flag,z,alpha,PD0,PD0,lx0,lx1);
 }
 
@@ -664,8 +615,6 @@ void drawpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
   Myalloc(&xm,&ym,(*n)*(*p),&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,p,"f2i",3L);
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,drawvect,*n,n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
   C2F(dr)(fname,str,xm,ym,drawvect,n,p,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -677,8 +626,6 @@ void drawrectangle_1(char *fname, char *str, integer *v1, integer *v2, integer *
   double vect[4];
   vect[0]=*x;vect[1]=*y;vect[2]=*w;vect[3]=*h;
   C2F(rect2d)(vect,xm,&n2,"f2i");
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,v2,1L,v3,1L,v4,1L,&Ivide,1L,&Ivide,1L,x,1L,y,1L,w,1L,h,1L);
   C2F(dr)(fname,str,xm,xm+1,xm+2,xm+3,x7,x8,PD0,PD0,PD0,PD0,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -690,9 +637,6 @@ void drawrectangles_1(char *fname, char *str, integer *v1, integer *fillvect, in
   Myalloc1(&xm,4*(*n),&err);
   if (err ==  1) return;
   C2F(rect2d)(vects,xm,(n2=4*(*n),&n2),"f2i");
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,str,v1,1L,fillvect,*n,n,1L,
-		&Ivide,1L,&Ivide,1L,&Ivide,1L,vects,4*(*n),dx2,1L,dx3,1L,dx4,1L);
   C2F(dr)(fname,str,xm,fillvect,n,x6,x7,x8,PD0,dx2,dx3,dx4,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -704,15 +648,6 @@ void drawsegments_1(char *fname, char *str, integer *style, integer *iflag, inte
   Myalloc(&xm,&ym,*n,&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,&n2,"f2i",3L);
-  if (GetDriver()=='R') 
-    {
-      if ( (int) *iflag== 1) 
-	StoreXcall1(fname,str,style,*n,iflag,1L,n,1L,
-		    &Ivide,1L,&Ivide,1L,&Ivide,1L,vx,(*n),vy,*n,dx3,1L,dx4,1L);
-      else 
-	StoreXcall1(fname,str,style,1L,iflag,1L,n,1L,
-		    &Ivide,1L,&Ivide,1L,&Ivide,1L,vx,(*n),vy,*n,dx3,1L,dx4,1L);
-    }
   C2F(dr)(fname,str,xm,ym,n,style,iflag,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -723,8 +658,6 @@ void displaystring_1(char *fname, char *string, integer *v1, integer *v2, intege
   integer x1,yy1;
   x1 = XDouble2Pixel(*x);
   yy1 = YDouble2Pixel(*y);
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,string,v1,1L,v2,1L,v3,1L,flag,1L,&Ivide,1L,&Ivide,1L,x,1L,y,1L,angle,1L,dx4,1L);
   C2F(dr)(fname,string,&x1,&yy1,PI0,flag,x7,x8,angle,PD0,PD0,dx4,lx0,lx1);
 }
 /*-----------------------------------------------------------------------------
@@ -738,8 +671,6 @@ void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, int
   integer Margin[4]; /* 0 left, 1 right, 2 up, 3 down */
   get_margin_in_pixel(Margin);
 
-  if (GetDriver()=='R') 
-	StoreXcall1(fname,string,ipos,1L,v2,1L,v3,1L,v4,1L,&Ivide,1L,&Ivide,1L,dx1,1L,dx2,1L,dx3,1L,dx4,1L);
   switch ( *ipos )
     {
     case 1:

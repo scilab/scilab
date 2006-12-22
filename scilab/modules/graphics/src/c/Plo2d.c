@@ -85,8 +85,6 @@ int C2F(plot2d)(double    x[]      ,
   /* Storing values if using the Record driver */
   /* Boundaries of the frame */
   update_frame_bounds(0,"gnn",x,y,n1,n2,aaint,strflag,brect);
-  if (GetDriver()=='R') 
-    StorePlot("plot2d1","gnn",x,y,n1,n2,style,strflag,legend,brect,aaint);
 
   /* Allocation */
   n = (*n1)*(*n2) ; 
@@ -346,7 +344,6 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
 }

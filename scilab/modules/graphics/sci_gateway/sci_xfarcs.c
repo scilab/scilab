@@ -9,7 +9,6 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"

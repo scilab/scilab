@@ -12,7 +12,6 @@
 #include "Scierror.h"
 #include "ObjectStructure.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"

@@ -8,7 +8,6 @@
 #include "sci_plot2d1.h"
 #include "stack-c.h"
 #include "sci_demo.h"
-#include "Plo2d1.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
@@ -21,25 +20,25 @@
 /*-----------------------------------------------------------------------------------*/
 int sci_plot2d1_1 (char *fname,unsigned long fname_len)
 {
-  return sci_plot2d1_G("plot2d1",1,C2F(plot2d1),fname_len);/* NG */
+  return sci_plot2d1_G("plot2d1",1,fname_len);/* NG */
 }
 /*-----------------------------------------------------------------------------------*/
 int sci_plot2d1_2 (char *fname,unsigned long fname_len)
 {
-  return sci_plot2d1_G("plot2d2",2,C2F(plot2d2),fname_len); /* NG */
+  return sci_plot2d1_G("plot2d2",2,fname_len); /* NG */
 }
 /*-----------------------------------------------------------------------------------*/
 int sci_plot2d1_3 (char *fname,unsigned long fname_len)
 {
-  return sci_plot2d1_G("plot2d3",3,C2F(plot2d3),fname_len);/* NG */
+  return sci_plot2d1_G("plot2d3",3,fname_len);/* NG */
 }
 /*-----------------------------------------------------------------------------------*/
 int sci_plot2d1_4 (char *fname,unsigned long fname_len)
 {
-  return sci_plot2d1_G("plot2d4",4,C2F(plot2d4),fname_len);/* NG */
+  return sci_plot2d1_G("plot2d4",4,fname_len);/* NG */
 }
 /*-----------------------------------------------------------------------------------*/
-int sci_plot2d1_G( char * fname, int ptype, int (*func) (), unsigned long fname_len )
+int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
 {
   int frame_def=8;
   int *frame=&frame_def;

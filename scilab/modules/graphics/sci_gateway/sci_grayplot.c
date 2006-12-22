@@ -15,7 +15,6 @@
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_grayplot( char *fname, unsigned long fname_len )

@@ -147,7 +147,8 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 		  return;
 		}
 	      *d = '\0';
-	      C2F (xsaveplots) (&(ScilabGC->CurWindow), buf, 0L);
+	      /*C2F (xsaveplots) (&(ScilabGC->CurWindow), buf, 0L);*/
+              scig_savesg( ScilabGC->CurWindow, buf ) ;
 	      break;
 	    case UPDINI:
 	      SendMessage (ScilabGC->CWindow, WM_COMMAND, M_WRITEINI, 0L);

@@ -18,7 +18,6 @@
 #include "DestroyObjects.h"
 #include "MALLOC.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_plot3d( char * fname, unsigned long fname_len )

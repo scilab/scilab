@@ -11,7 +11,6 @@
 #include "gw_graphics.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
-#include "dr1Call.h"
 #include "GetProperty.h"
 
 /*-----------------------------------------------------------------------------------*/

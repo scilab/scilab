@@ -11,7 +11,6 @@
 #include "BuildObjects.h"
 #include "gw_graphics.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_matplot1( char * fname, unsigned long fname_len )

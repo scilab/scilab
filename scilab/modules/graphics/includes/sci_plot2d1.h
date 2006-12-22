@@ -44,6 +44,6 @@ int sci_plot2d3( char * fname, unsigned long fname_len ) ;
 */
 int sci_plot2d4( char * fname, unsigned long fname_len ) ;
 
-int sci_plot2d1_G( char *fname, int ptype, int (*func) (), unsigned long fname_len ) ;
+int sci_plot2d1_G( char *fname, int ptype, unsigned long fname_len ) ;
 
 #endif /* _INT_PLOT2D1_H_ */

@@ -12,7 +12,6 @@
 #include "sciprint.h"
 #include "clipping.h"
 #include "axesScale.h"
-#include "Plo2d1.h"
 #include "drawMarks.h"
 #include "Xcall1.h"
 #include "Plo3d.h"

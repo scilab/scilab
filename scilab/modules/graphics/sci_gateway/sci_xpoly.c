@@ -11,7 +11,6 @@
 #include "stack-c.h"
 #include "Graphics.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"

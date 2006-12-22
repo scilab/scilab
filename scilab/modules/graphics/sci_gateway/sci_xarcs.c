@@ -12,7 +12,6 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "sciCall.h"
-#include "dr1Call.h"
 
 /*-----------------------------------------------------------------------------------*/
 int sci_xarcs(char *fname,unsigned long fname_len)

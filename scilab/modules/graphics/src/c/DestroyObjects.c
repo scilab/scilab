@@ -29,6 +29,7 @@
 #include "StringMatrix.h"
 #include "Xcall1.h"
 #include "WindowList.h"
+#include "PloEch.h"
 #ifdef WITH_TK
 #include "../../../tclsci/includes/GedManagement.h"
 #endif
@@ -988,4 +989,21 @@ void AllGraphWinDelete( void )
     ArrayWGraph=NULL;
   }
 }
+/*-----------------------------------------------------------------------------------------*/
+void CleanPlots(char *unused, integer *winnumber, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dx1, double *dx2, double *dx3, double *dx4)
+{
+  
+  /* we remove scales in window number i */
+  del_window_scale(*winnumber);
+  /* if *winnumber is also the current window we reset Cscale to default value */
+  if ( *winnumber == sciGetNum(sciGetCurrentFigure()) ) 
+  {
+    Cscale2default();
+  }
+  else
+  {
+    set_window_scale_with_default(*winnumber);
+  }
+}
+
 /*-----------------------------------------------------------------------------------------*/
