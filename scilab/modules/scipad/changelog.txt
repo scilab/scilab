@@ -2615,7 +2615,12 @@ Francois VOGEL, 13/12/06
 
 Francois VOGEL, 21/12/06
  * Fixed Tcl error "couldn't compile regexp" in blinkbrace when typing ^(
- * Added multiple file open in the file dialog, even if bug 1614032
+ * Added multiple file open in the file dialog, even if Tk bug 1614032
    (tk_getOpenFile -multiple 1 is wrong with directories on Linux) is in
    the way
  * version --> 6.68
+
+Francois VOGEL, 22/12/06
+ * Windows shortcuts are detected during the file open process, and are
+   no longer opened in Scipad
+ * version --> 6.69

@@ -559,7 +559,13 @@ proc openfile {file {tiledisplay "currenttile"}} {
 #    1 if file could be open or displayed (switched buffers)
     global pad winopened listoftextarea listoffile
     global closeinitialbufferallowed
+
     if {[fileunreadable $file]} {return 0}
+
+    # ignore windows shortcut since nothing is implemented to follow them
+    # and open the target they point to
+    if {[fileiswindowsshortcut $file]} {return 0}
+
     if {[string compare $file ""]} {
         # search for an opened existing file
         set res [lookiffileisopen "$file"]
@@ -1148,6 +1154,54 @@ proc setlistoffile_colorize {ta fullfilename} {
 
     } else {
         set listoffile("$ta",colorize) false
+    }
+}
+
+proc fileiswindowsshortcut {filename} {
+# check whether $filename denotes a Windows shortcut or not   
+# return value:
+#   1  $filename is a Windows shortcut
+#   0  otherwise
+    if {[iswindowsshortcut $filename]} {
+        tk_messageBox -title [mc "Windows shortcut file"] \
+            -message [concat [mc "The file"] $filename \
+                     [mc "is a Windows shortcut and will not be opened!"]] \
+            -icon warning -type ok
+        return 1
+    } else {
+        return 0
+    }
+}
+
+proc iswindowsshortcut {filename} {
+# on anything else than windows, return 0
+# on windows, return 1 if $filename is a shortcut, and false otherwise
+# $filename should contain the final (invisible) .lnk extension, but this
+# is not the way this proc checks that the argument is a shortcut. Rather
+# it reads the first 4 bytes of the file in binary mode and decides of the
+# result based on those bytes
+# See: http://www.i2s-lab.com/Papers/The_Windows_Shortcut_File_Format.pdf
+# Notes:
+#  . $filename is supposed to exist and be readable
+#  . The GUID is not checked since it might change in the future when
+#    Microsoft decides to change the shortcut file format
+    global tcl_platform
+
+    if {$tcl_platform(platform) != "windows"} {
+        return 0
+    }
+
+    set ch [open $filename r]
+    fconfigure $ch -encoding binary -translation binary -eofchar {}
+    binary scan [read $ch 4] i filetype
+    close $ch
+    
+    # shortcut files are identified by their four first bytes being 0000004Ch
+    # i.e. 76 in decimal, or letter "L" in ASCII
+    if {$filetype != "76"} {
+        return 0
+    } else {
+        return 1
     }
 }
 

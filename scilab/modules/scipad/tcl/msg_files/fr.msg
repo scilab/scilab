@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.64
+# in sync at least with v6.69
 
 
 # commons
@@ -14,6 +14,7 @@
 ::msgcat::mcset fr "Close" "Fermer"
 ::msgcat::mcset fr "&Close" "&Fermer"
 ::msgcat::mcset fr "Error " "Erreur "
+::msgcat::mcset fr "The file" "Le fichier"
 
 
 # buffernavigation.tcl
@@ -167,11 +168,11 @@
                    "n'existe plus. Voulez-vous créer un nouveau fichier\
                     portant ce nom ?"
 ::msgcat::mcset fr "Open file" "Ouvrir fichier"
-::msgcat::mcset fr "The file" "Le fichier"
+#::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
     ::msgcat::mcset fr "is already opened! Save the current opened file to another name and reopen it from disk!" "est déjà ouvert! Sauvez-le sous un autre nom et rouvrez-le à partir du disque !"
 ::msgcat::mcset fr "File" "Fichier"
     ::msgcat::mcset fr "saved" "sauvegardé"
-::msgcat::mcset fr "cannot be written!" "est en lecture seule!"
+::msgcat::mcset fr "cannot be written!" "est en lecture seule !"
 ::msgcat::mcset fr "The contents of " "Le contenu de"
     ::msgcat::mcset fr "has changed on disk, save it anyway?" "a changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
     ::msgcat::mcset fr "has been modified outside of Scipad. Do you want to reload it?" \
@@ -191,6 +192,10 @@
 ::msgcat::mcset fr "This file is rather large and colorization might take some time.\n\nColorize anyway?" \
                    "Ce fichier est de grande taille et sa colorisation peut être longue.\n\nColorer tout de même?"
 ::msgcat::mcset fr "File size warning" "Avertissement relatif à la taille du fichier"
+::msgcat::mcset fr "Windows shortcut file"
+#::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
+    ::msgcat::mcset fr "is a Windows shortcut and will not be opened!" \
+                       "est un raccourci Windows et ne sera pas ouvert !"
 
 
 # findreplace.tcl
