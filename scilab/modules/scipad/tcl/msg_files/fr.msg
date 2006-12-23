@@ -192,7 +192,7 @@
 ::msgcat::mcset fr "This file is rather large and colorization might take some time.\n\nColorize anyway?" \
                    "Ce fichier est de grande taille et sa colorisation peut être longue.\n\nColorer tout de même?"
 ::msgcat::mcset fr "File size warning" "Avertissement relatif à la taille du fichier"
-::msgcat::mcset fr "Windows shortcut file"
+::msgcat::mcset fr "Windows shortcut file" "Fichier raccourci Windows"
 #::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
     ::msgcat::mcset fr "is a Windows shortcut and will not be opened!" \
                        "est un raccourci Windows et ne sera pas ouvert !"
