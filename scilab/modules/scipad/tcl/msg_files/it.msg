@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync at least with v6.61
+# in sync at least with v6.69
 
 
 # commons
@@ -14,6 +14,7 @@
 ::msgcat::mcset it "Close" "Chiudi"
 ::msgcat::mcset it "&Close" "&Chiudi"
 ::msgcat::mcset it "Error " "Errore "
+::msgcat::mcset it "The file" "Il file"
 
 
 # buffernavigation.tcl
@@ -196,7 +197,7 @@
                     file with the same name?"\
                    "non esiste più. Creare un nuovo file collo stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
-::msgcat::mcset it "The file" "Il file"
+#::msgcat::mcset fr "The file" "Le fichier" ;# defined in the "commons" section
 ::msgcat::mcset it "is already opened! Save the current opened file to\
                     another name and reopen it from disk!"\
                    "è già aperto! Salvarlo eventualmente con un altro nome e\
@@ -231,6 +232,10 @@
                    "Questo file è relativamente grosso, e la colorazione\
                     potrebbe richiedere tempo. Colorare comunque?"
 ::msgcat::mcset it "File size warning" "Avvertimento: grosso file"
+::msgcat::mcset it "Windows shortcut file" "File scorciatoia Windows"
+#::msgcat::mcset it "The file" "Il file" ;# defined in the "commons" section
+::msgcat::mcset it "is a Windows shortcut and will not be opened!"\
+                   "è una scorciatoia windows e non sarà aperto!"
 
 
 # findreplace.tcl
@@ -497,6 +502,8 @@
 ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
 ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
 ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
+::msgcat::mcset it "&Tab size (characters)" "&Numero spazi tabulazione"
+::msgcat::mcset it "Use &keyword indentation" "&Indentazione automatica"
 ::msgcat::mcset it "Com&pletion" "A&utocompletamento"
 ::msgcat::mcset it "&Tab" "&Tab"
 ::msgcat::mcset it "&Control-Tab" "&Control-Tab"
