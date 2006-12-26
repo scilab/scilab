@@ -7,8 +7,7 @@
 
   <TYPE>Scilab Function</TYPE>
 
-  <DATE>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer., 30 aoàƒÂ»t 2006)
-  $</DATE>
+  <DATE>$LastChangedDate$</DATE>
 
   <SHORT_DESCRIPTION name="gstacksize">obtenir ou changer la taille de la pile
   des variables globales</SHORT_DESCRIPTION>
