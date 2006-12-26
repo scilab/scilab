@@ -155,8 +155,22 @@ proc tkdndbind {w} {
 
 proc Button1BindTextArea { w x y } {
     global dndinitiated savedsel savedseli1 savedseli2 dndreallystarted
+
+    # note: when dndreallystarted is "false", the Text class binding fires
+    # after this proc (no "break" in the binding that launched this proc),
+    # and in that Text class binding the insert point is set to
+    # [::tk::TextClosestGap $w $x $y] which is slightly different from
+    # @$x,$y, thus one or two strange effects barely noticeable:
+    #    - say there is a line with text not filling the entire display
+    #      width of the textarea. Click on that line between the last
+    #      character and the right border of the textarea. If the click
+    #      occurred closer to the last character than to the right border
+    #      then the cursor is placed right after the last character (correct).
+    #      Otherwise the cursor jumps to character zero of next line, which
+    #      is surprising. This is the behavior of TextClosestGap.
     $w mark set insert @$x,$y
     $w see insert
+
     set dndreallystarted "false"
     if {[$w tag ranges sel] != ""} {
         if { [$w compare sel.first <= [$w index @$x,$y]] && \
@@ -175,6 +189,11 @@ proc Button1BindTextArea { w x y } {
             restorecursorblink
         }
     }
+
+    # ensure that the insertion point remains visible, even if it jumped
+    # to the next line (see comment above about TextClosestGap)
+    after idle {[gettextareacur] see insert}
+
     return $dndreallystarted
 }
 

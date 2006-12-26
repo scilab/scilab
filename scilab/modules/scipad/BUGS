@@ -83,6 +83,10 @@ endfunction
  it is not yet committed in the Tcl source code. There is also bug 1578519
  about special dirs on Windows, still for tk_getOpenFile.
 
+-Hidden files can be opened in Scipad but cannot be saved with the same
+ filename. This is Tcl bug 1622579 (the open command fails to open hidden
+ files for writing)
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -115,7 +119,7 @@ Old bugs/whishes which have been hacked but could have been done better:
  http://www.du.edu/~mschwart/tclextensions.html (printer extension)
  http://www.nyx.net/~mschwart/ (printer extension)
  -- Printing works on Linux and now also on Windows. It makes use of Scilab
-    internal new functions that does not preserve colorization. I'm convinced
+    internal new functions that do not preserve colorization. I'm convinced
     that an internal Tk printing scheme would be better.
 
 -trying to debug functions with names > 24 characters does not work. This is
@@ -218,7 +222,7 @@ Other wishes:
 
 -"auto smart wrap on": lines exceeding a margin could be truncated at
  word boundaries with .. dots and \n
- 
+
 -Highlight wrapped lines so that they can be more easily identified.
  Could make use of indentation or other suitable scheme TBD, or add
  some sort of left grey band in which some more information could be
@@ -301,8 +305,6 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
  tabs, and reindents according to keywords (if, function, while, for...)
 
 -Request 262: tabbed buffers (see discussion in this request)
-
--Extract the target of windows shortcuts during drag and drop
 
 -There is something strange with the scrollbars linked to the textarea. In
  some not yet well understood situations they do not reflect the width or

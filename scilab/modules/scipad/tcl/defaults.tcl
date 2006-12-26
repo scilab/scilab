@@ -132,10 +132,23 @@ if {[lsearch $menuFont "-size"] != -1} {
 }
 
 # message files and localization to avoid ifs on $lang
-package require msgcat
-namespace import -force msgcat::*
-::msgcat::mclocale "$lang"
-::msgcat::mcload $msgsdir
+if {[catch {package require msgcat}] == 0} {
+    # package is present and loaded
+    namespace import -force msgcat::*
+    ::msgcat::mclocale "$lang"
+    ::msgcat::mcload $msgsdir
+} else {
+    # package is not present, define default fallbacks
+    namespace eval msgcat {
+        proc ::msgcat::mc {str} {return $str}
+        proc ::msgcat::mclocale {args} {
+            tk_messageBox -message "Package msgcat is not present - Localization features are disabled." \
+                          -icon warning -title "Tcl msgcat package not found"
+        }
+        proc ::msgcat::mcload {args} {}
+    }
+    proc mc {str} {return $str}
+}
 
 # drag and drop capability using TkDnD
 if { [catch {package require tkdnd}] == 0 } {

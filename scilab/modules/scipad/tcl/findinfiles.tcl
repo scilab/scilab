@@ -6,6 +6,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
 # to matching the glob pattern
     global allthematches pausesearchflag cancelsearchflag
     global openerrorfiles searchinfilesalreadyrunning
+    global nbsearchedfiles
 
     set searchinfilesalreadyrunning 1
 
@@ -14,6 +15,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
     disablesearchresultsbuttons
     set pausesearchflag 0
     set cancelsearchflag 0
+    set nbsearchedfiles 0
     update
 
     # create the list of files to search in
@@ -49,7 +51,11 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
                 if {$pausesearchflag} {tkwait variable pausesearchflag}
             }
         }
-        updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"]]
+        if {!$searchforfilesonly} {
+            updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"] "-" $nbsearchedfiles [mc "searched files"]]
+        } else {
+            updatematchrestitle [concat [mc "End of file search:"] [llength $allthematches] [mc "matches found"]]
+        }
         if {$openerrorfiles != {}} {
             set nlopenerrorfiles ""
             foreach fil $openerrorfiles {
@@ -69,6 +75,7 @@ proc findinfiles {tosearchfor cas reg whword initdir globpat recursesearchindir 
 proc getallfilenames {initdir globpat recursesearch} {
 # return all the file names matching $globpat in directory $initdir
     global tcl_platform pausesearchflag cancelsearchflag
+    global searchhiddenfiles
 
     set fnames {}
 
@@ -80,6 +87,12 @@ proc getallfilenames {initdir globpat recursesearch} {
     # deal with files first
     foreach gp $globpat {
         set filematches [glob -nocomplain -directory "$initdir" -types {f} -- "$gp"]
+        if {$searchhiddenfiles} {
+            set hiddenfilematches [glob -nocomplain -directory "$initdir" -types {f hidden} -- "$gp"]
+            if {$hiddenfilematches != {}} {
+                lappend filematches $hiddenfilematches
+            }
+        }
         if {$filematches != {}} {
             # avoid duplicates (can happen for instance when $globpat is "* *.*")
             foreach fil $filematches {
@@ -123,6 +136,8 @@ proc findinonefile {fname str cas reg whword} {
 # each match is displayed in a search results window
 
     global pad matchres pausesearchflag cancelsearchflag openerrorfiles
+    global nbsearchedfiles
+
     set filematchlist {}
 
     # open file
@@ -131,6 +146,11 @@ proc findinonefile {fname str cas reg whword} {
         lappend openerrorfiles $fname
         return $filematchlist
     }
+
+    # the number of searched files is increased every time the opening
+    # succeeded, because $nbsearchedfiles is potentially different from
+    # [llength [getallfilenames]]
+    incr nbsearchedfiles
 
     # create a temporary text widget
     text $pad.fake 
@@ -151,8 +171,14 @@ proc findinonefile {fname str cas reg whword} {
                 set zero [lindex $amatch 2]
                 lappend filematchlist [list $fname $pos $len $zero]
                 $matchres.f1.resarea configure -state normal
-                $matchres.f1.resarea insert end "$fname\($linenumber\):$line\n"
+                set prependedtext "$fname\($linenumber\):"
+                $matchres.f1.resarea insert end "$prependedtext$line\n"
                 $matchres.f1.resarea configure -state disabled
+                # highlight the position of the match in the line
+                scan [$matchres.f1.resarea index end] "%d.%d" lastline junk
+                incr lastline -2
+                incr xpos [string length "$prependedtext"]
+                $matchres.f1.resarea tag add matchedtext "$lastline.$xpos" "$lastline.[expr $xpos + $len]"
             }
         }
         $pad.fake delete 1.0 end
@@ -222,7 +248,7 @@ proc cancelsearchinfiles {} {
 proc displaymatchresultswin {} {
 # show the match results window, or just clean it if already open
     global pad matchres textFont menuFont
-    global SELCOLOR FGCOLOR BGCOLOR FOUNDTEXTCOLOR
+    global SELCOLOR FGCOLOR BGCOLOR FOUNDTEXTCOLOR QTXTCOLOR
 
     set matchres $pad.matchres
 
@@ -301,7 +327,8 @@ proc displaymatchresultswin {} {
         bind $matchres <Alt-[fb $matchres.f2.buttonCancel]> "cancelsearchinfiles"
 
         # define the behaviour of the results area
-        $matchres.f1.resarea tag configure foundtext -background $FOUNDTEXTCOLOR
+        $matchres.f1.resarea tag configure foundtext   -background $FOUNDTEXTCOLOR
+        $matchres.f1.resarea tag configure matchedtext -foreground $QTXTCOLOR -underline 1
         bind $matchres.f1.resarea <Double-Button-1> { openpointedmatch %W %x %y ; break }
         bind $matchres.f1.resarea <<Modified>> {break}
         # prevent unwanted Text class bindings from triggering
@@ -440,15 +467,24 @@ proc openamatch {w posinresarea} {
         #       triggered when the user clicks Button-1
         #    b. the binded script for Button-1 contains a {break}, which is needed
         #       for dnd but prevents here the wanted ButtonPress binding to trigger
+        # finally, we must carefully escape % substitution in $bindtext when the
+        # binding fires here - however substitution must occur when the binding
+        # triggered by the binding fires - this is achieved by string mapping
+        # the percent character to a double percent: the substitution in the first
+        # binding removes a percent, and the binding launched by the first binding
+        # performs substitution. Yes, it's tricky.
         set bindtext [bind $ta <KeyPress>]
+        set bindtext [string map {"%" "%%"} $bindtext]
         if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
             bind $ta <KeyPress> "+%W tag remove foundtext 1.0 end ; bind %W <KeyPress> [list $bindtext]"
         }
         set bindtext [bind $ta <ButtonPress>]
+        set bindtext [string map {"%" "%%"} $bindtext]
         if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
             bind $ta <ButtonPress> "+%W tag remove foundtext 1.0 end ; bind %W <ButtonPress> [list $bindtext]"
         }
         set bindtext [bind $ta <Button-1>]
+        set bindtext [string map {"%" "%%"} $bindtext]
         if {[string first " tag remove foundtext 1.0 end" $bindtext] == -1} {
             bind $ta <Button-1> "+%W tag remove foundtext 1.0 end ; bind %W <Button-1> [list $bindtext]"
         }

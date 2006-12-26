@@ -2624,3 +2624,26 @@ Francois VOGEL, 22/12/06
  * Windows shortcuts are detected during the file open process, and are
    no longer opened in Scipad
  * version --> 6.69
+
+Francois VOGEL, 26/12/06
+ * Improved the fix of Scipad 6.67 about cursor visibility (clarified
+   behavior of TextClosestGap in Tk)
+ * Fixed: Dropping a zero byte file onto Scipad produced a Tcl error
+ * Fixed: After find in files, open a match, and select in Scipad the first
+   character of the line where the match was found, the next button-1 click
+   duplicated the line. This was a very tricky (but correct) percent
+   substitution behavior in the bindings that erase the foundtext tag from
+   the textarea. This issue was introduced in Scipad 5.33
+ * Fixed: Open the find dialog and toggle twice the "In a directory" checkbox.
+   Then the state of the Text types area was not updated (it should be
+   disabled and not normal)
+ * Find in files tells how many files were searched
+ * Find in files highlights the matched text in the matching line displayed
+   in the results window
+ * Find in files can search also in hidden files
+ * Scipad can be launched even if the msgcat package is missing. This is
+   useful in the Tcl/Tk8.5 context for experimenting, see
+   http://wiki.scilab.org/Linking_Scilab_with_Tcl/Tk_8.5
+   Note that named labels such as aboutme_message do not get an english
+   fallback when msgcat cannot be found, and this is somewhat ugly
+ * version --> 6.70

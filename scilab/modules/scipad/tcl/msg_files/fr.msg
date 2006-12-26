@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.69
+# in sync at least with v6.70
 
 
 # commons
@@ -273,6 +273,7 @@
 ::msgcat::mcset fr "Searching in file:" "Recherche dans :"
 ::msgcat::mcset fr "End of file search:" "Fin de la recherche:"
 ::msgcat::mcset fr "matches found" "correspondances trouvées"
+::msgcat::mcset fr "searched files" "fichiers examinés"
 ::msgcat::mcset fr "Constructing file list:" "Construction de la liste des fichiers:"
 ::msgcat::mcset fr "&Previous" "&Précédent"
 ::msgcat::mcset fr "&Next" "&Suivant"

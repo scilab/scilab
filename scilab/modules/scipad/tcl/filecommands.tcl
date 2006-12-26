@@ -826,7 +826,9 @@ proc writesave {textarea nametosave} {
         set readonlyflag [expr [file writable [file dirname $nametosave]] == 0]
     }
     if {$readonlyflag==0} {
-        # writefileondisk catched to deal with unexpected errors (should be none!)
+        # writefileondisk catched to deal with unexpected errors (should
+        # be none!) This catch serves actually at least because of Tcl
+        # bug 1622579 (open fails to open hidden files for writing)
         if {[catch {writefileondisk $textarea $nametosave}] == 0} {
             resetmodified $textarea
             set listoffile("$textarea",thetime) [file mtime $nametosave]
@@ -1191,11 +1193,16 @@ proc iswindowsshortcut {filename} {
         return 0
     }
 
+    # $filetype might be undefined after reading the first bytes, if the file
+    # size is zero for instance, therefore define a fallback value here so
+    # that the check on that value will return false below
+    set filetype {}
+
     set ch [open $filename r]
     fconfigure $ch -encoding binary -translation binary -eofchar {}
     binary scan [read $ch 4] i filetype
     close $ch
-    
+
     # shortcut files are identified by their four first bytes being 0000004Ch
     # i.e. 76 in decimal, or letter "L" in ASCII
     if {$filetype != "76"} {

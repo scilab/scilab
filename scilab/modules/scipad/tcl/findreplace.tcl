@@ -231,11 +231,19 @@ proc findtextdialog {typ} {
         # settings for search in files
         labelframe $find.b  -borderwidth 2 -relief groove \
             -text [mc "Find in files search options"] -font $menuFont
-        eval "checkbutton $find.b.cbox6 [bl "Directory r&ecurse search"] \
+        frame $find.b.f0
+        eval "checkbutton $find.b.f0.cbox6 [bl "Directory r&ecurse search"] \
             -variable recursesearchindir \
             -command \"resetfind\" \
             -font \[list $menuFont\] "
-        pack $find.b.cbox6 -anchor w
+        eval "checkbutton $find.b.f0.cbox8 [bl "Include &hidden files"] \
+            -variable searchhiddenfiles \
+            -onvalue true -offvalue false \
+            -font \[list $menuFont\] "
+        pack $find.b.f0.cbox6 $find.b.f0.cbox8 -side left -anchor w \
+            -fill x -expand 1
+        pack configure $find.b.f0.cbox6 -fill none
+        pack $find.b.f0 -anchor w -fill x -expand 1
         frame $find.b.f1
         set bestwidth [mcmaxra "In files/file types:" \
                                "In directory:"]
@@ -292,7 +300,8 @@ proc findtextdialog {typ} {
     bind $find <Alt-[fb $find.l.f4.f5.cbox7]> { $find.l.f4.f5.cbox7 invoke }
     if {$typ=="find"} {
         bind $find <Alt-[fb $find.l.f4.f5.cbox5]> { $find.l.f4.f5.cbox5 invoke }
-        bind $find <Alt-[fb $find.b.cbox6]> { $find.b.cbox6 invoke }
+        bind $find <Alt-[fb $find.b.f0.cbox6]> { $find.b.f0.cbox6 invoke }
+        bind $find <Alt-[fb $find.b.f0.cbox8]> { $find.b.f0.cbox8 invoke }
     }
     bind $find <Alt-[fb $find.l.f4.f1.f1.up]>   { $find.l.f4.f1.f1.up    invoke }
     bind $find <Alt-[fb $find.l.f4.f1.f1.down]> { $find.l.f4.f1.f1.down  invoke }
@@ -469,7 +478,8 @@ proc searchindirenabled {} {
     global find
     $find.l.f4.f5.cbox3 deselect
     $find.l.f4.f5.cbox4 deselect
-    $find.b.cbox6 configure -state normal
+    $find.b.f0.cbox6 configure -state normal
+    $find.b.f0.cbox8 configure -state normal
     $find.b.f1.labelt configure -state normal
     $find.b.f1.entryt configure -state normal
     $find.b.f1.mbselectpat configure -state normal
@@ -484,11 +494,13 @@ proc searchindirenabled {} {
     $find.l.f4.f1.f2.f1.lb configure -state disabled
     pack $find.b -before $find.l -side bottom -padx 5 -pady 4 -anchor w \
         -expand 1 -fill x
+    setsearchintagsettings
 }
 
 proc searchindirdisabled {} {
     global find 
-    $find.b.cbox6 configure -state disabled
+    $find.b.f0.cbox6 configure -state disabled
+    $find.b.f0.cbox8 configure -state disabled
     $find.b.f1.labelt configure -state disabled
     $find.b.f1.entryt configure -state disabled
     $find.b.f1.mbselectpat configure -state disabled
@@ -499,6 +511,7 @@ proc searchindirdisabled {} {
     $find.l.f4.f1.f1.up configure -state normal
     $find.l.f4.f1.f2.f1.lb configure -state normal
     pack forget $find.b
+    setsearchintagsettings
 }
 
 proc getinitialdirforsearch {} {
