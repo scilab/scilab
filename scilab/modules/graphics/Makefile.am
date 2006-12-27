@@ -8,7 +8,6 @@ src/c/w_rottext.c \
 src/c/gifimg.c \
 src/c/WindowList.c \
 src/c/Events.c \
-src/c/Rec.c \
 src/c/getHandleProperty/get_figure_position_property.c \
 src/c/getHandleProperty/get_figure_size_property.c \
 src/c/getHandleProperty/get_visible_property.c \
@@ -263,15 +262,12 @@ src/c/periX11.c \
 src/c/graphicSession.c \
 src/c/Xcall1.c \
 src/c/Axes.c \
-src/c/Plo2d2.c \
 src/c/sciMatrix.c \
 src/c/Xcall.c \
-src/c/Plo2d4.c \
 src/c/DrawObjects.c \
 src/c/Vect2Matrix.c \
 src/c/xs2file.c \
 src/c/Plo3d.c \
-src/c/dr1Call.c \
 src/c/GetProperty.c \
 src/c/periFig.c \
 src/c/Contour.c \
@@ -294,10 +290,8 @@ src/c/Plo2dn.c \
 src/c/Plo3dn.c \
 src/c/Actions.c \
 src/c/Plo2dEch.c \
-src/c/Plo2d1.c \
 src/c/Gray.c \
 src/c/DestroyObjects.c \
-src/c/Plo2d3.c \
 src/c/clipping.c \
 src/c/qsort.c \
 src/c/qsort-char.c \
@@ -306,10 +300,8 @@ src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
 src/c/math_graphics.c \
-src/c/RecLoad.c \
 src/c/Interaction.c \
 src/c/periGif.c \
-src/c/RecSave.c \
 src/c/HandleManagement.c \
 src/gd/gdfonts/gdfontmb.c \
 src/gd/gdfonts/gdfonts.c \
