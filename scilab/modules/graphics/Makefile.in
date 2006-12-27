@@ -1778,7 +1778,6 @@ includes/w_rottext.h \
 includes/Events.h \
 includes/sci_xlfont.h \
 includes/GetCommandArg.h \
-includes/Rec.h \
 includes/sci_xgrid.h \
 includes/sci_geom3d.h \
 includes/scigraphic.h \
@@ -1810,7 +1809,6 @@ includes/sci_readxbm.h \
 includes/periMac.h \
 includes/sci_drawaxis.h \
 includes/Plo3d.h \
-includes/dr1Call.h \
 includes/sci_xrect.h \
 includes/sci_plot2d1.h \
 includes/sci_xsave.h \
@@ -1837,7 +1835,6 @@ includes/sci_help_gtk.h \
 includes/bcg.h \
 includes/sci_xsnative.h \
 includes/sci_delete.h \
-includes/Plo2d1.h \
 includes/sci_plot2d.h \
 includes/clipping.h \
 includes/sci_StringBox.h \
@@ -1893,7 +1890,6 @@ includes/sci_xarcs.h \
 includes/Plo2d.h \
 includes/pixel_mode.h \
 includes/sci_champ.h \
-includes/RecSaveLoad.h \
 includes/Champ.h \
 includes/periX11.h \
 includes/StringMatrix.h \
