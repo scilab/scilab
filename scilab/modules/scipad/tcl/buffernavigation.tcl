@@ -4,7 +4,8 @@
 #
 #   $textareaid
 #       This is the unique identifier of the text widget displaying
-#       the content of a given file. It is the same as $winopened
+#       the content of a given file. When a new textarea is created,
+#       it is given the $winopened value in $textareaid
 #
 #   $pad.new$textareaid
 #       Buffer name. This is the unique pathname of the text widget
@@ -241,7 +242,7 @@ proc focustextarea {textarea} {
     schememenus $textarea
     highlighttextarea $textarea
     TextStyles $textarea
-    set textareaid [scan $textarea $pad.new%d]
+    set textareaid [gettaidfromwidgetname $textarea]
     set buffermodifiedsincelastsearch true
 }
 
@@ -377,7 +378,7 @@ proc createnewtextarea {} {
 # this is a partial copy of proc filesetasnew that is just here to wait for 8.5 and peer text widgets
 # <TODO>: get rid of this!
     global winopened listoffile
-    global listoftextarea pad textareaid
+    global listoftextarea pad
 
     # ensure that the cursor is changed to the default cursor
     event generate [gettextareacur] <Leave>
@@ -496,11 +497,25 @@ proc gettafromwidget {w} {
     return "none"
 }
 
+proc gettaidfromwidgetname {w} {
+# parse the widget name $w to extract the textarea id, which is the trailing
+# number in the widget name
+# $w is supposed (this is not checked) to be a text widget (named $pad.newX)
+# return value is number X
+    global pad
+    set taid ""
+    scan $w $pad.new%d taid
+    if {$taid == ""} {
+        tk_messageBox -message "Unexpected widget was received by proc gettaidfromwidgetname: $w"
+    }
+    return $taid
+}
+
 proc createpaneframename {textarea targetpw} {
 # construct the frame name in which $textarea is to be packed
 # and store this name in the global array pwframe
     global pad pwframe
-    set id [scan $textarea $pad.new%d]
+    set id [gettaidfromwidgetname $textarea]
     set paneframename $targetpw.f$id
     while {[winfo exists $paneframename]} {
         incr id

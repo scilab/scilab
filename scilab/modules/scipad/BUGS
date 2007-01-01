@@ -87,6 +87,13 @@ endfunction
  filename. This is Tcl bug 1622579 (the open command fails to open hidden
  files for writing)
 
+-There is something strange with the scrollbars linked to the textarea. In
+ some not yet well understood situations they do not reflect the width or
+ height of the text contained in the textarea, and/or are located at the
+ wrong place. When there are wrapped lines of varying lengths, as the user
+ scrolls, the length of the scroll box changes. 
+ This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -306,7 +313,5 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 
 -Request 262: tabbed buffers (see discussion in this request)
 
--There is something strange with the scrollbars linked to the textarea. In
- some not yet well understood situations they do not reflect the width or
- height of the text contained in the textarea, and/or are located at the
- wrong place
+-Think about using -inactiveselectionbackground for the textareas (Tk 8.5
+ only), and get rid of the fakeselection tag in find/replace

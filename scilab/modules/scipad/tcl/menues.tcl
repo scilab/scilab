@@ -363,7 +363,7 @@ proc createmenues {} {
     $pad.filemenu.wind add separator
     set FirstBufferNameInWindowsMenu [expr [$pad.filemenu.wind index last] + 1]
     foreach ta $listoftextarea {
-        set winopened [scan $ta $pad.new%d]
+        set winopened [gettaidfromwidgetname $ta]
         addwindowsmenuentry $winopened $listoffile("$ta",displayedname)
     }
     bind $pad.filemenu.wind <<MenuSelect>> {+showinfo_menu_wind %W}
@@ -610,7 +610,7 @@ proc sortwindowsmenuentries {} {
     set i $FirstBufferNameInWindowsMenu
     foreach item $li {
         foreach {ta lab mtim} $item {}
-        set winopened [scan $ta $pad.new%d]
+        set winopened [gettaidfromwidgetname $ta]
         $pad.filemenu.wind entryconfigure $i \
             -value $winopened \
             -command "montretext $pad.new$winopened"

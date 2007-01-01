@@ -12,10 +12,15 @@
 #       option containing the $winopened consistent with the name
 #       of the menu entry (see below at the end of this comment)
 #
-#   $pad.new$winopened
-#       Opened buffers (textareas)
+#   $textareaid
 #       This is the unique identifier of the text widget displaying
-#       the content of a given file
+#       the content of a given file. When a new textarea is created,
+#       it is given the $winopened value in $textareaid
+#
+#   $pad.new$textareaid
+#       Buffer name. This is the unique pathname of the text widget
+#       displaying the content of a file. This is usually referred to
+#       as $textarea, or $ta for short
 #       This text widget is packed in a frame that is itself added
 #       as a pane in possibly nested panedwindows
 #
@@ -94,7 +99,7 @@
 ##################################################
 proc filesetasnew {} {
     global winopened listoffile
-    global listoftextarea pad textareaid
+    global listoftextarea pad
 
     # ensure that the cursor is changed to the default cursor
     event generate [gettextareacur] <Leave>
@@ -619,7 +624,7 @@ proc lookiffileisopen {file} {
 proc notopenedfile {file} {
 # $file is not opened - this sets the $listoffile area values for that file
 # and adds an entry in the windows menu
-    global winopened pad listoffile textareaid
+    global winopened pad listoffile
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [file normalize $file]

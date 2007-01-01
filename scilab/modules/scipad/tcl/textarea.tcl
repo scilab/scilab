@@ -53,10 +53,6 @@ proc dupWidgetOption {widget name} {
            "[string tolower [winfo class $widget]] $name [nondefOpts $widget]"]
 }
 
-proc dupWidgetText {widget name} {
-    $name insert end [$widget get 1.0 end]
-}
-
 proc TextStyles { t } {
     global colorpref
     foreach c1 $colorpref {global $c1}

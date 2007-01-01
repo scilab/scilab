@@ -259,7 +259,7 @@
                     joeja@mindspring.com.\n Veränderungen durch das Scilab\
                     Konsortium.\n Überarbeitung durch Enrico Segre\
                     2003-2006.\n Verbesserungen (insbesondere Debugger) von\
-                    François Vogel 2004-2006.\n Schwedische Übersetzung von\
+                    François Vogel 2004-2007.\n Schwedische Übersetzung von\
                     Gunnar Lindholm 2005.\n Norwegische Übersetzung von\
                     Torbjørn Pettersen 2005.\n Deutsche Übersetzung von Dirk\
                     Reusch 2005, 2006.\n Polnische Übersetzung von Bartosz\

@@ -2647,3 +2647,8 @@ Francois VOGEL, 26/12/06
    Note that named labels such as aboutme_message do not get an english
    fallback when msgcat cannot be found, and this is somewhat ugly
  * version --> 6.70
+
+Francois VOGEL, 01/01/07
+ * Pushed copyrights to 2007
+ * Fixed wrong syntax for Tcl instruction scan throughout the code
+ * version --> 6.71

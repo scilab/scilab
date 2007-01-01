@@ -384,7 +384,7 @@
                    "\n Originato da tknotepad di Joseph Acosta,\
                     joeja@mindspring.com.\n Modificato dal Consorzio\
                     Scilab.\n Migliorato da Enrico Segre 2003-2006\n e da\
-                    François Vogel (in particolare il debugger) 2004-2006.\n\
+                    François Vogel (in particolare il debugger) 2004-2007.\n\
                     Traduzioni: \n   norvegese, Torbjørn Pettersen 2005; \n  \
                     polacco, Bartosz Kosiorek 2005; \n   svedese, Gunnar\
                     Lindholm 2005; \n   tedesco, Dirk Reusch 2005; \n  \

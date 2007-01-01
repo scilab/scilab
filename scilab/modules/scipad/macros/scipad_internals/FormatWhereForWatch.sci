@@ -5,7 +5,7 @@ function txt = FormatWhereForWatch(startitem)
 // The callstackfuns and callstacklines lists are also set inside the scipad
 // interpreter by this function for later use during step by step, run to
 // cursor, or to open a stack level by double-clicking in the call stack area
-// Author: François Vogel, 2004-2006 (freely inspired from whereami())
+// Author: François Vogel, 2004-2007 (freely inspired from whereami())
 
 // Localisation
 str0=LocalizeForScipad("Breakpoint");

@@ -556,8 +556,8 @@ proc Obtainall_bp {} {
 
         # add function header
         set txt "function db_wrapper_"
-        set textareaid [scan $textarea $pad.new%d]
-        append txt $textareaid "_db()\n"
+        set taid [gettaidfromwidgetname $textarea]
+        append txt $taid "_db()\n"
         $textarea mark set insert 1.0
         puttext $textarea $txt
         $textarea tag add db_wrapper 1.0 insert

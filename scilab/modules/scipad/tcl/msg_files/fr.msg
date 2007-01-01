@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.70
+# in sync at least with v6.71
 
 
 # commons
@@ -323,7 +323,7 @@
                    "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2006.\n\
-                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2006.\n\
+                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2007.\n\
                     Traduction en Suédois par Gunnar Lindholm 2005.\n\
                     Traduction en Norvégien par Torbjørn Pettersen 2005.\n\
                     Traduction en Allemand par Dirk Reusch 2005.\n\

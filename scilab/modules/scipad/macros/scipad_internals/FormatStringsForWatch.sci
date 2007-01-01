@@ -5,7 +5,7 @@ function [svar] = FormatStringsForWatch(varargin)
 // The output string is identical to what the user would have typed in the
 // Scilab shell, apart from some extra characters needed to pass the string
 // to Tcl/Tk.
-// Author: François Vogel, 2004-2006
+// Author: François Vogel, 2004-2007
 
   if argn(2) == 0 then error(39); else var = varargin(1); end
 

@@ -242,7 +242,7 @@
                    "\n Lagd av Joseph Acosta, joeja@mindspring.com.\n\
                     Modifisert av Scilab Constortium.\n Revidert av Enrico\
                     Segre 2003-2006.\n Diverse forbedringer, spesielt\
-                    feilsøkingsverktøy av François Vogel 2004-2006."
+                    feilsøkingsverktøy av François Vogel 2004-2007."
 
 
 # infomessages.tcl

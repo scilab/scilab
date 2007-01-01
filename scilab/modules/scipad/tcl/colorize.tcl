@@ -480,7 +480,7 @@ proc dobackgroundcolorize {w thebegin progressbar} {
         return
     }
 
-    set progressbarId [scan $progressbar $pad.cp%d]
+    scan $progressbar $pad.cp%d progressbarId
 
     # if the file has been closed during colorization, destroy the
     # progressbar and abort colorization
@@ -791,7 +791,7 @@ proc changelanguage {newlanguage} {
             set listoffile("$textarea",displayedname) \
                     [string replace $listoffile("$textarea",displayedname) "end-2" end $ext]
             set listoffile("$textarea",fullname) \
-                    [string replace $listoffile("$textarea",displayedname) "end-2" end $ext]
+                    [string replace $listoffile("$textarea",fullname) "end-2" end $ext]
             # update the windows menu label
             setwindowsmenuentrylabel $ilab $listoffile("$textarea",displayedname)
             RefreshWindowsMenuLabels
