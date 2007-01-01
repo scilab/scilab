@@ -38,7 +38,7 @@
    <DESCRIPTION>
       <P>
        This function opens in SciPad the source of the function which caused the last recorded
-       error, and highlights the offending line.
+       error, and highlights the offending line. 
       </P>
       <P>
        This function works only for functions which are defined in libraries, i.e.
