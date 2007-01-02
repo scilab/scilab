@@ -109,25 +109,4 @@ libarnoldi_la_etc_DATA = etc/arnoldi.quit etc/arnoldi.start
 libarnoldi_la_sci_gatewaydir = $(target)/sci_gateway
 libarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi
 
-#### arnoldi : documentation FR #### 
-libarnoldi_la_helpfrdir = $(target)/help/fr
-libarnoldi_la_helpfr_DATA2 = help/fr/dsaupd.htm \
-help/fr/dseupd.htm \
-help/fr/znaupd.htm \
-help/fr/zneupd.htm \
-help/fr/whatis.htm \
-help/fr/dneupd.htm \
-help/fr/dnaupd.htm
-
-
-#### arnoldi : documentation EN #### 
-libarnoldi_la_helpendir = $(target)/help/eng
-libarnoldi_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/dnaupd.htm \
-help/eng/dneupd.htm \
-help/eng/dsaupd.htm \
-help/eng/dseupd.htm \
-help/eng/znaupd.htm \
-help/eng/zneupd.htm
-
 include $(top_srcdir)/Makefile.incl.am

@@ -230,14 +230,6 @@ macros/testexamples.bin macros/names macros/lib macros/buildmacros.sce
 libdevelopment_tools_la_etcdir = $(target)/etc
 libdevelopment_tools_la_etc_DATA = etc/development_tools.quit etc/development_tools.start
 
-#### development_tools : documentation FR #### 
-libdevelopment_tools_la_helpfrdir = $(target)/help/fr
-libdevelopment_tools_la_helpfr_DATA2 = 
-
-#### development_tools : documentation EN #### 
-libdevelopment_tools_la_helpendir = $(target)/help/eng
-libdevelopment_tools_la_helpen_DATA2 = 
-
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
 
@@ -492,7 +484,7 @@ uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "converted $< to $@"; \
-	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
 
 macrossly:
@@ -512,7 +504,7 @@ install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \

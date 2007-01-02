@@ -1224,15 +1224,4 @@ macros/%s_x_r.bin macros/names macros/lib macros/buildmacros.sce
 liboverloading_la_etcdir = $(target)/etc
 liboverloading_la_etc_DATA = etc/overloading.quit etc/overloading.start
 
-#### overloading : documentation FR #### 
-liboverloading_la_helpfrdir = $(target)/help/fr
-liboverloading_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/overloading.htm
-
-
-#### overloading : documentation EN #### 
-liboverloading_la_helpendir = $(target)/help/eng
-liboverloading_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/overloading.htm
-
 include $(top_srcdir)/Makefile.incl.am

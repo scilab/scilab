@@ -248,21 +248,6 @@ libinteger_la_etc_DATA = etc/integer.quit etc/integer.start
 libinteger_la_sci_gatewaydir = $(target)/sci_gateway
 libinteger_la_sci_gateway_DATA = sci_gateway/integer
 
-
-#### integer : documentation FR #### 
-libinteger_la_helpfrdir = $(target)/help/fr
-libinteger_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/iconvert.htm \
-help/fr/inttype.htm
-
-
-#### integer : documentation EN #### 
-libinteger_la_helpendir = $(target)/help/eng
-libinteger_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/iconvert.htm \
-help/eng/inttype.htm
-
-
 #### integer : include files ####
 libinteger_la_includedir=$(includedir)/integer
 libinteger_la_include_HEADERS = includes/gw_integer.h \

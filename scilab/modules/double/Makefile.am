@@ -55,13 +55,4 @@ libdouble_la_macro_DATA = macros/buildmacros.sce
 libdouble_la_etcdir = $(target)/etc
 libdouble_la_etc_DATA = etc/double.quit etc/double.start
 
-#### double : documentation FR #### 
-libdouble_la_helpfrdir = $(target)/help/fr
-libdouble_la_helpfr_DATA2 = 
-
-
-#### double : documentation EN #### 
-libdouble_la_helpendir = $(target)/help/eng
-libdouble_la_helpen_DATA2 = 
-
 include $(top_srcdir)/Makefile.incl.am

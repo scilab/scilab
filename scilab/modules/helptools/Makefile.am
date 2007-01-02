@@ -66,34 +66,4 @@ macros/xmltohtml.bin macros/names macros/lib macros/buildmacros.sce
 libhelptools_la_etcdir = $(target)/etc
 libhelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
-#### helptools : documentation FR #### 
-libhelptools_la_helpfrdir = $(target)/help/fr
-dist_libhelptools_la_helpfr_DATA2 = help/fr/help_skeleton.htm \
-help/fr/make_index.htm \
-help/fr/manedit.htm \
-help/fr/man.htm \
-help/fr/xmltohtml.htm \
-help/fr/apropos.htm \
-help/fr/help.htm \
-help/fr/whatis.htm \
-help/fr/foo.htm \
-help/fr/add_help_chapter.htm \
-help/fr/formatman.htm \
-help/fr/percenthelps.htm
-
-
-#### helptools : documentation EN #### 
-libhelptools_la_helpendir = $(target)/help/eng
-dist_libhelptools_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/help.htm \
-help/eng/apropos.htm \
-help/eng/add_help_chapter.htm \
-help/eng/foo.htm \
-help/eng/manedit.htm \
-help/eng/formatman.htm \
-help/eng/make_index.htm \
-help/eng/help_skeleton.htm \
-help/eng/man.htm \
-help/eng/percenthelps.htm \
-help/eng/xmltohtml.htm
 include $(top_srcdir)/Makefile.incl.am

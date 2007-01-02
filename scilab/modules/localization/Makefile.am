@@ -37,19 +37,6 @@ liblocalization_la_macro_DATA = macros/setlanguage.sci macros/setlanguage.bin ma
 liblocalization_la_etcdir = $(target)/etc
 liblocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
-#### localization : documentation FR #### 
-liblocalization_la_helpfrdir = $(target)/help/fr
-liblocalization_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/language.htm \
-help/fr/setlanguage.htm
-
-
-#### localization : documentation EN #### 
-liblocalization_la_helpendir = $(target)/help/eng
-liblocalization_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/language.htm \
-help/eng/setlanguage.htm
-
 
 #### localization : include files ####
 liblocalization_la_includedir=$(includedir)/localization

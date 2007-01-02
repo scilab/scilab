@@ -463,87 +463,6 @@ libpolynomials_la_etc_DATA = etc/polynomials.quit etc/polynomials.start
 libpolynomials_la_sci_gatewaydir = $(target)/sci_gateway
 libpolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
 
-#### polynomials : documentation FR #### 
-libpolynomials_la_helpfrdir = $(target)/help/fr
-libpolynomials_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/bezout.htm \
-help/fr/clean.htm \
-help/fr/cmndred.htm \
-help/fr/coeff.htm \
-help/fr/coffg.htm \
-help/fr/colcompr.htm \
-help/fr/degree.htm \
-help/fr/denom.htm \
-help/fr/derivat.htm \
-help/fr/determ.htm \
-help/fr/detr.htm \
-help/fr/diophant.htm \
-help/fr/factors.htm \
-help/fr/gcd.htm \
-help/fr/hermit.htm \
-help/fr/horner.htm \
-help/fr/hrmt.htm \
-help/fr/htrianr.htm \
-help/fr/invr.htm \
-help/fr/lcmdiag.htm \
-help/fr/lcm.htm \
-help/fr/ldiv.htm \
-help/fr/numer.htm \
-help/fr/pdiv.htm \
-help/fr/pol2des.htm \
-help/fr/pol2str.htm \
-help/fr/polfact.htm \
-help/fr/residu.htm \
-help/fr/roots.htm \
-help/fr/rowcompr.htm \
-help/fr/sfact.htm \
-help/fr/simp_mode.htm \
-help/fr/simp.htm \
-help/fr/sylm.htm
-
-
-#### polynomials : documentation EN #### 
-libpolynomials_la_helpendir = $(target)/help/eng
-libpolynomials_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/colcompr.htm \
-help/eng/bezout.htm \
-help/eng/clean.htm \
-help/eng/cmndred.htm \
-help/eng/coeff.htm \
-help/eng/coffg.htm \
-help/eng/diophant.htm \
-help/eng/degree.htm \
-help/eng/denom.htm \
-help/eng/derivat.htm \
-help/eng/determ.htm \
-help/eng/detr.htm \
-help/eng/rowcompr.htm \
-help/eng/factors.htm \
-help/eng/gcd.htm \
-help/eng/hermit.htm \
-help/eng/horner.htm \
-help/eng/hrmt.htm \
-help/eng/htrianr.htm \
-help/eng/invr.htm \
-help/eng/lcmdiag.htm \
-help/eng/lcm.htm \
-help/eng/ldiv.htm \
-help/eng/numer.htm \
-help/eng/pdiv.htm \
-help/eng/pol2des.htm \
-help/eng/pol2str.htm \
-help/eng/pol2tex.htm \
-help/eng/polfact.htm \
-help/eng/residu.htm \
-help/eng/roots.htm \
-help/eng/routh_t.htm \
-help/eng/sfact.htm \
-help/eng/simp.htm \
-help/eng/simp_mode.htm \
-help/eng/sylm.htm \
-help/eng/systmat.htm
-
-
 #### polynomials : include files ####
 libpolynomials_la_includedir = $(includedir)/polynomials
 libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
@@ -1364,7 +1283,7 @@ install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \

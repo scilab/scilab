@@ -38,17 +38,4 @@ libscipad_la_etcdir = $(target)/etc
 libscipad_la_etc_DATA = etc/scipad.quit etc/scipad.start
 
 
-#### scipad : documentation FR #### 
-libscipad_la_helpfrdir = $(target)/help/fr
-libscipad_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/scipad.htm \
-help/fr/edit_error.htm
-
-
-#### scipad : documentation EN #### 
-libscipad_la_helpendir = $(target)/help/eng
-libscipad_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/scipad.htm \
-help/eng/edit_error.htm
-
 include $(top_srcdir)/Makefile.incl.am

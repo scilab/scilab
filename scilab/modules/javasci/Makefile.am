@@ -21,31 +21,6 @@ libjavasci_la_macro_DATA =  macros/buildmacros.sce
 libjavasci_la_etcdir = $(target)/etc
 libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
-#### javasci : documentation FR #### 
-libjavasci_la_helpfrdir = $(target)/help/fr
-libjavasci_la_helpfr_DATA2 = help/fr/SciComplex.htm \
-help/fr/SciDouble.htm \
-help/fr/Scilab.htm \
-help/fr/SciString.htm \
-help/fr/whatis.htm \
-help/fr/javasci.htm \
-help/fr/SciStringArray.htm \
-help/fr/SciComplexArray.htm \
-help/fr/SciDoubleArray.htm
-
-
-#### javasci : documentation EN #### 
-libjavasci_la_helpendir = $(target)/help/eng
-libjavasci_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/javasci.htm \
-help/eng/Scilab.htm \
-help/eng/SciComplexArray.htm \
-help/eng/SciComplex.htm \
-help/eng/SciDoubleArray.htm \
-help/eng/SciDouble.htm \
-help/eng/SciStringArray.htm \
-help/eng/SciString.htm
-
 
 #### javasci : include files ####
 libjavasci_la_includedir=$(includedir)/javasci

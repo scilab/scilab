@@ -49,26 +49,6 @@ libsymbolic_la_sci_gatewaydir = $(target)/sci_gateway
 libsymbolic_la_sci_gateway_DATA = sci_gateway/symbolic
 
 
-#### symbolic : documentation FR #### 
-libsymbolic_la_helpfrdir = $(target)/help/fr
-libsymbolic_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/addf.htm \
-help/fr/ldivf.htm \
-help/fr/mulf.htm \
-help/fr/rdivf.htm \
-help/fr/subf.htm
-
-
-#### symbolic : documentation EN #### 
-libsymbolic_la_helpendir = $(target)/help/eng
-libsymbolic_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/addf.htm \
-help/eng/ldivf.htm \
-help/eng/mulf.htm \
-help/eng/rdivf.htm \
-help/eng/subf.htm
-
-
 #### symbolic : include files ####
 libsymbolic_la_includedir=$(includedir)/symbolic
 libsymbolic_la_include_HEADERS = includes/gw_symbolic.h

@@ -73,30 +73,4 @@ libspecial_functions_la_etc_DATA = etc/special_functions.quit etc/special_functi
 libspecial_functions_la_sci_gatewaydir = $(target)/sci_gateway
 libspecial_functions_la_sci_gateway_DATA = sci_gateway/special_functions
 
-
-#### special_functions : documentation FR #### 
-libspecial_functions_la_helpfrdir = $(target)/help/fr
-libspecial_functions_la_helpfr_DATA2 = help/fr/legendre.htm \
-help/fr/oldbessel.htm \
-help/fr/calerf.htm \
-help/fr/whatis.htm \
-help/fr/beta.htm \
-help/fr/bessel.htm \
-help/fr/gamma.htm \
-help/fr/dlgamma.htm \
-help/fr/gammaln.htm
-
-
-#### special_functions : documentation EN #### 
-libspecial_functions_la_helpendir = $(target)/help/eng
-libspecial_functions_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/legendre.htm \
-help/eng/bessel.htm \
-help/eng/beta.htm \
-help/eng/calerf.htm \
-help/eng/dlgamma.htm \
-help/eng/gammaln.htm \
-help/eng/gamma.htm \
-help/eng/oldbessel.htm
-
 include $(top_srcdir)/Makefile.incl.am

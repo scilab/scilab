@@ -75,46 +75,6 @@ libtime_la_etc_DATA = etc/time.quit etc/time.start
 libtime_la_sci_gatewaydir = $(target)/sci_gateway
 libtime_la_sci_gateway_DATA = sci_gateway/time
 
-#### time : documentation FR #### 
-libtime_la_helpfrdir = $(target)/help/fr
-libtime_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/realtime.htm \
-help/fr/calendar.htm \
-help/fr/clock.htm \
-help/fr/datenum.htm \
-help/fr/datevec.htm \
-help/fr/date.htm \
-help/fr/eomday.htm \
-help/fr/etime.htm \
-help/fr/getdate.htm \
-help/fr/now.htm \
-help/fr/sleep.htm \
-help/fr/tic.htm \
-help/fr/timer.htm \
-help/fr/toc.htm \
-help/fr/weekday.htm
-
-
-#### time : documentation EN #### 
-libtime_la_helpendir = $(target)/help/eng
-libtime_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/calendar.htm \
-help/eng/clock.htm \
-help/eng/datenum.htm \
-help/eng/datevec.htm \
-help/eng/date.htm \
-help/eng/eomday.htm \
-help/eng/etime.htm \
-help/eng/getdate.htm \
-help/eng/now.htm \
-help/eng/realtime.htm \
-help/eng/sleep.htm \
-help/eng/tic.htm \
-help/eng/timer.htm \
-help/eng/toc.htm \
-help/eng/weekday.htm
-
-
 #### time : include files ####
 libtime_la_includedir=$(includedir)/time
 libtime_la_include_HEADERS = includes/gw_time.h \

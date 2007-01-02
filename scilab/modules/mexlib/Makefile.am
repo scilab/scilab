@@ -38,15 +38,6 @@ libmexlib_la_macro_DATA = macros/buildmacros.sce
 libmexlib_la_etcdir = $(target)/etc
 libmexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
-#### mexlib : documentation FR #### 
-libmexlib_la_helpfrdir = $(target)/help/fr
-libmexlib_la_helpfr_DATA2 = 
-
-
-#### mexlib : documentation EN #### 
-libmexlib_la_helpendir = $(target)/help/eng
-libmexlib_la_helpen_DATA2 = 
-
 
 #### mexlib : include files ####
 libmexlib_la_includedir=$(includedir)/mexlib

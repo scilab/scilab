@@ -22,17 +22,6 @@ libfftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 libfftw_la_sci_gatewaydir = $(target)/sci_gateway
 libfftw_la_sci_gateway_DATA = sci_gateway/fftw
 
-
-#### fftw : documentation FR #### 
-libfftw_la_helpfrdir = $(target)/help/fr
-libfftw_la_helpfr_DATA2 = 
-
-
-#### fftw : documentation EN #### 
-libfftw_la_helpendir = $(target)/help/eng
-libfftw_la_helpen_DATA2 = 
-
-
 #### fftw : include files ####
 libfftw_la_includedir=$(includedir)/fftw
 libfftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \

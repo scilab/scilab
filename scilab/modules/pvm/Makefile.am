@@ -87,17 +87,6 @@ libpvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 libpvm_la_sci_gatewaydir = $(target)/sci_gateway
 libpvm_la_sci_gateway_DATA = sci_gateway/pvm
 
-
-#### pvm : documentation FR #### 
-libpvm_la_helpfrdir = $(target)/help/fr
-libpvm_la_helpfr_DATA2 = 
-
-
-#### pvm : documentation EN #### 
-libpvm_la_helpendir = $(target)/help/eng
-libpvm_la_helpen_DATA2 = 
-
-
 #### pvm : include files ####
 libpvm_la_includedir=$(includedir)/pvm
 libpvm_la_include_HEADERS = includes/sci_pvm_exit.h \

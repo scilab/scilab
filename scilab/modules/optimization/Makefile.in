@@ -476,55 +476,6 @@ liboptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 #### optimization : gateway declaration #### 
 liboptimization_la_sci_gatewaydir = $(target)/sci_gateway
 liboptimization_la_sci_gateway_DATA = sci_gateway/optimization
-
-#### optimization : documentation FR #### 
-liboptimization_la_helpfrdir = $(target)/help/fr
-liboptimization_la_helpfr_DATA2 = help/fr/datafit.htm \
-help/fr/fit_dat.htm \
-help/fr/leastsq.htm \
-help/fr/linpro.htm \
-help/fr/lmitool.htm \
-help/fr/lmisolver.htm \
-help/fr/NDcost.htm \
-help/fr/lsqrsolve.htm \
-help/fr/mps2linpro.htm \
-help/fr/numdiff.htm \
-help/fr/optim.htm \
-help/fr/qld.htm \
-help/fr/quapro.htm \
-help/fr/semidef.htm \
-help/fr/fsolve.htm \
-help/fr/whatis.htm \
-help/fr/bvode.htm \
-help/fr/bvodeS.htm \
-help/fr/karmarkar.htm \
-help/fr/derivative.htm
-
-
-#### optimization : documentation EN #### 
-liboptimization_la_helpendir = $(target)/help/eng
-liboptimization_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/bvodeS.htm \
-help/eng/bvode.htm \
-help/eng/datafit.htm \
-help/eng/fit_dat.htm \
-help/eng/derivative.htm \
-help/eng/fsolve.htm \
-help/eng/leastsq.htm \
-help/eng/karmarkar.htm \
-help/eng/linpro.htm \
-help/eng/lmitool.htm \
-help/eng/lmisolver.htm \
-help/eng/NDcost.htm \
-help/eng/lsqrsolve.htm \
-help/eng/mps2linpro.htm \
-help/eng/numdiff.htm \
-help/eng/optim.htm \
-help/eng/qld.htm \
-help/eng/quapro.htm \
-help/eng/semidef.htm
-
-
 #### optimization : include files ####
 liboptimization_la_includedir = $(includedir)/optimization
 liboptimization_la_include_HEADERS = includes/gw_optim.h \
@@ -1454,7 +1405,7 @@ install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \

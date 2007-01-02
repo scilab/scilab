@@ -78,19 +78,6 @@ librandlib_la_etc_DATA = etc/randlib.quit etc/randlib.start
 librandlib_la_sci_gatewaydir = $(target)/sci_gateway
 librandlib_la_sci_gateway_DATA = sci_gateway/randlib
 
-
-#### randlib : documentation FR #### 
-librandlib_la_helpfrdir = $(target)/help/fr
-librandlib_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/grand.htm
-
-
-#### randlib : documentation EN #### 
-librandlib_la_helpendir = $(target)/help/eng
-librandlib_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/grand.htm
-
-
 #### randlib : include files ####
 librandlib_la_includedir=$(includedir)/randlib
 librandlib_la_include_HEADERS = includes/grand.h \

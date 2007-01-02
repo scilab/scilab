@@ -161,17 +161,6 @@ libscilab2fortran_la_etcdir = $(target)/etc
 libscilab2fortran_la_etc_DATA = etc/scilab2fortran.quit etc/scilab2fortran.start
 
 
-#### scilab2fortran : documentation FR #### 
-libscilab2fortran_la_helpfrdir = $(target)/help/fr
-libscilab2fortran_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/sci2for.htm
-
-
-#### scilab2fortran : documentation EN #### 
-libscilab2fortran_la_helpendir = $(target)/help/eng
-libscilab2fortran_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/sci2for.htm
-
 
 #### scilab2fortran : demos files ####
 libscilab2fortran_la_demosdir=$(target)/demos/

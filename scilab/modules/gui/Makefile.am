@@ -157,46 +157,6 @@ libgui_la_sci_gatewaydir = $(target)/sci_gateway
 libgui_la_sci_gateway_DATA = sci_gateway/gui
 
 
-#### gui : documentation FR #### 
-libgui_la_helpfrdir = $(target)/help/fr
-libgui_la_helpfr_DATA2 = help/fr/xgetfile.htm \
-help/fr/setmenu.htm \
-help/fr/x_matrix.htm \
-help/fr/clc.htm \
-help/fr/getvalue.htm \
-help/fr/whatis.htm \
-help/fr/delmenu.htm \
-help/fr/addmenu.htm \
-help/fr/tohome.htm \
-help/fr/unsetmenu.htm \
-help/fr/x_choices.htm \
-help/fr/x_choose.htm \
-help/fr/x_dialog.htm \
-help/fr/x_mdialog.htm \
-help/fr/x_message.htm \
-help/fr/x_message_modeless.htm
-
-
-#### gui : documentation EN #### 
-libgui_la_helpendir = $(target)/help/eng
-libgui_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/getvalue.htm \
-help/eng/addmenu.htm \
-help/eng/clc.htm \
-help/eng/delmenu.htm \
-help/eng/x_choose.htm \
-help/eng/setmenu.htm \
-help/eng/tohome.htm \
-help/eng/unsetmenu.htm \
-help/eng/x_choices.htm \
-help/eng/x_dialog.htm \
-help/eng/xgetfile.htm \
-help/eng/x_matrix.htm \
-help/eng/x_mdialog.htm \
-help/eng/x_message.htm \
-help/eng/x_message_modeless.htm
-
-
 #### gui : include files ####
 libgui_la_includedir=$(includedir)/gui
 libgui_la_include_HEADERS = includes/men_choice.h \

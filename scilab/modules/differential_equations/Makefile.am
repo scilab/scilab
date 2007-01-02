@@ -141,39 +141,4 @@ libdifferential_equations_la_etc_DATA = etc/differential_equations.quit etc/diff
 libdifferential_equations_la_sci_gatewaydir = $(target)/sci_gateway
 libdifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equations
 
-#### differential_equations : documentation FR #### 
-libdifferential_equations_la_helpfrdir = $(target)/help/fr
-libdifferential_equations_la_helpfr_DATA2 = help/fr/ode_root.htm \
-help/fr/impl.htm \
-help/fr/int2d.htm \
-help/fr/int3d.htm \
-help/fr/odedc.htm \
-help/fr/odeoptions.htm \
-help/fr/feval.htm \
-help/fr/intg.htm \
-help/fr/ode.htm \
-help/fr/whatis.htm \
-help/fr/dassl.htm \
-help/fr/dasrt.htm \
-help/fr/ode_discrete.htm \
-help/fr/ode_optional_output.htm
-
-
-#### differential_equations : documentation EN #### 
-libdifferential_equations_la_helpendir = $(target)/help/eng
-libdifferential_equations_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/ode_root.htm \
-help/eng/dasrt.htm \
-help/eng/dassl.htm \
-help/eng/feval.htm \
-help/eng/impl.htm \
-help/eng/int2d.htm \
-help/eng/int3d.htm \
-help/eng/intg.htm \
-help/eng/odedc.htm \
-help/eng/ode_discrete.htm \
-help/eng/odeoptions.htm \
-help/eng/ode_optional_output.htm \
-help/eng/ode.htm
-
 include $(top_srcdir)/Makefile.incl.am

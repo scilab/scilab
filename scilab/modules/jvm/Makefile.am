@@ -39,13 +39,4 @@ libjvm_la_macro_DATA =  macros/buildmacros.sce
 libjvm_la_etcdir = $(target)/etc
 libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
-#### jvm : documentation FR #### 
-libjvm_la_helpfrdir = $(target)/help/fr
-libjvm_la_helpfr_DATA2 = 
-
-
-#### jvm : documentation EN #### 
-libjvm_la_helpendir = $(target)/help/eng
-libjvm_la_helpen_DATA2 = 
-
 include $(top_srcdir)/Makefile.incl.am

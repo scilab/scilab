@@ -90,35 +90,6 @@ libdata_structures_la_sci_gatewaydir = $(target)/sci_gateway
 libdata_structures_la_sci_gateway_DATA = sci_gateway/data_structures
 
 
-#### data_structures : documentation FR #### 
-libdata_structures_la_helpfrdir = $(target)/help/fr
-libdata_structures_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/getfield.htm \
-help/fr/definedfields.htm \
-help/fr/list.htm \
-help/fr/lsslist.htm \
-help/fr/lstcat.htm \
-help/fr/mlist.htm \
-help/fr/rlist.htm \
-help/fr/setfield.htm \
-help/fr/struct.htm \
-help/fr/tlist.htm
-
-
-#### data_structures : documentation EN #### 
-libdata_structures_la_helpendir = $(target)/help/eng
-libdata_structures_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/definedfields.htm \
-help/eng/getfield.htm \
-help/eng/list.htm \
-help/eng/lsslist.htm \
-help/eng/lstcat.htm \
-help/eng/mlist.htm \
-help/eng/rlist.htm \
-help/eng/setfield.htm \
-help/eng/struct.htm \
-help/eng/tlist.htm
-
 
 #### data_structures : include files ####
 libdata_structures_la_includedir=$(includedir)/data_structures

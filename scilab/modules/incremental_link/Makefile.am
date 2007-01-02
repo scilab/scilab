@@ -48,36 +48,6 @@ macros/with_lcc.bin macros/names macros/lib macros/buildmacros.sce
 libincremental_link_la_etcdir = $(target)/etc
 libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link.start
 
-#### incremental_link : documentation FR #### 
-libincremental_link_la_helpfrdir = $(target)/help/fr
-libincremental_link_la_helpfr_DATA2 = help/fr/ilib_gen_gateway.htm \
-help/fr/ilib_for_link.htm \
-help/fr/findmsvccompiler.htm \
-help/fr/ilib_gen_loader.htm \
-help/fr/ilib_gen_Make.htm \
-help/fr/scilink.htm \
-help/fr/configure_msvc.htm \
-help/fr/whatis.htm \
-help/fr/G_make.htm \
-help/fr/ilib_compile.htm \
-help/fr/ilib_build.htm
-
-
-#### incremental_link : documentation EN #### 
-libincremental_link_la_helpendir = $(target)/help/eng
-libincremental_link_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/findmsvccompiler.htm \
-help/eng/configure_msvc.htm \
-help/eng/G_make.htm \
-help/eng/ilib_compile.htm \
-help/eng/ilib_build.htm \
-help/eng/ilib_gen_gateway.htm \
-help/eng/ilib_for_link.htm \
-help/eng/scilink.htm \
-help/eng/ilib_gen_loader.htm \
-help/eng/ilib_gen_Make.htm
-
-
 #### incremental_link : compilation scripts #### 
 libincremental_link_la_scriptdir = $(target)/src/scripts/
 libincremental_link_la_script_DATA = src/scripts/Makefile.in \

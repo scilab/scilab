@@ -297,42 +297,6 @@ libwintools_la_etc_DATA = etc/wintools.quit etc/wintools.start
 libwintools_la_sci_gatewaydir = $(target)/sci_gateway
 libwintools_la_sci_gateway_DATA = sci_gateway/wintools
 
-#### wintools : documentation FR #### 
-libwintools_la_helpfrdir = $(target)/help/fr
-libwintools_la_helpfr_DATA2 = help/fr/oemtochar.htm \
-help/fr/toprint.htm \
-help/fr/about.htm \
-help/fr/clipboard.htm \
-help/fr/console.htm \
-help/fr/dos.htm \
-help/fr/chartooem.htm \
-help/fr/mcisendstring.htm \
-help/fr/printsetupbox.htm \
-help/fr/getshortpathname.htm \
-help/fr/getlongpathname.htm \
-help/fr/toolbar.htm \
-help/fr/winopen.htm \
-help/fr/winqueryreg.htm
-
-
-#### wintools : documentation EN #### 
-libwintools_la_helpendir = $(target)/help/eng
-libwintools_la_helpen_DATA2 = help/eng/dos.htm \
-help/eng/about.htm \
-help/eng/console.htm \
-help/eng/chartooem.htm \
-help/eng/clipboard.htm \
-help/eng/getshortpathname.htm \
-help/eng/getlongpathname.htm \
-help/eng/toolbar.htm \
-help/eng/mcisendstring.htm \
-help/eng/oemtochar.htm \
-help/eng/printsetupbox.htm \
-help/eng/toprint.htm \
-help/eng/winopen.htm \
-help/eng/winqueryreg.htm
-
-
 #### wintools : include files ####
 libwintools_la_includedir = $(includedir)/wintools
 libwintools_la_include_HEADERS = includes/sci_dde.h \
@@ -915,7 +879,7 @@ install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \

@@ -267,14 +267,6 @@ libmexlib_la_macro_DATA = macros/buildmacros.sce
 libmexlib_la_etcdir = $(target)/etc
 libmexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
-#### mexlib : documentation FR #### 
-libmexlib_la_helpfrdir = $(target)/help/fr
-libmexlib_la_helpfr_DATA2 = 
-
-#### mexlib : documentation EN #### 
-libmexlib_la_helpendir = $(target)/help/eng
-libmexlib_la_helpen_DATA2 = 
-
 #### mexlib : include files ####
 libmexlib_la_includedir = $(includedir)/mexlib
 libmexlib_la_include_HEADERS = includes/mex.h
@@ -687,7 +679,7 @@ install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \

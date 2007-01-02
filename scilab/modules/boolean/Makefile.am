@@ -57,21 +57,6 @@ libboolean_la_etc_DATA = etc/boolean.quit etc/boolean.start
 libboolean_la_sci_gatewaydir = $(target)/sci_gateway
 libboolean_la_sci_gateway_DATA = sci_gateway/boolean
 
-
-#### boolean : documentation FR #### 
-libboolean_la_helpfrdir = $(target)/help/fr
-libboolean_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/find.htm \
-help/fr/bool2s.htm
-
-
-#### boolean : documentation EN #### 
-libboolean_la_helpendir = $(target)/help/eng
-libboolean_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/bool2s.htm \
-help/eng/find.htm
-
-
 #### boolean : include files ####
 libboolean_la_includedir=$(includedir)/boolean
 libboolean_la_include_HEADERS = includes/gw_boolean.h

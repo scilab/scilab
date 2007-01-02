@@ -71,44 +71,6 @@ libsound_la_etc_DATA = etc/sound.quit etc/sound.start
 libsound_la_sci_gatewaydir = $(target)/sci_gateway
 libsound_la_sci_gateway_DATA = sci_gateway/sound
 
-#### sound : documentation FR #### 
-libsound_la_helpfrdir = $(target)/help/fr
-libsound_la_helpfr_DATA2 = help/fr/loadwave.htm \
-help/fr/auwrite.htm \
-help/fr/lin2mu.htm \
-help/fr/savewave.htm \
-help/fr/mu2lin.htm \
-help/fr/playsnd.htm \
-help/fr/soundsec.htm \
-help/fr/sound.htm \
-help/fr/wavread.htm \
-help/fr/wavwrite.htm \
-help/fr/beep.htm \
-help/fr/whatis.htm \
-help/fr/auread.htm \
-help/fr/analyze.htm \
-help/fr/mapsound.htm
-
-
-#### sound : documentation EN #### 
-libsound_la_helpendir = $(target)/help/eng
-libsound_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/loadwave.htm \
-help/eng/analyze.htm \
-help/eng/auread.htm \
-help/eng/auwrite.htm \
-help/eng/beep.htm \
-help/eng/lin2mu.htm \
-help/eng/mapsound.htm \
-help/eng/mu2lin.htm \
-help/eng/playsnd.htm \
-help/eng/savewave.htm \
-help/eng/soundsec.htm \
-help/eng/sound.htm \
-help/eng/wavread.htm \
-help/eng/wavwrite.htm
-
-
 #### sound : include files ####
 libsound_la_includedir=$(includedir)/sound
 libsound_la_include_HEADERS = includes/sci_beep.h \

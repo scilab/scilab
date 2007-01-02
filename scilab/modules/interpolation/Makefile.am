@@ -61,36 +61,6 @@ libinterpolation_la_etc_DATA = etc/interpolation.quit etc/interpolation.start
 libinterpolation_la_sci_gatewaydir = $(target)/sci_gateway
 libinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
 
-#### interpolation : documentation FR #### 
-libinterpolation_la_helpfrdir = $(target)/help/fr
-libinterpolation_la_helpfr_DATA2 = help/fr/interp3d.htm \
-help/fr/interp.htm \
-help/fr/lsq_splin.htm \
-help/fr/splin3d.htm \
-help/fr/splin.htm \
-help/fr/intsplin.htm \
-help/fr/whatis.htm \
-help/fr/cshep2d.htm \
-help/fr/bsplin3val.htm \
-help/fr/eval_cshep2d.htm \
-help/fr/linear_interpn.htm
-
-
-#### interpolation : documentation EN #### 
-libinterpolation_la_helpendir = $(target)/help/eng
-libinterpolation_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/eval_cshep2d.htm \
-help/eng/bsplin3val.htm \
-help/eng/cshep2d.htm \
-help/eng/interp3d.htm \
-help/eng/interp.htm \
-help/eng/intsplin.htm \
-help/eng/lsq_splin.htm \
-help/eng/linear_interpn.htm \
-help/eng/splin3d.htm \
-help/eng/splin.htm
-
-
 #### interpolation : include files ####
 libinterpolation_la_includedir=$(includedir)/interpolation
 libinterpolation_la_include_HEADERS = includes/gw_interpolation.h \

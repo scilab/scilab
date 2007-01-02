@@ -66,43 +66,4 @@ macros/test_d.bin macros/names macros/lib macros/buildmacros.sce
 libtfds_la_etcdir = $(target)/etc
 libtfds_la_etc_DATA = etc/tfds.quit etc/tfds.start
 
-#### tfds : documentation FR #### 
-libtfds_la_helpfrdir = $(target)/help/fr
-libtfds_la_helpfr_DATA2 = help/fr/whatis.htm \
-help/fr/obscont1.htm \
-help/fr/boucle.htm \
-help/fr/fishing.htm \
-help/fr/fusee.htm \
-help/fr/lotest.htm \
-help/fr/mine.htm \
-help/fr/portrait.htm \
-help/fr/portr3d.htm \
-help/fr/recur.htm \
-help/fr/systems.htm \
-help/fr/tangent.htm \
-help/fr/tdinit.htm \
-help/fr/bifish.htm \
-help/fr/artest.htm \
-help/fr/chaintest.htm
-
-
-#### tfds : documentation EN #### 
-libtfds_la_helpendir = $(target)/help/eng
-libtfds_la_helpen_DATA2 = help/eng/whatis.htm \
-help/eng/obscont1.htm \
-help/eng/artest.htm \
-help/eng/bifish.htm \
-help/eng/boucle.htm \
-help/eng/fishing.htm \
-help/eng/chaintest.htm \
-help/eng/fusee.htm \
-help/eng/lotest.htm \
-help/eng/mine.htm \
-help/eng/portrait.htm \
-help/eng/portr3d.htm \
-help/eng/recur.htm \
-help/eng/systems.htm \
-help/eng/tangent.htm \
-help/eng/tdinit.htm
-
 include $(top_srcdir)/Makefile.incl.am
