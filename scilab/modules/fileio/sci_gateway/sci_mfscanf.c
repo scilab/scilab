@@ -95,6 +95,7 @@ int int_objfscanf(char *fname,unsigned long fname_len)
 
 	/* create Scilab variable with each column of data */
 	err=Sci_Store(rowcount,ncol,data,type_s,retval_s);
+	Free_Scan(rowcount,ncol,type_s,&data);
 	if (err==MEM_LACK) { Scierror(999,"Error: in sscanf: cannot allocate more memory \r\n");}
 	return 0;
 }  

@@ -102,7 +102,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
 	CreateVarFromPtr(++iarg, "S", &nrow, &one, temp);
 	FREE(temp);
-	for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);
+	/*for (j=0;j<nrow;j++) FREE(data[i+ncol*j].s);*/ 
       }
       else {
 	CreateVar(++iarg, "d", &nrow, &one, &l);
@@ -112,7 +112,7 @@ int Sci_Store __PARAMS((int nrow, int ncol, entry *data, sfdir *type, int retval
 
       LhsVar(i+2)=iarg;
     }
-    FREE(data);
+    /*FREE(data);*/
     /** we must complete the returned arguments up to Lhs **/
   Complete:
     for ( i = ncol+2; i <= Lhs ; i++) 
