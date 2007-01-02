@@ -5,7 +5,7 @@ function [q,fact]=%i_lcm(p)
 //!
 // Copyright INRIA, S. Steer
   k=find(p==0) 
-  if k<>[] then q=0,fact=0*ones(p),fact(k)=1,return,end
+  if k<>[] then q=p(k(1)),fact=0*ones(p),fact(k)=1,return,end
 
   q=p(1);
   for k=2:size(p,'*')
