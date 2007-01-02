@@ -16,7 +16,7 @@ sci_gateway/sci_sleep.c \
 sci_gateway/sci_getdate.c \
 sci_gateway/gw_time.c
 
-libtime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/
+libtime_la_CFLAGS=  -Iincludes/ -I$(top_srcdir)/libs/MALLOC/includes/ -Isrc/
 
 lib_LTLIBRARIES = libtime.la
 
@@ -77,9 +77,9 @@ libtime_la_sci_gateway_DATA = sci_gateway/time
 
 #### time : documentation FR #### 
 libtime_la_helpfrdir = $(target)/help/fr
-libtime_la_helpfr_DATA = help/fr/realtime.htm \
+libtime_la_helpfr_DATA2 = help/fr/whatis.htm \
+help/fr/realtime.htm \
 help/fr/calendar.htm \
-help/fr/whatis.htm \
 help/fr/clock.htm \
 help/fr/datenum.htm \
 help/fr/datevec.htm \
@@ -97,7 +97,7 @@ help/fr/weekday.htm
 
 #### time : documentation EN #### 
 libtime_la_helpendir = $(target)/help/eng
-libtime_la_helpen_DATA = help/eng/whatis.htm \
+libtime_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/calendar.htm \
 help/eng/clock.htm \
 help/eng/datenum.htm \
@@ -125,3 +125,4 @@ includes/sci_xpause.h \
 includes/sci_sleep.h \
 includes/sci_calendar.h
 
+include $(top_srcdir)/Makefile.incl.am

@@ -143,7 +143,7 @@ libdifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equatio
 
 #### differential_equations : documentation FR #### 
 libdifferential_equations_la_helpfrdir = $(target)/help/fr
-libdifferential_equations_la_helpfr_DATA = help/fr/ode_root.htm \
+libdifferential_equations_la_helpfr_DATA2 = help/fr/ode_root.htm \
 help/fr/impl.htm \
 help/fr/int2d.htm \
 help/fr/int3d.htm \
@@ -161,7 +161,7 @@ help/fr/ode_optional_output.htm
 
 #### differential_equations : documentation EN #### 
 libdifferential_equations_la_helpendir = $(target)/help/eng
-libdifferential_equations_la_helpen_DATA = help/eng/whatis.htm \
+libdifferential_equations_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/ode_root.htm \
 help/eng/dasrt.htm \
 help/eng/dassl.htm \
@@ -176,3 +176,4 @@ help/eng/odeoptions.htm \
 help/eng/ode_optional_output.htm \
 help/eng/ode.htm
 
+include $(top_srcdir)/Makefile.incl.am

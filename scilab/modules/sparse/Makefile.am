@@ -209,7 +209,7 @@ libsparse_la_sci_gateway_DATA = sci_gateway/sparse
 
 #### sparse : documentation FR #### 
 libsparse_la_helpfrdir = $(target)/help/fr
-libsparse_la_helpfr_DATA = help/fr/full.htm \
+libsparse_la_helpfr_DATA2 = help/fr/full.htm \
 help/fr/gmres.htm \
 help/fr/pcg.htm \
 help/fr/qmr.htm \
@@ -231,7 +231,7 @@ help/fr/spchol.htm
 
 #### sparse : documentation EN #### 
 libsparse_la_helpendir = $(target)/help/eng
-libsparse_la_helpen_DATA = help/eng/whatis.htm \
+libsparse_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/dnaupd.htm \
 help/eng/dsaupd.htm \
 help/eng/full.htm \
@@ -260,3 +260,4 @@ includes/spDefs.h \
 includes/spmatrix.h \
 includes/spConfig.h
 
+include $(top_srcdir)/Makefile.incl.am

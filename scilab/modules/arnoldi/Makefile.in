@@ -39,9 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/arnoldi
 DIST_COMMON = $(libarnoldi_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/arnoldi
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -63,8 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libarnoldi_la_etcdir)" \
-	"$(DESTDIR)$(libarnoldi_la_helpendir)" \
-	"$(DESTDIR)$(libarnoldi_la_helpfrdir)" \
 	"$(DESTDIR)$(libarnoldi_la_macrodir)" \
 	"$(DESTDIR)$(libarnoldi_la_rootdir)" \
 	"$(DESTDIR)$(libarnoldi_la_sci_gatewaydir)" \
@@ -131,13 +129,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libarnoldi_la_SOURCES)
 DIST_SOURCES = $(libarnoldi_la_SOURCES)
 libarnoldi_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libarnoldi_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libarnoldi_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libarnoldi_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libarnoldi_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libarnoldi_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libarnoldi_la_etc_DATA) $(libarnoldi_la_helpen_DATA) \
-	$(libarnoldi_la_helpfr_DATA) $(libarnoldi_la_macro_DATA) \
+DATA = $(libarnoldi_la_etc_DATA) $(libarnoldi_la_macro_DATA) \
 	$(libarnoldi_la_root_DATA) $(libarnoldi_la_sci_gateway_DATA)
 libarnoldi_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libarnoldi_la_include_HEADERS)
@@ -380,7 +375,7 @@ libarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi
 
 #### arnoldi : documentation FR #### 
 libarnoldi_la_helpfrdir = $(target)/help/fr
-libarnoldi_la_helpfr_DATA = help/fr/dsaupd.htm \
+libarnoldi_la_helpfr_DATA2 = help/fr/dsaupd.htm \
 help/fr/dseupd.htm \
 help/fr/znaupd.htm \
 help/fr/zneupd.htm \
@@ -391,7 +386,7 @@ help/fr/dnaupd.htm
 
 #### arnoldi : documentation EN #### 
 libarnoldi_la_helpendir = $(target)/help/eng
-libarnoldi_la_helpen_DATA = help/eng/whatis.htm \
+libarnoldi_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/dnaupd.htm \
 help/eng/dneupd.htm \
 help/eng/dsaupd.htm \
@@ -399,11 +394,19 @@ help/eng/dseupd.htm \
 help/eng/znaupd.htm \
 help/eng/zneupd.htm
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -730,40 +733,6 @@ uninstall-libarnoldi_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libarnoldi_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libarnoldi_la_etcdir)/$$f"; \
 	done
-install-libarnoldi_la_helpenDATA: $(libarnoldi_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libarnoldi_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libarnoldi_la_helpendir)"
-	@list='$(libarnoldi_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libarnoldi_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libarnoldi_la_helpendir)/$$f'"; \
-	  $(libarnoldi_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libarnoldi_la_helpendir)/$$f"; \
-	done
-
-uninstall-libarnoldi_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libarnoldi_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libarnoldi_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libarnoldi_la_helpendir)/$$f"; \
-	done
-install-libarnoldi_la_helpfrDATA: $(libarnoldi_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libarnoldi_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libarnoldi_la_helpfrdir)"
-	@list='$(libarnoldi_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libarnoldi_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libarnoldi_la_helpfrdir)/$$f'"; \
-	  $(libarnoldi_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libarnoldi_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libarnoldi_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libarnoldi_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libarnoldi_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libarnoldi_la_helpfrdir)/$$f"; \
-	done
 install-libarnoldi_la_macroDATA: $(libarnoldi_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libarnoldi_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libarnoldi_la_macrodir)"
@@ -911,7 +880,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libarnoldi_la_etcdir)" "$(DESTDIR)$(libarnoldi_la_helpendir)" "$(DESTDIR)$(libarnoldi_la_helpfrdir)" "$(DESTDIR)$(libarnoldi_la_macrodir)" "$(DESTDIR)$(libarnoldi_la_rootdir)" "$(DESTDIR)$(libarnoldi_la_sci_gatewaydir)" "$(DESTDIR)$(libarnoldi_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libarnoldi_la_etcdir)" "$(DESTDIR)$(libarnoldi_la_macrodir)" "$(DESTDIR)$(libarnoldi_la_rootdir)" "$(DESTDIR)$(libarnoldi_la_sci_gatewaydir)" "$(DESTDIR)$(libarnoldi_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -960,8 +929,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libarnoldi_la_etcDATA \
-	install-libarnoldi_la_helpenDATA \
-	install-libarnoldi_la_helpfrDATA \
 	install-libarnoldi_la_includeHEADERS \
 	install-libarnoldi_la_macroDATA install-libarnoldi_la_rootDATA \
 	install-libarnoldi_la_sci_gatewayDATA
@@ -971,6 +938,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -1001,8 +970,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libarnoldi_la_etcDATA \
-	uninstall-libarnoldi_la_helpenDATA \
-	uninstall-libarnoldi_la_helpfrDATA \
 	uninstall-libarnoldi_la_includeHEADERS \
 	uninstall-libarnoldi_la_macroDATA \
 	uninstall-libarnoldi_la_rootDATA \
@@ -1016,10 +983,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libarnoldi_la_etcDATA \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libarnoldi_la_etcDATA \
-	install-libarnoldi_la_helpenDATA \
-	install-libarnoldi_la_helpfrDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libarnoldi_la_etcDATA \
 	install-libarnoldi_la_includeHEADERS \
 	install-libarnoldi_la_macroDATA install-libarnoldi_la_rootDATA \
 	install-libarnoldi_la_sci_gatewayDATA install-man install-pdf \
@@ -1029,13 +995,51 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libarnoldi_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libarnoldi_la_etcDATA \
-	uninstall-libarnoldi_la_helpenDATA \
-	uninstall-libarnoldi_la_helpfrDATA \
 	uninstall-libarnoldi_la_includeHEADERS \
 	uninstall-libarnoldi_la_macroDATA \
 	uninstall-libarnoldi_la_rootDATA \
 	uninstall-libarnoldi_la_sci_gatewayDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

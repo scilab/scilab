@@ -50,7 +50,7 @@ libincremental_link_la_etc_DATA = etc/incremental_link.quit etc/incremental_link
 
 #### incremental_link : documentation FR #### 
 libincremental_link_la_helpfrdir = $(target)/help/fr
-libincremental_link_la_helpfr_DATA = help/fr/ilib_gen_gateway.htm \
+libincremental_link_la_helpfr_DATA2 = help/fr/ilib_gen_gateway.htm \
 help/fr/ilib_for_link.htm \
 help/fr/findmsvccompiler.htm \
 help/fr/ilib_gen_loader.htm \
@@ -65,7 +65,7 @@ help/fr/ilib_build.htm
 
 #### incremental_link : documentation EN #### 
 libincremental_link_la_helpendir = $(target)/help/eng
-libincremental_link_la_helpen_DATA = help/eng/whatis.htm \
+libincremental_link_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/findmsvccompiler.htm \
 help/eng/configure_msvc.htm \
 help/eng/G_make.htm \
@@ -96,3 +96,4 @@ src/scripts/install-sh \
 src/scripts/missing \
 src/scripts/scicompile.sh \
 src/scripts/libtool
+include $(top_srcdir)/Makefile.incl.am

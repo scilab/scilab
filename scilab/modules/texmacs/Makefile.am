@@ -46,10 +46,11 @@ libtexmacs_la_etc_DATA = etc/texmacs.quit etc/texmacs.start
 
 #### texmacs : documentation FR #### 
 libtexmacs_la_helpfrdir = $(target)/help/fr
-libtexmacs_la_helpfr_DATA = 
+libtexmacs_la_helpfr_DATA2 = 
 
 
 #### texmacs : documentation EN #### 
 libtexmacs_la_helpendir = $(target)/help/eng
-libtexmacs_la_helpen_DATA = 
+libtexmacs_la_helpen_DATA2 = 
 
+include $(top_srcdir)/Makefile.incl.am

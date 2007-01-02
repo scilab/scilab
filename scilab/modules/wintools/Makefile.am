@@ -60,12 +60,11 @@ libwintools_la_sci_gateway_DATA = sci_gateway/wintools
 
 #### wintools : documentation FR #### 
 libwintools_la_helpfrdir = $(target)/help/fr
-libwintools_la_helpfr_DATA = help/fr/oemtochar.htm \
+libwintools_la_helpfr_DATA2 = help/fr/oemtochar.htm \
 help/fr/toprint.htm \
 help/fr/about.htm \
 help/fr/clipboard.htm \
 help/fr/console.htm \
-help/fr/whatis.htm \
 help/fr/dos.htm \
 help/fr/chartooem.htm \
 help/fr/mcisendstring.htm \
@@ -79,8 +78,7 @@ help/fr/winqueryreg.htm
 
 #### wintools : documentation EN #### 
 libwintools_la_helpendir = $(target)/help/eng
-libwintools_la_helpen_DATA = help/eng/whatis.htm \
-help/eng/dos.htm \
+libwintools_la_helpen_DATA2 = help/eng/dos.htm \
 help/eng/about.htm \
 help/eng/console.htm \
 help/eng/chartooem.htm \
@@ -118,3 +116,4 @@ includes/sci_fileassociationbox.h \
 includes/sci_dos.h \
 includes/intihmcolor.h
 
+include $(top_srcdir)/Makefile.incl.am

@@ -159,7 +159,7 @@ libgui_la_sci_gateway_DATA = sci_gateway/gui
 
 #### gui : documentation FR #### 
 libgui_la_helpfrdir = $(target)/help/fr
-libgui_la_helpfr_DATA = help/fr/xgetfile.htm \
+libgui_la_helpfr_DATA2 = help/fr/xgetfile.htm \
 help/fr/setmenu.htm \
 help/fr/x_matrix.htm \
 help/fr/clc.htm \
@@ -179,7 +179,7 @@ help/fr/x_message_modeless.htm
 
 #### gui : documentation EN #### 
 libgui_la_helpendir = $(target)/help/eng
-libgui_la_helpen_DATA = help/eng/whatis.htm \
+libgui_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/getvalue.htm \
 help/eng/addmenu.htm \
 help/eng/clc.htm \
@@ -212,3 +212,4 @@ includes/sci_show_window.h
 libgui_la_demosdir=$(target)/demos/
 libgui_la_demos_DATA = demos/dialog.dem
 
+include $(top_srcdir)/Makefile.incl.am

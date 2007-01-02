@@ -3,6 +3,7 @@
 ### INRIA - Scilab 2006 
 ##########
 
+
 DATA_STRUCTURES_C_SOURCES = src/c/stcreate.c \
 src/c/hmops.c \
 src/c/DoublyLinkedList.c
@@ -52,6 +53,11 @@ libdata_structures_la_LIBADD = \
 
 libdata_structures_la_PKGCONFIG = data_structures.pc
 
+SUFFIXES = .sci
+.sci:
+	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
+
+
 datadir=${prefix}/modules
 #### Target ######
 target=$(datadir)/data_structures
@@ -86,7 +92,7 @@ libdata_structures_la_sci_gateway_DATA = sci_gateway/data_structures
 
 #### data_structures : documentation FR #### 
 libdata_structures_la_helpfrdir = $(target)/help/fr
-libdata_structures_la_helpfr_DATA = help/fr/whatis.htm \
+libdata_structures_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/getfield.htm \
 help/fr/definedfields.htm \
 help/fr/list.htm \
@@ -101,7 +107,7 @@ help/fr/tlist.htm
 
 #### data_structures : documentation EN #### 
 libdata_structures_la_helpendir = $(target)/help/eng
-libdata_structures_la_helpen_DATA = help/eng/whatis.htm \
+libdata_structures_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/definedfields.htm \
 help/eng/getfield.htm \
 help/eng/list.htm \
@@ -120,3 +126,4 @@ libdata_structures_la_include_HEADERS = includes/gw_data_structures1.h \
 includes/gw_data_structures2.h \
 includes/DoublyLinkedList.h
 
+include $(top_srcdir)/Makefile.incl.am

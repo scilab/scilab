@@ -215,7 +215,7 @@ libstatistics_la_sci_gateway_DATA = sci_gateway/statistics
 
 #### statistics : documentation FR #### 
 libstatistics_la_helpfrdir = $(target)/help/fr
-libstatistics_la_helpfr_DATA = help/fr/labostat.htm \
+libstatistics_la_helpfr_DATA2 = help/fr/labostat.htm \
 help/fr/cmoment.htm \
 help/fr/correl.htm \
 help/fr/covar.htm \
@@ -274,7 +274,7 @@ help/fr/median.htm
 
 #### statistics : documentation EN #### 
 libstatistics_la_helpendir = $(target)/help/eng
-libstatistics_la_helpen_DATA = help/eng/whatis.htm \
+libstatistics_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/labostat.htm \
 help/eng/cdfbet.htm \
 help/eng/cdfbin.htm \
@@ -335,3 +335,4 @@ help/eng/variance.htm
 libstatistics_la_includedir=$(includedir)/statistics
 libstatistics_la_include_HEADERS = includes/gw_statistics.h
 
+include $(top_srcdir)/Makefile.incl.am

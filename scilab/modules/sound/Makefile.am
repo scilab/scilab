@@ -73,7 +73,7 @@ libsound_la_sci_gateway_DATA = sci_gateway/sound
 
 #### sound : documentation FR #### 
 libsound_la_helpfrdir = $(target)/help/fr
-libsound_la_helpfr_DATA = help/fr/loadwave.htm \
+libsound_la_helpfr_DATA2 = help/fr/loadwave.htm \
 help/fr/auwrite.htm \
 help/fr/lin2mu.htm \
 help/fr/savewave.htm \
@@ -92,7 +92,7 @@ help/fr/mapsound.htm
 
 #### sound : documentation EN #### 
 libsound_la_helpendir = $(target)/help/eng
-libsound_la_helpen_DATA = help/eng/whatis.htm \
+libsound_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/loadwave.htm \
 help/eng/analyze.htm \
 help/eng/auread.htm \
@@ -123,3 +123,4 @@ libsound_la_demosdir=$(target)/demos/
 libsound_la_demos_DATA = demos/chimes.wav \
 demos/sound.dem
 
+include $(top_srcdir)/Makefile.incl.am

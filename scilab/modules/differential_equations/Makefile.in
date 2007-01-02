@@ -33,8 +33,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/differential_equations
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -56,8 +57,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libdifferential_equations_la_etcdir)" \
-	"$(DESTDIR)$(libdifferential_equations_la_helpendir)" \
-	"$(DESTDIR)$(libdifferential_equations_la_helpfrdir)" \
 	"$(DESTDIR)$(libdifferential_equations_la_macrodir)" \
 	"$(DESTDIR)$(libdifferential_equations_la_rootdir)" \
 	"$(DESTDIR)$(libdifferential_equations_la_sci_gatewaydir)"
@@ -121,14 +120,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libdifferential_equations_la_SOURCES)
 DIST_SOURCES = $(libdifferential_equations_la_SOURCES)
 libdifferential_equations_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libdifferential_equations_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libdifferential_equations_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libdifferential_equations_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libdifferential_equations_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libdifferential_equations_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libdifferential_equations_la_etc_DATA) \
-	$(libdifferential_equations_la_helpen_DATA) \
-	$(libdifferential_equations_la_helpfr_DATA) \
 	$(libdifferential_equations_la_macro_DATA) \
 	$(libdifferential_equations_la_root_DATA) \
 	$(libdifferential_equations_la_sci_gateway_DATA)
@@ -413,7 +408,7 @@ libdifferential_equations_la_sci_gateway_DATA = sci_gateway/differential_equatio
 
 #### differential_equations : documentation FR #### 
 libdifferential_equations_la_helpfrdir = $(target)/help/fr
-libdifferential_equations_la_helpfr_DATA = help/fr/ode_root.htm \
+libdifferential_equations_la_helpfr_DATA2 = help/fr/ode_root.htm \
 help/fr/impl.htm \
 help/fr/int2d.htm \
 help/fr/int3d.htm \
@@ -431,7 +426,7 @@ help/fr/ode_optional_output.htm
 
 #### differential_equations : documentation EN #### 
 libdifferential_equations_la_helpendir = $(target)/help/eng
-libdifferential_equations_la_helpen_DATA = help/eng/whatis.htm \
+libdifferential_equations_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/ode_root.htm \
 help/eng/dasrt.htm \
 help/eng/dassl.htm \
@@ -446,11 +441,19 @@ help/eng/odeoptions.htm \
 help/eng/ode_optional_output.htm \
 help/eng/ode.htm
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -936,40 +939,6 @@ uninstall-libdifferential_equations_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libdifferential_equations_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libdifferential_equations_la_etcdir)/$$f"; \
 	done
-install-libdifferential_equations_la_helpenDATA: $(libdifferential_equations_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdifferential_equations_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libdifferential_equations_la_helpendir)"
-	@list='$(libdifferential_equations_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libdifferential_equations_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdifferential_equations_la_helpendir)/$$f'"; \
-	  $(libdifferential_equations_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdifferential_equations_la_helpendir)/$$f"; \
-	done
-
-uninstall-libdifferential_equations_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libdifferential_equations_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libdifferential_equations_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libdifferential_equations_la_helpendir)/$$f"; \
-	done
-install-libdifferential_equations_la_helpfrDATA: $(libdifferential_equations_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdifferential_equations_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libdifferential_equations_la_helpfrdir)"
-	@list='$(libdifferential_equations_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libdifferential_equations_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdifferential_equations_la_helpfrdir)/$$f'"; \
-	  $(libdifferential_equations_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdifferential_equations_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libdifferential_equations_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libdifferential_equations_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libdifferential_equations_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libdifferential_equations_la_helpfrdir)/$$f"; \
-	done
 install-libdifferential_equations_la_macroDATA: $(libdifferential_equations_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libdifferential_equations_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libdifferential_equations_la_macrodir)"
@@ -1100,7 +1069,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libdifferential_equations_la_etcdir)" "$(DESTDIR)$(libdifferential_equations_la_helpendir)" "$(DESTDIR)$(libdifferential_equations_la_helpfrdir)" "$(DESTDIR)$(libdifferential_equations_la_macrodir)" "$(DESTDIR)$(libdifferential_equations_la_rootdir)" "$(DESTDIR)$(libdifferential_equations_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libdifferential_equations_la_etcdir)" "$(DESTDIR)$(libdifferential_equations_la_macrodir)" "$(DESTDIR)$(libdifferential_equations_la_rootdir)" "$(DESTDIR)$(libdifferential_equations_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1149,8 +1118,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libdifferential_equations_la_etcDATA \
-	install-libdifferential_equations_la_helpenDATA \
-	install-libdifferential_equations_la_helpfrDATA \
 	install-libdifferential_equations_la_macroDATA \
 	install-libdifferential_equations_la_rootDATA \
 	install-libdifferential_equations_la_sci_gatewayDATA
@@ -1160,6 +1127,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -1191,8 +1160,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libdifferential_equations_la_etcDATA \
-	uninstall-libdifferential_equations_la_helpenDATA \
-	uninstall-libdifferential_equations_la_helpfrDATA \
 	uninstall-libdifferential_equations_la_macroDATA \
 	uninstall-libdifferential_equations_la_rootDATA \
 	uninstall-libdifferential_equations_la_sci_gatewayDATA
@@ -1205,11 +1172,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
 	install-libdifferential_equations_la_etcDATA \
-	install-libdifferential_equations_la_helpenDATA \
-	install-libdifferential_equations_la_helpfrDATA \
 	install-libdifferential_equations_la_macroDATA \
 	install-libdifferential_equations_la_rootDATA \
 	install-libdifferential_equations_la_sci_gatewayDATA \
@@ -1220,12 +1185,50 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libdifferential_equations_la_etcDATA \
-	uninstall-libdifferential_equations_la_helpenDATA \
-	uninstall-libdifferential_equations_la_helpfrDATA \
 	uninstall-libdifferential_equations_la_macroDATA \
 	uninstall-libdifferential_equations_la_rootDATA \
 	uninstall-libdifferential_equations_la_sci_gatewayDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

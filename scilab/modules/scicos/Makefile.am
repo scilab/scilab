@@ -1406,7 +1406,7 @@ libscicos_la_sci_gateway_DATA = sci_gateway/scicos
 
 #### scicos : documentation FR #### 
 libscicos_la_helpfrdir = $(target)/help/fr
-libscicos_la_helpfr_DATA = help/fr/node21.htm \
+libscicos_la_helpfr_DATA2 = help/fr/node21.htm \
 help/fr/RAND_f.htm \
 help/fr/CMSCOPE.htm \
 help/fr/MAXMIN.htm \
@@ -1600,7 +1600,7 @@ help/fr/DEMUX.htm
 
 #### scicos : documentation EN #### 
 libscicos_la_helpendir = $(target)/help/eng
-libscicos_la_helpen_DATA = help/eng/node21.htm \
+libscicos_la_helpen_DATA2 = help/eng/node21.htm \
 help/eng/RAND_f.htm \
 help/eng/CMSCOPE.htm \
 help/eng/MAXMIN.htm \
@@ -1849,3 +1849,4 @@ demos/live.dat \
 demos/fibo.cosf \
 demos/Controller.cosf
 
+include $(top_srcdir)/Makefile.incl.am

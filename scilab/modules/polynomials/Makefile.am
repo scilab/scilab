@@ -200,23 +200,19 @@ libpolynomials_la_sci_gateway_DATA = sci_gateway/polynomials
 
 #### polynomials : documentation FR #### 
 libpolynomials_la_helpfrdir = $(target)/help/fr
-libpolynomials_la_helpfr_DATA = help/fr/colcompr.htm \
-help/fr/systmat.htm \
+libpolynomials_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/bezout.htm \
-help/fr/whatis.htm \
-help/fr/routh_t.htm \
-help/fr/pol2tex.htm \
 help/fr/clean.htm \
 help/fr/cmndred.htm \
 help/fr/coeff.htm \
 help/fr/coffg.htm \
-help/fr/diophant.htm \
+help/fr/colcompr.htm \
 help/fr/degree.htm \
 help/fr/denom.htm \
 help/fr/derivat.htm \
 help/fr/determ.htm \
 help/fr/detr.htm \
-help/fr/rowcompr.htm \
+help/fr/diophant.htm \
 help/fr/factors.htm \
 help/fr/gcd.htm \
 help/fr/hermit.htm \
@@ -234,15 +230,16 @@ help/fr/pol2str.htm \
 help/fr/polfact.htm \
 help/fr/residu.htm \
 help/fr/roots.htm \
+help/fr/rowcompr.htm \
 help/fr/sfact.htm \
-help/fr/simp.htm \
 help/fr/simp_mode.htm \
+help/fr/simp.htm \
 help/fr/sylm.htm
 
 
 #### polynomials : documentation EN #### 
 libpolynomials_la_helpendir = $(target)/help/eng
-libpolynomials_la_helpen_DATA = help/eng/whatis.htm \
+libpolynomials_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/colcompr.htm \
 help/eng/bezout.htm \
 help/eng/clean.htm \
@@ -285,4 +282,6 @@ help/eng/systmat.htm
 #### polynomials : include files ####
 libpolynomials_la_includedir=$(includedir)/polynomials
 libpolynomials_la_include_HEADERS = includes/gw_polynomials.h
+
+include $(top_srcdir)/Makefile.incl.am
 

@@ -23,7 +23,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 #### javasci : documentation FR #### 
 libjavasci_la_helpfrdir = $(target)/help/fr
-libjavasci_la_helpfr_DATA = help/fr/SciComplex.htm \
+libjavasci_la_helpfr_DATA2 = help/fr/SciComplex.htm \
 help/fr/SciDouble.htm \
 help/fr/Scilab.htm \
 help/fr/SciString.htm \
@@ -36,7 +36,7 @@ help/fr/SciDoubleArray.htm
 
 #### javasci : documentation EN #### 
 libjavasci_la_helpendir = $(target)/help/eng
-libjavasci_la_helpen_DATA = help/eng/whatis.htm \
+libjavasci_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/javasci.htm \
 help/eng/Scilab.htm \
 help/eng/SciComplexArray.htm \
@@ -56,3 +56,4 @@ includes/javasci_SciStringArray.h \
 includes/javasci_SciComplexArray.h \
 includes/javasci_SciDoubleArray.h
 
+include $(top_srcdir)/Makefile.incl.am

@@ -39,9 +39,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/pvm
 DIST_COMMON = $(am__libpvm_la_include_HEADERS_DIST) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
+subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -458,11 +459,12 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@demos/pvm1.sce \
 @PVM_TRUE@demos/script.sce
 
+SUFFIXES = .xml .sci
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .xml .sci .bin .c .htm .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1226,6 +1228,20 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 
 
 @PVM_FALSE@		echo "PVM not activated. Skip this module."
+
+.xml.htm:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	fi )
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

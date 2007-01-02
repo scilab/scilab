@@ -1,3 +1,9 @@
+##########
+### Sylvestre Ledru <sylvestre.ledru@inria.fr>
+### INRIA - Scilab 2006 
+##########
+
+
 INTERSCI_LIB_C_SOURCES = \
 src/lib/libinter.c \
 src/lib/erro.c \
@@ -55,12 +61,13 @@ libintersci_la_etc_DATA = etc/intersci.quit etc/intersci.start
 
 #### intersci : documentation FR #### 
 libintersci_la_helpfrdir = $(target)/help/fr
-libintersci_la_helpfr_DATA = help/fr/whatis.htm \
-help/fr/intersci.htm
+libintersci_la_helpfr_DATA2 = help/fr/whatis.htm
 
 
 #### intersci : documentation EN #### 
 libintersci_la_helpendir = $(target)/help/eng
-libintersci_la_helpen_DATA = help/eng/whatis.htm \
+libintersci_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/intersci.htm
+
+include $(top_srcdir)/Makefile.incl.am
 

@@ -163,13 +163,13 @@ libscilab2fortran_la_etc_DATA = etc/scilab2fortran.quit etc/scilab2fortran.start
 
 #### scilab2fortran : documentation FR #### 
 libscilab2fortran_la_helpfrdir = $(target)/help/fr
-libscilab2fortran_la_helpfr_DATA = help/fr/whatis.htm \
+libscilab2fortran_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/sci2for.htm
 
 
 #### scilab2fortran : documentation EN #### 
 libscilab2fortran_la_helpendir = $(target)/help/eng
-libscilab2fortran_la_helpen_DATA = help/eng/whatis.htm \
+libscilab2fortran_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/sci2for.htm
 
 
@@ -184,3 +184,4 @@ demos/demotrad.dem \
 demos/dem6.sce \
 demos/printspecs.sci
 
+include $(top_srcdir)/Makefile.incl.am

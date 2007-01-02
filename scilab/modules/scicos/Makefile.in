@@ -41,9 +41,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/scicos
 DIST_COMMON = $(libscicos_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -65,8 +65,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libscicos_la_etcdir)" \
-	"$(DESTDIR)$(libscicos_la_helpendir)" \
-	"$(DESTDIR)$(libscicos_la_helpfrdir)" \
 	"$(DESTDIR)$(libscicos_la_rootdir)" \
 	"$(DESTDIR)$(libscicos_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscicos_la_demosdir)" \
@@ -176,14 +174,11 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscicos_la_SOURCES)
 DIST_SOURCES = $(libscicos_la_SOURCES)
 libscicos_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscicos_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libscicos_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libscicos_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicos_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscicos_la_demosDATA_INSTALL = $(install_sh_DATA)
 nobase_libscicos_la_macroDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libscicos_la_etc_DATA) $(libscicos_la_helpen_DATA) \
-	$(libscicos_la_helpfr_DATA) $(libscicos_la_root_DATA) \
+DATA = $(libscicos_la_etc_DATA) $(libscicos_la_root_DATA) \
 	$(libscicos_la_sci_gateway_DATA) \
 	$(nobase_libscicos_la_demos_DATA) \
 	$(nobase_libscicos_la_macro_DATA)
@@ -1716,7 +1711,7 @@ libscicos_la_sci_gateway_DATA = sci_gateway/scicos
 
 #### scicos : documentation FR #### 
 libscicos_la_helpfrdir = $(target)/help/fr
-libscicos_la_helpfr_DATA = help/fr/node21.htm \
+libscicos_la_helpfr_DATA2 = help/fr/node21.htm \
 help/fr/RAND_f.htm \
 help/fr/CMSCOPE.htm \
 help/fr/MAXMIN.htm \
@@ -1910,7 +1905,7 @@ help/fr/DEMUX.htm
 
 #### scicos : documentation EN #### 
 libscicos_la_helpendir = $(target)/help/eng
-libscicos_la_helpen_DATA = help/eng/node21.htm \
+libscicos_la_helpen_DATA2 = help/eng/node21.htm \
 help/eng/RAND_f.htm \
 help/eng/CMSCOPE.htm \
 help/eng/MAXMIN.htm \
@@ -2159,12 +2154,20 @@ demos/live.dat \
 demos/fibo.cosf \
 demos/Controller.cosf
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -3301,40 +3304,6 @@ uninstall-libscicos_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libscicos_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscicos_la_etcdir)/$$f"; \
 	done
-install-libscicos_la_helpenDATA: $(libscicos_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicos_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_helpendir)"
-	@list='$(libscicos_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscicos_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_helpendir)/$$f'"; \
-	  $(libscicos_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_helpendir)/$$f"; \
-	done
-
-uninstall-libscicos_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscicos_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscicos_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscicos_la_helpendir)/$$f"; \
-	done
-install-libscicos_la_helpfrDATA: $(libscicos_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicos_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_helpfrdir)"
-	@list='$(libscicos_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscicos_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_helpfrdir)/$$f'"; \
-	  $(libscicos_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libscicos_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscicos_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscicos_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscicos_la_helpfrdir)/$$f"; \
-	done
 install-libscicos_la_rootDATA: $(libscicos_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicos_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_rootdir)"
@@ -3504,7 +3473,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscicos_la_etcdir)" "$(DESTDIR)$(libscicos_la_helpendir)" "$(DESTDIR)$(libscicos_la_helpfrdir)" "$(DESTDIR)$(libscicos_la_rootdir)" "$(DESTDIR)$(libscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libscicos_la_demosdir)" "$(DESTDIR)$(libscicos_la_macrodir)" "$(DESTDIR)$(libscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscicos_la_etcdir)" "$(DESTDIR)$(libscicos_la_rootdir)" "$(DESTDIR)$(libscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libscicos_la_demosdir)" "$(DESTDIR)$(libscicos_la_macrodir)" "$(DESTDIR)$(libscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -3556,8 +3525,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libscicos_la_etcDATA \
-	install-libscicos_la_helpenDATA \
-	install-libscicos_la_helpfrDATA \
 	install-libscicos_la_includeHEADERS \
 	install-libscicos_la_rootDATA \
 	install-libscicos_la_sci_gatewayDATA \
@@ -3569,6 +3536,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -3599,8 +3568,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
-	uninstall-libscicos_la_helpenDATA \
-	uninstall-libscicos_la_helpfrDATA \
 	uninstall-libscicos_la_includeHEADERS \
 	uninstall-libscicos_la_rootDATA \
 	uninstall-libscicos_la_sci_gatewayDATA \
@@ -3615,10 +3582,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libscicos_la_etcDATA \
-	install-libscicos_la_helpenDATA \
-	install-libscicos_la_helpfrDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libscicos_la_etcDATA \
 	install-libscicos_la_includeHEADERS \
 	install-libscicos_la_rootDATA \
 	install-libscicos_la_sci_gatewayDATA install-man \
@@ -3630,8 +3596,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libscicos_la_etcDATA \
-	uninstall-libscicos_la_helpenDATA \
-	uninstall-libscicos_la_helpfrDATA \
 	uninstall-libscicos_la_includeHEADERS \
 	uninstall-libscicos_la_rootDATA \
 	uninstall-libscicos_la_sci_gatewayDATA \
@@ -3645,6 +3609,46 @@ includes/blocks.h:
 	for file in $(SCICOS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames 
 	for file in $(SCICOS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
 	$(top_srcdir)/modules/scicos/src/c/GenBlocks.sh build/Fblocknames build/Cblocknames includes/blocks.h
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

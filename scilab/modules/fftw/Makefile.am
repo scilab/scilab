@@ -25,12 +25,12 @@ libfftw_la_sci_gateway_DATA = sci_gateway/fftw
 
 #### fftw : documentation FR #### 
 libfftw_la_helpfrdir = $(target)/help/fr
-libfftw_la_helpfr_DATA = 
+libfftw_la_helpfr_DATA2 = 
 
 
 #### fftw : documentation EN #### 
 libfftw_la_helpendir = $(target)/help/eng
-libfftw_la_helpen_DATA = 
+libfftw_la_helpen_DATA2 = 
 
 
 #### fftw : include files ####
@@ -46,3 +46,4 @@ includes/sci_freefftw_plan.h \
 includes/gw_fftw.h \
 includes/sci_fftw.h
 
+include $(top_srcdir)/Makefile.incl.am

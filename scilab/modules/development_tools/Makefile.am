@@ -28,10 +28,11 @@ libdevelopment_tools_la_etc_DATA = etc/development_tools.quit etc/development_to
 
 #### development_tools : documentation FR #### 
 libdevelopment_tools_la_helpfrdir = $(target)/help/fr
-libdevelopment_tools_la_helpfr_DATA = 
+libdevelopment_tools_la_helpfr_DATA2 = 
 
 
 #### development_tools : documentation EN #### 
 libdevelopment_tools_la_helpendir = $(target)/help/eng
-libdevelopment_tools_la_helpen_DATA = 
+libdevelopment_tools_la_helpen_DATA2 = 
 
+include $(top_srcdir)/Makefile.incl.am

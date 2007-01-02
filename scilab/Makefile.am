@@ -26,19 +26,20 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
-all-local: ### Crappy code ... Need some clean up
+all-local: install-exec
+ ### Crappy code ... Need some clean up
 
-macros:
-	-@( cd $(top_builddir) ; SCI=`pwd` export SCI; \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+macros:$(top_builddir)/scilab-bin
+	-@( cd $(top_builddir) ; \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-man:
-	-@( cd $(top_builddir) ; SCI=`pwd` export SCI; \
+html-local:$(top_builddir)/scilab-bin
+	-@( cd $(top_builddir) ; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;")
 
-	-@( cd $(top_builddir) ; SCI=`pwd` export SCI; \
+	-@( cd $(top_builddir) ; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/scilab-bin -nb -l fr -nouserstartup -nwni -e "xmltohtml();exit;")
 
@@ -51,3 +52,18 @@ distclean-local::
 clean-local:
 #	@..\..\..\bin\scilex -nb -l eng -nouserstartup -nwni -e clean_help();exit;
 #	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;
+
+# Install HTML files
+pkgdocdir = $(MagickDocumentPath)
+DOCDIRS = images www www/api www/Magick++
+HTML_INSTALL_DATA_TARGETS = install-data-html
+install-data-html:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	$(INSTALL_DATA) $(srcdir)/index.html $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+	  for file in $(srcdir)/$$dir/*.* ; do \
+	    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    $(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+	  done ; \
+	done

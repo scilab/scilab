@@ -24,12 +24,13 @@ libmaple2scilab_la_etc_DATA = etc/maple2scilab.quit etc/maple2scilab.start
 
 #### maple2scilab : documentation FR #### 
 libmaple2scilab_la_helpfrdir = $(target)/help/fr
-libmaple2scilab_la_helpfr_DATA = help/fr/whatis.htm \
+libmaple2scilab_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/sci2map.htm
 
 
 #### maple2scilab : documentation EN #### 
 libmaple2scilab_la_helpendir = $(target)/help/eng
-libmaple2scilab_la_helpen_DATA = help/eng/whatis.htm \
+libmaple2scilab_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/sci2map.htm
 
+include $(top_srcdir)/Makefile.incl.am

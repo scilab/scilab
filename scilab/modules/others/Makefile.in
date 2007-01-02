@@ -37,8 +37,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/others
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,19 +62,14 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libothers_la_etcdir)" \
-	"$(DESTDIR)$(libothers_la_helpendir)" \
-	"$(DESTDIR)$(libothers_la_helpfrdir)" \
 	"$(DESTDIR)$(libothers_la_macrodir)" \
 	"$(DESTDIR)$(libothers_la_rootdir)" \
 	"$(DESTDIR)$(libothers_la_demosdir)"
 libothers_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libothers_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libothers_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libothers_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libothers_la_rootDATA_INSTALL = $(INSTALL_DATA)
 nobase_libothers_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libothers_la_etc_DATA) $(libothers_la_helpen_DATA) \
-	$(libothers_la_helpfr_DATA) $(libothers_la_macro_DATA) \
+DATA = $(libothers_la_etc_DATA) $(libothers_la_macro_DATA) \
 	$(libothers_la_root_DATA) $(nobase_libothers_la_demos_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -234,14 +230,14 @@ libothers_la_etc_DATA = etc/others.quit etc/others.start
 
 #### others : documentation FR #### 
 libothers_la_helpfrdir = $(target)/help/fr
-libothers_la_helpfr_DATA = help/fr/whatis.htm \
+libothers_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/edit.htm \
 help/fr/add_demo.htm
 
 
 #### others : documentation EN #### 
 libothers_la_helpendir = $(target)/help/eng
-libothers_la_helpen_DATA = help/eng/whatis.htm \
+libothers_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/add_demo.htm \
 help/eng/edit.htm
 
@@ -425,10 +421,19 @@ demos/loop_demo/cmplxfun.sci \
 demos/loop_demo/demo_isoSurf.sci \
 demos/loop_demo/demo_image.htm
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -479,40 +484,6 @@ uninstall-libothers_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libothers_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libothers_la_etcdir)/$$f"; \
-	done
-install-libothers_la_helpenDATA: $(libothers_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libothers_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_helpendir)"
-	@list='$(libothers_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libothers_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_helpendir)/$$f'"; \
-	  $(libothers_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_helpendir)/$$f"; \
-	done
-
-uninstall-libothers_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libothers_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libothers_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libothers_la_helpendir)/$$f"; \
-	done
-install-libothers_la_helpfrDATA: $(libothers_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libothers_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libothers_la_helpfrdir)"
-	@list='$(libothers_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libothers_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libothers_la_helpfrdir)/$$f'"; \
-	  $(libothers_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libothers_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libothers_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libothers_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libothers_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libothers_la_helpfrdir)/$$f"; \
 	done
 install-libothers_la_macroDATA: $(libothers_la_macro_DATA)
 	@$(NORMAL_INSTALL)
@@ -604,7 +575,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libothers_la_etcdir)" "$(DESTDIR)$(libothers_la_helpendir)" "$(DESTDIR)$(libothers_la_helpfrdir)" "$(DESTDIR)$(libothers_la_macrodir)" "$(DESTDIR)$(libothers_la_rootdir)" "$(DESTDIR)$(libothers_la_demosdir)"; do \
+	for dir in "$(DESTDIR)$(libothers_la_etcdir)" "$(DESTDIR)$(libothers_la_macrodir)" "$(DESTDIR)$(libothers_la_rootdir)" "$(DESTDIR)$(libothers_la_demosdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -650,9 +621,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libothers_la_etcDATA \
-	install-libothers_la_helpenDATA \
-	install-libothers_la_helpfrDATA install-libothers_la_macroDATA \
-	install-libothers_la_rootDATA \
+	install-libothers_la_macroDATA install-libothers_la_rootDATA \
 	install-nobase_libothers_la_demosDATA
 
 install-dvi: install-dvi-am
@@ -660,6 +629,8 @@ install-dvi: install-dvi-am
 install-exec-am:
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -688,8 +659,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libothers_la_etcDATA \
-	uninstall-libothers_la_helpenDATA \
-	uninstall-libothers_la_helpfrDATA \
 	uninstall-libothers_la_macroDATA \
 	uninstall-libothers_la_rootDATA \
 	uninstall-nobase_libothers_la_demosDATA
@@ -701,9 +670,8 @@ uninstall-am: uninstall-libothers_la_etcDATA \
 	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-libothers_la_etcDATA \
-	install-libothers_la_helpenDATA \
-	install-libothers_la_helpfrDATA install-libothers_la_macroDATA \
+	install-html-local install-info install-info-am \
+	install-libothers_la_etcDATA install-libothers_la_macroDATA \
 	install-libothers_la_rootDATA install-man \
 	install-nobase_libothers_la_demosDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
@@ -711,12 +679,50 @@ uninstall-am: uninstall-libothers_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libothers_la_etcDATA \
-	uninstall-libothers_la_helpenDATA \
-	uninstall-libothers_la_helpfrDATA \
 	uninstall-libothers_la_macroDATA \
 	uninstall-libothers_la_rootDATA \
 	uninstall-nobase_libothers_la_demosDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

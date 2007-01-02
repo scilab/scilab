@@ -38,9 +38,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/javasci
 DIST_COMMON = $(libjavasci_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -63,18 +63,13 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libjavasci_la_etcdir)" \
-	"$(DESTDIR)$(libjavasci_la_helpendir)" \
-	"$(DESTDIR)$(libjavasci_la_helpfrdir)" \
 	"$(DESTDIR)$(libjavasci_la_macrodir)" \
 	"$(DESTDIR)$(libjavasci_la_rootdir)" \
 	"$(DESTDIR)$(libjavasci_la_includedir)"
 libjavasci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libjavasci_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libjavasci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_helpen_DATA) \
-	$(libjavasci_la_helpfr_DATA) $(libjavasci_la_macro_DATA) \
+DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_macro_DATA) \
 	$(libjavasci_la_root_DATA)
 libjavasci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libjavasci_la_include_HEADERS)
@@ -239,7 +234,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 #### javasci : documentation FR #### 
 libjavasci_la_helpfrdir = $(target)/help/fr
-libjavasci_la_helpfr_DATA = help/fr/SciComplex.htm \
+libjavasci_la_helpfr_DATA2 = help/fr/SciComplex.htm \
 help/fr/SciDouble.htm \
 help/fr/Scilab.htm \
 help/fr/SciString.htm \
@@ -252,7 +247,7 @@ help/fr/SciDoubleArray.htm
 
 #### javasci : documentation EN #### 
 libjavasci_la_helpendir = $(target)/help/eng
-libjavasci_la_helpen_DATA = help/eng/whatis.htm \
+libjavasci_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/javasci.htm \
 help/eng/Scilab.htm \
 help/eng/SciComplexArray.htm \
@@ -272,10 +267,19 @@ includes/javasci_SciStringArray.h \
 includes/javasci_SciComplexArray.h \
 includes/javasci_SciDoubleArray.h
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -326,40 +330,6 @@ uninstall-libjavasci_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libjavasci_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libjavasci_la_etcdir)/$$f"; \
-	done
-install-libjavasci_la_helpenDATA: $(libjavasci_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_helpendir)"
-	@list='$(libjavasci_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_helpendir)/$$f'"; \
-	  $(libjavasci_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_helpendir)/$$f"; \
-	done
-
-uninstall-libjavasci_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_helpendir)/$$f"; \
-	done
-install-libjavasci_la_helpfrDATA: $(libjavasci_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_helpfrdir)"
-	@list='$(libjavasci_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f'"; \
-	  $(libjavasci_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libjavasci_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_helpfrdir)/$$f"; \
 	done
 install-libjavasci_la_macroDATA: $(libjavasci_la_macro_DATA)
 	@$(NORMAL_INSTALL)
@@ -491,7 +461,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_helpendir)" "$(DESTDIR)$(libjavasci_la_helpfrdir)" "$(DESTDIR)$(libjavasci_la_macrodir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_macrodir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -537,8 +507,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libjavasci_la_etcDATA \
-	install-libjavasci_la_helpenDATA \
-	install-libjavasci_la_helpfrDATA \
 	install-libjavasci_la_includeHEADERS \
 	install-libjavasci_la_macroDATA install-libjavasci_la_rootDATA
 
@@ -547,6 +515,8 @@ install-dvi: install-dvi-am
 install-exec-am:
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -575,8 +545,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libjavasci_la_etcDATA \
-	uninstall-libjavasci_la_helpenDATA \
-	uninstall-libjavasci_la_helpfrDATA \
 	uninstall-libjavasci_la_includeHEADERS \
 	uninstall-libjavasci_la_macroDATA \
 	uninstall-libjavasci_la_rootDATA
@@ -588,10 +556,9 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-libjavasci_la_etcDATA \
-	install-libjavasci_la_helpenDATA \
-	install-libjavasci_la_helpfrDATA \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
 	install-libjavasci_la_macroDATA install-libjavasci_la_rootDATA \
 	install-man install-pdf install-pdf-am install-ps \
@@ -600,12 +567,50 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
 	ps ps-am tags uninstall uninstall-am \
 	uninstall-libjavasci_la_etcDATA \
-	uninstall-libjavasci_la_helpenDATA \
-	uninstall-libjavasci_la_helpfrDATA \
 	uninstall-libjavasci_la_includeHEADERS \
 	uninstall-libjavasci_la_macroDATA \
 	uninstall-libjavasci_la_rootDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -1226,12 +1226,13 @@ liboverloading_la_etc_DATA = etc/overloading.quit etc/overloading.start
 
 #### overloading : documentation FR #### 
 liboverloading_la_helpfrdir = $(target)/help/fr
-liboverloading_la_helpfr_DATA = help/fr/whatis.htm \
+liboverloading_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/overloading.htm
 
 
 #### overloading : documentation EN #### 
 liboverloading_la_helpendir = $(target)/help/eng
-liboverloading_la_helpen_DATA = help/eng/whatis.htm \
+liboverloading_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/overloading.htm
 
+include $(top_srcdir)/Makefile.incl.am

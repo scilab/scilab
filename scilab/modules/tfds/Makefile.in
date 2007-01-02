@@ -37,8 +37,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/tfds
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,17 +62,12 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libtfds_la_etcdir)" \
-	"$(DESTDIR)$(libtfds_la_helpendir)" \
-	"$(DESTDIR)$(libtfds_la_helpfrdir)" \
 	"$(DESTDIR)$(libtfds_la_macrodir)" \
 	"$(DESTDIR)$(libtfds_la_rootdir)"
 libtfds_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libtfds_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libtfds_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libtfds_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libtfds_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libtfds_la_etc_DATA) $(libtfds_la_helpen_DATA) \
-	$(libtfds_la_helpfr_DATA) $(libtfds_la_macro_DATA) \
+DATA = $(libtfds_la_etc_DATA) $(libtfds_la_macro_DATA) \
 	$(libtfds_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -277,7 +273,8 @@ libtfds_la_etc_DATA = etc/tfds.quit etc/tfds.start
 
 #### tfds : documentation FR #### 
 libtfds_la_helpfrdir = $(target)/help/fr
-libtfds_la_helpfr_DATA = help/fr/obscont1.htm \
+libtfds_la_helpfr_DATA2 = help/fr/whatis.htm \
+help/fr/obscont1.htm \
 help/fr/boucle.htm \
 help/fr/fishing.htm \
 help/fr/fusee.htm \
@@ -289,7 +286,6 @@ help/fr/recur.htm \
 help/fr/systems.htm \
 help/fr/tangent.htm \
 help/fr/tdinit.htm \
-help/fr/whatis.htm \
 help/fr/bifish.htm \
 help/fr/artest.htm \
 help/fr/chaintest.htm
@@ -297,7 +293,7 @@ help/fr/chaintest.htm
 
 #### tfds : documentation EN #### 
 libtfds_la_helpendir = $(target)/help/eng
-libtfds_la_helpen_DATA = help/eng/whatis.htm \
+libtfds_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/obscont1.htm \
 help/eng/artest.htm \
 help/eng/bifish.htm \
@@ -314,10 +310,19 @@ help/eng/systems.htm \
 help/eng/tangent.htm \
 help/eng/tdinit.htm
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -368,40 +373,6 @@ uninstall-libtfds_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libtfds_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libtfds_la_etcdir)/$$f"; \
-	done
-install-libtfds_la_helpenDATA: $(libtfds_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libtfds_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libtfds_la_helpendir)"
-	@list='$(libtfds_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libtfds_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtfds_la_helpendir)/$$f'"; \
-	  $(libtfds_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtfds_la_helpendir)/$$f"; \
-	done
-
-uninstall-libtfds_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libtfds_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtfds_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtfds_la_helpendir)/$$f"; \
-	done
-install-libtfds_la_helpfrDATA: $(libtfds_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libtfds_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libtfds_la_helpfrdir)"
-	@list='$(libtfds_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libtfds_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtfds_la_helpfrdir)/$$f'"; \
-	  $(libtfds_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtfds_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libtfds_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libtfds_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtfds_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtfds_la_helpfrdir)/$$f"; \
 	done
 install-libtfds_la_macroDATA: $(libtfds_la_macro_DATA)
 	@$(NORMAL_INSTALL)
@@ -474,7 +445,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libtfds_la_etcdir)" "$(DESTDIR)$(libtfds_la_helpendir)" "$(DESTDIR)$(libtfds_la_helpfrdir)" "$(DESTDIR)$(libtfds_la_macrodir)" "$(DESTDIR)$(libtfds_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libtfds_la_etcdir)" "$(DESTDIR)$(libtfds_la_macrodir)" "$(DESTDIR)$(libtfds_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -520,7 +491,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libtfds_la_etcDATA \
-	install-libtfds_la_helpenDATA install-libtfds_la_helpfrDATA \
 	install-libtfds_la_macroDATA install-libtfds_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -528,6 +498,8 @@ install-dvi: install-dvi-am
 install-exec-am:
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -556,9 +528,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libtfds_la_etcDATA \
-	uninstall-libtfds_la_helpenDATA \
-	uninstall-libtfds_la_helpfrDATA uninstall-libtfds_la_macroDATA \
-	uninstall-libtfds_la_rootDATA
+	uninstall-libtfds_la_macroDATA uninstall-libtfds_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -567,18 +537,56 @@ uninstall-am: uninstall-libtfds_la_etcDATA \
 	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-libtfds_la_etcDATA \
-	install-libtfds_la_helpenDATA install-libtfds_la_helpfrDATA \
-	install-libtfds_la_macroDATA install-libtfds_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am uninstall uninstall-am uninstall-libtfds_la_etcDATA \
-	uninstall-libtfds_la_helpenDATA \
-	uninstall-libtfds_la_helpfrDATA uninstall-libtfds_la_macroDATA \
+	install-html-local install-info install-info-am \
+	install-libtfds_la_etcDATA install-libtfds_la_macroDATA \
+	install-libtfds_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-libtfds_la_etcDATA uninstall-libtfds_la_macroDATA \
 	uninstall-libtfds_la_rootDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

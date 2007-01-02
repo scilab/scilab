@@ -37,8 +37,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/functions
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,17 +62,12 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libfunctions_la_etcdir)" \
-	"$(DESTDIR)$(libfunctions_la_helpendir)" \
-	"$(DESTDIR)$(libfunctions_la_helpfrdir)" \
 	"$(DESTDIR)$(libfunctions_la_macrodir)" \
 	"$(DESTDIR)$(libfunctions_la_rootdir)"
 libfunctions_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libfunctions_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libfunctions_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libfunctions_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libfunctions_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libfunctions_la_etc_DATA) $(libfunctions_la_helpen_DATA) \
-	$(libfunctions_la_helpfr_DATA) $(libfunctions_la_macro_DATA) \
+DATA = $(libfunctions_la_etc_DATA) $(libfunctions_la_macro_DATA) \
 	$(libfunctions_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -255,7 +251,7 @@ libfunctions_la_etc_DATA = etc/functions.quit etc/functions.start
 
 #### functions : documentation FR #### 
 libfunctions_la_helpfrdir = $(target)/help/fr
-libfunctions_la_helpfr_DATA = help/fr/macrovar.htm \
+libfunctions_la_helpfr_DATA2 = help/fr/macrovar.htm \
 help/fr/library.htm \
 help/fr/varargin.htm \
 help/fr/macro.htm \
@@ -274,7 +270,7 @@ help/fr/get_function_path.htm
 
 #### functions : documentation EN #### 
 libfunctions_la_helpendir = $(target)/help/eng
-libfunctions_la_helpen_DATA = help/eng/whatis.htm \
+libfunctions_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/functions.htm \
 help/eng/function.htm \
 help/eng/genlib.htm \
@@ -290,10 +286,19 @@ help/eng/showprofile.htm \
 help/eng/varargin.htm \
 help/eng/varargout.htm
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -344,40 +349,6 @@ uninstall-libfunctions_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libfunctions_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libfunctions_la_etcdir)/$$f"; \
-	done
-install-libfunctions_la_helpenDATA: $(libfunctions_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libfunctions_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libfunctions_la_helpendir)"
-	@list='$(libfunctions_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libfunctions_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfunctions_la_helpendir)/$$f'"; \
-	  $(libfunctions_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfunctions_la_helpendir)/$$f"; \
-	done
-
-uninstall-libfunctions_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libfunctions_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libfunctions_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libfunctions_la_helpendir)/$$f"; \
-	done
-install-libfunctions_la_helpfrDATA: $(libfunctions_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libfunctions_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libfunctions_la_helpfrdir)"
-	@list='$(libfunctions_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libfunctions_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfunctions_la_helpfrdir)/$$f'"; \
-	  $(libfunctions_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfunctions_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libfunctions_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libfunctions_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libfunctions_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libfunctions_la_helpfrdir)/$$f"; \
 	done
 install-libfunctions_la_macroDATA: $(libfunctions_la_macro_DATA)
 	@$(NORMAL_INSTALL)
@@ -450,7 +421,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libfunctions_la_etcdir)" "$(DESTDIR)$(libfunctions_la_helpendir)" "$(DESTDIR)$(libfunctions_la_helpfrdir)" "$(DESTDIR)$(libfunctions_la_macrodir)" "$(DESTDIR)$(libfunctions_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libfunctions_la_etcdir)" "$(DESTDIR)$(libfunctions_la_macrodir)" "$(DESTDIR)$(libfunctions_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -496,8 +467,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libfunctions_la_etcDATA \
-	install-libfunctions_la_helpenDATA \
-	install-libfunctions_la_helpfrDATA \
 	install-libfunctions_la_macroDATA \
 	install-libfunctions_la_rootDATA
 
@@ -506,6 +475,8 @@ install-dvi: install-dvi-am
 install-exec-am:
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -534,8 +505,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libfunctions_la_etcDATA \
-	uninstall-libfunctions_la_helpenDATA \
-	uninstall-libfunctions_la_helpfrDATA \
 	uninstall-libfunctions_la_macroDATA \
 	uninstall-libfunctions_la_rootDATA
 
@@ -546,9 +515,8 @@ uninstall-am: uninstall-libfunctions_la_etcDATA \
 	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-libfunctions_la_etcDATA \
-	install-libfunctions_la_helpenDATA \
-	install-libfunctions_la_helpfrDATA \
+	install-html-local install-info install-info-am \
+	install-libfunctions_la_etcDATA \
 	install-libfunctions_la_macroDATA \
 	install-libfunctions_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
@@ -556,11 +524,49 @@ uninstall-am: uninstall-libfunctions_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libfunctions_la_etcDATA \
-	uninstall-libfunctions_la_helpenDATA \
-	uninstall-libfunctions_la_helpfrDATA \
 	uninstall-libfunctions_la_macroDATA \
 	uninstall-libfunctions_la_rootDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

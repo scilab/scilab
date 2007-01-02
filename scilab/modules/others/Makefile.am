@@ -24,14 +24,14 @@ libothers_la_etc_DATA = etc/others.quit etc/others.start
 
 #### others : documentation FR #### 
 libothers_la_helpfrdir = $(target)/help/fr
-libothers_la_helpfr_DATA = help/fr/whatis.htm \
+libothers_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/edit.htm \
 help/fr/add_demo.htm
 
 
 #### others : documentation EN #### 
 libothers_la_helpendir = $(target)/help/eng
-libothers_la_helpen_DATA = help/eng/whatis.htm \
+libothers_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/add_demo.htm \
 help/eng/edit.htm
 
@@ -214,3 +214,4 @@ demos/loop_demo/scilab_logo.ppm \
 demos/loop_demo/cmplxfun.sci \
 demos/loop_demo/demo_isoSurf.sci \
 demos/loop_demo/demo_image.htm
+include $(top_srcdir)/Makefile.incl.am

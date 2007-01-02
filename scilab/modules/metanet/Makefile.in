@@ -39,9 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/metanet
 DIST_COMMON = $(libmetanet_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/metanet
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -64,8 +64,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libmetanet_la_demosdir)" \
 	"$(DESTDIR)$(libmetanet_la_etcdir)" \
-	"$(DESTDIR)$(libmetanet_la_helpendir)" \
-	"$(DESTDIR)$(libmetanet_la_helpfrdir)" \
 	"$(DESTDIR)$(libmetanet_la_macrodir)" \
 	"$(DESTDIR)$(libmetanet_la_rootdir)" \
 	"$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" \
@@ -133,13 +131,10 @@ SOURCES = $(libmetanet_la_SOURCES)
 DIST_SOURCES = $(libmetanet_la_SOURCES)
 libmetanet_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libmetanet_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libmetanet_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libmetanet_la_demos_DATA) $(libmetanet_la_etc_DATA) \
-	$(libmetanet_la_helpen_DATA) $(libmetanet_la_helpfr_DATA) \
 	$(libmetanet_la_macro_DATA) $(libmetanet_la_root_DATA) \
 	$(libmetanet_la_sci_gateway_DATA)
 libmetanet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -741,7 +736,7 @@ libmetanet_la_sci_gateway_DATA = sci_gateway/metanet
 
 #### metanet : documentation FR #### 
 libmetanet_la_helpfrdir = $(target)/help/fr
-libmetanet_la_helpfr_DATA = help/fr/netclose.htm \
+libmetanet_la_helpfr_DATA2 = help/fr/netclose.htm \
 help/fr/mesh2d.htm \
 help/fr/chain_struct.htm \
 help/fr/netwindows.htm \
@@ -822,7 +817,7 @@ help/fr/trans_closure.htm
 
 #### metanet : documentation EN #### 
 libmetanet_la_helpendir = $(target)/help/eng
-libmetanet_la_helpen_DATA = help/eng/whatis.htm \
+libmetanet_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/chain_struct.htm \
 help/eng/add_edge.htm \
 help/eng/add_node.htm \
@@ -925,11 +920,19 @@ demos/node2station \
 demos/mesh100.graph \
 demos/paris.graph
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1433,40 +1436,6 @@ uninstall-libmetanet_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libmetanet_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libmetanet_la_etcdir)/$$f"; \
 	done
-install-libmetanet_la_helpenDATA: $(libmetanet_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_helpendir)"
-	@list='$(libmetanet_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_helpendir)/$$f'"; \
-	  $(libmetanet_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_helpendir)/$$f"; \
-	done
-
-uninstall-libmetanet_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_helpendir)/$$f"; \
-	done
-install-libmetanet_la_helpfrDATA: $(libmetanet_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_helpfrdir)"
-	@list='$(libmetanet_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_helpfrdir)/$$f'"; \
-	  $(libmetanet_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libmetanet_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_helpfrdir)/$$f"; \
-	done
 install-libmetanet_la_macroDATA: $(libmetanet_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libmetanet_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_macrodir)"
@@ -1614,7 +1583,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmetanet_la_demosdir)" "$(DESTDIR)$(libmetanet_la_etcdir)" "$(DESTDIR)$(libmetanet_la_helpendir)" "$(DESTDIR)$(libmetanet_la_helpfrdir)" "$(DESTDIR)$(libmetanet_la_macrodir)" "$(DESTDIR)$(libmetanet_la_rootdir)" "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" "$(DESTDIR)$(libmetanet_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmetanet_la_demosdir)" "$(DESTDIR)$(libmetanet_la_etcdir)" "$(DESTDIR)$(libmetanet_la_macrodir)" "$(DESTDIR)$(libmetanet_la_rootdir)" "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" "$(DESTDIR)$(libmetanet_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1663,8 +1632,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libmetanet_la_demosDATA \
-	install-libmetanet_la_etcDATA install-libmetanet_la_helpenDATA \
-	install-libmetanet_la_helpfrDATA \
+	install-libmetanet_la_etcDATA \
 	install-libmetanet_la_includeHEADERS \
 	install-libmetanet_la_macroDATA install-libmetanet_la_rootDATA \
 	install-libmetanet_la_sci_gatewayDATA
@@ -1674,6 +1642,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -1706,8 +1676,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libmetanet_la_demosDATA \
 	uninstall-libmetanet_la_etcDATA \
-	uninstall-libmetanet_la_helpenDATA \
-	uninstall-libmetanet_la_helpfrDATA \
 	uninstall-libmetanet_la_includeHEADERS \
 	uninstall-libmetanet_la_macroDATA \
 	uninstall-libmetanet_la_rootDATA \
@@ -1721,10 +1689,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libmetanet_la_demosDATA \
-	install-libmetanet_la_etcDATA install-libmetanet_la_helpenDATA \
-	install-libmetanet_la_helpfrDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libmetanet_la_demosDATA install-libmetanet_la_etcDATA \
 	install-libmetanet_la_includeHEADERS \
 	install-libmetanet_la_macroDATA install-libmetanet_la_rootDATA \
 	install-libmetanet_la_sci_gatewayDATA install-man install-pdf \
@@ -1735,13 +1702,51 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libmetanet_la_demosDATA \
 	uninstall-libmetanet_la_etcDATA \
-	uninstall-libmetanet_la_helpenDATA \
-	uninstall-libmetanet_la_helpfrDATA \
 	uninstall-libmetanet_la_includeHEADERS \
 	uninstall-libmetanet_la_macroDATA \
 	uninstall-libmetanet_la_rootDATA \
 	uninstall-libmetanet_la_sci_gatewayDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

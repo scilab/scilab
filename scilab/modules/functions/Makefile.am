@@ -46,7 +46,7 @@ libfunctions_la_etc_DATA = etc/functions.quit etc/functions.start
 
 #### functions : documentation FR #### 
 libfunctions_la_helpfrdir = $(target)/help/fr
-libfunctions_la_helpfr_DATA = help/fr/macrovar.htm \
+libfunctions_la_helpfr_DATA2 = help/fr/macrovar.htm \
 help/fr/library.htm \
 help/fr/varargin.htm \
 help/fr/macro.htm \
@@ -65,7 +65,7 @@ help/fr/get_function_path.htm
 
 #### functions : documentation EN #### 
 libfunctions_la_helpendir = $(target)/help/eng
-libfunctions_la_helpen_DATA = help/eng/whatis.htm \
+libfunctions_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/functions.htm \
 help/eng/function.htm \
 help/eng/genlib.htm \
@@ -81,3 +81,4 @@ help/eng/showprofile.htm \
 help/eng/varargin.htm \
 help/eng/varargout.htm
 
+include $(top_srcdir)/Makefile.incl.am

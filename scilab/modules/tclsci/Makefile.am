@@ -326,7 +326,8 @@ libtclsci_la_sci_gateway_DATA = sci_gateway/tclsci
 
 #### tclsci : documentation FR #### 
 libtclsci_la_helpfrdir = $(target)/help/fr
-libtclsci_la_helpfr_DATA = help/fr/buttondialog.htm \
+libtclsci_la_helpfr_DATA2 = help/fr/whatis.htm \
+help/fr/buttondialog.htm \
 help/fr/demoplay.htm \
 help/fr/config.htm \
 help/fr/winclose.htm \
@@ -353,7 +354,6 @@ help/fr/TK_SetVar.htm \
 help/fr/uicontrol.htm \
 help/fr/waitbar.htm \
 help/fr/winlist.htm \
-help/fr/whatis.htm \
 help/fr/close.htm \
 help/fr/browsevar.htm \
 help/fr/TCL_CreateSlave.htm \
@@ -363,7 +363,7 @@ help/fr/TCL_DeleteInterp.htm
 
 #### tclsci : documentation EN #### 
 libtclsci_la_helpendir = $(target)/help/eng
-libtclsci_la_helpen_DATA = help/eng/whatis.htm \
+libtclsci_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/buttondialog.htm \
 help/eng/browsevar.htm \
 help/eng/demoplay.htm \
@@ -459,3 +459,4 @@ demos/tk/tcolor.sce \
 demos/tk/rolodex \
 demos/tk/vscale
 
+include $(top_srcdir)/Makefile.incl.am

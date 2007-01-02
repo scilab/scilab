@@ -81,13 +81,13 @@ librandlib_la_sci_gateway_DATA = sci_gateway/randlib
 
 #### randlib : documentation FR #### 
 librandlib_la_helpfrdir = $(target)/help/fr
-librandlib_la_helpfr_DATA = help/fr/whatis.htm \
+librandlib_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/grand.htm
 
 
 #### randlib : documentation EN #### 
 librandlib_la_helpendir = $(target)/help/eng
-librandlib_la_helpen_DATA = help/eng/whatis.htm \
+librandlib_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/grand.htm
 
 
@@ -104,3 +104,4 @@ librandlib_la_demos_DATA = demos/randomT.sci \
 demos/random.dem \
 demos/random.sci
 
+include $(top_srcdir)/Makefile.incl.am

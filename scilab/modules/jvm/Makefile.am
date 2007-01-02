@@ -41,10 +41,11 @@ libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 #### jvm : documentation FR #### 
 libjvm_la_helpfrdir = $(target)/help/fr
-libjvm_la_helpfr_DATA = 
+libjvm_la_helpfr_DATA2 = 
 
 
 #### jvm : documentation EN #### 
 libjvm_la_helpendir = $(target)/help/eng
-libjvm_la_helpen_DATA = 
+libjvm_la_helpen_DATA2 = 
 
+include $(top_srcdir)/Makefile.incl.am

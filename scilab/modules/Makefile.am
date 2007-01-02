@@ -5,7 +5,6 @@
 
 # The order DOES matter !!!
 SUBDIRS = \
-helptools \
 intersci \
 polynomials \
 cacsd \
@@ -50,8 +49,8 @@ texmacs \
 tfds \
 scipad \
 scilab2fortran \
-development_tools
-
+development_tools \
+helptools
 
 if JAVA
 SUBDIRS += jvm 
@@ -117,6 +116,7 @@ endif
 if JAVA
 libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
 endif
+
 ## Libs 
 libscilab_la_LIBADD += \
 $(top_builddir)/libs/blas/libblas.la \

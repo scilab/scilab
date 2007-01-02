@@ -43,9 +43,9 @@ host_triplet = @host@
 @IS_HPUX_TRUE@am__append_2 = src/c/getarg-hpux.c
 @IS_HPUX_FALSE@am__append_3 = src/fortran/fgetarg.f
 @IS_HPUX_FALSE@am__append_4 = src/c/getarg.c
-subdir = modules/core
 DIST_COMMON = $(libcore_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -68,8 +68,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libcore_la_demosintrodir)" \
 	"$(DESTDIR)$(libcore_la_etcdir)" \
-	"$(DESTDIR)$(libcore_la_helpendir)" \
-	"$(DESTDIR)$(libcore_la_helpfrdir)" \
 	"$(DESTDIR)$(libcore_la_macrodir)" \
 	"$(DESTDIR)$(libcore_la_rootdir)" \
 	"$(DESTDIR)$(libcore_la_sci_gatewaydir)" \
@@ -353,13 +351,10 @@ SOURCES = $(libcore_la_SOURCES)
 DIST_SOURCES = $(am__libcore_la_SOURCES_DIST)
 libcore_la_demosintroDATA_INSTALL = $(INSTALL_DATA)
 libcore_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libcore_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libcore_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libcore_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libcore_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libcore_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libcore_la_demosintro_DATA) $(libcore_la_etc_DATA) \
-	$(libcore_la_helpen_DATA) $(libcore_la_helpfr_DATA) \
 	$(libcore_la_macro_DATA) $(libcore_la_root_DATA) \
 	$(libcore_la_sci_gateway_DATA)
 libcore_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -756,7 +751,7 @@ libcore_la_sci_gateway_DATA = sci_gateway/core
 
 #### core : documentation FR #### 
 libcore_la_helpfrdir = $(target)/help/fr
-libcore_la_helpfr_DATA = help/fr/with_tk.htm \
+libcore_la_helpfr_DATA2 = help/fr/with_tk.htm \
 help/fr/intppty.htm \
 help/fr/continue.htm \
 help/fr/c_link.htm \
@@ -896,7 +891,7 @@ help/fr/with_macros_source.htm
 
 #### core : documentation EN #### 
 libcore_la_helpendir = $(target)/help/eng
-libcore_la_helpen_DATA = help/eng/whatis.htm \
+libcore_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/resethistory.htm \
 help/eng/stacksize.htm \
 help/eng/getmodules.htm \
@@ -1079,11 +1074,19 @@ demos/intro/dem01.dem \
 demos/intro/extc.sce \
 demos/intro/Makefile
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -2739,40 +2742,6 @@ uninstall-libcore_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libcore_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libcore_la_etcdir)/$$f"; \
 	done
-install-libcore_la_helpenDATA: $(libcore_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libcore_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_helpendir)"
-	@list='$(libcore_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libcore_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_helpendir)/$$f'"; \
-	  $(libcore_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_helpendir)/$$f"; \
-	done
-
-uninstall-libcore_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libcore_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libcore_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libcore_la_helpendir)/$$f"; \
-	done
-install-libcore_la_helpfrDATA: $(libcore_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libcore_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_helpfrdir)"
-	@list='$(libcore_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libcore_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcore_la_helpfrdir)/$$f'"; \
-	  $(libcore_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcore_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libcore_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libcore_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libcore_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libcore_la_helpfrdir)/$$f"; \
-	done
 install-libcore_la_macroDATA: $(libcore_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libcore_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libcore_la_macrodir)"
@@ -2920,7 +2889,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcore_la_demosintrodir)" "$(DESTDIR)$(libcore_la_etcdir)" "$(DESTDIR)$(libcore_la_helpendir)" "$(DESTDIR)$(libcore_la_helpfrdir)" "$(DESTDIR)$(libcore_la_macrodir)" "$(DESTDIR)$(libcore_la_rootdir)" "$(DESTDIR)$(libcore_la_sci_gatewaydir)" "$(DESTDIR)$(libcore_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcore_la_demosintrodir)" "$(DESTDIR)$(libcore_la_etcdir)" "$(DESTDIR)$(libcore_la_macrodir)" "$(DESTDIR)$(libcore_la_rootdir)" "$(DESTDIR)$(libcore_la_sci_gatewaydir)" "$(DESTDIR)$(libcore_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2969,16 +2938,17 @@ info: info-am
 info-am:
 
 install-data-am: install-libcore_la_demosintroDATA \
-	install-libcore_la_etcDATA install-libcore_la_helpenDATA \
-	install-libcore_la_helpfrDATA \
-	install-libcore_la_includeHEADERS install-libcore_la_macroDATA \
-	install-libcore_la_rootDATA install-libcore_la_sci_gatewayDATA
+	install-libcore_la_etcDATA install-libcore_la_includeHEADERS \
+	install-libcore_la_macroDATA install-libcore_la_rootDATA \
+	install-libcore_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -3010,8 +2980,7 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libcore_la_demosintroDATA \
-	uninstall-libcore_la_etcDATA uninstall-libcore_la_helpenDATA \
-	uninstall-libcore_la_helpfrDATA \
+	uninstall-libcore_la_etcDATA \
 	uninstall-libcore_la_includeHEADERS \
 	uninstall-libcore_la_macroDATA uninstall-libcore_la_rootDATA \
 	uninstall-libcore_la_sci_gatewayDATA
@@ -3024,10 +2993,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libcore_la_demosintroDATA \
-	install-libcore_la_etcDATA install-libcore_la_helpenDATA \
-	install-libcore_la_helpfrDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libcore_la_demosintroDATA install-libcore_la_etcDATA \
 	install-libcore_la_includeHEADERS install-libcore_la_macroDATA \
 	install-libcore_la_rootDATA install-libcore_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am install-ps \
@@ -3037,12 +3005,51 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libcore_la_demosintroDATA \
-	uninstall-libcore_la_etcDATA uninstall-libcore_la_helpenDATA \
-	uninstall-libcore_la_helpfrDATA \
+	uninstall-libcore_la_etcDATA \
 	uninstall-libcore_la_includeHEADERS \
 	uninstall-libcore_la_macroDATA uninstall-libcore_la_rootDATA \
 	uninstall-libcore_la_sci_gatewayDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

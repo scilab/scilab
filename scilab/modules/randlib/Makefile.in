@@ -39,9 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/randlib
 DIST_COMMON = $(librandlib_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/randlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -64,8 +64,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(librandlib_la_demosdir)" \
 	"$(DESTDIR)$(librandlib_la_etcdir)" \
-	"$(DESTDIR)$(librandlib_la_helpendir)" \
-	"$(DESTDIR)$(librandlib_la_helpfrdir)" \
 	"$(DESTDIR)$(librandlib_la_macrodir)" \
 	"$(DESTDIR)$(librandlib_la_rootdir)" \
 	"$(DESTDIR)$(librandlib_la_sci_gatewaydir)" \
@@ -110,13 +108,10 @@ SOURCES = $(librandlib_la_SOURCES)
 DIST_SOURCES = $(librandlib_la_SOURCES)
 librandlib_la_demosDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
-librandlib_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-librandlib_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_macroDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(librandlib_la_demos_DATA) $(librandlib_la_etc_DATA) \
-	$(librandlib_la_helpen_DATA) $(librandlib_la_helpfr_DATA) \
 	$(librandlib_la_macro_DATA) $(librandlib_la_root_DATA) \
 	$(librandlib_la_sci_gateway_DATA)
 librandlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -334,13 +329,13 @@ librandlib_la_sci_gateway_DATA = sci_gateway/randlib
 
 #### randlib : documentation FR #### 
 librandlib_la_helpfrdir = $(target)/help/fr
-librandlib_la_helpfr_DATA = help/fr/whatis.htm \
+librandlib_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/grand.htm
 
 
 #### randlib : documentation EN #### 
 librandlib_la_helpendir = $(target)/help/eng
-librandlib_la_helpen_DATA = help/eng/whatis.htm \
+librandlib_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/grand.htm
 
 
@@ -357,11 +352,19 @@ librandlib_la_demos_DATA = demos/randomT.sci \
 demos/random.dem \
 demos/random.sci
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -637,40 +640,6 @@ uninstall-librandlib_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(librandlib_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(librandlib_la_etcdir)/$$f"; \
 	done
-install-librandlib_la_helpenDATA: $(librandlib_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_helpendir)"
-	@list='$(librandlib_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_helpendir)/$$f'"; \
-	  $(librandlib_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_helpendir)/$$f"; \
-	done
-
-uninstall-librandlib_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_helpendir)/$$f"; \
-	done
-install-librandlib_la_helpfrDATA: $(librandlib_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_helpfrdir)"
-	@list='$(librandlib_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_helpfrdir)/$$f'"; \
-	  $(librandlib_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-librandlib_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_helpfrdir)/$$f"; \
-	done
 install-librandlib_la_macroDATA: $(librandlib_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(librandlib_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_macrodir)"
@@ -818,7 +787,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_demosdir)" "$(DESTDIR)$(librandlib_la_etcdir)" "$(DESTDIR)$(librandlib_la_helpendir)" "$(DESTDIR)$(librandlib_la_helpfrdir)" "$(DESTDIR)$(librandlib_la_macrodir)" "$(DESTDIR)$(librandlib_la_rootdir)" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_demosdir)" "$(DESTDIR)$(librandlib_la_etcdir)" "$(DESTDIR)$(librandlib_la_macrodir)" "$(DESTDIR)$(librandlib_la_rootdir)" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -867,8 +836,7 @@ info: info-am
 info-am:
 
 install-data-am: install-librandlib_la_demosDATA \
-	install-librandlib_la_etcDATA install-librandlib_la_helpenDATA \
-	install-librandlib_la_helpfrDATA \
+	install-librandlib_la_etcDATA \
 	install-librandlib_la_includeHEADERS \
 	install-librandlib_la_macroDATA install-librandlib_la_rootDATA \
 	install-librandlib_la_sci_gatewayDATA
@@ -878,6 +846,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -910,8 +880,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-librandlib_la_demosDATA \
 	uninstall-librandlib_la_etcDATA \
-	uninstall-librandlib_la_helpenDATA \
-	uninstall-librandlib_la_helpfrDATA \
 	uninstall-librandlib_la_includeHEADERS \
 	uninstall-librandlib_la_macroDATA \
 	uninstall-librandlib_la_rootDATA \
@@ -925,10 +893,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-librandlib_la_demosDATA \
-	install-librandlib_la_etcDATA install-librandlib_la_helpenDATA \
-	install-librandlib_la_helpfrDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-librandlib_la_demosDATA install-librandlib_la_etcDATA \
 	install-librandlib_la_includeHEADERS \
 	install-librandlib_la_macroDATA install-librandlib_la_rootDATA \
 	install-librandlib_la_sci_gatewayDATA install-man install-pdf \
@@ -939,13 +906,51 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-librandlib_la_demosDATA \
 	uninstall-librandlib_la_etcDATA \
-	uninstall-librandlib_la_helpenDATA \
-	uninstall-librandlib_la_helpfrDATA \
 	uninstall-librandlib_la_includeHEADERS \
 	uninstall-librandlib_la_macroDATA \
 	uninstall-librandlib_la_rootDATA \
 	uninstall-librandlib_la_sci_gatewayDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

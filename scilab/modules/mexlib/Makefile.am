@@ -40,15 +40,16 @@ libmexlib_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
 #### mexlib : documentation FR #### 
 libmexlib_la_helpfrdir = $(target)/help/fr
-libmexlib_la_helpfr_DATA = 
+libmexlib_la_helpfr_DATA2 = 
 
 
 #### mexlib : documentation EN #### 
 libmexlib_la_helpendir = $(target)/help/eng
-libmexlib_la_helpen_DATA = 
+libmexlib_la_helpen_DATA2 = 
 
 
 #### mexlib : include files ####
 libmexlib_la_includedir=$(includedir)/mexlib
 libmexlib_la_include_HEADERS = includes/mex.h
 
+include $(top_srcdir)/Makefile.incl.am

@@ -7,15 +7,17 @@ datadir=${prefix}/modules
 #### Target ######
 target=$(datadir)/helptools
 
+#SUFFIXES = .bin
+#	SCISCRIPT=$<
+#	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$SCISCRIPT'); save('$SCISCRIPT.bin'); exit;"
 
 #### helptools : Conf files ####
 libhelptools_la_rootdir = $(target)
 libhelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
-
 #### helptools : Scilab macros ###
 libhelptools_la_macrodir = $(target)/macros
-libhelptools_la_macro_DATA = macros/add_help_chapter.sci \
+dist_libhelptools_la_macro_DATA = macros/add_help_chapter.sci \
 macros/browsehelp.sci \
 macros/help_menu.sci \
 macros/make_help_index.sci \
@@ -66,7 +68,7 @@ libhelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 #### helptools : documentation FR #### 
 libhelptools_la_helpfrdir = $(target)/help/fr
-libhelptools_la_helpfr_DATA = help/fr/help_skeleton.htm \
+dist_libhelptools_la_helpfr_DATA2 = help/fr/help_skeleton.htm \
 help/fr/make_index.htm \
 help/fr/manedit.htm \
 help/fr/man.htm \
@@ -82,7 +84,7 @@ help/fr/percenthelps.htm
 
 #### helptools : documentation EN #### 
 libhelptools_la_helpendir = $(target)/help/eng
-libhelptools_la_helpen_DATA = help/eng/whatis.htm \
+dist_libhelptools_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/help.htm \
 help/eng/apropos.htm \
 help/eng/add_help_chapter.htm \
@@ -94,4 +96,4 @@ help/eng/help_skeleton.htm \
 help/eng/man.htm \
 help/eng/percenthelps.htm \
 help/eng/xmltohtml.htm
-
+include $(top_srcdir)/Makefile.incl.am

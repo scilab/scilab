@@ -63,7 +63,7 @@ libinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation
 
 #### interpolation : documentation FR #### 
 libinterpolation_la_helpfrdir = $(target)/help/fr
-libinterpolation_la_helpfr_DATA = help/fr/interp3d.htm \
+libinterpolation_la_helpfr_DATA2 = help/fr/interp3d.htm \
 help/fr/interp.htm \
 help/fr/lsq_splin.htm \
 help/fr/splin3d.htm \
@@ -78,7 +78,7 @@ help/fr/linear_interpn.htm
 
 #### interpolation : documentation EN #### 
 libinterpolation_la_helpendir = $(target)/help/eng
-libinterpolation_la_helpen_DATA = help/eng/whatis.htm \
+libinterpolation_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/eval_cshep2d.htm \
 help/eng/bsplin3val.htm \
 help/eng/cshep2d.htm \
@@ -102,3 +102,4 @@ includes/constinterp.h
 libinterpolation_la_demosdir=$(target)/demos/
 libinterpolation_la_demos_DATA = demos/interp_demo.sci
 
+include $(top_srcdir)/Makefile.incl.am

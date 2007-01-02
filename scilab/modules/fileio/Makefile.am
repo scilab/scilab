@@ -119,10 +119,9 @@ libfileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 libfileio_la_sci_gatewaydir = $(target)/sci_gateway
 libfileio_la_sci_gateway_DATA = sci_gateway/fileio
 
-
 #### fileio : documentation FR #### 
 libfileio_la_helpfrdir = $(target)/help/fr
-libfileio_la_helpfr_DATA = help/fr/meof.htm \
+libfileio_la_helpfr_DATA2 = help/fr/meof.htm \
 help/fr/dir.htm \
 help/fr/ls.htm \
 help/fr/excel2sci.htm \
@@ -167,7 +166,7 @@ help/fr/listvarinfile.htm
 
 #### fileio : documentation EN #### 
 libfileio_la_helpendir = $(target)/help/eng
-libfileio_la_helpen_DATA = help/eng/whatis.htm \
+libfileio_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/basename.htm \
 help/eng/dirname.htm \
 help/eng/dir.htm \
@@ -227,3 +226,4 @@ demos/excel/Testbig.xls \
 demos/excel/t1.xls \
 demos/excel/README
 
+include $(top_srcdir)/Makefile.incl.am

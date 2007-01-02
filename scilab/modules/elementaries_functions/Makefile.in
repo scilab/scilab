@@ -39,9 +39,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/elementaries_functions
 DIST_COMMON = $(libelementaries_functions_la_include_HEADERS) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
+	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
+subdir = modules/elementaries_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -63,8 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_etcdir)" \
-	"$(DESTDIR)$(libelementaries_functions_la_helpendir)" \
-	"$(DESTDIR)$(libelementaries_functions_la_helpfrdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_macrodir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_rootdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" \
@@ -451,14 +450,10 @@ SOURCES = $(libdummy_elementaries_functions_la_SOURCES) \
 DIST_SOURCES = $(libdummy_elementaries_functions_la_SOURCES) \
 	$(libelementaries_functions_la_SOURCES)
 libelementaries_functions_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libelementaries_functions_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libelementaries_functions_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libelementaries_functions_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libelementaries_functions_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libelementaries_functions_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libelementaries_functions_la_etc_DATA) \
-	$(libelementaries_functions_la_helpen_DATA) \
-	$(libelementaries_functions_la_helpfr_DATA) \
 	$(libelementaries_functions_la_macro_DATA) \
 	$(libelementaries_functions_la_root_DATA) \
 	$(libelementaries_functions_la_sci_gateway_DATA)
@@ -1160,165 +1155,117 @@ libelementaries_functions_la_sci_gateway_DATA = sci_gateway/elementaries_functio
 
 #### elementaries_functions : documentation FR #### 
 libelementaries_functions_la_helpfrdir = $(target)/help/fr
-libelementaries_functions_la_helpfr_DATA = help/fr/binomial.htm \
-help/fr/atan.htm \
-help/fr/bin2dec.htm \
-help/fr/bloc2exp.htm \
-help/fr/bitand.htm \
-help/fr/bitor.htm \
-help/fr/cell2mat.htm \
-help/fr/bloc2ss.htm \
-help/fr/cat.htm \
-help/fr/interp2d.htm \
-help/fr/cellstr.htm \
-help/fr/char.htm \
-help/fr/dec2bin.htm \
-help/fr/diff.htm \
-help/fr/dsearch.htm \
-help/fr/factor.htm \
-help/fr/flipdim.htm \
-help/fr/imult.htm \
-help/fr/ind2sub.htm \
-help/fr/intc.htm \
-help/fr/interp1.htm \
-help/fr/nextpow2.htm \
-help/fr/intl.htm \
-help/fr/isempty.htm \
-help/fr/isequal.htm \
-help/fr/log1p.htm \
-help/fr/ndgrid.htm \
-help/fr/ndims.htm \
+libelementaries_functions_la_helpfr_DATA2 = help/fr/whatis.htm \
+help/fr/log.htm \
+help/fr/inttrap.htm \
+help/fr/log10.htm \
+help/fr/integrate.htm \
+help/fr/eye.htm \
+help/fr/min.htm \
+help/fr/squarewave.htm \
+help/fr/frexp.htm \
+help/fr/max.htm \
 help/fr/acos.htm \
-help/fr/sum.htm \
-help/fr/number_properties.htm \
-help/fr/permute.htm \
-help/fr/pertrans.htm \
-help/fr/primes.htm \
-help/fr/setdiff.htm \
-help/fr/sinc.htm \
-help/fr/sp2adj.htm \
-help/fr/splin2d.htm \
-help/fr/ssprint.htm \
-help/fr/ssrand.htm \
-help/fr/sub2ind.htm \
-help/fr/abs.htm \
-help/fr/sysconv.htm \
-help/fr/sysdiag.htm \
-help/fr/trfmod.htm \
-help/fr/typeof.htm \
-help/fr/interpln.htm \
-help/fr/acoshm.htm \
-help/fr/whatis.htm \
-help/fr/atanh.htm \
-help/fr/adj2sp.htm \
-help/fr/vectorfind.htm \
-help/fr/nearfloat.htm \
-help/fr/acosh.htm \
-help/fr/acosm.htm \
+help/fr/perms.htm \
+help/fr/eval.htm \
+help/fr/sprand.htm \
+help/fr/sin.htm \
 help/fr/amell.htm \
-help/fr/and.htm \
-help/fr/asinhm.htm \
+help/fr/tanh.htm \
+help/fr/minus.htm \
+help/fr/tanm.htm \
+help/fr/not.htm \
 help/fr/asinh.htm \
+help/fr/and.htm \
+help/fr/abs.htm \
 help/fr/asinm.htm \
-help/fr/asin.htm \
-help/fr/atanhm.htm \
-help/fr/atanm.htm \
-help/fr/ceil.htm \
-help/fr/cmb_lin.htm \
-help/fr/conj.htm \
-help/fr/coshm.htm \
-help/fr/cosh.htm \
-help/fr/cosm.htm \
-help/fr/cos.htm \
-help/fr/cotg.htm \
-help/fr/cothm.htm \
-help/fr/coth.htm \
+help/fr/erfcx.htm \
+help/fr/spones.htm \
+help/fr/isinf.htm \
+help/fr/kron.htm \
 help/fr/cumprod.htm \
 help/fr/cumsum.htm \
-help/fr/delip.htm \
-help/fr/diag.htm \
-help/fr/double.htm \
-help/fr/erfc.htm \
-help/fr/erfcx.htm \
+help/fr/cothm.htm \
 help/fr/erf.htm \
-help/fr/eval.htm \
-help/fr/eye.htm \
-help/fr/fix.htm \
-help/fr/floor.htm \
-help/fr/frexp.htm \
-help/fr/gsort.htm \
-help/fr/imag.htm \
-help/fr/int8.htm \
-help/fr/integrate.htm \
-help/fr/intersect.htm \
-help/fr/inttrap.htm \
-help/fr/int.htm \
-help/fr/isdef.htm \
-help/fr/isinf.htm \
-help/fr/isnan.htm \
 help/fr/isreal.htm \
-help/fr/kron.htm \
-help/fr/lex_sort.htm \
-help/fr/linspace.htm \
-help/fr/log10.htm \
-help/fr/log2.htm \
-help/fr/logm.htm \
-help/fr/logspace.htm \
-help/fr/log.htm \
-help/fr/maxi.htm \
-help/fr/lstsize.htm \
-help/fr/max.htm \
-help/fr/meshgrid.htm \
-help/fr/mini.htm \
-help/fr/minus.htm \
-help/fr/min.htm \
-help/fr/modulo.htm \
-help/fr/norm.htm \
-help/fr/not.htm \
-help/fr/ones.htm \
+help/fr/erfc.htm \
 help/fr/or.htm \
-help/fr/pen2ea.htm \
-help/fr/perms.htm \
-help/fr/prod.htm \
-help/fr/rand.htm \
-help/fr/rat.htm \
+help/fr/floor.htm \
+help/fr/syslin.htm \
 help/fr/real.htm \
 help/fr/round.htm \
-help/fr/signm.htm \
-help/fr/sign.htm \
-help/fr/sinhm.htm \
+help/fr/conj.htm \
+help/fr/isdef.htm \
+help/fr/int.htm \
+help/fr/acosh.htm \
+help/fr/maxi.htm \
+help/fr/logm.htm \
+help/fr/gsort.htm \
+help/fr/lex_sort.htm \
 help/fr/sinh.htm \
+help/fr/acosm.htm \
 help/fr/sinm.htm \
-help/fr/sin.htm \
-help/fr/size.htm \
+help/fr/isnan.htm \
 help/fr/smooth.htm \
-help/fr/solve.htm \
+help/fr/double.htm \
+help/fr/size.htm \
+help/fr/tril.htm \
+help/fr/trianfml.htm \
+help/fr/imag.htm \
+help/fr/int8.htm \
+help/fr/tan.htm \
+help/fr/triu.htm \
+help/fr/cos.htm \
+help/fr/rand.htm \
+help/fr/fix.htm \
+help/fr/rat.htm \
 help/fr/sort.htm \
+help/fr/sqrt.htm \
+help/fr/asin.htm \
+help/fr/cosh.htm \
+help/fr/linspace.htm \
+help/fr/modulo.htm \
+help/fr/intersect.htm \
+help/fr/sign.htm \
+help/fr/cosm.htm \
+help/fr/zeros.htm \
+help/fr/cmb_lin.htm \
+help/fr/diag.htm \
+help/fr/ones.htm \
+help/fr/unique.htm \
+help/fr/tanhm.htm \
+help/fr/trisolve.htm \
+help/fr/atanhm.htm \
+help/fr/coshm.htm \
+help/fr/acoshm.htm \
+help/fr/norm.htm \
+help/fr/signm.htm \
+help/fr/sinhm.htm \
+help/fr/asinhm.htm \
 help/fr/speye.htm \
-help/fr/spones.htm \
-help/fr/sprand.htm \
+help/fr/solve.htm \
+help/fr/union.htm \
+help/fr/interpln.htm \
+help/fr/mini.htm \
+help/fr/cotg.htm \
+help/fr/lstsize.htm \
+help/fr/logspace.htm \
+help/fr/coth.htm \
+help/fr/delip.htm \
+help/fr/atanm.htm \
+help/fr/meshgrid.htm \
+help/fr/log2.htm \
+help/fr/prod.htm \
 help/fr/spzeros.htm \
 help/fr/sqrtm.htm \
-help/fr/sqrt.htm \
-help/fr/squarewave.htm \
-help/fr/syslin.htm \
-help/fr/tanhm.htm \
-help/fr/tanh.htm \
-help/fr/tanm.htm \
-help/fr/tan.htm \
+help/fr/pen2ea.htm \
 help/fr/toeplitz.htm \
-help/fr/trianfml.htm \
-help/fr/tril.htm \
-help/fr/trisolve.htm \
-help/fr/triu.htm \
-help/fr/union.htm \
-help/fr/unique.htm \
-help/fr/zeros.htm
+help/fr/ceil.htm
 
 
 #### elementaries_functions : documentation EN #### 
 libelementaries_functions_la_helpendir = $(target)/help/eng
-libelementaries_functions_la_helpen_DATA = help/eng/whatis.htm \
+libelementaries_functions_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/acos.htm \
 help/eng/abs.htm \
 help/eng/binomial.htm \
@@ -1480,11 +1427,19 @@ libelementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -2880,40 +2835,6 @@ uninstall-libelementaries_functions_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libelementaries_functions_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libelementaries_functions_la_etcdir)/$$f"; \
 	done
-install-libelementaries_functions_la_helpenDATA: $(libelementaries_functions_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libelementaries_functions_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libelementaries_functions_la_helpendir)"
-	@list='$(libelementaries_functions_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libelementaries_functions_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libelementaries_functions_la_helpendir)/$$f'"; \
-	  $(libelementaries_functions_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libelementaries_functions_la_helpendir)/$$f"; \
-	done
-
-uninstall-libelementaries_functions_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libelementaries_functions_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libelementaries_functions_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libelementaries_functions_la_helpendir)/$$f"; \
-	done
-install-libelementaries_functions_la_helpfrDATA: $(libelementaries_functions_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libelementaries_functions_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libelementaries_functions_la_helpfrdir)"
-	@list='$(libelementaries_functions_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libelementaries_functions_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libelementaries_functions_la_helpfrdir)/$$f'"; \
-	  $(libelementaries_functions_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libelementaries_functions_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libelementaries_functions_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libelementaries_functions_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libelementaries_functions_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libelementaries_functions_la_helpfrdir)/$$f"; \
-	done
 install-libelementaries_functions_la_macroDATA: $(libelementaries_functions_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libelementaries_functions_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libelementaries_functions_la_macrodir)"
@@ -3061,7 +2982,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libelementaries_functions_la_etcdir)" "$(DESTDIR)$(libelementaries_functions_la_helpendir)" "$(DESTDIR)$(libelementaries_functions_la_helpfrdir)" "$(DESTDIR)$(libelementaries_functions_la_macrodir)" "$(DESTDIR)$(libelementaries_functions_la_rootdir)" "$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libelementaries_functions_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libelementaries_functions_la_etcdir)" "$(DESTDIR)$(libelementaries_functions_la_macrodir)" "$(DESTDIR)$(libelementaries_functions_la_rootdir)" "$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libelementaries_functions_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -3110,8 +3031,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libelementaries_functions_la_etcDATA \
-	install-libelementaries_functions_la_helpenDATA \
-	install-libelementaries_functions_la_helpfrDATA \
 	install-libelementaries_functions_la_includeHEADERS \
 	install-libelementaries_functions_la_macroDATA \
 	install-libelementaries_functions_la_rootDATA \
@@ -3122,6 +3041,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -3153,8 +3074,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libelementaries_functions_la_etcDATA \
-	uninstall-libelementaries_functions_la_helpenDATA \
-	uninstall-libelementaries_functions_la_helpfrDATA \
 	uninstall-libelementaries_functions_la_includeHEADERS \
 	uninstall-libelementaries_functions_la_macroDATA \
 	uninstall-libelementaries_functions_la_rootDATA \
@@ -3168,11 +3087,10 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-libLTLIBRARIES \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libLTLIBRARIES \
 	install-libelementaries_functions_la_etcDATA \
-	install-libelementaries_functions_la_helpenDATA \
-	install-libelementaries_functions_la_helpfrDATA \
 	install-libelementaries_functions_la_includeHEADERS \
 	install-libelementaries_functions_la_macroDATA \
 	install-libelementaries_functions_la_rootDATA \
@@ -3184,8 +3102,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libelementaries_functions_la_etcDATA \
-	uninstall-libelementaries_functions_la_helpenDATA \
-	uninstall-libelementaries_functions_la_helpfrDATA \
 	uninstall-libelementaries_functions_la_includeHEADERS \
 	uninstall-libelementaries_functions_la_macroDATA \
 	uninstall-libelementaries_functions_la_rootDATA \
@@ -3206,6 +3122,46 @@ libdummy_elementaries_functions_la-unsfdcopy.lo: src/fortran/unsfdcopy.f
 
 libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementaries_functions_la_FFLAGS) -c -o libdummy_elementaries_functions_la-icopy.lo `test -f 'src/fortran/icopy.f' || echo '$(srcdir)/'`src/fortran/icopy.f
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -219,7 +219,7 @@ liblinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra
 
 #### linear_algebra : documentation FR #### 
 liblinear_algebra_la_helpfrdir = $(target)/help/fr
-liblinear_algebra_la_helpfr_DATA = help/fr/eigenmarkov.htm \
+liblinear_algebra_la_helpfr_DATA2 = help/fr/eigenmarkov.htm \
 help/fr/ereduc.htm \
 help/fr/fstair.htm \
 help/fr/genmarkov.htm \
@@ -288,7 +288,7 @@ help/fr/trace.htm
 
 #### linear_algebra : documentation EN #### 
 liblinear_algebra_la_helpendir = $(target)/help/eng
-liblinear_algebra_la_helpen_DATA = help/eng/whatis.htm \
+liblinear_algebra_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/linsolve.htm \
 help/eng/aff2ab.htm \
 help/eng/balanc.htm \
@@ -360,3 +360,4 @@ liblinear_algebra_la_includedir=$(includedir)/linear_algebra
 liblinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h
 
+include $(top_srcdir)/Makefile.incl.am

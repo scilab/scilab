@@ -37,8 +37,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(dist_libhelptools_la_macro_DATA) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/helptools
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -60,18 +61,13 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libhelptools_la_etcdir)" \
-	"$(DESTDIR)$(libhelptools_la_helpendir)" \
-	"$(DESTDIR)$(libhelptools_la_helpfrdir)" \
-	"$(DESTDIR)$(libhelptools_la_macrodir)" \
+am__installdirs = "$(DESTDIR)$(libhelptools_la_macrodir)" \
+	"$(DESTDIR)$(libhelptools_la_etcdir)" \
 	"$(DESTDIR)$(libhelptools_la_rootdir)"
+dist_libhelptools_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libhelptools_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libhelptools_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libhelptools_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
-libhelptools_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libhelptools_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libhelptools_la_etc_DATA) $(libhelptools_la_helpen_DATA) \
-	$(libhelptools_la_helpfr_DATA) $(libhelptools_la_macro_DATA) \
+DATA = $(dist_libhelptools_la_macro_DATA) $(libhelptools_la_etc_DATA) \
 	$(libhelptools_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -218,13 +214,17 @@ top_srcdir = @top_srcdir@
 #### Target ######
 target = $(datadir)/helptools
 
+#SUFFIXES = .bin
+#	SCISCRIPT=$<
+#	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$SCISCRIPT'); save('$SCISCRIPT.bin'); exit;"
+
 #### helptools : Conf files ####
 libhelptools_la_rootdir = $(target)
 libhelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### helptools : Scilab macros ###
 libhelptools_la_macrodir = $(target)/macros
-libhelptools_la_macro_DATA = macros/add_help_chapter.sci \
+dist_libhelptools_la_macro_DATA = macros/add_help_chapter.sci \
 macros/browsehelp.sci \
 macros/help_menu.sci \
 macros/make_help_index.sci \
@@ -275,7 +275,7 @@ libhelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 #### helptools : documentation FR #### 
 libhelptools_la_helpfrdir = $(target)/help/fr
-libhelptools_la_helpfr_DATA = help/fr/help_skeleton.htm \
+dist_libhelptools_la_helpfr_DATA2 = help/fr/help_skeleton.htm \
 help/fr/make_index.htm \
 help/fr/manedit.htm \
 help/fr/man.htm \
@@ -291,7 +291,7 @@ help/fr/percenthelps.htm
 
 #### helptools : documentation EN #### 
 libhelptools_la_helpendir = $(target)/help/eng
-libhelptools_la_helpen_DATA = help/eng/whatis.htm \
+dist_libhelptools_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/help.htm \
 help/eng/apropos.htm \
 help/eng/add_help_chapter.htm \
@@ -304,10 +304,19 @@ help/eng/man.htm \
 help/eng/percenthelps.htm \
 help/eng/xmltohtml.htm
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -342,6 +351,23 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
+install-dist_libhelptools_la_macroDATA: $(dist_libhelptools_la_macro_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libhelptools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_macrodir)"
+	@list='$(dist_libhelptools_la_macro_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dist_libhelptools_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_macrodir)/$$f'"; \
+	  $(dist_libhelptools_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_macrodir)/$$f"; \
+	done
+
+uninstall-dist_libhelptools_la_macroDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_libhelptools_la_macro_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libhelptools_la_macrodir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libhelptools_la_macrodir)/$$f"; \
+	done
 install-libhelptools_la_etcDATA: $(libhelptools_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libhelptools_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_etcdir)"
@@ -358,57 +384,6 @@ uninstall-libhelptools_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libhelptools_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libhelptools_la_etcdir)/$$f"; \
-	done
-install-libhelptools_la_helpenDATA: $(libhelptools_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libhelptools_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_helpendir)"
-	@list='$(libhelptools_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libhelptools_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_helpendir)/$$f'"; \
-	  $(libhelptools_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_helpendir)/$$f"; \
-	done
-
-uninstall-libhelptools_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libhelptools_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libhelptools_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libhelptools_la_helpendir)/$$f"; \
-	done
-install-libhelptools_la_helpfrDATA: $(libhelptools_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libhelptools_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_helpfrdir)"
-	@list='$(libhelptools_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libhelptools_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f'"; \
-	  $(libhelptools_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libhelptools_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libhelptools_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libhelptools_la_helpfrdir)/$$f"; \
-	done
-install-libhelptools_la_macroDATA: $(libhelptools_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libhelptools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libhelptools_la_macrodir)"
-	@list='$(libhelptools_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libhelptools_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libhelptools_la_macrodir)/$$f'"; \
-	  $(libhelptools_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libhelptools_la_macrodir)/$$f"; \
-	done
-
-uninstall-libhelptools_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libhelptools_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libhelptools_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libhelptools_la_macrodir)/$$f"; \
 	done
 install-libhelptools_la_rootDATA: $(libhelptools_la_root_DATA)
 	@$(NORMAL_INSTALL)
@@ -464,7 +439,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libhelptools_la_etcdir)" "$(DESTDIR)$(libhelptools_la_helpendir)" "$(DESTDIR)$(libhelptools_la_helpfrdir)" "$(DESTDIR)$(libhelptools_la_macrodir)" "$(DESTDIR)$(libhelptools_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libhelptools_la_macrodir)" "$(DESTDIR)$(libhelptools_la_etcdir)" "$(DESTDIR)$(libhelptools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -509,10 +484,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libhelptools_la_etcDATA \
-	install-libhelptools_la_helpenDATA \
-	install-libhelptools_la_helpfrDATA \
-	install-libhelptools_la_macroDATA \
+install-data-am: install-dist_libhelptools_la_macroDATA \
+	install-libhelptools_la_etcDATA \
 	install-libhelptools_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -520,6 +493,8 @@ install-dvi: install-dvi-am
 install-exec-am:
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -547,10 +522,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libhelptools_la_etcDATA \
-	uninstall-libhelptools_la_helpenDATA \
-	uninstall-libhelptools_la_helpfrDATA \
-	uninstall-libhelptools_la_macroDATA \
+uninstall-am: uninstall-dist_libhelptools_la_macroDATA \
+	uninstall-libhelptools_la_etcDATA \
 	uninstall-libhelptools_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -558,23 +531,60 @@ uninstall-am: uninstall-libhelptools_la_etcDATA \
 .PHONY: all all-am check check-am clean clean-generic clean-libtool \
 	distclean distclean-generic distclean-libtool distdir dvi \
 	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-libhelptools_la_etcDATA \
-	install-libhelptools_la_helpenDATA \
-	install-libhelptools_la_helpfrDATA \
-	install-libhelptools_la_macroDATA \
+	install-data install-data-am \
+	install-dist_libhelptools_la_macroDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libhelptools_la_etcDATA \
 	install-libhelptools_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-dist_libhelptools_la_macroDATA \
 	uninstall-libhelptools_la_etcDATA \
-	uninstall-libhelptools_la_helpenDATA \
-	uninstall-libhelptools_la_helpfrDATA \
-	uninstall-libhelptools_la_macroDATA \
 	uninstall-libhelptools_la_rootDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

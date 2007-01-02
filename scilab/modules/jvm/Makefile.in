@@ -38,8 +38,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 subdir = modules/jvm
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -61,8 +62,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libjvm_la_etcdir)" \
-	"$(DESTDIR)$(libjvm_la_helpendir)" \
-	"$(DESTDIR)$(libjvm_la_helpfrdir)" \
 	"$(DESTDIR)$(libjvm_la_macrodir)" \
 	"$(DESTDIR)$(libjvm_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
@@ -90,12 +89,9 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscijvm_la_SOURCES)
 DIST_SOURCES = $(libscijvm_la_SOURCES)
 libjvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libjvm_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libjvm_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libjvm_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libjvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libjvm_la_etc_DATA) $(libjvm_la_helpen_DATA) \
-	$(libjvm_la_helpfr_DATA) $(libjvm_la_macro_DATA) \
+DATA = $(libjvm_la_etc_DATA) $(libjvm_la_macro_DATA) \
 	$(libjvm_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
@@ -270,16 +266,24 @@ libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 #### jvm : documentation FR #### 
 libjvm_la_helpfrdir = $(target)/help/fr
-libjvm_la_helpfr_DATA = 
+libjvm_la_helpfr_DATA2 = 
 
 #### jvm : documentation EN #### 
 libjvm_la_helpendir = $(target)/help/eng
-libjvm_la_helpen_DATA = 
+libjvm_la_helpen_DATA2 = 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -412,40 +416,6 @@ uninstall-libjvm_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libjvm_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libjvm_la_etcdir)/$$f"; \
 	done
-install-libjvm_la_helpenDATA: $(libjvm_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjvm_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_helpendir)"
-	@list='$(libjvm_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjvm_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_helpendir)/$$f'"; \
-	  $(libjvm_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_helpendir)/$$f"; \
-	done
-
-uninstall-libjvm_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjvm_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjvm_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjvm_la_helpendir)/$$f"; \
-	done
-install-libjvm_la_helpfrDATA: $(libjvm_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjvm_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_helpfrdir)"
-	@list='$(libjvm_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjvm_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_helpfrdir)/$$f'"; \
-	  $(libjvm_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libjvm_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjvm_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjvm_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjvm_la_helpfrdir)/$$f"; \
-	done
 install-libjvm_la_macroDATA: $(libjvm_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libjvm_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_macrodir)"
@@ -559,7 +529,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libjvm_la_etcdir)" "$(DESTDIR)$(libjvm_la_helpendir)" "$(DESTDIR)$(libjvm_la_helpfrdir)" "$(DESTDIR)$(libjvm_la_macrodir)" "$(DESTDIR)$(libjvm_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libjvm_la_etcdir)" "$(DESTDIR)$(libjvm_la_macrodir)" "$(DESTDIR)$(libjvm_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -607,15 +577,16 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libjvm_la_etcDATA \
-	install-libjvm_la_helpenDATA install-libjvm_la_helpfrDATA \
-	install-libjvm_la_macroDATA install-libjvm_la_rootDATA
+install-data-am: install-libjvm_la_etcDATA install-libjvm_la_macroDATA \
+	install-libjvm_la_rootDATA
 
 install-dvi: install-dvi-am
 
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -646,7 +617,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
-	uninstall-libjvm_la_helpenDATA uninstall-libjvm_la_helpfrDATA \
 	uninstall-libjvm_la_macroDATA uninstall-libjvm_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -657,20 +627,58 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libjvm_la_etcDATA \
-	install-libjvm_la_helpenDATA install-libjvm_la_helpfrDATA \
-	install-libjvm_la_macroDATA install-libjvm_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libjvm_la_etcDATA uninstall-libjvm_la_helpenDATA \
-	uninstall-libjvm_la_helpfrDATA uninstall-libjvm_la_macroDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libjvm_la_etcDATA install-libjvm_la_macroDATA \
+	install-libjvm_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libjvm_la_etcDATA uninstall-libjvm_la_macroDATA \
 	uninstall-libjvm_la_rootDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

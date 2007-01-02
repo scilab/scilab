@@ -1149,7 +1149,7 @@ libm2sci_la_etc_DATA = etc/m2sci.quit etc/m2sci.start
 
 #### m2sci : documentation FR #### 
 libm2sci_la_helpfrdir = $(target)/help/fr
-libm2sci_la_helpfr_DATA = help/fr/asciimat.htm \
+libm2sci_la_helpfr_DATA2 = help/fr/asciimat.htm \
 help/fr/merror.htm \
 help/fr/m2scideclare.htm \
 help/fr/mtlb_sort.htm \
@@ -1271,7 +1271,7 @@ help/fr/Variable.htm
 
 #### m2sci : documentation EN #### 
 libm2sci_la_helpendir = $(target)/help/eng
-libm2sci_la_helpen_DATA = help/eng/whatis.htm \
+libm2sci_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/About_M2SCI_tools.htm \
 help/eng/asciimat.htm \
 help/eng/cell.htm \
@@ -1387,3 +1387,4 @@ help/eng/tree2code.htm \
 help/eng/Type.htm \
 help/eng/Variable.htm
 
+include $(top_srcdir)/Makefile.incl.am

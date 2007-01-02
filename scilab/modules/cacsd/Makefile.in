@@ -39,9 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/cacsd
 DIST_COMMON = $(libcacsd_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/cacsd
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -63,8 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libcacsd_la_etcdir)" \
-	"$(DESTDIR)$(libcacsd_la_helpendir)" \
-	"$(DESTDIR)$(libcacsd_la_helpfrdir)" \
 	"$(DESTDIR)$(libcacsd_la_macrodir)" \
 	"$(DESTDIR)$(libcacsd_la_rootdir)" \
 	"$(DESTDIR)$(libcacsd_la_sci_gatewaydir)" \
@@ -199,14 +197,11 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libcacsd_la_SOURCES)
 DIST_SOURCES = $(libcacsd_la_SOURCES)
 libcacsd_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libcacsd_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libcacsd_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libcacsd_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libcacsd_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libcacsd_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libcacsd_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libcacsd_la_etc_DATA) $(libcacsd_la_helpen_DATA) \
-	$(libcacsd_la_helpfr_DATA) $(libcacsd_la_macro_DATA) \
+DATA = $(libcacsd_la_etc_DATA) $(libcacsd_la_macro_DATA) \
 	$(libcacsd_la_root_DATA) $(libcacsd_la_sci_gateway_DATA) \
 	$(nobase_libcacsd_la_demos_DATA)
 libcacsd_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -881,286 +876,6 @@ libcacsd_la_etc_DATA = etc/cacsd.quit etc/cacsd.start
 libcacsd_la_sci_gatewaydir = $(target)/sci_gateway
 libcacsd_la_sci_gateway_DATA = sci_gateway/cacsd
 
-#### cacsd : documentation FR #### 
-libcacsd_la_helpfrdir = $(target)/help/fr
-libcacsd_la_helpfr_DATA = help/fr/colinout.htm \
-help/fr/arl2.htm \
-help/fr/arma2p.htm \
-help/fr/armac.htm \
-help/fr/armax1.htm \
-help/fr/arma.htm \
-help/fr/armax.htm \
-help/fr/arsimul.htm \
-help/fr/augment.htm \
-help/fr/balreal.htm \
-help/fr/bilin.htm \
-help/fr/bstap.htm \
-help/fr/cainv.htm \
-help/fr/calfrq.htm \
-help/fr/canon.htm \
-help/fr/ccontrg.htm \
-help/fr/cls2dls.htm \
-help/fr/colregul.htm \
-help/fr/cont_frm.htm \
-help/fr/cont_mat.htm \
-help/fr/contrss.htm \
-help/fr/contr.htm \
-help/fr/copfac.htm \
-help/fr/csim.htm \
-help/fr/ctr_gram.htm \
-help/fr/dbphi.htm \
-help/fr/dcf.htm \
-help/fr/ddp.htm \
-help/fr/des2ss.htm \
-help/fr/dt_ility.htm \
-help/fr/dhnorm.htm \
-help/fr/dscr.htm \
-help/fr/dsimul.htm \
-help/fr/feedback.htm \
-help/fr/dtsi.htm \
-help/fr/equil1.htm \
-help/fr/equil.htm \
-help/fr/findx0BD.htm \
-help/fr/findAC.htm \
-help/fr/findBDK.htm \
-help/fr/findBD.htm \
-help/fr/findR.htm \
-help/fr/fourplan.htm \
-help/fr/flts.htm \
-help/fr/gfrancis.htm \
-help/fr/frep2tf.htm \
-help/fr/freq.htm \
-help/fr/freson.htm \
-help/fr/fspecg.htm \
-help/fr/fstabst.htm \
-help/fr/gamitg.htm \
-help/fr/gcare.htm \
-help/fr/gfare.htm \
-help/fr/arhnk.htm \
-help/fr/g_margin.htm \
-help/fr/gtild.htm \
-help/fr/h2norm.htm \
-help/fr/hankelsv.htm \
-help/fr/h_cl.htm \
-help/fr/h_inf_st.htm \
-help/fr/h_inf.htm \
-help/fr/hinf.htm \
-help/fr/h_norm.htm \
-help/fr/imrep2ss.htm \
-help/fr/inistate.htm \
-help/fr/invsyslin.htm \
-help/fr/kpure.htm \
-help/fr/krac2.htm \
-help/fr/lcf.htm \
-help/fr/leqr.htm \
-help/fr/lft.htm \
-help/fr/linfn.htm \
-help/fr/linf.htm \
-help/fr/linmeq.htm \
-help/fr/lin.htm \
-help/fr/lqe.htm \
-help/fr/lqg2stan.htm \
-help/fr/lqg_ltr.htm \
-help/fr/lqg.htm \
-help/fr/lqr.htm \
-help/fr/ltitr.htm \
-help/fr/macglov.htm \
-help/fr/markp2ss.htm \
-help/fr/minreal.htm \
-help/fr/minss.htm \
-help/fr/mucomp.htm \
-help/fr/narsimul.htm \
-help/fr/nehari.htm \
-help/fr/noisegen.htm \
-help/fr/obscont.htm \
-help/fr/observer.htm \
-help/fr/obs_gram.htm \
-help/fr/obsv_mat.htm \
-help/fr/obsvss.htm \
-help/fr/parrot.htm \
-help/fr/pfss.htm \
-help/fr/phasemag.htm \
-help/fr/p_margin.htm \
-help/fr/ppol.htm \
-help/fr/prbs_a.htm \
-help/fr/projsl.htm \
-help/fr/reglin.htm \
-help/fr/repfreq.htm \
-help/fr/riccati.htm \
-help/fr/ricc.htm \
-help/fr/ric_desc.htm \
-help/fr/rowinout.htm \
-help/fr/rowregul.htm \
-help/fr/rtitr.htm \
-help/fr/sensi.htm \
-help/fr/sident.htm \
-help/fr/sm2des.htm \
-help/fr/sm2ss.htm \
-help/fr/sorder.htm \
-help/fr/specfact.htm \
-help/fr/ss2des.htm \
-help/fr/ss2ss.htm \
-help/fr/ss2tf.htm \
-help/fr/stabil.htm \
-help/fr/st_ility.htm \
-help/fr/svplot.htm \
-help/fr/sysfact.htm \
-help/fr/syssize.htm \
-help/fr/tf2des.htm \
-help/fr/tf2ss.htm \
-help/fr/time_id.htm \
-help/fr/trzeros.htm \
-help/fr/ui_observer.htm \
-help/fr/unobs.htm \
-help/fr/zeropen.htm \
-help/fr/abcd.htm \
-help/fr/abinv.htm \
-help/fr/whatis.htm \
-help/fr/dhinf.htm \
-help/fr/des2tf.htm \
-help/fr/findABCD.htm
-
-
-#### cacsd : documentation EN #### 
-libcacsd_la_helpendir = $(target)/help/eng
-libcacsd_la_helpen_DATA = help/eng/whatis.htm \
-help/eng/colinout.htm \
-help/eng/abcd.htm \
-help/eng/abinv.htm \
-help/eng/arhnk.htm \
-help/eng/arl2.htm \
-help/eng/arma2p.htm \
-help/eng/armac.htm \
-help/eng/armax1.htm \
-help/eng/arma.htm \
-help/eng/armax.htm \
-help/eng/arsimul.htm \
-help/eng/augment.htm \
-help/eng/balreal.htm \
-help/eng/bilin.htm \
-help/eng/bstap.htm \
-help/eng/cainv.htm \
-help/eng/calfrq.htm \
-help/eng/canon.htm \
-help/eng/ccontrg.htm \
-help/eng/cls2dls.htm \
-help/eng/colregul.htm \
-help/eng/cont_frm.htm \
-help/eng/cont_mat.htm \
-help/eng/contrss.htm \
-help/eng/contr.htm \
-help/eng/copfac.htm \
-help/eng/csim.htm \
-help/eng/ctr_gram.htm \
-help/eng/dbphi.htm \
-help/eng/dcf.htm \
-help/eng/ddp.htm \
-help/eng/des2ss.htm \
-help/eng/des2tf.htm \
-help/eng/dhinf.htm \
-help/eng/dhnorm.htm \
-help/eng/dscr.htm \
-help/eng/dsimul.htm \
-help/eng/dt_ility.htm \
-help/eng/dtsi.htm \
-help/eng/equil1.htm \
-help/eng/equil.htm \
-help/eng/feedback.htm \
-help/eng/findABCD.htm \
-help/eng/findAC.htm \
-help/eng/findBDK.htm \
-help/eng/findBD.htm \
-help/eng/findR.htm \
-help/eng/findx0BD.htm \
-help/eng/flts.htm \
-help/eng/fourplan.htm \
-help/eng/frep2tf.htm \
-help/eng/freq.htm \
-help/eng/freson.htm \
-help/eng/fspecg.htm \
-help/eng/fstabst.htm \
-help/eng/gamitg.htm \
-help/eng/gcare.htm \
-help/eng/gfare.htm \
-help/eng/gfrancis.htm \
-help/eng/g_margin.htm \
-help/eng/gtild.htm \
-help/eng/h2norm.htm \
-help/eng/hankelsv.htm \
-help/eng/h_cl.htm \
-help/eng/h_inf_st.htm \
-help/eng/h_inf.htm \
-help/eng/hinf.htm \
-help/eng/h_norm.htm \
-help/eng/imrep2ss.htm \
-help/eng/inistate.htm \
-help/eng/invsyslin.htm \
-help/eng/kpure.htm \
-help/eng/krac2.htm \
-help/eng/lcf.htm \
-help/eng/leqr.htm \
-help/eng/lft.htm \
-help/eng/linfn.htm \
-help/eng/linf.htm \
-help/eng/linmeq.htm \
-help/eng/lin.htm \
-help/eng/lqe.htm \
-help/eng/lqg2stan.htm \
-help/eng/lqg_ltr.htm \
-help/eng/lqg.htm \
-help/eng/lqr.htm \
-help/eng/ltitr.htm \
-help/eng/macglov.htm \
-help/eng/markp2ss.htm \
-help/eng/minreal.htm \
-help/eng/minss.htm \
-help/eng/mucomp.htm \
-help/eng/narsimul.htm \
-help/eng/nehari.htm \
-help/eng/noisegen.htm \
-help/eng/obscont.htm \
-help/eng/observer.htm \
-help/eng/obs_gram.htm \
-help/eng/obsv_mat.htm \
-help/eng/obsvss.htm \
-help/eng/parrot.htm \
-help/eng/pfss.htm \
-help/eng/phasemag.htm \
-help/eng/p_margin.htm \
-help/eng/ppol.htm \
-help/eng/prbs_a.htm \
-help/eng/projsl.htm \
-help/eng/reglin.htm \
-help/eng/repfreq.htm \
-help/eng/riccati.htm \
-help/eng/ricc.htm \
-help/eng/ric_desc.htm \
-help/eng/rowinout.htm \
-help/eng/rowregul.htm \
-help/eng/rtitr.htm \
-help/eng/sensi.htm \
-help/eng/sident.htm \
-help/eng/sm2des.htm \
-help/eng/sm2ss.htm \
-help/eng/sorder.htm \
-help/eng/specfact.htm \
-help/eng/ss2des.htm \
-help/eng/ss2ss.htm \
-help/eng/ss2tf.htm \
-help/eng/stabil.htm \
-help/eng/st_ility.htm \
-help/eng/svplot.htm \
-help/eng/sysfact.htm \
-help/eng/syssize.htm \
-help/eng/tf2des.htm \
-help/eng/tf2ss.htm \
-help/eng/time_id.htm \
-help/eng/trzeros.htm \
-help/eng/ui_observer.htm \
-help/eng/unobs.htm \
-help/eng/zeropen.htm
-
-
 #### cacsd : include files ####
 libcacsd_la_includedir = $(includedir)/cacsd
 libcacsd_la_include_HEADERS = includes/gw_cacsd0.h \
@@ -1177,9 +892,6 @@ demos/lqg/scheme.dem \
 demos/lqg/lqg2.dem \
 demos/flat/car.sci \
 demos/flat/truck.sci \
-demos/flat/demo_car_fr.htm \
-demos/flat/demo_car_eng.htm \
-demos/flat/demo_truck_fr.htm \
 demos/flat/flat.dem \
 demos/flat/fcts.sci \
 demos/flat/demo_truck_eng_htm \
@@ -1195,11 +907,19 @@ demos/control.dem \
 demos/cont.dem \
 demos/mixed.dem
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .f .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -2009,40 +1729,6 @@ uninstall-libcacsd_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libcacsd_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libcacsd_la_etcdir)/$$f"; \
 	done
-install-libcacsd_la_helpenDATA: $(libcacsd_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libcacsd_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libcacsd_la_helpendir)"
-	@list='$(libcacsd_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libcacsd_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcacsd_la_helpendir)/$$f'"; \
-	  $(libcacsd_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcacsd_la_helpendir)/$$f"; \
-	done
-
-uninstall-libcacsd_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libcacsd_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libcacsd_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libcacsd_la_helpendir)/$$f"; \
-	done
-install-libcacsd_la_helpfrDATA: $(libcacsd_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libcacsd_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libcacsd_la_helpfrdir)"
-	@list='$(libcacsd_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libcacsd_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcacsd_la_helpfrdir)/$$f'"; \
-	  $(libcacsd_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcacsd_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libcacsd_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libcacsd_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libcacsd_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libcacsd_la_helpfrdir)/$$f"; \
-	done
 install-libcacsd_la_macroDATA: $(libcacsd_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libcacsd_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libcacsd_la_macrodir)"
@@ -2209,7 +1895,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcacsd_la_etcdir)" "$(DESTDIR)$(libcacsd_la_helpendir)" "$(DESTDIR)$(libcacsd_la_helpfrdir)" "$(DESTDIR)$(libcacsd_la_macrodir)" "$(DESTDIR)$(libcacsd_la_rootdir)" "$(DESTDIR)$(libcacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libcacsd_la_demosdir)" "$(DESTDIR)$(libcacsd_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcacsd_la_etcdir)" "$(DESTDIR)$(libcacsd_la_macrodir)" "$(DESTDIR)$(libcacsd_la_rootdir)" "$(DESTDIR)$(libcacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libcacsd_la_demosdir)" "$(DESTDIR)$(libcacsd_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2258,7 +1944,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libcacsd_la_etcDATA \
-	install-libcacsd_la_helpenDATA install-libcacsd_la_helpfrDATA \
 	install-libcacsd_la_includeHEADERS \
 	install-libcacsd_la_macroDATA install-libcacsd_la_rootDATA \
 	install-libcacsd_la_sci_gatewayDATA \
@@ -2269,6 +1954,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -2299,8 +1986,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
-	uninstall-libcacsd_la_helpenDATA \
-	uninstall-libcacsd_la_helpfrDATA \
 	uninstall-libcacsd_la_includeHEADERS \
 	uninstall-libcacsd_la_macroDATA uninstall-libcacsd_la_rootDATA \
 	uninstall-libcacsd_la_sci_gatewayDATA \
@@ -2314,10 +1999,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libcacsd_la_etcDATA \
-	install-libcacsd_la_helpenDATA install-libcacsd_la_helpfrDATA \
-	install-libcacsd_la_includeHEADERS \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libcacsd_la_etcDATA install-libcacsd_la_includeHEADERS \
 	install-libcacsd_la_macroDATA install-libcacsd_la_rootDATA \
 	install-libcacsd_la_sci_gatewayDATA install-man \
 	install-nobase_libcacsd_la_demosDATA install-pdf \
@@ -2326,13 +2010,61 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libcacsd_la_etcDATA uninstall-libcacsd_la_helpenDATA \
-	uninstall-libcacsd_la_helpfrDATA \
+	uninstall-libcacsd_la_etcDATA \
 	uninstall-libcacsd_la_includeHEADERS \
 	uninstall-libcacsd_la_macroDATA uninstall-libcacsd_la_rootDATA \
 	uninstall-libcacsd_la_sci_gatewayDATA \
 	uninstall-nobase_libcacsd_la_demosDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
+
+#demos/flat/demo_car_fr.htm \
+#demos/flat/demo_car_eng.htm \
+#demos/flat/demo_truck_fr.htm
+
+#SUFFIXES += .htm
+#.htm:
+#	echo "$<"
+#	echo "$@"
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

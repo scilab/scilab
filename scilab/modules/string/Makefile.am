@@ -106,7 +106,7 @@ libstring_la_sci_gateway_DATA = sci_gateway/string
 
 #### string : documentation FR #### 
 libstring_la_helpfrdir = $(target)/help/fr
-libstring_la_helpfr_DATA = help/fr/code2str.htm \
+libstring_la_helpfr_DATA2 = help/fr/code2str.htm \
 help/fr/fun2string.htm \
 help/fr/grep.htm \
 help/fr/hex2dec.htm \
@@ -133,7 +133,7 @@ help/fr/sci2exp.htm
 
 #### string : documentation EN #### 
 libstring_la_helpendir = $(target)/help/eng
-libstring_la_helpen_DATA = help/eng/whatis.htm \
+libstring_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/code2str.htm \
 help/eng/ascii.htm \
 help/eng/emptystr.htm \
@@ -163,3 +163,4 @@ libstring_la_includedir=$(includedir)/string
 libstring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h
 
+include $(top_srcdir)/Makefile.incl.am

@@ -385,7 +385,7 @@ libcore_la_sci_gateway_DATA = sci_gateway/core
 
 #### core : documentation FR #### 
 libcore_la_helpfrdir = $(target)/help/fr
-libcore_la_helpfr_DATA = help/fr/with_tk.htm \
+libcore_la_helpfr_DATA2 = help/fr/with_tk.htm \
 help/fr/intppty.htm \
 help/fr/continue.htm \
 help/fr/c_link.htm \
@@ -525,7 +525,7 @@ help/fr/with_macros_source.htm
 
 #### core : documentation EN #### 
 libcore_la_helpendir = $(target)/help/eng
-libcore_la_helpen_DATA = help/eng/whatis.htm \
+libcore_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/resethistory.htm \
 help/eng/stacksize.htm \
 help/eng/getmodules.htm \
@@ -708,3 +708,4 @@ demos/intro/dem01.dem \
 demos/intro/extc.sce \
 demos/intro/Makefile
 
+include $(top_srcdir)/Makefile.incl.am

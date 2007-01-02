@@ -39,14 +39,14 @@ liblocalization_la_etc_DATA = etc/localization.quit etc/localization.start
 
 #### localization : documentation FR #### 
 liblocalization_la_helpfrdir = $(target)/help/fr
-liblocalization_la_helpfr_DATA = help/fr/whatis.htm \
+liblocalization_la_helpfr_DATA2 = help/fr/whatis.htm \
 help/fr/language.htm \
 help/fr/setlanguage.htm
 
 
 #### localization : documentation EN #### 
 liblocalization_la_helpendir = $(target)/help/eng
-liblocalization_la_helpen_DATA = help/eng/whatis.htm \
+liblocalization_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/language.htm \
 help/eng/setlanguage.htm
 
@@ -55,3 +55,4 @@ help/eng/setlanguage.htm
 liblocalization_la_includedir=$(includedir)/localization
 liblocalization_la_include_HEADERS = includes/localization.h
 
+include $(top_srcdir)/Makefile.incl.am

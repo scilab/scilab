@@ -257,7 +257,7 @@ libsignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing
 
 #### signal_processing : documentation FR #### 
 libsignal_processing_la_helpfrdir = $(target)/help/fr
-libsignal_processing_la_helpfr_DATA = help/fr/cepstrum.htm \
+libsignal_processing_la_helpfr_DATA2 = help/fr/cepstrum.htm \
 help/fr/casc.htm \
 help/fr/cheb2mag.htm \
 help/fr/chepol.htm \
@@ -332,7 +332,7 @@ help/fr/cheb1mag.htm
 
 #### signal_processing : documentation EN #### 
 libsignal_processing_la_helpendir = $(target)/help/eng
-libsignal_processing_la_helpen_DATA = help/eng/whatis.htm \
+libsignal_processing_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/cepstrum.htm \
 help/eng/analpf.htm \
 help/eng/buttmag.htm \
@@ -424,3 +424,4 @@ demos/iir.dem \
 demos/bode.dem \
 demos/wiener.dem
 
+include $(top_srcdir)/Makefile.incl.am

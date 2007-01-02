@@ -25,10 +25,11 @@ libsci2c_la_sci_gateway_DATA = sci_gateway/sci2c
 
 #### sci2c : documentation FR #### 
 libsci2c_la_helpfrdir = $(target)/help/fr
-libsci2c_la_helpfr_DATA = 
+libsci2c_la_helpfr_DATA2 = 
 
 
 #### sci2c : documentation EN #### 
 libsci2c_la_helpendir = $(target)/help/eng
-libsci2c_la_helpen_DATA = 
+libsci2c_la_helpen_DATA2 = 
 
+include $(top_srcdir)/Makefile.incl.am

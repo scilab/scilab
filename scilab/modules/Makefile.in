@@ -131,15 +131,15 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = helptools intersci polynomials cacsd \
-	elementaries_functions arnoldi boolean linear_algebra \
-	differential_equations string signal_processing fileio core \
-	metanet optimization interpolation localization sound \
-	statistics time integer special_functions double randlib \
-	data_structures mexlib symbolic tclsci sparse io gui graphics \
-	scicos wintools functions incremental_link others overloading \
-	javasci maple2scilab m2sci texmacs tfds scipad scilab2fortran \
-	development_tools jvm pvm .
+DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
+	arnoldi boolean linear_algebra differential_equations string \
+	signal_processing fileio core metanet optimization \
+	interpolation localization sound statistics time integer \
+	special_functions double randlib data_structures mexlib \
+	symbolic tclsci sparse io gui graphics scicos wintools \
+	functions incremental_link others overloading javasci \
+	maple2scilab m2sci texmacs tfds scipad scilab2fortran \
+	development_tools helptools jvm pvm .
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -284,15 +284,15 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # The order DOES matter !!!
-SUBDIRS = helptools intersci polynomials cacsd elementaries_functions \
-	arnoldi boolean linear_algebra differential_equations string \
+SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
+	boolean linear_algebra differential_equations string \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
 	symbolic tclsci sparse io gui graphics scicos wintools \
 	functions incremental_link others overloading javasci \
 	maple2scilab m2sci texmacs tfds scipad scilab2fortran \
-	development_tools $(am__append_1) $(am__append_2) .
+	development_tools helptools $(am__append_1) $(am__append_2) .
 #### Target ######
 target = $(datadir)
 

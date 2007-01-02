@@ -465,7 +465,7 @@ libmetanet_la_sci_gateway_DATA = sci_gateway/metanet
 
 #### metanet : documentation FR #### 
 libmetanet_la_helpfrdir = $(target)/help/fr
-libmetanet_la_helpfr_DATA = help/fr/netclose.htm \
+libmetanet_la_helpfr_DATA2 = help/fr/netclose.htm \
 help/fr/mesh2d.htm \
 help/fr/chain_struct.htm \
 help/fr/netwindows.htm \
@@ -546,7 +546,7 @@ help/fr/trans_closure.htm
 
 #### metanet : documentation EN #### 
 libmetanet_la_helpendir = $(target)/help/eng
-libmetanet_la_helpen_DATA = help/eng/whatis.htm \
+libmetanet_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/chain_struct.htm \
 help/eng/add_edge.htm \
 help/eng/add_node.htm \
@@ -650,3 +650,4 @@ demos/node2station \
 demos/mesh100.graph \
 demos/paris.graph
 
+include $(top_srcdir)/Makefile.incl.am

@@ -744,7 +744,7 @@ libgraphics_la_sci_gateway_DATA = sci_gateway/graphics
 
 #### graphics : documentation FR #### 
 libgraphics_la_helpfrdir = $(target)/help/fr
-libgraphics_la_helpfr_DATA = help/fr/fcontour.htm \
+libgraphics_la_helpfr_DATA2 = help/fr/fcontour.htm \
 help/fr/m_circle.htm \
 help/fr/champ_properties.htm \
 help/fr/axis_properties.htm \
@@ -965,7 +965,7 @@ help/fr/xtape.htm
 
 #### graphics : documentation EN #### 
 libgraphics_la_helpendir = $(target)/help/eng
-libgraphics_la_helpen_DATA = help/eng/whatis.htm \
+libgraphics_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/alufunctions.htm \
 help/eng/plotframe.htm \
 help/eng/contour.htm \
@@ -1380,3 +1380,4 @@ demos/portrait.dem \
 demos/xdemo-1.dem \
 demos/bike.dem
 
+include $(top_srcdir)/Makefile.incl.am

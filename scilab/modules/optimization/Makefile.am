@@ -207,7 +207,7 @@ liboptimization_la_sci_gateway_DATA = sci_gateway/optimization
 
 #### optimization : documentation FR #### 
 liboptimization_la_helpfrdir = $(target)/help/fr
-liboptimization_la_helpfr_DATA = help/fr/datafit.htm \
+liboptimization_la_helpfr_DATA2 = help/fr/datafit.htm \
 help/fr/fit_dat.htm \
 help/fr/leastsq.htm \
 help/fr/linpro.htm \
@@ -231,7 +231,7 @@ help/fr/derivative.htm
 
 #### optimization : documentation EN #### 
 liboptimization_la_helpendir = $(target)/help/eng
-liboptimization_la_helpen_DATA = help/eng/whatis.htm \
+liboptimization_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/bvodeS.htm \
 help/eng/bvode.htm \
 help/eng/datafit.htm \
@@ -286,7 +286,6 @@ demos/lmitool/sylvester.sci \
 demos/lmitool/testh2hinf \
 demos/multiflow/ex3.graph \
 demos/multiflow/demo_multiflow.sci \
-demos/multiflow/demo_multiflow_fr.htm \
 demos/multiflow/multiflow.dem \
 demos/icse/icse.sci \
 demos/icse/icseinit.sce \
@@ -305,6 +304,8 @@ demos/icse/sero.mes \
 demos/icse/README \
 demos/datafit/datafit.dem \
 demos/datafit/demo_datafit.sci \
-demos/datafit/demo_datafit_fr.htm \
 demos/optimization.dem
 
+#demos/datafit/demo_datafit_fr.htm \
+#demos/multiflow/demo_multiflow_fr.htm 
+include $(top_srcdir)/Makefile.incl.am

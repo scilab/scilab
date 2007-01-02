@@ -90,12 +90,12 @@ libpvm_la_sci_gateway_DATA = sci_gateway/pvm
 
 #### pvm : documentation FR #### 
 libpvm_la_helpfrdir = $(target)/help/fr
-libpvm_la_helpfr_DATA = 
+libpvm_la_helpfr_DATA2 = 
 
 
 #### pvm : documentation EN #### 
 libpvm_la_helpendir = $(target)/help/eng
-libpvm_la_helpen_DATA = 
+libpvm_la_helpen_DATA2 = 
 
 
 #### pvm : include files ####
@@ -145,3 +145,4 @@ demos/script.sce
 else
 		echo "PVM not activated. Skip this module."
 endif
+include $(top_srcdir)/Makefile.incl.am

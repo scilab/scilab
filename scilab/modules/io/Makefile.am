@@ -142,7 +142,7 @@ libio_la_sci_gateway_DATA = sci_gateway/io
 
 #### io : documentation FR #### 
 libio_la_helpfrdir = $(target)/help/fr
-libio_la_helpfr_DATA = help/fr/fileinfo.htm \
+libio_la_helpfr_DATA2 = help/fr/fileinfo.htm \
 help/fr/disp.htm \
 help/fr/keyboard.htm \
 help/fr/file.htm \
@@ -186,7 +186,7 @@ help/fr/unix_x.htm
 
 #### io : documentation EN #### 
 libio_la_helpendir = $(target)/help/eng
-libio_la_helpen_DATA = help/eng/whatis.htm \
+libio_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/fileinfo.htm \
 help/eng/deff.htm \
 help/eng/diary.htm \
@@ -233,3 +233,4 @@ libio_la_includedir=$(includedir)/io
 libio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h
 
+include $(top_srcdir)/Makefile.incl.am

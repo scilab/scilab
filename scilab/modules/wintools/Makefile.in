@@ -39,9 +39,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-subdir = modules/wintools
 DIST_COMMON = $(libwintools_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in
+	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+subdir = modules/wintools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
@@ -63,8 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libwintools_la_etcdir)" \
-	"$(DESTDIR)$(libwintools_la_helpendir)" \
-	"$(DESTDIR)$(libwintools_la_helpfrdir)" \
 	"$(DESTDIR)$(libwintools_la_macrodir)" \
 	"$(DESTDIR)$(libwintools_la_rootdir)" \
 	"$(DESTDIR)$(libwintools_la_sci_gatewaydir)" \
@@ -103,13 +101,10 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libwintools_la_SOURCES)
 DIST_SOURCES = $(libwintools_la_SOURCES)
 libwintools_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libwintools_la_helpenDATA_INSTALL = $(INSTALL_DATA)
-libwintools_la_helpfrDATA_INSTALL = $(INSTALL_DATA)
 libwintools_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libwintools_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libwintools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libwintools_la_etc_DATA) $(libwintools_la_helpen_DATA) \
-	$(libwintools_la_helpfr_DATA) $(libwintools_la_macro_DATA) \
+DATA = $(libwintools_la_etc_DATA) $(libwintools_la_macro_DATA) \
 	$(libwintools_la_root_DATA) $(libwintools_la_sci_gateway_DATA)
 libwintools_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libwintools_la_include_HEADERS)
@@ -304,12 +299,11 @@ libwintools_la_sci_gateway_DATA = sci_gateway/wintools
 
 #### wintools : documentation FR #### 
 libwintools_la_helpfrdir = $(target)/help/fr
-libwintools_la_helpfr_DATA = help/fr/oemtochar.htm \
+libwintools_la_helpfr_DATA2 = help/fr/oemtochar.htm \
 help/fr/toprint.htm \
 help/fr/about.htm \
 help/fr/clipboard.htm \
 help/fr/console.htm \
-help/fr/whatis.htm \
 help/fr/dos.htm \
 help/fr/chartooem.htm \
 help/fr/mcisendstring.htm \
@@ -323,8 +317,7 @@ help/fr/winqueryreg.htm
 
 #### wintools : documentation EN #### 
 libwintools_la_helpendir = $(target)/help/eng
-libwintools_la_helpen_DATA = help/eng/whatis.htm \
-help/eng/dos.htm \
+libwintools_la_helpen_DATA2 = help/eng/dos.htm \
 help/eng/about.htm \
 help/eng/console.htm \
 help/eng/chartooem.htm \
@@ -362,11 +355,19 @@ includes/sci_fileassociationbox.h \
 includes/sci_dos.h \
 includes/intihmcolor.h
 
+
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files
+pkgdocdir = $(target)
+DOCDIRS = help/fr help/eng
+DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+.SUFFIXES: .sci .bin .c .lo .o .obj
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -611,40 +612,6 @@ uninstall-libwintools_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libwintools_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libwintools_la_etcdir)/$$f"; \
 	done
-install-libwintools_la_helpenDATA: $(libwintools_la_helpen_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libwintools_la_helpendir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_helpendir)"
-	@list='$(libwintools_la_helpen_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libwintools_la_helpenDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_helpendir)/$$f'"; \
-	  $(libwintools_la_helpenDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_helpendir)/$$f"; \
-	done
-
-uninstall-libwintools_la_helpenDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libwintools_la_helpen_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libwintools_la_helpendir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libwintools_la_helpendir)/$$f"; \
-	done
-install-libwintools_la_helpfrDATA: $(libwintools_la_helpfr_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libwintools_la_helpfrdir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_helpfrdir)"
-	@list='$(libwintools_la_helpfr_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libwintools_la_helpfrDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_helpfrdir)/$$f'"; \
-	  $(libwintools_la_helpfrDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_helpfrdir)/$$f"; \
-	done
-
-uninstall-libwintools_la_helpfrDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libwintools_la_helpfr_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libwintools_la_helpfrdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libwintools_la_helpfrdir)/$$f"; \
-	done
 install-libwintools_la_macroDATA: $(libwintools_la_macro_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libwintools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_macrodir)"
@@ -792,7 +759,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libwintools_la_etcdir)" "$(DESTDIR)$(libwintools_la_helpendir)" "$(DESTDIR)$(libwintools_la_helpfrdir)" "$(DESTDIR)$(libwintools_la_macrodir)" "$(DESTDIR)$(libwintools_la_rootdir)" "$(DESTDIR)$(libwintools_la_sci_gatewaydir)" "$(DESTDIR)$(libwintools_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libwintools_la_etcdir)" "$(DESTDIR)$(libwintools_la_macrodir)" "$(DESTDIR)$(libwintools_la_rootdir)" "$(DESTDIR)$(libwintools_la_sci_gatewaydir)" "$(DESTDIR)$(libwintools_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -841,8 +808,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libwintools_la_etcDATA \
-	install-libwintools_la_helpenDATA \
-	install-libwintools_la_helpfrDATA \
 	install-libwintools_la_includeHEADERS \
 	install-libwintools_la_macroDATA \
 	install-libwintools_la_rootDATA \
@@ -853,6 +818,8 @@ install-dvi: install-dvi-am
 install-exec-am: install-libLTLIBRARIES
 
 install-html: install-html-am
+
+install-html-am: install-html-local
 
 install-info: install-info-am
 
@@ -884,8 +851,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libwintools_la_etcDATA \
-	uninstall-libwintools_la_helpenDATA \
-	uninstall-libwintools_la_helpfrDATA \
 	uninstall-libwintools_la_includeHEADERS \
 	uninstall-libwintools_la_macroDATA \
 	uninstall-libwintools_la_rootDATA \
@@ -899,10 +864,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-libwintools_la_etcDATA \
-	install-libwintools_la_helpenDATA \
-	install-libwintools_la_helpfrDATA \
+	install-html-am install-html-local install-info \
+	install-info-am install-libLTLIBRARIES \
+	install-libwintools_la_etcDATA \
 	install-libwintools_la_includeHEADERS \
 	install-libwintools_la_macroDATA \
 	install-libwintools_la_rootDATA \
@@ -913,13 +877,51 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libwintools_la_etcDATA \
-	uninstall-libwintools_la_helpenDATA \
-	uninstall-libwintools_la_helpfrDATA \
 	uninstall-libwintools_la_includeHEADERS \
 	uninstall-libwintools_la_macroDATA \
 	uninstall-libwintools_la_rootDATA \
 	uninstall-libwintools_la_sci_gatewayDATA
 
+
+#.xml.htm:
+#	@( if test ! -x $(top_builddir)/scilab-bin; then \
+#	echo "Error : Cannot build $< : Scilab has not been build"; \
+#	else \
+#	echo "converted $< to $@"; \
+#	fi )
+
+.sci.bin:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	echo "converted $< to $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	fi )
+
+macrossly:
+	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	echo "Error : Cannot build $< : Scilab has not been build"; \
+	else \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+	echo $$SCI/modules/functions/macros/genlib.bin; \
+	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+	fi; \
+	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+	fi )
+install-html-local:
+	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+	@for dir in $(DOCDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
+		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

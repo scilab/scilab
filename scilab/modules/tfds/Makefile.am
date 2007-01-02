@@ -68,7 +68,8 @@ libtfds_la_etc_DATA = etc/tfds.quit etc/tfds.start
 
 #### tfds : documentation FR #### 
 libtfds_la_helpfrdir = $(target)/help/fr
-libtfds_la_helpfr_DATA = help/fr/obscont1.htm \
+libtfds_la_helpfr_DATA2 = help/fr/whatis.htm \
+help/fr/obscont1.htm \
 help/fr/boucle.htm \
 help/fr/fishing.htm \
 help/fr/fusee.htm \
@@ -80,7 +81,6 @@ help/fr/recur.htm \
 help/fr/systems.htm \
 help/fr/tangent.htm \
 help/fr/tdinit.htm \
-help/fr/whatis.htm \
 help/fr/bifish.htm \
 help/fr/artest.htm \
 help/fr/chaintest.htm
@@ -88,7 +88,7 @@ help/fr/chaintest.htm
 
 #### tfds : documentation EN #### 
 libtfds_la_helpendir = $(target)/help/eng
-libtfds_la_helpen_DATA = help/eng/whatis.htm \
+libtfds_la_helpen_DATA2 = help/eng/whatis.htm \
 help/eng/obscont1.htm \
 help/eng/artest.htm \
 help/eng/bifish.htm \
@@ -105,3 +105,4 @@ help/eng/systems.htm \
 help/eng/tangent.htm \
 help/eng/tdinit.htm
 
+include $(top_srcdir)/Makefile.incl.am
