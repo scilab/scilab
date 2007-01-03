@@ -41,7 +41,6 @@ functions \
 incremental_link \
 others \
 overloading \
-javasci \
 maple2scilab \
 m2sci \
 texmacs \
@@ -56,7 +55,8 @@ SUBDIRS += scicos
 endif
 
 if JAVA
-SUBDIRS += jvm 
+SUBDIRS += jvm \
+javasci
 endif
 
 if PVM

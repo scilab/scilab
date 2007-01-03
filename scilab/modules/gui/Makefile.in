@@ -39,7 +39,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@JAVA_TRUE@am__append_1 = $(GUI_JAVA_SOURCES)
+@JAVA_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE)
+@JAVA_TRUE@am__append_2 = $(GUI_JAVA_SOURCES)
 DIST_COMMON = $(libgui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 subdir = modules/gui
@@ -414,11 +415,18 @@ sci_gateway/fortran/sci_delmenu_old.f
 GUI_JAVA_SOURCES = src/c/SciGUIConsole/SciGUIConsole.c
 BUILT_SOURCES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
 CLEANFILES = $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h
-libgui_la_CFLAGS = -Iincludes/  $(JAVA_JNI_INCLUDE)  -I$(top_srcdir)/modules/graphics/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/core/src/c/ -I$(top_srcdir)/modules/string/includes/ -I$(top_srcdir)/modules/tclsci/includes/ -I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) $(Tk_INC_PATH) 
+libgui_la_CFLAGS = -Iincludes/ \
+	-I$(top_srcdir)/modules/graphics/includes/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/core/src/c/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/tclsci/includes/ \
+	-I$(top_srcdir)/modules/gui/src/c/xsci/ $(TCL_INC_PATH) \
+	$(Tk_INC_PATH) $(am__append_1)
 libgui_la_LDFLAGS = $(X_LIBS) $(TERMCAP_LIB)
 lib_LTLIBRARIES = libgui.la
 libgui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) \
-	$(GATEWAY_FORTRAN_SOURCES) $(am__append_1)
+	$(GATEWAY_FORTRAN_SOURCES) $(am__append_2)
 libgui_la_LIBADD = \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/core/libcore.la \

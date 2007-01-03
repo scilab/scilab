@@ -66,14 +66,18 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libjvm_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libscijvm_la_DEPENDENCIES = $(top_builddir)/modules/gui/libgui.la
-am__objects_1 = libscijvm_la-JVM_CONSOLE.lo libscijvm_la-JVM_Unix.lo \
-	libscijvm_la-jvms.lo
-am_libscijvm_la_OBJECTS = $(am__objects_1)
+@JAVA_TRUE@libscijvm_la_DEPENDENCIES =  \
+@JAVA_TRUE@	$(top_builddir)/modules/gui/libgui.la
+am__libscijvm_la_SOURCES_DIST = src/JVM_CONSOLE.c src/JVM_Unix.c \
+	src/jvms.c
+@JAVA_TRUE@am__objects_1 = libscijvm_la-JVM_CONSOLE.lo \
+@JAVA_TRUE@	libscijvm_la-JVM_Unix.lo libscijvm_la-jvms.lo
+@JAVA_TRUE@am_libscijvm_la_OBJECTS = $(am__objects_1)
 libscijvm_la_OBJECTS = $(am_libscijvm_la_OBJECTS)
 libscijvm_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscijvm_la_CFLAGS) \
 	$(CFLAGS) $(libscijvm_la_LDFLAGS) $(LDFLAGS) -o $@
+@JAVA_TRUE@am_libscijvm_la_rpath = -rpath $(libdir)
 DEFAULT_INCLUDES = -I. -I$(top_builddir)/modules/core/includes@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -87,7 +91,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscijvm_la_SOURCES)
-DIST_SOURCES = $(libscijvm_la_SOURCES)
+DIST_SOURCES = $(am__libscijvm_la_SOURCES_DIST)
 libjvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libjvm_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libjvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
@@ -203,7 +207,8 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
-datadir = ${prefix}/modules
+@JAVA_TRUE@datadir = ${prefix}/modules
+datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
@@ -237,43 +242,43 @@ target_alias = @target_alias@
 tcldir = @tcldir@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-JVM_C_SOURCES = src/JVM_CONSOLE.c \
-src/JVM_Unix.c \
-src/jvms.c
+@JAVA_TRUE@JVM_C_SOURCES = src/JVM_CONSOLE.c \
+@JAVA_TRUE@src/JVM_Unix.c \
+@JAVA_TRUE@src/jvms.c
 
-libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
-libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
-lib_LTLIBRARIES = libscijvm.la
-libscijvm_la_SOURCES = $(JVM_C_SOURCES)
-libscijvm_la_LIBADD = \
-$(top_builddir)/modules/gui/libgui.la
+@JAVA_TRUE@libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I$(top_srcdir)/libs/MALLOC/includes/
+@JAVA_TRUE@libscijvm_la_LDFLAGS = $(JAVA_JNI_LIBS) -lpthread -ldl
+@JAVA_TRUE@lib_LTLIBRARIES = libscijvm.la
+@JAVA_TRUE@libscijvm_la_SOURCES = $(JVM_C_SOURCES)
+@JAVA_TRUE@libscijvm_la_LIBADD = \
+@JAVA_TRUE@$(top_builddir)/modules/gui/libgui.la
 
-libscijvm_la_PKGCONFIG = scijvm.pc
+@JAVA_TRUE@libscijvm_la_PKGCONFIG = scijvm.pc
 #### Target ######
-target = $(datadir)/jvm
+@JAVA_TRUE@target = $(datadir)/jvm
 
 #### jvm : Conf files ####
-libjvm_la_rootdir = $(target)
-libjvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
+@JAVA_TRUE@libjvm_la_rootdir = $(target)
+@JAVA_TRUE@libjvm_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### jvm : Scilab macros ###
-libjvm_la_macrodir = $(target)/macros
-libjvm_la_macro_DATA = macros/buildmacros.sce
+@JAVA_TRUE@libjvm_la_macrodir = $(target)/macros
+@JAVA_TRUE@libjvm_la_macro_DATA = macros/buildmacros.sce
 
 #### jvm : init scripts #### 
-libjvm_la_etcdir = $(target)/etc
-libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
+@JAVA_TRUE@libjvm_la_etcdir = $(target)/etc
+@JAVA_TRUE@libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci
+@JAVA_TRUE@SUFFIXES = .sci
 
 # Install HTML files into the right target
 # We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
 # automake needs the html files to be present which is not the case when
 # we are building Scilab
-pkgdocdir = $(target)
-DOCDIRS = help/fr help/eng
-DOCMASK = *.htm
+@JAVA_TRUE@pkgdocdir = $(target)
+@JAVA_TRUE@DOCDIRS = help/fr help/eng
+@JAVA_TRUE@DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
@@ -335,7 +340,7 @@ clean-libLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscijvm.la: $(libscijvm_la_OBJECTS) $(libscijvm_la_DEPENDENCIES) 
-	$(libscijvm_la_LINK) -rpath $(libdir) $(libscijvm_la_OBJECTS) $(libscijvm_la_LIBADD) $(LIBS)
+	$(libscijvm_la_LINK) $(am_libscijvm_la_rpath) $(libscijvm_la_OBJECTS) $(libscijvm_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -551,6 +556,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@JAVA_FALSE@install-html-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
@@ -643,38 +649,40 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 #	fi )
 
 # Rule to build a macro
-.sci.bin:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
-	echo "Error : Cannot build $< : Scilab has not been build"; \
-	else \
-	echo "Creating $@"; \
-	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
-	fi )
+@JAVA_TRUE@.sci.bin:
+@JAVA_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@JAVA_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@JAVA_TRUE@	else \
+@JAVA_TRUE@	echo "Creating $@"; \
+@JAVA_TRUE@	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
+@JAVA_TRUE@	fi )
 
-macrossly:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
-	echo "Error : Cannot build $< : Scilab has not been build"; \
-	else \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-	echo $$SCI/modules/functions/macros/genlib.bin; \
-	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-	fi; \
-	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
-	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
-	fi )
-install-html-local:
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCDIRS) ; do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
-		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	done
+@JAVA_TRUE@macrossly:
+@JAVA_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@JAVA_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@JAVA_TRUE@	else \
+@JAVA_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@JAVA_TRUE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+@JAVA_TRUE@	echo $$SCI/modules/functions/macros/genlib.bin; \
+@JAVA_TRUE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+@JAVA_TRUE@	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+@JAVA_TRUE@	fi; \
+@JAVA_TRUE@	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+@JAVA_TRUE@	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+@JAVA_TRUE@	fi )
+@JAVA_TRUE@install-html-local:
+@JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
+@JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
+@JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@JAVA_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@JAVA_TRUE@		  done ; \
+@JAVA_TRUE@		fi; \
+@JAVA_TRUE@	done
+
+@JAVA_FALSE@		echo "Java disabled. Skip this module."
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

@@ -628,9 +628,8 @@ if test "$with_java" != no; then
 	AC_SUBST(JAVA_JNI_INCLUDE)
     AC_SUBST(JAVA_JNI_LIBS)
     AC_SUBST(JAVA_HOME)
-	AM_CONDITIONAL(JAVA, test "$JAVA_OK" = "1")	
 fi
-
+AM_CONDITIONAL(JAVA, test "$with_java" != no)
 
 
 ##############################################################

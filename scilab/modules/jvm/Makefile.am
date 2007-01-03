@@ -3,6 +3,8 @@
 ### INRIA - Scilab 2006 
 ##########
 
+if JAVA
+
 JVM_C_SOURCES = src/JVM_CONSOLE.c \
 src/JVM_Unix.c \
 src/jvms.c
@@ -40,3 +42,7 @@ libjvm_la_etcdir = $(target)/etc
 libjvm_la_etc_DATA = etc/jvm.quit etc/jvm.start
 
 include $(top_srcdir)/Makefile.incl.am
+
+else
+		echo "Java disabled. Skip this module."
+endif
