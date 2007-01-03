@@ -15,7 +15,7 @@ liboverloading_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### overloading : Scilab macros ###
 liboverloading_la_macrodir = $(target)/macros
-liboverloading_la_macro_DATA = macros/%sp_exp.sci \
+liboverloading_la_macro_DATA22 = macros/%sp_exp.sci \
 macros/%spb_h_spb.sci \
 macros/%c_i_st.sci \
 macros/%s_n_hm.sci \

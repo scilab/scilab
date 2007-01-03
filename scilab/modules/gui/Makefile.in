@@ -66,7 +66,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libgui_la_demosdir)" \
 	"$(DESTDIR)$(libgui_la_etcdir)" \
-	"$(DESTDIR)$(libgui_la_macrodir)" \
 	"$(DESTDIR)$(libgui_la_rootdir)" \
 	"$(DESTDIR)$(libgui_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libgui_la_includedir)"
@@ -182,12 +181,10 @@ SOURCES = $(libgui_la_SOURCES)
 DIST_SOURCES = $(am__libgui_la_SOURCES_DIST)
 libgui_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libgui_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libgui_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libgui_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libgui_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libgui_la_demos_DATA) $(libgui_la_etc_DATA) \
-	$(libgui_la_macro_DATA) $(libgui_la_root_DATA) \
-	$(libgui_la_sci_gateway_DATA)
+	$(libgui_la_root_DATA) $(libgui_la_sci_gateway_DATA)
 libgui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libgui_la_include_HEADERS)
 ETAGS = etags
@@ -446,7 +443,7 @@ libgui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### gui : Scilab macros ###
 libgui_la_macrodir = $(target)/macros
-libgui_la_macro_DATA = macros/unsetmenu.sci \
+libgui_la_macro_DATA22 = macros/unsetmenu.sci \
 macros/x_choices.sci \
 macros/savedefaultbrowser.sci \
 macros/delmenu.sci \
@@ -1184,23 +1181,6 @@ uninstall-libgui_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libgui_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libgui_la_etcdir)/$$f"; \
 	done
-install-libgui_la_macroDATA: $(libgui_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libgui_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_macrodir)"
-	@list='$(libgui_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libgui_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgui_la_macrodir)/$$f'"; \
-	  $(libgui_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgui_la_macrodir)/$$f"; \
-	done
-
-uninstall-libgui_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libgui_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgui_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgui_la_macrodir)/$$f"; \
-	done
 install-libgui_la_rootDATA: $(libgui_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libgui_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libgui_la_rootdir)"
@@ -1332,7 +1312,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgui_la_demosdir)" "$(DESTDIR)$(libgui_la_etcdir)" "$(DESTDIR)$(libgui_la_macrodir)" "$(DESTDIR)$(libgui_la_rootdir)" "$(DESTDIR)$(libgui_la_sci_gatewaydir)" "$(DESTDIR)$(libgui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgui_la_demosdir)" "$(DESTDIR)$(libgui_la_etcdir)" "$(DESTDIR)$(libgui_la_rootdir)" "$(DESTDIR)$(libgui_la_sci_gatewaydir)" "$(DESTDIR)$(libgui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1384,8 +1364,8 @@ info: info-am
 info-am:
 
 install-data-am: install-libgui_la_demosDATA install-libgui_la_etcDATA \
-	install-libgui_la_includeHEADERS install-libgui_la_macroDATA \
-	install-libgui_la_rootDATA install-libgui_la_sci_gatewayDATA
+	install-libgui_la_includeHEADERS install-libgui_la_rootDATA \
+	install-libgui_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1425,7 +1405,7 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libgui_la_demosDATA \
 	uninstall-libgui_la_etcDATA uninstall-libgui_la_includeHEADERS \
-	uninstall-libgui_la_macroDATA uninstall-libgui_la_rootDATA \
+	uninstall-libgui_la_rootDATA \
 	uninstall-libgui_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
@@ -1439,17 +1419,16 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libgui_la_demosDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
 	install-libgui_la_demosDATA install-libgui_la_etcDATA \
-	install-libgui_la_includeHEADERS install-libgui_la_macroDATA \
-	install-libgui_la_rootDATA install-libgui_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
+	install-libgui_la_includeHEADERS install-libgui_la_rootDATA \
+	install-libgui_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libgui_la_demosDATA uninstall-libgui_la_etcDATA \
 	uninstall-libgui_la_includeHEADERS \
-	uninstall-libgui_la_macroDATA uninstall-libgui_la_rootDATA \
+	uninstall-libgui_la_rootDATA \
 	uninstall-libgui_la_sci_gatewayDATA
 
 
@@ -1471,6 +1450,9 @@ $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

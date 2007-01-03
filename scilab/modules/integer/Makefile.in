@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libinteger_la_etcdir)" \
-	"$(DESTDIR)$(libinteger_la_macrodir)" \
 	"$(DESTDIR)$(libinteger_la_rootdir)" \
 	"$(DESTDIR)$(libinteger_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libinteger_la_includedir)"
@@ -136,11 +135,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libinteger_la_SOURCES)
 DIST_SOURCES = $(libinteger_la_SOURCES)
 libinteger_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libinteger_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libinteger_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libinteger_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libinteger_la_etc_DATA) $(libinteger_la_macro_DATA) \
-	$(libinteger_la_root_DATA) $(libinteger_la_sci_gateway_DATA)
+DATA = $(libinteger_la_etc_DATA) $(libinteger_la_root_DATA) \
+	$(libinteger_la_sci_gateway_DATA)
 libinteger_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libinteger_la_include_HEADERS)
 ETAGS = etags
@@ -417,7 +415,7 @@ libinteger_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### integer : Scilab macros ###
 libinteger_la_macrodir = $(target)/macros
-libinteger_la_macro_DATA = macros/%i_plot2d1.sci \
+libinteger_la_macro_DATA22 = macros/%i_plot2d1.sci \
 macros/%i_mfprintf.sci \
 macros/%i_plot2d2.sci \
 macros/%i_contour.sci \
@@ -1219,23 +1217,6 @@ uninstall-libinteger_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libinteger_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libinteger_la_etcdir)/$$f"; \
 	done
-install-libinteger_la_macroDATA: $(libinteger_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libinteger_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libinteger_la_macrodir)"
-	@list='$(libinteger_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libinteger_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libinteger_la_macrodir)/$$f'"; \
-	  $(libinteger_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libinteger_la_macrodir)/$$f"; \
-	done
-
-uninstall-libinteger_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libinteger_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libinteger_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libinteger_la_macrodir)/$$f"; \
-	done
 install-libinteger_la_rootDATA: $(libinteger_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libinteger_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libinteger_la_rootdir)"
@@ -1366,7 +1347,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libinteger_la_etcdir)" "$(DESTDIR)$(libinteger_la_macrodir)" "$(DESTDIR)$(libinteger_la_rootdir)" "$(DESTDIR)$(libinteger_la_sci_gatewaydir)" "$(DESTDIR)$(libinteger_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libinteger_la_etcdir)" "$(DESTDIR)$(libinteger_la_rootdir)" "$(DESTDIR)$(libinteger_la_sci_gatewaydir)" "$(DESTDIR)$(libinteger_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1416,7 +1397,7 @@ info-am:
 
 install-data-am: install-libinteger_la_etcDATA \
 	install-libinteger_la_includeHEADERS \
-	install-libinteger_la_macroDATA install-libinteger_la_rootDATA \
+	install-libinteger_la_rootDATA \
 	install-libinteger_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1457,7 +1438,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libinteger_la_etcDATA \
 	uninstall-libinteger_la_includeHEADERS \
-	uninstall-libinteger_la_macroDATA \
 	uninstall-libinteger_la_rootDATA \
 	uninstall-libinteger_la_sci_gatewayDATA
 
@@ -1473,7 +1453,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libinteger_la_etcDATA \
 	install-info-am install-libLTLIBRARIES \
 	install-libinteger_la_etcDATA \
 	install-libinteger_la_includeHEADERS \
-	install-libinteger_la_macroDATA install-libinteger_la_rootDATA \
+	install-libinteger_la_rootDATA \
 	install-libinteger_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -1482,7 +1462,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libinteger_la_etcDATA \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libinteger_la_etcDATA \
 	uninstall-libinteger_la_includeHEADERS \
-	uninstall-libinteger_la_macroDATA \
 	uninstall-libinteger_la_rootDATA \
 	uninstall-libinteger_la_sci_gatewayDATA
 
@@ -1502,6 +1481,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libinteger_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

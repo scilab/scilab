@@ -65,7 +65,6 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libtclsci_la_demossciGUIdir)" \
 	"$(DESTDIR)$(libtclsci_la_demostkdir)" \
 	"$(DESTDIR)$(libtclsci_la_etcdir)" \
-	"$(DESTDIR)$(libtclsci_la_macrodir)" \
 	"$(DESTDIR)$(libtclsci_la_rootdir)" \
 	"$(DESTDIR)$(libtclsci_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libtclsci_la_tcldir)" \
@@ -114,13 +113,12 @@ DIST_SOURCES = $(libtclsci_la_SOURCES)
 libtclsci_la_demossciGUIDATA_INSTALL = $(INSTALL_DATA)
 libtclsci_la_demostkDATA_INSTALL = $(INSTALL_DATA)
 libtclsci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libtclsci_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libtclsci_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libtclsci_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libtclsci_la_tclDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libtclsci_la_demossciGUI_DATA) $(libtclsci_la_demostk_DATA) \
-	$(libtclsci_la_etc_DATA) $(libtclsci_la_macro_DATA) \
-	$(libtclsci_la_root_DATA) $(libtclsci_la_sci_gateway_DATA) \
+	$(libtclsci_la_etc_DATA) $(libtclsci_la_root_DATA) \
+	$(libtclsci_la_sci_gateway_DATA) \
 	$(nobase_libtclsci_la_tcl_DATA)
 libtclsci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libtclsci_la_include_HEADERS)
@@ -318,7 +316,7 @@ libtclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### tclsci : Scilab macros ###
 libtclsci_la_macrodir = $(target)/macros
-libtclsci_la_macro_DATA = macros/TK_SetVar.sci \
+libtclsci_la_macro_DATA22 = macros/TK_SetVar.sci \
 macros/IsAScalar.sci \
 macros/uimenu.sci \
 macros/config.sci \
@@ -1036,23 +1034,6 @@ uninstall-libtclsci_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libtclsci_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libtclsci_la_etcdir)/$$f"; \
 	done
-install-libtclsci_la_macroDATA: $(libtclsci_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libtclsci_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_macrodir)"
-	@list='$(libtclsci_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libtclsci_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtclsci_la_macrodir)/$$f'"; \
-	  $(libtclsci_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtclsci_la_macrodir)/$$f"; \
-	done
-
-uninstall-libtclsci_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libtclsci_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtclsci_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtclsci_la_macrodir)/$$f"; \
-	done
 install-libtclsci_la_rootDATA: $(libtclsci_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libtclsci_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libtclsci_la_rootdir)"
@@ -1202,7 +1183,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libtclsci_la_demossciGUIdir)" "$(DESTDIR)$(libtclsci_la_demostkdir)" "$(DESTDIR)$(libtclsci_la_etcdir)" "$(DESTDIR)$(libtclsci_la_macrodir)" "$(DESTDIR)$(libtclsci_la_rootdir)" "$(DESTDIR)$(libtclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libtclsci_la_tcldir)" "$(DESTDIR)$(libtclsci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libtclsci_la_demossciGUIdir)" "$(DESTDIR)$(libtclsci_la_demostkdir)" "$(DESTDIR)$(libtclsci_la_etcdir)" "$(DESTDIR)$(libtclsci_la_rootdir)" "$(DESTDIR)$(libtclsci_la_sci_gatewaydir)" "$(DESTDIR)$(libtclsci_la_tcldir)" "$(DESTDIR)$(libtclsci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1253,7 +1234,7 @@ info-am:
 install-data-am: install-libtclsci_la_demossciGUIDATA \
 	install-libtclsci_la_demostkDATA install-libtclsci_la_etcDATA \
 	install-libtclsci_la_includeHEADERS \
-	install-libtclsci_la_macroDATA install-libtclsci_la_rootDATA \
+	install-libtclsci_la_rootDATA \
 	install-libtclsci_la_sci_gatewayDATA \
 	install-nobase_libtclsci_la_tclDATA
 
@@ -1298,7 +1279,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libtclsci_la_demostkDATA \
 	uninstall-libtclsci_la_etcDATA \
 	uninstall-libtclsci_la_includeHEADERS \
-	uninstall-libtclsci_la_macroDATA \
 	uninstall-libtclsci_la_rootDATA \
 	uninstall-libtclsci_la_sci_gatewayDATA \
 	uninstall-nobase_libtclsci_la_tclDATA
@@ -1316,7 +1296,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-libtclsci_la_demossciGUIDATA \
 	install-libtclsci_la_demostkDATA install-libtclsci_la_etcDATA \
 	install-libtclsci_la_includeHEADERS \
-	install-libtclsci_la_macroDATA install-libtclsci_la_rootDATA \
+	install-libtclsci_la_rootDATA \
 	install-libtclsci_la_sci_gatewayDATA install-man \
 	install-nobase_libtclsci_la_tclDATA install-pdf install-pdf-am \
 	install-ps install-ps-am install-strip installcheck \
@@ -1328,7 +1308,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libtclsci_la_demostkDATA \
 	uninstall-libtclsci_la_etcDATA \
 	uninstall-libtclsci_la_includeHEADERS \
-	uninstall-libtclsci_la_macroDATA \
 	uninstall-libtclsci_la_rootDATA \
 	uninstall-libtclsci_la_sci_gatewayDATA \
 	uninstall-nobase_libtclsci_la_tclDATA
@@ -1352,6 +1331,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

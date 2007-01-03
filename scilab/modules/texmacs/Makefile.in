@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libtexmacs_la_etcdir)" \
-	"$(DESTDIR)$(libtexmacs_la_macrodir)" \
 	"$(DESTDIR)$(libtexmacs_la_rootdir)"
 libtexmacs_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libtexmacs_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libtexmacs_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libtexmacs_la_etc_DATA) $(libtexmacs_la_macro_DATA) \
-	$(libtexmacs_la_root_DATA)
+DATA = $(libtexmacs_la_etc_DATA) $(libtexmacs_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ libtexmacs_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### texmacs : Scilab macros ###
 libtexmacs_la_macrodir = $(target)/macros
-libtexmacs_la_macro_DATA = macros/%p_p.sci \
+libtexmacs_la_macro_DATA22 = macros/%p_p.sci \
 macros/%b_p.sci \
 macros/%r_p.sci \
 macros/%c_p.sci \
@@ -313,23 +310,6 @@ uninstall-libtexmacs_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libtexmacs_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libtexmacs_la_etcdir)/$$f"; \
 	done
-install-libtexmacs_la_macroDATA: $(libtexmacs_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libtexmacs_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libtexmacs_la_macrodir)"
-	@list='$(libtexmacs_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libtexmacs_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtexmacs_la_macrodir)/$$f'"; \
-	  $(libtexmacs_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtexmacs_la_macrodir)/$$f"; \
-	done
-
-uninstall-libtexmacs_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libtexmacs_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtexmacs_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtexmacs_la_macrodir)/$$f"; \
-	done
 install-libtexmacs_la_rootDATA: $(libtexmacs_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libtexmacs_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libtexmacs_la_rootdir)"
@@ -384,7 +364,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libtexmacs_la_etcdir)" "$(DESTDIR)$(libtexmacs_la_macrodir)" "$(DESTDIR)$(libtexmacs_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libtexmacs_la_etcdir)" "$(DESTDIR)$(libtexmacs_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -430,7 +410,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libtexmacs_la_etcDATA \
-	install-libtexmacs_la_macroDATA install-libtexmacs_la_rootDATA
+	install-libtexmacs_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -467,7 +447,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libtexmacs_la_etcDATA \
-	uninstall-libtexmacs_la_macroDATA \
 	uninstall-libtexmacs_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -478,14 +457,13 @@ uninstall-am: uninstall-libtexmacs_la_etcDATA \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libtexmacs_la_etcDATA install-libtexmacs_la_macroDATA \
-	install-libtexmacs_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
+	install-libtexmacs_la_etcDATA install-libtexmacs_la_rootDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am uninstall uninstall-am \
 	uninstall-libtexmacs_la_etcDATA \
-	uninstall-libtexmacs_la_macroDATA \
 	uninstall-libtexmacs_la_rootDATA
 
 
@@ -504,6 +482,9 @@ uninstall-am: uninstall-libtexmacs_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

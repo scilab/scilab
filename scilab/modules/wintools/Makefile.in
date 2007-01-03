@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libwintools_la_etcdir)" \
-	"$(DESTDIR)$(libwintools_la_macrodir)" \
 	"$(DESTDIR)$(libwintools_la_rootdir)" \
 	"$(DESTDIR)$(libwintools_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libwintools_la_includedir)"
@@ -101,11 +100,10 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libwintools_la_SOURCES)
 DIST_SOURCES = $(libwintools_la_SOURCES)
 libwintools_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libwintools_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libwintools_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libwintools_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libwintools_la_etc_DATA) $(libwintools_la_macro_DATA) \
-	$(libwintools_la_root_DATA) $(libwintools_la_sci_gateway_DATA)
+DATA = $(libwintools_la_etc_DATA) $(libwintools_la_root_DATA) \
+	$(libwintools_la_sci_gateway_DATA)
 libwintools_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libwintools_la_include_HEADERS)
 ETAGS = etags
@@ -287,7 +285,7 @@ libwintools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### wintools : Scilab macros ###
 libwintools_la_macrodir = $(target)/macros
-libwintools_la_macro_DATA = macros/buildmacros.sce 
+libwintools_la_macro_DATA22 = macros/buildmacros.sce 
 
 #### wintools : init scripts #### 
 libwintools_la_etcdir = $(target)/etc
@@ -579,23 +577,6 @@ uninstall-libwintools_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libwintools_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libwintools_la_etcdir)/$$f"; \
 	done
-install-libwintools_la_macroDATA: $(libwintools_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libwintools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_macrodir)"
-	@list='$(libwintools_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libwintools_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libwintools_la_macrodir)/$$f'"; \
-	  $(libwintools_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libwintools_la_macrodir)/$$f"; \
-	done
-
-uninstall-libwintools_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libwintools_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libwintools_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libwintools_la_macrodir)/$$f"; \
-	done
 install-libwintools_la_rootDATA: $(libwintools_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libwintools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libwintools_la_rootdir)"
@@ -726,7 +707,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libwintools_la_etcdir)" "$(DESTDIR)$(libwintools_la_macrodir)" "$(DESTDIR)$(libwintools_la_rootdir)" "$(DESTDIR)$(libwintools_la_sci_gatewaydir)" "$(DESTDIR)$(libwintools_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libwintools_la_etcdir)" "$(DESTDIR)$(libwintools_la_rootdir)" "$(DESTDIR)$(libwintools_la_sci_gatewaydir)" "$(DESTDIR)$(libwintools_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -776,7 +757,6 @@ info-am:
 
 install-data-am: install-libwintools_la_etcDATA \
 	install-libwintools_la_includeHEADERS \
-	install-libwintools_la_macroDATA \
 	install-libwintools_la_rootDATA \
 	install-libwintools_la_sci_gatewayDATA
 
@@ -819,7 +799,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libwintools_la_etcDATA \
 	uninstall-libwintools_la_includeHEADERS \
-	uninstall-libwintools_la_macroDATA \
 	uninstall-libwintools_la_rootDATA \
 	uninstall-libwintools_la_sci_gatewayDATA
 
@@ -835,7 +814,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libwintools_la_etcDATA \
 	install-libwintools_la_includeHEADERS \
-	install-libwintools_la_macroDATA \
 	install-libwintools_la_rootDATA \
 	install-libwintools_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
@@ -845,7 +823,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libwintools_la_etcDATA \
 	uninstall-libwintools_la_includeHEADERS \
-	uninstall-libwintools_la_macroDATA \
 	uninstall-libwintools_la_rootDATA \
 	uninstall-libwintools_la_sci_gatewayDATA
 
@@ -865,6 +842,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

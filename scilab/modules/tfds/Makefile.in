@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libtfds_la_etcdir)" \
-	"$(DESTDIR)$(libtfds_la_macrodir)" \
 	"$(DESTDIR)$(libtfds_la_rootdir)"
 libtfds_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libtfds_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libtfds_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libtfds_la_etc_DATA) $(libtfds_la_macro_DATA) \
-	$(libtfds_la_root_DATA)
+DATA = $(libtfds_la_etc_DATA) $(libtfds_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ libtfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### tfds : Scilab macros ###
 libtfds_la_macrodir = $(target)/macros
-libtfds_la_macro_DATA = macros/artest.sci \
+libtfds_la_macro_DATA22 = macros/artest.sci \
 macros/logr.sci \
 macros/bifish.sci \
 macros/portrait.sci \
@@ -337,23 +334,6 @@ uninstall-libtfds_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libtfds_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libtfds_la_etcdir)/$$f"; \
 	done
-install-libtfds_la_macroDATA: $(libtfds_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libtfds_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libtfds_la_macrodir)"
-	@list='$(libtfds_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libtfds_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtfds_la_macrodir)/$$f'"; \
-	  $(libtfds_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtfds_la_macrodir)/$$f"; \
-	done
-
-uninstall-libtfds_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libtfds_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtfds_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtfds_la_macrodir)/$$f"; \
-	done
 install-libtfds_la_rootDATA: $(libtfds_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libtfds_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libtfds_la_rootdir)"
@@ -408,7 +388,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libtfds_la_etcdir)" "$(DESTDIR)$(libtfds_la_macrodir)" "$(DESTDIR)$(libtfds_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libtfds_la_etcdir)" "$(DESTDIR)$(libtfds_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -454,7 +434,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libtfds_la_etcDATA \
-	install-libtfds_la_macroDATA install-libtfds_la_rootDATA
+	install-libtfds_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -491,7 +471,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libtfds_la_etcDATA \
-	uninstall-libtfds_la_macroDATA uninstall-libtfds_la_rootDATA
+	uninstall-libtfds_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -501,13 +481,12 @@ uninstall-am: uninstall-libtfds_la_etcDATA \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libtfds_la_etcDATA install-libtfds_la_macroDATA \
-	install-libtfds_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libtfds_la_etcDATA uninstall-libtfds_la_macroDATA \
+	install-libtfds_la_etcDATA install-libtfds_la_rootDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am uninstall uninstall-am uninstall-libtfds_la_etcDATA \
 	uninstall-libtfds_la_rootDATA
 
 
@@ -526,6 +505,9 @@ uninstall-am: uninstall-libtfds_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

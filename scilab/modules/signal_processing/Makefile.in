@@ -64,7 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_etcdir)" \
-	"$(DESTDIR)$(libsignal_processing_la_macrodir)" \
 	"$(DESTDIR)$(libsignal_processing_la_rootdir)" \
 	"$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsignal_processing_la_demosdir)" \
@@ -122,12 +121,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libsignal_processing_la_SOURCES)
 DIST_SOURCES = $(libsignal_processing_la_SOURCES)
 libsignal_processing_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsignal_processing_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsignal_processing_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libsignal_processing_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libsignal_processing_la_etc_DATA) \
-	$(libsignal_processing_la_macro_DATA) \
 	$(libsignal_processing_la_root_DATA) \
 	$(libsignal_processing_la_sci_gateway_DATA) \
 	$(nobase_libsignal_processing_la_demos_DATA)
@@ -383,7 +380,7 @@ libsignal_processing_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### signal_processing : Scilab macros ###
 libsignal_processing_la_macrodir = $(target)/macros
-libsignal_processing_la_macro_DATA = macros/srkf.sci \
+libsignal_processing_la_macro_DATA22 = macros/srkf.sci \
 macros/intdec.sci \
 macros/phc.sci \
 macros/lindquist.sci \
@@ -975,23 +972,6 @@ uninstall-libsignal_processing_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsignal_processing_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsignal_processing_la_etcdir)/$$f"; \
 	done
-install-libsignal_processing_la_macroDATA: $(libsignal_processing_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsignal_processing_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libsignal_processing_la_macrodir)"
-	@list='$(libsignal_processing_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsignal_processing_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsignal_processing_la_macrodir)/$$f'"; \
-	  $(libsignal_processing_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsignal_processing_la_macrodir)/$$f"; \
-	done
-
-uninstall-libsignal_processing_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsignal_processing_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsignal_processing_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsignal_processing_la_macrodir)/$$f"; \
-	done
 install-libsignal_processing_la_rootDATA: $(libsignal_processing_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsignal_processing_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsignal_processing_la_rootdir)"
@@ -1141,7 +1121,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsignal_processing_la_etcdir)" "$(DESTDIR)$(libsignal_processing_la_macrodir)" "$(DESTDIR)$(libsignal_processing_la_rootdir)" "$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)" "$(DESTDIR)$(libsignal_processing_la_demosdir)" "$(DESTDIR)$(libsignal_processing_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsignal_processing_la_etcdir)" "$(DESTDIR)$(libsignal_processing_la_rootdir)" "$(DESTDIR)$(libsignal_processing_la_sci_gatewaydir)" "$(DESTDIR)$(libsignal_processing_la_demosdir)" "$(DESTDIR)$(libsignal_processing_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1191,7 +1171,6 @@ info-am:
 
 install-data-am: install-libsignal_processing_la_etcDATA \
 	install-libsignal_processing_la_includeHEADERS \
-	install-libsignal_processing_la_macroDATA \
 	install-libsignal_processing_la_rootDATA \
 	install-libsignal_processing_la_sci_gatewayDATA \
 	install-nobase_libsignal_processing_la_demosDATA
@@ -1235,7 +1214,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libsignal_processing_la_etcDATA \
 	uninstall-libsignal_processing_la_includeHEADERS \
-	uninstall-libsignal_processing_la_macroDATA \
 	uninstall-libsignal_processing_la_rootDATA \
 	uninstall-libsignal_processing_la_sci_gatewayDATA \
 	uninstall-nobase_libsignal_processing_la_demosDATA
@@ -1252,7 +1230,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libsignal_processing_la_etcDATA \
 	install-libsignal_processing_la_includeHEADERS \
-	install-libsignal_processing_la_macroDATA \
 	install-libsignal_processing_la_rootDATA \
 	install-libsignal_processing_la_sci_gatewayDATA install-man \
 	install-nobase_libsignal_processing_la_demosDATA install-pdf \
@@ -1263,7 +1240,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libsignal_processing_la_etcDATA \
 	uninstall-libsignal_processing_la_includeHEADERS \
-	uninstall-libsignal_processing_la_macroDATA \
 	uninstall-libsignal_processing_la_rootDATA \
 	uninstall-libsignal_processing_la_sci_gatewayDATA \
 	uninstall-nobase_libsignal_processing_la_demosDATA
@@ -1284,6 +1260,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

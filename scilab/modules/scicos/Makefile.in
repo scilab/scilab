@@ -68,7 +68,6 @@ am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libscicos_la_rootdir)" \
 	"$(DESTDIR)$(libscicos_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscicos_la_demosdir)" \
-	"$(DESTDIR)$(libscicos_la_macrodir)" \
 	"$(DESTDIR)$(libscicos_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -177,11 +176,9 @@ libscicos_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicos_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicos_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscicos_la_demosDATA_INSTALL = $(install_sh_DATA)
-nobase_libscicos_la_macroDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscicos_la_etc_DATA) $(libscicos_la_root_DATA) \
 	$(libscicos_la_sci_gateway_DATA) \
-	$(nobase_libscicos_la_demos_DATA) \
-	$(nobase_libscicos_la_macro_DATA)
+	$(nobase_libscicos_la_demos_DATA)
 libscicos_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscicos_la_include_HEADERS)
 ETAGS = etags
@@ -544,7 +541,7 @@ libscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scicos : Scilab macros ###
 libscicos_la_macrodir = $(target)
-nobase_libscicos_la_macro_DATA = macros/scicos_blocks/Sources/TIME_f.sci \
+nobase_libscicos_la_macro_DATA22 = macros/scicos_blocks/Sources/TIME_f.sci \
 macros/scicos_blocks/Sources/GENSQR_f.sci \
 macros/scicos_blocks/Sources/CLKIN_f.sci \
 macros/scicos_blocks/Sources/READAU_f.sci \
@@ -2972,25 +2969,6 @@ uninstall-nobase_libscicos_la_demosDATA:
 	  echo " rm -f '$(DESTDIR)$(libscicos_la_demosdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscicos_la_demosdir)/$$f"; \
 	done
-install-nobase_libscicos_la_macroDATA: $(nobase_libscicos_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicos_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_macrodir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscicos_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscicos_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicos_la_macrodir)/$$f'"; \
-	  $(nobase_libscicos_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicos_la_macrodir)/$$f"; \
-	done
-
-uninstall-nobase_libscicos_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscicos_la_macro_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscicos_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscicos_la_macrodir)/$$f"; \
-	done
 install-libscicos_la_includeHEADERS: $(libscicos_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicos_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscicos_la_includedir)"
@@ -3088,7 +3066,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscicos_la_etcdir)" "$(DESTDIR)$(libscicos_la_rootdir)" "$(DESTDIR)$(libscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libscicos_la_demosdir)" "$(DESTDIR)$(libscicos_la_macrodir)" "$(DESTDIR)$(libscicos_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libscicos_la_etcdir)" "$(DESTDIR)$(libscicos_la_rootdir)" "$(DESTDIR)$(libscicos_la_sci_gatewaydir)" "$(DESTDIR)$(libscicos_la_demosdir)" "$(DESTDIR)$(libscicos_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -3143,8 +3121,7 @@ install-data-am: install-libscicos_la_etcDATA \
 	install-libscicos_la_includeHEADERS \
 	install-libscicos_la_rootDATA \
 	install-libscicos_la_sci_gatewayDATA \
-	install-nobase_libscicos_la_demosDATA \
-	install-nobase_libscicos_la_macroDATA
+	install-nobase_libscicos_la_demosDATA
 
 install-dvi: install-dvi-am
 
@@ -3186,8 +3163,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
 	uninstall-libscicos_la_includeHEADERS \
 	uninstall-libscicos_la_rootDATA \
 	uninstall-libscicos_la_sci_gatewayDATA \
-	uninstall-nobase_libscicos_la_demosDATA \
-	uninstall-nobase_libscicos_la_macroDATA
+	uninstall-nobase_libscicos_la_demosDATA
 
 .MAKE: install-am install-strip
 
@@ -3203,8 +3179,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
 	install-libscicos_la_includeHEADERS \
 	install-libscicos_la_rootDATA \
 	install-libscicos_la_sci_gatewayDATA install-man \
-	install-nobase_libscicos_la_demosDATA \
-	install-nobase_libscicos_la_macroDATA install-pdf \
+	install-nobase_libscicos_la_demosDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
@@ -3214,8 +3189,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
 	uninstall-libscicos_la_includeHEADERS \
 	uninstall-libscicos_la_rootDATA \
 	uninstall-libscicos_la_sci_gatewayDATA \
-	uninstall-nobase_libscicos_la_demosDATA \
-	uninstall-nobase_libscicos_la_macroDATA
+	uninstall-nobase_libscicos_la_demosDATA
 
 
 includes/blocks.h:
@@ -3240,6 +3214,9 @@ includes/blocks.h:
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

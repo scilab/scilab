@@ -66,7 +66,7 @@ libtclsci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### tclsci : Scilab macros ###
 libtclsci_la_macrodir = $(target)/macros
-libtclsci_la_macro_DATA = macros/TK_SetVar.sci \
+libtclsci_la_macro_DATA22 = macros/TK_SetVar.sci \
 macros/IsAScalar.sci \
 macros/uimenu.sci \
 macros/config.sci \

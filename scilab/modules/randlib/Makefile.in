@@ -64,7 +64,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(librandlib_la_demosdir)" \
 	"$(DESTDIR)$(librandlib_la_etcdir)" \
-	"$(DESTDIR)$(librandlib_la_macrodir)" \
 	"$(DESTDIR)$(librandlib_la_rootdir)" \
 	"$(DESTDIR)$(librandlib_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(librandlib_la_includedir)"
@@ -108,12 +107,10 @@ SOURCES = $(librandlib_la_SOURCES)
 DIST_SOURCES = $(librandlib_la_SOURCES)
 librandlib_la_demosDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
-librandlib_la_macroDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
 librandlib_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(librandlib_la_demos_DATA) $(librandlib_la_etc_DATA) \
-	$(librandlib_la_macro_DATA) $(librandlib_la_root_DATA) \
-	$(librandlib_la_sci_gateway_DATA)
+	$(librandlib_la_root_DATA) $(librandlib_la_sci_gateway_DATA)
 librandlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(librandlib_la_include_HEADERS)
 ETAGS = etags
@@ -317,7 +314,7 @@ librandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### randlib : Scilab macros ###
 librandlib_la_macrodir = $(target)/macros
-librandlib_la_macro_DATA = macros/buildmacros.sce
+librandlib_la_macro_DATA22 = macros/buildmacros.sce
 
 #### randlib : init scripts #### 
 librandlib_la_etcdir = $(target)/etc
@@ -631,23 +628,6 @@ uninstall-librandlib_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(librandlib_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(librandlib_la_etcdir)/$$f"; \
 	done
-install-librandlib_la_macroDATA: $(librandlib_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(librandlib_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_macrodir)"
-	@list='$(librandlib_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(librandlib_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(librandlib_la_macrodir)/$$f'"; \
-	  $(librandlib_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(librandlib_la_macrodir)/$$f"; \
-	done
-
-uninstall-librandlib_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(librandlib_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(librandlib_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(librandlib_la_macrodir)/$$f"; \
-	done
 install-librandlib_la_rootDATA: $(librandlib_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(librandlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(librandlib_la_rootdir)"
@@ -778,7 +758,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_demosdir)" "$(DESTDIR)$(librandlib_la_etcdir)" "$(DESTDIR)$(librandlib_la_macrodir)" "$(DESTDIR)$(librandlib_la_rootdir)" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(librandlib_la_demosdir)" "$(DESTDIR)$(librandlib_la_etcdir)" "$(DESTDIR)$(librandlib_la_rootdir)" "$(DESTDIR)$(librandlib_la_sci_gatewaydir)" "$(DESTDIR)$(librandlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -829,7 +809,7 @@ info-am:
 install-data-am: install-librandlib_la_demosDATA \
 	install-librandlib_la_etcDATA \
 	install-librandlib_la_includeHEADERS \
-	install-librandlib_la_macroDATA install-librandlib_la_rootDATA \
+	install-librandlib_la_rootDATA \
 	install-librandlib_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -872,7 +852,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-librandlib_la_demosDATA \
 	uninstall-librandlib_la_etcDATA \
 	uninstall-librandlib_la_includeHEADERS \
-	uninstall-librandlib_la_macroDATA \
 	uninstall-librandlib_la_rootDATA \
 	uninstall-librandlib_la_sci_gatewayDATA
 
@@ -888,7 +867,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-librandlib_la_demosDATA install-librandlib_la_etcDATA \
 	install-librandlib_la_includeHEADERS \
-	install-librandlib_la_macroDATA install-librandlib_la_rootDATA \
+	install-librandlib_la_rootDATA \
 	install-librandlib_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -898,7 +877,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-librandlib_la_demosDATA \
 	uninstall-librandlib_la_etcDATA \
 	uninstall-librandlib_la_includeHEADERS \
-	uninstall-librandlib_la_macroDATA \
 	uninstall-librandlib_la_rootDATA \
 	uninstall-librandlib_la_sci_gatewayDATA
 
@@ -918,6 +896,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

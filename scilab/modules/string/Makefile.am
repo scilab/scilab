@@ -70,7 +70,7 @@ libstring_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### string : Scilab macros ###
 libstring_la_macrodir = $(target)/macros
-libstring_la_macro_DATA = macros/dec2hex.sci \
+libstring_la_macro_DATA22 = macros/dec2hex.sci \
 macros/hex2dec.sci \
 macros/tokenpos.sci \
 macros/evstr.sci \

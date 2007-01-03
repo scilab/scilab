@@ -340,7 +340,7 @@ libcore_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### core : Scilab macros ###
 libcore_la_macrodir = $(target)/macros
-libcore_la_macro_DATA = macros/perl.sci \
+libcore_la_macro_DATA22 = macros/perl.sci \
 macros/typeof.sci \
 macros/getshell.sci \
 macros/with_tk.sci \

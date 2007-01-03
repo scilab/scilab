@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libcacsd_la_etcdir)" \
-	"$(DESTDIR)$(libcacsd_la_macrodir)" \
 	"$(DESTDIR)$(libcacsd_la_rootdir)" \
 	"$(DESTDIR)$(libcacsd_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libcacsd_la_demosdir)" \
@@ -197,12 +196,11 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libcacsd_la_SOURCES)
 DIST_SOURCES = $(libcacsd_la_SOURCES)
 libcacsd_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libcacsd_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libcacsd_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libcacsd_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libcacsd_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libcacsd_la_etc_DATA) $(libcacsd_la_macro_DATA) \
-	$(libcacsd_la_root_DATA) $(libcacsd_la_sci_gateway_DATA) \
+DATA = $(libcacsd_la_etc_DATA) $(libcacsd_la_root_DATA) \
+	$(libcacsd_la_sci_gateway_DATA) \
 	$(nobase_libcacsd_la_demos_DATA)
 libcacsd_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libcacsd_la_include_HEADERS)
@@ -577,7 +575,7 @@ libcacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### cacsd : Scilab macros ###
 libcacsd_la_macrodir = $(target)/macros
-libcacsd_la_macro_DATA = macros/krac2.sci \
+libcacsd_la_macro_DATA22 = macros/krac2.sci \
 macros/sysdiag.sci \
 macros/linfn.sci \
 macros/sm2ss.sci \
@@ -1732,23 +1730,6 @@ uninstall-libcacsd_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libcacsd_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libcacsd_la_etcdir)/$$f"; \
 	done
-install-libcacsd_la_macroDATA: $(libcacsd_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libcacsd_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libcacsd_la_macrodir)"
-	@list='$(libcacsd_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libcacsd_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libcacsd_la_macrodir)/$$f'"; \
-	  $(libcacsd_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libcacsd_la_macrodir)/$$f"; \
-	done
-
-uninstall-libcacsd_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libcacsd_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libcacsd_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libcacsd_la_macrodir)/$$f"; \
-	done
 install-libcacsd_la_rootDATA: $(libcacsd_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libcacsd_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libcacsd_la_rootdir)"
@@ -1898,7 +1879,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcacsd_la_etcdir)" "$(DESTDIR)$(libcacsd_la_macrodir)" "$(DESTDIR)$(libcacsd_la_rootdir)" "$(DESTDIR)$(libcacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libcacsd_la_demosdir)" "$(DESTDIR)$(libcacsd_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libcacsd_la_etcdir)" "$(DESTDIR)$(libcacsd_la_rootdir)" "$(DESTDIR)$(libcacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libcacsd_la_demosdir)" "$(DESTDIR)$(libcacsd_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1948,7 +1929,7 @@ info-am:
 
 install-data-am: install-libcacsd_la_etcDATA \
 	install-libcacsd_la_includeHEADERS \
-	install-libcacsd_la_macroDATA install-libcacsd_la_rootDATA \
+	install-libcacsd_la_rootDATA \
 	install-libcacsd_la_sci_gatewayDATA \
 	install-nobase_libcacsd_la_demosDATA
 
@@ -1990,7 +1971,7 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
 	uninstall-libcacsd_la_includeHEADERS \
-	uninstall-libcacsd_la_macroDATA uninstall-libcacsd_la_rootDATA \
+	uninstall-libcacsd_la_rootDATA \
 	uninstall-libcacsd_la_sci_gatewayDATA \
 	uninstall-nobase_libcacsd_la_demosDATA
 
@@ -2005,7 +1986,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
 	install-libcacsd_la_etcDATA install-libcacsd_la_includeHEADERS \
-	install-libcacsd_la_macroDATA install-libcacsd_la_rootDATA \
+	install-libcacsd_la_rootDATA \
 	install-libcacsd_la_sci_gatewayDATA install-man \
 	install-nobase_libcacsd_la_demosDATA install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
@@ -2015,7 +1996,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libcacsd_la_etcDATA \
 	uninstall-libcacsd_la_includeHEADERS \
-	uninstall-libcacsd_la_macroDATA uninstall-libcacsd_la_rootDATA \
+	uninstall-libcacsd_la_rootDATA \
 	uninstall-libcacsd_la_sci_gatewayDATA \
 	uninstall-nobase_libcacsd_la_demosDATA
 
@@ -2035,6 +2016,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libcacsd_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libsymbolic_la_etcdir)" \
-	"$(DESTDIR)$(libsymbolic_la_macrodir)" \
 	"$(DESTDIR)$(libsymbolic_la_rootdir)" \
 	"$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsymbolic_la_includedir)"
@@ -98,11 +97,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libsymbolic_la_SOURCES)
 DIST_SOURCES = $(libsymbolic_la_SOURCES)
 libsymbolic_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsymbolic_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libsymbolic_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsymbolic_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsymbolic_la_etc_DATA) $(libsymbolic_la_macro_DATA) \
-	$(libsymbolic_la_root_DATA) $(libsymbolic_la_sci_gateway_DATA)
+DATA = $(libsymbolic_la_etc_DATA) $(libsymbolic_la_root_DATA) \
+	$(libsymbolic_la_sci_gateway_DATA)
 libsymbolic_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsymbolic_la_include_HEADERS)
 ETAGS = etags
@@ -277,7 +275,7 @@ libsymbolic_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### symbolic : Scilab macros ###
 libsymbolic_la_macrodir = $(target)/macros
-libsymbolic_la_macro_DATA = macros/buildmacros.sce
+libsymbolic_la_macro_DATA22 = macros/buildmacros.sce
 
 #### symbolic : init scripts #### 
 libsymbolic_la_etcdir = $(target)/etc
@@ -475,23 +473,6 @@ uninstall-libsymbolic_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsymbolic_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsymbolic_la_etcdir)/$$f"; \
 	done
-install-libsymbolic_la_macroDATA: $(libsymbolic_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsymbolic_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libsymbolic_la_macrodir)"
-	@list='$(libsymbolic_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsymbolic_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsymbolic_la_macrodir)/$$f'"; \
-	  $(libsymbolic_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsymbolic_la_macrodir)/$$f"; \
-	done
-
-uninstall-libsymbolic_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsymbolic_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsymbolic_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsymbolic_la_macrodir)/$$f"; \
-	done
 install-libsymbolic_la_rootDATA: $(libsymbolic_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsymbolic_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsymbolic_la_rootdir)"
@@ -622,7 +603,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsymbolic_la_etcdir)" "$(DESTDIR)$(libsymbolic_la_macrodir)" "$(DESTDIR)$(libsymbolic_la_rootdir)" "$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)" "$(DESTDIR)$(libsymbolic_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsymbolic_la_etcdir)" "$(DESTDIR)$(libsymbolic_la_rootdir)" "$(DESTDIR)$(libsymbolic_la_sci_gatewaydir)" "$(DESTDIR)$(libsymbolic_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -672,7 +653,6 @@ info-am:
 
 install-data-am: install-libsymbolic_la_etcDATA \
 	install-libsymbolic_la_includeHEADERS \
-	install-libsymbolic_la_macroDATA \
 	install-libsymbolic_la_rootDATA \
 	install-libsymbolic_la_sci_gatewayDATA
 
@@ -715,7 +695,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libsymbolic_la_etcDATA \
 	uninstall-libsymbolic_la_includeHEADERS \
-	uninstall-libsymbolic_la_macroDATA \
 	uninstall-libsymbolic_la_rootDATA \
 	uninstall-libsymbolic_la_sci_gatewayDATA
 
@@ -731,7 +710,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libsymbolic_la_etcDATA \
 	install-libsymbolic_la_includeHEADERS \
-	install-libsymbolic_la_macroDATA \
 	install-libsymbolic_la_rootDATA \
 	install-libsymbolic_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
@@ -741,7 +719,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libsymbolic_la_etcDATA \
 	uninstall-libsymbolic_la_includeHEADERS \
-	uninstall-libsymbolic_la_macroDATA \
 	uninstall-libsymbolic_la_rootDATA \
 	uninstall-libsymbolic_la_sci_gatewayDATA
 
@@ -761,6 +738,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

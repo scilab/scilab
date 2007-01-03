@@ -15,7 +15,7 @@ libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### incremental_link : Scilab macros ###
 libincremental_link_la_macrodir = $(target)/macros
-libincremental_link_la_macro_DATA = macros/ilib_for_link.sci \
+libincremental_link_la_macro_DATA22 = macros/ilib_for_link.sci \
 macros/G_make.sci \
 macros/VCtoLCCLib.sci \
 macros/findmsvccompiler.sci \

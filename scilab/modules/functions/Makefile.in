@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libfunctions_la_etcdir)" \
-	"$(DESTDIR)$(libfunctions_la_macrodir)" \
 	"$(DESTDIR)$(libfunctions_la_rootdir)"
 libfunctions_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libfunctions_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libfunctions_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libfunctions_la_etc_DATA) $(libfunctions_la_macro_DATA) \
-	$(libfunctions_la_root_DATA)
+DATA = $(libfunctions_la_etc_DATA) $(libfunctions_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ libfunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### functions : Scilab macros ###
 libfunctions_la_macrodir = $(target)/macros
-libfunctions_la_macro_DATA = macros/getd.sci \
+libfunctions_la_macro_DATA22 = macros/getd.sci \
 macros/head_comments.sci \
 macros/macrovar.sci \
 macros/old2newinstr.sci \
@@ -315,23 +312,6 @@ uninstall-libfunctions_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libfunctions_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libfunctions_la_etcdir)/$$f"; \
 	done
-install-libfunctions_la_macroDATA: $(libfunctions_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libfunctions_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libfunctions_la_macrodir)"
-	@list='$(libfunctions_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libfunctions_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libfunctions_la_macrodir)/$$f'"; \
-	  $(libfunctions_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libfunctions_la_macrodir)/$$f"; \
-	done
-
-uninstall-libfunctions_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libfunctions_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libfunctions_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libfunctions_la_macrodir)/$$f"; \
-	done
 install-libfunctions_la_rootDATA: $(libfunctions_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libfunctions_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libfunctions_la_rootdir)"
@@ -386,7 +366,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libfunctions_la_etcdir)" "$(DESTDIR)$(libfunctions_la_macrodir)" "$(DESTDIR)$(libfunctions_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libfunctions_la_etcdir)" "$(DESTDIR)$(libfunctions_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -432,7 +412,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libfunctions_la_etcDATA \
-	install-libfunctions_la_macroDATA \
 	install-libfunctions_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -470,7 +449,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libfunctions_la_etcDATA \
-	uninstall-libfunctions_la_macroDATA \
 	uninstall-libfunctions_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -482,14 +460,12 @@ uninstall-am: uninstall-libfunctions_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libfunctions_la_etcDATA \
-	install-libfunctions_la_macroDATA \
 	install-libfunctions_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libfunctions_la_etcDATA \
-	uninstall-libfunctions_la_macroDATA \
 	uninstall-libfunctions_la_rootDATA
 
 
@@ -508,6 +484,9 @@ uninstall-am: uninstall-libfunctions_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

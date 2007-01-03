@@ -64,7 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libstatistics_la_etcdir)" \
-	"$(DESTDIR)$(libstatistics_la_macrodir)" \
 	"$(DESTDIR)$(libstatistics_la_rootdir)" \
 	"$(DESTDIR)$(libstatistics_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libstatistics_la_includedir)"
@@ -118,11 +117,9 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libstatistics_la_SOURCES)
 DIST_SOURCES = $(libstatistics_la_SOURCES)
 libstatistics_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libstatistics_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libstatistics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libstatistics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libstatistics_la_etc_DATA) $(libstatistics_la_macro_DATA) \
-	$(libstatistics_la_root_DATA) \
+DATA = $(libstatistics_la_etc_DATA) $(libstatistics_la_root_DATA) \
 	$(libstatistics_la_sci_gateway_DATA)
 libstatistics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libstatistics_la_include_HEADERS)
@@ -377,7 +374,7 @@ libstatistics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### statistics : Scilab macros ###
 libstatistics_la_macrodir = $(target)/macros
-libstatistics_la_macro_DATA = macros/cmoment.sci \
+libstatistics_la_macro_DATA22 = macros/cmoment.sci \
 macros/strange.sci \
 macros/wcenter.sci \
 macros/regress.sci \
@@ -932,23 +929,6 @@ uninstall-libstatistics_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libstatistics_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libstatistics_la_etcdir)/$$f"; \
 	done
-install-libstatistics_la_macroDATA: $(libstatistics_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libstatistics_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libstatistics_la_macrodir)"
-	@list='$(libstatistics_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libstatistics_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libstatistics_la_macrodir)/$$f'"; \
-	  $(libstatistics_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libstatistics_la_macrodir)/$$f"; \
-	done
-
-uninstall-libstatistics_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libstatistics_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libstatistics_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libstatistics_la_macrodir)/$$f"; \
-	done
 install-libstatistics_la_rootDATA: $(libstatistics_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libstatistics_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libstatistics_la_rootdir)"
@@ -1079,7 +1059,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libstatistics_la_etcdir)" "$(DESTDIR)$(libstatistics_la_macrodir)" "$(DESTDIR)$(libstatistics_la_rootdir)" "$(DESTDIR)$(libstatistics_la_sci_gatewaydir)" "$(DESTDIR)$(libstatistics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libstatistics_la_etcdir)" "$(DESTDIR)$(libstatistics_la_rootdir)" "$(DESTDIR)$(libstatistics_la_sci_gatewaydir)" "$(DESTDIR)$(libstatistics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1129,7 +1109,6 @@ info-am:
 
 install-data-am: install-libstatistics_la_etcDATA \
 	install-libstatistics_la_includeHEADERS \
-	install-libstatistics_la_macroDATA \
 	install-libstatistics_la_rootDATA \
 	install-libstatistics_la_sci_gatewayDATA
 
@@ -1172,7 +1151,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libstatistics_la_etcDATA \
 	uninstall-libstatistics_la_includeHEADERS \
-	uninstall-libstatistics_la_macroDATA \
 	uninstall-libstatistics_la_rootDATA \
 	uninstall-libstatistics_la_sci_gatewayDATA
 
@@ -1188,7 +1166,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libstatistics_la_etcDATA \
 	install-libstatistics_la_includeHEADERS \
-	install-libstatistics_la_macroDATA \
 	install-libstatistics_la_rootDATA \
 	install-libstatistics_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
@@ -1198,7 +1175,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libLTLIBRARIES uninstall-libstatistics_la_etcDATA \
 	uninstall-libstatistics_la_includeHEADERS \
-	uninstall-libstatistics_la_macroDATA \
 	uninstall-libstatistics_la_rootDATA \
 	uninstall-libstatistics_la_sci_gatewayDATA
 
@@ -1218,6 +1194,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -63,14 +63,11 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libjavasci_la_etcdir)" \
-	"$(DESTDIR)$(libjavasci_la_macrodir)" \
 	"$(DESTDIR)$(libjavasci_la_rootdir)" \
 	"$(DESTDIR)$(libjavasci_la_includedir)"
 libjavasci_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libjavasci_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libjavasci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_macro_DATA) \
-	$(libjavasci_la_root_DATA)
+DATA = $(libjavasci_la_etc_DATA) $(libjavasci_la_root_DATA)
 libjavasci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libjavasci_la_include_HEADERS)
 ETAGS = etags
@@ -226,7 +223,7 @@ libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### javasci : Scilab macros ###
 libjavasci_la_macrodir = $(target)/macros
-libjavasci_la_macro_DATA = macros/buildmacros.sce
+libjavasci_la_macro_DATA22 = macros/buildmacros.sce
 
 #### javasci : init scripts #### 
 libjavasci_la_etcdir = $(target)/etc
@@ -307,23 +304,6 @@ uninstall-libjavasci_la_etcDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libjavasci_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libjavasci_la_etcdir)/$$f"; \
-	done
-install-libjavasci_la_macroDATA: $(libjavasci_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjavasci_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libjavasci_la_macrodir)"
-	@list='$(libjavasci_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjavasci_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjavasci_la_macrodir)/$$f'"; \
-	  $(libjavasci_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjavasci_la_macrodir)/$$f"; \
-	done
-
-uninstall-libjavasci_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjavasci_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjavasci_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjavasci_la_macrodir)/$$f"; \
 	done
 install-libjavasci_la_rootDATA: $(libjavasci_la_root_DATA)
 	@$(NORMAL_INSTALL)
@@ -438,7 +418,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_macrodir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libjavasci_la_etcdir)" "$(DESTDIR)$(libjavasci_la_rootdir)" "$(DESTDIR)$(libjavasci_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -485,7 +465,7 @@ info-am:
 
 install-data-am: install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
-	install-libjavasci_la_macroDATA install-libjavasci_la_rootDATA
+	install-libjavasci_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -523,7 +503,6 @@ ps-am:
 
 uninstall-am: uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_includeHEADERS \
-	uninstall-libjavasci_la_macroDATA \
 	uninstall-libjavasci_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -537,15 +516,13 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	install-html-local install-info install-info-am \
 	install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
-	install-libjavasci_la_macroDATA install-libjavasci_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags uninstall uninstall-am \
-	uninstall-libjavasci_la_etcDATA \
+	install-libjavasci_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libjavasci_la_etcDATA \
 	uninstall-libjavasci_la_includeHEADERS \
-	uninstall-libjavasci_la_macroDATA \
 	uninstall-libjavasci_la_rootDATA
 
 
@@ -564,6 +541,9 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

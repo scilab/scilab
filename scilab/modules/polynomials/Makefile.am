@@ -130,7 +130,7 @@ libpolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### polynomials : Scilab macros ###
 libpolynomials_la_macrodir = $(target)/macros
-libpolynomials_la_macro_DATA = macros/denom.sci \
+libpolynomials_la_macro_DATA22 = macros/denom.sci \
 macros/pdiv.sci \
 macros/systmat.sci \
 macros/pol2str.sci \

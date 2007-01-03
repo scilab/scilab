@@ -17,7 +17,7 @@ libhelptools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### helptools : Scilab macros ###
 libhelptools_la_macrodir = $(target)/macros
-dist_libhelptools_la_macro_DATA = macros/add_help_chapter.sci \
+dist_libhelptools_la_macro_DATA22 = macros/add_help_chapter.sci \
 macros/browsehelp.sci \
 macros/help_menu.sci \
 macros/make_help_index.sci \

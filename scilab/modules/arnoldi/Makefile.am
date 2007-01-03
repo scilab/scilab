@@ -98,7 +98,7 @@ libarnoldi_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### arnoldi : Scilab macros ###
 libarnoldi_la_macrodir = $(target)/macros
-libarnoldi_la_macro_DATA =  macros/buildmacros.sce
+libarnoldi_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### arnoldi : init scripts #### 

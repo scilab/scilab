@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libm2sci_la_etcdir)" \
-	"$(DESTDIR)$(libm2sci_la_rootdir)" \
-	"$(DESTDIR)$(libm2sci_la_macrodir)"
+	"$(DESTDIR)$(libm2sci_la_rootdir)"
 libm2sci_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libm2sci_la_rootDATA_INSTALL = $(INSTALL_DATA)
-nobase_libm2sci_la_macroDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libm2sci_la_etc_DATA) $(libm2sci_la_root_DATA) \
-	$(nobase_libm2sci_la_macro_DATA)
+DATA = $(libm2sci_la_etc_DATA) $(libm2sci_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ libm2sci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### m2sci : Scilab macros ###
 libm2sci_la_macrodir = $(target)
-nobase_libm2sci_la_macro_DATA = macros/m2sci/kernel/is_complex.sci \
+nobase_libm2sci_la_macro_DATA22 = macros/m2sci/kernel/is_complex.sci \
 macros/m2sci/kernel/%type_i_variable.sci \
 macros/m2sci/kernel/funcall2sci.sci \
 macros/m2sci/kernel/mtlbtoolfun.sci \
@@ -1435,25 +1432,6 @@ uninstall-libm2sci_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libm2sci_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libm2sci_la_rootdir)/$$f"; \
 	done
-install-nobase_libm2sci_la_macroDATA: $(nobase_libm2sci_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libm2sci_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libm2sci_la_macrodir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libm2sci_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libm2sci_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libm2sci_la_macrodir)/$$f'"; \
-	  $(nobase_libm2sci_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libm2sci_la_macrodir)/$$f"; \
-	done
-
-uninstall-nobase_libm2sci_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libm2sci_la_macro_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libm2sci_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libm2sci_la_macrodir)/$$f"; \
-	done
 tags: TAGS
 TAGS:
 
@@ -1491,7 +1469,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libm2sci_la_etcdir)" "$(DESTDIR)$(libm2sci_la_rootdir)" "$(DESTDIR)$(libm2sci_la_macrodir)"; do \
+	for dir in "$(DESTDIR)$(libm2sci_la_etcdir)" "$(DESTDIR)$(libm2sci_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1537,8 +1515,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libm2sci_la_etcDATA \
-	install-libm2sci_la_rootDATA \
-	install-nobase_libm2sci_la_macroDATA
+	install-libm2sci_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -1575,8 +1552,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libm2sci_la_etcDATA \
-	uninstall-libm2sci_la_rootDATA \
-	uninstall-nobase_libm2sci_la_macroDATA
+	uninstall-libm2sci_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -1587,13 +1563,12 @@ uninstall-am: uninstall-libm2sci_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libm2sci_la_etcDATA install-libm2sci_la_rootDATA \
-	install-man install-nobase_libm2sci_la_macroDATA install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libm2sci_la_etcDATA uninstall-libm2sci_la_rootDATA \
-	uninstall-nobase_libm2sci_la_macroDATA
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am uninstall uninstall-am uninstall-libm2sci_la_etcDATA \
+	uninstall-libm2sci_la_rootDATA
 
 
 #.xml.htm:
@@ -1611,6 +1586,9 @@ uninstall-am: uninstall-libm2sci_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

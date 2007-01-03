@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libtime_la_etcdir)" \
-	"$(DESTDIR)$(libtime_la_macrodir)" \
 	"$(DESTDIR)$(libtime_la_rootdir)" \
 	"$(DESTDIR)$(libtime_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libtime_la_includedir)"
@@ -99,11 +98,10 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libtime_la_SOURCES)
 DIST_SOURCES = $(libtime_la_SOURCES)
 libtime_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libtime_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libtime_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libtime_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libtime_la_etc_DATA) $(libtime_la_macro_DATA) \
-	$(libtime_la_root_DATA) $(libtime_la_sci_gateway_DATA)
+DATA = $(libtime_la_etc_DATA) $(libtime_la_root_DATA) \
+	$(libtime_la_sci_gateway_DATA)
 libtime_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libtime_la_include_HEADERS)
 ETAGS = etags
@@ -282,7 +280,7 @@ libtime_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### time : Scilab macros ###
 libtime_la_macrodir = $(target)/macros
-libtime_la_macro_DATA = macros/etime.sci \
+libtime_la_macro_DATA22 = macros/etime.sci \
 macros/now.sci \
 macros/toc.sci \
 macros/calendar.sci \
@@ -529,23 +527,6 @@ uninstall-libtime_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libtime_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libtime_la_etcdir)/$$f"; \
 	done
-install-libtime_la_macroDATA: $(libtime_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libtime_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libtime_la_macrodir)"
-	@list='$(libtime_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libtime_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libtime_la_macrodir)/$$f'"; \
-	  $(libtime_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libtime_la_macrodir)/$$f"; \
-	done
-
-uninstall-libtime_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libtime_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libtime_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libtime_la_macrodir)/$$f"; \
-	done
 install-libtime_la_rootDATA: $(libtime_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libtime_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libtime_la_rootdir)"
@@ -676,7 +657,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libtime_la_etcdir)" "$(DESTDIR)$(libtime_la_macrodir)" "$(DESTDIR)$(libtime_la_rootdir)" "$(DESTDIR)$(libtime_la_sci_gatewaydir)" "$(DESTDIR)$(libtime_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libtime_la_etcdir)" "$(DESTDIR)$(libtime_la_rootdir)" "$(DESTDIR)$(libtime_la_sci_gatewaydir)" "$(DESTDIR)$(libtime_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -725,8 +706,8 @@ info: info-am
 info-am:
 
 install-data-am: install-libtime_la_etcDATA \
-	install-libtime_la_includeHEADERS install-libtime_la_macroDATA \
-	install-libtime_la_rootDATA install-libtime_la_sci_gatewayDATA
+	install-libtime_la_includeHEADERS install-libtime_la_rootDATA \
+	install-libtime_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -766,7 +747,7 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libtime_la_etcDATA \
 	uninstall-libtime_la_includeHEADERS \
-	uninstall-libtime_la_macroDATA uninstall-libtime_la_rootDATA \
+	uninstall-libtime_la_rootDATA \
 	uninstall-libtime_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
@@ -780,16 +761,16 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libtime_la_etcDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
 	install-libtime_la_etcDATA install-libtime_la_includeHEADERS \
-	install-libtime_la_macroDATA install-libtime_la_rootDATA \
-	install-libtime_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	install-libtime_la_rootDATA install-libtime_la_sci_gatewayDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libtime_la_etcDATA \
 	uninstall-libtime_la_includeHEADERS \
-	uninstall-libtime_la_macroDATA uninstall-libtime_la_rootDATA \
+	uninstall-libtime_la_rootDATA \
 	uninstall-libtime_la_sci_gatewayDATA
 
 
@@ -808,6 +789,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libtime_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

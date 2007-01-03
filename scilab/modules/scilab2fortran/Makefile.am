@@ -15,7 +15,7 @@ libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scilab2fortran : Scilab macros ###
 libscilab2fortran_la_macrodir = $(target)/macros
-libscilab2fortran_la_macro_DATA = macros/f_gener.sci \
+libscilab2fortran_la_macro_DATA22 = macros/f_gener.sci \
 macros/setparam.sci \
 macros/%a2for.sci \
 macros/%log2for.sci \

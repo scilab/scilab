@@ -129,7 +129,7 @@ libgui_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### gui : Scilab macros ###
 libgui_la_macrodir = $(target)/macros
-libgui_la_macro_DATA = macros/unsetmenu.sci \
+libgui_la_macro_DATA22 = macros/unsetmenu.sci \
 macros/x_choices.sci \
 macros/savedefaultbrowser.sci \
 macros/delmenu.sci \

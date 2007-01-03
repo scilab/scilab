@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libscipad_la_etcdir)" \
-	"$(DESTDIR)$(libscipad_la_rootdir)" \
-	"$(DESTDIR)$(libscipad_la_macrodir)"
+	"$(DESTDIR)$(libscipad_la_rootdir)"
 libscipad_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscipad_la_rootDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscipad_la_macroDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libscipad_la_etc_DATA) $(libscipad_la_root_DATA) \
-	$(nobase_libscipad_la_macro_DATA)
+DATA = $(libscipad_la_etc_DATA) $(libscipad_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ libscipad_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scipad : Scilab macros ###
 libscipad_la_macrodir = $(target)
-nobase_libscipad_la_macro_DATA = macros/scipad_internals/lib \
+nobase_libscipad_la_macro_DATA22 = macros/scipad_internals/lib \
 macros/scipad_internals/LocalizeForScipad.sci \
 macros/scipad_internals/ext_exists.sci \
 macros/scipad_internals/msgdiff.sci \
@@ -325,25 +322,6 @@ uninstall-libscipad_la_rootDATA:
 	  echo " rm -f '$(DESTDIR)$(libscipad_la_rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscipad_la_rootdir)/$$f"; \
 	done
-install-nobase_libscipad_la_macroDATA: $(nobase_libscipad_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipad_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libscipad_la_macrodir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscipad_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscipad_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipad_la_macrodir)/$$f'"; \
-	  $(nobase_libscipad_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipad_la_macrodir)/$$f"; \
-	done
-
-uninstall-nobase_libscipad_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscipad_la_macro_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscipad_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscipad_la_macrodir)/$$f"; \
-	done
 tags: TAGS
 TAGS:
 
@@ -381,7 +359,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libscipad_la_etcdir)" "$(DESTDIR)$(libscipad_la_rootdir)" "$(DESTDIR)$(libscipad_la_macrodir)"; do \
+	for dir in "$(DESTDIR)$(libscipad_la_etcdir)" "$(DESTDIR)$(libscipad_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -427,8 +405,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libscipad_la_etcDATA \
-	install-libscipad_la_rootDATA \
-	install-nobase_libscipad_la_macroDATA
+	install-libscipad_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -465,8 +442,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscipad_la_etcDATA \
-	uninstall-libscipad_la_rootDATA \
-	uninstall-nobase_libscipad_la_macroDATA
+	uninstall-libscipad_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -477,13 +453,12 @@ uninstall-am: uninstall-libscipad_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscipad_la_etcDATA install-libscipad_la_rootDATA \
-	install-man install-nobase_libscipad_la_macroDATA install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libscipad_la_etcDATA uninstall-libscipad_la_rootDATA \
-	uninstall-nobase_libscipad_la_macroDATA
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
+	ps ps-am uninstall uninstall-am uninstall-libscipad_la_etcDATA \
+	uninstall-libscipad_la_rootDATA
 
 
 #.xml.htm:
@@ -501,6 +476,9 @@ uninstall-am: uninstall-libscipad_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

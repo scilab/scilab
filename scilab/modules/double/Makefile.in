@@ -57,7 +57,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libdouble_la_etcdir)" \
-	"$(DESTDIR)$(libdouble_la_macrodir)" \
 	"$(DESTDIR)$(libdouble_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -95,10 +94,8 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libdouble_la_SOURCES)
 DIST_SOURCES = $(libdouble_la_SOURCES)
 libdouble_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libdouble_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libdouble_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libdouble_la_etc_DATA) $(libdouble_la_macro_DATA) \
-	$(libdouble_la_root_DATA)
+DATA = $(libdouble_la_etc_DATA) $(libdouble_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -285,7 +282,7 @@ libdouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### double : Scilab macros ###
 libdouble_la_macrodir = $(target)/macros
-libdouble_la_macro_DATA = macros/buildmacros.sce
+libdouble_la_macro_DATA22 = macros/buildmacros.sce
 
 #### double : init scripts #### 
 libdouble_la_etcdir = $(target)/etc
@@ -494,23 +491,6 @@ uninstall-libdouble_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libdouble_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libdouble_la_etcdir)/$$f"; \
 	done
-install-libdouble_la_macroDATA: $(libdouble_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdouble_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_macrodir)"
-	@list='$(libdouble_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libdouble_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdouble_la_macrodir)/$$f'"; \
-	  $(libdouble_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdouble_la_macrodir)/$$f"; \
-	done
-
-uninstall-libdouble_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libdouble_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libdouble_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libdouble_la_macrodir)/$$f"; \
-	done
 install-libdouble_la_rootDATA: $(libdouble_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libdouble_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libdouble_la_rootdir)"
@@ -607,7 +587,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libdouble_la_etcdir)" "$(DESTDIR)$(libdouble_la_macrodir)" "$(DESTDIR)$(libdouble_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libdouble_la_etcdir)" "$(DESTDIR)$(libdouble_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -656,7 +636,7 @@ info: info-am
 info-am:
 
 install-data-am: install-libdouble_la_etcDATA \
-	install-libdouble_la_macroDATA install-libdouble_la_rootDATA
+	install-libdouble_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -695,7 +675,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libdouble_la_etcDATA \
-	uninstall-libdouble_la_macroDATA \
 	uninstall-libdouble_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -708,16 +687,14 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libdouble_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
-	install-libdouble_la_etcDATA install-libdouble_la_macroDATA \
-	install-libdouble_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libdouble_la_etcDATA \
-	uninstall-libdouble_la_macroDATA \
-	uninstall-libdouble_la_rootDATA
+	install-libdouble_la_etcDATA install-libdouble_la_rootDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libdouble_la_etcDATA uninstall-libdouble_la_rootDATA
 
 
 #.xml.htm:
@@ -735,6 +712,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libdouble_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

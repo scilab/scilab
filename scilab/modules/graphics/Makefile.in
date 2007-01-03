@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libgraphics_la_etcdir)" \
-	"$(DESTDIR)$(libgraphics_la_macrodir)" \
 	"$(DESTDIR)$(libgraphics_la_rootdir)" \
 	"$(DESTDIR)$(libgraphics_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libgraphics_la_demosdir)" \
@@ -439,12 +438,11 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libgraphics_la_SOURCES)
 DIST_SOURCES = $(libgraphics_la_SOURCES)
 libgraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libgraphics_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libgraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libgraphics_la_demosDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libgraphics_la_etc_DATA) $(libgraphics_la_macro_DATA) \
-	$(libgraphics_la_root_DATA) $(libgraphics_la_sci_gateway_DATA) \
+DATA = $(libgraphics_la_etc_DATA) $(libgraphics_la_root_DATA) \
+	$(libgraphics_la_sci_gateway_DATA) \
 	$(nobase_libgraphics_la_demos_DATA)
 libgraphics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libgraphics_la_include_HEADERS)
@@ -1040,7 +1038,7 @@ libgraphics_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### graphics : Scilab macros ###
 libgraphics_la_macrodir = $(target)/macros
-libgraphics_la_macro_DATA = macros/replot.sci \
+libgraphics_la_macro_DATA22 = macros/replot.sci \
 macros/getlinestyle.sci \
 macros/zlabel.sci \
 macros/checkXYPair.sci \
@@ -4961,23 +4959,6 @@ uninstall-libgraphics_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libgraphics_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libgraphics_la_etcdir)/$$f"; \
 	done
-install-libgraphics_la_macroDATA: $(libgraphics_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libgraphics_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libgraphics_la_macrodir)"
-	@list='$(libgraphics_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libgraphics_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libgraphics_la_macrodir)/$$f'"; \
-	  $(libgraphics_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libgraphics_la_macrodir)/$$f"; \
-	done
-
-uninstall-libgraphics_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libgraphics_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libgraphics_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libgraphics_la_macrodir)/$$f"; \
-	done
 install-libgraphics_la_rootDATA: $(libgraphics_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libgraphics_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libgraphics_la_rootdir)"
@@ -5127,7 +5108,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgraphics_la_etcdir)" "$(DESTDIR)$(libgraphics_la_macrodir)" "$(DESTDIR)$(libgraphics_la_rootdir)" "$(DESTDIR)$(libgraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libgraphics_la_demosdir)" "$(DESTDIR)$(libgraphics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libgraphics_la_etcdir)" "$(DESTDIR)$(libgraphics_la_rootdir)" "$(DESTDIR)$(libgraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libgraphics_la_demosdir)" "$(DESTDIR)$(libgraphics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -5177,7 +5158,6 @@ info-am:
 
 install-data-am: install-libgraphics_la_etcDATA \
 	install-libgraphics_la_includeHEADERS \
-	install-libgraphics_la_macroDATA \
 	install-libgraphics_la_rootDATA \
 	install-libgraphics_la_sci_gatewayDATA \
 	install-nobase_libgraphics_la_demosDATA
@@ -5221,7 +5201,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libgraphics_la_etcDATA \
 	uninstall-libgraphics_la_includeHEADERS \
-	uninstall-libgraphics_la_macroDATA \
 	uninstall-libgraphics_la_rootDATA \
 	uninstall-libgraphics_la_sci_gatewayDATA \
 	uninstall-nobase_libgraphics_la_demosDATA
@@ -5238,7 +5217,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libgraphics_la_etcDATA \
 	install-libgraphics_la_includeHEADERS \
-	install-libgraphics_la_macroDATA \
 	install-libgraphics_la_rootDATA \
 	install-libgraphics_la_sci_gatewayDATA install-man \
 	install-nobase_libgraphics_la_demosDATA install-pdf \
@@ -5249,7 +5227,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libgraphics_la_etcDATA \
 	uninstall-libgraphics_la_includeHEADERS \
-	uninstall-libgraphics_la_macroDATA \
 	uninstall-libgraphics_la_rootDATA \
 	uninstall-libgraphics_la_sci_gatewayDATA \
 	uninstall-nobase_libgraphics_la_demosDATA
@@ -5270,6 +5247,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -15,7 +15,7 @@ libm2sci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### m2sci : Scilab macros ###
 libm2sci_la_macrodir = $(target)
-nobase_libm2sci_la_macro_DATA = macros/m2sci/kernel/is_complex.sci \
+nobase_libm2sci_la_macro_DATA22 = macros/m2sci/kernel/is_complex.sci \
 macros/m2sci/kernel/%type_i_variable.sci \
 macros/m2sci/kernel/funcall2sci.sci \
 macros/m2sci/kernel/mtlbtoolfun.sci \

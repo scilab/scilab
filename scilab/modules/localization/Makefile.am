@@ -30,7 +30,7 @@ liblocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### localization : Scilab macros ###
 liblocalization_la_macrodir = $(target)/macros
-liblocalization_la_macro_DATA = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
+liblocalization_la_macro_DATA22 = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### localization : init scripts #### 

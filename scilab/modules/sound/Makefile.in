@@ -64,7 +64,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libsound_la_demosdir)" \
 	"$(DESTDIR)$(libsound_la_etcdir)" \
-	"$(DESTDIR)$(libsound_la_macrodir)" \
 	"$(DESTDIR)$(libsound_la_rootdir)" \
 	"$(DESTDIR)$(libsound_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsound_la_includedir)"
@@ -98,12 +97,10 @@ SOURCES = $(libsound_la_SOURCES)
 DIST_SOURCES = $(libsound_la_SOURCES)
 libsound_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libsound_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsound_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libsound_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsound_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsound_la_demos_DATA) $(libsound_la_etc_DATA) \
-	$(libsound_la_macro_DATA) $(libsound_la_root_DATA) \
-	$(libsound_la_sci_gateway_DATA)
+	$(libsound_la_root_DATA) $(libsound_la_sci_gateway_DATA)
 libsound_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsound_la_include_HEADERS)
 ETAGS = etags
@@ -279,7 +276,7 @@ libsound_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sound : Scilab macros ###
 libsound_la_macrodir = $(target)/macros
-libsound_la_macro_DATA = macros/analyze.sci \
+libsound_la_macro_DATA22 = macros/analyze.sci \
 macros/soundsec.sci \
 macros/lin2mu.sci \
 macros/mapsound.sci \
@@ -545,23 +542,6 @@ uninstall-libsound_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsound_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsound_la_etcdir)/$$f"; \
 	done
-install-libsound_la_macroDATA: $(libsound_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsound_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_macrodir)"
-	@list='$(libsound_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsound_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsound_la_macrodir)/$$f'"; \
-	  $(libsound_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsound_la_macrodir)/$$f"; \
-	done
-
-uninstall-libsound_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsound_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsound_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsound_la_macrodir)/$$f"; \
-	done
 install-libsound_la_rootDATA: $(libsound_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsound_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsound_la_rootdir)"
@@ -692,7 +672,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsound_la_demosdir)" "$(DESTDIR)$(libsound_la_etcdir)" "$(DESTDIR)$(libsound_la_macrodir)" "$(DESTDIR)$(libsound_la_rootdir)" "$(DESTDIR)$(libsound_la_sci_gatewaydir)" "$(DESTDIR)$(libsound_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsound_la_demosdir)" "$(DESTDIR)$(libsound_la_etcdir)" "$(DESTDIR)$(libsound_la_rootdir)" "$(DESTDIR)$(libsound_la_sci_gatewaydir)" "$(DESTDIR)$(libsound_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -742,7 +722,7 @@ info-am:
 
 install-data-am: install-libsound_la_demosDATA \
 	install-libsound_la_etcDATA install-libsound_la_includeHEADERS \
-	install-libsound_la_macroDATA install-libsound_la_rootDATA \
+	install-libsound_la_rootDATA \
 	install-libsound_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -784,7 +764,7 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libsound_la_demosDATA \
 	uninstall-libsound_la_etcDATA \
 	uninstall-libsound_la_includeHEADERS \
-	uninstall-libsound_la_macroDATA uninstall-libsound_la_rootDATA \
+	uninstall-libsound_la_rootDATA \
 	uninstall-libsound_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
@@ -799,7 +779,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsound_la_demosDATA \
 	install-info-am install-libLTLIBRARIES \
 	install-libsound_la_demosDATA install-libsound_la_etcDATA \
 	install-libsound_la_includeHEADERS \
-	install-libsound_la_macroDATA install-libsound_la_rootDATA \
+	install-libsound_la_rootDATA \
 	install-libsound_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -808,7 +788,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsound_la_demosDATA \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libsound_la_demosDATA uninstall-libsound_la_etcDATA \
 	uninstall-libsound_la_includeHEADERS \
-	uninstall-libsound_la_macroDATA uninstall-libsound_la_rootDATA \
+	uninstall-libsound_la_rootDATA \
 	uninstall-libsound_la_sci_gatewayDATA
 
 
@@ -827,6 +807,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsound_la_demosDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

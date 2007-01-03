@@ -16,7 +16,7 @@ libdevelopment_tools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### development_tools : Scilab macros ###
 libdevelopment_tools_la_macrodir = $(target)/macros
-libdevelopment_tools_la_macro_DATA = macros/scitest.sci \
+libdevelopment_tools_la_macro_DATA22 = macros/scitest.sci \
 macros/testexamples.sci macros/scitest.bin \
 macros/testexamples.bin macros/names macros/lib macros/buildmacros.sce
 

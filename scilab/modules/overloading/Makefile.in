@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(liboverloading_la_etcdir)" \
-	"$(DESTDIR)$(liboverloading_la_macrodir)" \
 	"$(DESTDIR)$(liboverloading_la_rootdir)"
 liboverloading_la_etcDATA_INSTALL = $(INSTALL_DATA)
-liboverloading_la_macroDATA_INSTALL = $(INSTALL_DATA)
 liboverloading_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(liboverloading_la_etc_DATA) $(liboverloading_la_macro_DATA) \
-	$(liboverloading_la_root_DATA)
+DATA = $(liboverloading_la_etc_DATA) $(liboverloading_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ liboverloading_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### overloading : Scilab macros ###
 liboverloading_la_macrodir = $(target)/macros
-liboverloading_la_macro_DATA = macros/%sp_exp.sci \
+liboverloading_la_macro_DATA22 = macros/%sp_exp.sci \
 macros/%spb_h_spb.sci \
 macros/%c_i_st.sci \
 macros/%s_n_hm.sci \
@@ -1495,23 +1492,6 @@ uninstall-liboverloading_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(liboverloading_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(liboverloading_la_etcdir)/$$f"; \
 	done
-install-liboverloading_la_macroDATA: $(liboverloading_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(liboverloading_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(liboverloading_la_macrodir)"
-	@list='$(liboverloading_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(liboverloading_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liboverloading_la_macrodir)/$$f'"; \
-	  $(liboverloading_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liboverloading_la_macrodir)/$$f"; \
-	done
-
-uninstall-liboverloading_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(liboverloading_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liboverloading_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liboverloading_la_macrodir)/$$f"; \
-	done
 install-liboverloading_la_rootDATA: $(liboverloading_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(liboverloading_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(liboverloading_la_rootdir)"
@@ -1566,7 +1546,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(liboverloading_la_etcdir)" "$(DESTDIR)$(liboverloading_la_macrodir)" "$(DESTDIR)$(liboverloading_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(liboverloading_la_etcdir)" "$(DESTDIR)$(liboverloading_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1612,7 +1592,6 @@ info: info-am
 info-am:
 
 install-data-am: install-liboverloading_la_etcDATA \
-	install-liboverloading_la_macroDATA \
 	install-liboverloading_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -1650,7 +1629,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-liboverloading_la_etcDATA \
-	uninstall-liboverloading_la_macroDATA \
 	uninstall-liboverloading_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -1662,14 +1640,12 @@ uninstall-am: uninstall-liboverloading_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-liboverloading_la_etcDATA \
-	install-liboverloading_la_macroDATA \
 	install-liboverloading_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-liboverloading_la_etcDATA \
-	uninstall-liboverloading_la_macroDATA \
 	uninstall-liboverloading_la_rootDATA
 
 
@@ -1688,6 +1664,9 @@ uninstall-am: uninstall-liboverloading_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

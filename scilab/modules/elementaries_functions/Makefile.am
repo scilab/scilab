@@ -398,7 +398,7 @@ libelementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VE
 
 #### elementaries_functions : Scilab macros ###
 libelementaries_functions_la_macrodir = $(target)/macros
-libelementaries_functions_la_macro_DATA = macros/asinh.sci \
+libelementaries_functions_la_macro_DATA22 = macros/asinh.sci \
 macros/vectorfind.sci \
 macros/erfcx.sci \
 macros/asinm.sci \

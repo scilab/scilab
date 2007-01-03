@@ -48,7 +48,7 @@ libdouble_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### double : Scilab macros ###
 libdouble_la_macrodir = $(target)/macros
-libdouble_la_macro_DATA = macros/buildmacros.sce
+libdouble_la_macro_DATA22 = macros/buildmacros.sce
 
 
 #### double : init scripts #### 

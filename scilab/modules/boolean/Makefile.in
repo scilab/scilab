@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libboolean_la_etcdir)" \
-	"$(DESTDIR)$(libboolean_la_macrodir)" \
 	"$(DESTDIR)$(libboolean_la_rootdir)" \
 	"$(DESTDIR)$(libboolean_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libboolean_la_includedir)"
@@ -103,11 +102,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libboolean_la_SOURCES)
 DIST_SOURCES = $(libboolean_la_SOURCES)
 libboolean_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libboolean_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libboolean_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libboolean_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libboolean_la_etc_DATA) $(libboolean_la_macro_DATA) \
-	$(libboolean_la_root_DATA) $(libboolean_la_sci_gateway_DATA)
+DATA = $(libboolean_la_etc_DATA) $(libboolean_la_root_DATA) \
+	$(libboolean_la_sci_gateway_DATA)
 libboolean_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libboolean_la_include_HEADERS)
 ETAGS = etags
@@ -291,7 +289,7 @@ libboolean_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### boolean : Scilab macros ###
 libboolean_la_macrodir = $(target)/macros
-libboolean_la_macro_DATA = macros/buildmacros.sce
+libboolean_la_macro_DATA22 = macros/buildmacros.sce
 
 #### boolean : init scripts #### 
 libboolean_la_etcdir = $(target)/etc
@@ -497,23 +495,6 @@ uninstall-libboolean_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libboolean_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libboolean_la_etcdir)/$$f"; \
 	done
-install-libboolean_la_macroDATA: $(libboolean_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libboolean_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libboolean_la_macrodir)"
-	@list='$(libboolean_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libboolean_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libboolean_la_macrodir)/$$f'"; \
-	  $(libboolean_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libboolean_la_macrodir)/$$f"; \
-	done
-
-uninstall-libboolean_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libboolean_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libboolean_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libboolean_la_macrodir)/$$f"; \
-	done
 install-libboolean_la_rootDATA: $(libboolean_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libboolean_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libboolean_la_rootdir)"
@@ -644,7 +625,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libboolean_la_etcdir)" "$(DESTDIR)$(libboolean_la_macrodir)" "$(DESTDIR)$(libboolean_la_rootdir)" "$(DESTDIR)$(libboolean_la_sci_gatewaydir)" "$(DESTDIR)$(libboolean_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libboolean_la_etcdir)" "$(DESTDIR)$(libboolean_la_rootdir)" "$(DESTDIR)$(libboolean_la_sci_gatewaydir)" "$(DESTDIR)$(libboolean_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -694,7 +675,7 @@ info-am:
 
 install-data-am: install-libboolean_la_etcDATA \
 	install-libboolean_la_includeHEADERS \
-	install-libboolean_la_macroDATA install-libboolean_la_rootDATA \
+	install-libboolean_la_rootDATA \
 	install-libboolean_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -735,7 +716,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libboolean_la_etcDATA \
 	uninstall-libboolean_la_includeHEADERS \
-	uninstall-libboolean_la_macroDATA \
 	uninstall-libboolean_la_rootDATA \
 	uninstall-libboolean_la_sci_gatewayDATA
 
@@ -751,7 +731,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libboolean_la_etcDATA \
 	install-info-am install-libLTLIBRARIES \
 	install-libboolean_la_etcDATA \
 	install-libboolean_la_includeHEADERS \
-	install-libboolean_la_macroDATA install-libboolean_la_rootDATA \
+	install-libboolean_la_rootDATA \
 	install-libboolean_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -760,7 +740,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libboolean_la_etcDATA \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libboolean_la_etcDATA \
 	uninstall-libboolean_la_includeHEADERS \
-	uninstall-libboolean_la_macroDATA \
 	uninstall-libboolean_la_rootDATA \
 	uninstall-libboolean_la_sci_gatewayDATA
 
@@ -780,6 +759,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libboolean_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -102,7 +102,7 @@ libio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### io : Scilab macros ###
 libio_la_macrodir = $(target)/macros
-libio_la_macro_DATA = macros/printf.sci \
+libio_la_macro_DATA22 = macros/printf.sci \
 macros/ssprint.sci \
 macros/getscilabkeywords.sci \
 macros/sprintf.sci \

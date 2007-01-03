@@ -64,7 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libpolynomials_la_etcdir)" \
-	"$(DESTDIR)$(libpolynomials_la_macrodir)" \
 	"$(DESTDIR)$(libpolynomials_la_rootdir)" \
 	"$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libpolynomials_la_includedir)"
@@ -123,11 +122,9 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libpolynomials_la_SOURCES)
 DIST_SOURCES = $(libpolynomials_la_SOURCES)
 libpolynomials_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libpolynomials_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libpolynomials_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libpolynomials_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libpolynomials_la_etc_DATA) $(libpolynomials_la_macro_DATA) \
-	$(libpolynomials_la_root_DATA) \
+DATA = $(libpolynomials_la_etc_DATA) $(libpolynomials_la_root_DATA) \
 	$(libpolynomials_la_sci_gateway_DATA)
 libpolynomials_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libpolynomials_la_include_HEADERS)
@@ -396,7 +393,7 @@ libpolynomials_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### polynomials : Scilab macros ###
 libpolynomials_la_macrodir = $(target)/macros
-libpolynomials_la_macro_DATA = macros/denom.sci \
+libpolynomials_la_macro_DATA22 = macros/denom.sci \
 macros/pdiv.sci \
 macros/systmat.sci \
 macros/pol2str.sci \
@@ -983,23 +980,6 @@ uninstall-libpolynomials_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libpolynomials_la_etcdir)/$$f"; \
 	done
-install-libpolynomials_la_macroDATA: $(libpolynomials_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libpolynomials_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_macrodir)"
-	@list='$(libpolynomials_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libpolynomials_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpolynomials_la_macrodir)/$$f'"; \
-	  $(libpolynomials_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpolynomials_la_macrodir)/$$f"; \
-	done
-
-uninstall-libpolynomials_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libpolynomials_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libpolynomials_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libpolynomials_la_macrodir)/$$f"; \
-	done
 install-libpolynomials_la_rootDATA: $(libpolynomials_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libpolynomials_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libpolynomials_la_rootdir)"
@@ -1130,7 +1110,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpolynomials_la_etcdir)" "$(DESTDIR)$(libpolynomials_la_macrodir)" "$(DESTDIR)$(libpolynomials_la_rootdir)" "$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libpolynomials_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpolynomials_la_etcdir)" "$(DESTDIR)$(libpolynomials_la_rootdir)" "$(DESTDIR)$(libpolynomials_la_sci_gatewaydir)" "$(DESTDIR)$(libpolynomials_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1180,7 +1160,6 @@ info-am:
 
 install-data-am: install-libpolynomials_la_etcDATA \
 	install-libpolynomials_la_includeHEADERS \
-	install-libpolynomials_la_macroDATA \
 	install-libpolynomials_la_rootDATA \
 	install-libpolynomials_la_sci_gatewayDATA
 
@@ -1223,7 +1202,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libpolynomials_la_etcDATA \
 	uninstall-libpolynomials_la_includeHEADERS \
-	uninstall-libpolynomials_la_macroDATA \
 	uninstall-libpolynomials_la_rootDATA \
 	uninstall-libpolynomials_la_sci_gatewayDATA
 
@@ -1239,7 +1217,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libpolynomials_la_etcDATA \
 	install-libpolynomials_la_includeHEADERS \
-	install-libpolynomials_la_macroDATA \
 	install-libpolynomials_la_rootDATA \
 	install-libpolynomials_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
@@ -1249,7 +1226,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	pdf pdf-am ps ps-am tags uninstall uninstall-am \
 	uninstall-libLTLIBRARIES uninstall-libpolynomials_la_etcDATA \
 	uninstall-libpolynomials_la_includeHEADERS \
-	uninstall-libpolynomials_la_macroDATA \
 	uninstall-libpolynomials_la_rootDATA \
 	uninstall-libpolynomials_la_sci_gatewayDATA
 
@@ -1269,6 +1245,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

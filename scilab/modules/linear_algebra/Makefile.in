@@ -64,7 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(liblinear_algebra_la_etcdir)" \
-	"$(DESTDIR)$(liblinear_algebra_la_macrodir)" \
 	"$(DESTDIR)$(liblinear_algebra_la_rootdir)" \
 	"$(DESTDIR)$(liblinear_algebra_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(liblinear_algebra_la_includedir)"
@@ -130,11 +129,9 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(liblinear_algebra_la_SOURCES)
 DIST_SOURCES = $(liblinear_algebra_la_SOURCES)
 liblinear_algebra_la_etcDATA_INSTALL = $(INSTALL_DATA)
-liblinear_algebra_la_macroDATA_INSTALL = $(INSTALL_DATA)
 liblinear_algebra_la_rootDATA_INSTALL = $(INSTALL_DATA)
 liblinear_algebra_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(liblinear_algebra_la_etc_DATA) \
-	$(liblinear_algebra_la_macro_DATA) \
 	$(liblinear_algebra_la_root_DATA) \
 	$(liblinear_algebra_la_sci_gateway_DATA)
 liblinear_algebra_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -380,7 +377,7 @@ liblinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### linear_algebra : Scilab macros ###
 liblinear_algebra_la_macrodir = $(target)/macros
-liblinear_algebra_la_macro_DATA = macros/spaninter.sci \
+liblinear_algebra_la_macro_DATA22 = macros/spaninter.sci \
 macros/WritemiMatrix.sci \
 macros/penlaur.sci \
 macros/ndims.sci \
@@ -944,23 +941,6 @@ uninstall-liblinear_algebra_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(liblinear_algebra_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(liblinear_algebra_la_etcdir)/$$f"; \
 	done
-install-liblinear_algebra_la_macroDATA: $(liblinear_algebra_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(liblinear_algebra_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(liblinear_algebra_la_macrodir)"
-	@list='$(liblinear_algebra_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(liblinear_algebra_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liblinear_algebra_la_macrodir)/$$f'"; \
-	  $(liblinear_algebra_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liblinear_algebra_la_macrodir)/$$f"; \
-	done
-
-uninstall-liblinear_algebra_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(liblinear_algebra_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liblinear_algebra_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liblinear_algebra_la_macrodir)/$$f"; \
-	done
 install-liblinear_algebra_la_rootDATA: $(liblinear_algebra_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(liblinear_algebra_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(liblinear_algebra_la_rootdir)"
@@ -1091,7 +1071,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblinear_algebra_la_etcdir)" "$(DESTDIR)$(liblinear_algebra_la_macrodir)" "$(DESTDIR)$(liblinear_algebra_la_rootdir)" "$(DESTDIR)$(liblinear_algebra_la_sci_gatewaydir)" "$(DESTDIR)$(liblinear_algebra_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblinear_algebra_la_etcdir)" "$(DESTDIR)$(liblinear_algebra_la_rootdir)" "$(DESTDIR)$(liblinear_algebra_la_sci_gatewaydir)" "$(DESTDIR)$(liblinear_algebra_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1141,7 +1121,6 @@ info-am:
 
 install-data-am: install-liblinear_algebra_la_etcDATA \
 	install-liblinear_algebra_la_includeHEADERS \
-	install-liblinear_algebra_la_macroDATA \
 	install-liblinear_algebra_la_rootDATA \
 	install-liblinear_algebra_la_sci_gatewayDATA
 
@@ -1184,7 +1163,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-liblinear_algebra_la_etcDATA \
 	uninstall-liblinear_algebra_la_includeHEADERS \
-	uninstall-liblinear_algebra_la_macroDATA \
 	uninstall-liblinear_algebra_la_rootDATA \
 	uninstall-liblinear_algebra_la_sci_gatewayDATA
 
@@ -1200,7 +1178,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-liblinear_algebra_la_etcDATA \
 	install-liblinear_algebra_la_includeHEADERS \
-	install-liblinear_algebra_la_macroDATA \
 	install-liblinear_algebra_la_rootDATA \
 	install-liblinear_algebra_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
@@ -1211,7 +1188,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libLTLIBRARIES \
 	uninstall-liblinear_algebra_la_etcDATA \
 	uninstall-liblinear_algebra_la_includeHEADERS \
-	uninstall-liblinear_algebra_la_macroDATA \
 	uninstall-liblinear_algebra_la_rootDATA \
 	uninstall-liblinear_algebra_la_sci_gatewayDATA
 
@@ -1231,6 +1207,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

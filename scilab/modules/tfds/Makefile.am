@@ -15,7 +15,7 @@ libtfds_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### tfds : Scilab macros ###
 libtfds_la_macrodir = $(target)/macros
-libtfds_la_macro_DATA = macros/artest.sci \
+libtfds_la_macro_DATA22 = macros/artest.sci \
 macros/logr.sci \
 macros/bifish.sci \
 macros/portrait.sci \

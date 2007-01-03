@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libmaple2scilab_la_etcdir)" \
-	"$(DESTDIR)$(libmaple2scilab_la_macrodir)" \
 	"$(DESTDIR)$(libmaple2scilab_la_rootdir)"
 libmaple2scilab_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libmaple2scilab_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libmaple2scilab_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libmaple2scilab_la_etc_DATA) $(libmaple2scilab_la_macro_DATA) \
-	$(libmaple2scilab_la_root_DATA)
+DATA = $(libmaple2scilab_la_etc_DATA) $(libmaple2scilab_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -220,7 +217,7 @@ libmaple2scilab_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### maple2scilab : Scilab macros ###
 libmaple2scilab_la_macrodir = $(target)/macros
-libmaple2scilab_la_macro_DATA = macros/sci2map.sci macros/sci2map.bin macros/names macros/lib macros/buildmacros.sce
+libmaple2scilab_la_macro_DATA22 = macros/sci2map.sci macros/sci2map.bin macros/names macros/lib macros/buildmacros.sce
 
 #### maple2scilab : init scripts #### 
 libmaple2scilab_la_etcdir = $(target)/etc
@@ -292,23 +289,6 @@ uninstall-libmaple2scilab_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libmaple2scilab_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libmaple2scilab_la_etcdir)/$$f"; \
 	done
-install-libmaple2scilab_la_macroDATA: $(libmaple2scilab_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libmaple2scilab_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libmaple2scilab_la_macrodir)"
-	@list='$(libmaple2scilab_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libmaple2scilab_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmaple2scilab_la_macrodir)/$$f'"; \
-	  $(libmaple2scilab_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmaple2scilab_la_macrodir)/$$f"; \
-	done
-
-uninstall-libmaple2scilab_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libmaple2scilab_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmaple2scilab_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmaple2scilab_la_macrodir)/$$f"; \
-	done
 install-libmaple2scilab_la_rootDATA: $(libmaple2scilab_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libmaple2scilab_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libmaple2scilab_la_rootdir)"
@@ -363,7 +343,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libmaple2scilab_la_etcdir)" "$(DESTDIR)$(libmaple2scilab_la_macrodir)" "$(DESTDIR)$(libmaple2scilab_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libmaple2scilab_la_etcdir)" "$(DESTDIR)$(libmaple2scilab_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -409,7 +389,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libmaple2scilab_la_etcDATA \
-	install-libmaple2scilab_la_macroDATA \
 	install-libmaple2scilab_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -447,7 +426,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libmaple2scilab_la_etcDATA \
-	uninstall-libmaple2scilab_la_macroDATA \
 	uninstall-libmaple2scilab_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -459,14 +437,12 @@ uninstall-am: uninstall-libmaple2scilab_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libmaple2scilab_la_etcDATA \
-	install-libmaple2scilab_la_macroDATA \
 	install-libmaple2scilab_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libmaple2scilab_la_etcDATA \
-	uninstall-libmaple2scilab_la_macroDATA \
 	uninstall-libmaple2scilab_la_rootDATA
 
 
@@ -485,6 +461,9 @@ uninstall-am: uninstall-libmaple2scilab_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

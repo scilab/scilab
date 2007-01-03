@@ -64,7 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_etcdir)" \
-	"$(DESTDIR)$(libelementaries_functions_la_macrodir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_rootdir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libelementaries_functions_la_includedir)"
@@ -450,11 +449,9 @@ SOURCES = $(libdummy_elementaries_functions_la_SOURCES) \
 DIST_SOURCES = $(libdummy_elementaries_functions_la_SOURCES) \
 	$(libelementaries_functions_la_SOURCES)
 libelementaries_functions_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libelementaries_functions_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libelementaries_functions_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libelementaries_functions_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libelementaries_functions_la_etc_DATA) \
-	$(libelementaries_functions_la_macro_DATA) \
 	$(libelementaries_functions_la_root_DATA) \
 	$(libelementaries_functions_la_sci_gateway_DATA)
 libelementaries_functions_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -970,7 +967,7 @@ libelementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VE
 
 #### elementaries_functions : Scilab macros ###
 libelementaries_functions_la_macrodir = $(target)/macros
-libelementaries_functions_la_macro_DATA = macros/asinh.sci \
+libelementaries_functions_la_macro_DATA22 = macros/asinh.sci \
 macros/vectorfind.sci \
 macros/erfcx.sci \
 macros/asinm.sci \
@@ -2570,23 +2567,6 @@ uninstall-libelementaries_functions_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libelementaries_functions_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libelementaries_functions_la_etcdir)/$$f"; \
 	done
-install-libelementaries_functions_la_macroDATA: $(libelementaries_functions_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libelementaries_functions_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libelementaries_functions_la_macrodir)"
-	@list='$(libelementaries_functions_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libelementaries_functions_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libelementaries_functions_la_macrodir)/$$f'"; \
-	  $(libelementaries_functions_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libelementaries_functions_la_macrodir)/$$f"; \
-	done
-
-uninstall-libelementaries_functions_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libelementaries_functions_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libelementaries_functions_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libelementaries_functions_la_macrodir)/$$f"; \
-	done
 install-libelementaries_functions_la_rootDATA: $(libelementaries_functions_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libelementaries_functions_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libelementaries_functions_la_rootdir)"
@@ -2717,7 +2697,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libelementaries_functions_la_etcdir)" "$(DESTDIR)$(libelementaries_functions_la_macrodir)" "$(DESTDIR)$(libelementaries_functions_la_rootdir)" "$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libelementaries_functions_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libelementaries_functions_la_etcdir)" "$(DESTDIR)$(libelementaries_functions_la_rootdir)" "$(DESTDIR)$(libelementaries_functions_la_sci_gatewaydir)" "$(DESTDIR)$(libelementaries_functions_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2767,7 +2747,6 @@ info-am:
 
 install-data-am: install-libelementaries_functions_la_etcDATA \
 	install-libelementaries_functions_la_includeHEADERS \
-	install-libelementaries_functions_la_macroDATA \
 	install-libelementaries_functions_la_rootDATA \
 	install-libelementaries_functions_la_sci_gatewayDATA
 
@@ -2810,7 +2789,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libelementaries_functions_la_etcDATA \
 	uninstall-libelementaries_functions_la_includeHEADERS \
-	uninstall-libelementaries_functions_la_macroDATA \
 	uninstall-libelementaries_functions_la_rootDATA \
 	uninstall-libelementaries_functions_la_sci_gatewayDATA
 
@@ -2827,7 +2805,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-libLTLIBRARIES \
 	install-libelementaries_functions_la_etcDATA \
 	install-libelementaries_functions_la_includeHEADERS \
-	install-libelementaries_functions_la_macroDATA \
 	install-libelementaries_functions_la_rootDATA \
 	install-libelementaries_functions_la_sci_gatewayDATA \
 	install-man install-pdf install-pdf-am install-ps \
@@ -2838,7 +2815,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libelementaries_functions_la_etcDATA \
 	uninstall-libelementaries_functions_la_includeHEADERS \
-	uninstall-libelementaries_functions_la_macroDATA \
 	uninstall-libelementaries_functions_la_rootDATA \
 	uninstall-libelementaries_functions_la_sci_gatewayDATA
 
@@ -2873,6 +2849,9 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

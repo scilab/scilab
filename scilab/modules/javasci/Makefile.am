@@ -14,7 +14,7 @@ libjavasci_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### javasci : Scilab macros ###
 libjavasci_la_macrodir = $(target)/macros
-libjavasci_la_macro_DATA =  macros/buildmacros.sce
+libjavasci_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### javasci : init scripts #### 

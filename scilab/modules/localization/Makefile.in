@@ -64,7 +64,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(liblocalization_la_etcdir)" \
-	"$(DESTDIR)$(liblocalization_la_macrodir)" \
 	"$(DESTDIR)$(liblocalization_la_rootdir)" \
 	"$(DESTDIR)$(liblocalization_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
@@ -95,10 +94,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(liblocalization_la_SOURCES)
 DIST_SOURCES = $(liblocalization_la_SOURCES)
 liblocalization_la_etcDATA_INSTALL = $(INSTALL_DATA)
-liblocalization_la_macroDATA_INSTALL = $(INSTALL_DATA)
 liblocalization_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(liblocalization_la_etc_DATA) $(liblocalization_la_macro_DATA) \
-	$(liblocalization_la_root_DATA)
+DATA = $(liblocalization_la_etc_DATA) $(liblocalization_la_root_DATA)
 liblocalization_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(liblocalization_la_include_HEADERS)
 ETAGS = etags
@@ -265,7 +262,7 @@ liblocalization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### localization : Scilab macros ###
 liblocalization_la_macrodir = $(target)/macros
-liblocalization_la_macro_DATA = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
+liblocalization_la_macro_DATA22 = macros/setlanguage.sci macros/setlanguage.bin macros/names macros/lib macros/buildmacros.sce
 
 #### localization : init scripts #### 
 liblocalization_la_etcdir = $(target)/etc
@@ -414,23 +411,6 @@ uninstall-liblocalization_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(liblocalization_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(liblocalization_la_etcdir)/$$f"; \
 	done
-install-liblocalization_la_macroDATA: $(liblocalization_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(liblocalization_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(liblocalization_la_macrodir)"
-	@list='$(liblocalization_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(liblocalization_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(liblocalization_la_macrodir)/$$f'"; \
-	  $(liblocalization_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(liblocalization_la_macrodir)/$$f"; \
-	done
-
-uninstall-liblocalization_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(liblocalization_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(liblocalization_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(liblocalization_la_macrodir)/$$f"; \
-	done
 install-liblocalization_la_rootDATA: $(liblocalization_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(liblocalization_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(liblocalization_la_rootdir)"
@@ -544,7 +524,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblocalization_la_etcdir)" "$(DESTDIR)$(liblocalization_la_macrodir)" "$(DESTDIR)$(liblocalization_la_rootdir)" "$(DESTDIR)$(liblocalization_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(liblocalization_la_etcdir)" "$(DESTDIR)$(liblocalization_la_rootdir)" "$(DESTDIR)$(liblocalization_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -594,7 +574,6 @@ info-am:
 
 install-data-am: install-liblocalization_la_etcDATA \
 	install-liblocalization_la_includeHEADERS \
-	install-liblocalization_la_macroDATA \
 	install-liblocalization_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -636,7 +615,6 @@ ps-am:
 uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-liblocalization_la_etcDATA \
 	uninstall-liblocalization_la_includeHEADERS \
-	uninstall-liblocalization_la_macroDATA \
 	uninstall-liblocalization_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -651,7 +629,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-liblocalization_la_etcDATA \
 	install-liblocalization_la_includeHEADERS \
-	install-liblocalization_la_macroDATA \
 	install-liblocalization_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -660,7 +637,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-liblocalization_la_etcDATA \
 	uninstall-liblocalization_la_includeHEADERS \
-	uninstall-liblocalization_la_macroDATA \
 	uninstall-liblocalization_la_rootDATA
 
 
@@ -679,6 +655,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

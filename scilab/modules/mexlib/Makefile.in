@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libmexlib_la_etcdir)" \
-	"$(DESTDIR)$(libmexlib_la_macrodir)" \
 	"$(DESTDIR)$(libmexlib_la_rootdir)" \
 	"$(DESTDIR)$(libmexlib_la_includedir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
@@ -91,10 +90,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libmexlib_la_SOURCES)
 DIST_SOURCES = $(libmexlib_la_SOURCES)
 libmexlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libmexlib_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libmexlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libmexlib_la_etc_DATA) $(libmexlib_la_macro_DATA) \
-	$(libmexlib_la_root_DATA)
+DATA = $(libmexlib_la_etc_DATA) $(libmexlib_la_root_DATA)
 libmexlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libmexlib_la_include_HEADERS)
 ETAGS = etags
@@ -261,7 +258,7 @@ libmexlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### mexlib : Scilab macros ###
 libmexlib_la_macrodir = $(target)/macros
-libmexlib_la_macro_DATA = macros/buildmacros.sce
+libmexlib_la_macro_DATA22 = macros/buildmacros.sce
 
 #### mexlib : init scripts #### 
 libmexlib_la_etcdir = $(target)/etc
@@ -402,23 +399,6 @@ uninstall-libmexlib_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libmexlib_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libmexlib_la_etcdir)/$$f"; \
 	done
-install-libmexlib_la_macroDATA: $(libmexlib_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libmexlib_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_macrodir)"
-	@list='$(libmexlib_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libmexlib_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmexlib_la_macrodir)/$$f'"; \
-	  $(libmexlib_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmexlib_la_macrodir)/$$f"; \
-	done
-
-uninstall-libmexlib_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libmexlib_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmexlib_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmexlib_la_macrodir)/$$f"; \
-	done
 install-libmexlib_la_rootDATA: $(libmexlib_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libmexlib_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libmexlib_la_rootdir)"
@@ -532,7 +512,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmexlib_la_etcdir)" "$(DESTDIR)$(libmexlib_la_macrodir)" "$(DESTDIR)$(libmexlib_la_rootdir)" "$(DESTDIR)$(libmexlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmexlib_la_etcdir)" "$(DESTDIR)$(libmexlib_la_rootdir)" "$(DESTDIR)$(libmexlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -582,7 +562,7 @@ info-am:
 
 install-data-am: install-libmexlib_la_etcDATA \
 	install-libmexlib_la_includeHEADERS \
-	install-libmexlib_la_macroDATA install-libmexlib_la_rootDATA
+	install-libmexlib_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -622,7 +602,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libmexlib_la_etcDATA \
 	uninstall-libmexlib_la_includeHEADERS \
-	uninstall-libmexlib_la_macroDATA \
 	uninstall-libmexlib_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -637,16 +616,14 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libmexlib_la_etcDATA \
 	install-info-am install-libLTLIBRARIES \
 	install-libmexlib_la_etcDATA \
 	install-libmexlib_la_includeHEADERS \
-	install-libmexlib_la_macroDATA install-libmexlib_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
+	install-libmexlib_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libmexlib_la_etcDATA \
 	uninstall-libmexlib_la_includeHEADERS \
-	uninstall-libmexlib_la_macroDATA \
 	uninstall-libmexlib_la_rootDATA
 
 
@@ -665,6 +642,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libmexlib_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

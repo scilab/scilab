@@ -62,7 +62,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libjvm_la_etcdir)" \
-	"$(DESTDIR)$(libjvm_la_macrodir)" \
 	"$(DESTDIR)$(libjvm_la_rootdir)"
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
@@ -93,10 +92,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscijvm_la_SOURCES)
 DIST_SOURCES = $(am__libscijvm_la_SOURCES_DIST)
 libjvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libjvm_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libjvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libjvm_la_etc_DATA) $(libjvm_la_macro_DATA) \
-	$(libjvm_la_root_DATA)
+DATA = $(libjvm_la_etc_DATA) $(libjvm_la_root_DATA)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -263,7 +260,7 @@ top_srcdir = @top_srcdir@
 
 #### jvm : Scilab macros ###
 @JAVA_TRUE@libjvm_la_macrodir = $(target)/macros
-@JAVA_TRUE@libjvm_la_macro_DATA = macros/buildmacros.sce
+@JAVA_TRUE@libjvm_la_macro_DATA22 = macros/buildmacros.sce
 
 #### jvm : init scripts #### 
 @JAVA_TRUE@libjvm_la_etcdir = $(target)/etc
@@ -416,23 +413,6 @@ uninstall-libjvm_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libjvm_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libjvm_la_etcdir)/$$f"; \
 	done
-install-libjvm_la_macroDATA: $(libjvm_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libjvm_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_macrodir)"
-	@list='$(libjvm_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libjvm_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libjvm_la_macrodir)/$$f'"; \
-	  $(libjvm_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libjvm_la_macrodir)/$$f"; \
-	done
-
-uninstall-libjvm_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libjvm_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libjvm_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libjvm_la_macrodir)/$$f"; \
-	done
 install-libjvm_la_rootDATA: $(libjvm_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libjvm_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libjvm_la_rootdir)"
@@ -529,7 +509,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libjvm_la_etcdir)" "$(DESTDIR)$(libjvm_la_macrodir)" "$(DESTDIR)$(libjvm_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libjvm_la_etcdir)" "$(DESTDIR)$(libjvm_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -578,8 +558,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libjvm_la_etcDATA install-libjvm_la_macroDATA \
-	install-libjvm_la_rootDATA
+install-data-am: install-libjvm_la_etcDATA install-libjvm_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -618,7 +597,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
-	uninstall-libjvm_la_macroDATA uninstall-libjvm_la_rootDATA
+	uninstall-libjvm_la_rootDATA
 
 .MAKE: install-am install-strip
 
@@ -630,15 +609,14 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
-	install-libjvm_la_etcDATA install-libjvm_la_macroDATA \
-	install-libjvm_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-libjvm_la_etcDATA uninstall-libjvm_la_macroDATA \
-	uninstall-libjvm_la_rootDATA
+	install-libjvm_la_etcDATA install-libjvm_la_rootDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-libjvm_la_etcDATA uninstall-libjvm_la_rootDATA
 
 
 #.xml.htm:
@@ -656,6 +634,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 @JAVA_TRUE@	echo "Creating $@"; \
 @JAVA_TRUE@	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 @JAVA_TRUE@	fi )
+
+@JAVA_TRUE@names:
+@JAVA_TRUE@	echo ""
 
 @JAVA_TRUE@macrossly:
 @JAVA_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \

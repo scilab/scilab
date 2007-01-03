@@ -63,15 +63,12 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libscilab2fortran_la_demosdir)" \
 	"$(DESTDIR)$(libscilab2fortran_la_etcdir)" \
-	"$(DESTDIR)$(libscilab2fortran_la_macrodir)" \
 	"$(DESTDIR)$(libscilab2fortran_la_rootdir)"
 libscilab2fortran_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscilab2fortran_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscilab2fortran_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libscilab2fortran_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscilab2fortran_la_demos_DATA) \
 	$(libscilab2fortran_la_etc_DATA) \
-	$(libscilab2fortran_la_macro_DATA) \
 	$(libscilab2fortran_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -224,7 +221,7 @@ libscilab2fortran_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scilab2fortran : Scilab macros ###
 libscilab2fortran_la_macrodir = $(target)/macros
-libscilab2fortran_la_macro_DATA = macros/f_gener.sci \
+libscilab2fortran_la_macro_DATA22 = macros/f_gener.sci \
 macros/setparam.sci \
 macros/%a2for.sci \
 macros/%log2for.sci \
@@ -464,23 +461,6 @@ uninstall-libscilab2fortran_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libscilab2fortran_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscilab2fortran_la_etcdir)/$$f"; \
 	done
-install-libscilab2fortran_la_macroDATA: $(libscilab2fortran_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscilab2fortran_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libscilab2fortran_la_macrodir)"
-	@list='$(libscilab2fortran_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscilab2fortran_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscilab2fortran_la_macrodir)/$$f'"; \
-	  $(libscilab2fortran_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscilab2fortran_la_macrodir)/$$f"; \
-	done
-
-uninstall-libscilab2fortran_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscilab2fortran_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscilab2fortran_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscilab2fortran_la_macrodir)/$$f"; \
-	done
 install-libscilab2fortran_la_rootDATA: $(libscilab2fortran_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscilab2fortran_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscilab2fortran_la_rootdir)"
@@ -535,7 +515,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libscilab2fortran_la_demosdir)" "$(DESTDIR)$(libscilab2fortran_la_etcdir)" "$(DESTDIR)$(libscilab2fortran_la_macrodir)" "$(DESTDIR)$(libscilab2fortran_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libscilab2fortran_la_demosdir)" "$(DESTDIR)$(libscilab2fortran_la_etcdir)" "$(DESTDIR)$(libscilab2fortran_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -582,7 +562,6 @@ info-am:
 
 install-data-am: install-libscilab2fortran_la_demosDATA \
 	install-libscilab2fortran_la_etcDATA \
-	install-libscilab2fortran_la_macroDATA \
 	install-libscilab2fortran_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -621,7 +600,6 @@ ps-am:
 
 uninstall-am: uninstall-libscilab2fortran_la_demosDATA \
 	uninstall-libscilab2fortran_la_etcDATA \
-	uninstall-libscilab2fortran_la_macroDATA \
 	uninstall-libscilab2fortran_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -634,7 +612,6 @@ uninstall-am: uninstall-libscilab2fortran_la_demosDATA \
 	install-html-local install-info install-info-am \
 	install-libscilab2fortran_la_demosDATA \
 	install-libscilab2fortran_la_etcDATA \
-	install-libscilab2fortran_la_macroDATA \
 	install-libscilab2fortran_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -642,7 +619,6 @@ uninstall-am: uninstall-libscilab2fortran_la_demosDATA \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
 	uninstall-libscilab2fortran_la_demosDATA \
 	uninstall-libscilab2fortran_la_etcDATA \
-	uninstall-libscilab2fortran_la_macroDATA \
 	uninstall-libscilab2fortran_la_rootDATA
 
 
@@ -661,6 +637,9 @@ uninstall-am: uninstall-libscilab2fortran_la_demosDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -15,7 +15,7 @@ libfunctions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### functions : Scilab macros ###
 libfunctions_la_macrodir = $(target)/macros
-libfunctions_la_macro_DATA = macros/getd.sci \
+libfunctions_la_macro_DATA22 = macros/getd.sci \
 macros/head_comments.sci \
 macros/macrovar.sci \
 macros/old2newinstr.sci \

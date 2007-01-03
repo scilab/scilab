@@ -65,7 +65,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libpvm_la_demosdir)" \
 	"$(DESTDIR)$(libpvm_la_etcdir)" \
-	"$(DESTDIR)$(libpvm_la_macrodir)" \
 	"$(DESTDIR)$(libpvm_la_rootdir)" \
 	"$(DESTDIR)$(libpvm_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libpvm_la_includedir)"
@@ -155,12 +154,10 @@ SOURCES = $(libscipvm_la_SOURCES)
 DIST_SOURCES = $(am__libscipvm_la_SOURCES_DIST)
 libpvm_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libpvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libpvm_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libpvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libpvm_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libpvm_la_demos_DATA) $(libpvm_la_etc_DATA) \
-	$(libpvm_la_macro_DATA) $(libpvm_la_root_DATA) \
-	$(libpvm_la_sci_gateway_DATA)
+	$(libpvm_la_root_DATA) $(libpvm_la_sci_gateway_DATA)
 am__libpvm_la_include_HEADERS_DIST = includes/sci_pvm_exit.h \
 	includes/sci_pvm_get_timer.h includes/sci_pvm_gettid.h \
 	includes/sci_pvm_gsize.h includes/sci_pvm_sci2f77.h \
@@ -389,7 +386,7 @@ top_srcdir = @top_srcdir@
 
 #### pvm : Scilab macros ###
 @PVM_TRUE@libpvm_la_macrodir = $(target)/macros
-@PVM_TRUE@libpvm_la_macro_DATA = macros/configure_pvm.sci \
+@PVM_TRUE@libpvm_la_macro_DATA22 = macros/configure_pvm.sci \
 @PVM_TRUE@macros/with_pvm.sci macros/configure_pvm.bin \
 @PVM_TRUE@macros/with_pvm.bin macros/names macros/lib macros/buildmacros.sce
 
@@ -923,23 +920,6 @@ uninstall-libpvm_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libpvm_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libpvm_la_etcdir)/$$f"; \
 	done
-install-libpvm_la_macroDATA: $(libpvm_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libpvm_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_macrodir)"
-	@list='$(libpvm_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libpvm_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libpvm_la_macrodir)/$$f'"; \
-	  $(libpvm_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libpvm_la_macrodir)/$$f"; \
-	done
-
-uninstall-libpvm_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libpvm_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libpvm_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libpvm_la_macrodir)/$$f"; \
-	done
 install-libpvm_la_rootDATA: $(libpvm_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libpvm_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libpvm_la_rootdir)"
@@ -1070,7 +1050,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpvm_la_demosdir)" "$(DESTDIR)$(libpvm_la_etcdir)" "$(DESTDIR)$(libpvm_la_macrodir)" "$(DESTDIR)$(libpvm_la_rootdir)" "$(DESTDIR)$(libpvm_la_sci_gatewaydir)" "$(DESTDIR)$(libpvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libpvm_la_demosdir)" "$(DESTDIR)$(libpvm_la_etcdir)" "$(DESTDIR)$(libpvm_la_rootdir)" "$(DESTDIR)$(libpvm_la_sci_gatewaydir)" "$(DESTDIR)$(libpvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1120,8 +1100,8 @@ info: info-am
 info-am:
 
 install-data-am: install-libpvm_la_demosDATA install-libpvm_la_etcDATA \
-	install-libpvm_la_includeHEADERS install-libpvm_la_macroDATA \
-	install-libpvm_la_rootDATA install-libpvm_la_sci_gatewayDATA
+	install-libpvm_la_includeHEADERS install-libpvm_la_rootDATA \
+	install-libpvm_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1161,7 +1141,7 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 	uninstall-libpvm_la_etcDATA uninstall-libpvm_la_includeHEADERS \
-	uninstall-libpvm_la_macroDATA uninstall-libpvm_la_rootDATA \
+	uninstall-libpvm_la_rootDATA \
 	uninstall-libpvm_la_sci_gatewayDATA
 
 .MAKE: install-am install-strip
@@ -1175,17 +1155,16 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 	install-html-am install-html-local install-info \
 	install-info-am install-libLTLIBRARIES \
 	install-libpvm_la_demosDATA install-libpvm_la_etcDATA \
-	install-libpvm_la_includeHEADERS install-libpvm_la_macroDATA \
-	install-libpvm_la_rootDATA install-libpvm_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
+	install-libpvm_la_includeHEADERS install-libpvm_la_rootDATA \
+	install-libpvm_la_sci_gatewayDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libpvm_la_demosDATA uninstall-libpvm_la_etcDATA \
 	uninstall-libpvm_la_includeHEADERS \
-	uninstall-libpvm_la_macroDATA uninstall-libpvm_la_rootDATA \
+	uninstall-libpvm_la_rootDATA \
 	uninstall-libpvm_la_sci_gatewayDATA
 
 
@@ -1204,6 +1183,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 @PVM_TRUE@	echo "Creating $@"; \
 @PVM_TRUE@	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 @PVM_TRUE@	fi )
+
+@PVM_TRUE@names:
+@PVM_TRUE@	echo ""
 
 @PVM_TRUE@macrossly:
 @PVM_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -62,7 +62,7 @@ libspecial_functions_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### special_functions : Scilab macros ###
 libspecial_functions_la_macrodir = $(target)/macros
-libspecial_functions_la_macro_DATA =  macros/buildmacros.sce
+libspecial_functions_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### special_functions : init scripts #### 

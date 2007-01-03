@@ -67,7 +67,7 @@ librandlib_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### randlib : Scilab macros ###
 librandlib_la_macrodir = $(target)/macros
-librandlib_la_macro_DATA =  macros/buildmacros.sce
+librandlib_la_macro_DATA22 =  macros/buildmacros.sce
 
 
 #### randlib : init scripts #### 

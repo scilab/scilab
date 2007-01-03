@@ -107,7 +107,7 @@ liblinear_algebra_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### linear_algebra : Scilab macros ###
 liblinear_algebra_la_macrodir = $(target)/macros
-liblinear_algebra_la_macro_DATA = macros/spaninter.sci \
+liblinear_algebra_la_macro_DATA22 = macros/spaninter.sci \
 macros/WritemiMatrix.sci \
 macros/penlaur.sci \
 macros/ndims.sci \

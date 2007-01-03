@@ -244,7 +244,7 @@ libcacsd_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### cacsd : Scilab macros ###
 libcacsd_la_macrodir = $(target)/macros
-libcacsd_la_macro_DATA = macros/krac2.sci \
+libcacsd_la_macro_DATA22 = macros/krac2.sci \
 macros/sysdiag.sci \
 macros/linfn.sci \
 macros/sm2ss.sci \

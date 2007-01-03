@@ -56,7 +56,6 @@ CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 am__installdirs = "$(DESTDIR)$(libincremental_link_la_scriptdir)" \
 	"$(DESTDIR)$(libincremental_link_la_etcdir)" \
-	"$(DESTDIR)$(libincremental_link_la_macrodir)" \
 	"$(DESTDIR)$(libincremental_link_la_rootdir)" \
 	"$(DESTDIR)$(libincremental_link_la_scriptdir)"
 libincremental_link_la_scriptSCRIPT_INSTALL = $(INSTALL_SCRIPT)
@@ -70,11 +69,9 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 libincremental_link_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libincremental_link_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libincremental_link_la_scriptDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libincremental_link_la_etc_DATA) \
-	$(libincremental_link_la_macro_DATA) \
 	$(libincremental_link_la_root_DATA) \
 	$(libincremental_link_la_script_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -228,7 +225,7 @@ libincremental_link_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### incremental_link : Scilab macros ###
 libincremental_link_la_macrodir = $(target)/macros
-libincremental_link_la_macro_DATA = macros/ilib_for_link.sci \
+libincremental_link_la_macro_DATA22 = macros/ilib_for_link.sci \
 macros/G_make.sci \
 macros/VCtoLCCLib.sci \
 macros/findmsvccompiler.sci \
@@ -366,23 +363,6 @@ uninstall-libincremental_link_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libincremental_link_la_etcdir)/$$f"; \
 	done
-install-libincremental_link_la_macroDATA: $(libincremental_link_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libincremental_link_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_macrodir)"
-	@list='$(libincremental_link_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libincremental_link_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libincremental_link_la_macrodir)/$$f'"; \
-	  $(libincremental_link_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libincremental_link_la_macrodir)/$$f"; \
-	done
-
-uninstall-libincremental_link_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libincremental_link_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libincremental_link_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libincremental_link_la_macrodir)/$$f"; \
-	done
 install-libincremental_link_la_rootDATA: $(libincremental_link_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libincremental_link_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libincremental_link_la_rootdir)"
@@ -454,7 +434,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(SCRIPTS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libincremental_link_la_scriptdir)" "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_macrodir)" "$(DESTDIR)$(libincremental_link_la_rootdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)"; do \
+	for dir in "$(DESTDIR)$(libincremental_link_la_scriptdir)" "$(DESTDIR)$(libincremental_link_la_etcdir)" "$(DESTDIR)$(libincremental_link_la_rootdir)" "$(DESTDIR)$(libincremental_link_la_scriptdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -500,7 +480,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libincremental_link_la_etcDATA \
-	install-libincremental_link_la_macroDATA \
 	install-libincremental_link_la_rootDATA \
 	install-libincremental_link_la_scriptDATA \
 	install-libincremental_link_la_scriptSCRIPTS
@@ -540,7 +519,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libincremental_link_la_etcDATA \
-	uninstall-libincremental_link_la_macroDATA \
 	uninstall-libincremental_link_la_rootDATA \
 	uninstall-libincremental_link_la_scriptDATA \
 	uninstall-libincremental_link_la_scriptSCRIPTS
@@ -554,7 +532,6 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libincremental_link_la_etcDATA \
-	install-libincremental_link_la_macroDATA \
 	install-libincremental_link_la_rootDATA \
 	install-libincremental_link_la_scriptDATA \
 	install-libincremental_link_la_scriptSCRIPTS install-man \
@@ -564,7 +541,6 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	uninstall uninstall-am \
 	uninstall-libincremental_link_la_etcDATA \
-	uninstall-libincremental_link_la_macroDATA \
 	uninstall-libincremental_link_la_rootDATA \
 	uninstall-libincremental_link_la_scriptDATA \
 	uninstall-libincremental_link_la_scriptSCRIPTS
@@ -585,6 +561,9 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

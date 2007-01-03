@@ -62,13 +62,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdevelopment_tools_la_etcdir)" \
-	"$(DESTDIR)$(libdevelopment_tools_la_macrodir)" \
 	"$(DESTDIR)$(libdevelopment_tools_la_rootdir)"
 libdevelopment_tools_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libdevelopment_tools_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libdevelopment_tools_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libdevelopment_tools_la_etc_DATA) \
-	$(libdevelopment_tools_la_macro_DATA) \
 	$(libdevelopment_tools_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -221,7 +218,7 @@ libdevelopment_tools_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### development_tools : Scilab macros ###
 libdevelopment_tools_la_macrodir = $(target)/macros
-libdevelopment_tools_la_macro_DATA = macros/scitest.sci \
+libdevelopment_tools_la_macro_DATA22 = macros/scitest.sci \
 macros/testexamples.sci macros/scitest.bin \
 macros/testexamples.bin macros/names macros/lib macros/buildmacros.sce
 
@@ -296,23 +293,6 @@ uninstall-libdevelopment_tools_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libdevelopment_tools_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libdevelopment_tools_la_etcdir)/$$f"; \
 	done
-install-libdevelopment_tools_la_macroDATA: $(libdevelopment_tools_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libdevelopment_tools_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libdevelopment_tools_la_macrodir)"
-	@list='$(libdevelopment_tools_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libdevelopment_tools_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libdevelopment_tools_la_macrodir)/$$f'"; \
-	  $(libdevelopment_tools_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libdevelopment_tools_la_macrodir)/$$f"; \
-	done
-
-uninstall-libdevelopment_tools_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libdevelopment_tools_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libdevelopment_tools_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libdevelopment_tools_la_macrodir)/$$f"; \
-	done
 install-libdevelopment_tools_la_rootDATA: $(libdevelopment_tools_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libdevelopment_tools_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libdevelopment_tools_la_rootdir)"
@@ -367,7 +347,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(libdevelopment_tools_la_etcdir)" "$(DESTDIR)$(libdevelopment_tools_la_macrodir)" "$(DESTDIR)$(libdevelopment_tools_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdevelopment_tools_la_etcdir)" "$(DESTDIR)$(libdevelopment_tools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -413,7 +393,6 @@ info: info-am
 info-am:
 
 install-data-am: install-libdevelopment_tools_la_etcDATA \
-	install-libdevelopment_tools_la_macroDATA \
 	install-libdevelopment_tools_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -451,7 +430,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
-	uninstall-libdevelopment_tools_la_macroDATA \
 	uninstall-libdevelopment_tools_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -463,7 +441,6 @@ uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libdevelopment_tools_la_etcDATA \
-	install-libdevelopment_tools_la_macroDATA \
 	install-libdevelopment_tools_la_rootDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
@@ -471,7 +448,6 @@ uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	uninstall uninstall-am \
 	uninstall-libdevelopment_tools_la_etcDATA \
-	uninstall-libdevelopment_tools_la_macroDATA \
 	uninstall-libdevelopment_tools_la_rootDATA
 
 
@@ -490,6 +466,9 @@ uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

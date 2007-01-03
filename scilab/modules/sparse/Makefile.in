@@ -63,7 +63,6 @@ am__vpath_adj = case $$p in \
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libsparse_la_etcdir)" \
-	"$(DESTDIR)$(libsparse_la_macrodir)" \
 	"$(DESTDIR)$(libsparse_la_rootdir)" \
 	"$(DESTDIR)$(libsparse_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsparse_la_includedir)"
@@ -138,11 +137,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libsparse_la_SOURCES)
 DIST_SOURCES = $(libsparse_la_SOURCES)
 libsparse_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsparse_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libsparse_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsparse_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsparse_la_etc_DATA) $(libsparse_la_macro_DATA) \
-	$(libsparse_la_root_DATA) $(libsparse_la_sci_gateway_DATA)
+DATA = $(libsparse_la_etc_DATA) $(libsparse_la_root_DATA) \
+	$(libsparse_la_sci_gateway_DATA)
 libsparse_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsparse_la_include_HEADERS)
 ETAGS = etags
@@ -465,7 +463,7 @@ libsparse_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### sparse : Scilab macros ###
 libsparse_la_macrodir = $(target)/macros
-libsparse_la_macro_DATA = macros/adj2sp.sci \
+libsparse_la_macro_DATA22 = macros/adj2sp.sci \
 macros/sp2adj.sci \
 macros/issparse.sci \
 macros/pcg.sci \
@@ -1267,23 +1265,6 @@ uninstall-libsparse_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsparse_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsparse_la_etcdir)/$$f"; \
 	done
-install-libsparse_la_macroDATA: $(libsparse_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsparse_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libsparse_la_macrodir)"
-	@list='$(libsparse_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsparse_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsparse_la_macrodir)/$$f'"; \
-	  $(libsparse_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsparse_la_macrodir)/$$f"; \
-	done
-
-uninstall-libsparse_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsparse_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsparse_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsparse_la_macrodir)/$$f"; \
-	done
 install-libsparse_la_rootDATA: $(libsparse_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsparse_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsparse_la_rootdir)"
@@ -1414,7 +1395,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsparse_la_etcdir)" "$(DESTDIR)$(libsparse_la_macrodir)" "$(DESTDIR)$(libsparse_la_rootdir)" "$(DESTDIR)$(libsparse_la_sci_gatewaydir)" "$(DESTDIR)$(libsparse_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libsparse_la_etcdir)" "$(DESTDIR)$(libsparse_la_rootdir)" "$(DESTDIR)$(libsparse_la_sci_gatewaydir)" "$(DESTDIR)$(libsparse_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1464,7 +1445,7 @@ info-am:
 
 install-data-am: install-libsparse_la_etcDATA \
 	install-libsparse_la_includeHEADERS \
-	install-libsparse_la_macroDATA install-libsparse_la_rootDATA \
+	install-libsparse_la_rootDATA \
 	install-libsparse_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1505,7 +1486,6 @@ ps-am:
 
 uninstall-am: uninstall-libLTLIBRARIES uninstall-libsparse_la_etcDATA \
 	uninstall-libsparse_la_includeHEADERS \
-	uninstall-libsparse_la_macroDATA \
 	uninstall-libsparse_la_rootDATA \
 	uninstall-libsparse_la_sci_gatewayDATA
 
@@ -1521,7 +1501,7 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsparse_la_etcDATA \
 	install-info-am install-libLTLIBRARIES \
 	install-libsparse_la_etcDATA \
 	install-libsparse_la_includeHEADERS \
-	install-libsparse_la_macroDATA install-libsparse_la_rootDATA \
+	install-libsparse_la_rootDATA \
 	install-libsparse_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -1530,7 +1510,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsparse_la_etcDATA \
 	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libsparse_la_etcDATA \
 	uninstall-libsparse_la_includeHEADERS \
-	uninstall-libsparse_la_macroDATA \
 	uninstall-libsparse_la_rootDATA \
 	uninstall-libsparse_la_sci_gatewayDATA
 
@@ -1550,6 +1529,9 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libsparse_la_etcDATA \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

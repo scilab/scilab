@@ -64,7 +64,6 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libdir)" \
 	"$(DESTDIR)$(libmetanet_la_demosdir)" \
 	"$(DESTDIR)$(libmetanet_la_etcdir)" \
-	"$(DESTDIR)$(libmetanet_la_macrodir)" \
 	"$(DESTDIR)$(libmetanet_la_rootdir)" \
 	"$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libmetanet_la_includedir)"
@@ -131,12 +130,10 @@ SOURCES = $(libmetanet_la_SOURCES)
 DIST_SOURCES = $(libmetanet_la_SOURCES)
 libmetanet_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libmetanet_la_macroDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libmetanet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libmetanet_la_demos_DATA) $(libmetanet_la_etc_DATA) \
-	$(libmetanet_la_macro_DATA) $(libmetanet_la_root_DATA) \
-	$(libmetanet_la_sci_gateway_DATA)
+	$(libmetanet_la_root_DATA) $(libmetanet_la_sci_gateway_DATA)
 libmetanet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libmetanet_la_include_HEADERS)
 ETAGS = etags
@@ -415,7 +412,7 @@ libmetanet_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### metanet : Scilab macros ###
 libmetanet_la_macrodir = $(target)/macros
-libmetanet_la_macro_DATA = macros/ge_do_replot.sci \
+libmetanet_la_macro_DATA22 = macros/ge_do_replot.sci \
 macros/salesman.sci \
 macros/strong_con_nodes.sci \
 macros/perfect_match.sci \
@@ -1277,23 +1274,6 @@ uninstall-libmetanet_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libmetanet_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libmetanet_la_etcdir)/$$f"; \
 	done
-install-libmetanet_la_macroDATA: $(libmetanet_la_macro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libmetanet_la_macrodir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_macrodir)"
-	@list='$(libmetanet_la_macro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libmetanet_la_macroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libmetanet_la_macrodir)/$$f'"; \
-	  $(libmetanet_la_macroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libmetanet_la_macrodir)/$$f"; \
-	done
-
-uninstall-libmetanet_la_macroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libmetanet_la_macro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libmetanet_la_macrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libmetanet_la_macrodir)/$$f"; \
-	done
 install-libmetanet_la_rootDATA: $(libmetanet_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libmetanet_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libmetanet_la_rootdir)"
@@ -1424,7 +1404,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmetanet_la_demosdir)" "$(DESTDIR)$(libmetanet_la_etcdir)" "$(DESTDIR)$(libmetanet_la_macrodir)" "$(DESTDIR)$(libmetanet_la_rootdir)" "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" "$(DESTDIR)$(libmetanet_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(libmetanet_la_demosdir)" "$(DESTDIR)$(libmetanet_la_etcdir)" "$(DESTDIR)$(libmetanet_la_rootdir)" "$(DESTDIR)$(libmetanet_la_sci_gatewaydir)" "$(DESTDIR)$(libmetanet_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1475,7 +1455,7 @@ info-am:
 install-data-am: install-libmetanet_la_demosDATA \
 	install-libmetanet_la_etcDATA \
 	install-libmetanet_la_includeHEADERS \
-	install-libmetanet_la_macroDATA install-libmetanet_la_rootDATA \
+	install-libmetanet_la_rootDATA \
 	install-libmetanet_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
@@ -1518,7 +1498,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libmetanet_la_demosDATA \
 	uninstall-libmetanet_la_etcDATA \
 	uninstall-libmetanet_la_includeHEADERS \
-	uninstall-libmetanet_la_macroDATA \
 	uninstall-libmetanet_la_rootDATA \
 	uninstall-libmetanet_la_sci_gatewayDATA
 
@@ -1534,7 +1513,7 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	install-info-am install-libLTLIBRARIES \
 	install-libmetanet_la_demosDATA install-libmetanet_la_etcDATA \
 	install-libmetanet_la_includeHEADERS \
-	install-libmetanet_la_macroDATA install-libmetanet_la_rootDATA \
+	install-libmetanet_la_rootDATA \
 	install-libmetanet_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -1544,7 +1523,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libmetanet_la_demosDATA \
 	uninstall-libmetanet_la_etcDATA \
 	uninstall-libmetanet_la_includeHEADERS \
-	uninstall-libmetanet_la_macroDATA \
 	uninstall-libmetanet_la_rootDATA \
 	uninstall-libmetanet_la_sci_gatewayDATA
 
@@ -1564,6 +1542,9 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
+
+names:
+	echo ""
 
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -60,7 +60,7 @@ libfileio_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### fileio : Scilab macros ###
 libfileio_la_macrodir = $(target)/macros
-libfileio_la_macro_DATA = macros/fullfile.sci \
+libfileio_la_macro_DATA22 = macros/fullfile.sci \
 macros/readxls.sci \
 macros/mkdir.sci \
 macros/isdir.sci \

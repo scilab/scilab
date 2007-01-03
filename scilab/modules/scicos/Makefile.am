@@ -237,7 +237,7 @@ libscicos_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### scicos : Scilab macros ###
 libscicos_la_macrodir = $(target)
-nobase_libscicos_la_macro_DATA = macros/scicos_blocks/Sources/TIME_f.sci \
+nobase_libscicos_la_macro_DATA22 = macros/scicos_blocks/Sources/TIME_f.sci \
 macros/scicos_blocks/Sources/GENSQR_f.sci \
 macros/scicos_blocks/Sources/CLKIN_f.sci \
 macros/scicos_blocks/Sources/READAU_f.sci \

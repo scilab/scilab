@@ -130,7 +130,7 @@ libdifferential_equations_la_root_DATA = changelog.txt licence.txt readme.txt VE
 
 #### differential_equations : Scilab macros ###
 libdifferential_equations_la_macrodir = $(target)/macros
-libdifferential_equations_la_macro_DATA = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
+libdifferential_equations_la_macro_DATA22 = macros/odeoptions.sci macros/odeoptions.bin macros/names macros/lib macros/buildmacros.sce
 
 
 #### differential_equations : init scripts #### 

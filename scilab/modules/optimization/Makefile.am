@@ -160,7 +160,7 @@ liboptimization_la_root_DATA = changelog.txt licence.txt readme.txt VERSION
 
 #### optimization : Scilab macros ###
 liboptimization_la_macrodir = $(target)/macros
-liboptimization_la_macro_DATA = macros/derivative.sci \
+liboptimization_la_macro_DATA22 = macros/derivative.sci \
 macros/linpro.sci \
 macros/quapro.sci \
 macros/fit_dat.sci \
