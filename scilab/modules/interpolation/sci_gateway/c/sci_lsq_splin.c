@@ -28,7 +28,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
   GetRhsVar(1,"d", &mxd, &nxd, &lxd);
   GetRhsVar(2,"d", &myd, &nyd, &lyd);
   ndata = mxd*nxd;  /* number of data points */
-  if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  mxd != 1  &&  nxd != 1 ) 
+  if ( ndata < 4  ||  mxd != myd  || nxd != nyd  ||  (mxd != 1  &&  nxd != 1) ) 
     { 
       Scierror(999,"%s: arg 1 and 2 must be vectors of same size with at least %d elements\r\n",
 	       fname, 4);
@@ -46,7 +46,7 @@ int intlsq_splin(char *fname,unsigned long fname_len)
     }
   GetRhsVar(Rhs,"d", &mx, &nx, &lx);
   n = mx*nx;
-  if ( n < 2  ||  mx != 1  &&  nx != 1 )
+  if ( n < 2  ||  (mx != 1  &&  nx != 1) )
     { 
       Scierror(999,"%s: bad input for x \r\n", fname);
       return 0;
