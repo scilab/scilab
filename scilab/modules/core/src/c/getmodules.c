@@ -141,7 +141,7 @@ static BOOL AppendModules(char *filename)
 		}
 		else
 		{
-			if (Line[0]!=';')
+			if (Line[0]!=';') /* Starts with a ; => it is a comment */
 			{
 				sciprint("%s module not found.\n",Line);
 			}
@@ -172,7 +172,7 @@ static BOOL VerifyModule(char *ModuleName)
 
 	cleaningLine(ModuleName);
 
-	/* ';' est defini pour mettre un commentaire dans le fichier */
+	/* ';' is a comment into the declaration file (modules/modules) */
 	if (ModuleName[0]==';') return FALSE;
 
 	SciPath=getSCIpath();
