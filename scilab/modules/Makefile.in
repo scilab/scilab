@@ -38,10 +38,12 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@JAVA_TRUE@am__append_1 = jvm 
-@PVM_TRUE@am__append_2 = pvm
-@PVM_TRUE@am__append_3 = $(top_builddir)/modules/pvm/libscipvm.la
-@JAVA_TRUE@am__append_4 = $(top_builddir)/modules/jvm/libscijvm.la
+@SCICOS_TRUE@am__append_1 = scicos 
+@JAVA_TRUE@am__append_2 = jvm 
+@PVM_TRUE@am__append_3 = pvm
+@PVM_TRUE@am__append_4 = $(top_builddir)/modules/pvm/libscipvm.la
+@JAVA_TRUE@am__append_5 = $(top_builddir)/modules/jvm/libscijvm.la
+@SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos/libscicos.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -93,13 +95,12 @@ libscilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/symbolic/libsymbolic.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
 	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/scicos/libscicos.la \
 	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/statistics/libstatistics.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
-	$(am__append_3) $(am__append_4) \
+	$(am__append_4) $(am__append_5) $(am__append_6) \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \
@@ -136,10 +137,10 @@ DIST_SUBDIRS = intersci polynomials cacsd elementaries_functions \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io gui graphics scicos wintools \
-	functions incremental_link others overloading javasci \
-	maple2scilab m2sci texmacs tfds scipad scilab2fortran \
-	development_tools helptools jvm pvm .
+	symbolic tclsci sparse io gui graphics wintools functions \
+	incremental_link others overloading javasci maple2scilab m2sci \
+	texmacs tfds scipad scilab2fortran development_tools helptools \
+	scicos jvm pvm .
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
@@ -289,10 +290,10 @@ SUBDIRS = intersci polynomials cacsd elementaries_functions arnoldi \
 	signal_processing fileio core metanet optimization \
 	interpolation localization sound statistics time integer \
 	special_functions double randlib data_structures mexlib \
-	symbolic tclsci sparse io gui graphics scicos wintools \
-	functions incremental_link others overloading javasci \
-	maple2scilab m2sci texmacs tfds scipad scilab2fortran \
-	development_tools helptools $(am__append_1) $(am__append_2) .
+	symbolic tclsci sparse io gui graphics wintools functions \
+	incremental_link others overloading javasci maple2scilab m2sci \
+	texmacs tfds scipad scilab2fortran development_tools helptools \
+	$(am__append_1) $(am__append_2) $(am__append_3) .
 #### Target ######
 target = $(datadir)
 
@@ -330,13 +331,12 @@ libscilab_la_LIBADD = $(top_builddir)/modules/mexlib/libmexlib.la \
 	$(top_builddir)/modules/symbolic/libsymbolic.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
 	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/scicos/libscicos.la \
 	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/statistics/libstatistics.la \
 	$(top_builddir)/modules/time/libtime.la \
 	$(top_builddir)/modules/wintools/libwintools.la \
-	$(am__append_3) $(am__append_4) \
+	$(am__append_4) $(am__append_5) $(am__append_6) \
 	$(top_builddir)/libs/blas/libblas.la \
 	$(top_builddir)/libs/hashtable/libhashtable.la \
 	$(top_builddir)/libs/lapack/liblapack.la \

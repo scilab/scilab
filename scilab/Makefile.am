@@ -52,18 +52,3 @@ distclean-local::
 clean-local:
 #	@..\..\..\bin\scilex -nb -l eng -nouserstartup -nwni -e clean_help();exit;
 #	@..\..\..\bin\scilex -nb -l fr -nouserstartup -nwni -e clean_help();exit;
-
-# Install HTML files
-pkgdocdir = $(MagickDocumentPath)
-DOCDIRS = images www www/api www/Magick++
-HTML_INSTALL_DATA_TARGETS = install-data-html
-install-data-html:
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	$(INSTALL_DATA) $(srcdir)/index.html $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCDIRS) ; do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-	  for file in $(srcdir)/$$dir/*.* ; do \
-	    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    $(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-	  done ; \
-	done

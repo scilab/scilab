@@ -130,8 +130,10 @@ libpvm_la_demosdir=$(target)/demos/
 libpvm_la_demos_DATA = demos/pvm.dem \
 demos/pvm1.sce \
 demos/script.sce
+include $(top_srcdir)/Makefile.incl.am
 
 else
 		echo "PVM not activated. Skip this module."
 endif
-include $(top_srcdir)/Makefile.incl.am
+
+

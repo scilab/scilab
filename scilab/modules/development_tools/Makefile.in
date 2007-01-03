@@ -233,7 +233,10 @@ libdevelopment_tools_la_etc_DATA = etc/development_tools.quit etc/development_to
 #SUFFIXES = .xml .sci .htm
 SUFFIXES = .sci
 
-# Install HTML files
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
 pkgdocdir = $(target)
 DOCDIRS = help/fr help/eng
 DOCMASK = *.htm
@@ -479,11 +482,12 @@ uninstall-am: uninstall-libdevelopment_tools_la_etcDATA \
 #	echo "converted $< to $@"; \
 #	fi )
 
+# Rule to build a macro
 .sci.bin:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
-	echo "converted $< to $@"; \
+	echo "Creating $@"; \
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
 

@@ -36,7 +36,6 @@ sparse \
 io \
 gui \
 graphics \
-scicos \
 wintools \
 functions \
 incremental_link \
@@ -51,6 +50,10 @@ scipad \
 scilab2fortran \
 development_tools \
 helptools
+
+if SCICOS
+SUBDIRS += scicos 
+endif
 
 if JAVA
 SUBDIRS += jvm 
@@ -102,7 +105,6 @@ libscilab_la_LIBADD = \
 	$(top_builddir)/modules/symbolic/libsymbolic.la \
 	$(top_builddir)/modules/signal_processing/libsignal_processing.la \
 	$(top_builddir)/modules/special_functions/libspecial_functions.la \
-	$(top_builddir)/modules/scicos/libscicos.la \
 	$(top_builddir)/modules/sound/libsound.la \
 	$(top_builddir)/modules/tclsci/libtclsci.la \
 	$(top_builddir)/modules/statistics/libstatistics.la \
@@ -115,6 +117,10 @@ endif
 
 if JAVA
 libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la
+endif
+
+if SCICOS
+libscilab_la_LIBADD += $(top_builddir)/modules/scicos/libscicos.la
 endif
 
 ## Libs 

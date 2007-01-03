@@ -53,9 +53,9 @@ libdata_structures_la_LIBADD = \
 
 libdata_structures_la_PKGCONFIG = data_structures.pc
 
-SUFFIXES = .sci
-.sci:
-	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
+#SUFFIXES = .sci
+#.sci:
+#	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
 
 
 datadir=${prefix}/modules

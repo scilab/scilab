@@ -744,7 +744,10 @@ AC_ARG_WITH(ocaml,
 AC_ARG_WITH(scicos,
     [  --without-scicos        do not compile scicos ])
 
-AM_CONDITIONAL(SCICOS, test "$with_scicos" = yes)
+if test "$without_scicos" = yes; then 
+   AC_DEFINE([WITHOUT_SCICOS], [], [Without SCICOS])
+fi
+AM_CONDITIONAL(SCICOS, test "$without_scicos" != no)
 
 #################
 ## PVM

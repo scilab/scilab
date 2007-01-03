@@ -448,12 +448,15 @@ top_srcdir = @top_srcdir@
 
 
 #SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci
+@PVM_TRUE@SUFFIXES = .sci
 
-# Install HTML files
-pkgdocdir = $(target)
-DOCDIRS = help/fr help/eng
-DOCMASK = *.htm
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
+@PVM_TRUE@pkgdocdir = $(target)
+@PVM_TRUE@DOCDIRS = help/fr help/eng
+@PVM_TRUE@DOCMASK = *.htm
 all: all-am
 
 .SUFFIXES:
@@ -1094,6 +1097,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@PVM_FALSE@install-html-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
@@ -1185,8 +1189,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 	uninstall-libpvm_la_sci_gatewayDATA
 
 
-@PVM_FALSE@		echo "PVM not activated. Skip this module."
-
 #.xml.htm:
 #	@( if test ! -x $(top_builddir)/scilab-bin; then \
 #	echo "Error : Cannot build $< : Scilab has not been build"; \
@@ -1194,38 +1196,41 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 #	echo "converted $< to $@"; \
 #	fi )
 
-.sci.bin:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
-	echo "Error : Cannot build $< : Scilab has not been build"; \
-	else \
-	echo "converted $< to $@"; \
-	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
-	fi )
+# Rule to build a macro
+@PVM_TRUE@.sci.bin:
+@PVM_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@PVM_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_TRUE@	else \
+@PVM_TRUE@	echo "Creating $@"; \
+@PVM_TRUE@	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
+@PVM_TRUE@	fi )
 
-macrossly:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
-	echo "Error : Cannot build $< : Scilab has not been build"; \
-	else \
-	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-	SCI=`cd $(top_builddir); pwd;`; export SCI; \
-	echo $$SCI/modules/functions/macros/genlib.bin; \
-	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
-	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
-	fi; \
-	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
-	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
-	fi )
-install-html-local:
-	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
-	@for dir in $(DOCDIRS) ; do \
-	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if test -f $(srcdir)/$$dir/$(DOCMASK); then \
-		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
-		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
-	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
-		  done ; \
-		fi; \
-	done
+@PVM_TRUE@macrossly:
+@PVM_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
+@PVM_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
+@PVM_TRUE@	else \
+@PVM_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@PVM_TRUE@	SCI=`cd $(top_builddir); pwd;`; export SCI; \
+@PVM_TRUE@	echo $$SCI/modules/functions/macros/genlib.bin; \
+@PVM_TRUE@	if test ! -f $$SCI/modules/functions/macros/genlib.bin; then \
+@PVM_TRUE@	(cd $$SCI; $$SCI/scilab-bin -ns -nwni -f $$SCI/modules/functions/scripts/buildmacros/buildmacros.sce;) \
+@PVM_TRUE@	fi; \
+@PVM_TRUE@	echo $(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+@PVM_TRUE@	$(top_builddir)/scilab-bin -nwni -f macros/buildmacros.sce; \
+@PVM_TRUE@	fi )
+@PVM_TRUE@install-html-local:
+@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
+@PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
+@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
+@PVM_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
+@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
+@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
+@PVM_TRUE@		  done ; \
+@PVM_TRUE@		fi; \
+@PVM_TRUE@	done
+
+@PVM_FALSE@		echo "PVM not activated. Skip this module."
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

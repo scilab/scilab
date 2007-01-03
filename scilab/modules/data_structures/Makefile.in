@@ -238,6 +238,10 @@ build_cpu = @build_cpu@
 build_os = @build_os@
 build_vendor = @build_vendor@
 builddir = @builddir@
+
+#SUFFIXES = .sci
+#.sci:
+#	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
 datadir = ${prefix}/modules
 datarootdir = @datarootdir@
 docdir = @docdir@
@@ -318,9 +322,6 @@ libdata_structures_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libmalloc.la
 
 libdata_structures_la_PKGCONFIG = data_structures.pc
-
-#SUFFIXES = .xml .sci .htm
-SUFFIXES = .sci
 #### Target ######
 target = $(datadir)/data_structures
 
@@ -356,7 +357,13 @@ includes/gw_data_structures2.h \
 includes/DoublyLinkedList.h
 
 
-# Install HTML files
+#SUFFIXES = .xml .sci .htm
+SUFFIXES = .sci
+
+# Install HTML files into the right target
+# We do not use the automake mechanism (libxxxx_la_help_fr_DATA) because
+# automake needs the html files to be present which is not the case when
+# we are building Scilab
 pkgdocdir = $(target)
 DOCDIRS = help/fr help/eng
 DOCMASK = *.htm
@@ -919,8 +926,6 @@ uninstall-am: uninstall-libLTLIBRARIES \
 	uninstall-libdata_structures_la_rootDATA \
 	uninstall-libdata_structures_la_sci_gatewayDATA
 
-.sci:
-	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;"
 
 #.xml.htm:
 #	@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -929,12 +934,13 @@ uninstall-am: uninstall-libLTLIBRARIES \
 #	echo "converted $< to $@"; \
 #	fi )
 
+# Rule to build a macro
 .sci.bin:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
-	echo "converted $< to $@"; \
-	$(top_builddir)/scilab-bin -ns -nwni -f macros/buildmacros.sce; \
+	echo "Creating $@"; \
+	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
 
 macrossly:

@@ -25,5 +25,4 @@ macros/testexamples.bin macros/names macros/lib macros/buildmacros.sce
 libdevelopment_tools_la_etcdir = $(target)/etc
 libdevelopment_tools_la_etc_DATA = etc/development_tools.quit etc/development_tools.start
 
-
 include $(top_srcdir)/Makefile.incl.am
