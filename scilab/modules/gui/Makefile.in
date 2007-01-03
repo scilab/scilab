@@ -1451,9 +1451,6 @@ $(top_srcdir)/modules/gui/src/c/xsci/Xscilab.ad.h: $(top_srcdir)/modules/gui/src
 	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
 
-names:
-	echo ""
-
 macrossly:
 	@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \

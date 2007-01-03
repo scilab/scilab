@@ -29,12 +29,12 @@ $(top_srcdir)/etc/scilab.quit
 all-local: install-exec
  ### Crappy code ... Need some clean up
 
-macros:$(top_builddir)/scilab-bin
+macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
-	$(top_builddir)/scilab-bin -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
+	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-html-local:$(top_builddir)/scilab-bin
+html-local:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/scilab-bin -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;")
