@@ -4,8 +4,7 @@
 #include <string.h>
 #include "core_math.h"
 #include "machine.h"
-/*-----------------------------------------------------------------------------------*/
-extern void sciprint __PARAMS((char *fmt,...));
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
