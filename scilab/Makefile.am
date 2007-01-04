@@ -26,7 +26,7 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 sysconf_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit
 
-all-local: install-exec macros html-local
+all: macros
  ### Crappy code ... Need some clean up
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab

@@ -705,7 +705,7 @@ distcleancheck: distclean
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-recursive
-all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
+all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
 	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(sysconfdir)"; do \
@@ -801,10 +801,10 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install-strip
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
-	all all-am all-local am--refresh check check-am check-local \
-	clean clean-binPROGRAMS clean-generic clean-libtool \
-	clean-local ctags ctags-recursive dist dist-all dist-bzip2 \
-	dist-gzip dist-shar dist-tarZ dist-zip distcheck distclean \
+	all all-am am--refresh check check-am check-local clean \
+	clean-binPROGRAMS clean-generic clean-libtool clean-local \
+	ctags ctags-recursive dist dist-all dist-bzip2 dist-gzip \
+	dist-shar dist-tarZ dist-zip distcheck distclean \
 	distclean-compile distclean-generic distclean-hdr \
 	distclean-libtool distclean-local distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
@@ -822,7 +822,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-sysconfDATA
 
 
-all-local: install-exec macros html-local
+all: macros
  ### Crappy code ... Need some clean up
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
