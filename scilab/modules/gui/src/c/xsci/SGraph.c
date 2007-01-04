@@ -1095,10 +1095,7 @@ void scig_print(integer number)
  ********************************************************/
 
 static void
-SavePs(w, number, client_data)
-     Widget w;
-     XtPointer number;
-     XtPointer client_data;
+SavePs(Widget w, XtPointer number, XtPointer client_data)
 {
   integer win_num = (integer) number ;
   integer colored,orientation,flag=2,ok;
@@ -1146,10 +1143,7 @@ void scig_export(integer number)
  ******************************************************/
 
 static void
-Save(w, number, client_data)
-     Widget w;
-     XtPointer number;
-     XtPointer client_data;
+Save(Widget w, XtPointer number, XtPointer client_data)
 {
   char *filename;
   integer win_num = (integer) number ;
@@ -1158,7 +1152,7 @@ Save(w, number, client_data)
   rep=GetFileWindow(init,&filename,".",0,&ierr,"Save Graphic File");
   if ( ierr == 0 && rep == TRUE )
     {
-      C2F(xsaveplots)(&win_num,filename,0L);
+		//      C2F(xsaveplots)(&win_num,filename,0L);
     }
 }
 
@@ -1167,10 +1161,7 @@ Save(w, number, client_data)
  ******************************************************/
 
 static void
-Load(w, number, client_data)
-     Widget w;
-     XtPointer number;
-     XtPointer client_data;
+Load(Widget w, XtPointer number, XtPointer client_data)
 {
   char *filename;
   integer win_num = (integer) number ;
@@ -1182,7 +1173,7 @@ Load(w, number, client_data)
       integer verb=0,cur,na;
       C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(xloadplots)(filename,0L);
+	  //      C2F(xloadplots)(filename,0L);
       C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
 }
@@ -1196,10 +1187,7 @@ Load(w, number, client_data)
  ******************************************************/
 
 static void
-Zoom(w, number, client_data)
-     Widget w;
-     XtPointer number;
-     XtPointer client_data;
+Zoom(Widget w, XtPointer number, XtPointer client_data)
 {
 
   integer win_num = (integer) number,ne=0;

@@ -17,10 +17,10 @@
  #include <ctype.h>
 #endif
 #include "setgetSCIpath.h"
+#include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/ 
 extern int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
 extern int GetWITH_GUI(void);
-extern void sciprint __PARAMS((char *fmt,...));
 /*-----------------------------------------------------------------------------------*/ 
 int TK_Started=0;
 #ifndef _MSC_VER
