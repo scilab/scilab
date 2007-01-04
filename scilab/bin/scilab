@@ -3,7 +3,7 @@
 # like do_scilex()... . In this case use a system V sh (sh5)
 
 # Copyright INRIA
-# Sylvestre Ledru 2006
+# Updated : Sylvestre Ledru 2006
 
 #############################################################################
 #                                                                           #
@@ -400,6 +400,8 @@ if test "$rest" = "yes"; then
        -mem)
            prevarg="mem"
           ;;
+		-nouserstartup)
+			;;
       *)
           do_help
           ;;
