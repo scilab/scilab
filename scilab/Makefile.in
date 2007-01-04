@@ -752,8 +752,6 @@ dvi-am:
 
 html: html-recursive
 
-html-am: html-local
-
 info: info-recursive
 
 info-am:
@@ -810,16 +808,16 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	distclean-compile distclean-generic distclean-hdr \
 	distclean-libtool distclean-local distclean-tags \
 	distcleancheck distdir distuninstallcheck dvi dvi-am html \
-	html-am html-local info info-am install install-am \
-	install-binPROGRAMS install-binSCRIPTS install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip install-sysconfDATA \
-	installcheck installcheck-am installdirs installdirs-am \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
+	html-am info info-am install install-am install-binPROGRAMS \
+	install-binSCRIPTS install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip install-sysconfDATA installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
 	uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-sysconfDATA
 
@@ -832,7 +830,7 @@ macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-html-local:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
+doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
 	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$LD_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
 	$(top_builddir)/bin/scilab -nb -l eng -nouserstartup -nwni -e "xmltohtml();exit;")
