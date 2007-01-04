@@ -454,6 +454,11 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@pkgdocdir = $(target)
 @PVM_TRUE@DOCDIRS = help/fr help/eng
 @PVM_TRUE@DOCMASK = *.htm
+
+#bhalbhalbha
+@PVM_TRUE@pkgmacrosdir = $(target)
+@PVM_TRUE@MACROSDIRS = macros/
+@PVM_TRUE@MACROSMASK = *.sci
 all: all-am
 
 .SUFFIXES:
@@ -1077,6 +1082,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@PVM_FALSE@install-data-local:
 @PVM_FALSE@install-html-local:
 clean: clean-am
 
@@ -1099,9 +1105,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libpvm_la_demosDATA install-libpvm_la_etcDATA \
-	install-libpvm_la_includeHEADERS install-libpvm_la_rootDATA \
-	install-libpvm_la_sci_gatewayDATA
+install-data-am: install-data-local install-libpvm_la_demosDATA \
+	install-libpvm_la_etcDATA install-libpvm_la_includeHEADERS \
+	install-libpvm_la_rootDATA install-libpvm_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1150,18 +1156,19 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 	clean-libLTLIBRARIES clean-libtool ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libLTLIBRARIES \
-	install-libpvm_la_demosDATA install-libpvm_la_etcDATA \
-	install-libpvm_la_includeHEADERS install-libpvm_la_rootDATA \
-	install-libpvm_la_sci_gatewayDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libLTLIBRARIES install-libpvm_la_demosDATA \
+	install-libpvm_la_etcDATA install-libpvm_la_includeHEADERS \
+	install-libpvm_la_rootDATA install-libpvm_la_sci_gatewayDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libpvm_la_demosDATA uninstall-libpvm_la_etcDATA \
 	uninstall-libpvm_la_includeHEADERS \
 	uninstall-libpvm_la_rootDATA \
@@ -1184,9 +1191,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 @PVM_TRUE@	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 @PVM_TRUE@	fi )
 
-@PVM_TRUE@names:
-@PVM_TRUE@	echo ""
-
 @PVM_TRUE@macrossly:
 @PVM_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
 @PVM_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
@@ -1204,13 +1208,30 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libpvm_la_demosDATA \
 @PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @PVM_TRUE@	@for dir in $(DOCDIRS) ; do \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
+@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 @PVM_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @PVM_TRUE@		  done ; \
 @PVM_TRUE@		fi; \
 @PVM_TRUE@	done
+@PVM_TRUE@install-data-local: $(MACROS)
+@PVM_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@PVM_TRUE@	@for dir in $(MACROSDIRS) ; do \
+@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@PVM_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
+@PVM_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@PVM_TRUE@		  done ; \
+@PVM_TRUE@		fi; \
+@PVM_TRUE@	done
+
+@PVM_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
+@PVM_TRUE@	-@( \
+@PVM_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@PVM_TRUE@	echo $(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	); \
+@PVM_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
 @PVM_FALSE@		echo "PVM not activated. Skip this module."
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

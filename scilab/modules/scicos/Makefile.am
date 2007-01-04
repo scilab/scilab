@@ -1461,4 +1461,18 @@ demos/live.dat \
 demos/fibo.cosf \
 demos/Controller.cosf
 
+
 include $(top_srcdir)/Makefile.incl.am
+MACROSDIRS+= macros/scicos_blocks \
+macros/scicos_blocks/Sources \
+macros/scicos_blocks/Events \
+macros/scicos_blocks/NonLinear \
+macros/scicos_blocks/Electrical \
+macros/scicos_blocks/Hydraulics \
+macros/scicos_blocks/Sinks \
+macros/scicos_blocks/PDE \
+macros/scicos_blocks/Linear \
+macros/scicos_blocks/Branching \
+macros/scicos_blocks/Misc \
+macros/scicos_blocks/Threshold \
+macros/scicos

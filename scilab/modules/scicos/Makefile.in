@@ -1774,6 +1774,17 @@ SUFFIXES = .sci
 pkgdocdir = $(target)
 DOCDIRS = help/fr help/eng
 DOCMASK = *.htm
+
+#bhalbhalbha
+pkgmacrosdir = $(target)
+MACROSDIRS = macros/ macros/scicos_blocks macros/scicos_blocks/Sources \
+	macros/scicos_blocks/Events macros/scicos_blocks/NonLinear \
+	macros/scicos_blocks/Electrical \
+	macros/scicos_blocks/Hydraulics macros/scicos_blocks/Sinks \
+	macros/scicos_blocks/PDE macros/scicos_blocks/Linear \
+	macros/scicos_blocks/Branching macros/scicos_blocks/Misc \
+	macros/scicos_blocks/Threshold macros/scicos
+MACROSMASK = *.sci
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -3117,7 +3128,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libscicos_la_etcDATA \
+install-data-am: install-data-local install-libscicos_la_etcDATA \
 	install-libscicos_la_includeHEADERS \
 	install-libscicos_la_rootDATA \
 	install-libscicos_la_sci_gatewayDATA \
@@ -3171,11 +3182,11 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libscicos_la_etcDATA \
 	clean-libLTLIBRARIES clean-libtool ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libLTLIBRARIES \
-	install-libscicos_la_etcDATA \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libLTLIBRARIES install-libscicos_la_etcDATA \
 	install-libscicos_la_includeHEADERS \
 	install-libscicos_la_rootDATA \
 	install-libscicos_la_sci_gatewayDATA install-man \
@@ -3212,7 +3223,7 @@ includes/blocks.h:
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
-	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
+	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 	fi )
 
 macrossly:
@@ -3232,13 +3243,30 @@ install-html-local:
 	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 	@for dir in $(DOCDIRS) ; do \
 	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
+		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 		  done ; \
 		fi; \
 	done
+install-data-local: $(MACROS)
+	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+	@for dir in $(MACROSDIRS) ; do \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
+		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+		  done ; \
+		fi; \
+	done
+
+macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
+	-@( \
+	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+	echo $(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	); \
+	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

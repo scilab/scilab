@@ -276,6 +276,11 @@ top_srcdir = @top_srcdir@
 @JAVA_TRUE@pkgdocdir = $(target)
 @JAVA_TRUE@DOCDIRS = help/fr help/eng
 @JAVA_TRUE@DOCMASK = *.htm
+
+#bhalbhalbha
+@JAVA_TRUE@pkgmacrosdir = $(target)
+@JAVA_TRUE@MACROSDIRS = macros/
+@JAVA_TRUE@MACROSMASK = *.sci
 all: all-am
 
 .SUFFIXES:
@@ -536,6 +541,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@JAVA_FALSE@install-data-local:
 @JAVA_FALSE@install-html-local:
 clean: clean-am
 
@@ -558,7 +564,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-libjvm_la_etcDATA install-libjvm_la_rootDATA
+install-data-am: install-data-local install-libjvm_la_etcDATA \
+	install-libjvm_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -605,17 +612,17 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 	clean-libLTLIBRARIES clean-libtool ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libLTLIBRARIES \
-	install-libjvm_la_etcDATA install-libjvm_la_rootDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libLTLIBRARIES install-libjvm_la_etcDATA \
+	install-libjvm_la_rootDATA install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libLTLIBRARIES \
 	uninstall-libjvm_la_etcDATA uninstall-libjvm_la_rootDATA
 
 
@@ -635,9 +642,6 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 @JAVA_TRUE@	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
 @JAVA_TRUE@	fi )
 
-@JAVA_TRUE@names:
-@JAVA_TRUE@	echo ""
-
 @JAVA_TRUE@macrossly:
 @JAVA_TRUE@	@( if test ! -x $(top_builddir)/scilab-bin; then \
 @JAVA_TRUE@	echo "Error : Cannot build $< : Scilab has not been build"; \
@@ -655,13 +659,30 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-libjvm_la_etcDATA \
 @JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdocdir)
 @JAVA_TRUE@	@for dir in $(DOCDIRS) ; do \
 @JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
-@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) 2>/dev/null; then \
+@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(DOCMASK) >/dev/null 2>&1; then \
 @JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(DOCMASK) ; do \
 @JAVA_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/$$dir" ; \
 @JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/$$dir ; \
 @JAVA_TRUE@		  done ; \
 @JAVA_TRUE@		fi; \
 @JAVA_TRUE@	done
+@JAVA_TRUE@install-data-local: $(MACROS)
+@JAVA_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)
+@JAVA_TRUE@	@for dir in $(MACROSDIRS) ; do \
+@JAVA_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
+@JAVA_TRUE@		if ls -lLd $(srcdir)/$$dir/$(MACROSMASK)  >/dev/null 2>&1; then \
+@JAVA_TRUE@		  for file in $(srcdir)/$$dir/$(MACROSMASK) ; do \
+@JAVA_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
+@JAVA_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
+@JAVA_TRUE@		  done ; \
+@JAVA_TRUE@		fi; \
+@JAVA_TRUE@	done
+
+@JAVA_TRUE@macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab $(MACROS)
+@JAVA_TRUE@	-@( \
+@JAVA_TRUE@	LD_LIBRARY_PATH="$(JAVA_HOME)/jre/lib/i386/:$(JAVA_HOME)/jre/lib/i386/server/:$(JAVA_HOME)/jre/lib/i386/native_threads/:$L D_LIBRARY_PATH"; 	export LD_LIBRARY_PATH; \
+@JAVA_TRUE@	echo $(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	); \
+@JAVA_TRUE@	$(top_builddir)/bin/scilab -nb -nwni -f $(abs_srcdir)/macros/buildmacros.sce 	)
 
 @JAVA_FALSE@		echo "Java disabled. Skip this module."
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

@@ -398,7 +398,7 @@ libelementaries_functions_la_root_DATA = changelog.txt licence.txt readme.txt VE
 
 #### elementaries_functions : Scilab macros ###
 libelementaries_functions_la_macrodir = $(target)/macros
-libelementaries_functions_la_macro_DATA22 = macros/asinh.sci \
+MACROS = macros/asinh.sci \
 macros/vectorfind.sci \
 macros/erfcx.sci \
 macros/asinm.sci \
@@ -587,6 +587,12 @@ libelementaries_functions_la_includedir=$(includedir)/elementaries_functions
 libelementaries_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementaries_functions.h \
 includes/elementaries_functions.h
+
+#macrosplop: $(MACROS)
+#	echo "macrosplop"
+
+#install-data-local: macrosplop
+#	echo "rohh"
 
 include $(top_srcdir)/Makefile.incl.am
 
