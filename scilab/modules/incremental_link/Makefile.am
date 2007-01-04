@@ -63,6 +63,5 @@ src/scripts/configure \
 src/scripts/depcomp \
 src/scripts/install-sh \
 src/scripts/missing \
-src/scripts/scicompile.sh \
-src/scripts/libtool
+src/scripts/scicompile.sh
 include $(top_srcdir)/Makefile.incl.am
