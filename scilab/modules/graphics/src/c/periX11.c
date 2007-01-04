@@ -3575,7 +3575,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
     }
   InitMissileXgc(PI0,PI0,PI0,PI0);
   /* to be sure that current values are recorded */
-  StoreXgc(WinNum);
+  /*  StoreXgc(WinNum);*/
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
 #ifdef WITH_TK

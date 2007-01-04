@@ -276,6 +276,9 @@
 /* Version number of package */
 #undef VERSION
 
+/* Without SCICOS */
+#undef WITHOUT_SCICOS
+
 /* With the Atlas Lib */
 #undef WITH_ATLAS
 
