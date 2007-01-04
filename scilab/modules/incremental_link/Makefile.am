@@ -58,7 +58,6 @@ src/scripts/aclocal.m4
 
 libincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
 src/scripts/config.guess \
-src/scripts/config.status \
 src/scripts/config.sub \
 src/scripts/configure \
 src/scripts/depcomp \

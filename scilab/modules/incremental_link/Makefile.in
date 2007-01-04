@@ -268,7 +268,6 @@ src/scripts/aclocal.m4
 
 libincremental_link_la_script_SCRIPTS = src/scripts/compilerDetection.sh \
 src/scripts/config.guess \
-src/scripts/config.status \
 src/scripts/config.sub \
 src/scripts/configure \
 src/scripts/depcomp \
@@ -561,11 +560,11 @@ uninstall-am: uninstall-libincremental_link_la_etcDATA \
 
 # Rule to build a macro
 .sci.bin:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	-( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
-	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
+	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 	fi )
 
 macrossly:
