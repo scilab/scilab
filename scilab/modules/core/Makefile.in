@@ -2727,11 +2727,11 @@ uninstall-am: uninstall-libLTLIBRARIES \
 
 # Rule to build a macro
 .sci.bin:
-	@( if test ! -x $(top_builddir)/scilab-bin; then \
+	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
-	$(top_builddir)/scilab-bin -ns -nwni -e "getf('$<'); save('$@'); exit;"; \
+	$(top_builddir)/bin/scilab -ns -nwni -e "getf('$(abs_srcdir)/$<');save('$(abs_srcdir)/$@');exit;"; \
 	fi )
 
 macrossly:

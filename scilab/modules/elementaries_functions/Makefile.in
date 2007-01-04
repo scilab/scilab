@@ -2849,7 +2849,7 @@ libdummy_elementaries_functions_la-icopy.lo: src/fortran/icopy.f
 
 # Rule to build a macro
 .sci.bin:
-	-( if test ! -x $(top_builddir)/scilab-bin; then \
+	-@( if test ! -x $(top_builddir)/scilab-bin; then \
 	echo "Error : Cannot build $< : Scilab has not been build"; \
 	else \
 	echo "Creating $@"; \
