@@ -99,7 +99,7 @@
 ::msgcat::mcset se "Illegal undefined element found" "Ogiltigt odefinierat element funnet"
 
 # filecommands.tcl
-::msgcat::mcset se "New Script" "Nytt Script"
+::msgcat::mcset se "New script" "Nytt script"
 ::msgcat::mcset se "The contents of" \
                  "Innehållet kan ha ändrats, vill du spara dina ändringar"
     ::msgcat::mcset se "may have changed, do you wish to save your changes?" \

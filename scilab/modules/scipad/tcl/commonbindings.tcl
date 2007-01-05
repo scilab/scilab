@@ -82,7 +82,8 @@ bind $pad <Configure> {if {"%W"=="$pad"} {
                            if {!$Tk85} {
                                catch {spaceallsasheskeeprelsizes}
                            }
-                       }}
+                       } \
+                      }
 bind Panedwindow <Double-Button-1> {spacesashesevenly %W}
 
 bind $pad <FocusIn> {checkifanythingchangedondisk %W}

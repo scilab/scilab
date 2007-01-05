@@ -83,16 +83,13 @@ endfunction
  it is not yet committed in the Tcl source code. There is also bug 1578519
  about special dirs on Windows, still for tk_getOpenFile.
 
--Hidden files can be opened in Scipad but cannot be saved with the same
- filename. This is Tcl bug 1622579 (the open command fails to open hidden
- files for writing)
-
 -There is something strange with the scrollbars linked to the textarea. In
  some not yet well understood situations they do not reflect the width or
  height of the text contained in the textarea, and/or are located at the
  wrong place. When there are wrapped lines of varying lengths, as the user
  scrolls, the length of the scroll box changes. 
  This is actually fixed in Tk 8.5: http://www.tcl.tk/cgi-bin/tct/tip/155.html
+ No workaround available in 8.4, this is a deep Tk core issue.
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -218,7 +215,7 @@ Other wishes:
  breakpoints
  Note: a first step to this has been implemented. During a debug session, 
  the popup menu is a debug menu.
- 
+
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
 
@@ -257,19 +254,11 @@ Other wishes:
  See TIP #155 for details: http://www.cs.man.ac.uk/fellowsd-bin/TIP/155.html
  .text replace is available at least from 8.5a3
 
--paned window to allow for viewing two different parts of the same text buffer
- at the same time. Would be nice if the output of .text -dump could be feeded
- into another text widget, but it's not currently the case.
- Another (better) approach would be peer text widget as described in TIP #169:
- http://www.tcl.tk/cgi-bin/tct/tip/169.html (this is already available in
- Tk 8.5a3)
+-peer text widgets:
  F6/F7 should display the next/previous buffer of the full list in the
  current active pane only, creating peer widgets as necessary
- -- Waiting for Scilab's adoption of 8.5, maybe Scipad could implement it
-    in advance in order to be ready for the transition to 8.5 and make use
-    of its functions without delay. A global variable Tk85 already exists
-    in Scipad for similar purposes and could be used to make Scipad work
-    both with 8.4 and 8.5 (and use peer widgets of 8.5)
+ warning: montretext is used to switch buffers when finding in multiple
+ files!
 
 -*maybe* a global undo stack instead of one per buffer
  advantages: can undo at once a dnd from one pane to another one
@@ -277,6 +266,7 @@ Other wishes:
              widget was abandoned, but maybe it could be feasible to detect
              changes in the undo stacks of more than one buffer at the same
              time - still tricky...
+ Note that as per TIP 169 peers already share one single undo stack
 
 -minimal Scipad wm size: Probably it would be wise to make the minimum
  dependent on the number of tiles, so that all the features (menu, title,
@@ -313,5 +303,6 @@ http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/dc0
 
 -Request 262: tabbed buffers (see discussion in this request)
 
--Think about using -inactiveselectionbackground for the textareas (Tk 8.5
- only), and get rid of the fakeselection tag in find/replace
+-In tile mode, add tooltips displaying listoffile("$ta",fullname) of the
+ hoovered buffer title (perhaps only when filenames display type is not
+ "Full path")

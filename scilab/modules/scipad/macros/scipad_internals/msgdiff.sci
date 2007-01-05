@@ -74,7 +74,7 @@ function report=msgdiff(msgfile1,msgfile2)
     end
   end
   mclose(fd)
-  
+
 //unused strings
   disp("Finding unused entries in " +msgfile2+"...")
   j=j+1; report(j)=""; 
@@ -154,7 +154,7 @@ function l=lineformat(lang,orig,transl)
   n3=length(transl)
   n4=length(lindent)
   maxline=80
-  
+
   if n1+n2+3+n3+2<maxline then
 //all on a single line, ok
     l=prefix+""""+orig+""" """+transl+""""

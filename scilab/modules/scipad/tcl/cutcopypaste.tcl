@@ -4,7 +4,9 @@ proc deletetext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
-    set listoffile("$textareacur",redostackdepth) 0
+    foreach ta [getfullpeerset $textareacur] {
+        set listoffile("$ta",redostackdepth) 0
+    }
     set oldSeparator [$textareacur cget -autoseparators]
     if {$oldSeparator} {
         $textareacur configure -autoseparators 0
@@ -39,7 +41,9 @@ proc backspacetext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
-    set listoffile("$textareacur",redostackdepth) 0
+    foreach ta [getfullpeerset $textareacur] {
+        set listoffile("$ta",redostackdepth) 0
+    }
     set oldSeparator [$textareacur cget -autoseparators]
     if {$oldSeparator} {
         $textareacur configure -autoseparators 0
@@ -73,7 +77,9 @@ proc cuttext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
-    set listoffile("$textareacur",redostackdepth) 0
+    foreach ta [getfullpeerset $textareacur] {
+        set listoffile("$ta",redostackdepth) 0
+    }
     tk_textCut $textareacur
     $textareacur tag remove sel 1.0 end
     $textareacur see insert
@@ -100,7 +106,9 @@ proc pastetext {} {
     global listoffile buffermodifiedsincelastsearch
     set textareacur [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
-    set listoffile("$textareacur",redostackdepth) 0
+    foreach ta [getfullpeerset $textareacur] {
+        set listoffile("$ta",redostackdepth) 0
+    }
     set oldSeparator [$textareacur cget -autoseparators]
     if {$oldSeparator} {
         $textareacur configure -autoseparators 0
@@ -136,7 +144,9 @@ proc button2copypaste {w x y} {
 #the target textarea gets focused, even if paste is forbidden there
     if {[IsBufferEditable] == "No"} {focustextarea $w; return}
     if {[catch {selection get}] == 0} {
-        set listoffile("$textareacur",redostackdepth) 0
+        foreach ta [getfullpeerset $textareacur] {
+            set listoffile("$ta",redostackdepth) 0
+        }
         clipboard clear
         set ct [selection get]
         clipboard append $ct

@@ -1143,7 +1143,7 @@ ES, 7/6/05
    the known key sequence names, instead of trying the relevant one for each
    platform (useful for Shift-Fn bindings)
  * version --> 5.5
- 
+
 Francois VOGEL, 07/06/05
  * On successful opening of the first file after Scipad launch, the unmodified
    empty buffer that is opened by default is automatically closed
@@ -2031,7 +2031,7 @@ Francois VOGEL, 20/02/06
  * Fixed: msgcat collision between Windows menu entry (main menu bar) and the
    entry with same name in the Options/Double click sub-menu
  * version --> 6.4
- 
+
 ES 21/2/06
  * bug fixed: double-click on an unfocused split pane pasted wrongly the 
    selection inside the focused pane
@@ -2434,7 +2434,7 @@ Francois VOGEL, 29/10/06
    debug with Shift-F8  did not stop in the function to debug
  * proc killwin renamed killscipad
  * version --> 6.48
- 
+
 ES, 30/10/06
  * small bugfix, tcl "Error:0" was popping up when attempting to run erroneous
    scilab code, causing error messages containing quoted strings: for instance
@@ -2652,3 +2652,25 @@ Francois VOGEL, 01/01/07
  * Pushed copyrights to 2007
  * Fixed wrong syntax for Tcl instruction scan throughout the code
  * version --> 6.71
+
+Francois VOGEL, 05/01/07
+ * First Scipad version making peer text widgets available, so that the user
+   can view two different parts of the same text buffer at the same time.
+   This is working either in standalone mode (Scipad launched in wish85),
+   or from Scilab linked with Tcl/Tk 8.5. For the latter, see
+   http://wiki.scilab.org/Linking_Scilab_with_Tcl/Tk_8.5
+ * Removed spaces and tabs from empty lines throughout the Scipad codebase
+ * Fixed: Hidden files could be opened in Scipad but could not be saved with
+   the same filename. This was Tcl bug 1622579 (the open command fails to
+   open hidden files for writing), that was actually not a Tcl bug after all
+   and has been closed as WONT FIX in the Tcl tracker
+ * Workaround hack for Tk bug 1169429 not used in proc dostopcursorblink
+   when Tk 8.5 is used (hack kept for 8.4)
+ * Proc closecur called instead of closefile when clicking on the "Close"
+   button of a tile, which makes closability checks be run first
+ * Fixed: Trying to open an nonexisting file through the MRU list of the file
+   menu popped a Tcl error because proc iswindowsshortcut tried to open the
+   file without checking its existence
+ * Fixed: proc changedmodified could be launched with a non-textarea input
+   argument
+ * version --> 6.72

@@ -23,7 +23,7 @@ proc getcompletions {tok {mode ""}} {
         # given "scilab" to mode
     }
     regsub -all "$mode." [array names chset -glob $mode\.*] "" tags
- 
+
     foreach tag $tags {
         set indofinitial [string first $tokinitial $chset($mode.$tag)]
         if {$indofinitial == -1} {

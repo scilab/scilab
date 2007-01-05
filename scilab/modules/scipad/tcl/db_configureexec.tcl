@@ -8,7 +8,7 @@ proc configurefoo_bp {} {
     # since it uses Obtain_all which in turn needs getallfunsintextarea
     # which needs the colorization results
     if {[colorizationinprogress]} {return}
-    
+
     # configurefoo_bp cannot be executed if colorization has been turned
     # off in the current buffer
     if {[iscurrentbufnotcolorized]} {return}

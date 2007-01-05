@@ -24,8 +24,8 @@ proc createmenues {} {
       -menu $pad.filemenu.files.openintile"
         eval "$pad.filemenu.files.openintile add command \
                    [me "&horizontal tile"] [ca {showopenwin horizontal}]"
-        eval "$pad.filemenu.files.openintile add command [me "&vertical tile"]\
-                   [ca {showopenwin vertical}]"
+        eval "$pad.filemenu.files.openintile add command \
+                   [me "&vertical tile"]   [ca {showopenwin vertical}]"
     eval "$pad.filemenu.files add command [me "Op&en source of..."] \
                    -command \"opensourceof\" "
     eval "$pad.filemenu.files add command [me "&Save"] [ca {filetosavecur}]"
@@ -281,14 +281,14 @@ proc createmenues {} {
     eval "$pad.filemenu.options add cascade [me "File&names"] \
            -menu $pad.filemenu.options.filenames "
         eval "$pad.filemenu.options.filenames add radiobutton \
-            [me "&Full path"] -command {RefreshWindowsMenuLabels}\
+            [me "&Full path"] -command {RefreshWindowsMenuLabelsWrtPruning}\
              -value full -variable filenamesdisplaytype"
         eval "$pad.filemenu.options.filenames add radiobutton \
-            [me "Full path if &ambiguous"] -command {RefreshWindowsMenuLabels}\
+            [me "Full path if &ambiguous"] -command {RefreshWindowsMenuLabelsWrtPruning}\
              -value fullifambig -variable filenamesdisplaytype"
         eval "$pad.filemenu.options.filenames add radiobutton \
                  [me "&Unambiguous pruned path"]\
-                 -command {RefreshWindowsMenuLabels}\
+                 -command {RefreshWindowsMenuLabelsWrtPruning}\
                  -value pruned -variable filenamesdisplaytype"
     menu $pad.filemenu.options.windmenusort -tearoff 0
     eval "$pad.filemenu.options add cascade [me "Windows menu &sorting"] \

@@ -21,6 +21,6 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"-nogui") then
                 TCL_EvalStr("catch {exitapp}","scipad");
             end
         end
-    end	
+    end
 end
 // ====================================================================

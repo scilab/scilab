@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync at least with v6.71
+# in sync at least with v6.72
 
 
 # commons
@@ -148,7 +148,8 @@
 
 
 # filecommands.tcl
-::msgcat::mcset fr "New Script" "Nouveau script"
+::msgcat::mcset fr "New script" "Nouveau script"
+::msgcat::mcset fr "New view on the same file" "Nouvelle vue sur ce fichier"
 ::msgcat::mcset fr "The contents of" "Voulez-vous enregistrer les modifications apportées à"
     ::msgcat::mcset fr "may have changed, do you wish to save your changes?" "?"
 ::msgcat::mcset fr "Save Confirm?" "Confirmer sauver ?"

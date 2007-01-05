@@ -120,7 +120,7 @@
 
 
 # filecommands.tcl
-::msgcat::mcset no "New Script" "Nytt skript"
+::msgcat::mcset no "New script" "Nytt skript"
 ::msgcat::mcset no "The contents of" "Innholdet av"
 ::msgcat::mcset no "may have changed, do you wish to save your changes?"\
                    "kan være endret, vil de lagre endringene?"

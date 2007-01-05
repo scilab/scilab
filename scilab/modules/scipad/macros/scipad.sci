@@ -3,9 +3,9 @@ function scipad(varargin)
 
     global SCIPADISSTARTING
     // ensure that no concurrent launching occurs
-	// this fixes the issue that shows up when quickly
-	// clicking twice the menu or icon button in the
-	// Scilab window (bug 2226)
+    // this fixes the issue that shows up when quickly
+    // clicking twice the menu or icon button in the
+    // Scilab window (bug 2226)
     if exists("SCIPADISSTARTING","nolocal") then
         return
     end

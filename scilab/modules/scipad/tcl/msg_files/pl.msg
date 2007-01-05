@@ -123,7 +123,7 @@
 
 
 # filecommands.tcl
-::msgcat::mcset pl "New Script" "Nowy skrypt"
+::msgcat::mcset pl "New script" "Nowy skrypt"
 ::msgcat::mcset pl "The contents of" "Zawarto\u015B\u0107"
 ::msgcat::mcset pl "may have changed, do you wish to save your changes?"\
                    "mog\u0142a ulec zmianie. Czy chcesz zapisa\u0107 zmiany?"

@@ -53,7 +53,7 @@ proc CommentSel {} {
     } else {
         # there is a selection in the current textarea
         # note: do NOT extend selection to the beginning of the line!
-        
+
         # insert // at the beginning of the selected string and at each
         # newline, but not after the last newline, if the selection ends
         # at column 0 - note that this matches empty lines (correct)

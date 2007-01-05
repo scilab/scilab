@@ -178,7 +178,7 @@
 
 
 # filecommands.tcl
-::msgcat::mcset it "New Script" "Nuovo testo"
+::msgcat::mcset it "New script" "Nuovo testo"
 ::msgcat::mcset it "The contents of" "Il contenuto di"
 ::msgcat::mcset it "may have changed, do you wish to save your changes?"\
                    "potrebbe essere cambiato, registrare le modifiche?"

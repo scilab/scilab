@@ -40,7 +40,7 @@ function dynamickeywords()
        libfun=[libfun;libstring(2:$)];
     end
   end
-  
+
   setscipadwords(libfun,"libfun")
 
   if %scicos then
@@ -65,13 +65,13 @@ function dynamickeywords()
        end
      end
    end
-    
+
 
     setscipadwords([scicosfun;scicosblocks],"scicos")
   end
-  
+
   //TCL_EvalStr("tk_messageBox -message $words(scilab.predef.%)","scipad")
-  
+
 endfunction
 
 dynamickeywords()

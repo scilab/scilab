@@ -114,7 +114,7 @@ proc tkdndbind {w} {
                                      %W tag remove sel 1.0 end ; \
                                  } \
                                }
-    # if {[info exists listoffile("%W",fullname]} in the else clause below
+    # if {[info exists listoffile("%W",fullname)]} in the else clause below
     # is required to solve a bug reported in the newsgroup at
     # http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/21cee717df71ab0/d5957386272e17b3
     # http://groups.google.com/group/comp.soft-sys.math.scilab/browse_thread/thread/875daad29986228e/ae651d1a948ba67c
@@ -239,15 +239,26 @@ proc restorecursorblink {} {
 
 proc dostopcursorblink {} {
     global listoftextarea
-    foreach ta $listoftextarea {
-        $ta configure -insertofftime 2
+    global Tk85
+
+    if {$Tk85} {
+        # Tk bug 1169429 is fixed
+        foreach ta $listoftextarea {
+            $ta configure -insertofftime 0
+        }
+
+    } else {
+        # Tk bug 1169429 is not fixed, work around it
+        foreach ta $listoftextarea {
+            $ta configure -insertofftime 2
+        }
+        update
+        after 5
+        foreach ta $listoftextarea {
+            $ta configure -insertofftime 0
+        }
+        update
     }
-    update
-    after 5
-    foreach ta $listoftextarea {
-        $ta configure -insertofftime 0
-    }
-    update
 }
 
 proc dorestorecursorblink {} {

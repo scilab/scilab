@@ -5,7 +5,9 @@ proc undo {textarea} {
 # Performs an undo
     global listoffile
     undoredo $textarea <<Undo>>
-    incr listoffile("$textarea",redostackdepth)
+    foreach ta [getfullpeerset $textarea] {
+        incr listoffile("$ta",redostackdepth)
+    }
     # update menues contextually
     keyposn $textarea
 }
@@ -14,7 +16,9 @@ proc redo {textarea} {
 # Performs a redo
     global listoffile
     undoredo $textarea <<Redo>>
-    incr listoffile("$textarea",redostackdepth) -1
+    foreach ta [getfullpeerset $textarea] {
+        incr listoffile("$ta",redostackdepth) -1
+    }
     # update menues contextually
     keyposn $textarea
 }
@@ -69,7 +73,15 @@ proc changedmodified {textarea} {
 # Update the visual indications showing that the buffer was modified or not
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
-    global closeinitialbufferallowed
+    global closeinitialbufferallowed listoftextarea
+
+    # this test is needed because proc changedmodified is binded to the Text
+    # class, i.e. it might trigger also for non textareas such as the call
+    # stack widget of the watch window
+    if {[lsearch -exact $listoftextarea $textarea] == -1} {
+        return
+    }
+
     set closeinitialbufferallowed false
     modifiedtitle $textarea
 }
@@ -79,7 +91,9 @@ proc resetmodified {textarea} {
 # and update the visual indications relative to the modified state
     global listoffile
     $textarea edit reset
-    set listoffile("$textarea",redostackdepth) 0
+    foreach ta [getfullpeerset $textarea] {
+        set listoffile("$ta",redostackdepth) 0
+    }
     $textarea edit modified false ;# <<Modified>> event is automatically generated
 }
 

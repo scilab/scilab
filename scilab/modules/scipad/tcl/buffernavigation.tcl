@@ -4,13 +4,17 @@
 #
 #   $textareaid
 #       This is the unique identifier of the text widget displaying
-#       the content of a given file. When a new textarea is created,
-#       it is given the $winopened value in $textareaid
+#       the content of a given file.
+#       When a new textarea is created, it is given the $winopened
+#       value in $textareaid
+#       Peer text widgets are just normal textareas, with their
+#       textareaid value
 #
 #   $pad.new$textareaid
 #       Buffer name. This is the unique pathname of the text widget
 #       displaying the content of a file. This is usually referred to
 #       as $textarea, or $ta for short
+#       Peer text widgets are just normal textareas
 #
 #   A main paned window is created in mainwindow.tcl, whose name is
 #   $pad.pw0. This panedwindow is the root of the paned windows tree
@@ -104,26 +108,26 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     # create frames for widget layout
     # this is the main frame that is added as a pane
     frame $tapwfr -borderwidth 2
-    
+
     # this is for the top bar containing the pane title (file name)
     # and the close button
     frame $tapwfr.topbar
     button $tapwfr.clbutton -text [mc "Close"] -font $menuFont \
         -command "focustextarea $textarea; closecur yesnocancel"
     pack $tapwfr.clbutton  -in $tapwfr.topbar -side right  -expand 0 -fill none
-    
+
     # this is for the text widget and the y scroll bar
     frame $tapwfr.top
     pack $tapwfr.top -side top -expand 1 -fill both
-    
+
     # this is where the text widget is packed
     frame $tapwfr.topleft
     pack $tapwfr.topleft   -in $tapwfr.top    -side left   -expand 1 -fill both
-    
+
     # this is where the y scrollbar is packed
     frame $tapwfr.topright
     pack  $tapwfr.topright -in $tapwfr.top    -side right  -expand 0 -fill both 
-    
+
     # this is for the x scroll bar at the bottom of the pane
     frame $tapwfr.bottom
     pack $tapwfr.bottom                       -side bottom -expand 0 -fill both
@@ -183,7 +187,7 @@ proc packbuffer {textarea} {
     $curtapwfr.yscroll configure -command "$textarea yview"
     $curtapwfr.xscroll configure -command "$textarea xview"
 
-    $curtapwfr.clbutton configure -command "closefile $textarea yesnocancel"
+    $curtapwfr.clbutton configure -command "focustextarea $textarea; closecur yesnocancel"
 
     bind $curtapwfr.topbar    <ButtonRelease-1> "focustextarea $textarea"
     bind $curtapwfr.panetitle <ButtonRelease-1> "focustextarea $textarea"
@@ -276,6 +280,7 @@ proc splitwindow {neworient {tatopack ""}} {
 # everything appears to happen as if the *current* textarea
 # is split
     global pad pwmaxid textfontsize listoftextarea tileprocalreadyrunning
+    global Tk85
 
     if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
@@ -295,8 +300,9 @@ proc splitwindow {neworient {tatopack ""}} {
 
     if {$curorient == $neworient} {
         # no need for a new panedwindow, just add a pane with the textarea whose
-        # name was provided as argument, or a hidden buffer, or an empty file
-        # <TODO>: use a peer text widget if no textarea name was provided
+        # name was provided as argument, or:
+        #     a hidden buffer, or an empty file if there is none (Tk 8.4)
+        #     create and pack a new peer of the current textarea (Tk 8.5)
 
         # make sure that the possibly single pane before now shows its title bar
         pack $tapwfr.topbar -side top -expand 0 -fill both -in $tapwfr -before $tapwfr.top
@@ -305,15 +311,22 @@ proc splitwindow {neworient {tatopack ""}} {
         # select the buffer to pack
         if {$tatopack != ""} {
             # if the name of the textarea to pack was provided, use it
+            # this happens with the commands from the file menu
             set newta $tatopack
         } else {
-            # <TODO>: use a peer text widget (Tk 8.5) and remove the if below as well as createnewtextarea
-            if {[llength $listoftextarea] > [gettotnbpanes]} {
-                # if there is a hidden buffer, use it
-                set newta $pad.new[getlasthiddentextareaid]
+            # the name of of the textarea to pack was not provided,
+            # this happens with the commands from the windows menu
+            if {!$Tk85} {
+                if {[llength $listoftextarea] > [gettotnbpanes]} {
+                    # if there is a hidden buffer, use it
+                    set newta $pad.new[getlasthiddentextareaid]
+                } else {
+                    # otherwise create an empty textarea
+                    set newta [createnewemptytextarea]
+                }
             } else {
-                # otherwise create an empty textarea
-                set newta [createnewtextarea]
+                # create a peer text widget
+                set newta [createpeertextwidget $tacur]
             }
         }
 
@@ -345,23 +358,32 @@ proc splitwindow {neworient {tatopack ""}} {
             -width $panewidth -height $paneheigth -minsize [expr $textfontsize * 2]
 
         # pack the previously existing textarea first, then the textarea whose
-        # name was provided as argument, or a hidden buffer, or an empty file
-        # <TODO>: use a peer text widget if no textarea name was provided
+        # name was provided as argument, or:
+        #     a hidden buffer, or an empty file if there is none (Tk 8.4)
+        #     create and pack a new peer of the current textarea (Tk 8.5)
+
         packnewbuffer $tacur $newpw 1
         focustextarea $tacur
 
         # select the buffer to pack
         if {$tatopack != ""} {
             # if the name of the textarea to pack was provided, use it
+            # this happens with the commands from the file menu
             set newta $tatopack
         } else {
-            # <TODO>: use a peer text widget (Tk 8.5) and remove the if below as well as createnewtextarea
-            if {[llength $listoftextarea] > [gettotnbpanes]} {
-                # if there is a hidden buffer, use it
-                set newta $pad.new[getlasthiddentextareaid]
+            # the name of of the textarea to pack was not provided,
+            # this happens with the commands from the windows menu
+            if {!$Tk85} {
+                if {[llength $listoftextarea] > [gettotnbpanes]} {
+                    # if there is a hidden buffer, use it
+                    set newta $pad.new[getlasthiddentextareaid]
+                } else {
+                    # otherwise create an empty textarea
+                    set newta [createnewemptytextarea]
+                }
             } else {
-                # otherwise create an empty textarea
-                set newta [createnewtextarea]
+                # create a peer text widget
+                set newta [createpeertextwidget $tacur]
             }
         }
 
@@ -370,13 +392,14 @@ proc splitwindow {neworient {tatopack ""}} {
         focustextarea $newta
     }
 
+    updatepanestitles
     backgroundcolorizeuserfun
     restoremenuesbinds
 }
 
-proc createnewtextarea {} {
-# this is a partial copy of proc filesetasnew that is just here to wait for 8.5 and peer text widgets
-# <TODO>: get rid of this!
+proc createnewemptytextarea {} {
+# this is a partial copy of proc filesetasnew
+# it creates a new empty textarea
     global winopened listoffile
     global listoftextarea pad
 
@@ -384,7 +407,9 @@ proc createnewtextarea {} {
     event generate [gettextareacur] <Leave>
 
     incr winopened
+
     dupWidgetOption [gettextareacur] $pad.new$winopened
+
     set listoffile("$pad.new$winopened",fullname) [mc "Untitled"]$winopened.sce
     set listoffile("$pad.new$winopened",displayedname) [mc "Untitled"]$winopened.sce
     set listoffile("$pad.new$winopened",new) 1
@@ -399,8 +424,61 @@ proc createnewtextarea {} {
     addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
 
     newfilebind
-    showinfo [mc "New Script"]
+    showinfo [mc "New script"]
     return $pad.new$winopened
+}
+
+proc createpeertextwidget {ta} {
+# create a new peer text widget of $ta
+    global winopened listoffile
+    global listoftextarea pad
+
+    # ensure that the cursor is changed to the default cursor
+    event generate [gettextareacur] <Leave>
+
+    # the "original" text widget receives peer id <1>, so that
+    # any text widget that has peers has a peer id <X>
+    # note that this should however not be used directly in order
+    # to detect which textareas are or have peers - use of the
+    # if {[getpeerlist $ta] == {}} contraption below is the
+    # recommended way to know this
+    if {[getpeerlist $ta] == {}} {
+        # the peer to create is the first one - add a peerid tag to the
+        # existing textarea
+        set listoffile("$ta",displayedname) [appendpeerid $listoffile("$ta",displayedname) 1]
+    } else {
+        # nothing to do on the existing textarea name, the peer to create
+        # is not the first one, there is already a buffer with the <1> peer
+        # id tag
+    }
+
+    incr winopened
+
+    set newta [$ta peer create $pad.new$winopened]
+
+    eval "$newta configure [nondefOpts $ta]"
+
+    # create peer displayedname
+    set dispname [appendpeerid $listoffile("$ta",displayedname) \
+            [expr [llength [getpeerlist $ta]] + 1]]
+
+    set listoffile("$newta",fullname) $listoffile("$ta",fullname)
+    set listoffile("$newta",displayedname) $dispname
+    set listoffile("$newta",new) $listoffile("$ta",new)
+    set listoffile("$newta",thetime) $listoffile("$ta",thetime)
+    set listoffile("$newta",language) $listoffile("$ta",language)
+    setlistoffile_colorize "$newta" $listoffile("$ta",fullname)
+    set listoffile("$newta",readonly) $listoffile("$ta",readonly)
+    set listoffile("$newta",redostackdepth) $listoffile("$ta",redostackdepth)
+    set listoffile("$newta",progressbar_id) $listoffile("$ta",progressbar_id)
+    lappend listoftextarea $newta
+
+    addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
+
+    newfilebind
+    showinfo [mc "New view on the same file"]
+
+    return $newta
 }
 
 proc tileallbuffers {tileorient} {
@@ -429,7 +507,7 @@ proc tileallbuffers {tileorient} {
     # Arrange the list of textareas in such a way that the current one
     # will be packed first
     set tacur [gettextareacur]
-    set talisttopack [sortlistofta $tacur]
+    set talisttopack [shiftlistofta $listoftextarea $tacur]
 
     # Pack the new panes
     foreach ta $talisttopack {
@@ -442,20 +520,19 @@ proc tileallbuffers {tileorient} {
     restoremenuesbinds
 }
 
-proc sortlistofta {ta} {
-# Arrange the list of textareas in such a way that textarea $ta
-# comes first. Example: If the 3rd one is the current one:
-#     $listoftextarea: a b c d e f
-#     output ($talist): c d e f a b
-# $ta must be an element of listoftextarea
-    global listoftextarea
-    set posta [lsearch -sorted $listoftextarea $ta]
-    set talist [lrange $listoftextarea $posta end]
-    set eltstomove [lrange $listoftextarea 0 [expr $posta - 1]]
+proc shiftlistofta {intalist ta} {
+# arrange the list $intalist in such a way that element $ta
+# comes first. Example: If $ta is the 3rd one:
+#     input  ($intalist) : a b c d e f
+#     output ($outtalist): c d e f a b
+# $ta must be an element of $intalist
+    set posta [lsearch -sorted $intalist $ta]
+    set outtalist [lrange $intalist $posta end]
+    set eltstomove [lrange $intalist 0 [expr $posta - 1]]
     foreach elt $eltstomove {
-        lappend talist $elt
+        lappend outtalist $elt
     }
-    return $talist
+    return $outtalist
 }
 
 proc getpwname {tapwfr} {
@@ -829,6 +906,106 @@ proc getlistofpw {{root ""}} {
         }
     }
     return $res
+}
+
+proc getpeerlist {ta} {
+# wrapup to [$ta peer names] taking into account the fact that peers are
+# available only from Tk 8.5
+# warning: [$ta peer names] returns a list that does NOT contain $ta itself
+# this proc is designed so that code such as
+#    foreach peer [getpeerlist $ta] {
+#        do_the_right_thing
+#    }
+# will work either with Tk 8.4 or 8.5 without the need to test for the
+# value of $Tk85. In 8.4 since there is no peer the loop above will just
+# do nothing because the return value of proc getpeerlist is {}
+    global Tk85
+    if {$Tk85} {
+        return [$ta peer names]
+    } else {
+        return [list ]
+    }
+}
+
+proc getfullpeerset {ta} {
+# return the full peers set, i.e. a flat list composed of $ta itself first,
+# plus [getpeerlist $ta] appended
+# this proc is designed so that code such as
+#    foreach ta1 [getfullpeerset $ta] {
+#        do_the_right_thing
+#    }
+# will work either with Tk 8.4 or 8.5 without the need to test for the
+# value of $Tk85. In 8.4 since there is no peer the loop above will just
+# execute once because the return value of [getfullpeerset $ta] is $ta
+    return [linsert [getpeerlist $ta] 0 $ta]
+}
+
+proc filteroutpeers {talist} {
+# $talist being a list of textareas, return a list of textareas where
+# no peer shows up
+# this is done by descending $talist and checking whether each element
+# is a peer of a preceding one or not, which is decided based on getpeerlist
+# (i.e. [$ta peer names]), and NOT on the presence of the peer id tag <X>
+# in the displayedname
+# there is no such thing as the "original" text widget from which peers
+# are deduced. All peers are equivalent, including the first textarea
+# from which the first peer was created
+# in the algorithm below, the first item in $talist that has not yet
+# been identified as a peer is kept in $outlist
+    set nopeertalist [list ]
+    set peertalist [list ]
+    foreach ta $talist {
+        foreach ta1 [getpeerlist $ta] {
+            lappend peertalist $ta1
+        }
+        if {[lsearch -exact $peertalist $ta] == -1} {
+            lappend nopeertalist $ta
+        }
+    }
+    return $nopeertalist
+}
+
+proc appendpeerid {fname peerid} {
+# append peer identifier to $fname, i.e. if fname contains
+# "dir1/dir2/helloworld.sci", return "dir1/dir2/helloworld.sci <X>"
+# where X is a (potentially multiple characters) number
+# X is the given $peerid parameter if this value is greater than
+# zero (otherwise it is ignored, which is very useful to avoid to
+# test on $peerid != -1 elsewhere in the code before calling proc
+# appendpeerid)
+# if $fname already contains a peer identifier, it is first removed
+    global Tk85
+    if {!$Tk85} {
+        return $fname
+    } else {
+        foreach {peerfname oldpeerid} [removepeerid $fname] {}
+        if {$peerid > 0} {
+            append peerfname " <$peerid>"
+        }
+        return $peerfname
+    }
+}
+
+proc removepeerid {fname} {
+# remove peer identifier prepended to $fname, i.e. if fname contains
+# the string "dir1/dir2/helloworld.sci <3>"
+# then return the list {dir1/dir2/helloworld.sci 3}
+# if $fname does not contain a peer identifier, then return {$fname -1}
+    global Tk85
+    if {!$Tk85} {
+        return [list $fname -1]
+    } else {
+        set pos1 [string last " <" $fname]
+        if {$pos1 == -1} {
+            # no peer id in $fname
+            return [list $fname -1]
+        } else {
+            set filename [string replace $fname $pos1 end]
+            set peerid [string replace $fname 0 "$pos1+1"]
+            set peerid [string replace $peerid end end]
+            return [list $filename $peerid]
+        }
+    }
 }
 
 proc spaceallsashesevenly {} {

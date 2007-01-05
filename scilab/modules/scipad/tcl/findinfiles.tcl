@@ -438,7 +438,7 @@ proc openamatch {w posinresarea} {
     $w tag remove foundtext 1.0 end
     $w tag add foundtext "$posinresarea linestart" "$posinresarea lineend"
     $w see $posinresarea
-    
+
     # retrieve match coordinates
     scan $posinresarea "%d.%d" linenum xpos
     set thematch [lindex $allthematches [expr $linenum - 1]]

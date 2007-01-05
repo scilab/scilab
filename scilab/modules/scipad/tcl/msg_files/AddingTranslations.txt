@@ -185,7 +185,7 @@ loaded in Scilab at startup. Files can be checked calling from Scilab
 or
 
   msgdiff <firstfile.msg>
-  
+
 In the first form, msgdiff compares the two files and reports the strings
 defined in <firstfile.msg> but not in <secondfile.msg> and viceversa.
 Moreover, it generates a new file called <secondfile.msg>.rev, which contains

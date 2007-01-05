@@ -85,11 +85,14 @@
 #     -label is $listoffile("$ta",displayedname), $ta being $pad.new$winopened
 #     This label is prepended by an underlined number (for the first 9 entries
 #     only)
+#     This label is also appended by a peer identifier <X> if relevant
 #     All the labels of the menu are different at any time, except
 #     during ambiguities removal (In the Options menu, item Filenames does
 #     not propose any option that would lead to ambiguous file names)
 #     It is very important to maintain this property throughout the code
-#     because extractindexfromlabel relies on this and is used everywhere
+#     because extractindexfromlabel relies on this and is used everywhere.
+#     Actually what must be different is the real filename, i.e. the label
+#     without the leading underlined number and without the peer identifier
 #
 #
 #####################################################################
@@ -120,7 +123,7 @@ proc filesetasnew {} {
     addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
 
     newfilebind
-    showinfo [mc "New Script"]
+    showinfo [mc "New script"]
     montretext $pad.new$winopened
     resetmodified $pad.new$winopened
 }
@@ -129,9 +132,12 @@ proc filesetasnew {} {
 # procs closing buffers
 ##################################################
 proc closecur { {quittype yesno} } {
-# remove (in Scilab) the breakpoints initiated from the current buffer
-# unset the variables relative to this buffer, and
 # close current buffer
+# possible options for $quittype are yesno, yesnocancel and "NoSaveQuestion"
+# return value can be "Done" or "Canceled" (see proc closefile), which is used
+# by proc exitapp
+# this proc first checks that there is no tile proc running (attempts to
+# close a buffer while splitting buffers for instance would throw errors)
     global tileprocalreadyrunning
     if {$tileprocalreadyrunning} {return}
     disablemenuesbinds
@@ -141,45 +147,90 @@ proc closecur { {quittype yesno} } {
 }
 
 proc closefile {textarea {quittype yesno} } {
+# close textarea $textarea
+# possible options for $quittype are yesno, yesnocancel and "NoSaveQuestion"
+# return value can be:
+#   - "Done": the file has been closed, after having been perhaps saved first
+#             if the user answered yes to the confirmation question (if such
+#             a question was required to be asked)
+#   - "Canceled": the user answered cancel to the confirmation question
+# the return value is used by proc exitapp
+# this proc does not check that tile procs might be running, therefore it
+# should only be called from proc closecur
     global listoffile pad
     global closeinitialbufferallowed
-    # query the modified flag
-    if  {[ismodified $textarea]} {
+
+    # query the modified flag, ask for user confirmation only if adequate
+    if  {[ismodified $textarea] && \
+         $quittype != "NoSaveQuestion"} {
+
         # ask the user if buffer should be saved before closing
         set answer [tk_messageBox -message [ concat [mc "The contents of"] \
            $listoffile("$textarea",fullname) \
            [mc "may have changed, do you wish to save your changes?"] ] \
              -title [mc "Save Confirm?"] -type $quittype -icon question]
         switch -- $answer {
-            yes { filetosave $textarea; byebye $textarea }
-            no {byebye $textarea}
-            cancel {return "Canceled"}
+            yes {
+                filetosave $textarea
+                byebye $textarea
+            }
+            no {
+                byebye $textarea
+            }
+            cancel {
+                return "Canceled"
+            }
         }
+
     } else {
         # buffer was not modified, so just close it
         set closeinitialbufferallowed false
         byebye $textarea
     }
+
     return "Done"
 }
 
 proc byebye {textarea} {
     global listoftextarea listoffile
     global pad FirstBufferNameInWindowsMenu pwframe
+
     if { [llength $listoftextarea] > 1 } {
+
         # check on Scilab busy needed to remove breakpoints
+
         if {![isscilabbusy]} {
             removescilabbuffer_bp "with_output" $textarea
         }
+
         removefuns_bp $textarea
+
         focustextarea $textarea
+
         # delete the textarea entry in the listoftextarea
         set listoftextarea [lreplace $listoftextarea [lsearch \
               $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
+
         # delete the windows menu entry
         set ilab [extractindexfromlabel $pad.filemenu.wind \
                   $listoffile("$textarea",displayedname)]
         $pad.filemenu.wind delete $ilab
+
+        # refresh peer identifiers in the windows menu and title bars
+        foreach {dname removedpeerid} [removepeerid $listoffile("$textarea",displayedname)] {}
+        foreach peerta [getpeerlist $textarea] {
+            set ilab [extractindexfromlabel $pad.filemenu.wind \
+                     $listoffile("$peerta",displayedname)]
+            foreach {dname peerid} [removepeerid $listoffile("$peerta",displayedname)] {}
+            if {$peerid > $removedpeerid} {
+                set dname [appendpeerid $dname [expr $peerid - 1]]
+                set listoffile("$peerta",displayedname) $dname
+                setwindowsmenuentrylabel $ilab $dname
+            }
+        }
+        # refresh panes titles (actually only needed for peers)
+        updatepanestitles
+
         # delete the textarea entry in listoffile
         unset listoffile("$textarea",fullname)
         unset listoffile("$textarea",displayedname)
@@ -201,8 +252,8 @@ proc byebye {textarea} {
         set i [getlasthiddentextareamenuind]
         if {$i == ""} {set i $FirstBufferNameInWindowsMenu}
         $pad.filemenu.wind invoke $i
-        RefreshWindowsMenuLabels
-        
+        RefreshWindowsMenuLabelsWrtPruning
+
         # remove tile title if there is a single pane
         if {[gettotnbpanes] == 1} {
             set visibletapwfr [lindex [array get pwframe] 1]
@@ -247,6 +298,9 @@ proc killscipad {} {
 }
 
 proc idleexitapp {} {
+# exit Scipad
+# this proc is called when quitting Scipad from Scipad (file menu, or
+# upper-right cross of the window)
 # exitapp will fail for instance when the user tries to close Scipad
 # using [x] or File/Exit when Scipad is opening files at the same time
 # (dnd of a directory with many files)
@@ -256,18 +310,39 @@ proc idleexitapp {} {
 
 proc exitapp { {quittype yesno} } {
 # exit Scipad
+# this proc is called when quitting Scipad from Scilab (see scilab.quit),
+# or it can be called by proc idleexitapp
     global listoftextarea
+
     # stop searching in files
     cancelsearchinfiles
+
     # stop debugger and clean Scilab state
     if {[getdbstate] == "DebugInProgress"} {
         ScilabEval_lt "\"delbpt();abort\"" "sync" "seq"
         cleantmpScilabEvalfile
     }
-    foreach textarea $listoftextarea {
+
+    # close each buffer one after the other
+    # however, once confirmation has been asked for a buffer that has peers,
+    # do not ask again for confirmation for those peers
+    foreach textarea [shiftlistofta [filteroutpeers $listoftextarea] [gettextareacur]] {
+        set peerslist [getpeerlist $textarea]
+        montretext $textarea
         set wascanceled [closecur $quittype]
-        if {$wascanceled == "Canceled"} {break}
+        if {$wascanceled == "Canceled"} {
+            break
+        } else {
+            # assert: $wascanceled == "Done"
+            # close peers without asking again for confirmation
+            foreach peerta $peerslist {
+                montretext $peerta
+                closecur "NoSaveQuestion"
+            }
+        }
+        # there must be no code here for the Cancel button to work OK
     }
+    # there must be no code here for the Cancel button to work OK
 }
 
 ##################################################
@@ -568,7 +643,7 @@ proc openfile {file {tiledisplay "currenttile"}} {
     if {[fileunreadable $file]} {return 0}
 
     # ignore windows shortcut since nothing is implemented to follow them
-    # and open the target they point to
+    # and to open the target they point to
     if {[fileiswindowsshortcut $file]} {return 0}
 
     if {[string compare $file ""]} {
@@ -589,7 +664,7 @@ proc openfile {file {tiledisplay "currenttile"}} {
                     closefile $pad.new1
                 }
                 montretext $pad.new$winopened
-                RefreshWindowsMenuLabels
+                RefreshWindowsMenuLabelsWrtPruning
             }
             $pad.new$winopened mark set insert "1.0"
             keyposn $pad.new$winopened
@@ -610,15 +685,15 @@ proc lookiffileisopen {file} {
 # If the file is already open, return the number of the windows menu
 # entry to invoke in order to display this buffer
     global pad listoffile listoftextarea
-    set lab 0
+    set ilab 0
     set fpf [file normalize $file]
     foreach textarea $listoftextarea {
         if {$listoffile("$textarea",fullname)==$fpf} {
-            set lab [extractindexfromlabel $pad.filemenu.wind $listoffile("$textarea",displayedname)]
+            set ilab [extractindexfromlabel $pad.filemenu.wind $listoffile("$textarea",displayedname)]
             break
         }
     }
-    return $lab
+    return $ilab
 }
 
 proc notopenedfile {file} {
@@ -659,10 +734,10 @@ proc shownewbuffer {file tiledisplay} {
         montretext $pad.new$winopened
     } else {
         set closeinitialbufferallowed false
-        # pack the new buffer in the splitted window
+        # pack the new buffer in a splitted window
         splitwindow $tiledisplay $pad.new$winopened
     }
-    RefreshWindowsMenuLabels
+    RefreshWindowsMenuLabelsWrtPruning
     AddRecentFile [file normalize $file]
 }
 
@@ -780,7 +855,7 @@ proc filesaveas {textarea} {
         set proposedname [lindex $firstfuninfo 0]
     }
     if {$listoffile("$textarea",new)==0 || $proposedname==""} {
-        set proposedname $listoffile("$textarea",displayedname)
+        foreach {proposedname peerid} [removepeerid $listoffile("$textarea",displayedname)] {}
     } else {
         set proposedname $proposedname.sci
     }
@@ -803,15 +878,34 @@ proc filesaveas {textarea} {
             }
         }
     }
+
     if {$writesucceeded} {
+        foreach ta [getfullpeerset $textarea] {
+            set listoffile("$ta",fullname) [file normalize $myfile]
+            set listoffile("$ta",new) 0
+        }
         set ilab [extractindexfromlabel $pad.filemenu.wind \
                   $listoffile("$textarea",displayedname)]
-        set listoffile("$textarea",fullname) [file normalize $myfile]
+        foreach {dname peerid} [removepeerid $listoffile("$textarea",displayedname)] {}
         set listoffile("$textarea",displayedname) \
-            [file tail $listoffile("$textarea",fullname)]
-        set listoffile("$textarea",new) 0
+                [file tail $listoffile("$textarea",fullname)]
+        set dname [appendpeerid $listoffile("$textarea",displayedname) $peerid]
+        set listoffile("$textarea",displayedname) $dname
         setwindowsmenuentrylabel $ilab $listoffile("$textarea",displayedname)
-        RefreshWindowsMenuLabels
+
+        # refresh peer identifiers in the windows menu and title bars
+        foreach peerta [getpeerlist $textarea] {
+            set ilab [extractindexfromlabel $pad.filemenu.wind \
+                     $listoffile("$peerta",displayedname)]
+            foreach {dname peerid} [removepeerid $listoffile("$peerta",displayedname)] {}
+            set dname [appendpeerid $listoffile("$textarea",displayedname) $peerid]
+            set listoffile("$peerta",displayedname) $dname
+            setwindowsmenuentrylabel $ilab $dname
+        }
+        # refresh panes titles (actually only needed for peers)
+        updatepanestitles
+
+        RefreshWindowsMenuLabelsWrtPruning
         AddRecentFile $listoffile("$textarea",fullname)
     }
 }
@@ -832,12 +926,13 @@ proc writesave {textarea nametosave} {
     }
     if {$readonlyflag==0} {
         # writefileondisk catched to deal with unexpected errors (should
-        # be none!) This catch serves actually at least because of Tcl
-        # bug 1622579 (open fails to open hidden files for writing)
+        # be none!)
         if {[catch {writefileondisk $textarea $nametosave}] == 0} {
             resetmodified $textarea
-            set listoffile("$textarea",thetime) [file mtime $nametosave]
-            set listoffile("$textarea",readonly) $readonlyflag
+            foreach ta [getfullpeerset $textarea] {
+                set listoffile("$ta",thetime) [file mtime $nametosave]
+                set listoffile("$ta",readonly) $readonlyflag
+            }
             set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
             showinfo $msgWait
             # windows menu entries must be sorted so that order is
@@ -864,7 +959,11 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
     if {$nobackupskip} {
         backupfile $nametosave $filebackupdepth
     }
-    set FileNameToSave [open $nametosave w+]
+    # the flags "WRONLY CREAT" are needed instead of "w" because "w" actually
+    # means "WRONLY CREAT TRUNC", which fails with existing hidden files. See
+    # Tcl bug 1622579:
+    # http://sourceforge.net/tracker/index.php?func=detail&aid=1622579&group_id=10894&atid=110894
+    set FileNameToSave [open $nametosave "WRONLY CREAT"]
     puts -nonewline $FileNameToSave [$textarea get 1.0 end]
     close $FileNameToSave
 }
@@ -948,7 +1047,9 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
             }
             close $oldfile
             resetmodified $textarea
-            set listoffile("$textarea",thetime) [file mtime $thefile]
+            foreach ta [getfullpeerset $textarea] {
+                set listoffile("$ta",thetime) [file mtime $thefile]
+            }
             montretext $textarea
             tagcontlines $textarea
             backgroundcolorize $textarea
@@ -965,12 +1066,14 @@ proc checkiffilechangedondisk {textarea} {
                            [mc "has been modified outside of Scipad. Do you want to reload it?"] ]
     set msgTitle [mc "File has changed!"]
     if {[filehaschangedondisk $textarea]} {
-# note: if thetime is not updated first, we may enter a recursion:
-# if revertsaved pops up the "unreadable file" warning, there is once
-# more a change of focus, which triggers this proc recursively.
-# An a posteriori rationale: the decision whether to keep the version
-# on disk or the one in memory is itself the most recent editing action.
-        set listoffile("$textarea",thetime) [file mtime $listoffile("$textarea",fullname)]
+        # note: if thetime is not updated first, we may enter a recursion:
+        # if revertsaved pops up the "unreadable file" warning, there is once
+        # more a change of focus, which triggers this proc recursively.
+        # An a posteriori rationale: the decision whether to keep the version
+        # on disk or the one in memory is itself the most recent editing action.
+        foreach ta [getfullpeerset $textarea] {
+            set listoffile("$ta",thetime) [file mtime $listoffile("$textarea",fullname)]
+        }
         set answer [tk_messageBox -message $msgChanged \
                         -title $msgTitle -type yesno -icon question]
         switch -- $answer {
@@ -988,8 +1091,10 @@ proc checkifanythingchangedondisk {w} {
     # e.g when focus is set to Scipad by clicking on a text widget: the binding
     # fires for .scipad but also for .scipad.newX because .scipad is in the
     # bindtags list for .scipad.newX
-    if {$w != $pad} return
-    foreach ta $listoftextarea {
+    if {$w != $pad} {
+        return
+    }
+    foreach ta [filteroutpeers $listoftextarea] {
         checkiffilechangedondisk $ta
     }
 }
@@ -1131,6 +1236,10 @@ proc setlistoffile_colorize {ta fullfilename} {
 # listoffile("$ta",colorize) can also be changed after opening of the
 # file through the Scheme menu and proc switchcolorizefile
 
+# note: no need in this proc to loop on [getfullpeerset $ta]
+#       because it is only called when opening or creating a new file
+#       (that has then no peers)
+
     global pad listoffile colorizeenable
 
     # arbitrary size in bytes above which Scipad will ask for colorization
@@ -1168,8 +1277,16 @@ proc fileiswindowsshortcut {filename} {
 # check whether $filename denotes a Windows shortcut or not   
 # return value:
 #   1  $filename is a Windows shortcut
-#   0  otherwise
-    if {[iswindowsshortcut $filename]} {
+#   0  otherwise (includes the case when $filename does not exist, as well
+#      as anything else)
+
+    # catched to allow to call this proc even if $filename does not exist
+    # for instance
+    if {[catch {iswindowsshortcut $filename} isashortcut] != 0} {
+        return 0
+    }
+
+    if {$isashortcut} {
         tk_messageBox -title [mc "Windows shortcut file"] \
             -message [concat [mc "The file"] $filename \
                      [mc "is a Windows shortcut and will not be opened!"]] \
@@ -1220,7 +1337,7 @@ proc iswindowsshortcut {filename} {
 ##################################################
 # procedures dealing with pruned file names
 ##################################################
-proc RefreshWindowsMenuLabels {} {
+proc RefreshWindowsMenuLabelsWrtPruning {} {
 # Reset all labels to file tails, then remove ambiguities
 # by expanding names as necessary
     global listoffile listoftextarea pad filenamesdisplaytype
@@ -1228,25 +1345,28 @@ proc RefreshWindowsMenuLabels {} {
         # Reset all to file tails
         foreach ta $listoftextarea {
             set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
+            foreach {dname peerid} [removepeerid $listoffile("$ta",displayedname)] {}
             set pn [file tail $listoffile("$ta",fullname)]
-            set listoffile("$ta",displayedname) $pn
-            lappend ind $i $pn
+            lappend ind $i $pn $ta $peerid
         }
-        foreach {i pn} $ind {
+        foreach {i pn ta peerid} $ind {
+            set pn [appendpeerid $pn $peerid]
+            set listoffile("$ta",displayedname) $pn
             setwindowsmenuentrylabel $i $pn
         }
         # Detect duplicates and remove ambiguities
         foreach ta $listoftextarea {
             set tochange [IsPrunedNameAmbiguous $ta]
             if {$tochange != ""} {
-                RemoveAmbiguity $tochange
+                RemoveAmbiguity $tochange $ind
             }
         }
     } else {
         # always full file names are displayed, even if unambiguous
         foreach ta $listoftextarea {
             set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
-            set pn $listoffile("$ta",fullname)
+            foreach {dname peerid} [removepeerid $listoffile("$ta",displayedname)] {}
+            set pn [appendpeerid $listoffile("$ta",fullname) $peerid]
             set listoffile("$ta",displayedname) $pn
             lappend ind $i $pn
         }        
@@ -1260,40 +1380,112 @@ proc RefreshWindowsMenuLabels {} {
 proc IsPrunedNameAmbiguous {ta} {
 # Returns the list of textareas containing pruned file names
 # identical to the pruned file name attached to $ta
+# Note also that peers of $ta are never included in the output list
     global listoffile listoftextarea
-    set pn $listoffile("$ta",displayedname)
+
+    foreach {pn peerid} [removepeerid $listoffile("$ta",displayedname)] {}
+
+    set peerlist [getpeerlist $ta]
+
     set whichta ""
     foreach ta1 $listoftextarea {
-        if {$listoffile("$ta1",displayedname)==$pn} {
+        foreach {pn1 peerid1} [removepeerid $listoffile("$ta1",displayedname)] {}
+        # $ta1 is identified as being ambiguous with $ta if and only if:
+        #   - displayednames (which at this point are file tails) are the same
+        # and
+        #   - $ta1 is not a peer of $ta (note that a text widget is never
+        #     identified by Tk as a peer of itself, therefore this second
+        #     condition is true if $ta1==$ta)
+        if {$pn1 == $pn && [lsearch -exact $peerlist $ta1] == -1} {
             lappend whichta $ta1
         }
     }
-    if {[llength $whichta] == 1} {set whichta ""}
+
+    # if there is only one element in the ambiguous textarea list, then
+    # this element is $ta itself and there is actually no ambiguity
+    if {[llength $whichta] == 1} {
+        set whichta ""
+    }
+
     return $whichta
 }
 
-proc RemoveAmbiguity {talist} {
+proc RemoveAmbiguity {talist indlist} {
 # $talist containing the list of textareas attached to ambiguous
 # file tails, expand file names as necessary to remove ambiguities
+# $indlist contains a flat list of chunks of four elements, ordered
+# in the same order as $listoftextarea (one chunk for each entry in
+# $listoftextarea):
+#   - index in the windows menu of the entry
+#   - file tail of the textarea fullname having this index in the windows menu
+#   - textarea pathname
+#   - peer identifier (or -1 in Tk 8.4 or if it is not a peer)
     global listoffile pad filenamesdisplaytype
+
     if {$filenamesdisplaytype == "fullifambig"} {
+
         # full file names are displayed if tails are ambiguous
         foreach ta $talist {
-            set i [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
-            set en $listoffile("$ta",fullname)
+            # do it for the ambiguous displayedname of $ta
+            foreach {i pn ta1 peerid} $indlist {
+                if {$ta1 == $ta} {
+                    # now $i and $peerid have the good value
+                    break
+                }
+            }
+            set en [appendpeerid $listoffile("$ta",fullname) $peerid]
             set listoffile("$ta",displayedname) $en
             setwindowsmenuentrylabel $i $en
+
+            # do it also for peers of $ta
+            foreach peerta [getpeerlist $ta] {
+                foreach {i pn ta1 peerid} $indlist {
+                    if {$ta1 == $peerta} {
+                        # now $i and $peerid have the good value
+                        break
+                    }
+                }
+                set en [appendpeerid $listoffile("$ta",fullname) $peerid]
+                set listoffile("$peerta",displayedname) $en
+                setwindowsmenuentrylabel $i $en
+            }
+
         }
+
     } else {
+
         # assert: $filenamesdisplaytype must be "pruned"
         # unambiguous pruned file names are displayed
-        foreach ta $talist {
-            set mli("$ta") [extractindexfromlabel $pad.filemenu.wind $listoffile("$ta",displayedname)]
-            setwindowsmenuentrylabel $mli("$ta") $ta
-        }
+
+        # from the fullnames, create the unambiguous displayednames without
+        # changing the labels of the windows menu
         CreateUnambiguousPrunedNames $talist
         foreach ta $talist {
-            setwindowsmenuentrylabel $mli("$ta") $listoffile("$ta",displayedname)
+
+            # update the menu label for the ambiguous displayedname of $ta
+            foreach {i pn ta1 peerid} $indlist {
+                if {$ta1 == $ta} {
+                    # now $i and $peerid have the good value
+                    break
+                }
+            }
+            set lab [appendpeerid $listoffile("$ta",displayedname) $peerid]
+            set listoffile("$ta",displayedname) $lab
+            setwindowsmenuentrylabel $i $lab
+
+            # update also the menu label for peers of $ta
+            foreach peerta [getpeerlist $ta] {
+                foreach {i pn ta1 peerid} $indlist {
+                    if {$ta1 == $peerta} {
+                        # now $i and $peerid have the good value
+                        break
+                    }
+                }
+                set lab [appendpeerid $listoffile("$ta",displayedname) $peerid]
+                set listoffile("$peerta",displayedname) $lab
+                setwindowsmenuentrylabel $i $lab
+            }
+
         }
     }
 }

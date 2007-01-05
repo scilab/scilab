@@ -769,32 +769,43 @@ proc docolorizeuserfun {} {
 
 proc changelanguage {newlanguage} {
     global listoffile pad
+
     set textarea [gettextareacur]
     set oldlanguage $listoffile("$textarea",language)
+
     if {$oldlanguage != $newlanguage} {
-        set listoffile("$textarea",language) $newlanguage
+        foreach ta [getfullpeerset $textarea] {
+            set listoffile("$ta",language) $newlanguage
+        }
         showinfo [mc "Wait seconds while recolorizing file"]
         schememenus $textarea
         tagcontlines $textarea
         backgroundcolorize $textarea
+
+        # if this is a new file not opened from disk,
+        # then the filename extension must be changed
         if {$listoffile("$textarea",new) == 1} {
-            # new file not opened from disk
             if {$newlanguage == "xml"} {
                 set ext "xml"
             } else {
                 # scilab or none
                 set ext "sce"
             }
+
             # replace extension of file name by the new extension
-            set ilab [extractindexfromlabel $pad.filemenu.wind \
-                      $listoffile("$textarea",displayedname)]
-            set listoffile("$textarea",displayedname) \
-                    [string replace $listoffile("$textarea",displayedname) "end-2" end $ext]
-            set listoffile("$textarea",fullname) \
-                    [string replace $listoffile("$textarea",fullname) "end-2" end $ext]
-            # update the windows menu label
-            setwindowsmenuentrylabel $ilab $listoffile("$textarea",displayedname)
-            RefreshWindowsMenuLabels
+            foreach ta [getfullpeerset $textarea] {
+                set ilab [extractindexfromlabel $pad.filemenu.wind \
+                          $listoffile("$ta",displayedname)]
+                foreach {dispname peerid} [removepeerid $listoffile("$ta",displayedname)] {}
+                set dispname [string replace $dispname "end-2" end $ext]
+                set dispname [appendpeerid $dispname $peerid]
+                set listoffile("$ta",displayedname) $dispname                    
+                set listoffile("$ta",fullname) \
+                        [string replace $listoffile("$ta",fullname) "end-2" end $ext]
+                # update the windows menu label
+                setwindowsmenuentrylabel $ilab $listoffile("$textarea",displayedname)
+                RefreshWindowsMenuLabelsWrtPruning
+            }
         }
     }
 }
@@ -804,7 +815,9 @@ proc switchcolorizefile {} {
     global listoffile ColorizeIt
     global funnameargs funnames
     set w [gettextareacur]
-    set listoffile("$w",colorize) $ColorizeIt
+    foreach ta [getfullpeerset $w] {
+        set listoffile("$ta",colorize) $ColorizeIt
+    }
     if {$ColorizeIt} {
         showinfo [mc "Wait seconds while recolorizing file"]
     }

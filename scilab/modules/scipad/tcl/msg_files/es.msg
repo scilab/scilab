@@ -120,7 +120,7 @@
 
 
 # filecommands.tcl
-::msgcat::mcset es "New Script" "Nuevo Guión"
+::msgcat::mcset es "New script" "Nuevo guión"
 ::msgcat::mcset es "The contents of" "Los contenidos de"
 ::msgcat::mcset es "may have changed, do you wish to save your changes?"\
                    "puede haber cambiado, desea guardar los cambios?"

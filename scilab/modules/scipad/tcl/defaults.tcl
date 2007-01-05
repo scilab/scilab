@@ -3,10 +3,11 @@ set winTitle "SciPad"
 # detect Tcl and Tk version and set global flags to true if version is >= 8.5
 # this is used to improve Scipad when used with recent Tcl/Tk without
 # preventing its use with older ladies
-# ex of 8.5 use: -strictlimits option in find/replace
-#                -stretch always option for panedwindows
-#                proc timestamp uses clock milliseconds
-#                <TODO> use peer text widgets for split
+# ex of 8.5 use: a. -strictlimits option in find/replace
+#                b. -stretch always option for panedwindows
+#                c. proc timestamp uses clock milliseconds
+#                d. peer text widgets are used when splitting
+#                e. Tk bug 1169429 is fixed, workaround hack removed
 if { [package vcompare $tcl_version 8.5] >= 0 } {
     set Tcl85 1
 } else {

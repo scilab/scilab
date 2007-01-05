@@ -417,7 +417,7 @@ proc showwatch_bp {} {
     if {$showcallstackarea == "true"} {
         $watch.f.vpw paneconfigure $watch.f.vpw.f6 -minsize $watchvpane2mins
     }
-    
+
     if {$dockwatch} {
         pack $watch -in $pad -before $pad.pw0 -side bottom -fill x
     }
@@ -769,7 +769,7 @@ proc openpointedstacklevel {w x y} {
         set nametoopen  $errfunc
         set loglinetogo $errline
     }
-    
+
     set keywtype [gettagfromkeyword $nametoopen]
     if {$keywtype != "error"} {
         doopenfunsource $keywtype $nametoopen

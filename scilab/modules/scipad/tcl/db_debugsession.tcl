@@ -263,6 +263,10 @@ proc getlogicallinenumbersranges {stepscope} {
             set curpos [getendfunctionpos $ta $precfun]
             if {$curpos == -1} {
                 # can't happen in principle
+                # <TODO>: It happens however in well-formed functions containing a string
+                #         containing the word "function", the string being quoted with
+                #         single quotes when these strings are not colorized (options menu)
+                #         Find a better way to handle such cases than just this messageBox!
                 tk_messageBox -message "getendfunctionpos returned $curpos in proc getlogicallinenumbersranges: please report"
             }
 

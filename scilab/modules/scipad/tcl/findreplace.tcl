@@ -33,9 +33,13 @@ proc findtextdialog {typ} {
     #    the sel tag actually disappears from the textarea during the
     #    dialog build
     # note wrt Tk85:
-    # using -inactiveselectionbackground (Tk8.5 only) instead of using a fake
+    # using -inactiveselectbackground (Tk8.5 only) instead of using a fake
     # selection tag that mimics the real selection (sel tag) could have been
-    # a good idea, but it only addresses point 1. above
+    # a good idea, but it only addresses point 1. above. Moreover, there are
+    # currently good reasons for clearing the selection when switching buffers
+    # so that Scipad can have only one selection at a time. Even with the
+    # -inactiveselectbackground option set, there would therefore be no
+    # visible selection in any non focussed buffer
     set tahasnosel [catch {[gettextareacur] get sel.first sel.last}]
     if {!$tahasnosel} {
         # there is a selection
@@ -567,7 +571,7 @@ proc multiplefilesfindreplace {w frit} {
 # to replace, $frit must be "replaceit"
     global SearchString SearchDir regexpcase
     global listofmatch indoffirstmatch indofcurrentmatch
-    global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
+    global multiplefiles listoftextarea indofcurrentbuf listoftextarea_nopeers
     global prevfindres
     global find searchindir caset wholeword recursesearchindir fileglobpat initdir
     global searchinfilesalreadyrunning searchforfilesonly
@@ -624,10 +628,16 @@ proc multiplefilesfindreplace {w frit} {
     if {![info exists indofcurrentbuf]} {
         # this is the first search in multiple buffers
 
-        # start from the current buffer
-        set curta [gettextareacur]
-        set indoffirstbuf [lsearch $listoftextarea $curta]
-        set indofcurrentbuf $indoffirstbuf
+        # create list of textareas without any peers, and ensure that the
+        # current textarea is kept and is the first element of the list
+        # note: $listoftextarea_nopeers is only used in this proc and is not
+        #       maintained elsewhere even if it is a global
+        set listoftextarea_nopeers [shiftlistofta $listoftextarea [gettextareacur]]
+        set listoftextarea_nopeers [filteroutpeers $listoftextarea_nopeers]
+
+        # start from the current buffer, which is #0 because of
+        # the call to shiftlistofta above
+        set indofcurrentbuf 0
 
     } else {
         # this is not the first search in multiple buffers
@@ -635,10 +645,12 @@ proc multiplefilesfindreplace {w frit} {
         # switch to next buffer if there is no more match in this one
         if {$prevfindres != "searchagain"} {
             incr indofcurrentbuf
-            if {$indofcurrentbuf == [llength $listoftextarea] } {
+            if {$indofcurrentbuf == [llength $listoftextarea_nopeers] } {
                 set indofcurrentbuf 0
+                # the search has looped on all the buffers
+                showinfo [mc "Back at the first file searched!"]
             }
-            set newta [lindex $listoftextarea $indofcurrentbuf]
+            set newta [lindex $listoftextarea_nopeers $indofcurrentbuf]
             montretext $newta
             # set insertion cursor at the beginning or end of buffer
             # this is required when looping through buffers for proc
@@ -651,10 +663,6 @@ proc multiplefilesfindreplace {w frit} {
             } else {
                 $newta mark set insert end
             }
-            if {$indofcurrentbuf == $indoffirstbuf} {
-                # the search has looped on all the buffers
-                showinfo [mc "Back at the first file searched!"]
-            }
             # erase listofmatch so that the next call to $frit will
             # reconstruct it
             unset -nocomplain -- listofmatch
@@ -665,16 +673,15 @@ proc multiplefilesfindreplace {w frit} {
     }
 
     # perform a search
-    set prevfindres [$frit $w $pw [lindex $listoftextarea $indofcurrentbuf] \
-                            $tosearchfor $regexpcase]
+    set buftosearchin [lindex $listoftextarea_nopeers $indofcurrentbuf]
+    set prevfindres [$frit $w $pw $buftosearchin $tosearchfor $regexpcase]
 
     if {$prevfindres == "mustswitchnow"} {
         multiplefilesfindreplace $w findit
     } else {
         # display next match after a replace
         if {$frit == "replaceit"} {
-            findit $w $pw [lindex $listoftextarea $indofcurrentbuf] \
-                    $tosearchfor $regexpcase
+            findit $w $pw $buftosearchin $tosearchfor $regexpcase
         }
     }
 
@@ -745,7 +752,7 @@ proc findit {w pw textarea tosearchfor reg} {
 
     # analyze the search results:
     #    if we did not return before this point, then there is at least one match
-    
+
     # select the match to display from the list of matches
     foreach {mpos mlen wraparound looped alreadyreplaced} \
             [getnextmatch $textarea $SearchDir $searchinsel] {}
@@ -789,7 +796,7 @@ proc findit {w pw textarea tosearchfor reg} {
         $ta tag remove replacedtext 1.0 end
     }
     $textarea tag add foundtext $mpos  "$mpos + $mlen char"
-    
+
     # the following three bindings are required to remove the foundtext tag
     # after a find next triggered by F3. In order to erase them after use,
     # the binding is redefined in the binded script itself to what this script
@@ -1010,7 +1017,7 @@ proc multiplefilesreplaceall {w} {
 # depending on the state of the "search in all files" checkbox
     global SearchString regexpcase
     global listofmatch indoffirstmatch indofcurrentmatch
-    global multiplefiles listoftextarea indoffirstbuf indofcurrentbuf
+    global multiplefiles listoftextarea
     global prevfindres
 
     set pw [setparentwname $w]
@@ -1036,10 +1043,10 @@ proc multiplefilesreplaceall {w} {
     }
 
     # if we did not return before this point, we are replacing a non-empty
-    # string in all the opened buffers
+    # string in all the opened buffers (but ignoring peers)
 
     set totreplaced 0
-    foreach ta $listoftextarea {
+    foreach ta [filteroutpeers $listoftextarea] {
         incr totreplaced [replaceall $w $pw $ta $tosearchfor $regexpcase]
     }
 
@@ -1259,7 +1266,7 @@ proc arefindconstraintssatisfied {whword listoftags textarea MatchPos MatchLengt
                 set OK true
             }
         }
-    
+
     } else {
         # whole word search mode
 
@@ -1275,12 +1282,12 @@ proc arefindconstraintssatisfied {whword listoftags textarea MatchPos MatchLengt
                 set OK true
             }
         }
-    
+
     }
 
     return $OK
 }
- 
+
 proc getcurrentmatch {textarea} {
 # get current match position and length in an already existing (non empty) list
 # of matches
@@ -1492,7 +1499,7 @@ proc resetfind {} {
 # so that the next find or replace will scan the buffer(s) again
 # and create a new list of matches
     global listofmatch indoffirstmatch indofcurrentmatch
-    global indoffirstbuf indofcurrentbuf
+    global indofcurrentbuf
 
     # reset the search data (current buffer)
     unset -nocomplain -- listofmatch
@@ -1500,7 +1507,6 @@ proc resetfind {} {
     unset -nocomplain -- indofcurrentmatch
 
     # reset the search data (multi-buffer search)
-    unset -nocomplain -- indoffirstbuf
     unset -nocomplain -- indofcurrentbuf
 }
 
