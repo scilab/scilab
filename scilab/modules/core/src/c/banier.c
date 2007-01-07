@@ -25,7 +25,7 @@ void banner(void)
 	}
 	
 	sciprint("%s\r\n\n",SCI_VERSION_STRING);
-	sciprint("                 Copyright (c) 1989-2006                   \r\n");
+	sciprint("                 Copyright (c) 1989-2007                   \r\n");
 	sciprint("              Consortium Scilab (INRIA, ENPC)              \r\n");
 	sciprint("%s\r\n",line);
 
