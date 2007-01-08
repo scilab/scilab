@@ -720,7 +720,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
 int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 {  
  
-  static integer InsideU[4],InsideD[4],flag[]={1,1,3},verbose=0,fg,narg_,fg1;
+  static integer InsideU[4],InsideD[4],flag[]={1,1,3};
   static integer ixbox[4],iybox[4], n=2, m=1;
   char * legends = NULL;
   sciPointObj * psubwin = NULL;
@@ -1425,7 +1425,6 @@ static double theta,alpha;
 int I3dRotation(void)
 {
   integer pixmode,alumode,verbose=0,narg_,ww;
-  static integer iflag[]={0,0,0,0};
   double xx,yy;
   double theta0,alpha0;
   static int one=1;
