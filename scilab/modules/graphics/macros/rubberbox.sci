@@ -2,16 +2,31 @@ function [rect,btn]=rubberbox(rect)
 // Copyright INRIA
 
 first=%t
-if argn(2)<1 then
+rhs=argn(2)
+if rhs<1|type(rect)==4 then
+  initial_rect=%f
+  Windows_mode=rhs==1&rect(1)
   rect=[]
+else
+  initial_rect=%t
+  Windows_mode=%f
+end
+if ~initial_rect
+  if Windows_mode then 
+    sel=0:2,//only button press requested
+  else 
+    sel=0:5,//press and click
+  end
   while %t
     [btn,xc,yc]=xclick(0)
-    if or(btn==(0:5)) then break,end
+    if or(btn==sel) then break,end
   end
   rect(1)=xc;rect(2)=yc
   //first=%f
 end
 if size(rect,'*')==2 then rect(3)=0;rect(4)=0,end
+
+opt=[%t Windows_mode]
 //
 rep(3)=-1
 ox=rect(1);xc=ox,
@@ -29,7 +44,7 @@ if get("figure_style")=="old" then
   while rep(3)==-1 do
     xrect(ox,oy,w,h)
     if xget('pixmap') then xset('wshow'),end  
-    if first then rep=xgetmouse();else rep=xgetmouse(0),end
+    if first then rep=xgetmouse(opt);else rep=xgetmouse(0,opt),end
     if rep(3)==-100 then //window has been closed
       btn=rep(3)
       driver(dr)
@@ -51,7 +66,7 @@ else
   xrect(ox,oy,w,h)
   r=gce();r.foreground=-1;
   while rep(3)==-1 do
-    if first then rep=xgetmouse();else rep=xgetmouse(0),end
+    if first then rep=xgetmouse(opt);else rep=xgetmouse(0,opt),end
     if rep(3)==-100 then //window has been closed
       btn=rep(3)
       return
