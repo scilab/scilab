@@ -1,0 +1,1 @@
+/home/sylvestre/libtool//share/libtool/config/ltmain.sh
