@@ -364,9 +364,9 @@ void scig_loadsg(int win_num, char *filename)
   int ierr = 0 ;
   int seq = 1 ;
   char * macroCall = NULL ;
-  /* the sting is "%%xload('(1)')" where (1) is filemame */
-  /* Consequently we have 12 fixed character and two variable strings. */
-  int macroCallLength = 10 + strlen(filename) ;
+  /* the sting is "xload('(1)')" where (1) is filemame */
+  /* Consequently we have 9 fixed character and two variable strings. */
+  int macroCallLength = 9 + strlen(filename) ;
 
   if ( scig_buzy  == 1 ) { return ; }
   scig_buzy  = 1 ;
@@ -375,7 +375,7 @@ void scig_loadsg(int win_num, char *filename)
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   
   macroCall = MALLOC( (macroCallLength+1) * sizeof(char) ) ; /* +1 for the \0 terminating character */
-  sprintf(macroCall,"%%xload('%s')",filename);
+  sprintf(macroCall,"xload('%s')",filename);
 
   C2F(syncexec)(macroCall,&macroCallLength,&ierr,&seq, macroCallLength );
 
@@ -392,13 +392,13 @@ void scig_savesg( int win_num, char * filename )
   integer seq = 1 ;
   char * macroCall = NULL ;
 
-  /* the sting is "%%xsave('(1)',(2))" where (1) is filemame and (2) the string */
-  /* corresponding of win_num. Consequently we have 12 fixed character and two variable strings. */
-  int macroCallLength = 11 + strlen(filename) + GET_NB_DIGITS(win_num) ;
+  /* the sting is "xsave('(1)',(2))" where (1) is filemame and (2) the string */
+  /* corresponding of win_num. Consequently we have 10 fixed character and two variable strings. */
+  int macroCallLength = 10 + strlen(filename) + GET_NB_DIGITS(win_num) ;
 
   macroCall = MALLOC( (macroCallLength+1) * sizeof(char) ) ; /* +1 for the \0 terminating character */
 
-  sprintf( macroCall, "%%xsave('%s',%d)", filename, win_num ) ; /* call xsave macro */
+  sprintf( macroCall, "xsave('%s',%d)", filename, win_num ) ; /* call xsave macro */
   C2F(syncexec)(macroCall,&macroCallLength,&ierr,&seq, macroCallLength );
   FREE( macroCall ) ;
 }

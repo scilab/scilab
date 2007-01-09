@@ -15,7 +15,7 @@ int sci_xload(char *fname,unsigned long fname_len)
   CheckRhs(1,2);
  
   /* call a Scilab function to handle compatibility */
-  C2F(callscifun)("%xload",(unsigned long) 6);
+  C2F(callscifun)("xload",(unsigned long) 5);
   return 0;
 }
 

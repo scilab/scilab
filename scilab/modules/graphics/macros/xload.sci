@@ -1,4 +1,4 @@
-function %xload(fil,num)
+function xload(fil,num)
   if  argn(2)==2 then xset("window",num),end
   if get('figure_style')=='old' then set('figure_style','new'),end
   f=gcf()

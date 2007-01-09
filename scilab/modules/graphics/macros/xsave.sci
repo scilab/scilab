@@ -1,4 +1,4 @@
-function %xsave(fil,num)
+function xsave(fil,num)
   if argn(2)<2 then
     f=gcf()
     preservecur=%f

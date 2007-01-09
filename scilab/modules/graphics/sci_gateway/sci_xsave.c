@@ -19,7 +19,7 @@ int sci_xsave( char * fname, unsigned long fname_len )
   CheckRhs(1,2);
  
   /* call a scilab macro */
-  C2F(callscifun)("%xsave",(unsigned long) 6);
+  C2F(callscifun)("xsave",(unsigned long) 6);
   return 0;
 
 }

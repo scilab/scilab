@@ -69,8 +69,6 @@ extern int sci_xinfo                      _PARAMS((char *fname, unsigned long fn
 extern int sci_xtitle                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xgrid                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xfarcs                     _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xsave                      _PARAMS((char *fname, unsigned long fname_len));
-extern int sci_xload                      _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_champ1                     _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xdel                       _PARAMS((char *fname, unsigned long fname_len));
 extern int sci_xg2ps                      _PARAMS((char *fname, unsigned long fname_len));

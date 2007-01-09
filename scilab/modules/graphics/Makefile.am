@@ -278,7 +278,6 @@ src/c/BuildObjects.c \
 src/c/sciCall.c \
 src/c/CloneObjects.c \
 src/c/InitObjects.c \
-src/c/Plo2d.c \
 src/c/pixel_mode.c \
 src/c/Format.c \
 src/c/Champ.c \
@@ -373,7 +372,6 @@ sci_gateway/sci_xstring.c \
 sci_gateway/sci_xstringb.c \
 sci_gateway/sci_xs2gif.c \
 sci_gateway/sci_xsetech.c \
-sci_gateway/sci_xload.c \
 sci_gateway/sci_xselect.c \
 sci_gateway/sci_param3d1.c \
 sci_gateway/sci_xname.c \
@@ -387,7 +385,6 @@ sci_gateway/sci_drawaxis.c \
 sci_gateway/sci_demo.c \
 sci_gateway/sci_plot2d1.c \
 sci_gateway/sci_xrect.c \
-sci_gateway/sci_xsave.c \
 sci_gateway/sci_contour.c \
 sci_gateway/sci_xclea.c \
 sci_gateway/sci_draw.c \
@@ -465,7 +462,7 @@ macros/getlinestyle.sci \
 macros/zlabel.sci \
 macros/checkXYPair.sci \
 macros/fplot3d.sci \
-macros/%xload.sci \
+macros/xload.sci \
 macros/m_circle.sci \
 macros/titlepage.sci \
 macros/getcolor.sci \
@@ -512,7 +509,7 @@ macros/TitleLabel.sci \
 macros/hotcolormap.sci \
 macros/contour.sci \
 macros/barhomogenize.sci \
-macros/%xsave.sci \
+macros/xsave.sci \
 macros/colordef.sci \
 macros/legend.sci \
 macros/ged.sci \
@@ -722,11 +719,11 @@ macros/xbasr.bin \
 macros/xclear.bin \
 macros/xclip.bin \
 macros/xlabel.bin \
-macros/%xload.bin \
+macros/xload.bin \
 macros/xnumb.bin \
 macros/xrpoly.bin \
 macros/xs2eps.bin \
-macros/%xsave.bin \
+macros/xsave.bin \
 macros/xsetm.bin \
 macros/ylabel.bin \
 macros/zgrid.bin \
@@ -784,7 +781,6 @@ includes/sci_drawaxis.h \
 includes/Plo3d.h \
 includes/sci_xrect.h \
 includes/sci_plot2d1.h \
-includes/sci_xsave.h \
 includes/GetProperty.h \
 includes/sci_xclea.h \
 includes/SetProperty.h \
@@ -841,7 +837,6 @@ includes/sci_glue.h \
 includes/sci_xstringb.h \
 includes/Graphics.h \
 includes/sci_xs2emf.h \
-includes/sci_xload.h \
 includes/fig.h \
 includes/sci_xname.h \
 includes/DrawObjects.h \
